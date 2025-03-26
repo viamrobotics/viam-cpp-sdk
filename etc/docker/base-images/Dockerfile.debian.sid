@@ -19,7 +19,6 @@ RUN apt-get -y --no-install-recommends install \
     gnupg \
     gpg \
     less \
-    libabsl-dev \
     libboost-all-dev \
     libgrpc++-dev \
     libprotobuf-dev \
@@ -41,4 +40,5 @@ RUN apt-get update
 
 RUN apt-get -y --no-install-recommends install -t llvm-toolchain-15 \
     clang-15 \
-    clang-tidy-15
+    clang-tidy-15 \
+    clang-format

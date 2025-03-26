@@ -1,24 +1,47 @@
 #pragma once
 
-#include <viam/api/module/v1/module.pb.h>
-
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/resource/resource.hpp>
+
+namespace viam {
+namespace module {
+namespace v1 {
+
+class HandlerMap;
+
+}  // namespace v1
+}  // namespace module
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
 
 class HandlerMap_ {
    public:
-    HandlerMap_();
+    HandlerMap_() = default;
+
     void add_model(Model model, const RPCSubtype& subtype);
 
-    viam::module::v1::HandlerMap to_proto() const;
-    static const HandlerMap_ from_proto(const viam::module::v1::HandlerMap& proto);
-    friend std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm);
+    const std::unordered_map<RPCSubtype, std::vector<Model>>& handles() const;
 
    private:
     std::unordered_map<RPCSubtype, std::vector<Model>> handles_;
 };
 
+std::ostream& operator<<(std::ostream& os, const HandlerMap_& hm);
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto_impl<HandlerMap_> {
+    void operator()(const HandlerMap_&, module::v1::HandlerMap*) const;
+};
+
+template <>
+struct from_proto_impl<module::v1::HandlerMap> {
+    HandlerMap_ operator()(const module::v1::HandlerMap*) const;
+};
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

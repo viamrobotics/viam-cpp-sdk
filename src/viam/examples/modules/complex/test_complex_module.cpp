@@ -7,9 +7,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/api/common/v1/common.pb.h>
-
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 #include "gizmo.grpc.pb.h"
@@ -26,8 +24,9 @@ using namespace viam::sdktests;
 
 struct RegisterGizmoAndSummationFixture {
     RegisterGizmoAndSummationFixture() {
-        Registry::register_resource<GizmoClient, GizmoServer>();
-        Registry::register_resource<SummationClient, SummationServer>();
+        auto& registry = Registry::get();
+        registry.register_resource<GizmoClient, GizmoServer>();
+        registry.register_resource<SummationClient, SummationServer>();
     }
 
     // Test teardown is a noop;

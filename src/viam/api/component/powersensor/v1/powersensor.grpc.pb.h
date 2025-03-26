@@ -7,23 +7,24 @@
 #include "component/powersensor/v1/powersensor.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace component {
@@ -79,29 +80,83 @@ class PowerSensorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       // GetVoltage returns the voltage reading of a power sensor in volts
       virtual void GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetVoltage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetVoltage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetVoltage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetCurrent returns the current reading of a power sensor in amperes
       virtual void GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetPower returns the power reading of a power sensor in watts
       virtual void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetPowerResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetReadings returns the readings of a sensor of the underlying robot.
       virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetVoltageResponse>* AsyncGetVoltageRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetVoltageResponse>* PrepareAsyncGetVoltageRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::powersensor::v1::GetCurrentResponse>* AsyncGetCurrentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -115,7 +170,7 @@ class PowerSensorService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::viam::component::powersensor::v1::GetVoltageResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetVoltageResponse>> AsyncGetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetVoltageResponse>>(AsyncGetVoltageRaw(context, request, cq));
@@ -151,30 +206,80 @@ class PowerSensorService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetVoltage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetVoltage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetVoltage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetPowerResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetVoltageResponse>* AsyncGetVoltageRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetVoltageResponse>* PrepareAsyncGetVoltageRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetCurrentResponse>* AsyncGetCurrentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -310,22 +415,36 @@ class PowerSensorService final {
   };
   typedef WithAsyncMethod_GetVoltage<WithAsyncMethod_GetCurrent<WithAsyncMethod_GetPower<WithAsyncMethod_GetReadings<WithAsyncMethod_DoCommand<Service > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetVoltage : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetVoltage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetVoltage() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse>(
+    ExperimentalWithCallbackMethod_GetVoltage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response) { return this->GetVoltage(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response) { return this->GetVoltage(context, request, response); }));}
     void SetMessageAllocatorFor_GetVoltage(
-        ::grpc::MessageAllocator< ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetVoltage() override {
+    ~ExperimentalWithCallbackMethod_GetVoltage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -333,26 +452,46 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetVoltage(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetVoltageRequest* /*request*/, ::viam::component::powersensor::v1::GetVoltageResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetVoltageRequest* /*request*/, ::viam::component::powersensor::v1::GetVoltageResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetVoltage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetVoltageRequest* /*request*/, ::viam::component::powersensor::v1::GetVoltageResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetCurrent : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetCurrent : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetCurrent() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse>(
+    ExperimentalWithCallbackMethod_GetCurrent() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response) { return this->GetCurrent(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response) { return this->GetCurrent(context, request, response); }));}
     void SetMessageAllocatorFor_GetCurrent(
-        ::grpc::MessageAllocator< ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetCurrent() override {
+    ~ExperimentalWithCallbackMethod_GetCurrent() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -360,26 +499,46 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetCurrent(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetCurrentRequest* /*request*/, ::viam::component::powersensor::v1::GetCurrentResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetCurrentRequest* /*request*/, ::viam::component::powersensor::v1::GetCurrentResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetCurrent(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetCurrentRequest* /*request*/, ::viam::component::powersensor::v1::GetCurrentResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetPower : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetPower : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetPower() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse>(
+    ExperimentalWithCallbackMethod_GetPower() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response) { return this->GetPower(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response) { return this->GetPower(context, request, response); }));}
     void SetMessageAllocatorFor_GetPower(
-        ::grpc::MessageAllocator< ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetPower() override {
+    ~ExperimentalWithCallbackMethod_GetPower() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -387,26 +546,46 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPower(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPowerRequest* /*request*/, ::viam::component::powersensor::v1::GetPowerResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPowerRequest* /*request*/, ::viam::component::powersensor::v1::GetPowerResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetPower(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::powersensor::v1::GetPowerRequest* /*request*/, ::viam::component::powersensor::v1::GetPowerResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetReadings : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetReadings() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
+    ExperimentalWithCallbackMethod_GetReadings() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response) { return this->GetReadings(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response) { return this->GetReadings(context, request, response); }));}
     void SetMessageAllocatorFor_GetReadings(
-        ::grpc::MessageAllocator< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetReadings() override {
+    ~ExperimentalWithCallbackMethod_GetReadings() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -414,26 +593,46 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetReadings(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetReadings(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::GetReadingsRequest* /*request*/, ::viam::common::v1::GetReadingsResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    ExperimentalWithCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DoCommand() override {
+    ~ExperimentalWithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -441,11 +640,20 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_GetVoltage<WithCallbackMethod_GetCurrent<WithCallbackMethod_GetPower<WithCallbackMethod_GetReadings<WithCallbackMethod_DoCommand<Service > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_GetVoltage<ExperimentalWithCallbackMethod_GetCurrent<ExperimentalWithCallbackMethod_GetPower<ExperimentalWithCallbackMethod_GetReadings<ExperimentalWithCallbackMethod_DoCommand<Service > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_GetVoltage<ExperimentalWithCallbackMethod_GetCurrent<ExperimentalWithCallbackMethod_GetPower<ExperimentalWithCallbackMethod_GetReadings<ExperimentalWithCallbackMethod_DoCommand<Service > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetVoltage : public BaseClass {
    private:
@@ -632,17 +840,27 @@ class PowerSensorService final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetVoltage : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetVoltage : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetVoltage() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetVoltage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetVoltage(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetVoltage(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetVoltage() override {
+    ~ExperimentalWithRawCallbackMethod_GetVoltage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -650,21 +868,37 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetVoltage(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetVoltage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetCurrent : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetCurrent : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetCurrent() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetCurrent() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCurrent(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCurrent(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetCurrent() override {
+    ~ExperimentalWithRawCallbackMethod_GetCurrent() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -672,21 +906,37 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetCurrent(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetCurrent(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetPower : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetPower : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetPower() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetPower() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPower(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPower(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetPower() override {
+    ~ExperimentalWithRawCallbackMethod_GetPower() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -694,21 +944,37 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPower(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetPower(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetReadings : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetReadings : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetReadings() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetReadings() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetReadings(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetReadings(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetReadings() override {
+    ~ExperimentalWithRawCallbackMethod_GetReadings() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -716,21 +982,37 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetReadings(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetReadings(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DoCommand() override {
+    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -738,8 +1020,14 @@ class PowerSensorService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetVoltage : public BaseClass {
@@ -750,8 +1038,8 @@ class PowerSensorService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse>* streamer) {
                        return this->StreamedGetVoltage(context,
                          streamer);
@@ -777,8 +1065,8 @@ class PowerSensorService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse>* streamer) {
                        return this->StreamedGetCurrent(context,
                          streamer);
@@ -804,8 +1092,8 @@ class PowerSensorService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse>* streamer) {
                        return this->StreamedGetPower(context,
                          streamer);
@@ -831,8 +1119,8 @@ class PowerSensorService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>* streamer) {
                        return this->StreamedGetReadings(context,
                          streamer);
@@ -858,8 +1146,8 @@ class PowerSensorService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);

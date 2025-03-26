@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/message_sizes.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
@@ -11,55 +11,51 @@
 
 namespace viam {
 namespace sdktests {
-
 using namespace viam::sdk;
 
-AttributeMap fake_map() {
-    auto proto_ptr = std::make_shared<ProtoType>(std::string("hello"));
-    AttributeMap map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    map->insert({{std::string("test"), proto_ptr}});
-    return map;
+ProtoStruct fake_map() {
+    return {{"test", "hello"}};
 }
 
 std::vector<GeometryConfig> fake_geometries() {
-    GeometryConfig sphere_config;
-    sphere_config.set_geometry_type(GeometryType::sphere);
-    sphere_config.set_coordinates({1, 2, 3});
-    sphere_config.set_pose({1, 2, 3});
-    struct sphere sphere({1});
-    sphere_config.set_geometry_specifics(std::move(sphere));
-    sphere_config.set_label("sphere");
-
-    GeometryConfig box_config;
-    box_config.set_geometry_type(GeometryType::box);
-    box_config.set_coordinates({1, 2, 3});
-    box_config.set_pose({1, 2, 3});
-    struct box box({1, 2, 3});
-    box_config.set_geometry_specifics(std::move(box));
-    box_config.set_label("box");
-
-    GeometryConfig point_config;
-    point_config.set_geometry_type(GeometryType::point);
-    point_config.set_coordinates({1, 2, 3});
-    point_config.set_pose({1, 2, 3});
-    struct sphere point({0});
-    point_config.set_geometry_specifics(std::move(point));
-    point_config.set_label("point");
-
-    GeometryConfig capsule_config;
-    capsule_config.set_geometry_type(GeometryType::capsule);
-    capsule_config.set_coordinates({1, 2, 3});
-    capsule_config.set_pose({1, 2, 3});
-    struct capsule capsule({2, 4});
-    capsule_config.set_geometry_specifics(std::move(capsule));
-    capsule_config.set_label("capsule");
-
-    return {std::move(sphere_config),
-            std::move(box_config),
-            std::move(point_config),
-            std::move(capsule_config)};
+    pose p{1, 2, 3};
+    return {GeometryConfig(p, sphere{1}, "sphere"),
+            GeometryConfig(p, box{1, 2, 3}, "box"),
+            GeometryConfig(p, sphere{0}, "point"),
+            GeometryConfig(p, capsule{2, 4}, "capsule")};
 }
+
+std::vector<ResourceConfig> fake_discovered_resources() {
+    pose p{1, 2, 3};
+    orientation_vector o{0, 0, 0, 1};
+    translation t{1, 2, 3};
+
+    LinkConfig link(t, o, GeometryConfig(p, sphere{1}, "sphere"), "world");
+
+    return {
+        ResourceConfig("camera",
+                       "mycam",
+                       "rdk",
+                       {{"width", 640}, {"height", 480}, {"format", "mjpeg"}},
+                       "rdk:component:camera",
+                       Model("rdk", "camera", "mycam"),
+                       link),
+        ResourceConfig("sensor",
+                       "temp_sensor",
+                       "viam",
+                       {{"type", "temperature"}, {"unit", "celsius"}, {"poll_rate", 1000}},
+                       "rdk:component:sensor",
+                       Model("viam", "temp", "my_temp_sensor"),
+                       link),
+        ResourceConfig("motor",
+                       "arm_motor",
+                       "rand",
+                       {{"max_rpm", 100}, {"encoder_steps", 200}},
+                       "rdk:component:motor",
+                       Model("rand", "cool", "my_motor"),
+                       link),
+    };
+};
 
 TestServer::TestServer(std::shared_ptr<Server> sdk_server) : sdk_server_(std::move(sdk_server)) {}
 

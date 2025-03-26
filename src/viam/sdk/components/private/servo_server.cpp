@@ -1,6 +1,6 @@
 #include <viam/sdk/components/private/servo_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/servo.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -11,7 +11,7 @@ namespace sdk {
 namespace impl {
 
 ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status ServoServer::Move(::grpc::ServerContext*,
                                  const ::viam::component::servo::v1::MoveRequest* request,
@@ -57,7 +57,7 @@ ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
         "ServoServer::GetGeometries", this, request)([&](auto& helper, auto& servo) {
         const std::vector<GeometryConfig> geometries = servo->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = geometry.to_proto();
+            *response->mutable_geometries()->Add() = to_proto(geometry);
         }
     });
 }
@@ -67,8 +67,8 @@ ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Servo>(
         "ServoServer::GetGeometries", this, request)([&](auto&, auto& servo) {
-        const AttributeMap result = servo->do_command(struct_to_map(request->command()));
-        *response->mutable_result() = map_to_struct(result);
+        const ProtoStruct result = servo->do_command(from_proto(request->command()));
+        *response->mutable_result() = to_proto(result);
     });
 }
 

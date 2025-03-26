@@ -5,9 +5,6 @@
 
 #include <string>
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/gripper/v1/gripper.pb.h>
-
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
@@ -30,7 +27,7 @@ class Gripper : public Component, public Stoppable {
 
     /// @brief Open the gripper.
     /// @param extra Any additional arguments to the method.
-    virtual void open(const AttributeMap& extra) = 0;
+    virtual void open(const ProtoStruct& extra) = 0;
 
     /// @brief Instruct the gripper to grab.
     /// @return bool indicating if the gripper grabbed something.
@@ -41,7 +38,7 @@ class Gripper : public Component, public Stoppable {
     /// @brief Instruct the gripper to grab.
     /// @param extra Any additional arguments to the method.
     /// @return bool indicating if the gripper grabbed something.
-    virtual bool grab(const AttributeMap& extra) = 0;
+    virtual bool grab(const ProtoStruct& extra) = 0;
 
     /// @brief Reports if the gripper is in motion.
     virtual bool is_moving() = 0;
@@ -49,7 +46,7 @@ class Gripper : public Component, public Stoppable {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling arm
     inline std::vector<GeometryConfig> get_geometries() {
@@ -58,7 +55,7 @@ class Gripper : public Component, public Stoppable {
 
     /// @brief Returns `GeometryConfig`s associated with the calling arm
     /// @param extra Any additional arguments to the method
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
     API api() const override;
 

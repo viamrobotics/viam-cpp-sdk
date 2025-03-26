@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 ENV HOME /root
 ARG DEBIAN_FRONTEND=noninteractive
@@ -10,6 +10,7 @@ RUN apt-get -y dist-upgrade
 RUN apt-get -y --no-install-recommends install \
     build-essential \
     ca-certificates \
+    cmake \
     curl \
     doxygen \
     g++ \
@@ -18,11 +19,11 @@ RUN apt-get -y --no-install-recommends install \
     gnupg \
     gpg \
     less \
-    libabsl-dev \
     libboost-all-dev \
     libgrpc++-dev \
     libprotobuf-dev \
     libssl-dev \
+    libxtensor-dev \
     ninja-build \
     pkg-config \
     protobuf-compiler-grpc \
@@ -30,16 +31,14 @@ RUN apt-get -y --no-install-recommends install \
     sudo \
     wget
 
-# Add the public key for the llvm repository
 RUN bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
-RUN apt-add-repository -y 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-15 main'
-RUN apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
-
+RUN apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
+# NOTE: For reasons I cannot explain, the first invocation of apt-add-repository fails
+# but the second works fine. I suspect a Debian bug
+RUN apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
 RUN apt-get update
 
-RUN apt-get -y --no-install-recommends install -t llvm-toolchain-bullseye-15 \
+RUN apt-get -y --no-install-recommends install -t llvm-toolchain-bookworm-15 \
     clang-15 \
-    clang-tidy-15
-
-RUN apt-get -y --no-install-recommends install -t bullseye-backports \
-    cmake
+    clang-tidy-15 \
+    clang-format

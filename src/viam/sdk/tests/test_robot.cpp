@@ -12,7 +12,6 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/components/motor.hpp>
-#include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 #include <viam/sdk/tests/mocks/generic_mocks.hpp>
@@ -20,10 +19,7 @@
 #include <viam/sdk/tests/mocks/mock_robot.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery_query)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::discovery)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::frame_system_config)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::status)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::operation)
 
 namespace viam {
@@ -66,6 +62,8 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
 }
 
 BOOST_AUTO_TEST_CASE(test_registering_resources) {
+    auto& registry = Registry::get();
+
     // To test with mock resources we need to be able to create them, which means registering
     // constructors. This tests that we register correctly.
     Model camera_model("fake", "fake", "mock_camera");
@@ -74,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
         camera_model,
         [](Dependencies, ResourceConfig cfg) { return camera::MockCamera::get_mock_camera(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
-    Registry::register_model(cr);
+    registry.register_model(cr);
 
     Model generic_model("fake", "fake", "mock_generic");
     std::shared_ptr<ModelRegistration> gr = std::make_shared<ModelRegistration>(
@@ -84,7 +82,7 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
             return generic::MockGenericComponent::get_mock_generic();
         },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
-    Registry::register_model(gr);
+    registry.register_model(gr);
 
     Model motor_model("fake", "fake", "mock_motor");
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
@@ -92,11 +90,11 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
         motor_model,
         [](Dependencies, ResourceConfig cfg) { return motor::MockMotor::get_mock_motor(); },
         [](ResourceConfig cfg) -> std::vector<std::string> { return {}; });
-    Registry::register_model(mr);
+    registry.register_model(mr);
 
-    BOOST_CHECK(Registry::lookup_model(API::get<Camera>(), camera_model));
-    BOOST_CHECK(Registry::lookup_model(API::get<GenericComponent>(), generic_model));
-    BOOST_CHECK(Registry::lookup_model(API::get<Motor>(), motor_model));
+    BOOST_CHECK(registry.lookup_model(API::get<Camera>(), camera_model));
+    BOOST_CHECK(registry.lookup_model(API::get<GenericComponent>(), generic_model));
+    BOOST_CHECK(registry.lookup_model(API::get<Motor>(), motor_model));
 }
 
 BOOST_AUTO_TEST_CASE(test_resource_names) {
@@ -105,31 +103,6 @@ BOOST_AUTO_TEST_CASE(test_resource_names) {
             std::vector<Name> names = client->resource_names();
             auto mocks = mock_resource_names_response();
             BOOST_TEST(names == mocks, boost::test_tools::per_element());
-        });
-}
-
-BOOST_AUTO_TEST_CASE(test_get_status) {
-    robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            auto mock_statuses = mock_status_response();
-
-            // get all resource statuses
-            auto statuses = client->get_status();
-
-            // ensure we get statuses for all resources, and that they are as expected.
-            BOOST_CHECK_EQUAL(statuses.size(), 3);
-            BOOST_TEST(statuses == mock_statuses, boost::test_tools::per_element());
-
-            // get only a subset of status responses
-            auto names = mock_resource_names_response();
-            std::vector<Name> some_names{names[0], names[1]};
-            auto some_statuses = client->get_status(some_names);
-            // ensure that we only get two of the three existing statuses
-            BOOST_CHECK_EQUAL(some_statuses.size(), 2);
-
-            std::vector<RobotClient::status> some_mock_statuses{mock_statuses[0], mock_statuses[1]};
-
-            BOOST_TEST(some_statuses == some_mock_statuses, boost::test_tools::per_element());
         });
 }
 
@@ -152,7 +125,7 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
                               proto1.frame().pose_in_observer_frame().pose().o_x());
             BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.theta,
                               proto1.frame().pose_in_observer_frame().pose().theta());
-            BOOST_CHECK_EQUAL(map_to_struct(config1.kinematics).SerializeAsString(),
+            BOOST_CHECK_EQUAL(to_proto(config1.kinematics).SerializeAsString(),
                               proto1.kinematics().SerializeAsString());
 
             BOOST_CHECK_EQUAL(config2.frame.reference_frame, proto2.frame().reference_frame());
@@ -162,7 +135,7 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
                               proto2.frame().pose_in_observer_frame().pose().o_x());
             BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.theta,
                               proto2.frame().pose_in_observer_frame().pose().theta());
-            BOOST_CHECK_EQUAL(map_to_struct(config2.kinematics).SerializeAsString(),
+            BOOST_CHECK_EQUAL(to_proto(config2.kinematics).SerializeAsString(),
                               proto2.kinematics().SerializeAsString());
         });
 }
@@ -208,40 +181,6 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
         });
 }
 
-// This test ensures that the functions in the `mock_robot` files have the same fields for both
-// the proto and custom type versions.
-BOOST_AUTO_TEST_CASE(test_discovery) {
-    robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            auto components = mock_discovery_response();
-            auto component = components[0];
-            auto results = component.results->begin();
-            auto protos = mock_proto_discovery_response();
-            auto proto = protos[0];
-            auto proto_results = proto.results().fields().begin();
-
-            BOOST_CHECK_EQUAL(component.query.subtype, proto.query().subtype());
-            BOOST_CHECK_EQUAL(component.query.model, proto.query().model());
-            BOOST_CHECK_EQUAL(results->first, proto_results->first);
-            // the `Value` type in our mock responses is a `list` type so we can comprehensively
-            // test `ProtoType` conversions. Unfortunately the protobuf `ListValue` type doesn't
-            // seem to have `==` defined, so we convert to a `DebugString` here to verify
-            // comparison and to provide helpful printing of differences in case of an error.
-            BOOST_CHECK_EQUAL(results->second->proto_value().DebugString(),
-                              proto_results->second.DebugString());
-        });
-}
-
-BOOST_AUTO_TEST_CASE(test_discover_components) {
-    robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
-            auto components = client->discover_components({});
-            auto mock_components = mock_discovery_response();
-
-            BOOST_TEST(components == mock_components, boost::test_tools::per_element());
-        });
-}
-
 BOOST_AUTO_TEST_CASE(test_transform_pose) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
@@ -250,6 +189,15 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
             auto mock_pose = mock_transform_response();
 
             BOOST_CHECK_EQUAL(pose, mock_pose);
+        });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_machine_status) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            auto status = client->get_machine_status();
+
+            BOOST_CHECK_EQUAL(status, RobotClient::status::k_running);
         });
 }
 

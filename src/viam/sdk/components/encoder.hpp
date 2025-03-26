@@ -5,9 +5,7 @@
 
 #include <string>
 
-#include <viam/api/component/encoder/v1/encoder.pb.h>
-
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 
@@ -46,25 +44,6 @@ class Encoder : public Component {
         bool angle_degrees_supported;
     };
 
-    /// @brief Creates a `position_type` struct from its proto representation.
-    static position_type from_proto(viam::component::encoder::v1::PositionType proto);
-
-    /// @brief Creates a `position` struct from its proto representation.
-    static position from_proto(const viam::component::encoder::v1::GetPositionResponse& proto);
-
-    /// @brief Creates a `properties` struct from its proto representation.
-    static properties from_proto(const viam::component::encoder::v1::GetPropertiesResponse& proto);
-
-    /// @brief Converts a `position_type` struct to its proto representation.
-    static viam::component::encoder::v1::PositionType to_proto(position_type position_type);
-
-    /// @brief Converts a `position` struct to its proto representation.
-    static viam::component::encoder::v1::GetPositionResponse to_proto(const position& position);
-
-    /// @brief Converts a `properties` struct to its proto representation.
-    static viam::component::encoder::v1::GetPropertiesResponse to_proto(
-        const properties& properties);
-
     /// @brief Returns position of the encoder which can either be ticks since last zeroing for an
     /// incremental encoder or degrees for an absolute encoder.
     /// @param position_type The type of position you are requesting. If  the driver does not
@@ -80,7 +59,7 @@ class Encoder : public Component {
     /// @param position_type The type of position you are requesting. If  the driver does not
     /// implement the requested type, this call will return an error. If position type is
     /// `unspecified`, the response will return a default according to the driver.
-    virtual position get_position(const AttributeMap& extra,
+    virtual position get_position(const ProtoStruct& extra,
                                   position_type position_type = position_type::unspecified) = 0;
 
     /// @brief Reset the value of the position
@@ -90,7 +69,7 @@ class Encoder : public Component {
 
     /// @brief Reset the value of the position
     /// @param extra Any additional arguments to the method.
-    virtual void reset_position(const AttributeMap& extra) = 0;
+    virtual void reset_position(const ProtoStruct& extra) = 0;
 
     /// @brief Returns a list of all the position_types that are supported by the encoder.
     inline properties get_properties() {
@@ -99,12 +78,12 @@ class Encoder : public Component {
 
     /// @brief Returns a list of all the position_types that are supported by the encoder.
     /// @param extra Any additional arguments to the method.
-    virtual properties get_properties(const AttributeMap& extra) = 0;
+    virtual properties get_properties(const ProtoStruct& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling encoder.
     /// @return The requested `GeometryConfig`s associated with the component.
@@ -115,7 +94,7 @@ class Encoder : public Component {
     /// @brief Returns `GeometryConfig`s associated with the calling encoder.
     /// @param extra Any additional arguments to the method.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
     API api() const override;
 

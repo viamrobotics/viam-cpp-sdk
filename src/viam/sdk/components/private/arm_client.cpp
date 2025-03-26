@@ -14,19 +14,19 @@ ArmClient::ArmClient(std::string name, std::shared_ptr<grpc::Channel> channel)
       stub_(viam::component::arm::v1::ArmService::NewStub(channel)),
       channel_(std::move(channel)) {}
 
-pose ArmClient::get_end_position(const AttributeMap& extra) {
+pose ArmClient::get_end_position(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetEndPosition)
         .with(extra)
-        .invoke([&](auto& response) { return pose::from_proto(response.pose()); });
+        .invoke([&](auto& response) { return from_proto(response.pose()); });
 }
 
-void ArmClient::move_to_position(const pose& pose, const AttributeMap& extra) {
+void ArmClient::move_to_position(const pose& pose, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveToPosition)
-        .with(extra, [&](auto& request) { *request.mutable_to() = pose.to_proto(); })
+        .with(extra, [&](auto& request) { *request.mutable_to() = to_proto(pose); })
         .invoke();
 }
 
-std::vector<double> ArmClient::get_joint_positions(const AttributeMap& extra) {
+std::vector<double> ArmClient::get_joint_positions(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetJointPositions)
         .with(extra)
         .invoke([](auto& response) {
@@ -36,12 +36,37 @@ std::vector<double> ArmClient::get_joint_positions(const AttributeMap& extra) {
 }
 
 void ArmClient::move_to_joint_positions(const std::vector<double>& positions,
-                                        const AttributeMap& extra) {
+                                        const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveToJointPositions)
         .with(extra,
               [&](auto& request) {
                   *(request.mutable_positions()->mutable_values()) = {positions.begin(),
                                                                       positions.end()};
+              })
+        .invoke();
+}
+
+void ArmClient::move_through_joint_positions(const std::vector<std::vector<double>>& positions,
+                                             const Arm::MoveOptions& options,
+                                             const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::MoveThroughJointPositions)
+        .with(extra,
+              [&](viam::component::arm::v1::MoveThroughJointPositionsRequest& request) {
+                  if (options.max_vel_degs_per_sec) {
+                      request.mutable_options()->set_max_vel_degs_per_sec(
+                          *options.max_vel_degs_per_sec);
+                  }
+
+                  if (options.max_acc_degs_per_sec2) {
+                      request.mutable_options()->set_max_acc_degs_per_sec2(
+                          *options.max_acc_degs_per_sec2);
+                  }
+
+                  for (const auto& pos : positions) {
+                      viam::component::arm::v1::JointPositions jpos;
+                      jpos.mutable_values()->Add(pos.begin(), pos.end());
+                      request.mutable_positions()->Add(std::move(jpos));
+                  }
               })
         .invoke();
 }
@@ -52,26 +77,39 @@ bool ArmClient::is_moving() {
     });
 }
 
-void ArmClient::stop(const AttributeMap& extra) {
+void ArmClient::stop(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Stop).with(extra).invoke();
 }
 
-AttributeMap ArmClient::do_command(const AttributeMap& command) {
+ProtoStruct ArmClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
-Arm::KinematicsData ArmClient::get_kinematics(const AttributeMap& extra) {
+Arm::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
-        .invoke([](auto& response) { return Arm::from_proto(response); });
+        .invoke([](auto& response) -> Arm::KinematicsData {
+            std::vector<unsigned char> bytes(response.kinematics_data().begin(),
+                                             response.kinematics_data().end());
+            switch (response.format()) {
+                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
+                    return Arm::KinematicsDataSVA(std::move(bytes));
+                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
+                    return Arm::KinematicsDataURDF(std::move(bytes));
+                case common::v1::KinematicsFileFormat::
+                    KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
+                default:
+                    return Arm::KinematicsDataUnspecified{};
+            }
+        });
 }
 
-std::vector<GeometryConfig> ArmClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> ArmClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
 }  // namespace impl

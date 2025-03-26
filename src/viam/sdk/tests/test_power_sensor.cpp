@@ -7,7 +7,7 @@
 #include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/power_sensor.hpp>
 #include <viam/sdk/tests/mocks/mock_power_sensor.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -59,27 +59,23 @@ BOOST_AUTO_TEST_CASE(test_get_power) {
 BOOST_AUTO_TEST_CASE(test_get_readings) {
     std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
     client_to_mock_pipeline<PowerSensor>(mock, [](PowerSensor& client) {
-        AttributeMap expected = fake_map();
+        ProtoStruct expected = fake_map();
 
-        AttributeMap readings = client.get_readings();
+        ProtoStruct readings = client.get_readings();
 
-        ProtoType expected_pt = *(expected->at(std::string("test")));
-        ProtoType result_pt = *(readings->at(std::string("test")));
-        BOOST_CHECK(result_pt == expected_pt);
+        BOOST_CHECK(readings.at("test") == expected.at("test"));
     });
 }
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockPowerSensor> mock = MockPowerSensor::get_mock_powersensor();
     client_to_mock_pipeline<PowerSensor>(mock, [](PowerSensor& client) {
-        AttributeMap expected = fake_map();
+        ProtoStruct expected = fake_map();
 
-        AttributeMap command = fake_map();
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct command = fake_map();
+        ProtoStruct result_map = client.do_command(command);
 
-        ProtoType expected_pt = *(expected->at(std::string("test")));
-        ProtoType result_pt = *(result_map->at(std::string("test")));
-        BOOST_CHECK(result_pt == expected_pt);
+        BOOST_CHECK(result_map.at("test") == expected.at("test"));
     });
 }
 

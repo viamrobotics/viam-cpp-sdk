@@ -14,7 +14,7 @@
 
 #include <viam/sdk/services/private/mlmodel_server.hpp>
 
-#include <viam/sdk/common/service_helper.hpp>
+#include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel.hpp>
 #include <viam/sdk/services/private/mlmodel.hpp>
@@ -123,9 +123,7 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
                             break;
                     }
                 }
-                if (s.extra) {
-                    *new_entry.mutable_extra() = map_to_struct(s.extra);
-                }
+                *new_entry.mutable_extra() = to_proto(s.extra);
             }
             return ::grpc::Status();
         };

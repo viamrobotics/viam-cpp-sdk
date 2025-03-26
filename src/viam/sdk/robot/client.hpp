@@ -3,11 +3,11 @@
 /// @brief gRPC client implementation for a `robot`.
 #pragma once
 
+#include <atomic>
 #include <string>
 #include <thread>
 
-#include <grpcpp/channel.h>
-
+#include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
@@ -19,8 +19,6 @@
 
 namespace viam {
 namespace sdk {
-
-using grpc::Channel;
 
 /// @defgroup Robot Classes related to a Robot representation.
 
@@ -36,40 +34,29 @@ using grpc::Channel;
 /// `with_channel` require a user call to `close()`.
 class RobotClient {
    public:
-    struct discovery_query {
-        std::string subtype;
-        std::string model;
-        friend bool operator==(const discovery_query& lhs, const discovery_query& rhs);
+    /// @enum status
+    /// @brief the current status of the robot
+    /// @ingroup Robot
+    enum class status : uint8_t {
+        k_initializing,
+        k_running,
+        k_unspecified,
     };
 
-    struct discovery {
-        discovery_query query;
-        AttributeMap results;
-        friend bool operator==(const discovery& lhs, const discovery& rhs);
-    };
+    friend std::ostream& operator<<(std::ostream& os, const status& v);
 
     struct frame_system_config {
         WorldState::transform frame;
-        AttributeMap kinematics;
+        ProtoStruct kinematics;
         friend bool operator==(const frame_system_config& lhs, const frame_system_config& rhs);
-    };
-
-    struct status {
-        boost::optional<Name> name;
-        AttributeMap status_map;
-        // TODO: RSDK-6574: revisit time_point
-        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>>
-            last_reconfigured;
-        friend bool operator==(const status& lhs, const status& rhs);
     };
 
     struct operation {
         std::string id;
         std::string method;
         boost::optional<std::string> session_id;
-        AttributeMap arguments;
-        // TODO: RSDK-6574: revisit time_point
-        boost::optional<std::chrono::time_point<long long, std::chrono::nanoseconds>> started;
+        ProtoStruct arguments;
+        boost::optional<time_pt> started;
         friend bool operator==(const operation& lhs, const operation& rhs);
     };
 
@@ -132,17 +119,6 @@ class RobotClient {
     /// @return The list of operations currently running on the calling robot.
     std::vector<operation> get_operations();
 
-    /// @brief Get the status of the requested robot components.
-    /// @param components A list of the specific components for which status is desired.
-    /// @return A list of statuses.
-    std::vector<status> get_status(std::vector<Name>& components);
-
-    /// @brief Get the status of all robot components.
-    /// @return A list of statuses.
-    std::vector<status> get_status();
-
-    std::vector<discovery> discover_components(const std::vector<discovery_query>& queries);
-
     /// @brief Transform a given `Pose` to a new specified destination which is a reference frame.
     /// @param query The pose that should be transformed.
     /// @param destination The name of the reference frame to transform the given pose to.
@@ -161,25 +137,34 @@ class RobotClient {
 
     /// @brief Cancel all operations for the robot and stop all actuators and movement.
     /// @param extra Any extra params to pass to resources' `stop` methods, keyed by `Name`.
-    void stop_all(const std::unordered_map<Name, AttributeMap>& extra);
+    void stop_all(const std::unordered_map<Name, ProtoStruct>& extra);
 
     /// @brief Cancel a specified operation on the robot.
     /// @param id The ID of the operation to cancel.
     void cancel_operation(std::string id);
 
+    /// @brief gets the current status of the machine
+    status get_machine_status() const;
+
    private:
+    void refresh_every();
+
     std::vector<std::shared_ptr<std::thread>> threads_;
+
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
-    std::shared_ptr<Channel> channel_;
+
+    std::shared_ptr<GrpcChannel> channel_;
     std::shared_ptr<ViamChannel> viam_channel_;
     bool should_close_channel_;
+
     struct impl;
     std::unique_ptr<impl> impl_;
+
     mutable std::mutex lock_;
+
     std::vector<Name> resource_names_;
     ResourceManager resource_manager_;
-    void refresh_every();
 };
 
 }  // namespace sdk

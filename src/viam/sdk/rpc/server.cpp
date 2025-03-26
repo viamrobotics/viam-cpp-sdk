@@ -3,7 +3,10 @@
 #include <sstream>
 
 #include <boost/log/trivial.hpp>
+
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/security/server_credentials.h>
+#include <grpcpp/server_builder.h>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/registry/registry.hpp>
@@ -16,8 +19,7 @@ Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {
     builder_->SetMaxReceiveMessageSize(kMaxMessageSize);
     builder_->SetMaxSendMessageSize(kMaxMessageSize);
     builder_->SetMaxMessageSize(kMaxMessageSize);
-    Registry::initialize();
-    for (const auto& rr : Registry::registered_resource_servers()) {
+    for (const auto& rr : Registry::get().registered_resource_servers()) {
         auto new_manager = std::make_shared<ResourceManager>();
         auto server = rr.second->create_resource_server(new_manager, *this);
         managed_servers_.emplace(rr.first, std::move(server));

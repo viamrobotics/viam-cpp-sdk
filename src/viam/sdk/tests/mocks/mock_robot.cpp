@@ -7,7 +7,8 @@
 #include <common/v1/common.pb.h>
 #include <robot/v1/robot.pb.h>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
@@ -16,11 +17,33 @@ namespace robot {
 using namespace viam::sdk;
 using common::v1::Pose;
 using common::v1::PoseInFrame;
-using viam::robot::v1::Discovery;
-using viam::robot::v1::DiscoveryQuery;
+using common::v1::ResourceName;
 using viam::robot::v1::FrameSystemConfig;
 using viam::robot::v1::Operation;
-using viam::robot::v1::Status;
+
+namespace {
+std::vector<Name> registered_models_for_resource(const std::shared_ptr<Resource>& resource) {
+    std::string resource_type;
+    std::string resource_subtype;
+    std::vector<Name> resource_names;
+    for (const auto& kv : Registry::get().registered_models()) {
+        const std::shared_ptr<const ModelRegistration> reg = kv.second;
+        if (reg->api() == resource->api()) {
+            resource_type = reg->api().resource_type();
+            resource_subtype = reg->api().resource_subtype();
+        } else {
+            continue;
+        }
+
+        if (resource_subtype.empty()) {
+            resource_subtype = resource->name();
+        }
+
+        resource_names.push_back({{kRDK, resource_type, resource_subtype}, "", resource->name()});
+    }
+    return resource_names;
+}
+}  // namespace
 
 pose default_pose(int offset) {
     pose pose;
@@ -35,7 +58,7 @@ pose default_pose(int offset) {
 }
 
 Pose default_proto_pose(int offset = 0) {
-    return default_pose(offset).to_proto();
+    return to_proto(default_pose(offset));
 }
 
 std::vector<RobotClient::operation> mock_operations_response() {
@@ -65,92 +88,6 @@ std::vector<Operation> mock_proto_operations_response() {
     std::vector<viam::robot::v1::Operation> resp;
     resp.push_back(op);
     resp.push_back(op1);
-    return resp;
-}
-
-std::vector<RobotClient::discovery> mock_discovery_response() {
-    RobotClient::discovery_query query;
-    query.subtype = "camera";
-    query.model = "webcam";
-    auto s = std::make_shared<ProtoType>("bar");
-    auto map_pt = std::make_shared<ProtoType>(fake_map());
-    std::vector<std::shared_ptr<ProtoType>> inner{map_pt};
-    std::vector<std::shared_ptr<ProtoType>> l_{s,
-                                               std::make_shared<ProtoType>(false),
-                                               std::make_shared<ProtoType>(3),
-                                               std::make_shared<ProtoType>(4.2),
-                                               map_pt,
-                                               std::make_shared<ProtoType>(inner)};
-    auto l = std::make_shared<ProtoType>(l_);
-
-    AttributeMap results =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    results->emplace("foo", l);
-
-    RobotClient::discovery discovery;
-    discovery.query = std::move(query);
-    discovery.results = std::move(results);
-    return std::vector<RobotClient::discovery>{std::move(discovery)};
-}
-
-std::vector<Discovery> mock_proto_discovery_response() {
-    std::vector<viam::robot::v1::Discovery> v;
-    for (const auto& d : mock_discovery_response()) {
-        DiscoveryQuery query;
-        *query.mutable_subtype() = d.query.subtype;
-        *query.mutable_model() = d.query.model;
-
-        viam::robot::v1::Discovery discovery;
-        *discovery.mutable_query() = query;
-        *discovery.mutable_results() = map_to_struct(d.results);
-
-        v.push_back(std::move(discovery));
-    }
-
-    return v;
-}
-
-std::vector<RobotClient::status> mock_status_response() {
-    auto rns = mock_resource_names_response();
-
-    RobotClient::status camera_status;
-    camera_status.name = rns[0];
-    camera_status.status_map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-
-    RobotClient::status motor_status;
-    motor_status.name = rns[1];
-    motor_status.status_map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-
-    RobotClient::status generic_status;
-    generic_status.name = rns[2];
-    generic_status.status_map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-
-    return {std::move(camera_status), std::move(motor_status), std::move(generic_status)};
-}
-
-std::vector<Status> mock_proto_status_response() {
-    auto rns = mock_proto_resource_names_response();
-
-    Status camera_status;
-    *camera_status.mutable_name() = rns[0];
-    *camera_status.mutable_status() = google::protobuf::Struct();
-
-    Status motor_status;
-    *motor_status.mutable_name() = rns[1];
-    *motor_status.mutable_status() = google::protobuf::Struct();
-
-    Status generic_status;
-    *generic_status.mutable_name() = rns[2];
-    *generic_status.mutable_status() = google::protobuf::Struct();
-
-    std::vector<Status> resp;
-    resp.push_back(camera_status);
-    resp.push_back(motor_status);
-    resp.push_back(generic_status);
-
     return resp;
 }
 
@@ -206,10 +143,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     pose_in_frame pif("reference0", default_pose());
     t.pose_in_observer_frame = pif;
     config.frame = t;
-    AttributeMap kinematics =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    kinematics->emplace(std::move("fake-key"), std::make_shared<ProtoType>(1));
-    config.kinematics = kinematics;
+    config.kinematics = {{"fake-key", 1.0}};
 
     RobotClient::frame_system_config config1;
     WorldState::transform t1;
@@ -217,10 +151,7 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
     pose_in_frame pif1("reference1", default_pose(1));
     t1.pose_in_observer_frame = pif1;
     config1.frame = t1;
-    AttributeMap kinematics1 =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    kinematics1->emplace(std::move("new-fake-key"), std::make_shared<ProtoType>(2));
-    config1.kinematics = kinematics1;
+    config1.kinematics = {{"new-fake-key", 2.0}};
 
     std::vector<RobotClient::frame_system_config> response;
     response.push_back(config);
@@ -267,6 +198,102 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
     return response;
 }
 
+MockRobotService::MockRobotService(const std::shared_ptr<ResourceManager>& manager, Server& server)
+    : ResourceServer(manager) {
+    server.register_service(this);
+    // register all managed resources with the appropriate resource servers.
+    for (const auto& resource : manager->resources()) {
+        server.add_resource(resource.second);
+    }
+}
+
+std::vector<ResourceName> MockRobotService::generate_metadata_() {
+    std::vector<ResourceName> metadata;
+    for (const auto& key_and_val : resource_manager()->resources()) {
+        for (const Name& name : registered_models_for_resource(key_and_val.second)) {
+            metadata.push_back(to_proto(name));
+        }
+    }
+    return metadata;
+}
+
+::grpc::Status MockRobotService::ResourceNames(::grpc::ServerContext*,
+                                               const viam::robot::v1::ResourceNamesRequest* request,
+                                               viam::robot::v1::ResourceNamesResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                              "Called [ResourceNames] without a request");
+    }
+
+    auto* p = response->mutable_resources();
+    for (const ResourceName& name : generate_metadata_()) {
+        *p->Add() = name;
+    }
+
+    return ::grpc::Status();
+}
+
+::grpc::Status MockRobotService::StopAll(::grpc::ServerContext*,
+                                         const ::viam::robot::v1::StopAllRequest* request,
+                                         ::viam::robot::v1::StopAllResponse*) {
+    const ResourceName r;
+    std::unordered_map<std::string, ProtoStruct> extra;
+    for (const auto& ex : request->extra()) {
+        const google::protobuf::Struct& struct_ = ex.params();
+        const ProtoStruct value_map = from_proto(struct_);
+        const std::string name = ex.name().SerializeAsString();
+        extra.emplace(name, value_map);
+    }
+
+    grpc::StatusCode status = grpc::StatusCode::OK;
+    std::string status_message;
+
+    for (const auto& r : resource_manager()->resources()) {
+        const std::shared_ptr<Resource> resource = r.second;
+        const ResourceName rn = to_proto(resource->get_resource_name());
+        const std::string rn_ = rn.SerializeAsString();
+        if (extra.find(rn_) != extra.end()) {
+            try {
+                Stoppable::stop_if_stoppable(resource, extra.at(rn_));
+            } catch (const std::runtime_error& err) {
+                try {
+                    status_message = err.what();
+                    Stoppable::stop_if_stoppable(resource);
+                } catch (std::runtime_error& err) {
+                    status_message = err.what();
+                    status = grpc::UNKNOWN;
+                } catch (...) {
+                    status_message = "unknown error";
+                    status = grpc::UNKNOWN;
+                }
+            }
+        } else {
+            try {
+                Stoppable::stop_if_stoppable(resource);
+            } catch (std::runtime_error& err) {
+                status_message = err.what();
+                status = grpc::UNKNOWN;
+            } catch (...) {
+                status_message = "unknown error";
+                status = grpc::UNKNOWN;
+            }
+        }
+    }
+
+    return grpc::Status(status, status_message);
+}
+
+std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
+    std::shared_ptr<Resource> r;
+    const std::lock_guard<std::mutex> lock(lock_);
+    auto resources = resource_manager()->resources();
+    if (resources.find(name.name()) != resources.end()) {
+        r = resources.at(name.name());
+    }
+
+    return r;
+}
+
 ::grpc::Status MockRobotService::FrameSystemConfig(
     ::grpc::ServerContext* context,
     const ::viam::robot::v1::FrameSystemConfigRequest*,
@@ -283,22 +310,6 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
     return ::grpc::Status();
 }
 
-::grpc::Status MockRobotService::DiscoverComponents(
-    ::grpc::ServerContext* context,
-    const ::viam::robot::v1::DiscoverComponentsRequest*,
-    ::viam::robot::v1::DiscoverComponentsResponse* response) {
-    auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
-        return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
-                              "viam_client info not properly set in metadata");
-    }
-    auto* discovery = response->mutable_discovery();
-    for (auto& d : mock_proto_discovery_response()) {
-        *discovery->Add() = d;
-    }
-    return ::grpc::Status();
-}
-
 ::grpc::Status MockRobotService::TransformPose(::grpc::ServerContext* context,
                                                const ::viam::robot::v1::TransformPoseRequest*,
                                                ::viam::robot::v1::TransformPoseResponse* response) {
@@ -308,6 +319,21 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
                               "viam_client info not properly set in metadata");
     }
     *response->mutable_pose() = mock_proto_transform_response();
+    return ::grpc::Status();
+}
+
+::grpc::Status MockRobotService::GetMachineStatus(
+    ::grpc::ServerContext* context,
+    const ::viam::robot::v1::GetMachineStatusRequest*,
+    ::viam::robot::v1::GetMachineStatusResponse* response) {
+    auto client_md = context->client_metadata();
+    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+        return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
+                              "viam_client info not properly set in metadata");
+    }
+
+    response->set_state(::viam::robot::v1::GetMachineStatusResponse_State_STATE_RUNNING);
+
     return ::grpc::Status();
 }
 

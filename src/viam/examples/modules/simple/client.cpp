@@ -1,14 +1,20 @@
+#include <iostream>
 #include <memory>
 #include <string>
 
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/instance.hpp>
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
-#include <viam/sdk/services/generic.hpp>
 
 using namespace viam::sdk;
 
 int main() {
+    // Every Viam C++ SDK program must have one and only one Instance object which is created before
+    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
+    Instance inst;
+
     const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
     DialOptions dial_options;
     dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
@@ -32,30 +38,34 @@ int main() {
         std::cout << "\t" << resource << "\n";
     }
 
-    // Exercise printer methods
-    auto printer = robot->resource_by_name<GenericService>("printer1");
-    if (!printer) {
-        std::cerr << "could not get 'printer1' resource from robot\n";
+    // Exercise sensor methods
+    auto sensor = robot->resource_by_name<Sensor>("mysensor");
+    if (!sensor) {
+        std::cerr << "could not get 'mysensor' resource from robot\n";
         return EXIT_FAILURE;
     }
 
-    auto proto_ptr = std::make_shared<ProtoType>(std::string("world"));
-    AttributeMap command =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    command->insert({{std::string("hello"), proto_ptr}});
+    ProtoStruct command{{"hello", "world"}};
+    ProtoStruct resp = sensor->do_command(command);
 
-    auto resp = printer->do_command(command);
-
-    if (!resp) {
-        std::cerr << "Failed to get a response from 'printer1'\n";
+    if (command != resp) {
+        std::cerr << "Got unexpected result from 'mysensor'\n";
         return EXIT_FAILURE;
     }
 
-    std::shared_ptr<ProtoType> expected = command->at(std::string("hello"));
-    std::shared_ptr<ProtoType> result = resp->at(std::string("hello"));
+    ProtoStruct readings = sensor->get_readings();
 
-    if (!(*expected == *result)) {
-        std::cerr << "Got unexpected result from 'printer1'\n";
+    auto itr = readings.find("signal");
+    if (itr == readings.end()) {
+        std::cerr << "Expected signal not found in sensor readings\n";
+        return EXIT_FAILURE;
+    }
+
+    const double* signal = itr->second.get<double>();
+    if (signal) {
+        std::cout << "\t" << itr->first << ": " << *signal << "\n";
+    } else {
+        std::cerr << "Unexpected value type for sensor reading\n";
         return EXIT_FAILURE;
     }
 

@@ -4,9 +4,7 @@
 /// executing arbitrary commands.
 #pragma once
 
-#include <google/protobuf/descriptor.h>
-
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/services/service.hpp>
@@ -25,7 +23,7 @@ class GenericService : public Service {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Creates a `GenericService` `API`.
     API api() const override;

@@ -3,9 +3,6 @@
 /// @brief Defines a `Gantry` component
 #pragma once
 
-#include <viam/api/common/v1/common.pb.h>
-#include <viam/api/component/gantry/v1/gantry.pb.h>
-
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
@@ -41,7 +38,7 @@ class Gantry : public Component, public Stoppable {
 
     /// @brief Get the positions of the axes of the gantry in millimeters.
     /// @param extra Any additional arguments to the method
-    virtual std::vector<double> get_position(const AttributeMap& extra) = 0;
+    virtual std::vector<double> get_position(const ProtoStruct& extra) = 0;
 
     /// @brief Move the axes of the gantry to the desired positions (mm) at the requested speeds
     /// (mm/sec).
@@ -57,7 +54,7 @@ class Gantry : public Component, public Stoppable {
     /// axis.
     /// @param extra Any additional arguments to the method
     virtual void move_to_position(const std::vector<movement_coordinate>& coordinates,
-                                  const AttributeMap& extra) = 0;
+                                  const ProtoStruct& extra) = 0;
 
     /// @brief Run the homing sequence of the gantry to re-calibrate the axes with respect to the
     /// limit switches.
@@ -70,7 +67,7 @@ class Gantry : public Component, public Stoppable {
     /// limit switches.
     /// @param extra Any additional arguments to the method
     /// @return Whether the gantry has run the homing sequence successfully.
-    virtual bool home(const AttributeMap& extra) = 0;
+    virtual bool home(const ProtoStruct& extra) = 0;
 
     /// @brief Get the lengths of the axes of the gantry in millimeters.
     inline std::vector<double> get_lengths() {
@@ -79,7 +76,7 @@ class Gantry : public Component, public Stoppable {
 
     /// @brief Get the lengths of the axes of the gantry in millimeters.
     /// @param extra Any additional arguments to the method
-    virtual std::vector<double> get_lengths(const AttributeMap& extra) = 0;
+    virtual std::vector<double> get_lengths(const ProtoStruct& extra) = 0;
 
     /// @brief Reports if the gantry is in motion.
     virtual bool is_moving() = 0;
@@ -87,7 +84,7 @@ class Gantry : public Component, public Stoppable {
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling gantry
     inline std::vector<GeometryConfig> get_geometries() {
@@ -96,7 +93,7 @@ class Gantry : public Component, public Stoppable {
 
     /// @brief Returns `GeometryConfig`s associated with the calling gantry
     /// @param extra Any additional arguments to the method
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
     API api() const override;
 

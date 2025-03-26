@@ -7,23 +7,24 @@
 #include "robot/v1/robot.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace robot {
@@ -82,13 +83,13 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::BlockForOperationResponse>> PrepareAsyncBlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::BlockForOperationResponse>>(PrepareAsyncBlockForOperationRaw(context, request, cq));
     }
-    // DiscoverComponents returns the list of discovered component configurations.
-    virtual ::grpc::Status DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::viam::robot::v1::DiscoverComponentsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>> AsyncDiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>>(AsyncDiscoverComponentsRaw(context, request, cq));
+    // GetModelsFromModules returns the list of models supported in modules on the machine.
+    virtual ::grpc::Status GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::viam::robot::v1::GetModelsFromModulesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>> AsyncGetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>>(AsyncGetModelsFromModulesRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>> PrepareAsyncDiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>>(PrepareAsyncDiscoverComponentsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>> PrepareAsyncGetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>>(PrepareAsyncGetModelsFromModulesRaw(context, request, cq));
     }
     virtual ::grpc::Status FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::viam::robot::v1::FrameSystemConfigResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::FrameSystemConfigResponse>> AsyncFrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) {
@@ -203,71 +204,316 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetVersionResponse>> PrepareAsyncGetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetVersionResponse>>(PrepareAsyncGetVersionRaw(context, request, cq));
     }
-    class async_interface {
+    // Tunnel tunnels traffic to the destination port of the robot server.
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>> Tunnel(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>>(TunnelRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>> AsyncTunnel(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>>(AsyncTunnelRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>> PrepareAsyncTunnel(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>>(PrepareAsyncTunnelRaw(context, cq));
+    }
+    // ListTunnels lists all available tunnels configured on the robot.
+    virtual ::grpc::Status ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::viam::robot::v1::ListTunnelsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>> AsyncListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>>(AsyncListTunnelsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>> PrepareAsyncListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>>(PrepareAsyncListTunnelsRaw(context, request, cq));
+    }
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       virtual void GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetOperations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetOperationsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetOperations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetOperations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetSessions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetSessionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetSessions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetSessions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // ResourceNames returns the list of all resources.
       virtual void ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ResourceNames(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceNamesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ResourceNames(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ResourceNames(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // ResourceRPCSubtypes returns the list of all resource types.
       virtual void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CancelOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::CancelOperationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void CancelOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void CancelOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void BlockForOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::BlockForOperationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // DiscoverComponents returns the list of discovered component configurations.
-      virtual void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void BlockForOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void BlockForOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // GetModelsFromModules returns the list of models supported in modules on the machine.
+      virtual void GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void TransformPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPoseResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void TransformPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TransformPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void TransformPCD(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPCDResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void TransformPCD(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void TransformPCD(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetStatus returns the list of all statuses requested. An empty request signifies all resources.
       virtual void GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetStatusResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // StreamStatus periodically sends the status of all statuses requested. An empty request signifies all resources.
-      virtual void StreamStatus(::grpc::ClientContext* context, const ::viam::robot::v1::StreamStatusRequest* request, ::grpc::ClientReadReactor< ::viam::robot::v1::StreamStatusResponse>* reactor) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void StreamStatus(::grpc::ClientContext* context, ::viam::robot::v1::StreamStatusRequest* request, ::grpc::ClientReadReactor< ::viam::robot::v1::StreamStatusResponse>* reactor) = 0;
+      #else
+      virtual void StreamStatus(::grpc::ClientContext* context, ::viam::robot::v1::StreamStatusRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::robot::v1::StreamStatusResponse>* reactor) = 0;
+      #endif
       // StopAll will stop all current and outstanding operations for the robot and stops all actuators and movement
       virtual void StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void StopAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StopAllResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void StopAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void StopAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // StartSession creates a new session that expects at least one heartbeat within the returned window.
       // If the window lapses, any resources that have safety heart monitored methods, where this session was
       // the last caller on the resource, will be stopped.
       virtual void StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void StartSession(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StartSessionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void StartSession(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void StartSession(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // SendSessionHeartbeat sends a heartbeat to the given session. If the session has expired, a
       // SESSION_EXPIRED error will be returned.
       virtual void SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SendSessionHeartbeat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void SendSessionHeartbeat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void SendSessionHeartbeat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Log sends logs to be logged by this robot. Currently used for module logging.
       virtual void Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Log(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::LogResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Log(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::LogResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Log(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::LogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetCloudMetadata returns app-related information about the robot.
       virtual void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetCloudMetadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetCloudMetadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetCloudMetadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       virtual void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RestartModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void RestartModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void RestartModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Shutdown shuts down the robot.
       virtual void Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Shutdown(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ShutdownResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Shutdown(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Shutdown(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetMachineStatus returns the current status of the robot.
       virtual void GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetMachineStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetMachineStatusResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetMachineStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetMachineStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetVersion returns version information about the robot.
       virtual void GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetVersionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Tunnel tunnels traffic to the destination port of the robot server.
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Tunnel(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::robot::v1::TunnelRequest,::viam::robot::v1::TunnelResponse>* reactor) = 0;
+      #else
+      virtual void Tunnel(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::viam::robot::v1::TunnelRequest,::viam::robot::v1::TunnelResponse>* reactor) = 0;
+      #endif
+      // ListTunnels lists all available tunnels configured on the robot.
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetOperationsResponse>* AsyncGetOperationsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetOperationsResponse>* PrepareAsyncGetOperationsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetSessionsResponse>* AsyncGetSessionsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -280,8 +526,8 @@ class RobotService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::CancelOperationResponse>* PrepareAsyncCancelOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::BlockForOperationResponse>* AsyncBlockForOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::BlockForOperationResponse>* PrepareAsyncBlockForOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>* AsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::DiscoverComponentsResponse>* PrepareAsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>* AsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetModelsFromModulesResponse>* PrepareAsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::FrameSystemConfigResponse>* AsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::FrameSystemConfigResponse>* PrepareAsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::TransformPoseResponse>* AsyncTransformPoseRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -311,10 +557,15 @@ class RobotService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetMachineStatusResponse>* PrepareAsyncGetMachineStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetVersionResponse>* AsyncGetVersionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::GetVersionResponse>* PrepareAsyncGetVersionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* TunnelRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* AsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* PrepareAsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>* AsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::ListTunnelsResponse>* PrepareAsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::viam::robot::v1::GetOperationsResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetOperationsResponse>> AsyncGetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetOperationsResponse>>(AsyncGetOperationsRaw(context, request, cq));
@@ -357,12 +608,12 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::BlockForOperationResponse>> PrepareAsyncBlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::BlockForOperationResponse>>(PrepareAsyncBlockForOperationRaw(context, request, cq));
     }
-    ::grpc::Status DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::viam::robot::v1::DiscoverComponentsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>> AsyncDiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>>(AsyncDiscoverComponentsRaw(context, request, cq));
+    ::grpc::Status GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::viam::robot::v1::GetModelsFromModulesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>> AsyncGetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>>(AsyncGetModelsFromModulesRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>> PrepareAsyncDiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>>(PrepareAsyncDiscoverComponentsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>> PrepareAsyncGetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>>(PrepareAsyncGetModelsFromModulesRaw(context, request, cq));
     }
     ::grpc::Status FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::viam::robot::v1::FrameSystemConfigResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::FrameSystemConfigResponse>> AsyncFrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) {
@@ -464,61 +715,298 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetVersionResponse>> PrepareAsyncGetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetVersionResponse>>(PrepareAsyncGetVersionRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>> Tunnel(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>>(TunnelRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>> AsyncTunnel(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>>(AsyncTunnelRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>> PrepareAsyncTunnel(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>>(PrepareAsyncTunnelRaw(context, cq));
+    }
+    ::grpc::Status ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::viam::robot::v1::ListTunnelsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>> AsyncListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>>(AsyncListTunnelsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>> PrepareAsyncListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>>(PrepareAsyncListTunnelsRaw(context, request, cq));
+    }
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetOperations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetOperationsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetOperations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetOperations(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetOperationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetSessions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetSessionsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetSessions(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetSessions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetSessions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetSessionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, std::function<void(::grpc::Status)>) override;
+      void ResourceNames(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceNamesResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ResourceNames(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ResourceNames(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ResourceNames(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceNamesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, std::function<void(::grpc::Status)>) override;
+      void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ResourceRPCSubtypes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, std::function<void(::grpc::Status)>) override;
+      void CancelOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::CancelOperationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void CancelOperation(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void CancelOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void CancelOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::CancelOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, std::function<void(::grpc::Status)>) override;
+      void BlockForOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::BlockForOperationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, std::function<void(::grpc::Status)>) override;
-      void DiscoverComponents(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void BlockForOperation(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void BlockForOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void BlockForOperation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::BlockForOperationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetModelsFromModules(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetModelsFromModules(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetModelsFromModulesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)>) override;
+      void FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void FrameSystemConfig(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void FrameSystemConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::FrameSystemConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, std::function<void(::grpc::Status)>) override;
+      void TransformPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPoseResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void TransformPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TransformPose(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, std::function<void(::grpc::Status)>) override;
+      void TransformPCD(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPCDResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void TransformPCD(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void TransformPCD(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetStatusResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void StreamStatus(::grpc::ClientContext* context, const ::viam::robot::v1::StreamStatusRequest* request, ::grpc::ClientReadReactor< ::viam::robot::v1::StreamStatusResponse>* reactor) override;
+      #else
+      void GetStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void StreamStatus(::grpc::ClientContext* context, ::viam::robot::v1::StreamStatusRequest* request, ::grpc::ClientReadReactor< ::viam::robot::v1::StreamStatusResponse>* reactor) override;
+      #else
+      void StreamStatus(::grpc::ClientContext* context, ::viam::robot::v1::StreamStatusRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::robot::v1::StreamStatusResponse>* reactor) override;
+      #endif
       void StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, std::function<void(::grpc::Status)>) override;
+      void StopAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StopAllResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void StopAll(::grpc::ClientContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void StopAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void StopAll(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StopAllResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, std::function<void(::grpc::Status)>) override;
+      void StartSession(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StartSessionResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void StartSession(::grpc::ClientContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void StartSession(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void StartSession(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::StartSessionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, std::function<void(::grpc::Status)>) override;
+      void SendSessionHeartbeat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SendSessionHeartbeat(::grpc::ClientContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void SendSessionHeartbeat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void SendSessionHeartbeat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, std::function<void(::grpc::Status)>) override;
+      void Log(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::LogResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Log(::grpc::ClientContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Log(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::LogResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Log(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::LogResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetCloudMetadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetCloudMetadataResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetCloudMetadata(::grpc::ClientContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetCloudMetadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetCloudMetadata(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetCloudMetadataResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)>) override;
+      void RestartModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::RestartModuleResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void RestartModule(::grpc::ClientContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void RestartModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void RestartModule(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::RestartModuleResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, std::function<void(::grpc::Status)>) override;
+      void Shutdown(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ShutdownResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Shutdown(::grpc::ClientContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Shutdown(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Shutdown(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ShutdownResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetMachineStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetMachineStatusResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetMachineStatus(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetMachineStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetMachineStatus(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetMachineStatusResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetVersionResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetVersion(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetVersion(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::GetVersionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Tunnel(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::viam::robot::v1::TunnelRequest,::viam::robot::v1::TunnelResponse>* reactor) override;
+      #else
+      void Tunnel(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::viam::robot::v1::TunnelRequest,::viam::robot::v1::TunnelResponse>* reactor) override;
+      #endif
+      void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListTunnels(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ListTunnels(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::robot::v1::ListTunnelsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetOperationsResponse>* AsyncGetOperationsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetOperationsResponse>* PrepareAsyncGetOperationsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetSessionsResponse>* AsyncGetSessionsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetSessionsRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -531,8 +1019,8 @@ class RobotService final {
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::CancelOperationResponse>* PrepareAsyncCancelOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::CancelOperationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::BlockForOperationResponse>* AsyncBlockForOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::BlockForOperationResponse>* PrepareAsyncBlockForOperationRaw(::grpc::ClientContext* context, const ::viam::robot::v1::BlockForOperationRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>* AsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::DiscoverComponentsResponse>* PrepareAsyncDiscoverComponentsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::DiscoverComponentsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>* AsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetModelsFromModulesResponse>* PrepareAsyncGetModelsFromModulesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::FrameSystemConfigResponse>* AsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::FrameSystemConfigResponse>* PrepareAsyncFrameSystemConfigRaw(::grpc::ClientContext* context, const ::viam::robot::v1::FrameSystemConfigRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPoseResponse>* AsyncTransformPoseRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -562,13 +1050,18 @@ class RobotService final {
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetMachineStatusResponse>* PrepareAsyncGetMachineStatusRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetMachineStatusRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetVersionResponse>* AsyncGetVersionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::GetVersionResponse>* PrepareAsyncGetVersionRaw(::grpc::ClientContext* context, const ::viam::robot::v1::GetVersionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* TunnelRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* AsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* PrepareAsyncTunnelRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>* AsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::ListTunnelsResponse>* PrepareAsyncListTunnelsRaw(::grpc::ClientContext* context, const ::viam::robot::v1::ListTunnelsRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetOperations_;
     const ::grpc::internal::RpcMethod rpcmethod_GetSessions_;
     const ::grpc::internal::RpcMethod rpcmethod_ResourceNames_;
     const ::grpc::internal::RpcMethod rpcmethod_ResourceRPCSubtypes_;
     const ::grpc::internal::RpcMethod rpcmethod_CancelOperation_;
     const ::grpc::internal::RpcMethod rpcmethod_BlockForOperation_;
-    const ::grpc::internal::RpcMethod rpcmethod_DiscoverComponents_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetModelsFromModules_;
     const ::grpc::internal::RpcMethod rpcmethod_FrameSystemConfig_;
     const ::grpc::internal::RpcMethod rpcmethod_TransformPose_;
     const ::grpc::internal::RpcMethod rpcmethod_TransformPCD_;
@@ -583,6 +1076,8 @@ class RobotService final {
     const ::grpc::internal::RpcMethod rpcmethod_Shutdown_;
     const ::grpc::internal::RpcMethod rpcmethod_GetMachineStatus_;
     const ::grpc::internal::RpcMethod rpcmethod_GetVersion_;
+    const ::grpc::internal::RpcMethod rpcmethod_Tunnel_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListTunnels_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -598,8 +1093,8 @@ class RobotService final {
     virtual ::grpc::Status ResourceRPCSubtypes(::grpc::ServerContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response);
     virtual ::grpc::Status CancelOperation(::grpc::ServerContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response);
     virtual ::grpc::Status BlockForOperation(::grpc::ServerContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response);
-    // DiscoverComponents returns the list of discovered component configurations.
-    virtual ::grpc::Status DiscoverComponents(::grpc::ServerContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response);
+    // GetModelsFromModules returns the list of models supported in modules on the machine.
+    virtual ::grpc::Status GetModelsFromModules(::grpc::ServerContext* context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response);
     virtual ::grpc::Status FrameSystemConfig(::grpc::ServerContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response);
     virtual ::grpc::Status TransformPose(::grpc::ServerContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response);
     virtual ::grpc::Status TransformPCD(::grpc::ServerContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response);
@@ -627,6 +1122,10 @@ class RobotService final {
     virtual ::grpc::Status GetMachineStatus(::grpc::ServerContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response);
     // GetVersion returns version information about the robot.
     virtual ::grpc::Status GetVersion(::grpc::ServerContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response);
+    // Tunnel tunnels traffic to the destination port of the robot server.
+    virtual ::grpc::Status Tunnel(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* stream);
+    // ListTunnels lists all available tunnels configured on the robot.
+    virtual ::grpc::Status ListTunnels(::grpc::ServerContext* context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetOperations : public BaseClass {
@@ -749,22 +1248,22 @@ class RobotService final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_DiscoverComponents : public BaseClass {
+  class WithAsyncMethod_GetModelsFromModules : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_DiscoverComponents() {
+    WithAsyncMethod_GetModelsFromModules() {
       ::grpc::Service::MarkMethodAsync(6);
     }
-    ~WithAsyncMethod_DiscoverComponents() override {
+    ~WithAsyncMethod_GetModelsFromModules() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
+    ::grpc::Status GetModelsFromModules(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::GetModelsFromModulesRequest* /*request*/, ::viam::robot::v1::GetModelsFromModulesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDiscoverComponents(::grpc::ServerContext* context, ::viam::robot::v1::DiscoverComponentsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::DiscoverComponentsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetModelsFromModules(::grpc::ServerContext* context, ::viam::robot::v1::GetModelsFromModulesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::GetModelsFromModulesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -1048,24 +1547,78 @@ class RobotService final {
       ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_DiscoverComponents<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<WithAsyncMethod_RestartModule<WithAsyncMethod_Shutdown<WithAsyncMethod_GetMachineStatus<WithAsyncMethod_GetVersion<Service > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetOperations : public BaseClass {
+  class WithAsyncMethod_Tunnel : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetOperations() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse>(
+    WithAsyncMethod_Tunnel() {
+      ::grpc::Service::MarkMethodAsync(21);
+    }
+    ~WithAsyncMethod_Tunnel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Tunnel(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestTunnel(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(21, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListTunnels() {
+      ::grpc::Service::MarkMethodAsync(22);
+    }
+    ~WithAsyncMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListTunnels(::grpc::ServerContext* context, ::viam::robot::v1::ListTunnelsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::ListTunnelsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_GetModelsFromModules<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<WithAsyncMethod_RestartModule<WithAsyncMethod_Shutdown<WithAsyncMethod_GetMachineStatus<WithAsyncMethod_GetVersion<WithAsyncMethod_Tunnel<WithAsyncMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetOperations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetOperations() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response) { return this->GetOperations(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::GetOperationsRequest* request, ::viam::robot::v1::GetOperationsResponse* response) { return this->GetOperations(context, request, response); }));}
     void SetMessageAllocatorFor_GetOperations(
-        ::grpc::MessageAllocator< ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetOperations() override {
+    ~ExperimentalWithCallbackMethod_GetOperations() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1073,26 +1626,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetOperations(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetOperationsRequest* /*request*/, ::viam::robot::v1::GetOperationsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetOperationsRequest* /*request*/, ::viam::robot::v1::GetOperationsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetOperations(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetOperationsRequest* /*request*/, ::viam::robot::v1::GetOperationsResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetSessions : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetSessions : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetSessions() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse>(
+    ExperimentalWithCallbackMethod_GetSessions() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response) { return this->GetSessions(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::GetSessionsRequest* request, ::viam::robot::v1::GetSessionsResponse* response) { return this->GetSessions(context, request, response); }));}
     void SetMessageAllocatorFor_GetSessions(
-        ::grpc::MessageAllocator< ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetSessions() override {
+    ~ExperimentalWithCallbackMethod_GetSessions() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1100,26 +1673,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetSessions(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetSessionsRequest* /*request*/, ::viam::robot::v1::GetSessionsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetSessionsRequest* /*request*/, ::viam::robot::v1::GetSessionsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetSessions(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetSessionsRequest* /*request*/, ::viam::robot::v1::GetSessionsResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ResourceNames : public BaseClass {
+  class ExperimentalWithCallbackMethod_ResourceNames : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ResourceNames() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse>(
+    ExperimentalWithCallbackMethod_ResourceNames() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response) { return this->ResourceNames(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::ResourceNamesRequest* request, ::viam::robot::v1::ResourceNamesResponse* response) { return this->ResourceNames(context, request, response); }));}
     void SetMessageAllocatorFor_ResourceNames(
-        ::grpc::MessageAllocator< ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_ResourceNames() override {
+    ~ExperimentalWithCallbackMethod_ResourceNames() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1127,26 +1720,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ResourceNames(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::ResourceNamesRequest* /*request*/, ::viam::robot::v1::ResourceNamesResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::ResourceNamesRequest* /*request*/, ::viam::robot::v1::ResourceNamesResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ResourceNames(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::ResourceNamesRequest* /*request*/, ::viam::robot::v1::ResourceNamesResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_ResourceRPCSubtypes : public BaseClass {
+  class ExperimentalWithCallbackMethod_ResourceRPCSubtypes : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ResourceRPCSubtypes() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse>(
+    ExperimentalWithCallbackMethod_ResourceRPCSubtypes() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response) { return this->ResourceRPCSubtypes(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::ResourceRPCSubtypesRequest* request, ::viam::robot::v1::ResourceRPCSubtypesResponse* response) { return this->ResourceRPCSubtypes(context, request, response); }));}
     void SetMessageAllocatorFor_ResourceRPCSubtypes(
-        ::grpc::MessageAllocator< ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_ResourceRPCSubtypes() override {
+    ~ExperimentalWithCallbackMethod_ResourceRPCSubtypes() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1154,26 +1767,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ResourceRPCSubtypes(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::ResourceRPCSubtypesRequest* /*request*/, ::viam::robot::v1::ResourceRPCSubtypesResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::ResourceRPCSubtypesRequest* /*request*/, ::viam::robot::v1::ResourceRPCSubtypesResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ResourceRPCSubtypes(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::ResourceRPCSubtypesRequest* /*request*/, ::viam::robot::v1::ResourceRPCSubtypesResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_CancelOperation : public BaseClass {
+  class ExperimentalWithCallbackMethod_CancelOperation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_CancelOperation() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse>(
+    ExperimentalWithCallbackMethod_CancelOperation() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response) { return this->CancelOperation(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::CancelOperationRequest* request, ::viam::robot::v1::CancelOperationResponse* response) { return this->CancelOperation(context, request, response); }));}
     void SetMessageAllocatorFor_CancelOperation(
-        ::grpc::MessageAllocator< ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_CancelOperation() override {
+    ~ExperimentalWithCallbackMethod_CancelOperation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1181,26 +1814,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* CancelOperation(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::CancelOperationRequest* /*request*/, ::viam::robot::v1::CancelOperationResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::CancelOperationRequest* /*request*/, ::viam::robot::v1::CancelOperationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CancelOperation(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::CancelOperationRequest* /*request*/, ::viam::robot::v1::CancelOperationResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_BlockForOperation : public BaseClass {
+  class ExperimentalWithCallbackMethod_BlockForOperation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_BlockForOperation() {
-      ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse>(
+    ExperimentalWithCallbackMethod_BlockForOperation() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response) { return this->BlockForOperation(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::BlockForOperationRequest* request, ::viam::robot::v1::BlockForOperationResponse* response) { return this->BlockForOperation(context, request, response); }));}
     void SetMessageAllocatorFor_BlockForOperation(
-        ::grpc::MessageAllocator< ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_BlockForOperation() override {
+    ~ExperimentalWithCallbackMethod_BlockForOperation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1208,53 +1861,93 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* BlockForOperation(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::BlockForOperationRequest* /*request*/, ::viam::robot::v1::BlockForOperationResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::BlockForOperationRequest* /*request*/, ::viam::robot::v1::BlockForOperationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* BlockForOperation(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::BlockForOperationRequest* /*request*/, ::viam::robot::v1::BlockForOperationResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DiscoverComponents : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetModelsFromModules : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DiscoverComponents() {
-      ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>(
+    ExperimentalWithCallbackMethod_GetModelsFromModules() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetModelsFromModulesRequest, ::viam::robot::v1::GetModelsFromModulesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::DiscoverComponentsRequest* request, ::viam::robot::v1::DiscoverComponentsResponse* response) { return this->DiscoverComponents(context, request, response); }));}
-    void SetMessageAllocatorFor_DiscoverComponents(
-        ::grpc::MessageAllocator< ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::GetModelsFromModulesRequest* request, ::viam::robot::v1::GetModelsFromModulesResponse* response) { return this->GetModelsFromModules(context, request, response); }));}
+    void SetMessageAllocatorFor_GetModelsFromModules(
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetModelsFromModulesRequest, ::viam::robot::v1::GetModelsFromModulesResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetModelsFromModulesRequest, ::viam::robot::v1::GetModelsFromModulesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DiscoverComponents() override {
+    ~ExperimentalWithCallbackMethod_GetModelsFromModules() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
+    ::grpc::Status GetModelsFromModules(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::GetModelsFromModulesRequest* /*request*/, ::viam::robot::v1::GetModelsFromModulesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* DiscoverComponents(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/)  { return nullptr; }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetModelsFromModules(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetModelsFromModulesRequest* /*request*/, ::viam::robot::v1::GetModelsFromModulesResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetModelsFromModules(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetModelsFromModulesRequest* /*request*/, ::viam::robot::v1::GetModelsFromModulesResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_FrameSystemConfig : public BaseClass {
+  class ExperimentalWithCallbackMethod_FrameSystemConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_FrameSystemConfig() {
-      ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>(
+    ExperimentalWithCallbackMethod_FrameSystemConfig() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response) { return this->FrameSystemConfig(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::FrameSystemConfigRequest* request, ::viam::robot::v1::FrameSystemConfigResponse* response) { return this->FrameSystemConfig(context, request, response); }));}
     void SetMessageAllocatorFor_FrameSystemConfig(
-        ::grpc::MessageAllocator< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_FrameSystemConfig() override {
+    ~ExperimentalWithCallbackMethod_FrameSystemConfig() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1262,26 +1955,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* FrameSystemConfig(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::FrameSystemConfigRequest* /*request*/, ::viam::robot::v1::FrameSystemConfigResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::FrameSystemConfigRequest* /*request*/, ::viam::robot::v1::FrameSystemConfigResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* FrameSystemConfig(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::FrameSystemConfigRequest* /*request*/, ::viam::robot::v1::FrameSystemConfigResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_TransformPose : public BaseClass {
+  class ExperimentalWithCallbackMethod_TransformPose : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_TransformPose() {
-      ::grpc::Service::MarkMethodCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>(
+    ExperimentalWithCallbackMethod_TransformPose() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response) { return this->TransformPose(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response) { return this->TransformPose(context, request, response); }));}
     void SetMessageAllocatorFor_TransformPose(
-        ::grpc::MessageAllocator< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_TransformPose() override {
+    ~ExperimentalWithCallbackMethod_TransformPose() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1289,26 +2002,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TransformPose(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::TransformPoseRequest* /*request*/, ::viam::robot::v1::TransformPoseResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::TransformPoseRequest* /*request*/, ::viam::robot::v1::TransformPoseResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TransformPose(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::TransformPoseRequest* /*request*/, ::viam::robot::v1::TransformPoseResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_TransformPCD : public BaseClass {
+  class ExperimentalWithCallbackMethod_TransformPCD : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_TransformPCD() {
-      ::grpc::Service::MarkMethodCallback(9,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>(
+    ExperimentalWithCallbackMethod_TransformPCD() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response) { return this->TransformPCD(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response) { return this->TransformPCD(context, request, response); }));}
     void SetMessageAllocatorFor_TransformPCD(
-        ::grpc::MessageAllocator< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_TransformPCD() override {
+    ~ExperimentalWithCallbackMethod_TransformPCD() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1316,26 +2049,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TransformPCD(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::TransformPCDRequest* /*request*/, ::viam::robot::v1::TransformPCDResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::TransformPCDRequest* /*request*/, ::viam::robot::v1::TransformPCDResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TransformPCD(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::TransformPCDRequest* /*request*/, ::viam::robot::v1::TransformPCDResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetStatus : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetStatus : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodCallback(10,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>(
+    ExperimentalWithCallbackMethod_GetStatus() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response) { return this->GetStatus(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::GetStatusRequest* request, ::viam::robot::v1::GetStatusResponse* response) { return this->GetStatus(context, request, response); }));}
     void SetMessageAllocatorFor_GetStatus(
-        ::grpc::MessageAllocator< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(10);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetStatus() override {
+    ~ExperimentalWithCallbackMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1343,21 +2096,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetStatus(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetStatusRequest* /*request*/, ::viam::robot::v1::GetStatusResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetStatusRequest* /*request*/, ::viam::robot::v1::GetStatusResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetStatus(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetStatusRequest* /*request*/, ::viam::robot::v1::GetStatusResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_StreamStatus : public BaseClass {
+  class ExperimentalWithCallbackMethod_StreamStatus : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_StreamStatus() {
-      ::grpc::Service::MarkMethodCallback(11,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::viam::robot::v1::StreamStatusRequest, ::viam::robot::v1::StreamStatusResponse>(
+    ExperimentalWithCallbackMethod_StreamStatus() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(11,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::viam::robot::v1::StreamStatusRequest, ::viam::robot::v1::StreamStatusResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::StreamStatusRequest* request) { return this->StreamStatus(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::StreamStatusRequest* request) { return this->StreamStatus(context, request); }));
     }
-    ~WithCallbackMethod_StreamStatus() override {
+    ~ExperimentalWithCallbackMethod_StreamStatus() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1365,26 +2134,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::viam::robot::v1::StreamStatusResponse>* StreamStatus(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::StreamStatusRequest* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::StreamStatusRequest* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::viam::robot::v1::StreamStatusResponse>* StreamStatus(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::StreamStatusRequest* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_StopAll : public BaseClass {
+  class ExperimentalWithCallbackMethod_StopAll : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_StopAll() {
-      ::grpc::Service::MarkMethodCallback(12,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>(
+    ExperimentalWithCallbackMethod_StopAll() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(12,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response) { return this->StopAll(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::StopAllRequest* request, ::viam::robot::v1::StopAllResponse* response) { return this->StopAll(context, request, response); }));}
     void SetMessageAllocatorFor_StopAll(
-        ::grpc::MessageAllocator< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(12);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_StopAll() override {
+    ~ExperimentalWithCallbackMethod_StopAll() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1392,26 +2181,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* StopAll(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::StopAllRequest* /*request*/, ::viam::robot::v1::StopAllResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::StopAllRequest* /*request*/, ::viam::robot::v1::StopAllResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* StopAll(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::StopAllRequest* /*request*/, ::viam::robot::v1::StopAllResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_StartSession : public BaseClass {
+  class ExperimentalWithCallbackMethod_StartSession : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_StartSession() {
-      ::grpc::Service::MarkMethodCallback(13,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>(
+    ExperimentalWithCallbackMethod_StartSession() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(13,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response) { return this->StartSession(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::StartSessionRequest* request, ::viam::robot::v1::StartSessionResponse* response) { return this->StartSession(context, request, response); }));}
     void SetMessageAllocatorFor_StartSession(
-        ::grpc::MessageAllocator< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(13);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_StartSession() override {
+    ~ExperimentalWithCallbackMethod_StartSession() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1419,26 +2228,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* StartSession(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::StartSessionRequest* /*request*/, ::viam::robot::v1::StartSessionResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::StartSessionRequest* /*request*/, ::viam::robot::v1::StartSessionResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* StartSession(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::StartSessionRequest* /*request*/, ::viam::robot::v1::StartSessionResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SendSessionHeartbeat : public BaseClass {
+  class ExperimentalWithCallbackMethod_SendSessionHeartbeat : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SendSessionHeartbeat() {
-      ::grpc::Service::MarkMethodCallback(14,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>(
+    ExperimentalWithCallbackMethod_SendSessionHeartbeat() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(14,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response) { return this->SendSessionHeartbeat(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::SendSessionHeartbeatRequest* request, ::viam::robot::v1::SendSessionHeartbeatResponse* response) { return this->SendSessionHeartbeat(context, request, response); }));}
     void SetMessageAllocatorFor_SendSessionHeartbeat(
-        ::grpc::MessageAllocator< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(14);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(14);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SendSessionHeartbeat() override {
+    ~ExperimentalWithCallbackMethod_SendSessionHeartbeat() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1446,26 +2275,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SendSessionHeartbeat(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::SendSessionHeartbeatRequest* /*request*/, ::viam::robot::v1::SendSessionHeartbeatResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::SendSessionHeartbeatRequest* /*request*/, ::viam::robot::v1::SendSessionHeartbeatResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SendSessionHeartbeat(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::SendSessionHeartbeatRequest* /*request*/, ::viam::robot::v1::SendSessionHeartbeatResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_Log : public BaseClass {
+  class ExperimentalWithCallbackMethod_Log : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Log() {
-      ::grpc::Service::MarkMethodCallback(15,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>(
+    ExperimentalWithCallbackMethod_Log() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(15,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response) { return this->Log(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::LogRequest* request, ::viam::robot::v1::LogResponse* response) { return this->Log(context, request, response); }));}
     void SetMessageAllocatorFor_Log(
-        ::grpc::MessageAllocator< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(15);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(15);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Log() override {
+    ~ExperimentalWithCallbackMethod_Log() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1473,26 +2322,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Log(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::LogRequest* /*request*/, ::viam::robot::v1::LogResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::LogRequest* /*request*/, ::viam::robot::v1::LogResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Log(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::LogRequest* /*request*/, ::viam::robot::v1::LogResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetCloudMetadata : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetCloudMetadata : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetCloudMetadata() {
-      ::grpc::Service::MarkMethodCallback(16,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>(
+    ExperimentalWithCallbackMethod_GetCloudMetadata() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(16,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response) { return this->GetCloudMetadata(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::GetCloudMetadataRequest* request, ::viam::robot::v1::GetCloudMetadataResponse* response) { return this->GetCloudMetadata(context, request, response); }));}
     void SetMessageAllocatorFor_GetCloudMetadata(
-        ::grpc::MessageAllocator< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(16);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetCloudMetadata() override {
+    ~ExperimentalWithCallbackMethod_GetCloudMetadata() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1500,26 +2369,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetCloudMetadata(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetCloudMetadataRequest* /*request*/, ::viam::robot::v1::GetCloudMetadataResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetCloudMetadataRequest* /*request*/, ::viam::robot::v1::GetCloudMetadataResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetCloudMetadata(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetCloudMetadataRequest* /*request*/, ::viam::robot::v1::GetCloudMetadataResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_RestartModule : public BaseClass {
+  class ExperimentalWithCallbackMethod_RestartModule : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_RestartModule() {
-      ::grpc::Service::MarkMethodCallback(17,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>(
+    ExperimentalWithCallbackMethod_RestartModule() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(17,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response) { return this->RestartModule(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::RestartModuleRequest* request, ::viam::robot::v1::RestartModuleResponse* response) { return this->RestartModule(context, request, response); }));}
     void SetMessageAllocatorFor_RestartModule(
-        ::grpc::MessageAllocator< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(17);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(17);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_RestartModule() override {
+    ~ExperimentalWithCallbackMethod_RestartModule() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1527,26 +2416,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* RestartModule(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* RestartModule(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::RestartModuleRequest* /*request*/, ::viam::robot::v1::RestartModuleResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_Shutdown : public BaseClass {
+  class ExperimentalWithCallbackMethod_Shutdown : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Shutdown() {
-      ::grpc::Service::MarkMethodCallback(18,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>(
+    ExperimentalWithCallbackMethod_Shutdown() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(18,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response) { return this->Shutdown(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::ShutdownRequest* request, ::viam::robot::v1::ShutdownResponse* response) { return this->Shutdown(context, request, response); }));}
     void SetMessageAllocatorFor_Shutdown(
-        ::grpc::MessageAllocator< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(18);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(18);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Shutdown() override {
+    ~ExperimentalWithCallbackMethod_Shutdown() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1554,26 +2463,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Shutdown(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::ShutdownRequest* /*request*/, ::viam::robot::v1::ShutdownResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::ShutdownRequest* /*request*/, ::viam::robot::v1::ShutdownResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Shutdown(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::ShutdownRequest* /*request*/, ::viam::robot::v1::ShutdownResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetMachineStatus : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetMachineStatus : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetMachineStatus() {
-      ::grpc::Service::MarkMethodCallback(19,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>(
+    ExperimentalWithCallbackMethod_GetMachineStatus() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(19,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response) { return this->GetMachineStatus(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::GetMachineStatusRequest* request, ::viam::robot::v1::GetMachineStatusResponse* response) { return this->GetMachineStatus(context, request, response); }));}
     void SetMessageAllocatorFor_GetMachineStatus(
-        ::grpc::MessageAllocator< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(19);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(19);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetMachineStatus() override {
+    ~ExperimentalWithCallbackMethod_GetMachineStatus() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1581,26 +2510,46 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetMachineStatus(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetMachineStatusRequest* /*request*/, ::viam::robot::v1::GetMachineStatusResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetMachineStatusRequest* /*request*/, ::viam::robot::v1::GetMachineStatusResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetMachineStatus(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetMachineStatusRequest* /*request*/, ::viam::robot::v1::GetMachineStatusResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetVersion : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetVersion : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetVersion() {
-      ::grpc::Service::MarkMethodCallback(20,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>(
+    ExperimentalWithCallbackMethod_GetVersion() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(20,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response) { return this->GetVersion(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::GetVersionRequest* request, ::viam::robot::v1::GetVersionResponse* response) { return this->GetVersion(context, request, response); }));}
     void SetMessageAllocatorFor_GetVersion(
-        ::grpc::MessageAllocator< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(20);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(20);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetVersion() override {
+    ~ExperimentalWithCallbackMethod_GetVersion() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1608,11 +2557,105 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetVersion(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetVersionRequest* /*request*/, ::viam::robot::v1::GetVersionResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetVersionRequest* /*request*/, ::viam::robot::v1::GetVersionResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetVersion(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::GetVersionRequest* /*request*/, ::viam::robot::v1::GetVersionResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_GetOperations<WithCallbackMethod_GetSessions<WithCallbackMethod_ResourceNames<WithCallbackMethod_ResourceRPCSubtypes<WithCallbackMethod_CancelOperation<WithCallbackMethod_BlockForOperation<WithCallbackMethod_DiscoverComponents<WithCallbackMethod_FrameSystemConfig<WithCallbackMethod_TransformPose<WithCallbackMethod_TransformPCD<WithCallbackMethod_GetStatus<WithCallbackMethod_StreamStatus<WithCallbackMethod_StopAll<WithCallbackMethod_StartSession<WithCallbackMethod_SendSessionHeartbeat<WithCallbackMethod_Log<WithCallbackMethod_GetCloudMetadata<WithCallbackMethod_RestartModule<WithCallbackMethod_Shutdown<WithCallbackMethod_GetMachineStatus<WithCallbackMethod_GetVersion<Service > > > > > > > > > > > > > > > > > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Tunnel : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Tunnel() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(21,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->Tunnel(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_Tunnel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Tunnel(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* Tunnel(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::viam::robot::v1::TunnelRequest, ::viam::robot::v1::TunnelResponse>* Tunnel(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_ListTunnels() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(22,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::robot::v1::ListTunnelsRequest* request, ::viam::robot::v1::ListTunnelsResponse* response) { return this->ListTunnels(context, request, response); }));}
+    void SetMessageAllocatorFor_ListTunnels(
+        ::grpc::experimental::MessageAllocator< ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(22);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(22);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListTunnels(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListTunnels(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<ExperimentalWithCallbackMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_GetOperations<ExperimentalWithCallbackMethod_GetSessions<ExperimentalWithCallbackMethod_ResourceNames<ExperimentalWithCallbackMethod_ResourceRPCSubtypes<ExperimentalWithCallbackMethod_CancelOperation<ExperimentalWithCallbackMethod_BlockForOperation<ExperimentalWithCallbackMethod_GetModelsFromModules<ExperimentalWithCallbackMethod_FrameSystemConfig<ExperimentalWithCallbackMethod_TransformPose<ExperimentalWithCallbackMethod_TransformPCD<ExperimentalWithCallbackMethod_GetStatus<ExperimentalWithCallbackMethod_StreamStatus<ExperimentalWithCallbackMethod_StopAll<ExperimentalWithCallbackMethod_StartSession<ExperimentalWithCallbackMethod_SendSessionHeartbeat<ExperimentalWithCallbackMethod_Log<ExperimentalWithCallbackMethod_GetCloudMetadata<ExperimentalWithCallbackMethod_RestartModule<ExperimentalWithCallbackMethod_Shutdown<ExperimentalWithCallbackMethod_GetMachineStatus<ExperimentalWithCallbackMethod_GetVersion<ExperimentalWithCallbackMethod_Tunnel<ExperimentalWithCallbackMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetOperations : public BaseClass {
    private:
@@ -1716,18 +2759,18 @@ class RobotService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_DiscoverComponents : public BaseClass {
+  class WithGenericMethod_GetModelsFromModules : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_DiscoverComponents() {
+    WithGenericMethod_GetModelsFromModules() {
       ::grpc::Service::MarkMethodGeneric(6);
     }
-    ~WithGenericMethod_DiscoverComponents() override {
+    ~WithGenericMethod_GetModelsFromModules() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
+    ::grpc::Status GetModelsFromModules(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::GetModelsFromModulesRequest* /*request*/, ::viam::robot::v1::GetModelsFromModulesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1971,6 +3014,40 @@ class RobotService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_Tunnel : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Tunnel() {
+      ::grpc::Service::MarkMethodGeneric(21);
+    }
+    ~WithGenericMethod_Tunnel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Tunnel(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListTunnels() {
+      ::grpc::Service::MarkMethodGeneric(22);
+    }
+    ~WithGenericMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetOperations : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -2091,22 +3168,22 @@ class RobotService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_DiscoverComponents : public BaseClass {
+  class WithRawMethod_GetModelsFromModules : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_DiscoverComponents() {
+    WithRawMethod_GetModelsFromModules() {
       ::grpc::Service::MarkMethodRaw(6);
     }
-    ~WithRawMethod_DiscoverComponents() override {
+    ~WithRawMethod_GetModelsFromModules() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
+    ::grpc::Status GetModelsFromModules(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::GetModelsFromModulesRequest* /*request*/, ::viam::robot::v1::GetModelsFromModulesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDiscoverComponents(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetModelsFromModules(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -2391,17 +3468,67 @@ class RobotService final {
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetOperations : public BaseClass {
+  class WithRawMethod_Tunnel : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetOperations() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOperations(context, request, response); }));
+    WithRawMethod_Tunnel() {
+      ::grpc::Service::MarkMethodRaw(21);
     }
-    ~WithRawCallbackMethod_GetOperations() override {
+    ~WithRawMethod_Tunnel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Tunnel(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestTunnel(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(21, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListTunnels() {
+      ::grpc::Service::MarkMethodRaw(22);
+    }
+    ~WithRawMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListTunnels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetOperations : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetOperations() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOperations(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetOperations() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2409,21 +3536,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetOperations(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetOperations(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetSessions : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetSessions : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetSessions() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetSessions() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSessions(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSessions(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetSessions() override {
+    ~ExperimentalWithRawCallbackMethod_GetSessions() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2431,21 +3574,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetSessions(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetSessions(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ResourceNames : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ResourceNames : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ResourceNames() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_ResourceNames() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ResourceNames(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ResourceNames(context, request, response); }));
     }
-    ~WithRawCallbackMethod_ResourceNames() override {
+    ~ExperimentalWithRawCallbackMethod_ResourceNames() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2453,21 +3612,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ResourceNames(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ResourceNames(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ResourceRPCSubtypes : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_ResourceRPCSubtypes : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ResourceRPCSubtypes() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_ResourceRPCSubtypes() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ResourceRPCSubtypes(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ResourceRPCSubtypes(context, request, response); }));
     }
-    ~WithRawCallbackMethod_ResourceRPCSubtypes() override {
+    ~ExperimentalWithRawCallbackMethod_ResourceRPCSubtypes() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2475,21 +3650,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ResourceRPCSubtypes(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ResourceRPCSubtypes(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_CancelOperation : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_CancelOperation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_CancelOperation() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_CancelOperation() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CancelOperation(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CancelOperation(context, request, response); }));
     }
-    ~WithRawCallbackMethod_CancelOperation() override {
+    ~ExperimentalWithRawCallbackMethod_CancelOperation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2497,21 +3688,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* CancelOperation(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CancelOperation(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_BlockForOperation : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_BlockForOperation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_BlockForOperation() {
-      ::grpc::Service::MarkMethodRawCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_BlockForOperation() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->BlockForOperation(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->BlockForOperation(context, request, response); }));
     }
-    ~WithRawCallbackMethod_BlockForOperation() override {
+    ~ExperimentalWithRawCallbackMethod_BlockForOperation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2519,43 +3726,75 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* BlockForOperation(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* BlockForOperation(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DiscoverComponents : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetModelsFromModules : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DiscoverComponents() {
-      ::grpc::Service::MarkMethodRawCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetModelsFromModules() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DiscoverComponents(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetModelsFromModules(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DiscoverComponents() override {
+    ~ExperimentalWithRawCallbackMethod_GetModelsFromModules() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
+    ::grpc::Status GetModelsFromModules(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::GetModelsFromModulesRequest* /*request*/, ::viam::robot::v1::GetModelsFromModulesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* DiscoverComponents(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetModelsFromModules(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetModelsFromModules(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_FrameSystemConfig : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_FrameSystemConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_FrameSystemConfig() {
-      ::grpc::Service::MarkMethodRawCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_FrameSystemConfig() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->FrameSystemConfig(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->FrameSystemConfig(context, request, response); }));
     }
-    ~WithRawCallbackMethod_FrameSystemConfig() override {
+    ~ExperimentalWithRawCallbackMethod_FrameSystemConfig() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2563,21 +3802,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* FrameSystemConfig(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* FrameSystemConfig(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_TransformPose : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_TransformPose : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_TransformPose() {
-      ::grpc::Service::MarkMethodRawCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_TransformPose() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TransformPose(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TransformPose(context, request, response); }));
     }
-    ~WithRawCallbackMethod_TransformPose() override {
+    ~ExperimentalWithRawCallbackMethod_TransformPose() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2585,21 +3840,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TransformPose(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TransformPose(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_TransformPCD : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_TransformPCD : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_TransformPCD() {
-      ::grpc::Service::MarkMethodRawCallback(9,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_TransformPCD() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TransformPCD(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TransformPCD(context, request, response); }));
     }
-    ~WithRawCallbackMethod_TransformPCD() override {
+    ~ExperimentalWithRawCallbackMethod_TransformPCD() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2607,21 +3878,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TransformPCD(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* TransformPCD(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetStatus : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetStatus : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRawCallback(10,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetStatus() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetStatus(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetStatus(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetStatus() override {
+    ~ExperimentalWithRawCallbackMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2629,21 +3916,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetStatus(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetStatus(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_StreamStatus : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_StreamStatus : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_StreamStatus() {
-      ::grpc::Service::MarkMethodRawCallback(11,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_StreamStatus() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(11,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->StreamStatus(context, request); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->StreamStatus(context, request); }));
     }
-    ~WithRawCallbackMethod_StreamStatus() override {
+    ~ExperimentalWithRawCallbackMethod_StreamStatus() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2651,21 +3954,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* StreamStatus(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* StreamStatus(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_StopAll : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_StopAll : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_StopAll() {
-      ::grpc::Service::MarkMethodRawCallback(12,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_StopAll() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(12,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->StopAll(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->StopAll(context, request, response); }));
     }
-    ~WithRawCallbackMethod_StopAll() override {
+    ~ExperimentalWithRawCallbackMethod_StopAll() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2673,21 +3992,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* StopAll(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* StopAll(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_StartSession : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_StartSession : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_StartSession() {
-      ::grpc::Service::MarkMethodRawCallback(13,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_StartSession() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(13,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->StartSession(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->StartSession(context, request, response); }));
     }
-    ~WithRawCallbackMethod_StartSession() override {
+    ~ExperimentalWithRawCallbackMethod_StartSession() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2695,21 +4030,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* StartSession(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* StartSession(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SendSessionHeartbeat : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_SendSessionHeartbeat : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SendSessionHeartbeat() {
-      ::grpc::Service::MarkMethodRawCallback(14,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_SendSessionHeartbeat() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(14,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendSessionHeartbeat(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendSessionHeartbeat(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SendSessionHeartbeat() override {
+    ~ExperimentalWithRawCallbackMethod_SendSessionHeartbeat() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2717,21 +4068,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SendSessionHeartbeat(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* SendSessionHeartbeat(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Log : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_Log : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Log() {
-      ::grpc::Service::MarkMethodRawCallback(15,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_Log() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(15,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Log(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Log(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Log() override {
+    ~ExperimentalWithRawCallbackMethod_Log() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2739,21 +4106,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Log(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Log(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetCloudMetadata : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetCloudMetadata : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetCloudMetadata() {
-      ::grpc::Service::MarkMethodRawCallback(16,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetCloudMetadata() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(16,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCloudMetadata(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCloudMetadata(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetCloudMetadata() override {
+    ~ExperimentalWithRawCallbackMethod_GetCloudMetadata() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2761,21 +4144,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetCloudMetadata(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetCloudMetadata(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_RestartModule : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_RestartModule : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_RestartModule() {
-      ::grpc::Service::MarkMethodRawCallback(17,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_RestartModule() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(17,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RestartModule(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RestartModule(context, request, response); }));
     }
-    ~WithRawCallbackMethod_RestartModule() override {
+    ~ExperimentalWithRawCallbackMethod_RestartModule() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2783,21 +4182,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* RestartModule(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* RestartModule(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Shutdown : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_Shutdown : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Shutdown() {
-      ::grpc::Service::MarkMethodRawCallback(18,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_Shutdown() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(18,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Shutdown(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Shutdown(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Shutdown() override {
+    ~ExperimentalWithRawCallbackMethod_Shutdown() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2805,21 +4220,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Shutdown(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Shutdown(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetMachineStatus : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetMachineStatus : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetMachineStatus() {
-      ::grpc::Service::MarkMethodRawCallback(19,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetMachineStatus() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(19,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetMachineStatus(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetMachineStatus(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetMachineStatus() override {
+    ~ExperimentalWithRawCallbackMethod_GetMachineStatus() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2827,21 +4258,37 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetMachineStatus(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetMachineStatus(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetVersion : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetVersion : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetVersion() {
-      ::grpc::Service::MarkMethodRawCallback(20,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetVersion() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(20,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetVersion(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetVersion(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetVersion() override {
+    ~ExperimentalWithRawCallbackMethod_GetVersion() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -2849,8 +4296,90 @@ class RobotService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetVersion(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetVersion(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Tunnel : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Tunnel() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(21,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->Tunnel(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Tunnel() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Tunnel(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::viam::robot::v1::TunnelResponse, ::viam::robot::v1::TunnelRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Tunnel(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Tunnel(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_ListTunnels() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(22,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListTunnels(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ListTunnels(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ListTunnels(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetOperations : public BaseClass {
@@ -2861,8 +4390,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::GetOperationsRequest, ::viam::robot::v1::GetOperationsResponse>* streamer) {
                        return this->StreamedGetOperations(context,
                          streamer);
@@ -2888,8 +4417,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::GetSessionsRequest, ::viam::robot::v1::GetSessionsResponse>* streamer) {
                        return this->StreamedGetSessions(context,
                          streamer);
@@ -2915,8 +4444,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::ResourceNamesRequest, ::viam::robot::v1::ResourceNamesResponse>* streamer) {
                        return this->StreamedResourceNames(context,
                          streamer);
@@ -2942,8 +4471,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::ResourceRPCSubtypesRequest, ::viam::robot::v1::ResourceRPCSubtypesResponse>* streamer) {
                        return this->StreamedResourceRPCSubtypes(context,
                          streamer);
@@ -2969,8 +4498,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::CancelOperationRequest, ::viam::robot::v1::CancelOperationResponse>* streamer) {
                        return this->StreamedCancelOperation(context,
                          streamer);
@@ -2996,8 +4525,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::BlockForOperationRequest, ::viam::robot::v1::BlockForOperationResponse>* streamer) {
                        return this->StreamedBlockForOperation(context,
                          streamer);
@@ -3015,31 +4544,31 @@ class RobotService final {
     virtual ::grpc::Status StreamedBlockForOperation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::BlockForOperationRequest,::viam::robot::v1::BlockForOperationResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_DiscoverComponents : public BaseClass {
+  class WithStreamedUnaryMethod_GetModelsFromModules : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_DiscoverComponents() {
+    WithStreamedUnaryMethod_GetModelsFromModules() {
       ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::viam::robot::v1::DiscoverComponentsRequest, ::viam::robot::v1::DiscoverComponentsResponse>* streamer) {
-                       return this->StreamedDiscoverComponents(context,
+          ::viam::robot::v1::GetModelsFromModulesRequest, ::viam::robot::v1::GetModelsFromModulesResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::viam::robot::v1::GetModelsFromModulesRequest, ::viam::robot::v1::GetModelsFromModulesResponse>* streamer) {
+                       return this->StreamedGetModelsFromModules(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_DiscoverComponents() override {
+    ~WithStreamedUnaryMethod_GetModelsFromModules() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status DiscoverComponents(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::DiscoverComponentsRequest* /*request*/, ::viam::robot::v1::DiscoverComponentsResponse* /*response*/) override {
+    ::grpc::Status GetModelsFromModules(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::GetModelsFromModulesRequest* /*request*/, ::viam::robot::v1::GetModelsFromModulesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDiscoverComponents(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::DiscoverComponentsRequest,::viam::robot::v1::DiscoverComponentsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetModelsFromModules(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::GetModelsFromModulesRequest,::viam::robot::v1::GetModelsFromModulesResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_FrameSystemConfig : public BaseClass {
@@ -3050,8 +4579,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::FrameSystemConfigRequest, ::viam::robot::v1::FrameSystemConfigResponse>* streamer) {
                        return this->StreamedFrameSystemConfig(context,
                          streamer);
@@ -3077,8 +4606,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::TransformPoseRequest, ::viam::robot::v1::TransformPoseResponse>* streamer) {
                        return this->StreamedTransformPose(context,
                          streamer);
@@ -3104,8 +4633,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::TransformPCDRequest, ::viam::robot::v1::TransformPCDResponse>* streamer) {
                        return this->StreamedTransformPCD(context,
                          streamer);
@@ -3131,8 +4660,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::GetStatusRequest, ::viam::robot::v1::GetStatusResponse>* streamer) {
                        return this->StreamedGetStatus(context,
                          streamer);
@@ -3158,8 +4687,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(12,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::StopAllRequest, ::viam::robot::v1::StopAllResponse>* streamer) {
                        return this->StreamedStopAll(context,
                          streamer);
@@ -3185,8 +4714,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(13,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::StartSessionRequest, ::viam::robot::v1::StartSessionResponse>* streamer) {
                        return this->StreamedStartSession(context,
                          streamer);
@@ -3212,8 +4741,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(14,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::SendSessionHeartbeatRequest, ::viam::robot::v1::SendSessionHeartbeatResponse>* streamer) {
                        return this->StreamedSendSessionHeartbeat(context,
                          streamer);
@@ -3239,8 +4768,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(15,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::LogRequest, ::viam::robot::v1::LogResponse>* streamer) {
                        return this->StreamedLog(context,
                          streamer);
@@ -3266,8 +4795,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(16,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::GetCloudMetadataRequest, ::viam::robot::v1::GetCloudMetadataResponse>* streamer) {
                        return this->StreamedGetCloudMetadata(context,
                          streamer);
@@ -3293,8 +4822,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(17,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::RestartModuleRequest, ::viam::robot::v1::RestartModuleResponse>* streamer) {
                        return this->StreamedRestartModule(context,
                          streamer);
@@ -3320,8 +4849,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(18,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::ShutdownRequest, ::viam::robot::v1::ShutdownResponse>* streamer) {
                        return this->StreamedShutdown(context,
                          streamer);
@@ -3347,8 +4876,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(19,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::GetMachineStatusRequest, ::viam::robot::v1::GetMachineStatusResponse>* streamer) {
                        return this->StreamedGetMachineStatus(context,
                          streamer);
@@ -3374,8 +4903,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(20,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::robot::v1::GetVersionRequest, ::viam::robot::v1::GetVersionResponse>* streamer) {
                        return this->StreamedGetVersion(context,
                          streamer);
@@ -3392,7 +4921,34 @@ class RobotService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetVersion(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::GetVersionRequest,::viam::robot::v1::GetVersionResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<Service > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListTunnels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListTunnels() {
+      ::grpc::Service::MarkMethodStreamed(22,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::viam::robot::v1::ListTunnelsRequest, ::viam::robot::v1::ListTunnelsResponse>* streamer) {
+                       return this->StreamedListTunnels(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ListTunnels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListTunnels(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::ListTunnelsRequest* /*request*/, ::viam::robot::v1::ListTunnelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListTunnels(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::ListTunnelsRequest,::viam::robot::v1::ListTunnelsResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_StreamStatus : public BaseClass {
    private:
@@ -3402,8 +4958,8 @@ class RobotService final {
       ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::robot::v1::StreamStatusRequest, ::viam::robot::v1::StreamStatusResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerSplitStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerSplitStreamer<
                      ::viam::robot::v1::StreamStatusRequest, ::viam::robot::v1::StreamStatusResponse>* streamer) {
                        return this->StreamedStreamStatus(context,
                          streamer);
@@ -3421,7 +4977,7 @@ class RobotService final {
     virtual ::grpc::Status StreamedStreamStatus(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::robot::v1::StreamStatusRequest,::viam::robot::v1::StreamStatusResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_StreamStatus<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_DiscoverComponents<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<Service > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<Service > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

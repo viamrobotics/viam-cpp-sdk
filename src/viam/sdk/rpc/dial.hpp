@@ -1,10 +1,12 @@
 #pragma once
 
+#include <chrono>
 #include <memory>
 #include <string>
 
 #include <boost/optional.hpp>
-#include <grpcpp/channel.h>
+
+#include <viam/sdk/common/grpc_fwd.hpp>
 
 namespace viam {
 namespace sdk {
@@ -13,14 +15,31 @@ class DialOptions;
 class ViamChannel {
    public:
     void close();
-    ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime);
+    ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
+
+    /// @brief Connects to a robot at the given URI address, using the provided dial options (or
+    /// default options is none are provided). Ignores initial connection options specifying
+    /// how many times to attempt to connect and with what timeout.
+    /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
+    /// preferred method to connect to a robot, and creates the channel itself.
+    /// @throws Exception if it is unable to establish a connection to the provided URI
     static std::shared_ptr<ViamChannel> dial(const char* uri,
                                              const boost::optional<DialOptions>& options);
 
-    const std::shared_ptr<grpc::Channel>& channel() const;
+    // @brief Dials to a robot at the given URI address, using the provided dial options (or default
+    // options is none are provided). Additionally specifies that this dial is an initial connection
+    // attempt and so uses the initial connection options.
+    /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
+    /// preferred method to connect to a robot, and creates the channel itself.
+    /// @throws Exception if it is unable to establish a connection to the provided URI within
+    /// the given number of initial connection attempts
+    static std::shared_ptr<ViamChannel> dial_initial(const char* uri,
+                                                     const boost::optional<DialOptions>& options);
+
+    const std::shared_ptr<GrpcChannel>& channel() const;
 
    private:
-    std::shared_ptr<grpc::Channel> channel_;
+    std::shared_ptr<GrpcChannel> channel_;
     const char* path_;
     bool closed_;
     void* rust_runtime_;
@@ -47,11 +66,15 @@ class DialOptions {
     const boost::optional<std::string>& entity() const;
     bool allows_insecure_downgrade() const;
     const std::chrono::duration<float>& timeout() const;
+    int initial_connection_attempts() const;
+    std::chrono::duration<float> initial_connection_attempt_timeout() const;
 
-    void set_entity(boost::optional<std::string> entity);
-    void set_credentials(boost::optional<Credentials> creds);
-    void set_allow_insecure_downgrade(bool allow);
-    void set_timeout(std::chrono::duration<float> timeout);
+    DialOptions& set_entity(boost::optional<std::string> entity);
+    DialOptions& set_credentials(boost::optional<Credentials> creds);
+    DialOptions& set_allow_insecure_downgrade(bool allow);
+    DialOptions& set_timeout(std::chrono::duration<float> timeout);
+    DialOptions& set_initial_connection_attempts(int attempts);
+    DialOptions& set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
 
    private:
     // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a
@@ -70,6 +93,14 @@ class DialOptions {
     /// @brief Duration before the dial connection times out
     /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
     std::chrono::duration<float> timeout_{20};
+
+    /// @brief Number of attempts to make when initially connecting to a robot
+    /// If set to 0 or a negative integer, will attempt to reconnect forever.
+    int initial_connection_attempts_ = 3;
+
+    /// @brief Timeout of connection attempts when initially dialing a robot
+    /// Defaults to 20sec to match the default timeout duration
+    std::chrono::duration<float> initial_connection_attempt_timeout_{20};
 };
 
 class Options {

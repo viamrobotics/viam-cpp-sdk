@@ -153,6 +153,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/board/v1/board.grpc.pb.h
     ${PROTO_GEN_DIR}/component/board/v1/board.pb.cc
     ${PROTO_GEN_DIR}/component/board/v1/board.pb.h
+    ${PROTO_GEN_DIR}/component/button/v1/button.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/button/v1/button.grpc.pb.h
+    ${PROTO_GEN_DIR}/component/button/v1/button.pb.cc
+    ${PROTO_GEN_DIR}/component/button/v1/button.pb.h
     ${PROTO_GEN_DIR}/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/camera/v1/camera.grpc.pb.h
     ${PROTO_GEN_DIR}/component/camera/v1/camera.pb.cc
@@ -213,6 +217,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.h
     ${PROTO_GEN_DIR}/robot/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.pb.h
+    ${PROTO_GEN_DIR}/service/discovery/v1/discovery.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/discovery/v1/discovery.grpc.pb.h
+    ${PROTO_GEN_DIR}/service/discovery/v1/discovery.pb.cc
+    ${PROTO_GEN_DIR}/service/discovery/v1/discovery.pb.h
     ${PROTO_GEN_DIR}/service/generic/v1/generic.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/generic/v1/generic.grpc.pb.h
     ${PROTO_GEN_DIR}/service/generic/v1/generic.pb.cc
@@ -225,6 +233,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/service/motion/v1/motion.grpc.pb.h
     ${PROTO_GEN_DIR}/service/motion/v1/motion.pb.cc
     ${PROTO_GEN_DIR}/service/motion/v1/motion.pb.h
+    ${PROTO_GEN_DIR}/service/navigation/v1/navigation.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/navigation/v1/navigation.grpc.pb.h
+    ${PROTO_GEN_DIR}/service/navigation/v1/navigation.pb.cc
+    ${PROTO_GEN_DIR}/service/navigation/v1/navigation.pb.h
     ${PROTO_GEN_DIR}/tagger/v1/tagger.grpc.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.grpc.pb.h
     ${PROTO_GEN_DIR}/tagger/v1/tagger.pb.cc
@@ -292,6 +304,8 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/component/base/v1/base.pb.cc
     ${PROTO_GEN_DIR}/component/board/v1/board.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/board/v1/board.pb.cc
+    ${PROTO_GEN_DIR}/component/button/v1/button.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/button/v1/button.pb.cc
     ${PROTO_GEN_DIR}/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/camera/v1/camera.pb.cc
     ${PROTO_GEN_DIR}/component/encoder/v1/encoder.grpc.pb.cc
@@ -322,12 +336,16 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.pb.cc
+    ${PROTO_GEN_DIR}/service/discovery/v1/discovery.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/discovery/v1/discovery.pb.cc
     ${PROTO_GEN_DIR}/service/generic/v1/generic.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/generic/v1/generic.pb.cc
     ${PROTO_GEN_DIR}/service/mlmodel/v1/mlmodel.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/mlmodel/v1/mlmodel.pb.cc
     ${PROTO_GEN_DIR}/service/motion/v1/motion.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/motion/v1/motion.pb.cc
+    ${PROTO_GEN_DIR}/service/navigation/v1/navigation.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/navigation/v1/navigation.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.grpc.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.pb.cc
   PUBLIC FILE_SET viamapi_includes TYPE HEADERS
@@ -348,6 +366,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/component/base/v1/base.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/board/v1/board.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/board/v1/board.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/button/v1/button.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/button/v1/button.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/camera/v1/camera.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/camera/v1/camera.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/encoder/v1/encoder.grpc.pb.h
@@ -379,12 +399,16 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/tagger/v1/tagger.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/discovery/v1/discovery.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/discovery/v1/discovery.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/generic/v1/generic.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/generic/v1/generic.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/mlmodel/v1/mlmodel.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/motion/v1/motion.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/motion/v1/motion.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/navigation/v1/navigation.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/navigation/v1/navigation.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/tagger/v1/tagger.pb.h
 )
 

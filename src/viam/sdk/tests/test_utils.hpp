@@ -2,6 +2,9 @@
 
 #include <grpcpp/grpcpp.h>
 
+#include <boost/test/unit_test.hpp>
+
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -10,10 +13,19 @@
 namespace viam {
 namespace sdktests {
 
+struct GlobalFixture {
+    GlobalFixture() {
+        (void)sdk::Instance::current(sdk::Instance::Creation::if_needed);
+    }
+};
+
+BOOST_TEST_GLOBAL_FIXTURE(GlobalFixture);
+
 using namespace viam::sdk;
 
-AttributeMap fake_map();
+ProtoStruct fake_map();
 std::vector<GeometryConfig> fake_geometries();
+std::vector<ResourceConfig> fake_discovered_resources();
 
 // TestServer is a wrapper around viam::sdk::Server that is a friend of the
 // class and can therefore access its private fields.
@@ -61,7 +73,8 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     auto test_server = TestServer(server);
     auto grpc_channel = test_server.grpc_in_process_channel();
 
-    auto resource_client = Registry::lookup_resource_client(API::get<ResourceType>())
+    auto resource_client = sdk::Registry::get()
+                               .lookup_resource_client(API::get<ResourceType>())
                                ->create_rpc_client(mock->name(), std::move(grpc_channel));
 
     // Run the passed-in test case on the created stack and give access to the

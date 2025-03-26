@@ -14,7 +14,6 @@
 
 enable_testing()
 
-include(viamcppsdk_utils)
 add_library(viamsdk_test)
 
 target_sources(viamsdk_test
@@ -25,31 +24,43 @@ target_sources(viamsdk_test
     mocks/mock_arm.cpp
     mocks/mock_base.cpp
     mocks/mock_board.cpp
+    mocks/mock_button.cpp
     mocks/mock_encoder.cpp
     mocks/mock_gantry.cpp
     mocks/mock_gripper.cpp
     mocks/mock_motor.cpp
     mocks/mock_motion.cpp
     mocks/mock_movement_sensor.cpp
+    mocks/mock_discovery.cpp
+    mocks/mock_navigation.cpp
     mocks/mock_pose_tracker.cpp
     mocks/mock_power_sensor.cpp
     mocks/mock_sensor.cpp
     mocks/mock_servo.cpp
     mocks/mock_robot.cpp
     test_utils.cpp
-    ../common/proto_value.cpp # Only compile this into the tests for now since SDK doesn't yet use it
+)
+
+target_include_directories(viamsdk_test
+  PUBLIC
+    "$<BUILD_INTERFACE:$<TARGET_PROPERTY:viam-cpp-sdk::viamapi,INTERFACE_INCLUDE_DIRECTORIES>>"
 )
 
 target_link_libraries(viamsdk_test
   PUBLIC viam-cpp-sdk::viamsdk
+  PUBLIC Boost::unit_test_framework
 )
+
+viamcppsdk_link_viam_api(viamsdk_test PUBLIC)
 
 viamcppsdk_add_boost_test(test_arm.cpp)
 viamcppsdk_add_boost_test(test_base.cpp)
 viamcppsdk_add_boost_test(test_board.cpp)
+viamcppsdk_add_boost_test(test_button.cpp)
 viamcppsdk_add_boost_test(test_camera.cpp)
 viamcppsdk_add_boost_test(test_common.cpp)
 viamcppsdk_add_boost_test(test_encoder.cpp)
+viamcppsdk_add_boost_test(test_discovery.cpp)
 viamcppsdk_add_boost_test(test_gantry.cpp)
 viamcppsdk_add_boost_test(test_gripper.cpp)
 viamcppsdk_add_boost_test(test_generics.cpp)
@@ -57,10 +68,12 @@ viamcppsdk_add_boost_test(test_mlmodel.cpp)
 viamcppsdk_add_boost_test(test_motor.cpp)
 viamcppsdk_add_boost_test(test_motion.cpp)
 viamcppsdk_add_boost_test(test_movement_sensor.cpp)
+viamcppsdk_add_boost_test(test_navigation.cpp)
 viamcppsdk_add_boost_test(test_pose_tracker.cpp)
 viamcppsdk_add_boost_test(test_power_sensor.cpp)
+viamcppsdk_add_boost_test(test_proto_value.cpp)
+viamcppsdk_add_boost_test(test_proto_value_visit.cpp)
 viamcppsdk_add_boost_test(test_resource.cpp)
 viamcppsdk_add_boost_test(test_sensor.cpp)
 viamcppsdk_add_boost_test(test_servo.cpp)
 viamcppsdk_add_boost_test(test_robot.cpp)
-viamcppsdk_add_boost_test(test_types.cpp)

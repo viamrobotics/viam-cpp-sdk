@@ -16,7 +16,7 @@
 
 #include <grpcpp/channel.h>
 
-#include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/services/private/mlmodel.hpp>
 
 #include <viam/sdk/common/exception.hpp>
@@ -41,7 +41,7 @@ MLModelServiceClient::MLModelServiceClient(std::string name, std::shared_ptr<grp
       stub_(service_type::NewStub(channel_)) {}
 
 std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
-    const named_tensor_views& inputs, const AttributeMap& extra) {
+    const named_tensor_views& inputs, const ProtoStruct& extra) {
     namespace pb = ::google::protobuf;
     namespace mlpb = ::viam::service::mlmodel::v1;
 
@@ -49,7 +49,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     auto* const req = pb::Arena::VIAM_SDK_PB_CREATE_MESSAGE<mlpb::InferRequest>(arena.get());
 
     req->set_name(this->name());
-    *req->mutable_extra() = map_to_struct(extra);
+    *req->mutable_extra() = to_proto(extra);
     auto* const resp = pb::Arena::VIAM_SDK_PB_CREATE_MESSAGE<mlpb::InferResponse>(arena.get());
     ClientContext ctx;
 
@@ -71,7 +71,7 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
 
     const auto result = stub_->Infer(ctx, *req, resp);
     if (!result.ok()) {
-        throw GRPCException(result);
+        throw GRPCException(&result);
     }
 
     for (const auto& kv : resp->output_tensors().tensors()) {
@@ -89,11 +89,11 @@ std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     return {std::move(aav), tsav_views};
 }
 
-struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMap& extra) {
+struct MLModelService::metadata MLModelServiceClient::metadata(const ProtoStruct& extra) {
     // Encode metadata args into a `MetadataRequest`
     viam::service::mlmodel::v1::MetadataRequest req;
     *req.mutable_name() = name();
-    *req.mutable_extra() = map_to_struct(extra);
+    *req.mutable_extra() = to_proto(extra);
 
     // Invoke the stub
     ClientContext ctx;
@@ -150,7 +150,7 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const AttributeMa
                     }
                 }
                 if (s.has_extra()) {
-                    ti.extra = struct_to_map(s.extra());
+                    ti.extra = from_proto(s.extra());
                 }
             }
         };

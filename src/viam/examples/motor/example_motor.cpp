@@ -1,12 +1,14 @@
+#include <unistd.h>
+
 #include <chrono>
 #include <fstream>
+#include <iostream>
 #include <string>
-#include <unistd.h>
 #include <vector>
 
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/robot/service.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
 void print_motor_position(std::shared_ptr<viam::sdk::Motor> motor) {
@@ -26,6 +28,11 @@ int main() {
     namespace vs = ::viam::sdk;
 
     try {
+        // Every Viam C++ SDK program must have one and only one Instance object which is created
+        // before any other C++ SDK objects and stays alive until all Viam C++ SDK objects are
+        // destroyed.
+        vs::Instance inst;
+
         // If you want to connect to a remote robot, this should be the url of the robot
         // Ex: xxx.xxx.viam.cloud
         std::string robot_address("localhost:8080");
@@ -109,9 +116,7 @@ int main() {
 
         // Explicitly stop the motor
         cout << "Stopping motor" << endl;
-        vs::AttributeMap stop_map =
-            std::make_shared<std::unordered_map<std::string, std::shared_ptr<vs::ProtoType>>>();
-        motor->stop(stop_map);
+        motor->stop({});
 
     } catch (const std::exception& ex) {
         cerr << "Program failed. Exception: " << std::string(ex.what()) << endl;

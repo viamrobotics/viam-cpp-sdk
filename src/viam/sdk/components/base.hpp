@@ -5,10 +5,8 @@
 
 #include <string>
 
-#include <viam/api/component/base/v1/base.pb.h>
-
 #include <viam/sdk/common/linear_algebra.hpp>
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
@@ -32,8 +30,6 @@ class Base : public Component, public Stoppable {
         double width_meters;
         double turning_radius_meters;
         double wheel_circumference_meters;
-
-        static properties from_proto(const component::base::v1::GetPropertiesResponse& proto);
     };
     friend std::ostream& operator<<(std::ostream& os, const properties& v);
     friend bool operator==(const properties& lhs, const properties& rhs);
@@ -53,7 +49,7 @@ class Base : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method
     virtual void move_straight(int64_t distance_mm,
                                double mm_per_sec,
-                               const AttributeMap& extra) = 0;
+                               const ProtoStruct& extra) = 0;
 
     /// @brief Spins a robot's base by an given angle, expressed in degrees. This method blocks
     /// until completed or cancelled
@@ -68,7 +64,7 @@ class Base : public Component, public Stoppable {
     /// @param angle_deg Desired angle
     /// @param degs_per_sec Desired angular velocity
     /// @param extra Any additional arguments to the method
-    virtual void spin(double angle_deg, double degs_per_sec, const AttributeMap& extra) = 0;
+    virtual void spin(double angle_deg, double degs_per_sec, const ProtoStruct& extra) = 0;
 
     /// @brief Sets the linear and angular power of a base -1 -> 1 in terms of power for
     /// each direction
@@ -85,7 +81,7 @@ class Base : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method
     virtual void set_power(const Vector3& linear,
                            const Vector3& angular,
-                           const AttributeMap& extra) = 0;
+                           const ProtoStruct& extra) = 0;
 
     /// @brief Set the linear and angular velocity of a base
     /// @param linear Desired linear velocity in mm per second for each direction
@@ -100,7 +96,7 @@ class Base : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method
     virtual void set_velocity(const Vector3& linear,
                               const Vector3& angular,
-                              const AttributeMap& extra) = 0;
+                              const ProtoStruct& extra) = 0;
 
     /// @brief Reports if the base is in motion
     virtual bool is_moving() = 0;
@@ -112,12 +108,12 @@ class Base : public Component, public Stoppable {
 
     /// @brief Returns physical properties of the base (width, turning radius, wheel circumference)
     /// @param extra Any additional arguments to the method
-    virtual properties get_properties(const AttributeMap& extra) = 0;
+    virtual properties get_properties(const ProtoStruct& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.
-    virtual AttributeMap do_command(const AttributeMap& command) = 0;
+    virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
     /// @brief Returns `GeometryConfig`s associated with the calling base.
     /// @return The requested `GeometryConfig`s associated with the component.
@@ -128,7 +124,7 @@ class Base : public Component, public Stoppable {
     /// @brief Returns `GeometryConfig`s associated with the calling base.
     /// @param extra Any additional arguments to the method.
     /// @return The requested `GeometryConfig`s associated with the component.
-    virtual std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) = 0;
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
     API api() const override;
 

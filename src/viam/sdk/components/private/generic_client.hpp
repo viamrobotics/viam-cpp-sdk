@@ -21,8 +21,8 @@ class GenericComponentClient : public GenericComponent {
    public:
     using interface_type = GenericComponent;
     GenericComponentClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    AttributeMap do_command(const AttributeMap& command) override;
-    std::vector<GeometryConfig> get_geometries(const AttributeMap& extra) override;
+    ProtoStruct do_command(const ProtoStruct& command) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing

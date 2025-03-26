@@ -33,14 +33,11 @@ BOOST_AUTO_TEST_CASE(mock_get_component_api) {
 BOOST_AUTO_TEST_CASE(test_component_do_command) {
     std::shared_ptr<MockGenericComponent> mock = MockGenericComponent::get_mock_generic();
     client_to_mock_pipeline<GenericComponent>(mock, [](GenericComponent& client) {
-        AttributeMap expected = fake_map();
-        AttributeMap command;
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct expected = fake_map();
+        ProtoStruct command;
+        ProtoStruct result_map = client.do_command(command);
 
-        std::shared_ptr<ProtoType> expected_pt = expected->at(std::string("test"));
-        std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
-
-        BOOST_CHECK(*expected_pt == *result_pt);
+        BOOST_CHECK(expected.at("test") == result_map.at("test"));
     });
 }
 
@@ -66,14 +63,11 @@ BOOST_AUTO_TEST_CASE(mock_get_service_api) {
 BOOST_AUTO_TEST_CASE(test_service_do_command) {
     std::shared_ptr<MockGenericService> mock = MockGenericService::get_mock_generic();
     client_to_mock_pipeline<GenericService>(mock, [](GenericService& client) {
-        AttributeMap expected = fake_map();
-        AttributeMap command;
-        AttributeMap result_map = client.do_command(command);
+        ProtoStruct expected = fake_map();
+        ProtoStruct command;
+        ProtoStruct result_map = client.do_command(command);
 
-        std::shared_ptr<ProtoType> expected_pt = expected->at(std::string("test"));
-        std::shared_ptr<ProtoType> result_pt = result_map->at(std::string("test"));
-
-        BOOST_CHECK(*expected_pt == *result_pt);
+        BOOST_CHECK(expected.at("test") == result_map.at("test"));
     });
 }
 

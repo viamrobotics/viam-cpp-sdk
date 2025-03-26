@@ -7,23 +7,24 @@
 #include "component/arm/v1/arm.pb.h"
 
 #include <functional>
-#include <grpcpp/generic/async_generic_service.h>
-#include <grpcpp/support/async_stream.h>
-#include <grpcpp/support/async_unary_call.h>
-#include <grpcpp/support/client_callback.h>
-#include <grpcpp/client_context.h>
-#include <grpcpp/completion_queue.h>
-#include <grpcpp/support/message_allocator.h>
-#include <grpcpp/support/method_handler.h>
-#include <grpcpp/impl/proto_utils.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/impl/server_callback_handlers.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-#include <grpcpp/support/stub_options.h>
-#include <grpcpp/support/sync_stream.h>
+#include <grpc/impl/codegen/port_platform.h>
+#include <grpcpp/impl/codegen/async_generic_service.h>
+#include <grpcpp/impl/codegen/async_stream.h>
+#include <grpcpp/impl/codegen/async_unary_call.h>
+#include <grpcpp/impl/codegen/client_callback.h>
+#include <grpcpp/impl/codegen/client_context.h>
+#include <grpcpp/impl/codegen/completion_queue.h>
+#include <grpcpp/impl/codegen/message_allocator.h>
+#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/impl/codegen/proto_utils.h>
+#include <grpcpp/impl/codegen/rpc_method.h>
+#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/server_context.h>
+#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/impl/codegen/status.h>
+#include <grpcpp/impl/codegen/stub_options.h>
+#include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace viam {
 namespace component {
@@ -73,6 +74,16 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveToJointPositionsResponse>> PrepareAsyncMoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveToJointPositionsResponse>>(PrepareAsyncMoveToJointPositionsRaw(context, request, cq));
     }
+    // MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified,
+    // obeying the specified velocity and acceleration limits.
+    // This will block until done or a new operation cancels this one
+    virtual ::grpc::Status MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>> AsyncMoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>>(AsyncMoveThroughJointPositionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>> PrepareAsyncMoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>>(PrepareAsyncMoveThroughJointPositionsRaw(context, request, cq));
+    }
     // Stop stops a robot's arm
     virtual ::grpc::Status Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::viam::component::arm::v1::StopResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>> AsyncStop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
@@ -113,43 +124,152 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
-    class async_interface {
+    class experimental_async_interface {
      public:
-      virtual ~async_interface() {}
+      virtual ~experimental_async_interface() {}
       // GetEndPosition gets the current position the end of the robot's arm expressed as X,Y,Z,ox,oy,oz,theta
       virtual void GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest* request, ::viam::component::arm::v1::GetEndPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetEndPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetEndPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest* request, ::viam::component::arm::v1::GetEndPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest* request, ::viam::component::arm::v1::GetEndPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetEndPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetEndPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetEndPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetEndPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // MoveToPosition moves the mount point of the robot's end effector to the requested position.
       // This will block until done or a new operation cancels this one
       virtual void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToPositionRequest* request, ::viam::component::arm::v1::MoveToPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void MoveToPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToPositionRequest* request, ::viam::component::arm::v1::MoveToPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToPositionRequest* request, ::viam::component::arm::v1::MoveToPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void MoveToPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void MoveToPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetJointPositions lists the joint positions (in degrees) of every joint on a robot
       virtual void GetJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetJointPositionsRequest* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetJointPositionsRequest* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetJointPositionsRequest* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
       // This will block until done or a new operation cancels this one
       virtual void MoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void MoveToJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void MoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void MoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void MoveToJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void MoveToJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified,
+      // obeying the specified velocity and acceleration limits.
+      // This will block until done or a new operation cancels this one
+      virtual void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void MoveThroughJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void MoveThroughJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void MoveThroughJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // Stop stops a robot's arm
       virtual void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::StopResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // IsMoving reports if a component is in motion
       virtual void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::IsMovingResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetKinematics returns the kinematics file for the component
       virtual void GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetKinematicsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
       // GetGeometries returns the geometries of the component in their current configuration
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetEndPositionResponse>* AsyncGetEndPositionRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetEndPositionResponse>* PrepareAsyncGetEndPositionRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveToPositionResponse>* AsyncMoveToPositionRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -158,6 +278,8 @@ class ArmService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::GetJointPositionsResponse>* PrepareAsyncGetJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetJointPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveToJointPositionsResponse>* AsyncMoveToJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveToJointPositionsResponse>* PrepareAsyncMoveToJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* AsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* PrepareAsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>* AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::StopResponse>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::arm::v1::IsMovingResponse>* AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -171,7 +293,7 @@ class ArmService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
     ::grpc::Status GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::viam::component::arm::v1::GetEndPositionResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetEndPositionResponse>> AsyncGetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetEndPositionResponse>>(AsyncGetEndPositionRaw(context, request, cq));
@@ -199,6 +321,13 @@ class ArmService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveToJointPositionsResponse>> PrepareAsyncMoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveToJointPositionsResponse>>(PrepareAsyncMoveToJointPositionsRaw(context, request, cq));
+    }
+    ::grpc::Status MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>> AsyncMoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>>(AsyncMoveThroughJointPositionsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>> PrepareAsyncMoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>>(PrepareAsyncMoveThroughJointPositionsRaw(context, request, cq));
     }
     ::grpc::Status Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::viam::component::arm::v1::StopResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>> AsyncStop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
@@ -235,38 +364,140 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
-    class async final :
-      public StubInterface::async_interface {
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
      public:
       void GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest* request, ::viam::component::arm::v1::GetEndPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetEndPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetEndPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest* request, ::viam::component::arm::v1::GetEndPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest* request, ::viam::component::arm::v1::GetEndPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetEndPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetEndPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetEndPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetEndPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToPositionRequest* request, ::viam::component::arm::v1::MoveToPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      void MoveToPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToPositionRequest* request, ::viam::component::arm::v1::MoveToPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void MoveToPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToPositionRequest* request, ::viam::component::arm::v1::MoveToPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void MoveToPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void MoveToPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetJointPositionsRequest* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetJointPositionsRequest* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetJointPositionsRequest* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::GetJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void MoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, std::function<void(::grpc::Status)>) override;
+      void MoveToJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void MoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void MoveToJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void MoveToJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void MoveToJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, std::function<void(::grpc::Status)>) override;
+      void MoveThroughJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void MoveThroughJointPositions(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void MoveThroughJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void MoveThroughJointPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, std::function<void(::grpc::Status)>) override;
+      void Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::StopResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Stop(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, std::function<void(::grpc::Status)>) override;
+      void IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::IsMovingResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void IsMoving(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::arm::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetKinematicsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
+      explicit experimental_async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class async* async() override { return &async_stub_; }
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
+    class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetEndPositionResponse>* AsyncGetEndPositionRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetEndPositionResponse>* PrepareAsyncGetEndPositionRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveToPositionResponse>* AsyncMoveToPositionRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToPositionRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -275,6 +506,8 @@ class ArmService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::GetJointPositionsResponse>* PrepareAsyncGetJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetJointPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveToJointPositionsResponse>* AsyncMoveToJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveToJointPositionsResponse>* PrepareAsyncMoveToJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* AsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* PrepareAsyncMoveThroughJointPositionsRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>* AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::StopResponse>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::StopRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::arm::v1::IsMovingResponse>* AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::arm::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -289,6 +522,7 @@ class ArmService final {
     const ::grpc::internal::RpcMethod rpcmethod_MoveToPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_GetJointPositions_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveToJointPositions_;
+    const ::grpc::internal::RpcMethod rpcmethod_MoveThroughJointPositions_;
     const ::grpc::internal::RpcMethod rpcmethod_Stop_;
     const ::grpc::internal::RpcMethod rpcmethod_IsMoving_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
@@ -311,6 +545,10 @@ class ArmService final {
     // MoveToJointPositions moves every joint on a robot's arm to specified angles which are expressed in degrees
     // This will block until done or a new operation cancels this one
     virtual ::grpc::Status MoveToJointPositions(::grpc::ServerContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response);
+    // MoveThroughJointPositions moves every joint on a robot's arm to the specified JointPositions in the order they are specified,
+    // obeying the specified velocity and acceleration limits.
+    // This will block until done or a new operation cancels this one
+    virtual ::grpc::Status MoveThroughJointPositions(::grpc::ServerContext* context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response);
     // Stop stops a robot's arm
     virtual ::grpc::Status Stop(::grpc::ServerContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response);
     // IsMoving reports if a component is in motion
@@ -403,12 +641,32 @@ class ArmService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_MoveThroughJointPositions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_MoveThroughJointPositions() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_MoveThroughJointPositions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositions(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMoveThroughJointPositions(::grpc::ServerContext* context, ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_Stop : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Stop() {
-      ::grpc::Service::MarkMethodAsync(4);
+      ::grpc::Service::MarkMethodAsync(5);
     }
     ~WithAsyncMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -419,7 +677,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStop(::grpc::ServerContext* context, ::viam::component::arm::v1::StopRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::arm::v1::StopResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -428,7 +686,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_IsMoving() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(6);
     }
     ~WithAsyncMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -439,7 +697,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsMoving(::grpc::ServerContext* context, ::viam::component::arm::v1::IsMovingRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::arm::v1::IsMovingResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -448,7 +706,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -459,7 +717,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -468,7 +726,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(8);
     }
     ~WithAsyncMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -479,7 +737,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematics(::grpc::ServerContext* context, ::viam::common::v1::GetKinematicsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetKinematicsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -488,7 +746,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -499,27 +757,41 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::viam::common::v1::GetGeometriesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetGeometriesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetKinematics<WithAsyncMethod_GetGeometries<Service > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_MoveThroughJointPositions<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetKinematics<WithAsyncMethod_GetGeometries<Service > > > > > > > > > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetEndPosition : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetEndPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetEndPosition() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetEndPositionRequest, ::viam::component::arm::v1::GetEndPositionResponse>(
+    ExperimentalWithCallbackMethod_GetEndPosition() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetEndPositionRequest, ::viam::component::arm::v1::GetEndPositionResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::GetEndPositionRequest* request, ::viam::component::arm::v1::GetEndPositionResponse* response) { return this->GetEndPosition(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::arm::v1::GetEndPositionRequest* request, ::viam::component::arm::v1::GetEndPositionResponse* response) { return this->GetEndPosition(context, request, response); }));}
     void SetMessageAllocatorFor_GetEndPosition(
-        ::grpc::MessageAllocator< ::viam::component::arm::v1::GetEndPositionRequest, ::viam::component::arm::v1::GetEndPositionResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::arm::v1::GetEndPositionRequest, ::viam::component::arm::v1::GetEndPositionResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetEndPositionRequest, ::viam::component::arm::v1::GetEndPositionResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetEndPositionRequest, ::viam::component::arm::v1::GetEndPositionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetEndPosition() override {
+    ~ExperimentalWithCallbackMethod_GetEndPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -527,26 +799,46 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetEndPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::GetEndPositionRequest* /*request*/, ::viam::component::arm::v1::GetEndPositionResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::GetEndPositionRequest* /*request*/, ::viam::component::arm::v1::GetEndPositionResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetEndPosition(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::GetEndPositionRequest* /*request*/, ::viam::component::arm::v1::GetEndPositionResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_MoveToPosition : public BaseClass {
+  class ExperimentalWithCallbackMethod_MoveToPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_MoveToPosition() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveToPositionRequest, ::viam::component::arm::v1::MoveToPositionResponse>(
+    ExperimentalWithCallbackMethod_MoveToPosition() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveToPositionRequest, ::viam::component::arm::v1::MoveToPositionResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::MoveToPositionRequest* request, ::viam::component::arm::v1::MoveToPositionResponse* response) { return this->MoveToPosition(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::arm::v1::MoveToPositionRequest* request, ::viam::component::arm::v1::MoveToPositionResponse* response) { return this->MoveToPosition(context, request, response); }));}
     void SetMessageAllocatorFor_MoveToPosition(
-        ::grpc::MessageAllocator< ::viam::component::arm::v1::MoveToPositionRequest, ::viam::component::arm::v1::MoveToPositionResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::arm::v1::MoveToPositionRequest, ::viam::component::arm::v1::MoveToPositionResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveToPositionRequest, ::viam::component::arm::v1::MoveToPositionResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveToPositionRequest, ::viam::component::arm::v1::MoveToPositionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_MoveToPosition() override {
+    ~ExperimentalWithCallbackMethod_MoveToPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -554,26 +846,46 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* MoveToPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::MoveToPositionRequest* /*request*/, ::viam::component::arm::v1::MoveToPositionResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::MoveToPositionRequest* /*request*/, ::viam::component::arm::v1::MoveToPositionResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* MoveToPosition(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::MoveToPositionRequest* /*request*/, ::viam::component::arm::v1::MoveToPositionResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetJointPositions : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetJointPositions : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetJointPositions() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetJointPositionsRequest, ::viam::component::arm::v1::GetJointPositionsResponse>(
+    ExperimentalWithCallbackMethod_GetJointPositions() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetJointPositionsRequest, ::viam::component::arm::v1::GetJointPositionsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::GetJointPositionsRequest* request, ::viam::component::arm::v1::GetJointPositionsResponse* response) { return this->GetJointPositions(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::arm::v1::GetJointPositionsRequest* request, ::viam::component::arm::v1::GetJointPositionsResponse* response) { return this->GetJointPositions(context, request, response); }));}
     void SetMessageAllocatorFor_GetJointPositions(
-        ::grpc::MessageAllocator< ::viam::component::arm::v1::GetJointPositionsRequest, ::viam::component::arm::v1::GetJointPositionsResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::arm::v1::GetJointPositionsRequest, ::viam::component::arm::v1::GetJointPositionsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetJointPositionsRequest, ::viam::component::arm::v1::GetJointPositionsResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::GetJointPositionsRequest, ::viam::component::arm::v1::GetJointPositionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetJointPositions() override {
+    ~ExperimentalWithCallbackMethod_GetJointPositions() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -581,26 +893,46 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetJointPositions(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::GetJointPositionsRequest* /*request*/, ::viam::component::arm::v1::GetJointPositionsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::GetJointPositionsRequest* /*request*/, ::viam::component::arm::v1::GetJointPositionsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetJointPositions(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::GetJointPositionsRequest* /*request*/, ::viam::component::arm::v1::GetJointPositionsResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_MoveToJointPositions : public BaseClass {
+  class ExperimentalWithCallbackMethod_MoveToJointPositions : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_MoveToJointPositions() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveToJointPositionsRequest, ::viam::component::arm::v1::MoveToJointPositionsResponse>(
+    ExperimentalWithCallbackMethod_MoveToJointPositions() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveToJointPositionsRequest, ::viam::component::arm::v1::MoveToJointPositionsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response) { return this->MoveToJointPositions(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::arm::v1::MoveToJointPositionsRequest* request, ::viam::component::arm::v1::MoveToJointPositionsResponse* response) { return this->MoveToJointPositions(context, request, response); }));}
     void SetMessageAllocatorFor_MoveToJointPositions(
-        ::grpc::MessageAllocator< ::viam::component::arm::v1::MoveToJointPositionsRequest, ::viam::component::arm::v1::MoveToJointPositionsResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::arm::v1::MoveToJointPositionsRequest, ::viam::component::arm::v1::MoveToJointPositionsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveToJointPositionsRequest, ::viam::component::arm::v1::MoveToJointPositionsResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveToJointPositionsRequest, ::viam::component::arm::v1::MoveToJointPositionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_MoveToJointPositions() override {
+    ~ExperimentalWithCallbackMethod_MoveToJointPositions() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -608,26 +940,93 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* MoveToJointPositions(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::MoveToJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveToJointPositionsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::MoveToJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveToJointPositionsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* MoveToJointPositions(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::MoveToJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveToJointPositionsResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_Stop : public BaseClass {
+  class ExperimentalWithCallbackMethod_MoveThroughJointPositions : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Stop() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>(
+    ExperimentalWithCallbackMethod_MoveThroughJointPositions() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveThroughJointPositionsRequest, ::viam::component::arm::v1::MoveThroughJointPositionsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response) { return this->Stop(context, request, response); }));}
-    void SetMessageAllocatorFor_Stop(
-        ::grpc::MessageAllocator< ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* request, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* response) { return this->MoveThroughJointPositions(context, request, response); }));}
+    void SetMessageAllocatorFor_MoveThroughJointPositions(
+        ::grpc::experimental::MessageAllocator< ::viam::component::arm::v1::MoveThroughJointPositionsRequest, ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>*>(handler)
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::MoveThroughJointPositionsRequest, ::viam::component::arm::v1::MoveThroughJointPositionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Stop() override {
+    ~ExperimentalWithCallbackMethod_MoveThroughJointPositions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositions(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* MoveThroughJointPositions(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* MoveThroughJointPositions(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Stop : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Stop() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::arm::v1::StopRequest* request, ::viam::component::arm::v1::StopResponse* response) { return this->Stop(context, request, response); }));}
+    void SetMessageAllocatorFor_Stop(
+        ::grpc::experimental::MessageAllocator< ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -635,26 +1034,46 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Stop(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::StopRequest* /*request*/, ::viam::component::arm::v1::StopResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::StopRequest* /*request*/, ::viam::component::arm::v1::StopResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Stop(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::StopRequest* /*request*/, ::viam::component::arm::v1::StopResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_IsMoving : public BaseClass {
+  class ExperimentalWithCallbackMethod_IsMoving : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_IsMoving() {
-      ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>(
+    ExperimentalWithCallbackMethod_IsMoving() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response) { return this->IsMoving(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::component::arm::v1::IsMovingRequest* request, ::viam::component::arm::v1::IsMovingResponse* response) { return this->IsMoving(context, request, response); }));}
     void SetMessageAllocatorFor_IsMoving(
-        ::grpc::MessageAllocator< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_IsMoving() override {
+    ~ExperimentalWithCallbackMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -662,26 +1081,46 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* IsMoving(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* IsMoving(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::arm::v1::IsMovingRequest* /*request*/, ::viam::component::arm::v1::IsMovingResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    ExperimentalWithCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_DoCommand() override {
+    ~ExperimentalWithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -689,26 +1128,46 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetKinematics : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetKinematics : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
+    ExperimentalWithCallbackMethod_GetKinematics() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response) { return this->GetKinematics(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response) { return this->GetKinematics(context, request, response); }));}
     void SetMessageAllocatorFor_GetKinematics(
-        ::grpc::MessageAllocator< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetKinematics() override {
+    ~ExperimentalWithCallbackMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -716,26 +1175,46 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetKinematics(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetKinematicsRequest* /*request*/, ::viam::common::v1::GetKinematicsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetKinematicsRequest* /*request*/, ::viam::common::v1::GetKinematicsResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetKinematics(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::GetKinematicsRequest* /*request*/, ::viam::common::v1::GetKinematicsResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetGeometries : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetGeometries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
+    ExperimentalWithCallbackMethod_GetGeometries() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
-        ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
+        ::grpc::experimental::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetGeometries() override {
+    ~ExperimentalWithCallbackMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -743,11 +1222,20 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetGeometries(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)
+    #endif
+      { return nullptr; }
   };
-  typedef WithCallbackMethod_GetEndPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetJointPositions<WithCallbackMethod_MoveToJointPositions<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetKinematics<WithCallbackMethod_GetGeometries<Service > > > > > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_GetEndPosition<ExperimentalWithCallbackMethod_MoveToPosition<ExperimentalWithCallbackMethod_GetJointPositions<ExperimentalWithCallbackMethod_MoveToJointPositions<ExperimentalWithCallbackMethod_MoveThroughJointPositions<ExperimentalWithCallbackMethod_Stop<ExperimentalWithCallbackMethod_IsMoving<ExperimentalWithCallbackMethod_DoCommand<ExperimentalWithCallbackMethod_GetKinematics<ExperimentalWithCallbackMethod_GetGeometries<Service > > > > > > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_GetEndPosition<ExperimentalWithCallbackMethod_MoveToPosition<ExperimentalWithCallbackMethod_GetJointPositions<ExperimentalWithCallbackMethod_MoveToJointPositions<ExperimentalWithCallbackMethod_MoveThroughJointPositions<ExperimentalWithCallbackMethod_Stop<ExperimentalWithCallbackMethod_IsMoving<ExperimentalWithCallbackMethod_DoCommand<ExperimentalWithCallbackMethod_GetKinematics<ExperimentalWithCallbackMethod_GetGeometries<Service > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetEndPosition : public BaseClass {
    private:
@@ -817,12 +1305,29 @@ class ArmService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_MoveThroughJointPositions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_MoveThroughJointPositions() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_MoveThroughJointPositions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositions(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_Stop : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Stop() {
-      ::grpc::Service::MarkMethodGeneric(4);
+      ::grpc::Service::MarkMethodGeneric(5);
     }
     ~WithGenericMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -839,7 +1344,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_IsMoving() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(6);
     }
     ~WithGenericMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -856,7 +1361,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -873,7 +1378,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(8);
     }
     ~WithGenericMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -890,7 +1395,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -982,12 +1487,32 @@ class ArmService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_MoveThroughJointPositions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_MoveThroughJointPositions() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_MoveThroughJointPositions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositions(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMoveThroughJointPositions(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_Stop : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Stop() {
-      ::grpc::Service::MarkMethodRaw(4);
+      ::grpc::Service::MarkMethodRaw(5);
     }
     ~WithRawMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
@@ -998,7 +1523,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestStop(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1007,7 +1532,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_IsMoving() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(6);
     }
     ~WithRawMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1018,7 +1543,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestIsMoving(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1027,7 +1552,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1038,7 +1563,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1047,7 +1572,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(8);
     }
     ~WithRawMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1058,7 +1583,7 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1067,7 +1592,7 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1078,21 +1603,31 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetEndPosition : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetEndPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetEndPosition() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetEndPosition() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetEndPosition(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetEndPosition(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetEndPosition() override {
+    ~ExperimentalWithRawCallbackMethod_GetEndPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1100,21 +1635,37 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetEndPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetEndPosition(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_MoveToPosition : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_MoveToPosition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_MoveToPosition() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_MoveToPosition() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MoveToPosition(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MoveToPosition(context, request, response); }));
     }
-    ~WithRawCallbackMethod_MoveToPosition() override {
+    ~ExperimentalWithRawCallbackMethod_MoveToPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1122,21 +1673,37 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* MoveToPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* MoveToPosition(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetJointPositions : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetJointPositions : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetJointPositions() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetJointPositions() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetJointPositions(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetJointPositions(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetJointPositions() override {
+    ~ExperimentalWithRawCallbackMethod_GetJointPositions() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1144,21 +1711,37 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetJointPositions(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetJointPositions(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_MoveToJointPositions : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_MoveToJointPositions : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_MoveToJointPositions() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_MoveToJointPositions() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MoveToJointPositions(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MoveToJointPositions(context, request, response); }));
     }
-    ~WithRawCallbackMethod_MoveToJointPositions() override {
+    ~ExperimentalWithRawCallbackMethod_MoveToJointPositions() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1166,21 +1749,75 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* MoveToJointPositions(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* MoveToJointPositions(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Stop : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_MoveThroughJointPositions : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Stop() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_MoveThroughJointPositions() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Stop(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MoveThroughJointPositions(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Stop() override {
+    ~ExperimentalWithRawCallbackMethod_MoveThroughJointPositions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status MoveThroughJointPositions(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* MoveThroughJointPositions(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* MoveThroughJointPositions(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Stop : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Stop() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Stop(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Stop() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1188,21 +1825,37 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Stop(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Stop(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_IsMoving : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_IsMoving : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_IsMoving() {
-      ::grpc::Service::MarkMethodRawCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_IsMoving() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsMoving(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsMoving(context, request, response); }));
     }
-    ~WithRawCallbackMethod_IsMoving() override {
+    ~ExperimentalWithRawCallbackMethod_IsMoving() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1210,21 +1863,37 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* IsMoving(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* IsMoving(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DoCommand : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_DoCommand() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~WithRawCallbackMethod_DoCommand() override {
+    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1232,21 +1901,37 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetKinematics : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetKinematics : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodRawCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetKinematics() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetKinematics(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetKinematics(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetKinematics() override {
+    ~ExperimentalWithRawCallbackMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1254,21 +1939,37 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetKinematics(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetKinematics(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetGeometries : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetGeometries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    ExperimentalWithRawCallbackMethod_GetGeometries() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetGeometries() override {
+    ~ExperimentalWithRawCallbackMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1276,8 +1977,14 @@ class ArmService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetGeometries(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetEndPosition : public BaseClass {
@@ -1288,8 +1995,8 @@ class ArmService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::arm::v1::GetEndPositionRequest, ::viam::component::arm::v1::GetEndPositionResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::arm::v1::GetEndPositionRequest, ::viam::component::arm::v1::GetEndPositionResponse>* streamer) {
                        return this->StreamedGetEndPosition(context,
                          streamer);
@@ -1315,8 +2022,8 @@ class ArmService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::arm::v1::MoveToPositionRequest, ::viam::component::arm::v1::MoveToPositionResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::arm::v1::MoveToPositionRequest, ::viam::component::arm::v1::MoveToPositionResponse>* streamer) {
                        return this->StreamedMoveToPosition(context,
                          streamer);
@@ -1342,8 +2049,8 @@ class ArmService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::arm::v1::GetJointPositionsRequest, ::viam::component::arm::v1::GetJointPositionsResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::arm::v1::GetJointPositionsRequest, ::viam::component::arm::v1::GetJointPositionsResponse>* streamer) {
                        return this->StreamedGetJointPositions(context,
                          streamer);
@@ -1369,8 +2076,8 @@ class ArmService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::arm::v1::MoveToJointPositionsRequest, ::viam::component::arm::v1::MoveToJointPositionsResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::arm::v1::MoveToJointPositionsRequest, ::viam::component::arm::v1::MoveToJointPositionsResponse>* streamer) {
                        return this->StreamedMoveToJointPositions(context,
                          streamer);
@@ -1388,16 +2095,43 @@ class ArmService final {
     virtual ::grpc::Status StreamedMoveToJointPositions(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::arm::v1::MoveToJointPositionsRequest,::viam::component::arm::v1::MoveToJointPositionsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_MoveThroughJointPositions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_MoveThroughJointPositions() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::arm::v1::MoveThroughJointPositionsRequest, ::viam::component::arm::v1::MoveThroughJointPositionsResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::viam::component::arm::v1::MoveThroughJointPositionsRequest, ::viam::component::arm::v1::MoveThroughJointPositionsResponse>* streamer) {
+                       return this->StreamedMoveThroughJointPositions(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_MoveThroughJointPositions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status MoveThroughJointPositions(::grpc::ServerContext* /*context*/, const ::viam::component::arm::v1::MoveThroughJointPositionsRequest* /*request*/, ::viam::component::arm::v1::MoveThroughJointPositionsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedMoveThroughJointPositions(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::arm::v1::MoveThroughJointPositionsRequest,::viam::component::arm::v1::MoveThroughJointPositionsResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Stop : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Stop() {
-      ::grpc::Service::MarkMethodStreamed(4,
+      ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::arm::v1::StopRequest, ::viam::component::arm::v1::StopResponse>* streamer) {
                        return this->StreamedStop(context,
                          streamer);
@@ -1420,11 +2154,11 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_IsMoving() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::component::arm::v1::IsMovingRequest, ::viam::component::arm::v1::IsMovingResponse>* streamer) {
                        return this->StreamedIsMoving(context,
                          streamer);
@@ -1447,11 +2181,11 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);
@@ -1474,11 +2208,11 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>* streamer) {
                        return this->StreamedGetKinematics(context,
                          streamer);
@@ -1501,11 +2235,11 @@ class ArmService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
                      ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* streamer) {
                        return this->StreamedGetGeometries(context,
                          streamer);
@@ -1522,9 +2256,9 @@ class ArmService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetGeometries(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetGeometriesRequest,::viam::common::v1::GetGeometriesResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

@@ -2,10 +2,7 @@
 
 #include <unordered_map>
 
-#include <grpcpp/impl/service_type.h>
-#include <grpcpp/support/status.h>
-
-#include <viam/sdk/common/proto_type.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
@@ -22,14 +19,17 @@ class Resource {
     /// @brief Returns the `API` associated with a particular resource.
     virtual API api() const = 0;
 
-    /// @brief Returns a `ResourceName` for a particular resource name.
-    virtual viam::common::v1::ResourceName get_resource_name(std::string name) const;
+    /// @brief Returns the `Name` for a particular resource.
+    virtual Name get_resource_name() const;
 
     /// @brief Return the resource's name.
     virtual std::string name() const;
 
    private:
     std::string name_;
+
+   protected:
+    Name get_resource_name(const std::string& type) const;
 };
 
 template <>

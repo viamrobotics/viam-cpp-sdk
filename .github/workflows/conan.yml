@@ -1,0 +1,207 @@
+name: Test conan packages
+
+on:
+  # Runs for PRs that directly change conan code, and weekdays at 11:15pm UTC.
+  # Additional logic in the prepare job below makes it so scheduled builds only run
+  # on new commits.
+  schedule:
+    - cron: "15 11 * * 1-5"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - conanfile.py
+      - test_package/conanfile.py
+
+jobs:
+  prepare:
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Get current git info
+        if: github.event_name == 'schedule'
+        id: git_info
+        run: |
+          echo "current_commit=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "current_branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
+      - name: Get last successful commit
+        if: github.event_name == 'schedule'
+        id: last_successful_commit
+        uses: tylermilner/last-successful-commit-hash-action@v1
+        with:
+          branch: main
+          workflow-id: conan.yml
+          github-token: ${{ github.token }}
+      - name: Cancel scheduled build with no new commits
+        uses: andymckay/cancel-action@0.2
+        if: |
+          github.event_name == 'schedule' &&
+          steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit-hash
+
+  build_macos:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-apple-darwin
+            platform: macosx_arm64
+          - target: x86_64-apple-darwin
+            platform: macosx_x86_64
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          brew install cmake
+          brew install python ninja buf
+          python -m pip install conan
+
+      - name: Create package
+        run: |
+          # `buf` tries to read a CLI config file that we don't actually use located at
+          # ~/.config/buf/config.yaml. We don't always have permission to access this
+          # directory in CI, so we set the `BUF_CONFIG_DIR` to some other value that we
+          # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
+          # more details.
+          export BUF_CONFIG_DIR=$(mktemp -d)
+          conan profile detect
+          conan create . --build=missing -s compiler.cppstd=17
+
+  build_linux_ubuntu_jammy:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on:  ${{ matrix.runs_on }}
+    container:
+      image: ${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-ubuntu-jammy-gnu
+            platform: linux_aarch64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-ubuntu-jammy-gnu
+            platform: linux_x86_64-ubuntu-jammy
+            image: ubuntu:22.04
+            runs_on: buildjet-8vcpu-ubuntu-2204
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              curl \
+              doxygen \
+              g++ \
+              gdb \
+              gnupg \
+              gpg \
+              less \
+              ninja-build \
+              python3 \
+              python3-pip \
+              software-properties-common \
+              sudo \
+              wget \
+
+          sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+          sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+
+          apt-get update
+          apt-get -y install cmake
+
+          pip install conan
+
+      - name: Create package
+        shell: bash
+        run: |
+          conan profile detect
+          conan create . --build=missing -s compiler.cppstd=14
+
+  build_linux_debian:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on:  ${{ matrix.runs_on }}
+    container:
+      image: ${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-debian-bullseye
+            platform: linux_aarch64-debian-bullseye
+            image: debian:bullseye
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-debian-bullseye
+            platform: linux_x86_64-debian-bullseye
+            image: debian:bullseye
+            runs_on: buildjet-8vcpu-ubuntu-2204
+          - target: aarch64-debian-bookworm
+            platform: linux_aarch64-debian-bookworm
+            image: debian:bookworm
+            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+          - target: x86_64-debian-bookworm
+            platform: linux_x86_64-debian-bookworm
+            image: debian:bookworm
+            runs_on: buildjet-8vcpu-ubuntu-2204
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              cmake \
+              curl \
+              g++ \
+              gdb \
+              gnupg \
+              gpg \
+              less \
+              ninja-build \
+              python3 \
+              python3-pip \
+              python3-venv \
+              software-properties-common \
+              sudo \
+              wget
+
+      - name: Update CMake for bullseye
+        if: ${{ matrix.image  == 'debian:bullseye' }}
+        run: |
+          apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
+
+          apt-get update
+          apt-get -y install cmake
+
+          apt-get -y --no-install-recommends install -t bullseye-backports cmake
+
+      # Note bullseye can use regular pip + conan no problem, but
+      # bookworm is a managed environment, so we use a venv in both because it is more
+      # trouble to bifurcate them.
+      - name: Install conan in venv and create package
+        shell: bash
+        run: |
+          python3 -m venv ./conan_venv
+          source ./conan_venv/bin/activate
+
+          pip install conan
+          conan profile detect
+          conan create . --build=missing -s compiler.cppstd=14

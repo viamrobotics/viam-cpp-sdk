@@ -1,6 +1,7 @@
-#include <memory>
-#define BOOST_TEST_MODULE test module test_types
+#define BOOST_TEST_MODULE test module test_proto_value
+#include <viam/sdk/common/proto_value.hpp>
 
+#include <memory>
 #include <unordered_map>
 
 #include <google/protobuf/struct.pb.h>
@@ -10,8 +11,6 @@
 #include <boost/mp11/tuple.hpp>
 #include <boost/test/included/unit_test.hpp>
 
-#include <viam/sdk/common/proto_type.hpp>
-#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -23,7 +22,7 @@ using namespace boost::mp11;
 
 using google::protobuf::Value;
 
-BOOST_AUTO_TEST_SUITE(test_prototype)
+BOOST_AUTO_TEST_SUITE(test_proto_value)
 
 BOOST_AUTO_TEST_CASE(test_object_equality) {
     // null is always equal
@@ -39,53 +38,27 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 
     // heterogeneous arithmetic types do not "inuitively" compare equal
     BOOST_CHECK(!(ProtoValue(false) == ProtoValue(0)));
-    BOOST_CHECK(!(ProtoValue(0) == ProtoValue(0.0)));
-
-    // roundtrip integer conversion is not idempotent because the integer gets coerced to a double
-    {
-        ProtoValue i5(5);
-        auto int_roundtrip = ProtoValue::from_proto(to_proto(i5));
-        BOOST_CHECK(i5.kind() == kind_t<int>{});
-        BOOST_CHECK(i5.is_a<int>());
-
-        BOOST_CHECK(int_roundtrip.kind() == kind_t<double>{});
-        BOOST_CHECK(int_roundtrip.is_a<double>());
-
-        BOOST_CHECK(!(i5 == int_roundtrip));
-        BOOST_CHECK(int_roundtrip == ProtoValue(5.0));
-
-        ProtoValue i5_copy(i5);
-        BOOST_CHECK(i5_copy == i5);
-
-        ProtoValue i5_move(std::move(i5));
-        BOOST_CHECK(i5_copy == i5_move);
-        BOOST_CHECK(i5.is_a<int>());
-    }
 
     auto test_cases = std::make_tuple(
         std::make_pair(true, false),
-        /* integer not included, see above */
         std::make_pair(6.0, 7.5),
         std::make_pair(std::string("string"), std::string("different")),
-        std::make_pair(
-            std::vector<ProtoValue>({ProtoValue{"asdf"}}),
-            std::vector<ProtoValue>({ProtoValue{"asdf"}, ProtoValue{true}, ProtoValue{12.3}})),
-        std::make_pair(
-            ProtoStruct({{"ab", "cd"}}),
-            ProtoStruct({{"elem1", 5.0},
-                         {"elem2", "str"},
-                         {"vec", std::vector<ProtoValue>({ProtoValue{3.0}, ProtoValue{"str"}})}})));
+        std::make_pair(ProtoList({ProtoValue{"asdf"}}),
+                       ProtoList({ProtoValue{"asdf"}, ProtoValue{true}, ProtoValue{12.3}})),
+        std::make_pair(ProtoStruct({{"ab", "cd"}}),
+                       ProtoStruct({{"elem1", 5.0},
+                                    {"elem2", "str"},
+                                    {"vec", ProtoList({ProtoValue{3.0}, ProtoValue{"str"}})}})));
 
     boost::mp11::tuple_for_each(test_cases, [](auto test_pair) {
         using test_type = typename decltype(test_pair)::first_type;
 
-        constexpr auto kind = kind_t<test_type>::value;
+        constexpr auto kind = proto_value_details::kind<test_type>::type::value;
         BOOST_TEST_MESSAGE("Testing with kind " << kind);
 
         ProtoValue v1(test_pair.first);
         BOOST_CHECK(v1.kind() == kind);
         BOOST_CHECK(v1.is_a<test_type>());
-        BOOST_CHECK(!v1.get<int>());
 
         {
             const test_type* ptr = v1.get<test_type>();
@@ -119,7 +92,7 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
         }
 
         Value converted = to_proto(v3);
-        auto roundtrip = ProtoValue::from_proto(converted);
+        auto roundtrip = from_proto(converted);
         Value value_roundtrip = to_proto(roundtrip);
 
         BOOST_CHECK(v3.kind() == roundtrip.kind());
@@ -138,10 +111,10 @@ BOOST_AUTO_TEST_CASE(test_object_equality) {
 }
 
 BOOST_AUTO_TEST_CASE(test_move_validity) {
-    auto test_cases = std::make_tuple(
-        std::string("str"),
-        std::vector<ProtoValue>{{ProtoValue("asdf"), ProtoValue(true)}},
-        ProtoStruct{{"asdf", true}, {"vec", std::vector<ProtoValue>{{ProtoValue(5)}}}});
+    auto test_cases =
+        std::make_tuple(std::string("str"),
+                        ProtoList{{ProtoValue("asdf"), ProtoValue(true)}},
+                        ProtoStruct{{"asdf", true}, {"vec", ProtoList{{ProtoValue(5)}}}});
 
     tuple_for_each(test_cases, [](auto test_elem) {
         using TestType = decltype(test_elem);
@@ -173,11 +146,62 @@ BOOST_AUTO_TEST_CASE(test_move_validity) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_unchecked_access) {
+    auto scalar_tests = std::make_tuple(
+        std::make_pair(false, true), std::make_pair(5, 6), std::make_pair(8.0, 9.5));
+
+    auto nonscalar_tests = std::make_tuple(
+        std::make_pair(std::string("s1"), std::string("s2")),
+        std::make_pair(ProtoList{{ProtoValue(1), ProtoValue("asdf")}},
+                       ProtoList{{ProtoValue(false), ProtoValue(5.0)}}),
+        std::make_pair(ProtoStruct{{"asdf", true}, {"vec", ProtoList{{ProtoValue(5)}}}},
+                       ProtoStruct{{"int", 5}, {"double", 6.0}}));
+
+    tuple_for_each(std::tuple_cat(scalar_tests, nonscalar_tests), [](auto test_pair) {
+        using first_type = typename decltype(test_pair)::first_type;
+        using test_type = std::conditional_t<std::is_same<first_type, int>{}, double, first_type>;
+
+        const test_type first = test_pair.first;
+        const test_type second = test_pair.second;
+
+        const ProtoValue const_val(first);
+        BOOST_CHECK(const_val.get_unchecked<test_type>() == first);
+        BOOST_CHECK(ProtoValue(first).get_unchecked<test_type>() == first);
+        ProtoValue mut_val(second);
+        BOOST_CHECK(mut_val.get_unchecked<test_type>() == second);
+        mut_val.get_unchecked<test_type>() = first;
+        BOOST_CHECK(mut_val.get_unchecked<test_type>() == first);
+    });
+
+    tuple_for_each(nonscalar_tests, [](auto test_pair) {
+        using test_type = typename decltype(test_pair)::first_type;
+        const test_type first = test_pair.first;
+
+        ProtoValue to_move(first);
+
+        const test_type from_move(std::move(to_move).get_unchecked<test_type>());
+        BOOST_CHECK(from_move == first);
+    });
+
+    {
+        // std::vector is the only of these containers with a guaranteed post-condition on move, so
+        // we can use it to check that the rvalue overload is in fact being called
+        ProtoList vec({{ProtoValue("asdf")}});
+
+        ProtoValue vec_proto(vec);
+        BOOST_CHECK(!vec_proto.get_unchecked<ProtoList>().empty());
+
+        auto vec2 = std::move(vec_proto).get_unchecked<ProtoList>();
+        BOOST_CHECK(vec2 == vec);
+        BOOST_CHECK(vec_proto.get_unchecked<ProtoList>().empty());
+    }
+}
+
 BOOST_AUTO_TEST_CASE(test_nested_objects) {
     std::unordered_map<std::string, ProtoValue> map;
     map.insert({"double", 1.0});
 
-    std::vector<ProtoValue> vec;
+    ProtoList vec;
     vec.push_back(12.0);
     vec.push_back("asdf");
 
@@ -192,7 +216,7 @@ BOOST_AUTO_TEST_CASE(test_nested_objects) {
     ProtoValue map_proto(map);
 
     Value val = to_proto(map_proto);
-    auto roundtrip = ProtoValue::from_proto(val);
+    auto roundtrip = from_proto(val);
     Value val2 = to_proto(roundtrip);
 
     BOOST_CHECK(map_proto == roundtrip);
@@ -202,9 +226,6 @@ BOOST_AUTO_TEST_CASE(test_nested_objects) {
 
 void set_proto_value(Value& val, bool b) {
     val.set_bool_value(b);
-}
-void set_proto_value(Value& val, int i) {
-    val.set_number_value(i);
 }
 void set_proto_value(Value& val, double d) {
     val.set_number_value(d);
@@ -222,18 +243,18 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
         Value protoval;
         set_proto_value(protoval, test_val);
 
-        auto from_value = ProtoValue::from_proto(protoval);
+        auto from_value = from_proto(protoval);
         BOOST_CHECK(val == from_value);
 
         Value converted_to_value = to_proto(val);
         BOOST_CHECK(protoval.ShortDebugString() == converted_to_value.ShortDebugString());
 
-        auto roundtrip = ProtoValue::from_proto(converted_to_value);
+        auto roundtrip = from_proto(converted_to_value);
 
         BOOST_CHECK(val == roundtrip);
     });
 
-    std::vector<ProtoValue> proto_vec;
+    ProtoList proto_vec;
     google::protobuf::ListValue lv;
 
     boost::mp11::tuple_for_each(test_cases, [&](auto test_val) {
@@ -248,7 +269,7 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
 
     {
         // check that we can cast and type check vector elements
-        const auto* ptr = proto.get<std::vector<ProtoValue>>();
+        const auto* ptr = proto.get<ProtoList>();
         BOOST_REQUIRE(ptr);
 
         using TupleType = decltype(test_cases);
@@ -268,7 +289,7 @@ BOOST_AUTO_TEST_CASE(test_manual_list_conversion) {
     Value value_from_proto = to_proto(proto);
     BOOST_CHECK(v.ShortDebugString() == value_from_proto.ShortDebugString());
 
-    auto roundtrip = ProtoValue::from_proto(value_from_proto);
+    auto roundtrip = from_proto(value_from_proto);
     BOOST_CHECK(proto == roundtrip);
 }
 
@@ -293,9 +314,9 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
     Value v;
     *v.mutable_struct_value() = proto_struct;
 
-    auto from_proto = ProtoValue::from_proto(v);
+    auto from_proto_ = from_proto(v);
     ProtoValue from_map(m);
-    BOOST_CHECK(from_proto == from_map);
+    BOOST_CHECK(from_proto_ == from_map);
 
     const ProtoStruct* ptr = from_map.get<ProtoStruct>();
     BOOST_REQUIRE(ptr);
@@ -309,101 +330,6 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
         BOOST_REQUIRE(elem_ptr);
         BOOST_CHECK(*elem_ptr == map_pair.second);
     });
-}
-
-BOOST_AUTO_TEST_CASE(test_prototype_equality) {
-    AttributeMap expected_map = fake_map();
-
-    ProtoType type1 = ProtoType(expected_map);
-
-    AttributeMap expected_map2 = fake_map();
-
-    ProtoType type2 = ProtoType(expected_map2);
-
-    BOOST_CHECK(type1 == type2);
-
-    auto proto_ptr = std::make_shared<ProtoType>(std::move(std::string("not hello")));
-    AttributeMap unequal_map =
-        std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-    unequal_map->insert({{std::string("test"), proto_ptr}});
-
-    ProtoType type3 = ProtoType(unequal_map);
-
-    BOOST_CHECK(!(type1 == type3));
-}
-
-BOOST_AUTO_TEST_CASE(test_prototype_list_conversion) {
-    std::string s("string");
-    double d(3);
-    bool b(false);
-    std::vector<std::shared_ptr<ProtoType>> proto_vec{std::make_shared<ProtoType>(d),
-                                                      std::make_shared<ProtoType>(s),
-                                                      std::make_shared<ProtoType>(b)};
-
-    ProtoType proto(proto_vec);
-
-    google::protobuf::Value double_value;
-    double_value.set_number_value(d);
-    google::protobuf::Value string_value;
-    string_value.set_string_value(s);
-    google::protobuf::Value bool_value;
-    bool_value.set_bool_value(b);
-    google::protobuf::ListValue lv;
-
-    *lv.add_values() = double_value;
-    *lv.add_values() = string_value;
-    *lv.add_values() = bool_value;
-
-    google::protobuf::Value v;
-    *v.mutable_list_value() = lv;
-
-    ProtoType proto_from_value(v);
-
-    BOOST_CHECK_EQUAL(proto.proto_value().list_value().values_size(), 3);
-    BOOST_CHECK(proto == proto_from_value);
-
-    auto round_trip1 = proto.proto_value();
-    auto round_trip2 = ProtoType(round_trip1);
-
-    BOOST_CHECK(round_trip2 == proto);
-}
-
-BOOST_AUTO_TEST_CASE(test_prototype_map_conversion) {
-    std::string s("string");
-    double d(3);
-    bool b(false);
-
-    auto m = std::make_shared<std::unordered_map<std::string, std::shared_ptr<ProtoType>>>();
-
-    m->insert({{std::string("double"), std::make_shared<ProtoType>(d)}});
-    m->insert({{std::string("bool"), std::make_shared<ProtoType>(b)}});
-    m->insert({{std::string("string"), std::make_shared<ProtoType>(s)}});
-
-    google::protobuf::Value double_value;
-    double_value.set_number_value(d);
-    google::protobuf::Value string_value;
-    string_value.set_string_value(s);
-    google::protobuf::Value bool_value;
-    bool_value.set_bool_value(b);
-    google::protobuf::Map<std::string, google::protobuf::Value> proto_map;
-    proto_map.insert({{std::string("string"), string_value}});
-    proto_map.insert({{std::string("double"), double_value}});
-    proto_map.insert({{std::string("bool"), bool_value}});
-
-    google::protobuf::Struct proto_struct;
-    *proto_struct.mutable_fields() = proto_map;
-    AttributeMap from_proto = struct_to_map(proto_struct);
-    BOOST_CHECK_EQUAL(from_proto->size(), m->size());
-
-    ProtoType proto(from_proto);
-    ProtoType map(m);
-    BOOST_CHECK(map == proto);
-
-    auto round_trip1 = map_to_struct(m);
-    auto round_trip2 = struct_to_map(round_trip1);
-
-    ProtoType round_trip_proto(round_trip2);
-    BOOST_CHECK(round_trip_proto == map);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

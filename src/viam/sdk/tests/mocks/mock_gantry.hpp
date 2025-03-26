@@ -14,20 +14,20 @@ class MockGantry : public sdk::Gantry {
 
     static std::shared_ptr<MockGantry> get_mock_gantry();
 
-    std::vector<double> get_position(const sdk::AttributeMap& extra) override;
+    std::vector<double> get_position(const sdk::ProtoStruct& extra) override;
     void move_to_position(const std::vector<sdk::Gantry::movement_coordinate>& coordinates,
-                          const sdk::AttributeMap& extra) override;
-    bool home(const sdk::AttributeMap& extra) override;
-    std::vector<double> get_lengths(const sdk::AttributeMap& extra) override;
+                          const sdk::ProtoStruct& extra) override;
+    bool home(const sdk::ProtoStruct& extra) override;
+    std::vector<double> get_lengths(const sdk::ProtoStruct& extra) override;
     bool is_moving() override;
-    void stop(const sdk::AttributeMap& extra) override;
-    sdk::AttributeMap do_command(const sdk::AttributeMap& command) override;
-    std::vector<sdk::GeometryConfig> get_geometries(const sdk::AttributeMap& extra) override;
+    void stop(const sdk::ProtoStruct& extra) override;
+    sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
     std::vector<double> peek_positions;
     bool peek_stop_called{false};
     bool peek_home_called{false};
-    sdk::AttributeMap peek_command;
+    sdk::ProtoStruct peek_command;
 };
 }  // namespace gantry
 }  // namespace sdktests

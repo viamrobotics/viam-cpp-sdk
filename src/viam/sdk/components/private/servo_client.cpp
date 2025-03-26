@@ -18,24 +18,31 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
+Servo::position from_proto(const viam::component::servo::v1::GetPositionResponse& proto) {
+    return proto.position_deg();
+}
+
 ServoClient::ServoClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Servo(std::move(name)),
       stub_(viam::component::servo::v1::ServoService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {}
 
-void ServoClient::move(uint32_t angle_deg, const AttributeMap& extra) {
+void ServoClient::move(uint32_t angle_deg, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Move)
         .with(extra, [&](auto& request) { request.set_angle_deg(angle_deg); })
         .invoke();
 }
 
-Servo::position ServoClient::get_position(const AttributeMap& extra) {
+Servo::position ServoClient::get_position(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPosition)
         .with(extra)
         .invoke([](auto& response) { return from_proto(response); });
 }
 
-void ServoClient::stop(const AttributeMap& extra) {
+void ServoClient::stop(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Stop).with(extra).invoke();
 }
 
@@ -45,16 +52,16 @@ bool ServoClient::is_moving() {
     });
 }
 
-std::vector<GeometryConfig> ServoClient::get_geometries(const AttributeMap& extra) {
+std::vector<GeometryConfig> ServoClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)
-        .invoke([](auto& response) { return GeometryConfig::from_proto(response); });
+        .invoke([](auto& response) { return from_proto(response); });
 }
 
-AttributeMap ServoClient::do_command(const AttributeMap& command) {
+ProtoStruct ServoClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
-        .with([&](auto& request) { *request.mutable_command() = map_to_struct(command); })
-        .invoke([](auto& response) { return struct_to_map(response.result()); });
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 }  // namespace impl

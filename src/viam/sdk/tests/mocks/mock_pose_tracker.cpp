@@ -20,7 +20,7 @@ std::shared_ptr<MockPoseTracker> MockPoseTracker::get_mock_pose_tracker() {
 }
 
 PoseTracker::pose_map MockPoseTracker::get_poses(const std::vector<std::string>& body_names,
-                                                 const sdk::AttributeMap&) {
+                                                 const sdk::ProtoStruct&) {
     auto full_map = fake_poses();
 
     if (body_names.empty())
@@ -36,12 +36,12 @@ PoseTracker::pose_map MockPoseTracker::get_poses(const std::vector<std::string>&
     return result;
 }
 
-AttributeMap MockPoseTracker::do_command(const AttributeMap& command) {
+ProtoStruct MockPoseTracker::do_command(const ProtoStruct& command) {
     this->peek_do_command_command = command;
     return command;
 }
 
-std::vector<GeometryConfig> MockPoseTracker::get_geometries(const sdk::AttributeMap&) {
+std::vector<GeometryConfig> MockPoseTracker::get_geometries(const sdk::ProtoStruct&) {
     return fake_geometries();
 }
 

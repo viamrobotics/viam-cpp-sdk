@@ -5,36 +5,6 @@
 namespace viam {
 namespace sdk {
 
-common::v1::PoseInFrame pose_in_frame::to_proto() const {
-    common::v1::PoseInFrame pif;
-    *pif.mutable_reference_frame() = reference_frame;
-    common::v1::Pose proto_pose;
-    proto_pose.set_x(pose.coordinates.x);
-    proto_pose.set_y(pose.coordinates.y);
-    proto_pose.set_z(pose.coordinates.z);
-    proto_pose.set_o_x(pose.orientation.o_x);
-    proto_pose.set_o_y(pose.orientation.o_y);
-    proto_pose.set_o_z(pose.orientation.o_z);
-    proto_pose.set_theta(pose.theta);
-    *pif.mutable_pose() = std::move(proto_pose);
-    return pif;
-};
-
-pose_in_frame pose_in_frame::from_proto(const common::v1::PoseInFrame& proto) {
-    pose_in_frame pif;
-    pif.reference_frame = proto.reference_frame();
-    const auto& proto_pose = proto.pose();
-    pif.pose.orientation.o_x = proto_pose.o_x();
-    pif.pose.orientation.o_y = proto_pose.o_y();
-    pif.pose.orientation.o_z = proto_pose.o_z();
-    pif.pose.coordinates.x = proto_pose.x();
-    pif.pose.coordinates.y = proto_pose.y();
-    pif.pose.coordinates.z = proto_pose.z();
-    pif.pose.theta = proto_pose.theta();
-
-    return pif;
-}
-
 bool operator==(const pose_in_frame& lhs, const pose_in_frame& rhs) {
     return lhs.pose == rhs.pose && lhs.reference_frame == rhs.reference_frame;
 }
@@ -44,5 +14,48 @@ std::ostream& operator<<(std::ostream& os, const pose_in_frame& v) {
     return os;
 }
 
+namespace proto_convert_details {
+
+void to_proto_impl<pose>::operator()(const pose& self, common::v1::Pose* proto) const {
+    proto->set_x(self.coordinates.x);
+    proto->set_y(self.coordinates.y);
+    proto->set_z(self.coordinates.z);
+    proto->set_o_x(self.orientation.o_x);
+    proto->set_o_y(self.orientation.o_y);
+    proto->set_o_z(self.orientation.o_z);
+    proto->set_theta(self.theta);
+}
+
+pose from_proto_impl<common::v1::Pose>::operator()(const common::v1::Pose* proto) const {
+    pose pose;
+    pose.coordinates.x = proto->x();
+    pose.coordinates.y = proto->y();
+    pose.coordinates.z = proto->z();
+    pose.orientation.o_x = proto->o_x();
+    pose.orientation.o_y = proto->o_y();
+    pose.orientation.o_z = proto->o_z();
+    pose.theta = proto->theta();
+
+    return pose;
+}
+
+void to_proto_impl<pose_in_frame>::operator()(const pose_in_frame& self,
+                                              common::v1::PoseInFrame* pif) const {
+    *(pif->mutable_reference_frame()) = self.reference_frame;
+    common::v1::Pose proto_pose;
+    to_proto_impl<pose>{}(self.pose, &proto_pose);
+    *(pif->mutable_pose()) = std::move(proto_pose);
+};
+
+pose_in_frame from_proto_impl<common::v1::PoseInFrame>::operator()(
+    const common::v1::PoseInFrame* proto) const {
+    pose_in_frame pif;
+    pif.reference_frame = proto->reference_frame();
+    pif.pose = from_proto_impl<common::v1::Pose>{}(&(proto->pose()));
+
+    return pif;
+}
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam

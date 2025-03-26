@@ -5,10 +5,7 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_context.h>
 
-#include <viam/api/common/v1/common.grpc.pb.h>
-#include <viam/api/component/generic/v1/generic.grpc.pb.h>
-#include <viam/api/robot/v1/robot.pb.h>
-
+#include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/components/base.hpp>
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -28,11 +25,15 @@
 using namespace viam::sdk;
 
 int main(int argc, char** argv) {
+    // Every Viam C++ SDK program must have one and only one Instance object which is created before
+    // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
+    Instance inst;
+
     Model mybase_model("viam", "base", "mybase");
 
     // Make sure to explicity register resources with custom APIs.
-    Registry::register_resource_server<GizmoServer>();
-    Registry::register_resource_server<SummationServer>();
+    Registry::get().register_resource_server<GizmoServer>();
+    Registry::get().register_resource_server<SummationServer>();
 
     std::shared_ptr<ModelRegistration> mybase_mr = std::make_shared<ModelRegistration>(
         API::get<Base>(),
