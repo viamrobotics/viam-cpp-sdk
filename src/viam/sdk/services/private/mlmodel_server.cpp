@@ -26,10 +26,11 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
     : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status MLModelServiceServer::Infer(
-    ::grpc::ServerContext*, const ::viam::service::mlmodel::v1::InferRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) noexcept {
-    return make_service_helper<MLModelService>("MLModelServiceServer::Infer", this,
-                                               request)([&](auto& helper, auto& mlms) {
+    return make_service_helper<MLModelService>(
+        "MLModelServiceServer::Infer", this, request)([&](auto& helper, auto& mlms) {
         if (!request->has_input_tensors()) {
             return helper.fail(::grpc::INVALID_ARGUMENT, "Called with no input tensors");
         }
@@ -86,10 +87,11 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
 }
 
 ::grpc::Status MLModelServiceServer::Metadata(
-    ::grpc::ServerContext*, const ::viam::service::mlmodel::v1::MetadataRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::service::mlmodel::v1::MetadataRequest* request,
     ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept {
-    return make_service_helper<MLModelService>("MLModelServiceServer::Metadata", this,
-                                               request)([&](auto& helper, auto& mlms) {
+    return make_service_helper<MLModelService>(
+        "MLModelServiceServer::Metadata", this, request)([&](auto& helper, auto& mlms) {
         auto md = mlms->metadata(helper.getExtra());
 
         auto& metadata_pb = *response->mutable_metadata();

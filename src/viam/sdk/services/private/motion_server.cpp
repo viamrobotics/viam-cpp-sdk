@@ -176,8 +176,8 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
 ::grpc::Status MotionServer::Move(::grpc::ServerContext*,
                                   const ::viam::service::motion::v1::MoveRequest* request,
                                   ::viam::service::motion::v1::MoveResponse* response) noexcept {
-    return make_service_helper<Motion>("MotionServer::Move", this,
-                                       request)([&](auto& helper, auto& motion) {
+    return make_service_helper<Motion>(
+        "MotionServer::Move", this, request)([&](auto& helper, auto& motion) {
         std::shared_ptr<WorldState> ws;
         if (request->has_world_state()) {
             ws = std::make_shared<WorldState>(from_proto(request->world_state()));
@@ -188,18 +188,21 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
             constraints = std::make_shared<Motion::constraints>(from_proto(request->constraints()));
         }
 
-        const bool success =
-            motion->move(from_proto(request->destination()), from_proto(request->component_name()),
-                         std::move(ws), std::move(constraints), helper.getExtra());
+        const bool success = motion->move(from_proto(request->destination()),
+                                          from_proto(request->component_name()),
+                                          std::move(ws),
+                                          std::move(constraints),
+                                          helper.getExtra());
         response->set_success(success);
     });
 };
 
 ::grpc::Status MotionServer::MoveOnMap(
-    ::grpc::ServerContext*, const ::viam::service::motion::v1::MoveOnMapRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::service::motion::v1::MoveOnMapRequest* request,
     ::viam::service::motion::v1::MoveOnMapResponse* response) noexcept {
-    return make_service_helper<Motion>("MotionServer::MoveOnMap", this,
-                                       request)([&](auto& helper, auto& motion) {
+    return make_service_helper<Motion>(
+        "MotionServer::MoveOnMap", this, request)([&](auto& helper, auto& motion) {
         const auto destination = from_proto(request->destination());
         const auto component_name = from_proto(request->component_name());
         const auto slam_name = from_proto(request->slam_service_name());
@@ -215,18 +218,19 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
             obstacles.push_back(from_proto(obstacle));
         }
 
-        const std::string execution_id = motion->move_on_map(destination, component_name, slam_name,
-                                                             mc, obstacles, helper.getExtra());
+        const std::string execution_id = motion->move_on_map(
+            destination, component_name, slam_name, mc, obstacles, helper.getExtra());
 
         *response->mutable_execution_id() = execution_id;
     });
 }
 
 ::grpc::Status MotionServer::MoveOnGlobe(
-    ::grpc::ServerContext*, const ::viam::service::motion::v1::MoveOnGlobeRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::service::motion::v1::MoveOnGlobeRequest* request,
     ::viam::service::motion::v1::MoveOnGlobeResponse* response) noexcept {
-    return make_service_helper<Motion>("MotionServer::MoveOnGlobe", this,
-                                       request)([&](auto& helper, auto& motion) {
+    return make_service_helper<Motion>(
+        "MotionServer::MoveOnGlobe", this, request)([&](auto& helper, auto& motion) {
         const auto destination = from_proto(request->destination());
         const auto component_name = from_proto(request->component_name());
         const auto movement_sensor_name = from_proto(request->movement_sensor_name());
@@ -245,36 +249,43 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
                 std::make_shared<motion_configuration>(from_proto(request->motion_configuration()));
         }
 
-        const std::string execution_id =
-            motion->move_on_globe(destination, heading, component_name, movement_sensor_name,
-                                  obstacles, mc, bounding_regions, helper.getExtra());
+        const std::string execution_id = motion->move_on_globe(destination,
+                                                               heading,
+                                                               component_name,
+                                                               movement_sensor_name,
+                                                               obstacles,
+                                                               mc,
+                                                               bounding_regions,
+                                                               helper.getExtra());
 
         *response->mutable_execution_id() = execution_id;
     });
 }
 
 ::grpc::Status MotionServer::GetPose(
-    ::grpc::ServerContext*, const ::viam::service::motion::v1::GetPoseRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::service::motion::v1::GetPoseRequest* request,
     ::viam::service::motion::v1::GetPoseResponse* response) noexcept {
-    return make_service_helper<Motion>("MotionServer::GetPose", this,
-                                       request)([&](auto& helper, auto& motion) {
+    return make_service_helper<Motion>(
+        "MotionServer::GetPose", this, request)([&](auto& helper, auto& motion) {
         const auto& component_name = from_proto(request->component_name());
         const std::string& destination_frame = request->destination_frame();
         std::vector<WorldState::transform> supplemental_transforms;
         for (const auto& proto_transform : request->supplemental_transforms()) {
             supplemental_transforms.push_back(from_proto(proto_transform));
         }
-        const pose_in_frame pose = motion->get_pose(component_name, destination_frame,
-                                                    supplemental_transforms, helper.getExtra());
+        const pose_in_frame pose = motion->get_pose(
+            component_name, destination_frame, supplemental_transforms, helper.getExtra());
         *response->mutable_pose() = to_proto(pose);
     });
 };
 
 ::grpc::Status MotionServer::GetPlan(
-    ::grpc::ServerContext*, const ::viam::service::motion::v1::GetPlanRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::service::motion::v1::GetPlanRequest* request,
     ::viam::service::motion::v1::GetPlanResponse* response) noexcept {
-    return make_service_helper<Motion>("MotionServer::GetPlan", this,
-                                       request)([&](auto& helper, auto& motion) {
+    return make_service_helper<Motion>(
+        "MotionServer::GetPlan", this, request)([&](auto& helper, auto& motion) {
         const auto& component_name = from_proto(request->component_name());
         Motion::plan_with_status plan;
         std::vector<Motion::plan_with_status> replan_history;
@@ -305,10 +316,11 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
 }
 
 ::grpc::Status MotionServer::ListPlanStatuses(
-    ::grpc::ServerContext*, const service::motion::v1::ListPlanStatusesRequest* request,
+    ::grpc::ServerContext*,
+    const service::motion::v1::ListPlanStatusesRequest* request,
     service::motion::v1::ListPlanStatusesResponse* response) noexcept {
-    return make_service_helper<Motion>("MotionServer::ListPlanStatuses", this,
-                                       request)([&](auto& helper, auto& motion) {
+    return make_service_helper<Motion>(
+        "MotionServer::ListPlanStatuses", this, request)([&](auto& helper, auto& motion) {
         std::vector<Motion::plan_status_with_id> statuses;
         if (request->only_active_plans()) {
             statuses = motion->list_active_plan_statuses(helper.getExtra());
@@ -325,8 +337,8 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
 ::grpc::Status MotionServer::StopPlan(::grpc::ServerContext*,
                                       const ::viam::service::motion::v1::StopPlanRequest* request,
                                       ::viam::service::motion::v1::StopPlanResponse*) noexcept {
-    return make_service_helper<Motion>("MotionServer::StopPlan", this,
-                                       request)([&](auto& helper, auto& motion) {
+    return make_service_helper<Motion>(
+        "MotionServer::StopPlan", this, request)([&](auto& helper, auto& motion) {
         const auto& component_name = from_proto(request->component_name());
 
         motion->stop_plan(component_name, helper.getExtra());
@@ -336,8 +348,8 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
 ::grpc::Status MotionServer::DoCommand(::grpc::ServerContext*,
                                        const ::viam::common::v1::DoCommandRequest* request,
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
-    return make_service_helper<Motion>("MotionServer::DoCommand", this,
-                                       request)([&](auto&, auto& motion) {
+    return make_service_helper<Motion>(
+        "MotionServer::DoCommand", this, request)([&](auto&, auto& motion) {
         const ProtoStruct result = motion->do_command(from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
     });

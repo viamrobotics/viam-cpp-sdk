@@ -181,7 +181,8 @@ MotionClient::MotionClient(std::string name, std::shared_ptr<grpc::Channel> chan
       stub_(service::motion::v1::MotionService::NewStub(channel)),
       channel_(std::move(channel)) {}
 
-bool MotionClient::move(const pose_in_frame& destination, const Name& component_name,
+bool MotionClient::move(const pose_in_frame& destination,
+                        const Name& component_name,
                         const std::shared_ptr<WorldState>& world_state,
                         const std::shared_ptr<Motion::constraints>& constraints,
                         const ProtoStruct& extra) {
@@ -201,9 +202,12 @@ bool MotionClient::move(const pose_in_frame& destination, const Name& component_
 }
 
 std::string MotionClient::move_on_map(
-    const pose& destination, const Name& component_name, const Name& slam_name,
+    const pose& destination,
+    const Name& component_name,
+    const Name& slam_name,
     const std::shared_ptr<motion_configuration>& motion_configuration,
-    const std::vector<GeometryConfig>& obstacles, const ProtoStruct& extra) {
+    const std::vector<GeometryConfig>& obstacles,
+    const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveOnMap)
         .with(extra,
               [&](auto& request) {
@@ -223,11 +227,14 @@ std::string MotionClient::move_on_map(
 }
 
 std::string MotionClient::move_on_globe(
-    const geo_point& destination, const boost::optional<double>& heading,
-    const Name& component_name, const Name& movement_sensor_name,
+    const geo_point& destination,
+    const boost::optional<double>& heading,
+    const Name& component_name,
+    const Name& movement_sensor_name,
     const std::vector<geo_geometry>& obstacles,
     const std::shared_ptr<motion_configuration>& motion_configuration,
-    const std::vector<geo_geometry>& bounding_regions, const ProtoStruct& extra) {
+    const std::vector<geo_geometry>& bounding_regions,
+    const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::MoveOnGlobe)
         .with(extra,
               [&](auto& request) {
@@ -251,8 +258,10 @@ std::string MotionClient::move_on_globe(
 }
 
 pose_in_frame MotionClient::get_pose(
-    const Name& component_name, const std::string& destination_frame,
-    const std::vector<WorldState::transform>& supplemental_transforms, const ProtoStruct& extra) {
+    const Name& component_name,
+    const std::string& destination_frame,
+    const std::vector<WorldState::transform>& supplemental_transforms,
+    const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPose)
         .with(extra,
               [&](auto& request) {
@@ -271,7 +280,9 @@ void MotionClient::stop_plan(const Name& name, const ProtoStruct& extra) {
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> MotionClient::get_plan_(
-    const Name& component_name, boost::optional<std::string> execution_id, bool last_plan_only,
+    const Name& component_name,
+    boost::optional<std::string> execution_id,
+    bool last_plan_only,
     const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPlan)
         .with(extra,
@@ -289,7 +300,8 @@ std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> Motio
         });
 }
 
-Motion::plan_with_status MotionClient::get_plan(const Name& name, const std::string& execution_id,
+Motion::plan_with_status MotionClient::get_plan(const Name& name,
+                                                const std::string& execution_id,
                                                 const ProtoStruct& extra) {
     return get_plan_(name, execution_id, true, extra).first;
 }
@@ -299,7 +311,8 @@ Motion::plan_with_status MotionClient::get_latest_plan(const Name& name, const P
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
-MotionClient::get_plan_with_replan_history(const Name& name, const std::string& execution_id,
+MotionClient::get_plan_with_replan_history(const Name& name,
+                                           const std::string& execution_id,
                                            const ProtoStruct& extra) {
     return get_plan_(name, execution_id, false, extra);
 }

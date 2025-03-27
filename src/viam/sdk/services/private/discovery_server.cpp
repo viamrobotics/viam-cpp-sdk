@@ -12,10 +12,11 @@ namespace impl {
 using namespace service::discovery::v1;
 
 ::grpc::Status DiscoveryServer::DiscoverResources(
-    ::grpc::ServerContext*, const ::viam::service::discovery::v1::DiscoverResourcesRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::service::discovery::v1::DiscoverResourcesRequest* request,
     ::viam::service::discovery::v1::DiscoverResourcesResponse* response) noexcept {
-    return make_service_helper<Discovery>("DiscoveryServer::DiscoverResources", this,
-                                          request)([&](auto& helper, auto& discovery) {
+    return make_service_helper<Discovery>(
+        "DiscoveryServer::DiscoverResources", this, request)([&](auto& helper, auto& discovery) {
         const std::vector<ResourceConfig> resources =
             discovery->discover_resources(helper.getExtra());
         for (const auto& resource : resources) {
@@ -25,10 +26,11 @@ using namespace service::discovery::v1;
 }
 
 ::grpc::Status DiscoveryServer::DoCommand(
-    ::grpc::ServerContext*, const ::viam::common::v1::DoCommandRequest* request,
+    ::grpc::ServerContext*,
+    const ::viam::common::v1::DoCommandRequest* request,
     ::viam::common::v1::DoCommandResponse* response) noexcept {
-    return make_service_helper<Discovery>("DiscoveryServer::DoCommand", this,
-                                          request)([&](auto&, auto& discovery) {
+    return make_service_helper<Discovery>(
+        "DiscoveryServer::DoCommand", this, request)([&](auto&, auto& discovery) {
         const ProtoStruct result = discovery->do_command(from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
     });
