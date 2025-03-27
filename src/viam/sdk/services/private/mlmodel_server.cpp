@@ -56,8 +56,8 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
             inputs.emplace(tensor_pair.first, std::move(tensor));
         } else {
             // Normal case: multiple tensors, do metadata checks
-	    // If there are extra tensors in the inputs that not found in the metadata,
-	    // they will not be passed on to the implementation.
+            // If there are extra tensors in the inputs that not found in the metadata,
+            // they will not be passed on to the implementation.
             for (const auto& input : md.inputs) {
                 const auto where = request->input_tensors().tensors().find(input.name);
                 if (where == request->input_tensors().tensors().end()) {
