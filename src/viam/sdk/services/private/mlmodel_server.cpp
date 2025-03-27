@@ -11,12 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+#include <viam/sdk/services/private/mlmodel_server.hpp>
 
 #include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel.hpp>
 #include <viam/sdk/services/private/mlmodel.hpp>
-#include <viam/sdk/services/private/mlmodel_server.hpp>
 
 namespace viam {
 namespace sdk {
@@ -56,11 +56,11 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
             inputs.emplace(tensor_pair.first, std::move(tensor));
         } else {
             // Normal case: multiple tensors, do metadata checks
+	    // If there are extra tensors in the inputs that not found in the metadata,
+	    // they will not be passed on to the implementation.
             for (const auto& input : md.inputs) {
                 const auto where = request->input_tensors().tensors().find(input.name);
                 if (where == request->input_tensors().tensors().end()) {
-                    // Ignore any inputs for which we don't have metadata, since
-                    // we can't validate the type info.
                     // if the input vector of the expected name is not found, return an error
                     std::ostringstream message;
                     message << "Expected tensor input `" << input.name
