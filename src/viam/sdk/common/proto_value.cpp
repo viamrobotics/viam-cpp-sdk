@@ -76,49 +76,37 @@ bool ProtoValue::is_null() const {
 }
 
 template <typename T>
-std::enable_if_t<std::is_scalar<T>{}, T&> ProtoValue::get_unchecked() {
+T& ProtoValue::get_unchecked() & {
     assert(this->is_a<T>());
     return *(this->self_.template get<T>());
 }
 
-template <typename T>
-std::enable_if_t<std::is_scalar<T>{}, T> ProtoValue::get_unchecked() const {
-    assert(this->is_a<T>());
-    return *(this->self_.template get<T>());
-}
-
-template bool& ProtoValue::get_unchecked<bool>();
-template double& ProtoValue::get_unchecked<double>();
-
-template bool ProtoValue::get_unchecked<bool>() const;
-template double ProtoValue::get_unchecked<double>() const;
-
-template <typename T>
-std::enable_if_t<!std::is_scalar<T>{}, T&> ProtoValue::get_unchecked() & {
-    assert(this->is_a<T>());
-    return *(this->self_.template get<T>());
-}
-
-template <typename T>
-std::enable_if_t<!std::is_scalar<T>{}, T const&> ProtoValue::get_unchecked() const& {
-    assert(this->is_a<T>());
-    return *(this->self_.template get<T>());
-}
-
-template <typename T>
-std::enable_if_t<!std::is_scalar<T>{}, T&&> ProtoValue::get_unchecked() && {
-    assert(this->is_a<T>());
-    return std::move(*(this->self_.template get<T>()));
-}
-
+template bool& ProtoValue::get_unchecked<bool>() &;
+template double& ProtoValue::get_unchecked<double>() &;
 template std::string& ProtoValue::get_unchecked<std::string>() &;
 template ProtoList& ProtoValue::get_unchecked<ProtoList>() &;
 template ProtoStruct& ProtoValue::get_unchecked<ProtoStruct>() &;
 
+template <typename T>
+const T& ProtoValue::get_unchecked() const& {
+    assert(this->is_a<T>());
+    return *(this->self_.template get<T>());
+}
+
+template const bool& ProtoValue::get_unchecked<bool>() const&;
+template const double& ProtoValue::get_unchecked<double>() const&;
 template std::string const& ProtoValue::get_unchecked<std::string>() const&;
 template ProtoList const& ProtoValue::get_unchecked<ProtoList>() const&;
 template ProtoStruct const& ProtoValue::get_unchecked<ProtoStruct>() const&;
 
+template <typename T>
+T&& ProtoValue::get_unchecked() && {
+    assert(this->is_a<T>());
+    return std::move(*(this->self_.template get<T>()));
+}
+
+template bool&& ProtoValue::get_unchecked<bool>() &&;
+template double&& ProtoValue::get_unchecked<double>() &&;
 template std::string&& ProtoValue::get_unchecked<std::string>() &&;
 template ProtoList&& ProtoValue::get_unchecked<ProtoList>() &&;
 template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
