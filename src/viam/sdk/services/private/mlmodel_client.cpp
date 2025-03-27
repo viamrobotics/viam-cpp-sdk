@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <viam/sdk/services/private/mlmodel_client.hpp>
+
 #include <grpcpp/channel.h>
 
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/services/private/mlmodel.hpp>
-#include <viam/sdk/services/private/mlmodel_client.hpp>
+
+#include <viam/sdk/common/exception.hpp>
 
 // As of proto version 27 (full version number 5.27) Arena::CreateMessage is deprecated in favor of
 // Arena::Create. We use this macro to accomodate earlier supported versions of proto where

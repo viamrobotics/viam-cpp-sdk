@@ -1,13 +1,15 @@
+#include <viam/sdk/services/private/generic_client.hpp>
+
+#include <utility>
+
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/service/generic/v1/generic.grpc.pb.h>
 
-#include <utility>
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
-#include <viam/sdk/services/private/generic_client.hpp>
 
 namespace viam {
 namespace sdk {

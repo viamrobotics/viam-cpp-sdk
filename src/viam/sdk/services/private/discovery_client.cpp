@@ -1,3 +1,5 @@
+#include <viam/sdk/services/private/discovery_client.hpp>
+
 #include <viam/api/service/discovery/v1/discovery.grpc.pb.h>
 #include <viam/api/service/discovery/v1/discovery.pb.h>
 
@@ -6,7 +8,6 @@
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/discovery.hpp>
-#include <viam/sdk/services/private/discovery_client.hpp>
 
 namespace viam {
 namespace sdk {

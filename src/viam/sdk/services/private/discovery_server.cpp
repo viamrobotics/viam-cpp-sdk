@@ -1,8 +1,9 @@
+#include <viam/sdk/services/private/discovery_client.hpp>
+
 #include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/services/private/discovery_client.hpp>
 #include <viam/sdk/services/private/discovery_server.hpp>
 
 namespace viam {

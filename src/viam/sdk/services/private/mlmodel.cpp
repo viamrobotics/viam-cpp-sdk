@@ -12,14 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <boost/variant/get.hpp>
+#include <viam/sdk/services/private/mlmodel.hpp>
+
 #include <memory>
 #include <stack>
 #include <stdexcept>
 #include <type_traits>
 #include <utility>
+
+#include <boost/variant/get.hpp>
+
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/services/private/mlmodel.hpp>
 
 namespace viam {
 namespace sdk {

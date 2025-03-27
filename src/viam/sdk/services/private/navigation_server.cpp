@@ -1,6 +1,7 @@
+#include <memory>
+
 #include <grpcpp/support/status.h>
 
-#include <memory>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>

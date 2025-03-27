@@ -1,5 +1,9 @@
-#include <grpcpp/support/status.h>
+#include <viam/sdk/services/private/motion_client.hpp>
+
 #include <math.h>
+
+#include <grpcpp/support/status.h>
+
 #include <viam/api/service/motion/v1/motion.grpc.pb.h>
 #include <viam/api/service/motion/v1/motion.pb.h>
 
@@ -8,7 +12,6 @@
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/motion.hpp>
-#include <viam/sdk/services/private/motion_client.hpp>
 
 namespace viam {
 namespace sdk {
