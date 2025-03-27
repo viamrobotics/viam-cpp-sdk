@@ -41,7 +41,7 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
         // Check if there's only one input tensor and metadata only expects one, too
         if (request->input_tensors().tensors().size() == 1 && md.inputs.size() == 1) {
             // Special case: just one tensor, add it without name check
-            const MLModelService::tensor_info::tensor_info* input = &md.inputs[0];
+            const MLModelService::tensor_info input = md.inputs[0];
             const auto& tensor_pair = *request->input_tensors().tensors().begin();
             auto tensor = mlmodel::make_sdk_tensor_from_api_tensor(tensor_pair.second);
             const auto tensor_type = MLModelService::tensor_info::tensor_views_to_data_type(tensor);
