@@ -40,9 +40,19 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
 
         // Check if there's only one input tensor and metadata only expects one, too
         if (request->input_tensors().tensors().size() == 1 && md.inputs.size() == 1) {
-            // Special case: just one tensor, add it without metadata checks
+            // Special case: just one tensor, add it without name check
+            const MLModelService::tensor_info::tensor_info* input = &md.inputs[0];
             const auto& tensor_pair = *request->input_tensors().tensors().begin();
             auto tensor = mlmodel::make_sdk_tensor_from_api_tensor(tensor_pair.second);
+            const auto tensor_type = MLModelService::tensor_info::tensor_views_to_data_type(tensor);
+            if (tensor_type != input.data_type) {
+                std::ostringstream message;
+                using ut = std::underlying_type<MLModelService::tensor_info::data_types>::type;
+                message << "Tensor input `" << input.name << "` was the wrong type; expected type "
+                        << static_cast<ut>(input.data_type) << " but got type "
+                        << static_cast<ut>(tensor_type);
+                return helper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
+            }
             inputs.emplace(tensor_pair.first, std::move(tensor));
         } else {
             // Normal case: multiple tensors, do metadata checks
