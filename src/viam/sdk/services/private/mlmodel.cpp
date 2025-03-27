@@ -12,17 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <viam/sdk/services/private/mlmodel.hpp>
-
+#include <boost/variant/get.hpp>
 #include <memory>
 #include <stack>
 #include <stdexcept>
 #include <type_traits>
 #include <utility>
-
-#include <boost/variant/get.hpp>
-
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/services/private/mlmodel.hpp>
 
 namespace viam {
 namespace sdk {
@@ -68,8 +65,7 @@ class copy_sdk_tensor_to_api_tensor_visitor : public boost::static_visitor<void>
             static_cast<int>((t.size() + 1) * sizeof(std::int16_t) / sizeof(std::uint32_t));
         target_->mutable_int16_tensor()->mutable_data()->Clear();
         target_->mutable_int16_tensor()->mutable_data()->Resize(num32s, 0);
-        std::memcpy(target_->mutable_int16_tensor()->mutable_data()->mutable_data(),
-                    t.begin(),
+        std::memcpy(target_->mutable_int16_tensor()->mutable_data()->mutable_data(), t.begin(),
                     t.size() * sizeof(std::int16_t));
     }
 
@@ -79,8 +75,7 @@ class copy_sdk_tensor_to_api_tensor_visitor : public boost::static_visitor<void>
             static_cast<int>((t.size() + 1) * sizeof(std::uint16_t) / sizeof(std::uint32_t));
         target_->mutable_uint16_tensor()->mutable_data()->Clear();
         target_->mutable_uint16_tensor()->mutable_data()->Resize(num32s, 0);
-        std::memcpy(target_->mutable_uint16_tensor()->mutable_data()->mutable_data(),
-                    t.begin(),
+        std::memcpy(target_->mutable_uint16_tensor()->mutable_data()->mutable_data(), t.begin(),
                     t.size() * sizeof(std::uint16_t));
     }
 
@@ -118,8 +113,7 @@ class copy_sdk_tensor_to_api_tensor_visitor : public boost::static_visitor<void>
 };
 
 template <typename T>
-MLModelService::tensor_views make_sdk_tensor_from_api_tensor_t(const T* data,
-                                                               std::size_t size,
+MLModelService::tensor_views make_sdk_tensor_from_api_tensor_t(const T* data, std::size_t size,
                                                                std::vector<std::size_t>&& shape,
                                                                tensor_storage* ts) {
     if (!data || (size == 0) || shape.empty()) {
@@ -184,63 +178,49 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor(
     if (api_tensor.has_int8_tensor()) {
         return make_sdk_tensor_from_api_tensor_t(
             reinterpret_cast<const std::int8_t*>(api_tensor.int8_tensor().data().data()),
-            api_tensor.int8_tensor().data().size(),
-            std::move(shape),
-            storage);
+            api_tensor.int8_tensor().data().size(), std::move(shape), storage);
     } else if (api_tensor.has_uint8_tensor()) {
         return make_sdk_tensor_from_api_tensor_t(
             reinterpret_cast<const std::uint8_t*>(api_tensor.uint8_tensor().data().data()),
-            api_tensor.uint8_tensor().data().size(),
-            std::move(shape),
-            storage);
+            api_tensor.uint8_tensor().data().size(), std::move(shape), storage);
     } else if (api_tensor.has_int16_tensor()) {
         // TODO: be deswizzle
         return make_sdk_tensor_from_api_tensor_t(
             reinterpret_cast<const std::int16_t*>(api_tensor.int16_tensor().data().data()),
-            std::size_t{2} * api_tensor.int16_tensor().data().size(),
-            std::move(shape),
-            storage);
+            std::size_t{2} * api_tensor.int16_tensor().data().size(), std::move(shape), storage);
     } else if (api_tensor.has_uint16_tensor()) {
         // TODO: be deswizzle
         return make_sdk_tensor_from_api_tensor_t(
             reinterpret_cast<const std::uint16_t*>(api_tensor.uint16_tensor().data().data()),
-            std::size_t{2} * api_tensor.uint16_tensor().data().size(),
-            std::move(shape),
-            storage);
+            std::size_t{2} * api_tensor.uint16_tensor().data().size(), std::move(shape), storage);
     } else if (api_tensor.has_int32_tensor()) {
         return make_sdk_tensor_from_api_tensor_t(api_tensor.int32_tensor().data().data(),
                                                  api_tensor.int32_tensor().data().size(),
-                                                 std::move(shape),
-                                                 storage);
+                                                 std::move(shape), storage);
     } else if (api_tensor.has_uint32_tensor()) {
         return make_sdk_tensor_from_api_tensor_t(api_tensor.uint32_tensor().data().data(),
                                                  api_tensor.uint32_tensor().data().size(),
-                                                 std::move(shape),
-                                                 storage);
+                                                 std::move(shape), storage);
 
     } else if (api_tensor.has_int64_tensor()) {
         return make_sdk_tensor_from_api_tensor_t(api_tensor.int64_tensor().data().data(),
                                                  api_tensor.int64_tensor().data().size(),
-                                                 std::move(shape),
-                                                 storage);
+                                                 std::move(shape), storage);
 
     } else if (api_tensor.has_uint64_tensor()) {
         return make_sdk_tensor_from_api_tensor_t(api_tensor.uint64_tensor().data().data(),
                                                  api_tensor.uint64_tensor().data().size(),
-                                                 std::move(shape),
-                                                 storage);
+                                                 std::move(shape), storage);
 
     } else if (api_tensor.has_float_tensor()) {
         return make_sdk_tensor_from_api_tensor_t(api_tensor.float_tensor().data().data(),
                                                  api_tensor.float_tensor().data().size(),
-                                                 std::move(shape),
-                                                 storage);
+                                                 std::move(shape), storage);
 
     } else if (api_tensor.has_double_tensor()) {
         return make_sdk_tensor_from_api_tensor_t(api_tensor.double_tensor().data().data(),
                                                  api_tensor.double_tensor().data().size(),
-                                                 std::move(shape),
-                                                 storage);
+                                                 std::move(shape), storage);
     }
     throw Exception(ErrorCondition::k_not_supported, "Unsupported tensor data type");
 }

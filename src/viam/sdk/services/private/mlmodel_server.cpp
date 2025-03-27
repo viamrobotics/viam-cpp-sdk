@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <viam/sdk/services/private/mlmodel_server.hpp>
-
 #include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel.hpp>
 #include <viam/sdk/services/private/mlmodel.hpp>
+#include <viam/sdk/services/private/mlmodel_server.hpp>
 
 namespace viam {
 namespace sdk {
@@ -27,19 +26,51 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
     : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status MLModelServiceServer::Infer(
-    ::grpc::ServerContext*,
-    const ::viam::service::mlmodel::v1::InferRequest* request,
+    ::grpc::ServerContext*, const ::viam::service::mlmodel::v1::InferRequest* request,
     ::viam::service::mlmodel::v1::InferResponse* response) noexcept {
-    return make_service_helper<MLModelService>(
-        "MLModelServiceServer::Infer", this, request)([&](auto& helper, auto& mlms) {
+    return make_service_helper<MLModelService>("MLModelServiceServer::Infer", this,
+                                               request)([&](auto& helper, auto& mlms) {
         if (!request->has_input_tensors()) {
             return helper.fail(::grpc::INVALID_ARGUMENT, "Called with no input tensors");
         }
 
+        const auto md = mlms->metadata({});
         MLModelService::named_tensor_views inputs;
-	for (const auto& [tensor_name, api_tensor] : request->input_tensors().tensors()) {
-    		auto tensor = mlmodel::make_sdk_tensor_from_api_tensor(api_tensor);
-		inputs.emplace(std::move(tensor_name), std::move(tensor));
+
+        // Check if there's only one input tensor and metadata only expects one, too
+        if (request->input_tensors().tensors().size() == 1 && md.inputs.size() == 1) {
+            // Special case: just one tensor, add it without metadata checks
+            const auto& tensor_pair = *request->input_tensors().tensors().begin();
+            auto tensor = mlmodel::make_sdk_tensor_from_api_tensor(tensor_pair.second);
+            inputs.emplace(tensor_pair.first, std::move(tensor));
+        } else {
+            // Normal case: multiple tensors, do metadata checks
+            for (const auto& input : md.inputs) {
+                const auto where = request->input_tensors().tensors().find(input.name);
+                if (where == request->input_tensors().tensors().end()) {
+                    // Ignore any inputs for which we don't have metadata, since
+                    // we can't validate the type info.
+                    // if the input vector of the expected name is not found, return an error
+                    std::ostringstream message;
+                    message << "Expected tensor input `" << input.name
+                            << "` was not found; if you believe you have this tensor under a "
+                               "different name, rename it to the expected tensor name";
+                    return helper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
+                }
+                auto tensor = mlmodel::make_sdk_tensor_from_api_tensor(where->second);
+                const auto tensor_type =
+                    MLModelService::tensor_info::tensor_views_to_data_type(tensor);
+                if (tensor_type != input.data_type) {
+                    std::ostringstream message;
+                    using ut = std::underlying_type<MLModelService::tensor_info::data_types>::type;
+                    message << "Tensor input `" << input.name
+                            << "` was the wrong type; expected type "
+                            << static_cast<ut>(input.data_type) << " but got type "
+                            << static_cast<ut>(tensor_type);
+                    return helper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
+                }
+                inputs.emplace(std::move(input.name), std::move(tensor));
+            }
         }
 
         const auto outputs = mlms->infer(inputs, helper.getExtra());
@@ -55,11 +86,10 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
 }
 
 ::grpc::Status MLModelServiceServer::Metadata(
-    ::grpc::ServerContext*,
-    const ::viam::service::mlmodel::v1::MetadataRequest* request,
+    ::grpc::ServerContext*, const ::viam::service::mlmodel::v1::MetadataRequest* request,
     ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept {
-    return make_service_helper<MLModelService>(
-        "MLModelServiceServer::Metadata", this, request)([&](auto& helper, auto& mlms) {
+    return make_service_helper<MLModelService>("MLModelServiceServer::Metadata", this,
+                                               request)([&](auto& helper, auto& mlms) {
         auto md = mlms->metadata(helper.getExtra());
 
         auto& metadata_pb = *response->mutable_metadata();

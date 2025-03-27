@@ -1,9 +1,5 @@
-#include <viam/sdk/services/private/navigation_client.hpp>
-
-#include <math.h>
-
 #include <grpcpp/support/status.h>
-
+#include <math.h>
 #include <viam/api/service/navigation/v1/navigation.grpc.pb.h>
 #include <viam/api/service/navigation/v1/navigation.pb.h>
 
@@ -12,6 +8,7 @@
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/navigation.hpp>
+#include <viam/sdk/services/private/navigation_client.hpp>
 
 namespace viam {
 namespace sdk {
