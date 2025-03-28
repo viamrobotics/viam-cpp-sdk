@@ -50,6 +50,12 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace viam {
 namespace app {
 namespace v1 {
+class GetAvailableBillingTiersRequest;
+struct GetAvailableBillingTiersRequestDefaultTypeInternal;
+extern GetAvailableBillingTiersRequestDefaultTypeInternal _GetAvailableBillingTiersRequest_default_instance_;
+class GetAvailableBillingTiersResponse;
+struct GetAvailableBillingTiersResponseDefaultTypeInternal;
+extern GetAvailableBillingTiersResponseDefaultTypeInternal _GetAvailableBillingTiersResponse_default_instance_;
 class GetCurrentMonthUsageRequest;
 struct GetCurrentMonthUsageRequestDefaultTypeInternal;
 extern GetCurrentMonthUsageRequestDefaultTypeInternal _GetCurrentMonthUsageRequest_default_instance_;
@@ -92,6 +98,12 @@ extern SendPaymentRequiredEmailRequestDefaultTypeInternal _SendPaymentRequiredEm
 class SendPaymentRequiredEmailResponse;
 struct SendPaymentRequiredEmailResponseDefaultTypeInternal;
 extern SendPaymentRequiredEmailResponseDefaultTypeInternal _SendPaymentRequiredEmailResponse_default_instance_;
+class UpdateOrganizationBillingTierRequest;
+struct UpdateOrganizationBillingTierRequestDefaultTypeInternal;
+extern UpdateOrganizationBillingTierRequestDefaultTypeInternal _UpdateOrganizationBillingTierRequest_default_instance_;
+class UpdateOrganizationBillingTierResponse;
+struct UpdateOrganizationBillingTierResponseDefaultTypeInternal;
+extern UpdateOrganizationBillingTierResponseDefaultTypeInternal _UpdateOrganizationBillingTierResponse_default_instance_;
 class UsageCost;
 struct UsageCostDefaultTypeInternal;
 extern UsageCostDefaultTypeInternal _UsageCost_default_instance_;
@@ -99,6 +111,8 @@ extern UsageCostDefaultTypeInternal _UsageCost_default_instance_;
 }  // namespace app
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
+template<> ::viam::app::v1::GetAvailableBillingTiersRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetAvailableBillingTiersRequest>(Arena*);
+template<> ::viam::app::v1::GetAvailableBillingTiersResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetAvailableBillingTiersResponse>(Arena*);
 template<> ::viam::app::v1::GetCurrentMonthUsageRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetCurrentMonthUsageRequest>(Arena*);
 template<> ::viam::app::v1::GetCurrentMonthUsageResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetCurrentMonthUsageResponse>(Arena*);
 template<> ::viam::app::v1::GetInvoicePdfRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetInvoicePdfRequest>(Arena*);
@@ -113,6 +127,8 @@ template<> ::viam::app::v1::ResourceUsageCosts* Arena::CreateMaybeMessage<::viam
 template<> ::viam::app::v1::ResourceUsageCostsBySource* Arena::CreateMaybeMessage<::viam::app::v1::ResourceUsageCostsBySource>(Arena*);
 template<> ::viam::app::v1::SendPaymentRequiredEmailRequest* Arena::CreateMaybeMessage<::viam::app::v1::SendPaymentRequiredEmailRequest>(Arena*);
 template<> ::viam::app::v1::SendPaymentRequiredEmailResponse* Arena::CreateMaybeMessage<::viam::app::v1::SendPaymentRequiredEmailResponse>(Arena*);
+template<> ::viam::app::v1::UpdateOrganizationBillingTierRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationBillingTierRequest>(Arena*);
+template<> ::viam::app::v1::UpdateOrganizationBillingTierResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationBillingTierResponse>(Arena*);
 template<> ::viam::app::v1::UsageCost* Arena::CreateMaybeMessage<::viam::app::v1::UsageCost>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
@@ -2857,6 +2873,560 @@ class SendPaymentRequiredEmailResponse final :
   typedef void DestructorSkippable_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
 };
+// -------------------------------------------------------------------
+
+class GetAvailableBillingTiersRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.GetAvailableBillingTiersRequest) */ {
+ public:
+  inline GetAvailableBillingTiersRequest() : GetAvailableBillingTiersRequest(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR GetAvailableBillingTiersRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetAvailableBillingTiersRequest(const GetAvailableBillingTiersRequest& from);
+  GetAvailableBillingTiersRequest(GetAvailableBillingTiersRequest&& from) noexcept
+    : GetAvailableBillingTiersRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetAvailableBillingTiersRequest& operator=(const GetAvailableBillingTiersRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetAvailableBillingTiersRequest& operator=(GetAvailableBillingTiersRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetAvailableBillingTiersRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetAvailableBillingTiersRequest* internal_default_instance() {
+    return reinterpret_cast<const GetAvailableBillingTiersRequest*>(
+               &_GetAvailableBillingTiersRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(GetAvailableBillingTiersRequest& a, GetAvailableBillingTiersRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetAvailableBillingTiersRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetAvailableBillingTiersRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetAvailableBillingTiersRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetAvailableBillingTiersRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const GetAvailableBillingTiersRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const GetAvailableBillingTiersRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetAvailableBillingTiersRequest";
+  }
+  protected:
+  explicit GetAvailableBillingTiersRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetAvailableBillingTiersRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetAvailableBillingTiersResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetAvailableBillingTiersResponse) */ {
+ public:
+  inline GetAvailableBillingTiersResponse() : GetAvailableBillingTiersResponse(nullptr) {}
+  ~GetAvailableBillingTiersResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetAvailableBillingTiersResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetAvailableBillingTiersResponse(const GetAvailableBillingTiersResponse& from);
+  GetAvailableBillingTiersResponse(GetAvailableBillingTiersResponse&& from) noexcept
+    : GetAvailableBillingTiersResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetAvailableBillingTiersResponse& operator=(const GetAvailableBillingTiersResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetAvailableBillingTiersResponse& operator=(GetAvailableBillingTiersResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetAvailableBillingTiersResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetAvailableBillingTiersResponse* internal_default_instance() {
+    return reinterpret_cast<const GetAvailableBillingTiersResponse*>(
+               &_GetAvailableBillingTiersResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(GetAvailableBillingTiersResponse& a, GetAvailableBillingTiersResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetAvailableBillingTiersResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetAvailableBillingTiersResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetAvailableBillingTiersResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetAvailableBillingTiersResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetAvailableBillingTiersResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetAvailableBillingTiersResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetAvailableBillingTiersResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetAvailableBillingTiersResponse";
+  }
+  protected:
+  explicit GetAvailableBillingTiersResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTiersFieldNumber = 1,
+  };
+  // repeated string tiers = 1 [json_name = "tiers"];
+  int tiers_size() const;
+  private:
+  int _internal_tiers_size() const;
+  public:
+  void clear_tiers();
+  const std::string& tiers(int index) const;
+  std::string* mutable_tiers(int index);
+  void set_tiers(int index, const std::string& value);
+  void set_tiers(int index, std::string&& value);
+  void set_tiers(int index, const char* value);
+  void set_tiers(int index, const char* value, size_t size);
+  std::string* add_tiers();
+  void add_tiers(const std::string& value);
+  void add_tiers(std::string&& value);
+  void add_tiers(const char* value);
+  void add_tiers(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tiers() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tiers();
+  private:
+  const std::string& _internal_tiers(int index) const;
+  std::string* _internal_add_tiers();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetAvailableBillingTiersResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tiers_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateOrganizationBillingTierRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateOrganizationBillingTierRequest) */ {
+ public:
+  inline UpdateOrganizationBillingTierRequest() : UpdateOrganizationBillingTierRequest(nullptr) {}
+  ~UpdateOrganizationBillingTierRequest() override;
+  explicit PROTOBUF_CONSTEXPR UpdateOrganizationBillingTierRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateOrganizationBillingTierRequest(const UpdateOrganizationBillingTierRequest& from);
+  UpdateOrganizationBillingTierRequest(UpdateOrganizationBillingTierRequest&& from) noexcept
+    : UpdateOrganizationBillingTierRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateOrganizationBillingTierRequest& operator=(const UpdateOrganizationBillingTierRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateOrganizationBillingTierRequest& operator=(UpdateOrganizationBillingTierRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateOrganizationBillingTierRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateOrganizationBillingTierRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateOrganizationBillingTierRequest*>(
+               &_UpdateOrganizationBillingTierRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(UpdateOrganizationBillingTierRequest& a, UpdateOrganizationBillingTierRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateOrganizationBillingTierRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateOrganizationBillingTierRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateOrganizationBillingTierRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateOrganizationBillingTierRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateOrganizationBillingTierRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UpdateOrganizationBillingTierRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateOrganizationBillingTierRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateOrganizationBillingTierRequest";
+  }
+  protected:
+  explicit UpdateOrganizationBillingTierRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrganizationIdFieldNumber = 1,
+    kBillingTierFieldNumber = 2,
+  };
+  // string organization_id = 1 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
+  // string billing_tier = 2 [json_name = "billingTier"];
+  void clear_billing_tier();
+  const std::string& billing_tier() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_billing_tier(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_billing_tier();
+  PROTOBUF_NODISCARD std::string* release_billing_tier();
+  void set_allocated_billing_tier(std::string* billing_tier);
+  private:
+  const std::string& _internal_billing_tier() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_billing_tier(const std::string& value);
+  std::string* _internal_mutable_billing_tier();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateOrganizationBillingTierRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr billing_tier_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateOrganizationBillingTierResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.UpdateOrganizationBillingTierResponse) */ {
+ public:
+  inline UpdateOrganizationBillingTierResponse() : UpdateOrganizationBillingTierResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR UpdateOrganizationBillingTierResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateOrganizationBillingTierResponse(const UpdateOrganizationBillingTierResponse& from);
+  UpdateOrganizationBillingTierResponse(UpdateOrganizationBillingTierResponse&& from) noexcept
+    : UpdateOrganizationBillingTierResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateOrganizationBillingTierResponse& operator=(const UpdateOrganizationBillingTierResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateOrganizationBillingTierResponse& operator=(UpdateOrganizationBillingTierResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateOrganizationBillingTierResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateOrganizationBillingTierResponse* internal_default_instance() {
+    return reinterpret_cast<const UpdateOrganizationBillingTierResponse*>(
+               &_UpdateOrganizationBillingTierResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(UpdateOrganizationBillingTierResponse& a, UpdateOrganizationBillingTierResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateOrganizationBillingTierResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateOrganizationBillingTierResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateOrganizationBillingTierResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateOrganizationBillingTierResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const UpdateOrganizationBillingTierResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const UpdateOrganizationBillingTierResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UpdateOrganizationBillingTierResponse";
+  }
+  protected:
+  explicit UpdateOrganizationBillingTierResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateOrganizationBillingTierResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
 // ===================================================================
 
 
@@ -4837,9 +5407,208 @@ inline void SendPaymentRequiredEmailRequest::set_allocated_billing_owner_org_id(
 
 // SendPaymentRequiredEmailResponse
 
+// -------------------------------------------------------------------
+
+// GetAvailableBillingTiersRequest
+
+// -------------------------------------------------------------------
+
+// GetAvailableBillingTiersResponse
+
+// repeated string tiers = 1 [json_name = "tiers"];
+inline int GetAvailableBillingTiersResponse::_internal_tiers_size() const {
+  return tiers_.size();
+}
+inline int GetAvailableBillingTiersResponse::tiers_size() const {
+  return _internal_tiers_size();
+}
+inline void GetAvailableBillingTiersResponse::clear_tiers() {
+  tiers_.Clear();
+}
+inline std::string* GetAvailableBillingTiersResponse::add_tiers() {
+  std::string* _s = _internal_add_tiers();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+  return _s;
+}
+inline const std::string& GetAvailableBillingTiersResponse::_internal_tiers(int index) const {
+  return tiers_.Get(index);
+}
+inline const std::string& GetAvailableBillingTiersResponse::tiers(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+  return _internal_tiers(index);
+}
+inline std::string* GetAvailableBillingTiersResponse::mutable_tiers(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+  return tiers_.Mutable(index);
+}
+inline void GetAvailableBillingTiersResponse::set_tiers(int index, const std::string& value) {
+  tiers_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+}
+inline void GetAvailableBillingTiersResponse::set_tiers(int index, std::string&& value) {
+  tiers_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+}
+inline void GetAvailableBillingTiersResponse::set_tiers(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tiers_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+}
+inline void GetAvailableBillingTiersResponse::set_tiers(int index, const char* value, size_t size) {
+  tiers_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+}
+inline std::string* GetAvailableBillingTiersResponse::_internal_add_tiers() {
+  return tiers_.Add();
+}
+inline void GetAvailableBillingTiersResponse::add_tiers(const std::string& value) {
+  tiers_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+}
+inline void GetAvailableBillingTiersResponse::add_tiers(std::string&& value) {
+  tiers_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+}
+inline void GetAvailableBillingTiersResponse::add_tiers(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tiers_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+}
+inline void GetAvailableBillingTiersResponse::add_tiers(const char* value, size_t size) {
+  tiers_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetAvailableBillingTiersResponse::tiers() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+  return tiers_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetAvailableBillingTiersResponse::mutable_tiers() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.GetAvailableBillingTiersResponse.tiers)
+  return &tiers_;
+}
+
+// -------------------------------------------------------------------
+
+// UpdateOrganizationBillingTierRequest
+
+// string organization_id = 1 [json_name = "organizationId"];
+inline void UpdateOrganizationBillingTierRequest::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+}
+inline const std::string& UpdateOrganizationBillingTierRequest::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateOrganizationBillingTierRequest.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateOrganizationBillingTierRequest::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateOrganizationBillingTierRequest.organization_id)
+}
+inline std::string* UpdateOrganizationBillingTierRequest::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateOrganizationBillingTierRequest.organization_id)
+  return _s;
+}
+inline const std::string& UpdateOrganizationBillingTierRequest::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void UpdateOrganizationBillingTierRequest::_internal_set_organization_id(const std::string& value) {
+  
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateOrganizationBillingTierRequest::_internal_mutable_organization_id() {
+  
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateOrganizationBillingTierRequest::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateOrganizationBillingTierRequest.organization_id)
+  return organization_id_.Release();
+}
+inline void UpdateOrganizationBillingTierRequest::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationBillingTierRequest.organization_id)
+}
+
+// string billing_tier = 2 [json_name = "billingTier"];
+inline void UpdateOrganizationBillingTierRequest::clear_billing_tier() {
+  billing_tier_.ClearToEmpty();
+}
+inline const std::string& UpdateOrganizationBillingTierRequest::billing_tier() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateOrganizationBillingTierRequest.billing_tier)
+  return _internal_billing_tier();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateOrganizationBillingTierRequest::set_billing_tier(ArgT0&& arg0, ArgT... args) {
+ 
+ billing_tier_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateOrganizationBillingTierRequest.billing_tier)
+}
+inline std::string* UpdateOrganizationBillingTierRequest::mutable_billing_tier() {
+  std::string* _s = _internal_mutable_billing_tier();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateOrganizationBillingTierRequest.billing_tier)
+  return _s;
+}
+inline const std::string& UpdateOrganizationBillingTierRequest::_internal_billing_tier() const {
+  return billing_tier_.Get();
+}
+inline void UpdateOrganizationBillingTierRequest::_internal_set_billing_tier(const std::string& value) {
+  
+  billing_tier_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateOrganizationBillingTierRequest::_internal_mutable_billing_tier() {
+  
+  return billing_tier_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateOrganizationBillingTierRequest::release_billing_tier() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateOrganizationBillingTierRequest.billing_tier)
+  return billing_tier_.Release();
+}
+inline void UpdateOrganizationBillingTierRequest::set_allocated_billing_tier(std::string* billing_tier) {
+  if (billing_tier != nullptr) {
+    
+  } else {
+    
+  }
+  billing_tier_.SetAllocated(billing_tier, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (billing_tier_.IsDefault()) {
+    billing_tier_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationBillingTierRequest.billing_tier)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateOrganizationBillingTierResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

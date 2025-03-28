@@ -37771,6 +37771,7 @@ class OrgDetails final :
     kOrgNameFieldNumber = 2,
     kOrgCidFieldNumber = 3,
     kPublicNamespaceFieldNumber = 4,
+    kBillingTierFieldNumber = 5,
   };
   // string org_id = 1 [json_name = "orgId"];
   void clear_org_id();
@@ -37836,6 +37837,24 @@ class OrgDetails final :
   std::string* _internal_mutable_public_namespace();
   public:
 
+  // optional string billing_tier = 5 [json_name = "billingTier"];
+  bool has_billing_tier() const;
+  private:
+  bool _internal_has_billing_tier() const;
+  public:
+  void clear_billing_tier();
+  const std::string& billing_tier() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_billing_tier(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_billing_tier();
+  PROTOBUF_NODISCARD std::string* release_billing_tier();
+  void set_allocated_billing_tier(std::string* billing_tier);
+  private:
+  const std::string& _internal_billing_tier() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_billing_tier(const std::string& value);
+  std::string* _internal_mutable_billing_tier();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.OrgDetails)
  private:
   class _Internal;
@@ -37849,6 +37868,7 @@ class OrgDetails final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_cid_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr billing_tier_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -70528,6 +70548,74 @@ inline void OrgDetails::set_allocated_public_namespace(std::string* public_names
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.OrgDetails.public_namespace)
+}
+
+// optional string billing_tier = 5 [json_name = "billingTier"];
+inline bool OrgDetails::_internal_has_billing_tier() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool OrgDetails::has_billing_tier() const {
+  return _internal_has_billing_tier();
+}
+inline void OrgDetails::clear_billing_tier() {
+  billing_tier_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const std::string& OrgDetails::billing_tier() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.OrgDetails.billing_tier)
+  return _internal_billing_tier();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void OrgDetails::set_billing_tier(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000004u;
+ billing_tier_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.OrgDetails.billing_tier)
+}
+inline std::string* OrgDetails::mutable_billing_tier() {
+  std::string* _s = _internal_mutable_billing_tier();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.OrgDetails.billing_tier)
+  return _s;
+}
+inline const std::string& OrgDetails::_internal_billing_tier() const {
+  return billing_tier_.Get();
+}
+inline void OrgDetails::_internal_set_billing_tier(const std::string& value) {
+  _has_bits_[0] |= 0x00000004u;
+  billing_tier_.Set(value, GetArenaForAllocation());
+}
+inline std::string* OrgDetails::_internal_mutable_billing_tier() {
+  _has_bits_[0] |= 0x00000004u;
+  return billing_tier_.Mutable(GetArenaForAllocation());
+}
+inline std::string* OrgDetails::release_billing_tier() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.OrgDetails.billing_tier)
+  if (!_internal_has_billing_tier()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000004u;
+  auto* p = billing_tier_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (billing_tier_.IsDefault()) {
+    billing_tier_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void OrgDetails::set_allocated_billing_tier(std::string* billing_tier) {
+  if (billing_tier != nullptr) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  billing_tier_.SetAllocated(billing_tier, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (billing_tier_.IsDefault()) {
+    billing_tier_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.OrgDetails.billing_tier)
 }
 
 // -------------------------------------------------------------------
