@@ -115,6 +115,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             Registry::get().lookup_model(cfg.name());
         if (reg) {
             try {
+                res->close();
                 const std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
                 manager->replace_one(cfg.resource_name(), res);
             } catch (const std::exception& exc) {
