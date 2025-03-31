@@ -113,6 +113,16 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     )
   endif()
 
+  # List of names of non-compilable generated code
+  # The Switch component generates protobuf which uses `switch` as a namespace.
+  # This needs to be processed below.
+  set(VIAMCPPSDK_SWITCH_REPLACE_PATHS     
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.h
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.cc
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.h
+  )
+
   add_custom_command(
     OUTPUT
     # Unfortunately, there isn't a good way to know in advance what
@@ -245,6 +255,9 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     COMMAND ${BUF_COMMAND} generate ${BUF_GOOGLE_API_SOURCE} --template buf.gen.yaml --path google/rpc --path google/api
     COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_GOUTILS_SOURCE} --template buf.gen.yaml
     COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_API_SOURCE} --template buf.gen.yaml --path ${BUF_PROTO_COMPONENTS_JOINED}
+
+    # After generating the protos, include a step to invoke a search-and-replace for switch -> switch_ in the Switch component files
+    COMMAND ${CMAKE_COMMAND} "-DSWITCH_REPLACE_PATHS=\"${VIAMCPPSDK_SWITCH_REPLACE_PATHS}\"" -P ${CMAKE_CURRENT_SOURCE_DIR}/viamcppsdk_replace_switch.cmake 
     MAIN_DEPENDENCY buf.gen.yaml
   )
 
