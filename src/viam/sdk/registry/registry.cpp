@@ -19,6 +19,8 @@
 #include <viam/sdk/components/private/base_server.hpp>
 #include <viam/sdk/components/private/board_client.hpp>
 #include <viam/sdk/components/private/board_server.hpp>
+#include <viam/sdk/components/private/button_client.hpp>
+#include <viam/sdk/components/private/button_server.hpp>
 #include <viam/sdk/components/private/camera_client.hpp>
 #include <viam/sdk/components/private/camera_server.hpp>
 #include <viam/sdk/components/private/encoder_client.hpp>
@@ -202,6 +204,7 @@ void Registry::register_resources() {
     register_resource<impl::ArmClient, impl::ArmServer>();
     register_resource<impl::BaseClient, impl::BaseServer>();
     register_resource<impl::BoardClient, impl::BoardServer>();
+    register_resource<impl::ButtonClient, impl::ButtonServer>();
     register_resource<impl::CameraClient, impl::CameraServer>();
     register_resource<impl::EncoderClient, impl::EncoderServer>();
     register_resource<impl::GantryClient, impl::GantryServer>();

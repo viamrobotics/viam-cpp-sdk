@@ -136,29 +136,16 @@ class ProtoValue {
     T const* get() const;
 
     /// @brief Return a reference to the underlying T, without checking.
-    /// @tparam T a bool or double
     template <typename T>
-    std::enable_if_t<std::is_scalar<T>{}, T&> get_unchecked();
-
-    /// @brief Return the underlying T by value, without checking.
-    /// @tparam T a bool or double.
-    template <typename T>
-    std::enable_if_t<std::is_scalar<T>{}, T> get_unchecked() const;
-
-    /// @brief Return a mutable reference to the underlying T, without checking
-    /// @tparam T a std::string, ProtoList, or ProtoStruct.
-    template <typename T>
-    std::enable_if_t<!std::is_scalar<T>{}, T&> get_unchecked() &;
+    T& get_unchecked() &;
 
     /// @brief Return an immutable reference to the underlying T, without checking.
-    /// @tparam T a std::string, ProtoList, or ProtoStruct.
     template <typename T>
-    std::enable_if_t<!std::is_scalar<T>{}, T const&> get_unchecked() const&;
+    const T& get_unchecked() const&;
 
     /// @brief Return an rvalue reference to the underlying T, without checking.
-    /// @tparam T a std::string, ProtoList, or ProtoStruct.
     template <typename T>
-    std::enable_if_t<!std::is_scalar<T>{}, T&&> get_unchecked() &&;
+    T&& get_unchecked() &&;
 
     ///@}
 
@@ -295,22 +282,21 @@ extern template ProtoValue::ProtoValue(ProtoList) noexcept(
 extern template ProtoValue::ProtoValue(ProtoStruct m) noexcept(
     std::is_nothrow_move_constructible<ProtoStruct>{});
 
-// -- Template specialization declarations of get_unchecked: POD types -- //
-extern template bool& ProtoValue::get_unchecked<bool>();
-extern template double& ProtoValue::get_unchecked<double>();
-
-extern template bool ProtoValue::get_unchecked<bool>() const;
-extern template double ProtoValue::get_unchecked<double>() const;
-
-// -- Template specialization declarations of get_unchecked: string and recursive types -- //
+// -- Template specialization declarations of get_unchecked -- //
+extern template bool& ProtoValue::get_unchecked<bool>() &;
+extern template double& ProtoValue::get_unchecked<double>() &;
 extern template std::string& ProtoValue::get_unchecked<std::string>() &;
 extern template ProtoList& ProtoValue::get_unchecked<ProtoList>() &;
 extern template ProtoStruct& ProtoValue::get_unchecked<ProtoStruct>() &;
 
+extern template bool const& ProtoValue::get_unchecked<bool>() const&;
+extern template double const& ProtoValue::get_unchecked<double>() const&;
 extern template std::string const& ProtoValue::get_unchecked<std::string>() const&;
 extern template ProtoList const& ProtoValue::get_unchecked<ProtoList>() const&;
 extern template ProtoStruct const& ProtoValue::get_unchecked<ProtoStruct>() const&;
 
+extern template bool&& ProtoValue::get_unchecked<bool>() &&;
+extern template double&& ProtoValue::get_unchecked<double>() &&;
 extern template std::string&& ProtoValue::get_unchecked<std::string>() &&;
 extern template ProtoList&& ProtoValue::get_unchecked<ProtoList>() &&;
 extern template ProtoStruct&& ProtoValue::get_unchecked<ProtoStruct>() &&;
