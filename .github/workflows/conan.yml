@@ -11,6 +11,7 @@ on:
     paths:
       - conanfile.py
       - test_package/conanfile.py
+      - .github/workflows/conan.yml
 
 jobs:
   prepare:
@@ -100,6 +101,7 @@ jobs:
           apt-get update
           apt-get -y dist-upgrade
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              autoconf \
               build-essential \
               ca-certificates \
               curl \
@@ -128,7 +130,7 @@ jobs:
         shell: bash
         run: |
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=14
+          conan create . --build=missing -s compiler.cppstd=14 -s:a compiler.cppstd=14 -o "*:shared=True"
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
@@ -166,6 +168,7 @@ jobs:
           apt-get update
           apt-get -y dist-upgrade
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              autoconf \
               build-essential \
               ca-certificates \
               cmake \
@@ -204,4 +207,4 @@ jobs:
 
           pip install conan
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=14
+          conan create . --build=missing -s compiler.cppstd=14 -s:a compiler.cppstd=14 -o "*:shared=True"
