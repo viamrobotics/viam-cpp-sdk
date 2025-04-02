@@ -43,6 +43,8 @@
 #include <viam/sdk/components/private/sensor_server.hpp>
 #include <viam/sdk/components/private/servo_client.hpp>
 #include <viam/sdk/components/private/servo_server.hpp>
+#include <viam/sdk/components/private/switch_client.hpp>
+#include <viam/sdk/components/private/switch_server.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/services/private/discovery_client.hpp>
@@ -214,6 +216,7 @@ void Registry::register_resources() {
     register_resource<impl::PowerSensorClient, impl::PowerSensorServer>();
     register_resource<impl::SensorClient, impl::SensorServer>();
     register_resource<impl::ServoClient, impl::ServoServer>();
+    register_resource<impl::SwitchClient, impl::SwitchServer>();
 
     // Register all services
     register_resource<impl::DiscoveryClient, impl::DiscoveryServer>();
