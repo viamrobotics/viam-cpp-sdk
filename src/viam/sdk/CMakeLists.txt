@@ -34,8 +34,18 @@ configure_file(common/grpc_fwd.hpp.in common/grpc_fwd.hpp)
 
 # Set compile and link options based on arguments
 if (VIAMCPPSDK_USE_WALL_WERROR)
-  target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    # Note: Currently, the generated protos throw W4244 and W4267, so turn that back to a warning.
+    target_compile_options(viamsdk PRIVATE /W4 /WX /wd4244 /wd4267)
+  else()
+    message(ERROR "VIAMCPPSDK_USE_WALL_ERROR is set, but not known how to enable for compiler ID ${CMAKE_CXX_COMPILER_ID}")
+  endif()
 endif()
+
 if (VIAMCPPSDK_SANITIZED_BUILD)
   target_link_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
   target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)

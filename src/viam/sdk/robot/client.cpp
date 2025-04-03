@@ -6,7 +6,6 @@
 #include <mutex>
 #include <string>
 #include <thread>
-#include <unistd.h>
 #include <vector>
 
 #include <boost/log/trivial.hpp>
@@ -216,7 +215,7 @@ void RobotClient::refresh_every() {
             std::this_thread::sleep_for(std::chrono::seconds(refresh_interval_));
             refresh();
 
-        } catch (std::exception& exc) {
+        } catch (std::exception&) {
             break;
         }
     }

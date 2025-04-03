@@ -4,8 +4,6 @@
 #include <memory>
 #include <sstream>
 #include <string>
-#include <sys/socket.h>
-#include <sys/stat.h>
 
 #include <boost/log/trivial.hpp>
 #include <boost/none.hpp>
@@ -115,8 +113,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             Registry::get().lookup_model(cfg.name());
         if (reg) {
             try {
-                const std::shared_ptr<Resource> res = reg->construct_resource(deps, cfg);
-                manager->replace_one(cfg.resource_name(), res);
+                const std::shared_ptr<Resource> resource = reg->construct_resource(deps, cfg);
+                manager->replace_one(cfg.resource_name(), resource);
             } catch (const std::exception& exc) {
                 return grpc::Status(::grpc::INTERNAL, exc.what());
             }
@@ -252,13 +250,8 @@ ModuleService::~ModuleService() {
 }
 
 void ModuleService::serve() {
-    const mode_t old_mask = umask(0077);
-    const int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
-    listen(sockfd, 10);
-    umask(old_mask);
-
     server_->register_service(impl_.get());
-    const std::string address = "unix://" + module_->addr();
+    const std::string address = "unix:" + module_->addr();
     server_->add_listening_port(address);
 
     module_->set_ready();
