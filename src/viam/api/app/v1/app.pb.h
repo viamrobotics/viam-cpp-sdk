@@ -30365,6 +30365,7 @@ class ModuleVersion final :
     kVersionFieldNumber = 1,
     kEntrypointFieldNumber = 4,
     kFirstRunFieldNumber = 5,
+    kMarkdownDescriptionFieldNumber = 6,
   };
   // repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
   int files_size() const;
@@ -30448,6 +30449,24 @@ class ModuleVersion final :
   std::string* _internal_mutable_first_run();
   public:
 
+  // optional string markdown_description = 6 [json_name = "markdownDescription"];
+  bool has_markdown_description() const;
+  private:
+  bool _internal_has_markdown_description() const;
+  public:
+  void clear_markdown_description();
+  const std::string& markdown_description() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_markdown_description(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_markdown_description();
+  PROTOBUF_NODISCARD std::string* release_markdown_description();
+  void set_allocated_markdown_description(std::string* markdown_description);
+  private:
+  const std::string& _internal_markdown_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_markdown_description(const std::string& value);
+  std::string* _internal_mutable_markdown_description();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleVersion)
  private:
   class _Internal;
@@ -30462,6 +30481,7 @@ class ModuleVersion final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_description_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -64356,6 +64376,74 @@ inline void ModuleVersion::set_allocated_first_run(std::string* first_run) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersion.first_run)
+}
+
+// optional string markdown_description = 6 [json_name = "markdownDescription"];
+inline bool ModuleVersion::_internal_has_markdown_description() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool ModuleVersion::has_markdown_description() const {
+  return _internal_has_markdown_description();
+}
+inline void ModuleVersion::clear_markdown_description() {
+  markdown_description_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& ModuleVersion::markdown_description() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersion.markdown_description)
+  return _internal_markdown_description();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleVersion::set_markdown_description(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000002u;
+ markdown_description_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleVersion.markdown_description)
+}
+inline std::string* ModuleVersion::mutable_markdown_description() {
+  std::string* _s = _internal_mutable_markdown_description();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleVersion.markdown_description)
+  return _s;
+}
+inline const std::string& ModuleVersion::_internal_markdown_description() const {
+  return markdown_description_.Get();
+}
+inline void ModuleVersion::_internal_set_markdown_description(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  markdown_description_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleVersion::_internal_mutable_markdown_description() {
+  _has_bits_[0] |= 0x00000002u;
+  return markdown_description_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleVersion::release_markdown_description() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleVersion.markdown_description)
+  if (!_internal_has_markdown_description()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  auto* p = markdown_description_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (markdown_description_.IsDefault()) {
+    markdown_description_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void ModuleVersion::set_allocated_markdown_description(std::string* markdown_description) {
+  if (markdown_description != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  markdown_description_.SetAllocated(markdown_description, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (markdown_description_.IsDefault()) {
+    markdown_description_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersion.markdown_description)
 }
 
 // -------------------------------------------------------------------
