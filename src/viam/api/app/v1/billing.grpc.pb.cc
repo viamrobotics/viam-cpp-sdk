@@ -29,6 +29,8 @@ static const char* BillingService_method_names[] = {
   "/viam.app.v1.BillingService/GetInvoicesSummary",
   "/viam.app.v1.BillingService/GetInvoicePdf",
   "/viam.app.v1.BillingService/SendPaymentRequiredEmail",
+  "/viam.app.v1.BillingService/GetAvailableBillingTiers",
+  "/viam.app.v1.BillingService/UpdateOrganizationBillingTier",
 };
 
 std::unique_ptr< BillingService::Stub> BillingService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -43,6 +45,8 @@ BillingService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_GetInvoicesSummary_(BillingService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetInvoicePdf_(BillingService_method_names[3], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_SendPaymentRequiredEmail_(BillingService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAvailableBillingTiers_(BillingService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateOrganizationBillingTier_(BillingService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BillingService::Stub::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) {
@@ -173,6 +177,62 @@ void BillingService::Stub::experimental_async::SendPaymentRequiredEmail(::grpc::
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::SendPaymentRequiredEmailResponse>::Create(channel_.get(), cq, rpcmethod_SendPaymentRequiredEmail_, context, request, false);
 }
 
+::grpc::Status BillingService::Stub::GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest& request, ::viam::app::v1::GetAvailableBillingTiersResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetAvailableBillingTiers_, context, request, response);
+}
+
+void BillingService::Stub::experimental_async::GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAvailableBillingTiers_, context, request, response, std::move(f));
+}
+
+void BillingService::Stub::experimental_async::GetAvailableBillingTiers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAvailableBillingTiers_, context, request, response, std::move(f));
+}
+
+void BillingService::Stub::experimental_async::GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAvailableBillingTiers_, context, request, response, reactor);
+}
+
+void BillingService::Stub::experimental_async::GetAvailableBillingTiers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAvailableBillingTiers_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAvailableBillingTiersResponse>* BillingService::Stub::AsyncGetAvailableBillingTiersRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetAvailableBillingTiersResponse>::Create(channel_.get(), cq, rpcmethod_GetAvailableBillingTiers_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAvailableBillingTiersResponse>* BillingService::Stub::PrepareAsyncGetAvailableBillingTiersRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetAvailableBillingTiersResponse>::Create(channel_.get(), cq, rpcmethod_GetAvailableBillingTiers_, context, request, false);
+}
+
+::grpc::Status BillingService::Stub::UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateOrganizationBillingTier_, context, request, response);
+}
+
+void BillingService::Stub::experimental_async::UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationBillingTier_, context, request, response, std::move(f));
+}
+
+void BillingService::Stub::experimental_async::UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationBillingTier_, context, request, response, std::move(f));
+}
+
+void BillingService::Stub::experimental_async::UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationBillingTier_, context, request, response, reactor);
+}
+
+void BillingService::Stub::experimental_async::UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateOrganizationBillingTier_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* BillingService::Stub::AsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateOrganizationBillingTierResponse>::Create(channel_.get(), cq, rpcmethod_UpdateOrganizationBillingTier_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* BillingService::Stub::PrepareAsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::UpdateOrganizationBillingTierResponse>::Create(channel_.get(), cq, rpcmethod_UpdateOrganizationBillingTier_, context, request, false);
+}
+
 BillingService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BillingService_method_names[0],
@@ -224,6 +284,26 @@ BillingService::Service::Service() {
              ::viam::app::v1::SendPaymentRequiredEmailResponse* resp) {
                return service->SendPaymentRequiredEmail(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BillingService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::GetAvailableBillingTiersRequest, ::viam::app::v1::GetAvailableBillingTiersResponse>(
+          [](BillingService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::GetAvailableBillingTiersRequest* req,
+             ::viam::app::v1::GetAvailableBillingTiersResponse* resp) {
+               return service->GetAvailableBillingTiers(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BillingService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::UpdateOrganizationBillingTierRequest, ::viam::app::v1::UpdateOrganizationBillingTierResponse>(
+          [](BillingService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::UpdateOrganizationBillingTierRequest* req,
+             ::viam::app::v1::UpdateOrganizationBillingTierResponse* resp) {
+               return service->UpdateOrganizationBillingTier(ctx, req, resp);
+             }, this)));
 }
 
 BillingService::Service::~Service() {
@@ -258,6 +338,20 @@ BillingService::Service::~Service() {
 }
 
 ::grpc::Status BillingService::Service::SendPaymentRequiredEmail(::grpc::ServerContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BillingService::Service::GetAvailableBillingTiers(::grpc::ServerContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BillingService::Service::UpdateOrganizationBillingTier(::grpc::ServerContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response) {
   (void) context;
   (void) request;
   (void) response;
