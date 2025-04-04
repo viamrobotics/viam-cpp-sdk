@@ -65,10 +65,14 @@ class ModuleService {
     std::shared_ptr<Resource> get_parent_resource_(const Name& name);
 
     std::mutex lock_;
+
     std::unique_ptr<Module> module_;
+
     std::shared_ptr<RobotClient> parent_;
     std::string parent_addr_;
+
     std::unique_ptr<Server> server_;
+
     SignalManager signal_manager_;
 
     std::unique_ptr<ServiceImpl> impl_;

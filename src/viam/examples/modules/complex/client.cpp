@@ -13,6 +13,7 @@
 
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/components/motor.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
@@ -48,54 +49,61 @@ int main() {
     // Connect to robot.
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
     // Print resources.
-    std::cout << "Resources" << std::endl;
+    VIAM_SDK_LOG(info) << "Resources:";
     std::vector<Name> resource_names = robot->resource_names();
     for (const Name& resource : resource_names) {
-        std::cout << "\t" << resource << "\n";
+        VIAM_SDK_LOG(info) << resource;
     }
 
     // Exercise Gizmo methods.
     auto gc = robot->resource_by_name<Gizmo>("gizmo1");
     if (!gc) {
-        std::cerr << "could not get 'gizmo1' resource from robot" << std::endl;
+        VIAM_SDK_LOG(error) << "could not get 'gizmo1' resource from robot" << std::endl;
         return EXIT_FAILURE;
     }
+
     bool do_one_ret = gc->do_one("arg1");
-    std::cout << "gizmo1 do_one returned: " << do_one_ret << std::endl;
+    VIAM_SDK_LOG(info) << "gizmo1 do_one returned: " << do_one_ret;
+
     bool do_one_client_stream_ret = gc->do_one_client_stream({"arg1", "arg1", "arg1"});
-    std::cout << "gizmo1 do_one_client_stream returned: " << do_one_client_stream_ret << std::endl;
+    VIAM_SDK_LOG(info) << "gizmo1 do_one_client_stream returned: " << do_one_client_stream_ret;
+
     std::string do_two_ret = gc->do_two(false);
-    std::cout << "gizmo1 do_two returned: " << do_two_ret << std::endl;
+    VIAM_SDK_LOG(info) << "gizmo1 do_two returned: " << do_two_ret;
+
     std::vector<bool> do_one_server_stream_ret = gc->do_one_server_stream("arg1");
-    std::cout << "gizmo1 do_one_server_stream returned: " << std::endl;
+    VIAM_SDK_LOG(info) << "gizmo1 do_one_server_stream returned: ";
     for (bool ret : do_one_server_stream_ret) {
-        std::cout << '\t' << ret << std::endl;
+        VIAM_SDK_LOG(info) << ret;
     }
+
     std::vector<bool> do_one_bidi_stream_ret = gc->do_one_bidi_stream({"arg1", "arg2", "arg3"});
-    std::cout << "gizmo1 do_one_bidi_stream returned: " << std::endl;
+    VIAM_SDK_LOG(info) << "gizmo1 do_one_bidi_stream returned: ";
     for (bool ret : do_one_bidi_stream_ret) {
-        std::cout << '\t' << ret << std::endl;
+        VIAM_SDK_LOG(info) << ret;
     }
 
     // Exercise Summation methods.
     auto sc = robot->resource_by_name<Summation>("mysum1");
     if (!sc) {
-        std::cerr << "could not get 'mysum1' resource from robot" << std::endl;
+        VIAM_SDK_LOG(error) << "could not get 'mysum1' resource from robot";
         return EXIT_FAILURE;
     }
+
     double sum = sc->sum({0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
-    std::cout << "mysum1 sum of numbers [0, 10) is: " << sum << std::endl;
+    VIAM_SDK_LOG(info) << "mysum1 sum of numbers [0, 10) is: " << sum;
 
     // Exercise a Base method.
     auto mc = robot->resource_by_name<Motor>("motor1");
     if (!mc) {
-        std::cerr << "could not get 'motor1' resource from robot" << std::endl;
+        VIAM_SDK_LOG(error) << "could not get 'motor1' resource from robot";
         return EXIT_FAILURE;
     }
+
     if (mc->is_moving()) {
-        std::cout << "motor1 is moving" << std::endl;
+        VIAM_SDK_LOG(info) << "motor1 is moving";
     } else {
-        std::cout << "motor1 is not moving" << std::endl;
+        VIAM_SDK_LOG(info) << "motor1 is not moving";
     }
 
     return EXIT_SUCCESS;
