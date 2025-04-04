@@ -29,6 +29,23 @@ BOOST_AUTO_TEST_CASE(test_cout_logging) {
     }
 }
 
+BOOST_AUTO_TEST_CASE(test_global_name) {
+    cout_redirect redirect;
+
+    sdk::LogManager::get().set_global_resource_name("My Channel");
+
+    VIAM_SDK_LOG(info) << "after";
+
+    const std::string rec = redirect.os.str();
+    redirect.release();
+
+    for (const char* s : {"My Channel", "after"}) {
+        BOOST_CHECK(rec.find(s) != std::string::npos);
+    }
+
+    BOOST_CHECK(rec.find(sdk::global_resource_name()) == std::string::npos);
+}
+
 BOOST_AUTO_TEST_CASE(test_global_filter) {
     cout_redirect redirect;
 

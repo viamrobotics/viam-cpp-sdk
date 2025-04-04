@@ -91,6 +91,11 @@ LogManager& LogManager::get() {
     return result;
 }
 
+void LogManager::set_global_resource_name(std::string name) {
+    sdk_logger_.channel(std::move(name));
+    VIAM_SDK_LOG(debug) << "Overrode global resource name";
+}
+
 LogSource& LogManager::global_logger() {
     return sdk_logger_;
 }
