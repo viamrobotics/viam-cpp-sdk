@@ -55,7 +55,7 @@ void NavigationClient::set_mode(const Navigation::Mode mode, const ProtoStruct& 
             request.set_mode(viam::service::navigation::v1::Mode(mode));
             *request.mutable_extra() = to_proto(extra);
         })
-        .invoke([](auto& response) {});
+        .invoke([](auto&) {});
 }
 
 Navigation::LocationResponse NavigationClient::get_location(const ProtoStruct& extra) {
@@ -81,7 +81,7 @@ void NavigationClient::add_waypoint(const geo_point& location, const ProtoStruct
             *request.mutable_location() = to_proto(location);
             *request.mutable_extra() = to_proto(extra);
         })
-        .invoke([](auto& response) {});
+        .invoke([](auto&) {});
 }
 
 void NavigationClient::remove_waypoint(const std::string id, const ProtoStruct& extra) {
@@ -90,7 +90,7 @@ void NavigationClient::remove_waypoint(const std::string id, const ProtoStruct& 
             *request.mutable_id() = id;
             *request.mutable_extra() = to_proto(extra);
         })
-        .invoke([](auto& response) {});
+        .invoke([](auto&) {});
 }
 
 std::vector<geo_geometry> NavigationClient::get_obstacles(const ProtoStruct& extra) {
@@ -107,7 +107,7 @@ std::vector<NavigationClient::Path> NavigationClient::get_paths(const ProtoStruc
 
 NavigationClient::Properties NavigationClient::get_properties() {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
-        .with([&](auto& request) {})
+        .with([&](auto&) {})
         .invoke([](auto& response) { return Properties{MapType(response.map_type())}; });
 }
 

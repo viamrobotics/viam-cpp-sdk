@@ -18,7 +18,12 @@
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/transform_view.hpp>
 #include <boost/variant/variant.hpp>
+
+#if defined(__has_include) && (__has_include(<xtensor/containers/xadapt.hpp>))
+#include <xtensor/containers/xadapt.hpp>
+#else
 #include <xtensor/xadapt.hpp>
+#endif
 
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/services/service.hpp>
