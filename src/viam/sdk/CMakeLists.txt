@@ -132,6 +132,7 @@ target_sources(viamsdk
     rpc/dial.cpp
     rpc/server.cpp
     rpc/private/viam_grpc_channel.cpp
+    rpc/private/viam_rust_utils_stubs.cpp
     services/discovery.cpp
     services/generic.cpp
     services/mlmodel.cpp
@@ -263,10 +264,15 @@ target_link_libraries(viamsdk
   PRIVATE ${VIAMCPPSDK_GRPCXX_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_GRPC_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
-  PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )
 
+# TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't link to it.
+if (NOT WIN32)
+  target_link_libraries(viamsdk
+    PRIVATE viam_rust_utils
+  )
+endif()
 
 if (APPLE)
   target_link_libraries(viamsdk PUBLIC "-framework Security")
