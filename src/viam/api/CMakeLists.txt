@@ -113,6 +113,16 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     )
   endif()
 
+  # List of names of non-compilable generated code
+  # The Switch component generates protobuf which uses `switch` as a namespace.
+  # This needs to be processed below.
+  set(VIAMCPPSDK_SWITCH_REPLACE_PATHS     
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.h
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.cc
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.h
+  )
+
   add_custom_command(
     OUTPUT
     # Unfortunately, there isn't a good way to know in advance what
@@ -153,6 +163,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/board/v1/board.grpc.pb.h
     ${PROTO_GEN_DIR}/component/board/v1/board.pb.cc
     ${PROTO_GEN_DIR}/component/board/v1/board.pb.h
+    ${PROTO_GEN_DIR}/component/button/v1/button.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/button/v1/button.grpc.pb.h
+    ${PROTO_GEN_DIR}/component/button/v1/button.pb.cc
+    ${PROTO_GEN_DIR}/component/button/v1/button.pb.h
     ${PROTO_GEN_DIR}/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/camera/v1/camera.grpc.pb.h
     ${PROTO_GEN_DIR}/component/camera/v1/camera.pb.cc
@@ -197,6 +211,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/servo/v1/servo.grpc.pb.h
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.cc
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.h
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.h
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.cc
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.h
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.h
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
@@ -241,6 +259,9 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     COMMAND ${BUF_COMMAND} generate ${BUF_GOOGLE_API_SOURCE} --template buf.gen.yaml --path google/rpc --path google/api
     COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_GOUTILS_SOURCE} --template buf.gen.yaml
     COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_API_SOURCE} --template buf.gen.yaml --path ${BUF_PROTO_COMPONENTS_JOINED}
+
+    # After generating the protos, include a step to invoke a search-and-replace for switch -> switch_ in the Switch component files
+    COMMAND ${CMAKE_COMMAND} "-DSWITCH_REPLACE_PATHS=\"${VIAMCPPSDK_SWITCH_REPLACE_PATHS}\"" -P ${CMAKE_CURRENT_SOURCE_DIR}/viamcppsdk_replace_switch.cmake 
     MAIN_DEPENDENCY buf.gen.yaml
   )
 
@@ -300,6 +321,8 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/component/base/v1/base.pb.cc
     ${PROTO_GEN_DIR}/component/board/v1/board.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/board/v1/board.pb.cc
+    ${PROTO_GEN_DIR}/component/button/v1/button.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/button/v1/button.pb.cc
     ${PROTO_GEN_DIR}/component/camera/v1/camera.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/camera/v1/camera.pb.cc
     ${PROTO_GEN_DIR}/component/encoder/v1/encoder.grpc.pb.cc
@@ -322,6 +345,8 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/component/sensor/v1/sensor.pb.cc
     ${PROTO_GEN_DIR}/component/servo/v1/servo.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.cc
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.cc
+    ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
@@ -360,6 +385,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/component/base/v1/base.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/board/v1/board.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/board/v1/board.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/button/v1/button.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/button/v1/button.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/camera/v1/camera.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/camera/v1/camera.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/encoder/v1/encoder.grpc.pb.h
@@ -382,6 +409,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/component/sensor/v1/sensor.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/servo/v1/servo.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/servo/v1/servo.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/switch/v1/switch.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/component/switch/v1/switch.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/annotations.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/http.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/httpbody.pb.h

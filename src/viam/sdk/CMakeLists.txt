@@ -34,8 +34,18 @@ configure_file(common/grpc_fwd.hpp.in common/grpc_fwd.hpp)
 
 # Set compile and link options based on arguments
 if (VIAMCPPSDK_USE_WALL_WERROR)
-  target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    # Note: Currently, the generated protos throw W4244 and W4267, so turn that back to a warning.
+    target_compile_options(viamsdk PRIVATE /W4 /WX /wd4244 /wd4267)
+  else()
+    message(ERROR "VIAMCPPSDK_USE_WALL_ERROR is set, but not known how to enable for compiler ID ${CMAKE_CXX_COMPILER_ID}")
+  endif()
 endif()
+
 if (VIAMCPPSDK_SANITIZED_BUILD)
   target_link_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
   target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
@@ -61,6 +71,7 @@ target_sources(viamsdk
     components/arm.cpp
     components/base.cpp
     components/board.cpp
+    components/button.cpp
     components/camera.cpp
     components/component.cpp
     components/encoder.cpp
@@ -78,6 +89,8 @@ target_sources(viamsdk
     components/private/board_client.cpp
     components/private/board_server.cpp
     components/private/camera_client.cpp
+    components/private/button_client.cpp
+    components/private/button_server.cpp
     components/private/camera_server.cpp
     components/private/encoder.cpp
     components/private/encoder_client.cpp
@@ -100,8 +113,11 @@ target_sources(viamsdk
     components/private/sensor_server.cpp
     components/private/servo_client.cpp
     components/private/servo_server.cpp
+    components/private/switch_client.cpp
+    components/private/switch_server.cpp
     components/sensor.cpp
     components/servo.cpp
+    components/switch.cpp
     config/resource.cpp
     module/handler_map.cpp
     module/module.cpp
@@ -157,6 +173,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/base.hpp
       ../../viam/sdk/components/board.hpp
+      ../../viam/sdk/components/button.hpp
       ../../viam/sdk/components/camera.hpp
       ../../viam/sdk/components/component.hpp
       ../../viam/sdk/components/encoder.hpp
@@ -169,6 +186,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/power_sensor.hpp
       ../../viam/sdk/components/sensor.hpp
       ../../viam/sdk/components/servo.hpp
+      ../../viam/sdk/components/switch.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
