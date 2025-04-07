@@ -55,7 +55,6 @@ class ServiceHelper : public ServiceHelperBase {
     }
 
    private:
-
 #if __cplusplus >= 201703L
     template <typename Callable, typename... Args>
     using is_void_result = std::is_void<std::invoke_result_t<Callable, Args...>>;

@@ -1,7 +1,11 @@
 #ifdef _WIN32
 #define NOMINMAX
+// clang-format off
+// Otherwise clang-format tries to alphabetize these headers,
+// but `winsock2.h` should definitely precede `windows.h`.
 #include <winsock2.h>
 #include <windows.h>
+// clang-format on
 #endif
 
 #include <viam/sdk/module/service.hpp>
