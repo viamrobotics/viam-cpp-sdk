@@ -2,9 +2,6 @@
 
 #include <cstdlib>
 
-// TODO(RSDK-10366): Currently, rust_utils is not published for windows
-// so we just implement the associated entry points as `abort`.
-#ifdef _WIN32
 void* init_rust_runtime() {
     abort();
 }
@@ -20,4 +17,3 @@ void free_string(const char*) {
 char* dial(const char*, const char*, const char*, const char*, bool, float, void*) {
     abort();
 }
-#endif

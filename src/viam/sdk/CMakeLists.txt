@@ -132,7 +132,6 @@ target_sources(viamsdk
     rpc/dial.cpp
     rpc/server.cpp
     rpc/private/viam_grpc_channel.cpp
-    rpc/private/viam_rust_utils_stubs.cpp
     services/discovery.cpp
     services/generic.cpp
     services/mlmodel.cpp
@@ -267,11 +266,15 @@ target_link_libraries(viamsdk
   PRIVATE Threads::Threads
 )
 
-# TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't link to it.
+# TODO(RSDK-10366): Currently, rust_utils is not published for
+# windows, so don't link to it.  Instead, link a stub implementation
+# that just calls `abort`.
 if (NOT WIN32)
   target_link_libraries(viamsdk
     PRIVATE viam_rust_utils
   )
+else()
+  target_sources(viamsdk PRIVATE rpc/private/viam_rust_utils_stubs.cpp)
 endif()
 
 if (APPLE)
