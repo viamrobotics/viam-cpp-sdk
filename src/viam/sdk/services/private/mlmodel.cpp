@@ -150,6 +150,11 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor_t(const T* data,
         shape_accum = next_shape_accum;
     }
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable : 4127)
+#endif
+
     // We need to handle the special case of an odd number of 16-bit
     // elements because that will arrive appearing to have one more
     // element than the shape would indicate, and we don't want to
@@ -159,6 +164,10 @@ MLModelService::tensor_views make_sdk_tensor_from_api_tensor_t(const T* data,
     if (is16bit && (shape_accum == (size - 1))) {
         size -= 1;
     }
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
     if (size != shape_accum) {
         std::ostringstream message;

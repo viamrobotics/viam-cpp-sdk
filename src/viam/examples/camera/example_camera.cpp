@@ -1,6 +1,5 @@
 #include <fstream>
 #include <string>
-#include <unistd.h>
 #include <vector>
 
 #include <viam/sdk/common/instance.hpp>

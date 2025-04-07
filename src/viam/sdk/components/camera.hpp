@@ -9,7 +9,12 @@
 #include <vector>
 
 #include <boost/endian/conversion.hpp>
+
+#if defined(__has_include) && (__has_include(<xtensor/containers/xarray.hpp>))
+#include <xtensor/containers/xarray.hpp>
+#else
 #include <xtensor/xarray.hpp>
+#endif
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>

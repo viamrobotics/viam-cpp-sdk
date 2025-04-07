@@ -144,7 +144,7 @@ jobs:
           sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
 
           apt-get update
-          apt-get -y install cmake
+          apt-get -y install cmake=3.25.2-0kitware1ubuntu22.04.1 cmake-data=3.25.2-0kitware1ubuntu22.04.1
 
       - name: Setup build directory
         run: mkdir builds

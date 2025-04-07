@@ -34,7 +34,7 @@
 # constrained by the version of CMake available on target systems.
 cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-set(CMAKE_PROJECT_VERSION 0.5.0)
+set(CMAKE_PROJECT_VERSION 0.6.0)
 
 # Identify the project.
 project(viam-cpp-sdk
@@ -149,6 +149,10 @@ if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
   elseif (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.0)
       message(FATAL_ERROR "Insufficient Apple clang version: XCode 10.0+ required")
+    endif()
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.34)
+      message(FATAL_ERROR "Insufficient MSVC version: Visual Studio 2022 17.4 (MSVC 19.34) or later is required")
     endif()
   else()
     message(FATAL_ERROR "Unknown / untested compiler ${CMAKE_CXX_COMPILER_ID}")
