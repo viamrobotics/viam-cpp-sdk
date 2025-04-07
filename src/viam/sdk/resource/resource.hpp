@@ -4,13 +4,16 @@
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
 namespace viam {
 namespace sdk {
 
 class Resource;
+
 using Dependencies = std::unordered_map<Name, std::shared_ptr<Resource>>;
+
 class Resource {
    public:
     virtual ~Resource();
@@ -25,11 +28,16 @@ class Resource {
     /// @brief Return the resource's name.
     virtual std::string name() const;
 
+    /// @brief Set the log level for log messages originating from this Resource.
+    void set_log_level(log_level) const;
+
    private:
     std::string name_;
 
    protected:
     Name get_resource_name(const std::string& type) const;
+
+    LogSource logger_;
 };
 
 template <>

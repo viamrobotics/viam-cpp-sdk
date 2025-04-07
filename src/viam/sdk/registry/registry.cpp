@@ -5,7 +5,6 @@
 #include <string>
 #include <unordered_map>
 
-#include <boost/log/trivial.hpp>
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/struct.pb.h>
 #include <grpcpp/channel.h>

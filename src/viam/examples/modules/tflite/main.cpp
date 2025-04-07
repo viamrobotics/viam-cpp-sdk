@@ -757,10 +757,10 @@ int serve(const std::string& socket_path) try {
 
     return EXIT_SUCCESS;
 } catch (const std::exception& ex) {
-    std::cout << "ERROR: A std::exception was thrown from `serve`: " << ex.what() << std::endl;
+    std::cerr << "ERROR: A std::exception was thrown from `serve`: " << ex.what() << std::endl;
     return EXIT_FAILURE;
 } catch (...) {
-    std::cout << "ERROR: An unknown exception was thrown from `serve`" << std::endl;
+    std::cerr << "ERROR: An unknown exception was thrown from `serve`" << std::endl;
     return EXIT_FAILURE;
 }
 
@@ -770,8 +770,8 @@ int main(int argc, char* argv[]) {
     const std::string usage = "usage: mlmodelservice_tflite /path/to/unix/socket";
 
     if (argc < 2) {
-        std::cout << "ERROR: insufficient arguments\n";
-        std::cout << usage << "\n";
+        std::cerr << "ERROR: insufficient arguments\n";
+        std::cerr << usage << "\n";
         return EXIT_FAILURE;
     }
 

@@ -83,6 +83,18 @@ int main(int argc, char* argv[]) try {
     // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
     viam::sdk::Instance inst;
 
+    // By default, log messages with VIAM_SDK_LOG have "Viam C++ SDK" as the resource name.
+    // Here we override it with the name of the executable, trimming the leading path if present.
+
+    std::string exe_name{argv[0]};
+
+    const auto last_slash_pos = exe_name.find_last_of('/');
+    if (last_slash_pos != std::string::npos) {
+        exe_name = exe_name.substr(last_slash_pos);
+    }
+
+    viam::sdk::LogManager::get().set_global_resource_name(exe_name);
+
     // Build up our command line options. The example operates in two
     // modes. In the "--generate" mode, it takes command line
     // parameters needed to satisfy the interpolation points in the
@@ -168,35 +180,33 @@ int main(int argc, char* argv[]) try {
     if (opt_generating) {
         // Validate that we have the right options for generation.
         if (opt_robot_host || opt_api_key || opt_api_key_id) {
-            std::cout << argv[0]
-                      << ": With `--generate`, do not provide `--robot-{host,api-key,api-key-id}`"
-                      << std::endl;
+            VIAM_SDK_LOG(error)
+                << "With `--generate`, do not provide `--robot-{host,api-key,api-key-id}`";
             return EXIT_FAILURE;
         }
 
         if (!opt_model_path) {
-            std::cout << argv[0] << ": With `--generate`, a `--model-path` is required"
-                      << std::endl;
+            VIAM_SDK_LOG(error) << "With `--generate`, a `--model-path` is required";
             return EXIT_FAILURE;
         }
+
         const bf::path model_path(opt_model_path.get());
         if (!bf::is_regular_file(model_path)) {
-            std::cout << argv[0] << ": The path `" << model_path.c_str()
-                      << "` provided for `--model-path` is not an existing regular file"
-                      << std::endl;
+            VIAM_SDK_LOG(error) << "The path `" << model_path.c_str()
+                                << "` provided for `--model-path` is not an existing regular file";
             return EXIT_FAILURE;
         }
 
         if (!opt_tflite_module_path) {
-            std::cout << argv[0] << ": With `--generate`, a `--tflite-module-path` is required"
-                      << std::endl;
+            VIAM_SDK_LOG(error) << "With `--generate`, a `--tflite-module-path` is required";
             return EXIT_FAILURE;
         }
+
         const bf::path tflite_module_path(opt_tflite_module_path.get());
         if (!bf::is_regular_file(tflite_module_path)) {
-            std::cout << argv[0] << ": The path `" << tflite_module_path.c_str()
-                      << "` provided for `--tflite-module-path` is not an existing regular file"
-                      << std::endl;
+            VIAM_SDK_LOG(error)
+                << "The path `" << tflite_module_path.c_str()
+                << "` provided for `--tflite-module-path` is not an existing regular file";
             return EXIT_FAILURE;
         }
 
@@ -207,28 +217,25 @@ int main(int argc, char* argv[]) try {
         const auto config = boost::format(kRobotConfigTemplate) % bf::absolute(model_path).c_str() %
                             bf::absolute(tflite_module_path).c_str();
 
-        std::cout << config << std::endl;
+        VIAM_SDK_LOG(info) << config << std::endl;
 
     } else {
         // Validate that we have the right options for classification mode.
         if (opt_model_path || opt_tflite_module_path) {
-            std::cout << argv[0] << ": Without `--generate`, do not provide `--*path*` arguments"
-                      << std::endl;
+            VIAM_SDK_LOG(error) << "Without `--generate`, do not provide `--*path*` arguments";
             return EXIT_FAILURE;
         }
 
         if (!opt_robot_host) {
-            std::cout << argv[0]
-                      << ": The `--robot-host` argument is required when connecting to a robot"
-                      << std::endl;
+            VIAM_SDK_LOG(error)
+                << "The `--robot-host` argument is required when connecting to a robot";
             return EXIT_FAILURE;
         }
 
         if (!opt_api_key || !opt_api_key_id) {
-            std::cout << argv[0]
-                      << ": The `--robot-api-key` and the `--robot-api-key-id` argument are "
-                         "required when connecting to a robot"
-                      << std::endl;
+            VIAM_SDK_LOG(error)
+                << "The `--robot-api-key` and the `--robot-api-key-id` argument are "
+                   "required when connecting to a robot";
             return EXIT_FAILURE;
         }
 
@@ -248,10 +255,9 @@ int main(int argc, char* argv[]) try {
         auto yamnet_service =
             robot->resource_by_name<vsdk::MLModelService>("yamnet_classification_tflite");
         if (!yamnet_service) {
-            std::cout << argv[0] << ": "
-                      << "Failed: did not find the `yamnet_classification_tflite` resource, cannot "
-                         "continue"
-                      << std::endl;
+            VIAM_SDK_LOG(error)
+                << " did not find the `yamnet_classification_tflite` resource, cannot "
+                   "continue";
             return EXIT_FAILURE;
         }
 
@@ -296,8 +302,7 @@ int main(int argc, char* argv[]) try {
         // the robot configuration.
         auto categories = result->find("categories");
         if (categories == result->end()) {
-            std::cout << argv[0] << ": "
-                      << "Failed: a `categories` tensor was not returned" << std::endl;
+            VIAM_SDK_LOG(error) << "A `categories` tensor was not returned";
             return EXIT_FAILURE;
         }
 
@@ -311,10 +316,8 @@ int main(int argc, char* argv[]) try {
         const auto* const categories_float =
             boost::get<vsdk::MLModelService::tensor_view<float>>(&categories->second);
         if (!categories_float) {
-            std::cout
-                << argv[0] << ": "
-                << "Failed: a `categories` tensor was returned, but it was not of type `float`"
-                << std::endl;
+            VIAM_SDK_LOG(error)
+                << "A `categories` tensor was returned, but it was not of type `float`";
             return EXIT_FAILURE;
         }
 
@@ -323,23 +326,23 @@ int main(int argc, char* argv[]) try {
         // results and print out the label and score.
         if (!opt_model_label_path) {
             for (const auto& val : *categories_float) {
-                std::cout << val << std::endl;
+                VIAM_SDK_LOG(info) << val;
             }
         } else {
             // Ensure that the label path is something we can actually read from.
             const bf::path model_label_path(opt_model_label_path.get());
             if (!bf::is_regular_file(model_label_path)) {
-                std::cout << argv[0] << ": Failed: The path `" << model_label_path.c_str()
-                          << "` provided for `--model-label-path` is not an existing regular file"
-                          << std::endl;
+                VIAM_SDK_LOG(error)
+                    << "The path `" << model_label_path.c_str()
+                    << "` provided for `--model-label-path` is not an existing regular file";
                 return EXIT_FAILURE;
             }
 
             // Open the labels file, or bail.
             std::ifstream labels_stream(model_label_path.c_str());
             if (!labels_stream) {
-                std::cout << argv[0] << ": Failed: Unable to open label path `"
-                          << model_label_path.c_str() << "`" << std::endl;
+                VIAM_SDK_LOG(error)
+                    << "Unable to open label path `" << model_label_path.c_str() << "`";
                 return EXIT_FAILURE;
             }
 
@@ -353,9 +356,8 @@ int main(int argc, char* argv[]) try {
             // If the tensor size doesn't match the labels file size, then the labels file
             // is probably incorrect.
             if (categories_float->size() != labels.size()) {
-                std::cout << argv[0]
-                          << ": Failed: Size mismatch between category scores and label files"
-                          << std::endl;
+                VIAM_SDK_LOG(error)
+                    << "Size mismatch between category scores and label files" << std::endl;
                 return EXIT_FAILURE;
             }
 
@@ -364,10 +366,12 @@ int main(int argc, char* argv[]) try {
                 const std::string* label;
                 float score;
             };
+
             std::vector<scored_label> scored_labels;
             for (size_t i = 0; i != labels.size(); ++i) {
                 scored_labels.push_back({&labels[i], (*categories_float)[i]});
             }
+
             std::sort(begin(scored_labels), end(scored_labels), [](const auto& l, const auto& r) {
                 return l.score > r.score;
             });
@@ -375,40 +379,36 @@ int main(int argc, char* argv[]) try {
             // Print out the top 5 (or fewer) label/score pairs.
             for (size_t i = 0; i != std::min(5UL, scored_labels.size()); ++i) {
                 // TODO: Avoid hardcoding the width here.
-                std::cout << boost::format("%1%: %2% %|40t|%3%\n") % i % *scored_labels[i].label %
-                                 scored_labels[i].score;
+                VIAM_SDK_LOG(info) << boost::format("%1%: %2% %|40t|%3%\n") % i %
+                                          *scored_labels[i].label % scored_labels[i].score;
             }
-            std::cout.flush();
         }
 
         // Run 100 rounds of inference, accumulate some descriptive
         // statistics, and report them.
-        std::cout << "\nMeasuring inference latency ...\n";
+        VIAM_SDK_LOG(info) << "\nMeasuring inference latency ...";
         bacc::accumulator_set<double, bacc::stats<bacc::tag::mean, bacc::tag::moment<2>>>
             accumulator;
+
         for (std::size_t i = 0; i != 100; ++i) {
             const auto start = std::chrono::steady_clock::now();
             static_cast<void>(yamnet_service->infer(inputs));
             const auto finish = std::chrono::steady_clock::now();
             const std::chrono::duration<double> elapsed = finish - start;
-            ;
             accumulator(elapsed.count());
         }
-        std::cout << "Inference latency (seconds), Mean: " << bacc::mean(accumulator) << std::endl;
-        std::cout << "Inference latency (seconds), Var : " << bacc::moment<2>(accumulator)
-                  << std::endl;
+
+        VIAM_SDK_LOG(info) << "Inference latency (seconds), Mean: " << bacc::mean(accumulator);
+        VIAM_SDK_LOG(info) << "Inference latency (seconds), Var : " << bacc::moment<2>(accumulator);
 
         return EXIT_SUCCESS;
     }
 } catch (const std::exception& ex) {
-    std::cout << argv[0] << ": "
-              << "Failed: a std::exception was thrown: `" << ex.what() << "``" << std::endl;
+    std::cerr << argv[0] << ": "
+              << "Failed: a std::exception was thrown: `" << ex.what() << "``\n";
     return EXIT_FAILURE;
-} catch (const std::string& ex) {
-    std::cout << argv[0] << ": "
-              << "Failed: a std::string was thrown: `" << ex << "``" << std::endl;
 } catch (...) {
-    std::cout << argv[0] << ": "
-              << "Failed: an unknown exception was thrown" << std::endl;
+    std::cerr << argv[0] << ": "
+              << "Failed: an unknown exception was thrown\n";
     return EXIT_FAILURE;
 }

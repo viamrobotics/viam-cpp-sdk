@@ -26,14 +26,16 @@ ResourceConfig::ResourceConfig(std::string type,
                                ProtoStruct attributes,
                                std::string api,
                                Model model,
-                               LinkConfig frame)
+                               LinkConfig frame,
+                               log_level lvl)
     : api_({kRDK, type, ""}),
       frame_(std::move(frame)),
       model_(std::move(model)),
       name_(std::move(name)),
       namespace__(std::move(namespace_)),
       type_(std::move(type)),
-      attributes_(std::move(attributes)) {
+      attributes_(std::move(attributes)),
+      log_level_(lvl) {
     if (api.find(':') != std::string::npos) {
         api_ = API::from_string(std::move(api));
     }
@@ -79,6 +81,10 @@ const std::string& ResourceConfig::namespace_() const {
 
 const std::string& ResourceConfig::type() const {
     return type_;
+}
+
+log_level ResourceConfig::get_log_level() const {
+    return log_level_;
 }
 
 const std::vector<std::string>& viam::sdk::ResourceConfig::depends_on() const {
@@ -137,6 +143,7 @@ void to_proto_impl<ResourceConfig>::operator()(const ResourceConfig& self,
     *proto->mutable_namespace_() = self.namespace_();
     *proto->mutable_type() = self.type();
     *proto->mutable_api() = self.api().to_string();
+    *proto->mutable_log_configuration()->mutable_level() = to_string(self.get_log_level());
     *proto->mutable_model() = self.model().to_string();
     *proto->mutable_attributes() = to_proto(self.attributes());
 
@@ -154,7 +161,10 @@ ResourceConfig from_proto_impl<app::v1::ComponentConfig>::operator()(
                           from_proto(proto->attributes()),
                           proto->api(),
                           Model::from_str(proto->model()),
-                          proto->has_frame() ? from_proto(proto->frame()) : LinkConfig{});
+                          proto->has_frame() ? from_proto(proto->frame()) : LinkConfig{},
+                          proto->has_log_configuration()
+                              ? level_from_string(proto->log_configuration().level())
+                              : log_level::info);
 }
 
 std::vector<ResourceConfig>
