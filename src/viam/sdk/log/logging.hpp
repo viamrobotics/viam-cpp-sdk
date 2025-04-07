@@ -70,7 +70,7 @@ class LogManager {
     static LogManager& get();
 
     /// @brief Override the channel name of general log messages not originating from resources.
-    void set_global_resource_name(std::string);
+    void set_global_resource_name(const std::string& name);
 
     /// @brief Set the global logger severity.
     void set_global_log_level(log_level);
