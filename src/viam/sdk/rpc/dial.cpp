@@ -13,17 +13,8 @@
 #include <viam/api/robot/v1/robot.pb.h>
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/rpc/private/viam_grpc_channel.hpp>
+#include <viam/sdk/rpc/private/viam_rust_utils.h>
 
-extern "C" void* init_rust_runtime();
-extern "C" int free_rust_runtime(void* ptr);
-extern "C" void free_string(const char* s);
-extern "C" char* dial(const char* uri,
-                      const char* entity,
-                      const char* type,
-                      const char* payload,
-                      bool allow_insecure,
-                      float timeout,
-                      void* ptr);
 namespace viam {
 namespace sdk {
 

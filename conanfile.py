@@ -82,7 +82,11 @@ class ViamCppSdkRecipe(ConanFile):
         CMake(self).install()
 
     def package_info(self):
-        self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
+
+        # TODO(RSDK-10366): Currently, rust_utils is not published for windows
+        # and the C++ SDK just doesn't include it as a dependency on that platform
+        if not self.settings.os == "Windows":
+            self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
 
         self.cpp_info.components["viamsdk"].libs = ["viamsdk"]
 
@@ -103,10 +107,16 @@ class ViamCppSdkRecipe(ConanFile):
         else:
             lib_folder = os.path.join(self.package_folder, "lib")
             lib_fullpath = os.path.join(lib_folder, "libviamapi.a")
+            if self.settings.os == "Windows":
+                lib_fullpath = os.path.join(lib_folder, "viamapi.lib")
+
             if is_apple_os(self):
                 whole_archive = f"-Wl,-force_load,{lib_fullpath}"
+            elif self.settings.os == "Windows":
+                whole_archive = f"/WHOLEARCHIVE:{lib_fullpath}"
             else:
                 whole_archive = f"-Wl,--push-state,--whole-archive,{lib_fullpath},--pop-state"
+
             self.cpp_info.components["viamapi"].exelinkflags.append(whole_archive)
             self.cpp_info.components["viamapi"].sharedlinkflags.append(whole_archive)
 
@@ -118,7 +128,13 @@ class ViamCppSdkRecipe(ConanFile):
             "xtensor::xtensor",
 
             "viamapi",
-            "viam_rust_utils"
         ])
+
+        # TODO(RSDK-10366): Currently, rust_utils is not published for windows
+        # and the C++ SDK just doesn't include it as a dependency on that platform
+        if self.settings.os != "Windows":
+            self.cpp_info.components["viamsdk"].requires.extend([
+                "viam_rust_utils"
+            ])
 
         self.cpp_info.components["viamsdk"].frameworks = ["Security"]
