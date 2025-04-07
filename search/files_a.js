@@ -6,5 +6,8 @@ var searchData=
   ['server_2ehpp_3',['server.hpp',['../server_8hpp.html',1,'']]],
   ['servo_2ehpp_4',['servo.hpp',['../servo_8hpp.html',1,'']]],
   ['servo_5fclient_2ehpp_5',['servo_client.hpp',['../servo__client_8hpp.html',1,'']]],
-  ['servo_5fserver_2ehpp_6',['servo_server.hpp',['../servo__server_8hpp.html',1,'']]]
+  ['servo_5fserver_2ehpp_6',['servo_server.hpp',['../servo__server_8hpp.html',1,'']]],
+  ['switch_2ehpp_7',['switch.hpp',['../switch_8hpp.html',1,'']]],
+  ['switch_5fclient_2ehpp_8',['switch_client.hpp',['../switch__client_8hpp.html',1,'']]],
+  ['switch_5fserver_2ehpp_9',['switch_server.hpp',['../switch__server_8hpp.html',1,'']]]
 ];

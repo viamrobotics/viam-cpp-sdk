@@ -52,6 +52,7 @@ var searchData=
   ['traits_3c_20sensor_20_3e_49',['traits&lt; Sensor &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Sensor_01_4.html',1,'viam::sdk::API']]],
   ['traits_3c_20servo_20_3e_50',['traits&lt; Servo &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Servo_01_4.html',1,'viam::sdk::API']]],
   ['traits_3c_20summation_20_3e_51',['traits&lt; Summation &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Summation_01_4.html',1,'viam::sdk::API']]],
-  ['transform_52',['transform',['../structviam_1_1sdk_1_1WorldState_1_1transform.html',1,'viam::sdk::WorldState']]],
-  ['translation_53',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
+  ['traits_3c_20switch_20_3e_52',['traits&lt; Switch &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Switch_01_4.html',1,'viam::sdk::API']]],
+  ['transform_53',['transform',['../structviam_1_1sdk_1_1WorldState_1_1transform.html',1,'viam::sdk::WorldState']]],
+  ['translation_54',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
 ];

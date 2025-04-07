@@ -17,5 +17,8 @@ var searchData=
   ['stoppable_14',['Stoppable',['../classviam_1_1sdk_1_1Stoppable.html',1,'viam::sdk']]],
   ['summation_15',['Summation',['../classSummation.html',1,'']]],
   ['summationclient_16',['SummationClient',['../classSummationClient.html',1,'']]],
-  ['summationserver_17',['SummationServer',['../classSummationServer.html',1,'']]]
+  ['summationserver_17',['SummationServer',['../classSummationServer.html',1,'']]],
+  ['switch_18',['Switch',['../classviam_1_1sdk_1_1Switch.html',1,'viam::sdk']]],
+  ['switchclient_19',['SwitchClient',['../classviam_1_1sdk_1_1impl_1_1SwitchClient.html',1,'viam::sdk::impl']]],
+  ['switchserver_20',['SwitchServer',['../classviam_1_1sdk_1_1impl_1_1SwitchServer.html',1,'viam::sdk::impl']]]
 ];
