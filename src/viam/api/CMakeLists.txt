@@ -63,20 +63,34 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
   #
   find_program(BUF_COMMAND buf)
   if (NOT BUF_COMMAND)
+
+    set(HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD ${CMAKE_HOST_SYSTEM_PROCESSOR})
+    if (CMAKE_HOST_WIN32)
+      if (HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD STREQUAL "AMD64")
+        set(HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD x86_64)
+      elseif (HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD STREQUAL "ARM64")
+        set(HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD arm64)
+      else()
+        message(FATAL_ERROR "Unknown Windows platform to correct buf download URL: ${HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD}")
+      endif()
+    endif()
+
+    set(BUF_DOWNLOAD_URL https://github.com/bufbuild/buf/releases/latest/download/buf-${CMAKE_HOST_SYSTEM_NAME}-${HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD}${CMAKE_HOST_EXECUTABLE_SUFFIX})
+
     file(
       DOWNLOAD
-      https://github.com/bufbuild/buf/releases/latest/download/buf-${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_HOST_SYSTEM_PROCESSOR}
-      ${CMAKE_CURRENT_BINARY_DIR}/buf_latest
+      ${BUF_DOWNLOAD_URL}
+      ${CMAKE_CURRENT_BINARY_DIR}/buf_latest${CMAKE_HOST_EXECUTABLE_SUFFIX}
       STATUS buf_status
     )
     list(GET buf_status 0 buf_status_code)
     list(GET buf_status 1 buf_status_string)
 
     if(NOT buf_status_code EQUAL 0)
-      message(FATAL_ERROR "No local `buf` program found (try setting PATH?) and failed to download: ${buf_status_string}")
+      message(FATAL_ERROR "No local `buf` program found (try setting PATH?) and failed to download: ${buf_status_string} for ${BUF_DOWNLOAD_URL}")
     endif()
 
-    set(BUF_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/buf_latest)
+    set(BUF_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/buf_latest${CMAKE_HOST_EXECUTABLE_SUFFIX})
     file(CHMOD ${BUF_COMMAND} PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
   endif()
 
@@ -116,7 +130,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
   # List of names of non-compilable generated code
   # The Switch component generates protobuf which uses `switch` as a namespace.
   # This needs to be processed below.
-  set(VIAMCPPSDK_SWITCH_REPLACE_PATHS     
+  set(VIAMCPPSDK_SWITCH_REPLACE_PATHS
     ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.h
     ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.cc
@@ -261,7 +275,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_API_SOURCE} --template buf.gen.yaml --path ${BUF_PROTO_COMPONENTS_JOINED}
 
     # After generating the protos, include a step to invoke a search-and-replace for switch -> switch_ in the Switch component files
-    COMMAND ${CMAKE_COMMAND} "-DSWITCH_REPLACE_PATHS=\"${VIAMCPPSDK_SWITCH_REPLACE_PATHS}\"" -P ${CMAKE_CURRENT_SOURCE_DIR}/viamcppsdk_replace_switch.cmake 
+    COMMAND ${CMAKE_COMMAND} "-DSWITCH_REPLACE_PATHS=\"${VIAMCPPSDK_SWITCH_REPLACE_PATHS}\"" -P ${CMAKE_CURRENT_SOURCE_DIR}/viamcppsdk_replace_switch.cmake
     MAIN_DEPENDENCY buf.gen.yaml
   )
 
