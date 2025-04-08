@@ -49,8 +49,7 @@ class ViamCppSdkRecipe(ConanFile):
         # maintained conan packages.
         self.requires('grpc/[>=1.48.4]')
         self.requires('protobuf/[>=3.17.1]')
-
-        self.requires('xtensor/[>=0.24.3]')
+        self.requires('xtensor/[>=0.24.3]', transitive_headers=True)
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
@@ -126,7 +125,6 @@ class ViamCppSdkRecipe(ConanFile):
             "grpc::grpc++_reflection",
             "protobuf::libprotobuf",
             "xtensor::xtensor",
-
             "viamapi",
         ])
 
