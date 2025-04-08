@@ -102,6 +102,7 @@ jobs:
           apt-get -y dist-upgrade
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
               autoconf \
+              automake \
               build-essential \
               ca-certificates \
               curl \
