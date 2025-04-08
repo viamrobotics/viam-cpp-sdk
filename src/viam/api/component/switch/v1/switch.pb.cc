@@ -22,7 +22,7 @@ namespace _pbi = _pb::internal;
 
 namespace viam {
 namespace component {
-namespace switch {
+namespace switch_ {
 namespace v1 {
 PROTOBUF_CONSTEXPR SetPositionRequest::SetPositionRequest(
     ::_pbi::ConstantInitialized)
@@ -109,67 +109,67 @@ static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors
 
 const uint32_t TableStruct_component_2fswitch_2fv1_2fswitch_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::SetPositionRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::SetPositionRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::SetPositionRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::SetPositionRequest, position_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::SetPositionRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::SetPositionRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::SetPositionRequest, position_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::SetPositionRequest, extra_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::SetPositionResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::SetPositionResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetPositionRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetPositionRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetPositionRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetPositionRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetPositionRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetPositionRequest, extra_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetPositionResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetPositionResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetPositionResponse, position_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetPositionResponse, position_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetNumberOfPositionsRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetNumberOfPositionsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetNumberOfPositionsRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetNumberOfPositionsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetNumberOfPositionsRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetNumberOfPositionsRequest, extra_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetNumberOfPositionsResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetNumberOfPositionsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::switch::v1::GetNumberOfPositionsResponse, number_of_positions_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetNumberOfPositionsResponse, number_of_positions_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::viam::component::switch::v1::SetPositionRequest)},
-  { 9, -1, -1, sizeof(::viam::component::switch::v1::SetPositionResponse)},
-  { 15, -1, -1, sizeof(::viam::component::switch::v1::GetPositionRequest)},
-  { 23, -1, -1, sizeof(::viam::component::switch::v1::GetPositionResponse)},
-  { 30, -1, -1, sizeof(::viam::component::switch::v1::GetNumberOfPositionsRequest)},
-  { 38, -1, -1, sizeof(::viam::component::switch::v1::GetNumberOfPositionsResponse)},
+  { 0, -1, -1, sizeof(::viam::component::switch_::v1::SetPositionRequest)},
+  { 9, -1, -1, sizeof(::viam::component::switch_::v1::SetPositionResponse)},
+  { 15, -1, -1, sizeof(::viam::component::switch_::v1::GetPositionRequest)},
+  { 23, -1, -1, sizeof(::viam::component::switch_::v1::GetPositionResponse)},
+  { 30, -1, -1, sizeof(::viam::component::switch_::v1::GetNumberOfPositionsRequest)},
+  { 38, -1, -1, sizeof(::viam::component::switch_::v1::GetNumberOfPositionsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::viam::component::switch::v1::_SetPositionRequest_default_instance_._instance,
-  &::viam::component::switch::v1::_SetPositionResponse_default_instance_._instance,
-  &::viam::component::switch::v1::_GetPositionRequest_default_instance_._instance,
-  &::viam::component::switch::v1::_GetPositionResponse_default_instance_._instance,
-  &::viam::component::switch::v1::_GetNumberOfPositionsRequest_default_instance_._instance,
-  &::viam::component::switch::v1::_GetNumberOfPositionsResponse_default_instance_._instance,
+  &::viam::component::switch_::v1::_SetPositionRequest_default_instance_._instance,
+  &::viam::component::switch_::v1::_SetPositionResponse_default_instance_._instance,
+  &::viam::component::switch_::v1::_GetPositionRequest_default_instance_._instance,
+  &::viam::component::switch_::v1::_GetPositionResponse_default_instance_._instance,
+  &::viam::component::switch_::v1::_GetNumberOfPositionsRequest_default_instance_._instance,
+  &::viam::component::switch_::v1::_GetNumberOfPositionsResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -231,7 +231,7 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_componen
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_component_2fswitch_2fv1_2fswitch_2eproto(&descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto);
 namespace viam {
 namespace component {
-namespace switch {
+namespace switch_ {
 namespace v1 {
 
 // ===================================================================
@@ -1382,29 +1382,29 @@ void GetNumberOfPositionsResponse::InternalSwap(GetNumberOfPositionsResponse* ot
 }  // namespace component
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::viam::component::switch::v1::SetPositionRequest*
-Arena::CreateMaybeMessage< ::viam::component::switch::v1::SetPositionRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::switch::v1::SetPositionRequest >(arena);
+template<> PROTOBUF_NOINLINE ::viam::component::switch_::v1::SetPositionRequest*
+Arena::CreateMaybeMessage< ::viam::component::switch_::v1::SetPositionRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::switch_::v1::SetPositionRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::viam::component::switch::v1::SetPositionResponse*
-Arena::CreateMaybeMessage< ::viam::component::switch::v1::SetPositionResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::switch::v1::SetPositionResponse >(arena);
+template<> PROTOBUF_NOINLINE ::viam::component::switch_::v1::SetPositionResponse*
+Arena::CreateMaybeMessage< ::viam::component::switch_::v1::SetPositionResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::switch_::v1::SetPositionResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::viam::component::switch::v1::GetPositionRequest*
-Arena::CreateMaybeMessage< ::viam::component::switch::v1::GetPositionRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::switch::v1::GetPositionRequest >(arena);
+template<> PROTOBUF_NOINLINE ::viam::component::switch_::v1::GetPositionRequest*
+Arena::CreateMaybeMessage< ::viam::component::switch_::v1::GetPositionRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::switch_::v1::GetPositionRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::viam::component::switch::v1::GetPositionResponse*
-Arena::CreateMaybeMessage< ::viam::component::switch::v1::GetPositionResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::switch::v1::GetPositionResponse >(arena);
+template<> PROTOBUF_NOINLINE ::viam::component::switch_::v1::GetPositionResponse*
+Arena::CreateMaybeMessage< ::viam::component::switch_::v1::GetPositionResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::switch_::v1::GetPositionResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::viam::component::switch::v1::GetNumberOfPositionsRequest*
-Arena::CreateMaybeMessage< ::viam::component::switch::v1::GetNumberOfPositionsRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::switch::v1::GetNumberOfPositionsRequest >(arena);
+template<> PROTOBUF_NOINLINE ::viam::component::switch_::v1::GetNumberOfPositionsRequest*
+Arena::CreateMaybeMessage< ::viam::component::switch_::v1::GetNumberOfPositionsRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::switch_::v1::GetNumberOfPositionsRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::viam::component::switch::v1::GetNumberOfPositionsResponse*
-Arena::CreateMaybeMessage< ::viam::component::switch::v1::GetNumberOfPositionsResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::viam::component::switch::v1::GetNumberOfPositionsResponse >(arena);
+template<> PROTOBUF_NOINLINE ::viam::component::switch_::v1::GetNumberOfPositionsResponse*
+Arena::CreateMaybeMessage< ::viam::component::switch_::v1::GetNumberOfPositionsResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::switch_::v1::GetNumberOfPositionsResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
