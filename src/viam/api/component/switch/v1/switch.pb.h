@@ -50,7 +50,7 @@ struct TableStruct_component_2fswitch_2fv1_2fswitch_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto;
 namespace viam {
 namespace component {
-namespace switch {
+namespace switch_ {
 namespace v1 {
 class GetNumberOfPositionsRequest;
 struct GetNumberOfPositionsRequestDefaultTypeInternal;
@@ -75,16 +75,16 @@ extern SetPositionResponseDefaultTypeInternal _SetPositionResponse_default_insta
 }  // namespace component
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
-template<> ::viam::component::switch::v1::GetNumberOfPositionsRequest* Arena::CreateMaybeMessage<::viam::component::switch::v1::GetNumberOfPositionsRequest>(Arena*);
-template<> ::viam::component::switch::v1::GetNumberOfPositionsResponse* Arena::CreateMaybeMessage<::viam::component::switch::v1::GetNumberOfPositionsResponse>(Arena*);
-template<> ::viam::component::switch::v1::GetPositionRequest* Arena::CreateMaybeMessage<::viam::component::switch::v1::GetPositionRequest>(Arena*);
-template<> ::viam::component::switch::v1::GetPositionResponse* Arena::CreateMaybeMessage<::viam::component::switch::v1::GetPositionResponse>(Arena*);
-template<> ::viam::component::switch::v1::SetPositionRequest* Arena::CreateMaybeMessage<::viam::component::switch::v1::SetPositionRequest>(Arena*);
-template<> ::viam::component::switch::v1::SetPositionResponse* Arena::CreateMaybeMessage<::viam::component::switch::v1::SetPositionResponse>(Arena*);
+template<> ::viam::component::switch_::v1::GetNumberOfPositionsRequest* Arena::CreateMaybeMessage<::viam::component::switch_::v1::GetNumberOfPositionsRequest>(Arena*);
+template<> ::viam::component::switch_::v1::GetNumberOfPositionsResponse* Arena::CreateMaybeMessage<::viam::component::switch_::v1::GetNumberOfPositionsResponse>(Arena*);
+template<> ::viam::component::switch_::v1::GetPositionRequest* Arena::CreateMaybeMessage<::viam::component::switch_::v1::GetPositionRequest>(Arena*);
+template<> ::viam::component::switch_::v1::GetPositionResponse* Arena::CreateMaybeMessage<::viam::component::switch_::v1::GetPositionResponse>(Arena*);
+template<> ::viam::component::switch_::v1::SetPositionRequest* Arena::CreateMaybeMessage<::viam::component::switch_::v1::SetPositionRequest>(Arena*);
+template<> ::viam::component::switch_::v1::SetPositionResponse* Arena::CreateMaybeMessage<::viam::component::switch_::v1::SetPositionResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace component {
-namespace switch {
+namespace switch_ {
 namespace v1 {
 
 // ===================================================================

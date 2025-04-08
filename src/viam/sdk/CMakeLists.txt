@@ -267,10 +267,19 @@ target_link_libraries(viamsdk
   PRIVATE ${VIAMCPPSDK_GRPCXX_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_GRPC_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
-  PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )
 
+# TODO(RSDK-10366): Currently, rust_utils is not published for
+# windows, so don't link to it.  Instead, link a stub implementation
+# that just calls `abort`.
+if (NOT WIN32)
+  target_link_libraries(viamsdk
+    PRIVATE viam_rust_utils
+  )
+else()
+  target_sources(viamsdk PRIVATE rpc/private/viam_rust_utils_stubs.cpp)
+endif()
 
 if (APPLE)
   target_link_libraries(viamsdk PUBLIC "-framework Security")
