@@ -93,6 +93,10 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SignalManager</b> ()</td></tr>
 <tr class="memdesc:a1d4d2e7d5d618621039dbda6ded9d342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classviam_1_1sdk_1_1SignalManager.html" title="Defines handling logic for SIGINT and SIGTERM required by all C++ modules.">SignalManager</a>. <br /></td></tr>
 <tr class="separator:a1d4d2e7d5d618621039dbda6ded9d342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c946f6a55d435ade87c198f2b02a563" id="r_a8c946f6a55d435ade87c198f2b02a563"><td class="memItemLeft" align="right" valign="top"><a id="a8c946f6a55d435ade87c198f2b02a563" name="a8c946f6a55d435ade87c198f2b02a563"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~SignalManager</b> ()</td></tr>
+<tr class="memdesc:a8c946f6a55d435ade87c198f2b02a563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="separator:a8c946f6a55d435ade87c198f2b02a563"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35da6e5e1dd8ec4e97ba2a61feaccfd1" id="r_a35da6e5e1dd8ec4e97ba2a61feaccfd1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35da6e5e1dd8ec4e97ba2a61feaccfd1">wait</a> ()</td></tr>
 <tr class="memdesc:a35da6e5e1dd8ec4e97ba2a61feaccfd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for <a class="el" href="classviam_1_1sdk_1_1SignalManager.html" title="Defines handling logic for SIGINT and SIGTERM required by all C++ modules.">SignalManager</a> to receive SIGINT or SIGTERM.  <br /></td></tr>
 <tr class="separator:a35da6e5e1dd8ec4e97ba2a61feaccfd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,7 +123,7 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The signal number if successful. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">`std::runtime_error`</td><td>if the underlying sigwait call was unsuccessful. </td></tr>
+    <tr><td class="paramname">`std::runtime_error`</td><td>if the underlying wait operation was unsuccessful. </td></tr>
   </table>
   </dd>
 </dl>
