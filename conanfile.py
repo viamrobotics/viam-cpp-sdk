@@ -51,10 +51,11 @@ class ViamCppSdkRecipe(ConanFile):
         self.requires('protobuf/[>=3.17.1]')
         self.requires('xtensor/[>=0.24.3]', transitive_headers=True)
 
-        # See https://github.com/conan-io/conan-center-index/issues/27165
-        self.requires('b2/5.2.1', override=True)
 
     def build_requirements(self):
+        # See https://github.com/conan-io/conan-center-index/issues/27165
+        self.tool_requires('b2/5.2.1', override=True)
+
         if self.options.offline_proto_generation:
             self.tool_requires('grpc/[>=1.48.4]')
             self.tool_requires('protobuf/[>=3.17.1]')
