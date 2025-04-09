@@ -12,3 +12,6 @@
 
 # ignore doxygen output
 /etc/docs/api/*
+
+# Conan user presets should be ignored
+CMakeUserPresets.json
