@@ -21,7 +21,7 @@
 # TODO: Better clang-format integration (versions, dependencies, only changed, etc.)
 # TODO: Version from git describe?
 # TODO: Export macros and visibilty annotations
-# TODO: CPack? CTest? Conan?
+# TODO: CPack? CTest?
 
 
 # This is a tricky decision. If we set this too old, we lose access to
@@ -41,7 +41,7 @@ else()
   cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 endif()
 
-set(CMAKE_PROJECT_VERSION 0.7.0)
+set(CMAKE_PROJECT_VERSION 0.8.0)
 
 # Identify the project.
 project(viam-cpp-sdk
