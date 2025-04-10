@@ -32,7 +32,14 @@
 # most uses of this product, it is expected to be cross-compiling for
 # the target platform on a development system, meaning that we are not
 # constrained by the version of CMake available on target systems.
-cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+
+if (WIN32)
+  # Use a newer version of CMake on Windows, so we are NEW for
+  # https://cmake.org/cmake/help/latest/policy/CMP0149.html
+  cmake_minimum_required(VERSION 3.27 FATAL_ERROR)
+else()
+  cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+endif()
 
 set(CMAKE_PROJECT_VERSION 0.8.0)
 
