@@ -17,7 +17,7 @@ int main() {
 
     const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
     DialOptions dial_options;
-    dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
+    dial_options.allow_insecure_downgrade = true;  // set to false if connecting securely
 
     // Uncomment and fill out your credentials details if connecting securely
     // std::string type = "<your authentication type>";

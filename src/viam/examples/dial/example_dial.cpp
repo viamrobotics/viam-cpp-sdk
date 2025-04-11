@@ -24,11 +24,9 @@ int main() {
     DialOptions dial_options;
     std::string type = "<your authentication type>";
     std::string payload = "<your authentication payload>";
-    Credentials credentials(type, payload);
-    dial_options.set_credentials(credentials);
-    boost::optional<DialOptions> opts(dial_options);
+    dial_options.credentials = Credentials(type, payload);
     std::string address(uri);
-    Options options(1, opts);
+    Options options(1, dial_options);
 
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);

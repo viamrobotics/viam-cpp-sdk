@@ -42,83 +42,22 @@ const std::string& Credentials::payload() const {
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
     : channel_(std::move(channel)), path_(path), closed_(false), rust_runtime_(runtime) {}
 
-DialOptions::DialOptions() = default;
-
-DialOptions& DialOptions::set_credentials(boost::optional<Credentials> creds) {
-    credentials_ = std::move(creds);
-
-    return *this;
-}
-
-DialOptions& DialOptions::set_entity(boost::optional<std::string> entity) {
-    auth_entity_ = std::move(entity);
-
-    return *this;
-}
-
-DialOptions& DialOptions::set_initial_connection_attempts(int attempts) {
-    initial_connection_attempts_ = attempts;
-
-    return *this;
-}
-
-DialOptions& DialOptions::set_timeout(std::chrono::duration<float> timeout) {
-    timeout_ = timeout;
-
-    return *this;
-}
-
-DialOptions& DialOptions::set_initial_connection_attempt_timeout(
-    std::chrono::duration<float> timeout) {
-    initial_connection_attempt_timeout_ = timeout;
-
-    return *this;
-}
-
-const boost::optional<std::string>& DialOptions::entity() const {
-    return auth_entity_;
-}
-
-const boost::optional<Credentials>& DialOptions::credentials() const {
-    return credentials_;
-}
-
-int DialOptions::initial_connection_attempts() const {
-    return initial_connection_attempts_;
-}
-
-const std::chrono::duration<float>& DialOptions::timeout() const {
-    return timeout_;
-}
-
-std::chrono::duration<float> DialOptions::initial_connection_attempt_timeout() const {
-    return initial_connection_attempt_timeout_;
-}
-
-DialOptions& DialOptions::set_allow_insecure_downgrade(bool allow) {
-    allow_insecure_downgrade_ = allow;
-
-    return *this;
-}
-
-bool DialOptions::allows_insecure_downgrade() const {
-    return allow_insecure_downgrade_;
-}
+// DialOptions::DialOptions() = default;
 
 std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
     const char* uri, const boost::optional<DialOptions>& options) {
     DialOptions opts = options.get_value_or(DialOptions());
-    auto timeout = opts.timeout();
-    auto attempts_remaining = opts.initial_connection_attempts();
+    auto timeout = opts.timeout;
+    auto attempts_remaining = opts.initial_connection_attempts;
     if (attempts_remaining == 0) {
         attempts_remaining = -1;
     }
-    opts.set_timeout(opts.initial_connection_attempt_timeout());
+    opts.timeout = opts.initial_connection_attempt_timeout;
 
     while (attempts_remaining != 0) {
         try {
             auto connection = dial(uri, opts);
-            opts.set_timeout(timeout);
+            opts.timeout = timeout;
             return connection;
         } catch (const std::exception& e) {
             attempts_remaining -= 1;
@@ -136,20 +75,20 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
                                                const boost::optional<DialOptions>& options) {
     void* ptr = init_rust_runtime();
     const DialOptions opts = options.get_value_or(DialOptions());
-    const std::chrono::duration<float> float_timeout = opts.timeout();
+    const std::chrono::duration<float> float_timeout = opts.timeout;
     const char* type = nullptr;
     const char* entity = nullptr;
     const char* payload = nullptr;
 
-    if (opts.credentials()) {
-        type = opts.credentials()->type().c_str();
-        payload = opts.credentials()->payload().c_str();
+    if (opts.credentials) {
+        type = opts.credentials->type().c_str();
+        payload = opts.credentials->payload().c_str();
     }
-    if (opts.entity()) {
-        entity = opts.entity()->c_str();
+    if (opts.auth_entity) {
+        entity = opts.auth_entity->c_str();
     }
     char* socket_path = ::dial(
-        uri, entity, type, payload, opts.allows_insecure_downgrade(), float_timeout.count(), ptr);
+        uri, entity, type, payload, opts.allow_insecure_downgrade, float_timeout.count(), ptr);
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
         throw Exception(ErrorCondition::k_connection, "Unable to establish connecting path");

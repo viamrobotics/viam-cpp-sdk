@@ -11,7 +11,8 @@
 namespace viam {
 namespace sdk {
 
-class DialOptions;
+struct DialOptions;
+
 class ViamChannel {
    public:
     void close();
@@ -58,49 +59,28 @@ class Credentials {
     std::string payload_;
 };
 
-class DialOptions {
-   public:
-    DialOptions();
-
-    const boost::optional<Credentials>& credentials() const;
-    const boost::optional<std::string>& entity() const;
-    bool allows_insecure_downgrade() const;
-    const std::chrono::duration<float>& timeout() const;
-    int initial_connection_attempts() const;
-    std::chrono::duration<float> initial_connection_attempt_timeout() const;
-
-    DialOptions& set_entity(boost::optional<std::string> entity);
-    DialOptions& set_credentials(boost::optional<Credentials> creds);
-    DialOptions& set_allow_insecure_downgrade(bool allow);
-    DialOptions& set_timeout(std::chrono::duration<float> timeout);
-    DialOptions& set_initial_connection_attempts(int attempts);
-    DialOptions& set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
-
-   private:
-    // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a
-    // `local` uri. We should update dial logic to consider such a flag.
-
+struct DialOptions {
     /// @brief the URL to authenticate against.
-    boost::optional<std::string> auth_entity_;
+    boost::optional<std::string> auth_entity;
 
     /// @brief Credentials for connecting to the robot.
-    boost::optional<Credentials> credentials_;
+    boost::optional<Credentials> credentials;
 
     /// @brief Allows the RPC connection to be downgraded to an insecure connection if detected.
     /// This is only used when credentials are not present.
-    bool allow_insecure_downgrade_ = false;
+    bool allow_insecure_downgrade = false;
 
     /// @brief Duration before the dial connection times out
     /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
-    std::chrono::duration<float> timeout_{20};
+    std::chrono::duration<float> timeout{20};
 
     /// @brief Number of attempts to make when initially connecting to a robot
     /// If set to 0 or a negative integer, will attempt to reconnect forever.
-    int initial_connection_attempts_ = 3;
+    int initial_connection_attempts = 3;
 
     /// @brief Timeout of connection attempts when initially dialing a robot
     /// Defaults to 20sec to match the default timeout duration
-    std::chrono::duration<float> initial_connection_attempt_timeout_{20};
+    std::chrono::duration<float> initial_connection_attempt_timeout{20};
 };
 
 class Options {

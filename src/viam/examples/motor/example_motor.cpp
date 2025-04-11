@@ -44,8 +44,8 @@ int main() {
         // dial_options.credentials = credentials;
 
         // This is for an example. Care should be taken before exercising this option in production.
-        dial_options.set_allow_insecure_downgrade(
-            (credentials.type().empty() && credentials.payload().empty()));
+        dial_options.allow_insecure_downgrade =
+            (credentials.type().empty() && credentials.payload().empty());
 
         // Set the refresh interval of the robot (in seconds) (0 = auto refresh) and the dial
         // options

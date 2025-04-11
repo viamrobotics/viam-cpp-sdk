@@ -36,9 +36,9 @@ int main(int argc, char* argv[]) {
     boost::optional<DialOptions> opts;
     if (vm.count("entity") && vm.count("api-key")) {
         DialOptions dial_options;
-        dial_options.set_entity(vm["entity"].as<std::string>());
+        dial_options.auth_entity = vm["entity"].as<std::string>();
         Credentials credentials("api-key", vm["api-key"].as<std::string>());
-        dial_options.set_credentials(credentials);
+        dial_options.credentials = credentials;
         opts = dial_options;
     }
     Options options(1, opts);

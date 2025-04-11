@@ -236,8 +236,8 @@ int main(int argc, char* argv[]) try {
         // secret. Please see other examples for more details on
         // connecting to robots with the C++ SDK.
         viam::sdk::DialOptions dial_options;
-        dial_options.set_entity(opt_api_key_id.get());
-        dial_options.set_credentials(viam::sdk::Credentials("api-key", opt_api_key.get()));
+        dial_options.auth_entity = opt_api_key_id.get();
+        dial_options.credentials = viam::sdk::Credentials("api-key", opt_api_key.get());
 
         auto robot =
             vsdk::RobotClient::at_address(opt_robot_host.get(), {0, {std::move(dial_options)}});
