@@ -21,7 +21,7 @@
 # TODO: Better clang-format integration (versions, dependencies, only changed, etc.)
 # TODO: Version from git describe?
 # TODO: Export macros and visibilty annotations
-# TODO: CPack? CTest? Conan?
+# TODO: CPack? CTest?
 
 
 # This is a tricky decision. If we set this too old, we lose access to
@@ -32,9 +32,16 @@
 # most uses of this product, it is expected to be cross-compiling for
 # the target platform on a development system, meaning that we are not
 # constrained by the version of CMake available on target systems.
-cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-set(CMAKE_PROJECT_VERSION 0.7.0)
+if (WIN32)
+  # Use a newer version of CMake on Windows, so we are NEW for
+  # https://cmake.org/cmake/help/latest/policy/CMP0149.html
+  cmake_minimum_required(VERSION 3.27 FATAL_ERROR)
+else()
+  cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+endif()
+
+set(CMAKE_PROJECT_VERSION 0.8.0)
 
 # Identify the project.
 project(viam-cpp-sdk
