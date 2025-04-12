@@ -137,9 +137,9 @@ Motion::plan_status_with_id from_proto(const service::motion::v1::PlanStatusWith
     return pswi;
 }
 
-Motion::steps steps_from_proto(
+std::vector<Motion::step> steps_from_proto(
     const google::protobuf::RepeatedPtrField<service::motion::v1::PlanStep>& proto) {
-    Motion::steps steps;
+    std::vector<Motion::step> steps;
     for (const auto& ps : proto) {
         Motion::step step;
         for (const auto& component : ps.step()) {

@@ -115,11 +115,8 @@ class Motion : public Service {
 
     /// @brief An individual "step", representing the state each component (keyed as a fully
     /// qualified component name) should reach while executing that step of the plan.
-    using step = std::unordered_map<std::string, pose>;
-
-    /// @brief An ordered list of plan steps.
     /// @ingroup Motion
-    using steps = std::vector<step>;
+    using step = std::unordered_map<std::string, pose>;
 
     /// @struct plan
     /// @brief Describes a motion plan.
@@ -136,7 +133,7 @@ class Motion : public Service {
         std::string execution_id;
 
         /// @brief An ordered list of plan steps.
-        steps steps;
+        std::vector<step> steps;
 
         friend bool operator==(const plan& lhs, const plan& rhs);
     };
