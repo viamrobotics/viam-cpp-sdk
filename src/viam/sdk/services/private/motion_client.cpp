@@ -139,17 +139,16 @@ Motion::plan_status_with_id from_proto(const service::motion::v1::PlanStatusWith
 
 Motion::steps steps_from_proto(
     const google::protobuf::RepeatedPtrField<service::motion::v1::PlanStep>& proto) {
-    using step = Motion::steps::step;
-    std::vector<step> steps;
+    Motion::steps steps;
     for (const auto& ps : proto) {
-        step step;
+        Motion::step step;
         for (const auto& component : ps.step()) {
             step.emplace(component.first, from_proto(component.second.pose()));
         }
         steps.push_back(std::move(step));
     }
 
-    return {steps};
+    return steps;
 }
 
 Motion::plan plan_from_proto(const service::motion::v1::Plan& proto) {

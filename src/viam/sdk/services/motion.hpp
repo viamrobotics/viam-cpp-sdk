@@ -113,19 +113,13 @@ class Motion : public Service {
         friend bool operator==(const plan_status_with_id& lhs, const plan_status_with_id& rhs);
     };
 
-    /// @struct steps
+    /// @brief An individual "step", representing the state each component (keyed as a fully
+    /// qualified component name) should reach while executing that step of the plan.
+    using step = std::unordered_map<std::string, pose>;
+
     /// @brief An ordered list of plan steps.
     /// @ingroup Motion
-    struct steps {
-        /// @brief An individual "step", representing the state each component (keyed as a fully
-        /// qualified component name) should reach while executing that step of the plan.
-        typedef std::unordered_map<std::string, pose> step;
-
-        /// @brief The ordered list of steps.
-        std::vector<step> steps;
-
-        friend bool operator==(const struct steps& lhs, const struct steps& rhs);
-    };
+    using steps = std::vector<step>;
 
     /// @struct plan
     /// @brief Describes a motion plan.
@@ -142,7 +136,7 @@ class Motion : public Service {
         std::string execution_id;
 
         /// @brief An ordered list of plan steps.
-        struct steps steps;
+        steps steps;
 
         friend bool operator==(const plan& lhs, const plan& rhs);
     };
