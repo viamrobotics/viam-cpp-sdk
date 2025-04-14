@@ -129,9 +129,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a plan, its current status, and all status changes that have occurred previously on that plan.  <a href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1steps.html">steps</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An ordered list of plan steps.  <a href="structviam_1_1sdk_1_1Motion_1_1steps.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -142,6 +139,10 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a675019f922d19893e0891a17f8a31605"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes the possible states a plan can be in. <br /></td></tr>
 <tr class="separator:a675019f922d19893e0891a17f8a31605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2277c79b563f4b847f1cdae5c79eee4" id="r_ac2277c79b563f4b847f1cdae5c79eee4"><td class="memItemLeft" align="right" valign="top"><a id="ac2277c79b563f4b847f1cdae5c79eee4" name="ac2277c79b563f4b847f1cdae5c79eee4"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>step</b> = std::unordered_map&lt;std::string, <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a>&gt;</td></tr>
+<tr class="memdesc:ac2277c79b563f4b847f1cdae5c79eee4"><td class="mdescLeft">&#160;</td><td class="mdescRight">An individual "step", representing the state each component (keyed as a fully qualified component name) should reach while executing that step of the plan. <br /></td></tr>
+<tr class="separator:ac2277c79b563f4b847f1cdae5c79eee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>

@@ -13,12 +13,11 @@ var searchData=
   ['signalmanager_10',['SignalManager',['../classviam_1_1sdk_1_1SignalManager.html',1,'viam::sdk']]],
   ['sphere_11',['sphere',['../structviam_1_1sdk_1_1sphere.html',1,'viam::sdk']]],
   ['status_12',['status',['../structviam_1_1sdk_1_1Board_1_1status.html',1,'viam::sdk::Board']]],
-  ['steps_13',['steps',['../structviam_1_1sdk_1_1Motion_1_1steps.html',1,'viam::sdk::Motion']]],
-  ['stoppable_14',['Stoppable',['../classviam_1_1sdk_1_1Stoppable.html',1,'viam::sdk']]],
-  ['summation_15',['Summation',['../classSummation.html',1,'']]],
-  ['summationclient_16',['SummationClient',['../classSummationClient.html',1,'']]],
-  ['summationserver_17',['SummationServer',['../classSummationServer.html',1,'']]],
-  ['switch_18',['Switch',['../classviam_1_1sdk_1_1Switch.html',1,'viam::sdk']]],
-  ['switchclient_19',['SwitchClient',['../classviam_1_1sdk_1_1impl_1_1SwitchClient.html',1,'viam::sdk::impl']]],
-  ['switchserver_20',['SwitchServer',['../classviam_1_1sdk_1_1impl_1_1SwitchServer.html',1,'viam::sdk::impl']]]
+  ['stoppable_13',['Stoppable',['../classviam_1_1sdk_1_1Stoppable.html',1,'viam::sdk']]],
+  ['summation_14',['Summation',['../classSummation.html',1,'']]],
+  ['summationclient_15',['SummationClient',['../classSummationClient.html',1,'']]],
+  ['summationserver_16',['SummationServer',['../classSummationServer.html',1,'']]],
+  ['switch_17',['Switch',['../classviam_1_1sdk_1_1Switch.html',1,'viam::sdk']]],
+  ['switchclient_18',['SwitchClient',['../classviam_1_1sdk_1_1impl_1_1SwitchClient.html',1,'viam::sdk::impl']]],
+  ['switchserver_19',['SwitchServer',['../classviam_1_1sdk_1_1impl_1_1SwitchServer.html',1,'viam::sdk::impl']]]
 ];
