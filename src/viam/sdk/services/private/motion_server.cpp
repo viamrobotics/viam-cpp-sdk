@@ -51,7 +51,7 @@ service::motion::v1::PlanStatus to_proto(const Motion::plan_status& ps) {
     return proto;
 }
 
-service::motion::v1::PlanStep to_proto(const Motion::steps::step& step) {
+service::motion::v1::PlanStep to_proto(const Motion::step& step) {
     service::motion::v1::PlanStep proto;
     for (const auto& kv : step) {
         service::motion::v1::ComponentState cs;
@@ -67,7 +67,7 @@ service::motion::v1::Plan to_proto(const Motion::plan& plan) {
     *proto.mutable_id() = plan.id;
     *proto.mutable_component_name() = to_proto(plan.component_name);
     *proto.mutable_execution_id() = plan.execution_id;
-    for (const auto& step : plan.steps.steps) {
+    for (const auto& step : plan.steps) {
         *proto.mutable_steps()->Add() = to_proto(step);
     }
 

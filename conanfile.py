@@ -65,6 +65,15 @@ class ViamCppSdkRecipe(ConanFile):
         tc.cache_variables["VIAMCPPSDK_OFFLINE_PROTO_GENERATION"] = self.options.offline_proto_generation
         tc.cache_variables["VIAMCPPSDK_USE_DYNAMIC_PROTOS"] = True
 
+        # We don't want to constrain these for conan builds because we
+        # don't know the context where we might be being built. We
+        # should permit the build if it works. Also, even the C++ SDK
+        # is warnings clean on the modern compilers we use in CI, it,
+        # or headers from its dependencies, might throw warnings with
+        # older compilers, and we should still allow a build there.
+        tc.cache_variables["VIAMCPPSDK_ENFORCE_COMPILER_MINIMA"] = False
+        tc.cache_variables["VIAMCPPSDK_USE_WALL_WERROR"] = False
+
         tc.cache_variables["VIAMCPPSDK_BUILD_TESTS"] = False
         tc.cache_variables["VIAMCPPSDK_BUILD_EXAMPLES"] = False
 
