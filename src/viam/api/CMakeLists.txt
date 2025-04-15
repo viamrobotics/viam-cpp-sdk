@@ -228,6 +228,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.h
     ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.cc
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.pb.h
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.pb.cc
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.grpc.pb.h
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.h
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.h
@@ -361,6 +365,8 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.cc
     ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.cc
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.grpc.pb.cc
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
@@ -425,6 +431,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/component/servo/v1/servo.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/switch/v1/switch.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/switch/v1/switch.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/proto/rpc/v1/auth.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/proto/rpc/v1/auth.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/annotations.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/http.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/httpbody.pb.h

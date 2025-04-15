@@ -15,8 +15,11 @@ struct DialOptions;
 
 class ViamChannel {
    public:
-    void close();
+    // TODO: we don't want to pass rust args for direct dialing
+    // null rust args === direct dial channel
     ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
+
+    ~ViamChannel();
 
     /// @brief Connects to a robot at the given URI address, using the provided dial options (or
     /// default options is none are provided). Ignores initial connection options specifying
@@ -39,7 +42,11 @@ class ViamChannel {
 
     const std::shared_ptr<GrpcChannel>& channel() const;
 
+    void close();
+
    private:
+    static std::shared_ptr<ViamChannel> dial_direct(const char* uri, const DialOptions& opts);
+
     std::shared_ptr<GrpcChannel> channel_;
     const char* path_;
     bool closed_;
@@ -69,6 +76,10 @@ struct DialOptions {
     /// @brief Allows the RPC connection to be downgraded to an insecure connection if detected.
     /// This is only used when credentials are not present.
     bool allow_insecure_downgrade = false;
+
+    /// @brief Bypass WebRTC and connect directly to the robot.
+    /// This dials directly through grpc bypassing rust utils.
+    bool disable_webrtc = false;
 
     /// @brief Duration before the dial connection times out
     /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go

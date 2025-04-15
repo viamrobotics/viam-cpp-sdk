@@ -6,11 +6,16 @@
 #include <boost/config.hpp>
 #include <boost/none.hpp>
 #include <boost/optional.hpp>
+#include <boost/utility/string_view.hpp>
 #include <grpcpp/channel.h>
+#include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 
+#include <viam/api/proto/rpc/v1/auth.grpc.pb.h>
+#include <viam/api/proto/rpc/v1/auth.pb.h>
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
+#include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/rpc/private/viam_grpc_channel.hpp>
 #include <viam/sdk/rpc/private/viam_rust_utils.h>
@@ -42,7 +47,9 @@ const std::string& Credentials::payload() const {
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
     : channel_(std::move(channel)), path_(path), closed_(false), rust_runtime_(runtime) {}
 
-// DialOptions::DialOptions() = default;
+ViamChannel::~ViamChannel() {
+    close();
+}
 
 std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
     const char* uri, const boost::optional<DialOptions>& options) {
@@ -73,9 +80,14 @@ std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
 
 std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
                                                const boost::optional<DialOptions>& options) {
-    void* ptr = init_rust_runtime();
     const DialOptions opts = options.get_value_or(DialOptions());
+
+    if (opts.disable_webrtc) {
+        return dial_direct(uri, opts);
+    }
+
     const std::chrono::duration<float> float_timeout = opts.timeout;
+    void* ptr = init_rust_runtime();
     const char* type = nullptr;
     const char* entity = nullptr;
     const char* payload = nullptr;
@@ -84,11 +96,14 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
         type = opts.credentials->type().c_str();
         payload = opts.credentials->payload().c_str();
     }
+
     if (opts.auth_entity) {
         entity = opts.auth_entity->c_str();
     }
+
     char* socket_path = ::dial(
         uri, entity, type, payload, opts.allow_insecure_downgrade, float_timeout.count(), ptr);
+
     if (socket_path == NULL) {
         free_rust_runtime(ptr);
         throw Exception(ErrorCondition::k_connection, "Unable to establish connecting path");
@@ -96,12 +111,41 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
 
     std::string address("unix://");
     address += socket_path;
+
     const std::shared_ptr<grpc::Channel> channel =
         impl::create_viam_channel(address, grpc::InsecureChannelCredentials());
-    const std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
-        viam::robot::v1::RobotService::NewStub(channel);
+
     return std::make_shared<ViamChannel>(channel, socket_path, ptr);
-};
+}
+
+std::shared_ptr<ViamChannel> ViamChannel::dial_direct(const char* uri, const DialOptions& options) {
+    std::cerr << "\n\tCreating grpc channel " << uri << "\n";
+    auto grpc_channel = impl::create_viam_channel(uri, grpc::InsecureChannelCredentials());
+    std::cerr << "\n\ttest\n";
+
+    using namespace proto::rpc::v1;
+
+    auto auth_stub = AuthService::NewStub(grpc_channel);
+    ClientContext ctx;
+    AuthenticateRequest req;
+
+    *req.mutable_entity() = options.auth_entity.get();
+    *req.mutable_credentials()->mutable_payload() = options.credentials->payload();
+    *req.mutable_credentials()->mutable_type() = options.credentials->type();
+
+    std::cerr << req.DebugString() << "\n";
+
+    AuthenticateResponse resp;
+
+    auto status = auth_stub->Authenticate(ctx, req, &resp);
+
+    std::cerr << "\n\t status: " << status.error_message() << " code: " << status.error_code()
+              << "\n\t access token: " << resp.access_token() << "\n\n";
+
+    return std::make_shared<ViamChannel>(grpc_channel,  //
+                                         nullptr,
+                                         nullptr);
+}
 
 unsigned int Options::refresh_interval() const {
     return refresh_interval_;
