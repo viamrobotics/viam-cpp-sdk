@@ -88,6 +88,15 @@ above) should resolve them. And please file a bug report! We will
 endeavor to be as responsive as possible, and resolve issues as
 quickly as possible.
 
+## A note on logging
+
+Users should only interact with logging via the macros, classes, and functions in
+[`viam/sdk/log/logging.hpp`](src/viam/sdk/log/logging.hpp). Logging is 
+implemented using Boost.Log, but this is an implementation detail subject
+to change without warning. In particular, using Boost.Log macros such as
+`BOOST_LOG_TRIVIAL` or `BOOST_LOG_SEV` is undefined behavior which will likely 
+fail to output log messages.
+
 ## License
 Copyright 2022 Viam Inc.
 
