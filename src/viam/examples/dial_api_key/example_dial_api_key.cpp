@@ -4,7 +4,6 @@
 #include <memory>
 #include <ostream>
 #include <string>
-#include <unistd.h>
 #include <vector>
 
 #include <boost/optional.hpp>

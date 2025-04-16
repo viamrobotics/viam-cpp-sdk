@@ -39,7 +39,7 @@ class ViamCppSdkRecipe(ConanFile):
             # From some experiments it seems that the shared-ness of these packages
             # should match that of the SDK recipe. Failure to do so can cause linker
             # errors while compiling, or static initialization errors at runtime for modules.
-            for lib in ["grpc", "protobuf"]:
+            for lib in ["grpc", "protobuf", "abseil"]:
                 self.options[lib].shared = True
 
     def requirements(self):
@@ -49,8 +49,7 @@ class ViamCppSdkRecipe(ConanFile):
         # maintained conan packages.
         self.requires('grpc/[>=1.48.4]')
         self.requires('protobuf/[>=3.17.1]')
-
-        self.requires('xtensor/[>=0.24.3]')
+        self.requires('xtensor/[>=0.24.3]', transitive_headers=True)
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
@@ -65,6 +64,15 @@ class ViamCppSdkRecipe(ConanFile):
 
         tc.cache_variables["VIAMCPPSDK_OFFLINE_PROTO_GENERATION"] = self.options.offline_proto_generation
         tc.cache_variables["VIAMCPPSDK_USE_DYNAMIC_PROTOS"] = True
+
+        # We don't want to constrain these for conan builds because we
+        # don't know the context where we might be being built. We
+        # should permit the build if it works. Also, even the C++ SDK
+        # is warnings clean on the modern compilers we use in CI, it,
+        # or headers from its dependencies, might throw warnings with
+        # older compilers, and we should still allow a build there.
+        tc.cache_variables["VIAMCPPSDK_ENFORCE_COMPILER_MINIMA"] = False
+        tc.cache_variables["VIAMCPPSDK_USE_WALL_WERROR"] = False
 
         tc.cache_variables["VIAMCPPSDK_BUILD_TESTS"] = False
         tc.cache_variables["VIAMCPPSDK_BUILD_EXAMPLES"] = False
@@ -82,7 +90,11 @@ class ViamCppSdkRecipe(ConanFile):
         CMake(self).install()
 
     def package_info(self):
-        self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
+
+        # TODO(RSDK-10366): Currently, rust_utils is not published for windows
+        # and the C++ SDK just doesn't include it as a dependency on that platform
+        if not self.settings.os == "Windows":
+            self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
 
         self.cpp_info.components["viamsdk"].libs = ["viamsdk"]
 
@@ -103,10 +115,16 @@ class ViamCppSdkRecipe(ConanFile):
         else:
             lib_folder = os.path.join(self.package_folder, "lib")
             lib_fullpath = os.path.join(lib_folder, "libviamapi.a")
+            if self.settings.os == "Windows":
+                lib_fullpath = os.path.join(lib_folder, "viamapi.lib")
+
             if is_apple_os(self):
                 whole_archive = f"-Wl,-force_load,{lib_fullpath}"
+            elif self.settings.os == "Windows":
+                whole_archive = f"/WHOLEARCHIVE:{lib_fullpath}"
             else:
                 whole_archive = f"-Wl,--push-state,--whole-archive,{lib_fullpath},--pop-state"
+
             self.cpp_info.components["viamapi"].exelinkflags.append(whole_archive)
             self.cpp_info.components["viamapi"].sharedlinkflags.append(whole_archive)
 
@@ -116,9 +134,14 @@ class ViamCppSdkRecipe(ConanFile):
             "grpc::grpc++_reflection",
             "protobuf::libprotobuf",
             "xtensor::xtensor",
-
             "viamapi",
-            "viam_rust_utils"
         ])
+
+        # TODO(RSDK-10366): Currently, rust_utils is not published for windows
+        # and the C++ SDK just doesn't include it as a dependency on that platform
+        if self.settings.os != "Windows":
+            self.cpp_info.components["viamsdk"].requires.extend([
+                "viam_rust_utils"
+            ])
 
         self.cpp_info.components["viamsdk"].frameworks = ["Security"]

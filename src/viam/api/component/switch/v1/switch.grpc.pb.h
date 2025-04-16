@@ -28,7 +28,7 @@
 
 namespace viam {
 namespace component {
-namespace switch {
+namespace switch_ {
 namespace v1 {
 
 // A SwitchService services switches associated with a machine.
@@ -43,28 +43,28 @@ class SwitchService final {
    public:
     virtual ~StubInterface() {}
     // Set the position of the switch
-    virtual ::grpc::Status SetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::viam::component::switch::v1::SetPositionResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::SetPositionResponse>> AsyncSetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::SetPositionResponse>>(AsyncSetPositionRaw(context, request, cq));
+    virtual ::grpc::Status SetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::viam::component::switch_::v1::SetPositionResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::SetPositionResponse>> AsyncSetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::SetPositionResponse>>(AsyncSetPositionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::SetPositionResponse>> PrepareAsyncSetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::SetPositionResponse>>(PrepareAsyncSetPositionRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::SetPositionResponse>> PrepareAsyncSetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::SetPositionResponse>>(PrepareAsyncSetPositionRaw(context, request, cq));
     }
     // Get the position of the switch
-    virtual ::grpc::Status GetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::viam::component::switch::v1::GetPositionResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetPositionResponse>> AsyncGetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetPositionResponse>>(AsyncGetPositionRaw(context, request, cq));
+    virtual ::grpc::Status GetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::viam::component::switch_::v1::GetPositionResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetPositionResponse>> AsyncGetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetPositionResponse>>(AsyncGetPositionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetPositionResponse>> PrepareAsyncGetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetPositionResponse>>(PrepareAsyncGetPositionRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetPositionResponse>> PrepareAsyncGetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetPositionResponse>>(PrepareAsyncGetPositionRaw(context, request, cq));
     }
     // Get the number of positions that the switch supports
-    virtual ::grpc::Status GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetNumberOfPositionsResponse>> AsyncGetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetNumberOfPositionsResponse>>(AsyncGetNumberOfPositionsRaw(context, request, cq));
+    virtual ::grpc::Status GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>> AsyncGetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>>(AsyncGetNumberOfPositionsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetNumberOfPositionsResponse>> PrepareAsyncGetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetNumberOfPositionsResponse>>(PrepareAsyncGetNumberOfPositionsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>> PrepareAsyncGetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>>(PrepareAsyncGetNumberOfPositionsRaw(context, request, cq));
     }
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
@@ -78,43 +78,43 @@ class SwitchService final {
      public:
       virtual ~experimental_async_interface() {}
       // Set the position of the switch
-      virtual void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest* request, ::viam::component::switch::v1::SetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::SetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest* request, ::viam::component::switch_::v1::SetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::SetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest* request, ::viam::component::switch::v1::SetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest* request, ::viam::component::switch_::v1::SetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest* request, ::viam::component::switch::v1::SetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest* request, ::viam::component::switch_::v1::SetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::SetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::SetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::SetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::SetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // Get the position of the switch
-      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest* request, ::viam::component::switch::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest* request, ::viam::component::switch_::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest* request, ::viam::component::switch::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest* request, ::viam::component::switch_::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest* request, ::viam::component::switch::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest* request, ::viam::component::switch_::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // Get the number of positions that the switch supports
-      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -138,38 +138,38 @@ class SwitchService final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::SetPositionResponse>* AsyncSetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::SetPositionResponse>* PrepareAsyncSetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetNumberOfPositionsResponse>* AsyncGetNumberOfPositionsRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch::v1::GetNumberOfPositionsResponse>* PrepareAsyncGetNumberOfPositionsRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::SetPositionResponse>* AsyncSetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::SetPositionResponse>* PrepareAsyncSetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>* AsyncGetNumberOfPositionsRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>* PrepareAsyncGetNumberOfPositionsRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status SetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::viam::component::switch::v1::SetPositionResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::SetPositionResponse>> AsyncSetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::SetPositionResponse>>(AsyncSetPositionRaw(context, request, cq));
+    ::grpc::Status SetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::viam::component::switch_::v1::SetPositionResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::SetPositionResponse>> AsyncSetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::SetPositionResponse>>(AsyncSetPositionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::SetPositionResponse>> PrepareAsyncSetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::SetPositionResponse>>(PrepareAsyncSetPositionRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::SetPositionResponse>> PrepareAsyncSetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::SetPositionResponse>>(PrepareAsyncSetPositionRaw(context, request, cq));
     }
-    ::grpc::Status GetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::viam::component::switch::v1::GetPositionResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetPositionResponse>> AsyncGetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetPositionResponse>>(AsyncGetPositionRaw(context, request, cq));
+    ::grpc::Status GetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::viam::component::switch_::v1::GetPositionResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetPositionResponse>> AsyncGetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetPositionResponse>>(AsyncGetPositionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetPositionResponse>> PrepareAsyncGetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetPositionResponse>>(PrepareAsyncGetPositionRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetPositionResponse>> PrepareAsyncGetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetPositionResponse>>(PrepareAsyncGetPositionRaw(context, request, cq));
     }
-    ::grpc::Status GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetNumberOfPositionsResponse>> AsyncGetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetNumberOfPositionsResponse>>(AsyncGetNumberOfPositionsRaw(context, request, cq));
+    ::grpc::Status GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>> AsyncGetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>>(AsyncGetNumberOfPositionsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetNumberOfPositionsResponse>> PrepareAsyncGetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetNumberOfPositionsResponse>>(PrepareAsyncGetNumberOfPositionsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>> PrepareAsyncGetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>>(PrepareAsyncGetNumberOfPositionsRaw(context, request, cq));
     }
     ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
@@ -181,41 +181,41 @@ class SwitchService final {
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
-      void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest* request, ::viam::component::switch::v1::SetPositionResponse* response, std::function<void(::grpc::Status)>) override;
-      void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::SetPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest* request, ::viam::component::switch_::v1::SetPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::SetPositionResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest* request, ::viam::component::switch::v1::SetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest* request, ::viam::component::switch_::v1::SetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest* request, ::viam::component::switch::v1::SetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void SetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest* request, ::viam::component::switch_::v1::SetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::SetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::SetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::SetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void SetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::SetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest* request, ::viam::component::switch::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest* request, ::viam::component::switch_::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetPositionResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest* request, ::viam::component::switch::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest* request, ::viam::component::switch_::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest* request, ::viam::component::switch::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetPosition(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest* request, ::viam::component::switch_::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetNumberOfPositions(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetNumberOfPositions(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
       void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
@@ -240,12 +240,12 @@ class SwitchService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::SetPositionResponse>* AsyncSetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::SetPositionResponse>* PrepareAsyncSetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetNumberOfPositionsResponse>* AsyncGetNumberOfPositionsRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::viam::component::switch::v1::GetNumberOfPositionsResponse>* PrepareAsyncGetNumberOfPositionsRaw(::grpc::ClientContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::SetPositionResponse>* AsyncSetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::SetPositionResponse>* PrepareAsyncSetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::SetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetPositionResponse>* AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetPositionResponse>* PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>* AsyncGetNumberOfPositionsRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>* PrepareAsyncGetNumberOfPositionsRaw(::grpc::ClientContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SetPosition_;
@@ -260,11 +260,11 @@ class SwitchService final {
     Service();
     virtual ~Service();
     // Set the position of the switch
-    virtual ::grpc::Status SetPosition(::grpc::ServerContext* context, const ::viam::component::switch::v1::SetPositionRequest* request, ::viam::component::switch::v1::SetPositionResponse* response);
+    virtual ::grpc::Status SetPosition(::grpc::ServerContext* context, const ::viam::component::switch_::v1::SetPositionRequest* request, ::viam::component::switch_::v1::SetPositionResponse* response);
     // Get the position of the switch
-    virtual ::grpc::Status GetPosition(::grpc::ServerContext* context, const ::viam::component::switch::v1::GetPositionRequest* request, ::viam::component::switch::v1::GetPositionResponse* response);
+    virtual ::grpc::Status GetPosition(::grpc::ServerContext* context, const ::viam::component::switch_::v1::GetPositionRequest* request, ::viam::component::switch_::v1::GetPositionResponse* response);
     // Get the number of positions that the switch supports
-    virtual ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response);
+    virtual ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
   };
@@ -280,11 +280,11 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::SetPositionRequest* /*request*/, ::viam::component::switch::v1::SetPositionResponse* /*response*/) override {
+    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::SetPositionRequest* /*request*/, ::viam::component::switch_::v1::SetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSetPosition(::grpc::ServerContext* context, ::viam::component::switch::v1::SetPositionRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::switch::v1::SetPositionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSetPosition(::grpc::ServerContext* context, ::viam::component::switch_::v1::SetPositionRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::switch_::v1::SetPositionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -300,11 +300,11 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetPositionRequest* /*request*/, ::viam::component::switch::v1::GetPositionResponse* /*response*/) override {
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetPositionRequest* /*request*/, ::viam::component::switch_::v1::GetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetPosition(::grpc::ServerContext* context, ::viam::component::switch::v1::GetPositionRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::switch::v1::GetPositionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetPosition(::grpc::ServerContext* context, ::viam::component::switch_::v1::GetPositionRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::switch_::v1::GetPositionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -320,11 +320,11 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch::v1::GetNumberOfPositionsResponse* /*response*/) override {
+    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetNumberOfPositions(::grpc::ServerContext* context, ::viam::component::switch::v1::GetNumberOfPositionsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::switch::v1::GetNumberOfPositionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetNumberOfPositions(::grpc::ServerContext* context, ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::switch_::v1::GetNumberOfPositionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -361,38 +361,38 @@ class SwitchService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch::v1::SetPositionRequest, ::viam::component::switch::v1::SetPositionResponse>(
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch_::v1::SetPositionRequest, ::viam::component::switch_::v1::SetPositionResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::viam::component::switch::v1::SetPositionRequest* request, ::viam::component::switch::v1::SetPositionResponse* response) { return this->SetPosition(context, request, response); }));}
+                     context, const ::viam::component::switch_::v1::SetPositionRequest* request, ::viam::component::switch_::v1::SetPositionResponse* response) { return this->SetPosition(context, request, response); }));}
     void SetMessageAllocatorFor_SetPosition(
-        ::grpc::experimental::MessageAllocator< ::viam::component::switch::v1::SetPositionRequest, ::viam::component::switch::v1::SetPositionResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::switch_::v1::SetPositionRequest, ::viam::component::switch_::v1::SetPositionResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch::v1::SetPositionRequest, ::viam::component::switch::v1::SetPositionResponse>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch_::v1::SetPositionRequest, ::viam::component::switch_::v1::SetPositionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_SetPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::SetPositionRequest* /*request*/, ::viam::component::switch::v1::SetPositionResponse* /*response*/) override {
+    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::SetPositionRequest* /*request*/, ::viam::component::switch_::v1::SetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::switch::v1::SetPositionRequest* /*request*/, ::viam::component::switch::v1::SetPositionResponse* /*response*/)
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::switch_::v1::SetPositionRequest* /*request*/, ::viam::component::switch_::v1::SetPositionResponse* /*response*/)
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* SetPosition(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::switch::v1::SetPositionRequest* /*request*/, ::viam::component::switch::v1::SetPositionResponse* /*response*/)
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::switch_::v1::SetPositionRequest* /*request*/, ::viam::component::switch_::v1::SetPositionResponse* /*response*/)
     #endif
       { return nullptr; }
   };
@@ -408,38 +408,38 @@ class SwitchService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch::v1::GetPositionRequest, ::viam::component::switch::v1::GetPositionResponse>(
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch_::v1::GetPositionRequest, ::viam::component::switch_::v1::GetPositionResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::viam::component::switch::v1::GetPositionRequest* request, ::viam::component::switch::v1::GetPositionResponse* response) { return this->GetPosition(context, request, response); }));}
+                     context, const ::viam::component::switch_::v1::GetPositionRequest* request, ::viam::component::switch_::v1::GetPositionResponse* response) { return this->GetPosition(context, request, response); }));}
     void SetMessageAllocatorFor_GetPosition(
-        ::grpc::experimental::MessageAllocator< ::viam::component::switch::v1::GetPositionRequest, ::viam::component::switch::v1::GetPositionResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::switch_::v1::GetPositionRequest, ::viam::component::switch_::v1::GetPositionResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch::v1::GetPositionRequest, ::viam::component::switch::v1::GetPositionResponse>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch_::v1::GetPositionRequest, ::viam::component::switch_::v1::GetPositionResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_GetPosition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetPositionRequest* /*request*/, ::viam::component::switch::v1::GetPositionResponse* /*response*/) override {
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetPositionRequest* /*request*/, ::viam::component::switch_::v1::GetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPosition(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::switch::v1::GetPositionRequest* /*request*/, ::viam::component::switch::v1::GetPositionResponse* /*response*/)
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::switch_::v1::GetPositionRequest* /*request*/, ::viam::component::switch_::v1::GetPositionResponse* /*response*/)
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* GetPosition(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::switch::v1::GetPositionRequest* /*request*/, ::viam::component::switch::v1::GetPositionResponse* /*response*/)
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::switch_::v1::GetPositionRequest* /*request*/, ::viam::component::switch_::v1::GetPositionResponse* /*response*/)
     #endif
       { return nullptr; }
   };
@@ -455,38 +455,38 @@ class SwitchService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch::v1::GetNumberOfPositionsRequest, ::viam::component::switch::v1::GetNumberOfPositionsResponse>(
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch_::v1::GetNumberOfPositionsRequest, ::viam::component::switch_::v1::GetNumberOfPositionsResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch::v1::GetNumberOfPositionsResponse* response) { return this->GetNumberOfPositions(context, request, response); }));}
+                     context, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response) { return this->GetNumberOfPositions(context, request, response); }));}
     void SetMessageAllocatorFor_GetNumberOfPositions(
-        ::grpc::experimental::MessageAllocator< ::viam::component::switch::v1::GetNumberOfPositionsRequest, ::viam::component::switch::v1::GetNumberOfPositionsResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::viam::component::switch_::v1::GetNumberOfPositionsRequest, ::viam::component::switch_::v1::GetNumberOfPositionsResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch::v1::GetNumberOfPositionsRequest, ::viam::component::switch::v1::GetNumberOfPositionsResponse>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::switch_::v1::GetNumberOfPositionsRequest, ::viam::component::switch_::v1::GetNumberOfPositionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_GetNumberOfPositions() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch::v1::GetNumberOfPositionsResponse* /*response*/) override {
+    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetNumberOfPositions(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch::v1::GetNumberOfPositionsResponse* /*response*/)
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* /*response*/)
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* GetNumberOfPositions(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch::v1::GetNumberOfPositionsResponse* /*response*/)
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* /*response*/)
     #endif
       { return nullptr; }
   };
@@ -554,7 +554,7 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::SetPositionRequest* /*request*/, ::viam::component::switch::v1::SetPositionResponse* /*response*/) override {
+    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::SetPositionRequest* /*request*/, ::viam::component::switch_::v1::SetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -571,7 +571,7 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetPositionRequest* /*request*/, ::viam::component::switch::v1::GetPositionResponse* /*response*/) override {
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetPositionRequest* /*request*/, ::viam::component::switch_::v1::GetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -588,7 +588,7 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch::v1::GetNumberOfPositionsResponse* /*response*/) override {
+    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -622,7 +622,7 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::SetPositionRequest* /*request*/, ::viam::component::switch::v1::SetPositionResponse* /*response*/) override {
+    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::SetPositionRequest* /*request*/, ::viam::component::switch_::v1::SetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -642,7 +642,7 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetPositionRequest* /*request*/, ::viam::component::switch::v1::GetPositionResponse* /*response*/) override {
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetPositionRequest* /*request*/, ::viam::component::switch_::v1::GetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -662,7 +662,7 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch::v1::GetNumberOfPositionsResponse* /*response*/) override {
+    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -715,7 +715,7 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::SetPositionRequest* /*request*/, ::viam::component::switch::v1::SetPositionResponse* /*response*/) override {
+    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::SetPositionRequest* /*request*/, ::viam::component::switch_::v1::SetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -753,7 +753,7 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetPositionRequest* /*request*/, ::viam::component::switch::v1::GetPositionResponse* /*response*/) override {
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetPositionRequest* /*request*/, ::viam::component::switch_::v1::GetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -791,7 +791,7 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch::v1::GetNumberOfPositionsResponse* /*response*/) override {
+    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -850,10 +850,10 @@ class SwitchService final {
     WithStreamedUnaryMethod_SetPosition() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::component::switch::v1::SetPositionRequest, ::viam::component::switch::v1::SetPositionResponse>(
+          ::viam::component::switch_::v1::SetPositionRequest, ::viam::component::switch_::v1::SetPositionResponse>(
             [this](::grpc_impl::ServerContext* context,
                    ::grpc_impl::ServerUnaryStreamer<
-                     ::viam::component::switch::v1::SetPositionRequest, ::viam::component::switch::v1::SetPositionResponse>* streamer) {
+                     ::viam::component::switch_::v1::SetPositionRequest, ::viam::component::switch_::v1::SetPositionResponse>* streamer) {
                        return this->StreamedSetPosition(context,
                          streamer);
                   }));
@@ -862,12 +862,12 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::SetPositionRequest* /*request*/, ::viam::component::switch::v1::SetPositionResponse* /*response*/) override {
+    ::grpc::Status SetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::SetPositionRequest* /*request*/, ::viam::component::switch_::v1::SetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSetPosition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::switch::v1::SetPositionRequest,::viam::component::switch::v1::SetPositionResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedSetPosition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::switch_::v1::SetPositionRequest,::viam::component::switch_::v1::SetPositionResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetPosition : public BaseClass {
@@ -877,10 +877,10 @@ class SwitchService final {
     WithStreamedUnaryMethod_GetPosition() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::component::switch::v1::GetPositionRequest, ::viam::component::switch::v1::GetPositionResponse>(
+          ::viam::component::switch_::v1::GetPositionRequest, ::viam::component::switch_::v1::GetPositionResponse>(
             [this](::grpc_impl::ServerContext* context,
                    ::grpc_impl::ServerUnaryStreamer<
-                     ::viam::component::switch::v1::GetPositionRequest, ::viam::component::switch::v1::GetPositionResponse>* streamer) {
+                     ::viam::component::switch_::v1::GetPositionRequest, ::viam::component::switch_::v1::GetPositionResponse>* streamer) {
                        return this->StreamedGetPosition(context,
                          streamer);
                   }));
@@ -889,12 +889,12 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetPositionRequest* /*request*/, ::viam::component::switch::v1::GetPositionResponse* /*response*/) override {
+    ::grpc::Status GetPosition(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetPositionRequest* /*request*/, ::viam::component::switch_::v1::GetPositionResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetPosition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::switch::v1::GetPositionRequest,::viam::component::switch::v1::GetPositionResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetPosition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::switch_::v1::GetPositionRequest,::viam::component::switch_::v1::GetPositionResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetNumberOfPositions : public BaseClass {
@@ -904,10 +904,10 @@ class SwitchService final {
     WithStreamedUnaryMethod_GetNumberOfPositions() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::viam::component::switch::v1::GetNumberOfPositionsRequest, ::viam::component::switch::v1::GetNumberOfPositionsResponse>(
+          ::viam::component::switch_::v1::GetNumberOfPositionsRequest, ::viam::component::switch_::v1::GetNumberOfPositionsResponse>(
             [this](::grpc_impl::ServerContext* context,
                    ::grpc_impl::ServerUnaryStreamer<
-                     ::viam::component::switch::v1::GetNumberOfPositionsRequest, ::viam::component::switch::v1::GetNumberOfPositionsResponse>* streamer) {
+                     ::viam::component::switch_::v1::GetNumberOfPositionsRequest, ::viam::component::switch_::v1::GetNumberOfPositionsResponse>* streamer) {
                        return this->StreamedGetNumberOfPositions(context,
                          streamer);
                   }));
@@ -916,12 +916,12 @@ class SwitchService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch::v1::GetNumberOfPositionsResponse* /*response*/) override {
+    ::grpc::Status GetNumberOfPositions(::grpc::ServerContext* /*context*/, const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* /*request*/, ::viam::component::switch_::v1::GetNumberOfPositionsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetNumberOfPositions(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::switch::v1::GetNumberOfPositionsRequest,::viam::component::switch::v1::GetNumberOfPositionsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetNumberOfPositions(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::switch_::v1::GetNumberOfPositionsRequest,::viam::component::switch_::v1::GetNumberOfPositionsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_DoCommand : public BaseClass {

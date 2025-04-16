@@ -34,8 +34,20 @@ configure_file(common/grpc_fwd.hpp.in common/grpc_fwd.hpp)
 
 # Set compile and link options based on arguments
 if (VIAMCPPSDK_USE_WALL_WERROR)
-  target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+   target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(viamsdk PRIVATE -Wall -Werror)
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    # Note: Currently, the generated protos throw W4244 and W4267, so turn that back to a warning.
+    target_compile_options(viamsdk PRIVATE /W4 /WX /wd4244 /wd4267)
+  else()
+    message(FATAL_ERROR "VIAMCPPSDK_USE_WALL_ERROR is set, but not known how to enable for compiler ID ${CMAKE_CXX_COMPILER_ID}")
+  endif()
 endif()
+
 if (VIAMCPPSDK_SANITIZED_BUILD)
   target_link_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
   target_compile_options(viamsdk PRIVATE -fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-recover)
@@ -103,8 +115,11 @@ target_sources(viamsdk
     components/private/sensor_server.cpp
     components/private/servo_client.cpp
     components/private/servo_server.cpp
+    components/private/switch_client.cpp
+    components/private/switch_server.cpp
     components/sensor.cpp
     components/servo.cpp
+    components/switch.cpp
     config/resource.cpp
     log/logging.cpp
     log/private/log_backend.cpp
@@ -175,6 +190,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/power_sensor.hpp
       ../../viam/sdk/components/sensor.hpp
       ../../viam/sdk/components/servo.hpp
+      ../../viam/sdk/components/switch.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/log/logging.hpp
       ../../viam/sdk/module/handler_map.hpp
@@ -257,10 +273,19 @@ target_link_libraries(viamsdk
   PRIVATE ${VIAMCPPSDK_GRPCXX_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_GRPC_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
-  PRIVATE viam_rust_utils
   PRIVATE Threads::Threads
 )
 
+# TODO(RSDK-10366): Currently, rust_utils is not published for
+# windows, so don't link to it.  Instead, link a stub implementation
+# that just calls `abort`.
+if (NOT WIN32)
+  target_link_libraries(viamsdk
+    PRIVATE viam_rust_utils
+  )
+else()
+  target_sources(viamsdk PRIVATE rpc/private/viam_rust_utils_stubs.cpp)
+endif()
 
 if (APPLE)
   target_link_libraries(viamsdk PUBLIC "-framework Security")

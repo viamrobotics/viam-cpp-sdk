@@ -21,7 +21,7 @@
 # TODO: Better clang-format integration (versions, dependencies, only changed, etc.)
 # TODO: Version from git describe?
 # TODO: Export macros and visibilty annotations
-# TODO: CPack? CTest? Conan?
+# TODO: CPack? CTest?
 
 
 # This is a tricky decision. If we set this too old, we lose access to
@@ -32,9 +32,16 @@
 # most uses of this product, it is expected to be cross-compiling for
 # the target platform on a development system, meaning that we are not
 # constrained by the version of CMake available on target systems.
-cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 
-set(CMAKE_PROJECT_VERSION 0.6.0)
+if (WIN32)
+  # Use a newer version of CMake on Windows, so we are NEW for
+  # https://cmake.org/cmake/help/latest/policy/CMP0149.html
+  cmake_minimum_required(VERSION 3.27 FATAL_ERROR)
+else()
+  cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+endif()
+
+set(CMAKE_PROJECT_VERSION 0.9.0)
 
 # Identify the project.
 project(viam-cpp-sdk
@@ -150,6 +157,10 @@ if (VIAMCPPSDK_ENFORCE_COMPILER_MINIMA)
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.0)
       message(FATAL_ERROR "Insufficient Apple clang version: XCode 10.0+ required")
     endif()
+  elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.34)
+      message(FATAL_ERROR "Insufficient MSVC version: Visual Studio 2022 17.4 (MSVC 19.34) or later is required")
+    endif()
   else()
     message(FATAL_ERROR "Unknown / untested compiler ${CMAKE_CXX_COMPILER_ID}")
   endif()
@@ -169,6 +180,10 @@ if (NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
 endif()
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+if(MSVC)
+  # https://discourse.cmake.org/t/set-cmake-cxx-standard-should-set-zc-cplusplus-for-msvc/1876
+  string(APPEND CMAKE_CXX_FLAGS " /Zc:__cplusplus")
+endif()
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
@@ -251,7 +266,7 @@ if (viam_rust_utils_files)
     ${viam_rust_utils_file}
     ONLY_IF_DIFFERENT
   )
-else()
+elseif(NOT WIN32) # TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't even try downloading
   set(lvru_system_name ${CMAKE_SYSTEM_NAME})
   if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(lvru_system_name "macosx")
@@ -271,21 +286,23 @@ else()
 
 endif()
 
-add_library(viam_rust_utils SHARED IMPORTED)
+# TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't even declare the library
+if (NOT WIN32)
+  add_library(viam_rust_utils SHARED IMPORTED)
 
-target_link_directories(viam_rust_utils
-  INTERFACE
+  target_link_directories(viam_rust_utils
+    INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
-)
+  )
 
-set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
+  set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
 
-install(
-  IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
-  LIBRARY COMPONENT viam-cpp-sdk_runtime
-)
-
+  install(
+    IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
+    LIBRARY COMPONENT viam-cpp-sdk_runtime
+  )
+endif()
 
 # Install the license file
 install(FILES
