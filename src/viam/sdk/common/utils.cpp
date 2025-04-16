@@ -10,9 +10,6 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/blank.hpp>
-#include <boost/log/core.hpp>
-#include <boost/log/expressions.hpp>
-#include <boost/log/trivial.hpp>
 #include <boost/optional/optional.hpp>
 
 #include <viam/api/common/v1/common.pb.h>
@@ -94,15 +91,6 @@ std::vector<unsigned char> string_to_bytes(const std::string& s) {
 std::string bytes_to_string(const std::vector<unsigned char>& b) {
     std::string img_string(b.begin(), b.end());
     return img_string;
-}
-
-void set_logger_severity_from_args(int argc, char** argv) {
-    if (argc >= 3 && strcmp(argv[2], "--log-level=debug") == 0) {
-        boost::log::core::get()->set_filter(boost::log::trivial::severity >=
-                                            boost::log::trivial::debug);
-        return;
-    }
-    boost::log::core::get()->set_filter(boost::log::trivial::severity >= boost::log::trivial::info);
 }
 
 std::string random_debug_key() {

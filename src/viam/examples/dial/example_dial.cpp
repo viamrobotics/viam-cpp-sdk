@@ -10,6 +10,7 @@
 
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/components/generic.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
@@ -35,15 +36,15 @@ int main() {
 
     // ensure we can query resources
     std::vector<Name> resource_names = robot->resource_names();
-    std::cout << "Resources" << std::endl;
+    VIAM_SDK_LOG(info) << "Resources:";
     for (const Name& resource : resource_names) {
-        std::cout << "\t" << resource << "\n";
+        VIAM_SDK_LOG(info) << resource;
     }
 
     // ensure we can create clients to the robot
     auto gc = robot->resource_by_name<GenericComponent>("generic1");
     if (gc) {
-        std::cout << "got generic component client named " << gc->name() << std::endl;
+        VIAM_SDK_LOG(info) << "got generic component client named " << gc->name();
     }
 
     return EXIT_SUCCESS;

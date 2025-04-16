@@ -21,6 +21,27 @@ struct GlobalFixture {
 
 BOOST_TEST_GLOBAL_FIXTURE(GlobalFixture);
 
+// Buffer output filter to test console logging.
+// In practice this is a pain and makes it hard to inspect Boost.Test output,
+// so rather than using it as a test fixture we manually instantiate it and call release when done.
+// https://stackoverflow.com/a/5405268
+struct cout_redirect {
+    cout_redirect() : old(std::cout.rdbuf(os.rdbuf())) {}
+
+    void release() {
+        std::cout.rdbuf(old);
+    }
+
+    ~cout_redirect() {
+        release();
+    }
+
+    std::ostringstream os;
+
+   private:
+    std::streambuf* old;
+};
+
 using namespace viam::sdk;
 
 ProtoStruct fake_map();

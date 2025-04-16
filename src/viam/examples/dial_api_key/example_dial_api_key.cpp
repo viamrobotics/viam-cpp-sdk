@@ -49,9 +49,9 @@ int main(int argc, char* argv[]) {
 
     // ensure we can query resources
     std::vector<Name> resource_names = robot->resource_names();
-    std::cout << "Resources" << std::endl;
+    VIAM_SDK_LOG(info) << "Resources:";
     for (const Name& resource : resource_names) {
-        std::cout << "\t" << resource << "\n";
+        VIAM_SDK_LOG(info) << resource;
     }
 
     return EXIT_SUCCESS;

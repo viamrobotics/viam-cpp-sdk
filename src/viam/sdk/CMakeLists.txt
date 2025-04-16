@@ -121,6 +121,8 @@ target_sources(viamsdk
     components/servo.cpp
     components/switch.cpp
     config/resource.cpp
+    log/logging.cpp
+    log/private/log_backend.cpp
     module/handler_map.cpp
     module/module.cpp
     module/service.cpp
@@ -190,6 +192,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/servo.hpp
       ../../viam/sdk/components/switch.hpp
       ../../viam/sdk/config/resource.hpp
+      ../../viam/sdk/log/logging.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
       ../../viam/sdk/module/service.hpp
@@ -264,6 +267,7 @@ viamcppsdk_link_viam_api(viamsdk PRIVATE)
 target_link_libraries(viamsdk
   PUBLIC Boost::headers
   PUBLIC Boost::log
+  PUBLIC Boost::log_setup
   PUBLIC xtensor
   PRIVATE ${VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_GRPCXX_LIBRARIES}

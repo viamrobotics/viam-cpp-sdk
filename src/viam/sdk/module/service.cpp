@@ -15,7 +15,6 @@
 #include <sstream>
 #include <string>
 
-#include <boost/log/trivial.hpp>
 #include <boost/none.hpp>
 #include <google/protobuf/descriptor.h>
 #include <grpcpp/channel.h>
@@ -69,6 +68,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         if (reg) {
             try {
                 res = reg->construct_resource(deps, cfg);
+                res->set_log_level(cfg.get_log_level());
             } catch (const std::exception& exc) {
                 return grpc::Status(::grpc::INTERNAL, exc.what());
             }
@@ -107,6 +107,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         }
         try {
             Reconfigurable::reconfigure_if_reconfigurable(res, deps, cfg);
+            res->set_log_level(cfg.get_log_level());
             return grpc::Status();
         } catch (const std::exception& exc) {
             return grpc::Status(::grpc::INTERNAL, exc.what());
@@ -116,7 +117,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         try {
             Stoppable::stop_if_stoppable(res);
         } catch (const std::exception& err) {
-            BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
+            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
         }
 
         const std::shared_ptr<const ModelRegistration> reg =
@@ -177,7 +178,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         try {
             Stoppable::stop_if_stoppable(res);
         } catch (const std::exception& err) {
-            BOOST_LOG_TRIVIAL(error) << "unable to stop resource: " << err.what();
+            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
         }
 
         manager->remove(name);
@@ -190,7 +191,12 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const std::lock_guard<std::mutex> lock(parent.lock_);
         const viam::module::v1::HandlerMap hm = to_proto(parent.module_->handles());
         *response->mutable_handlermap() = hm;
-        parent.parent_addr_ = request->parent_address();
+        auto new_parent_addr = request->parent_address();
+        if (parent.parent_addr_ != new_parent_addr) {
+            parent.parent_addr_ = std::move(new_parent_addr);
+            parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, {0, boost::none});
+            parent.parent_->connect_logging();
+        }
         response->set_ready(parent.module_->ready());
         return grpc::Status();
     }
@@ -216,7 +222,9 @@ Dependencies ModuleService::get_dependencies_(
 
 std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) {
     if (!parent_) {
+        // LS: I think maybe this is never hit
         parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
+        parent_->connect_logging();
     }
 
     return parent_->resource_by_name(name);
@@ -237,7 +245,7 @@ ModuleService::ModuleService(int argc,
           }
           return argv[1];
       }()) {
-    set_logger_severity_from_args(argc, argv);
+    LogManager::get().set_global_log_level(argc, argv);
 
     for (auto&& mr : registrations) {
         Registry::get().register_model(mr);
@@ -247,14 +255,14 @@ ModuleService::ModuleService(int argc,
 
 ModuleService::~ModuleService() {
     // TODO(RSDK-5509): Run registered cleanup functions here.
-    BOOST_LOG_TRIVIAL(info) << "Shutting down gracefully.";
+    VIAM_SDK_LOG(info) << "Shutting down gracefully.";
     server_->shutdown();
 
     if (parent_) {
         try {
             parent_->close();
         } catch (const std::exception& exc) {
-            BOOST_LOG_TRIVIAL(error) << exc.what();
+            VIAM_SDK_LOG(error) << exc.what();
         }
     }
 }
@@ -267,9 +275,8 @@ void ModuleService::serve() {
     module_->set_ready();
     server_->start();
 
-    BOOST_LOG_TRIVIAL(info) << "Module listening on " << module_->addr();
-    BOOST_LOG_TRIVIAL(info) << "Module handles the following API/model pairs:\n"
-                            << module_->handles();
+    VIAM_SDK_LOG(info) << "Module listening on " << module_->addr();
+    VIAM_SDK_LOG(info) << "Module handles the following API/model pairs:\n" << module_->handles();
 
     signal_manager_.wait();
 }

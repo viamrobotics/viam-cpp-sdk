@@ -345,7 +345,18 @@ if (VIAMCPPSDK_BUILD_TESTS)
   set(VIAMCPPSDK_BOOST_TEST "unit_test_framework")
 endif()
 
-find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED COMPONENTS headers log program_options ${VIAMCPPSDK_BOOST_TEST})
+if (VIAMCPPSDK_BUILD_EXAMPLES)
+  set(VIAMCPPSDK_BOOST_PROGRAM_OPTIONS "program_options")
+endif()
+
+find_package(Boost ${VIAMCPPSDK_BOOST_VERSION_MINIMUM} REQUIRED 
+  COMPONENTS 
+    headers 
+    log 
+    log_setup 
+    ${VIAMCPPSDK_BOOST_PROGRAM_OPTIONS}
+    ${VIAMCPPSDK_BOOST_TEST}
+)
 
 # Time to find `protobuf` and `gRPC[++]`. Normally this would just be
 # something like `find_package(gRPC <version> CONFIG REQUIRED)`, and
