@@ -17026,6 +17026,7 @@ class UpdateRobotPartRequest final :
     kIdFieldNumber = 1,
     kNameFieldNumber = 2,
     kRobotConfigFieldNumber = 3,
+    kLastKnownUpdateFieldNumber = 4,
   };
   // string id = 1 [json_name = "id"];
   void clear_id();
@@ -17073,6 +17074,24 @@ class UpdateRobotPartRequest final :
       ::PROTOBUF_NAMESPACE_ID::Struct* robot_config);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_robot_config();
 
+  // optional .google.protobuf.Timestamp last_known_update = 4 [json_name = "lastKnownUpdate"];
+  bool has_last_known_update() const;
+  private:
+  bool _internal_has_last_known_update() const;
+  public:
+  void clear_last_known_update();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_known_update() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_known_update();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_known_update();
+  void set_allocated_last_known_update(::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_known_update() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_known_update();
+  public:
+  void unsafe_arena_set_allocated_last_known_update(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_known_update();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateRobotPartRequest)
  private:
   class _Internal;
@@ -17080,10 +17099,12 @@ class UpdateRobotPartRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::Struct* robot_config_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -21606,6 +21627,7 @@ class UpdateFragmentRequest final :
     kIdFieldNumber = 1,
     kNameFieldNumber = 2,
     kConfigFieldNumber = 3,
+    kLastKnownUpdateFieldNumber = 6,
     kPublicFieldNumber = 4,
     kVisibilityFieldNumber = 5,
   };
@@ -21655,6 +21677,24 @@ class UpdateFragmentRequest final :
       ::PROTOBUF_NAMESPACE_ID::Struct* config);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_config();
 
+  // optional .google.protobuf.Timestamp last_known_update = 6 [json_name = "lastKnownUpdate"];
+  bool has_last_known_update() const;
+  private:
+  bool _internal_has_last_known_update() const;
+  public:
+  void clear_last_known_update();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_known_update() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_known_update();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_known_update();
+  void set_allocated_last_known_update(::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_known_update() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_known_update();
+  public:
+  void unsafe_arena_set_allocated_last_known_update(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_known_update();
+
   // optional bool public = 4 [json_name = "public"];
   bool has_public_() const;
   private:
@@ -21693,6 +21733,7 @@ class UpdateFragmentRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::Struct* config_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update_;
   bool public__;
   int visibility_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
@@ -55734,6 +55775,93 @@ inline void UpdateRobotPartRequest::set_allocated_robot_config(::PROTOBUF_NAMESP
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRobotPartRequest.robot_config)
 }
 
+// optional .google.protobuf.Timestamp last_known_update = 4 [json_name = "lastKnownUpdate"];
+inline bool UpdateRobotPartRequest::_internal_has_last_known_update() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || last_known_update_ != nullptr);
+  return value;
+}
+inline bool UpdateRobotPartRequest::has_last_known_update() const {
+  return _internal_has_last_known_update();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& UpdateRobotPartRequest::_internal_last_known_update() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = last_known_update_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& UpdateRobotPartRequest::last_known_update() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateRobotPartRequest.last_known_update)
+  return _internal_last_known_update();
+}
+inline void UpdateRobotPartRequest::unsafe_arena_set_allocated_last_known_update(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_known_update_);
+  }
+  last_known_update_ = last_known_update;
+  if (last_known_update) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateRobotPartRequest.last_known_update)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateRobotPartRequest::release_last_known_update() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_known_update_;
+  last_known_update_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateRobotPartRequest::unsafe_arena_release_last_known_update() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateRobotPartRequest.last_known_update)
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_known_update_;
+  last_known_update_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateRobotPartRequest::_internal_mutable_last_known_update() {
+  _has_bits_[0] |= 0x00000001u;
+  if (last_known_update_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_known_update_ = p;
+  }
+  return last_known_update_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateRobotPartRequest::mutable_last_known_update() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_known_update();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateRobotPartRequest.last_known_update)
+  return _msg;
+}
+inline void UpdateRobotPartRequest::set_allocated_last_known_update(::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_known_update_);
+  }
+  if (last_known_update) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_known_update));
+    if (message_arena != submessage_arena) {
+      last_known_update = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_known_update, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  last_known_update_ = last_known_update;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRobotPartRequest.last_known_update)
+}
+
 // -------------------------------------------------------------------
 
 // UpdateRobotPartResponse
@@ -59697,7 +59825,7 @@ inline void UpdateFragmentRequest::set_allocated_config(::PROTOBUF_NAMESPACE_ID:
 
 // optional bool public = 4 [json_name = "public"];
 inline bool UpdateFragmentRequest::_internal_has_public_() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
 inline bool UpdateFragmentRequest::has_public_() const {
@@ -59705,7 +59833,7 @@ inline bool UpdateFragmentRequest::has_public_() const {
 }
 inline void UpdateFragmentRequest::clear_public_() {
   public__ = false;
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline bool UpdateFragmentRequest::_internal_public_() const {
   return public__;
@@ -59715,7 +59843,7 @@ inline bool UpdateFragmentRequest::public_() const {
   return _internal_public_();
 }
 inline void UpdateFragmentRequest::_internal_set_public_(bool value) {
-  _has_bits_[0] |= 0x00000001u;
+  _has_bits_[0] |= 0x00000002u;
   public__ = value;
 }
 inline void UpdateFragmentRequest::set_public_(bool value) {
@@ -59725,7 +59853,7 @@ inline void UpdateFragmentRequest::set_public_(bool value) {
 
 // optional .viam.app.v1.FragmentVisibility visibility = 5 [json_name = "visibility"];
 inline bool UpdateFragmentRequest::_internal_has_visibility() const {
-  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
 inline bool UpdateFragmentRequest::has_visibility() const {
@@ -59733,7 +59861,7 @@ inline bool UpdateFragmentRequest::has_visibility() const {
 }
 inline void UpdateFragmentRequest::clear_visibility() {
   visibility_ = 0;
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline ::viam::app::v1::FragmentVisibility UpdateFragmentRequest::_internal_visibility() const {
   return static_cast< ::viam::app::v1::FragmentVisibility >(visibility_);
@@ -59743,12 +59871,99 @@ inline ::viam::app::v1::FragmentVisibility UpdateFragmentRequest::visibility() c
   return _internal_visibility();
 }
 inline void UpdateFragmentRequest::_internal_set_visibility(::viam::app::v1::FragmentVisibility value) {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000004u;
   visibility_ = value;
 }
 inline void UpdateFragmentRequest::set_visibility(::viam::app::v1::FragmentVisibility value) {
   _internal_set_visibility(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.UpdateFragmentRequest.visibility)
+}
+
+// optional .google.protobuf.Timestamp last_known_update = 6 [json_name = "lastKnownUpdate"];
+inline bool UpdateFragmentRequest::_internal_has_last_known_update() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || last_known_update_ != nullptr);
+  return value;
+}
+inline bool UpdateFragmentRequest::has_last_known_update() const {
+  return _internal_has_last_known_update();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& UpdateFragmentRequest::_internal_last_known_update() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = last_known_update_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& UpdateFragmentRequest::last_known_update() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateFragmentRequest.last_known_update)
+  return _internal_last_known_update();
+}
+inline void UpdateFragmentRequest::unsafe_arena_set_allocated_last_known_update(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_known_update_);
+  }
+  last_known_update_ = last_known_update;
+  if (last_known_update) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateFragmentRequest.last_known_update)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateFragmentRequest::release_last_known_update() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_known_update_;
+  last_known_update_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateFragmentRequest::unsafe_arena_release_last_known_update() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateFragmentRequest.last_known_update)
+  _has_bits_[0] &= ~0x00000001u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_known_update_;
+  last_known_update_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateFragmentRequest::_internal_mutable_last_known_update() {
+  _has_bits_[0] |= 0x00000001u;
+  if (last_known_update_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_known_update_ = p;
+  }
+  return last_known_update_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateFragmentRequest::mutable_last_known_update() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_known_update();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateFragmentRequest.last_known_update)
+  return _msg;
+}
+inline void UpdateFragmentRequest::set_allocated_last_known_update(::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_known_update_);
+  }
+  if (last_known_update) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_known_update));
+    if (message_arena != submessage_arena) {
+      last_known_update = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_known_update, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  last_known_update_ = last_known_update;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateFragmentRequest.last_known_update)
 }
 
 // -------------------------------------------------------------------

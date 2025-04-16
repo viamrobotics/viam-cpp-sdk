@@ -72,10 +72,27 @@ struct DebugInfoDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DebugInfoDefaultTypeInternal _DebugInfo_default_instance_;
+PROTOBUF_CONSTEXPR QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse(
+    ::_pbi::ConstantInitialized){}
+struct QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUseDefaultTypeInternal _QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR QuotaFailure_Violation::QuotaFailure_Violation(
     ::_pbi::ConstantInitialized)
-  : subject_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  : quota_dimensions_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
+  , subject_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , api_service_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , quota_metric_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , quota_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , quota_value_(int64_t{0})
+  , future_quota_value_(int64_t{0}){}
 struct QuotaFailure_ViolationDefaultTypeInternal {
   PROTOBUF_CONSTEXPR QuotaFailure_ViolationDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -218,7 +235,7 @@ struct LocalizedMessageDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocalizedMessageDefaultTypeInternal _LocalizedMessage_default_instance_;
 }  // namespace rpc
 }  // namespace google
-static ::_pb::Metadata file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[15];
+static ::_pb::Metadata file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[16];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_google_2frpc_2ferror_5fdetails_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_google_2frpc_2ferror_5fdetails_2eproto = nullptr;
 
@@ -257,7 +274,17 @@ const uint32_t TableStruct_google_2frpc_2ferror_5fdetails_2eproto::offsets[] PRO
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::rpc::DebugInfo, stack_entries_),
   PROTOBUF_FIELD_OFFSET(::google::rpc::DebugInfo, detail_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse, value_),
+  0,
+  1,
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -265,6 +292,20 @@ const uint32_t TableStruct_google_2frpc_2ferror_5fdetails_2eproto::offsets[] PRO
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, subject_),
   PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, description_),
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, api_service_),
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, quota_metric_),
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, quota_id_),
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, quota_dimensions_),
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, quota_value_),
+  PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure_Violation, future_quota_value_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::rpc::QuotaFailure, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -352,17 +393,18 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 10, -1, -1, sizeof(::google::rpc::ErrorInfo)},
   { 19, -1, -1, sizeof(::google::rpc::RetryInfo)},
   { 26, -1, -1, sizeof(::google::rpc::DebugInfo)},
-  { 34, -1, -1, sizeof(::google::rpc::QuotaFailure_Violation)},
-  { 42, -1, -1, sizeof(::google::rpc::QuotaFailure)},
-  { 49, -1, -1, sizeof(::google::rpc::PreconditionFailure_Violation)},
-  { 58, -1, -1, sizeof(::google::rpc::PreconditionFailure)},
-  { 65, -1, -1, sizeof(::google::rpc::BadRequest_FieldViolation)},
-  { 75, -1, -1, sizeof(::google::rpc::BadRequest)},
-  { 82, -1, -1, sizeof(::google::rpc::RequestInfo)},
-  { 90, -1, -1, sizeof(::google::rpc::ResourceInfo)},
-  { 100, -1, -1, sizeof(::google::rpc::Help_Link)},
-  { 108, -1, -1, sizeof(::google::rpc::Help)},
-  { 115, -1, -1, sizeof(::google::rpc::LocalizedMessage)},
+  { 34, 42, -1, sizeof(::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse)},
+  { 44, 58, -1, sizeof(::google::rpc::QuotaFailure_Violation)},
+  { 66, -1, -1, sizeof(::google::rpc::QuotaFailure)},
+  { 73, -1, -1, sizeof(::google::rpc::PreconditionFailure_Violation)},
+  { 82, -1, -1, sizeof(::google::rpc::PreconditionFailure)},
+  { 89, -1, -1, sizeof(::google::rpc::BadRequest_FieldViolation)},
+  { 99, -1, -1, sizeof(::google::rpc::BadRequest)},
+  { 106, -1, -1, sizeof(::google::rpc::RequestInfo)},
+  { 114, -1, -1, sizeof(::google::rpc::ResourceInfo)},
+  { 124, -1, -1, sizeof(::google::rpc::Help_Link)},
+  { 132, -1, -1, sizeof(::google::rpc::Help)},
+  { 139, -1, -1, sizeof(::google::rpc::LocalizedMessage)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -370,6 +412,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::google::rpc::_ErrorInfo_default_instance_._instance,
   &::google::rpc::_RetryInfo_default_instance_._instance,
   &::google::rpc::_DebugInfo_default_instance_._instance,
+  &::google::rpc::_QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse_default_instance_._instance,
   &::google::rpc::_QuotaFailure_Violation_default_instance_._instance,
   &::google::rpc::_QuotaFailure_default_instance_._instance,
   &::google::rpc::_PreconditionFailure_Violation_default_instance_._instance,
@@ -394,45 +437,54 @@ const char descriptor_table_protodef_google_2frpc_2ferror_5fdetails_2eproto[] PR
   "\013retry_delay\030\001 \001(\0132\031.google.protobuf.Dur"
   "ationR\nretryDelay\"H\n\tDebugInfo\022#\n\rstack_"
   "entries\030\001 \003(\tR\014stackEntries\022\026\n\006detail\030\002 "
-  "\001(\tR\006detail\"\233\001\n\014QuotaFailure\022B\n\nviolatio"
+  "\001(\tR\006detail\"\216\004\n\014QuotaFailure\022B\n\nviolatio"
   "ns\030\001 \003(\0132\".google.rpc.QuotaFailure.Viola"
-  "tionR\nviolations\032G\n\tViolation\022\030\n\007subject"
-  "\030\001 \001(\tR\007subject\022 \n\013description\030\002 \001(\tR\013de"
-  "scription\"\275\001\n\023PreconditionFailure\022I\n\nvio"
-  "lations\030\001 \003(\0132).google.rpc.PreconditionF"
-  "ailure.ViolationR\nviolations\032[\n\tViolatio"
-  "n\022\022\n\004type\030\001 \001(\tR\004type\022\030\n\007subject\030\002 \001(\tR\007"
-  "subject\022 \n\013description\030\003 \001(\tR\013descriptio"
-  "n\"\214\002\n\nBadRequest\022P\n\020field_violations\030\001 \003"
-  "(\0132%.google.rpc.BadRequest.FieldViolatio"
-  "nR\017fieldViolations\032\253\001\n\016FieldViolation\022\024\n"
-  "\005field\030\001 \001(\tR\005field\022 \n\013description\030\002 \001(\t"
-  "R\013description\022\026\n\006reason\030\003 \001(\tR\006reason\022I\n"
-  "\021localized_message\030\004 \001(\0132\034.google.rpc.Lo"
-  "calizedMessageR\020localizedMessage\"O\n\013Requ"
-  "estInfo\022\035\n\nrequest_id\030\001 \001(\tR\trequestId\022!"
-  "\n\014serving_data\030\002 \001(\tR\013servingData\"\220\001\n\014Re"
-  "sourceInfo\022#\n\rresource_type\030\001 \001(\tR\014resou"
-  "rceType\022#\n\rresource_name\030\002 \001(\tR\014resource"
-  "Name\022\024\n\005owner\030\003 \001(\tR\005owner\022 \n\013descriptio"
-  "n\030\004 \001(\tR\013description\"o\n\004Help\022+\n\005links\030\001 "
-  "\003(\0132\025.google.rpc.Help.LinkR\005links\032:\n\004Lin"
-  "k\022 \n\013description\030\001 \001(\tR\013description\022\020\n\003u"
-  "rl\030\002 \001(\tR\003url\"D\n\020LocalizedMessage\022\026\n\006loc"
-  "ale\030\001 \001(\tR\006locale\022\030\n\007message\030\002 \001(\tR\007mess"
-  "ageBl\n\016com.google.rpcB\021ErrorDetailsProto"
-  "P\001Z\?google.golang.org/genproto/googleapi"
-  "s/rpc/errdetails;errdetails\242\002\003RPCb\006proto"
-  "3"
+  "tionR\nviolations\032\271\003\n\tViolation\022\030\n\007subjec"
+  "t\030\001 \001(\tR\007subject\022 \n\013description\030\002 \001(\tR\013d"
+  "escription\022\037\n\013api_service\030\003 \001(\tR\napiServ"
+  "ice\022!\n\014quota_metric\030\004 \001(\tR\013quotaMetric\022\031"
+  "\n\010quota_id\030\005 \001(\tR\007quotaId\022b\n\020quota_dimen"
+  "sions\030\006 \003(\01327.google.rpc.QuotaFailure.Vi"
+  "olation.QuotaDimensionsEntryR\017quotaDimen"
+  "sions\022\037\n\013quota_value\030\007 \001(\003R\nquotaValue\0221"
+  "\n\022future_quota_value\030\010 \001(\003H\000R\020futureQuot"
+  "aValue\210\001\001\032B\n\024QuotaDimensionsEntry\022\020\n\003key"
+  "\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001B\025\n"
+  "\023_future_quota_value\"\275\001\n\023PreconditionFai"
+  "lure\022I\n\nviolations\030\001 \003(\0132).google.rpc.Pr"
+  "econditionFailure.ViolationR\nviolations\032"
+  "[\n\tViolation\022\022\n\004type\030\001 \001(\tR\004type\022\030\n\007subj"
+  "ect\030\002 \001(\tR\007subject\022 \n\013description\030\003 \001(\tR"
+  "\013description\"\214\002\n\nBadRequest\022P\n\020field_vio"
+  "lations\030\001 \003(\0132%.google.rpc.BadRequest.Fi"
+  "eldViolationR\017fieldViolations\032\253\001\n\016FieldV"
+  "iolation\022\024\n\005field\030\001 \001(\tR\005field\022 \n\013descri"
+  "ption\030\002 \001(\tR\013description\022\026\n\006reason\030\003 \001(\t"
+  "R\006reason\022I\n\021localized_message\030\004 \001(\0132\034.go"
+  "ogle.rpc.LocalizedMessageR\020localizedMess"
+  "age\"O\n\013RequestInfo\022\035\n\nrequest_id\030\001 \001(\tR\t"
+  "requestId\022!\n\014serving_data\030\002 \001(\tR\013serving"
+  "Data\"\220\001\n\014ResourceInfo\022#\n\rresource_type\030\001"
+  " \001(\tR\014resourceType\022#\n\rresource_name\030\002 \001("
+  "\tR\014resourceName\022\024\n\005owner\030\003 \001(\tR\005owner\022 \n"
+  "\013description\030\004 \001(\tR\013description\"o\n\004Help\022"
+  "+\n\005links\030\001 \003(\0132\025.google.rpc.Help.LinkR\005l"
+  "inks\032:\n\004Link\022 \n\013description\030\001 \001(\tR\013descr"
+  "iption\022\020\n\003url\030\002 \001(\tR\003url\"D\n\020LocalizedMes"
+  "sage\022\026\n\006locale\030\001 \001(\tR\006locale\022\030\n\007message\030"
+  "\002 \001(\tR\007messageBl\n\016com.google.rpcB\021ErrorD"
+  "etailsProtoP\001Z\?google.golang.org/genprot"
+  "o/googleapis/rpc/errdetails;errdetails\242\002"
+  "\003RPCb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2frpc_2ferror_5fdetails_2eproto = {
-    false, false, 1561, descriptor_table_protodef_google_2frpc_2ferror_5fdetails_2eproto,
+    false, false, 1932, descriptor_table_protodef_google_2frpc_2ferror_5fdetails_2eproto,
     "google/rpc/error_details.proto",
-    &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once, descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_deps, 1, 15,
+    &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once, descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_deps, 1, 16,
     schemas, file_default_instances, TableStruct_google_2frpc_2ferror_5fdetails_2eproto::offsets,
     file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto, file_level_enum_descriptors_google_2frpc_2ferror_5fdetails_2eproto,
     file_level_service_descriptors_google_2frpc_2ferror_5fdetails_2eproto,
@@ -1197,19 +1249,43 @@ void DebugInfo::InternalSwap(DebugInfo* other) {
 
 // ===================================================================
 
+QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse() {}
+QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse::MergeFrom(const QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[4]);
+}
+
+// ===================================================================
+
 class QuotaFailure_Violation::_Internal {
  public:
+  using HasBits = decltype(std::declval<QuotaFailure_Violation>()._has_bits_);
+  static void set_has_future_quota_value(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 QuotaFailure_Violation::QuotaFailure_Violation(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  quota_dimensions_(arena) {
   SharedCtor();
+  if (arena != nullptr && !is_message_owned) {
+    arena->OwnCustomDestructor(this, &QuotaFailure_Violation::ArenaDtor);
+  }
   // @@protoc_insertion_point(arena_constructor:google.rpc.QuotaFailure.Violation)
 }
 QuotaFailure_Violation::QuotaFailure_Violation(const QuotaFailure_Violation& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  quota_dimensions_.MergeFrom(from.quota_dimensions_);
   subject_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     subject_.Set("", GetArenaForAllocation());
@@ -1226,6 +1302,33 @@ QuotaFailure_Violation::QuotaFailure_Violation(const QuotaFailure_Violation& fro
     description_.Set(from._internal_description(), 
       GetArenaForAllocation());
   }
+  api_service_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    api_service_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_api_service().empty()) {
+    api_service_.Set(from._internal_api_service(), 
+      GetArenaForAllocation());
+  }
+  quota_metric_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    quota_metric_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_quota_metric().empty()) {
+    quota_metric_.Set(from._internal_quota_metric(), 
+      GetArenaForAllocation());
+  }
+  quota_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    quota_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_quota_id().empty()) {
+    quota_id_.Set(from._internal_quota_id(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&quota_value_, &from.quota_value_,
+    static_cast<size_t>(reinterpret_cast<char*>(&future_quota_value_) -
+    reinterpret_cast<char*>(&quota_value_)) + sizeof(future_quota_value_));
   // @@protoc_insertion_point(copy_constructor:google.rpc.QuotaFailure.Violation)
 }
 
@@ -1238,12 +1341,29 @@ description_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   description_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+api_service_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  api_service_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+quota_metric_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  quota_metric_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+quota_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  quota_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&quota_value_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&future_quota_value_) -
+    reinterpret_cast<char*>(&quota_value_)) + sizeof(future_quota_value_));
 }
 
 QuotaFailure_Violation::~QuotaFailure_Violation() {
   // @@protoc_insertion_point(destructor:google.rpc.QuotaFailure.Violation)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
+    ArenaDtor(this);
     return;
   }
   SharedDtor();
@@ -1251,10 +1371,18 @@ QuotaFailure_Violation::~QuotaFailure_Violation() {
 
 inline void QuotaFailure_Violation::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  quota_dimensions_.Destruct();
   subject_.Destroy();
   description_.Destroy();
+  api_service_.Destroy();
+  quota_metric_.Destroy();
+  quota_id_.Destroy();
 }
 
+void QuotaFailure_Violation::ArenaDtor(void* object) {
+  QuotaFailure_Violation* _this = reinterpret_cast< QuotaFailure_Violation* >(object);
+  _this->quota_dimensions_.Destruct();
+}
 void QuotaFailure_Violation::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
@@ -1265,13 +1393,21 @@ void QuotaFailure_Violation::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  quota_dimensions_.Clear();
   subject_.ClearToEmpty();
   description_.ClearToEmpty();
+  api_service_.ClearToEmpty();
+  quota_metric_.ClearToEmpty();
+  quota_id_.ClearToEmpty();
+  quota_value_ = int64_t{0};
+  future_quota_value_ = int64_t{0};
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* QuotaFailure_Violation::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -1296,6 +1432,66 @@ const char* QuotaFailure_Violation::_InternalParse(const char* ptr, ::_pbi::Pars
         } else
           goto handle_unusual;
         continue;
+      // string api_service = 3 [json_name = "apiService"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_api_service();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.rpc.QuotaFailure.Violation.api_service"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string quota_metric = 4 [json_name = "quotaMetric"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_quota_metric();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.rpc.QuotaFailure.Violation.quota_metric"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string quota_id = 5 [json_name = "quotaId"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_quota_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.rpc.QuotaFailure.Violation.quota_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // map<string, string> quota_dimensions = 6 [json_name = "quotaDimensions"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&quota_dimensions_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // int64 quota_value = 7 [json_name = "quotaValue"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          quota_value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional int64 future_quota_value = 8 [json_name = "futureQuotaValue"];
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          _Internal::set_has_future_quota_value(&has_bits);
+          future_quota_value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -1312,6 +1508,7 @@ const char* QuotaFailure_Violation::_InternalParse(const char* ptr, ::_pbi::Pars
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -1345,6 +1542,78 @@ uint8_t* QuotaFailure_Violation::_InternalSerialize(
         2, this->_internal_description(), target);
   }
 
+  // string api_service = 3 [json_name = "apiService"];
+  if (!this->_internal_api_service().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_api_service().data(), static_cast<int>(this->_internal_api_service().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.rpc.QuotaFailure.Violation.api_service");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_api_service(), target);
+  }
+
+  // string quota_metric = 4 [json_name = "quotaMetric"];
+  if (!this->_internal_quota_metric().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_quota_metric().data(), static_cast<int>(this->_internal_quota_metric().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.rpc.QuotaFailure.Violation.quota_metric");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_quota_metric(), target);
+  }
+
+  // string quota_id = 5 [json_name = "quotaId"];
+  if (!this->_internal_quota_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_quota_id().data(), static_cast<int>(this->_internal_quota_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.rpc.QuotaFailure.Violation.quota_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_quota_id(), target);
+  }
+
+  // map<string, string> quota_dimensions = 6 [json_name = "quotaDimensions"];
+  if (!this->_internal_quota_dimensions().empty()) {
+    using MapType = ::_pb::Map<std::string, std::string>;
+    using WireHelper = QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_quota_dimensions();
+    auto check_utf8 = [](const MapType::value_type& entry) {
+      (void)entry;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.first.data(), static_cast<int>(entry.first.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "google.rpc.QuotaFailure.Violation.QuotaDimensionsEntry.key");
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.second.data(), static_cast<int>(entry.second.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "google.rpc.QuotaFailure.Violation.QuotaDimensionsEntry.value");
+    };
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(6, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(6, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    }
+  }
+
+  // int64 quota_value = 7 [json_name = "quotaValue"];
+  if (this->_internal_quota_value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(7, this->_internal_quota_value(), target);
+  }
+
+  // optional int64 future_quota_value = 8 [json_name = "futureQuotaValue"];
+  if (_internal_has_future_quota_value()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(8, this->_internal_future_quota_value(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1361,6 +1630,15 @@ size_t QuotaFailure_Violation::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // map<string, string> quota_dimensions = 6 [json_name = "quotaDimensions"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_quota_dimensions_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+      it = this->_internal_quota_dimensions().begin();
+      it != this->_internal_quota_dimensions().end(); ++it) {
+    total_size += QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
   // string subject = 1 [json_name = "subject"];
   if (!this->_internal_subject().empty()) {
     total_size += 1 +
@@ -1373,6 +1651,38 @@ size_t QuotaFailure_Violation::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_description());
+  }
+
+  // string api_service = 3 [json_name = "apiService"];
+  if (!this->_internal_api_service().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_api_service());
+  }
+
+  // string quota_metric = 4 [json_name = "quotaMetric"];
+  if (!this->_internal_quota_metric().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_quota_metric());
+  }
+
+  // string quota_id = 5 [json_name = "quotaId"];
+  if (!this->_internal_quota_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_quota_id());
+  }
+
+  // int64 quota_value = 7 [json_name = "quotaValue"];
+  if (this->_internal_quota_value() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_quota_value());
+  }
+
+  // optional int64 future_quota_value = 8 [json_name = "futureQuotaValue"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_future_quota_value());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -1397,11 +1707,27 @@ void QuotaFailure_Violation::MergeFrom(const QuotaFailure_Violation& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  quota_dimensions_.MergeFrom(from.quota_dimensions_);
   if (!from._internal_subject().empty()) {
     _internal_set_subject(from._internal_subject());
   }
   if (!from._internal_description().empty()) {
     _internal_set_description(from._internal_description());
+  }
+  if (!from._internal_api_service().empty()) {
+    _internal_set_api_service(from._internal_api_service());
+  }
+  if (!from._internal_quota_metric().empty()) {
+    _internal_set_quota_metric(from._internal_quota_metric());
+  }
+  if (!from._internal_quota_id().empty()) {
+    _internal_set_quota_id(from._internal_quota_id());
+  }
+  if (from._internal_quota_value() != 0) {
+    _internal_set_quota_value(from._internal_quota_value());
+  }
+  if (from._internal_has_future_quota_value()) {
+    _internal_set_future_quota_value(from._internal_future_quota_value());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1422,6 +1748,8 @@ void QuotaFailure_Violation::InternalSwap(QuotaFailure_Violation* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  quota_dimensions_.InternalSwap(&other->quota_dimensions_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &subject_, lhs_arena,
       &other->subject_, rhs_arena
@@ -1430,12 +1758,30 @@ void QuotaFailure_Violation::InternalSwap(QuotaFailure_Violation* other) {
       &description_, lhs_arena,
       &other->description_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &api_service_, lhs_arena,
+      &other->api_service_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &quota_metric_, lhs_arena,
+      &other->quota_metric_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &quota_id_, lhs_arena,
+      &other->quota_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(QuotaFailure_Violation, future_quota_value_)
+      + sizeof(QuotaFailure_Violation::future_quota_value_)
+      - PROTOBUF_FIELD_OFFSET(QuotaFailure_Violation, quota_value_)>(
+          reinterpret_cast<char*>(&quota_value_),
+          reinterpret_cast<char*>(&other->quota_value_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata QuotaFailure_Violation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[4]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[5]);
 }
 
 // ===================================================================
@@ -1613,7 +1959,7 @@ void QuotaFailure::InternalSwap(QuotaFailure* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata QuotaFailure::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[5]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[6]);
 }
 
 // ===================================================================
@@ -1904,7 +2250,7 @@ void PreconditionFailure_Violation::InternalSwap(PreconditionFailure_Violation* 
 ::PROTOBUF_NAMESPACE_ID::Metadata PreconditionFailure_Violation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[6]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[7]);
 }
 
 // ===================================================================
@@ -2082,7 +2428,7 @@ void PreconditionFailure::InternalSwap(PreconditionFailure* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PreconditionFailure::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[7]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[8]);
 }
 
 // ===================================================================
@@ -2415,7 +2761,7 @@ void BadRequest_FieldViolation::InternalSwap(BadRequest_FieldViolation* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata BadRequest_FieldViolation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[8]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[9]);
 }
 
 // ===================================================================
@@ -2593,7 +2939,7 @@ void BadRequest::InternalSwap(BadRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata BadRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[9]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[10]);
 }
 
 // ===================================================================
@@ -2836,7 +3182,7 @@ void RequestInfo::InternalSwap(RequestInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RequestInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[10]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[11]);
 }
 
 // ===================================================================
@@ -3175,7 +3521,7 @@ void ResourceInfo::InternalSwap(ResourceInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[11]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[12]);
 }
 
 // ===================================================================
@@ -3418,7 +3764,7 @@ void Help_Link::InternalSwap(Help_Link* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Help_Link::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[12]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[13]);
 }
 
 // ===================================================================
@@ -3596,7 +3942,7 @@ void Help::InternalSwap(Help* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Help::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[13]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[14]);
 }
 
 // ===================================================================
@@ -3839,7 +4185,7 @@ void LocalizedMessage::InternalSwap(LocalizedMessage* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LocalizedMessage::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_getter, &descriptor_table_google_2frpc_2ferror_5fdetails_2eproto_once,
-      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[14]);
+      file_level_metadata_google_2frpc_2ferror_5fdetails_2eproto[15]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -3861,6 +4207,10 @@ Arena::CreateMaybeMessage< ::google::rpc::RetryInfo >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::google::rpc::DebugInfo*
 Arena::CreateMaybeMessage< ::google::rpc::DebugInfo >(Arena* arena) {
   return Arena::CreateMessageInternal< ::google::rpc::DebugInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::google::rpc::QuotaFailure_Violation*
 Arena::CreateMaybeMessage< ::google::rpc::QuotaFailure_Violation >(Arena* arena) {
