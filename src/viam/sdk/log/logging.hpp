@@ -24,6 +24,9 @@ namespace sdk {
 
 /// @brief Severity levels for the logger.
 /// @ingroup Log
+/// @remark Our enums are usually prefixed with k_, but these values are meant to be used without
+/// namespace qualification in the log macros, eg `VIAM_SDK_LOG(info)` instead of
+/// `VIAM_SDK_LOG(k_info)`.
 enum class log_level : std::int8_t {
     trace = -2,
     debug = -1,
