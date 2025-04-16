@@ -1,3 +1,4 @@
+#include <grpc/grpc.h>
 #include <viam/sdk/rpc/dial.hpp>
 
 #include <istream>
@@ -82,9 +83,12 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
                                                const boost::optional<DialOptions>& options) {
     const DialOptions opts = options.get_value_or(DialOptions());
 
+    std::cout << "checking if we're disabling webrtc\n";
     if (opts.disable_webrtc) {
+        std::cout << "disabling webrtc\n";
         return dial_direct(uri, opts);
     }
+    std::cout << "not disabling for some reason\n?";
 
     const std::chrono::duration<float> float_timeout = opts.timeout;
     void* ptr = init_rust_runtime();
@@ -118,29 +122,56 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     return std::make_shared<ViamChannel>(channel, socket_path, ptr);
 }
 
-std::shared_ptr<ViamChannel> ViamChannel::dial_direct(const char* uri, const DialOptions& options) {
+std::shared_ptr<ViamChannel> ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
     std::cerr << "\n\tCreating grpc channel " << uri << "\n";
-    auto grpc_channel = impl::create_viam_channel(uri, grpc::InsecureChannelCredentials());
+    // auto grpc_channel = grpc::CreateChannel("app.viam.com:443",
+    // grpc::SslCredentialsOptions foo;
+    auto creds = grpc::SslCredentials(grpc::SslCredentialsOptions());
+    // auto grpc_channel = grpc::CreateChannel(uri, creds);
+    auto channel_for_auth = impl::create_viam_auth_channel();
+    // auto grpc_channel = grpc::CreateChannel(uri, grpc::InsecureChannelCredentials());
+    // grpc_connectivity_state prev = grpc_connectivity_state::GRPC_CHANNEL_READY;
+    // while (true) {
+    // grpc_connectivity_state foo = grpc_channel->GetState(true);
+    // if (foo != prev) {
+    // std::cout << "foo is " << foo << "\n";
+    // prev = foo;
+    //}
+    // if (foo == grpc_connectivity_state::GRPC_CHANNEL_READY) {
+    // break;
+    //}
+    //};
+
+    // auto grpc_channel = impl::create_viam_channel(uri, creds);
+    //  grpc::InsecureChannelCredentials());
     std::cerr << "\n\ttest\n";
 
     using namespace proto::rpc::v1;
 
-    auto auth_stub = AuthService::NewStub(grpc_channel);
+    // auto sopts = ::grpc::StubOptions();
+    // std::cout << "suffix for stats is " << sopts.suffix_for_stats() << "\n";
+    auto auth_stub = AuthService::NewStub(channel_for_auth);
     ClientContext ctx;
     AuthenticateRequest req;
 
-    *req.mutable_entity() = options.auth_entity.get();
-    *req.mutable_credentials()->mutable_payload() = options.credentials->payload();
-    *req.mutable_credentials()->mutable_type() = options.credentials->type();
+    *req.mutable_entity() = opts.auth_entity.get();
+    *req.mutable_credentials()->mutable_payload() = opts.credentials->payload();
+    *req.mutable_credentials()->mutable_type() = opts.credentials->type();
 
     std::cerr << req.DebugString() << "\n";
 
     AuthenticateResponse resp;
 
+    std::cout << "authenticating now\n";
     auto status = auth_stub->Authenticate(ctx, req, &resp);
+    std::cout << "authenticated\n";
 
     std::cerr << "\n\t status: " << status.error_message() << " code: " << status.error_code()
               << "\n\t access token: " << resp.access_token() << "\n\n";
+
+    ClientContext::token = resp.access_token();
+    auto grpc_channel =
+        impl::create_viam_channel(uri, grpc::InsecureChannelCredentials(), resp.access_token());
 
     return std::make_shared<ViamChannel>(grpc_channel,  //
                                          nullptr,

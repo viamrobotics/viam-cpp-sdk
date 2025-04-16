@@ -29,6 +29,8 @@ class ClientContext {
 
     void try_cancel();
 
+    static std::string token;
+
     operator GrpcClientContext*();
     operator const GrpcClientContext*() const;
 

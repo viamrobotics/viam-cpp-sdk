@@ -13,6 +13,11 @@ namespace impl {
 /// size kMaxMessageSize.
 std::shared_ptr<grpc::Channel> create_viam_channel(
     const grpc::string& target, const std::shared_ptr<grpc::ChannelCredentials>& credentials);
+std::shared_ptr<grpc::Channel> create_viam_channel(
+    const grpc::string& target,
+    const std::shared_ptr<grpc::ChannelCredentials>& credentials,
+    const std::string& token);
+std::shared_ptr<grpc::Channel> create_viam_auth_channel();
 
 }  // namespace impl
 }  // namespace sdk

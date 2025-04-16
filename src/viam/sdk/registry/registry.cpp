@@ -200,6 +200,7 @@ const google::protobuf::ServiceDescriptor* ResourceServerRegistration::service_d
 }
 
 void Registry::register_resources() {
+    std::cout << "doing a registry\n";
     // Register all components
     register_resource<impl::ArmClient, impl::ArmServer>();
     register_resource<impl::BaseClient, impl::BaseServer>();

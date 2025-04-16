@@ -34,6 +34,8 @@ int main(int argc, char* argv[]) {
         return 0;
     }
     boost::optional<DialOptions> opts;
+    DialOptions dopts;
+    opts = dopts;
     if (vm.count("entity") && vm.count("api-key")) {
         DialOptions dial_options;
         dial_options.auth_entity = vm["entity"].as<std::string>();
@@ -41,6 +43,7 @@ int main(int argc, char* argv[]) {
         dial_options.credentials = credentials;
         opts = dial_options;
     }
+    opts->disable_webrtc = true;
     Options options(1, opts);
 
     // connect to robot, ensure we can refresh it
