@@ -7,6 +7,8 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+// The following code was copy-pasted from the boost mailing list
+// https://lists.boost.org/boost-commit/2009/04/15209.php
 time_pt ptime_convert(const boost::posix_time::ptime& from) {
     namespace posix_time = boost::posix_time;
 
