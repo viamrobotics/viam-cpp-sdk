@@ -20,7 +20,7 @@
 namespace viam {
 namespace sdk {
 
-/// @defgroup Log Classes related to logging.
+/// @defgroup Log Classes related to logging
 
 /// @brief Severity levels for the logger.
 /// @ingroup Log
