@@ -113,6 +113,9 @@ Building Documentation Locally for Testing</h1>
 A Note on Connectivity and webRTC Functionality</h1>
 <p>The rust webRTC implementation (which C++ relies on via rust's foreign function interface) is still new, and liable to have bugs. At a minimum, we expect that calls to <code>ShellService::shell()</code> have a high likelihood of strange behavior. If you encounter any issues with streaming requests over webRTC, direct dial (by disabling webrtc as above) should resolve them. And please file a bug report! We will endeavor to be as responsive as possible, and resolve issues as quickly as possible.</p>
 <h1><a class="anchor" id="autotoc_md7"></a>
+A note on logging</h1>
+<p>Users should only interact with logging via the macros, classes, and functions in <a href="src/viam/sdk/log/logging.hpp"><code>viam/sdk/log/logging.hpp</code></a>. Logging is implemented using Boost.Log, but this is an implementation detail subject to change without warning. In particular, using Boost.Log macros such as <code>BOOST_LOG_TRIVIAL</code> or <code>BOOST_LOG_SEV</code> is undefined behavior which will likely fail to output log messages.</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
 License</h1>
 <p>Copyright 2022 Viam Inc.</p>
 <p>Apache 2.0 - See <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/LICENSE">LICENSE</a> file </p>
