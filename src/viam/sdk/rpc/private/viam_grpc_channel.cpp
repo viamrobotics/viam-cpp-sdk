@@ -21,7 +21,8 @@ std::shared_ptr<grpc::Channel> create_viam_auth_channel() {
     // args.SetSslTargetNameOverride("34.149.207.107");
     // args.SetSslTargetNameOverride("app.viam.com");
 
-    return grpc::CreateCustomChannel("app.viam.com", tls_creds, args);
+    return grpc::CreateCustomChannel(
+        "webrtc-test-main.jkek76kqnh.local.viam.cloud:8080", tls_creds, args);
 }
 
 std::shared_ptr<grpc::Channel> create_viam_channel(
@@ -38,12 +39,17 @@ std::shared_ptr<grpc::Channel> create_viam_channel(
     args.SetMaxReceiveMessageSize(kMaxMessageSize);
 
     if (!token.empty()) {
-        args.SetString("authorization:", "Bearer " + token);
+        args.SetString("authorization", "Bearer " + token);
     }
     grpc::experimental::TlsChannelCredentialsOptions opts;
+    auto creds = grpc::SslCredentials(grpc::SslCredentialsOptions());
     opts.set_verify_server_certs(false);
     opts.set_check_call_host(false);
+    opts.set_min_tls_version(grpc_tls_version::TLS1_2);
+    // opts.watch_root_certs();
     auto tls_creds = grpc::experimental::TlsCredentials(opts);
+    // args.SetSslTargetNameOverride("webrtc-test-main.jkek76kqnh.viam.cloud");
+    //   args.SetSslTargetNameOverride("app.viam.com");
 
     return grpc::CreateCustomChannel(target, tls_creds, args);
 }

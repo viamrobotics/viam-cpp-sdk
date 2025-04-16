@@ -160,6 +160,8 @@ void RobotClient::refresh() {
     viam::robot::v1::ResourceNamesResponse resp;
     ClientContext ctx;
 
+    std::cout << "getting resource names\n";
+    // std::cout << ctx.token << std::endl;
     const grpc::Status response = impl_->stub_->ResourceNames(ctx, req, &resp);
     if (is_error_response(response)) {
         BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
