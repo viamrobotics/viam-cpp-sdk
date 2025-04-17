@@ -53,9 +53,6 @@ int main(int argc, char* argv[]) {
     // ensure we can query resources
     std::vector<Name> resource_names = robot->resource_names();
     std::cout << "Resources" << std::endl;
-    if (resource_names.empty()) {
-        std::cout << "There are no resource names\n";
-    }
     for (const Name& resource : resource_names) {
         std::cout << "\t" << resource << "\n";
     }

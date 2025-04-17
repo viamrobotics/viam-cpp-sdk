@@ -16,7 +16,6 @@ namespace viam {
 namespace sdk {
 
 Server::Server() : builder_(std::make_unique<grpc::ServerBuilder>()) {
-    std::cout << "making a server\n\n";
     builder_->SetMaxReceiveMessageSize(kMaxMessageSize);
     builder_->SetMaxSendMessageSize(kMaxMessageSize);
     builder_->SetMaxMessageSize(kMaxMessageSize);
@@ -40,7 +39,6 @@ std::shared_ptr<ResourceServer> Server::lookup_resource_server(const API& api) {
 }
 
 void Server::register_service(grpc::Service* service) {
-    std::cout << "registering a service\n";
     if (!builder_) {
         throw Exception("Cannot register a new service after the server has started");
     }
