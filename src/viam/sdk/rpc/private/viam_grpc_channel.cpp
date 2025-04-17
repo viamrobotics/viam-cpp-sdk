@@ -11,7 +11,7 @@ namespace impl {
 
 std::shared_ptr<grpc::Channel> create_viam_auth_channel() {
     grpc::experimental::TlsChannelCredentialsOptions opts;
-    opts.set_verify_server_certs(false);
+    // opts.set_verify_server_certs(false);
     opts.set_check_call_host(false);
     auto tls_creds = grpc::experimental::TlsCredentials(opts);
     std::cout << "setting ssl target name override\n";
@@ -43,7 +43,7 @@ std::shared_ptr<grpc::Channel> create_viam_channel(
     }
     grpc::experimental::TlsChannelCredentialsOptions opts;
     auto creds = grpc::SslCredentials(grpc::SslCredentialsOptions());
-    opts.set_verify_server_certs(false);
+    // opts.set_verify_server_certs(false);
     opts.set_check_call_host(false);
     opts.set_min_tls_version(grpc_tls_version::TLS1_2);
     // opts.watch_root_certs();
