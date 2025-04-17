@@ -60,7 +60,5 @@ int main(int argc, char* argv[]) {
         std::cout << "\t" << resource << "\n";
     }
 
-    std::cout << "About to return\n";
-
     return EXIT_SUCCESS;
 }

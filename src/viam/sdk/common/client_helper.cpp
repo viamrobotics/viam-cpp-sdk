@@ -31,7 +31,6 @@ ClientContext::ClientContext() : wrapped_context_(std::make_unique<GrpcClientCon
     set_client_ctx_authority_();
     add_viam_client_version_();
     if (!token.empty()) {
-        std::cout << "setting authorization to" << token << "\n";
         wrapped_context_->AddMetadata("authorization", "Bearer " + token);
     }
 }
