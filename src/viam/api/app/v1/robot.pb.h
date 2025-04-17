@@ -2745,6 +2745,7 @@ class NetworkConfig final :
     kTlsCertFileFieldNumber = 3,
     kTlsKeyFileFieldNumber = 4,
     kSessionsFieldNumber = 5,
+    kNoTlsFieldNumber = 7,
   };
   // repeated .viam.app.v1.TrafficTunnelEndpoint traffic_tunnel_endpoints = 6 [json_name = "trafficTunnelEndpoints"];
   int traffic_tunnel_endpoints_size() const;
@@ -2838,6 +2839,15 @@ class NetworkConfig final :
       ::viam::app::v1::SessionsConfig* sessions);
   ::viam::app::v1::SessionsConfig* unsafe_arena_release_sessions();
 
+  // bool no_tls = 7 [json_name = "noTls"];
+  void clear_no_tls();
+  bool no_tls() const;
+  void set_no_tls(bool value);
+  private:
+  bool _internal_no_tls() const;
+  void _internal_set_no_tls(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.NetworkConfig)
  private:
   class _Internal;
@@ -2851,6 +2861,7 @@ class NetworkConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tls_cert_file_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tls_key_file_;
   ::viam::app::v1::SessionsConfig* sessions_;
+  bool no_tls_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -12249,6 +12260,26 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Traffic
 NetworkConfig::traffic_tunnel_endpoints() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.NetworkConfig.traffic_tunnel_endpoints)
   return traffic_tunnel_endpoints_;
+}
+
+// bool no_tls = 7 [json_name = "noTls"];
+inline void NetworkConfig::clear_no_tls() {
+  no_tls_ = false;
+}
+inline bool NetworkConfig::_internal_no_tls() const {
+  return no_tls_;
+}
+inline bool NetworkConfig::no_tls() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.NetworkConfig.no_tls)
+  return _internal_no_tls();
+}
+inline void NetworkConfig::_internal_set_no_tls(bool value) {
+  
+  no_tls_ = value;
+}
+inline void NetworkConfig::set_no_tls(bool value) {
+  _internal_set_no_tls(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.NetworkConfig.no_tls)
 }
 
 // -------------------------------------------------------------------
