@@ -156,7 +156,7 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
         throw Exception(ErrorCondition::k_connection, "Unable to establish connecting path");
     }
 
-    std::string localhost_prefix("127.0.0.1");
+    const std::string localhost_prefix("127.0.0.1");
     std::string address;
     if (std::string(proxy_path).find(localhost_prefix) == std::string::npos) {
         // proxy path is not a localhost address and is therefore a unix domain socket (UDS)
