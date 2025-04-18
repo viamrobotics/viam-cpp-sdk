@@ -266,14 +266,21 @@ if (viam_rust_utils_files)
     ${viam_rust_utils_file}
     ONLY_IF_DIFFERENT
   )
-elseif(NOT WIN32) # TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't even try downloading
+elseif(NOT WIN32 OR (CMAKE_SYSTEM_PROCESSOR STREQUAL "X86") OR (CMAKE_SYSTEM_PROCESSOR STREQUAL "X64")) # TODO(RSDK-10366): Currently, rust_utils is not published for windows aarch, so don't even try downloading
   set(lvru_system_name ${CMAKE_SYSTEM_NAME})
+  if (CMAKE_SYSTEM_NAME STREQUAL "Cygwin")
+    set(lvru_system_name "windows")
+  endif()
   if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(lvru_system_name "macosx")
   endif()
+  set(lvru_system_processor ${CMAKE_SYSTEM_PROCESSOR})
+  if ((CMAKE_SYSTEM_PROCESSOR STREQUAL "X86") OR (CMAKE_SYSTEM_PROCESSOR STREQUAL "X64"))
+    set(lvru_system_processor "x86_64")
+  endif()
   file(
     DOWNLOAD
-    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${CMAKE_SYSTEM_PROCESSOR}${CMAKE_STATIC_LIBRARY_SUFFIX}
+    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}
     ${viam_rust_utils_file}
     STATUS lvru_status
   )
