@@ -22,20 +22,20 @@ class Servo : public Component, public Stoppable {
    public:
     /// @struct position
     /// @brief Current position of the servo relative to its home
-    typedef uint32_t position;
+    typedef int32_t position;
 
     API api() const override;
 
     /// @brief Move the servo to the provided angle
     /// @param angle_deg The desired angle of the servo in degrees.
-    inline void move(uint32_t angle_deg) {
+    inline void move(int32_t angle_deg) {
         return move(angle_deg, {});
     }
 
     /// @brief Move the servo to the provided angle
     /// @param angle_deg The desired angle of the servo in degrees.
     /// @param extra Any additional arguments to the method.
-    virtual void move(uint32_t angle_deg, const ProtoStruct& extra) = 0;
+    virtual void move(int32_t angle_deg, const ProtoStruct& extra) = 0;
 
     /// @brief Get the current angle (degrees) of the servo.
     /// @throws `Exception` if position reporting is not supported
@@ -68,7 +68,7 @@ class Servo : public Component, public Stoppable {
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
    protected:
-    explicit Servo(std::string name) : Component(std::move(name)){};
+    explicit Servo(std::string name) : Component(std::move(name)) {};
 };
 
 template <>

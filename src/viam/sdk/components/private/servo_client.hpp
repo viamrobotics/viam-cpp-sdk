@@ -22,7 +22,7 @@ class ServoClient : public Servo {
    public:
     using interface_type = Servo;
     ServoClient(std::string name, std::shared_ptr<grpc::Channel> channel);
-    void move(uint32_t angle_deg, const ProtoStruct& extra) override;
+    void move(int32_t angle_deg, const ProtoStruct& extra) override;
     position get_position(const ProtoStruct& extra) override;
     void stop(const ProtoStruct& extra) override;
     bool is_moving() override;

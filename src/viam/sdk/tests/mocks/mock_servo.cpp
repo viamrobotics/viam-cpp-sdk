@@ -13,7 +13,7 @@ namespace servo {
 
 using namespace viam::sdk;
 
-void MockServo::move(uint32_t angle_deg, const ProtoStruct&) {
+void MockServo::move(int32_t angle_deg, const ProtoStruct&) {
     is_moving_ = true;
     position_ = angle_deg;
 }

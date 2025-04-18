@@ -11,7 +11,7 @@ using viam::sdk::Servo;
 
 class MockServo : public Servo {
    public:
-    void move(uint32_t angle_deg, const viam::sdk::ProtoStruct& extra) override;
+    void move(int32_t angle_deg, const viam::sdk::ProtoStruct& extra) override;
     Servo::position get_position(const sdk::ProtoStruct& extra) override;
     void stop(const viam::sdk::ProtoStruct& extra) override;
     bool is_moving() override;
@@ -19,7 +19,7 @@ class MockServo : public Servo {
     static std::shared_ptr<MockServo> get_mock_servo();
     virtual std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
-    MockServo(std::string name) : Servo(std::move(name)){};
+    MockServo(std::string name) : Servo(std::move(name)) {};
 
     using Servo::get_geometries;
     using Servo::get_position;

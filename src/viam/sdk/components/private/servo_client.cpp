@@ -30,7 +30,7 @@ ServoClient::ServoClient(std::string name, std::shared_ptr<grpc::Channel> channe
       stub_(viam::component::servo::v1::ServoService::NewStub(channel)),
       channel_(std::move(channel)) {}
 
-void ServoClient::move(uint32_t angle_deg, const ProtoStruct& extra) {
+void ServoClient::move(int32_t angle_deg, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Move)
         .with(extra, [&](auto& request) { request.set_angle_deg(angle_deg); })
         .invoke();
