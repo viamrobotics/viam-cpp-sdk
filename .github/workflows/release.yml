@@ -89,12 +89,6 @@ jobs:
 
       - name: Build
         run: |
-          # `buf` tries to read a CLI config file that we don't actually use located at
-          # ~/.config/buf/config.yaml. We don't always have permission to access this
-          # directory in CI, so we set the `BUF_CONFIG_DIR` to some other value that we
-          # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
-          # more details.
-          export BUF_CONFIG_DIR=$(mktemp -d)
           mkdir build
           cmake -S . -B build -G Ninja
           cmake --build build --target all install -- -v
