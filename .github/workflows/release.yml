@@ -77,7 +77,7 @@ jobs:
         shell: powershell
         run: |
           git clone https://github.com/microsoft/vcpkg.git
-          cd vcpkg; .\boostrap-vcpkg.bat
+          cd vcpkg; .\bootstrap-vcpkg.bat
           .\vcpkg integrate install
           .\vcpkg install grpc
 
