@@ -74,6 +74,7 @@ jobs:
         run: conda install -c conda-forge xtensor
 
       - name: Install grpc
+        shell: powershell
         run: |
           git clone https://github.com/microsoft/vcpkg.git
           cd vcpkg; .\boostrap-vcpkg.bat
