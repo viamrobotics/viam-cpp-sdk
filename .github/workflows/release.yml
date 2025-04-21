@@ -73,10 +73,13 @@ jobs:
         shell: powershell
         run: conda install -c conda-forge xtensor
 
+      - name: Install gRPC
+        uses: eWaterCycle/setup-grpc@v5
+
       - name: Install dependencies
         uses: crazy-max/ghaction-chocolatey@v3
         with:
-          args: install milkman-grpc protoc pkgconfiglite
+          args: install protoc pkgconfiglite
 
       - name: Install Scoop
         uses: MinoruSekine/setup-scoop@v4.0.1
