@@ -39,7 +39,7 @@ if (WIN32)
   cmake_minimum_required(VERSION 3.27 FATAL_ERROR)
 
   # set boost compiler to avoid errors with boost log
-  set(Boost_COMPILER "mgw12")
+  set(Boost_COMPILER "vc143")
 else()
   cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 endif()
