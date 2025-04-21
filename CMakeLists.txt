@@ -37,6 +37,9 @@ if (WIN32)
   # Use a newer version of CMake on Windows, so we are NEW for
   # https://cmake.org/cmake/help/latest/policy/CMP0149.html
   cmake_minimum_required(VERSION 3.27 FATAL_ERROR)
+
+  # set boost compiler to avoid errors with boost log
+  set(Boost_COMPILER "mgw13")
 else()
   cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 endif()
