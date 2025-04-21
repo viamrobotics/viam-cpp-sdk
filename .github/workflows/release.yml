@@ -75,6 +75,8 @@ jobs:
 
       - name: Install gRPC
         uses: eWaterCycle/setup-grpc@v5
+        with:
+          grpc-version: 1.71.0
 
       - name: Install dependencies
         uses: crazy-max/ghaction-chocolatey@v3
