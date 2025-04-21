@@ -64,10 +64,25 @@ jobs:
         with:
           version: 3.31.2
 
+      - name: Install Conda
+        uses: conda-incubator/setup-miniconda/@v3
+        with:
+          miniconda-version: "latest"
+        
+      - name: Install xtensor
+        shell: powershell
+        run: conda install -c conda-forge xtensor
+
       - name: Install dependencies
         uses: crazy-max/ghaction-chocolatey@v3
         with:
-          args: install grpc protobuf xtensor pkg-config ninja buf
+          args: install milkman-grpc protoc pkgconfiglite
+
+      - name: Install Scoop
+        uses: MinoruSekine/setup-scoop@v4.0.1
+
+      - name: install buf
+        run: scoop install buf
 
       - name: Setup build directory
         run: mkdir builds
