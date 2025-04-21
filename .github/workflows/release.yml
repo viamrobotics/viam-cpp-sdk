@@ -88,7 +88,8 @@ jobs:
         run: mkdir builds
 
       - name: list stuff
-        run: ls ${{ steps.install-boost.outuputs.BOOST_ROOT }}
+        run: ls ./boost/boost
+        #run: ls ${{ steps.install-boost.outuputs.BOOST_ROOT }}
 
       - name: Build
         run: |
