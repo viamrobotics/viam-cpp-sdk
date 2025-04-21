@@ -87,6 +87,9 @@ jobs:
       - name: Setup build directory
         run: mkdir builds
 
+      - name: list stuff
+        run: ls ${{ steps.install-boost.outuputs.BOOST_ROOT }}
+
       - name: Build
         run: |
           mkdir build
@@ -94,6 +97,7 @@ jobs:
           cmake --build build --target all install -- -v
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+          BOOST_INCLUDEDIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
       - name: Copy
         run: |
