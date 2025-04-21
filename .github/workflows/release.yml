@@ -73,10 +73,17 @@ jobs:
         shell: powershell
         run: conda install -c conda-forge xtensor
 
-      - name: Install gRPC
-        uses: eWaterCycle/setup-grpc@v5
-        with:
-          grpc-version: 1.71.0
+      - name: Install grpc
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          cd vcpkg; .\boostrap-vcpkg.bat
+          .\vcpkg integrate install
+          .\vcpkg install grpc
+
+      #- name: Install gRPC
+        #uses: eWaterCycle/setup-grpc@v5
+        #with:
+          #grpc-version: 1.71.0
 
       - name: Install dependencies
         uses: crazy-max/ghaction-chocolatey@v3
