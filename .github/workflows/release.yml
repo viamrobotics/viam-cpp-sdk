@@ -32,9 +32,70 @@ jobs:
           releaseName: releases/v${{ steps.which_version.outputs.version }}
           doNotFailIfNotFound: 'true'
 
-      - name: Cancelling - release already exists
-        uses: andymckay/cancel-action@0.2
-        if: steps.release_exists.outputs.id != ''
+      #- name: Cancelling - release already exists
+        #uses: andymckay/cancel-action@0.2
+        #if: steps.release_exists.outputs.id != ''
+
+  build_windows:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-windows
+            platform: windows_x86_64
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+
+      - name: Install Boost
+        uses: MarkusJx/install-boost@v2
+        id: install-boost
+        with:
+          boost_version: 1.86.0
+
+      - name: Install cmake
+        uses: ssrobins/install-cmake@v1
+        with:
+          version: 3.31.2
+
+      - name: Install dependencies
+        uses: crazy-max/ghaction-chocolatey@v3
+        with:
+          args: install grpc protobuf xtensor pkg-config ninja buf
+
+      - name: Setup build directory
+        run: mkdir builds
+
+      - name: Build
+        run: |
+          # `buf` tries to read a CLI config file that we don't actually use located at
+          # ~/.config/buf/config.yaml. We don't always have permission to access this
+          # directory in CI, so we set the `BUF_CONFIG_DIR` to some other value that we
+          # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
+          # more details.
+          export BUF_CONFIG_DIR=$(mktemp -d)
+          mkdir build
+          cmake -S . -B build -G Ninja
+          cmake --build build --target all install -- -v
+
+      - name: Copy
+        run: |
+          cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
+
+      - name: Create tar
+        run: |
+          tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
@@ -269,7 +330,7 @@ jobs:
           path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   release:
-    needs: [prepare, build_macos, build_linux_debian, build_linux_ubuntu_jammy]
+    needs: [prepare, build_macos, build_linux_debian, build_linux_ubuntu_jammy, build_windows]
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
 
@@ -285,4 +346,4 @@ jobs:
           prerelease: false
           fail_on_unmatched_files: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKENFAKE }}
