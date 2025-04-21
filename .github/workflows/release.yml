@@ -62,7 +62,7 @@ jobs:
       - name: Install cmake
         uses: ssrobins/install-cmake@v1
         with:
-          version: 3.25.2
+          version: 3.27.2
 
       - name: Install Conda
         uses: conda-incubator/setup-miniconda/@v3
