@@ -1,6 +1,7 @@
 name: Build + draft release
 
 on:
+  pull_request:
   workflow_dispatch:
 
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
@@ -9,7 +10,7 @@ permissions:
 
 jobs:
   prepare:
-    if: github.repository_owner == 'viamrobotics'
+    #if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.which_version.outputs.version }}
@@ -37,7 +38,7 @@ jobs:
         #if: steps.release_exists.outputs.id != ''
 
   build_windows:
-    if: github.repository_owner == 'viamrobotics'
+    #if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
     runs-on: windows-latest
     strategy:
