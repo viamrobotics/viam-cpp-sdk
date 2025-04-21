@@ -68,7 +68,7 @@ jobs:
         uses: conda-incubator/setup-miniconda/@v3
         with:
           miniconda-version: "latest"
-        
+
       - name: Install xtensor
         shell: powershell
         run: conda install -c conda-forge xtensor
@@ -92,6 +92,8 @@ jobs:
           mkdir build
           cmake -S . -B build -G Ninja
           cmake --build build --target all install -- -v
+        env:
+          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
       - name: Copy
         run: |
