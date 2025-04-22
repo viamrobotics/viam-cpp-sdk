@@ -120,18 +120,16 @@ RobotClient::~RobotClient() {
         try {
             this->close();
         } catch (const std::exception& e) {
-            VIAM_SDK_LOG(error) << "Received err while closing RobotClient: " << e.what();
+            std::cerr << "Received err while closing RobotClient: " << e.what() << "\n";
         } catch (...) {
-            VIAM_SDK_LOG(error) << "Received unknown err while closing RobotClient";
+            std::cerr << "Received unknown err while closing RobotClient\n";
         }
     }
 }
 
 void RobotClient::close() {
     should_refresh_.store(false);
-    for (const std::shared_ptr<std::thread>& t : threads_) {
-        t->~thread();
-    }
+    threads_.clear();
     stop_all();
     viam_channel_->close();
 }
@@ -292,13 +290,12 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChann
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);
     if (robot->should_refresh_) {
-        const std::shared_ptr<std::thread> t =
-            std::make_shared<std::thread>(&RobotClient::refresh_every, robot);
+        auto t = std::make_unique<std::thread>(&RobotClient::refresh_every, robot);
         // TODO(RSDK-1743): this was leaking, confirm that adding thread catching in
         // close/destructor lets us shutdown gracefully. See also address sanitizer,
         // UB sanitizer
         t->detach();
-        robot->threads_.push_back(t);
+        robot->threads_.push_back(std::move(t));
     };
 
     robot->refresh();

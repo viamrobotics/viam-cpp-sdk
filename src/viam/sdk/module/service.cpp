@@ -255,14 +255,14 @@ ModuleService::ModuleService(int argc,
 
 ModuleService::~ModuleService() {
     // TODO(RSDK-5509): Run registered cleanup functions here.
-    VIAM_SDK_LOG(info) << "Shutting down gracefully.";
+    std::cerr << "Shutting down gracefully.\n";
     server_->shutdown();
 
     if (parent_) {
         try {
             parent_->close();
         } catch (const std::exception& exc) {
-            VIAM_SDK_LOG(error) << exc.what();
+            std::cerr << exc.what();
         }
     }
 }
