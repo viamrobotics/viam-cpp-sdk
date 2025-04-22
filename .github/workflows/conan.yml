@@ -54,10 +54,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install cmake
-        uses: ssrobins/install-cmake@v1
-        with:
-          version: 3.27.2
+      #- name: Install cmake
+        #uses: ssrobins/install-cmake@v1
+        #with:
+          #version: 3.27.2
 
       - name: Install python
         uses: actions/setup-python@v5
@@ -70,8 +70,12 @@ jobs:
       - name: install buf 'n stuff # the official way to install somehow lol
         run: scoop install buf ninja
 
-      - name: install conan
-        run: py -m pip install conan
+      - name: Install conan
+        uses: crazy-max/ghaction-chocolatey@v3
+        with:
+          args: install -y conan cmake
+      #- name: install conan
+        #run: py -m pip install conan
 
       #- name: Install dependencies
         #run: |
@@ -80,9 +84,10 @@ jobs:
           #py -m pip install conan
 
       - name: Create package
+        shell: powershell
         run: |
-          py -m conan profile detect
-          py -m conan create . --build=missing -s compiler.cppstd=17
+          conan profile detect
+          conan create . --build=missing -s compiler.cppstd=17
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'

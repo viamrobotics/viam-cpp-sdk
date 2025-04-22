@@ -53,10 +53,10 @@ jobs:
         with:
           ref: ${{ needs.prepare.outputs.sha }}
 
-      - name: Install cmake
-        uses: ssrobins/install-cmake@v1
-        with:
-          version: 3.27.2
+      #- name: Install cmake
+        #uses: ssrobins/install-cmake@v1
+        #with:
+          #version: 3.27.2
 
       - name: Install python
         uses: actions/setup-python@v5
@@ -69,12 +69,12 @@ jobs:
       - name: install buf 'n stuff # the official way to install somehow lol
         run: scoop install buf ninja
 
-      - name: install conan
-        run: py -m pip install conan
-      #- name: Install dependencies
-        #uses: crazy-max/ghaction-chocolatey@v3
-        #with:
-          #args: install protoc  pkgconfiglite
+      #- name: install conan
+        #run: py -m pip install conan
+      - name: Install dependencies
+        uses: crazy-max/ghaction-chocolatey@v3
+        with:
+          args: install -y conan cmake
 
       #- name: Setup build directory
         #run: mkdir builds
@@ -84,9 +84,10 @@ jobs:
         #run: ls ${{ steps.install-boost.outuputs.BOOST_ROOT }}
 
       - name: Create package
+        shell: powershell
         run: |
-          py -m conan profile detect
-          py -m conan create . --build=missing -s compiler.cppstd=17
+          conan profile detect
+          conan create . --build=missing -s compiler.cppstd=17
 
       #- name: Build
         #run: |
