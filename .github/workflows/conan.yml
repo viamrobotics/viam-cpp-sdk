@@ -54,10 +54,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      #- name: Install cmake
-        #uses: ssrobins/install-cmake@v1
-        #with:
-          #version: 3.27.2
+      - name: Install cmake
+        uses: ssrobins/install-cmake@v1
+        with:
+          version: 3.27.2
 
       - name: Install python
         uses: actions/setup-python@v5
@@ -73,7 +73,7 @@ jobs:
       - name: Install conan
         uses: crazy-max/ghaction-chocolatey@v3
         with:
-          args: install -y conan cmake git 7zip jq
+          args: install -y conan git 7zip jq #cmake
 
       # Ensures that things installed with choco are visible to us
       - name: refresh env
@@ -95,7 +95,7 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=17
+          conan create . --build=missing -s compiler.cppstd=17 -c:h tools.microsoft.winsdk_version=10.0.17763.0
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
