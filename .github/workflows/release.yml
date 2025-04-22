@@ -1,7 +1,7 @@
 name: Build + draft release
 
 on:
-  #pull_request:
+  pull_request:
   workflow_dispatch:
 
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
@@ -53,33 +53,50 @@ jobs:
         with:
           ref: ${{ needs.prepare.outputs.sha }}
 
+      - name: Install cmake
+        uses: ssrobins/install-cmake@v1
+        with:
+          version: 3.27.2
+
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Scoop
+        uses: MinoruSekine/setup-scoop@v4.0.1
+
+      - name: install buf 'n stuff # the official way to install somehow lol
+        run: scoop install buf ninja
+
+      - name: install conan
+        run: py -m pip install conan
       #- name: Install dependencies
         #uses: crazy-max/ghaction-chocolatey@v3
         #with:
           #args: install protoc  pkgconfiglite
 
-      - name: Install Scoop
-        uses: MinoruSekine/setup-scoop@v4.0.1
+      #- name: Setup build directory
+        #run: mkdir builds
 
-      - name: install buf
-        run: scoop install buf
-
-      - name: Setup build directory
-        run: mkdir builds
-
-      - name: list stuff
-        run: ls ./boost/boost/libs
+      #- name: list stuff
+        #run: ls ./boost/boost/libs
         #run: ls ${{ steps.install-boost.outuputs.BOOST_ROOT }}
 
-      - name: Build
+      - name: Create package
         run: |
-          mkdir build
-          cmake -S . -B build -G Ninja
-          cmake --build build --target all install -- -v
-        env:
-          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-          BOOST_INCLUDEDIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}/include
-          BOOST_LIBRARYDIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}/lib
+          conan profile detect
+          conan create . --build=missing -s compiler.cppstd=17
+
+      #- name: Build
+        #run: |
+          #mkdir build
+          #cmake -S . -B build -G Ninja
+          #cmake --build build --target all install -- -v
+        #env:
+          #BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+          #BOOST_INCLUDEDIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}/include
+          #BOOST_LIBRARYDIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}/lib
 
       - name: Copy
         run: |
