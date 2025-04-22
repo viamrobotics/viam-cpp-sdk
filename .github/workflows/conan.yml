@@ -73,7 +73,7 @@ jobs:
       - name: Install conan
         uses: crazy-max/ghaction-chocolatey@v3
         with:
-          args: install -y conan cmake
+          args: install -y conan cmake git 7zip jq
 
       # Ensures that things installed with choco are visible to us
       - name: refresh env
@@ -92,8 +92,14 @@ jobs:
       - name: Create package
         shell: powershell
         run: |
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
           conan profile detect
           conan create . --build=missing -s compiler.cppstd=17
+        with:
+          env:
+            CONAN_USER_HOME: c:/cache
+            CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
