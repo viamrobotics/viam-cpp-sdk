@@ -1,7 +1,7 @@
 name: Build + draft release
 
 on:
-  pull_request:
+  #pull_request:
   workflow_dispatch:
 
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
@@ -53,43 +53,10 @@ jobs:
         with:
           ref: ${{ needs.prepare.outputs.sha }}
 
-      - name: Install Boost
-        uses: MarkusJx/install-boost@v2
-        id: install-boost
-        with:
-          boost_version: 1.86.0
-
-      - name: Install cmake
-        uses: ssrobins/install-cmake@v1
-        with:
-          version: 3.27.2
-
-      - name: Install Conda
-        uses: conda-incubator/setup-miniconda/@v3
-        with:
-          miniconda-version: "latest"
-
-      - name: Install xtensor
-        shell: powershell
-        run: conda install -c conda-forge xtensor
-
-      - name: Install grpc
-        shell: powershell
-        run: |
-          git clone https://github.com/microsoft/vcpkg.git
-          cd vcpkg; .\bootstrap-vcpkg.bat
-          .\vcpkg integrate install
-          .\vcpkg install grpc
-
-      #- name: Install gRPC
-        #uses: eWaterCycle/setup-grpc@v5
+      #- name: Install dependencies
+        #uses: crazy-max/ghaction-chocolatey@v3
         #with:
-          #grpc-version: 1.71.0
-
-      - name: Install dependencies
-        uses: crazy-max/ghaction-chocolatey@v3
-        with:
-          args: install protoc pkgconfiglite
+          #args: install protoc  pkgconfiglite
 
       - name: Install Scoop
         uses: MinoruSekine/setup-scoop@v4.0.1
