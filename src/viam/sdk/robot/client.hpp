@@ -165,7 +165,7 @@ class RobotClient {
 
     void refresh_every();
 
-    std::vector<std::unique_ptr<std::thread>> threads_;
+    std::vector<std::thread> threads_;
 
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;

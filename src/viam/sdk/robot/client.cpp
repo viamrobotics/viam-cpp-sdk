@@ -290,11 +290,11 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChann
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);
     if (robot->should_refresh_) {
-        auto t = std::make_unique<std::thread>(&RobotClient::refresh_every, robot);
+        auto t = std::thread(&RobotClient::refresh_every, robot);
         // TODO(RSDK-1743): this was leaking, confirm that adding thread catching in
         // close/destructor lets us shutdown gracefully. See also address sanitizer,
         // UB sanitizer
-        t->detach();
+        t.detach();
         robot->threads_.push_back(std::move(t));
     };
 
