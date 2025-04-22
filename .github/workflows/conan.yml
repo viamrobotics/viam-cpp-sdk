@@ -81,8 +81,8 @@ jobs:
 
       - name: Create package
         run: |
-          conan profile detect
-          conan create . --build=missing -s compiler.cppstd=17
+          py -m conan profile detect
+          py -m conan create . --build=missing -s compiler.cppstd=17
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
