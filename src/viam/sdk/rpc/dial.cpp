@@ -21,6 +21,17 @@ namespace sdk {
 ViamChannel::RustDialData::RustDialData(const char* path_, void* runtime)
     : path(path_), rust_runtime(runtime) {}
 
+ViamChannel::RustDialData::RustDialData(RustDialData&& other) noexcept
+    : path(std::exchange(other.path, nullptr)),
+      rust_runtime(std::exchange(other.rust_runtime, nullptr)) {}
+
+ViamChannel::RustDialData& ViamChannel::RustDialData::operator=(RustDialData&& other) noexcept {
+    path = std::exchange(other.path, nullptr);
+    rust_runtime = std::exchange(other.rust_runtime, nullptr);
+
+    return *this;
+}
+
 ViamChannel::RustDialData::~RustDialData() {
     free_string(path);
     free_rust_runtime(rust_runtime);

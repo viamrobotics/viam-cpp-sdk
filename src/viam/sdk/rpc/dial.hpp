@@ -46,6 +46,13 @@ class ViamChannel {
    private:
     struct RustDialData {
         RustDialData(const char* path_, void* runtime);
+
+        RustDialData(const RustDialData&) = delete;
+        RustDialData(RustDialData&&) noexcept;
+
+        RustDialData& operator=(const RustDialData&) = delete;
+        RustDialData& operator=(RustDialData&&) noexcept;
+
         ~RustDialData();
 
         const char* path;
