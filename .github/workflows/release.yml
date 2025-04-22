@@ -76,6 +76,11 @@ jobs:
         with:
           args: install -y conan cmake
 
+      # Ensures that things installed with choco are visible to us
+      - name: refresh env
+        run: |
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
       #- name: Setup build directory
         #run: mkdir builds
 
