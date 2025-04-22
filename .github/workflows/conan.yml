@@ -67,27 +67,19 @@ jobs:
       - name: Install Scoop
         uses: MinoruSekine/setup-scoop@v4.0.1
 
-      - name: install buf 'n stuff # the official way to install somehow lol
+      - name: install buf 'n stuff
         run: scoop install buf ninja
 
-      - name: Install conan
+      - name: Install dependencies
         uses: crazy-max/ghaction-chocolatey@v3
         with:
-          args: install -y conan git 7zip jq #cmake
+          args: install -y conan git 7zip jq
 
       # Ensures that things installed with choco are visible to us
       - name: refresh env
         run: |
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
-      #- name: install conan
-        #run: py -m pip install conan
-
-      #- name: Install dependencies
-        #run: |
-          #chocolatey install
-          ##brew install python ninja
-          #py -m pip install conan
 
       - name: Create package
         shell: powershell

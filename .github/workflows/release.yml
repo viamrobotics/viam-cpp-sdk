@@ -53,10 +53,10 @@ jobs:
         with:
           ref: ${{ needs.prepare.outputs.sha }}
 
-      #- name: Install cmake
-        #uses: ssrobins/install-cmake@v1
-        #with:
-          #version: 3.27.2
+      - name: Install cmake
+        uses: ssrobins/install-cmake@v1
+        with:
+          version: 3.27.2
 
       - name: Install python
         uses: actions/setup-python@v5
@@ -66,36 +66,41 @@ jobs:
       - name: Install Scoop
         uses: MinoruSekine/setup-scoop@v4.0.1
 
-      - name: install buf 'n stuff # the official way to install somehow lol
+      - name: install buf 'n stuff
         run: scoop install buf ninja
 
-      #- name: install conan
-        #run: py -m pip install conan
       - name: Install dependencies
         uses: crazy-max/ghaction-chocolatey@v3
         with:
-          args: install -y conan cmake
+          args: install -y conan git 7zip jq
+
 
       # Ensures that things installed with choco are visible to us
       - name: refresh env
         run: |
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
-      #- name: Setup build directory
-        #run: mkdir builds
-
-      #- name: list stuff
-        #run: ls ./boost/boost/libs
-        #run: ls ${{ steps.install-boost.outuputs.BOOST_ROOT }}
 
       - name: Create package
         shell: powershell
         run: |
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=17
+          conan create . `
+            --build=missing `
+            -o "&:shared=False" `
+            -s:h compiler.cppstd=17 `
+            -c:h tools.microsoft:winsdk_version=10.0.17763.0 `
+            -s:h compiler.runtime=static
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+
+      - name: list stuff
+        run: |
+          ls
+          ls build/
 
       #- name: Build
         #run: |

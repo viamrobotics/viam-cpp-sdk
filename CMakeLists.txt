@@ -258,6 +258,13 @@ find_package(Threads REQUIRED)
 set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
 
 file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
+if (NOT WIN32)
+  message(WARNING "we are not WIN32")
+endif()
+
+if (CMAKE_SYSTEM_PROCESSOR STREQUAL "X86" OR CMAKE_SYSTEM_PROCESSOR STREQUAL "X64")
+  message(WARNING "We are x86 or x64")
+endif()
 
 if (viam_rust_utils_files)
   list(LENGTH viam_rust_utils_files num_viam_rust_utils_files)
@@ -292,7 +299,8 @@ elseif(NOT WIN32 OR (CMAKE_SYSTEM_PROCESSOR STREQUAL "X86") OR (CMAKE_SYSTEM_PRO
   if(NOT lvru_status_code EQUAL 0)
     message(FATAL_ERROR "No local viam_rust_utils found and failed to download: ${lvru_status_string}")
   endif()
-
+else()
+  message(WARNING "We aren't trying to get rust-utils for some reason. Win32? ${WIN32}. system processor? ${CMAKE_SYSTEM_PROCESSOR}")
 endif()
 
 # TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't even declare the library
