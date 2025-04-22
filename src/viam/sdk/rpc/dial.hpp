@@ -14,8 +14,11 @@ namespace sdk {
 class DialOptions;
 class ViamChannel {
    public:
-    void close();
+    explicit ViamChannel(std::shared_ptr<GrpcChannel> channel);
+
     ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
+
+    ~ViamChannel();
 
     /// @brief Connects to a robot at the given URI address, using the provided dial options (or
     /// default options is none are provided). Ignores initial connection options specifying
@@ -38,11 +41,20 @@ class ViamChannel {
 
     const std::shared_ptr<GrpcChannel>& channel() const;
 
+    void close();
+
    private:
+    struct RustDialData {
+        RustDialData(const char* path_, void* runtime);
+        ~RustDialData();
+
+        const char* path;
+        void* rust_runtime;
+    };
+
     std::shared_ptr<GrpcChannel> channel_;
-    const char* path_;
-    bool closed_;
-    void* rust_runtime_;
+
+    boost::optional<RustDialData> rust_data_;
 };
 
 class Credentials {

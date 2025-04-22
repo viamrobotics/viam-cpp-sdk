@@ -18,18 +18,22 @@
 namespace viam {
 namespace sdk {
 
-const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
-    return channel_;
+ViamChannel::RustDialData::RustDialData(const char* path_, void* runtime)
+    : path(path_), rust_runtime(runtime) {}
+
+ViamChannel::RustDialData::~RustDialData() {
+    free_string(path);
+    free_rust_runtime(rust_runtime);
 }
 
-void ViamChannel::close() {
-    if (closed_) {
-        return;
-    }
-    closed_ = true;
-    free_string(path_);
-    free_rust_runtime(rust_runtime_);
-};
+ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
+    : channel_(std::move(channel)), rust_data_(RustDialData(path, runtime)) {}
+
+ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel) : channel_(std::move(channel)) {}
+
+ViamChannel::~ViamChannel() {
+    close();
+}
 
 const std::string& Credentials::type() const {
     return type_;
@@ -38,9 +42,6 @@ const std::string& Credentials::type() const {
 const std::string& Credentials::payload() const {
     return payload_;
 }
-
-ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
-    : channel_(std::move(channel)), path_(path), closed_(false), rust_runtime_(runtime) {}
 
 DialOptions::DialOptions() = default;
 
@@ -162,7 +163,15 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     const std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
         viam::robot::v1::RobotService::NewStub(channel);
     return std::make_shared<ViamChannel>(channel, socket_path, ptr);
-};
+}
+
+const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
+    return channel_;
+}
+
+void ViamChannel::close() {
+    rust_data_.reset();
+}
 
 unsigned int Options::refresh_interval() const {
     return refresh_interval_;
