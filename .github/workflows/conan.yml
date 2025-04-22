@@ -96,10 +96,9 @@ jobs:
           refreshenv
           conan profile detect
           conan create . --build=missing -s compiler.cppstd=17
-        with:
-          env:
-            CONAN_USER_HOME: c:/cache
-            CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+        env:
+          CONAN_USER_HOME: c:/cache
+          CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
