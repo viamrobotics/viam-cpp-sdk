@@ -120,9 +120,9 @@ RobotClient::~RobotClient() {
         try {
             this->close();
         } catch (const std::exception& e) {
-            VIAM_SDK_LOG(error) << "Received err while closing RobotClient: " << e.what() << "\n";
+            VIAM_SDK_LOG(error) << "Received err while closing RobotClient: " << e.what();
         } catch (...) {
-            VIAM_SDK_LOG(error) << "Received unknown err while closing RobotClient\n";
+            VIAM_SDK_LOG(error) << "Received unknown err while closing RobotClient";
         }
     }
 }
