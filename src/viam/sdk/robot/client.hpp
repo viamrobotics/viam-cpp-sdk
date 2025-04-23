@@ -64,7 +64,10 @@ class RobotClient {
         friend bool operator==(const operation& lhs, const operation& rhs);
     };
 
+    explicit RobotClient(ViamChannel channel);
+
     ~RobotClient();
+
     void refresh();
     void close();
 
@@ -88,8 +91,6 @@ class RobotClient {
     /// Connects directly to a pre-existing channel. A robot created this way must be
     /// `close()`d manually.
     static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, const Options& options);
-
-    RobotClient(ViamChannel channel);
 
     std::vector<Name> resource_names() const;
 
