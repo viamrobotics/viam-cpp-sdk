@@ -294,6 +294,7 @@ elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Curre
     set(shared_library_prefix "lib")
   endif()
   message(WARNING "shared library prefix is ${CMAKE_SHARED_LIBRARY_PREFIX}")
+  message(WARNING "trying to download https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}")
 
   file(
     DOWNLOAD
