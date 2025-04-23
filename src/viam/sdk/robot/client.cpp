@@ -131,7 +131,7 @@ void RobotClient::close() {
     should_refresh_.store(false);
     threads_.clear();
     stop_all();
-    viam_channel_->close();
+    viam_channel_.close();
 }
 
 bool is_error_response(const grpc::Status& response) {
@@ -209,7 +209,7 @@ void RobotClient::refresh() {
         if (rs) {
             try {
                 const std::shared_ptr<Resource> rpc_client =
-                    rs->create_rpc_client(name.name(), channel_);
+                    rs->create_rpc_client(name.name(), viam_channel_.channel());
                 const Name name_({name.namespace_(), name.type(), name.subtype()}, "", name.name());
                 new_resources.emplace(name_, rpc_client);
             } catch (const std::exception& exc) {
@@ -248,11 +248,10 @@ void RobotClient::refresh_every() {
     }
 };
 
-RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
-    : channel_(channel->channel()),
-      viam_channel_(std::move(channel)),
+RobotClient::RobotClient(ViamChannel channel)
+    : viam_channel_(std::move(channel)),
       should_close_channel_(false),
-      impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {}
+      impl_(std::make_unique<impl>(RobotService::NewStub(viam_channel_.channel()))) {}
 
 std::vector<Name> RobotClient::resource_names() const {
     const std::lock_guard<std::mutex> lock(lock_);
@@ -284,9 +283,9 @@ void RobotClient::log(const std::string& name,
     }
 }
 
-std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
+std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
                                                        const Options& options) {
-    std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(std::move(channel));
+    auto robot = std::make_shared<RobotClient>(std::move(channel));
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);
     if (robot->should_refresh_) {
@@ -305,8 +304,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChann
 std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
                                                      const Options& options) {
     const char* uri = address.c_str();
-    auto channel = ViamChannel::dial_initial(uri, options.dial_options());
-    std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
+    std::shared_ptr<RobotClient> robot =
+        RobotClient::with_channel(ViamChannel::dial_initial(uri, options.dial_options()), options);
     robot->should_close_channel_ = true;
 
     return robot;
@@ -315,10 +314,9 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options) {
     const std::string addr = "unix://" + address;
-    const std::shared_ptr<grpc::Channel> channel =
-        sdk::impl::create_viam_channel(addr, grpc::InsecureChannelCredentials());
-    std::shared_ptr<RobotClient> robot =
-        RobotClient::with_channel(std::make_shared<ViamChannel>(channel), options);
+    std::shared_ptr<RobotClient> robot = RobotClient::with_channel(
+        ViamChannel(sdk::impl::create_viam_channel(addr, grpc::InsecureChannelCredentials())),
+        options);
     robot->should_close_channel_ = true;
 
     return robot;

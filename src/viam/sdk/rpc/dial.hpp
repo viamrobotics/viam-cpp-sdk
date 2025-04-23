@@ -13,10 +13,14 @@ namespace sdk {
 
 class DialOptions;
 class ViamChannel {
+    ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
+
    public:
     explicit ViamChannel(std::shared_ptr<GrpcChannel> channel);
 
-    ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
+    ViamChannel(ViamChannel&&) noexcept;
+
+    ViamChannel& operator=(ViamChannel&&) noexcept;
 
     ~ViamChannel();
 
@@ -26,8 +30,7 @@ class ViamChannel {
     /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
     /// preferred method to connect to a robot, and creates the channel itself.
     /// @throws Exception if it is unable to establish a connection to the provided URI
-    static std::shared_ptr<ViamChannel> dial(const char* uri,
-                                             const boost::optional<DialOptions>& options);
+    static ViamChannel dial(const char* uri, const boost::optional<DialOptions>& options);
 
     // @brief Dials to a robot at the given URI address, using the provided dial options (or default
     // options is none are provided). Additionally specifies that this dial is an initial connection
@@ -36,8 +39,7 @@ class ViamChannel {
     /// preferred method to connect to a robot, and creates the channel itself.
     /// @throws Exception if it is unable to establish a connection to the provided URI within
     /// the given number of initial connection attempts
-    static std::shared_ptr<ViamChannel> dial_initial(const char* uri,
-                                                     const boost::optional<DialOptions>& options);
+    static ViamChannel dial_initial(const char* uri, const boost::optional<DialOptions>& options);
 
     const std::shared_ptr<GrpcChannel>& channel() const;
 

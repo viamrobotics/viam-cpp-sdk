@@ -87,10 +87,9 @@ class RobotClient {
     /// @param options Options for connecting and refreshing.
     /// Connects directly to a pre-existing channel. A robot created this way must be
     /// `close()`d manually.
-    static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
-                                                     const Options& options);
+    static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, const Options& options);
 
-    RobotClient(std::shared_ptr<ViamChannel> channel);
+    RobotClient(ViamChannel channel);
 
     std::vector<Name> resource_names() const;
 
@@ -170,8 +169,7 @@ class RobotClient {
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
 
-    std::shared_ptr<GrpcChannel> channel_;
-    std::shared_ptr<ViamChannel> viam_channel_;
+    ViamChannel viam_channel_;
     bool should_close_channel_;
 
     struct impl;

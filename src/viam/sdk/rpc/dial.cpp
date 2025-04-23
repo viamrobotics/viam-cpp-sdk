@@ -50,6 +50,10 @@ ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* pat
 
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel) : channel_(std::move(channel)) {}
 
+ViamChannel::ViamChannel(ViamChannel&&) noexcept = default;
+
+ViamChannel& ViamChannel::operator=(ViamChannel&&) noexcept = default;
+
 ViamChannel::~ViamChannel() {
     close();
 }
@@ -125,8 +129,8 @@ bool DialOptions::allows_insecure_downgrade() const {
     return allow_insecure_downgrade_;
 }
 
-std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
-    const char* uri, const boost::optional<DialOptions>& options) {
+ViamChannel ViamChannel::dial_initial(const char* uri,
+                                      const boost::optional<DialOptions>& options) {
     DialOptions opts = options.get_value_or(DialOptions());
     auto timeout = opts.timeout();
     auto attempts_remaining = opts.initial_connection_attempts();
@@ -149,11 +153,10 @@ std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
     }
     // the while loop will run until we either return or throw an error, so we can never reach this
     // point
-    BOOST_UNREACHABLE_RETURN(nullptr)
+    BOOST_UNREACHABLE_RETURN(ViamChannel(nullptr))
 }
 
-std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
-                                               const boost::optional<DialOptions>& options) {
+ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions>& options) {
     void* ptr = init_rust_runtime();
     const DialOptions opts = options.get_value_or(DialOptions());
     const std::chrono::duration<float> float_timeout = opts.timeout();
@@ -177,9 +180,10 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
 
     std::string address("unix://");
     address += socket_path;
-    const std::shared_ptr<grpc::Channel> channel =
-        sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials());
-    return std::make_shared<ViamChannel>(channel, socket_path, ptr);
+
+    return ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
+                       socket_path,
+                       ptr);
 }
 
 const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
