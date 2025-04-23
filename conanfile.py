@@ -43,7 +43,7 @@ class ViamCppSdkRecipe(ConanFile):
                 self.options[lib].shared = True
 
     def requirements(self):
-        self.requires('boost/[>=1.74.0]', transitive_headers=True)
+        self.requires('boost/[>=1.74.0]#53c53f3d6eeb9db4a3d68573596db0e7', transitive_headers=True)
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
