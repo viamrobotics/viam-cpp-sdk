@@ -282,7 +282,7 @@ elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Curre
     set(lvru_system_name "macosx")
   endif()
   set(lvru_system_processor ${CMAKE_SYSTEM_PROCESSOR})
-  if ((CMAKE_SYSTEM_PROCESSOR STREQUAL "X86") OR (CMAKE_SYSTEM_PROCESSOR STREQUAL "X64"))
+  if (WIN32 AND rust_utils_supported_windows_arch)
     set(lvru_system_processor "x86_64")
   endif()
   file(
