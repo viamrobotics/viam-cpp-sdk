@@ -44,7 +44,23 @@ void Server::register_service(grpc::Service* service) {
     builder_->RegisterService(service);
 }
 
+namespace {
+bool deadline_exceeded(const std::chrono::system_clock::time_point& deadline) {
+    std::cout << "deadline is " << deadline.time_since_epoch().count() << " and now is "
+              << std::chrono::system_clock::now().time_since_epoch().count() << "\n\n";
+    return deadline < std::chrono::system_clock::now();  // deadline is before now
+}
+}  // namespace
+
 void Server::add_resource(std::shared_ptr<Resource> resource) {
+    add_resource(std::move(resource), nullptr);
+}
+
+void Server::add_resource(std::shared_ptr<Resource> resource,
+                          std::chrono::system_clock::time_point* deadline) {
+    if (deadline && deadline_exceeded(*deadline)) {
+        throw Exception(ErrorCondition::k_general, "Deadline expired");
+    }
     auto api = resource->api();
     if (managed_servers_.find(api) == managed_servers_.end()) {
         std::ostringstream buffer;
