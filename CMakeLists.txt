@@ -281,13 +281,22 @@ elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Curre
   elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(lvru_system_name "macosx")
   endif()
+
   set(lvru_system_processor ${CMAKE_SYSTEM_PROCESSOR})
   if (WIN32 AND rust_utils_supported_windows_arch)
+    message(WARNING "windows and rust-utils-supported architecture is true")
     set(lvru_system_processor "x86_64")
   endif()
+  message(WARNING "system processor is ${lvru_system_processor}")
+
+  set(shared_library_prefix CMAKE_SHARED_LIBRARY_PREFIX)
+  if (WIN32)
+    set(shared_library_prefix "lib")
+  endif()
+
   file(
     DOWNLOAD
-    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}
+    https://github.com/viamrobotics/rust-utils/releases/latest/download/${shared_library_prefix}viam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}
     ${viam_rust_utils_file}
     STATUS lvru_status
   )
@@ -295,6 +304,7 @@ elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Curre
   list(GET lvru_status 1 lvru_status_string)
 
   if(NOT lvru_status_code EQUAL 0)
+    message(WARNING "We aren't trying to get rust-utils for some reason. Win32? ${WIN32}. system processor? ${lvru_system_processor}")
     message(FATAL_ERROR "No local viam_rust_utils found and failed to download: ${lvru_status_string}")
   endif()
 else()

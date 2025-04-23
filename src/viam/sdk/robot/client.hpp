@@ -77,7 +77,7 @@ class RobotClient {
     /// @brief Creates a robot client connected to the robot at the provided local socket.
     /// @param address The local socket of the robot (a .sock file, etc.).
     /// @param options Options for connecting and refreshing.
-    /// Creates a direct connection to the robot using the `unix://` scheme.
+    /// Creates a direct connection to the robot using the `unix:` scheme.
     /// Only useful for connecting to robots across Unix sockets.
     static std::shared_ptr<RobotClient> at_local_socket(const std::string& address,
                                                         const Options& options);

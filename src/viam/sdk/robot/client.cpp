@@ -317,7 +317,7 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options) {
-    const std::string addr = "unix://" + address;
+    const std::string addr = "unix:" + address;
     const char* uri = addr.c_str();
     const std::shared_ptr<grpc::Channel> channel =
         sdk::impl::create_viam_channel(uri, grpc::InsecureChannelCredentials());
