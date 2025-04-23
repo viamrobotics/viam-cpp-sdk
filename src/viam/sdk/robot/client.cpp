@@ -305,7 +305,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
 std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
                                                      const Options& options) {
     const char* uri = address.c_str();
-    std::shared_ptr<RobotClient> robot =
+    auto robot =
         RobotClient::with_channel(ViamChannel::dial_initial(uri, options.dial_options()), options);
     robot->should_close_channel_ = true;
 
