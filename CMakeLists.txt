@@ -258,13 +258,11 @@ find_package(Threads REQUIRED)
 set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
 
 file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
-if (NOT WIN32)
-  message(WARNING "we are not WIN32")
-endif()
 
-if (CMAKE_SYSTEM_PROCESSOR STREQUAL "X86" OR CMAKE_SYSTEM_PROCESSOR STREQUAL "X64")
-  message(WARNING "We are x86 or x64")
-endif()
+# Check if the architecture is one that we support in rust-utils
+set(WINDOWS_ARCHS "AMD64" "X86" "X64")
+list(FIND WINDOWS_ARCHS CMAKE_SYSTEM_PROCESSOR idx)
+set(rust_utils_supported_windows_arch (idx GREATER -1))
 
 if (viam_rust_utils_files)
   list(LENGTH viam_rust_utils_files num_viam_rust_utils_files)
@@ -276,7 +274,7 @@ if (viam_rust_utils_files)
     ${viam_rust_utils_file}
     ONLY_IF_DIFFERENT
   )
-elseif(NOT WIN32 OR (CMAKE_SYSTEM_PROCESSOR STREQUAL "X86") OR (CMAKE_SYSTEM_PROCESSOR STREQUAL "X64")) # TODO(RSDK-10366): Currently, rust_utils is not published for windows aarch, so don't even try downloading
+elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Currently, rust_utils is not published for windows aarch, so don't even try downloading
   set(lvru_system_name ${CMAKE_SYSTEM_NAME})
   if (CMAKE_SYSTEM_NAME STREQUAL "Cygwin")
     set(lvru_system_name "windows")
