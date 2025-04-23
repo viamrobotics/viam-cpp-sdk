@@ -289,14 +289,15 @@ elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Curre
   endif()
   message(WARNING "system processor is ${lvru_system_processor}")
 
-  set(shared_library_prefix CMAKE_SHARED_LIBRARY_PREFIX)
+  set(shared_library_prefix ${CMAKE_SHARED_LIBRARY_PREFIX})
   if (WIN32)
     set(shared_library_prefix "lib")
   endif()
+  message(WARNING "shared library prefix is ${CMAKE_SHARED_LIBRARY_PREFIX}")
 
   file(
     DOWNLOAD
-    https://github.com/viamrobotics/rust-utils/releases/latest/download/${shared_library_prefix}viam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}
+    https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}
     ${viam_rust_utils_file}
     STATUS lvru_status
   )
