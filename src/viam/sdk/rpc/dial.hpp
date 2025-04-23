@@ -44,24 +44,11 @@ class ViamChannel {
     void close();
 
    private:
-    struct RustDialData {
-        RustDialData(const char* path_, void* runtime);
-
-        RustDialData(const RustDialData&) = delete;
-        RustDialData(RustDialData&&) noexcept;
-
-        RustDialData& operator=(const RustDialData&) = delete;
-        RustDialData& operator=(RustDialData&&) noexcept;
-
-        ~RustDialData();
-
-        const char* path;
-        void* rust_runtime;
-    };
+    struct impl;
 
     std::shared_ptr<GrpcChannel> channel_;
 
-    boost::optional<RustDialData> rust_data_;
+    std::unique_ptr<impl> pimpl_;
 };
 
 class Credentials {

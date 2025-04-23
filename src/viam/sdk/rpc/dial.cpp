@@ -18,27 +18,35 @@
 namespace viam {
 namespace sdk {
 
-ViamChannel::RustDialData::RustDialData(const char* path_, void* runtime)
-    : path(path_), rust_runtime(runtime) {}
+struct ViamChannel::impl {
+    impl(const char* path, void* runtime) : path(path), rust_runtime(runtime) {}
 
-ViamChannel::RustDialData::RustDialData(RustDialData&& other) noexcept
-    : path(std::exchange(other.path, nullptr)),
-      rust_runtime(std::exchange(other.rust_runtime, nullptr)) {}
+    impl(const impl&) = delete;
 
-ViamChannel::RustDialData& ViamChannel::RustDialData::operator=(RustDialData&& other) noexcept {
-    path = std::exchange(other.path, nullptr);
-    rust_runtime = std::exchange(other.rust_runtime, nullptr);
+    impl(impl&& other) noexcept
+        : path(std::exchange(other.path, nullptr)),
+          rust_runtime(std::exchange(other.rust_runtime, nullptr)) {}
 
-    return *this;
-}
+    impl& operator=(const impl&) = delete;
 
-ViamChannel::RustDialData::~RustDialData() {
-    free_string(path);
-    free_rust_runtime(rust_runtime);
-}
+    impl& operator=(impl&& other) noexcept {
+        path = std::exchange(other.path, nullptr);
+        rust_runtime = std::exchange(other.rust_runtime, nullptr);
+
+        return *this;
+    }
+
+    ~impl() {
+        free_string(path);
+        free_rust_runtime(rust_runtime);
+    }
+
+    const char* path;
+    void* rust_runtime;
+};
 
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
-    : channel_(std::move(channel)), rust_data_(RustDialData(path, runtime)) {}
+    : channel_(std::move(channel)), pimpl_(std::make_unique<ViamChannel::impl>(path, runtime)) {}
 
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel) : channel_(std::move(channel)) {}
 
@@ -170,7 +178,7 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     std::string address("unix://");
     address += socket_path;
     const std::shared_ptr<grpc::Channel> channel =
-        impl::create_viam_channel(address, grpc::InsecureChannelCredentials());
+        sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials());
     const std::unique_ptr<viam::robot::v1::RobotService::Stub> st =
         viam::robot::v1::RobotService::NewStub(channel);
     return std::make_shared<ViamChannel>(channel, socket_path, ptr);
@@ -181,7 +189,7 @@ const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
 }
 
 void ViamChannel::close() {
-    rust_data_.reset();
+    pimpl_.reset();
 }
 
 unsigned int Options::refresh_interval() const {
