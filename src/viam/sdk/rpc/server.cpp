@@ -46,8 +46,6 @@ void Server::register_service(grpc::Service* service) {
 
 namespace {
 bool deadline_exceeded(const std::chrono::system_clock::time_point& deadline) {
-    std::cout << "deadline is " << deadline.time_since_epoch().count() << " and now is "
-              << std::chrono::system_clock::now().time_since_epoch().count() << "\n\n";
     return deadline < std::chrono::system_clock::now();  // deadline is before now
 }
 }  // namespace
