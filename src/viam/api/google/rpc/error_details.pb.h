@@ -86,6 +86,9 @@ extern QuotaFailureDefaultTypeInternal _QuotaFailure_default_instance_;
 class QuotaFailure_Violation;
 struct QuotaFailure_ViolationDefaultTypeInternal;
 extern QuotaFailure_ViolationDefaultTypeInternal _QuotaFailure_Violation_default_instance_;
+class QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse;
+struct QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUseDefaultTypeInternal;
+extern QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUseDefaultTypeInternal _QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse_default_instance_;
 class RequestInfo;
 struct RequestInfoDefaultTypeInternal;
 extern RequestInfoDefaultTypeInternal _RequestInfo_default_instance_;
@@ -110,6 +113,7 @@ template<> ::google::rpc::PreconditionFailure* Arena::CreateMaybeMessage<::googl
 template<> ::google::rpc::PreconditionFailure_Violation* Arena::CreateMaybeMessage<::google::rpc::PreconditionFailure_Violation>(Arena*);
 template<> ::google::rpc::QuotaFailure* Arena::CreateMaybeMessage<::google::rpc::QuotaFailure>(Arena*);
 template<> ::google::rpc::QuotaFailure_Violation* Arena::CreateMaybeMessage<::google::rpc::QuotaFailure_Violation>(Arena*);
+template<> ::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse* Arena::CreateMaybeMessage<::google::rpc::QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse>(Arena*);
 template<> ::google::rpc::RequestInfo* Arena::CreateMaybeMessage<::google::rpc::RequestInfo>(Arena*);
 template<> ::google::rpc::ResourceInfo* Arena::CreateMaybeMessage<::google::rpc::ResourceInfo>(Arena*);
 template<> ::google::rpc::RetryInfo* Arena::CreateMaybeMessage<::google::rpc::RetryInfo>(Arena*);
@@ -663,6 +667,34 @@ class DebugInfo final :
 };
 // -------------------------------------------------------------------
 
+class QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse& other);
+  static const QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse*>(&_QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.rpc.QuotaFailure.Violation.QuotaDimensionsEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "google.rpc.QuotaFailure.Violation.QuotaDimensionsEntry.value");
+ }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_google_2frpc_2ferror_5fdetails_2eproto;
+};
+
+// -------------------------------------------------------------------
+
 class QuotaFailure_Violation final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.rpc.QuotaFailure.Violation) */ {
  public:
@@ -711,7 +743,7 @@ class QuotaFailure_Violation final :
                &_QuotaFailure_Violation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(QuotaFailure_Violation& a, QuotaFailure_Violation& b) {
     a.Swap(&b);
@@ -770,6 +802,8 @@ class QuotaFailure_Violation final :
   protected:
   explicit QuotaFailure_Violation(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -779,12 +813,36 @@ class QuotaFailure_Violation final :
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
   enum : int {
+    kQuotaDimensionsFieldNumber = 6,
     kSubjectFieldNumber = 1,
     kDescriptionFieldNumber = 2,
+    kApiServiceFieldNumber = 3,
+    kQuotaMetricFieldNumber = 4,
+    kQuotaIdFieldNumber = 5,
+    kQuotaValueFieldNumber = 7,
+    kFutureQuotaValueFieldNumber = 8,
   };
+  // map<string, string> quota_dimensions = 6 [json_name = "quotaDimensions"];
+  int quota_dimensions_size() const;
+  private:
+  int _internal_quota_dimensions_size() const;
+  public:
+  void clear_quota_dimensions();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_quota_dimensions() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_quota_dimensions();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      quota_dimensions() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_quota_dimensions();
+
   // string subject = 1 [json_name = "subject"];
   void clear_subject();
   const std::string& subject() const;
@@ -813,6 +871,70 @@ class QuotaFailure_Violation final :
   std::string* _internal_mutable_description();
   public:
 
+  // string api_service = 3 [json_name = "apiService"];
+  void clear_api_service();
+  const std::string& api_service() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_api_service(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_api_service();
+  PROTOBUF_NODISCARD std::string* release_api_service();
+  void set_allocated_api_service(std::string* api_service);
+  private:
+  const std::string& _internal_api_service() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_api_service(const std::string& value);
+  std::string* _internal_mutable_api_service();
+  public:
+
+  // string quota_metric = 4 [json_name = "quotaMetric"];
+  void clear_quota_metric();
+  const std::string& quota_metric() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_quota_metric(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_quota_metric();
+  PROTOBUF_NODISCARD std::string* release_quota_metric();
+  void set_allocated_quota_metric(std::string* quota_metric);
+  private:
+  const std::string& _internal_quota_metric() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_quota_metric(const std::string& value);
+  std::string* _internal_mutable_quota_metric();
+  public:
+
+  // string quota_id = 5 [json_name = "quotaId"];
+  void clear_quota_id();
+  const std::string& quota_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_quota_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_quota_id();
+  PROTOBUF_NODISCARD std::string* release_quota_id();
+  void set_allocated_quota_id(std::string* quota_id);
+  private:
+  const std::string& _internal_quota_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_quota_id(const std::string& value);
+  std::string* _internal_mutable_quota_id();
+  public:
+
+  // int64 quota_value = 7 [json_name = "quotaValue"];
+  void clear_quota_value();
+  int64_t quota_value() const;
+  void set_quota_value(int64_t value);
+  private:
+  int64_t _internal_quota_value() const;
+  void _internal_set_quota_value(int64_t value);
+  public:
+
+  // optional int64 future_quota_value = 8 [json_name = "futureQuotaValue"];
+  bool has_future_quota_value() const;
+  private:
+  bool _internal_has_future_quota_value() const;
+  public:
+  void clear_future_quota_value();
+  int64_t future_quota_value() const;
+  void set_future_quota_value(int64_t value);
+  private:
+  int64_t _internal_future_quota_value() const;
+  void _internal_set_future_quota_value(int64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:google.rpc.QuotaFailure.Violation)
  private:
   class _Internal;
@@ -820,9 +942,20 @@ class QuotaFailure_Violation final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      QuotaFailure_Violation_QuotaDimensionsEntry_DoNotUse,
+      std::string, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> quota_dimensions_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr subject_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr api_service_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr quota_metric_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr quota_id_;
+  int64_t quota_value_;
+  int64_t future_quota_value_;
   friend struct ::TableStruct_google_2frpc_2ferror_5fdetails_2eproto;
 };
 // -------------------------------------------------------------------
@@ -875,7 +1008,7 @@ class QuotaFailure final :
                &_QuotaFailure_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(QuotaFailure& a, QuotaFailure& b) {
     a.Swap(&b);
@@ -1029,7 +1162,7 @@ class PreconditionFailure_Violation final :
                &_PreconditionFailure_Violation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(PreconditionFailure_Violation& a, PreconditionFailure_Violation& b) {
     a.Swap(&b);
@@ -1209,7 +1342,7 @@ class PreconditionFailure final :
                &_PreconditionFailure_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(PreconditionFailure& a, PreconditionFailure& b) {
     a.Swap(&b);
@@ -1363,7 +1496,7 @@ class BadRequest_FieldViolation final :
                &_BadRequest_FieldViolation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(BadRequest_FieldViolation& a, BadRequest_FieldViolation& b) {
     a.Swap(&b);
@@ -1563,7 +1696,7 @@ class BadRequest final :
                &_BadRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(BadRequest& a, BadRequest& b) {
     a.Swap(&b);
@@ -1717,7 +1850,7 @@ class RequestInfo final :
                &_RequestInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(RequestInfo& a, RequestInfo& b) {
     a.Swap(&b);
@@ -1881,7 +2014,7 @@ class ResourceInfo final :
                &_ResourceInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(ResourceInfo& a, ResourceInfo& b) {
     a.Swap(&b);
@@ -2077,7 +2210,7 @@ class Help_Link final :
                &_Help_Link_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(Help_Link& a, Help_Link& b) {
     a.Swap(&b);
@@ -2241,7 +2374,7 @@ class Help final :
                &_Help_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(Help& a, Help& b) {
     a.Swap(&b);
@@ -2395,7 +2528,7 @@ class LocalizedMessage final :
                &_LocalizedMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(LocalizedMessage& a, LocalizedMessage& b) {
     a.Swap(&b);
@@ -2871,6 +3004,8 @@ inline void DebugInfo::set_allocated_detail(std::string* detail) {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 // QuotaFailure_Violation
 
 // string subject = 1 [json_name = "subject"];
@@ -2971,6 +3106,233 @@ inline void QuotaFailure_Violation::set_allocated_description(std::string* descr
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:google.rpc.QuotaFailure.Violation.description)
+}
+
+// string api_service = 3 [json_name = "apiService"];
+inline void QuotaFailure_Violation::clear_api_service() {
+  api_service_.ClearToEmpty();
+}
+inline const std::string& QuotaFailure_Violation::api_service() const {
+  // @@protoc_insertion_point(field_get:google.rpc.QuotaFailure.Violation.api_service)
+  return _internal_api_service();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void QuotaFailure_Violation::set_api_service(ArgT0&& arg0, ArgT... args) {
+ 
+ api_service_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.rpc.QuotaFailure.Violation.api_service)
+}
+inline std::string* QuotaFailure_Violation::mutable_api_service() {
+  std::string* _s = _internal_mutable_api_service();
+  // @@protoc_insertion_point(field_mutable:google.rpc.QuotaFailure.Violation.api_service)
+  return _s;
+}
+inline const std::string& QuotaFailure_Violation::_internal_api_service() const {
+  return api_service_.Get();
+}
+inline void QuotaFailure_Violation::_internal_set_api_service(const std::string& value) {
+  
+  api_service_.Set(value, GetArenaForAllocation());
+}
+inline std::string* QuotaFailure_Violation::_internal_mutable_api_service() {
+  
+  return api_service_.Mutable(GetArenaForAllocation());
+}
+inline std::string* QuotaFailure_Violation::release_api_service() {
+  // @@protoc_insertion_point(field_release:google.rpc.QuotaFailure.Violation.api_service)
+  return api_service_.Release();
+}
+inline void QuotaFailure_Violation::set_allocated_api_service(std::string* api_service) {
+  if (api_service != nullptr) {
+    
+  } else {
+    
+  }
+  api_service_.SetAllocated(api_service, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (api_service_.IsDefault()) {
+    api_service_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.rpc.QuotaFailure.Violation.api_service)
+}
+
+// string quota_metric = 4 [json_name = "quotaMetric"];
+inline void QuotaFailure_Violation::clear_quota_metric() {
+  quota_metric_.ClearToEmpty();
+}
+inline const std::string& QuotaFailure_Violation::quota_metric() const {
+  // @@protoc_insertion_point(field_get:google.rpc.QuotaFailure.Violation.quota_metric)
+  return _internal_quota_metric();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void QuotaFailure_Violation::set_quota_metric(ArgT0&& arg0, ArgT... args) {
+ 
+ quota_metric_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.rpc.QuotaFailure.Violation.quota_metric)
+}
+inline std::string* QuotaFailure_Violation::mutable_quota_metric() {
+  std::string* _s = _internal_mutable_quota_metric();
+  // @@protoc_insertion_point(field_mutable:google.rpc.QuotaFailure.Violation.quota_metric)
+  return _s;
+}
+inline const std::string& QuotaFailure_Violation::_internal_quota_metric() const {
+  return quota_metric_.Get();
+}
+inline void QuotaFailure_Violation::_internal_set_quota_metric(const std::string& value) {
+  
+  quota_metric_.Set(value, GetArenaForAllocation());
+}
+inline std::string* QuotaFailure_Violation::_internal_mutable_quota_metric() {
+  
+  return quota_metric_.Mutable(GetArenaForAllocation());
+}
+inline std::string* QuotaFailure_Violation::release_quota_metric() {
+  // @@protoc_insertion_point(field_release:google.rpc.QuotaFailure.Violation.quota_metric)
+  return quota_metric_.Release();
+}
+inline void QuotaFailure_Violation::set_allocated_quota_metric(std::string* quota_metric) {
+  if (quota_metric != nullptr) {
+    
+  } else {
+    
+  }
+  quota_metric_.SetAllocated(quota_metric, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (quota_metric_.IsDefault()) {
+    quota_metric_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.rpc.QuotaFailure.Violation.quota_metric)
+}
+
+// string quota_id = 5 [json_name = "quotaId"];
+inline void QuotaFailure_Violation::clear_quota_id() {
+  quota_id_.ClearToEmpty();
+}
+inline const std::string& QuotaFailure_Violation::quota_id() const {
+  // @@protoc_insertion_point(field_get:google.rpc.QuotaFailure.Violation.quota_id)
+  return _internal_quota_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void QuotaFailure_Violation::set_quota_id(ArgT0&& arg0, ArgT... args) {
+ 
+ quota_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.rpc.QuotaFailure.Violation.quota_id)
+}
+inline std::string* QuotaFailure_Violation::mutable_quota_id() {
+  std::string* _s = _internal_mutable_quota_id();
+  // @@protoc_insertion_point(field_mutable:google.rpc.QuotaFailure.Violation.quota_id)
+  return _s;
+}
+inline const std::string& QuotaFailure_Violation::_internal_quota_id() const {
+  return quota_id_.Get();
+}
+inline void QuotaFailure_Violation::_internal_set_quota_id(const std::string& value) {
+  
+  quota_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* QuotaFailure_Violation::_internal_mutable_quota_id() {
+  
+  return quota_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* QuotaFailure_Violation::release_quota_id() {
+  // @@protoc_insertion_point(field_release:google.rpc.QuotaFailure.Violation.quota_id)
+  return quota_id_.Release();
+}
+inline void QuotaFailure_Violation::set_allocated_quota_id(std::string* quota_id) {
+  if (quota_id != nullptr) {
+    
+  } else {
+    
+  }
+  quota_id_.SetAllocated(quota_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (quota_id_.IsDefault()) {
+    quota_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.rpc.QuotaFailure.Violation.quota_id)
+}
+
+// map<string, string> quota_dimensions = 6 [json_name = "quotaDimensions"];
+inline int QuotaFailure_Violation::_internal_quota_dimensions_size() const {
+  return quota_dimensions_.size();
+}
+inline int QuotaFailure_Violation::quota_dimensions_size() const {
+  return _internal_quota_dimensions_size();
+}
+inline void QuotaFailure_Violation::clear_quota_dimensions() {
+  quota_dimensions_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+QuotaFailure_Violation::_internal_quota_dimensions() const {
+  return quota_dimensions_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+QuotaFailure_Violation::quota_dimensions() const {
+  // @@protoc_insertion_point(field_map:google.rpc.QuotaFailure.Violation.quota_dimensions)
+  return _internal_quota_dimensions();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+QuotaFailure_Violation::_internal_mutable_quota_dimensions() {
+  return quota_dimensions_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+QuotaFailure_Violation::mutable_quota_dimensions() {
+  // @@protoc_insertion_point(field_mutable_map:google.rpc.QuotaFailure.Violation.quota_dimensions)
+  return _internal_mutable_quota_dimensions();
+}
+
+// int64 quota_value = 7 [json_name = "quotaValue"];
+inline void QuotaFailure_Violation::clear_quota_value() {
+  quota_value_ = int64_t{0};
+}
+inline int64_t QuotaFailure_Violation::_internal_quota_value() const {
+  return quota_value_;
+}
+inline int64_t QuotaFailure_Violation::quota_value() const {
+  // @@protoc_insertion_point(field_get:google.rpc.QuotaFailure.Violation.quota_value)
+  return _internal_quota_value();
+}
+inline void QuotaFailure_Violation::_internal_set_quota_value(int64_t value) {
+  
+  quota_value_ = value;
+}
+inline void QuotaFailure_Violation::set_quota_value(int64_t value) {
+  _internal_set_quota_value(value);
+  // @@protoc_insertion_point(field_set:google.rpc.QuotaFailure.Violation.quota_value)
+}
+
+// optional int64 future_quota_value = 8 [json_name = "futureQuotaValue"];
+inline bool QuotaFailure_Violation::_internal_has_future_quota_value() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool QuotaFailure_Violation::has_future_quota_value() const {
+  return _internal_has_future_quota_value();
+}
+inline void QuotaFailure_Violation::clear_future_quota_value() {
+  future_quota_value_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline int64_t QuotaFailure_Violation::_internal_future_quota_value() const {
+  return future_quota_value_;
+}
+inline int64_t QuotaFailure_Violation::future_quota_value() const {
+  // @@protoc_insertion_point(field_get:google.rpc.QuotaFailure.Violation.future_quota_value)
+  return _internal_future_quota_value();
+}
+inline void QuotaFailure_Violation::_internal_set_future_quota_value(int64_t value) {
+  _has_bits_[0] |= 0x00000001u;
+  future_quota_value_ = value;
+}
+inline void QuotaFailure_Violation::set_future_quota_value(int64_t value) {
+  _internal_set_future_quota_value(value);
+  // @@protoc_insertion_point(field_set:google.rpc.QuotaFailure.Violation.future_quota_value)
 }
 
 // -------------------------------------------------------------------
@@ -4066,6 +4428,8 @@ inline void LocalizedMessage::set_allocated_message(std::string* message) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -5,6 +5,7 @@
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/sensor.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
@@ -32,16 +33,16 @@ int main() {
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
 
     // Print resources
-    std::cout << "Resources\n";
+    VIAM_SDK_LOG(info) << "Resources";
     std::vector<Name> resource_names = robot->resource_names();
     for (const Name& resource : resource_names) {
-        std::cout << "\t" << resource << "\n";
+        VIAM_SDK_LOG(info) << resource;
     }
 
     // Exercise sensor methods
     auto sensor = robot->resource_by_name<Sensor>("mysensor");
     if (!sensor) {
-        std::cerr << "could not get 'mysensor' resource from robot\n";
+        VIAM_SDK_LOG(error) << "could not get 'mysensor' resource from robot";
         return EXIT_FAILURE;
     }
 
@@ -49,7 +50,7 @@ int main() {
     ProtoStruct resp = sensor->do_command(command);
 
     if (command != resp) {
-        std::cerr << "Got unexpected result from 'mysensor'\n";
+        VIAM_SDK_LOG(error) << "Got unexpected result from 'mysensor'";
         return EXIT_FAILURE;
     }
 
@@ -57,15 +58,15 @@ int main() {
 
     auto itr = readings.find("signal");
     if (itr == readings.end()) {
-        std::cerr << "Expected signal not found in sensor readings\n";
+        VIAM_SDK_LOG(error) << "Expected signal not found in sensor readings";
         return EXIT_FAILURE;
     }
 
     const double* signal = itr->second.get<double>();
     if (signal) {
-        std::cout << "\t" << itr->first << ": " << *signal << "\n";
+        VIAM_SDK_LOG(info) << itr->first << ": " << *signal;
     } else {
-        std::cerr << "Unexpected value type for sensor reading\n";
+        VIAM_SDK_LOG(error) << "Unexpected value type for sensor reading";
         return EXIT_FAILURE;
     }
 

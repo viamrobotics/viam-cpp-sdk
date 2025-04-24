@@ -5,6 +5,7 @@
 
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/referenceframe/frame.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 
@@ -45,34 +46,54 @@ class ResourceConfig {
                    ProtoStruct attributes,
                    std::string api,
                    Model model,
-                   LinkConfig frame);
+                   LinkConfig frame,
+                   log_level lvl = sdk::log_level::info);
 
     ResourceConfig(std::string type);
 
     Name resource_name();
+
     const API& api() const;
+
     const LinkConfig& frame() const;
+
     const Model& model() const;
+
     const std::string& name() const;
     const std::string& namespace_() const;
     const std::string& type() const;
+
+    log_level get_log_level() const;
+
     const std::vector<std::string>& depends_on() const;
+
     const std::vector<ResourceLevelServiceConfig>& service_config() const;
+
     const ProtoStruct& attributes() const;
 
    private:
+    void fix_api();
+
     API api_;
+
     LinkConfig frame_;
+
     Model model_;
+
     std::string name_;
     std::string namespace__;
     std::string type_;
+
     std::vector<std::string> depends_on_;
+
     std::vector<ResourceLevelServiceConfig> service_config_;
+
     ProtoStruct attributes_;
     ProtoValue converted_attributes_;
+
     std::vector<std::string> implicit_depends_on_;
-    void fix_api();
+
+    log_level log_level_;
 };
 
 namespace proto_convert_details {

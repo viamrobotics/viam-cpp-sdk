@@ -28,6 +28,7 @@ class Instance {
 
    private:
     friend class Registry;
+    friend class LogManager;
 
     struct Impl;
     std::unique_ptr<Impl> impl_;

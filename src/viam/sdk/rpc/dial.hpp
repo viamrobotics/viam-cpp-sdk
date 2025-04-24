@@ -14,10 +14,14 @@ namespace sdk {
 struct DialOptions;
 
 class ViamChannel {
-   public:
-    // TODO: we don't want to pass rust args for direct dialing
-    // null rust args === direct dial channel
     ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
+
+   public:
+    explicit ViamChannel(std::shared_ptr<GrpcChannel> channel);
+
+    ViamChannel(ViamChannel&&) noexcept;
+
+    ViamChannel& operator=(ViamChannel&&) noexcept;
 
     ~ViamChannel();
 
@@ -27,8 +31,7 @@ class ViamChannel {
     /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
     /// preferred method to connect to a robot, and creates the channel itself.
     /// @throws Exception if it is unable to establish a connection to the provided URI
-    static std::shared_ptr<ViamChannel> dial(const char* uri,
-                                             const boost::optional<DialOptions>& options);
+    static ViamChannel dial(const char* uri, const boost::optional<DialOptions>& options);
 
     // @brief Dials to a robot at the given URI address, using the provided dial options (or default
     // options is none are provided). Additionally specifies that this dial is an initial connection
@@ -37,20 +40,20 @@ class ViamChannel {
     /// preferred method to connect to a robot, and creates the channel itself.
     /// @throws Exception if it is unable to establish a connection to the provided URI within
     /// the given number of initial connection attempts
-    static std::shared_ptr<ViamChannel> dial_initial(const char* uri,
-                                                     const boost::optional<DialOptions>& options);
+    static ViamChannel dial_initial(const char* uri, const boost::optional<DialOptions>& options);
 
     const std::shared_ptr<GrpcChannel>& channel() const;
 
     void close();
 
    private:
-    static std::shared_ptr<ViamChannel> dial_direct(const char* uri, const DialOptions& opts);
+    struct impl;
+
+    static ViamChannel dial_direct(const char* uri, const DialOptions& opts);
 
     std::shared_ptr<GrpcChannel> channel_;
-    const char* path_;
-    bool closed_;
-    void* rust_runtime_;
+
+    std::unique_ptr<impl> pimpl_;
 };
 
 class Credentials {

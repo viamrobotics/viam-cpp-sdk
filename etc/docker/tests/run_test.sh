@@ -34,7 +34,7 @@ popd
 if [ ${BUILD_SHARED} = "ON" ]
 then
 	pushd pkg-config
-	PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig make all
+	PKG_CONFIG_PATH=${INSTALL_DIR}/lib/pkgconfig CXXFLAGS="-DBOOST_LOG_DYN_LINK" make all
 	run_module
 	popd
 fi

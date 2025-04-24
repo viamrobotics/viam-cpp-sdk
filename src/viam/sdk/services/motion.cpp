@@ -22,10 +22,6 @@ bool operator==(const obstacle_detector& lhs, const obstacle_detector& rhs) {
     return lhs.vision_service == rhs.vision_service && lhs.camera == rhs.camera;
 }
 
-bool operator==(const Motion::steps& lhs, const Motion::steps& rhs) {
-    return lhs.steps == rhs.steps;
-}
-
 bool operator==(const Motion::plan_status& lhs, const Motion::plan_status& rhs) {
     return std::tie(lhs.reason, lhs.state, lhs.timestamp) ==
            std::tie(rhs.reason, rhs.state, rhs.timestamp);

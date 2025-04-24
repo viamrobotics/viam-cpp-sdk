@@ -24,18 +24,45 @@
 namespace viam {
 namespace sdk {
 
-const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
-    return channel_;
-}
+struct ViamChannel::impl {
+    impl(const char* path, void* runtime) : path(path), rust_runtime(runtime) {}
 
-void ViamChannel::close() {
-    if (closed_) {
-        return;
+    impl(const impl&) = delete;
+
+    impl(impl&& other) noexcept
+        : path(std::exchange(other.path, nullptr)),
+          rust_runtime(std::exchange(other.rust_runtime, nullptr)) {}
+
+    impl& operator=(const impl&) = delete;
+
+    impl& operator=(impl&& other) noexcept {
+        path = std::exchange(other.path, nullptr);
+        rust_runtime = std::exchange(other.rust_runtime, nullptr);
+
+        return *this;
     }
-    closed_ = true;
-    free_string(path_);
-    free_rust_runtime(rust_runtime_);
+
+    ~impl() {
+        free_string(path);
+        free_rust_runtime(rust_runtime);
+    }
+
+    const char* path;
+    void* rust_runtime;
 };
+
+ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
+    : channel_(std::move(channel)), pimpl_(std::make_unique<ViamChannel::impl>(path, runtime)) {}
+
+ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel) : channel_(std::move(channel)) {}
+
+ViamChannel::ViamChannel(ViamChannel&&) noexcept = default;
+
+ViamChannel& ViamChannel::operator=(ViamChannel&&) noexcept = default;
+
+ViamChannel::~ViamChannel() {
+    close();
+}
 
 const std::string& Credentials::type() const {
     return type_;
@@ -45,15 +72,8 @@ const std::string& Credentials::payload() const {
     return payload_;
 }
 
-ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
-    : channel_(std::move(channel)), path_(path), closed_(false), rust_runtime_(runtime) {}
-
-ViamChannel::~ViamChannel() {
-    close();
-}
-
-std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
-    const char* uri, const boost::optional<DialOptions>& options) {
+ViamChannel ViamChannel::dial_initial(const char* uri,
+                                      const boost::optional<DialOptions>& options) {
     DialOptions opts = options.get_value_or(DialOptions());
     auto timeout = opts.timeout;
     auto attempts_remaining = opts.initial_connection_attempts;
@@ -76,11 +96,10 @@ std::shared_ptr<ViamChannel> ViamChannel::dial_initial(
     }
     // the while loop will run until we either return or throw an error, so we can never reach this
     // point
-    BOOST_UNREACHABLE_RETURN(nullptr)
+    BOOST_UNREACHABLE_RETURN(ViamChannel(nullptr))
 }
 
-std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
-                                               const boost::optional<DialOptions>& options) {
+ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions>& options) {
     const DialOptions opts = options.get_value_or(DialOptions());
 
     if (opts.disable_webrtc) {
@@ -113,14 +132,13 @@ std::shared_ptr<ViamChannel> ViamChannel::dial(const char* uri,
     std::string address("unix://");
     address += socket_path;
 
-    const std::shared_ptr<grpc::Channel> channel =
-        impl::create_viam_channel(address, grpc::InsecureChannelCredentials());
-
-    return std::make_shared<ViamChannel>(channel, socket_path, ptr);
+    return ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
+                       socket_path,
+                       ptr);
 }
 
-std::shared_ptr<ViamChannel> ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
-    auto channel_for_auth = impl::create_viam_auth_channel(uri);
+ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
+    auto channel_for_auth = sdk::impl::create_viam_auth_channel(uri);
     using namespace proto::rpc::v1;
 
     auto auth_stub = AuthService::NewStub(channel_for_auth);
@@ -139,11 +157,15 @@ std::shared_ptr<ViamChannel> ViamChannel::dial_direct(const char* uri, const Dia
     grpc::experimental::TlsChannelCredentialsOptions c_opts;
     c_opts.set_check_call_host(false);
     auto creds = grpc::experimental::TlsCredentials(c_opts);
-    auto grpc_channel = impl::create_viam_channel(uri, creds);
+    return ViamChannel(sdk::impl::create_viam_channel(uri, creds));
+}
 
-    return std::make_shared<ViamChannel>(grpc_channel,  //
-                                         nullptr,
-                                         nullptr);
+const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
+    return channel_;
+}
+
+void ViamChannel::close() {
+    pimpl_.reset();
 }
 
 unsigned int Options::refresh_interval() const {

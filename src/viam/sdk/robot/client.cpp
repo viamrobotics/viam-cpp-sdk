@@ -8,7 +8,7 @@
 #include <thread>
 #include <vector>
 
-#include <boost/log/trivial.hpp>
+#include <boost/log/core/core.hpp>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/grpcpp.h>
@@ -23,6 +23,7 @@
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/component.hpp>
+#include <viam/sdk/log/private/log_backend.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/rpc/dial.hpp>
@@ -83,28 +84,60 @@ bool operator==(const RobotClient::operation& lhs, const RobotClient::operation&
 
 struct RobotClient::impl {
     impl(std::unique_ptr<RobotService::Stub> stub) : stub_(std::move(stub)) {}
+
+    ~impl() {
+        if (log_sink) {
+            boost::log::core::get()->remove_sink(log_sink);
+        }
+    }
+
     std::unique_ptr<RobotService::Stub> stub_;
+
+    boost::shared_ptr<viam::sdk::impl::SinkType> log_sink;
 };
+
+void RobotClient::connect_logging() {
+    auto& sink = impl_->log_sink;
+    if (!sink) {
+        sink = sdk::impl::LogBackend::create(this);
+        sink->set_filter([filter = LogManager::Filter{&LogManager::get()}](
+                             const boost::log::attribute_value_set& attrs) {
+            auto force = attrs[sdk::impl::attr_console_force_type{}];
+            if (force && *force) {
+                return false;
+            }
+
+            return filter(attrs);
+        });
+
+        LogManager::get().disable_console_logging();
+        boost::log::core::get()->add_sink(sink);
+    }
+}
 
 RobotClient::~RobotClient() {
     if (should_close_channel_) {
         try {
             this->close();
         } catch (const std::exception& e) {
-            BOOST_LOG_TRIVIAL(error) << "Received err while closing RobotClient: " << e.what();
+            VIAM_SDK_LOG(error) << "Received err while closing RobotClient: " << e.what();
         } catch (...) {
-            BOOST_LOG_TRIVIAL(error) << "Received unknown err while closing RobotClient";
+            VIAM_SDK_LOG(error) << "Received unknown err while closing RobotClient";
         }
     }
 }
 
 void RobotClient::close() {
     should_refresh_.store(false);
-    for (const std::shared_ptr<std::thread>& t : threads_) {
-        t->~thread();
+
+    for (auto& thread : threads_) {
+        thread.join();
     }
+    threads_.clear();
+
     stop_all();
-    viam_channel_->close();
+
+    viam_channel_.close();
 }
 
 bool is_error_response(const grpc::Status& response) {
@@ -120,7 +153,7 @@ std::vector<RobotClient::operation> RobotClient::get_operations() {
 
     grpc::Status const response = impl_->stub_->GetOperations(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting operations: " << response.error_message();
+        VIAM_SDK_LOG(error) << "Error getting operations: " << response.error_message();
     }
 
     for (int i = 0; i < resp.operations().size(); ++i) {
@@ -138,7 +171,7 @@ void RobotClient::cancel_operation(std::string id) {
     req.set_id(id);
     const grpc::Status response = impl_->stub_->CancelOperation(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error canceling operation with id " << id;
+        VIAM_SDK_LOG(error) << "Error canceling operation with id " << id;
     }
 }
 
@@ -151,7 +184,7 @@ void RobotClient::block_for_operation(std::string id) {
 
     const grpc::Status response = impl_->stub_->BlockForOperation(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error blocking for operation with id " << id;
+        VIAM_SDK_LOG(error) << "Error blocking for operation with id " << id;
     }
 }
 
@@ -162,7 +195,7 @@ void RobotClient::refresh() {
 
     const grpc::Status response = impl_->stub_->ResourceNames(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
+        VIAM_SDK_LOG(error) << "Error getting resource names: " << response.error_message();
     }
 
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
@@ -182,11 +215,11 @@ void RobotClient::refresh() {
         if (rs) {
             try {
                 const std::shared_ptr<Resource> rpc_client =
-                    rs->create_rpc_client(name.name(), channel_);
+                    rs->create_rpc_client(name.name(), viam_channel_.channel());
                 const Name name_({name.namespace_(), name.type(), name.subtype()}, "", name.name());
                 new_resources.emplace(name_, rpc_client);
             } catch (const std::exception& exc) {
-                BOOST_LOG_TRIVIAL(debug)
+                VIAM_SDK_LOG(debug)
                     << "Error registering component " << name.subtype() << ": " << exc.what();
             }
         }
@@ -221,31 +254,49 @@ void RobotClient::refresh_every() {
     }
 };
 
-RobotClient::RobotClient(std::shared_ptr<ViamChannel> channel)
-    : channel_(channel->channel()),
-      viam_channel_(std::move(channel)),
+RobotClient::RobotClient(ViamChannel channel)
+    : viam_channel_(std::move(channel)),
       should_close_channel_(false),
-      impl_(std::make_unique<impl>(RobotService::NewStub(channel_))) {}
+      impl_(std::make_unique<impl>(RobotService::NewStub(viam_channel_.channel()))) {}
 
 std::vector<Name> RobotClient::resource_names() const {
     const std::lock_guard<std::mutex> lock(lock_);
     return resource_names_;
 }
 
-std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChannel> channel,
+void RobotClient::log(const std::string& name,
+                      const std::string& level,
+                      const std::string& message,
+                      time_pt time) {
+    robot::v1::LogRequest req;
+    common::v1::LogEntry log;
+
+    *log.mutable_logger_name() = name;
+    log.set_level(level);
+    *log.mutable_message() = message;
+    *log.mutable_time() = to_proto(time);
+    req.mutable_logs()->Add(std::move(log));
+
+    robot::v1::LogResponse resp;
+    ClientContext ctx;
+    const auto response = impl_->stub_->Log(ctx, req, &resp);
+    if (is_error_response(response)) {
+        // Manually override to force this to get logged to console so we don't set off an infinite
+        // loop
+        VIAM_SDK_LOG(error) << boost::log::add_value(sdk::impl::attr_console_force_type{}, true)
+                            << "Error sending log message over grpc: " << response.error_message()
+                            << response.error_details();
+    }
+}
+
+std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
                                                        const Options& options) {
-    std::shared_ptr<RobotClient> robot = std::make_shared<RobotClient>(std::move(channel));
+    auto robot = std::make_shared<RobotClient>(std::move(channel));
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);
     if (robot->should_refresh_) {
-        const std::shared_ptr<std::thread> t =
-            std::make_shared<std::thread>(&RobotClient::refresh_every, robot);
-        // TODO(RSDK-1743): this was leaking, confirm that adding thread catching in
-        // close/destructor lets us shutdown gracefully. See also address sanitizer,
-        // UB sanitizer
-        t->detach();
-        robot->threads_.push_back(t);
-    };
+        robot->threads_.emplace_back(&RobotClient::refresh_every, robot);
+    }
 
     robot->refresh();
     return robot;
@@ -254,8 +305,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(std::shared_ptr<ViamChann
 std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
                                                      const Options& options) {
     const char* uri = address.c_str();
-    auto channel = ViamChannel::dial_initial(uri, options.dial_options());
-    std::shared_ptr<RobotClient> robot = RobotClient::with_channel(channel, options);
+    auto robot =
+        RobotClient::with_channel(ViamChannel::dial_initial(uri, options.dial_options()), options);
     robot->should_close_channel_ = true;
 
     return robot;
@@ -264,11 +315,9 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options) {
     const std::string addr = "unix://" + address;
-    const char* uri = addr.c_str();
-    const std::shared_ptr<grpc::Channel> channel =
-        sdk::impl::create_viam_channel(uri, grpc::InsecureChannelCredentials());
-    auto viam_channel = std::make_shared<ViamChannel>(channel, address.c_str(), nullptr);
-    std::shared_ptr<RobotClient> robot = RobotClient::with_channel(viam_channel, options);
+    auto robot = RobotClient::with_channel(
+        ViamChannel(sdk::impl::create_viam_channel(addr, grpc::InsecureChannelCredentials())),
+        options);
     robot->should_close_channel_ = true;
 
     return robot;
@@ -284,8 +333,7 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
 
     const grpc::Status response = impl_->stub_->FrameSystemConfig(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting frame system config: "
-                                 << response.error_message();
+        VIAM_SDK_LOG(error) << "Error getting frame system config: " << response.error_message();
     }
 
     const RepeatedPtrField<FrameSystemConfig> configs = resp.frame_system_configs();
@@ -313,7 +361,7 @@ pose_in_frame RobotClient::transform_pose(
 
     const grpc::Status response = impl_->stub_->TransformPose(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting PoseInFrame: " << response.error_message();
+        VIAM_SDK_LOG(error) << "Error getting PoseInFrame: " << response.error_message();
     }
 
     return from_proto(resp.pose());
@@ -348,8 +396,8 @@ void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
     }
     const grpc::Status response = impl_->stub_->StopAll(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error stopping all: " << response.error_message()
-                                 << response.error_details();
+        VIAM_SDK_LOG(error) << "Error stopping all: " << response.error_message()
+                            << response.error_details();
     }
 }
 
@@ -377,8 +425,8 @@ RobotClient::status RobotClient::get_machine_status() const {
 
     const grpc::Status response = impl_->stub_->GetMachineStatus(ctx, req, &resp);
     if (is_error_response(response)) {
-        BOOST_LOG_TRIVIAL(error) << "Error getting machine status: " << response.error_message()
-                                 << response.error_details();
+        VIAM_SDK_LOG(error) << "Error getting machine status: " << response.error_message()
+                            << response.error_details();
     }
     switch (resp.state()) {
         case robot::v1::GetMachineStatusResponse_State_STATE_INITIALIZING:

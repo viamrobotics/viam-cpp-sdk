@@ -20,6 +20,10 @@
 namespace viam {
 namespace sdk {
 
+namespace impl {
+struct LogBackend;
+}
+
 /// @defgroup Robot Classes related to a Robot representation.
 
 /// @class RobotClient client.hpp "robot/client.hpp"
@@ -60,7 +64,10 @@ class RobotClient {
         friend bool operator==(const operation& lhs, const operation& rhs);
     };
 
+    explicit RobotClient(ViamChannel channel);
+
     ~RobotClient();
+
     void refresh();
     void close();
 
@@ -83,9 +90,8 @@ class RobotClient {
     /// @param options Options for connecting and refreshing.
     /// Connects directly to a pre-existing channel. A robot created this way must be
     /// `close()`d manually.
-    static std::shared_ptr<RobotClient> with_channel(std::shared_ptr<ViamChannel> channel,
-                                                     const Options& options);
-    RobotClient(std::shared_ptr<ViamChannel> channel);
+    static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, const Options& options);
+
     std::vector<Name> resource_names() const;
 
     /// @brief Lookup and return a `shared_ptr` to a resource.
@@ -147,15 +153,24 @@ class RobotClient {
     status get_machine_status() const;
 
    private:
+    friend class ModuleService;
+    friend struct impl::LogBackend;
+
+    void log(const std::string& name,
+             const std::string& level,
+             const std::string& message,
+             time_pt time);
+
+    void connect_logging();
+
     void refresh_every();
 
-    std::vector<std::shared_ptr<std::thread>> threads_;
+    std::vector<std::thread> threads_;
 
     std::atomic<bool> should_refresh_;
     unsigned int refresh_interval_;
 
-    std::shared_ptr<GrpcChannel> channel_;
-    std::shared_ptr<ViamChannel> viam_channel_;
+    ViamChannel viam_channel_;
     bool should_close_channel_;
 
     struct impl;
