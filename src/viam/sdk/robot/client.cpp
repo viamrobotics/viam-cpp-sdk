@@ -120,9 +120,9 @@ RobotClient::~RobotClient() {
         try {
             this->close();
         } catch (const std::exception& e) {
-            std::cerr << "Received err while closing RobotClient: " << e.what();
+            std::cerr << "Received err while closing RobotClient: " << e.what() << "\n";
         } catch (...) {
-            std::cerr << "Received unknown err while closing RobotClient";
+            std::cerr << "Received unknown err while closing RobotClient\n";
         }
     }
 }
@@ -131,7 +131,9 @@ void RobotClient::close() {
     should_refresh_.store(false);
 
     for (auto& thread : threads_) {
-        thread.join();
+        if (thread.joinable()) {
+            thread.join();
+        }
     }
     threads_.clear();
 
