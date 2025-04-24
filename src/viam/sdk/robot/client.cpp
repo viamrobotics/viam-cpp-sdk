@@ -131,7 +131,9 @@ void RobotClient::close() {
     should_refresh_.store(false);
 
     for (auto& thread : threads_) {
-        thread.join();
+        if (thread.joinable()) {
+            thread.join();
+        }
     }
     threads_.clear();
 
