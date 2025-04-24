@@ -18,6 +18,7 @@
 #include <viam/api/robot/v1/robot.pb.h>
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/private/instance.hpp>
 #include <viam/sdk/rpc/private/viam_grpc_channel.hpp>
 #include <viam/sdk/rpc/private/viam_rust_utils.h>
 
@@ -153,7 +154,9 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
 
     auto status = auth_stub->Authenticate(ctx, req, &resp);
 
-    ClientContext::token = resp.access_token();
+    Instance::current(Instance::Creation::open_existing).impl_->direct_dial_token =
+        resp.access_token();
+
     grpc::experimental::TlsChannelCredentialsOptions c_opts;
     c_opts.set_check_call_host(false);
     auto creds = grpc::experimental::TlsCredentials(c_opts);

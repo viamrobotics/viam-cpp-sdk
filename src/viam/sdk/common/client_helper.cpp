@@ -5,6 +5,7 @@
 #include <grpcpp/client_context.h>
 #include <grpcpp/support/status.h>
 
+#include <viam/sdk/common/private/instance.hpp>
 #include <viam/sdk/common/private/version_metadata.hpp>
 #include <viam/sdk/log/logging.hpp>
 
@@ -24,11 +25,13 @@ bool isStatusCancelled(int status) noexcept {
 }
 
 }  // namespace client_helper_details
-std::string ClientContext::token;
 
 ClientContext::ClientContext() : wrapped_context_(std::make_unique<GrpcClientContext>()) {
     set_client_ctx_authority_();
     add_viam_client_version_();
+
+    const std::string& token =
+        Instance::current(Instance::Creation::open_existing).impl_->direct_dial_token;
     if (!token.empty()) {
         wrapped_context_->AddMetadata("authorization", "Bearer " + token);
     }
