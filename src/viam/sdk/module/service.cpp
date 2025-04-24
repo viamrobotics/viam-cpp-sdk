@@ -254,7 +254,7 @@ ModuleService::ModuleService(int argc,
 }
 
 ModuleService::~ModuleService() {
-    std::cout << "Shutting down gracefully.";
+    std::cout << "Shutting down gracefully.\n";
     server_->shutdown();
 
     if (parent_) {
