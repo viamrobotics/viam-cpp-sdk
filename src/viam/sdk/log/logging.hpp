@@ -150,6 +150,8 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// @ingroup Log
 ///
 /// Use this macro to generate log messages pertaining to the SDK at large.
+/// @warning Using this macro outside of the lifetime of LogManager is UB and for this reason
+/// logging in destructors should be done with caution or avoided entirely.
 #define VIAM_SDK_LOG(level) VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().global_logger(), level)
 
 /// @brief Log macro for resource-level logs.
@@ -158,6 +160,8 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// This macro can only be called from the definition of a member function of a class inheriting
 /// @ref Resource. It will log messages to the log source of that specific resource, allowing
 /// resource-level log filtering.
+/// @warning Using this macro outside of the lifetime of LogManager is UB and for this reason
+/// logging in destructors should be done with caution or avoided entirely.
 #define VIAM_RESOURCE_LOG(level) VIAM_SDK_LOG_IMPL(this->logger_, level)
 
 }  // namespace sdk
