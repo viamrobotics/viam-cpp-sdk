@@ -276,7 +276,7 @@ if (viam_rust_utils_files)
   )
 elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Currently, rust_utils is not published for windows aarch, so don't even try downloading
   set(lvru_system_name ${CMAKE_SYSTEM_NAME})
-  if (CMAKE_SYSTEM_NAME STREQUAL "Cygwin")
+  if (CMAKE_SYSTEM_NAME STREQUAL "Cygwin" OR CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(lvru_system_name "windows")
   elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(lvru_system_name "macosx")
@@ -291,6 +291,7 @@ elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Curre
 
   set(shared_library_prefix ${CMAKE_SHARED_LIBRARY_PREFIX})
   if (WIN32)
+    message(WARNING "It is win32")
     set(shared_library_prefix "lib")
   endif()
   message(WARNING "shared library prefix is ${CMAKE_SHARED_LIBRARY_PREFIX}")
