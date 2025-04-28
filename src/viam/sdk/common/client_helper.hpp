@@ -15,6 +15,19 @@ namespace client_helper_details {
 // Helper function to test equality of status with grpc::StatusCode::CANCELLED.
 bool isStatusCancelled(int status) noexcept;
 
+// Set the mutable name of a request to the client name.
+// This function only participates in overload resolution if the request has a mutable_name method.
+template <typename RequestType,
+          typename ClientType,
+          typename = decltype(&RequestType::mutable_name)>
+void set_name(RequestType* req, const ClientType* client) {
+    *req->mutable_name() = client->name();
+}
+
+// No-op version of set_name above. This overload is only selected if the request type does not have
+// a mutable_name field.
+void set_name(...);
+
 }  // namespace client_helper_details
 
 // the authority on a grpc::ClientContext is sometimes set to an invalid uri on mac, causing
@@ -96,7 +109,8 @@ class ClientHelper {
 
     template <typename ResponseHandlerCallable, typename ErrorHandlerCallable>
     auto invoke(ResponseHandlerCallable&& rhc, ErrorHandlerCallable&& ehc) {
-        *request_.mutable_name() = client_->name();
+        client_helper_details::set_name(&request_, client_);
+        // *request_.mutable_name() = client_->name();
         ClientContext ctx;
 
         if (debug_key_ != "") {
