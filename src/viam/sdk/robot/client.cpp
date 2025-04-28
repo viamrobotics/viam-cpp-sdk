@@ -275,7 +275,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
     robot->refresh_interval_ = options.refresh_interval();
     robot->should_refresh_ = (robot->refresh_interval_ > 0);
     if (robot->should_refresh_) {
-        robot->threads_.emplace_back(&RobotClient::refresh_every, robot);
+        robot->threads_.emplace_back(&RobotClient::refresh_every, robot.get());
     }
 
     robot->refresh();
