@@ -51,11 +51,11 @@ bool deadline_exceeded(const std::chrono::system_clock::time_point& deadline) {
 }  // namespace
 
 void Server::add_resource(std::shared_ptr<Resource> resource) {
-    add_resource(std::move(resource), nullptr);
+    add_resource(std::move(resource), boost::none);
 }
 
 void Server::add_resource(std::shared_ptr<Resource> resource,
-                          std::chrono::system_clock::time_point* deadline) {
+                          boost::optional<std::chrono::system_clock::time_point> deadline) {
     if (deadline && deadline_exceeded(*deadline)) {
         throw Exception(ErrorCondition::k_general, "Deadline expired");
     }

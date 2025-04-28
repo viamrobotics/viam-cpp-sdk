@@ -56,7 +56,7 @@ class Server {
     /// @throws `Exception` if a matching `ResourceServer` doesn't exist in the server.
     /// @throws `Exception` if the deadline is not nil and has passed
     void add_resource(std::shared_ptr<Resource> resource,
-                      std::chrono::system_clock::time_point* deadline);
+                      boost::optional<std::chrono::system_clock::time_point> deadline);
 
     /// @brief Adds a listening port to the server.
     /// @param address The address to listen at.

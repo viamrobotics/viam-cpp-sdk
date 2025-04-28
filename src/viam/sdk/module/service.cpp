@@ -74,8 +74,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             }
         };
         try {
-            auto deadline = ctx->deadline();
-            parent.server_->add_resource(res, &deadline);
+            parent.server_->add_resource(res, ctx->deadline());
         } catch (const std::exception& exc) {
             return grpc::Status(::grpc::INTERNAL, exc.what());
         }
