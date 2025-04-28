@@ -46,30 +46,35 @@ using viam::robot::v1::RobotService;
 // NOLINTNEXTLINE
 const std::string kStreamRemoved("Stream removed");
 
-RobotClient::frame_system_config from_proto(const FrameSystemConfig& proto) {
+namespace proto_convert_details {
+
+RobotClient::frame_system_config from_proto_impl<FrameSystemConfig>::operator()(
+    const FrameSystemConfig* proto) const {
     RobotClient::frame_system_config fsconfig;
-    fsconfig.frame = from_proto(proto.frame());
-    if (proto.has_kinematics()) {
-        fsconfig.kinematics = from_proto(proto.kinematics());
+    fsconfig.frame = from_proto(proto->frame());
+    if (proto->has_kinematics()) {
+        fsconfig.kinematics = from_proto(proto->kinematics());
     }
     return fsconfig;
 }
 
-RobotClient::operation from_proto(const Operation& proto) {
+RobotClient::operation from_proto_impl<Operation>::operator()(const Operation* proto) const {
     RobotClient::operation op;
-    op.id = proto.id();
-    op.method = proto.method();
-    if (proto.has_session_id()) {
-        op.session_id = proto.session_id();
+    op.id = proto->id();
+    op.method = proto->method();
+    if (proto->has_session_id()) {
+        op.session_id = proto->session_id();
     }
-    if (proto.has_arguments()) {
-        op.arguments = from_proto(proto.arguments());
+    if (proto->has_arguments()) {
+        op.arguments = from_proto(proto->arguments());
     }
-    if (proto.has_started()) {
-        op.started = from_proto(proto.started());
+    if (proto->has_started()) {
+        op.started = from_proto(proto->started());
     }
     return op;
 }
+
+}  // namespace proto_convert_details
 
 bool operator==(const RobotClient::frame_system_config& lhs,
                 const RobotClient::frame_system_config& rhs) {
@@ -156,15 +161,8 @@ bool is_error_response(const grpc::Status& response) {
 
 std::vector<RobotClient::operation> RobotClient::get_operations() {
     return impl::client_helper(impl_, &RobotService::Stub::GetOperations)
-        .invoke([](auto& response) {
-            std::vector<operation> ops;
-
-            for (const auto& op : response.operations()) {
-                ops.push_back(from_proto(op));
-            }
-
-            return ops;
-        });
+        .invoke(
+            [](auto& response) { return sdk::impl::from_repeated_field(response.operations()); });
 }
 
 void RobotClient::cancel_operation(std::string id) {
@@ -245,6 +243,10 @@ void RobotClient::log(const std::string& name,
                       const std::string& level,
                       const std::string& message,
                       time_pt time) {
+    if (!impl_) {
+        throw std::runtime_error("Tried to send logs to robot when it was not connected");
+    }
+
     // Do client request/response setup manually so we can override the usual exception handling
     robot::v1::LogRequest req;
     common::v1::LogEntry log;
@@ -306,16 +308,8 @@ std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_conf
             *(req.mutable_supplemental_transforms()) =
                 sdk::impl::to_repeated_field(additional_transforms);
         })
-        .invoke([](auto& resp) {
-            std::vector<RobotClient::frame_system_config> cfgs;
-
-            for (const auto& fs : resp.frame_system_configs()) {
-                cfgs.push_back(from_proto(fs));
-            }
-
-            return cfgs;
-            // TODO return sdk::impl::from_repeated_field(resp.frame_system_configs());
-        });
+        .invoke(
+            [](auto& resp) { return sdk::impl::from_repeated_field(resp.frame_system_configs()); });
 }
 
 pose_in_frame RobotClient::transform_pose(

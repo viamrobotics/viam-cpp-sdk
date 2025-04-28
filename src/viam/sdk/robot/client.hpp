@@ -9,6 +9,7 @@
 
 #include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/components/component.hpp>
@@ -18,6 +19,16 @@
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
+
+namespace robot {
+namespace v1 {
+
+class FrameSystemConfig;
+class Operation;
+
+}  // namespace v1
+}  // namespace robot
+
 namespace sdk {
 
 namespace impl {
@@ -179,5 +190,18 @@ class RobotClient {
     ResourceManager resource_manager_;
 };
 
+namespace proto_convert_details {
+
+template <>
+struct from_proto_impl<robot::v1::Operation> {
+    RobotClient::operation operator()(const robot::v1::Operation*) const;
+};
+
+template <>
+struct from_proto_impl<robot::v1::FrameSystemConfig> {
+    RobotClient::frame_system_config operator()(const robot::v1::FrameSystemConfig*) const;
+};
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam
