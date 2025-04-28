@@ -116,14 +116,12 @@ void RobotClient::connect_logging() {
 }
 
 RobotClient::~RobotClient() {
-    if (should_close_channel_) {
-        try {
-            this->close();
-        } catch (const std::exception& e) {
-            VIAM_SDK_LOG(error) << "Received err while closing RobotClient: " << e.what();
-        } catch (...) {
-            VIAM_SDK_LOG(error) << "Received unknown err while closing RobotClient";
-        }
+    try {
+        this->close();
+    } catch (const std::exception& e) {
+        VIAM_SDK_LOG(error) << "Received err while closing RobotClient: " << e.what();
+    } catch (...) {
+        VIAM_SDK_LOG(error) << "Received unknown err while closing RobotClient";
     }
 }
 
@@ -256,7 +254,6 @@ void RobotClient::refresh_every() {
 
 RobotClient::RobotClient(ViamChannel channel)
     : viam_channel_(std::move(channel)),
-      should_close_channel_(false),
       impl_(std::make_unique<impl>(RobotService::NewStub(viam_channel_.channel()))) {}
 
 std::vector<Name> RobotClient::resource_names() const {
@@ -307,7 +304,6 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
     const char* uri = address.c_str();
     auto robot =
         RobotClient::with_channel(ViamChannel::dial_initial(uri, options.dial_options()), options);
-    robot->should_close_channel_ = true;
 
     return robot;
 };
@@ -318,7 +314,6 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& add
     auto robot = RobotClient::with_channel(
         ViamChannel(sdk::impl::create_viam_channel(addr, grpc::InsecureChannelCredentials())),
         options);
-    robot->should_close_channel_ = true;
 
     return robot;
 };
