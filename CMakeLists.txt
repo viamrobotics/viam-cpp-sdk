@@ -40,6 +40,7 @@ if (WIN32)
 
   # rust-utils always has a `lib` prefix
   set(CMAKE_SHARED_LIBRARY_PREFIX "lib")
+  message(WARNING "it should be lib is it? ${CMAKE_SHARED_LIBRARY_PREFIX}")
 
   # set boost compiler to avoid errors with boost log
   set(Boost_COMPILER "vc143")
@@ -258,9 +259,9 @@ find_package(Threads REQUIRED)
 # TODO: When this is removed, also remove the
 # `target_link_directories` call down in src/CMakeLists.txt, as it
 # will no longer be needed.
-set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
+set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/libviam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
 
-file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
+file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/libviam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
 
 # Check if the architecture is one that we support in rust-utils
 set(WINDOWS_ARCHS "AMD64" "X86" "X64")
@@ -297,7 +298,7 @@ elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Curre
     message(WARNING "It is win32")
     set(shared_library_prefix "lib")
   endif()
-  message(WARNING "shared library prefix is ${CMAKE_SHARED_LIBRARY_PREFIX}")
+  message(WARNING "shared library prefix is ${CMAKE_SHARED_LIBRARY_PREFIX} or ${shared_library_prefix}")
   message(WARNING "trying to download https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}")
 
   file(
