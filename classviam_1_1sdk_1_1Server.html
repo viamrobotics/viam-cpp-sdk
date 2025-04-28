@@ -102,6 +102,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa4de7327b91f01830f4e2520f97eb402" id="r_aa4de7327b91f01830f4e2520f97eb402"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4de7327b91f01830f4e2520f97eb402">add_resource</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; resource)</td></tr>
 <tr class="memdesc:aa4de7327b91f01830f4e2520f97eb402"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a specific managed resource to the associated resource server.  <br /></td></tr>
 <tr class="separator:aa4de7327b91f01830f4e2520f97eb402"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade541bff531f0e4ef368343a2037b75e" id="r_ade541bff531f0e4ef368343a2037b75e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade541bff531f0e4ef368343a2037b75e">add_resource</a> (std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; resource, boost::optional&lt; std::chrono::system_clock::time_point &gt; deadline)</td></tr>
+<tr class="memdesc:ade541bff531f0e4ef368343a2037b75e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a specific managed resource to the associated resource server.  <br /></td></tr>
+<tr class="separator:ade541bff531f0e4ef368343a2037b75e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1335a7a7f9d780960a682367d791de06" id="r_a1335a7a7f9d780960a682367d791de06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1335a7a7f9d780960a682367d791de06">add_listening_port</a> (const std::string &amp;address, std::shared_ptr&lt; GrpcServerCredentials &gt; creds=nullptr)</td></tr>
 <tr class="memdesc:a1335a7a7f9d780960a682367d791de06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a listening port to the server.  <br /></td></tr>
 <tr class="separator:a1335a7a7f9d780960a682367d791de06"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,7 +163,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>::viam::sdktests::Te
 </div>
 </div>
 <a id="aa4de7327b91f01830f4e2520f97eb402" name="aa4de7327b91f01830f4e2520f97eb402"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4de7327b91f01830f4e2520f97eb402">&#9670;&#160;</a></span>add_resource()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4de7327b91f01830f4e2520f97eb402">&#9670;&#160;</a></span>add_resource() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -184,6 +187,43 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>::viam::sdktests::Te
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">`Exception`</td><td>if a matching <code><a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a></code> doesn't exist in the server. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ade541bff531f0e4ef368343a2037b75e" name="ade541bff531f0e4ef368343a2037b75e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade541bff531f0e4ef368343a2037b75e">&#9670;&#160;</a></span>add_resource() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::Server::add_resource </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>resource</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boost::optional&lt; std::chrono::system_clock::time_point &gt;</td>          <td class="paramname"><span class="paramname"><em>deadline</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a specific managed resource to the associated resource server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resource</td><td>The resource to add </td></tr>
+    <tr><td class="paramname">deadline</td><td>Deadline after which to not add the resource </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">`Exception`</td><td>if a matching <code><a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a></code> doesn't exist in the server. </td></tr>
+    <tr><td class="paramname">`Exception`</td><td>if the deadline is not nil and has passed </td></tr>
   </table>
   </dd>
 </dl>

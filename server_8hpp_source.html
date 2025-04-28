@@ -120,25 +120,28 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Server.html#aa4de7327b91f01830f4e2520f97eb402">   51</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1sdk_1_1Server.html#aa4de7327b91f01830f4e2520f97eb402">add_resource</a>(std::shared_ptr&lt;Resource&gt; resource);</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Server.html#a1335a7a7f9d780960a682367d791de06">   57</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1sdk_1_1Server.html#a1335a7a7f9d780960a682367d791de06">add_listening_port</a>(<span class="keyword">const</span> std::string&amp; address,</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                            std::shared_ptr&lt;GrpcServerCredentials&gt; creds = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Server.html#a832bd6e83f58f082dd362b8930dd60f1">   61</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1sdk_1_1Server.html#a832bd6e83f58f082dd362b8930dd60f1">wait</a>();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Server.html#afc319ed76b5151bc82a7b3bc29c25a08">   64</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1sdk_1_1Server.html#afc319ed76b5151bc82a7b3bc29c25a08">shutdown</a>();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// friend declaration to allow TestServer to access the private server_ field.</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">friend</span> class ::viam::sdktests::TestServer;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    std::unordered_map&lt;API, std::shared_ptr&lt;ResourceServer&gt;&gt; managed_servers_;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    std::unique_ptr&lt;GrpcServerBuilder&gt; builder_;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    std::unique_ptr&lt;GrpcServer&gt; server_;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Server.html#ade541bff531f0e4ef368343a2037b75e">   58</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1sdk_1_1Server.html#ade541bff531f0e4ef368343a2037b75e">add_resource</a>(std::shared_ptr&lt;Resource&gt; resource,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                      boost::optional&lt;std::chrono::system_clock::time_point&gt; deadline);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Server.html#a1335a7a7f9d780960a682367d791de06">   65</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1sdk_1_1Server.html#a1335a7a7f9d780960a682367d791de06">add_listening_port</a>(<span class="keyword">const</span> std::string&amp; address,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                            std::shared_ptr&lt;GrpcServerCredentials&gt; creds = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Server.html#a832bd6e83f58f082dd362b8930dd60f1">   69</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1sdk_1_1Server.html#a832bd6e83f58f082dd362b8930dd60f1">wait</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classviam_1_1sdk_1_1Server.html#afc319ed76b5151bc82a7b3bc29c25a08">   72</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classviam_1_1sdk_1_1Server.html#afc319ed76b5151bc82a7b3bc29c25a08">shutdown</a>();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// friend declaration to allow TestServer to access the private server_ field.</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">friend</span> class ::viam::sdktests::TestServer;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    std::unordered_map&lt;API, std::shared_ptr&lt;ResourceServer&gt;&gt; managed_servers_;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    std::unique_ptr&lt;GrpcServerBuilder&gt; builder_;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    std::unique_ptr&lt;GrpcServer&gt; server_;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>};</div>
 </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1API_html"><div class="ttname"><a href="classviam_1_1sdk_1_1API.html">viam::sdk::API</a></div><div class="ttdef"><b>Definition</b> resource_api.hpp:21</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Server_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Server.html">viam::sdk::Server</a></div><div class="ttdoc">Defines gRPC Server functionality.</div><div class="ttdef"><b>Definition</b> server.hpp:28</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Server_html_a0ae1d7923f5c3476c146db62fc4f2375"><div class="ttname"><a href="classviam_1_1sdk_1_1Server.html#a0ae1d7923f5c3476c146db62fc4f2375">viam::sdk::Server::register_service</a></div><div class="ttdeci">void register_service(::grpc::Service *service)</div><div class="ttdoc">Registers a gRPC service.</div></div>
@@ -147,6 +150,7 @@ $(function() { codefold.init(0); });
 <div class="ttc" id="aclassviam_1_1sdk_1_1Server_html_a1a0d02efb18a1f2a0512f78fc9d8ceb1"><div class="ttname"><a href="classviam_1_1sdk_1_1Server.html#a1a0d02efb18a1f2a0512f78fc9d8ceb1">viam::sdk::Server::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Starts the grpc server. Can only be called once.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Server_html_a832bd6e83f58f082dd362b8930dd60f1"><div class="ttname"><a href="classviam_1_1sdk_1_1Server.html#a832bd6e83f58f082dd362b8930dd60f1">viam::sdk::Server::wait</a></div><div class="ttdeci">void wait()</div><div class="ttdoc">waits on server close, only returning when the server is closed.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Server_html_aa4de7327b91f01830f4e2520f97eb402"><div class="ttname"><a href="classviam_1_1sdk_1_1Server.html#aa4de7327b91f01830f4e2520f97eb402">viam::sdk::Server::add_resource</a></div><div class="ttdeci">void add_resource(std::shared_ptr&lt; Resource &gt; resource)</div><div class="ttdoc">Adds a specific managed resource to the associated resource server.</div></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1Server_html_ade541bff531f0e4ef368343a2037b75e"><div class="ttname"><a href="classviam_1_1sdk_1_1Server.html#ade541bff531f0e4ef368343a2037b75e">viam::sdk::Server::add_resource</a></div><div class="ttdeci">void add_resource(std::shared_ptr&lt; Resource &gt; resource, boost::optional&lt; std::chrono::system_clock::time_point &gt; deadline)</div><div class="ttdoc">Adds a specific managed resource to the associated resource server.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Server_html_afc319ed76b5151bc82a7b3bc29c25a08"><div class="ttname"><a href="classviam_1_1sdk_1_1Server.html#afc319ed76b5151bc82a7b3bc29c25a08">viam::sdk::Server::shutdown</a></div><div class="ttdeci">void shutdown()</div><div class="ttdoc">Shutdown the gRPC server.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
