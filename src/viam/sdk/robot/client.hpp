@@ -65,6 +65,10 @@ class RobotClient {
     ~RobotClient();
 
     void refresh();
+
+    /// @brief Disconnect this robot client from any robot to which it is connected.
+    /// After calling this method it is no longer valid to call any methods which communicate with
+    /// the robot.
     void close();
 
     /// @brief Create a robot client connected to the robot at the provided address.
