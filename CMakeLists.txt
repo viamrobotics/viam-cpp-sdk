@@ -38,6 +38,9 @@ if (WIN32)
   # https://cmake.org/cmake/help/latest/policy/CMP0149.html
   cmake_minimum_required(VERSION 3.27 FATAL_ERROR)
 
+  # rust-utils always has a `lib` prefix
+  set(CMAKE_SHARED_LIBRARY_PREFIX "lib")
+
   # set boost compiler to avoid errors with boost log
   set(Boost_COMPILER "vc143")
 else()
@@ -255,10 +258,6 @@ find_package(Threads REQUIRED)
 # TODO: When this is removed, also remove the
 # `target_link_directories` call down in src/CMakeLists.txt, as it
 # will no longer be needed.
-if (WIN32)
-  set(CMAKE_SHARED_LIBRARY_PREFIX "lib")
-endif()
-
 set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
 
 file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
