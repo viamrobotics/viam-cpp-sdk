@@ -91,6 +91,11 @@ struct RobotClient::impl {
         }
     }
 
+    template <typename Method>
+    auto client_helper(Method m) {
+        return make_client_helper(this, *stub_, m);
+    }
+
     std::unique_ptr<RobotService::Stub> stub_;
 
     boost::shared_ptr<viam::sdk::impl::SinkType> log_sink;
@@ -143,62 +148,38 @@ bool is_error_response(const grpc::Status& response) {
 }
 
 std::vector<RobotClient::operation> RobotClient::get_operations() {
-    const viam::robot::v1::GetOperationsRequest req;
-    viam::robot::v1::GetOperationsResponse resp;
-    ClientContext ctx;
+    return impl_->client_helper(&RobotService::Stub::GetOperations).invoke([](auto& response) {
+        std::vector<operation> ops;
 
-    std::vector<operation> operations;
+        for (const auto& op : response.operations()) {
+            ops.push_back(from_proto(op));
+        }
 
-    grpc::Status const response = impl_->stub_->GetOperations(ctx, req, &resp);
-    if (is_error_response(response)) {
-        VIAM_SDK_LOG(error) << "Error getting operations: " << response.error_message();
-    }
-
-    for (int i = 0; i < resp.operations().size(); ++i) {
-        // NOLINTNEXTLINE
-        operations.push_back(from_proto(resp.operations().at(i)));
-    }
-    return operations;
+        return ops;
+    });
 }
 
 void RobotClient::cancel_operation(std::string id) {
-    viam::robot::v1::CancelOperationRequest req;
-    viam::robot::v1::CancelOperationResponse resp;
-    ClientContext ctx;
-
-    req.set_id(id);
-    const grpc::Status response = impl_->stub_->CancelOperation(ctx, req, &resp);
-    if (is_error_response(response)) {
-        VIAM_SDK_LOG(error) << "Error canceling operation with id " << id;
-    }
+    return impl_->client_helper(&RobotService::Stub::CancelOperation)
+        .with([&id](auto& req) { req.set_id(std::move(id)); })
+        .invoke();
 }
 
 void RobotClient::block_for_operation(std::string id) {
-    viam::robot::v1::BlockForOperationRequest req;
-    viam::robot::v1::BlockForOperationResponse resp;
-    ClientContext ctx;
-
-    req.set_id(id);
-
-    const grpc::Status response = impl_->stub_->BlockForOperation(ctx, req, &resp);
-    if (is_error_response(response)) {
-        VIAM_SDK_LOG(error) << "Error blocking for operation with id " << id;
-    }
+    return impl_->client_helper(&RobotService::Stub::BlockForOperation)
+        .with([&id](auto& req) { req.set_id(std::move(id)); })
+        .invoke();
 }
 
 void RobotClient::refresh() {
-    const viam::robot::v1::ResourceNamesRequest req;
-    viam::robot::v1::ResourceNamesResponse resp;
-    ClientContext ctx;
-
-    const grpc::Status response = impl_->stub_->ResourceNames(ctx, req, &resp);
-    if (is_error_response(response)) {
-        VIAM_SDK_LOG(error) << "Error getting resource names: " << response.error_message();
-    }
+    auto resources =
+        impl_->client_helper(&RobotService::Stub::ResourceNames).invoke([](auto& response) {
+            return response.resources();
+        });
 
     std::unordered_map<Name, std::shared_ptr<Resource>> new_resources;
     std::vector<Name> current_resources;
-    for (const auto& name : resp.resources()) {
+    for (const auto& name : resources) {
         current_resources.push_back(from_proto(name));
         if (name.subtype() == "remote") {
             continue;
@@ -222,21 +203,12 @@ void RobotClient::refresh() {
             }
         }
     }
-    bool is_equal = current_resources.size() == resource_names_.size();
-    if (is_equal) {
-        for (size_t i = 0; i < resource_names_.size(); ++i) {
-            if (!(resource_names_.at(i) == current_resources.at(i))) {
-                is_equal = false;
-                break;
-            }
-        }
-    }
-    if (is_equal) {
+    if (current_resources == resource_names_) {
         return;
     }
 
     const std::lock_guard<std::mutex> lock(lock_);
-    resource_names_ = current_resources;
+    resource_names_ = std::move(current_resources);
     this->resource_manager_.replace_all(new_resources);
 }
 
@@ -265,6 +237,7 @@ void RobotClient::log(const std::string& name,
                       const std::string& level,
                       const std::string& message,
                       time_pt time) {
+    // Do client request/response setup manually so we can override the usual exception handling
     robot::v1::LogRequest req;
     common::v1::LogEntry log;
 
@@ -320,46 +293,35 @@ std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& add
 
 std::vector<RobotClient::frame_system_config> RobotClient::get_frame_system_config(
     const std::vector<WorldState::transform>& additional_transforms) {
-    viam::robot::v1::FrameSystemConfigRequest req;
-    viam::robot::v1::FrameSystemConfigResponse resp;
-    ClientContext ctx;
+    return impl_->client_helper(&RobotService::Stub::FrameSystemConfig)
+        .with([&additional_transforms](auto& req) {
+            *(req.mutable_supplemental_transforms()) =
+                sdk::impl::to_repeated_field(additional_transforms);
+        })
+        .invoke([](auto& resp) {
+            std::vector<RobotClient::frame_system_config> cfgs;
 
-    *(req.mutable_supplemental_transforms()) = sdk::impl::to_repeated_field(additional_transforms);
+            for (const auto& fs : resp.frame_system_configs()) {
+                cfgs.push_back(from_proto(fs));
+            }
 
-    const grpc::Status response = impl_->stub_->FrameSystemConfig(ctx, req, &resp);
-    if (is_error_response(response)) {
-        VIAM_SDK_LOG(error) << "Error getting frame system config: " << response.error_message();
-    }
-
-    const RepeatedPtrField<FrameSystemConfig> configs = resp.frame_system_configs();
-
-    std::vector<RobotClient::frame_system_config> fs_configs = std::vector<frame_system_config>();
-
-    for (const FrameSystemConfig& fs : configs) {
-        fs_configs.push_back(from_proto(fs));
-    }
-
-    return fs_configs;
+            return cfgs;
+            // TODO return sdk::impl::from_repeated_field(resp.frame_system_configs());
+        });
 }
 
 pose_in_frame RobotClient::transform_pose(
     const pose_in_frame& query,
     std::string destination,
     const std::vector<WorldState::transform>& additional_transforms) {
-    viam::robot::v1::TransformPoseRequest req;
-    viam::robot::v1::TransformPoseResponse resp;
-    ClientContext ctx;
-
-    *req.mutable_source() = to_proto(query);
-    *req.mutable_destination() = std::move(destination);
-    *req.mutable_supplemental_transforms() = sdk::impl::to_repeated_field(additional_transforms);
-
-    const grpc::Status response = impl_->stub_->TransformPose(ctx, req, &resp);
-    if (is_error_response(response)) {
-        VIAM_SDK_LOG(error) << "Error getting PoseInFrame: " << response.error_message();
-    }
-
-    return from_proto(resp.pose());
+    return impl_->client_helper(&RobotService::Stub::TransformPose)
+        .with([&](auto& req) {
+            *req.mutable_source() = to_proto(query);
+            *req.mutable_destination() = std::move(destination);
+            *req.mutable_supplemental_transforms() =
+                sdk::impl::to_repeated_field(additional_transforms);
+        })
+        .invoke([](const auto& resp) { return from_proto(resp.pose()); });
 }
 
 std::shared_ptr<Resource> RobotClient::resource_by_name(const Name& name) {
@@ -375,25 +337,20 @@ void RobotClient::stop_all() {
 }
 
 void RobotClient::stop_all(const std::unordered_map<Name, ProtoStruct>& extra) {
-    viam::robot::v1::StopAllRequest req;
-    viam::robot::v1::StopAllResponse resp;
-    ClientContext ctx;
-
-    RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
-    for (const auto& xtra : extra) {
-        const Name& name = xtra.first;
-        const ProtoStruct& params = xtra.second;
-        const google::protobuf::Struct s = to_proto(params);
-        viam::robot::v1::StopExtraParameters stop;
-        *stop.mutable_name() = to_proto(name);
-        *stop.mutable_params() = s;
-        *ep->Add() = stop;
-    }
-    const grpc::Status response = impl_->stub_->StopAll(ctx, req, &resp);
-    if (is_error_response(response)) {
-        VIAM_SDK_LOG(error) << "Error stopping all: " << response.error_message()
-                            << response.error_details();
-    }
+    return impl_->client_helper(&RobotService::Stub::StopAll)
+        .with([&](auto& req) {
+            RepeatedPtrField<viam::robot::v1::StopExtraParameters>* ep = req.mutable_extra();
+            for (const auto& xtra : extra) {
+                const Name& name = xtra.first;
+                const ProtoStruct& params = xtra.second;
+                const google::protobuf::Struct s = to_proto(params);
+                viam::robot::v1::StopExtraParameters stop;
+                *stop.mutable_name() = to_proto(name);
+                *stop.mutable_params() = s;
+                *ep->Add() = stop;
+            }
+        })
+        .invoke();
 }
 
 std::ostream& operator<<(std::ostream& os, const RobotClient::status& v) {
@@ -414,24 +371,17 @@ std::ostream& operator<<(std::ostream& os, const RobotClient::status& v) {
 }
 
 RobotClient::status RobotClient::get_machine_status() const {
-    const robot::v1::GetMachineStatusRequest req;
-    robot::v1::GetMachineStatusResponse resp;
-    ClientContext ctx;
-
-    const grpc::Status response = impl_->stub_->GetMachineStatus(ctx, req, &resp);
-    if (is_error_response(response)) {
-        VIAM_SDK_LOG(error) << "Error getting machine status: " << response.error_message()
-                            << response.error_details();
-    }
-    switch (resp.state()) {
-        case robot::v1::GetMachineStatusResponse_State_STATE_INITIALIZING:
-            return RobotClient::status::k_initializing;
-        case robot::v1::GetMachineStatusResponse_State_STATE_RUNNING:
-            return RobotClient::status::k_running;
-        case robot::v1::GetMachineStatusResponse_State_STATE_UNSPECIFIED:
-        default:
-            return RobotClient::status::k_unspecified;
-    }
+    return impl_->client_helper(&RobotService::Stub::GetMachineStatus).invoke([](const auto& resp) {
+        switch (resp.state()) {
+            case robot::v1::GetMachineStatusResponse_State_STATE_INITIALIZING:
+                return RobotClient::status::k_initializing;
+            case robot::v1::GetMachineStatusResponse_State_STATE_RUNNING:
+                return RobotClient::status::k_running;
+            case robot::v1::GetMachineStatusResponse_State_STATE_UNSPECIFIED:
+            default:
+                return RobotClient::status::k_unspecified;
+        }
+    });
 }
 
 }  // namespace sdk
