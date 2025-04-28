@@ -110,7 +110,6 @@ class ClientHelper {
     template <typename ResponseHandlerCallable, typename ErrorHandlerCallable>
     auto invoke(ResponseHandlerCallable&& rhc, ErrorHandlerCallable&& ehc) {
         client_helper_details::set_name(&request_, client_);
-        // *request_.mutable_name() = client_->name();
         ClientContext ctx;
 
         if (debug_key_ != "") {
