@@ -170,6 +170,11 @@ class RobotClient {
              const std::string& message,
              time_pt time);
 
+    // Makes this RobotClient manage logging by sending logs over grpc to viam-server.
+    // This is private and only ever called by ModuleService; in other words it is only called when
+    // viam-server is running a Viam C++ SDK application as a module.
+    // Disables console logging so as to avoid log message duplication; console logging is
+    // re-enabled on destruction.
     void connect_logging();
 
     void refresh_every();

@@ -108,6 +108,8 @@ struct RobotClient::impl {
 
     std::unique_ptr<RobotService::Stub> stub;
 
+    // See doc comment for RobotClient::connect_logging. This pointer is non-null and installed as a
+    // sink only for apps being run by viam-server as a module.
     boost::shared_ptr<viam::sdk::impl::SinkType> log_sink;
 };
 
