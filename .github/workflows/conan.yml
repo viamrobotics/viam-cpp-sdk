@@ -159,8 +159,6 @@ jobs:
             platform: linux_x86_64-debian-bookworm
             image: debian:bookworm
             runs_on: buildjet-8vcpu-ubuntu-2204
-    env:
-      MATRIX_TARGET: ${{ matrix.target }}
 
     steps:
       - name: Checkout Code
@@ -211,12 +209,9 @@ jobs:
           pip install conan
           conan profile detect
 
-          if [[ ${MATRIX_TARGET} = "x86_64-debian-bullseye" ]]
-          then
-            mkdir b2-tmp
-            echo "[requires]\nb2/5.3.2\n" > b2-tmp/conanfile.txt
-            conan install b2-tmp --build=missing -s compiler.cppstd=14 -s:a compiler.cppstd=14
-            rm -r b2-tmp
-          fi
+          mkdir b2-tmp
+          echo "[requires]\nb2/5.3.2\n" > b2-tmp/conanfile.txt
+          conan install b2-tmp --build=missing -s compiler.cppstd=14 -s:a compiler.cppstd=14
+          rm -r b2-tmp
 
           conan create . --build=missing -s compiler.cppstd=14 -s:a compiler.cppstd=14
