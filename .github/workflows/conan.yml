@@ -211,7 +211,7 @@ jobs:
 
           mkdir b2-tmp
           echo "[requires]\nb2/5.3.2\n" > b2-tmp/conanfile.txt
-          cat conanfile.txt
+          cat b2-tmp/conanfile.txt
           conan install b2-tmp --build=b2/5.3.2 -s compiler.cppstd=14 -s:a compiler.cppstd=14
           rm -r b2-tmp
 
