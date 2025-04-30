@@ -75,6 +75,12 @@ class RobotClient {
 
     ~RobotClient();
 
+    /// @brief Call out to the robot to see if there are any new resources that need to be
+    /// registered. Compares the currently registered resources to the ones from the robot, seeing
+    /// if any updates have been made. If so, they are registered and updated in @ref
+    /// ResourceManager. This method can be called manually, or it will be called periodically and
+    /// automatically if a positive refresh_interval is passed in the Options of the named
+    /// constructors.
     void refresh();
 
     /// @brief Disconnect this robot client from any robot to which it is connected.
