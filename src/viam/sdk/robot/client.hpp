@@ -185,10 +185,9 @@ class RobotClient {
 
     void refresh_every();
 
-    std::vector<std::thread> threads_;
-
+    std::thread refresh_thread_;
     std::atomic<bool> should_refresh_;
-    unsigned int refresh_interval_;
+    std::chrono::seconds refresh_interval_;
 
     ViamChannel viam_channel_;
 

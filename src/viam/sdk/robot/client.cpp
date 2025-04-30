@@ -145,10 +145,9 @@ RobotClient::~RobotClient() {
 void RobotClient::close() {
     should_refresh_.store(false);
 
-    for (auto& thread : threads_) {
-        thread.join();
+    if (refresh_thread_.joinable()) {
+        refresh_thread_.join();
     }
-    threads_.clear();
 
     stop_all();
 
@@ -223,7 +222,7 @@ void RobotClient::refresh() {
 void RobotClient::refresh_every() {
     while (should_refresh_.load()) {
         try {
-            std::this_thread::sleep_for(std::chrono::seconds(refresh_interval_));
+            std::this_thread::sleep_for(refresh_interval_);
             refresh();
 
         } catch (std::exception&) {
@@ -274,10 +273,10 @@ void RobotClient::log(const std::string& name,
 std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
                                                        const Options& options) {
     auto robot = std::make_shared<RobotClient>(std::move(channel));
-    robot->refresh_interval_ = options.refresh_interval();
-    robot->should_refresh_ = (robot->refresh_interval_ > 0);
+    robot->refresh_interval_ = std::chrono::seconds{options.refresh_interval()};
+    robot->should_refresh_ = (robot->refresh_interval_ > std::chrono::seconds{0});
     if (robot->should_refresh_) {
-        robot->threads_.emplace_back(&RobotClient::refresh_every, robot.get());
+        robot->refresh_thread_ = std::thread{&RobotClient::refresh_every, robot.get()};
     }
 
     robot->refresh();
