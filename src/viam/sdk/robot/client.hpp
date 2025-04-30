@@ -32,6 +32,10 @@ struct LogBackend;
 ///   - `RobotClient::at_address(...)`
 ///   - `RobotClient::with_channel(...)`
 /// @ingroup Robot
+///
+/// You must `close()` a robot when finished with it in order to release its resources.
+/// Robots creates via `at_address` will automatically close, but robots created via
+/// `with_channel` require a user call to `close()`.
 class RobotClient {
    public:
     /// @enum status
@@ -84,6 +88,8 @@ class RobotClient {
     /// @brief Creates a robot client connected to the provided channel.
     /// @param channel The channel to connect with.
     /// @param options Options for connecting and refreshing.
+    /// Connects directly to a pre-existing channel. A robot created this way must be
+    /// `close()`d manually.
     static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, const Options& options);
 
     std::vector<Name> resource_names() const;
@@ -165,6 +171,7 @@ class RobotClient {
     unsigned int refresh_interval_;
 
     ViamChannel viam_channel_;
+    bool should_close_channel_;
 
     struct impl;
     std::unique_ptr<impl> impl_;
