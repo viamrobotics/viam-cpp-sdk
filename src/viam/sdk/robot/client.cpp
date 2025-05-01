@@ -226,18 +226,19 @@ void RobotClient::refresh() {
 void RobotClient::refresh_every() {
     std::unique_lock<std::mutex> lk{refresh_lock_};
 
-    while (true) {
-        if (refresh_cv_.wait_for(lk, refresh_interval_) == std::cv_status::timeout) {
+    refresh_cv_.wait_for(lk, refresh_interval_, [this] {
+        if (should_refresh_) {
             try {
                 refresh();
             } catch (const std::exception& e) {
-                VIAM_SDK_LOG(warn) << "Refresh thread terminated with exception: " << e.what();
-                break;
+                VIAM_SDK_LOG(warn) << "Refresh thread got exception " << e.what();
+                // TODO: maybe recoverable
+                return true;
             }
-        } else if (should_refresh_ == false) {
-            break;
         }
-    }
+
+        return !should_refresh_;
+    });
 }
 
 RobotClient::RobotClient(ViamChannel channel)
