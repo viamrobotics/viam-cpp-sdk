@@ -24,6 +24,8 @@ bool isStatusCancelled(int status) noexcept {
     return status == ::grpc::StatusCode::CANCELLED;
 }
 
+void set_name(...) {}  // NOLINT(cert-dcl50-cpp)
+
 }  // namespace client_helper_details
 
 ClientContext::ClientContext() : wrapped_context_(std::make_unique<GrpcClientContext>()) {

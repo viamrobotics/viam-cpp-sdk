@@ -113,6 +113,7 @@ class LogManager {
     LogManager& operator=(LogManager&&) = delete;
 
     void init_logging();
+    void enable_console_logging();
     void disable_console_logging();
 
     LogSource sdk_logger_;

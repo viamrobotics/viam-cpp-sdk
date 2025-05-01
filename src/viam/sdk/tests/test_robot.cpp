@@ -55,9 +55,6 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
     // Run the passed-in test case on the created stack and give access to the
     // created RobotClient and MockRobotService.
     std::forward<F>(test_case)(client, service);
-
-    // Shutdown Server afterward.
-    server->shutdown();
 }
 
 BOOST_AUTO_TEST_CASE(test_registering_resources) {

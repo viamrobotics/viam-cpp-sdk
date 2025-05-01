@@ -50,6 +50,14 @@ class Server {
     /// @throws `Exception` if a matching `ResourceServer` doesn't exist in the server.
     void add_resource(std::shared_ptr<Resource> resource);
 
+    /// @brief Adds a specific managed resource to the associated resource server
+    /// @param resource The resource to add
+    /// @param deadline Deadline after which to not add the resource
+    /// @throws `Exception` if a matching `ResourceServer` doesn't exist in the server.
+    /// @throws `Exception` if the deadline is not nil and has passed
+    void add_resource(std::shared_ptr<Resource> resource,
+                      boost::optional<std::chrono::system_clock::time_point> deadline);
+
     /// @brief Adds a listening port to the server.
     /// @param address The address to listen at.
     /// @param creds The server credentials; defaults to a insecure server credentials.

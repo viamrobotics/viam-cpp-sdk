@@ -54,7 +54,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
     ModuleService& parent;
 
     // TODO(RSDK-6528) - to the extent possible, switch to using `server_helper`
-    ::grpc::Status AddResource(::grpc::ServerContext*,
+    ::grpc::Status AddResource(::grpc::ServerContext* ctx,
                                const ::viam::module::v1::AddResourceRequest* request,
                                ::viam::module::v1::AddResourceResponse*) override {
         const viam::app::v1::ComponentConfig& proto = request->config();
@@ -74,7 +74,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             }
         };
         try {
-            parent.server_->add_resource(res);
+            parent.server_->add_resource(res, ctx->deadline());
         } catch (const std::exception& exc) {
             return grpc::Status(::grpc::INTERNAL, exc.what());
         }
