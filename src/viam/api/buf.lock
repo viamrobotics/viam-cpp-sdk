@@ -8,7 +8,7 @@ deps:
   - remote: buf.build
     owner: viamrobotics
     repository: api
-    commit: 1f5b8a47f15e49af89174672bb898b77
+    commit: b651af740bdf408ca25c5a21f0620aad
   - remote: buf.build
     owner: viamrobotics
     repository: goutils
