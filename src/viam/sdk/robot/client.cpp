@@ -143,7 +143,11 @@ RobotClient::~RobotClient() {
 }
 
 void RobotClient::close() {
-    should_refresh_.store(false);
+    if (should_refresh_) {
+        std::unique_lock<std::mutex> lk{refresh_lock_};
+        should_refresh_ = false;
+        refresh_cv_.notify_one();
+    }
 
     if (refresh_thread_.joinable()) {
         refresh_thread_.join();
@@ -220,16 +224,21 @@ void RobotClient::refresh() {
 }
 
 void RobotClient::refresh_every() {
-    while (should_refresh_.load()) {
-        try {
-            std::this_thread::sleep_for(refresh_interval_);
-            refresh();
+    std::unique_lock<std::mutex> lk{refresh_lock_};
 
-        } catch (std::exception&) {
+    while (true) {
+        if (refresh_cv_.wait_for(lk, refresh_interval_) == std::cv_status::timeout) {
+            try {
+                refresh();
+            } catch (const std::exception& e) {
+                VIAM_SDK_LOG(warn) << "Refresh thread terminated with exception: " << e.what();
+                break;
+            }
+        } else if (should_refresh_ == false) {
             break;
         }
     }
-};
+}
 
 RobotClient::RobotClient(ViamChannel channel)
     : viam_channel_(std::move(channel)),

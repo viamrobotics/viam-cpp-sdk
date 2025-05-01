@@ -186,7 +186,9 @@ class RobotClient {
     void refresh_every();
 
     std::thread refresh_thread_;
-    std::atomic<bool> should_refresh_;
+    std::mutex refresh_lock_;
+    std::condition_variable refresh_cv_;
+    bool should_refresh_;
     std::chrono::seconds refresh_interval_;
 
     ViamChannel viam_channel_;
