@@ -290,12 +290,19 @@ endif()
 
 # TODO(RSDK-10637): Currently, rust_utils doesn't build correctly for windows in CI, so don't declare the library unless a user has provided their own build
 if (NOT WIN32 OR num_viam_rust_utils_files GREATER 0)
-  add_library(viam_rust_utils STATIC IMPORTED)
-
+  if (WIN32)
+    add_library(viam_rust_utils STATIC IMPORTED)
   target_link_directories(viam_rust_utils
     INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
   )
+  else()
+    add_library(viam_rust_utils SHARED IMPORTED)
+  target_link_directories(viam_rust_utils
+    INTERFACE
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
+  )
+  endif()
 
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
 endif()
