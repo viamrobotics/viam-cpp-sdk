@@ -37,13 +37,6 @@ if (WIN32)
   # Use a newer version of CMake on Windows, so we are NEW for
   # https://cmake.org/cmake/help/latest/policy/CMP0149.html
   cmake_minimum_required(VERSION 3.27 FATAL_ERROR)
-
-  # rust-utils always has a `lib` prefix
-  set(CMAKE_SHARED_LIBRARY_PREFIX "lib")
-  message(WARNING "it should be lib is it? ${CMAKE_SHARED_LIBRARY_PREFIX}")
-
-  # set boost compiler to avoid errors with boost log
-  set(Boost_COMPILER "vc143")
 else()
   cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 endif()
@@ -259,14 +252,9 @@ find_package(Threads REQUIRED)
 # TODO: When this is removed, also remove the
 # `target_link_directories` call down in src/CMakeLists.txt, as it
 # will no longer be needed.
-set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
+set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
 
-file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
-
-# Check if the architecture is one that we support in rust-utils
-set(WINDOWS_ARCHS "AMD64" "X86" "X64")
-list(FIND WINDOWS_ARCHS CMAKE_SYSTEM_PROCESSOR idx)
-set(rust_utils_supported_windows_arch (idx GREATER -1))
+file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
 
 if (viam_rust_utils_files)
   list(LENGTH viam_rust_utils_files num_viam_rust_utils_files)
@@ -278,7 +266,7 @@ if (viam_rust_utils_files)
     ${viam_rust_utils_file}
     ONLY_IF_DIFFERENT
   )
-elseif(NOT WIN32) # TODO(RSDK-10366): Currently, rust_utils windows builds aren't working in CI, so don't even try downloading
+elseif(NOT WIN32) # TODO(RSDK-10637): Currently, rust_utils windows builds aren't working in CI, so don't even try downloading
   set(lvru_system_name ${CMAKE_SYSTEM_NAME})
   if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(lvru_system_name "macosx")
@@ -286,7 +274,7 @@ elseif(NOT WIN32) # TODO(RSDK-10366): Currently, rust_utils windows builds aren'
 
   file(
     DOWNLOAD
-	https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_STATIC_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${CMAKE_SYSTEM_PROCESSOR}${CMAKE_STATIC_LIBRARY_SUFFIX}
+    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${CMAKE_SYSTEM_PROCESSOR}${CMAKE_STATIC_LIBRARY_SUFFIX}
     ${viam_rust_utils_file}
     STATUS lvru_status
   )
@@ -297,7 +285,7 @@ elseif(NOT WIN32) # TODO(RSDK-10366): Currently, rust_utils windows builds aren'
     message(FATAL_ERROR "No local viam_rust_utils found and failed to download: ${lvru_status_string}")
   endif()
 else()
-	message(WARNING "Currently running on Windows with no rust-utils file. Module code should work as expected, but client code may fail unexpectedly.")
+    message(WARNING "Currently running on Windows with no rust-utils file. Module code should work as expected, but client code may fail unexpectedly.")
 endif()
 
 # TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't even declare the library
