@@ -289,22 +289,29 @@ else()
 endif()
 
 # TODO(RSDK-10637): Currently, rust_utils doesn't build correctly for windows in CI, so don't declare the library unless a user has provided their own build
-if (NOT WIN32 OR num_viam_rust_utils_files GREATER 0)
-  if (WIN32)
-    add_library(viam_rust_utils STATIC IMPORTED)
+if (NOT WIN32)
+  add_library(viam_rust_utils SHARED IMPORTED)
   target_link_directories(viam_rust_utils
     INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
+    "$<INSTALL_INTERFACE<:${CMAKE_INSTALL_LIBDIR}>"
   )
-  else()
-    add_library(viam_rust_utils SHARED IMPORTED)
-  target_link_directories(viam_rust_utils
-    INTERFACE
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
-  )
-  endif()
-
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
+elseif (num_viam_rust_utils_files GREATER 0)
+  add_library(viam_rust_utils STATIC IMPORTED)
+  target_link_directories(viam_rust_utils
+    INTERFACE
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
+  )
+  set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
+endif()
+
+
+if (NOT WIN32)
+  install(
+    IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
+    LIBRARY COMPONENT viam-cpp-sdk_runtime
+  )
 endif()
 
 # Install the license file
