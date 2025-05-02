@@ -288,8 +288,7 @@ else()
     message(WARNING "Currently running on Windows with no rust-utils file. Module code should work as expected, but client code may fail unexpectedly.")
 endif()
 
-# TODO(RSDK-10637): Currently, rust_utils doesn't build correctly for windows in CI, so don't declare the library unless a user has provided their own build
-if (NOT WIN32)
+if (NOT WIN32) # build `SHARED` on unix-based systems
   add_library(viam_rust_utils SHARED IMPORTED)
   target_link_directories(viam_rust_utils
     INTERFACE
@@ -297,7 +296,9 @@ if (NOT WIN32)
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
   )
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
-elseif (num_viam_rust_utils_files GREATER 0)
+
+  # TODO(RSDK-10637): Currently, rust_utils doesn't build correctly for windows in CI, so don't declare the library unless a user has provided their own build
+elseif (num_viam_rust_utils_files GREATER 0) # build `STATIC` for windows
   add_library(viam_rust_utils STATIC IMPORTED)
   target_link_directories(viam_rust_utils
     INTERFACE

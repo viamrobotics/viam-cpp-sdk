@@ -73,7 +73,7 @@ jobs:
       #- name: Install dependencies
         #uses: crazy-max/ghaction-chocolatey@v3
         #with:
-          #args: install -y conan git 7zip jq
+          #args: install -y conan git
 
 
       ## Ensures that things installed with choco are visible to us
@@ -88,12 +88,7 @@ jobs:
           #Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           #refreshenv
           #conan profile detect
-          #conan create . `
-            #--build=missing `
-            #-o "&:shared=False" `
-            #-s:h compiler.cppstd=17 `
-            #-c:h tools.microsoft:winsdk_version=10.0.17763.0 `
-            #-s:h compiler.runtime=static
+          #conan create .
         #env:
           #CONAN_USER_HOME: c:/cache
           #CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
