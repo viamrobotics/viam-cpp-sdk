@@ -133,11 +133,15 @@ void LogManager::init_logging() {
     console_sink_ = boost::make_shared<
         boost::log::sinks::synchronous_sink<boost::log::sinks::text_ostream_backend>>(backend);
 
-    console_sink_->set_filter(Filter{this});
-    console_sink_->set_formatter(fmt);
-
     boost::log::core::get()->add_sink(console_sink_);
-    VIAM_SDK_LOG(debug) << "Initialized console logging";
+
+    console_sink_->set_formatter(fmt);
+    enable_console_logging();
+}
+
+void LogManager::enable_console_logging() {
+    console_sink_->set_filter(Filter{this});
+    VIAM_SDK_LOG(debug) << "Console logging enabled";
 }
 
 void LogManager::disable_console_logging() {

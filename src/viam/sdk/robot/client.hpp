@@ -9,6 +9,7 @@
 
 #include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/common/world_state.hpp>
 #include <viam/sdk/components/component.hpp>
@@ -18,6 +19,16 @@
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
+
+namespace robot {
+namespace v1 {
+
+class FrameSystemConfig;
+class Operation;
+
+}  // namespace v1
+}  // namespace robot
+
 namespace sdk {
 
 namespace impl {
@@ -32,10 +43,6 @@ struct LogBackend;
 ///   - `RobotClient::at_address(...)`
 ///   - `RobotClient::with_channel(...)`
 /// @ingroup Robot
-///
-/// You must `close()` a robot when finished with it in order to release its resources.
-/// Robots creates via `at_address` will automatically close, but robots created via
-/// `with_channel` require a user call to `close()`.
 class RobotClient {
    public:
     /// @enum status
@@ -68,7 +75,17 @@ class RobotClient {
 
     ~RobotClient();
 
+    /// @brief Call out to the robot to see if there are any new resources that need to be
+    /// registered. Compares the currently registered resources to the ones from the robot, seeing
+    /// if any updates have been made. If so, they are registered and updated in @ref
+    /// ResourceManager. This method can be called manually, or it will be called periodically and
+    /// automatically if a positive refresh_interval is passed in the Options of the named
+    /// constructors.
     void refresh();
+
+    /// @brief Disconnect this robot client from any robot to which it is connected.
+    /// After calling this method it is no longer valid to call any methods which communicate with
+    /// the robot.
     void close();
 
     /// @brief Create a robot client connected to the robot at the provided address.
@@ -88,8 +105,6 @@ class RobotClient {
     /// @brief Creates a robot client connected to the provided channel.
     /// @param channel The channel to connect with.
     /// @param options Options for connecting and refreshing.
-    /// Connects directly to a pre-existing channel. A robot created this way must be
-    /// `close()`d manually.
     static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, const Options& options);
 
     std::vector<Name> resource_names() const;
@@ -161,17 +176,20 @@ class RobotClient {
              const std::string& message,
              time_pt time);
 
+    // Makes this RobotClient manage logging by sending logs over grpc to viam-server.
+    // This is private and only ever called by ModuleService; in other words it is only called when
+    // viam-server is running a Viam C++ SDK application as a module.
+    // Disables console logging so as to avoid log message duplication; console logging is
+    // re-enabled on destruction.
     void connect_logging();
 
     void refresh_every();
 
-    std::vector<std::thread> threads_;
-
+    std::thread refresh_thread_;
     std::atomic<bool> should_refresh_;
-    unsigned int refresh_interval_;
+    std::chrono::seconds refresh_interval_;
 
     ViamChannel viam_channel_;
-    bool should_close_channel_;
 
     struct impl;
     std::unique_ptr<impl> impl_;
@@ -182,5 +200,18 @@ class RobotClient {
     ResourceManager resource_manager_;
 };
 
+namespace proto_convert_details {
+
+template <>
+struct from_proto_impl<robot::v1::Operation> {
+    RobotClient::operation operator()(const robot::v1::Operation*) const;
+};
+
+template <>
+struct from_proto_impl<robot::v1::FrameSystemConfig> {
+    RobotClient::frame_system_config operator()(const robot::v1::FrameSystemConfig*) const;
+};
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam
