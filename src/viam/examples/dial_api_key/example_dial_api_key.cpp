@@ -44,8 +44,6 @@ int main(int argc, char* argv[]) {
         opts.credentials = credentials;
     }
 
-    opts.disable_webrtc = true;
-
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot =
         RobotClient::at_address(vm["uri"].as<std::string>(), Options(1, opts));
