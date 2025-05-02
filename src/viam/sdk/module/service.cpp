@@ -254,14 +254,14 @@ ModuleService::ModuleService(int argc,
 }
 
 ModuleService::~ModuleService() {
-    std::cout << "Shutting down gracefully.\n";
+    VIAM_SDK_LOG(info) << "Shutting down gracefully.\n";
     server_->shutdown();
 
     if (parent_) {
         try {
             parent_.reset();
         } catch (const std::exception& exc) {
-            std::cerr << exc.what();
+            VIAM_SDK_LOG(error) << exc.what();
         }
     }
 }
