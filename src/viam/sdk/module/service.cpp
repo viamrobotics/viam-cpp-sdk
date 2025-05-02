@@ -259,7 +259,7 @@ ModuleService::~ModuleService() {
 
     if (parent_) {
         try {
-            parent_->close();
+            parent_.reset();
         } catch (const std::exception& exc) {
             std::cerr << exc.what();
         }
