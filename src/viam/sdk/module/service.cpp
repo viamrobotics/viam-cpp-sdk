@@ -260,7 +260,7 @@ ModuleService::~ModuleService() {
 
     if (parent_) {
         try {
-            parent_->close();
+            parent_.reset();
         } catch (const std::exception& exc) {
             VIAM_SDK_LOG(error) << exc.what();
         }
