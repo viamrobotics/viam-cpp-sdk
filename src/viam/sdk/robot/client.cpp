@@ -270,9 +270,9 @@ void RobotClient::log(const std::string& name,
     }
 }
 
-std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
+std::unique_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
                                                        const Options& options) {
-    auto robot = std::make_shared<RobotClient>(std::move(channel));
+    auto robot = std::make_unique<RobotClient>(std::move(channel));
     robot->refresh_interval_ = std::chrono::seconds{options.refresh_interval()};
     robot->should_refresh_ = (robot->refresh_interval_ > std::chrono::seconds{0});
     if (robot->should_refresh_) {
@@ -283,7 +283,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
     return robot;
 };
 
-std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
+std::unique_ptr<RobotClient> RobotClient::at_address(const std::string& address,
                                                      const Options& options) {
     const char* uri = address.c_str();
     auto robot =
@@ -292,7 +292,7 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
     return robot;
 };
 
-std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
+std::unique_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options) {
     const std::string addr = "unix://" + address;
     auto robot = RobotClient::with_channel(

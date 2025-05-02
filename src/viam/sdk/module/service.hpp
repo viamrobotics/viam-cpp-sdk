@@ -68,7 +68,7 @@ class ModuleService {
 
     std::unique_ptr<Module> module_;
 
-    std::shared_ptr<RobotClient> parent_;
+    std::unique_ptr<RobotClient> parent_;
     std::string parent_addr_;
 
     std::unique_ptr<Server> server_;
