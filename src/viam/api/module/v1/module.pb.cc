@@ -160,7 +160,8 @@ struct ValidateConfigRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ValidateConfigRequestDefaultTypeInternal _ValidateConfigRequest_default_instance_;
 PROTOBUF_CONSTEXPR ValidateConfigResponse::ValidateConfigResponse(
     ::_pbi::ConstantInitialized)
-  : dependencies_(){}
+  : dependencies_()
+  , optional_dependencies_(){}
 struct ValidateConfigResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ValidateConfigResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -265,6 +266,7 @@ const uint32_t TableStruct_module_2fv1_2fmodule_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::ValidateConfigResponse, dependencies_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ValidateConfigResponse, optional_dependencies_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::module::v1::AddResourceRequest)},
@@ -320,21 +322,23 @@ const char descriptor_table_protodef_module_2fv1_2fmodule_2eproto[] PROTOBUF_SEC
   "R\nhandlermap\022#\n\rwebrtc_answer\030\003 \001(\tR\014web"
   "rtcAnswer\"M\n\025ValidateConfigRequest\0224\n\006co"
   "nfig\030\001 \001(\0132\034.viam.app.v1.ComponentConfig"
-  "R\006config\"<\n\026ValidateConfigResponse\022\"\n\014de"
-  "pendencies\030\001 \003(\tR\014dependencies2\337\003\n\rModul"
-  "eService\022V\n\013AddResource\022\".viam.module.v1"
-  ".AddResourceRequest\032#.viam.module.v1.Add"
-  "ResourceResponse\022n\n\023ReconfigureResource\022"
-  "*.viam.module.v1.ReconfigureResourceRequ"
-  "est\032+.viam.module.v1.ReconfigureResource"
-  "Response\022_\n\016RemoveResource\022%.viam.module"
-  ".v1.RemoveResourceRequest\032&.viam.module."
-  "v1.RemoveResourceResponse\022D\n\005Ready\022\034.via"
-  "m.module.v1.ReadyRequest\032\035.viam.module.v"
-  "1.ReadyResponse\022_\n\016ValidateConfig\022%.viam"
-  ".module.v1.ValidateConfigRequest\032&.viam."
-  "module.v1.ValidateConfigResponseB\033Z\031go.v"
-  "iam.com/api/module/v1b\006proto3"
+  "R\006config\"q\n\026ValidateConfigResponse\022\"\n\014de"
+  "pendencies\030\001 \003(\tR\014dependencies\0223\n\025option"
+  "al_dependencies\030\002 \003(\tR\024optionalDependenc"
+  "ies2\337\003\n\rModuleService\022V\n\013AddResource\022\".v"
+  "iam.module.v1.AddResourceRequest\032#.viam."
+  "module.v1.AddResourceResponse\022n\n\023Reconfi"
+  "gureResource\022*.viam.module.v1.Reconfigur"
+  "eResourceRequest\032+.viam.module.v1.Reconf"
+  "igureResourceResponse\022_\n\016RemoveResource\022"
+  "%.viam.module.v1.RemoveResourceRequest\032&"
+  ".viam.module.v1.RemoveResourceResponse\022D"
+  "\n\005Ready\022\034.viam.module.v1.ReadyRequest\032\035."
+  "viam.module.v1.ReadyResponse\022_\n\016Validate"
+  "Config\022%.viam.module.v1.ValidateConfigRe"
+  "quest\032&.viam.module.v1.ValidateConfigRes"
+  "ponseB\033Z\031go.viam.com/api/module/v1b\006prot"
+  "o3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_module_2fv1_2fmodule_2eproto_deps[2] = {
   &::descriptor_table_app_2fv1_2frobot_2eproto,
@@ -342,7 +346,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_module_2fv1_2fmodul
 };
 static ::_pbi::once_flag descriptor_table_module_2fv1_2fmodule_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_module_2fv1_2fmodule_2eproto = {
-    false, false, 1509, descriptor_table_protodef_module_2fv1_2fmodule_2eproto,
+    false, false, 1562, descriptor_table_protodef_module_2fv1_2fmodule_2eproto,
     "module/v1/module.proto",
     &descriptor_table_module_2fv1_2fmodule_2eproto_once, descriptor_table_module_2fv1_2fmodule_2eproto_deps, 2, 12,
     schemas, file_default_instances, TableStruct_module_2fv1_2fmodule_2eproto::offsets,
@@ -2256,13 +2260,15 @@ class ValidateConfigResponse::_Internal {
 ValidateConfigResponse::ValidateConfigResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  dependencies_(arena) {
+  dependencies_(arena),
+  optional_dependencies_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.module.v1.ValidateConfigResponse)
 }
 ValidateConfigResponse::ValidateConfigResponse(const ValidateConfigResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      dependencies_(from.dependencies_) {
+      dependencies_(from.dependencies_),
+      optional_dependencies_(from.optional_dependencies_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.ValidateConfigResponse)
 }
@@ -2294,6 +2300,7 @@ void ValidateConfigResponse::Clear() {
   (void) cached_has_bits;
 
   dependencies_.Clear();
+  optional_dependencies_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2315,6 +2322,21 @@ const char* ValidateConfigResponse::_InternalParse(const char* ptr, ::_pbi::Pars
             CHK_(::_pbi::VerifyUTF8(str, "viam.module.v1.ValidateConfigResponse.dependencies"));
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string optional_dependencies = 2 [json_name = "optionalDependencies"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_optional_dependencies();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.module.v1.ValidateConfigResponse.optional_dependencies"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -2357,6 +2379,16 @@ uint8_t* ValidateConfigResponse::_InternalSerialize(
     target = stream->WriteString(1, s, target);
   }
 
+  // repeated string optional_dependencies = 2 [json_name = "optionalDependencies"];
+  for (int i = 0, n = this->_internal_optional_dependencies_size(); i < n; i++) {
+    const auto& s = this->_internal_optional_dependencies(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.module.v1.ValidateConfigResponse.optional_dependencies");
+    target = stream->WriteString(2, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2379,6 +2411,14 @@ size_t ValidateConfigResponse::ByteSizeLong() const {
   for (int i = 0, n = dependencies_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
       dependencies_.Get(i));
+  }
+
+  // repeated string optional_dependencies = 2 [json_name = "optionalDependencies"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(optional_dependencies_.size());
+  for (int i = 0, n = optional_dependencies_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      optional_dependencies_.Get(i));
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -2404,6 +2444,7 @@ void ValidateConfigResponse::MergeFrom(const ValidateConfigResponse& from) {
   (void) cached_has_bits;
 
   dependencies_.MergeFrom(from.dependencies_);
+  optional_dependencies_.MergeFrom(from.optional_dependencies_);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2422,6 +2463,7 @@ void ValidateConfigResponse::InternalSwap(ValidateConfigResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   dependencies_.InternalSwap(&other->dependencies_);
+  optional_dependencies_.InternalSwap(&other->optional_dependencies_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ValidateConfigResponse::GetMetadata() const {
