@@ -259,9 +259,9 @@ find_package(Threads REQUIRED)
 # TODO: When this is removed, also remove the
 # `target_link_directories` call down in src/CMakeLists.txt, as it
 # will no longer be needed.
-set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/libviam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
+set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
 
-file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/libviam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
+file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
 
 # Check if the architecture is one that we support in rust-utils
 set(WINDOWS_ARCHS "AMD64" "X86" "X64")
@@ -278,32 +278,15 @@ if (viam_rust_utils_files)
     ${viam_rust_utils_file}
     ONLY_IF_DIFFERENT
   )
-elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Currently, rust_utils is not published for windows aarch, so don't even try downloading
+elseif(NOT WIN32) # TODO(RSDK-10366): Currently, rust_utils windows builds aren't working in CI, so don't even try downloading
   set(lvru_system_name ${CMAKE_SYSTEM_NAME})
-  if (CMAKE_SYSTEM_NAME STREQUAL "Cygwin" OR CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set(lvru_system_name "windows")
-  elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(lvru_system_name "macosx")
   endif()
 
-  set(lvru_system_processor ${CMAKE_SYSTEM_PROCESSOR})
-  if (WIN32 AND rust_utils_supported_windows_arch)
-    message(WARNING "windows and rust-utils-supported architecture is true")
-    set(lvru_system_processor "x86_64")
-  endif()
-  message(WARNING "system processor is ${lvru_system_processor}")
-
-  set(shared_library_prefix ${CMAKE_SHARED_LIBRARY_PREFIX})
-  if (WIN32)
-    message(WARNING "It is win32")
-    set(shared_library_prefix "lib")
-  endif()
-  message(WARNING "shared library prefix is ${CMAKE_SHARED_LIBRARY_PREFIX} or ${shared_library_prefix}")
-  message(WARNING "trying to download https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}")
-
   file(
     DOWNLOAD
-    https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}
+	https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_STATIC_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${CMAKE_SYSTEM_PROCESSOR}${CMAKE_STATIC_LIBRARY_SUFFIX}
     ${viam_rust_utils_file}
     STATUS lvru_status
   )
@@ -311,29 +294,22 @@ elseif(NOT WIN32 OR rust_utils_supported_windows_arch) # TODO(RSDK-10366): Curre
   list(GET lvru_status 1 lvru_status_string)
 
   if(NOT lvru_status_code EQUAL 0)
-    message(WARNING "We aren't trying to get rust-utils for some reason. Win32? ${WIN32}. system processor? ${lvru_system_processor}")
     message(FATAL_ERROR "No local viam_rust_utils found and failed to download: ${lvru_status_string}")
   endif()
 else()
-  message(WARNING "We aren't trying to get rust-utils for some reason. Win32? ${WIN32}. system processor? ${CMAKE_SYSTEM_PROCESSOR}")
+	message(WARNING "Currently running on Windows with no rust-utils file. Module code should work as expected, but client code may fail unexpectedly.")
 endif()
 
 # TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't even declare the library
 if (NOT WIN32)
-  add_library(viam_rust_utils SHARED IMPORTED)
+  add_library(viam_rust_utils STATIC IMPORTED)
 
   target_link_directories(viam_rust_utils
     INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
-    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
   )
 
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
-
-  install(
-    IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
-    LIBRARY COMPONENT viam-cpp-sdk_runtime
-  )
 endif()
 
 # Install the license file

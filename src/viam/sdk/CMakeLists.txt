@@ -276,10 +276,10 @@ target_link_libraries(viamsdk
   PRIVATE Threads::Threads
 )
 
-# TODO(RSDK-10366): Currently, rust_utils is not published for
-# windows, so don't link to it.  Instead, link a stub implementation
+# TODO(RSDK-10637): Currently, rust_utils for windows doesn't link correctly when built in CI,
+# so don't link to it unless the user has provided a file for it.  Instead, link a stub implementation
 # that just calls `abort`.
-if (NOT WIN32)
+if (NOT WIN32 OR num_viam_rust_utils_files GREATER 0)
   target_link_libraries(viamsdk
     PRIVATE viam_rust_utils
   )
@@ -289,9 +289,14 @@ endif()
 
 if (APPLE)
   target_link_libraries(viamsdk PUBLIC "-framework Security")
-else()
+elseif (NOT WIN32)
   target_link_libraries(viamsdk PRIVATE dl)
   target_link_libraries(viamsdk PRIVATE rt)
+else()
+  target_link_libraries(viamsdk PRIVATE ncrypt)
+  target_link_libraries(viamsdk PRIVATE secur32)
+  target_link_libraries(viamsdk PRIVATE ntdll)
+  target_link_libraries(viamsdk PRIVATE userenv)
 endif()
 
 
