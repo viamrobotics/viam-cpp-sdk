@@ -294,7 +294,7 @@ if (NOT WIN32)
   target_link_directories(viam_rust_utils
     INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
-    "$<INSTALL_INTERFACE<:${CMAKE_INSTALL_LIBDIR}>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
   )
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
 elseif (num_viam_rust_utils_files GREATER 0)
