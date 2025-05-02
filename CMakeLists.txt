@@ -288,8 +288,8 @@ else()
     message(WARNING "Currently running on Windows with no rust-utils file. Module code should work as expected, but client code may fail unexpectedly.")
 endif()
 
-# TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't even declare the library
-if (NOT WIN32)
+# TODO(RSDK-10637): Currently, rust_utils doesn't build correctly for windows in CI, so don't declare the library unless a user has provided their own build
+if (NOT WIN32 OR num_viam_rust_utils_files GREATER 0)
   add_library(viam_rust_utils STATIC IMPORTED)
 
   target_link_directories(viam_rust_utils

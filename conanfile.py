@@ -91,8 +91,6 @@ class ViamCppSdkRecipe(ConanFile):
 
     def package_info(self):
 
-        # TODO(RSDK-10366): Currently, rust_utils is not published for windows
-        # and the C++ SDK just doesn't include it as a dependency on that platform
         self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
 
         self.cpp_info.components["viamsdk"].libs = ["viamsdk"]
@@ -136,8 +134,6 @@ class ViamCppSdkRecipe(ConanFile):
             "viamapi",
         ])
 
-        # TODO(RSDK-10366): Currently, rust_utils is not published for windows
-        # and the C++ SDK just doesn't include it as a dependency on that platform
         self.cpp_info.components["viamsdk"].requires.extend([
             "viam_rust_utils"
         ])
