@@ -4718,11 +4718,7 @@ class UpdateOrganizationNamespaceRequest final :
   std::string* _internal_mutable_organization_id();
   public:
 
-  // optional string new_public_namespace = 2 [json_name = "newPublicNamespace"];
-  bool has_new_public_namespace() const;
-  private:
-  bool _internal_has_new_public_namespace() const;
-  public:
+  // string new_public_namespace = 2 [json_name = "newPublicNamespace"];
   void clear_new_public_namespace();
   const std::string& new_public_namespace() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -4743,10 +4739,9 @@ class UpdateOrganizationNamespaceRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr new_public_namespace_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -48536,17 +48531,9 @@ inline void UpdateOrganizationNamespaceRequest::set_allocated_organization_id(st
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationNamespaceRequest.organization_id)
 }
 
-// optional string new_public_namespace = 2 [json_name = "newPublicNamespace"];
-inline bool UpdateOrganizationNamespaceRequest::_internal_has_new_public_namespace() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  return value;
-}
-inline bool UpdateOrganizationNamespaceRequest::has_new_public_namespace() const {
-  return _internal_has_new_public_namespace();
-}
+// string new_public_namespace = 2 [json_name = "newPublicNamespace"];
 inline void UpdateOrganizationNamespaceRequest::clear_new_public_namespace() {
   new_public_namespace_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& UpdateOrganizationNamespaceRequest::new_public_namespace() const {
   // @@protoc_insertion_point(field_get:viam.app.v1.UpdateOrganizationNamespaceRequest.new_public_namespace)
@@ -48555,7 +48542,7 @@ inline const std::string& UpdateOrganizationNamespaceRequest::new_public_namespa
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void UpdateOrganizationNamespaceRequest::set_new_public_namespace(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000001u;
+ 
  new_public_namespace_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:viam.app.v1.UpdateOrganizationNamespaceRequest.new_public_namespace)
 }
@@ -48568,32 +48555,22 @@ inline const std::string& UpdateOrganizationNamespaceRequest::_internal_new_publ
   return new_public_namespace_.Get();
 }
 inline void UpdateOrganizationNamespaceRequest::_internal_set_new_public_namespace(const std::string& value) {
-  _has_bits_[0] |= 0x00000001u;
+  
   new_public_namespace_.Set(value, GetArenaForAllocation());
 }
 inline std::string* UpdateOrganizationNamespaceRequest::_internal_mutable_new_public_namespace() {
-  _has_bits_[0] |= 0x00000001u;
+  
   return new_public_namespace_.Mutable(GetArenaForAllocation());
 }
 inline std::string* UpdateOrganizationNamespaceRequest::release_new_public_namespace() {
   // @@protoc_insertion_point(field_release:viam.app.v1.UpdateOrganizationNamespaceRequest.new_public_namespace)
-  if (!_internal_has_new_public_namespace()) {
-    return nullptr;
-  }
-  _has_bits_[0] &= ~0x00000001u;
-  auto* p = new_public_namespace_.Release();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (new_public_namespace_.IsDefault()) {
-    new_public_namespace_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  return p;
+  return new_public_namespace_.Release();
 }
 inline void UpdateOrganizationNamespaceRequest::set_allocated_new_public_namespace(std::string* new_public_namespace) {
   if (new_public_namespace != nullptr) {
-    _has_bits_[0] |= 0x00000001u;
+    
   } else {
-    _has_bits_[0] &= ~0x00000001u;
+    
   }
   new_public_namespace_.SetAllocated(new_public_namespace, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
