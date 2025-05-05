@@ -140,7 +140,7 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
         ptr);
 }
 
-ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
+void ViamChannel::set_bearer_token(const char* uri, const DialOptions& opts) {
     auto channel_for_auth = sdk::impl::create_viam_auth_channel(uri);
     using namespace proto::rpc::v1;
 
@@ -156,8 +156,18 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
 
     auto status = auth_stub->Authenticate(ctx, req, &resp);
 
+    if (!status.ok()) {
+        VIAM_SDK_LOG(warn) << "Direct dial authentication request failed: "
+                           << status.error_message();
+        throw GRPCException(&status);
+    }
+
     Instance::current(Instance::Creation::open_existing).impl_->direct_dial_token =
         resp.access_token();
+}
+
+ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
+    ViamChannel::set_bearer_token(uri, opts);
 
     grpc::experimental::TlsChannelCredentialsOptions c_opts;
     c_opts.set_check_call_host(false);

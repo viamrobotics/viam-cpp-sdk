@@ -49,6 +49,9 @@ class ViamChannel {
    private:
     struct impl;
 
+    // Sets the global bearer token used in client requests for direct dialing over gRPC.
+    static void set_bearer_token(const char* uri, const DialOptions& opts);
+
     static ViamChannel dial_direct(const char* uri, const DialOptions& opts);
 
     std::shared_ptr<GrpcChannel> channel_;
