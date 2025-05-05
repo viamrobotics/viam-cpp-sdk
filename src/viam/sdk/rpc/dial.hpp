@@ -82,6 +82,8 @@ struct DialOptions {
 
     /// @brief Bypass WebRTC and connect directly to the robot.
     /// This dials directly through grpc bypassing rust utils.
+    /// @remark Direct dialing should generally be done with a machine URI of the form
+    /// <part>.<location>.local.viam.cloud:8080
     bool disable_webrtc = false;
 
     /// @brief Duration before the dial connection times out
