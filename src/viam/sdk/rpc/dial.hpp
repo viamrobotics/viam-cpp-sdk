@@ -33,11 +33,12 @@ class ViamChannel {
     /// @throws Exception if it is unable to establish a connection to the provided URI
     static ViamChannel dial(const char* uri, const boost::optional<DialOptions>& options);
 
-    // @brief Dials to a robot at the given URI address, using the provided dial options (or default
-    // options is none are provided). Additionally specifies that this dial is an initial connection
-    // attempt and so uses the initial connection options.
-    /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
-    /// preferred method to connect to a robot, and creates the channel itself.
+    /// @brief Dials to a robot at the given URI address, using the provided dial options (or
+    /// default options is none are provided).
+    /// Additionally specifies that this dial is an initial
+    /// connection attempt and so uses the initial connection options. In general, use of this
+    /// method is discouraged. `RobotClient::at_address(...)` is the preferred method to connect to
+    /// a robot, and creates the channel itself.
     /// @throws Exception if it is unable to establish a connection to the provided URI within
     /// the given number of initial connection attempts
     static ViamChannel dial_initial(const char* uri, const boost::optional<DialOptions>& options);
