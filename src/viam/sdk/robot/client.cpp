@@ -144,7 +144,7 @@ RobotClient::~RobotClient() {
 
 void RobotClient::close() {
     if (should_refresh_) {
-        std::unique_lock<std::mutex> lk{refresh_lock_};
+        const std::unique_lock<std::mutex> lk{refresh_lock_};
         should_refresh_ = false;
         refresh_cv_.notify_one();
     }
