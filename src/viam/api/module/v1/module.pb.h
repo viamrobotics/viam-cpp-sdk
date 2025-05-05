@@ -1906,6 +1906,7 @@ class ValidateConfigResponse final :
 
   enum : int {
     kDependenciesFieldNumber = 1,
+    kOptionalDependenciesFieldNumber = 2,
   };
   // repeated string dependencies = 1 [json_name = "dependencies"];
   int dependencies_size() const;
@@ -1931,6 +1932,30 @@ class ValidateConfigResponse final :
   std::string* _internal_add_dependencies();
   public:
 
+  // repeated string optional_dependencies = 2 [json_name = "optionalDependencies"];
+  int optional_dependencies_size() const;
+  private:
+  int _internal_optional_dependencies_size() const;
+  public:
+  void clear_optional_dependencies();
+  const std::string& optional_dependencies(int index) const;
+  std::string* mutable_optional_dependencies(int index);
+  void set_optional_dependencies(int index, const std::string& value);
+  void set_optional_dependencies(int index, std::string&& value);
+  void set_optional_dependencies(int index, const char* value);
+  void set_optional_dependencies(int index, const char* value, size_t size);
+  std::string* add_optional_dependencies();
+  void add_optional_dependencies(const std::string& value);
+  void add_optional_dependencies(std::string&& value);
+  void add_optional_dependencies(const char* value);
+  void add_optional_dependencies(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& optional_dependencies() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_optional_dependencies();
+  private:
+  const std::string& _internal_optional_dependencies(int index) const;
+  std::string* _internal_add_optional_dependencies();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.module.v1.ValidateConfigResponse)
  private:
   class _Internal;
@@ -1939,6 +1964,7 @@ class ValidateConfigResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> dependencies_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> optional_dependencies_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_module_2fv1_2fmodule_2eproto;
 };
@@ -2985,6 +3011,81 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 ValidateConfigResponse::mutable_dependencies() {
   // @@protoc_insertion_point(field_mutable_list:viam.module.v1.ValidateConfigResponse.dependencies)
   return &dependencies_;
+}
+
+// repeated string optional_dependencies = 2 [json_name = "optionalDependencies"];
+inline int ValidateConfigResponse::_internal_optional_dependencies_size() const {
+  return optional_dependencies_.size();
+}
+inline int ValidateConfigResponse::optional_dependencies_size() const {
+  return _internal_optional_dependencies_size();
+}
+inline void ValidateConfigResponse::clear_optional_dependencies() {
+  optional_dependencies_.Clear();
+}
+inline std::string* ValidateConfigResponse::add_optional_dependencies() {
+  std::string* _s = _internal_add_optional_dependencies();
+  // @@protoc_insertion_point(field_add_mutable:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+  return _s;
+}
+inline const std::string& ValidateConfigResponse::_internal_optional_dependencies(int index) const {
+  return optional_dependencies_.Get(index);
+}
+inline const std::string& ValidateConfigResponse::optional_dependencies(int index) const {
+  // @@protoc_insertion_point(field_get:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+  return _internal_optional_dependencies(index);
+}
+inline std::string* ValidateConfigResponse::mutable_optional_dependencies(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+  return optional_dependencies_.Mutable(index);
+}
+inline void ValidateConfigResponse::set_optional_dependencies(int index, const std::string& value) {
+  optional_dependencies_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+}
+inline void ValidateConfigResponse::set_optional_dependencies(int index, std::string&& value) {
+  optional_dependencies_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+}
+inline void ValidateConfigResponse::set_optional_dependencies(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  optional_dependencies_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+}
+inline void ValidateConfigResponse::set_optional_dependencies(int index, const char* value, size_t size) {
+  optional_dependencies_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+}
+inline std::string* ValidateConfigResponse::_internal_add_optional_dependencies() {
+  return optional_dependencies_.Add();
+}
+inline void ValidateConfigResponse::add_optional_dependencies(const std::string& value) {
+  optional_dependencies_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+}
+inline void ValidateConfigResponse::add_optional_dependencies(std::string&& value) {
+  optional_dependencies_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+}
+inline void ValidateConfigResponse::add_optional_dependencies(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  optional_dependencies_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+}
+inline void ValidateConfigResponse::add_optional_dependencies(const char* value, size_t size) {
+  optional_dependencies_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+ValidateConfigResponse::optional_dependencies() const {
+  // @@protoc_insertion_point(field_list:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+  return optional_dependencies_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+ValidateConfigResponse::mutable_optional_dependencies() {
+  // @@protoc_insertion_point(field_mutable_list:viam.module.v1.ValidateConfigResponse.optional_dependencies)
+  return &optional_dependencies_;
 }
 
 #ifdef __GNUC__

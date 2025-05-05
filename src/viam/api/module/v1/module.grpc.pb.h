@@ -71,8 +71,8 @@ class ModuleService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ReadyResponse>> PrepareAsyncReady(::grpc::ClientContext* context, const ::viam::module::v1::ReadyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ReadyResponse>>(PrepareAsyncReadyRaw(context, request, cq));
     }
-    // ValidateConfig determines whether the given config is valid and registers/returns implicit
-    // dependencies.
+    // ValidateConfig determines whether the given config is valid and registers/returns
+    // both required and optional implicit dependencies.
     virtual ::grpc::Status ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::viam::module::v1::ValidateConfigResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>> AsyncValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::module::v1::ValidateConfigResponse>>(AsyncValidateConfigRaw(context, request, cq));
@@ -135,8 +135,8 @@ class ModuleService final {
       #else
       virtual void Ready(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ReadyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // ValidateConfig determines whether the given config is valid and registers/returns implicit
-      // dependencies.
+      // ValidateConfig determines whether the given config is valid and registers/returns
+      // both required and optional implicit dependencies.
       virtual void ValidateConfig(::grpc::ClientContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ValidateConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::module::v1::ValidateConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -311,8 +311,8 @@ class ModuleService final {
     virtual ::grpc::Status RemoveResource(::grpc::ServerContext* context, const ::viam::module::v1::RemoveResourceRequest* request, ::viam::module::v1::RemoveResourceResponse* response);
     // Ready determines if the server is started and ready to recieve resource configurations.
     virtual ::grpc::Status Ready(::grpc::ServerContext* context, const ::viam::module::v1::ReadyRequest* request, ::viam::module::v1::ReadyResponse* response);
-    // ValidateConfig determines whether the given config is valid and registers/returns implicit
-    // dependencies.
+    // ValidateConfig determines whether the given config is valid and registers/returns
+    // both required and optional implicit dependencies.
     virtual ::grpc::Status ValidateConfig(::grpc::ServerContext* context, const ::viam::module::v1::ValidateConfigRequest* request, ::viam::module::v1::ValidateConfigResponse* response);
   };
   template <class BaseClass>
