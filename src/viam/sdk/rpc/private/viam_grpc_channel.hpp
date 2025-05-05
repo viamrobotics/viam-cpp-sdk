@@ -11,7 +11,7 @@ namespace impl {
 
 /// @brief Like grpc::CreateChannel, but returns a channel suitable for transmitting messages of
 /// size kMaxMessageSize.
-std::shared_ptr<grpc::Channel> create_viam_channel(
+std::shared_ptr<grpc::Channel> create_viam_grpc_channel(
     const grpc::string& target, const std::shared_ptr<grpc::ChannelCredentials>& credentials);
 
 /// @brief Like grpc::CreateChannel, but for the express purpose of returning a channel for making

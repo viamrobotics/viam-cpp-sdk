@@ -296,7 +296,7 @@ std::unique_ptr<RobotClient> RobotClient::at_local_socket(const std::string& add
                                                           const Options& options) {
     const std::string addr = "unix://" + address;
     auto robot = RobotClient::with_channel(
-        ViamChannel(sdk::impl::create_viam_channel(addr, grpc::InsecureChannelCredentials())),
+        ViamChannel(sdk::impl::create_viam_grpc_channel(addr, grpc::InsecureChannelCredentials())),
         options);
 
     return robot;

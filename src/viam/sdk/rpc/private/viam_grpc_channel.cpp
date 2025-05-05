@@ -17,7 +17,7 @@ std::shared_ptr<grpc::Channel> create_viam_auth_channel(const std::string& addre
     return grpc::CreateChannel(address, tls_creds);
 }
 
-std::shared_ptr<grpc::Channel> create_viam_channel(
+std::shared_ptr<grpc::Channel> create_viam_grpc_channel(
     const grpc::string& target, const std::shared_ptr<grpc::ChannelCredentials>& credentials) {
     grpc::ChannelArguments args;
     args.SetMaxSendMessageSize(kMaxMessageSize);

@@ -1,4 +1,3 @@
-#include <grpc/grpc.h>
 #include <viam/sdk/rpc/dial.hpp>
 
 #include <istream>
@@ -8,6 +7,7 @@
 #include <boost/none.hpp>
 #include <boost/optional.hpp>
 #include <boost/utility/string_view.hpp>
+#include <grpc/grpc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
@@ -16,6 +16,7 @@
 #include <viam/api/proto/rpc/v1/auth.pb.h>
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
+
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/private/instance.hpp>
@@ -133,9 +134,10 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
     std::string address("unix://");
     address += socket_path;
 
-    return ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
-                       socket_path,
-                       ptr);
+    return ViamChannel(
+        sdk::impl::create_viam_grpc_channel(address, grpc::InsecureChannelCredentials()),
+        socket_path,
+        ptr);
 }
 
 ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
@@ -160,7 +162,7 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
     grpc::experimental::TlsChannelCredentialsOptions c_opts;
     c_opts.set_check_call_host(false);
     auto creds = grpc::experimental::TlsCredentials(c_opts);
-    return ViamChannel(sdk::impl::create_viam_channel(uri, creds));
+    return ViamChannel(sdk::impl::create_viam_grpc_channel(uri, creds));
 }
 
 const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
