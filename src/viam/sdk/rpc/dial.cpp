@@ -157,8 +157,8 @@ void ViamChannel::set_bearer_token(const char* uri, const DialOptions& opts) {
     auto status = auth_stub->Authenticate(ctx, req, &resp);
 
     if (!status.ok()) {
-        VIAM_SDK_LOG(warn) << "Direct dial authentication request failed: "
-                           << status.error_message();
+        VIAM_SDK_LOG(error) << "Direct dial authentication request failed: "
+                            << status.error_message();
         throw GRPCException(&status);
     }
 
@@ -169,9 +169,16 @@ void ViamChannel::set_bearer_token(const char* uri, const DialOptions& opts) {
 ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
     ViamChannel::set_bearer_token(uri, opts);
 
-    grpc::experimental::TlsChannelCredentialsOptions c_opts;
+#ifndef VIAMCPPSDK_GRPCXX_LEGACY_FWD
+    namespace grpc_experimental = grpc::experimental;
+
+#else
+    namespace grpc_experimental = grpc_impl::experimental;
+#endif
+
+    grpc_experimental::TlsChannelCredentialsOptions c_opts;
     c_opts.set_check_call_host(false);
-    auto creds = grpc::experimental::TlsCredentials(c_opts);
+    auto creds = grpc_experimental::TlsCredentials(c_opts);
     return ViamChannel(sdk::impl::create_viam_grpc_channel(uri, creds));
 }
 
