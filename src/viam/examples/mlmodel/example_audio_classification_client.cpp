@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#ifdef _WIN32
+#define NOMINMAX
+#endif
+
 #include <chrono>
 #include <cstdlib>
 #include <fstream>
@@ -377,7 +381,7 @@ int main(int argc, char* argv[]) try {
             });
 
             // Print out the top 5 (or fewer) label/score pairs.
-            for (size_t i = 0; i != 5UL && i != scored_labels.size(); ++i) {
+            for (size_t i = 0; i != std::min(5UL, scored_labels.size()); ++i) {
                 // TODO: Avoid hardcoding the width here.
                 VIAM_SDK_LOG(info) << boost::format("%1%: %2% %|40t|%3%\n") % i %
                                           *scored_labels[i].label % scored_labels[i].score;
