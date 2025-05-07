@@ -294,7 +294,7 @@ else()
 endif()
 
 if (NOT WIN32) # build `SHARED` on unix-based systems
-  add_library(viam_rust_utils STATIC IMPORTED)
+  add_library(viam_rust_utils SHARED IMPORTED)
   target_link_directories(viam_rust_utils
     INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
@@ -313,12 +313,12 @@ elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `STATIC` for windows
 endif()
 
 
-#if (NOT WIN32) # installing seems to be necessary for tests to pass in CI
-  #install(
-    #IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
-    #LIBRARY COMPONENT viam-cpp-sdk_runtime
-  #)
-#endif()
+if (NOT WIN32) # installing seems to be necessary for tests to pass in CI
+  install(
+    IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
+    LIBRARY COMPONENT viam-cpp-sdk_runtime
+  )
+endif()
 
 # Install the license file
 install(FILES
