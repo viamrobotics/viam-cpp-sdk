@@ -294,7 +294,7 @@ else()
 endif()
 
 if (NOT WIN32) # build `SHARED` on unix-based systems
-  add_library(viam_rust_utils SHARED IMPORTED)
+  add_library(viam_rust_utils STATIC IMPORTED)
   target_link_directories(viam_rust_utils
     INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
@@ -307,6 +307,7 @@ elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `STATIC` for windows
   target_link_directories(viam_rust_utils
     INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
   )
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
 endif()

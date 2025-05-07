@@ -57,21 +57,21 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install cmake
-        uses: ssrobins/install-cmake@v1
-        with:
-          version: 3.27.2
+      #- name: Install cmake
+        #uses: ssrobins/install-cmake@v1
+        #with:
+          #version: 3.27.2
 
-      - name: Install python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+      #- name: Install python
+        #uses: actions/setup-python@v5
+        #with:
+          #python-version: '3.12'
 
-      - name: Install Scoop
-        uses: MinoruSekine/setup-scoop@v4.0.1
+      #- name: Install Scoop
+        #uses: MinoruSekine/setup-scoop@v4.0.1
 
-      - name: install buf 'n stuff
-        run: scoop install buf ninja
+      #- name: install buf 'n stuff
+        #run: scoop install buf ninja
 
       - name: Install dependencies
         uses: crazy-max/ghaction-chocolatey@v3
@@ -84,7 +84,11 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan create .
+          conan create . `
+            --build=missing `
+            -o "&:shared=False" `
+            -s:h compiler.cppstd=17 `
+            -s:h compiler.runtime=static
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
