@@ -91,7 +91,8 @@ class ViamCppSdkRecipe(ConanFile):
 
     def package_info(self):
 
-        self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
+        if self.options.shared:
+            self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
 
         self.cpp_info.components["viamsdk"].libs = ["viamsdk"]
 
@@ -134,8 +135,9 @@ class ViamCppSdkRecipe(ConanFile):
             "viamapi",
         ])
 
-        self.cpp_info.components["viamsdk"].requires.extend([
-            "viam_rust_utils"
-        ])
+        if self.options.shared:
+            self.cpp_info.components["viamsdk"].requires.extend([
+                "viam_rust_utils"
+            ])
 
         self.cpp_info.components["viamsdk"].frameworks = ["Security"]

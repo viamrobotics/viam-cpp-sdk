@@ -293,6 +293,18 @@ else()
     message(WARNING "Currently running on Windows with no rust-utils file. Module code should work as expected, but client code may fail unexpectedly.")
 endif()
 
+if (APPLE)
+  target_link_libraries(viam_rust_utils PUBLIC "-framework Security")
+elseif (NOT WIN32)
+  target_link_libraries(viam_rust_utils PRIVATE dl)
+  target_link_libraries(viam_rust_utils PRIVATE rt)
+else()
+  target_link_libraries(viam_rust_utils PRIVATE ncrypt)
+  target_link_libraries(viam_rust_utils PRIVATE secur32)
+  target_link_libraries(viam_rust_utils PRIVATE ntdll)
+  target_link_libraries(viam_rust_utils PRIVATE userenv)
+endif()
+
 if (NOT WIN32) # build `SHARED` on unix-based systems
   add_library(viam_rust_utils SHARED IMPORTED)
   target_link_directories(viam_rust_utils
@@ -313,7 +325,7 @@ elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `STATIC` for windows
 endif()
 
 
-if (NOT WIN32) # installing seems to be necessary for tests to pass in CI
+if (BUILD_SHARED_LIBS) # installing seems to be necessary for tests to pass in CI
   install(
     IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
     LIBRARY COMPONENT viam-cpp-sdk_runtime

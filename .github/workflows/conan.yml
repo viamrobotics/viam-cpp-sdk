@@ -86,9 +86,7 @@ jobs:
           conan profile detect
           conan create . `
             --build=missing `
-            -o "&:shared=False" `
-            -s:h compiler.cppstd=17 `
-            -s:h compiler.runtime=static
+            -o "&:shared=False"
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
