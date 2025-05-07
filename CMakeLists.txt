@@ -266,15 +266,20 @@ if (viam_rust_utils_files)
     ${viam_rust_utils_file}
     ONLY_IF_DIFFERENT
   )
-elseif(NOT WIN32) # TODO(RSDK-10637): Currently, rust_utils windows builds aren't working in CI, so don't even try downloading
+elseif(NOT WIN32 OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64")
   set(lvru_system_name ${CMAKE_SYSTEM_NAME})
   if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(lvru_system_name "macosx")
   endif()
 
+  set(lvru_system_processor ${CMAKE_SYSTEM_PROCESSOR})
+  if(WIN32)
+    set(lvru_system_processor "x86_64")
+  endif()
+
   file(
     DOWNLOAD
-    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${CMAKE_SYSTEM_PROCESSOR}${CMAKE_STATIC_LIBRARY_SUFFIX}
+    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}
     ${viam_rust_utils_file}
     STATUS lvru_status
   )
@@ -297,8 +302,7 @@ if (NOT WIN32) # build `SHARED` on unix-based systems
   )
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
 
-  # TODO(RSDK-10637): Currently, rust_utils doesn't build correctly for windows in CI, so don't declare the library unless a user has provided their own build
-elseif (num_viam_rust_utils_files GREATER 0) # build `STATIC` for windows
+elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `STATIC` for windows
   add_library(viam_rust_utils STATIC IMPORTED)
   target_link_directories(viam_rust_utils
     INTERFACE
@@ -308,7 +312,7 @@ elseif (num_viam_rust_utils_files GREATER 0) # build `STATIC` for windows
 endif()
 
 
-if (NOT WIN32)
+if (NOT WIN32) # installing seems to be necessary for tests to pass in CI
   install(
     IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
     LIBRARY COMPONENT viam-cpp-sdk_runtime

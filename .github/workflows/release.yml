@@ -37,80 +37,75 @@ jobs:
         if: steps.release_exists.outputs.id != ''
 
 
+  # CR erodkin: we have (expected) working rust-utils builds now, but need to get that merged.
+  # once it is and we have a new release, try actually testing and delete the TODO.
   # TODO (RSDK-10638) - uncomment and make all this work once we have good rust-utils windows builds
-  #build_windows:
-    ##if: github.repository_owner == 'viamrobotics'
-    #needs: [prepare]
-    #runs-on: windows-latest
-    #strategy:
-      #fail-fast: false
-      #matrix:
-        #include:
-          #- target: x86_64-windows
-            #platform: windows_x86_64
-    #steps:
-      #- name: Checkout Code
-        #uses: actions/checkout@v4
-        #with:
-          #ref: ${{ needs.prepare.outputs.sha }}
+  build_windows:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-windows
+            platform: windows_x86_64
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
 
-      #- name: Install cmake
-        #uses: ssrobins/install-cmake@v1
-        #with:
-          #version: 3.27.2
+      - name: Install cmake
+        uses: ssrobins/install-cmake@v1
+        with:
+          version: 3.27.2
 
-      #- name: Install python
-        #uses: actions/setup-python@v5
-        #with:
-          #python-version: '3.12'
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-      #- name: Install Scoop
-        #uses: MinoruSekine/setup-scoop@v4.0.1
+      - name: Install Scoop
+        uses: MinoruSekine/setup-scoop@v4.0.1
 
-      #- name: install buf 'n stuff
-        #run: scoop install buf ninja
+      - name: install buf 'n stuff
+        run: scoop install buf ninja
 
-      #- name: Install dependencies
-        #uses: crazy-max/ghaction-chocolatey@v3
-        #with:
-          #args: install -y conan git
+      - name: Install dependencies
+        uses: crazy-max/ghaction-chocolatey@v3
+        with:
+          args: install -y conan git
 
+      - name: Create package
+        shell: powershell
+        run: |
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
+          conan profile detect
+          conan create .
+        env:
+          CONAN_USER_HOME: c:/cache
+          CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
-      ## Ensures that things installed with choco are visible to us
-      #- name: refresh env
-        #run: |
-          #Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          #refreshenv
+      - name: list stuff
+        run: |
+          ls
+          ls build/
 
-      #- name: Create package
-        #shell: powershell
-        #run: |
-          #Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          #refreshenv
-          #conan profile detect
-          #conan create .
-        #env:
-          #CONAN_USER_HOME: c:/cache
-          #CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+      - name: Copy
+        run: |
+          cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
 
-      #- name: list stuff
-        #run: |
-          #ls
-          #ls build/
+      - name: Create tar
+        run: |
+          tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
 
-      #- name: Copy
-        #run: |
-          #cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
-
-      #- name: Create tar
-        #run: |
-          #tar -czvf builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz builds/viam-cpp-sdk-${{ matrix.platform }}
-
-      #- name: Upload artifacts
-        #uses: actions/upload-artifact@v4
-        #with:
-          #name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
-          #path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: viam-cpp-sdk-${{ matrix.platform }}.tar.gz
+          path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
