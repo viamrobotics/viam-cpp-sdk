@@ -313,12 +313,12 @@ elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `STATIC` for windows
 endif()
 
 
-if (NOT WIN32) # installing seems to be necessary for tests to pass in CI
-  install(
-    IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
-    LIBRARY COMPONENT viam-cpp-sdk_runtime
-  )
-endif()
+#if (NOT WIN32) # installing seems to be necessary for tests to pass in CI
+  #install(
+    #IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
+    #LIBRARY COMPONENT viam-cpp-sdk_runtime
+  #)
+#endif()
 
 # Install the license file
 install(FILES
