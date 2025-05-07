@@ -312,18 +312,6 @@ if (NOT WIN32 OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `SHARED` on
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
 endif()
 
-if (APPLE)
-  target_link_libraries(viam_rust_utils INTERFACE "-framework Security")
-elseif (NOT WIN32)
-  target_link_libraries(viam_rust_utils INTERFACE dl)
-  target_link_libraries(viam_rust_utils INTERFACE rt)
-else()
-  target_link_libraries(viam_rust_utils INTERFACE ncrypt)
-  target_link_libraries(viam_rust_utils INTERFACE secur32)
-  target_link_libraries(viam_rust_utils INTERFACE ntdll)
-  target_link_libraries(viam_rust_utils INTERFACE userenv)
-endif()
-
 if (NOT BUILD_SHARED_LIBS) # installing seems to be necessary for tests to pass in CI
   install(
     IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
