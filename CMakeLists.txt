@@ -310,13 +310,12 @@ if (NOT WIN32 OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `SHARED` on
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
   )
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
-endif()
 
-if (NOT BUILD_SHARED_LIBS) # installing seems to be necessary for tests to pass in CI
-  install(
-    IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
-    LIBRARY COMPONENT viam-cpp-sdk_runtime
-  )
+  if (NOT BUILD_SHARED_LIBS) # installing seems to be necessary for tests to pass in CI
+    install(
+      FILES ${viam_rust_utils_file} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT viam-cpp-sdk_runtime
+    )
+  endif()
 endif()
 
 # Install the license file
