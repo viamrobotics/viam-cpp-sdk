@@ -324,7 +324,7 @@ else()
   target_link_libraries(viam_rust_utils INTERFACE userenv)
 endif()
 
-if (BUILD_SHARED_LIBS) # installing seems to be necessary for tests to pass in CI
+if (NOT BUILD_SHARED_LIBS) # installing seems to be necessary for tests to pass in CI
   install(
     IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
     LIBRARY COMPONENT viam-cpp-sdk_runtime
