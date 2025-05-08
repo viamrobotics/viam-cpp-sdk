@@ -315,7 +315,7 @@ if (NOT WIN32 OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `SHARED` on
   install(
     FILES ${viam_rust_utils_file} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT viam-cpp-sdk_runtime
   )
-  endif()
+  #endif()
 endif()
 
 # Install the license file
