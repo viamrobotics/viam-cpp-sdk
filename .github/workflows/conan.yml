@@ -74,7 +74,6 @@ jobs:
       - name: list stuff
         run: |
           ls
-          ls build/
           tree
 
   build_macos:
@@ -112,7 +111,6 @@ jobs:
       - name: list stuff
         run: |
           ls
-          ls build/
           tree
 
   build_linux_ubuntu_jammy:
