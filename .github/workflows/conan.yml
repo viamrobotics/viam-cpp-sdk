@@ -70,7 +70,7 @@ jobs:
           conan profile detect
           conan install . --output-folder=build-conan --build=missing -o "&:shared=False"
           cmake . --preset conan-default
-          cmake --build --preset=conan-release
+          cmake --build --preset=conan-release --target all install -j 8
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
@@ -111,10 +111,6 @@ jobs:
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
           conan create . --build=missing -s compiler.cppstd=17
-      - name: list stuff
-        run: |
-          ls
-          tree
 
   build_linux_ubuntu_jammy:
     if: github.repository_owner == 'viamrobotics'
