@@ -260,11 +260,11 @@ have a different version of `protoc` available in your `PATH`, it will
 silently fail and later cause compilation failures due to protobuf
 version mismatches.
 
-## Building for Windows
+## Building for ARM Windows
 
 The C++ SDK works well on windows for both client and module code 
 provided there is internet connectivity. However, some manual work is
-required to build for client code.
+required to build for client code on ARM64 architecture.
 
 1. (client code only) clone [rust-utils](https://github.com/viamrobotics/rust-utils) >= v0.3.0 and
 build locally with `cargo build --release`. Copy `target\release\viam_rust_utils.lib`
@@ -276,9 +276,6 @@ conan profile detect
 cmake . --preset conan-default <cmake args>
 cmake --build --preset=conan-release -j
 ```
-
-NOTE: There is no current support for offline mode as a client, though
-this is being worked on.
 
 ## Options to Configure or Customize the Build
 

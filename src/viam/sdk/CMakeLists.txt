@@ -276,10 +276,10 @@ target_link_libraries(viamsdk
   PRIVATE Threads::Threads
 )
 
-# TODO(RSDK-10637): Currently, rust_utils for windows doesn't link correctly when built in CI,
-# so don't link to it unless the user has provided a file for it.  Instead, link a stub implementation
-# that just calls `abort`.
-if (NOT WIN32 OR num_viam_rust_utils_files GREATER 0)
+# rust-utils doesn't build in CI on windows other than x86_64, so confirm that we're either not
+# windows, or if we are windows that we're AMD64, or else that the user has provided their own
+# build of rust_utils.
+if (NOT WIN32 OR num_viam_rust_utils_files GREATER 0 OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64")
   target_link_libraries(viamsdk
     PRIVATE viam_rust_utils
   )
