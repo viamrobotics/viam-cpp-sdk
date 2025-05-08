@@ -294,15 +294,6 @@ else()
 endif()
 
 if (NOT WIN32 OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `SHARED` on unix-based systems
-  #add_library(viam_rust_utils SHARED IMPORTED)
-  #target_link_directories(viam_rust_utils
-    #INTERFACE
-    #"$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
-    #"$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
-  #)
-  #set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
-
-#elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `STATIC` for windows
   add_library(viam_rust_utils STATIC IMPORTED)
   target_link_directories(viam_rust_utils
     INTERFACE
@@ -311,11 +302,9 @@ if (NOT WIN32 OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64") # build `SHARED` on
   )
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
 
-  #if (NOT BUILD_SHARED_LIBS) # installing seems to be necessary for tests to pass in CI
   install(
     FILES ${viam_rust_utils_file} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT viam-cpp-sdk_runtime
   )
-  #endif()
 endif()
 
 # Install the license file
