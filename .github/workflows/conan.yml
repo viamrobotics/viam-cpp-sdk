@@ -61,13 +61,16 @@ jobs:
 
       - name: Create package
         shell: powershell
+          #conan create . `
+            #--build=missing `
+            #-o "&:shared=False"
         run: |
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan create . `
-            --build=missing `
-            -o "&:shared=False"
+          conan install . --output-folder=build --build=missing -o "&:shared=false"
+          cmake . --preset conan-default
+          cmake --build --preset=conan-release
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
