@@ -40,9 +40,6 @@ jobs:
           github.event_name == 'schedule' &&
           steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit-hash
 
-  # CR erodkin: we have (expected) working rust-utils builds now, but need to get that merged.
-  # once it is and we have a new release, try actually testing and delete the TODO.
-  # TODO(RSDK-10638) - uncomment and make all this work once we have good rust-utils windows builds
   build_windows:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
@@ -56,22 +53,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      #- name: Install cmake
-        #uses: ssrobins/install-cmake@v1
-        #with:
-          #version: 3.27.2
-
-      #- name: Install python
-        #uses: actions/setup-python@v5
-        #with:
-          #python-version: '3.12'
-
-      #- name: Install Scoop
-        #uses: MinoruSekine/setup-scoop@v4.0.1
-
-      #- name: install buf 'n stuff
-        #run: scoop install buf ninja
 
       - name: Install dependencies
         uses: crazy-max/ghaction-chocolatey@v3
@@ -90,6 +71,11 @@ jobs:
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+      - name: list stuff
+        run: |
+          ls
+          ls build/
+          tree
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
@@ -123,6 +109,11 @@ jobs:
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
           conan create . --build=missing -s compiler.cppstd=17
+      - name: list stuff
+        run: |
+          ls
+          ls build/
+          tree
 
   build_linux_ubuntu_jammy:
     if: github.repository_owner == 'viamrobotics'
