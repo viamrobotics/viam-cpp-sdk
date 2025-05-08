@@ -63,9 +63,9 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan create . `
-            --build=missing `
-            -o "&:shared=False"
+          conan install . --output-folder=build-conan --build=missing -o "&:shared=False"
+          cmake . --preset conan-default
+          cmake --build --preset=conan-release
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
@@ -78,7 +78,7 @@ jobs:
 
       - name: Copy
         run: |
-          cmake --install build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
+          cmake --install build-conan/build --prefix builds/viam-cpp-sdk-${{ matrix.platform }}
 
       - name: Create tar
         run: |

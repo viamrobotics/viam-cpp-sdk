@@ -68,7 +68,7 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan install . --output-folder=build --build=missing -o "&:shared=false"
+          conan install . --output-folder=build-conan --build=missing -o "&:shared=False"
           cmake . --preset conan-default
           cmake --build --preset=conan-release
         env:
