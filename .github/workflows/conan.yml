@@ -40,45 +40,38 @@ jobs:
           github.event_name == 'schedule' &&
           steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit-hash
 
-  build_windows:
-    if: github.repository_owner == 'viamrobotics'
-    needs: [prepare]
-    runs-on: windows-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - target: x86_64-windows
-            platform: windows_x86_64
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+  # TODO (RSDK-10666) Uncomment and fix
+  #build_windows:
+    #if: github.repository_owner == 'viamrobotics'
+    #needs: [prepare]
+    #runs-on: windows-latest
+    #strategy:
+      #fail-fast: false
+      #matrix:
+        #include:
+          #- target: x86_64-windows
+            #platform: windows_x86_64
+    #steps:
+      #- name: Checkout Code
+        #uses: actions/checkout@v4
 
-      - name: Install dependencies
-        uses: crazy-max/ghaction-chocolatey@v3
-        with:
-          args: install -y conan git
+      #- name: Install dependencies
+        #uses: crazy-max/ghaction-chocolatey@v3
+        #with:
+          #args: install -y conan git
 
-      - name: Create package
-        shell: powershell
+      #- name: Create package
+        #shell: powershell
+        #run: |
+          #Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          #refreshenv
+          #conan profile detect
           #conan create . `
             #--build=missing `
             #-o "&:shared=False"
-        run: |
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          refreshenv
-          conan profile detect
-          conan install . --output-folder=build-conan --build=missing -o "&:shared=False"
-          cmake . --preset conan-default
-          cmake --build --preset=conan-release --target ALL_BUILD install -j 8
-        env:
-          CONAN_USER_HOME: c:/cache
-          CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
-      - name: list stuff
-        run: |
-          ls
-          ls build-conan
-          ls build-conan/build
+        #env:
+          #CONAN_USER_HOME: c:/cache
+          #CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
