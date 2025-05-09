@@ -77,7 +77,8 @@ jobs:
       - name: list stuff
         run: |
           ls
-          tree
+          ls build-conan
+          ls build-conan/build
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
