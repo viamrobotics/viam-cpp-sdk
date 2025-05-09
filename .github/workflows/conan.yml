@@ -70,7 +70,7 @@ jobs:
           conan profile detect
           conan install . --output-folder=build-conan --build=missing -o "&:shared=False"
           cmake . --preset conan-default
-          cmake --build --preset=conan-release install -j 8
+          cmake --build --preset=conan-release --target ALL_BUILD install -j 8
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
