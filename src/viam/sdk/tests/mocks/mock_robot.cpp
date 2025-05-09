@@ -299,7 +299,8 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     const ::viam::robot::v1::FrameSystemConfigRequest*,
     ::viam::robot::v1::FrameSystemConfigResponse* response) {
     auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
@@ -314,7 +315,8 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
                                                const ::viam::robot::v1::TransformPoseRequest*,
                                                ::viam::robot::v1::TransformPoseResponse* response) {
     auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
@@ -327,7 +329,8 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     const ::viam::robot::v1::GetMachineStatusRequest*,
     ::viam::robot::v1::GetMachineStatusResponse* response) {
     auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
@@ -341,7 +344,8 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
                                                const ::viam::robot::v1::GetOperationsRequest*,
                                                ::viam::robot::v1::GetOperationsResponse* response) {
     auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
