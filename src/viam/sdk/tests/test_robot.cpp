@@ -54,7 +54,7 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
 
     // Run the passed-in test case on the created stack and give access to the
     // created RobotClient and MockRobotService.
-    std::forward<F>(test_case)(client, service);
+    std::forward<F>(test_case)(std::move(client), service);
 }
 
 BOOST_AUTO_TEST_CASE(test_registering_resources) {
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE(test_registering_resources) {
 
 BOOST_AUTO_TEST_CASE(test_resource_names) {
     robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+        [](std::unique_ptr<RobotClient> client, MockRobotService& service) -> void {
             std::vector<Name> names = client->resource_names();
             auto mocks = mock_resource_names_response();
             BOOST_TEST(names == mocks, boost::test_tools::per_element());
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(test_resource_names) {
 // the proto and custom type versions.
 BOOST_AUTO_TEST_CASE(test_frame_system_config) {
     robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+        [](std::unique_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto configs = mock_config_response();
             auto config1 = configs[0];
             auto config2 = configs[1];
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
 
 BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
     robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+        [](std::unique_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto mock_fs_config = mock_config_response();
             auto fs_config = client->get_frame_system_config();
 
@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_CASE(test_get_frame_system_config) {
 // the proto and custom type versions.
 BOOST_AUTO_TEST_CASE(test_operation) {
     robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+        [](std::unique_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto ops = mock_operations_response();
             auto op1 = ops[0];
             auto op2 = ops[1];
@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(test_operation) {
 
 BOOST_AUTO_TEST_CASE(test_get_operations) {
     robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+        [](std::unique_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto ops = client->get_operations();
             auto mock_ops = mock_operations_response();
 
@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE(test_get_operations) {
 
 BOOST_AUTO_TEST_CASE(test_transform_pose) {
     robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+        [](std::unique_ptr<RobotClient> client, MockRobotService& service) -> void {
             pose_in_frame pif;
             auto pose = client->transform_pose(pif, "", {});
             auto mock_pose = mock_transform_response();
@@ -190,7 +190,7 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
 
 BOOST_AUTO_TEST_CASE(test_get_machine_status) {
     robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+        [](std::unique_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto status = client->get_machine_status();
 
             BOOST_CHECK_EQUAL(status, RobotClient::status::k_running);
@@ -199,7 +199,7 @@ BOOST_AUTO_TEST_CASE(test_get_machine_status) {
 
 BOOST_AUTO_TEST_CASE(test_stop_all) {
     robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+        [](std::unique_ptr<RobotClient> client, MockRobotService& service) -> void {
             std::shared_ptr<Resource> rb = service.resource_manager()->resource("mock_motor");
             auto motor = std::dynamic_pointer_cast<motor::MockMotor>(rb);
             BOOST_CHECK(motor);
@@ -215,7 +215,7 @@ BOOST_AUTO_TEST_CASE(test_stop_all) {
 
 BOOST_AUTO_TEST_CASE(test_get_resource) {
     robot_client_to_mocks_pipeline(
-        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+        [](std::unique_ptr<RobotClient> client, MockRobotService& service) -> void {
             auto mock_motor = client->resource_by_name<Motor>("mock_motor");
             BOOST_CHECK(mock_motor);
 

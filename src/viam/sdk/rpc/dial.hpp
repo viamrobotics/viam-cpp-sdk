@@ -11,7 +11,8 @@
 namespace viam {
 namespace sdk {
 
-class DialOptions;
+struct DialOptions;
+
 class ViamChannel {
     ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
 
@@ -32,11 +33,12 @@ class ViamChannel {
     /// @throws Exception if it is unable to establish a connection to the provided URI
     static ViamChannel dial(const char* uri, const boost::optional<DialOptions>& options);
 
-    // @brief Dials to a robot at the given URI address, using the provided dial options (or default
-    // options is none are provided). Additionally specifies that this dial is an initial connection
-    // attempt and so uses the initial connection options.
-    /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
-    /// preferred method to connect to a robot, and creates the channel itself.
+    /// @brief Dials to a robot at the given URI address, using the provided dial options (or
+    /// default options is none are provided).
+    /// Additionally specifies that this dial is an initial
+    /// connection attempt and so uses the initial connection options. In general, use of this
+    /// method is discouraged. `RobotClient::at_address(...)` is the preferred method to connect to
+    /// a robot, and creates the channel itself.
     /// @throws Exception if it is unable to establish a connection to the provided URI within
     /// the given number of initial connection attempts
     static ViamChannel dial_initial(const char* uri, const boost::optional<DialOptions>& options);
@@ -47,6 +49,11 @@ class ViamChannel {
 
    private:
     struct impl;
+
+    // Sets the global bearer token used in client requests for direct dialing over gRPC.
+    static void set_bearer_token(const char* uri, const DialOptions& opts);
+
+    static ViamChannel dial_direct(const char* uri, const DialOptions& opts);
 
     std::shared_ptr<GrpcChannel> channel_;
 
@@ -66,49 +73,34 @@ class Credentials {
     std::string payload_;
 };
 
-class DialOptions {
-   public:
-    DialOptions();
-
-    const boost::optional<Credentials>& credentials() const;
-    const boost::optional<std::string>& entity() const;
-    bool allows_insecure_downgrade() const;
-    const std::chrono::duration<float>& timeout() const;
-    int initial_connection_attempts() const;
-    std::chrono::duration<float> initial_connection_attempt_timeout() const;
-
-    DialOptions& set_entity(boost::optional<std::string> entity);
-    DialOptions& set_credentials(boost::optional<Credentials> creds);
-    DialOptions& set_allow_insecure_downgrade(bool allow);
-    DialOptions& set_timeout(std::chrono::duration<float> timeout);
-    DialOptions& set_initial_connection_attempts(int attempts);
-    DialOptions& set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
-
-   private:
-    // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying on a
-    // `local` uri. We should update dial logic to consider such a flag.
-
+struct DialOptions {
     /// @brief the URL to authenticate against.
-    boost::optional<std::string> auth_entity_;
+    boost::optional<std::string> auth_entity;
 
     /// @brief Credentials for connecting to the robot.
-    boost::optional<Credentials> credentials_;
+    boost::optional<Credentials> credentials;
 
     /// @brief Allows the RPC connection to be downgraded to an insecure connection if detected.
     /// This is only used when credentials are not present.
-    bool allow_insecure_downgrade_ = false;
+    bool allow_insecure_downgrade = false;
+
+    /// @brief Bypass WebRTC and connect directly to the robot.
+    /// This dials directly through grpc bypassing rust utils.
+    /// @remark Direct dialing should generally be done with a machine URI of the form
+    /// <part>.<location>.local.viam.cloud:8080
+    bool disable_webrtc = false;
 
     /// @brief Duration before the dial connection times out
     /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
-    std::chrono::duration<float> timeout_{20};
+    std::chrono::duration<float> timeout{20};
 
     /// @brief Number of attempts to make when initially connecting to a robot
     /// If set to 0 or a negative integer, will attempt to reconnect forever.
-    int initial_connection_attempts_ = 3;
+    int initial_connection_attempts = 3;
 
     /// @brief Timeout of connection attempts when initially dialing a robot
     /// Defaults to 20sec to match the default timeout duration
-    std::chrono::duration<float> initial_connection_attempt_timeout_{20};
+    std::chrono::duration<float> initial_connection_attempt_timeout{20};
 };
 
 class Options {

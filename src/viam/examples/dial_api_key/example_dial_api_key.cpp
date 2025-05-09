@@ -27,28 +27,30 @@ int main(int argc, char* argv[]) {
         "uri", po::value<std::string>(), "URI of robot")(
         "entity", po::value<std::string>(), "api key ID")(
         "api-key", po::value<std::string>(), "api key secret");
+
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, desc), vm);
+
     if (vm.count("help")) {
         std::cout << desc << std::endl;
         return 0;
     }
-    boost::optional<DialOptions> opts;
+
+    DialOptions opts;
+
     if (vm.count("entity") && vm.count("api-key")) {
-        DialOptions dial_options;
-        dial_options.set_entity(vm["entity"].as<std::string>());
+        opts.auth_entity = vm["entity"].as<std::string>();
         Credentials credentials("api-key", vm["api-key"].as<std::string>());
-        dial_options.set_credentials(credentials);
-        opts = dial_options;
+        opts.credentials = credentials;
     }
-    Options options(1, opts);
 
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot =
-        RobotClient::at_address(vm["uri"].as<std::string>(), options);
+        RobotClient::at_address(vm["uri"].as<std::string>(), Options(1, opts));
 
     // ensure we can query resources
     std::vector<Name> resource_names = robot->resource_names();
+
     VIAM_SDK_LOG(info) << "Resources:";
     for (const Name& resource : resource_names) {
         VIAM_SDK_LOG(info) << resource;

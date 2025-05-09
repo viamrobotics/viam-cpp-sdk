@@ -91,7 +91,7 @@ class RobotClient {
     /// @brief Create a robot client connected to the robot at the provided address.
     /// @param address The address of the robot (IP address, URI, URL, etc.)
     /// @param options Options for connecting and refreshing.
-    static std::shared_ptr<RobotClient> at_address(const std::string& address,
+    static std::unique_ptr<RobotClient> at_address(const std::string& address,
                                                    const Options& options);
 
     /// @brief Creates a robot client connected to the robot at the provided local socket.
@@ -99,13 +99,13 @@ class RobotClient {
     /// @param options Options for connecting and refreshing.
     /// Creates a direct connection to the robot using the `unix://` scheme.
     /// Only useful for connecting to robots across Unix sockets.
-    static std::shared_ptr<RobotClient> at_local_socket(const std::string& address,
+    static std::unique_ptr<RobotClient> at_local_socket(const std::string& address,
                                                         const Options& options);
 
     /// @brief Creates a robot client connected to the provided channel.
     /// @param channel The channel to connect with.
     /// @param options Options for connecting and refreshing.
-    static std::shared_ptr<RobotClient> with_channel(ViamChannel channel, const Options& options);
+    static std::unique_ptr<RobotClient> with_channel(ViamChannel channel, const Options& options);
 
     std::vector<Name> resource_names() const;
 
