@@ -28,30 +28,22 @@ namespace viam {
 namespace sdk {
 
 struct ViamChannel::impl {
+    struct cstr_delete {
+        void operator()(const char* str) noexcept {
+            free_string(str);
+        }
+    };
+
+    struct rust_rt_delete {
+        void operator()(void* rt) noexcept {
+            free_rust_runtime(rt);
+        }
+    };
+
     impl(const char* path, void* runtime) : path(path), rust_runtime(runtime) {}
 
-    impl(const impl&) = delete;
-
-    impl(impl&& other) noexcept
-        : path(std::exchange(other.path, nullptr)),
-          rust_runtime(std::exchange(other.rust_runtime, nullptr)) {}
-
-    impl& operator=(const impl&) = delete;
-
-    impl& operator=(impl&& other) noexcept {
-        path = std::exchange(other.path, nullptr);
-        rust_runtime = std::exchange(other.rust_runtime, nullptr);
-
-        return *this;
-    }
-
-    ~impl() {
-        free_string(path);
-        free_rust_runtime(rust_runtime);
-    }
-
-    const char* path;
-    void* rust_runtime;
+    std::unique_ptr<const char, cstr_delete> path;
+    std::unique_ptr<void, rust_rt_delete> rust_runtime;
 };
 
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
