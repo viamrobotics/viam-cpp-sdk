@@ -10,6 +10,7 @@
 #include <grpc/grpc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
+#include <grpcpp/grpcpp.h>
 #include <grpcpp/security/credentials.h>
 
 #include <viam/api/proto/rpc/v1/auth.grpc.pb.h>
@@ -104,8 +105,15 @@ ViamChannel ViamChannel::dial_initial(const char* uri,
 ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions>& options) {
     const DialOptions opts = options.get_value_or(DialOptions());
 
+    // If this flag is passed, try to dial directly through grpc if possible.
+    // If grpc is too old to do a direct dial, we fall back to the rust version below even if
+    // disable_webrtc was pased. This is consistent with a hoped-for future semantic where rust
+    // would get the disable_webrtc flag as well rather than deducing it from the URI format, which
+    // is what it currently does.
     if (opts.disable_webrtc) {
+#ifndef VIAMCPPSDK_GRPCXX_NO_DIRECT_DIAL
         return dial_direct(uri, opts);
+#endif
     }
 
     const std::chrono::duration<float> float_timeout = opts.timeout;
@@ -140,7 +148,11 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
         ptr);
 }
 
-void ViamChannel::set_bearer_token(const char* uri, const DialOptions& opts) {
+ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
+#ifndef VIAMCPPSDK_GRPCXX_NO_DIRECT_DIAL
+    // TODO: if we ever drop older grpc support the logic below might make sense as a
+    // set_bearer_token helper function, but for now it just proliferates the ifdef messiness so
+    // we'll leave it inline
     auto channel_for_auth = sdk::impl::create_viam_auth_channel(uri);
     using namespace proto::rpc::v1;
 
@@ -164,22 +176,15 @@ void ViamChannel::set_bearer_token(const char* uri, const DialOptions& opts) {
 
     Instance::current(Instance::Creation::open_existing).impl_->direct_dial_token =
         resp.access_token();
-}
 
-ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
-    ViamChannel::set_bearer_token(uri, opts);
-
-#ifndef VIAMCPPSDK_GRPCXX_LEGACY_FWD
-    namespace grpc_experimental = grpc::experimental;
-
-#else
-    namespace grpc_experimental = grpc_impl::experimental;
-#endif
-
-    grpc_experimental::TlsChannelCredentialsOptions c_opts;
+    grpc::experimental::TlsChannelCredentialsOptions c_opts;
     c_opts.set_check_call_host(false);
-    auto creds = grpc_experimental::TlsCredentials(c_opts);
+    auto creds = grpc::experimental::TlsCredentials(c_opts);
     return ViamChannel(sdk::impl::create_viam_grpc_channel(uri, creds));
+#else
+    throw std::logic_error("Tried to call dial_direct on unsupported grpc version " +
+                           grpc::Version());
+#endif
 }
 
 const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
