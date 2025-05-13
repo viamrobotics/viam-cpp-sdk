@@ -1,4 +1,10 @@
 {
+	"button": {
+		"client": "Button",
+		"func": "push",
+		"args": [],
+		"commented": true
+	},
     "base": {
         "client": "Base",
         "func": "is_moving",
