@@ -50,7 +50,7 @@ void robot_client_to_mocks_pipeline(F&& test_case) {
     // in-process gRPC channel.
     auto test_server = TestServer(server);
     auto grpc_channel = test_server.grpc_in_process_channel();
-    auto client = RobotClient::with_channel(ViamChannel(grpc_channel), Options(0, boost::none));
+    auto client = RobotClient::with_channel(ViamChannel(grpc_channel), {});
 
     // Run the passed-in test case on the created stack and give access to the
     // created RobotClient and MockRobotService.

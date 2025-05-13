@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
 
     // connect to robot, ensure we can refresh it
     std::shared_ptr<RobotClient> robot =
-        RobotClient::at_address(vm["uri"].as<std::string>(), Options(1, opts));
+        RobotClient::at_address(vm["uri"].as<std::string>(), std::chrono::seconds{1}, opts);
 
     // ensure we can query resources
     std::vector<Name> resource_names = robot->resource_names();

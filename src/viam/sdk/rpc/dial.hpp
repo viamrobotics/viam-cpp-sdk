@@ -100,20 +100,5 @@ struct DialOptions {
     std::chrono::duration<float> initial_connection_attempt_timeout{20};
 };
 
-class Options {
-   public:
-    Options(unsigned int refresh_interval, boost::optional<DialOptions> dial_options)
-        : refresh_interval_(std::move(refresh_interval)), dial_options_(std::move(dial_options)) {}
-
-    unsigned int refresh_interval() const;
-    const boost::optional<DialOptions>& dial_options() const;
-
-   private:
-    /// @brief How often to refresh the status/parts of the robot, in seconds. If set to 0, the
-    /// robot will not automatically refresh.
-    unsigned int refresh_interval_;
-    boost::optional<DialOptions> dial_options_;
-};
-
 }  // namespace sdk
 }  // namespace viam

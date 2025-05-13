@@ -187,14 +187,6 @@ void ViamChannel::close() {
     pimpl_.reset();
 }
 
-unsigned int Options::refresh_interval() const {
-    return refresh_interval_;
-}
-
-const boost::optional<DialOptions>& Options::dial_options() const {
-    return dial_options_;
-}
-
 Credentials::Credentials(std::string payload)
     : type_("robot-location-secret"), payload_(std::move(payload)) {}
 

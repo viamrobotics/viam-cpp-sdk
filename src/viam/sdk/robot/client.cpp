@@ -271,9 +271,9 @@ void RobotClient::log(const std::string& name,
 }
 
 std::unique_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
-                                                       const Options& options) {
+                                                       std::chrono::seconds refresh_interval) {
     auto robot = std::make_unique<RobotClient>(std::move(channel));
-    robot->refresh_interval_ = std::chrono::seconds{options.refresh_interval()};
+    robot->refresh_interval_ = refresh_interval;
     robot->should_refresh_ = (robot->refresh_interval_ > std::chrono::seconds{0});
     if (robot->should_refresh_) {
         robot->refresh_thread_ = std::thread{&RobotClient::refresh_every, robot.get()};
@@ -284,20 +284,21 @@ std::unique_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
 };
 
 std::unique_ptr<RobotClient> RobotClient::at_address(const std::string& address,
-                                                     const Options& options) {
+                                                     std::chrono::seconds refresh_interval,
+                                                     const DialOptions& options) {
     const char* uri = address.c_str();
     auto robot =
-        RobotClient::with_channel(ViamChannel::dial_initial(uri, options.dial_options()), options);
+        RobotClient::with_channel(ViamChannel::dial_initial(uri, options), refresh_interval);
 
     return robot;
 };
 
 std::unique_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
-                                                          const Options& options) {
+                                                          std::chrono::seconds refresh_interval) {
     const std::string addr = "unix://" + address;
     auto robot = RobotClient::with_channel(
         ViamChannel(sdk::impl::create_viam_grpc_channel(addr, grpc::InsecureChannelCredentials())),
-        options);
+        refresh_interval);
 
     return robot;
 };

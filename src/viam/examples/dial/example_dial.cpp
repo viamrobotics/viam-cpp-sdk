@@ -27,10 +27,10 @@ int main() {
     std::string payload = "<your authentication payload>";
     dial_options.credentials = Credentials(type, payload);
     std::string address(uri);
-    Options options(1, dial_options);
 
     // connect to robot, ensure we can refresh it
-    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
+    std::shared_ptr<RobotClient> robot =
+        RobotClient::at_address(address, std::chrono::seconds{1}, dial_options);
 
     // ensure we can query resources
     std::vector<Name> resource_names = robot->resource_names();

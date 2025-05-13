@@ -44,11 +44,11 @@ int main() try {
     dial_options.allow_insecure_downgrade =
         (credentials.type().empty() && credentials.payload().empty());
 
-    // Set the refresh interval of the robot (in seconds) (0 = auto refresh) and the dial
-    // options
-    vs::Options options = vs::Options(1, dial_options);
+    // Pass the scheduled refresh interval of the robot (0 seconds = only on config update) and the
+    // dial options
+    std::shared_ptr<vs::RobotClient> robot =
+        vs::RobotClient::at_address(robot_address, std::chrono::seconds{1}, dial_options);
 
-    std::shared_ptr<vs::RobotClient> robot = vs::RobotClient::at_address(robot_address, options);
     VIAM_SDK_LOG(info) << "Successfully connected to the robot";
 
     std::vector<vs::Name> resource_names = robot->resource_names();
