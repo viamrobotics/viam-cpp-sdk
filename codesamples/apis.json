@@ -3,7 +3,8 @@
 		"client": "Button",
 		"func": "push",
 		"args": [],
-		"commented": true
+		"commented": true,
+		"comment": "This might actuate"
 	},
     "base": {
         "client": "Base",
