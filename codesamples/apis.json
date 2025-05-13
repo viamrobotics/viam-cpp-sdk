@@ -4,7 +4,8 @@
 		"func": "push",
 		"args": [],
 		"commented": true,
-		"comment": "This might actuate"
+		"comment": "This might actuate",
+		"hasReturn": false
 	},
     "base": {
         "client": "Base",
