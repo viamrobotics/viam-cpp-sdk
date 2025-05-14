@@ -7,12 +7,20 @@
         "comment": "This might actuate",
         "hasReturn": false
     },
-    "generic": {
-        "client": "Generic",
+    "genericcomponent": {
+        "client": "GenericComponent",
         "func": "do_command",
         "args": ["{}"],
         "commented": true,
         "comment": "args left intentionally blank",
+        "hasReturn": true
+    },
+    "genericservice": {
+        "client": "Genericservice",
+        "func": "do_command",
+        "args": ["{}"],
+        "commented": true,
+        "comment": "args left intentionally blank for service too",
         "hasReturn": true
     },
     "base": {
