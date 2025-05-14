@@ -5,6 +5,8 @@
 #include <grpcpp/channel.h>
 #include <grpcpp/security/credentials.h>
 
+#include <viam/sdk/common/grpc_fwd.hpp>
+
 namespace viam {
 namespace sdk {
 namespace impl {
