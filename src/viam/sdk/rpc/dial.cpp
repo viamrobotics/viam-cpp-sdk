@@ -174,6 +174,8 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
     auto creds = grpc::experimental::TlsCredentials(c_opts);
     return ViamChannel(sdk::impl::create_viam_grpc_channel(uri, creds));
 #else
+    (void)uri;
+    (void)opts;
     throw std::logic_error("Tried to call dial_direct on unsupported grpc version " +
                            grpc::Version());
 #endif
