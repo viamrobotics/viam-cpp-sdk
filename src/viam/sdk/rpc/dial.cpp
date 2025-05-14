@@ -166,13 +166,13 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
         throw GRPCException(&status);
     }
 
-    Instance::current(Instance::Creation::open_existing).impl_->direct_dial_token =
-        resp.access_token();
-
     grpc::experimental::TlsChannelCredentialsOptions c_opts;
     c_opts.set_check_call_host(false);
     auto creds = grpc::experimental::TlsCredentials(c_opts);
-    return ViamChannel(sdk::impl::create_viam_grpc_channel(uri, creds));
+    auto result = ViamChannel(sdk::impl::create_viam_grpc_channel(uri, creds));
+    result.auth_token_ = resp.access_token();
+
+    return result;
 #else
     (void)uri;
     (void)opts;
@@ -183,6 +183,10 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
 
 const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
     return channel_;
+}
+
+const boost::optional<std::string>& ViamChannel::auth_token() const {
+    return auth_token_;
 }
 
 void ViamChannel::close() {

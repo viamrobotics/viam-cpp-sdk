@@ -4,6 +4,7 @@
 #include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -38,6 +39,8 @@ void set_name(...);
 class ClientContext {
    public:
     ClientContext();
+    ClientContext(const ViamChannel& channel);
+
     ~ClientContext();
 
     void try_cancel();

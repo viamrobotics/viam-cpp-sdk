@@ -45,6 +45,13 @@ class ViamChannel {
 
     const std::shared_ptr<GrpcChannel>& channel() const;
 
+    /// @brief Returns the bearer token for connecting to the robot if one is needed; else returns
+    /// null.
+    /// @remark When dialing with disable_webrtc = true and grpc >= 1.43.0, a bearer token is needed
+    /// for all client requests. If you use ClientHelper for client requests this is handled
+    /// automatically, otherwise you will have to add this to the client context of a grpc call.
+    const boost::optional<std::string>& auth_token() const;
+
     void close();
 
    private:
@@ -53,6 +60,8 @@ class ViamChannel {
     static ViamChannel dial_direct(const char* uri, const DialOptions& opts);
 
     std::shared_ptr<GrpcChannel> channel_;
+
+    boost::optional<std::string> auth_token_;
 
     std::unique_ptr<impl> pimpl_;
 };

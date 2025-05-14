@@ -31,11 +31,11 @@ void set_name(...) {}  // NOLINT(cert-dcl50-cpp)
 ClientContext::ClientContext() : wrapped_context_(std::make_unique<GrpcClientContext>()) {
     set_client_ctx_authority_();
     add_viam_client_version_();
+}
 
-    const std::string& token =
-        Instance::current(Instance::Creation::open_existing).impl_->direct_dial_token;
-    if (!token.empty()) {
-        wrapped_context_->AddMetadata("authorization", "Bearer " + token);
+ClientContext::ClientContext(const ViamChannel& channel) : ClientContext() {
+    if (channel.auth_token().has_value()) {
+        wrapped_context_->AddMetadata("authorization", "Bearer " + *channel.auth_token());
     }
 }
 
