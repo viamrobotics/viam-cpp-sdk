@@ -1,12 +1,20 @@
 {
-	"button": {
-		"client": "Button",
-		"func": "push",
-		"args": [],
-		"commented": true,
-		"comment": "This might actuate",
-		"hasReturn": false
-	},
+    "button": {
+        "client": "Button",
+        "func": "push",
+        "args": [],
+        "commented": true,
+        "comment": "This might actuate",
+        "hasReturn": false
+    },
+    "generic": {
+        "client": "Generic",
+        "func": "do_command",
+        "args": ["{}"],
+        "commented": true,
+        "comment": "args left intentionally blank",
+        "hasReturn": true
+    },
     "base": {
         "client": "Base",
         "func": "is_moving",
