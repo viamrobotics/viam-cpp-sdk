@@ -9,6 +9,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/service.hpp>
 
 #include "summation.grpc.pb.h"
@@ -41,14 +42,18 @@ struct API::traits<Summation> {
 class SummationClient : public Summation {
    public:
     using interface_type = Summation;
-    SummationClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    SummationClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     double sum(std::vector<double> numbers) override;
 
    private:
     using StubType = SummationService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 // `SummationServer` is the gRPC server implementation of a `Summation`
