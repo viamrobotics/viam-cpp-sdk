@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/gantry_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/component/gantry/v1/gantry.grpc.pb.h>
 #include <viam/api/component/gantry/v1/gantry.pb.h>
 
@@ -9,10 +11,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-GantryClient::GantryClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+GantryClient::GantryClient(std::string name, ViamChannel& channel)
     : Gantry(std::move(name)),
-      stub_(viam::component::gantry::v1::GantryService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::gantry::v1::GantryService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 std::vector<double> GantryClient::get_position(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPosition)

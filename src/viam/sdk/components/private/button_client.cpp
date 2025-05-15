@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/button_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/component/button/v1/button.grpc.pb.h>
 #include <viam/api/component/button/v1/button.pb.h>
 
@@ -10,10 +12,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-ButtonClient::ButtonClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+ButtonClient::ButtonClient(std::string name, ViamChannel& channel)
     : Button(std::move(name)),
-      stub_(viam::component::button::v1::ButtonService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::button::v1::ButtonService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 void ButtonClient::push(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Push).with(extra).invoke();

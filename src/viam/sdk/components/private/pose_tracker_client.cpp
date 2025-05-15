@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/pose_tracker_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/posetracker/v1/pose_tracker.grpc.pb.h>
 #include <viam/api/component/posetracker/v1/pose_tracker.pb.h>
@@ -10,10 +12,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-PoseTrackerClient::PoseTrackerClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+PoseTrackerClient::PoseTrackerClient(std::string name, ViamChannel& channel)
     : PoseTracker(std::move(name)),
-      stub_(viam::component::posetracker::v1::PoseTrackerService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::posetracker::v1::PoseTrackerService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 PoseTracker::pose_map PoseTrackerClient::get_poses(const std::vector<std::string>& body_names,
                                                    const ProtoStruct&) {

@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/gripper_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/component/gripper/v1/gripper.grpc.pb.h>
 #include <viam/api/component/gripper/v1/gripper.pb.h>
 
@@ -11,10 +13,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-GripperClient::GripperClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+GripperClient::GripperClient(std::string name, ViamChannel& channel)
     : Gripper(std::move(name)),
-      stub_(viam::component::gripper::v1::GripperService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::gripper::v1::GripperService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 void GripperClient::open(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Open).with(extra).invoke();

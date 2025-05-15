@@ -3,8 +3,6 @@
 /// @brief Implements a gRPC client for the `Camera` component.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
@@ -12,6 +10,7 @@
 #include <viam/sdk/components/private/camera_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -23,7 +22,11 @@ namespace impl {
 class CameraClient : public Camera {
    public:
     using interface_type = Camera;
-    CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    CameraClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
     ProtoStruct do_command(const ProtoStruct& command) override;
     raw_image get_image(std::string mime_type, const ProtoStruct& extra) override;
     image_collection get_images() override;
@@ -50,12 +53,12 @@ class CameraClient : public Camera {
     // avoid use of this constructor outside of tests.
     CameraClient(std::string name,
                  std::unique_ptr<viam::component::camera::v1::CameraService::StubInterface> stub)
-        : Camera(std::move(name)), stub_(std::move(stub)){};
+        : Camera(std::move(name)), stub_(std::move(stub)) {};
 
    private:
     using StubType = viam::component::camera::v1::CameraService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 }  // namespace impl

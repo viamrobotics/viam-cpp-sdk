@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/generic_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <utility>
 
 #include <viam/api/common/v1/common.pb.h>
@@ -15,11 +17,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-GenericComponentClient::GenericComponentClient(std::string name,
-                                               std::shared_ptr<grpc::Channel> channel)
+GenericComponentClient::GenericComponentClient(std::string name, ViamChannel& channel)
     : GenericComponent(std::move(name)),
-      stub_(viam::component::generic::v1::GenericService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::generic::v1::GenericService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 ProtoStruct GenericComponentClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)

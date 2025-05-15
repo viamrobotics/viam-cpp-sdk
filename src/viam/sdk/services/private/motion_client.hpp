@@ -3,10 +3,9 @@
 /// @brief Implements a gRPC client for the `Motion` service.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/service/motion/v1/motion.grpc.pb.h>
 
+#include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/motion.hpp>
 
 namespace viam {
@@ -19,7 +18,12 @@ namespace impl {
 class MotionClient : public Motion {
    public:
     using interface_type = Motion;
-    MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    MotionClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
+
     bool move(const pose_in_frame& destination,
               const Name& component_name,
               const std::shared_ptr<WorldState>& world_state,
@@ -104,7 +108,7 @@ class MotionClient : public Motion {
         bool last_plan_only,
         const ProtoStruct& extra);
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 }  // namespace impl

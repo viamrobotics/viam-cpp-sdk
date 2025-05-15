@@ -35,10 +35,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-MLModelServiceClient::MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+MLModelServiceClient::MLModelServiceClient(std::string name, ViamChannel& channel)
     : MLModelService(std::move(name)),
-      channel_(std::move(channel)),
-      stub_(service_type::NewStub(channel_)) {}
+      stub_(service_type::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 std::shared_ptr<MLModelService::named_tensor_views> MLModelServiceClient::infer(
     const named_tensor_views& inputs, const ProtoStruct& extra) {

@@ -1,5 +1,7 @@
 #include <viam/sdk/services/private/discovery_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/service/discovery/v1/discovery.grpc.pb.h>
 #include <viam/api/service/discovery/v1/discovery.pb.h>
 
@@ -13,10 +15,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-DiscoveryClient::DiscoveryClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+DiscoveryClient::DiscoveryClient(std::string name, ViamChannel& channel)
     : Discovery(std::move(name)),
-      stub_(viam::service::discovery::v1::DiscoveryService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::service::discovery::v1::DiscoveryService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 std::vector<ResourceConfig> DiscoveryClient::discover_resources(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::DiscoverResources)

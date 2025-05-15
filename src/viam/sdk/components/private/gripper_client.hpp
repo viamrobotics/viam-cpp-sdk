@@ -5,11 +5,10 @@
 
 #include <memory>
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/gripper/v1/gripper.grpc.pb.h>
 
 #include <viam/sdk/components/gripper.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -21,7 +20,11 @@ namespace impl {
 class GripperClient : public Gripper {
    public:
     using interface_type = Gripper;
-    GripperClient(std::string names, std::shared_ptr<grpc::Channel> channel);
+    GripperClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     void open(const ProtoStruct& extra) override;
     bool grab(const ProtoStruct& extra) override;
@@ -38,7 +41,7 @@ class GripperClient : public Gripper {
    private:
     using StubType = viam::component::gripper::v1::GripperService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 }  // namespace impl

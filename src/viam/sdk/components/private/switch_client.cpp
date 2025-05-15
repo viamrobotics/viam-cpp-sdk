@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/switch_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/component/switch/v1/switch.grpc.pb.h>
 #include <viam/api/component/switch/v1/switch.pb.h>
 
@@ -9,10 +11,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-SwitchClient::SwitchClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+SwitchClient::SwitchClient(std::string name, ViamChannel& channel)
     : Switch(std::move(name)),
-      stub_(viam::component::switch_::v1::SwitchService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::switch_::v1::SwitchService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 void SwitchClient::set_position(uint32_t position, const ProtoStruct& extra) {
     make_client_helper(this, *stub_, &StubType::SetPosition)

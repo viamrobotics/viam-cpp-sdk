@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/power_sensor_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <algorithm>
 #include <memory>
 #include <stdexcept>
@@ -38,10 +40,10 @@ PowerSensor::current from_proto(const GetCurrentResponse& proto) {
     return c;
 }
 
-PowerSensorClient::PowerSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+PowerSensorClient::PowerSensorClient(std::string name, ViamChannel& channel)
     : PowerSensor(std::move(name)),
-      stub_(PowerSensorService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(PowerSensorService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 PowerSensor::voltage PowerSensorClient::get_voltage(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetVoltage)

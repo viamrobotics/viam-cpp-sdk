@@ -5,11 +5,10 @@
 
 #include <memory>
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/button/v1/button.grpc.pb.h>
 
 #include <viam/sdk/components/button.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -21,7 +20,11 @@ namespace impl {
 class ButtonClient : public Button {
    public:
     using interface_type = Button;
-    ButtonClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    ButtonClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     void push(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
@@ -31,7 +34,7 @@ class ButtonClient : public Button {
    private:
     using StubType = viam::component::button::v1::ButtonService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 }  // namespace impl

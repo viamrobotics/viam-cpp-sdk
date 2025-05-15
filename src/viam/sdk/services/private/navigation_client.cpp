@@ -2,6 +2,7 @@
 
 #include <math.h>
 
+#include <grpcpp/channel.h>
 #include <grpcpp/support/status.h>
 
 #include <viam/api/service/navigation/v1/navigation.grpc.pb.h>
@@ -38,10 +39,10 @@ namespace impl {
 
 using namespace viam::service::navigation::v1;
 
-NavigationClient::NavigationClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+NavigationClient::NavigationClient(std::string name, ViamChannel& channel)
     : Navigation(std::move(name)),
-      stub_(service::navigation::v1::NavigationService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(service::navigation::v1::NavigationService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 Navigation::Mode NavigationClient::get_mode(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetMode)

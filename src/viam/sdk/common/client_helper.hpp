@@ -113,7 +113,7 @@ class ClientHelper {
     template <typename ResponseHandlerCallable, typename ErrorHandlerCallable>
     auto invoke(ResponseHandlerCallable&& rhc, ErrorHandlerCallable&& ehc) {
         client_helper_details::set_name(&request_, client_);
-        ClientContext ctx;
+        ClientContext ctx(client_->channel());
 
         if (debug_key_ != "") {
             ctx.set_debug_key(debug_key_);
@@ -135,7 +135,7 @@ class ClientHelper {
               typename ErrorHandlerCallable = decltype(default_ehc_)>
     auto invoke_stream(ResponseHandlerCallable rhc, ErrorHandlerCallable&& ehc = default_ehc_) {
         *request_.mutable_name() = client_->name();
-        ClientContext ctx;
+        ClientContext ctx(client_->channel());
 
         auto reader = (stub_->*pfn_)(ctx, request_);
 

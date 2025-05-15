@@ -3,14 +3,13 @@
 /// @brief Implements a gRPC client for the `Board` component.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/board/v1/board.grpc.pb.h>
 
 #include <viam/sdk/components/board.hpp>
 #include <viam/sdk/components/private/board_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -22,7 +21,11 @@ namespace impl {
 class BoardClient : public Board {
    public:
     using interface_type = Board;
-    BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    BoardClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
     ProtoStruct do_command(const ProtoStruct& command) override;
     void set_gpio(const std::string& pin, bool high, const ProtoStruct& extra) override;
     bool get_gpio(const std::string& pin, const ProtoStruct& extra) override;
@@ -73,7 +76,7 @@ class BoardClient : public Board {
    private:
     using StubType = viam::component::board::v1::BoardService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    const std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

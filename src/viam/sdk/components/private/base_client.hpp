@@ -3,8 +3,6 @@
 /// @brief Implements a gRPC client for the `Base` component.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/base/v1/base.grpc.pb.h>
 
 #include <viam/sdk/common/linear_algebra.hpp>
@@ -13,6 +11,7 @@
 #include <viam/sdk/components/private/base_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -24,7 +23,11 @@ namespace impl {
 class BaseClient : public Base {
    public:
     using interface_type = Base;
-    BaseClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    BaseClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
     void move_straight(int64_t distance_mm, double mm_per_sec, const ProtoStruct& extra) override;
     void spin(double angle_deg, double degs_per_sec, const ProtoStruct& extra) override;
     void set_power(const Vector3& linear,
@@ -59,7 +62,7 @@ class BaseClient : public Base {
    private:
     using StubType = viam::component::base::v1::BaseService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 }  // namespace impl

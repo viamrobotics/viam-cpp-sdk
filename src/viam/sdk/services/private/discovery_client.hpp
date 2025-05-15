@@ -3,10 +3,9 @@
 /// @brief Implements a gRPC client for the `Discovery` service
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/service/discovery/v1/discovery.grpc.pb.h>
 
+#include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/discovery.hpp>
 
 namespace viam {
@@ -19,7 +18,11 @@ namespace impl {
 class DiscoveryClient : public Discovery {
    public:
     using interface_type = Discovery;
-    DiscoveryClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    DiscoveryClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     std::vector<ResourceConfig> discover_resources(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
@@ -27,7 +30,7 @@ class DiscoveryClient : public Discovery {
    private:
     using StubType = viam::service::discovery::v1::DiscoveryService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 }  // namespace impl

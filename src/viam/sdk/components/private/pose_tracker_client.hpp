@@ -3,11 +3,10 @@
 /// @brief Implements a gRPC client for the `PoseTracker` component
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/posetracker/v1/pose_tracker.grpc.pb.h>
 
 #include <viam/sdk/components/pose_tracker.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -20,7 +19,11 @@ class PoseTrackerClient : public PoseTracker {
    public:
     using interface_type = PoseTracker;
 
-    PoseTrackerClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    PoseTrackerClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     PoseTracker::pose_map get_poses(const std::vector<std::string>& body_names,
                                     const ProtoStruct& extra) override;
@@ -35,7 +38,7 @@ class PoseTrackerClient : public PoseTracker {
    private:
     using StubType = viam::component::posetracker::v1::PoseTrackerService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 }  // namespace impl

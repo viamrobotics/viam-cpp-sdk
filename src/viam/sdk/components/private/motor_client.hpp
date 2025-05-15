@@ -3,13 +3,12 @@
 /// @brief Implements a gRPC client for the `Motor` component.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/motor/v1/motor.grpc.pb.h>
 
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/components/private/motor_server.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -21,7 +20,11 @@ namespace impl {
 class MotorClient : public Motor {
    public:
     using interface_type = Motor;
-    MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    MotorClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
     void set_power(double power_pct, const ProtoStruct& extra) override;
     void go_for(double rpm, double revolutions, const ProtoStruct& extra) override;
     void go_to(double rpm, double position_revolutions, const ProtoStruct& extra) override;
@@ -58,7 +61,7 @@ class MotorClient : public Motor {
    private:
     using StubType = viam::component::motor::v1::MotorService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 }  // namespace impl

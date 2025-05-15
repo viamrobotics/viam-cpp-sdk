@@ -3,11 +3,10 @@
 /// @brief Implements a gRPC client for the `Switch` component
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/switch/v1/switch.grpc.pb.h>
 
 #include <viam/sdk/components/switch.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -19,7 +18,11 @@ namespace impl {
 class SwitchClient : public Switch {
    public:
     using interface_type = Switch;
-    SwitchClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    SwitchClient(std::string name, ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     void set_position(uint32_t position, const ProtoStruct& extra) override;
     uint32_t get_position(const ProtoStruct& extra) override;
@@ -35,7 +38,7 @@ class SwitchClient : public Switch {
    private:
     using StubType = viam::component::switch_::v1::SwitchService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    ViamChannel* channel_;
 };
 
 }  // namespace impl
