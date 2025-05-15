@@ -8,7 +8,7 @@
 // The default behavior is for the variable to be undefined, providing the behavior for recent
 // versions. If you are experiencing compilation errors in an installed version of the SDK it may be
 // due to a mismatch with the configured version of this header and the grpc version found by the
-// compiler. You may wish to comment/uncomment the define above as needed, or add the definition
+// compiler. You may wish to comment/uncomment the define below as needed, or add the definition
 // with `-D` to the compiler.
 #cmakedefine VIAMCPPSDK_GRPCXX_NO_DIRECT_DIAL
 
