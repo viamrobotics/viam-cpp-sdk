@@ -18,7 +18,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-SensorClient::SensorClient(std::string name, ViamChannel& channel)
+SensorClient::SensorClient(std::string name, const ViamChannel& channel)
     : Sensor(std::move(name)),
       stub_(viam::component::sensor::v1::SensorService::NewStub(channel.channel())),
       channel_(&channel) {}

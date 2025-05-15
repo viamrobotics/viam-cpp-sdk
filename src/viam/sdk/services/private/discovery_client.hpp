@@ -18,7 +18,7 @@ namespace impl {
 class DiscoveryClient : public Discovery {
    public:
     using interface_type = Discovery;
-    DiscoveryClient(std::string name, ViamChannel& channel);
+    DiscoveryClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -30,7 +30,7 @@ class DiscoveryClient : public Discovery {
    private:
     using StubType = viam::service::discovery::v1::DiscoveryService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

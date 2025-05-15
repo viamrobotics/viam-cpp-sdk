@@ -39,7 +39,7 @@ namespace impl {
 
 using namespace viam::service::navigation::v1;
 
-NavigationClient::NavigationClient(std::string name, ViamChannel& channel)
+NavigationClient::NavigationClient(std::string name, const ViamChannel& channel)
     : Navigation(std::move(name)),
       stub_(service::navigation::v1::NavigationService::NewStub(channel.channel())),
       channel_(&channel) {}

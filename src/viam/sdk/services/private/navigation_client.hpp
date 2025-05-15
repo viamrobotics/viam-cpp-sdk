@@ -18,7 +18,7 @@ namespace impl {
 class NavigationClient : public Navigation {
    public:
     using interface_type = Navigation;
-    NavigationClient(std::string name, ViamChannel& channel);
+    NavigationClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -38,7 +38,7 @@ class NavigationClient : public Navigation {
    private:
     using StubType = service::navigation::v1::NavigationService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

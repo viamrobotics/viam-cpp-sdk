@@ -27,7 +27,7 @@ Servo::position from_proto(const viam::component::servo::v1::GetPositionResponse
     return proto.position_deg();
 }
 
-ServoClient::ServoClient(std::string name, ViamChannel& channel)
+ServoClient::ServoClient(std::string name, const ViamChannel& channel)
     : Servo(std::move(name)),
       stub_(viam::component::servo::v1::ServoService::NewStub(channel.channel())),
       channel_(&channel) {}

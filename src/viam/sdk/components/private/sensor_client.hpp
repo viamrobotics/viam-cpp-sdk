@@ -20,7 +20,7 @@ namespace impl {
 class SensorClient : public Sensor {
    public:
     using interface_type = Sensor;
-    SensorClient(std::string name, ViamChannel& channel);
+    SensorClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -35,7 +35,7 @@ class SensorClient : public Sensor {
    private:
     using StubType = viam::component::sensor::v1::SensorService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

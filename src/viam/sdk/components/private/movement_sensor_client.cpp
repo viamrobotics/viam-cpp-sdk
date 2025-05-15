@@ -58,7 +58,7 @@ MovementSensor::properties from_proto(
     return properties;
 }
 
-MovementSensorClient::MovementSensorClient(std::string name, ViamChannel& channel)
+MovementSensorClient::MovementSensorClient(std::string name, const ViamChannel& channel)
     : MovementSensor(std::move(name)),
       stub_(viam::component::movementsensor::v1::MovementSensorService::NewStub(channel.channel())),
       channel_(&channel) {}

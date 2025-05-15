@@ -18,7 +18,7 @@ namespace impl {
 class GantryClient : public Gantry {
    public:
     using interface_type = Gantry;
-    GantryClient(std::string name, ViamChannel& channel);
+    GantryClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -44,7 +44,7 @@ class GantryClient : public Gantry {
    private:
     using StubType = viam::component::gantry::v1::GantryService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

@@ -55,7 +55,7 @@ grpc::Status SummationServer::Sum(grpc::ServerContext* context,
 
 /* Summation client methods */
 
-SummationClient::SummationClient(std::string name, ViamChannel& channel)
+SummationClient::SummationClient(std::string name, const ViamChannel& channel)
     : Summation(std::move(name)),
       stub_(SummationService::NewStub(channel.channel())),
       channel_(&channel) {}

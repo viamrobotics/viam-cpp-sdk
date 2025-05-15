@@ -35,7 +35,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-MLModelServiceClient::MLModelServiceClient(std::string name, ViamChannel& channel)
+MLModelServiceClient::MLModelServiceClient(std::string name, const ViamChannel& channel)
     : MLModelService(std::move(name)),
       stub_(service_type::NewStub(channel.channel())),
       channel_(&channel) {}

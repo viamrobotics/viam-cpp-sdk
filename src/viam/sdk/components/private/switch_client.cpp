@@ -11,7 +11,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-SwitchClient::SwitchClient(std::string name, ViamChannel& channel)
+SwitchClient::SwitchClient(std::string name, const ViamChannel& channel)
     : Switch(std::move(name)),
       stub_(viam::component::switch_::v1::SwitchService::NewStub(channel.channel())),
       channel_(&channel) {}

@@ -42,7 +42,7 @@ struct API::traits<Summation> {
 class SummationClient : public Summation {
    public:
     using interface_type = Summation;
-    SummationClient(std::string name, ViamChannel& channel);
+    SummationClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -53,7 +53,7 @@ class SummationClient : public Summation {
    private:
     using StubType = SummationService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 // `SummationServer` is the gRPC server implementation of a `Summation`

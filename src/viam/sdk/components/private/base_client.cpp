@@ -24,7 +24,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-BaseClient::BaseClient(std::string name, ViamChannel& channel)
+BaseClient::BaseClient(std::string name, const ViamChannel& channel)
     : Base(std::move(name)),
       stub_(viam::component::base::v1::BaseService::NewStub(channel.channel())),
       channel_(&channel) {}

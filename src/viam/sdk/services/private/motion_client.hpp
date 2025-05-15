@@ -18,7 +18,7 @@ namespace impl {
 class MotionClient : public Motion {
    public:
     using interface_type = Motion;
-    MotionClient(std::string name, ViamChannel& channel);
+    MotionClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -108,7 +108,7 @@ class MotionClient : public Motion {
         bool last_plan_only,
         const ProtoStruct& extra);
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

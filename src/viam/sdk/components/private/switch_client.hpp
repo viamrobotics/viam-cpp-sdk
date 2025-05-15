@@ -18,7 +18,7 @@ namespace impl {
 class SwitchClient : public Switch {
    public:
     using interface_type = Switch;
-    SwitchClient(std::string name, ViamChannel& channel);
+    SwitchClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -38,7 +38,7 @@ class SwitchClient : public Switch {
    private:
     using StubType = viam::component::switch_::v1::SwitchService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

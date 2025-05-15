@@ -19,7 +19,7 @@ namespace impl {
 class GenericComponentClient : public GenericComponent {
    public:
     using interface_type = GenericComponent;
-    GenericComponentClient(std::string name, ViamChannel& channel);
+    GenericComponentClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -39,7 +39,7 @@ class GenericComponentClient : public GenericComponent {
    private:
     using StubType = viam::component::generic::v1::GenericService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

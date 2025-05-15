@@ -39,7 +39,7 @@ Motor::properties from_proto(const viam::component::motor::v1::GetPropertiesResp
     return properties;
 }
 
-MotorClient::MotorClient(std::string name, ViamChannel& channel)
+MotorClient::MotorClient(std::string name, const ViamChannel& channel)
     : Motor(std::move(name)),
       stub_(viam::component::motor::v1::MotorService::NewStub(channel.channel())),
       channel_(&channel) {}

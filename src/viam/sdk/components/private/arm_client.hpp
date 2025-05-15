@@ -18,7 +18,7 @@ namespace impl {
 class ArmClient : public Arm {
    public:
     using interface_type = Arm;
-    ArmClient(std::string name, ViamChannel& channel);
+    ArmClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -52,7 +52,7 @@ class ArmClient : public Arm {
    private:
     using StubType = viam::component::arm::v1::ArmService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

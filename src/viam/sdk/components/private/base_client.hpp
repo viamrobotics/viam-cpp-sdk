@@ -23,7 +23,7 @@ namespace impl {
 class BaseClient : public Base {
    public:
     using interface_type = Base;
-    BaseClient(std::string name, ViamChannel& channel);
+    BaseClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -62,7 +62,7 @@ class BaseClient : public Base {
    private:
     using StubType = viam::component::base::v1::BaseService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

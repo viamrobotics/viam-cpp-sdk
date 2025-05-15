@@ -47,7 +47,7 @@ Encoder::properties from_proto(const viam::component::encoder::v1::GetProperties
     return properties;
 }
 
-EncoderClient::EncoderClient(std::string name, ViamChannel& channel)
+EncoderClient::EncoderClient(std::string name, const ViamChannel& channel)
     : Encoder(std::move(name)),
       stub_(viam::component::encoder::v1::EncoderService::NewStub(channel.channel())),
       channel_(&channel) {}

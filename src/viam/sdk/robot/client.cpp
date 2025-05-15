@@ -112,7 +112,7 @@ struct RobotClient::impl {
     }
 
     std::unique_ptr<RobotService::Stub> stub;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 
     // See doc comment for RobotClient::connect_logging. This pointer is non-null and installed as a
     // sink only for apps being run by viam-server as a module.

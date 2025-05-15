@@ -33,7 +33,7 @@ class MLModelServiceClient : public MLModelService {
     using interface_type = MLModelService;
     using service_type = viam::service::mlmodel::v1::MLModelService;
 
-    MLModelServiceClient(std::string name, ViamChannel& channel);
+    MLModelServiceClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -57,7 +57,7 @@ class MLModelServiceClient : public MLModelService {
 
    private:
     std::unique_ptr<service_type::StubInterface> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

@@ -12,7 +12,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-PoseTrackerClient::PoseTrackerClient(std::string name, ViamChannel& channel)
+PoseTrackerClient::PoseTrackerClient(std::string name, const ViamChannel& channel)
     : PoseTracker(std::move(name)),
       stub_(viam::component::posetracker::v1::PoseTrackerService::NewStub(channel.channel())),
       channel_(&channel) {}

@@ -21,7 +21,7 @@ namespace impl {
 class BoardClient : public Board {
    public:
     using interface_type = Board;
-    BoardClient(std::string name, ViamChannel& channel);
+    BoardClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;

@@ -20,7 +20,7 @@ namespace impl {
 class ButtonClient : public Button {
    public:
     using interface_type = Button;
-    ButtonClient(std::string name, ViamChannel& channel);
+    ButtonClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -34,7 +34,7 @@ class ButtonClient : public Button {
    private:
     using StubType = viam::component::button::v1::ButtonService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

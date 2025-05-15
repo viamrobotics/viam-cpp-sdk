@@ -21,7 +21,7 @@ namespace impl {
 class PowerSensorClient : public PowerSensor {
    public:
     using interface_type = PowerSensor;
-    PowerSensorClient(std::string name, ViamChannel& channel);
+    PowerSensorClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -40,7 +40,7 @@ class PowerSensorClient : public PowerSensor {
    private:
     using StubType = viam::component::powersensor::v1::PowerSensorService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

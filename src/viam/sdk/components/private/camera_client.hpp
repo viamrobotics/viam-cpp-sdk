@@ -22,7 +22,7 @@ namespace impl {
 class CameraClient : public Camera {
    public:
     using interface_type = Camera;
-    CameraClient(std::string name, ViamChannel& channel);
+    CameraClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -58,7 +58,7 @@ class CameraClient : public Camera {
    private:
     using StubType = viam::component::camera::v1::CameraService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

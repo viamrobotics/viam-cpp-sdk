@@ -22,7 +22,7 @@ namespace impl {
 class MovementSensorClient : public MovementSensor {
    public:
     using interface_type = MovementSensor;
-    MovementSensorClient(std::string name, ViamChannel& channel);
+    MovementSensorClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -51,7 +51,7 @@ class MovementSensorClient : public MovementSensor {
    private:
     using StubType = viam::component::movementsensor::v1::MovementSensorService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

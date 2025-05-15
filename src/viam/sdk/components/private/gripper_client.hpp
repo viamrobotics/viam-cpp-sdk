@@ -20,7 +20,7 @@ namespace impl {
 class GripperClient : public Gripper {
    public:
     using interface_type = Gripper;
-    GripperClient(std::string name, ViamChannel& channel);
+    GripperClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -41,7 +41,7 @@ class GripperClient : public Gripper {
    private:
     using StubType = viam::component::gripper::v1::GripperService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

@@ -51,7 +51,7 @@ viam::component::board::v1::PowerMode to_proto(Board::power_mode power_mode) {
     }
 }
 
-BoardClient::BoardClient(std::string name, ViamChannel& channel)
+BoardClient::BoardClient(std::string name, const ViamChannel& channel)
     : Board(std::move(name)),
       stub_(viam::component::board::v1::BoardService::NewStub(channel.channel())),
       channel_(&channel) {}

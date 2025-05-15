@@ -17,7 +17,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-GenericComponentClient::GenericComponentClient(std::string name, ViamChannel& channel)
+GenericComponentClient::GenericComponentClient(std::string name, const ViamChannel& channel)
     : GenericComponent(std::move(name)),
       stub_(viam::component::generic::v1::GenericService::NewStub(channel.channel())),
       channel_(&channel) {}

@@ -19,7 +19,7 @@ class PoseTrackerClient : public PoseTracker {
    public:
     using interface_type = PoseTracker;
 
-    PoseTrackerClient(std::string name, ViamChannel& channel);
+    PoseTrackerClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -38,7 +38,7 @@ class PoseTrackerClient : public PoseTracker {
    private:
     using StubType = viam::component::posetracker::v1::PoseTrackerService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

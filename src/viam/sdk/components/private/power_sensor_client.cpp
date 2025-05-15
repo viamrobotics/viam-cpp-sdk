@@ -40,7 +40,7 @@ PowerSensor::current from_proto(const GetCurrentResponse& proto) {
     return c;
 }
 
-PowerSensorClient::PowerSensorClient(std::string name, ViamChannel& channel)
+PowerSensorClient::PowerSensorClient(std::string name, const ViamChannel& channel)
     : PowerSensor(std::move(name)),
       stub_(PowerSensorService::NewStub(channel.channel())),
       channel_(&channel) {}

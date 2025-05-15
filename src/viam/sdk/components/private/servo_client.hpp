@@ -20,7 +20,7 @@ namespace impl {
 class ServoClient : public Servo {
    public:
     using interface_type = Servo;
-    ServoClient(std::string name, ViamChannel& channel);
+    ServoClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -39,7 +39,7 @@ class ServoClient : public Servo {
 
     using StubType = viam::component::servo::v1::ServoService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

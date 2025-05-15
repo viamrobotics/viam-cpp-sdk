@@ -11,7 +11,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-ArmClient::ArmClient(std::string name, ViamChannel& channel)
+ArmClient::ArmClient(std::string name, const ViamChannel& channel)
     : Arm(std::move(name)),
       stub_(viam::component::arm::v1::ArmService::NewStub(channel.channel())),
       channel_(&channel) {}

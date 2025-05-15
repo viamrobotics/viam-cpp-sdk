@@ -20,7 +20,7 @@ namespace impl {
 class MotorClient : public Motor {
    public:
     using interface_type = Motor;
-    MotorClient(std::string name, ViamChannel& channel);
+    MotorClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -61,7 +61,7 @@ class MotorClient : public Motor {
    private:
     using StubType = viam::component::motor::v1::MotorService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

@@ -104,7 +104,7 @@ Camera::properties from_proto(const viam::component::camera::v1::GetPropertiesRe
             (proto.frame_rate())};
 }
 
-CameraClient::CameraClient(std::string name, ViamChannel& channel)
+CameraClient::CameraClient(std::string name, const ViamChannel& channel)
     : Camera(std::move(name)),
       stub_(viam::component::camera::v1::CameraService::NewStub(channel.channel())),
       channel_(&channel) {}

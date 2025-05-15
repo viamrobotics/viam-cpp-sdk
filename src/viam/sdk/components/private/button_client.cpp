@@ -12,7 +12,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-ButtonClient::ButtonClient(std::string name, ViamChannel& channel)
+ButtonClient::ButtonClient(std::string name, const ViamChannel& channel)
     : Button(std::move(name)),
       stub_(viam::component::button::v1::ButtonService::NewStub(channel.channel())),
       channel_(&channel) {}

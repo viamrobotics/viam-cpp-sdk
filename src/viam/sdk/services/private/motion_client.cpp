@@ -179,7 +179,7 @@ std::vector<Motion::plan_with_status> from_proto(
     return plans;
 }
 
-MotionClient::MotionClient(std::string name, ViamChannel& channel)
+MotionClient::MotionClient(std::string name, const ViamChannel& channel)
     : Motion(std::move(name)),
       stub_(service::motion::v1::MotionService::NewStub(channel.channel())),
       channel_(&channel) {}

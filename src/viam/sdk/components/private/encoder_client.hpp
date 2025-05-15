@@ -19,7 +19,7 @@ namespace impl {
 class EncoderClient : public Encoder {
    public:
     using interface_type = Encoder;
-    EncoderClient(std::string name, ViamChannel& channel);
+    EncoderClient(std::string name, const ViamChannel& channel);
 
     const ViamChannel& channel() const {
         return *channel_;
@@ -47,7 +47,7 @@ class EncoderClient : public Encoder {
    private:
     using StubType = viam::component::encoder::v1::EncoderService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    ViamChannel* channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

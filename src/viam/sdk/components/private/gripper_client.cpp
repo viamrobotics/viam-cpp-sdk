@@ -13,7 +13,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-GripperClient::GripperClient(std::string name, ViamChannel& channel)
+GripperClient::GripperClient(std::string name, const ViamChannel& channel)
     : Gripper(std::move(name)),
       stub_(viam::component::gripper::v1::GripperService::NewStub(channel.channel())),
       channel_(&channel) {}

@@ -11,7 +11,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-GantryClient::GantryClient(std::string name, ViamChannel& channel)
+GantryClient::GantryClient(std::string name, const ViamChannel& channel)
     : Gantry(std::move(name)),
       stub_(viam::component::gantry::v1::GantryService::NewStub(channel.channel())),
       channel_(&channel) {}

@@ -15,7 +15,7 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-DiscoveryClient::DiscoveryClient(std::string name, ViamChannel& channel)
+DiscoveryClient::DiscoveryClient(std::string name, const ViamChannel& channel)
     : Discovery(std::move(name)),
       stub_(viam::service::discovery::v1::DiscoveryService::NewStub(channel.channel())),
       channel_(&channel) {}
