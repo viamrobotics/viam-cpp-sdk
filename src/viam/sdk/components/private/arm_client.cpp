@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/arm_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/component/arm/v1/arm.grpc.pb.h>
 #include <viam/api/component/arm/v1/arm.pb.h>
 
@@ -9,10 +11,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-ArmClient::ArmClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+ArmClient::ArmClient(std::string name, const ViamChannel& channel)
     : Arm(std::move(name)),
-      stub_(viam::component::arm::v1::ArmService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::arm::v1::ArmService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 pose ArmClient::get_end_position(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetEndPosition)

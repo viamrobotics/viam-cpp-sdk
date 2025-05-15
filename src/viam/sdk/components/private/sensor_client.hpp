@@ -3,13 +3,12 @@
 /// @brief Implements a gRPC client for the `Sensor` component.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/sensor/v1/sensor.grpc.pb.h>
 
 #include <viam/sdk/components/private/sensor_server.hpp>
 #include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -21,7 +20,11 @@ namespace impl {
 class SensorClient : public Sensor {
    public:
     using interface_type = Sensor;
-    SensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    SensorClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
     ProtoStruct get_readings(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
@@ -32,7 +35,7 @@ class SensorClient : public Sensor {
    private:
     using StubType = viam::component::sensor::v1::SensorService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

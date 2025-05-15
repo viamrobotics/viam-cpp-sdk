@@ -194,7 +194,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         auto new_parent_addr = request->parent_address();
         if (parent.parent_addr_ != new_parent_addr) {
             parent.parent_addr_ = std::move(new_parent_addr);
-            parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, {0, boost::none});
+            parent.parent_ =
+                RobotClient::at_local_socket(parent.parent_addr_, std::chrono::seconds{0});
             parent.parent_->connect_logging();
         }
         response->set_ready(parent.module_->ready());
@@ -223,7 +224,7 @@ Dependencies ModuleService::get_dependencies_(
 std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) {
     if (!parent_) {
         // LS: I think maybe this is never hit
-        parent_ = RobotClient::at_local_socket(parent_addr_, {0, boost::none});
+        parent_ = RobotClient::at_local_socket(parent_addr_, std::chrono::seconds{0});
         parent_->connect_logging();
     }
 
@@ -254,13 +255,12 @@ ModuleService::ModuleService(int argc,
 }
 
 ModuleService::~ModuleService() {
-    // TODO(RSDK-5509): Run registered cleanup functions here.
-    VIAM_SDK_LOG(info) << "Shutting down gracefully.";
+    VIAM_SDK_LOG(info) << "Shutting down gracefully.\n";
     server_->shutdown();
 
     if (parent_) {
         try {
-            parent_->close();
+            parent_.reset();
         } catch (const std::exception& exc) {
             VIAM_SDK_LOG(error) << exc.what();
         }

@@ -3,11 +3,10 @@
 /// @brief Implements a gRPC client for the `Arm` component
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/arm/v1/arm.grpc.pb.h>
 
 #include <viam/sdk/components/arm.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -19,7 +18,11 @@ namespace impl {
 class ArmClient : public Arm {
    public:
     using interface_type = Arm;
-    ArmClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    ArmClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     pose get_end_position(const ProtoStruct& extra) override;
     void move_to_position(const pose& pose, const ProtoStruct& extra) override;
@@ -49,7 +52,7 @@ class ArmClient : public Arm {
    private:
     using StubType = viam::component::arm::v1::ArmService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl
