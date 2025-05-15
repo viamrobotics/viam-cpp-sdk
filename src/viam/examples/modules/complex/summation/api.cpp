@@ -24,12 +24,12 @@ API API::traits<Summation>::api() {
     return {"viam", "service", "summation"};
 }
 
-Summation::Summation(std::string name) : Service(std::move(name)) {};
+Summation::Summation(std::string name) : Service(std::move(name)) {}
 
 /* Summation server methods */
 
 SummationServer::SummationServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)) {}
 
 grpc::Status SummationServer::Sum(grpc::ServerContext* context,
                                   const SumRequest* request,

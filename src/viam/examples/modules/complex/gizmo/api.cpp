@@ -29,7 +29,7 @@ Gizmo::Gizmo(std::string name) : Component(std::move(name)) {};
 /* Gizmo server methods */
 
 GizmoServer::GizmoServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)) {};
+    : ResourceServer(std::move(manager)) {}
 
 grpc::Status GizmoServer::DoOne(grpc::ServerContext* context,
                                 const DoOneRequest* request,

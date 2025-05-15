@@ -34,7 +34,7 @@ class GenericServiceClient : public GenericService {
     GenericServiceClient(
         std::string name,
         std::unique_ptr<viam::service::generic::v1::GenericService::StubInterface> stub)
-        : GenericService(std::move(name)), stub_(std::move(stub)) {};
+        : GenericService(std::move(name)), stub_(std::move(stub)) {}
 
    private:
     using StubType = viam::service::generic::v1::GenericService::StubInterface;
