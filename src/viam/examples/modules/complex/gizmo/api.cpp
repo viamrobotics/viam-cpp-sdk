@@ -24,7 +24,7 @@ API API::traits<Gizmo>::api() {
     return {"viam", "component", "gizmo"};
 }
 
-Gizmo::Gizmo(std::string name) : Component(std::move(name)) {};
+Gizmo::Gizmo(std::string name) : Component(std::move(name)) {}
 
 /* Gizmo server methods */
 
