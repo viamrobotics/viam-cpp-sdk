@@ -29,8 +29,6 @@ class Instance {
    private:
     friend class Registry;
     friend class LogManager;
-    friend class ViamChannel;
-    friend class ClientContext;
 
     struct Impl;
     std::unique_ptr<Impl> impl_;
