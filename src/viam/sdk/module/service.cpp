@@ -269,7 +269,11 @@ ModuleService::~ModuleService() {
 
 void ModuleService::serve() {
     server_->register_service(impl_.get());
-    const std::string address = "unix:" + module_->addr();
+    std::string address;
+    if (module_->addr().find(':') == std::string::npos) {
+        address += "unix:";
+    }
+    address += module_->addr();
     server_->add_listening_port(address);
 
     module_->set_ready();
