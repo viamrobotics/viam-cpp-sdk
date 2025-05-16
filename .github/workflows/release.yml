@@ -59,6 +59,7 @@ jobs:
 
       - name: Create package
         shell: powershell
+        # TODO (RSDK-10666) Use conan invocations rather than cmake invocations here
         run: |
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
