@@ -31088,6 +31088,7 @@ class ModuleVersion final :
   enum : int {
     kFilesFieldNumber = 2,
     kModelsFieldNumber = 3,
+    kAppsFieldNumber = 7,
     kVersionFieldNumber = 1,
     kEntrypointFieldNumber = 4,
     kFirstRunFieldNumber = 5,
@@ -31128,6 +31129,24 @@ class ModuleVersion final :
   ::viam::app::v1::Model* add_models();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >&
       models() const;
+
+  // repeated .viam.app.v1.App apps = 7 [json_name = "apps"];
+  int apps_size() const;
+  private:
+  int _internal_apps_size() const;
+  public:
+  void clear_apps();
+  ::viam::app::v1::App* mutable_apps(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+      mutable_apps();
+  private:
+  const ::viam::app::v1::App& _internal_apps(int index) const;
+  ::viam::app::v1::App* _internal_add_apps();
+  public:
+  const ::viam::app::v1::App& apps(int index) const;
+  ::viam::app::v1::App* add_apps();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+      apps() const;
 
   // string version = 1 [json_name = "version"];
   void clear_version();
@@ -31204,6 +31223,7 @@ class ModuleVersion final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Uploads > files_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model > models_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App > apps_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
@@ -31333,6 +31353,7 @@ class ModuleMetadata final :
   enum : int {
     kModelsFieldNumber = 1,
     kVersionsFieldNumber = 2,
+    kAppsFieldNumber = 6,
     kEntrypointFieldNumber = 3,
     kFirstRunFieldNumber = 4,
     kMarkdownDescriptionFieldNumber = 5,
@@ -31372,6 +31393,24 @@ class ModuleMetadata final :
   ::viam::app::v1::ModuleVersion* add_versions();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleVersion >&
       versions() const;
+
+  // repeated .viam.app.v1.App apps = 6 [json_name = "apps"];
+  int apps_size() const;
+  private:
+  int _internal_apps_size() const;
+  public:
+  void clear_apps();
+  ::viam::app::v1::App* mutable_apps(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+      mutable_apps();
+  private:
+  const ::viam::app::v1::App& _internal_apps(int index) const;
+  ::viam::app::v1::App* _internal_add_apps();
+  public:
+  const ::viam::app::v1::App& apps(int index) const;
+  ::viam::app::v1::App* add_apps();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+      apps() const;
 
   // string entrypoint = 3 [json_name = "entrypoint"];
   void clear_entrypoint();
@@ -31434,6 +31473,7 @@ class ModuleMetadata final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model > models_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::ModuleVersion > versions_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App > apps_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_description_;
@@ -35816,6 +35856,7 @@ class UpdateModuleMetadata final :
 
   enum : int {
     kModelsFieldNumber = 1,
+    kAppsFieldNumber = 3,
     kEntrypointFieldNumber = 2,
   };
   // repeated .viam.app.v1.Model models = 1 [json_name = "models"];
@@ -35835,6 +35876,24 @@ class UpdateModuleMetadata final :
   ::viam::app::v1::Model* add_models();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >&
       models() const;
+
+  // repeated .viam.app.v1.App apps = 3 [json_name = "apps"];
+  int apps_size() const;
+  private:
+  int _internal_apps_size() const;
+  public:
+  void clear_apps();
+  ::viam::app::v1::App* mutable_apps(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+      mutable_apps();
+  private:
+  const ::viam::app::v1::App& _internal_apps(int index) const;
+  ::viam::app::v1::App* _internal_add_apps();
+  public:
+  const ::viam::app::v1::App& apps(int index) const;
+  ::viam::app::v1::App* add_apps();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+      apps() const;
 
   // string entrypoint = 2 [json_name = "entrypoint"];
   void clear_entrypoint();
@@ -35858,6 +35917,7 @@ class UpdateModuleMetadata final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model > models_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App > apps_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
@@ -37396,6 +37456,7 @@ class Module final :
   enum : int {
     kVersionsFieldNumber = 4,
     kModelsFieldNumber = 7,
+    kAppsFieldNumber = 15,
     kModuleIdFieldNumber = 1,
     kNameFieldNumber = 2,
     kUrlFieldNumber = 5,
@@ -37444,6 +37505,24 @@ class Module final :
   ::viam::app::v1::Model* add_models();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >&
       models() const;
+
+  // repeated .viam.app.v1.App apps = 15 [json_name = "apps"];
+  int apps_size() const;
+  private:
+  int _internal_apps_size() const;
+  public:
+  void clear_apps();
+  ::viam::app::v1::App* mutable_apps(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+      mutable_apps();
+  private:
+  const ::viam::app::v1::App& _internal_apps(int index) const;
+  ::viam::app::v1::App* _internal_add_apps();
+  public:
+  const ::viam::app::v1::App& apps(int index) const;
+  ::viam::app::v1::App* add_apps();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+      apps() const;
 
   // string module_id = 1 [json_name = "moduleId"];
   void clear_module_id();
@@ -37617,6 +37696,7 @@ class Module final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::VersionHistory > versions_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model > models_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App > apps_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
@@ -37754,6 +37834,7 @@ class VersionHistory final :
   enum : int {
     kFilesFieldNumber = 2,
     kModelsFieldNumber = 3,
+    kAppsFieldNumber = 7,
     kVersionFieldNumber = 1,
     kEntrypointFieldNumber = 4,
     kFirstRunFieldNumber = 5,
@@ -37794,6 +37875,24 @@ class VersionHistory final :
   ::viam::app::v1::Model* add_models();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model >&
       models() const;
+
+  // repeated .viam.app.v1.App apps = 7 [json_name = "apps"];
+  int apps_size() const;
+  private:
+  int _internal_apps_size() const;
+  public:
+  void clear_apps();
+  ::viam::app::v1::App* mutable_apps(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+      mutable_apps();
+  private:
+  const ::viam::app::v1::App& _internal_apps(int index) const;
+  ::viam::app::v1::App* _internal_add_apps();
+  public:
+  const ::viam::app::v1::App& apps(int index) const;
+  ::viam::app::v1::App* add_apps();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+      apps() const;
 
   // string version = 1 [json_name = "version"];
   void clear_version();
@@ -37870,6 +37969,7 @@ class VersionHistory final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Uploads > files_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model > models_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App > apps_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
@@ -66056,6 +66156,46 @@ inline void ModuleVersion::set_allocated_markdown_description(std::string* markd
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersion.markdown_description)
 }
 
+// repeated .viam.app.v1.App apps = 7 [json_name = "apps"];
+inline int ModuleVersion::_internal_apps_size() const {
+  return apps_.size();
+}
+inline int ModuleVersion::apps_size() const {
+  return _internal_apps_size();
+}
+inline void ModuleVersion::clear_apps() {
+  apps_.Clear();
+}
+inline ::viam::app::v1::App* ModuleVersion::mutable_apps(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleVersion.apps)
+  return apps_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+ModuleVersion::mutable_apps() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ModuleVersion.apps)
+  return &apps_;
+}
+inline const ::viam::app::v1::App& ModuleVersion::_internal_apps(int index) const {
+  return apps_.Get(index);
+}
+inline const ::viam::app::v1::App& ModuleVersion::apps(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersion.apps)
+  return _internal_apps(index);
+}
+inline ::viam::app::v1::App* ModuleVersion::_internal_add_apps() {
+  return apps_.Add();
+}
+inline ::viam::app::v1::App* ModuleVersion::add_apps() {
+  ::viam::app::v1::App* _add = _internal_add_apps();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ModuleVersion.apps)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+ModuleVersion::apps() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ModuleVersion.apps)
+  return apps_;
+}
+
 // -------------------------------------------------------------------
 
 // ModuleMetadata
@@ -66324,6 +66464,46 @@ inline void ModuleMetadata::set_allocated_markdown_description(std::string* mark
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleMetadata.markdown_description)
+}
+
+// repeated .viam.app.v1.App apps = 6 [json_name = "apps"];
+inline int ModuleMetadata::_internal_apps_size() const {
+  return apps_.size();
+}
+inline int ModuleMetadata::apps_size() const {
+  return _internal_apps_size();
+}
+inline void ModuleMetadata::clear_apps() {
+  apps_.Clear();
+}
+inline ::viam::app::v1::App* ModuleMetadata::mutable_apps(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleMetadata.apps)
+  return apps_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+ModuleMetadata::mutable_apps() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ModuleMetadata.apps)
+  return &apps_;
+}
+inline const ::viam::app::v1::App& ModuleMetadata::_internal_apps(int index) const {
+  return apps_.Get(index);
+}
+inline const ::viam::app::v1::App& ModuleMetadata::apps(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleMetadata.apps)
+  return _internal_apps(index);
+}
+inline ::viam::app::v1::App* ModuleMetadata::_internal_add_apps() {
+  return apps_.Add();
+}
+inline ::viam::app::v1::App* ModuleMetadata::add_apps() {
+  ::viam::app::v1::App* _add = _internal_add_apps();
+  // @@protoc_insertion_point(field_add:viam.app.v1.ModuleMetadata.apps)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+ModuleMetadata::apps() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ModuleMetadata.apps)
+  return apps_;
 }
 
 // -------------------------------------------------------------------
@@ -70205,6 +70385,46 @@ inline void UpdateModuleMetadata::set_allocated_entrypoint(std::string* entrypoi
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateModuleMetadata.entrypoint)
 }
 
+// repeated .viam.app.v1.App apps = 3 [json_name = "apps"];
+inline int UpdateModuleMetadata::_internal_apps_size() const {
+  return apps_.size();
+}
+inline int UpdateModuleMetadata::apps_size() const {
+  return _internal_apps_size();
+}
+inline void UpdateModuleMetadata::clear_apps() {
+  apps_.Clear();
+}
+inline ::viam::app::v1::App* UpdateModuleMetadata::mutable_apps(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateModuleMetadata.apps)
+  return apps_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+UpdateModuleMetadata::mutable_apps() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.UpdateModuleMetadata.apps)
+  return &apps_;
+}
+inline const ::viam::app::v1::App& UpdateModuleMetadata::_internal_apps(int index) const {
+  return apps_.Get(index);
+}
+inline const ::viam::app::v1::App& UpdateModuleMetadata::apps(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleMetadata.apps)
+  return _internal_apps(index);
+}
+inline ::viam::app::v1::App* UpdateModuleMetadata::_internal_add_apps() {
+  return apps_.Add();
+}
+inline ::viam::app::v1::App* UpdateModuleMetadata::add_apps() {
+  ::viam::app::v1::App* _add = _internal_add_apps();
+  // @@protoc_insertion_point(field_add:viam.app.v1.UpdateModuleMetadata.apps)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+UpdateModuleMetadata::apps() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.UpdateModuleMetadata.apps)
+  return apps_;
+}
+
 // -------------------------------------------------------------------
 
 // UpdateMLModelMetadata
@@ -71881,6 +72101,46 @@ inline void Module::set_allocated_markdown_description(std::string* markdown_des
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.markdown_description)
 }
 
+// repeated .viam.app.v1.App apps = 15 [json_name = "apps"];
+inline int Module::_internal_apps_size() const {
+  return apps_.size();
+}
+inline int Module::apps_size() const {
+  return _internal_apps_size();
+}
+inline void Module::clear_apps() {
+  apps_.Clear();
+}
+inline ::viam::app::v1::App* Module::mutable_apps(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.apps)
+  return apps_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+Module::mutable_apps() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.Module.apps)
+  return &apps_;
+}
+inline const ::viam::app::v1::App& Module::_internal_apps(int index) const {
+  return apps_.Get(index);
+}
+inline const ::viam::app::v1::App& Module::apps(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.apps)
+  return _internal_apps(index);
+}
+inline ::viam::app::v1::App* Module::_internal_add_apps() {
+  return apps_.Add();
+}
+inline ::viam::app::v1::App* Module::add_apps() {
+  ::viam::app::v1::App* _add = _internal_add_apps();
+  // @@protoc_insertion_point(field_add:viam.app.v1.Module.apps)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+Module::apps() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.Module.apps)
+  return apps_;
+}
+
 // -------------------------------------------------------------------
 
 // VersionHistory
@@ -72199,6 +72459,46 @@ inline void VersionHistory::set_allocated_markdown_description(std::string* mark
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.VersionHistory.markdown_description)
+}
+
+// repeated .viam.app.v1.App apps = 7 [json_name = "apps"];
+inline int VersionHistory::_internal_apps_size() const {
+  return apps_.size();
+}
+inline int VersionHistory::apps_size() const {
+  return _internal_apps_size();
+}
+inline void VersionHistory::clear_apps() {
+  apps_.Clear();
+}
+inline ::viam::app::v1::App* VersionHistory::mutable_apps(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.VersionHistory.apps)
+  return apps_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >*
+VersionHistory::mutable_apps() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.VersionHistory.apps)
+  return &apps_;
+}
+inline const ::viam::app::v1::App& VersionHistory::_internal_apps(int index) const {
+  return apps_.Get(index);
+}
+inline const ::viam::app::v1::App& VersionHistory::apps(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.VersionHistory.apps)
+  return _internal_apps(index);
+}
+inline ::viam::app::v1::App* VersionHistory::_internal_add_apps() {
+  return apps_.Add();
+}
+inline ::viam::app::v1::App* VersionHistory::add_apps() {
+  ::viam::app::v1::App* _add = _internal_add_apps();
+  // @@protoc_insertion_point(field_add:viam.app.v1.VersionHistory.apps)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
+VersionHistory::apps() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.VersionHistory.apps)
+  return apps_;
 }
 
 // -------------------------------------------------------------------
