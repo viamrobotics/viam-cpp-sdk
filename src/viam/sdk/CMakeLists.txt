@@ -287,6 +287,9 @@ else()
   target_sources(viamsdk PRIVATE rpc/private/viam_rust_utils_stubs.cpp)
 endif()
 
+
+# TODO several of these dependencies should properly be attached to `viam_rust_utils`,
+# not `viamsdk`. However, we currently are unable to do so while maintaining compilation
 if (APPLE)
   target_link_libraries(viamsdk PUBLIC "-framework Security")
 elseif (NOT WIN32)
