@@ -276,10 +276,10 @@ target_link_libraries(viamsdk
   PRIVATE Threads::Threads
 )
 
-# TODO(RSDK-10366): Currently, rust_utils is not published for
-# windows, so don't link to it.  Instead, link a stub implementation
-# that just calls `abort`.
-if (NOT WIN32)
+# if the `viam_rust_utils` target exists then we should use it. If not then
+# we're probably on a non-x86_64 windows build or some other platform without
+# automated `rust-utils` builds, so we should use the stubs instead.
+if (TARGET viam_rust_utils)
   target_link_libraries(viamsdk
     PRIVATE viam_rust_utils
   )
@@ -287,11 +287,19 @@ else()
   target_sources(viamsdk PRIVATE rpc/private/viam_rust_utils_stubs.cpp)
 endif()
 
+
+# TODO several of these dependencies should properly be attached to `viam_rust_utils`,
+# not `viamsdk`. However, we currently are unable to do so while maintaining compilation
 if (APPLE)
   target_link_libraries(viamsdk PUBLIC "-framework Security")
-else()
+elseif (NOT WIN32)
   target_link_libraries(viamsdk PRIVATE dl)
   target_link_libraries(viamsdk PRIVATE rt)
+else()
+  target_link_libraries(viamsdk INTERFACE Ncrypt.lib)
+  target_link_libraries(viamsdk INTERFACE Secur32.lib)
+  target_link_libraries(viamsdk INTERFACE Ntdll.lib)
+  target_link_libraries(viamsdk INTERFACE Userenv.lib)
 endif()
 
 

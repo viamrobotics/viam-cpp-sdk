@@ -3,6 +3,8 @@
 /// @brief Defines the `Server` class.
 #pragma once
 
+#include <chrono>
+
 #include <viam/sdk/common/grpc_fwd.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
