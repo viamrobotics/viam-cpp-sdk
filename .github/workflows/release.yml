@@ -53,9 +53,7 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
 
       - name: Install dependencies
-        uses: crazy-max/ghaction-chocolatey@v3
-        with:
-          args: install -y conan git
+        run: choco install -y conan git
 
       - name: Create package
         shell: powershell
