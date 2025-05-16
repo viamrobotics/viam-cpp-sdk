@@ -294,7 +294,11 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options) {
-    const std::string addr = "unix://" + address;
+    std::string addr;
+    if (address.find(':') == std::string::npos) {
+        addr += "unix:";
+    }
+    addr += address;
     auto robot = RobotClient::with_channel(
         ViamChannel(sdk::impl::create_viam_channel(addr, grpc::InsecureChannelCredentials())),
         options);
