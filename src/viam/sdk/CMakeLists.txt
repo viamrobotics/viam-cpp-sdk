@@ -276,9 +276,9 @@ target_link_libraries(viamsdk
   PRIVATE Threads::Threads
 )
 
-# rust-utils doesn't build in CI on windows other than x86_64, so confirm that we're either not
-# windows, or if we are windows that we're AMD64, or else that the user has provided their own
-# build of rust_utils.
+# if the `viam_rust_utils` target exists then we should use it. If not then
+# we're probably on a non-x86_64 windows build or some other platform without
+# automated `rust-utils` builds, so we should use the stubs instead.
 if (TARGET viam_rust_utils)
   target_link_libraries(viamsdk
     PRIVATE viam_rust_utils
