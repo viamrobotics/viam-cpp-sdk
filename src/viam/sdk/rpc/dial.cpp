@@ -1,5 +1,6 @@
 #include <viam/sdk/rpc/dial.hpp>
 
+#include <algorithm>
 #include <istream>
 #include <string>
 
@@ -171,18 +172,23 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
     if (opts.entity()) {
         entity = opts.entity()->c_str();
     }
-    char* socket_path = ::dial(
+    char* proxy_path = ::dial(
         uri, entity, type, payload, opts.allows_insecure_downgrade(), float_timeout.count(), ptr);
-    if (socket_path == NULL) {
+    if (!proxy_path) {
         free_rust_runtime(ptr);
         throw Exception(ErrorCondition::k_connection, "Unable to establish connecting path");
     }
 
-    std::string address("unix://");
-    address += socket_path;
+    const std::string localhost_prefix("127.0.0.1");
+    std::string address;
+    if (std::string(proxy_path).find(localhost_prefix) == std::string::npos) {
+        // proxy path is not a localhost address and is therefore a unix domain socket (UDS)
+        address += "unix:";
+    }
+    address += proxy_path;
 
     return ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
-                       socket_path,
+                       proxy_path,
                        ptr);
 }
 
