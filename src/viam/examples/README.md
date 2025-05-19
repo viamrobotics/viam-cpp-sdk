@@ -56,7 +56,7 @@ char *path = dial("<your robot uri here>", "<your authentication type>", "<your 
 Then to obtain a robot client do :
 
 ``` c++
-std::string address("unix://");
+std::string address("unix:");
 address += path;
 RobotServiceClient client(grpc::CreateChannel(address, grpc::InsecureChannelCredentials()));
 ```
