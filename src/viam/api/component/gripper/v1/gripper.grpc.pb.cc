@@ -31,6 +31,7 @@ static const char* GripperService_method_names[] = {
   "/viam.component.gripper.v1.GripperService/IsMoving",
   "/viam.component.gripper.v1.GripperService/DoCommand",
   "/viam.component.gripper.v1.GripperService/GetGeometries",
+  "/viam.component.gripper.v1.GripperService/GetKinematics",
 };
 
 std::unique_ptr< GripperService::Stub> GripperService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -46,6 +47,7 @@ GripperService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_IsMoving_(GripperService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DoCommand_(GripperService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetGeometries_(GripperService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKinematics_(GripperService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status GripperService::Stub::Open(::grpc::ClientContext* context, const ::viam::component::gripper::v1::OpenRequest& request, ::viam::component::gripper::v1::OpenResponse* response) {
@@ -216,6 +218,34 @@ void GripperService::Stub::experimental_async::GetGeometries(::grpc::ClientConte
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, false);
 }
 
+::grpc::Status GripperService::Stub::GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest& request, ::viam::common::v1::GetKinematicsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetKinematics_, context, request, response);
+}
+
+void GripperService::Stub::experimental_async::GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetKinematics_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::experimental_async::GetKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetKinematicsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetKinematics_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::experimental_async::GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetKinematics_, context, request, response, reactor);
+}
+
+void GripperService::Stub::experimental_async::GetKinematics(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetKinematics_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetKinematicsResponse>* GripperService::Stub::AsyncGetKinematicsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetKinematicsResponse>::Create(channel_.get(), cq, rpcmethod_GetKinematics_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetKinematicsResponse>* GripperService::Stub::PrepareAsyncGetKinematicsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetKinematicsResponse>::Create(channel_.get(), cq, rpcmethod_GetKinematics_, context, request, false);
+}
+
 GripperService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GripperService_method_names[0],
@@ -277,6 +307,16 @@ GripperService::Service::Service() {
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GripperService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
+          [](GripperService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::common::v1::GetKinematicsRequest* req,
+             ::viam::common::v1::GetKinematicsResponse* resp) {
+               return service->GetKinematics(ctx, req, resp);
+             }, this)));
 }
 
 GripperService::Service::~Service() {
@@ -318,6 +358,13 @@ GripperService::Service::~Service() {
 }
 
 ::grpc::Status GripperService::Service::GetGeometries(::grpc::ServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GripperService::Service::GetKinematics(::grpc::ServerContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
