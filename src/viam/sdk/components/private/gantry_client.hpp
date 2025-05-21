@@ -3,11 +3,10 @@
 /// @brief Implements a gRPC client for the `Gantry` component
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/gantry/v1/gantry.grpc.pb.h>
 
 #include <viam/sdk/components/gantry.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -19,7 +18,11 @@ namespace impl {
 class GantryClient : public Gantry {
    public:
     using interface_type = Gantry;
-    GantryClient(std::string names, std::shared_ptr<grpc::Channel> channel);
+    GantryClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     std::vector<double> get_position(const ProtoStruct& extra) override;
     void move_to_position(const std::vector<movement_coordinate>& coordinates,
@@ -41,7 +44,7 @@ class GantryClient : public Gantry {
    private:
     using StubType = viam::component::gantry::v1::GantryService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

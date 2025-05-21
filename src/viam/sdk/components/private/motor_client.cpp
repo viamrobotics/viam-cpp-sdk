@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/motor_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <memory>
 #include <string>
 #include <utility>
@@ -37,10 +39,10 @@ Motor::properties from_proto(const viam::component::motor::v1::GetPropertiesResp
     return properties;
 }
 
-MotorClient::MotorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+MotorClient::MotorClient(std::string name, const ViamChannel& channel)
     : Motor(std::move(name)),
-      stub_(viam::component::motor::v1::MotorService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::motor::v1::MotorService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 void MotorClient::set_power(double power_pct, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetPower)

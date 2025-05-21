@@ -3,8 +3,6 @@
 /// @brief Implements a gRPC client for the `MovementSensor` component.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/movementsensor/v1/movementsensor.grpc.pb.h>
 
 #include <viam/sdk/common/linear_algebra.hpp>
@@ -12,6 +10,7 @@
 #include <viam/sdk/components/private/movement_sensor_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -23,7 +22,11 @@ namespace impl {
 class MovementSensorClient : public MovementSensor {
    public:
     using interface_type = MovementSensor;
-    MovementSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    MovementSensorClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
     Vector3 get_linear_velocity(const ProtoStruct& extra) override;
     Vector3 get_angular_velocity(const ProtoStruct& extra) override;
     compassheading get_compass_heading(const ProtoStruct& extra) override;
@@ -48,7 +51,7 @@ class MovementSensorClient : public MovementSensor {
    private:
     using StubType = viam::component::movementsensor::v1::MovementSensorService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

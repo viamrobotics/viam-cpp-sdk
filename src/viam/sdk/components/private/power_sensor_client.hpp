@@ -3,14 +3,13 @@
 /// @brief Implements a gRPC client for the `PowerSensor` component.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/powersensor/v1/powersensor.grpc.pb.h>
 
 #include <viam/sdk/components/power_sensor.hpp>
 #include <viam/sdk/components/private/power_sensor_server.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -22,7 +21,11 @@ namespace impl {
 class PowerSensorClient : public PowerSensor {
    public:
     using interface_type = PowerSensor;
-    PowerSensorClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    PowerSensorClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
     voltage get_voltage(const ProtoStruct& extra) override;
     current get_current(const ProtoStruct& extra) override;
     double get_power(const ProtoStruct& extra) override;
@@ -37,7 +40,7 @@ class PowerSensorClient : public PowerSensor {
    private:
     using StubType = viam::component::powersensor::v1::PowerSensorService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl
