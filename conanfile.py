@@ -47,7 +47,7 @@ class ViamCppSdkRecipe(ConanFile):
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
-        self.requires('protobuf/[>=3.17.1 <=5.27.0]')
+        self.requires('protobuf/5.27.0')
 
         if self.settings.compiler.cppstd in ["14", "gnu14"]:
             self.requires('grpc/[>=1.48.4 <1.70.0]')
@@ -64,7 +64,7 @@ class ViamCppSdkRecipe(ConanFile):
             else:
                 self.tool_requires('grpc/[>=1.48.4]')
 
-            self.tool_requires('protobuf/[>=3.17.1 <= 5.27.0]')
+            self.tool_requires('protobuf/5.27.0')
 
     def layout(self):
         cmake_layout(self)
