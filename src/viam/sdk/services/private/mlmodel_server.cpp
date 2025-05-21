@@ -54,7 +54,7 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
                         << static_cast<ut>(tensor_type);
                 return helper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
             }
-            inputs.emplace(tensor_pair.first, std::move(tensor));
+            inputs.emplace(input.name, std::move(tensor));
         } else {
             // Normal case: multiple tensors, do metadata checks
             // If there are extra tensors in the inputs that not found in the metadata,
