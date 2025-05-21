@@ -183,9 +183,11 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
     std::string address;
     if (std::string(proxy_path).find(localhost_prefix) == std::string::npos) {
         // proxy path is not a localhost address and is therefore a unix domain socket (UDS)
+        std::cout << "\n\n\n\t\t\tsomehow this is happening\n\n\n";
         address += "unix:";
     }
     address += proxy_path;
+    std::cout << "address is " << address << "\n\n";
 
     return ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
                        proxy_path,

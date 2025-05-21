@@ -294,13 +294,12 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options) {
-    std::string addr;
-    if (address.find(':') == std::string::npos) {
-        addr += "unix:";
-    }
-    addr += address;
+    // CR erodkin: this function is now totally pointless, so let's get rid of it
+    // otoh, it's public and someone _could_ be using it... maybe we leave it around just in case?
+    std::cout << "\n\n\n\t\t address is " << address << "\n\n" << std::flush;
+    // auto addr = "unix:" + address;
     auto robot = RobotClient::with_channel(
-        ViamChannel(sdk::impl::create_viam_channel(addr, grpc::InsecureChannelCredentials())),
+        ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials())),
         options);
 
     return robot;

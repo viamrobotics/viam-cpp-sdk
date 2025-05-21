@@ -70,6 +70,8 @@ class ModuleService {
 
     std::shared_ptr<RobotClient> parent_;
     std::string parent_addr_;
+    // CR erodkin: rename to `grpc_conn_protocol`
+    std::string parent_addr_protocol_;
 
     std::unique_ptr<Server> server_;
 

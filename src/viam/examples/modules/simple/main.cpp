@@ -95,7 +95,9 @@ int main(int argc, char** argv) try {
         &MySensor::validate);
 
     std::vector<std::shared_ptr<ModelRegistration>> mrs = {mr};
+    VIAM_SDK_LOG(info) << "making my_mod!";
     auto my_mod = std::make_shared<ModuleService>(argc, argv, mrs);
+    VIAM_SDK_LOG(info) << "about to serve!";
     my_mod->serve();
 
     return EXIT_SUCCESS;
