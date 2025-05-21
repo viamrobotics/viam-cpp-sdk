@@ -306,6 +306,49 @@ BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
 
 BOOST_AUTO_TEST_SUITE_END()
 
+
+BOOST_AUTO_TEST_SUITE(test_mlmodel_bugfixes)
+
+BOOST_AUTO_TEST_CASE(RSDK_10768) {
+    auto mock = std::make_shared<MockMLModelService>();
+
+    mock->set_metadata({"foo",
+                        "bar",
+                        "baz",
+                        // `inputs`
+                        {{"input",
+                          "the input",
+                          MLModelService::tensor_info::data_types::k_float32,
+                          {1},
+                          {},
+                          {}},
+                         },
+                        // no `outputs`
+                        {}});
+
+    mock->set_infer_handler([](const MLModelService::named_tensor_views& request) {
+        BOOST_REQUIRE(request.size() == 1);
+        BOOST_REQUIRE(request.count("input") == 1);
+        return std::make_shared<MLModelService::named_tensor_views>();
+    });
+
+    client_to_mock_pipeline<MLModelService>(mock, [&mock](auto& client) {
+        MLModelService::named_tensor_views request;
+
+        std::array<float, 1> input_data{};
+        input_data[0] = 1.0;
+        auto input_view =
+            MLModelService::make_tensor_view(input_data.data(), input_data.size(), {1});
+
+        auto mismatched_name = mock->metadata({}).inputs[0].name + "_mismatched";
+        request.emplace(std::move(mismatched_name), std::move(input_view));
+        auto response = client.infer(request);
+        BOOST_TEST(response->size() == 0);
+    });
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
 // This test suite is to validate that we can use xtensor for all of
 // the tensor data shuttling we need.
 BOOST_AUTO_TEST_SUITE(xtensor_experiment)
