@@ -50,7 +50,7 @@ class ViamCppSdkRecipe(ConanFile):
 
     def _grpc_requires(self):
         if self.settings.compiler.cppstd in ["14", "gnu14"]:
-            return 'grpc/[>=1.48.4 < 1.70.0]'
+            return 'grpc/[>=1.48.4 <1.70.0]'
         
         return 'grpc/[>=1.48.4]'
 
