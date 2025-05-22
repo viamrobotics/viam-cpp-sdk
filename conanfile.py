@@ -44,9 +44,9 @@ class ViamCppSdkRecipe(ConanFile):
 
     def _xtensor_requires(self):
         if self.settings.compiler.cppstd in ["14", "gnu14"]:
-            return 'xtensor[>=0.24.3 <0.26.0]'
+            return 'xtensor/[>=0.24.3 <0.26.0]'
         
-        return 'xtensor[>=0.24.3]'
+        return 'xtensor/[>=0.24.3]'
 
     def _grpc_requires(self):
         if self.settings.compiler.cppstd in ["14", "gnu14"]:
