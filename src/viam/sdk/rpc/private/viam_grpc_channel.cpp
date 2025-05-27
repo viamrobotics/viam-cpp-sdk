@@ -9,7 +9,17 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-std::shared_ptr<grpc::Channel> create_viam_channel(
+#ifndef VIAMCPPSDK_GRPCXX_NO_DIRECT_DIAL
+std::shared_ptr<grpc::Channel> create_viam_auth_channel(const std::string& address) {
+    grpc::experimental::TlsChannelCredentialsOptions opts;
+    opts.set_check_call_host(false);
+    auto tls_creds = grpc::experimental::TlsCredentials(opts);
+
+    return grpc::CreateChannel(address, tls_creds);
+}
+#endif
+
+std::shared_ptr<grpc::Channel> create_viam_grpc_channel(
     const grpc::string& target, const std::shared_ptr<grpc::ChannelCredentials>& credentials) {
     grpc::ChannelArguments args;
     args.SetMaxSendMessageSize(kMaxMessageSize);

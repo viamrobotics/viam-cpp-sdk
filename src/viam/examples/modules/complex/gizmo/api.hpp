@@ -43,7 +43,11 @@ struct API::traits<Gizmo> {
 class GizmoClient : public Gizmo {
    public:
     using interface_type = Gizmo;
-    GizmoClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    GizmoClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     bool do_one(std::string arg1) override;
     bool do_one_client_stream(std::vector<std::string> arg1) override;
@@ -54,7 +58,7 @@ class GizmoClient : public Gizmo {
    private:
     using StubType = GizmoService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 // `GizmoServer` is the gRPC server implementation of a `Gizmo` component.

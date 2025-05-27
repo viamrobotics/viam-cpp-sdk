@@ -11,6 +11,7 @@
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/server.hpp>
 
 namespace google {
@@ -57,8 +58,8 @@ class ResourceClientRegistration {
     /// @param name The name of the resource.
     /// @param channel A channel connected to the client.
     /// @return A `shared_ptr` to the resource client.
-    virtual std::shared_ptr<Resource> create_rpc_client(
-        std::string name, std::shared_ptr<GrpcChannel> channel) const = 0;
+    virtual std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                        ViamChannel& channel) const = 0;
 };
 
 // TODO(RSDK-6616): instead of std::functions, consider making these functions
@@ -129,9 +130,9 @@ class Registry {
            public:
             using ResourceClientRegistration::ResourceClientRegistration;
 
-            std::shared_ptr<Resource> create_rpc_client(
-                std::string name, std::shared_ptr<GrpcChannel> chan) const override {
-                return std::make_shared<ResourceClientT>(std::move(name), std::move(chan));
+            std::shared_ptr<Resource> create_rpc_client(std::string name,
+                                                        ViamChannel& channel) const override {
+                return std::make_shared<ResourceClientT>(std::move(name), channel);
             }
         };
 
