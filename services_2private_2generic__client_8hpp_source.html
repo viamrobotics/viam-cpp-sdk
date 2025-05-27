@@ -111,7 +111,7 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_class" href="classviam_1_1sdk_1_1impl_1_1GenericServiceClient.html">GenericServiceClient</a>(</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        std::string <a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>,</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        std::unique_ptr&lt;viam::service::generic::v1::GenericService::StubInterface&gt; stub)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        : <a class="code hl_class" href="classviam_1_1sdk_1_1GenericService.html">GenericService</a>(std::move(<a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)), stub_(std::move(stub)){};</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        : <a class="code hl_class" href="classviam_1_1sdk_1_1GenericService.html">GenericService</a>(std::move(<a class="code hl_function" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>)), stub_(std::move(stub)) {}</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>   <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">using </span>StubType = viam::service::generic::v1::GenericService::StubInterface;</div>
