@@ -90,9 +90,7 @@ const struct MLModelService::metadata test_metadata {
 
            // `label_type`
            MLModelService::tensor_info::file::k_label_type_tensor_value},
-          {"path/to/file1.2",
-           "i1f2",
-           MLModelService::tensor_info::file::k_label_type_tensor_axis}},
+          {"path/to/file1.2", "i1f2", MLModelService::tensor_info::file::k_label_type_tensor_axis}},
 
          // `extra`
          ProtoStruct{{"foo", ProtoValue{"bar"}}}},
@@ -102,9 +100,7 @@ const struct MLModelService::metadata test_metadata {
       MLModelService::tensor_info::data_types::k_int32,
       {4096, 2160, 3, -1},
       {{"path/to/file2.1", "i2f1", MLModelService::tensor_info::file::k_label_type_tensor_axis},
-       {"path/to/file2.2",
-        "i2f2",
-        MLModelService::tensor_info::file::k_label_type_tensor_value}},
+       {"path/to/file2.2", "i2f2", MLModelService::tensor_info::file::k_label_type_tensor_value}},
       ProtoStruct{{"bar", ProtoValue{false}}}}},
 
     // `outputs`
