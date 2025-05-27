@@ -2,6 +2,9 @@ name: Test
 
 on:
   pull_request:
+    paths-ignore:
+      - conanfile.py
+      - '**.md'
   workflow_dispatch:
     inputs:
       no-tidy:

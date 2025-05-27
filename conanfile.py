@@ -42,19 +42,31 @@ class ViamCppSdkRecipe(ConanFile):
             for lib in ["grpc", "protobuf", "abseil"]:
                 self.options[lib].shared = True
 
+    def _xtensor_requires(self):
+        if self.settings.compiler.cppstd in ["14", "gnu14"]:
+            return 'xtensor/[>=0.24.3 <0.26.0]'
+        
+        return 'xtensor/[>=0.24.3]'
+
+    def _grpc_requires(self):
+        if self.settings.compiler.cppstd in ["14", "gnu14"]:
+            return 'grpc/[>=1.48.4 <1.70.0]'
+        
+        return 'grpc/[>=1.48.4]'
+
     def requirements(self):
         self.requires('boost/[>=1.74.0]', transitive_headers=True)
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
-        self.requires('grpc/[>=1.48.4]')
-        self.requires('protobuf/[>=3.17.1]')
-        self.requires('xtensor/[>=0.24.3]', transitive_headers=True)
+        self.requires(self._grpc_requires())
+        self.requires('protobuf/[>=3.17.1 <6.30.0]')
+        self.requires(self._xtensor_requires(), transitive_headers=True)
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
-            self.tool_requires('grpc/[>=1.48.4]')
-            self.tool_requires('protobuf/[>=3.17.1]')
+            self.tool_requires(self._grpc_requires())
+            self.tool_requires('protobuf/[>=3.17.1 <6.30.0]')
 
     def layout(self):
         cmake_layout(self)
