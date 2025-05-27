@@ -56,95 +56,102 @@ namespace {
 using namespace ::viam::sdk;
 using namespace ::viam::sdktests;
 
-const struct MLModelService::metadata test_metadata{
+
+
+
+const struct MLModelService::metadata test_metadata {
     // `name`
     "my model",
 
-    // `type`
-    "magic",
+        // `type`
+        "magic",
 
-    // `description`,
-    "Convolutional neural network ...",
+        // `description`,
+        "Convolutional neural network ...",
 
-    // `inputs`
-    {{
+        // `inputs`
+        {{
 
-         // `name`
-         "input1",
+             // `name`
+             "input1",
 
-         // `description`
-         "the first input",
+             // `description`
+             "the first input",
 
-         // `data_type`
-         MLModelService::tensor_info::data_types::k_float32,
+             // `data_type`
+             MLModelService::tensor_info::data_types::k_float32,
 
-         // `shape`
-         {640, 480, -1},
+             // `shape`
+             {640, 480, -1},
 
-         // `associated_files`
-         {{// `name`
-           "path/to/file1.1",
+             // `associated_files`
+             {{// `name`
+               "path/to/file1.1",
 
-           // `description`
-           "i1f1",
+               // `description`
+               "i1f1",
 
-           // `label_type`
-           MLModelService::tensor_info::file::k_label_type_tensor_value},
-          {"path/to/file1.2", "i1f2", MLModelService::tensor_info::file::k_label_type_tensor_axis}},
+               // `label_type`
+               MLModelService::tensor_info::file::k_label_type_tensor_value},
+              {"path/to/file1.2",
+               "i1f2",
+               MLModelService::tensor_info::file::k_label_type_tensor_axis}},
 
-         // `extra`
-         ProtoStruct{{"foo", ProtoValue{"bar"}}}},
+             // `extra`
+             ProtoStruct{{"foo", ProtoValue{"bar"}}}},
 
-     {"input2",
-      "the second input",
-      MLModelService::tensor_info::data_types::k_int32,
-      {4096, 2160, 3, -1},
-      {{"path/to/file2.1", "i2f1", MLModelService::tensor_info::file::k_label_type_tensor_axis},
-       {"path/to/file2.2", "i2f2", MLModelService::tensor_info::file::k_label_type_tensor_value}},
-      ProtoStruct{{"bar", ProtoValue{false}}}}},
+         {"input2",
+          "the second input",
+          MLModelService::tensor_info::data_types::k_int32,
+          {4096, 2160, 3, -1},
+          {{"path/to/file2.1", "i2f1", MLModelService::tensor_info::file::k_label_type_tensor_axis},
+           {"path/to/file2.2",
+            "i2f2",
+            MLModelService::tensor_info::file::k_label_type_tensor_value}},
+          ProtoStruct{{"bar", ProtoValue{false}}}}},
 
-    // `outputs`
-    {{
+        // `outputs`
+        {{
 
-         // `name`
-         "output1",
+             // `name`
+             "output1",
 
-         // `description`
-         "the first output",
+             // `description`
+             "the first output",
 
-         // `data_type`
-         MLModelService::tensor_info::data_types::k_int32,
+             // `data_type`
+             MLModelService::tensor_info::data_types::k_int32,
 
-         // `shape`
-         {-1, -1},
+             // `shape`
+             {-1, -1},
 
-         // `associated_files`
-         {{// `name`
-           "path/to/output_file1.1",
+             // `associated_files`
+             {{// `name`
+               "path/to/output_file1.1",
 
-           // `description`
-           "o1f1",
+               // `description`
+               "o1f1",
 
-           // `label_type`
-           MLModelService::tensor_info::file::k_label_type_tensor_axis},
-          {"path/to/output_file1.2",
-           "o1f2",
-           MLModelService::tensor_info::file::k_label_type_tensor_value}},
+               // `label_type`
+               MLModelService::tensor_info::file::k_label_type_tensor_axis},
+              {"path/to/output_file1.2",
+               "o1f2",
+               MLModelService::tensor_info::file::k_label_type_tensor_value}},
 
-         // `extra`
-         ProtoStruct{{"baz", ProtoValue{}}}},
+             // `extra`
+             ProtoStruct{{"baz", ProtoValue{}}}},
 
-     {"output2",
-      "the second output",
-      MLModelService::tensor_info::data_types::k_float32,
-      {-1, -1, 4},
-      {{"path/to/output_file2.1",
-        "o2f1",
-        MLModelService::tensor_info::file::k_label_type_tensor_axis},
-       {"path/to/output_file2.2",
-        "o2f2",
-        MLModelService::tensor_info::file::k_label_type_tensor_value}},
-      ProtoStruct{{"quux", ProtoValue{3.14}}}}},
+         {"output2",
+          "the second output",
+          MLModelService::tensor_info::data_types::k_float32,
+          {-1, -1, 4},
+          {{"path/to/output_file2.1",
+            "o2f1",
+            MLModelService::tensor_info::file::k_label_type_tensor_axis},
+           {"path/to/output_file2.2",
+            "o2f2",
+            MLModelService::tensor_info::file::k_label_type_tensor_value}},
+          ProtoStruct{{"quux", ProtoValue{3.14}}}}},
 };
 
 BOOST_AUTO_TEST_SUITE(test_mock_mlmodel)
