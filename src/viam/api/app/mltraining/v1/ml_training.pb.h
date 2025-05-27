@@ -107,6 +107,9 @@ extern TrainingJobLogEntryDefaultTypeInternal _TrainingJobLogEntry_default_insta
 class TrainingJobMetadata;
 struct TrainingJobMetadataDefaultTypeInternal;
 extern TrainingJobMetadataDefaultTypeInternal _TrainingJobMetadata_default_instance_;
+class TrainingJobMetadata_ArgumentsEntry_DoNotUse;
+struct TrainingJobMetadata_ArgumentsEntry_DoNotUseDefaultTypeInternal;
+extern TrainingJobMetadata_ArgumentsEntry_DoNotUseDefaultTypeInternal _TrainingJobMetadata_ArgumentsEntry_DoNotUse_default_instance_;
 }  // namespace v1
 }  // namespace mltraining
 }  // namespace app
@@ -129,6 +132,7 @@ template<> ::viam::app::mltraining::v1::SubmitTrainingJobRequest* Arena::CreateM
 template<> ::viam::app::mltraining::v1::SubmitTrainingJobResponse* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::SubmitTrainingJobResponse>(Arena*);
 template<> ::viam::app::mltraining::v1::TrainingJobLogEntry* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::TrainingJobLogEntry>(Arena*);
 template<> ::viam::app::mltraining::v1::TrainingJobMetadata* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::TrainingJobMetadata>(Arena*);
+template<> ::viam::app::mltraining::v1::TrainingJobMetadata_ArgumentsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::TrainingJobMetadata_ArgumentsEntry_DoNotUse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace app {
@@ -1655,6 +1659,34 @@ class ListTrainingJobsResponse final :
 };
 // -------------------------------------------------------------------
 
+class TrainingJobMetadata_ArgumentsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TrainingJobMetadata_ArgumentsEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TrainingJobMetadata_ArgumentsEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  TrainingJobMetadata_ArgumentsEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR TrainingJobMetadata_ArgumentsEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit TrainingJobMetadata_ArgumentsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const TrainingJobMetadata_ArgumentsEntry_DoNotUse& other);
+  static const TrainingJobMetadata_ArgumentsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TrainingJobMetadata_ArgumentsEntry_DoNotUse*>(&_TrainingJobMetadata_ArgumentsEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.mltraining.v1.TrainingJobMetadata.ArgumentsEntry.value");
+ }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
+};
+
+// -------------------------------------------------------------------
+
 class TrainingJobMetadata final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.TrainingJobMetadata) */ {
  public:
@@ -1703,7 +1735,7 @@ class TrainingJobMetadata final :
                &_TrainingJobMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(TrainingJobMetadata& a, TrainingJobMetadata& b) {
     a.Swap(&b);
@@ -1762,6 +1794,8 @@ class TrainingJobMetadata final :
   protected:
   explicit TrainingJobMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -1771,10 +1805,12 @@ class TrainingJobMetadata final :
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
   enum : int {
     kTagsFieldNumber = 16,
+    kArgumentsFieldNumber = 21,
     kSyncedModelIdFieldNumber = 5,
     kIdFieldNumber = 7,
     kDatasetIdFieldNumber = 11,
@@ -1816,6 +1852,23 @@ class TrainingJobMetadata final :
   const std::string& _internal_tags(int index) const;
   std::string* _internal_add_tags();
   public:
+
+  // map<string, string> arguments = 21 [json_name = "arguments", (.tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
+  int arguments_size() const;
+  private:
+  int _internal_arguments_size() const;
+  public:
+  void clear_arguments();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_arguments() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_arguments();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      arguments() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_arguments();
 
   // string synced_model_id = 5 [json_name = "syncedModelId", (.tagger.v1.tags) = "bson:\"synced_model_id\" json:\"synced_model_id\""];
   void clear_synced_model_id();
@@ -2063,6 +2116,11 @@ class TrainingJobMetadata final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tags_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      TrainingJobMetadata_ArgumentsEntry_DoNotUse,
+      std::string, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> arguments_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr synced_model_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dataset_id_;
@@ -2133,7 +2191,7 @@ class CancelTrainingJobRequest final :
                &_CancelTrainingJobRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(CancelTrainingJobRequest& a, CancelTrainingJobRequest& b) {
     a.Swap(&b);
@@ -2280,7 +2338,7 @@ class CancelTrainingJobResponse final :
                &_CancelTrainingJobResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(CancelTrainingJobResponse& a, CancelTrainingJobResponse& b) {
     a.Swap(&b);
@@ -2397,7 +2455,7 @@ class DeleteCompletedTrainingJobRequest final :
                &_DeleteCompletedTrainingJobRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(DeleteCompletedTrainingJobRequest& a, DeleteCompletedTrainingJobRequest& b) {
     a.Swap(&b);
@@ -2544,7 +2602,7 @@ class DeleteCompletedTrainingJobResponse final :
                &_DeleteCompletedTrainingJobResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(DeleteCompletedTrainingJobResponse& a, DeleteCompletedTrainingJobResponse& b) {
     a.Swap(&b);
@@ -2661,7 +2719,7 @@ class TrainingJobLogEntry final :
                &_TrainingJobLogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(TrainingJobLogEntry& a, TrainingJobLogEntry& b) {
     a.Swap(&b);
@@ -2845,7 +2903,7 @@ class GetTrainingJobLogsRequest final :
                &_GetTrainingJobLogsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(GetTrainingJobLogsRequest& a, GetTrainingJobLogsRequest& b) {
     a.Swap(&b);
@@ -3014,7 +3072,7 @@ class GetTrainingJobLogsResponse final :
                &_GetTrainingJobLogsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(GetTrainingJobLogsResponse& a, GetTrainingJobLogsResponse& b) {
     a.Swap(&b);
@@ -4169,6 +4227,8 @@ ListTrainingJobsResponse::jobs() const {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 // TrainingJobMetadata
 
 // string id = 7 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
@@ -5151,6 +5211,35 @@ TrainingJobMetadata::mutable_tags() {
   return &tags_;
 }
 
+// map<string, string> arguments = 21 [json_name = "arguments", (.tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
+inline int TrainingJobMetadata::_internal_arguments_size() const {
+  return arguments_.size();
+}
+inline int TrainingJobMetadata::arguments_size() const {
+  return _internal_arguments_size();
+}
+inline void TrainingJobMetadata::clear_arguments() {
+  arguments_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+TrainingJobMetadata::_internal_arguments() const {
+  return arguments_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+TrainingJobMetadata::arguments() const {
+  // @@protoc_insertion_point(field_map:viam.app.mltraining.v1.TrainingJobMetadata.arguments)
+  return _internal_arguments();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+TrainingJobMetadata::_internal_mutable_arguments() {
+  return arguments_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+TrainingJobMetadata::mutable_arguments() {
+  // @@protoc_insertion_point(field_mutable_map:viam.app.mltraining.v1.TrainingJobMetadata.arguments)
+  return _internal_mutable_arguments();
+}
+
 // -------------------------------------------------------------------
 
 // CancelTrainingJobRequest
@@ -5675,6 +5764,8 @@ inline void GetTrainingJobLogsResponse::set_allocated_next_page_token(std::strin
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
