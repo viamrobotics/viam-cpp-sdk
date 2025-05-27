@@ -14,7 +14,7 @@ class MockSensor : public sdk::Sensor {
     static std::shared_ptr<MockSensor> get_mock_sensor();
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
-    MockSensor(std::string name) : Sensor(std::move(name)){};
+    MockSensor(std::string name) : Sensor(std::move(name)) {}
 };
 
 }  // namespace sensor

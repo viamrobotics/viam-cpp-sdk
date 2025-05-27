@@ -10,7 +10,7 @@ namespace board {
 
 using namespace viam::sdk;
 
-MockBoard::MockBoard(std::string name) : Board(std::move(name)){};
+MockBoard::MockBoard(std::string name) : Board(std::move(name)) {}
 
 void MockBoard::set_gpio(const std::string& pin, bool high, const ProtoStruct&) {
     this->peek_pin = pin;

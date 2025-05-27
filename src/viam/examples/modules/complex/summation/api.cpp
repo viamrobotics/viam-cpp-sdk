@@ -24,12 +24,12 @@ API API::traits<Summation>::api() {
     return {"viam", "service", "summation"};
 }
 
-Summation::Summation(std::string name) : Service(std::move(name)){};
+Summation::Summation(std::string name) : Service(std::move(name)) {}
 
 /* Summation server methods */
 
 SummationServer::SummationServer(std::shared_ptr<ResourceManager> manager)
-    : ResourceServer(std::move(manager)){};
+    : ResourceServer(std::move(manager)) {}
 
 grpc::Status SummationServer::Sum(grpc::ServerContext* context,
                                   const SumRequest* request,
@@ -58,7 +58,7 @@ grpc::Status SummationServer::Sum(grpc::ServerContext* context,
 SummationClient::SummationClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Summation(std::move(name)),
       stub_(SummationService::NewStub(channel)),
-      channel_(std::move(channel)){};
+      channel_(std::move(channel)) {}
 
 double SummationClient::sum(std::vector<double> numbers) {
     return make_client_helper(this, *stub_, &StubType::Sum)
