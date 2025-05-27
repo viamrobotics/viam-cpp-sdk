@@ -56,6 +56,7 @@ namespace {
 using namespace ::viam::sdk;
 using namespace ::viam::sdktests;
 
+// clang-format off: correctness varies too much by clang-format version
 const struct MLModelService::metadata test_metadata {
     // `name`
     "my model",
@@ -146,6 +147,7 @@ const struct MLModelService::metadata test_metadata {
         MLModelService::tensor_info::file::k_label_type_tensor_value}},
       ProtoStruct{{"quux", ProtoValue{3.14}}}}},
 };
+// clang-format on
 
 BOOST_AUTO_TEST_SUITE(test_mock_mlmodel)
 
