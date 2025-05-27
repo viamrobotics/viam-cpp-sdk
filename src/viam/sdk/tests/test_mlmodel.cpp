@@ -56,7 +56,10 @@ namespace {
 using namespace ::viam::sdk;
 using namespace ::viam::sdktests;
 
-// clang-format off: correctness varies too much by clang-format version
+// Disable clang format for this structure, as correctness varies too
+// much by clang-format version.
+//
+// clang-format off
 const struct MLModelService::metadata test_metadata {
     // `name`
     "my model",

@@ -58,7 +58,7 @@ grpc::Status SummationServer::Sum(grpc::ServerContext* context,
 SummationClient::SummationClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : Summation(std::move(name)),
       stub_(SummationService::NewStub(channel)),
-      channel_(std::move(channel)) {};
+      channel_(std::move(channel)) {}
 
 double SummationClient::sum(std::vector<double> numbers) {
     return make_client_helper(this, *stub_, &StubType::Sum)

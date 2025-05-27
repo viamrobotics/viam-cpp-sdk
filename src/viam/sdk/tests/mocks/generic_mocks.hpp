@@ -26,7 +26,7 @@ class MockGenericComponent : public GenericComponent {
 
 class MockGenericService : public GenericService {
    public:
-    MockGenericService(std::string name) : GenericService(std::move(name)) {};
+    MockGenericService(std::string name) : GenericService(std::move(name)) {}
     ProtoStruct do_command(const ProtoStruct& command) override;
 
     static std::shared_ptr<MockGenericService> get_mock_generic();
