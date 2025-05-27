@@ -31,7 +31,7 @@ class MockMovementSensor : public sdk::MovementSensor {
     std::unordered_map<std::string, float> peek_accuracy;
     sdk::ProtoStruct peek_do_command_command;
 
-    MockMovementSensor(std::string name) : MovementSensor(std::move(name)){};
+    MockMovementSensor(std::string name) : MovementSensor(std::move(name)) {}
 };
 
 }  // namespace movementsensor

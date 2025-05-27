@@ -17,7 +17,7 @@ class MockCamera : public Camera {
     std::vector<GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
     properties get_properties() override;
     static std::shared_ptr<MockCamera> get_mock_camera();
-    MockCamera(std::string name) : Camera(std::move(name)){};
+    MockCamera(std::string name) : Camera(std::move(name)) {}
 
    private:
     Camera::intrinsic_parameters intrinsic_parameters_;

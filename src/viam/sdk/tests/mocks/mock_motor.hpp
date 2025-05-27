@@ -26,7 +26,7 @@ class MockMotor : public Motor {
     static std::shared_ptr<MockMotor> get_mock_motor();
     virtual std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
-    MockMotor(std::string name) : Motor(std::move(name)){};
+    MockMotor(std::string name) : Motor(std::move(name)) {}
 
     using Motor::get_geometries;
     using Motor::get_position;

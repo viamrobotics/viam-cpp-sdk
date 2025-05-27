@@ -10,7 +10,7 @@ class ResourceServer {
     const std::shared_ptr<ResourceManager>& resource_manager() const;
 
    protected:
-    ResourceServer(std::shared_ptr<ResourceManager> manager) : manager_(manager){};
+    ResourceServer(std::shared_ptr<ResourceManager> manager) : manager_(manager) {}
 
    private:
     std::shared_ptr<ResourceManager> manager_;
