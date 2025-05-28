@@ -117,6 +117,8 @@ class ViamCppSdkRecipe(ConanFile):
 
         if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components["viamsdk"].system_libs.extend(["dl", "rt"])
+        elif self.settings.os == "Windows":
+            self.cpp_info.components["viamsdk"].system_libs.extend(["ncrypt", "secur32", "ntdll", "userenv"])
 
         self.cpp_info.components["viamapi"].includedirs.append("include/viam/api")
 
