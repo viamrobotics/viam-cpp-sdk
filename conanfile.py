@@ -1,5 +1,6 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
+from conan.tools.build import valid_max_cppstd
 from conan.tools.files import load
 from conan.tools.apple import is_apple_os
 import os
@@ -43,13 +44,13 @@ class ViamCppSdkRecipe(ConanFile):
                 self.options[lib].shared = True
 
     def _xtensor_requires(self):
-        if self.settings.compiler.cppstd in ["14", "gnu14"]:
+        if valid_max_cppstd(self, 14, False):
             return 'xtensor/[>=0.24.3 <0.26.0]'
         
         return 'xtensor/[>=0.24.3]'
 
     def _grpc_requires(self):
-        if self.settings.compiler.cppstd in ["14", "gnu14"]:
+        if valid_max_cppstd(self, 14, False):
             return 'grpc/[>=1.48.4 <1.70.0]'
         
         return 'grpc/[>=1.48.4]'
@@ -116,6 +117,8 @@ class ViamCppSdkRecipe(ConanFile):
 
         if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components["viamsdk"].system_libs.extend(["dl", "rt"])
+        elif self.settings.os == "Windows":
+            self.cpp_info.components["viamsdk"].system_libs.extend(["ncrypt", "secur32", "ntdll", "userenv"])
 
         self.cpp_info.components["viamapi"].includedirs.append("include/viam/api")
 
