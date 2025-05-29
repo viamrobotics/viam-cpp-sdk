@@ -56,7 +56,12 @@ class ViamCppSdkRecipe(ConanFile):
         return 'grpc/[>=1.48.4]'
 
     def requirements(self):
-        self.requires('boost/[>=1.74.0]', transitive_headers=True)
+        if self.settings.os == "Windows":
+            # This is temporary pending the resolution of a windows compilation
+            # issue on boost 1.88.0
+            self.requires('boost/[>=1.74.0 <1.88.0]', transitive_headers=True)
+        else:
+            self.requires('boost/[>=1.74.0]', transitive_headers=True)
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
