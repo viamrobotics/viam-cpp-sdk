@@ -98,7 +98,7 @@ to change without warning. In particular, using Boost.Log macros such as
 fail to output log messages.
 
 ## Running Tests
-Tests for the SDK are located in `src/viam/sdk/tests`. The CMakeLists.txt file in that directory defines how to build them. When the SDK is built, the test executables are placed in the test folder within your specified build directory (e.g., `build`, if you followed the instructions in [`BUILDING.md`](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md)). To run the entire test suite at once, navigate to the `tests` folder in your build directory and run:
+Tests for the SDK are located in `src/viam/sdk/tests`. The CMakeLists.txt file in that directory defines how to build them. When the SDK is built, the test executables are placed in the test folder within your specified build directory (e.g., `build`, if you followed the instructions in [`BUILDING.md`](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md)). The test executable files can be run individually. To run the entire test suite at once, navigate to the `tests` folder in your build directory and run:
 ```
 ctest
 ```
