@@ -11,34 +11,72 @@ on:
         type: boolean
         description: set to true to build without clang-tidy (2x faster)
 
-jobs:
-  run-tests:
+# jobs:
+#   test_ubuntu:
+#     if: github.repository_owner == 'viamrobotics'
+#     runs-on: ubuntu-latest
+#     container: ghcr.io/viamrobotics/cpp-base:bullseye-amd64
+#     strategy:
+#       fail-fast: false
+#       matrix:
+#         include:
+#           - BUILD_SHARED: ON
+#           - BUILD_SHARED: OFF
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: cmake
+#         run: |
+#           mkdir build
+#           cd build
+#           cmake .. -G Ninja \
+#             -DBUILD_SHARED_LIBS=${{ matrix.BUILD_SHARED }} \
+#             -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
+#             -DVIAMCPPSDK_BUILD_TESTS=ON \
+#             -DVIAMCPPSDK_BUILD_EXAMPLES=ON \
+#             -DVIAMCPPSDK_CLANG_TIDY=${{ inputs.no-tidy && 'OFF' || 'ON' }} \
+#             -DVIAMCPPSDK_SANITIZED_BUILD=${{ matrix.BUILD_SHARED }}
+#       - name: build
+#         run: |
+#           cmake --build build --target install
+#           cmake --install build
+#       - name: test
+#         working-directory: build
+#         run: ../etc/docker/tests/run_test.sh
+
+  test_windows:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: ubuntu-latest
-    container: ghcr.io/viamrobotics/cpp-base:bullseye-amd64
+    needs: [prepare]
+    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
         include:
-          - BUILD_SHARED: ON
-          - BUILD_SHARED: OFF
+          - target: x86_64-windows
+            platform: windows_x86_64
     steps:
-      - uses: actions/checkout@v4
-      - name: cmake
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+
+      - name: Install dependencies
+        run: choco install -y conan git
+
+      - name: Build SDK
+        shell: powershell
         run: |
-          mkdir build
-          cd build
-          cmake .. -G Ninja \
-            -DBUILD_SHARED_LIBS=${{ matrix.BUILD_SHARED }} \
-            -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
-            -DVIAMCPPSDK_BUILD_TESTS=ON \
-            -DVIAMCPPSDK_BUILD_EXAMPLES=ON \
-            -DVIAMCPPSDK_CLANG_TIDY=${{ inputs.no-tidy && 'OFF' || 'ON' }} \
-            -DVIAMCPPSDK_SANITIZED_BUILD=${{ matrix.BUILD_SHARED }}
-      - name: build
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
+          conan profile detect
+          conan install . --output-folder=build-conan --build=missing -o "&:shared=False"
+          cmake . --preset conan-default -DVIAMCPPSDK_BUILD_TESTS=ON -DVIAMCPPSDK_BUILD_EXAMPLES=ON
+          cmake --build --preset=conan-release --target ALL_BUILD install -j 8
+        env:
+          CONAN_USER_HOME: c:/cache
+          CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+
+      - name: run tests
+        shell: powershell
         run: |
-          cmake --build build --target install
-          cmake --install build
-      - name: test
-        working-directory: build
-        run: ../etc/docker/tests/run_test.sh
+          ctest --preset=conan-release --output-on-failure
+
