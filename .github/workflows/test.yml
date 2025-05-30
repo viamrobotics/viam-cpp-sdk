@@ -42,7 +42,6 @@ jobs:
 #       - name: test
 #         working-directory: build
 #         run: ../etc/docker/tests/run_test.sh
-
   test_windows:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
