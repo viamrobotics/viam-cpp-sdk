@@ -77,6 +77,9 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 
     set(BUF_DOWNLOAD_URL https://github.com/bufbuild/buf/releases/latest/download/buf-${CMAKE_HOST_SYSTEM_NAME}-${HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD}${CMAKE_HOST_EXECUTABLE_SUFFIX})
 
+    message(STATUS "system name ${CMAKE_SYSTEM_NAME} host name ${CMAKE_HOST_SYSTEM_NAME}")
+    message(STATUS "exe suffix ${CMAKE_EXECUTABLE_SUFFIX} host suffix ${CMAKE_HOST_EXECUTABLE_SUFFIX}")
+
     file(
       DOWNLOAD
       ${BUF_DOWNLOAD_URL}
