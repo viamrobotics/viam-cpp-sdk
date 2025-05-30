@@ -7191,6 +7191,7 @@ class ResendOrganizationInviteRequest final :
   enum : int {
     kOrganizationIdFieldNumber = 1,
     kEmailFieldNumber = 2,
+    kSendEmailInviteFieldNumber = 3,
   };
   // string organization_id = 1 [json_name = "organizationId"];
   void clear_organization_id();
@@ -7220,6 +7221,19 @@ class ResendOrganizationInviteRequest final :
   std::string* _internal_mutable_email();
   public:
 
+  // optional bool send_email_invite = 3 [json_name = "sendEmailInvite"];
+  bool has_send_email_invite() const;
+  private:
+  bool _internal_has_send_email_invite() const;
+  public:
+  void clear_send_email_invite();
+  bool send_email_invite() const;
+  void set_send_email_invite(bool value);
+  private:
+  bool _internal_send_email_invite() const;
+  void _internal_set_send_email_invite(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ResendOrganizationInviteRequest)
  private:
   class _Internal;
@@ -7227,9 +7241,11 @@ class ResendOrganizationInviteRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  bool send_email_invite_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -50061,6 +50077,34 @@ inline void ResendOrganizationInviteRequest::set_allocated_email(std::string* em
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ResendOrganizationInviteRequest.email)
+}
+
+// optional bool send_email_invite = 3 [json_name = "sendEmailInvite"];
+inline bool ResendOrganizationInviteRequest::_internal_has_send_email_invite() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool ResendOrganizationInviteRequest::has_send_email_invite() const {
+  return _internal_has_send_email_invite();
+}
+inline void ResendOrganizationInviteRequest::clear_send_email_invite() {
+  send_email_invite_ = false;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline bool ResendOrganizationInviteRequest::_internal_send_email_invite() const {
+  return send_email_invite_;
+}
+inline bool ResendOrganizationInviteRequest::send_email_invite() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ResendOrganizationInviteRequest.send_email_invite)
+  return _internal_send_email_invite();
+}
+inline void ResendOrganizationInviteRequest::_internal_set_send_email_invite(bool value) {
+  _has_bits_[0] |= 0x00000001u;
+  send_email_invite_ = value;
+}
+inline void ResendOrganizationInviteRequest::set_send_email_invite(bool value) {
+  _internal_set_send_email_invite(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ResendOrganizationInviteRequest.send_email_invite)
 }
 
 // -------------------------------------------------------------------
