@@ -44,7 +44,6 @@ jobs:
 #         run: ../etc/docker/tests/run_test.sh
   test_windows:
     if: github.repository_owner == 'viamrobotics'
-    needs: [prepare]
     runs-on: windows-latest
     strategy:
       fail-fast: false
