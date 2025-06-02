@@ -2,7 +2,6 @@
 
 #include <chrono>
 #include <cstddef>
-#include <cstdlib>
 #include <memory>
 #include <mutex>
 #include <string>
@@ -145,7 +144,7 @@ RobotClient::~RobotClient() {
 
 void RobotClient::close() {
     should_refresh_.store(false);
-    should_check_connection_ = false;
+    should_check_connection_.store(false);
 
     if (refresh_thread_.joinable()) {
         refresh_thread_.join();
@@ -238,12 +237,20 @@ void RobotClient::refresh_every() {
 };
 
 void RobotClient::check_connection() {
-    std::exception connection_error;
+    unsigned int check_every = check_every_interval_;
+    unsigned int reconnect_every = reconnect_every_interval_;
+    if (check_every == 0) {
+        check_every = reconnect_every;
+    }
+    if (check_every == 0 && reconnect_every == 0) {
+        should_check_connection_.store(false);
+    }
     bool connected(true);
     while (should_check_connection_) {
+        std::exception connection_error;
         for (int i = 0; i < 3; ++i) {
             try {
-                std::this_thread::sleep_for(std::chrono::seconds{10});
+                std::this_thread::sleep_for(std::chrono::seconds{check_every});
                 impl::client_helper(impl_, &RobotService::Stub::ResourceNames).invoke([](auto&) {
                     return;
                 });
@@ -258,9 +265,10 @@ void RobotClient::check_connection() {
         if (connected) {
             continue;
         }
-        const auto* uri = viam_channel_.uri_;
-        VIAM_SDK_LOG(error)
-            << "Lost connection to machine. Attempting to reconnect to every second";
+        const auto* uri = viam_channel_.get_channel_addr();
+        VIAM_SDK_LOG(error) << "Lost connection to machine at address " << uri << " with error "
+                            << connection_error.what() << ". Attempting to reconnect to every "
+                            << reconnect_every << "second(s)";
         viam_channel_.close();
 
         for (int i = 0; i < 3; ++i) {
@@ -274,12 +282,12 @@ void RobotClient::check_connection() {
                 connected = true;
             } catch (const std::exception& e) {
                 viam_channel_.close();
-                std::this_thread::sleep_for(std::chrono::seconds{1});
+                std::this_thread::sleep_for(std::chrono::seconds{reconnect_every});
             }
         }
         if (!connected) {
             // NOLINTNEXTLINE
-            exit(0);
+            close();
         }
     }
 }
@@ -333,6 +341,9 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
     }
 
     robot->should_check_connection_ = true;
+
+    robot->check_every_interval_ = options.check_every_interval();
+    robot->reconnect_every_interval_ = options.reconnect_every_interval();
 
     robot->check_connection_thread_ = std::thread{&RobotClient::check_connection, robot.get()};
 

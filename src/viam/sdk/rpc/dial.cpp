@@ -203,6 +203,26 @@ void ViamChannel::close() {
     pimpl_.reset();
 }
 
+const char* ViamChannel::get_channel_addr() const {
+    return uri_;
+}
+Options& Options::set_check_every_interval(unsigned int interval) {
+    check_every_interval_ = interval;
+    return *this;
+}
+Options& Options::set_reconnect_every_interval(unsigned int interval) {
+    reconnect_every_interval_ = interval;
+    return *this;
+}
+
+unsigned int Options::check_every_interval() const {
+    return check_every_interval_;
+}
+
+unsigned int Options::reconnect_every_interval() const {
+    return reconnect_every_interval_;
+}
+
 unsigned int Options::refresh_interval() const {
     return refresh_interval_;
 }

@@ -194,7 +194,9 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         auto new_parent_addr = request->parent_address();
         if (parent.parent_addr_ != new_parent_addr) {
             parent.parent_addr_ = std::move(new_parent_addr);
-            parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, {0, boost::none});
+            Options opts{0, boost::none};
+            opts.set_check_every_interval(5).set_reconnect_every_interval(1);
+            parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
             parent.parent_->connect_logging();
         }
         response->set_ready(parent.module_->ready());
