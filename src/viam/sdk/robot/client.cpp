@@ -286,7 +286,6 @@ void RobotClient::check_connection() {
             }
         }
         if (!connected) {
-            // NOLINTNEXTLINE
             close();
         }
     }
