@@ -45,6 +45,9 @@ class ViamChannel {
 
     void close();
 
+    // NOLINTNEXTLINE
+    const char* uri_;
+
    private:
     struct impl;
 

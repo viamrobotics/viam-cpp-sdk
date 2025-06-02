@@ -184,9 +184,14 @@ class RobotClient {
     void connect_logging();
 
     void refresh_every();
+    void check_connection();
 
     std::thread refresh_thread_;
+    // CR erodkin: lots of checks in this thread, it takes 10 seconds to run, shutdown is now slow
+    // on client code
+    std::thread check_connection_thread_;
     std::atomic<bool> should_refresh_;
+    bool should_check_connection_;
     std::chrono::seconds refresh_interval_;
 
     ViamChannel viam_channel_;

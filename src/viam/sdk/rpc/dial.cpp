@@ -187,9 +187,12 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
     }
     address += proxy_path;
 
-    return ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
-                       proxy_path,
-                       ptr);
+    auto chan =
+        ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
+                    proxy_path,
+                    ptr);
+    chan.uri_ = uri;
+    return chan;
 }
 
 const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {

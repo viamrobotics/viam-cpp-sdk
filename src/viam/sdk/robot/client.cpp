@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <cstddef>
+#include <cstdlib>
 #include <memory>
 #include <mutex>
 #include <string>
@@ -144,9 +145,14 @@ RobotClient::~RobotClient() {
 
 void RobotClient::close() {
     should_refresh_.store(false);
+    should_check_connection_ = false;
 
     if (refresh_thread_.joinable()) {
         refresh_thread_.join();
+    }
+
+    if (check_connection_thread_.joinable()) {
+        check_connection_thread_.join();
     }
 
     stop_all();
@@ -231,6 +237,53 @@ void RobotClient::refresh_every() {
     }
 };
 
+void RobotClient::check_connection() {
+    std::exception connection_error;
+    bool connected(true);
+    while (should_check_connection_) {
+        for (int i = 0; i < 3; ++i) {
+            try {
+                std::this_thread::sleep_for(std::chrono::seconds{10});
+                impl::client_helper(impl_, &RobotService::Stub::ResourceNames).invoke([](auto&) {
+                    return;
+                });
+                connected = true;
+                break;
+            } catch (const std::exception& e) {
+                connected = false;
+                connection_error = e;
+                std::this_thread::sleep_for(std::chrono::milliseconds{100});
+            }
+        }
+        if (connected) {
+            continue;
+        }
+        const auto* uri = viam_channel_.uri_;
+        VIAM_SDK_LOG(error)
+            << "Lost connection to machine. Attempting to reconnect to every second";
+        viam_channel_.close();
+
+        for (int i = 0; i < 3; ++i) {
+            try {
+                auto channel = ViamChannel::dial(uri, {});
+                auto impl =
+                    std::make_unique<RobotClient::impl>(RobotService::NewStub(channel.channel()));
+                impl_.reset();
+                impl_.swap(impl);
+                refresh();
+                connected = true;
+            } catch (const std::exception& e) {
+                viam_channel_.close();
+                std::this_thread::sleep_for(std::chrono::seconds{1});
+            }
+        }
+        if (!connected) {
+            // NOLINTNEXTLINE
+            exit(0);
+        }
+    }
+}
+
 RobotClient::RobotClient(ViamChannel channel)
     : viam_channel_(std::move(channel)),
       impl_(std::make_unique<impl>(RobotService::NewStub(viam_channel_.channel()))) {}
@@ -262,8 +315,8 @@ void RobotClient::log(const std::string& name,
     ClientContext ctx;
     const auto response = impl_->stub->Log(ctx, req, &resp);
     if (is_error_response(response)) {
-        // Manually override to force this to get logged to console so we don't set off an infinite
-        // loop
+        // Manually override to force this to get logged to console so we don't set off an
+        // infinite loop
         VIAM_SDK_LOG(error) << boost::log::add_value(sdk::impl::attr_console_force_type{}, true)
                             << "Error sending log message over grpc: " << response.error_message()
                             << response.error_details();
@@ -278,6 +331,10 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
     if (robot->should_refresh_) {
         robot->refresh_thread_ = std::thread{&RobotClient::refresh_every, robot.get()};
     }
+
+    robot->should_check_connection_ = true;
+
+    robot->check_connection_thread_ = std::thread{&RobotClient::check_connection, robot.get()};
 
     robot->refresh();
     return robot;
