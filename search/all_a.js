@@ -1,7 +1,7 @@
 var searchData=
 [
   ['layout_0',['Repository Layout',['../index.html#autotoc_md2',1,'']]],
-  ['license_1',['License',['../index.html#autotoc_md8',1,'']]],
+  ['license_1',['License',['../index.html#autotoc_md9',1,'']]],
   ['linear_5fconstraint_2',['linear_constraint',['../structviam_1_1sdk_1_1Motion_1_1linear__constraint.html',1,'viam::sdk::Motion']]],
   ['linear_5fm_5fper_5fsec_3',['linear_m_per_sec',['../structviam_1_1sdk_1_1motion__configuration.html#a959e4ef1d77474235c8121f9cb619a67',1,'viam::sdk::motion_configuration']]],
   ['linkconfig_4',['LinkConfig',['../classviam_1_1sdk_1_1LinkConfig.html',1,'viam::sdk']]],

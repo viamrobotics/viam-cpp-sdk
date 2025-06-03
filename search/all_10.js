@@ -57,5 +57,6 @@ var searchData=
   ['response_5fmetadata_54',['response_metadata',['../structviam_1_1sdk_1_1response__metadata.html',1,'viam::sdk']]],
   ['robot_20representation_55',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]],
   ['robotclient_56',['RobotClient',['../classviam_1_1sdk_1_1RobotClient.html',1,'viam::sdk']]],
-  ['rpcsubtype_57',['RPCSubtype',['../classviam_1_1sdk_1_1RPCSubtype.html',1,'viam::sdk']]]
+  ['rpcsubtype_57',['RPCSubtype',['../classviam_1_1sdk_1_1RPCSubtype.html',1,'viam::sdk']]],
+  ['running_20tests_58',['Running Tests',['../index.html#autotoc_md8',1,'']]]
 ];

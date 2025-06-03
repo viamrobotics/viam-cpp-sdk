@@ -116,6 +116,11 @@ A Note on Connectivity and webRTC Functionality</h1>
 A note on logging</h1>
 <p>Users should only interact with logging via the macros, classes, and functions in <a href="src/viam/sdk/log/logging.hpp"><code>viam/sdk/log/logging.hpp</code></a>. Logging is implemented using Boost.Log, but this is an implementation detail subject to change without warning. In particular, using Boost.Log macros such as <code>BOOST_LOG_TRIVIAL</code> or <code>BOOST_LOG_SEV</code> is undefined behavior which will likely fail to output log messages.</p>
 <h1><a class="anchor" id="autotoc_md8"></a>
+Running Tests</h1>
+<p>Tests for the SDK are located in <code>src/viam/sdk/tests</code>. The CMakeLists.txt file in that directory defines how to build them. When the SDK is built, the test executables are placed in the test folder within your specified build directory (e.g., <code>build</code>, if you followed the instructions in <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md"><code>BUILDING.md</code></a>). The test executable files can be run individually. To run the entire test suite at once, navigate to the <code>tests</code> folder in your build directory and run: </p><div class="fragment"><div class="line">ctest</div>
+</div><!-- fragment --><p> Or to avoid navigating all the way to the folder you can specify the test directory, for example: </p><div class="fragment"><div class="line">ctest --test-dir build/src/viam/sdk/tests/</div>
+</div><!-- fragment --><p> Additionally, for more useful ctest options explore: </p><div class="fragment"><div class="line">ctest --help</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
 License</h1>
 <p>Copyright 2022 Viam Inc.</p>
 <p>Apache 2.0 - See <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/LICENSE">LICENSE</a> file </p>
