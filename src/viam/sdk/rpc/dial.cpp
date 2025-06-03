@@ -206,20 +206,20 @@ void ViamChannel::close() {
 const char* ViamChannel::get_channel_addr() const {
     return uri_;
 }
-Options& Options::set_check_every_interval(unsigned int interval) {
+Options& Options::set_check_every_interval(std::chrono::seconds interval) {
     check_every_interval_ = interval;
     return *this;
 }
-Options& Options::set_reconnect_every_interval(unsigned int interval) {
+Options& Options::set_reconnect_every_interval(std::chrono::seconds interval) {
     reconnect_every_interval_ = interval;
     return *this;
 }
 
-unsigned int Options::check_every_interval() const {
+std::chrono::seconds Options::check_every_interval() const {
     return check_every_interval_;
 }
 
-unsigned int Options::reconnect_every_interval() const {
+std::chrono::seconds Options::reconnect_every_interval() const {
     return reconnect_every_interval_;
 }
 

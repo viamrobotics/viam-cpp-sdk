@@ -1,3 +1,4 @@
+#include <exception>
 #include <viam/sdk/robot/client.hpp>
 
 #include <chrono>
@@ -237,20 +238,21 @@ void RobotClient::refresh_every() {
 };
 
 void RobotClient::check_connection() {
-    unsigned int check_every = check_every_interval_;
-    unsigned int reconnect_every = reconnect_every_interval_;
-    if (check_every == 0) {
+    auto check_every = check_every_interval_;
+    auto reconnect_every = reconnect_every_interval_;
+    if (check_every == std::chrono::seconds{0}) {
         check_every = reconnect_every;
     }
-    if (check_every == 0 && reconnect_every == 0) {
+    if (check_every == std::chrono::seconds{0} && reconnect_every == std::chrono::seconds{0}) {
         should_check_connection_.store(false);
     }
     bool connected(true);
     while (should_check_connection_) {
-        std::exception connection_error;
+        std::exception_ptr connection_error;
+        std::string what;
         for (int i = 0; i < 3; ++i) {
             try {
-                std::this_thread::sleep_for(std::chrono::seconds{check_every});
+                std::this_thread::sleep_for(check_every);
                 impl::client_helper(impl_, &RobotService::Stub::ResourceNames).invoke([](auto&) {
                     return;
                 });
@@ -258,7 +260,8 @@ void RobotClient::check_connection() {
                 break;
             } catch (const std::exception& e) {
                 connected = false;
-                connection_error = e;
+                connection_error = std::current_exception();
+                what = e.what();
                 std::this_thread::sleep_for(std::chrono::milliseconds{100});
             }
         }
@@ -267,22 +270,21 @@ void RobotClient::check_connection() {
         }
         const auto* uri = viam_channel_.get_channel_addr();
         VIAM_SDK_LOG(error) << "Lost connection to machine at address " << uri << " with error "
-                            << connection_error.what() << ". Attempting to reconnect to every "
-                            << reconnect_every << "second(s)";
+                            << what << ". Attempting to reconnect every " << reconnect_every
+                            << "second(s)";
+
         viam_channel_.close();
 
         for (int i = 0; i < 3; ++i) {
             try {
                 auto channel = ViamChannel::dial(uri, {});
-                auto impl =
+                impl_ =
                     std::make_unique<RobotClient::impl>(RobotService::NewStub(channel.channel()));
-                impl_.reset();
-                impl_.swap(impl);
                 refresh();
                 connected = true;
             } catch (const std::exception& e) {
                 viam_channel_.close();
-                std::this_thread::sleep_for(std::chrono::seconds{reconnect_every});
+                std::this_thread::sleep_for(reconnect_every);
             }
         }
         if (!connected) {

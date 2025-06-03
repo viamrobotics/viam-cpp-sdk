@@ -191,8 +191,8 @@ class RobotClient {
     std::atomic<bool> should_refresh_;
     std::atomic<bool> should_check_connection_;
     std::chrono::seconds refresh_interval_;
-    unsigned int check_every_interval_;
-    unsigned int reconnect_every_interval_;
+    std::chrono::seconds check_every_interval_;
+    std::chrono::seconds reconnect_every_interval_;
 
     ViamChannel viam_channel_;
 
