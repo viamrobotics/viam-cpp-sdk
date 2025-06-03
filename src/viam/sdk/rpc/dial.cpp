@@ -223,7 +223,7 @@ std::chrono::seconds Options::reconnect_every_interval() const {
     return reconnect_every_interval_;
 }
 
-unsigned int Options::refresh_interval() const {
+std::chrono::seconds Options::refresh_interval() const {
     return refresh_interval_;
 }
 

@@ -119,7 +119,7 @@ class Options {
     Options(unsigned int refresh_interval, boost::optional<DialOptions> dial_options)
         : refresh_interval_(std::move(refresh_interval)), dial_options_(std::move(dial_options)) {}
 
-    unsigned int refresh_interval() const;
+    std::chrono::seconds refresh_interval() const;
     std::chrono::seconds check_every_interval() const;
     std::chrono::seconds reconnect_every_interval() const;
 

@@ -270,7 +270,7 @@ void RobotClient::check_connection() {
         }
         const auto* uri = viam_channel_.get_channel_addr();
         VIAM_SDK_LOG(error) << "Lost connection to machine at address " << uri << " with error "
-                            << what << ". Attempting to reconnect every " << reconnect_every
+                            << what << ". Attempting to reconnect every " << reconnect_every.count()
                             << "second(s)";
 
         viam_channel_.close();
