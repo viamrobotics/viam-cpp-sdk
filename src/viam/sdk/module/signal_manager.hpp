@@ -1,10 +1,6 @@
 #pragma once
 
-#include <signal.h>
-
-#ifdef _WIN32
-#include <windows.h>
-#endif
+#include <memory> //must include for std::unique_ptr
 
 namespace viam {
 namespace sdk {
@@ -27,16 +23,8 @@ class SignalManager {
     int wait();
 
    private:
-#ifdef _WIN32
-    static BOOL WINAPI console_handler_routine_(DWORD dwCtrlType);
-    void handle_signal_(int signal);
-
-    static SignalManager* instance_;
-    HANDLE signal_event_ = INVALID_HANDLE_VALUE;
-    int signal_code_ = 0;
-#else
-    sigset_t sigset_;
-#endif
+   struct Impl;  // Forward declaration for pImpl idiom
+   std::unique_ptr<Impl> pImpl;  // Pointer to the implementation
 };
 
 }  // namespace sdk

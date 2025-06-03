@@ -126,7 +126,6 @@ target_sources(viamsdk
     module/handler_map.cpp
     module/module.cpp
     module/service.cpp
-    module/signal_manager.cpp
     referenceframe/frame.cpp
     registry/registry.cpp
     resource/reconfigurable.cpp
@@ -220,6 +219,18 @@ target_sources(viamsdk
       ../../viam/sdk/spatialmath/orientation_types.hpp
       ${CMAKE_CURRENT_BINARY_DIR}/../../viam/sdk/common/grpc_fwd.hpp
 )
+
+if(WIN32)
+  target_sources(viamsdk
+  PRIVATE
+  module/signal_manager_windows.cpp
+  )
+else()
+  target_sources(viamsdk
+    PRIVATE
+      module/signal_manager_posix.cpp
+  )
+endif()
 
 set_target_properties(
   viamsdk PROPERTIES
