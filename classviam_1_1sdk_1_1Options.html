@@ -87,9 +87,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab797ee04caa229b0ff5c6452d813d35b" id="r_ab797ee04caa229b0ff5c6452d813d35b"><td class="memItemLeft" align="right" valign="top"><a id="ab797ee04caa229b0ff5c6452d813d35b" name="ab797ee04caa229b0ff5c6452d813d35b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Options</b> (unsigned int refresh_interval, boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1DialOptions.html">DialOptions</a> &gt; dial_options)</td></tr>
 <tr class="separator:ab797ee04caa229b0ff5c6452d813d35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47761f40041a86538ebd40f1e4071d5f" id="r_a47761f40041a86538ebd40f1e4071d5f"><td class="memItemLeft" align="right" valign="top"><a id="a47761f40041a86538ebd40f1e4071d5f" name="a47761f40041a86538ebd40f1e4071d5f"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>refresh_interval</b> () const</td></tr>
-<tr class="separator:a47761f40041a86538ebd40f1e4071d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad723be92c75a7048991ae5bac67b2f65" id="r_ad723be92c75a7048991ae5bac67b2f65"><td class="memItemLeft" align="right" valign="top"><a id="ad723be92c75a7048991ae5bac67b2f65" name="ad723be92c75a7048991ae5bac67b2f65"></a>
+std::chrono::seconds&#160;</td><td class="memItemRight" valign="bottom"><b>refresh_interval</b> () const</td></tr>
+<tr class="separator:ad723be92c75a7048991ae5bac67b2f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac571069760d3ecd885d485da725114b3" id="r_ac571069760d3ecd885d485da725114b3"><td class="memItemLeft" align="right" valign="top"><a id="ac571069760d3ecd885d485da725114b3" name="ac571069760d3ecd885d485da725114b3"></a>
+std::chrono::seconds&#160;</td><td class="memItemRight" valign="bottom"><b>check_every_interval</b> () const</td></tr>
+<tr class="separator:ac571069760d3ecd885d485da725114b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0af62d6000e6fc7137aadece283004b9" id="r_a0af62d6000e6fc7137aadece283004b9"><td class="memItemLeft" align="right" valign="top"><a id="a0af62d6000e6fc7137aadece283004b9" name="a0af62d6000e6fc7137aadece283004b9"></a>
+std::chrono::seconds&#160;</td><td class="memItemRight" valign="bottom"><b>reconnect_every_interval</b> () const</td></tr>
+<tr class="separator:a0af62d6000e6fc7137aadece283004b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefa355bf65852076c18ac96bdbd72bdb" id="r_aefa355bf65852076c18ac96bdbd72bdb"><td class="memItemLeft" align="right" valign="top"><a id="aefa355bf65852076c18ac96bdbd72bdb" name="aefa355bf65852076c18ac96bdbd72bdb"></a>
+<a class="el" href="classviam_1_1sdk_1_1Options.html">Options</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set_check_every_interval</b> (std::chrono::seconds interval)</td></tr>
+<tr class="memdesc:aefa355bf65852076c18ac96bdbd72bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency (in seconds) to verify connectivity. <br /></td></tr>
+<tr class="separator:aefa355bf65852076c18ac96bdbd72bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7347429ae3d63b708b1cd27a356a6007" id="r_a7347429ae3d63b708b1cd27a356a6007"><td class="memItemLeft" align="right" valign="top"><a id="a7347429ae3d63b708b1cd27a356a6007" name="a7347429ae3d63b708b1cd27a356a6007"></a>
+<a class="el" href="classviam_1_1sdk_1_1Options.html">Options</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set_reconnect_every_interval</b> (std::chrono::seconds interval)</td></tr>
+<tr class="memdesc:a7347429ae3d63b708b1cd27a356a6007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency (in seconds) to attempt to reconnect when connectivity is lost. <br /></td></tr>
+<tr class="separator:a7347429ae3d63b708b1cd27a356a6007"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9c42c30e7e6d0ecfb88caefa4a3b3dc" id="r_aa9c42c30e7e6d0ecfb88caefa4a3b3dc"><td class="memItemLeft" align="right" valign="top"><a id="aa9c42c30e7e6d0ecfb88caefa4a3b3dc" name="aa9c42c30e7e6d0ecfb88caefa4a3b3dc"></a>
 const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1DialOptions.html">DialOptions</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>dial_options</b> () const</td></tr>
 <tr class="separator:aa9c42c30e7e6d0ecfb88caefa4a3b3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
