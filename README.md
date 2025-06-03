@@ -102,6 +102,14 @@ Tests for the SDK are located in `src/viam/sdk/tests`. The CMakeLists.txt file i
 ```
 ctest
 ```
+Or to avoid navigating all the way to the folder you can specify the test directory, for example:
+```
+ctest --test-dir build/src/viam/sdk/tests/
+```
+Additionally, for more useful ctest options explore:
+```
+ctest --help
+```
 
 ## License
 Copyright 2022 Viam Inc.
