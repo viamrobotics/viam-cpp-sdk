@@ -1,6 +1,6 @@
 #pragma once
 
-#include <memory> //must include for std::unique_ptr
+#include <memory>  //must include for std::unique_ptr
 
 namespace viam {
 namespace sdk {
@@ -23,8 +23,8 @@ class SignalManager {
     int wait();
 
    private:
-   struct Impl;  // Forward declaration for pImpl idiom
-   std::unique_ptr<Impl> pImpl;  // Pointer to the implementation
+    struct Impl;                  // Forward declaration for pImpl idiom
+    std::unique_ptr<Impl> pImpl;  // Pointer to the implementation
 };
 
 }  // namespace sdk
