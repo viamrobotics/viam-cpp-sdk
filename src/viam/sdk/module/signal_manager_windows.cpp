@@ -1,6 +1,8 @@
-#include <signal.h>
-#include <viam/sdk/module/signal_manager.hpp>
 #include <windows.h>  //this file assumes WIN32
+
+#include <viam/sdk/module/signal_manager.hpp>
+
+#include <signal.h>
 
 #include <stdexcept>
 

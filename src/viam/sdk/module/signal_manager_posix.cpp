@@ -1,8 +1,9 @@
 #include <viam/sdk/module/signal_manager.hpp>
 
-#include <csignal>
 #include <pthread.h>
 #include <signal.h>
+
+#include <csignal>
 
 namespace viam {
 namespace sdk {
@@ -18,7 +19,7 @@ SignalManager::SignalManager() : pImpl(std::make_unique<Impl>()) {
     pthread_sigmask(SIG_BLOCK, &(pImpl->sigset_), NULL);
 }
 
-SignalManager::~SignalManager() {}
+SignalManager::~SignalManager() = default;
 
 int SignalManager::wait() {
     int sig = 0;

@@ -223,7 +223,7 @@ target_sources(viamsdk
 if(WIN32)
   target_sources(viamsdk
   PRIVATE
-  module/signal_manager_windows.cpp
+    module/signal_manager_windows.cpp
   )
 else()
   target_sources(viamsdk
