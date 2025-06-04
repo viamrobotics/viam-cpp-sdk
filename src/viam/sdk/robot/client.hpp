@@ -184,10 +184,15 @@ class RobotClient {
     void connect_logging();
 
     void refresh_every();
+    void check_connection();
 
     std::thread refresh_thread_;
+    std::thread check_connection_thread_;
     std::atomic<bool> should_refresh_;
+    std::atomic<bool> should_check_connection_;
     std::chrono::seconds refresh_interval_;
+    std::chrono::seconds check_every_interval_;
+    std::chrono::seconds reconnect_every_interval_;
 
     ViamChannel viam_channel_;
 
