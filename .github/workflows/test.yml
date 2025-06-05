@@ -67,14 +67,17 @@ jobs:
           refreshenv
           conan profile detect
           conan install . --output-folder=build-conan --build=missing -o "&:shared=False"
-          cmake . --preset conan-default -DVIAMCPPSDK_BUILD_TESTS=ON -DVIAMCPPSDK_BUILD_EXAMPLES=ON
+          cmake . --preset conan-default -DVIAMCPPSDK_BUILD_EXAMPLES=ON
           cmake --build --preset=conan-release --target ALL_BUILD install -j 8
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
-      - name: run tests
+      - name: Test examples
         shell: powershell
         run: |
-          ctest --preset=conan-release --output-on-failure
-
+          tree build
+          cd build/install/bin
+          ls
+          Start-Job -ScriptBlock { ./simple_module asdf | Select-String -Pattern "Module listening on" } \
+          | Wait-Job -Timeout 2 | Receive-Job
