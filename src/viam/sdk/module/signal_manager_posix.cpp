@@ -1,7 +1,6 @@
 #include <viam/sdk/module/signal_manager.hpp>
 
 #include <pthread.h>
-#include <signal.h>
 
 #include <csignal>
 
