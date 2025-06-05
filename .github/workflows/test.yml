@@ -66,7 +66,7 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan install . --output-folder=build-conan --build=missing -o "&:shared=False"
+          conan install . --build=missing -o "&:shared=False"
           cmake . --preset conan-default -DVIAMCPPSDK_BUILD_EXAMPLES=ON
           cmake --build --preset=conan-release --target ALL_BUILD install -j 8
         env:
@@ -79,5 +79,4 @@ jobs:
           tree build
           cd build/install/bin
           ls
-          Start-Job -ScriptBlock { ./simple_module asdf | Select-String -Pattern "Module listening on" } \
-          | Wait-Job -Timeout 2 | Receive-Job
+          Start-Job -ScriptBlock { ./simple_module asdf | Select-String -Pattern "Module listening on" } | Wait-Job -Timeout 2 | Receive-Job
