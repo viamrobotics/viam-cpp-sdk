@@ -45,7 +45,10 @@ class ViamChannel {
 
     void close();
 
+    const char* get_channel_addr() const;
+
    private:
+    const char* uri_;
     struct impl;
 
     std::shared_ptr<GrpcChannel> channel_;
@@ -116,13 +119,33 @@ class Options {
     Options(unsigned int refresh_interval, boost::optional<DialOptions> dial_options)
         : refresh_interval_(std::move(refresh_interval)), dial_options_(std::move(dial_options)) {}
 
-    unsigned int refresh_interval() const;
+    std::chrono::seconds refresh_interval() const;
+    std::chrono::seconds check_every_interval() const;
+    std::chrono::seconds reconnect_every_interval() const;
+
+    /// @brief Sets the frequency (in seconds) to verify connectivity
+    Options& set_check_every_interval(std::chrono::seconds interval);
+
+    /// @brief Sets the frequency (in seconds) to attempt to reconnect when connectivity is lost
+    Options& set_reconnect_every_interval(std::chrono::seconds interval);
     const boost::optional<DialOptions>& dial_options() const;
 
    private:
     /// @brief How often to refresh the status/parts of the robot, in seconds. If set to 0, the
     /// robot will not automatically refresh.
-    unsigned int refresh_interval_;
+    std::chrono::seconds refresh_interval_{0};
+
+    /// @brief How often to verify connectivity to the robot, in seconds. If set to 0, will not
+    /// check, will default to the `reconnect_every_interval_` value. Defaults to 0.
+    /// @note Setting to a non-zero value is useful in modules but may result in delays shutting
+    /// down client code
+    std::chrono::seconds check_every_interval_{0};
+
+    /// @brief How often to attempt to reconnect to the robot when disconnected. If set to 0,
+    /// will not attempt to reconnect. Defaults to 0.
+    /// @note Setting to a non-zero value is useful in modules but may result in delays shutting
+    /// down client code
+    std::chrono::seconds reconnect_every_interval_{0};
     boost::optional<DialOptions> dial_options_;
 };
 
