@@ -79,4 +79,4 @@ jobs:
           tree build
           cd build/install/bin
           ls
-          Start-Job -ScriptBlock { ./simple_module asdf | Select-String -Pattern "Module listening on" } | Wait-Job -Timeout 2 | Receive-Job
+          Start-Job -ScriptBlock { ./simple_module.exe asdf | Select-String -Pattern "Module listening on" } | Wait-Job -Timeout 2 | Receive-Job
