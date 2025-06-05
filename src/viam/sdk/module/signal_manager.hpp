@@ -1,6 +1,6 @@
 #pragma once
 
-#include <memory> 
+#include <memory>
 
 namespace viam {
 namespace sdk {
@@ -23,8 +23,8 @@ class SignalManager {
     int wait();
 
    private:
-    struct Impl;                 
-    std::unique_ptr<Impl> pImpl; 
+    struct Impl;
+    std::unique_ptr<Impl> pImpl;
 };
 
 }  // namespace sdk
