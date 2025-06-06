@@ -40,8 +40,6 @@ jobs:
           github.event_name == 'schedule' &&
           steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit-hash
 
-  # TODO (RSDK-10666) add windows build testing
-
   build_macos:
     if: github.repository_owner == 'viamrobotics'
     needs: [prepare]
@@ -215,3 +213,34 @@ jobs:
           --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s compiler.cppstd=14 -s:a compiler.cppstd=14
 
           conan create . --build=missing -s compiler.cppstd=14 -s:a compiler.cppstd=14
+
+  build_windows:
+    if: github.repository_owner == 'viamrobotics'
+    needs: [prepare]
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-windows
+            platform: windows_x86_64
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+
+      - name: Install dependencies
+        run: choco install -y conan git
+
+      - name: Create package
+        shell: powershell
+        run: |
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+          refreshenv
+          conan profile detect
+          conan create . --build=missing -o "&:shared=False"
+        env:
+          CONAN_USER_HOME: c:/cache
+          CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+
