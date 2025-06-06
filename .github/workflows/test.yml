@@ -76,4 +76,4 @@ jobs:
       - name: Test examples
         shell: powershell
         run: |
-          Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd'/build/install/bin")) -ScriptBlock { ls; .\simple_module.exe asdf | Select-String -Pattern "Module listening on" } | Wait-Job -Timeout 2 | Receive-Job
+          Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd/build/install/bin'")) -ScriptBlock { ls; .\simple_module.exe asdf | Select-String -Pattern "Module listening on" } | Wait-Job -Timeout 2 | Receive-Job
