@@ -1,8 +1,6 @@
 // This file is adapted from examples/modules/simple/main.cpp, but it runs the module
 // service in a thread which is killed after two seconds. This is a workaround to conform with the
 // expected format of a conan test package executable.
-#include <csignal>
-
 #include <iostream>
 #include <memory>
 #include <sstream>
@@ -106,9 +104,7 @@ int main(int argc, char** argv) try {
     std::thread t{[&my_mod] { my_mod->serve(); }};
     std::this_thread::sleep_for(std::chrono::seconds{2});
 
-    pthread_kill(t.native_handle(), SIGTERM);
-
-    t.join();
+    t.detach();
 
     return EXIT_SUCCESS;
 } catch (const viam::sdk::Exception& ex) {
