@@ -76,4 +76,6 @@ jobs:
       - name: Test examples
         shell: powershell
         run: |
-          Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd/build/install/bin'")) -ScriptBlock { .\simple_module.exe asdf | Select-String -Pattern "wrong pattern" } | Wait-Job -Timeout 2 | Receive-Job
+          Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd/build/install/bin'")) -ScriptBlock { .\simple_module.exe asdf 2>&1 > output.txt} | Wait-Job -Timeout 2 | Receive-Job
+          if (-not $(Select-String -Pattern "wrong" -Path ./build/install/bin/output.txt)) { throw "Module did not start listening" }
+
