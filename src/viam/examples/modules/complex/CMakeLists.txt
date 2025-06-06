@@ -36,26 +36,9 @@ set(MODULE_PROTO_OUTPUT_FILES
   ${MODULE_PROTO_GEN_DIR}/summation.pb.h
 )
 
-# Look for the `buf` command in the usual places, and use it if found. If we
-# can't find it, try to download it and use that.
-find_program(BUF_COMMAND buf)
-if (NOT BUF_COMMAND)
-  file(
-    DOWNLOAD
-    https://github.com/bufbuild/buf/releases/latest/download/buf-${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_HOST_SYSTEM_PROCESSOR}
-    ${CMAKE_CURRENT_BINARY_DIR}/buf_latest
-    STATUS buf_status
-  )
-  list(GET buf_status 0 buf_status_code)
-  list(GET buf_status 1 buf_status_string)
-
-  if(NOT buf_status_code EQUAL 0)
-    message(FATAL_ERROR "No local `buf` program found (try setting PATH?) and failed to download: ${buf_status_string}")
-  endif()
-
-  set(BUF_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/buf_latest)
-  file(CHMOD ${BUF_COMMAND} PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
-endif()
+# Try to find buf in the path or get it online.
+# See the definition of this function for logic that can be adapted to other project files.
+viamcppsdk_get_buf()
 
 if ((NOT VIAMCPPSDK_OFFLINE_PROTO_GENERATION) AND VIAMCPPSDK_BUF_REMOTE_PLUGIN_SUPPORTED)
   configure_file(
