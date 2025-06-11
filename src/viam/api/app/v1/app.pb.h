@@ -4038,6 +4038,7 @@ class GetOrganizationNamespaceAvailabilityRequest final :
 
   enum : int {
     kPublicNamespaceFieldNumber = 1,
+    kOrganizationIdFieldNumber = 2,
   };
   // string public_namespace = 1 [json_name = "publicNamespace"];
   void clear_public_namespace();
@@ -4053,6 +4054,20 @@ class GetOrganizationNamespaceAvailabilityRequest final :
   std::string* _internal_mutable_public_namespace();
   public:
 
+  // string organization_id = 2 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest)
  private:
   class _Internal;
@@ -4061,6 +4076,7 @@ class GetOrganizationNamespaceAvailabilityRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -48497,6 +48513,56 @@ inline void GetOrganizationNamespaceAvailabilityRequest::set_allocated_public_na
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.public_namespace)
+}
+
+// string organization_id = 2 [json_name = "organizationId"];
+inline void GetOrganizationNamespaceAvailabilityRequest::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+}
+inline const std::string& GetOrganizationNamespaceAvailabilityRequest::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetOrganizationNamespaceAvailabilityRequest::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
+}
+inline std::string* GetOrganizationNamespaceAvailabilityRequest::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
+  return _s;
+}
+inline const std::string& GetOrganizationNamespaceAvailabilityRequest::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void GetOrganizationNamespaceAvailabilityRequest::_internal_set_organization_id(const std::string& value) {
+  
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetOrganizationNamespaceAvailabilityRequest::_internal_mutable_organization_id() {
+  
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetOrganizationNamespaceAvailabilityRequest::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
+  return organization_id_.Release();
+}
+inline void GetOrganizationNamespaceAvailabilityRequest::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
 }
 
 // -------------------------------------------------------------------
