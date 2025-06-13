@@ -5,6 +5,7 @@
 
 #include <string>
 
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
@@ -20,6 +21,13 @@ namespace sdk {
 /// specific gripper implementations. This class cannot be used on its own.
 class Gripper : public Component, public Stoppable {
    public:
+    /// @struct holding_status
+    /// @brief whether the gripper is holding something (along with other contextual info)
+    struct holding_status {
+        bool is_holding_something;
+        ProtoStruct meta;
+    };
+
     /// @brief Open the gripper.
     inline void open() {
         return open({});
@@ -39,6 +47,17 @@ class Gripper : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method.
     /// @return bool indicating if the gripper grabbed something.
     virtual bool grab(const ProtoStruct& extra) = 0;
+
+    /// @brief Reports whether the gripper is holding onto a object (alongside other information).
+    /// @return holding_status (see `holding_status` struct for more info).
+    inline holding_status is_holding_something() {
+        return holding_status({});
+    }
+
+    /// @brief Reports whether the gripper is holding onto a object (alongside other information).
+    /// @param extra Any additional arguments to the method.
+    /// @return holding_status (see `holding_status` struct for more info).
+    virtual holding_status is_holding_something(const ProtoStruct& extra) = 0;
 
     /// @brief Reports if the gripper is in motion.
     virtual bool is_moving() = 0;

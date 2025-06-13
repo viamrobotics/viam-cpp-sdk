@@ -26,6 +26,23 @@ bool GripperClient::grab(const ProtoStruct& extra) {
     });
 }
 
+Gripper::holding_status GripperClient::is_holding_something(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::IsHoldingSomething)
+        .with(extra)
+        .invoke([](auto& response) {
+            Gripper::holding_status holding_status;
+            holding_status.is_holding_something = response.is_holding_something();
+            if response
+                .has_meta() {
+                    holding_status.meta = from_proto(response.meta());
+                }
+            else {
+                holding_status.meta = {};
+            }
+            return holding_status;
+        });
+}
+
 bool GripperClient::is_moving() {
     return make_client_helper(this, *stub_, &StubType::IsMoving).invoke([](auto& response) {
         return response.is_moving();

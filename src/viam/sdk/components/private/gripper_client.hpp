@@ -25,6 +25,7 @@ class GripperClient : public Gripper {
 
     void open(const ProtoStruct& extra) override;
     bool grab(const ProtoStruct& extra) override;
+    Gripper::holding_status is_holding_something(const ProtoStruct& extra) override;
     void stop(const ProtoStruct& extra) override;
     bool is_moving() override;
     ProtoStruct do_command(const ProtoStruct& command) override;
