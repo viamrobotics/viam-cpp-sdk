@@ -1,4 +1,3 @@
-#include <algorithm>
 #ifdef _WIN32
 #define NOMINMAX
 // clang-format off
