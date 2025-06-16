@@ -192,7 +192,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const std::lock_guard<std::mutex> lock(parent.lock_);
         const viam::module::v1::HandlerMap hm = to_proto(parent.module_->handles());
         *response->mutable_handlermap() = hm;
-        auto new_parent_addr = parent.parent_addr_protocol_ + request->parent_address();
+        auto new_parent_addr = parent.grpc_conn_protocol_ + request->parent_address();
         if (parent.parent_addr_ != new_parent_addr) {
             parent.parent_addr_ = std::move(new_parent_addr);
             Options opts{0, boost::none};
@@ -234,51 +234,38 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     return parent_->resource_by_name(name);
 }
 
-namespace {
+ModuleService::ModuleService(std::string addr) : ModuleService(std::move(addr), "unix:") {}
 
-bool tcp_set() {
-    // NOLINTNEXTLINE
-    const char* using_tcp = std::getenv("VIAM_TCP_SOCKETS");
-    if (!using_tcp) {
-        return false;
-    }
-    std::vector<std::string> true_values{"true", "yes", "1", "TRUE", "YES"};
-    return std::any_of(true_values.begin(), true_values.end(), [&](const std::string& v) {
-        return using_tcp == v;
-    });
-}
-
-std::string get_parent_addr_protocol() {
-    VIAM_SDK_LOG(info) << "getting protocol!!";
-    // NOLINTNEXTLINE
-    const char* protocol = std::getenv("VIAM_PARENT_ADDR_PROTOCOL");
-    if (!protocol) {
-        if (tcp_set()) {
-            return "dns:";
-        }
-        return "unix:";
-    }
-    return std::string(protocol);
-}
-}  // namespace
-
-ModuleService::ModuleService(std::string addr)
+ModuleService::ModuleService(std::string addr, std::string grpc_conn_protocol)
     : module_(std::make_unique<Module>(std::move(addr))),
-      parent_addr_protocol_(get_parent_addr_protocol()),
+      grpc_conn_protocol_(std::move(grpc_conn_protocol)),
       server_(std::make_unique<Server>()) {
     impl_ = std::make_unique<ServiceImpl>(*this);
 }
 
+namespace {
+std::string get_protocol(int argc, char** argv) {
+    for (int i = 0; i < argc; ++i) {
+        if (strcmp(argv[i], "--tcp-mode") == 0) {
+            return "dns:";
+        }
+    }
+    return "unix:";
+}
+}  // namespace
+
 ModuleService::ModuleService(int argc,
                              char** argv,
                              const std::vector<std::shared_ptr<ModelRegistration>>& registrations)
-    : ModuleService([argc, argv] {
-          if (argc < 2) {
-              throw Exception(ErrorCondition::k_connection,
-                              "Need socket path as command line argument");
-          }
-          return argv[1];
-      }()) {
+    : ModuleService(
+          [argc, argv] {
+              if (argc < 2) {
+                  throw Exception(ErrorCondition::k_connection,
+                                  "Need socket path as command line argument");
+              }
+              return (argv[1]);
+          }(),
+          get_protocol(argc, argv)) {
     LogManager::get().set_global_log_level(argc, argv);
 
     for (auto&& mr : registrations) {
@@ -302,10 +289,8 @@ ModuleService::~ModuleService() {
 }
 
 void ModuleService::serve() {
-    std::cout << "trying to start serving!!\n\n\n";
-    std::cout << "we have " << parent_addr_protocol_ << " and " << module_->addr();
     server_->register_service(impl_.get());
-    server_->add_listening_port(parent_addr_protocol_ + module_->addr());
+    server_->add_listening_port(grpc_conn_protocol_ + module_->addr());
 
     module_->set_ready();
     server_->start();

@@ -33,6 +33,11 @@ class ModuleService {
     /// @param addr Address of socket to serve on.
     explicit ModuleService(std::string addr);
 
+    /// @brief Creates a new ModuleService that can serve on the provided socket.
+    /// @param addr Address of socket to serve on.
+    /// @param grpc_conn_protocol The protocol to connect with (UDS or TCP)
+    explicit ModuleService(std::string addr, std::string grpc_conn_protocol);
+
     /// @brief Creates a new ModuleService. Socket path and log level will be
     /// inferred from passed in command line arguments, and passed in model
     /// registrations will be registered and added to module.
@@ -70,8 +75,7 @@ class ModuleService {
 
     std::shared_ptr<RobotClient> parent_;
     std::string parent_addr_;
-    // CR erodkin: rename to `grpc_conn_protocol`
-    std::string parent_addr_protocol_;
+    std::string grpc_conn_protocol_;
 
     std::unique_ptr<Server> server_;
 
