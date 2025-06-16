@@ -13,10 +13,10 @@ using namespace viam::sdk;
 class MySummation : public Summation, public Reconfigurable {
    public:
     MySummation(std::string name, bool subtract)
-        : Summation(std::move(name)), subtract_(subtract){};
+        : Summation(std::move(name)), subtract_(subtract) {}
     MySummation(const Dependencies& deps, const ResourceConfig& cfg) : Summation(cfg.name()) {
         this->reconfigure(deps, cfg);
-    };
+    }
     void reconfigure(const Dependencies& deps, const ResourceConfig& cfg) override;
     static std::vector<std::string> validate(ResourceConfig cfg);
 

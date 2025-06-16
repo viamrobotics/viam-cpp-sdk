@@ -41,7 +41,7 @@ else()
   cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 endif()
 
-set(CMAKE_PROJECT_VERSION 0.12.0)
+set(CMAKE_PROJECT_VERSION 0.13.2)
 
 # Identify the project.
 project(viam-cpp-sdk

@@ -189,9 +189,12 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
     address += proxy_path;
     std::cout << "address is " << address << "\n\n";
 
-    return ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
-                       proxy_path,
-                       ptr);
+    auto chan =
+        ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
+                    proxy_path,
+                    ptr);
+    chan.uri_ = uri;
+    return chan;
 }
 
 const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
@@ -202,7 +205,27 @@ void ViamChannel::close() {
     pimpl_.reset();
 }
 
-unsigned int Options::refresh_interval() const {
+const char* ViamChannel::get_channel_addr() const {
+    return uri_;
+}
+Options& Options::set_check_every_interval(std::chrono::seconds interval) {
+    check_every_interval_ = interval;
+    return *this;
+}
+Options& Options::set_reconnect_every_interval(std::chrono::seconds interval) {
+    reconnect_every_interval_ = interval;
+    return *this;
+}
+
+std::chrono::seconds Options::check_every_interval() const {
+    return check_every_interval_;
+}
+
+std::chrono::seconds Options::reconnect_every_interval() const {
+    return reconnect_every_interval_;
+}
+
+std::chrono::seconds Options::refresh_interval() const {
     return refresh_interval_;
 }
 

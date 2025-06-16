@@ -51,7 +51,7 @@ class Sensor : public Component {
     virtual ProtoStruct get_readings(const ProtoStruct& extra) = 0;
 
    protected:
-    explicit Sensor(std::string name) : Component(std::move(name)){};
+    explicit Sensor(std::string name) : Component(std::move(name)) {}
 };
 
 template <>

@@ -15,7 +15,7 @@ API API::traits<Encoder>::api() {
     return {kRDK, kComponent, "encoder"};
 }
 
-Encoder::Encoder(std::string name) : Component(std::move(name)){};
+Encoder::Encoder(std::string name) : Component(std::move(name)) {}
 
 bool operator==(const Encoder::position& lhs, const Encoder::position& rhs) {
     return (lhs.value == rhs.value && lhs.type == rhs.type);

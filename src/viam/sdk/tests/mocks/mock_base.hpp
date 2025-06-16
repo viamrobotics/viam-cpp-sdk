@@ -39,7 +39,7 @@ class MockBase : public sdk::Base {
     bool peek_stop_called;
     sdk::ProtoStruct peek_do_command_command;
 
-    MockBase(std::string name) : Base(std::move(name)){};
+    MockBase(std::string name) : Base(std::move(name)) {}
 };
 
 }  // namespace base

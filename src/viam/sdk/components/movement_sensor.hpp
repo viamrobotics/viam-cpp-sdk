@@ -118,7 +118,7 @@ class MovementSensor : public Component {
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
    protected:
-    explicit MovementSensor(std::string name) : Component(std::move(name)){};
+    explicit MovementSensor(std::string name) : Component(std::move(name)) {}
 };
 
 template <>

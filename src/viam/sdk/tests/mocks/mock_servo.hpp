@@ -19,7 +19,7 @@ class MockServo : public Servo {
     static std::shared_ptr<MockServo> get_mock_servo();
     virtual std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
-    MockServo(std::string name) : Servo(std::move(name)){};
+    MockServo(std::string name) : Servo(std::move(name)) {}
 
     using Servo::get_geometries;
     using Servo::get_position;

@@ -16,7 +16,7 @@ API API::traits<Motor>::api() {
     return {kRDK, kComponent, "motor"};
 }
 
-Motor::Motor(std::string name) : Component(std::move(name)){};
+Motor::Motor(std::string name) : Component(std::move(name)) {}
 
 bool operator==(const Motor::power_status& lhs, const Motor::power_status& rhs) {
     return (lhs.is_on == rhs.is_on && lhs.power_pct == rhs.power_pct);
