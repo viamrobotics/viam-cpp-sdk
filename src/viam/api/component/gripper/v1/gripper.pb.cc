@@ -122,11 +122,37 @@ struct IsMovingResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsMovingResponseDefaultTypeInternal _IsMovingResponse_default_instance_;
+PROTOBUF_CONSTEXPR IsHoldingSomethingRequest::IsHoldingSomethingRequest(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
+struct IsHoldingSomethingRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IsHoldingSomethingRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IsHoldingSomethingRequestDefaultTypeInternal() {}
+  union {
+    IsHoldingSomethingRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsHoldingSomethingRequestDefaultTypeInternal _IsHoldingSomethingRequest_default_instance_;
+PROTOBUF_CONSTEXPR IsHoldingSomethingResponse::IsHoldingSomethingResponse(
+    ::_pbi::ConstantInitialized)
+  : meta_(nullptr)
+  , is_holding_something_(false){}
+struct IsHoldingSomethingResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IsHoldingSomethingResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IsHoldingSomethingResponseDefaultTypeInternal() {}
+  union {
+    IsHoldingSomethingResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsHoldingSomethingResponseDefaultTypeInternal _IsHoldingSomethingResponse_default_instance_;
 }  // namespace v1
 }  // namespace gripper
 }  // namespace component
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_component_2fgripper_2fv1_2fgripper_2eproto[8];
+static ::_pb::Metadata file_level_metadata_component_2fgripper_2fv1_2fgripper_2eproto[10];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2fgripper_2fv1_2fgripper_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2fgripper_2fv1_2fgripper_2eproto = nullptr;
 
@@ -189,6 +215,22 @@ const uint32_t TableStruct_component_2fgripper_2fv1_2fgripper_2eproto::offsets[]
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::IsMovingResponse, is_moving_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::IsHoldingSomethingRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::IsHoldingSomethingRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::IsHoldingSomethingRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::IsHoldingSomethingResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::IsHoldingSomethingResponse, is_holding_something_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::gripper::v1::IsHoldingSomethingResponse, meta_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::gripper::v1::OpenRequest)},
@@ -199,6 +241,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 38, -1, -1, sizeof(::viam::component::gripper::v1::StopResponse)},
   { 44, -1, -1, sizeof(::viam::component::gripper::v1::IsMovingRequest)},
   { 51, -1, -1, sizeof(::viam::component::gripper::v1::IsMovingResponse)},
+  { 58, -1, -1, sizeof(::viam::component::gripper::v1::IsHoldingSomethingRequest)},
+  { 66, -1, -1, sizeof(::viam::component::gripper::v1::IsHoldingSomethingResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -210,6 +254,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::component::gripper::v1::_StopResponse_default_instance_._instance,
   &::viam::component::gripper::v1::_IsMovingRequest_default_instance_._instance,
   &::viam::component::gripper::v1::_IsMovingResponse_default_instance_._instance,
+  &::viam::component::gripper::v1::_IsHoldingSomethingRequest_default_instance_._instance,
+  &::viam::component::gripper::v1::_IsHoldingSomethingResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -228,35 +274,46 @@ const char descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto[
   "obuf.StructR\005extra\"\016\n\014StopResponse\"%\n\017Is"
   "MovingRequest\022\022\n\004name\030\001 \001(\tR\004name\"/\n\020IsM"
   "ovingResponse\022\033\n\tis_moving\030\001 \001(\010R\010isMovi"
-  "ng2\240\010\n\016GripperService\022\217\001\n\004Open\022&.viam.co"
-  "mponent.gripper.v1.OpenRequest\032\'.viam.co"
-  "mponent.gripper.v1.OpenResponse\"6\240\222)\001\202\323\344"
-  "\223\002,\032*/viam/api/v1/component/gripper/{nam"
-  "e}/open\022\217\001\n\004Grab\022&.viam.component.grippe"
-  "r.v1.GrabRequest\032\'.viam.component.grippe"
-  "r.v1.GrabResponse\"6\240\222)\001\202\323\344\223\002,\032*/viam/api"
-  "/v1/component/gripper/{name}/grab\022\213\001\n\004St"
-  "op\022&.viam.component.gripper.v1.StopReque"
-  "st\032\'.viam.component.gripper.v1.StopRespo"
-  "nse\"2\202\323\344\223\002,\"*/viam/api/v1/component/grip"
-  "per/{name}/stop\022\234\001\n\010IsMoving\022*.viam.comp"
-  "onent.gripper.v1.IsMovingRequest\032+.viam."
-  "component.gripper.v1.IsMovingResponse\"7\202"
-  "\323\344\223\0021\022//viam/api/v1/component/gripper/{n"
-  "ame}/is_moving\022\212\001\n\tDoCommand\022 .viam.comm"
-  "on.v1.DoCommandRequest\032!.viam.common.v1."
-  "DoCommandResponse\"8\202\323\344\223\0022\"0/viam/api/v1/"
-  "component/gripper/{name}/do_command\022\226\001\n\r"
-  "GetGeometries\022$.viam.common.v1.GetGeomet"
-  "riesRequest\032%.viam.common.v1.GetGeometri"
-  "esResponse\"8\202\323\344\223\0022\0220/viam/api/v1/compone"
-  "nt/gripper/{name}/geometries\022\226\001\n\rGetKine"
-  "matics\022$.viam.common.v1.GetKinematicsReq"
-  "uest\032%.viam.common.v1.GetKinematicsRespo"
-  "nse\"8\202\323\344\223\0022\0220/viam/api/v1/component/grip"
-  "per/{name}/kinematicsBE\n\035com.viam.compon"
-  "ent.gripper.v1Z$go.viam.com/api/componen"
-  "t/gripper/v1b\006proto3"
+  "ng\"^\n\031IsHoldingSomethingRequest\022\022\n\004name\030"
+  "\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.prot"
+  "obuf.StructR\005extra\"{\n\032IsHoldingSomething"
+  "Response\0220\n\024is_holding_something\030\001 \001(\010R\022"
+  "isHoldingSomething\022+\n\004meta\030c \001(\0132\027.googl"
+  "e.protobuf.StructR\004meta2\350\t\n\016GripperServi"
+  "ce\022\217\001\n\004Open\022&.viam.component.gripper.v1."
+  "OpenRequest\032\'.viam.component.gripper.v1."
+  "OpenResponse\"6\240\222)\001\202\323\344\223\002,\032*/viam/api/v1/c"
+  "omponent/gripper/{name}/open\022\217\001\n\004Grab\022&."
+  "viam.component.gripper.v1.GrabRequest\032\'."
+  "viam.component.gripper.v1.GrabResponse\"6"
+  "\240\222)\001\202\323\344\223\002,\032*/viam/api/v1/component/gripp"
+  "er/{name}/grab\022\213\001\n\004Stop\022&.viam.component"
+  ".gripper.v1.StopRequest\032\'.viam.component"
+  ".gripper.v1.StopResponse\"2\202\323\344\223\002,\"*/viam/"
+  "api/v1/component/gripper/{name}/stop\022\234\001\n"
+  "\010IsMoving\022*.viam.component.gripper.v1.Is"
+  "MovingRequest\032+.viam.component.gripper.v"
+  "1.IsMovingResponse\"7\202\323\344\223\0021\022//viam/api/v1"
+  "/component/gripper/{name}/is_moving\022\305\001\n\022"
+  "IsHoldingSomething\0224.viam.component.grip"
+  "per.v1.IsHoldingSomethingRequest\0325.viam."
+  "component.gripper.v1.IsHoldingSomethingR"
+  "esponse\"B\202\323\344\223\002<\022:/viam/api/v1/component/"
+  "gripper/{name}/is_holding_something\022\212\001\n\t"
+  "DoCommand\022 .viam.common.v1.DoCommandRequ"
+  "est\032!.viam.common.v1.DoCommandResponse\"8"
+  "\202\323\344\223\0022\"0/viam/api/v1/component/gripper/{"
+  "name}/do_command\022\226\001\n\rGetGeometries\022$.via"
+  "m.common.v1.GetGeometriesRequest\032%.viam."
+  "common.v1.GetGeometriesResponse\"8\202\323\344\223\0022\022"
+  "0/viam/api/v1/component/gripper/{name}/g"
+  "eometries\022\226\001\n\rGetKinematics\022$.viam.commo"
+  "n.v1.GetKinematicsRequest\032%.viam.common."
+  "v1.GetKinematicsResponse\"8\202\323\344\223\0022\0220/viam/"
+  "api/v1/component/gripper/{name}/kinemati"
+  "csBE\n\035com.viam.component.gripper.v1Z$go."
+  "viam.com/api/component/gripper/v1b\006proto"
+  "3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -265,9 +322,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper
 };
 static ::_pbi::once_flag descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto = {
-    false, false, 1740, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
+    false, false, 2161, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
     "component/gripper/v1/gripper.proto",
-    &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once, descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps, 3, 8,
+    &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once, descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps, 3, 10,
     schemas, file_default_instances, TableStruct_component_2fgripper_2fv1_2fgripper_2eproto::offsets,
     file_level_metadata_component_2fgripper_2fv1_2fgripper_2eproto, file_level_enum_descriptors_component_2fgripper_2fv1_2fgripper_2eproto,
     file_level_service_descriptors_component_2fgripper_2fv1_2fgripper_2eproto,
@@ -1681,6 +1738,474 @@ void IsMovingResponse::InternalSwap(IsMovingResponse* other) {
       file_level_metadata_component_2fgripper_2fv1_2fgripper_2eproto[7]);
 }
 
+// ===================================================================
+
+class IsHoldingSomethingRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const IsHoldingSomethingRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+IsHoldingSomethingRequest::_Internal::extra(const IsHoldingSomethingRequest* msg) {
+  return *msg->extra_;
+}
+void IsHoldingSomethingRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+IsHoldingSomethingRequest::IsHoldingSomethingRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.gripper.v1.IsHoldingSomethingRequest)
+}
+IsHoldingSomethingRequest::IsHoldingSomethingRequest(const IsHoldingSomethingRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.gripper.v1.IsHoldingSomethingRequest)
+}
+
+inline void IsHoldingSomethingRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
+}
+
+IsHoldingSomethingRequest::~IsHoldingSomethingRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.gripper.v1.IsHoldingSomethingRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void IsHoldingSomethingRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void IsHoldingSomethingRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void IsHoldingSomethingRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.gripper.v1.IsHoldingSomethingRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* IsHoldingSomethingRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.gripper.v1.IsHoldingSomethingRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* IsHoldingSomethingRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.gripper.v1.IsHoldingSomethingRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.gripper.v1.IsHoldingSomethingRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.gripper.v1.IsHoldingSomethingRequest)
+  return target;
+}
+
+size_t IsHoldingSomethingRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.gripper.v1.IsHoldingSomethingRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IsHoldingSomethingRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    IsHoldingSomethingRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IsHoldingSomethingRequest::GetClassData() const { return &_class_data_; }
+
+void IsHoldingSomethingRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<IsHoldingSomethingRequest *>(to)->MergeFrom(
+      static_cast<const IsHoldingSomethingRequest &>(from));
+}
+
+
+void IsHoldingSomethingRequest::MergeFrom(const IsHoldingSomethingRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.IsHoldingSomethingRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void IsHoldingSomethingRequest::CopyFrom(const IsHoldingSomethingRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.gripper.v1.IsHoldingSomethingRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool IsHoldingSomethingRequest::IsInitialized() const {
+  return true;
+}
+
+void IsHoldingSomethingRequest::InternalSwap(IsHoldingSomethingRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  swap(extra_, other->extra_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata IsHoldingSomethingRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_getter, &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once,
+      file_level_metadata_component_2fgripper_2fv1_2fgripper_2eproto[8]);
+}
+
+// ===================================================================
+
+class IsHoldingSomethingResponse::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& meta(const IsHoldingSomethingResponse* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+IsHoldingSomethingResponse::_Internal::meta(const IsHoldingSomethingResponse* msg) {
+  return *msg->meta_;
+}
+void IsHoldingSomethingResponse::clear_meta() {
+  if (GetArenaForAllocation() == nullptr && meta_ != nullptr) {
+    delete meta_;
+  }
+  meta_ = nullptr;
+}
+IsHoldingSomethingResponse::IsHoldingSomethingResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.gripper.v1.IsHoldingSomethingResponse)
+}
+IsHoldingSomethingResponse::IsHoldingSomethingResponse(const IsHoldingSomethingResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_meta()) {
+    meta_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.meta_);
+  } else {
+    meta_ = nullptr;
+  }
+  is_holding_something_ = from.is_holding_something_;
+  // @@protoc_insertion_point(copy_constructor:viam.component.gripper.v1.IsHoldingSomethingResponse)
+}
+
+inline void IsHoldingSomethingResponse::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&meta_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&is_holding_something_) -
+    reinterpret_cast<char*>(&meta_)) + sizeof(is_holding_something_));
+}
+
+IsHoldingSomethingResponse::~IsHoldingSomethingResponse() {
+  // @@protoc_insertion_point(destructor:viam.component.gripper.v1.IsHoldingSomethingResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void IsHoldingSomethingResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete meta_;
+}
+
+void IsHoldingSomethingResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void IsHoldingSomethingResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.gripper.v1.IsHoldingSomethingResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && meta_ != nullptr) {
+    delete meta_;
+  }
+  meta_ = nullptr;
+  is_holding_something_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* IsHoldingSomethingResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool is_holding_something = 1 [json_name = "isHoldingSomething"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          is_holding_something_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct meta = 99 [json_name = "meta"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_meta(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* IsHoldingSomethingResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.gripper.v1.IsHoldingSomethingResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool is_holding_something = 1 [json_name = "isHoldingSomething"];
+  if (this->_internal_is_holding_something() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_is_holding_something(), target);
+  }
+
+  // .google.protobuf.Struct meta = 99 [json_name = "meta"];
+  if (this->_internal_has_meta()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::meta(this),
+        _Internal::meta(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.gripper.v1.IsHoldingSomethingResponse)
+  return target;
+}
+
+size_t IsHoldingSomethingResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.gripper.v1.IsHoldingSomethingResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .google.protobuf.Struct meta = 99 [json_name = "meta"];
+  if (this->_internal_has_meta()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *meta_);
+  }
+
+  // bool is_holding_something = 1 [json_name = "isHoldingSomething"];
+  if (this->_internal_is_holding_something() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IsHoldingSomethingResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    IsHoldingSomethingResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IsHoldingSomethingResponse::GetClassData() const { return &_class_data_; }
+
+void IsHoldingSomethingResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<IsHoldingSomethingResponse *>(to)->MergeFrom(
+      static_cast<const IsHoldingSomethingResponse &>(from));
+}
+
+
+void IsHoldingSomethingResponse::MergeFrom(const IsHoldingSomethingResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.gripper.v1.IsHoldingSomethingResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_meta()) {
+    _internal_mutable_meta()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_meta());
+  }
+  if (from._internal_is_holding_something() != 0) {
+    _internal_set_is_holding_something(from._internal_is_holding_something());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void IsHoldingSomethingResponse::CopyFrom(const IsHoldingSomethingResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.gripper.v1.IsHoldingSomethingResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool IsHoldingSomethingResponse::IsInitialized() const {
+  return true;
+}
+
+void IsHoldingSomethingResponse::InternalSwap(IsHoldingSomethingResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(IsHoldingSomethingResponse, is_holding_something_)
+      + sizeof(IsHoldingSomethingResponse::is_holding_something_)
+      - PROTOBUF_FIELD_OFFSET(IsHoldingSomethingResponse, meta_)>(
+          reinterpret_cast<char*>(&meta_),
+          reinterpret_cast<char*>(&other->meta_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata IsHoldingSomethingResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_getter, &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once,
+      file_level_metadata_component_2fgripper_2fv1_2fgripper_2eproto[9]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace gripper
@@ -1718,6 +2243,14 @@ Arena::CreateMaybeMessage< ::viam::component::gripper::v1::IsMovingRequest >(Are
 template<> PROTOBUF_NOINLINE ::viam::component::gripper::v1::IsMovingResponse*
 Arena::CreateMaybeMessage< ::viam::component::gripper::v1::IsMovingResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::gripper::v1::IsMovingResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::gripper::v1::IsHoldingSomethingRequest*
+Arena::CreateMaybeMessage< ::viam::component::gripper::v1::IsHoldingSomethingRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::gripper::v1::IsHoldingSomethingRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::gripper::v1::IsHoldingSomethingResponse*
+Arena::CreateMaybeMessage< ::viam::component::gripper::v1::IsHoldingSomethingResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::gripper::v1::IsHoldingSomethingResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
