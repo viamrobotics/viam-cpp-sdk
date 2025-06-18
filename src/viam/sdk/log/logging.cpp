@@ -105,8 +105,11 @@ void LogManager::set_global_log_level(log_level lvl) {
 }
 
 void LogManager::set_global_log_level(int argc, char** argv) {
-    if (argc >= 3 && strcmp(argv[2], "--log-level=debug") == 0) {
-        set_global_log_level(log_level::debug);
+    for (int i = 0; i < argc; ++i) {
+        if (strcmp(argv[i], "--log-level=debug") == 0) {
+            set_global_log_level(log_level::debug);
+            return;
+        }
     }
 }
 
@@ -147,8 +150,8 @@ void LogManager::enable_console_logging() {
 void LogManager::disable_console_logging() {
     VIAM_SDK_LOG(debug) << "Disabling console logging";
 
-    // Set a filter which ignores all console logs unless they contain a console force flag which is
-    // set to true.
+    // Set a filter which ignores all console logs unless they contain a console force flag
+    // which is set to true.
     console_sink_->set_filter(
         [filter = Filter{this}](const boost::log::attribute_value_set& attrs) {
             auto force = attrs[impl::attr_console_force_type{}];
