@@ -32,11 +32,9 @@ Gripper::holding_status GripperClient::is_holding_something(const ProtoStruct& e
         .invoke([](auto& response) {
             Gripper::holding_status holding_status;
             holding_status.is_holding_something = response.is_holding_something();
-            if response
-                .has_meta() {
-                    holding_status.meta = from_proto(response.meta());
-                }
-            else {
+            if (response.has_meta()) {
+                holding_status.meta = from_proto(response.meta());
+            } else {
                 holding_status.meta = {};
             }
             return holding_status;

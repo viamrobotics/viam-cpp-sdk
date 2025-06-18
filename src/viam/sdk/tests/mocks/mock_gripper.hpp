@@ -17,8 +17,7 @@ class MockGripper : public sdk::Gripper {
 
     void open(const sdk::ProtoStruct& extra) override;
     bool grab(const sdk::ProtoStruct& extra) override;
-    Gripper::holding_status MockGripper::is_holding_something(
-        const sdk::ProtoStruct& extra) override;
+    Gripper::holding_status is_holding_something(const sdk::ProtoStruct& extra) override;
     void stop(const sdk::ProtoStruct& extra) override;
     bool is_moving() override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;

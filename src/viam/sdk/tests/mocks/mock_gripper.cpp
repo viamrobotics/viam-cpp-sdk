@@ -28,10 +28,10 @@ bool MockGripper::is_moving() {
     return false;
 }
 
-Gripper::holding_status MockGripper::is_holding_something(const ProtoStruct&) {
+Gripper::holding_status MockGripper::is_holding_something(const ProtoStruct& extra) {
     Gripper::holding_status res;
     res.is_holding_something = false;
-    res.meta = {};
+    res.meta = extra;
     return res;
 }
 
