@@ -48,6 +48,17 @@
 namespace viam {
 namespace sdk {
 
+namespace {
+std::string get_protocol(int argc, char** argv) {
+    for (int i = 0; i < argc; ++i) {
+        if (strcmp(argv[i], "--tcp-mode") == 0) {
+            return "dns:";
+        }
+    }
+    return "unix:";
+}
+}  // namespace
+
 struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
     ServiceImpl(ModuleService& p) : parent(p) {}
 
@@ -241,17 +252,6 @@ ModuleService::ModuleService(std::string addr, std::string grpc_conn_protocol)
       server_(std::make_unique<Server>()) {
     impl_ = std::make_unique<ServiceImpl>(*this);
 }
-
-namespace {
-std::string get_protocol(int argc, char** argv) {
-    for (int i = 0; i < argc; ++i) {
-        if (strcmp(argv[i], "--tcp-mode") == 0) {
-            return "dns:";
-        }
-    }
-    return "unix:";
-}
-}  // namespace
 
 ModuleService::ModuleService(int argc,
                              char** argv,
