@@ -183,6 +183,8 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
     std::string address;
     if (std::string(proxy_path).find(localhost_prefix) == std::string::npos) {
         // proxy path is not a localhost address and is therefore a unix domain socket (UDS)
+        // TODO (RSDK-10747) - update rust-utils to include this information directly, so that
+        // the SDKs don't have to.
         address += "unix:";
     }
     address += proxy_path;

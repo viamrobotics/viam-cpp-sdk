@@ -363,9 +363,9 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options) {
-    const std::string addr = "unix:" + address;
+    // TODO (RSDK-10720) - refactor/replace `at_local_socket`
     auto robot = RobotClient::with_channel(
-        ViamChannel(sdk::impl::create_viam_channel(addr, grpc::InsecureChannelCredentials())),
+        ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials())),
         options);
 
     return robot;
