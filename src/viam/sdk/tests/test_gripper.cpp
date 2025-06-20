@@ -8,6 +8,8 @@
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
 
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::ProtoValue)
+
 namespace viam {
 namespace sdktests {
 
@@ -36,6 +38,18 @@ BOOST_AUTO_TEST_CASE(test_open) {
 BOOST_AUTO_TEST_CASE(test_grab) {
     std::shared_ptr<MockGripper> mock = MockGripper::get_mock_gripper();
     client_to_mock_pipeline<Gripper>(mock, [](Gripper& client) { BOOST_CHECK(client.grab()); });
+}
+
+BOOST_AUTO_TEST_CASE(test_is_holding_something) {
+    std::shared_ptr<MockGripper> mock = MockGripper::get_mock_gripper();
+    client_to_mock_pipeline<Gripper>(mock, [](Gripper& client) {
+        const ProtoStruct extra = {
+            {"BEEP", "BOOP"},
+        };
+        Gripper::holding_status holding_status = client.is_holding_something(extra);
+        BOOST_CHECK_EQUAL(holding_status.is_holding_something, false);
+        BOOST_CHECK_EQUAL(holding_status.meta["BEEP"], ProtoValue("BOOP"));
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_stop) {

@@ -2870,6 +2870,7 @@ class OrganizationMember final :
     kUserIdFieldNumber = 1,
     kDateAddedFieldNumber = 3,
     kLastLoginFieldNumber = 4,
+    kLastAccessFieldNumber = 5,
   };
   // repeated string emails = 2 [json_name = "emails"];
   int emails_size() const;
@@ -2945,6 +2946,24 @@ class OrganizationMember final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* last_login);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_login();
 
+  // optional .google.protobuf.Timestamp last_access = 5 [json_name = "lastAccess"];
+  bool has_last_access() const;
+  private:
+  bool _internal_has_last_access() const;
+  public:
+  void clear_last_access();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_access() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_access();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_access();
+  void set_allocated_last_access(::PROTOBUF_NAMESPACE_ID::Timestamp* last_access);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_access() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_access();
+  public:
+  void unsafe_arena_set_allocated_last_access(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_access);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_access();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.OrganizationMember)
  private:
   class _Internal;
@@ -2958,6 +2977,7 @@ class OrganizationMember final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* date_added_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_login_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* last_access_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -4038,6 +4058,7 @@ class GetOrganizationNamespaceAvailabilityRequest final :
 
   enum : int {
     kPublicNamespaceFieldNumber = 1,
+    kOrganizationIdFieldNumber = 2,
   };
   // string public_namespace = 1 [json_name = "publicNamespace"];
   void clear_public_namespace();
@@ -4053,6 +4074,20 @@ class GetOrganizationNamespaceAvailabilityRequest final :
   std::string* _internal_mutable_public_namespace();
   public:
 
+  // string organization_id = 2 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest)
  private:
   class _Internal;
@@ -4061,6 +4096,7 @@ class GetOrganizationNamespaceAvailabilityRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -47876,6 +47912,93 @@ inline void OrganizationMember::set_allocated_last_login(::PROTOBUF_NAMESPACE_ID
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.OrganizationMember.last_login)
 }
 
+// optional .google.protobuf.Timestamp last_access = 5 [json_name = "lastAccess"];
+inline bool OrganizationMember::_internal_has_last_access() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || last_access_ != nullptr);
+  return value;
+}
+inline bool OrganizationMember::has_last_access() const {
+  return _internal_has_last_access();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& OrganizationMember::_internal_last_access() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = last_access_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& OrganizationMember::last_access() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.OrganizationMember.last_access)
+  return _internal_last_access();
+}
+inline void OrganizationMember::unsafe_arena_set_allocated_last_access(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_access) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_access_);
+  }
+  last_access_ = last_access;
+  if (last_access) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.OrganizationMember.last_access)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* OrganizationMember::release_last_access() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_access_;
+  last_access_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* OrganizationMember::unsafe_arena_release_last_access() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.OrganizationMember.last_access)
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_access_;
+  last_access_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* OrganizationMember::_internal_mutable_last_access() {
+  _has_bits_[0] |= 0x00000002u;
+  if (last_access_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_access_ = p;
+  }
+  return last_access_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* OrganizationMember::mutable_last_access() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_access();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.OrganizationMember.last_access)
+  return _msg;
+}
+inline void OrganizationMember::set_allocated_last_access(::PROTOBUF_NAMESPACE_ID::Timestamp* last_access) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_access_);
+  }
+  if (last_access) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_access));
+    if (message_arena != submessage_arena) {
+      last_access = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_access, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  last_access_ = last_access;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.OrganizationMember.last_access)
+}
+
 // -------------------------------------------------------------------
 
 // ListOrganizationsResponse
@@ -48497,6 +48620,56 @@ inline void GetOrganizationNamespaceAvailabilityRequest::set_allocated_public_na
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.public_namespace)
+}
+
+// string organization_id = 2 [json_name = "organizationId"];
+inline void GetOrganizationNamespaceAvailabilityRequest::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+}
+inline const std::string& GetOrganizationNamespaceAvailabilityRequest::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetOrganizationNamespaceAvailabilityRequest::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
+}
+inline std::string* GetOrganizationNamespaceAvailabilityRequest::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
+  return _s;
+}
+inline const std::string& GetOrganizationNamespaceAvailabilityRequest::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void GetOrganizationNamespaceAvailabilityRequest::_internal_set_organization_id(const std::string& value) {
+  
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetOrganizationNamespaceAvailabilityRequest::_internal_mutable_organization_id() {
+  
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetOrganizationNamespaceAvailabilityRequest::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
+  return organization_id_.Release();
+}
+inline void GetOrganizationNamespaceAvailabilityRequest::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrganizationNamespaceAvailabilityRequest.organization_id)
 }
 
 // -------------------------------------------------------------------

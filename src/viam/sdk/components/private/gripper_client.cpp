@@ -4,7 +4,7 @@
 #include <viam/api/component/gripper/v1/gripper.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
-#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
 namespace viam {
@@ -24,6 +24,17 @@ bool GripperClient::grab(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Grab).with(extra).invoke([](auto& response) {
         return response.success();
     });
+}
+
+Gripper::holding_status GripperClient::is_holding_something(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::IsHoldingSomething)
+        .with(extra)
+        .invoke([](auto& response) {
+            Gripper::holding_status holding_status;
+            holding_status.is_holding_something = response.is_holding_something();
+            holding_status.meta = from_proto(response.meta());
+            return holding_status;
+        });
 }
 
 bool GripperClient::is_moving() {

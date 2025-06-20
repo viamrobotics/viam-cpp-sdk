@@ -618,7 +618,8 @@ PROTOBUF_CONSTEXPR ModuleConfig::ModuleConfig(
   , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , module_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , status_(nullptr)
-  , first_run_timeout_(nullptr){}
+  , first_run_timeout_(nullptr)
+  , tcp_mode_(false){}
 struct ModuleConfigDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ModuleConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -1106,6 +1107,7 @@ const uint32_t TableStruct_app_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, env_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, status_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, first_run_timeout_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleConfig, tcp_mode_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::PackageConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1168,8 +1170,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 408, -1, -1, sizeof(::viam::app::v1::NeedsRestartResponse)},
   { 417, 425, -1, sizeof(::viam::app::v1::ModuleConfig_EnvEntry_DoNotUse)},
   { 427, -1, -1, sizeof(::viam::app::v1::ModuleConfig)},
-  { 441, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
-  { 452, -1, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
+  { 442, -1, -1, sizeof(::viam::app::v1::PackageConfig)},
+  { 453, -1, -1, sizeof(::viam::app::v1::MaintenanceConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1392,7 +1394,7 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
   "d\030\001 \001(\tR\002id\022!\n\014must_restart\030\002 \001(\010R\013mustR"
   "estart\022O\n\026restart_check_interval\030\003 \001(\0132\031"
   ".google.protobuf.DurationR\024restartCheckI"
-  "nterval\"\363\002\n\014ModuleConfig\022\022\n\004name\030\001 \001(\tR\004"
+  "nterval\"\216\003\n\014ModuleConfig\022\022\n\004name\030\001 \001(\tR\004"
   "name\022\022\n\004path\030\002 \001(\tR\004path\022\033\n\tlog_level\030\003 "
   "\001(\tR\010logLevel\022\022\n\004type\030\004 \001(\tR\004type\022\033\n\tmod"
   "ule_id\030\005 \001(\tR\010moduleId\0224\n\003env\030\006 \003(\0132\".vi"
@@ -1400,29 +1402,30 @@ const char descriptor_table_protodef_app_2fv1_2frobot_2eproto[] PROTOBUF_SECTION
   "status\030\007 \001(\0132 .viam.app.v1.AppValidation"
   "StatusR\006status\022E\n\021first_run_timeout\030\010 \001("
   "\0132\031.google.protobuf.DurationR\017firstRunTi"
-  "meout\0326\n\010EnvEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005v"
-  "alue\030\002 \001(\tR\005value:\0028\001\"\245\001\n\rPackageConfig\022"
-  "\022\n\004name\030\001 \001(\tR\004name\022\030\n\007package\030\002 \001(\tR\007pa"
-  "ckage\022\030\n\007version\030\003 \001(\tR\007version\022\022\n\004type\030"
-  "\004 \001(\tR\004type\0228\n\006status\030\005 \001(\0132 .viam.app.v"
-  "1.AppValidationStatusR\006status\"\212\001\n\021Mainte"
-  "nanceConfig\022=\n\013sensor_name\030\001 \001(\0132\034.viam."
-  "common.v1.ResourceNameR\nsensorName\0226\n\027ma"
-  "intenance_allowed_key\030\002 \001(\tR\025maintenance"
-  "AllowedKey*\277\001\n\017CredentialsType\022 \n\034CREDEN"
-  "TIALS_TYPE_UNSPECIFIED\020\000\022\035\n\031CREDENTIALS_"
-  "TYPE_INTERNAL\020\001\022\034\n\030CREDENTIALS_TYPE_API_"
-  "KEY\020\002\022!\n\035CREDENTIALS_TYPE_ROBOT_SECRET\020\003"
-  "\022*\n&CREDENTIALS_TYPE_ROBOT_LOCATION_SECR"
-  "ET\020\0042\262\002\n\014RobotService\022A\n\006Config\022\032.viam.a"
-  "pp.v1.ConfigRequest\032\033.viam.app.v1.Config"
-  "Response\022P\n\013Certificate\022\037.viam.app.v1.Ce"
-  "rtificateRequest\032 .viam.app.v1.Certifica"
-  "teResponse\0228\n\003Log\022\027.viam.app.v1.LogReque"
-  "st\032\030.viam.app.v1.LogResponse\022S\n\014NeedsRes"
-  "tart\022 .viam.app.v1.NeedsRestartRequest\032!"
-  ".viam.app.v1.NeedsRestartResponseB\030Z\026go."
-  "viam.com/api/app/v1b\006proto3"
+  "meout\022\031\n\010tcp_mode\030\t \001(\010R\007tcpMode\0326\n\010EnvE"
+  "ntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005v"
+  "alue:\0028\001\"\245\001\n\rPackageConfig\022\022\n\004name\030\001 \001(\t"
+  "R\004name\022\030\n\007package\030\002 \001(\tR\007package\022\030\n\007vers"
+  "ion\030\003 \001(\tR\007version\022\022\n\004type\030\004 \001(\tR\004type\0228"
+  "\n\006status\030\005 \001(\0132 .viam.app.v1.AppValidati"
+  "onStatusR\006status\"\212\001\n\021MaintenanceConfig\022="
+  "\n\013sensor_name\030\001 \001(\0132\034.viam.common.v1.Res"
+  "ourceNameR\nsensorName\0226\n\027maintenance_all"
+  "owed_key\030\002 \001(\tR\025maintenanceAllowedKey*\277\001"
+  "\n\017CredentialsType\022 \n\034CREDENTIALS_TYPE_UN"
+  "SPECIFIED\020\000\022\035\n\031CREDENTIALS_TYPE_INTERNAL"
+  "\020\001\022\034\n\030CREDENTIALS_TYPE_API_KEY\020\002\022!\n\035CRED"
+  "ENTIALS_TYPE_ROBOT_SECRET\020\003\022*\n&CREDENTIA"
+  "LS_TYPE_ROBOT_LOCATION_SECRET\020\0042\262\002\n\014Robo"
+  "tService\022A\n\006Config\022\032.viam.app.v1.ConfigR"
+  "equest\032\033.viam.app.v1.ConfigResponse\022P\n\013C"
+  "ertificate\022\037.viam.app.v1.CertificateRequ"
+  "est\032 .viam.app.v1.CertificateResponse\0228\n"
+  "\003Log\022\027.viam.app.v1.LogRequest\032\030.viam.app"
+  ".v1.LogResponse\022S\n\014NeedsRestart\022 .viam.a"
+  "pp.v1.NeedsRestartRequest\032!.viam.app.v1."
+  "NeedsRestartResponseB\030Z\026go.viam.com/api/"
+  "app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -1432,7 +1435,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2frobot_2e
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2frobot_2eproto = {
-    false, false, 8147, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
+    false, false, 8174, descriptor_table_protodef_app_2fv1_2frobot_2eproto,
     "app/v1/robot.proto",
     &descriptor_table_app_2fv1_2frobot_2eproto_once, descriptor_table_app_2fv1_2frobot_2eproto_deps, 4, 43,
     schemas, file_default_instances, TableStruct_app_2fv1_2frobot_2eproto::offsets,
@@ -13379,6 +13382,7 @@ ModuleConfig::ModuleConfig(const ModuleConfig& from)
   } else {
     first_run_timeout_ = nullptr;
   }
+  tcp_mode_ = from.tcp_mode_;
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.ModuleConfig)
 }
 
@@ -13405,8 +13409,8 @@ module_id_.InitDefault();
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&status_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&first_run_timeout_) -
-    reinterpret_cast<char*>(&status_)) + sizeof(first_run_timeout_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&tcp_mode_) -
+    reinterpret_cast<char*>(&status_)) + sizeof(tcp_mode_));
 }
 
 ModuleConfig::~ModuleConfig() {
@@ -13459,6 +13463,7 @@ void ModuleConfig::Clear() {
     delete first_run_timeout_;
   }
   first_run_timeout_ = nullptr;
+  tcp_mode_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -13543,6 +13548,14 @@ const char* ModuleConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
           ptr = ctx->ParseMessage(_internal_mutable_first_run_timeout(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool tcp_mode = 9 [json_name = "tcpMode"];
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          tcp_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -13670,6 +13683,12 @@ uint8_t* ModuleConfig::_InternalSerialize(
         _Internal::first_run_timeout(this).GetCachedSize(), target, stream);
   }
 
+  // bool tcp_mode = 9 [json_name = "tcpMode"];
+  if (this->_internal_tcp_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(9, this->_internal_tcp_mode(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -13744,6 +13763,11 @@ size_t ModuleConfig::ByteSizeLong() const {
         *first_run_timeout_);
   }
 
+  // bool tcp_mode = 9 [json_name = "tcpMode"];
+  if (this->_internal_tcp_mode() != 0) {
+    total_size += 1 + 1;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -13788,6 +13812,9 @@ void ModuleConfig::MergeFrom(const ModuleConfig& from) {
   if (from._internal_has_first_run_timeout()) {
     _internal_mutable_first_run_timeout()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_first_run_timeout());
   }
+  if (from._internal_tcp_mode() != 0) {
+    _internal_set_tcp_mode(from._internal_tcp_mode());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -13829,8 +13856,8 @@ void ModuleConfig::InternalSwap(ModuleConfig* other) {
       &other->module_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ModuleConfig, first_run_timeout_)
-      + sizeof(ModuleConfig::first_run_timeout_)
+      PROTOBUF_FIELD_OFFSET(ModuleConfig, tcp_mode_)
+      + sizeof(ModuleConfig::tcp_mode_)
       - PROTOBUF_FIELD_OFFSET(ModuleConfig, status_)>(
           reinterpret_cast<char*>(&status_),
           reinterpret_cast<char*>(&other->status_));

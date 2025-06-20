@@ -28,6 +28,13 @@ bool MockGripper::is_moving() {
     return false;
 }
 
+Gripper::holding_status MockGripper::is_holding_something(const ProtoStruct& extra) {
+    Gripper::holding_status res;
+    res.is_holding_something = false;
+    res.meta = extra;
+    return res;
+}
+
 ProtoStruct MockGripper::do_command(const ProtoStruct& command) {
     return (peek_command = command);
 }

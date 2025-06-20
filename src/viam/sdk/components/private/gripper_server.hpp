@@ -34,6 +34,11 @@ class GripperServer : public ResourceServer,
                         const ::viam::component::gripper::v1::StopRequest* request,
                         ::viam::component::gripper::v1::StopResponse* response) noexcept override;
 
+    ::grpc::Status IsHoldingSomething(
+        ::grpc::ServerContext* context,
+        const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request,
+        ::viam::component::gripper::v1::IsHoldingSomethingResponse* response) noexcept override;
+
     ::grpc::Status IsMoving(
         ::grpc::ServerContext* context,
         const ::viam::component::gripper::v1::IsMovingRequest* request,
