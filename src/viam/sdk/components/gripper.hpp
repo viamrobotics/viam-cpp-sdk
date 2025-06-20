@@ -5,7 +5,7 @@
 
 #include <string>
 
-#include <viam/sdk/common/proto_convert.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {

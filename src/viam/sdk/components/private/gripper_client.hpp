@@ -9,6 +9,8 @@
 
 #include <viam/api/component/gripper/v1/gripper.grpc.pb.h>
 
+#include <viam/sdk/common/proto_value.hpp>
+
 #include <viam/sdk/components/gripper.hpp>
 
 namespace viam {
