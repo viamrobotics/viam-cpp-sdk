@@ -118,26 +118,31 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                        const ::viam::component::gripper::v1::StopRequest* request,</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                        ::viam::component::gripper::v1::StopResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    ::grpc::Status IsMoving(</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    ::grpc::Status IsHoldingSomething(</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        ::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        const ::viam::component::gripper::v1::IsMovingRequest* request,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        ::viam::component::gripper::v1::IsMovingResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        ::viam::component::gripper::v1::IsHoldingSomethingResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    ::grpc::Status DoCommand(::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                             const ::viam::common::v1::DoCommandRequest* request,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                             ::viam::common::v1::DoCommandResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    ::grpc::Status GetGeometries(</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        ::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        const ::viam::common::v1::GetGeometriesRequest* request,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        ::viam::common::v1::GetGeometriesResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    ::grpc::Status IsMoving(</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        ::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        const ::viam::component::gripper::v1::IsMovingRequest* request,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        ::viam::component::gripper::v1::IsMovingResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    ::grpc::Status DoCommand(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                             const ::viam::common::v1::DoCommandRequest* request,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                             ::viam::common::v1::DoCommandResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    ::grpc::Status GetGeometries(</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        ::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        const ::viam::common::v1::GetGeometriesRequest* request,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        ::viam::common::v1::GetGeometriesResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
 </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}  <span class="comment">// namespace impl</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}  <span class="comment">// namespace viam</span></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1Gripper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Gripper.html">viam::sdk::Gripper</a></div><div class="ttdoc">A Gripper represents a physical robotic gripper.</div><div class="ttdef"><b>Definition</b> gripper.hpp:21</div></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}  <span class="comment">// namespace impl</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}  <span class="comment">// namespace viam</span></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1Gripper_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Gripper.html">viam::sdk::Gripper</a></div><div class="ttdoc">A Gripper represents a physical robotic gripper.</div><div class="ttdef"><b>Definition</b> gripper.hpp:22</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition</b> resource_server_base.hpp:8</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1impl_1_1GripperServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1impl_1_1GripperServer.html">viam::sdk::impl::GripperServer</a></div><div class="ttdef"><b>Definition</b> gripper_server.hpp:18</div></div>
 <div class="ttc" id="agripper_8hpp_html"><div class="ttname"><a href="gripper_8hpp.html">gripper.hpp</a></div><div class="ttdoc">Defines a Gripper component.</div></div>

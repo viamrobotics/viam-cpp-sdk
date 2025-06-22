@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: src/viam/sdk/components/private/gripper_client.hpp File Reference</title>
+<title>Viam C++ SDK: viam::sdk::Gripper::holding_status Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,35 +71,37 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_2f841a913ca9dc33e6376c2a26eb0ce5.html">viam</a></li><li class="navelem"><a class="el" href="dir_2dd7419e3f1605b187eaf7d665ac5e3d.html">sdk</a></li><li class="navelem"><a class="el" href="dir_a4a68a42606520ef697732eab96dd466.html">components</a></li><li class="navelem"><a class="el" href="dir_f844bc137c2bbb435ff038bb4a5d57e9.html">private</a></li>  </ul>
+<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1Gripper.html">Gripper</a></li><li class="navelem"><a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html">holding_status</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
-  <div class="headertitle"><div class="title">gripper_client.hpp File Reference</div></div>
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structviam_1_1sdk_1_1Gripper_1_1holding__status-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">viam::sdk::Gripper::holding_status Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implements a gRPC client for the <code>Gripper</code> component.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;memory&gt;</code><br />
-<code>#include &lt;grpcpp/channel.h&gt;</code><br />
-<code>#include &lt;viam/api/component/gripper/v1/gripper.grpc.pb.h&gt;</code><br />
-<code>#include &lt;viam/sdk/common/proto_value.hpp&gt;</code><br />
-<code>#include &lt;<a class="el" href="gripper_8hpp_source.html">viam/sdk/components/gripper.hpp</a>&gt;</code><br />
-</div>
-<p><a href="gripper__client_8hpp_source.html">Go to the source code of this file.</a></p>
+<p>whether the gripper is holding something (along with other contextual info)  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="gripper_8hpp_source.html">gripper.hpp</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1impl_1_1GripperClient.html">viam::sdk::impl::GripperClient</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">gRPC client implementation of a <code><a class="el" href="classviam_1_1sdk_1_1Gripper.html" title="A Gripper represents a physical robotic gripper.">Gripper</a></code> component  <a href="classviam_1_1sdk_1_1impl_1_1GripperClient.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:af875368562f1acd5e158eba3fdf423d5" id="r_af875368562f1acd5e158eba3fdf423d5"><td class="memItemLeft" align="right" valign="top"><a id="af875368562f1acd5e158eba3fdf423d5" name="af875368562f1acd5e158eba3fdf423d5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_holding_something</b></td></tr>
+<tr class="separator:af875368562f1acd5e158eba3fdf423d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1acf2270bd3cb9c30d424dea11a1f0ec" id="r_a1acf2270bd3cb9c30d424dea11a1f0ec"><td class="memItemLeft" align="right" valign="top"><a id="a1acf2270bd3cb9c30d424dea11a1f0ec" name="a1acf2270bd3cb9c30d424dea11a1f0ec"></a>
+ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><b>meta</b></td></tr>
+<tr class="separator:a1acf2270bd3cb9c30d424dea11a1f0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implements a gRPC client for the <code>Gripper</code> component. </p>
-</div></div><!-- contents -->
+<div class="textblock"><p>whether the gripper is holding something (along with other contextual info) </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/viam/sdk/components/<a class="el" href="gripper_8hpp_source.html">gripper.hpp</a></li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0

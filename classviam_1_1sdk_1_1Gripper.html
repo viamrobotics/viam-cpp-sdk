@@ -76,6 +76,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1Gripper-members.html">List of all members</a>  </div>
@@ -102,6 +103,12 @@ $(function() {
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html">holding_status</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether the gripper is holding something (along with other contextual info)  <a href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a337d1e97fa8be14a64e88544739e7f7e" id="r_a337d1e97fa8be14a64e88544739e7f7e"><td class="memItemLeft" align="right" valign="top"><a id="a337d1e97fa8be14a64e88544739e7f7e" name="a337d1e97fa8be14a64e88544739e7f7e"></a>
@@ -117,6 +124,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> ()</td></tr>
 <tr class="memitem:a8f3cc12c7f6695f9a4147e6bc643e741" id="r_a8f3cc12c7f6695f9a4147e6bc643e741"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f3cc12c7f6695f9a4147e6bc643e741">grab</a> (const ProtoStruct &amp;extra)=0</td></tr>
 <tr class="memdesc:a8f3cc12c7f6695f9a4147e6bc643e741"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instruct the gripper to grab.  <br /></td></tr>
 <tr class="separator:a8f3cc12c7f6695f9a4147e6bc643e741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16064ea96ba30be9561f6915c0943f3b" id="r_a16064ea96ba30be9561f6915c0943f3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html">holding_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16064ea96ba30be9561f6915c0943f3b">is_holding_something</a> ()</td></tr>
+<tr class="memdesc:a16064ea96ba30be9561f6915c0943f3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports whether the gripper is holding onto a object (alongside other information).  <br /></td></tr>
+<tr class="separator:a16064ea96ba30be9561f6915c0943f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee55f0c5ef3f7d651af0bf569597bcd0" id="r_aee55f0c5ef3f7d651af0bf569597bcd0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html">holding_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee55f0c5ef3f7d651af0bf569597bcd0">is_holding_something</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:aee55f0c5ef3f7d651af0bf569597bcd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports whether the gripper is holding onto a object (alongside other information).  <br /></td></tr>
+<tr class="separator:aee55f0c5ef3f7d651af0bf569597bcd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec18dd204bc4ca3d486cd0f988236943" id="r_aec18dd204bc4ca3d486cd0f988236943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec18dd204bc4ca3d486cd0f988236943">is_moving</a> ()=0</td></tr>
 <tr class="memdesc:aec18dd204bc4ca3d486cd0f988236943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the gripper is in motion.  <br /></td></tr>
 <tr class="separator:aec18dd204bc4ca3d486cd0f988236943"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -351,6 +364,70 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>bool indicating if the gripper grabbed something. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GripperClient.html#a0195dc546ebc951afcbd83a391696dfa">viam::sdk::impl::GripperClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1GripperClient.html#a8f3cc12c7f6695f9a4147e6bc643e741">viam::sdk::impl::GripperClient</a>.</p>
+
+</div>
+</div>
+<a id="a16064ea96ba30be9561f6915c0943f3b" name="a16064ea96ba30be9561f6915c0943f3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16064ea96ba30be9561f6915c0943f3b">&#9670;&#160;</a></span>is_holding_something() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html">holding_status</a> viam::sdk::Gripper::is_holding_something </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports whether the gripper is holding onto a object (alongside other information). </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html" title="whether the gripper is holding something (along with other contextual info)">holding_status</a> (see <code><a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html" title="whether the gripper is holding something (along with other contextual info)">holding_status</a></code> struct for more info). </dd></dl>
+
+</div>
+</div>
+<a id="aee55f0c5ef3f7d651af0bf569597bcd0" name="aee55f0c5ef3f7d651af0bf569597bcd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee55f0c5ef3f7d651af0bf569597bcd0">&#9670;&#160;</a></span>is_holding_something() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html">holding_status</a> viam::sdk::Gripper::is_holding_something </td>
+          <td>(</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports whether the gripper is holding onto a object (alongside other information). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html" title="whether the gripper is holding something (along with other contextual info)">holding_status</a> (see <code><a class="el" href="structviam_1_1sdk_1_1Gripper_1_1holding__status.html" title="whether the gripper is holding something (along with other contextual info)">holding_status</a></code> struct for more info). </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GripperClient.html#a34c5110ef9188fcf653dd118c629df79">viam::sdk::impl::GripperClient</a>.</p>
 
 </div>
 </div>
