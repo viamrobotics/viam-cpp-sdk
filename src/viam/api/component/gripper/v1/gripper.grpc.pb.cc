@@ -29,6 +29,7 @@ static const char* GripperService_method_names[] = {
   "/viam.component.gripper.v1.GripperService/Grab",
   "/viam.component.gripper.v1.GripperService/Stop",
   "/viam.component.gripper.v1.GripperService/IsMoving",
+  "/viam.component.gripper.v1.GripperService/IsHoldingSomething",
   "/viam.component.gripper.v1.GripperService/DoCommand",
   "/viam.component.gripper.v1.GripperService/GetGeometries",
   "/viam.component.gripper.v1.GripperService/GetKinematics",
@@ -45,9 +46,10 @@ GripperService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_Grab_(GripperService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Stop_(GripperService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_IsMoving_(GripperService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(GripperService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(GripperService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetKinematics_(GripperService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsHoldingSomething_(GripperService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(GripperService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(GripperService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKinematics_(GripperService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status GripperService::Stub::Open(::grpc::ClientContext* context, const ::viam::component::gripper::v1::OpenRequest& request, ::viam::component::gripper::v1::OpenResponse* response) {
@@ -160,6 +162,34 @@ void GripperService::Stub::experimental_async::IsMoving(::grpc::ClientContext* c
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsMovingResponse>* GripperService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gripper::v1::IsMovingResponse>::Create(channel_.get(), cq, rpcmethod_IsMoving_, context, request, false);
+}
+
+::grpc::Status GripperService::Stub::IsHoldingSomething(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_IsHoldingSomething_, context, request, response);
+}
+
+void GripperService::Stub::experimental_async::IsHoldingSomething(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsHoldingSomething_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::experimental_async::IsHoldingSomething(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsHoldingSomething_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::experimental_async::IsHoldingSomething(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsHoldingSomething_, context, request, response, reactor);
+}
+
+void GripperService::Stub::experimental_async::IsHoldingSomething(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsHoldingSomething_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsHoldingSomethingResponse>* GripperService::Stub::AsyncIsHoldingSomethingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gripper::v1::IsHoldingSomethingResponse>::Create(channel_.get(), cq, rpcmethod_IsHoldingSomething_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsHoldingSomethingResponse>* GripperService::Stub::PrepareAsyncIsHoldingSomethingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::gripper::v1::IsHoldingSomethingResponse>::Create(channel_.get(), cq, rpcmethod_IsHoldingSomething_, context, request, false);
 }
 
 ::grpc::Status GripperService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
@@ -290,6 +320,16 @@ GripperService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GripperService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::component::gripper::v1::IsHoldingSomethingRequest, ::viam::component::gripper::v1::IsHoldingSomethingResponse>(
+          [](GripperService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::component::gripper::v1::IsHoldingSomethingRequest* req,
+             ::viam::component::gripper::v1::IsHoldingSomethingResponse* resp) {
+               return service->IsHoldingSomething(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GripperService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
           [](GripperService::Service* service,
              ::grpc_impl::ServerContext* ctx,
@@ -298,7 +338,7 @@ GripperService::Service::Service() {
                return service->DoCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      GripperService_method_names[5],
+      GripperService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
           [](GripperService::Service* service,
@@ -308,7 +348,7 @@ GripperService::Service::Service() {
                return service->GetGeometries(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      GripperService_method_names[6],
+      GripperService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
           [](GripperService::Service* service,
@@ -344,6 +384,13 @@ GripperService::Service::~Service() {
 }
 
 ::grpc::Status GripperService::Service::IsMoving(::grpc::ServerContext* context, const ::viam::component::gripper::v1::IsMovingRequest* request, ::viam::component::gripper::v1::IsMovingResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GripperService::Service::IsHoldingSomething(::grpc::ServerContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -7963,6 +7963,7 @@ class ModuleConfig final :
     kModuleIdFieldNumber = 5,
     kStatusFieldNumber = 7,
     kFirstRunTimeoutFieldNumber = 8,
+    kTcpModeFieldNumber = 9,
   };
   // map<string, string> env = 6 [json_name = "env"];
   int env_size() const;
@@ -8087,6 +8088,15 @@ class ModuleConfig final :
       ::PROTOBUF_NAMESPACE_ID::Duration* first_run_timeout);
   ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_first_run_timeout();
 
+  // bool tcp_mode = 9 [json_name = "tcpMode"];
+  void clear_tcp_mode();
+  bool tcp_mode() const;
+  void set_tcp_mode(bool value);
+  private:
+  bool _internal_tcp_mode() const;
+  void _internal_set_tcp_mode(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleConfig)
  private:
   class _Internal;
@@ -8106,6 +8116,7 @@ class ModuleConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
   ::viam::app::v1::AppValidationStatus* status_;
   ::PROTOBUF_NAMESPACE_ID::Duration* first_run_timeout_;
+  bool tcp_mode_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -16745,6 +16756,26 @@ inline void ModuleConfig::set_allocated_first_run_timeout(::PROTOBUF_NAMESPACE_I
   }
   first_run_timeout_ = first_run_timeout;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleConfig.first_run_timeout)
+}
+
+// bool tcp_mode = 9 [json_name = "tcpMode"];
+inline void ModuleConfig::clear_tcp_mode() {
+  tcp_mode_ = false;
+}
+inline bool ModuleConfig::_internal_tcp_mode() const {
+  return tcp_mode_;
+}
+inline bool ModuleConfig::tcp_mode() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleConfig.tcp_mode)
+  return _internal_tcp_mode();
+}
+inline void ModuleConfig::_internal_set_tcp_mode(bool value) {
+  
+  tcp_mode_ = value;
+}
+inline void ModuleConfig::set_tcp_mode(bool value) {
+  _internal_set_tcp_mode(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleConfig.tcp_mode)
 }
 
 // -------------------------------------------------------------------
