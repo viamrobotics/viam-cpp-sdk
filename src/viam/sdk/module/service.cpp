@@ -116,12 +116,10 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                                 "unable to reconfigure resource " + cfg.resource_name().name() +
                                     " as it doesn't exist.");
         }
-        try {
-            Reconfigurable::reconfigure_if_reconfigurable(res, deps, cfg);
-            res->set_log_level(cfg.get_log_level());
+
+        if (auto reconfigurable = std::dynamic_pointer_cast<Reconfigurable>(res)) {
+            reconfigurable->reconfigure(deps, cfg);
             return grpc::Status();
-        } catch (const std::exception& exc) {
-            return grpc::Status(::grpc::INTERNAL, exc.what());
         }
 
         // if the type isn't reconfigurable by default, replace it
