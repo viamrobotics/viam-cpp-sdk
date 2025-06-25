@@ -89,7 +89,8 @@ struct GetNumberOfPositionsRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetNumberOfPositionsRequestDefaultTypeInternal _GetNumberOfPositionsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetNumberOfPositionsResponse::GetNumberOfPositionsResponse(
     ::_pbi::ConstantInitialized)
-  : number_of_positions_(0u){}
+  : labels_()
+  , number_of_positions_(0u){}
 struct GetNumberOfPositionsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetNumberOfPositionsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -153,6 +154,7 @@ const uint32_t TableStruct_component_2fswitch_2fv1_2fswitch_2eproto::offsets[] P
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetNumberOfPositionsResponse, number_of_positions_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::switch_::v1::GetNumberOfPositionsResponse, labels_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::switch_::v1::SetPositionRequest)},
@@ -186,28 +188,29 @@ const char descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto[] 
   "position\030\001 \001(\rR\010position\"`\n\033GetNumberOfP"
   "ositionsRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005e"
   "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
-  "ra\"N\n\034GetNumberOfPositionsResponse\022.\n\023nu"
+  "ra\"f\n\034GetNumberOfPositionsResponse\022.\n\023nu"
   "mber_of_positions\030\001 \001(\rR\021numberOfPositio"
-  "ns2\271\005\n\rSwitchService\022\245\001\n\013SetPosition\022,.v"
-  "iam.component.switch.v1.SetPositionReque"
-  "st\032-.viam.component.switch.v1.SetPositio"
-  "nResponse\"9\202\323\344\223\0023\0321/viam/api/v1/componen"
-  "t/switch/{name}/set_position\022\245\001\n\013GetPosi"
-  "tion\022,.viam.component.switch.v1.GetPosit"
-  "ionRequest\032-.viam.component.switch.v1.Ge"
-  "tPositionResponse\"9\202\323\344\223\0023\0321/viam/api/v1/"
-  "component/switch/{name}/get_position\022\313\001\n"
-  "\024GetNumberOfPositions\0225.viam.component.s"
-  "witch.v1.GetNumberOfPositionsRequest\0326.v"
-  "iam.component.switch.v1.GetNumberOfPosit"
-  "ionsResponse\"D\202\323\344\223\002>\032</viam/api/v1/compo"
-  "nent/switch/{name}/get_number_of_positio"
-  "ns\022\211\001\n\tDoCommand\022 .viam.common.v1.DoComm"
-  "andRequest\032!.viam.common.v1.DoCommandRes"
-  "ponse\"7\202\323\344\223\0021\"//viam/api/v1/component/sw"
-  "itch/{name}/do_commandBC\n\034com.viam.compo"
-  "nent.switch.v1Z#go.viam.com/api/componen"
-  "t/switch/v1b\006proto3"
+  "ns\022\026\n\006labels\030\002 \003(\tR\006labels2\271\005\n\rSwitchSer"
+  "vice\022\245\001\n\013SetPosition\022,.viam.component.sw"
+  "itch.v1.SetPositionRequest\032-.viam.compon"
+  "ent.switch.v1.SetPositionResponse\"9\202\323\344\223\002"
+  "3\0321/viam/api/v1/component/switch/{name}/"
+  "set_position\022\245\001\n\013GetPosition\022,.viam.comp"
+  "onent.switch.v1.GetPositionRequest\032-.via"
+  "m.component.switch.v1.GetPositionRespons"
+  "e\"9\202\323\344\223\0023\0321/viam/api/v1/component/switch"
+  "/{name}/get_position\022\313\001\n\024GetNumberOfPosi"
+  "tions\0225.viam.component.switch.v1.GetNumb"
+  "erOfPositionsRequest\0326.viam.component.sw"
+  "itch.v1.GetNumberOfPositionsResponse\"D\202\323"
+  "\344\223\002>\032</viam/api/v1/component/switch/{nam"
+  "e}/get_number_of_positions\022\211\001\n\tDoCommand"
+  "\022 .viam.common.v1.DoCommandRequest\032!.via"
+  "m.common.v1.DoCommandResponse\"7\202\323\344\223\0021\"//"
+  "viam/api/v1/component/switch/{name}/do_c"
+  "ommandBC\n\034com.viam.component.switch.v1Z#"
+  "go.viam.com/api/component/switch/v1b\006pro"
+  "to3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -216,7 +219,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fswitch_
 };
 static ::_pbi::once_flag descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto = {
-    false, false, 1379, descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto,
+    false, false, 1403, descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto,
     "component/switch/v1/switch.proto",
     &descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_once, descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_deps, 3, 6,
     schemas, file_default_instances, TableStruct_component_2fswitch_2fv1_2fswitch_2eproto::offsets,
@@ -1213,12 +1216,14 @@ class GetNumberOfPositionsResponse::_Internal {
 
 GetNumberOfPositionsResponse::GetNumberOfPositionsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  labels_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.component.switch.v1.GetNumberOfPositionsResponse)
 }
 GetNumberOfPositionsResponse::GetNumberOfPositionsResponse(const GetNumberOfPositionsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      labels_(from.labels_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   number_of_positions_ = from.number_of_positions_;
   // @@protoc_insertion_point(copy_constructor:viam.component.switch.v1.GetNumberOfPositionsResponse)
@@ -1251,6 +1256,7 @@ void GetNumberOfPositionsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  labels_.Clear();
   number_of_positions_ = 0u;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -1266,6 +1272,21 @@ const char* GetNumberOfPositionsResponse::_InternalParse(const char* ptr, ::_pbi
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           number_of_positions_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string labels = 2 [json_name = "labels"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_labels();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.component.switch.v1.GetNumberOfPositionsResponse.labels"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -1304,6 +1325,16 @@ uint8_t* GetNumberOfPositionsResponse::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_number_of_positions(), target);
   }
 
+  // repeated string labels = 2 [json_name = "labels"];
+  for (int i = 0, n = this->_internal_labels_size(); i < n; i++) {
+    const auto& s = this->_internal_labels(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.switch.v1.GetNumberOfPositionsResponse.labels");
+    target = stream->WriteString(2, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1319,6 +1350,14 @@ size_t GetNumberOfPositionsResponse::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated string labels = 2 [json_name = "labels"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(labels_.size());
+  for (int i = 0, n = labels_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      labels_.Get(i));
+  }
 
   // uint32 number_of_positions = 1 [json_name = "numberOfPositions"];
   if (this->_internal_number_of_positions() != 0) {
@@ -1347,6 +1386,7 @@ void GetNumberOfPositionsResponse::MergeFrom(const GetNumberOfPositionsResponse&
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  labels_.MergeFrom(from.labels_);
   if (from._internal_number_of_positions() != 0) {
     _internal_set_number_of_positions(from._internal_number_of_positions());
   }
@@ -1367,6 +1407,7 @@ bool GetNumberOfPositionsResponse::IsInitialized() const {
 void GetNumberOfPositionsResponse::InternalSwap(GetNumberOfPositionsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  labels_.InternalSwap(&other->labels_);
   swap(number_of_positions_, other->number_of_positions_);
 }
 

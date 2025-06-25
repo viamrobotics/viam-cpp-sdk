@@ -130,6 +130,7 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/RotateKey",
   "/viam.app.v1.AppService/CreateKeyFromExistingKeyAuthorizations",
   "/viam.app.v1.AppService/GetAppContent",
+  "/viam.app.v1.AppService/GetAppBranding",
 };
 
 std::unique_ptr< AppService::Stub> AppService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -245,6 +246,7 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_RotateKey_(AppService_method_names[103], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_CreateKeyFromExistingKeyAuthorizations_(AppService_method_names[104], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetAppContent_(AppService_method_names[105], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAppBranding_(AppService_method_names[106], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::viam::app::v1::GetUserIDByEmailResponse* response) {
@@ -3191,6 +3193,34 @@ void AppService::Stub::experimental_async::GetAppContent(::grpc::ClientContext* 
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetAppContentResponse>::Create(channel_.get(), cq, rpcmethod_GetAppContent_, context, request, false);
 }
 
+::grpc::Status AppService::Stub::GetAppBranding(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest& request, ::viam::app::v1::GetAppBrandingResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetAppBranding_, context, request, response);
+}
+
+void AppService::Stub::experimental_async::GetAppBranding(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAppBranding_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::GetAppBranding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAppBrandingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetAppBranding_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::experimental_async::GetAppBranding(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAppBranding_, context, request, response, reactor);
+}
+
+void AppService::Stub::experimental_async::GetAppBranding(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAppBrandingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetAppBranding_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAppBrandingResponse>* AppService::Stub::AsyncGetAppBrandingRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetAppBrandingResponse>::Create(channel_.get(), cq, rpcmethod_GetAppBranding_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAppBrandingResponse>* AppService::Stub::PrepareAsyncGetAppBrandingRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::app::v1::GetAppBrandingResponse>::Create(channel_.get(), cq, rpcmethod_GetAppBranding_, context, request, false);
+}
+
 AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[0],
@@ -4252,6 +4282,16 @@ AppService::Service::Service() {
              ::viam::app::v1::GetAppContentResponse* resp) {
                return service->GetAppContent(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[106],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetAppBrandingRequest, ::viam::app::v1::GetAppBrandingResponse>(
+          [](AppService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::viam::app::v1::GetAppBrandingRequest* req,
+             ::viam::app::v1::GetAppBrandingResponse* resp) {
+               return service->GetAppBranding(ctx, req, resp);
+             }, this)));
 }
 
 AppService::Service::~Service() {
@@ -4993,6 +5033,13 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::GetAppContent(::grpc::ServerContext* context, const ::viam::app::v1::GetAppContentRequest* request, ::viam::app::v1::GetAppContentResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::GetAppBranding(::grpc::ServerContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response) {
   (void) context;
   (void) request;
   (void) response;
