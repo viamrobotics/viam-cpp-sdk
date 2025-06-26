@@ -77,7 +77,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1Reconfigurable-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">viam::sdk::Reconfigurable Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
@@ -101,12 +100,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6a521fc5b45038cb529cbed46d7d3807" id="r_a6a521fc5b45038cb529cbed46d7d3807"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a521fc5b45038cb529cbed46d7d3807">reconfigure</a> (const Dependencies &amp;deps, const <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> &amp;cfg)=0</td></tr>
 <tr class="memdesc:a6a521fc5b45038cb529cbed46d7d3807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigures a resource.  <br /></td></tr>
 <tr class="separator:a6a521fc5b45038cb529cbed46d7d3807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a2f0195493d36aaee333361bcedd0073b" id="r_a2f0195493d36aaee333361bcedd0073b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f0195493d36aaee333361bcedd0073b">reconfigure_if_reconfigurable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, const Dependencies &amp;deps, const <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> &amp;cfg)</td></tr>
-<tr class="memdesc:a2f0195493d36aaee333361bcedd0073b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigures a resource if it is <a class="el" href="classviam_1_1sdk_1_1Reconfigurable.html">Reconfigurable</a>.  <br /></td></tr>
-<tr class="separator:a2f0195493d36aaee333361bcedd0073b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6a521fc5b45038cb529cbed46d7d3807" name="a6a521fc5b45038cb529cbed46d7d3807"></a>
@@ -146,50 +139,6 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classMyBase.html#a19cf917825bfcb6ba87cf270effd6554">MyBase</a>, <a class="el" href="classMyGizmo.html#a5f5e69a74a46af036f63182617605572">MyGizmo</a>, and <a class="el" href="classMySummation.html#ab99bde6a88e2ba454a952fcea2f42085">MySummation</a>.</p>
-
-</div>
-</div>
-<a id="a2f0195493d36aaee333361bcedd0073b" name="a2f0195493d36aaee333361bcedd0073b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f0195493d36aaee333361bcedd0073b">&#9670;&#160;</a></span>reconfigure_if_reconfigurable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void viam::sdk::Reconfigurable::reconfigure_if_reconfigurable </td>
-          <td>(</td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>resource</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Dependencies &amp;</td>          <td class="paramname"><span class="paramname"><em>deps</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cfg</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Reconfigures a resource if it is <a class="el" href="classviam_1_1sdk_1_1Reconfigurable.html">Reconfigurable</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">resource</td><td>the <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> to reconfigure. </td></tr>
-    <tr><td class="paramname">deps</td><td>Dependencies of the resource. </td></tr>
-    <tr><td class="paramname">cfg</td><td>The resource's config. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

@@ -77,7 +77,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1Stoppable-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">viam::sdk::Stoppable Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
@@ -115,15 +114,6 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 <tr class="memdesc:a5248adce66d2ff61cf1c69daaf4cf754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a resource from running. <br /></td></tr>
 <tr class="separator:a5248adce66d2ff61cf1c69daaf4cf754"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a9b209a040efc8f4ea35abb92dafb5fea" id="r_a9b209a040efc8f4ea35abb92dafb5fea"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b209a040efc8f4ea35abb92dafb5fea">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource, const ProtoStruct &amp;extra)</td></tr>
-<tr class="memdesc:a9b209a040efc8f4ea35abb92dafb5fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
-<tr class="separator:a9b209a040efc8f4ea35abb92dafb5fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7a35a13e39132052b910f5b8718f29d" id="r_ab7a35a13e39132052b910f5b8718f29d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7a35a13e39132052b910f5b8718f29d">stop_if_stoppable</a> (const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;resource)</td></tr>
-<tr class="memdesc:ab7a35a13e39132052b910f5b8718f29d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>.  <br /></td></tr>
-<tr class="separator:ab7a35a13e39132052b910f5b8718f29d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1c8e7ba66f0bd9694a68c71043ab1d36" name="a1c8e7ba66f0bd9694a68c71043ab1d36"></a>
@@ -158,77 +148,6 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classMyBase.html#af529f81b9a197327a08d63a19bc59bd8">MyBase</a>, <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#ac23272ad6746b302e0dfcf487d4f5f16">viam::sdk::impl::ArmClient</a>, <a class="el" href="classviam_1_1sdk_1_1impl_1_1BaseClient.html#a1beb6cd7304b0ed1602111e3ec3d58ea">viam::sdk::impl::BaseClient</a>, <a class="el" href="classviam_1_1sdk_1_1impl_1_1GantryClient.html#abdc39bc9f0715d5e995eb6acf19ff5d6">viam::sdk::impl::GantryClient</a>, <a class="el" href="classviam_1_1sdk_1_1impl_1_1GripperClient.html#a23e7c2b17950e8878633805cc2162eac">viam::sdk::impl::GripperClient</a>, <a class="el" href="classviam_1_1sdk_1_1impl_1_1MotorClient.html#a523b58777fe114941bb2c9e67521cd09">viam::sdk::impl::MotorClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#abeb54c01f66973dd1784d204dc4e2192">viam::sdk::impl::ServoClient</a>.</p>
-
-</div>
-</div>
-<a id="ab7a35a13e39132052b910f5b8718f29d" name="ab7a35a13e39132052b910f5b8718f29d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7a35a13e39132052b910f5b8718f29d">&#9670;&#160;</a></span>stop_if_stoppable() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void viam::sdk::Stoppable::stop_if_stoppable </td>
-          <td>(</td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>resource</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">resource</td><td>The <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> to stop. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a9b209a040efc8f4ea35abb92dafb5fea" name="a9b209a040efc8f4ea35abb92dafb5fea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b209a040efc8f4ea35abb92dafb5fea">&#9670;&#160;</a></span>stop_if_stoppable() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void viam::sdk::Stoppable::stop_if_stoppable </td>
-          <td>(</td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>resource</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Stops a <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> if it is <a class="el" href="classviam_1_1sdk_1_1Stoppable.html">Stoppable</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">resource</td><td>The <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> to stop. </td></tr>
-    <tr><td class="paramname">extra</td><td>Extra arguments to pass to the resource's <code>stop</code> method. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
