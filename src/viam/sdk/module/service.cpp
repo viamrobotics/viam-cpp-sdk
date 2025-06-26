@@ -130,6 +130,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
 
         const std::shared_ptr<const ModelRegistration> reg =
             Registry::get().lookup_model(cfg.name());
+
+        // TODO RSDK-11067 new resource gets constructed while old one is still alive.
         if (reg) {
             try {
                 const std::shared_ptr<Resource> resource = reg->construct_resource(deps, cfg);
