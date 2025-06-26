@@ -119,6 +119,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
 
         if (auto reconfigurable = std::dynamic_pointer_cast<Reconfigurable>(res)) {
             reconfigurable->reconfigure(deps, cfg);
+            res->set_log_level(cfg.get_log_level());
             return grpc::Status();
         }
 
