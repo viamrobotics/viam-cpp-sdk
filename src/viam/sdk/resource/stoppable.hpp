@@ -17,18 +17,6 @@ class Stoppable {
         return stop({});
     }
 
-    /// @brief Stops a Resource if it is Stoppable.
-    /// @param resource The Resource to stop.
-    /// @param extra Extra arguments to pass to the resource's `stop` method.
-    static void stop_if_stoppable(const std::shared_ptr<Resource>& resource,
-                                  const ProtoStruct& extra);
-
-    /// @brief Stops a Resource if it is Stoppable.
-    /// @param resource The Resource to stop.
-    inline static void stop_if_stoppable(const std::shared_ptr<Resource>& resource) {
-        return stop_if_stoppable(resource, {});
-    }
-
    protected:
     explicit Stoppable();
 };

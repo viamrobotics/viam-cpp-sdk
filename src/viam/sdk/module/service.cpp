@@ -124,10 +124,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         }
 
         // if the type isn't reconfigurable by default, replace it
-        try {
-            Stoppable::stop_if_stoppable(res);
-        } catch (const std::exception& err) {
-            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
+        if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
+            stoppable->stop();
         }
 
         const std::shared_ptr<const ModelRegistration> reg =
