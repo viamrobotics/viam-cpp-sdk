@@ -185,10 +185,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                 "unable to remove resource " + name.to_string() + " as it doesn't exist.");
         }
 
-        try {
-            Stoppable::stop_if_stoppable(res);
-        } catch (const std::exception& err) {
-            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
+        if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
+            stoppable->stop();
         }
 
         manager->remove(name);
