@@ -24,14 +24,16 @@ namespace sdk {
 std::shared_ptr<Resource> ResourceManager::resource(const std::string& name) {
     const std::lock_guard<std::mutex> lock(lock_);
 
-    if (resources_.find(name) != resources_.end()) {
-        return resources_.at(name);
+    auto res_it = resources_.find(name);
+    if (res_it != resources_.end()) {
+        return res_it->second;
     }
 
-    if (short_names_.find(name) != short_names_.end()) {
-        const std::string short_name = short_names_.at(name);
-        if (resources_.find(short_name) != resources_.end()) {
-            return resources_.at(short_name);
+    auto name_it = short_names_.find(name);
+    if (name_it != short_names_.end()) {
+        res_it = resources_.find(name_it->second);
+        if (res_it != resources_.end()) {
+            return res_it->second;
         }
     }
 

@@ -116,23 +116,22 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                                 "unable to reconfigure resource " + cfg.resource_name().name() +
                                     " as it doesn't exist.");
         }
-        try {
-            Reconfigurable::reconfigure_if_reconfigurable(res, deps, cfg);
+
+        if (auto reconfigurable = std::dynamic_pointer_cast<Reconfigurable>(res)) {
+            reconfigurable->reconfigure(deps, cfg);
             res->set_log_level(cfg.get_log_level());
             return grpc::Status();
-        } catch (const std::exception& exc) {
-            return grpc::Status(::grpc::INTERNAL, exc.what());
         }
 
         // if the type isn't reconfigurable by default, replace it
-        try {
-            Stoppable::stop_if_stoppable(res);
-        } catch (const std::exception& err) {
-            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
+        if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
+            stoppable->stop();
         }
 
         const std::shared_ptr<const ModelRegistration> reg =
             Registry::get().lookup_model(cfg.name());
+
+        // TODO RSDK-11067 new resource gets constructed while old one is still alive.
         if (reg) {
             try {
                 const std::shared_ptr<Resource> resource = reg->construct_resource(deps, cfg);
@@ -186,10 +185,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                 "unable to remove resource " + name.to_string() + " as it doesn't exist.");
         }
 
-        try {
-            Stoppable::stop_if_stoppable(res);
-        } catch (const std::exception& err) {
-            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
+        if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
+            stoppable->stop();
         }
 
         manager->remove(name);
