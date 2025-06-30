@@ -128,7 +128,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             stoppable->stop();
         }
 
-        manager->remove(Name::from_string(res->name()));
+        manager->remove(cfg.resource_name());
 
         const std::shared_ptr<const ModelRegistration> reg =
             Registry::get().lookup_model(cfg.name());
