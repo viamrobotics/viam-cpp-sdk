@@ -108,6 +108,7 @@ void ResourceManager::do_remove(const Name& name) {
             ErrorCondition::k_resource_not_found,
             "Attempted to remove resource " + name.to_string() + " but it didn't exist!");
     }
+
     resources_.erase(short_name);
 
     std::string const shortcut = get_shortcut_name(short_name);
@@ -135,8 +136,8 @@ void ResourceManager::remove(const Name& name) {
         do_remove(name);
     } catch (std::exception& exc) {
         VIAM_SDK_LOG(error) << "unable to remove resource: " << exc.what();
-    };
-};
+    }
+}
 
 void ResourceManager::replace_one(const Name& name, std::shared_ptr<Resource> resource) {
     const std::lock_guard<std::mutex> lock(lock_);
