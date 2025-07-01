@@ -83,7 +83,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             } catch (const std::exception& exc) {
                 return grpc::Status(::grpc::INTERNAL, exc.what());
             }
-        };
+        }
+
         try {
             parent.server_->add_resource(res, ctx->deadline());
         } catch (const std::exception& exc) {
@@ -129,16 +130,18 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         }
 
         const std::shared_ptr<const ModelRegistration> reg =
-            Registry::get().lookup_model(cfg.name());
+            Registry::get().lookup_model(cfg.api(), cfg.model());
 
-        // TODO RSDK-11067 new resource gets constructed while old one is still alive.
-        if (reg) {
-            try {
-                const std::shared_ptr<Resource> resource = reg->construct_resource(deps, cfg);
-                manager->replace_one(cfg.resource_name(), resource);
-            } catch (const std::exception& exc) {
-                return grpc::Status(::grpc::INTERNAL, exc.what());
-            }
+        if (!reg) {
+            return grpc::Status(::grpc::INTERNAL,
+                                "Unable to rebuild resource: model registration not found");
+        }
+
+        try {
+            std::shared_ptr<Resource> resource = reg->construct_resource(deps, cfg);
+            manager->replace_one(cfg.resource_name(), std::move(resource));
+        } catch (const std::exception& exc) {
+            return grpc::Status(::grpc::INTERNAL, exc.what());
         }
 
         return grpc::Status();
