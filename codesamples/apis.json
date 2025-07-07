@@ -1,4 +1,30 @@
 {
+    "arm": {
+        "client": "Arm",
+        "func": "get_end_position",
+        "args": []
+    },
+    "button": {
+        "client": "Button",
+        "func": "push",
+        "args": [],
+        "commented": true,
+        "hasReturn": false
+    },
+    "genericcomponent": {
+        "client": "GenericComponent",
+        "func": "do_command",
+        "args": ["{}"],
+        "commented": true,
+        "hasReturn": true
+    },
+    "genericservice": {
+        "client": "GenericService",
+        "func": "do_command",
+        "args": ["{}"],
+        "commented": true,
+        "hasReturn": true
+    },
     "base": {
         "client": "Base",
         "func": "is_moving",
