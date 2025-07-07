@@ -982,8 +982,33 @@ class GetNumberOfPositionsResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kLabelsFieldNumber = 2,
     kNumberOfPositionsFieldNumber = 1,
   };
+  // repeated string labels = 2 [json_name = "labels"];
+  int labels_size() const;
+  private:
+  int _internal_labels_size() const;
+  public:
+  void clear_labels();
+  const std::string& labels(int index) const;
+  std::string* mutable_labels(int index);
+  void set_labels(int index, const std::string& value);
+  void set_labels(int index, std::string&& value);
+  void set_labels(int index, const char* value);
+  void set_labels(int index, const char* value, size_t size);
+  std::string* add_labels();
+  void add_labels(const std::string& value);
+  void add_labels(std::string&& value);
+  void add_labels(const char* value);
+  void add_labels(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& labels() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_labels();
+  private:
+  const std::string& _internal_labels(int index) const;
+  std::string* _internal_add_labels();
+  public:
+
   // uint32 number_of_positions = 1 [json_name = "numberOfPositions"];
   void clear_number_of_positions();
   uint32_t number_of_positions() const;
@@ -1000,6 +1025,7 @@ class GetNumberOfPositionsResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> labels_;
   uint32_t number_of_positions_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fswitch_2fv1_2fswitch_2eproto;
@@ -1498,6 +1524,81 @@ inline void GetNumberOfPositionsResponse::_internal_set_number_of_positions(uint
 inline void GetNumberOfPositionsResponse::set_number_of_positions(uint32_t value) {
   _internal_set_number_of_positions(value);
   // @@protoc_insertion_point(field_set:viam.component.switch.v1.GetNumberOfPositionsResponse.number_of_positions)
+}
+
+// repeated string labels = 2 [json_name = "labels"];
+inline int GetNumberOfPositionsResponse::_internal_labels_size() const {
+  return labels_.size();
+}
+inline int GetNumberOfPositionsResponse::labels_size() const {
+  return _internal_labels_size();
+}
+inline void GetNumberOfPositionsResponse::clear_labels() {
+  labels_.Clear();
+}
+inline std::string* GetNumberOfPositionsResponse::add_labels() {
+  std::string* _s = _internal_add_labels();
+  // @@protoc_insertion_point(field_add_mutable:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+  return _s;
+}
+inline const std::string& GetNumberOfPositionsResponse::_internal_labels(int index) const {
+  return labels_.Get(index);
+}
+inline const std::string& GetNumberOfPositionsResponse::labels(int index) const {
+  // @@protoc_insertion_point(field_get:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+  return _internal_labels(index);
+}
+inline std::string* GetNumberOfPositionsResponse::mutable_labels(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+  return labels_.Mutable(index);
+}
+inline void GetNumberOfPositionsResponse::set_labels(int index, const std::string& value) {
+  labels_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+}
+inline void GetNumberOfPositionsResponse::set_labels(int index, std::string&& value) {
+  labels_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+}
+inline void GetNumberOfPositionsResponse::set_labels(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  labels_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+}
+inline void GetNumberOfPositionsResponse::set_labels(int index, const char* value, size_t size) {
+  labels_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+}
+inline std::string* GetNumberOfPositionsResponse::_internal_add_labels() {
+  return labels_.Add();
+}
+inline void GetNumberOfPositionsResponse::add_labels(const std::string& value) {
+  labels_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+}
+inline void GetNumberOfPositionsResponse::add_labels(std::string&& value) {
+  labels_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+}
+inline void GetNumberOfPositionsResponse::add_labels(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  labels_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+}
+inline void GetNumberOfPositionsResponse::add_labels(const char* value, size_t size) {
+  labels_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetNumberOfPositionsResponse::labels() const {
+  // @@protoc_insertion_point(field_list:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+  return labels_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetNumberOfPositionsResponse::mutable_labels() {
+  // @@protoc_insertion_point(field_mutable_list:viam.component.switch.v1.GetNumberOfPositionsResponse.labels)
+  return &labels_;
 }
 
 #ifdef __GNUC__

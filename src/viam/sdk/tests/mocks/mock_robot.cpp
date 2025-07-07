@@ -252,31 +252,33 @@ std::vector<ResourceName> MockRobotService::generate_metadata_() {
         const std::shared_ptr<Resource> resource = r.second;
         const ResourceName rn = to_proto(resource->get_resource_name());
         const std::string rn_ = rn.SerializeAsString();
-        if (extra.find(rn_) != extra.end()) {
-            try {
-                Stoppable::stop_if_stoppable(resource, extra.at(rn_));
-            } catch (const std::runtime_error& err) {
+
+        auto stop_without_extra = [&status_message,
+                                   &status](const std::shared_ptr<Resource>& resource) {
+            if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(resource)) {
                 try {
+                    stoppable->stop();
+                    return;
+                } catch (const std::runtime_error& err) {
                     status_message = err.what();
-                    Stoppable::stop_if_stoppable(resource);
-                } catch (std::runtime_error& err) {
-                    status_message = err.what();
-                    status = grpc::UNKNOWN;
                 } catch (...) {
                     status_message = "unknown error";
-                    status = grpc::UNKNOWN;
                 }
+                status = grpc::UNKNOWN;
+            }
+        };
+
+        if (extra.find(rn_) != extra.end()) {
+            try {
+                if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(resource)) {
+                    stoppable->stop(extra.at(rn_));
+                }
+            } catch (const std::runtime_error& err) {
+                status_message = err.what();
+                stop_without_extra(resource);
             }
         } else {
-            try {
-                Stoppable::stop_if_stoppable(resource);
-            } catch (std::runtime_error& err) {
-                status_message = err.what();
-                status = grpc::UNKNOWN;
-            } catch (...) {
-                status_message = "unknown error";
-                status = grpc::UNKNOWN;
-            }
+            stop_without_extra(resource);
         }
     }
 
@@ -299,7 +301,8 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     const ::viam::robot::v1::FrameSystemConfigRequest*,
     ::viam::robot::v1::FrameSystemConfigResponse* response) {
     auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
@@ -314,7 +317,8 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
                                                const ::viam::robot::v1::TransformPoseRequest*,
                                                ::viam::robot::v1::TransformPoseResponse* response) {
     auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
@@ -327,7 +331,8 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     const ::viam::robot::v1::GetMachineStatusRequest*,
     ::viam::robot::v1::GetMachineStatusResponse* response) {
     auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }
@@ -341,7 +346,8 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
                                                const ::viam::robot::v1::GetOperationsRequest*,
                                                ::viam::robot::v1::GetOperationsResponse* response) {
     auto client_md = context->client_metadata();
-    if (auto client_info = client_md.find("viam_client"); client_info == client_md.end()) {
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
         return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION,
                               "viam_client info not properly set in metadata");
     }

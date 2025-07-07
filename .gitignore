@@ -5,7 +5,9 @@
 /build/*
 
 # For now, ignore any viam_rust_utils library in the root.
+# The `lib` prefix is on unix-based systems only
 /libviam_rust_utils*
+/viam_rust_utils*
 
 # Ignore clang cache.
 /.cache/

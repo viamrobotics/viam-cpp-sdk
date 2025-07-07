@@ -24,14 +24,16 @@ namespace sdk {
 std::shared_ptr<Resource> ResourceManager::resource(const std::string& name) {
     const std::lock_guard<std::mutex> lock(lock_);
 
-    if (resources_.find(name) != resources_.end()) {
-        return resources_.at(name);
+    auto res_it = resources_.find(name);
+    if (res_it != resources_.end()) {
+        return res_it->second;
     }
 
-    if (short_names_.find(name) != short_names_.end()) {
-        const std::string short_name = short_names_.at(name);
-        if (resources_.find(short_name) != resources_.end()) {
-            return resources_.at(short_name);
+    auto name_it = short_names_.find(name);
+    if (name_it != short_names_.end()) {
+        res_it = resources_.find(name_it->second);
+        if (res_it != resources_.end()) {
+            return res_it->second;
         }
     }
 
@@ -106,6 +108,7 @@ void ResourceManager::do_remove(const Name& name) {
             ErrorCondition::k_resource_not_found,
             "Attempted to remove resource " + name.to_string() + " but it didn't exist!");
     }
+
     resources_.erase(short_name);
 
     std::string const shortcut = get_shortcut_name(short_name);
@@ -133,8 +136,8 @@ void ResourceManager::remove(const Name& name) {
         do_remove(name);
     } catch (std::exception& exc) {
         VIAM_SDK_LOG(error) << "unable to remove resource: " << exc.what();
-    };
-};
+    }
+}
 
 void ResourceManager::replace_one(const Name& name, std::shared_ptr<Resource> resource) {
     const std::lock_guard<std::mutex> lock(lock_);

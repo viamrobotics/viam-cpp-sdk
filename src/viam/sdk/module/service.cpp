@@ -48,6 +48,17 @@
 namespace viam {
 namespace sdk {
 
+namespace {
+std::string get_protocol(int argc, char** argv) {
+    for (int i = 0; i < argc; ++i) {
+        if (strcmp(argv[i], "--tcp-mode") == 0) {
+            return "dns:";
+        }
+    }
+    return "unix:";
+}
+}  // namespace
+
 struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
     ServiceImpl(ModuleService& p) : parent(p) {}
 
@@ -72,7 +83,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             } catch (const std::exception& exc) {
                 return grpc::Status(::grpc::INTERNAL, exc.what());
             }
-        };
+        }
+
         try {
             parent.server_->add_resource(res, ctx->deadline());
         } catch (const std::exception& exc) {
@@ -105,30 +117,31 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                                 "unable to reconfigure resource " + cfg.resource_name().name() +
                                     " as it doesn't exist.");
         }
-        try {
-            Reconfigurable::reconfigure_if_reconfigurable(res, deps, cfg);
+
+        if (auto reconfigurable = std::dynamic_pointer_cast<Reconfigurable>(res)) {
+            reconfigurable->reconfigure(deps, cfg);
             res->set_log_level(cfg.get_log_level());
             return grpc::Status();
-        } catch (const std::exception& exc) {
-            return grpc::Status(::grpc::INTERNAL, exc.what());
         }
 
         // if the type isn't reconfigurable by default, replace it
-        try {
-            Stoppable::stop_if_stoppable(res);
-        } catch (const std::exception& err) {
-            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
+        if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
+            stoppable->stop();
         }
 
         const std::shared_ptr<const ModelRegistration> reg =
-            Registry::get().lookup_model(cfg.name());
-        if (reg) {
-            try {
-                const std::shared_ptr<Resource> resource = reg->construct_resource(deps, cfg);
-                manager->replace_one(cfg.resource_name(), resource);
-            } catch (const std::exception& exc) {
-                return grpc::Status(::grpc::INTERNAL, exc.what());
-            }
+            Registry::get().lookup_model(cfg.api(), cfg.model());
+
+        if (!reg) {
+            return grpc::Status(::grpc::INTERNAL,
+                                "Unable to rebuild resource: model registration not found");
+        }
+
+        try {
+            std::shared_ptr<Resource> resource = reg->construct_resource(deps, cfg);
+            manager->replace_one(cfg.resource_name(), std::move(resource));
+        } catch (const std::exception& exc) {
+            return grpc::Status(::grpc::INTERNAL, exc.what());
         }
 
         return grpc::Status();
@@ -175,10 +188,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                 "unable to remove resource " + name.to_string() + " as it doesn't exist.");
         }
 
-        try {
-            Stoppable::stop_if_stoppable(res);
-        } catch (const std::exception& err) {
-            VIAM_SDK_LOG(error) << "unable to stop resource: " << err.what();
+        if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
+            stoppable->stop();
         }
 
         manager->remove(name);
@@ -191,10 +202,13 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const std::lock_guard<std::mutex> lock(parent.lock_);
         const viam::module::v1::HandlerMap hm = to_proto(parent.module_->handles());
         *response->mutable_handlermap() = hm;
-        auto new_parent_addr = request->parent_address();
+        auto new_parent_addr = parent.grpc_conn_protocol_ + request->parent_address();
         if (parent.parent_addr_ != new_parent_addr) {
             parent.parent_addr_ = std::move(new_parent_addr);
-            parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, {0, boost::none});
+            Options opts{0, boost::none};
+            opts.set_check_every_interval(std::chrono::seconds{5})
+                .set_reconnect_every_interval(std::chrono::seconds{1});
+            parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
             parent.parent_->connect_logging();
         }
         response->set_ready(parent.module_->ready());
@@ -230,21 +244,27 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     return parent_->resource_by_name(name);
 }
 
-ModuleService::ModuleService(std::string addr)
-    : module_(std::make_unique<Module>(std::move(addr))), server_(std::make_unique<Server>()) {
+ModuleService::ModuleService(std::string addr) : ModuleService(std::move(addr), "unix:") {}
+
+ModuleService::ModuleService(std::string addr, std::string grpc_conn_protocol)
+    : module_(std::make_unique<Module>(std::move(addr))),
+      grpc_conn_protocol_(std::move(grpc_conn_protocol)),
+      server_(std::make_unique<Server>()) {
     impl_ = std::make_unique<ServiceImpl>(*this);
 }
 
 ModuleService::ModuleService(int argc,
                              char** argv,
                              const std::vector<std::shared_ptr<ModelRegistration>>& registrations)
-    : ModuleService([argc, argv] {
-          if (argc < 2) {
-              throw Exception(ErrorCondition::k_connection,
-                              "Need socket path as command line argument");
-          }
-          return argv[1];
-      }()) {
+    : ModuleService(
+          [argc, argv] {
+              if (argc < 2) {
+                  throw Exception(ErrorCondition::k_connection,
+                                  "Need socket path as command line argument");
+              }
+              return (argv[1]);
+          }(),
+          get_protocol(argc, argv)) {
     LogManager::get().set_global_log_level(argc, argv);
 
     for (auto&& mr : registrations) {
@@ -260,7 +280,7 @@ ModuleService::~ModuleService() {
 
     if (parent_) {
         try {
-            parent_->close();
+            parent_.reset();
         } catch (const std::exception& exc) {
             VIAM_SDK_LOG(error) << exc.what();
         }
@@ -269,8 +289,7 @@ ModuleService::~ModuleService() {
 
 void ModuleService::serve() {
     server_->register_service(impl_.get());
-    const std::string address = "unix:" + module_->addr();
-    server_->add_listening_port(address);
+    server_->add_listening_port(grpc_conn_protocol_ + module_->addr());
 
     module_->set_ready();
     server_->start();

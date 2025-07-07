@@ -8,7 +8,7 @@
 namespace viam {
 namespace sdk {
 
-Motion::Motion(std::string name) : Service(std::move(name)){};
+Motion::Motion(std::string name) : Service(std::move(name)) {}
 
 API Motion::api() const {
     return API::get<Motion>();

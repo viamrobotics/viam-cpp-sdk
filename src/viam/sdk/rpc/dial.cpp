@@ -1,5 +1,6 @@
 #include <viam/sdk/rpc/dial.hpp>
 
+#include <algorithm>
 #include <istream>
 #include <string>
 
@@ -171,19 +172,29 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
     if (opts.entity()) {
         entity = opts.entity()->c_str();
     }
-    char* socket_path = ::dial(
+    char* proxy_path = ::dial(
         uri, entity, type, payload, opts.allows_insecure_downgrade(), float_timeout.count(), ptr);
-    if (socket_path == NULL) {
+    if (!proxy_path) {
         free_rust_runtime(ptr);
         throw Exception(ErrorCondition::k_connection, "Unable to establish connecting path");
     }
 
-    std::string address("unix://");
-    address += socket_path;
+    const std::string localhost_prefix("127.0.0.1");
+    std::string address;
+    if (std::string(proxy_path).find(localhost_prefix) == std::string::npos) {
+        // proxy path is not a localhost address and is therefore a unix domain socket (UDS)
+        // TODO (RSDK-10747) - update rust-utils to include this information directly, so that
+        // the SDKs don't have to.
+        address += "unix:";
+    }
+    address += proxy_path;
 
-    return ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
-                       socket_path,
-                       ptr);
+    auto chan =
+        ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials()),
+                    proxy_path,
+                    ptr);
+    chan.uri_ = uri;
+    return chan;
 }
 
 const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
@@ -194,7 +205,27 @@ void ViamChannel::close() {
     pimpl_.reset();
 }
 
-unsigned int Options::refresh_interval() const {
+const char* ViamChannel::get_channel_addr() const {
+    return uri_;
+}
+Options& Options::set_check_every_interval(std::chrono::seconds interval) {
+    check_every_interval_ = interval;
+    return *this;
+}
+Options& Options::set_reconnect_every_interval(std::chrono::seconds interval) {
+    reconnect_every_interval_ = interval;
+    return *this;
+}
+
+std::chrono::seconds Options::check_every_interval() const {
+    return check_every_interval_;
+}
+
+std::chrono::seconds Options::reconnect_every_interval() const {
+    return reconnect_every_interval_;
+}
+
+std::chrono::seconds Options::refresh_interval() const {
     return refresh_interval_;
 }
 

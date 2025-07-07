@@ -58,6 +58,12 @@ extern GrabRequestDefaultTypeInternal _GrabRequest_default_instance_;
 class GrabResponse;
 struct GrabResponseDefaultTypeInternal;
 extern GrabResponseDefaultTypeInternal _GrabResponse_default_instance_;
+class IsHoldingSomethingRequest;
+struct IsHoldingSomethingRequestDefaultTypeInternal;
+extern IsHoldingSomethingRequestDefaultTypeInternal _IsHoldingSomethingRequest_default_instance_;
+class IsHoldingSomethingResponse;
+struct IsHoldingSomethingResponseDefaultTypeInternal;
+extern IsHoldingSomethingResponseDefaultTypeInternal _IsHoldingSomethingResponse_default_instance_;
 class IsMovingRequest;
 struct IsMovingRequestDefaultTypeInternal;
 extern IsMovingRequestDefaultTypeInternal _IsMovingRequest_default_instance_;
@@ -83,6 +89,8 @@ extern StopResponseDefaultTypeInternal _StopResponse_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::component::gripper::v1::GrabRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GrabRequest>(Arena*);
 template<> ::viam::component::gripper::v1::GrabResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::GrabResponse>(Arena*);
+template<> ::viam::component::gripper::v1::IsHoldingSomethingRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::IsHoldingSomethingRequest>(Arena*);
+template<> ::viam::component::gripper::v1::IsHoldingSomethingResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::IsHoldingSomethingResponse>(Arena*);
 template<> ::viam::component::gripper::v1::IsMovingRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::IsMovingRequest>(Arena*);
 template<> ::viam::component::gripper::v1::IsMovingResponse* Arena::CreateMaybeMessage<::viam::component::gripper::v1::IsMovingResponse>(Arena*);
 template<> ::viam::component::gripper::v1::OpenRequest* Arena::CreateMaybeMessage<::viam::component::gripper::v1::OpenRequest>(Arena*);
@@ -1285,6 +1293,337 @@ class IsMovingResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
 };
+// -------------------------------------------------------------------
+
+class IsHoldingSomethingRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gripper.v1.IsHoldingSomethingRequest) */ {
+ public:
+  inline IsHoldingSomethingRequest() : IsHoldingSomethingRequest(nullptr) {}
+  ~IsHoldingSomethingRequest() override;
+  explicit PROTOBUF_CONSTEXPR IsHoldingSomethingRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IsHoldingSomethingRequest(const IsHoldingSomethingRequest& from);
+  IsHoldingSomethingRequest(IsHoldingSomethingRequest&& from) noexcept
+    : IsHoldingSomethingRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline IsHoldingSomethingRequest& operator=(const IsHoldingSomethingRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IsHoldingSomethingRequest& operator=(IsHoldingSomethingRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IsHoldingSomethingRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IsHoldingSomethingRequest* internal_default_instance() {
+    return reinterpret_cast<const IsHoldingSomethingRequest*>(
+               &_IsHoldingSomethingRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(IsHoldingSomethingRequest& a, IsHoldingSomethingRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IsHoldingSomethingRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IsHoldingSomethingRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  IsHoldingSomethingRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<IsHoldingSomethingRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const IsHoldingSomethingRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const IsHoldingSomethingRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IsHoldingSomethingRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gripper.v1.IsHoldingSomethingRequest";
+  }
+  protected:
+  explicit IsHoldingSomethingRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.component.gripper.v1.IsHoldingSomethingRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IsHoldingSomethingResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.gripper.v1.IsHoldingSomethingResponse) */ {
+ public:
+  inline IsHoldingSomethingResponse() : IsHoldingSomethingResponse(nullptr) {}
+  ~IsHoldingSomethingResponse() override;
+  explicit PROTOBUF_CONSTEXPR IsHoldingSomethingResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IsHoldingSomethingResponse(const IsHoldingSomethingResponse& from);
+  IsHoldingSomethingResponse(IsHoldingSomethingResponse&& from) noexcept
+    : IsHoldingSomethingResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline IsHoldingSomethingResponse& operator=(const IsHoldingSomethingResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IsHoldingSomethingResponse& operator=(IsHoldingSomethingResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IsHoldingSomethingResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IsHoldingSomethingResponse* internal_default_instance() {
+    return reinterpret_cast<const IsHoldingSomethingResponse*>(
+               &_IsHoldingSomethingResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(IsHoldingSomethingResponse& a, IsHoldingSomethingResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IsHoldingSomethingResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IsHoldingSomethingResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  IsHoldingSomethingResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<IsHoldingSomethingResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const IsHoldingSomethingResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const IsHoldingSomethingResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IsHoldingSomethingResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.gripper.v1.IsHoldingSomethingResponse";
+  }
+  protected:
+  explicit IsHoldingSomethingResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMetaFieldNumber = 99,
+    kIsHoldingSomethingFieldNumber = 1,
+  };
+  // .google.protobuf.Struct meta = 99 [json_name = "meta"];
+  bool has_meta() const;
+  private:
+  bool _internal_has_meta() const;
+  public:
+  void clear_meta();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& meta() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_meta();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_meta();
+  void set_allocated_meta(::PROTOBUF_NAMESPACE_ID::Struct* meta);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_meta() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_meta();
+  public:
+  void unsafe_arena_set_allocated_meta(
+      ::PROTOBUF_NAMESPACE_ID::Struct* meta);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_meta();
+
+  // bool is_holding_something = 1 [json_name = "isHoldingSomething"];
+  void clear_is_holding_something();
+  bool is_holding_something() const;
+  void set_is_holding_something(bool value);
+  private:
+  bool _internal_is_holding_something() const;
+  void _internal_set_is_holding_something(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.component.gripper.v1.IsHoldingSomethingResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* meta_;
+  bool is_holding_something_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fgripper_2fv1_2fgripper_2eproto;
+};
 // ===================================================================
 
 
@@ -1904,9 +2243,261 @@ inline void IsMovingResponse::set_is_moving(bool value) {
   // @@protoc_insertion_point(field_set:viam.component.gripper.v1.IsMovingResponse.is_moving)
 }
 
+// -------------------------------------------------------------------
+
+// IsHoldingSomethingRequest
+
+// string name = 1 [json_name = "name"];
+inline void IsHoldingSomethingRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& IsHoldingSomethingRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.IsHoldingSomethingRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IsHoldingSomethingRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.gripper.v1.IsHoldingSomethingRequest.name)
+}
+inline std::string* IsHoldingSomethingRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.component.gripper.v1.IsHoldingSomethingRequest.name)
+  return _s;
+}
+inline const std::string& IsHoldingSomethingRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void IsHoldingSomethingRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* IsHoldingSomethingRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* IsHoldingSomethingRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.component.gripper.v1.IsHoldingSomethingRequest.name)
+  return name_.Release();
+}
+inline void IsHoldingSomethingRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gripper.v1.IsHoldingSomethingRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool IsHoldingSomethingRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool IsHoldingSomethingRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& IsHoldingSomethingRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& IsHoldingSomethingRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.IsHoldingSomethingRequest.extra)
+  return _internal_extra();
+}
+inline void IsHoldingSomethingRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.gripper.v1.IsHoldingSomethingRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* IsHoldingSomethingRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* IsHoldingSomethingRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.gripper.v1.IsHoldingSomethingRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* IsHoldingSomethingRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* IsHoldingSomethingRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.gripper.v1.IsHoldingSomethingRequest.extra)
+  return _msg;
+}
+inline void IsHoldingSomethingRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gripper.v1.IsHoldingSomethingRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// IsHoldingSomethingResponse
+
+// bool is_holding_something = 1 [json_name = "isHoldingSomething"];
+inline void IsHoldingSomethingResponse::clear_is_holding_something() {
+  is_holding_something_ = false;
+}
+inline bool IsHoldingSomethingResponse::_internal_is_holding_something() const {
+  return is_holding_something_;
+}
+inline bool IsHoldingSomethingResponse::is_holding_something() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.IsHoldingSomethingResponse.is_holding_something)
+  return _internal_is_holding_something();
+}
+inline void IsHoldingSomethingResponse::_internal_set_is_holding_something(bool value) {
+  
+  is_holding_something_ = value;
+}
+inline void IsHoldingSomethingResponse::set_is_holding_something(bool value) {
+  _internal_set_is_holding_something(value);
+  // @@protoc_insertion_point(field_set:viam.component.gripper.v1.IsHoldingSomethingResponse.is_holding_something)
+}
+
+// .google.protobuf.Struct meta = 99 [json_name = "meta"];
+inline bool IsHoldingSomethingResponse::_internal_has_meta() const {
+  return this != internal_default_instance() && meta_ != nullptr;
+}
+inline bool IsHoldingSomethingResponse::has_meta() const {
+  return _internal_has_meta();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& IsHoldingSomethingResponse::_internal_meta() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = meta_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& IsHoldingSomethingResponse::meta() const {
+  // @@protoc_insertion_point(field_get:viam.component.gripper.v1.IsHoldingSomethingResponse.meta)
+  return _internal_meta();
+}
+inline void IsHoldingSomethingResponse::unsafe_arena_set_allocated_meta(
+    ::PROTOBUF_NAMESPACE_ID::Struct* meta) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(meta_);
+  }
+  meta_ = meta;
+  if (meta) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.gripper.v1.IsHoldingSomethingResponse.meta)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* IsHoldingSomethingResponse::release_meta() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = meta_;
+  meta_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* IsHoldingSomethingResponse::unsafe_arena_release_meta() {
+  // @@protoc_insertion_point(field_release:viam.component.gripper.v1.IsHoldingSomethingResponse.meta)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = meta_;
+  meta_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* IsHoldingSomethingResponse::_internal_mutable_meta() {
+  
+  if (meta_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    meta_ = p;
+  }
+  return meta_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* IsHoldingSomethingResponse::mutable_meta() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_meta();
+  // @@protoc_insertion_point(field_mutable:viam.component.gripper.v1.IsHoldingSomethingResponse.meta)
+  return _msg;
+}
+inline void IsHoldingSomethingResponse::set_allocated_meta(::PROTOBUF_NAMESPACE_ID::Struct* meta) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(meta_);
+  }
+  if (meta) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(meta));
+    if (message_arena != submessage_arena) {
+      meta = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, meta, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  meta_ = meta;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.gripper.v1.IsHoldingSomethingResponse.meta)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -41,7 +41,7 @@ else()
   cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 endif()
 
-set(CMAKE_PROJECT_VERSION 0.11.0)
+set(CMAKE_PROJECT_VERSION 0.15.0)
 
 # Identify the project.
 project(viam-cpp-sdk
@@ -266,14 +266,20 @@ if (viam_rust_utils_files)
     ${viam_rust_utils_file}
     ONLY_IF_DIFFERENT
   )
-elseif(NOT WIN32) # TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't even try downloading
+elseif(NOT WIN32 OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64")
   set(lvru_system_name ${CMAKE_SYSTEM_NAME})
   if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(lvru_system_name "macosx")
   endif()
+
+  set(lvru_system_processor ${CMAKE_SYSTEM_PROCESSOR})
+  if(WIN32)
+    set(lvru_system_processor "x86_64")
+  endif()
+
   file(
     DOWNLOAD
-    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${CMAKE_SYSTEM_PROCESSOR}${CMAKE_STATIC_LIBRARY_SUFFIX}
+    https://github.com/viamrobotics/rust-utils/releases/latest/download/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils-${lvru_system_name}_${lvru_system_processor}${CMAKE_STATIC_LIBRARY_SUFFIX}
     ${viam_rust_utils_file}
     STATUS lvru_status
   )
@@ -283,24 +289,21 @@ elseif(NOT WIN32) # TODO(RSDK-10366): Currently, rust_utils is not published for
   if(NOT lvru_status_code EQUAL 0)
     message(FATAL_ERROR "No local viam_rust_utils found and failed to download: ${lvru_status_string}")
   endif()
-
+else()
+    message(WARNING "Currently running on Windows with no rust-utils file. Module code should work as expected, but client code may fail unexpectedly.")
 endif()
 
-# TODO(RSDK-10366): Currently, rust_utils is not published for windows, so don't even declare the library
-if (NOT WIN32)
-  add_library(viam_rust_utils SHARED IMPORTED)
-
+if (NOT WIN32 OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64")
+  add_library(viam_rust_utils STATIC IMPORTED)
   target_link_directories(viam_rust_utils
     INTERFACE
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>"
   )
-
   set_property(TARGET viam_rust_utils PROPERTY IMPORTED_LOCATION ${viam_rust_utils_file})
 
   install(
-    IMPORTED_RUNTIME_ARTIFACTS viam_rust_utils
-    LIBRARY COMPONENT viam-cpp-sdk_runtime
+    FILES ${viam_rust_utils_file} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT viam-cpp-sdk_runtime
   )
 endif()
 

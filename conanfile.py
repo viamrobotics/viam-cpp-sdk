@@ -1,5 +1,6 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
+from conan.tools.build import valid_max_cppstd
 from conan.tools.files import load
 from conan.tools.apple import is_apple_os
 import os
@@ -42,19 +43,36 @@ class ViamCppSdkRecipe(ConanFile):
             for lib in ["grpc", "protobuf", "abseil"]:
                 self.options[lib].shared = True
 
+    def _xtensor_requires(self):
+        if valid_max_cppstd(self, 14, False):
+            return 'xtensor/[>=0.24.3 <0.26.0]'
+        
+        return 'xtensor/[>=0.24.3]'
+
+    def _grpc_requires(self):
+        if valid_max_cppstd(self, 14, False):
+            return 'grpc/[>=1.48.4 <1.70.0]'
+        
+        return 'grpc/[>=1.48.4]'
+
     def requirements(self):
-        self.requires('boost/[>=1.74.0]', transitive_headers=True)
+        if self.settings.os == "Windows":
+            # This is temporary pending the resolution of a windows compilation
+            # issue on boost 1.88.0
+            self.requires('boost/[>=1.74.0 <1.88.0]', transitive_headers=True)
+        else:
+            self.requires('boost/[>=1.74.0]', transitive_headers=True)
 
         # The SDK supports older grpc and protobuf, but these are the oldest
         # maintained conan packages.
-        self.requires('grpc/[>=1.48.4]')
-        self.requires('protobuf/[>=3.17.1]')
-        self.requires('xtensor/[>=0.24.3]', transitive_headers=True)
+        self.requires(self._grpc_requires())
+        self.requires('protobuf/[>=3.17.1 <6.30.0]')
+        self.requires(self._xtensor_requires(), transitive_headers=True)
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
-            self.tool_requires('grpc/[>=1.48.4]')
-            self.tool_requires('protobuf/[>=3.17.1]')
+            self.tool_requires(self._grpc_requires())
+            self.tool_requires('protobuf/[>=3.17.1 <6.30.0]')
 
     def layout(self):
         cmake_layout(self)
@@ -91,10 +109,7 @@ class ViamCppSdkRecipe(ConanFile):
 
     def package_info(self):
 
-        # TODO(RSDK-10366): Currently, rust_utils is not published for windows
-        # and the C++ SDK just doesn't include it as a dependency on that platform
-        if not self.settings.os == "Windows":
-            self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
+        self.cpp_info.components["viam_rust_utils"].libs = ["viam_rust_utils"]
 
         self.cpp_info.components["viamsdk"].libs = ["viamsdk"]
 
@@ -107,6 +122,8 @@ class ViamCppSdkRecipe(ConanFile):
 
         if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components["viamsdk"].system_libs.extend(["dl", "rt"])
+        elif self.settings.os == "Windows":
+            self.cpp_info.components["viamsdk"].system_libs.extend(["ncrypt", "secur32", "ntdll", "userenv"])
 
         self.cpp_info.components["viamapi"].includedirs.append("include/viam/api")
 
@@ -137,11 +154,8 @@ class ViamCppSdkRecipe(ConanFile):
             "viamapi",
         ])
 
-        # TODO(RSDK-10366): Currently, rust_utils is not published for windows
-        # and the C++ SDK just doesn't include it as a dependency on that platform
-        if self.settings.os != "Windows":
-            self.cpp_info.components["viamsdk"].requires.extend([
-                "viam_rust_utils"
-            ])
+        self.cpp_info.components["viamsdk"].requires.extend([
+            "viam_rust_utils"
+        ])
 
         self.cpp_info.components["viamsdk"].frameworks = ["Security"]

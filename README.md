@@ -37,7 +37,7 @@ docker build --build-arg BASE_TAG=base/bullseye --build-arg GIT_TAG=[...] -f etc
 ```
 
 This will use `base/bullseye` as a base to build the SDK version provided in `GIT_TAG`,
-which should be a tagged release version. The SDK will be cloned from 
+which should be a tagged release version. The SDK will be cloned from
 https://github.com/viamrobotics/viam-cpp-sdk/. This is the recommended approach for
 C++ module development, which should generally be done against a tagged release.
 
@@ -47,22 +47,22 @@ docker build --build-arg BASE_TAG=base/bullseye --build-arg REPO_SETUP=copy -f e
 ```
 
 Note the use of the build argument `REPO_SETUP=copy`, which adds a Docker instruction
-to copy the SDK repo from the current working directory, rather than cloning from 
+to copy the SDK repo from the current working directory, rather than cloning from
 GitHub. This approach may make more sense for developing on the SDK itself, or if
 your C++ SDK development relies on a localversion of the SDK.
 
 The examples above illustrated the use of several `--build-arg` arguments, namely
-`BASE_TAG`, `GIT_TAG`, and `REPO_SETUP`. Please see 
+`BASE_TAG`, `GIT_TAG`, and `REPO_SETUP`. Please see
 [Dockerfile.sdk-build](etc/docker/Dockerfile.sdk-build) for a complete account of
 all build arguments and their defaults.
 
 ## Building Documentation Locally for Testing
 The C++ sdk uses [Doxygen](https://www.doxygen.nl/) to generate documentation.
 An automated workflow will generate and update our documentation on each merge,
-and publish it to [cpp.viam.dev](https://cpp.viam.dev). 
+and publish it to [cpp.viam.dev](https://cpp.viam.dev).
 
 Generating documentation locally to observe changes while developing with the
-C++ SDK is simple. 
+C++ SDK is simple.
 First, make sure doxygen is installed, e.g.,
 ```
 (on mac) brew install doxygen
@@ -91,11 +91,25 @@ quickly as possible.
 ## A note on logging
 
 Users should only interact with logging via the macros, classes, and functions in
-[`viam/sdk/log/logging.hpp`](src/viam/sdk/log/logging.hpp). Logging is 
+[`viam/sdk/log/logging.hpp`](src/viam/sdk/log/logging.hpp). Logging is
 implemented using Boost.Log, but this is an implementation detail subject
 to change without warning. In particular, using Boost.Log macros such as
-`BOOST_LOG_TRIVIAL` or `BOOST_LOG_SEV` is undefined behavior which will likely 
+`BOOST_LOG_TRIVIAL` or `BOOST_LOG_SEV` is undefined behavior which will likely
 fail to output log messages.
+
+## Running Tests
+Tests for the SDK are located in `src/viam/sdk/tests`. The CMakeLists.txt file in that directory defines how to build them. When the SDK is built, the test executables are placed in the test folder within your specified build directory (e.g., `build`, if you followed the instructions in [`BUILDING.md`](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md)). The test executable files can be run individually. To run the entire test suite at once, navigate to the `tests` folder in your build directory and run:
+```
+ctest
+```
+Or to avoid navigating all the way to the folder you can specify the test directory, for example:
+```
+ctest --test-dir build/src/viam/sdk/tests/
+```
+Additionally, for more useful ctest options explore:
+```
+ctest --help
+```
 
 ## License
 Copyright 2022 Viam Inc.

@@ -97,7 +97,7 @@ class RobotClient {
     /// @brief Creates a robot client connected to the robot at the provided local socket.
     /// @param address The local socket of the robot (a .sock file, etc.).
     /// @param options Options for connecting and refreshing.
-    /// Creates a direct connection to the robot using the `unix://` scheme.
+    /// Creates a direct connection to the robot using the `unix:` scheme.
     /// Only useful for connecting to robots across Unix sockets.
     static std::shared_ptr<RobotClient> at_local_socket(const std::string& address,
                                                         const Options& options);
@@ -184,10 +184,15 @@ class RobotClient {
     void connect_logging();
 
     void refresh_every();
+    void check_connection();
 
     std::thread refresh_thread_;
+    std::thread check_connection_thread_;
     std::atomic<bool> should_refresh_;
+    std::atomic<bool> should_check_connection_;
     std::chrono::seconds refresh_interval_;
+    std::chrono::seconds check_every_interval_;
+    std::chrono::seconds reconnect_every_interval_;
 
     ViamChannel viam_channel_;
 

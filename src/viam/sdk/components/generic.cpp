@@ -11,7 +11,7 @@ API API::traits<GenericComponent>::api() {
     return {kRDK, kComponent, "generic"};
 }
 
-GenericComponent::GenericComponent(std::string name) : Component(std::move(name)){};
+GenericComponent::GenericComponent(std::string name) : Component(std::move(name)) {}
 
 }  // namespace sdk
 }  // namespace viam

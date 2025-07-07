@@ -95,6 +95,9 @@ extern FrameDefaultTypeInternal _Frame_default_instance_;
 class JWKSFile;
 struct JWKSFileDefaultTypeInternal;
 extern JWKSFileDefaultTypeInternal _JWKSFile_default_instance_;
+class JobConfig;
+struct JobConfigDefaultTypeInternal;
+extern JobConfigDefaultTypeInternal _JobConfig_default_instance_;
 class LocationSecret;
 struct LocationSecretDefaultTypeInternal;
 extern LocationSecretDefaultTypeInternal _LocationSecret_default_instance_;
@@ -202,6 +205,7 @@ template<> ::viam::app::v1::ConfigResponse* Arena::CreateMaybeMessage<::viam::ap
 template<> ::viam::app::v1::ExternalAuthConfig* Arena::CreateMaybeMessage<::viam::app::v1::ExternalAuthConfig>(Arena*);
 template<> ::viam::app::v1::Frame* Arena::CreateMaybeMessage<::viam::app::v1::Frame>(Arena*);
 template<> ::viam::app::v1::JWKSFile* Arena::CreateMaybeMessage<::viam::app::v1::JWKSFile>(Arena*);
+template<> ::viam::app::v1::JobConfig* Arena::CreateMaybeMessage<::viam::app::v1::JobConfig>(Arena*);
 template<> ::viam::app::v1::LocationSecret* Arena::CreateMaybeMessage<::viam::app::v1::LocationSecret>(Arena*);
 template<> ::viam::app::v1::LogConfiguration* Arena::CreateMaybeMessage<::viam::app::v1::LogConfiguration>(Arena*);
 template<> ::viam::app::v1::LogPatternConfig* Arena::CreateMaybeMessage<::viam::app::v1::LogPatternConfig>(Arena*);
@@ -394,6 +398,7 @@ class RobotConfig final :
     kPackagesFieldNumber = 11,
     kOverwriteFragmentStatusFieldNumber = 12,
     kLogFieldNumber = 14,
+    kJobsFieldNumber = 18,
     kRevisionFieldNumber = 15,
     kCloudFieldNumber = 1,
     kNetworkFieldNumber = 6,
@@ -548,6 +553,24 @@ class RobotConfig final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LogPatternConfig >&
       log() const;
 
+  // repeated .viam.app.v1.JobConfig jobs = 18 [json_name = "jobs"];
+  int jobs_size() const;
+  private:
+  int _internal_jobs_size() const;
+  public:
+  void clear_jobs();
+  ::viam::app::v1::JobConfig* mutable_jobs(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::JobConfig >*
+      mutable_jobs();
+  private:
+  const ::viam::app::v1::JobConfig& _internal_jobs(int index) const;
+  ::viam::app::v1::JobConfig* _internal_add_jobs();
+  public:
+  const ::viam::app::v1::JobConfig& jobs(int index) const;
+  ::viam::app::v1::JobConfig* add_jobs();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::JobConfig >&
+      jobs() const;
+
   // string revision = 15 [json_name = "revision"];
   void clear_revision();
   const std::string& revision() const;
@@ -695,6 +718,7 @@ class RobotConfig final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::PackageConfig > packages_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::AppValidationStatus > overwrite_fragment_status_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::LogPatternConfig > log_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::JobConfig > jobs_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr revision_;
   ::viam::app::v1::CloudConfig* cloud_;
   ::viam::app::v1::NetworkConfig* network_;
@@ -872,6 +896,222 @@ class LogPatternConfig final :
 };
 // -------------------------------------------------------------------
 
+class JobConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.JobConfig) */ {
+ public:
+  inline JobConfig() : JobConfig(nullptr) {}
+  ~JobConfig() override;
+  explicit PROTOBUF_CONSTEXPR JobConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  JobConfig(const JobConfig& from);
+  JobConfig(JobConfig&& from) noexcept
+    : JobConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline JobConfig& operator=(const JobConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JobConfig& operator=(JobConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JobConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const JobConfig* internal_default_instance() {
+    return reinterpret_cast<const JobConfig*>(
+               &_JobConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(JobConfig& a, JobConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(JobConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JobConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JobConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<JobConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const JobConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const JobConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(JobConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.JobConfig";
+  }
+  protected:
+  explicit JobConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kScheduleFieldNumber = 2,
+    kResourceFieldNumber = 3,
+    kMethodFieldNumber = 4,
+    kCommandFieldNumber = 5,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string schedule = 2 [json_name = "schedule"];
+  void clear_schedule();
+  const std::string& schedule() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_schedule(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_schedule();
+  PROTOBUF_NODISCARD std::string* release_schedule();
+  void set_allocated_schedule(std::string* schedule);
+  private:
+  const std::string& _internal_schedule() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_schedule(const std::string& value);
+  std::string* _internal_mutable_schedule();
+  public:
+
+  // string resource = 3 [json_name = "resource"];
+  void clear_resource();
+  const std::string& resource() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_resource(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_resource();
+  PROTOBUF_NODISCARD std::string* release_resource();
+  void set_allocated_resource(std::string* resource);
+  private:
+  const std::string& _internal_resource() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resource(const std::string& value);
+  std::string* _internal_mutable_resource();
+  public:
+
+  // string method = 4 [json_name = "method"];
+  void clear_method();
+  const std::string& method() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_method(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_method();
+  PROTOBUF_NODISCARD std::string* release_method();
+  void set_allocated_method(std::string* method);
+  private:
+  const std::string& _internal_method() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_method(const std::string& value);
+  std::string* _internal_mutable_method();
+  public:
+
+  // .google.protobuf.Struct command = 5 [json_name = "command"];
+  bool has_command() const;
+  private:
+  bool _internal_has_command() const;
+  public:
+  void clear_command();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& command() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_command();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_command();
+  void set_allocated_command(::PROTOBUF_NAMESPACE_ID::Struct* command);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_command() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_command();
+  public:
+  void unsafe_arena_set_allocated_command(
+      ::PROTOBUF_NAMESPACE_ID::Struct* command);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_command();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.JobConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr schedule_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr method_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* command_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class LocationSecret final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.LocationSecret) */ {
  public:
@@ -920,7 +1160,7 @@ class LocationSecret final :
                &_LocationSecret_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(LocationSecret& a, LocationSecret& b) {
     a.Swap(&b);
@@ -1084,7 +1324,7 @@ class AppValidationStatus final :
                &_AppValidationStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(AppValidationStatus& a, AppValidationStatus& b) {
     a.Swap(&b);
@@ -1232,7 +1472,7 @@ class CloudConfig final :
                &_CloudConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(CloudConfig& a, CloudConfig& b) {
     a.Swap(&b);
@@ -1555,7 +1795,7 @@ class ComponentConfig final :
                &_ComponentConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(ComponentConfig& a, ComponentConfig& b) {
     a.Swap(&b);
@@ -1873,7 +2113,7 @@ class ResourceLevelServiceConfig final :
                &_ResourceLevelServiceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(ResourceLevelServiceConfig& a, ResourceLevelServiceConfig& b) {
     a.Swap(&b);
@@ -2069,7 +2309,7 @@ class ProcessConfig final :
                &_ProcessConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(ProcessConfig& a, ProcessConfig& b) {
     a.Swap(&b);
@@ -2370,7 +2610,7 @@ class ServiceConfig final :
                &_ServiceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(ServiceConfig& a, ServiceConfig& b) {
     a.Swap(&b);
@@ -2668,7 +2908,7 @@ class NetworkConfig final :
                &_NetworkConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(NetworkConfig& a, NetworkConfig& b) {
     a.Swap(&b);
@@ -2915,7 +3155,7 @@ class SessionsConfig final :
                &_SessionsConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(SessionsConfig& a, SessionsConfig& b) {
     a.Swap(&b);
@@ -3067,7 +3307,7 @@ class TrafficTunnelEndpoint final :
                &_TrafficTunnelEndpoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(TrafficTunnelEndpoint& a, TrafficTunnelEndpoint& b) {
     a.Swap(&b);
@@ -3230,7 +3470,7 @@ class AuthConfig final :
                &_AuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(AuthConfig& a, AuthConfig& b) {
     a.Swap(&b);
@@ -3429,7 +3669,7 @@ class JWKSFile final :
                &_JWKSFile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(JWKSFile& a, JWKSFile& b) {
     a.Swap(&b);
@@ -3581,7 +3821,7 @@ class ExternalAuthConfig final :
                &_ExternalAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(ExternalAuthConfig& a, ExternalAuthConfig& b) {
     a.Swap(&b);
@@ -3733,7 +3973,7 @@ class AuthHandlerConfig final :
                &_AuthHandlerConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(AuthHandlerConfig& a, AuthHandlerConfig& b) {
     a.Swap(&b);
@@ -3896,7 +4136,7 @@ class Frame final :
                &_Frame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(Frame& a, Frame& b) {
     a.Swap(&b);
@@ -4104,7 +4344,7 @@ class LogConfiguration final :
                &_LogConfiguration_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(LogConfiguration& a, LogConfiguration& b) {
     a.Swap(&b);
@@ -4252,7 +4492,7 @@ class Translation final :
                &_Translation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(Translation& a, Translation& b) {
     a.Swap(&b);
@@ -4416,7 +4656,7 @@ class Orientation_NoOrientation final :
                &_Orientation_NoOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(Orientation_NoOrientation& a, Orientation_NoOrientation& b) {
     a.Swap(&b);
@@ -4533,7 +4773,7 @@ class Orientation_OrientationVectorRadians final :
                &_Orientation_OrientationVectorRadians_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(Orientation_OrientationVectorRadians& a, Orientation_OrientationVectorRadians& b) {
     a.Swap(&b);
@@ -4709,7 +4949,7 @@ class Orientation_OrientationVectorDegrees final :
                &_Orientation_OrientationVectorDegrees_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(Orientation_OrientationVectorDegrees& a, Orientation_OrientationVectorDegrees& b) {
     a.Swap(&b);
@@ -4885,7 +5125,7 @@ class Orientation_EulerAngles final :
                &_Orientation_EulerAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(Orientation_EulerAngles& a, Orientation_EulerAngles& b) {
     a.Swap(&b);
@@ -5050,7 +5290,7 @@ class Orientation_AxisAngles final :
                &_Orientation_AxisAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(Orientation_AxisAngles& a, Orientation_AxisAngles& b) {
     a.Swap(&b);
@@ -5226,7 +5466,7 @@ class Orientation_Quaternion final :
                &_Orientation_Quaternion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(Orientation_Quaternion& a, Orientation_Quaternion& b) {
     a.Swap(&b);
@@ -5412,7 +5652,7 @@ class Orientation final :
                &_Orientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(Orientation& a, Orientation& b) {
     a.Swap(&b);
@@ -5688,7 +5928,7 @@ class RemoteConfig final :
                &_RemoteConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(RemoteConfig& a, RemoteConfig& b) {
     a.Swap(&b);
@@ -5995,7 +6235,7 @@ class RemoteAuth_Credentials final :
                &_RemoteAuth_Credentials_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(RemoteAuth_Credentials& a, RemoteAuth_Credentials& b) {
     a.Swap(&b);
@@ -6154,7 +6394,7 @@ class RemoteAuth final :
                &_RemoteAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(RemoteAuth& a, RemoteAuth& b) {
     a.Swap(&b);
@@ -6324,7 +6564,7 @@ class AgentInfo final :
                &_AgentInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(AgentInfo& a, AgentInfo& b) {
     a.Swap(&b);
@@ -6593,7 +6833,7 @@ class ConfigRequest final :
                &_ConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(ConfigRequest& a, ConfigRequest& b) {
     a.Swap(&b);
@@ -6762,7 +7002,7 @@ class ConfigResponse final :
                &_ConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(ConfigResponse& a, ConfigResponse& b) {
     a.Swap(&b);
@@ -6914,7 +7154,7 @@ class CertificateRequest final :
                &_CertificateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(CertificateRequest& a, CertificateRequest& b) {
     a.Swap(&b);
@@ -7062,7 +7302,7 @@ class CertificateResponse final :
                &_CertificateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(CertificateResponse& a, CertificateResponse& b) {
     a.Swap(&b);
@@ -7242,7 +7482,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -7409,7 +7649,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -7526,7 +7766,7 @@ class NeedsRestartRequest final :
                &_NeedsRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(NeedsRestartRequest& a, NeedsRestartRequest& b) {
     a.Swap(&b);
@@ -7674,7 +7914,7 @@ class NeedsRestartResponse final :
                &_NeedsRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(NeedsRestartResponse& a, NeedsRestartResponse& b) {
     a.Swap(&b);
@@ -7881,7 +8121,7 @@ class ModuleConfig final :
                &_ModuleConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    41;
 
   friend void swap(ModuleConfig& a, ModuleConfig& b) {
     a.Swap(&b);
@@ -7963,6 +8203,7 @@ class ModuleConfig final :
     kModuleIdFieldNumber = 5,
     kStatusFieldNumber = 7,
     kFirstRunTimeoutFieldNumber = 8,
+    kTcpModeFieldNumber = 9,
   };
   // map<string, string> env = 6 [json_name = "env"];
   int env_size() const;
@@ -8087,6 +8328,15 @@ class ModuleConfig final :
       ::PROTOBUF_NAMESPACE_ID::Duration* first_run_timeout);
   ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_first_run_timeout();
 
+  // bool tcp_mode = 9 [json_name = "tcpMode"];
+  void clear_tcp_mode();
+  bool tcp_mode() const;
+  void set_tcp_mode(bool value);
+  private:
+  bool _internal_tcp_mode() const;
+  void _internal_set_tcp_mode(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleConfig)
  private:
   class _Internal;
@@ -8106,6 +8356,7 @@ class ModuleConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_id_;
   ::viam::app::v1::AppValidationStatus* status_;
   ::PROTOBUF_NAMESPACE_ID::Duration* first_run_timeout_;
+  bool tcp_mode_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -8159,7 +8410,7 @@ class PackageConfig final :
                &_PackageConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    42;
 
   friend void swap(PackageConfig& a, PackageConfig& b) {
     a.Swap(&b);
@@ -8375,7 +8626,7 @@ class MaintenanceConfig final :
                &_MaintenanceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   friend void swap(MaintenanceConfig& a, MaintenanceConfig& b) {
     a.Swap(&b);
@@ -9330,6 +9581,46 @@ inline void RobotConfig::set_disable_log_deduplication(bool value) {
   // @@protoc_insertion_point(field_set:viam.app.v1.RobotConfig.disable_log_deduplication)
 }
 
+// repeated .viam.app.v1.JobConfig jobs = 18 [json_name = "jobs"];
+inline int RobotConfig::_internal_jobs_size() const {
+  return jobs_.size();
+}
+inline int RobotConfig::jobs_size() const {
+  return _internal_jobs_size();
+}
+inline void RobotConfig::clear_jobs() {
+  jobs_.Clear();
+}
+inline ::viam::app::v1::JobConfig* RobotConfig::mutable_jobs(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotConfig.jobs)
+  return jobs_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::JobConfig >*
+RobotConfig::mutable_jobs() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.RobotConfig.jobs)
+  return &jobs_;
+}
+inline const ::viam::app::v1::JobConfig& RobotConfig::_internal_jobs(int index) const {
+  return jobs_.Get(index);
+}
+inline const ::viam::app::v1::JobConfig& RobotConfig::jobs(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.jobs)
+  return _internal_jobs(index);
+}
+inline ::viam::app::v1::JobConfig* RobotConfig::_internal_add_jobs() {
+  return jobs_.Add();
+}
+inline ::viam::app::v1::JobConfig* RobotConfig::add_jobs() {
+  ::viam::app::v1::JobConfig* _add = _internal_add_jobs();
+  // @@protoc_insertion_point(field_add:viam.app.v1.RobotConfig.jobs)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::JobConfig >&
+RobotConfig::jobs() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.RobotConfig.jobs)
+  return jobs_;
+}
+
 // -------------------------------------------------------------------
 
 // LogPatternConfig
@@ -9432,6 +9723,295 @@ inline void LogPatternConfig::set_allocated_level(std::string* level) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.LogPatternConfig.level)
+}
+
+// -------------------------------------------------------------------
+
+// JobConfig
+
+// string name = 1 [json_name = "name"];
+inline void JobConfig::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& JobConfig::name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.JobConfig.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void JobConfig::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.JobConfig.name)
+}
+inline std::string* JobConfig::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.JobConfig.name)
+  return _s;
+}
+inline const std::string& JobConfig::_internal_name() const {
+  return name_.Get();
+}
+inline void JobConfig::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* JobConfig::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* JobConfig::release_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.JobConfig.name)
+  return name_.Release();
+}
+inline void JobConfig::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.JobConfig.name)
+}
+
+// string schedule = 2 [json_name = "schedule"];
+inline void JobConfig::clear_schedule() {
+  schedule_.ClearToEmpty();
+}
+inline const std::string& JobConfig::schedule() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.JobConfig.schedule)
+  return _internal_schedule();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void JobConfig::set_schedule(ArgT0&& arg0, ArgT... args) {
+ 
+ schedule_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.JobConfig.schedule)
+}
+inline std::string* JobConfig::mutable_schedule() {
+  std::string* _s = _internal_mutable_schedule();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.JobConfig.schedule)
+  return _s;
+}
+inline const std::string& JobConfig::_internal_schedule() const {
+  return schedule_.Get();
+}
+inline void JobConfig::_internal_set_schedule(const std::string& value) {
+  
+  schedule_.Set(value, GetArenaForAllocation());
+}
+inline std::string* JobConfig::_internal_mutable_schedule() {
+  
+  return schedule_.Mutable(GetArenaForAllocation());
+}
+inline std::string* JobConfig::release_schedule() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.JobConfig.schedule)
+  return schedule_.Release();
+}
+inline void JobConfig::set_allocated_schedule(std::string* schedule) {
+  if (schedule != nullptr) {
+    
+  } else {
+    
+  }
+  schedule_.SetAllocated(schedule, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (schedule_.IsDefault()) {
+    schedule_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.JobConfig.schedule)
+}
+
+// string resource = 3 [json_name = "resource"];
+inline void JobConfig::clear_resource() {
+  resource_.ClearToEmpty();
+}
+inline const std::string& JobConfig::resource() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.JobConfig.resource)
+  return _internal_resource();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void JobConfig::set_resource(ArgT0&& arg0, ArgT... args) {
+ 
+ resource_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.JobConfig.resource)
+}
+inline std::string* JobConfig::mutable_resource() {
+  std::string* _s = _internal_mutable_resource();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.JobConfig.resource)
+  return _s;
+}
+inline const std::string& JobConfig::_internal_resource() const {
+  return resource_.Get();
+}
+inline void JobConfig::_internal_set_resource(const std::string& value) {
+  
+  resource_.Set(value, GetArenaForAllocation());
+}
+inline std::string* JobConfig::_internal_mutable_resource() {
+  
+  return resource_.Mutable(GetArenaForAllocation());
+}
+inline std::string* JobConfig::release_resource() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.JobConfig.resource)
+  return resource_.Release();
+}
+inline void JobConfig::set_allocated_resource(std::string* resource) {
+  if (resource != nullptr) {
+    
+  } else {
+    
+  }
+  resource_.SetAllocated(resource, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (resource_.IsDefault()) {
+    resource_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.JobConfig.resource)
+}
+
+// string method = 4 [json_name = "method"];
+inline void JobConfig::clear_method() {
+  method_.ClearToEmpty();
+}
+inline const std::string& JobConfig::method() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.JobConfig.method)
+  return _internal_method();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void JobConfig::set_method(ArgT0&& arg0, ArgT... args) {
+ 
+ method_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.JobConfig.method)
+}
+inline std::string* JobConfig::mutable_method() {
+  std::string* _s = _internal_mutable_method();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.JobConfig.method)
+  return _s;
+}
+inline const std::string& JobConfig::_internal_method() const {
+  return method_.Get();
+}
+inline void JobConfig::_internal_set_method(const std::string& value) {
+  
+  method_.Set(value, GetArenaForAllocation());
+}
+inline std::string* JobConfig::_internal_mutable_method() {
+  
+  return method_.Mutable(GetArenaForAllocation());
+}
+inline std::string* JobConfig::release_method() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.JobConfig.method)
+  return method_.Release();
+}
+inline void JobConfig::set_allocated_method(std::string* method) {
+  if (method != nullptr) {
+    
+  } else {
+    
+  }
+  method_.SetAllocated(method, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (method_.IsDefault()) {
+    method_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.JobConfig.method)
+}
+
+// .google.protobuf.Struct command = 5 [json_name = "command"];
+inline bool JobConfig::_internal_has_command() const {
+  return this != internal_default_instance() && command_ != nullptr;
+}
+inline bool JobConfig::has_command() const {
+  return _internal_has_command();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& JobConfig::_internal_command() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = command_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& JobConfig::command() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.JobConfig.command)
+  return _internal_command();
+}
+inline void JobConfig::unsafe_arena_set_allocated_command(
+    ::PROTOBUF_NAMESPACE_ID::Struct* command) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(command_);
+  }
+  command_ = command;
+  if (command) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.JobConfig.command)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* JobConfig::release_command() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = command_;
+  command_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* JobConfig::unsafe_arena_release_command() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.JobConfig.command)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = command_;
+  command_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* JobConfig::_internal_mutable_command() {
+  
+  if (command_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    command_ = p;
+  }
+  return command_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* JobConfig::mutable_command() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_command();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.JobConfig.command)
+  return _msg;
+}
+inline void JobConfig::set_allocated_command(::PROTOBUF_NAMESPACE_ID::Struct* command) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(command_);
+  }
+  if (command) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(command));
+    if (message_arena != submessage_arena) {
+      command = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, command, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  command_ = command;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.JobConfig.command)
 }
 
 // -------------------------------------------------------------------
@@ -16747,6 +17327,26 @@ inline void ModuleConfig::set_allocated_first_run_timeout(::PROTOBUF_NAMESPACE_I
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleConfig.first_run_timeout)
 }
 
+// bool tcp_mode = 9 [json_name = "tcpMode"];
+inline void ModuleConfig::clear_tcp_mode() {
+  tcp_mode_ = false;
+}
+inline bool ModuleConfig::_internal_tcp_mode() const {
+  return tcp_mode_;
+}
+inline bool ModuleConfig::tcp_mode() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleConfig.tcp_mode)
+  return _internal_tcp_mode();
+}
+inline void ModuleConfig::_internal_set_tcp_mode(bool value) {
+  
+  tcp_mode_ = value;
+}
+inline void ModuleConfig::set_tcp_mode(bool value) {
+  _internal_set_tcp_mode(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleConfig.tcp_mode)
+}
+
 // -------------------------------------------------------------------
 
 // PackageConfig
@@ -17183,6 +17783,8 @@ inline void MaintenanceConfig::set_allocated_maintenance_allowed_key(std::string
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

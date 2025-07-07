@@ -68,7 +68,7 @@ class Servo : public Component, public Stoppable {
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
    protected:
-    explicit Servo(std::string name) : Component(std::move(name)){};
+    explicit Servo(std::string name) : Component(std::move(name)) {}
 };
 
 template <>

@@ -1,3 +1,4 @@
+#include <exception>
 #include <viam/sdk/robot/client.hpp>
 
 #include <chrono>
@@ -144,9 +145,14 @@ RobotClient::~RobotClient() {
 
 void RobotClient::close() {
     should_refresh_.store(false);
+    should_check_connection_.store(false);
 
     if (refresh_thread_.joinable()) {
         refresh_thread_.join();
+    }
+
+    if (check_connection_thread_.joinable()) {
+        check_connection_thread_.join();
     }
 
     stop_all();
@@ -231,6 +237,62 @@ void RobotClient::refresh_every() {
     }
 };
 
+void RobotClient::check_connection() {
+    auto check_every = check_every_interval_;
+    auto reconnect_every = reconnect_every_interval_;
+    if (check_every == std::chrono::seconds{0}) {
+        check_every = reconnect_every;
+    }
+    if (check_every == std::chrono::seconds{0} && reconnect_every == std::chrono::seconds{0}) {
+        should_check_connection_.store(false);
+    }
+    bool connected(true);
+    while (should_check_connection_) {
+        std::exception_ptr connection_error;
+        std::string what;
+        for (int i = 0; i < 3; ++i) {
+            try {
+                std::this_thread::sleep_for(check_every);
+                impl::client_helper(impl_, &RobotService::Stub::ResourceNames).invoke([](auto&) {
+                    return;
+                });
+                connected = true;
+                break;
+            } catch (const std::exception& e) {
+                connected = false;
+                connection_error = std::current_exception();
+                what = e.what();
+                std::this_thread::sleep_for(std::chrono::milliseconds{100});
+            }
+        }
+        if (connected) {
+            continue;
+        }
+        const auto* uri = viam_channel_.get_channel_addr();
+        VIAM_SDK_LOG(error) << "Lost connection to machine at address " << uri << " with error "
+                            << what << ". Attempting to reconnect every " << reconnect_every.count()
+                            << "second(s)";
+
+        viam_channel_.close();
+
+        for (int i = 0; i < 3; ++i) {
+            try {
+                auto channel = ViamChannel::dial(uri, {});
+                impl_ =
+                    std::make_unique<RobotClient::impl>(RobotService::NewStub(channel.channel()));
+                refresh();
+                connected = true;
+            } catch (const std::exception& e) {
+                viam_channel_.close();
+                std::this_thread::sleep_for(reconnect_every);
+            }
+        }
+        if (!connected) {
+            close();
+        }
+    }
+}
+
 RobotClient::RobotClient(ViamChannel channel)
     : viam_channel_(std::move(channel)),
       impl_(std::make_unique<impl>(RobotService::NewStub(viam_channel_.channel()))) {}
@@ -262,8 +324,8 @@ void RobotClient::log(const std::string& name,
     ClientContext ctx;
     const auto response = impl_->stub->Log(ctx, req, &resp);
     if (is_error_response(response)) {
-        // Manually override to force this to get logged to console so we don't set off an infinite
-        // loop
+        // Manually override to force this to get logged to console so we don't set off an
+        // infinite loop
         VIAM_SDK_LOG(error) << boost::log::add_value(sdk::impl::attr_console_force_type{}, true)
                             << "Error sending log message over grpc: " << response.error_message()
                             << response.error_details();
@@ -278,6 +340,13 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
     if (robot->should_refresh_) {
         robot->refresh_thread_ = std::thread{&RobotClient::refresh_every, robot.get()};
     }
+
+    robot->should_check_connection_ = true;
+
+    robot->check_every_interval_ = options.check_every_interval();
+    robot->reconnect_every_interval_ = options.reconnect_every_interval();
+
+    robot->check_connection_thread_ = std::thread{&RobotClient::check_connection, robot.get()};
 
     robot->refresh();
     return robot;
@@ -294,9 +363,9 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
 
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options) {
-    const std::string addr = "unix://" + address;
+    // TODO (RSDK-10720) - refactor/replace `at_local_socket`
     auto robot = RobotClient::with_channel(
-        ViamChannel(sdk::impl::create_viam_channel(addr, grpc::InsecureChannelCredentials())),
+        ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials())),
         options);
 
     return robot;
