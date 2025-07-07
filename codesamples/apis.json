@@ -19,7 +19,7 @@
         "hasReturn": true
     },
     "genericservice": {
-        "client": "Genericservice",
+        "client": "GenericService",
         "func": "do_command",
         "args": ["{}"],
         "commented": true,
