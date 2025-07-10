@@ -102,6 +102,12 @@ extern GetOperationsRequestDefaultTypeInternal _GetOperationsRequest_default_ins
 class GetOperationsResponse;
 struct GetOperationsResponseDefaultTypeInternal;
 extern GetOperationsResponseDefaultTypeInternal _GetOperationsResponse_default_instance_;
+class GetPoseRequest;
+struct GetPoseRequestDefaultTypeInternal;
+extern GetPoseRequestDefaultTypeInternal _GetPoseRequest_default_instance_;
+class GetPoseResponse;
+struct GetPoseResponseDefaultTypeInternal;
+extern GetPoseResponseDefaultTypeInternal _GetPoseResponse_default_instance_;
 class GetSessionsRequest;
 struct GetSessionsRequestDefaultTypeInternal;
 extern GetSessionsRequestDefaultTypeInternal _GetSessionsRequest_default_instance_;
@@ -245,6 +251,8 @@ template<> ::viam::robot::v1::GetModelsFromModulesRequest* Arena::CreateMaybeMes
 template<> ::viam::robot::v1::GetModelsFromModulesResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetModelsFromModulesResponse>(Arena*);
 template<> ::viam::robot::v1::GetOperationsRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetOperationsRequest>(Arena*);
 template<> ::viam::robot::v1::GetOperationsResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetOperationsResponse>(Arena*);
+template<> ::viam::robot::v1::GetPoseRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetPoseRequest>(Arena*);
+template<> ::viam::robot::v1::GetPoseResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetPoseResponse>(Arena*);
 template<> ::viam::robot::v1::GetSessionsRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetSessionsRequest>(Arena*);
 template<> ::viam::robot::v1::GetSessionsResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetSessionsResponse>(Arena*);
 template<> ::viam::robot::v1::GetStatusRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetStatusRequest>(Arena*);
@@ -9103,6 +9111,362 @@ class GetVersionResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
+// -------------------------------------------------------------------
+
+class GetPoseRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.GetPoseRequest) */ {
+ public:
+  inline GetPoseRequest() : GetPoseRequest(nullptr) {}
+  ~GetPoseRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetPoseRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPoseRequest(const GetPoseRequest& from);
+  GetPoseRequest(GetPoseRequest&& from) noexcept
+    : GetPoseRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPoseRequest& operator=(const GetPoseRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPoseRequest& operator=(GetPoseRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPoseRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPoseRequest* internal_default_instance() {
+    return reinterpret_cast<const GetPoseRequest*>(
+               &_GetPoseRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    57;
+
+  friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPoseRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPoseRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPoseRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPoseRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPoseRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPoseRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPoseRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.GetPoseRequest";
+  }
+  protected:
+  explicit GetPoseRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSupplementalTransformsFieldNumber = 3,
+    kComponentNameFieldNumber = 1,
+    kDestinationFrameFieldNumber = 2,
+    kExtraFieldNumber = 99,
+  };
+  // repeated .viam.common.v1.Transform supplemental_transforms = 3 [json_name = "supplementalTransforms"];
+  int supplemental_transforms_size() const;
+  private:
+  int _internal_supplemental_transforms_size() const;
+  public:
+  void clear_supplemental_transforms();
+  ::viam::common::v1::Transform* mutable_supplemental_transforms(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform >*
+      mutable_supplemental_transforms();
+  private:
+  const ::viam::common::v1::Transform& _internal_supplemental_transforms(int index) const;
+  ::viam::common::v1::Transform* _internal_add_supplemental_transforms();
+  public:
+  const ::viam::common::v1::Transform& supplemental_transforms(int index) const;
+  ::viam::common::v1::Transform* add_supplemental_transforms();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform >&
+      supplemental_transforms() const;
+
+  // string component_name = 1 [json_name = "componentName"];
+  void clear_component_name();
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
+  private:
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
+  public:
+
+  // string destination_frame = 2 [json_name = "destinationFrame"];
+  void clear_destination_frame();
+  const std::string& destination_frame() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_destination_frame(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_destination_frame();
+  PROTOBUF_NODISCARD std::string* release_destination_frame();
+  void set_allocated_destination_frame(std::string* destination_frame);
+  private:
+  const std::string& _internal_destination_frame() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_destination_frame(const std::string& value);
+  std::string* _internal_mutable_destination_frame();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.GetPoseRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform > supplemental_transforms_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr destination_frame_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPoseResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.GetPoseResponse) */ {
+ public:
+  inline GetPoseResponse() : GetPoseResponse(nullptr) {}
+  ~GetPoseResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetPoseResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPoseResponse(const GetPoseResponse& from);
+  GetPoseResponse(GetPoseResponse&& from) noexcept
+    : GetPoseResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPoseResponse& operator=(const GetPoseResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPoseResponse& operator=(GetPoseResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPoseResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPoseResponse* internal_default_instance() {
+    return reinterpret_cast<const GetPoseResponse*>(
+               &_GetPoseResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    58;
+
+  friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPoseResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPoseResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPoseResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPoseResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPoseResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPoseResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPoseResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.GetPoseResponse";
+  }
+  protected:
+  explicit GetPoseResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPoseFieldNumber = 1,
+  };
+  // .viam.common.v1.PoseInFrame pose = 1 [json_name = "pose"];
+  bool has_pose() const;
+  private:
+  bool _internal_has_pose() const;
+  public:
+  void clear_pose();
+  const ::viam::common::v1::PoseInFrame& pose() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::PoseInFrame* release_pose();
+  ::viam::common::v1::PoseInFrame* mutable_pose();
+  void set_allocated_pose(::viam::common::v1::PoseInFrame* pose);
+  private:
+  const ::viam::common::v1::PoseInFrame& _internal_pose() const;
+  ::viam::common::v1::PoseInFrame* _internal_mutable_pose();
+  public:
+  void unsafe_arena_set_allocated_pose(
+      ::viam::common::v1::PoseInFrame* pose);
+  ::viam::common::v1::PoseInFrame* unsafe_arena_release_pose();
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.GetPoseResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::common::v1::PoseInFrame* pose_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
 // ===================================================================
 
 
@@ -13747,9 +14111,328 @@ inline void GetVersionResponse::set_allocated_api_version(std::string* api_versi
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetVersionResponse.api_version)
 }
 
+// -------------------------------------------------------------------
+
+// GetPoseRequest
+
+// string component_name = 1 [json_name = "componentName"];
+inline void GetPoseRequest::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& GetPoseRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetPoseRequest.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPoseRequest::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetPoseRequest.component_name)
+}
+inline std::string* GetPoseRequest::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetPoseRequest.component_name)
+  return _s;
+}
+inline const std::string& GetPoseRequest::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void GetPoseRequest::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPoseRequest::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPoseRequest::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetPoseRequest.component_name)
+  return component_name_.Release();
+}
+inline void GetPoseRequest::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetPoseRequest.component_name)
+}
+
+// string destination_frame = 2 [json_name = "destinationFrame"];
+inline void GetPoseRequest::clear_destination_frame() {
+  destination_frame_.ClearToEmpty();
+}
+inline const std::string& GetPoseRequest::destination_frame() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetPoseRequest.destination_frame)
+  return _internal_destination_frame();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPoseRequest::set_destination_frame(ArgT0&& arg0, ArgT... args) {
+ 
+ destination_frame_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.GetPoseRequest.destination_frame)
+}
+inline std::string* GetPoseRequest::mutable_destination_frame() {
+  std::string* _s = _internal_mutable_destination_frame();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetPoseRequest.destination_frame)
+  return _s;
+}
+inline const std::string& GetPoseRequest::_internal_destination_frame() const {
+  return destination_frame_.Get();
+}
+inline void GetPoseRequest::_internal_set_destination_frame(const std::string& value) {
+  
+  destination_frame_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPoseRequest::_internal_mutable_destination_frame() {
+  
+  return destination_frame_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPoseRequest::release_destination_frame() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetPoseRequest.destination_frame)
+  return destination_frame_.Release();
+}
+inline void GetPoseRequest::set_allocated_destination_frame(std::string* destination_frame) {
+  if (destination_frame != nullptr) {
+    
+  } else {
+    
+  }
+  destination_frame_.SetAllocated(destination_frame, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (destination_frame_.IsDefault()) {
+    destination_frame_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetPoseRequest.destination_frame)
+}
+
+// repeated .viam.common.v1.Transform supplemental_transforms = 3 [json_name = "supplementalTransforms"];
+inline int GetPoseRequest::_internal_supplemental_transforms_size() const {
+  return supplemental_transforms_.size();
+}
+inline int GetPoseRequest::supplemental_transforms_size() const {
+  return _internal_supplemental_transforms_size();
+}
+inline ::viam::common::v1::Transform* GetPoseRequest::mutable_supplemental_transforms(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetPoseRequest.supplemental_transforms)
+  return supplemental_transforms_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform >*
+GetPoseRequest::mutable_supplemental_transforms() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.GetPoseRequest.supplemental_transforms)
+  return &supplemental_transforms_;
+}
+inline const ::viam::common::v1::Transform& GetPoseRequest::_internal_supplemental_transforms(int index) const {
+  return supplemental_transforms_.Get(index);
+}
+inline const ::viam::common::v1::Transform& GetPoseRequest::supplemental_transforms(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetPoseRequest.supplemental_transforms)
+  return _internal_supplemental_transforms(index);
+}
+inline ::viam::common::v1::Transform* GetPoseRequest::_internal_add_supplemental_transforms() {
+  return supplemental_transforms_.Add();
+}
+inline ::viam::common::v1::Transform* GetPoseRequest::add_supplemental_transforms() {
+  ::viam::common::v1::Transform* _add = _internal_add_supplemental_transforms();
+  // @@protoc_insertion_point(field_add:viam.robot.v1.GetPoseRequest.supplemental_transforms)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform >&
+GetPoseRequest::supplemental_transforms() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.GetPoseRequest.supplemental_transforms)
+  return supplemental_transforms_;
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetPoseRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetPoseRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPoseRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPoseRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetPoseRequest.extra)
+  return _internal_extra();
+}
+inline void GetPoseRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.GetPoseRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPoseRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPoseRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetPoseRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPoseRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPoseRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetPoseRequest.extra)
+  return _msg;
+}
+inline void GetPoseRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetPoseRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// GetPoseResponse
+
+// .viam.common.v1.PoseInFrame pose = 1 [json_name = "pose"];
+inline bool GetPoseResponse::_internal_has_pose() const {
+  return this != internal_default_instance() && pose_ != nullptr;
+}
+inline bool GetPoseResponse::has_pose() const {
+  return _internal_has_pose();
+}
+inline const ::viam::common::v1::PoseInFrame& GetPoseResponse::_internal_pose() const {
+  const ::viam::common::v1::PoseInFrame* p = pose_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::PoseInFrame&>(
+      ::viam::common::v1::_PoseInFrame_default_instance_);
+}
+inline const ::viam::common::v1::PoseInFrame& GetPoseResponse::pose() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetPoseResponse.pose)
+  return _internal_pose();
+}
+inline void GetPoseResponse::unsafe_arena_set_allocated_pose(
+    ::viam::common::v1::PoseInFrame* pose) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose_);
+  }
+  pose_ = pose;
+  if (pose) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.GetPoseResponse.pose)
+}
+inline ::viam::common::v1::PoseInFrame* GetPoseResponse::release_pose() {
+  
+  ::viam::common::v1::PoseInFrame* temp = pose_;
+  pose_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::PoseInFrame* GetPoseResponse::unsafe_arena_release_pose() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.GetPoseResponse.pose)
+  
+  ::viam::common::v1::PoseInFrame* temp = pose_;
+  pose_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::PoseInFrame* GetPoseResponse::_internal_mutable_pose() {
+  
+  if (pose_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::PoseInFrame>(GetArenaForAllocation());
+    pose_ = p;
+  }
+  return pose_;
+}
+inline ::viam::common::v1::PoseInFrame* GetPoseResponse::mutable_pose() {
+  ::viam::common::v1::PoseInFrame* _msg = _internal_mutable_pose();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetPoseResponse.pose)
+  return _msg;
+}
+inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame* pose) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose_);
+  }
+  if (pose) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose));
+    if (message_arena != submessage_arena) {
+      pose = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pose, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pose_ = pose;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetPoseResponse.pose)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
