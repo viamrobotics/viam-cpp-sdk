@@ -51,6 +51,7 @@ void to_proto_impl<Orientation>::operator()(const Orientation& self,
             aa.set_z(a.z);
             aa.set_theta(a.theta);
             *orientation.mutable_axis_angles() = std::move(aa);
+            orientation.set_has_axis_angles();
         }
 
         void operator()(const orientation_vector& ov) {
@@ -60,6 +61,7 @@ void to_proto_impl<Orientation>::operator()(const Orientation& self,
             ovec.set_z(ov.z);
             ovec.set_theta(ov.theta);
             *orientation.mutable_vector_radians() = std::move(ovec);
+            orientation.set_has_vector_radians();
         }
 
         void operator()(const orientation_vector_degrees& ovd) {
@@ -69,6 +71,7 @@ void to_proto_impl<Orientation>::operator()(const Orientation& self,
             ovec.set_z(ovd.z);
             ovec.set_theta(ovd.theta);
             *orientation.mutable_vector_degrees() = std::move(ovec);
+            orientation.set_has_vector_degrees();
         }
 
         void operator()(const euler_angles& ea) {
@@ -77,6 +80,7 @@ void to_proto_impl<Orientation>::operator()(const Orientation& self,
             euler.set_roll(ea.roll);
             euler.set_yaw(ea.yaw);
             *orientation.mutable_euler_angles() = std::move(euler);
+            orientation.set_has_euler_angles();
         }
 
         void operator()(const quaternion& q) {
@@ -86,6 +90,7 @@ void to_proto_impl<Orientation>::operator()(const Orientation& self,
             quat.set_y(q.y);
             quat.set_z(q.z);
             *orientation.mutable_quaternion() = std::move(quat);
+            orientation.set_has_quaternion();
         }
 
         app::v1::Orientation& orientation;
