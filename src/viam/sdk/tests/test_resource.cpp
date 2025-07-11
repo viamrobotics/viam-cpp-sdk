@@ -180,7 +180,7 @@ BOOST_AUTO_TEST_CASE(test_linkconfig) {
 BOOST_AUTO_TEST_CASE(test_resource) {
     ResourceConfig resource1("type");
     BOOST_CHECK_EQUAL(resource1.api().to_string(), "rdk:type:");
-    BOOST_CHECK_EQUAL(resource1.frame()->get_parent(), "");
+    BOOST_CHECK(!resource1.frame());
     BOOST_CHECK_EQUAL(resource1.model().to_string(), "rdk:builtin:builtin");
     BOOST_CHECK_EQUAL(resource1.name(), "");
     BOOST_CHECK_EQUAL(resource1.namespace_(), "");
