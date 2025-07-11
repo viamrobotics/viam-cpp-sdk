@@ -3,6 +3,8 @@
 #include <string>
 #include <unordered_map>
 
+#include <boost/optional.hpp>
+
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/log/logging.hpp>
@@ -46,6 +48,14 @@ class ResourceConfig {
                    ProtoStruct attributes,
                    std::string api,
                    Model model,
+                   log_level lvl = sdk::log_level::info);
+
+    ResourceConfig(std::string type,
+                   std::string name,
+                   std::string namespace_,
+                   ProtoStruct attributes,
+                   std::string api,
+                   Model model,
                    LinkConfig frame,
                    log_level lvl = sdk::log_level::info);
 
@@ -55,7 +65,7 @@ class ResourceConfig {
 
     const API& api() const;
 
-    const LinkConfig& frame() const;
+    const boost::optional<LinkConfig>& frame() const;
 
     const Model& model() const;
 
@@ -76,7 +86,7 @@ class ResourceConfig {
 
     API api_;
 
-    LinkConfig frame_;
+    boost::optional<LinkConfig> frame_;
 
     Model model_;
 
