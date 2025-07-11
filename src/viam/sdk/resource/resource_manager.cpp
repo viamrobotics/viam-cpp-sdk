@@ -150,6 +150,18 @@ void ResourceManager::replace_one(const Name& name, std::shared_ptr<Resource> re
     }
 }
 
+void ResourceManager::replace_one(const Name& name,
+                                  std::function<std::shared_ptr<Resource>()> create_resource) {
+    const std::lock_guard<std::mutex> lock(lock_);
+    try {
+        do_remove(name);
+        do_add(name, create_resource());
+    } catch (std::exception& exc) {
+        VIAM_SDK_LOG(error) << "failed to replace resource " << name.to_string() << ": "
+                            << exc.what();
+    }
+}
+
 const std::unordered_map<std::string, std::shared_ptr<Resource>>& ResourceManager::resources()
     const {
     return resources_;
