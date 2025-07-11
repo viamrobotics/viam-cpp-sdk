@@ -26,6 +26,27 @@ ResourceConfig::ResourceConfig(std::string type,
                                ProtoStruct attributes,
                                std::string api,
                                Model model,
+                               log_level lvl)
+    : api_({kRDK, type, ""}),
+      frame_(boost::none),
+      model_(std::move(model)),
+      name_(std::move(name)),
+      namespace__(std::move(namespace_)),
+      type_(std::move(type)),
+      attributes_(std::move(attributes)),
+      log_level_(lvl) {
+    if (api.find(':') != std::string::npos) {
+        api_ = API::from_string(std::move(api));
+    }
+    fix_api();
+}
+
+ResourceConfig::ResourceConfig(std::string type,
+                               std::string name,
+                               std::string namespace_,
+                               ProtoStruct attributes,
+                               std::string api,
+                               Model model,
                                LinkConfig frame,
                                log_level lvl)
     : api_({kRDK, type, ""}),
@@ -63,7 +84,7 @@ const API& ResourceConfig::api() const {
     return api_;
 }
 
-const LinkConfig& ResourceConfig::frame() const {
+const boost::optional<LinkConfig>& ResourceConfig::frame() const {
     return frame_;
 }
 
@@ -150,7 +171,9 @@ void to_proto_impl<ResourceConfig>::operator()(const ResourceConfig& self,
     *proto->mutable_depends_on() = ::google::protobuf::RepeatedPtrField<std::string>(
         self.depends_on().begin(), self.depends_on().end());
 
-    *proto->mutable_frame() = to_proto(self.frame());
+    if (self.frame()) {
+        *proto->mutable_frame() = to_proto(self.frame().get());
+    }
 }
 
 ResourceConfig from_proto_impl<app::v1::ComponentConfig>::operator()(
