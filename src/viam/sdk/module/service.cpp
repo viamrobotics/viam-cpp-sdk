@@ -110,23 +110,28 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         }
         auto manager = resource_server->resource_manager();
 
-        // see if our resource is reconfigurable. if it is, reconfigure
-        const std::shared_ptr<Resource> res = manager->resource(cfg.resource_name().name());
-        if (!res) {
-            return grpc::Status(grpc::UNKNOWN,
-                                "unable to reconfigure resource " + cfg.resource_name().name() +
-                                    " as it doesn't exist.");
-        }
+        // Explicitly open a scope to control the lifetime of the shared_ptr<Resource>, otherwise
+        // `res` below will keep the refcount high until the function exits, fouling up the order of
+        // operations for replacing a resource.
+        {
+            // see if our resource is reconfigurable. if it is, reconfigure
+            const std::shared_ptr<Resource> res = manager->resource(cfg.resource_name().name());
+            if (!res) {
+                return grpc::Status(grpc::UNKNOWN,
+                                    "unable to reconfigure resource " + cfg.resource_name().name() +
+                                        " as it doesn't exist.");
+            }
 
-        if (auto reconfigurable = std::dynamic_pointer_cast<Reconfigurable>(res)) {
-            reconfigurable->reconfigure(deps, cfg);
-            res->set_log_level(cfg.get_log_level());
-            return grpc::Status();
-        }
+            if (auto reconfigurable = std::dynamic_pointer_cast<Reconfigurable>(res)) {
+                reconfigurable->reconfigure(deps, cfg);
+                res->set_log_level(cfg.get_log_level());
+                return grpc::Status();
+            }
 
-        // if the type isn't reconfigurable by default, replace it
-        if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
-            stoppable->stop();
+            // if the type isn't reconfigurable by default, replace it
+            if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
+                stoppable->stop();
+            }
         }
 
         const std::shared_ptr<const ModelRegistration> reg =
@@ -138,8 +143,9 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         }
 
         try {
-            std::shared_ptr<Resource> resource = reg->construct_resource(deps, cfg);
-            manager->replace_one(cfg.resource_name(), std::move(resource));
+            manager->replace_one(cfg.resource_name(), [&reg, &deps, &cfg]() {
+                return reg->construct_resource(deps, cfg);
+            });
         } catch (const std::exception& exc) {
             return grpc::Status(::grpc::INTERNAL, exc.what());
         }
