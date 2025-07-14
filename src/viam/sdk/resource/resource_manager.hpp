@@ -58,8 +58,8 @@ class ResourceManager {
     /// @brief Replaces an existing resource. No-op if the named resource does not exist.
     /// @param name The name of the resource to replace.
     /// @param resource The new resource that is replacing the existing one.
-    [[deprecated("Use the callback overload as it destroys before constructing")]]
-    void replace_one(const Name& name, std::shared_ptr<Resource> resource);
+    [[deprecated("Use the callback overload as it destroys before constructing")]] void replace_one(
+        const Name& name, std::shared_ptr<Resource> resource);
 
     /// @brief Replaces an existing resource. No-op if the named resource does not exist.
     /// @param name The name of the resource to replace.
