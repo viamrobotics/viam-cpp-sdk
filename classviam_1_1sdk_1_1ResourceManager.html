@@ -108,9 +108,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa992f85df5f6a12a2606a5b3451240f1" id="r_aa992f85df5f6a12a2606a5b3451240f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa992f85df5f6a12a2606a5b3451240f1">remove</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;name)</td></tr>
 <tr class="memdesc:aa992f85df5f6a12a2606a5b3451240f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remodes a single resource from the manager.  <br /></td></tr>
 <tr class="separator:aa992f85df5f6a12a2606a5b3451240f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22685aa0f0642732ba8ca0b7030b5277" id="r_a22685aa0f0642732ba8ca0b7030b5277"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22685aa0f0642732ba8ca0b7030b5277">replace_one</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;name, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; <a class="el" href="#a6c8cf009a142cd9746012e28a30d85e8">resource</a>)</td></tr>
-<tr class="memdesc:a22685aa0f0642732ba8ca0b7030b5277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces an existing resource. No-op if the named resource does not exist.  <br /></td></tr>
-<tr class="separator:a22685aa0f0642732ba8ca0b7030b5277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58746ac83d9fcd119f246e58e4b951b5" id="r_a58746ac83d9fcd119f246e58e4b951b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58746ac83d9fcd119f246e58e4b951b5">replace_one</a> (const <a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a> &amp;name, const std::function&lt; std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt;()&gt; &amp;create_resource)</td></tr>
+<tr class="memdesc:a58746ac83d9fcd119f246e58e4b951b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces an existing resource. No-op if the named resource does not exist.  <br /></td></tr>
+<tr class="separator:a58746ac83d9fcd119f246e58e4b951b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3685e45eba4a51f6bb666049d3cc5c51" id="r_a3685e45eba4a51f6bb666049d3cc5c51"><td class="memItemLeft" align="right" valign="top"><a id="a3685e45eba4a51f6bb666049d3cc5c51" name="a3685e45eba4a51f6bb666049d3cc5c51"></a>
 const std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>resources</b> () const</td></tr>
 <tr class="memdesc:a3685e45eba4a51f6bb666049d3cc5c51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the existing resources within the manager. <br /></td></tr>
@@ -229,8 +229,8 @@ const std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href
 
 </div>
 </div>
-<a id="a22685aa0f0642732ba8ca0b7030b5277" name="a22685aa0f0642732ba8ca0b7030b5277"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a22685aa0f0642732ba8ca0b7030b5277">&#9670;&#160;</a></span>replace_one()</h2>
+<a id="a58746ac83d9fcd119f246e58e4b951b5" name="a58746ac83d9fcd119f246e58e4b951b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58746ac83d9fcd119f246e58e4b951b5">&#9670;&#160;</a></span>replace_one()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,7 +243,7 @@ const std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>resource</em></span>&#160;)</td>
+          <td class="paramtype">const std::function&lt; std::shared_ptr&lt; <a class="el" href="classviam_1_1sdk_1_1Resource.html">Resource</a> &gt;()&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>create_resource</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -252,7 +252,7 @@ const std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the resource to replace. </td></tr>
-    <tr><td class="paramname">resource</td><td>The new resource that is replacing the existing one. </td></tr>
+    <tr><td class="paramname">create_resource</td><td>Callback to construct the new resource that is replacing the existing one. </td></tr>
   </table>
   </dd>
 </dl>
