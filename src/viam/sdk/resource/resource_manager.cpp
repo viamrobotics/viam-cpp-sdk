@@ -150,8 +150,8 @@ void ResourceManager::replace_one(const Name& name, std::shared_ptr<Resource> re
     }
 }
 
-void ResourceManager::replace_one(const Name& name,
-                                  std::function<std::shared_ptr<Resource>()> create_resource) {
+void ResourceManager::replace_one(
+    const Name& name, const std::function<std::shared_ptr<Resource>()>& create_resource) {
     const std::lock_guard<std::mutex> lock(lock_);
     try {
         do_remove(name);

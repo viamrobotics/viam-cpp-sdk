@@ -65,7 +65,8 @@ class ResourceManager {
     /// @param name The name of the resource to replace.
     /// @param create_resource Callback to construct the new resource that is replacing the existing
     /// one.
-    void replace_one(const Name& name, std::function<std::shared_ptr<Resource>()> create_resource);
+    void replace_one(const Name& name,
+                     const std::function<std::shared_ptr<Resource>()>& create_resource);
 
     /// @brief Returns a reference to the existing resources within the manager.
     const std::unordered_map<std::string, std::shared_ptr<Resource>>& resources() const;
