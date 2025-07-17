@@ -581,7 +581,7 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "ng_tier\030\002 \001(\tR\013billingTier\"\'\n%UpdateOrga"
   "nizationBillingTierResponse*V\n\021PaymentMe"
   "thodType\022#\n\037PAYMENT_METHOD_TYPE_UNSPECIF"
-  "IED\020\000\022\034\n\030PAYMENT_METHOD_TYPE_CARD\020\001*\363\007\n\r"
+  "IED\020\000\022\034\n\030PAYMENT_METHOD_TYPE_CARD\020\001*\250\010\n\r"
   "UsageCostType\022\037\n\033USAGE_COST_TYPE_UNSPECI"
   "FIED\020\000\022#\n\033USAGE_COST_TYPE_DATA_UPLOAD\020\001\032"
   "\002\010\001\022#\n\033USAGE_COST_TYPE_DATA_EGRESS\020\002\032\002\010\001"
@@ -607,37 +607,39 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "RAINING_LOGS_EGRESS\020\025\0227\n3USAGE_COST_TYPE"
   "_TABULAR_DATA_DATABASE_CLOUD_STORAGE\020\026\0221"
   "\n-USAGE_COST_TYPE_TABULAR_DATA_DATABASE_"
-  "COMPUTE\020\027*X\n\nSourceType\022\033\n\027SOURCE_TYPE_U"
-  "NSPECIFIED\020\000\022\023\n\017SOURCE_TYPE_ORG\020\001\022\030\n\024SOU"
-  "RCE_TYPE_FRAGMENT\020\0022\262\006\n\016BillingService\022k"
-  "\n\024GetCurrentMonthUsage\022(.viam.app.v1.Get"
-  "CurrentMonthUsageRequest\032).viam.app.v1.G"
-  "etCurrentMonthUsageResponse\022w\n\030GetOrgBil"
-  "lingInformation\022,.viam.app.v1.GetOrgBill"
-  "ingInformationRequest\032-.viam.app.v1.GetO"
-  "rgBillingInformationResponse\022e\n\022GetInvoi"
-  "cesSummary\022&.viam.app.v1.GetInvoicesSumm"
-  "aryRequest\032\'.viam.app.v1.GetInvoicesSumm"
-  "aryResponse\022X\n\rGetInvoicePdf\022!.viam.app."
-  "v1.GetInvoicePdfRequest\032\".viam.app.v1.Ge"
-  "tInvoicePdfResponse0\001\022w\n\030SendPaymentRequ"
-  "iredEmail\022,.viam.app.v1.SendPaymentRequi"
-  "redEmailRequest\032-.viam.app.v1.SendPaymen"
-  "tRequiredEmailResponse\022w\n\030GetAvailableBi"
-  "llingTiers\022,.viam.app.v1.GetAvailableBil"
-  "lingTiersRequest\032-.viam.app.v1.GetAvaila"
-  "bleBillingTiersResponse\022\206\001\n\035UpdateOrgani"
-  "zationBillingTier\0221.viam.app.v1.UpdateOr"
-  "ganizationBillingTierRequest\0322.viam.app."
-  "v1.UpdateOrganizationBillingTierResponse"
-  "B\030Z\026go.viam.com/api/app/v1b\006proto3"
+  "COMPUTE\020\027\0223\n/USAGE_COST_TYPE_BINARY_DATA"
+  "_CROSS_REGION_EGRESS\020\030*X\n\nSourceType\022\033\n\027"
+  "SOURCE_TYPE_UNSPECIFIED\020\000\022\023\n\017SOURCE_TYPE"
+  "_ORG\020\001\022\030\n\024SOURCE_TYPE_FRAGMENT\020\0022\262\006\n\016Bil"
+  "lingService\022k\n\024GetCurrentMonthUsage\022(.vi"
+  "am.app.v1.GetCurrentMonthUsageRequest\032)."
+  "viam.app.v1.GetCurrentMonthUsageResponse"
+  "\022w\n\030GetOrgBillingInformation\022,.viam.app."
+  "v1.GetOrgBillingInformationRequest\032-.via"
+  "m.app.v1.GetOrgBillingInformationRespons"
+  "e\022e\n\022GetInvoicesSummary\022&.viam.app.v1.Ge"
+  "tInvoicesSummaryRequest\032\'.viam.app.v1.Ge"
+  "tInvoicesSummaryResponse\022X\n\rGetInvoicePd"
+  "f\022!.viam.app.v1.GetInvoicePdfRequest\032\".v"
+  "iam.app.v1.GetInvoicePdfResponse0\001\022w\n\030Se"
+  "ndPaymentRequiredEmail\022,.viam.app.v1.Sen"
+  "dPaymentRequiredEmailRequest\032-.viam.app."
+  "v1.SendPaymentRequiredEmailResponse\022w\n\030G"
+  "etAvailableBillingTiers\022,.viam.app.v1.Ge"
+  "tAvailableBillingTiersRequest\032-.viam.app"
+  ".v1.GetAvailableBillingTiersResponse\022\206\001\n"
+  "\035UpdateOrganizationBillingTier\0221.viam.ap"
+  "p.v1.UpdateOrganizationBillingTierReques"
+  "t\0322.viam.app.v1.UpdateOrganizationBillin"
+  "gTierResponseB\030Z\026go.viam.com/api/app/v1b"
+  "\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 5034, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 5087, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 19,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -697,6 +699,7 @@ bool UsageCostType_IsValid(int value) {
     case 21:
     case 22:
     case 23:
+    case 24:
       return true;
     default:
       return false;
