@@ -6,19 +6,19 @@
 #include "component/motor/v1/motor.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/channel_interface.h>
-#include <grpcpp/impl/codegen/client_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
-#include <grpcpp/impl/codegen/rpc_service_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/impl/channel_interface.h>
+#include <grpcpp/impl/client_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/rpc_service_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/sync_stream.h>
 namespace viam {
 namespace component {
 namespace motor {
@@ -41,368 +41,308 @@ static const char* MotorService_method_names[] = {
 
 std::unique_ptr< MotorService::Stub> MotorService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< MotorService::Stub> stub(new MotorService::Stub(channel));
+  std::unique_ptr< MotorService::Stub> stub(new MotorService::Stub(channel, options));
   return stub;
 }
 
-MotorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_SetPower_(MotorService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GoFor_(MotorService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GoTo_(MotorService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetRPM_(MotorService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResetZeroPosition_(MotorService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPosition_(MotorService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProperties_(MotorService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Stop_(MotorService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_IsPowered_(MotorService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_IsMoving_(MotorService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(MotorService_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(MotorService_method_names[11], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+MotorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_SetPower_(MotorService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GoFor_(MotorService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GoTo_(MotorService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRPM_(MotorService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResetZeroPosition_(MotorService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPosition_(MotorService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProperties_(MotorService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Stop_(MotorService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsPowered_(MotorService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsMoving_(MotorService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(MotorService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(MotorService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MotorService::Stub::SetPower(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest& request, ::viam::component::motor::v1::SetPowerResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetPower_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::SetPowerRequest, ::viam::component::motor::v1::SetPowerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetPower_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::SetPower(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest* request, ::viam::component::motor::v1::SetPowerResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, std::move(f));
+void MotorService::Stub::async::SetPower(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest* request, ::viam::component::motor::v1::SetPowerResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::SetPowerRequest, ::viam::component::motor::v1::SetPowerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::SetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::SetPowerResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::SetPower(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest* request, ::viam::component::motor::v1::SetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::SetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::SetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetPowerResponse>* MotorService::Stub::AsyncSetPowerRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::SetPowerResponse>::Create(channel_.get(), cq, rpcmethod_SetPower_, context, request, true);
+void MotorService::Stub::async::SetPower(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest* request, ::viam::component::motor::v1::SetPowerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetPower_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetPowerResponse>* MotorService::Stub::PrepareAsyncSetPowerRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::SetPowerResponse>::Create(channel_.get(), cq, rpcmethod_SetPower_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::SetPowerResponse, ::viam::component::motor::v1::SetPowerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetPower_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetPowerResponse>* MotorService::Stub::AsyncSetPowerRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetPowerRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::GoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest& request, ::viam::component::motor::v1::GoForResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GoFor_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::GoForRequest, ::viam::component::motor::v1::GoForResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GoFor_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::GoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest* request, ::viam::component::motor::v1::GoForResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GoFor_, context, request, response, std::move(f));
+void MotorService::Stub::async::GoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest* request, ::viam::component::motor::v1::GoForResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::GoForRequest, ::viam::component::motor::v1::GoForResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoFor_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::GoFor(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::GoForResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GoFor_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::GoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest* request, ::viam::component::motor::v1::GoForResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GoFor_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::GoFor(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::GoForResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GoFor_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoForResponse>* MotorService::Stub::AsyncGoForRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::GoForResponse>::Create(channel_.get(), cq, rpcmethod_GoFor_, context, request, true);
+void MotorService::Stub::async::GoFor(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest* request, ::viam::component::motor::v1::GoForResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoFor_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoForResponse>* MotorService::Stub::PrepareAsyncGoForRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::GoForResponse>::Create(channel_.get(), cq, rpcmethod_GoFor_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::GoForResponse, ::viam::component::motor::v1::GoForRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GoFor_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoForResponse>* MotorService::Stub::AsyncGoForRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoForRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGoForRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::GoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::viam::component::motor::v1::GoToResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GoTo_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::GoToRequest, ::viam::component::motor::v1::GoToResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GoTo_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::GoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest* request, ::viam::component::motor::v1::GoToResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GoTo_, context, request, response, std::move(f));
+void MotorService::Stub::async::GoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest* request, ::viam::component::motor::v1::GoToResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::GoToRequest, ::viam::component::motor::v1::GoToResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoTo_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::GoTo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::GoToResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GoTo_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::GoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest* request, ::viam::component::motor::v1::GoToResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GoTo_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::GoTo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::GoToResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GoTo_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoToResponse>* MotorService::Stub::AsyncGoToRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::GoToResponse>::Create(channel_.get(), cq, rpcmethod_GoTo_, context, request, true);
+void MotorService::Stub::async::GoTo(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest* request, ::viam::component::motor::v1::GoToResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoTo_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoToResponse>* MotorService::Stub::PrepareAsyncGoToRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::GoToResponse>::Create(channel_.get(), cq, rpcmethod_GoTo_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::GoToResponse, ::viam::component::motor::v1::GoToRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GoTo_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GoToResponse>* MotorService::Stub::AsyncGoToRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GoToRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGoToRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::viam::component::motor::v1::SetRPMResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_SetRPM_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::SetRPMRequest, ::viam::component::motor::v1::SetRPMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRPM_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRPM_, context, request, response, std::move(f));
+void MotorService::Stub::async::SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::SetRPMRequest, ::viam::component::motor::v1::SetRPMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRPM_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::SetRPM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::SetRPMResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_SetRPM_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRPM_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::SetRPM(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::SetRPMResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_SetRPM_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetRPMResponse>* MotorService::Stub::AsyncSetRPMRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::SetRPMResponse>::Create(channel_.get(), cq, rpcmethod_SetRPM_, context, request, true);
+void MotorService::Stub::async::SetRPM(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest* request, ::viam::component::motor::v1::SetRPMResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRPM_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetRPMResponse>* MotorService::Stub::PrepareAsyncSetRPMRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::SetRPMResponse>::Create(channel_.get(), cq, rpcmethod_SetRPM_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::SetRPMResponse, ::viam::component::motor::v1::SetRPMRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRPM_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::SetRPMResponse>* MotorService::Stub::AsyncSetRPMRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetRPMRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRPMRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::ResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::viam::component::motor::v1::ResetZeroPositionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ResetZeroPosition_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::ResetZeroPositionRequest, ::viam::component::motor::v1::ResetZeroPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResetZeroPosition_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::ResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetZeroPosition_, context, request, response, std::move(f));
+void MotorService::Stub::async::ResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::ResetZeroPositionRequest, ::viam::component::motor::v1::ResetZeroPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetZeroPosition_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::ResetZeroPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetZeroPosition_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::ResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetZeroPosition_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::ResetZeroPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetZeroPosition_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::ResetZeroPositionResponse>* MotorService::Stub::AsyncResetZeroPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::ResetZeroPositionResponse>::Create(channel_.get(), cq, rpcmethod_ResetZeroPosition_, context, request, true);
+void MotorService::Stub::async::ResetZeroPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest* request, ::viam::component::motor::v1::ResetZeroPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetZeroPosition_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::ResetZeroPositionResponse>* MotorService::Stub::PrepareAsyncResetZeroPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::ResetZeroPositionResponse>::Create(channel_.get(), cq, rpcmethod_ResetZeroPosition_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::ResetZeroPositionResponse, ::viam::component::motor::v1::ResetZeroPositionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResetZeroPosition_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::ResetZeroPositionResponse>* MotorService::Stub::AsyncResetZeroPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::ResetZeroPositionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncResetZeroPositionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::GetPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest& request, ::viam::component::motor::v1::GetPositionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetPosition_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::GetPositionRequest, ::viam::component::motor::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPosition_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest* request, ::viam::component::motor::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
+void MotorService::Stub::async::GetPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest* request, ::viam::component::motor::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::GetPositionRequest, ::viam::component::motor::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest* request, ::viam::component::motor::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GetPositionResponse>* MotorService::Stub::AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::GetPositionResponse>::Create(channel_.get(), cq, rpcmethod_GetPosition_, context, request, true);
+void MotorService::Stub::async::GetPosition(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest* request, ::viam::component::motor::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GetPositionResponse>* MotorService::Stub::PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::GetPositionResponse>::Create(channel_.get(), cq, rpcmethod_GetPosition_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::GetPositionResponse, ::viam::component::motor::v1::GetPositionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPosition_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GetPositionResponse>* MotorService::Stub::AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPositionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::GetProperties(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPropertiesRequest& request, ::viam::component::motor::v1::GetPropertiesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetProperties_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::GetPropertiesRequest, ::viam::component::motor::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetProperties_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPropertiesRequest* request, ::viam::component::motor::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
+void MotorService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPropertiesRequest* request, ::viam::component::motor::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::GetPropertiesRequest, ::viam::component::motor::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPropertiesRequest* request, ::viam::component::motor::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GetPropertiesResponse>* MotorService::Stub::AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::GetPropertiesResponse>::Create(channel_.get(), cq, rpcmethod_GetProperties_, context, request, true);
+void MotorService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPropertiesRequest* request, ::viam::component::motor::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GetPropertiesResponse>* MotorService::Stub::PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::GetPropertiesResponse>::Create(channel_.get(), cq, rpcmethod_GetProperties_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::GetPropertiesResponse, ::viam::component::motor::v1::GetPropertiesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetProperties_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::GetPropertiesResponse>* MotorService::Stub::AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPropertiesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::Stop(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest& request, ::viam::component::motor::v1::StopResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Stop_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::StopRequest, ::viam::component::motor::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Stop_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest* request, ::viam::component::motor::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
+void MotorService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest* request, ::viam::component::motor::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::StopRequest, ::viam::component::motor::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::StopResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest* request, ::viam::component::motor::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::Stop(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::StopResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::StopResponse>* MotorService::Stub::AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::StopResponse>::Create(channel_.get(), cq, rpcmethod_Stop_, context, request, true);
+void MotorService::Stub::async::Stop(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest* request, ::viam::component::motor::v1::StopResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::StopResponse>* MotorService::Stub::PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::StopResponse>::Create(channel_.get(), cq, rpcmethod_Stop_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::StopResponse, ::viam::component::motor::v1::StopRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Stop_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::StopResponse>* MotorService::Stub::AsyncStopRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::StopRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncStopRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::IsPowered(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest& request, ::viam::component::motor::v1::IsPoweredResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_IsPowered_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::IsPoweredRequest, ::viam::component::motor::v1::IsPoweredResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsPowered_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::IsPowered(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest* request, ::viam::component::motor::v1::IsPoweredResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsPowered_, context, request, response, std::move(f));
+void MotorService::Stub::async::IsPowered(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest* request, ::viam::component::motor::v1::IsPoweredResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::IsPoweredRequest, ::viam::component::motor::v1::IsPoweredResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsPowered_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::IsPowered(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::IsPoweredResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsPowered_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::IsPowered(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest* request, ::viam::component::motor::v1::IsPoweredResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsPowered_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::IsPowered(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::IsPoweredResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsPowered_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::IsPoweredResponse>* MotorService::Stub::AsyncIsPoweredRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::IsPoweredResponse>::Create(channel_.get(), cq, rpcmethod_IsPowered_, context, request, true);
+void MotorService::Stub::async::IsPowered(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest* request, ::viam::component::motor::v1::IsPoweredResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsPowered_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::IsPoweredResponse>* MotorService::Stub::PrepareAsyncIsPoweredRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::IsPoweredResponse>::Create(channel_.get(), cq, rpcmethod_IsPowered_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::IsPoweredResponse, ::viam::component::motor::v1::IsPoweredRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsPowered_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::IsPoweredResponse>* MotorService::Stub::AsyncIsPoweredRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsPoweredRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsPoweredRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::IsMoving(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest& request, ::viam::component::motor::v1::IsMovingResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_IsMoving_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsMoving_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest* request, ::viam::component::motor::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
+void MotorService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest* request, ::viam::component::motor::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::IsMovingResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest* request, ::viam::component::motor::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::IsMoving(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::motor::v1::IsMovingResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::IsMovingResponse>* MotorService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::IsMovingResponse>::Create(channel_.get(), cq, rpcmethod_IsMoving_, context, request, true);
+void MotorService::Stub::async::IsMoving(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest* request, ::viam::component::motor::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsMoving_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::IsMovingResponse>* MotorService::Stub::PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::motor::v1::IsMovingResponse>::Create(channel_.get(), cq, rpcmethod_IsMoving_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::motor::v1::IsMovingResponse, ::viam::component::motor::v1::IsMovingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsMoving_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::motor::v1::IsMovingResponse>* MotorService::Stub::AsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::motor::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsMovingRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void MotorService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* MotorService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, true);
+void MotorService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* MotorService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* MotorService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDoCommandRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status MotorService::Stub::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::viam::common::v1::GetGeometriesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
 }
 
-void MotorService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
+void MotorService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-void MotorService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
-}
-
-void MotorService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
-}
-
-void MotorService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* MotorService::Stub::AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, true);
+void MotorService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* MotorService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetGeometriesResponse, ::viam::common::v1::GetGeometriesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGeometries_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* MotorService::Stub::AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetGeometriesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::SetPowerRequest, ::viam::component::motor::v1::SetPowerResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::SetPowerRequest, ::viam::component::motor::v1::SetPowerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::SetPowerRequest* req,
              ::viam::component::motor::v1::SetPowerResponse* resp) {
                return service->SetPower(ctx, req, resp);
@@ -410,9 +350,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::GoForRequest, ::viam::component::motor::v1::GoForResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::GoForRequest, ::viam::component::motor::v1::GoForResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::GoForRequest* req,
              ::viam::component::motor::v1::GoForResponse* resp) {
                return service->GoFor(ctx, req, resp);
@@ -420,9 +360,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::GoToRequest, ::viam::component::motor::v1::GoToResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::GoToRequest, ::viam::component::motor::v1::GoToResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::GoToRequest* req,
              ::viam::component::motor::v1::GoToResponse* resp) {
                return service->GoTo(ctx, req, resp);
@@ -430,9 +370,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::SetRPMRequest, ::viam::component::motor::v1::SetRPMResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::SetRPMRequest, ::viam::component::motor::v1::SetRPMResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::SetRPMRequest* req,
              ::viam::component::motor::v1::SetRPMResponse* resp) {
                return service->SetRPM(ctx, req, resp);
@@ -440,9 +380,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::ResetZeroPositionRequest, ::viam::component::motor::v1::ResetZeroPositionResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::ResetZeroPositionRequest, ::viam::component::motor::v1::ResetZeroPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::ResetZeroPositionRequest* req,
              ::viam::component::motor::v1::ResetZeroPositionResponse* resp) {
                return service->ResetZeroPosition(ctx, req, resp);
@@ -450,9 +390,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::GetPositionRequest, ::viam::component::motor::v1::GetPositionResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::GetPositionRequest, ::viam::component::motor::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::GetPositionRequest* req,
              ::viam::component::motor::v1::GetPositionResponse* resp) {
                return service->GetPosition(ctx, req, resp);
@@ -460,9 +400,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::GetPropertiesRequest, ::viam::component::motor::v1::GetPropertiesResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::GetPropertiesRequest, ::viam::component::motor::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::GetPropertiesRequest* req,
              ::viam::component::motor::v1::GetPropertiesResponse* resp) {
                return service->GetProperties(ctx, req, resp);
@@ -470,9 +410,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::StopRequest, ::viam::component::motor::v1::StopResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::StopRequest, ::viam::component::motor::v1::StopResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::StopRequest* req,
              ::viam::component::motor::v1::StopResponse* resp) {
                return service->Stop(ctx, req, resp);
@@ -480,9 +420,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::IsPoweredRequest, ::viam::component::motor::v1::IsPoweredResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::IsPoweredRequest, ::viam::component::motor::v1::IsPoweredResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::IsPoweredRequest* req,
              ::viam::component::motor::v1::IsPoweredResponse* resp) {
                return service->IsPowered(ctx, req, resp);
@@ -490,9 +430,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::component::motor::v1::IsMovingRequest, ::viam::component::motor::v1::IsMovingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::motor::v1::IsMovingRequest* req,
              ::viam::component::motor::v1::IsMovingResponse* resp) {
                return service->IsMoving(ctx, req, resp);
@@ -500,9 +440,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::common::v1::DoCommandRequest* req,
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
@@ -510,9 +450,9 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::common::v1::GetGeometriesRequest* req,
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);
