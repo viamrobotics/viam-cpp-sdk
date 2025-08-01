@@ -15,4 +15,3 @@ jobs:
     secrets:
         GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         GIT_ACCESS_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
-        
