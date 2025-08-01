@@ -7,24 +7,23 @@
 #include "proto/rpc/examples/echo/v1/echo.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace proto {
 namespace rpc {
@@ -65,40 +64,18 @@ class EchoService final {
     std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::proto::rpc::examples::echo::v1::EchoBiDiRequest, ::proto::rpc::examples::echo::v1::EchoBiDiResponse>> PrepareAsyncEchoBiDi(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::proto::rpc::examples::echo::v1::EchoBiDiRequest, ::proto::rpc::examples::echo::v1::EchoBiDiResponse>>(PrepareAsyncEchoBiDiRaw(context, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       virtual void Echo(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Echo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Echo(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void Echo(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void Echo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void Echo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void EchoMultiple(::grpc::ClientContext* context, ::proto::rpc::examples::echo::v1::EchoMultipleRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* reactor) = 0;
-      #else
-      virtual void EchoMultiple(::grpc::ClientContext* context, ::proto::rpc::examples::echo::v1::EchoMultipleRequest* request, ::grpc::experimental::ClientReadReactor< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void EchoMultiple(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoMultipleRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* reactor) = 0;
       virtual void EchoBiDi(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::proto::rpc::examples::echo::v1::EchoBiDiRequest,::proto::rpc::examples::echo::v1::EchoBiDiResponse>* reactor) = 0;
-      #else
-      virtual void EchoBiDi(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::proto::rpc::examples::echo::v1::EchoBiDiRequest,::proto::rpc::examples::echo::v1::EchoBiDiResponse>* reactor) = 0;
-      #endif
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::examples::echo::v1::EchoResponse>* AsyncEchoRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::examples::echo::v1::EchoResponse>* PrepareAsyncEchoRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientReaderInterface< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* EchoMultipleRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoMultipleRequest& request) = 0;
@@ -110,7 +87,7 @@ class EchoService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status Echo(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest& request, ::proto::rpc::examples::echo::v1::EchoResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::examples::echo::v1::EchoResponse>> AsyncEcho(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::examples::echo::v1::EchoResponse>>(AsyncEchoRaw(context, request, cq));
@@ -136,42 +113,24 @@ class EchoService final {
     std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::echo::v1::EchoBiDiRequest, ::proto::rpc::examples::echo::v1::EchoBiDiResponse>> PrepareAsyncEchoBiDi(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::proto::rpc::examples::echo::v1::EchoBiDiRequest, ::proto::rpc::examples::echo::v1::EchoBiDiResponse>>(PrepareAsyncEchoBiDiRaw(context, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
       void Echo(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, std::function<void(::grpc::Status)>) override;
-      void Echo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Echo(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void Echo(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void Echo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void Echo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::examples::echo::v1::EchoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void EchoMultiple(::grpc::ClientContext* context, ::proto::rpc::examples::echo::v1::EchoMultipleRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* reactor) override;
-      #else
-      void EchoMultiple(::grpc::ClientContext* context, ::proto::rpc::examples::echo::v1::EchoMultipleRequest* request, ::grpc::experimental::ClientReadReactor< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void EchoMultiple(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoMultipleRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* reactor) override;
       void EchoBiDi(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::proto::rpc::examples::echo::v1::EchoBiDiRequest,::proto::rpc::examples::echo::v1::EchoBiDiResponse>* reactor) override;
-      #else
-      void EchoBiDi(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::proto::rpc::examples::echo::v1::EchoBiDiRequest,::proto::rpc::examples::echo::v1::EchoBiDiResponse>* reactor) override;
-      #endif
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::proto::rpc::examples::echo::v1::EchoResponse>* AsyncEchoRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::proto::rpc::examples::echo::v1::EchoResponse>* PrepareAsyncEchoRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientReader< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* EchoMultipleRaw(::grpc::ClientContext* context, const ::proto::rpc::examples::echo::v1::EchoMultipleRequest& request) override;
@@ -256,36 +215,22 @@ class EchoService final {
   };
   typedef WithAsyncMethod_Echo<WithAsyncMethod_EchoMultiple<WithAsyncMethod_EchoBiDi<Service > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_Echo : public BaseClass {
+  class WithCallbackMethod_Echo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_Echo() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::examples::echo::v1::EchoRequest, ::proto::rpc::examples::echo::v1::EchoResponse>(
+    WithCallbackMethod_Echo() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::proto::rpc::examples::echo::v1::EchoRequest, ::proto::rpc::examples::echo::v1::EchoResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::proto::rpc::examples::echo::v1::EchoRequest* request, ::proto::rpc::examples::echo::v1::EchoResponse* response) { return this->Echo(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::proto::rpc::examples::echo::v1::EchoRequest* request, ::proto::rpc::examples::echo::v1::EchoResponse* response) { return this->Echo(context, request, response); }));}
     void SetMessageAllocatorFor_Echo(
-        ::grpc::experimental::MessageAllocator< ::proto::rpc::examples::echo::v1::EchoRequest, ::proto::rpc::examples::echo::v1::EchoResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::proto::rpc::examples::echo::v1::EchoRequest, ::proto::rpc::examples::echo::v1::EchoResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::examples::echo::v1::EchoRequest, ::proto::rpc::examples::echo::v1::EchoResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::proto::rpc::examples::echo::v1::EchoRequest, ::proto::rpc::examples::echo::v1::EchoResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_Echo() override {
+    ~WithCallbackMethod_Echo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -293,37 +238,21 @@ class EchoService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Echo(
-      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::examples::echo::v1::EchoRequest* /*request*/, ::proto::rpc::examples::echo::v1::EchoResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* Echo(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::proto::rpc::examples::echo::v1::EchoRequest* /*request*/, ::proto::rpc::examples::echo::v1::EchoResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::examples::echo::v1::EchoRequest* /*request*/, ::proto::rpc::examples::echo::v1::EchoResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_EchoMultiple : public BaseClass {
+  class WithCallbackMethod_EchoMultiple : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_EchoMultiple() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::proto::rpc::examples::echo::v1::EchoMultipleRequest, ::proto::rpc::examples::echo::v1::EchoMultipleResponse>(
+    WithCallbackMethod_EchoMultiple() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::proto::rpc::examples::echo::v1::EchoMultipleRequest, ::proto::rpc::examples::echo::v1::EchoMultipleResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::proto::rpc::examples::echo::v1::EchoMultipleRequest* request) { return this->EchoMultiple(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::proto::rpc::examples::echo::v1::EchoMultipleRequest* request) { return this->EchoMultiple(context, request); }));
     }
-    ~ExperimentalWithCallbackMethod_EchoMultiple() override {
+    ~WithCallbackMethod_EchoMultiple() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -331,37 +260,21 @@ class EchoService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* EchoMultiple(
-      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::examples::echo::v1::EchoMultipleRequest* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* EchoMultiple(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::proto::rpc::examples::echo::v1::EchoMultipleRequest* /*request*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::examples::echo::v1::EchoMultipleRequest* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_EchoBiDi : public BaseClass {
+  class WithCallbackMethod_EchoBiDi : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_EchoBiDi() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::proto::rpc::examples::echo::v1::EchoBiDiRequest, ::proto::rpc::examples::echo::v1::EchoBiDiResponse>(
+    WithCallbackMethod_EchoBiDi() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackBidiHandler< ::proto::rpc::examples::echo::v1::EchoBiDiRequest, ::proto::rpc::examples::echo::v1::EchoBiDiResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context) { return this->EchoBiDi(context); }));
+                   ::grpc::CallbackServerContext* context) { return this->EchoBiDi(context); }));
     }
-    ~ExperimentalWithCallbackMethod_EchoBiDi() override {
+    ~WithCallbackMethod_EchoBiDi() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -369,20 +282,12 @@ class EchoService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerBidiReactor< ::proto::rpc::examples::echo::v1::EchoBiDiRequest, ::proto::rpc::examples::echo::v1::EchoBiDiResponse>* EchoBiDi(
       ::grpc::CallbackServerContext* /*context*/)
-    #else
-    virtual ::grpc::experimental::ServerBidiReactor< ::proto::rpc::examples::echo::v1::EchoBiDiRequest, ::proto::rpc::examples::echo::v1::EchoBiDiResponse>* EchoBiDi(
-      ::grpc::experimental::CallbackServerContext* /*context*/)
-    #endif
       { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_Echo<ExperimentalWithCallbackMethod_EchoMultiple<ExperimentalWithCallbackMethod_EchoBiDi<Service > > > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_Echo<ExperimentalWithCallbackMethod_EchoMultiple<ExperimentalWithCallbackMethod_EchoBiDi<Service > > > ExperimentalCallbackService;
+  typedef WithCallbackMethod_Echo<WithCallbackMethod_EchoMultiple<WithCallbackMethod_EchoBiDi<Service > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Echo : public BaseClass {
    private:
@@ -495,27 +400,17 @@ class EchoService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_Echo : public BaseClass {
+  class WithRawCallbackMethod_Echo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_Echo() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_Echo() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Echo(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Echo(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_Echo() override {
+    ~WithRawCallbackMethod_Echo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -523,37 +418,21 @@ class EchoService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Echo(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* Echo(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_EchoMultiple : public BaseClass {
+  class WithRawCallbackMethod_EchoMultiple : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_EchoMultiple() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_EchoMultiple() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const::grpc::ByteBuffer* request) { return this->EchoMultiple(context, request); }));
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->EchoMultiple(context, request); }));
     }
-    ~ExperimentalWithRawCallbackMethod_EchoMultiple() override {
+    ~WithRawCallbackMethod_EchoMultiple() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -561,37 +440,21 @@ class EchoService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* EchoMultiple(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* EchoMultiple(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_EchoBiDi : public BaseClass {
+  class WithRawCallbackMethod_EchoBiDi : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_EchoBiDi() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_EchoBiDi() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context) { return this->EchoBiDi(context); }));
+                   ::grpc::CallbackServerContext* context) { return this->EchoBiDi(context); }));
     }
-    ~ExperimentalWithRawCallbackMethod_EchoBiDi() override {
+    ~WithRawCallbackMethod_EchoBiDi() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -599,13 +462,8 @@ class EchoService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* EchoBiDi(
       ::grpc::CallbackServerContext* /*context*/)
-    #else
-    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* EchoBiDi(
-      ::grpc::experimental::CallbackServerContext* /*context*/)
-    #endif
       { return nullptr; }
   };
   template <class BaseClass>
@@ -617,8 +475,8 @@ class EchoService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::proto::rpc::examples::echo::v1::EchoRequest, ::proto::rpc::examples::echo::v1::EchoResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::proto::rpc::examples::echo::v1::EchoRequest, ::proto::rpc::examples::echo::v1::EchoResponse>* streamer) {
                        return this->StreamedEcho(context,
                          streamer);
@@ -645,8 +503,8 @@ class EchoService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::proto::rpc::examples::echo::v1::EchoMultipleRequest, ::proto::rpc::examples::echo::v1::EchoMultipleResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerSplitStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
                      ::proto::rpc::examples::echo::v1::EchoMultipleRequest, ::proto::rpc::examples::echo::v1::EchoMultipleResponse>* streamer) {
                        return this->StreamedEchoMultiple(context,
                          streamer);
