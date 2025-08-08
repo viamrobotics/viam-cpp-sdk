@@ -7,24 +7,23 @@
 #include "proto/rpc/webrtc/v1/signaling.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace proto {
 namespace rpc {
@@ -91,9 +90,9 @@ class SignalingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>> PrepareAsyncOptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>>(PrepareAsyncOptionalWebRTCConfigRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       // Call makes an offer to a client that it expects an answer to. The host
       // of the client in question should be identified in the rpc-host metadata
       // field.
@@ -102,59 +101,27 @@ class SignalingService final {
       // Depending on answerer timeouts and concurrency limits, this can result in
       // hangs on the answerer waiting for a connection to establish, which in turn
       // can result in the caller waiting for an answerer to be listening.
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void Call(::grpc::ClientContext* context, ::proto::rpc::webrtc::v1::CallRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::webrtc::v1::CallResponse>* reactor) = 0;
-      #else
-      virtual void Call(::grpc::ClientContext* context, ::proto::rpc::webrtc::v1::CallRequest* request, ::grpc::experimental::ClientReadReactor< ::proto::rpc::webrtc::v1::CallResponse>* reactor) = 0;
-      #endif
+      virtual void Call(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::webrtc::v1::CallResponse>* reactor) = 0;
       // CallUpdate is used to send additional info in relation to a Call.
       // The host of the client for the call in question should be identified
       // in the rpc-host metadata field.
       // In a world where https://github.com/grpc/grpc-web/issues/24 is fixed,
       // this should be removed in favor of a bidirectional stream on Call.
       virtual void CallUpdate(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallUpdateRequest* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CallUpdate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void CallUpdate(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallUpdateRequest* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void CallUpdate(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallUpdateRequest* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void CallUpdate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void CallUpdate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // Answer sets up an answering service where the caller answers call offers
       // and responds with answers.
       // The host(s) to answer for should be in the rpc-host metadata field.
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Answer(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::proto::rpc::webrtc::v1::AnswerResponse,::proto::rpc::webrtc::v1::AnswerRequest>* reactor) = 0;
-      #else
-      virtual void Answer(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::proto::rpc::webrtc::v1::AnswerResponse,::proto::rpc::webrtc::v1::AnswerRequest>* reactor) = 0;
-      #endif
       // OptionalWebRTCConfig returns any WebRTC configuration the caller may want to use.
       // The host to get a config for must be in the rpc-host metadata field.
       virtual void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientReaderInterface< ::proto::rpc::webrtc::v1::CallResponse>* CallRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::proto::rpc::webrtc::v1::CallResponse>* AsyncCallRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::proto::rpc::webrtc::v1::CallResponse>* PrepareAsyncCallRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -168,7 +135,7 @@ class SignalingService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     std::unique_ptr< ::grpc::ClientReader< ::proto::rpc::webrtc::v1::CallResponse>> Call(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest& request) {
       return std::unique_ptr< ::grpc::ClientReader< ::proto::rpc::webrtc::v1::CallResponse>>(CallRaw(context, request));
     }
@@ -201,54 +168,26 @@ class SignalingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>> PrepareAsyncOptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>>(PrepareAsyncOptionalWebRTCConfigRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void Call(::grpc::ClientContext* context, ::proto::rpc::webrtc::v1::CallRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::webrtc::v1::CallResponse>* reactor) override;
-      #else
-      void Call(::grpc::ClientContext* context, ::proto::rpc::webrtc::v1::CallRequest* request, ::grpc::experimental::ClientReadReactor< ::proto::rpc::webrtc::v1::CallResponse>* reactor) override;
-      #endif
+      void Call(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest* request, ::grpc::ClientReadReactor< ::proto::rpc::webrtc::v1::CallResponse>* reactor) override;
       void CallUpdate(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallUpdateRequest* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, std::function<void(::grpc::Status)>) override;
-      void CallUpdate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void CallUpdate(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallUpdateRequest* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void CallUpdate(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallUpdateRequest* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void CallUpdate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void CallUpdate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Answer(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::proto::rpc::webrtc::v1::AnswerResponse,::proto::rpc::webrtc::v1::AnswerRequest>* reactor) override;
-      #else
-      void Answer(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::proto::rpc::webrtc::v1::AnswerResponse,::proto::rpc::webrtc::v1::AnswerRequest>* reactor) override;
-      #endif
       void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, std::function<void(::grpc::Status)>) override;
-      void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void OptionalWebRTCConfig(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientReader< ::proto::rpc::webrtc::v1::CallResponse>* CallRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest& request) override;
     ::grpc::ClientAsyncReader< ::proto::rpc::webrtc::v1::CallResponse>* AsyncCallRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::proto::rpc::webrtc::v1::CallResponse>* PrepareAsyncCallRaw(::grpc::ClientContext* context, const ::proto::rpc::webrtc::v1::CallRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -375,27 +314,17 @@ class SignalingService final {
   };
   typedef WithAsyncMethod_Call<WithAsyncMethod_CallUpdate<WithAsyncMethod_Answer<WithAsyncMethod_OptionalWebRTCConfig<Service > > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_Call : public BaseClass {
+  class WithCallbackMethod_Call : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_Call() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::proto::rpc::webrtc::v1::CallRequest, ::proto::rpc::webrtc::v1::CallResponse>(
+    WithCallbackMethod_Call() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::proto::rpc::webrtc::v1::CallRequest, ::proto::rpc::webrtc::v1::CallResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::proto::rpc::webrtc::v1::CallRequest* request) { return this->Call(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::proto::rpc::webrtc::v1::CallRequest* request) { return this->Call(context, request); }));
     }
-    ~ExperimentalWithCallbackMethod_Call() override {
+    ~WithCallbackMethod_Call() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -403,46 +332,26 @@ class SignalingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::proto::rpc::webrtc::v1::CallResponse>* Call(
-      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::CallRequest* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::proto::rpc::webrtc::v1::CallResponse>* Call(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::CallRequest* /*request*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::CallRequest* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_CallUpdate : public BaseClass {
+  class WithCallbackMethod_CallUpdate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_CallUpdate() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::CallUpdateRequest, ::proto::rpc::webrtc::v1::CallUpdateResponse>(
+    WithCallbackMethod_CallUpdate() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::CallUpdateRequest, ::proto::rpc::webrtc::v1::CallUpdateResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::proto::rpc::webrtc::v1::CallUpdateRequest* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response) { return this->CallUpdate(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::proto::rpc::webrtc::v1::CallUpdateRequest* request, ::proto::rpc::webrtc::v1::CallUpdateResponse* response) { return this->CallUpdate(context, request, response); }));}
     void SetMessageAllocatorFor_CallUpdate(
-        ::grpc::experimental::MessageAllocator< ::proto::rpc::webrtc::v1::CallUpdateRequest, ::proto::rpc::webrtc::v1::CallUpdateResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::proto::rpc::webrtc::v1::CallUpdateRequest, ::proto::rpc::webrtc::v1::CallUpdateResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::CallUpdateRequest, ::proto::rpc::webrtc::v1::CallUpdateResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::CallUpdateRequest, ::proto::rpc::webrtc::v1::CallUpdateResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_CallUpdate() override {
+    ~WithCallbackMethod_CallUpdate() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -450,37 +359,21 @@ class SignalingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* CallUpdate(
-      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::CallUpdateRequest* /*request*/, ::proto::rpc::webrtc::v1::CallUpdateResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* CallUpdate(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::CallUpdateRequest* /*request*/, ::proto::rpc::webrtc::v1::CallUpdateResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::CallUpdateRequest* /*request*/, ::proto::rpc::webrtc::v1::CallUpdateResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_Answer : public BaseClass {
+  class WithCallbackMethod_Answer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_Answer() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::proto::rpc::webrtc::v1::AnswerResponse, ::proto::rpc::webrtc::v1::AnswerRequest>(
+    WithCallbackMethod_Answer() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackBidiHandler< ::proto::rpc::webrtc::v1::AnswerResponse, ::proto::rpc::webrtc::v1::AnswerRequest>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context) { return this->Answer(context); }));
+                   ::grpc::CallbackServerContext* context) { return this->Answer(context); }));
     }
-    ~ExperimentalWithCallbackMethod_Answer() override {
+    ~WithCallbackMethod_Answer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -488,46 +381,27 @@ class SignalingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerBidiReactor< ::proto::rpc::webrtc::v1::AnswerResponse, ::proto::rpc::webrtc::v1::AnswerRequest>* Answer(
       ::grpc::CallbackServerContext* /*context*/)
-    #else
-    virtual ::grpc::experimental::ServerBidiReactor< ::proto::rpc::webrtc::v1::AnswerResponse, ::proto::rpc::webrtc::v1::AnswerRequest>* Answer(
-      ::grpc::experimental::CallbackServerContext* /*context*/)
-    #endif
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_OptionalWebRTCConfig : public BaseClass {
+  class WithCallbackMethod_OptionalWebRTCConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_OptionalWebRTCConfig() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>(
+    WithCallbackMethod_OptionalWebRTCConfig() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response) { return this->OptionalWebRTCConfig(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* request, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* response) { return this->OptionalWebRTCConfig(context, request, response); }));}
     void SetMessageAllocatorFor_OptionalWebRTCConfig(
-        ::grpc::experimental::MessageAllocator< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_OptionalWebRTCConfig() override {
+    ~WithCallbackMethod_OptionalWebRTCConfig() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -535,20 +409,11 @@ class SignalingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* OptionalWebRTCConfig(
-      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* /*request*/, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* OptionalWebRTCConfig(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* /*request*/, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest* /*request*/, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_Call<ExperimentalWithCallbackMethod_CallUpdate<ExperimentalWithCallbackMethod_Answer<ExperimentalWithCallbackMethod_OptionalWebRTCConfig<Service > > > > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_Call<ExperimentalWithCallbackMethod_CallUpdate<ExperimentalWithCallbackMethod_Answer<ExperimentalWithCallbackMethod_OptionalWebRTCConfig<Service > > > > ExperimentalCallbackService;
+  typedef WithCallbackMethod_Call<WithCallbackMethod_CallUpdate<WithCallbackMethod_Answer<WithCallbackMethod_OptionalWebRTCConfig<Service > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Call : public BaseClass {
    private:
@@ -698,27 +563,17 @@ class SignalingService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_Call : public BaseClass {
+  class WithRawCallbackMethod_Call : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_Call() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_Call() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const::grpc::ByteBuffer* request) { return this->Call(context, request); }));
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->Call(context, request); }));
     }
-    ~ExperimentalWithRawCallbackMethod_Call() override {
+    ~WithRawCallbackMethod_Call() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -726,37 +581,21 @@ class SignalingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* Call(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* Call(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_CallUpdate : public BaseClass {
+  class WithRawCallbackMethod_CallUpdate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_CallUpdate() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_CallUpdate() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CallUpdate(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CallUpdate(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_CallUpdate() override {
+    ~WithRawCallbackMethod_CallUpdate() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -764,37 +603,21 @@ class SignalingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* CallUpdate(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* CallUpdate(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_Answer : public BaseClass {
+  class WithRawCallbackMethod_Answer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_Answer() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_Answer() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context) { return this->Answer(context); }));
+                   ::grpc::CallbackServerContext* context) { return this->Answer(context); }));
     }
-    ~ExperimentalWithRawCallbackMethod_Answer() override {
+    ~WithRawCallbackMethod_Answer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -802,37 +625,22 @@ class SignalingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Answer(
       ::grpc::CallbackServerContext* /*context*/)
-    #else
-    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Answer(
-      ::grpc::experimental::CallbackServerContext* /*context*/)
-    #endif
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_OptionalWebRTCConfig : public BaseClass {
+  class WithRawCallbackMethod_OptionalWebRTCConfig : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_OptionalWebRTCConfig() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_OptionalWebRTCConfig() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->OptionalWebRTCConfig(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->OptionalWebRTCConfig(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_OptionalWebRTCConfig() override {
+    ~WithRawCallbackMethod_OptionalWebRTCConfig() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -840,14 +648,8 @@ class SignalingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* OptionalWebRTCConfig(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* OptionalWebRTCConfig(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_CallUpdate : public BaseClass {
@@ -858,8 +660,8 @@ class SignalingService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::proto::rpc::webrtc::v1::CallUpdateRequest, ::proto::rpc::webrtc::v1::CallUpdateResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::proto::rpc::webrtc::v1::CallUpdateRequest, ::proto::rpc::webrtc::v1::CallUpdateResponse>* streamer) {
                        return this->StreamedCallUpdate(context,
                          streamer);
@@ -885,8 +687,8 @@ class SignalingService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::proto::rpc::webrtc::v1::OptionalWebRTCConfigRequest, ::proto::rpc::webrtc::v1::OptionalWebRTCConfigResponse>* streamer) {
                        return this->StreamedOptionalWebRTCConfig(context,
                          streamer);
@@ -913,8 +715,8 @@ class SignalingService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::proto::rpc::webrtc::v1::CallRequest, ::proto::rpc::webrtc::v1::CallResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerSplitStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
                      ::proto::rpc::webrtc::v1::CallRequest, ::proto::rpc::webrtc::v1::CallResponse>* streamer) {
                        return this->StreamedCall(context,
                          streamer);
