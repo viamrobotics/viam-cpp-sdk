@@ -7,24 +7,23 @@
 #include "service/vision/v1/vision.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace viam {
 namespace service {
@@ -105,123 +104,39 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       // GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
       virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetDetections will return a list of detections in the next image given the image bytes and a detector
       virtual void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetDetections(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetDetections(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetDetections(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
       virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
       virtual void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetClassifications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetClassifications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetClassifications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
       // as well as the 3-vector center of each of the found objects.
       // A specific MIME type can be requested but may not necessarily be the same one returned.
       virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetProperties will return the properties as booleans given the name of the vision service
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       virtual void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CaptureAllFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void CaptureAllFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void CaptureAllFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* AsyncGetDetectionsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* PrepareAsyncGetDetectionsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsResponse>* AsyncGetDetectionsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -241,7 +156,7 @@ class VisionService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>> AsyncGetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>>(AsyncGetDetectionsFromCameraRaw(context, request, cq));
@@ -298,116 +213,36 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
       void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetDetections(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetDetections(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetDetections(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetClassifications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetClassifications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetClassifications(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetObjectPointClouds(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetObjectPointClouds(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetObjectPointClouds(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, std::function<void(::grpc::Status)>) override;
-      void CaptureAllFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void CaptureAllFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void CaptureAllFromCamera(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* AsyncGetDetectionsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* PrepareAsyncGetDetectionsFromCameraRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::vision::v1::GetDetectionsResponse>* AsyncGetDetectionsRaw(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -619,36 +454,22 @@ class VisionService final {
   };
   typedef WithAsyncMethod_GetDetectionsFromCamera<WithAsyncMethod_GetDetections<WithAsyncMethod_GetClassificationsFromCamera<WithAsyncMethod_GetClassifications<WithAsyncMethod_GetObjectPointClouds<WithAsyncMethod_GetProperties<WithAsyncMethod_CaptureAllFromCamera<WithAsyncMethod_DoCommand<Service > > > > > > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetDetectionsFromCamera : public BaseClass {
+  class WithCallbackMethod_GetDetectionsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetDetectionsFromCamera() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>(
+    WithCallbackMethod_GetDetectionsFromCamera() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) { return this->GetDetectionsFromCamera(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) { return this->GetDetectionsFromCamera(context, request, response); }));}
     void SetMessageAllocatorFor_GetDetectionsFromCamera(
-        ::grpc::experimental::MessageAllocator< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetDetectionsFromCamera() override {
+    ~WithCallbackMethod_GetDetectionsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -656,46 +477,26 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetDetectionsFromCamera(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* /*request*/, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetDetectionsFromCamera(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* /*request*/, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* /*request*/, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetDetections : public BaseClass {
+  class WithCallbackMethod_GetDetections : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetDetections() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>(
+    WithCallbackMethod_GetDetections() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response) { return this->GetDetections(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response) { return this->GetDetections(context, request, response); }));}
     void SetMessageAllocatorFor_GetDetections(
-        ::grpc::experimental::MessageAllocator< ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetDetections() override {
+    ~WithCallbackMethod_GetDetections() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -703,46 +504,26 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetDetections(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectionsRequest* /*request*/, ::viam::service::vision::v1::GetDetectionsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetDetections(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectionsRequest* /*request*/, ::viam::service::vision::v1::GetDetectionsResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetDetectionsRequest* /*request*/, ::viam::service::vision::v1::GetDetectionsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetClassificationsFromCamera : public BaseClass {
+  class WithCallbackMethod_GetClassificationsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetClassificationsFromCamera() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>(
+    WithCallbackMethod_GetClassificationsFromCamera() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response) { return this->GetClassificationsFromCamera(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response) { return this->GetClassificationsFromCamera(context, request, response); }));}
     void SetMessageAllocatorFor_GetClassificationsFromCamera(
-        ::grpc::experimental::MessageAllocator< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetClassificationsFromCamera() override {
+    ~WithCallbackMethod_GetClassificationsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -750,46 +531,26 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetClassificationsFromCamera(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* /*request*/, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetClassificationsFromCamera(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* /*request*/, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* /*request*/, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetClassifications : public BaseClass {
+  class WithCallbackMethod_GetClassifications : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetClassifications() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>(
+    WithCallbackMethod_GetClassifications() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response) { return this->GetClassifications(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response) { return this->GetClassifications(context, request, response); }));}
     void SetMessageAllocatorFor_GetClassifications(
-        ::grpc::experimental::MessageAllocator< ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetClassifications() override {
+    ~WithCallbackMethod_GetClassifications() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -797,46 +558,26 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetClassifications(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetClassificationsRequest* /*request*/, ::viam::service::vision::v1::GetClassificationsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetClassifications(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetClassificationsRequest* /*request*/, ::viam::service::vision::v1::GetClassificationsResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetClassificationsRequest* /*request*/, ::viam::service::vision::v1::GetClassificationsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetObjectPointClouds : public BaseClass {
+  class WithCallbackMethod_GetObjectPointClouds : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetObjectPointClouds() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>(
+    WithCallbackMethod_GetObjectPointClouds() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response) { return this->GetObjectPointClouds(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response) { return this->GetObjectPointClouds(context, request, response); }));}
     void SetMessageAllocatorFor_GetObjectPointClouds(
-        ::grpc::experimental::MessageAllocator< ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetObjectPointClouds() override {
+    ~WithCallbackMethod_GetObjectPointClouds() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -844,46 +585,26 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetObjectPointClouds(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* /*request*/, ::viam::service::vision::v1::GetObjectPointCloudsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetObjectPointClouds(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* /*request*/, ::viam::service::vision::v1::GetObjectPointCloudsResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* /*request*/, ::viam::service::vision::v1::GetObjectPointCloudsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetProperties : public BaseClass {
+  class WithCallbackMethod_GetProperties : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetProperties() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>(
+    WithCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
     void SetMessageAllocatorFor_GetProperties(
-        ::grpc::experimental::MessageAllocator< ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetProperties() override {
+    ~WithCallbackMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -891,46 +612,26 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetProperties(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetProperties(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::GetPropertiesRequest* /*request*/, ::viam::service::vision::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_CaptureAllFromCamera : public BaseClass {
+  class WithCallbackMethod_CaptureAllFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_CaptureAllFromCamera() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>(
+    WithCallbackMethod_CaptureAllFromCamera() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response) { return this->CaptureAllFromCamera(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response) { return this->CaptureAllFromCamera(context, request, response); }));}
     void SetMessageAllocatorFor_CaptureAllFromCamera(
-        ::grpc::experimental::MessageAllocator< ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_CaptureAllFromCamera() override {
+    ~WithCallbackMethod_CaptureAllFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -938,46 +639,26 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* CaptureAllFromCamera(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* CaptureAllFromCamera(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* /*request*/, ::viam::service::vision::v1::CaptureAllFromCameraResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
+  class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    WithCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_DoCommand() override {
+    ~WithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -985,20 +666,11 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_GetDetectionsFromCamera<ExperimentalWithCallbackMethod_GetDetections<ExperimentalWithCallbackMethod_GetClassificationsFromCamera<ExperimentalWithCallbackMethod_GetClassifications<ExperimentalWithCallbackMethod_GetObjectPointClouds<ExperimentalWithCallbackMethod_GetProperties<ExperimentalWithCallbackMethod_CaptureAllFromCamera<ExperimentalWithCallbackMethod_DoCommand<Service > > > > > > > > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_GetDetectionsFromCamera<ExperimentalWithCallbackMethod_GetDetections<ExperimentalWithCallbackMethod_GetClassificationsFromCamera<ExperimentalWithCallbackMethod_GetClassifications<ExperimentalWithCallbackMethod_GetObjectPointClouds<ExperimentalWithCallbackMethod_GetProperties<ExperimentalWithCallbackMethod_CaptureAllFromCamera<ExperimentalWithCallbackMethod_DoCommand<Service > > > > > > > > ExperimentalCallbackService;
+  typedef WithCallbackMethod_GetDetectionsFromCamera<WithCallbackMethod_GetDetections<WithCallbackMethod_GetClassificationsFromCamera<WithCallbackMethod_GetClassifications<WithCallbackMethod_GetObjectPointClouds<WithCallbackMethod_GetProperties<WithCallbackMethod_CaptureAllFromCamera<WithCallbackMethod_DoCommand<Service > > > > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetDetectionsFromCamera : public BaseClass {
    private:
@@ -1296,27 +968,17 @@ class VisionService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetDetectionsFromCamera : public BaseClass {
+  class WithRawCallbackMethod_GetDetectionsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetDetectionsFromCamera() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetDetectionsFromCamera() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDetectionsFromCamera(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDetectionsFromCamera(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetDetectionsFromCamera() override {
+    ~WithRawCallbackMethod_GetDetectionsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1324,37 +986,21 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetDetectionsFromCamera(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetDetectionsFromCamera(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetDetections : public BaseClass {
+  class WithRawCallbackMethod_GetDetections : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetDetections() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetDetections() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDetections(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDetections(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetDetections() override {
+    ~WithRawCallbackMethod_GetDetections() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1362,37 +1008,21 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetDetections(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetDetections(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetClassificationsFromCamera : public BaseClass {
+  class WithRawCallbackMethod_GetClassificationsFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetClassificationsFromCamera() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetClassificationsFromCamera() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetClassificationsFromCamera(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetClassificationsFromCamera(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetClassificationsFromCamera() override {
+    ~WithRawCallbackMethod_GetClassificationsFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1400,37 +1030,21 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetClassificationsFromCamera(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetClassificationsFromCamera(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetClassifications : public BaseClass {
+  class WithRawCallbackMethod_GetClassifications : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetClassifications() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetClassifications() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetClassifications(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetClassifications(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetClassifications() override {
+    ~WithRawCallbackMethod_GetClassifications() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1438,37 +1052,21 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetClassifications(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetClassifications(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetObjectPointClouds : public BaseClass {
+  class WithRawCallbackMethod_GetObjectPointClouds : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetObjectPointClouds() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetObjectPointClouds() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetObjectPointClouds(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetObjectPointClouds(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetObjectPointClouds() override {
+    ~WithRawCallbackMethod_GetObjectPointClouds() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1476,37 +1074,21 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetObjectPointClouds(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetObjectPointClouds(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetProperties : public BaseClass {
+  class WithRawCallbackMethod_GetProperties : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetProperties() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetProperties() override {
+    ~WithRawCallbackMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1514,37 +1096,21 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetProperties(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetProperties(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_CaptureAllFromCamera : public BaseClass {
+  class WithRawCallbackMethod_CaptureAllFromCamera : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_CaptureAllFromCamera() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_CaptureAllFromCamera() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CaptureAllFromCamera(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CaptureAllFromCamera(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_CaptureAllFromCamera() override {
+    ~WithRawCallbackMethod_CaptureAllFromCamera() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1552,37 +1118,21 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* CaptureAllFromCamera(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* CaptureAllFromCamera(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
+  class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
+    ~WithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1590,14 +1140,8 @@ class VisionService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetDetectionsFromCamera : public BaseClass {
@@ -1608,8 +1152,8 @@ class VisionService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::vision::v1::GetDetectionsFromCameraRequest, ::viam::service::vision::v1::GetDetectionsFromCameraResponse>* streamer) {
                        return this->StreamedGetDetectionsFromCamera(context,
                          streamer);
@@ -1635,8 +1179,8 @@ class VisionService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::vision::v1::GetDetectionsRequest, ::viam::service::vision::v1::GetDetectionsResponse>* streamer) {
                        return this->StreamedGetDetections(context,
                          streamer);
@@ -1662,8 +1206,8 @@ class VisionService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::vision::v1::GetClassificationsFromCameraRequest, ::viam::service::vision::v1::GetClassificationsFromCameraResponse>* streamer) {
                        return this->StreamedGetClassificationsFromCamera(context,
                          streamer);
@@ -1689,8 +1233,8 @@ class VisionService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::vision::v1::GetClassificationsRequest, ::viam::service::vision::v1::GetClassificationsResponse>* streamer) {
                        return this->StreamedGetClassifications(context,
                          streamer);
@@ -1716,8 +1260,8 @@ class VisionService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::vision::v1::GetObjectPointCloudsRequest, ::viam::service::vision::v1::GetObjectPointCloudsResponse>* streamer) {
                        return this->StreamedGetObjectPointClouds(context,
                          streamer);
@@ -1743,8 +1287,8 @@ class VisionService final {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::vision::v1::GetPropertiesRequest, ::viam::service::vision::v1::GetPropertiesResponse>* streamer) {
                        return this->StreamedGetProperties(context,
                          streamer);
@@ -1770,8 +1314,8 @@ class VisionService final {
       ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::vision::v1::CaptureAllFromCameraRequest, ::viam::service::vision::v1::CaptureAllFromCameraResponse>* streamer) {
                        return this->StreamedCaptureAllFromCamera(context,
                          streamer);
@@ -1797,8 +1341,8 @@ class VisionService final {
       ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);
