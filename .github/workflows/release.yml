@@ -285,7 +285,7 @@ jobs:
         if: ${{ matrix.image  == 'debian:bullseye' }}
         run: |
           sudo apt-get install -y software-properties-common
-          apt-add-repository -y 'deb http://deb.debian.org/debian bullseye-backports main'
+          apt-add-repository -y 'deb https://archive.debian.org/debian bullseye-backports main'
 
           apt-get update
           apt-get -y install cmake
