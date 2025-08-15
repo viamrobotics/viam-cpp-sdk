@@ -7,24 +7,23 @@
 #include "component/button/v1/button.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace viam {
 namespace component {
@@ -56,44 +55,20 @@ class ButtonService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       // Pushes a button
       virtual void Push(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest* request, ::viam::component::button::v1::PushResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Push(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::button::v1::PushResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Push(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest* request, ::viam::component::button::v1::PushResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void Push(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest* request, ::viam::component::button::v1::PushResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void Push(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::button::v1::PushResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void Push(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::button::v1::PushResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::button::v1::PushResponse>* AsyncPushRaw(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::button::v1::PushResponse>* PrepareAsyncPushRaw(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -101,7 +76,7 @@ class ButtonService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status Push(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest& request, ::viam::component::button::v1::PushResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::button::v1::PushResponse>> AsyncPush(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::button::v1::PushResponse>>(AsyncPushRaw(context, request, cq));
@@ -116,44 +91,24 @@ class ButtonService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
       void Push(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest* request, ::viam::component::button::v1::PushResponse* response, std::function<void(::grpc::Status)>) override;
-      void Push(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::button::v1::PushResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Push(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest* request, ::viam::component::button::v1::PushResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void Push(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest* request, ::viam::component::button::v1::PushResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void Push(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::button::v1::PushResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void Push(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::button::v1::PushResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::component::button::v1::PushResponse>* AsyncPushRaw(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::button::v1::PushResponse>* PrepareAsyncPushRaw(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -214,36 +169,22 @@ class ButtonService final {
   };
   typedef WithAsyncMethod_Push<WithAsyncMethod_DoCommand<Service > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_Push : public BaseClass {
+  class WithCallbackMethod_Push : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_Push() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::button::v1::PushRequest, ::viam::component::button::v1::PushResponse>(
+    WithCallbackMethod_Push() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::button::v1::PushRequest, ::viam::component::button::v1::PushResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::component::button::v1::PushRequest* request, ::viam::component::button::v1::PushResponse* response) { return this->Push(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::component::button::v1::PushRequest* request, ::viam::component::button::v1::PushResponse* response) { return this->Push(context, request, response); }));}
     void SetMessageAllocatorFor_Push(
-        ::grpc::experimental::MessageAllocator< ::viam::component::button::v1::PushRequest, ::viam::component::button::v1::PushResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::component::button::v1::PushRequest, ::viam::component::button::v1::PushResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::button::v1::PushRequest, ::viam::component::button::v1::PushResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::button::v1::PushRequest, ::viam::component::button::v1::PushResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_Push() override {
+    ~WithCallbackMethod_Push() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -251,46 +192,26 @@ class ButtonService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Push(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::button::v1::PushRequest* /*request*/, ::viam::component::button::v1::PushResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* Push(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::button::v1::PushRequest* /*request*/, ::viam::component::button::v1::PushResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::button::v1::PushRequest* /*request*/, ::viam::component::button::v1::PushResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
+  class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    WithCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_DoCommand() override {
+    ~WithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -298,20 +219,11 @@ class ButtonService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_Push<ExperimentalWithCallbackMethod_DoCommand<Service > > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_Push<ExperimentalWithCallbackMethod_DoCommand<Service > > ExperimentalCallbackService;
+  typedef WithCallbackMethod_Push<WithCallbackMethod_DoCommand<Service > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Push : public BaseClass {
    private:
@@ -387,27 +299,17 @@ class ButtonService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_Push : public BaseClass {
+  class WithRawCallbackMethod_Push : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_Push() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_Push() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Push(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Push(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_Push() override {
+    ~WithRawCallbackMethod_Push() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -415,37 +317,21 @@ class ButtonService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Push(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* Push(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
+  class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
+    ~WithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -453,14 +339,8 @@ class ButtonService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Push : public BaseClass {
@@ -471,8 +351,8 @@ class ButtonService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::button::v1::PushRequest, ::viam::component::button::v1::PushResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::component::button::v1::PushRequest, ::viam::component::button::v1::PushResponse>* streamer) {
                        return this->StreamedPush(context,
                          streamer);
@@ -498,8 +378,8 @@ class ButtonService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);
