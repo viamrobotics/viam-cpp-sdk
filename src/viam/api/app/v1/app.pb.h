@@ -1325,6 +1325,32 @@ inline bool Visibility_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Visibility>(
     Visibility_descriptor(), name, value);
 }
+enum AppType : int {
+  APP_TYPE_UNSPECIFIED = 0,
+  APP_TYPE_SINGLE_MACHINE = 1,
+  APP_TYPE_MULTI_MACHINE = 2,
+  AppType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  AppType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool AppType_IsValid(int value);
+constexpr AppType AppType_MIN = APP_TYPE_UNSPECIFIED;
+constexpr AppType AppType_MAX = APP_TYPE_MULTI_MACHINE;
+constexpr int AppType_ARRAYSIZE = AppType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* AppType_descriptor();
+template<typename T>
+inline const std::string& AppType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, AppType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function AppType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    AppType_descriptor(), enum_t_value);
+}
+inline bool AppType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, AppType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<AppType>(
+    AppType_descriptor(), name, value);
+}
 enum ClientAuthentication : int {
   CLIENT_AUTHENTICATION_UNSPECIFIED = 0,
   CLIENT_AUTHENTICATION_REQUIRED = 1,
@@ -43337,6 +43363,7 @@ class GetAppContentResponse final :
   enum : int {
     kBlobPathFieldNumber = 1,
     kEntrypointFieldNumber = 2,
+    kAppTypeFieldNumber = 3,
   };
   // string blob_path = 1 [json_name = "blobPath"];
   void clear_blob_path();
@@ -43366,6 +43393,15 @@ class GetAppContentResponse final :
   std::string* _internal_mutable_entrypoint();
   public:
 
+  // .viam.app.v1.AppType app_type = 3 [json_name = "appType"];
+  void clear_app_type();
+  ::viam::app::v1::AppType app_type() const;
+  void set_app_type(::viam::app::v1::AppType value);
+  private:
+  ::viam::app::v1::AppType _internal_app_type() const;
+  void _internal_set_app_type(::viam::app::v1::AppType value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetAppContentResponse)
  private:
   class _Internal;
@@ -43375,6 +43411,7 @@ class GetAppContentResponse final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr blob_path_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
+  int app_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -78161,6 +78198,26 @@ inline void GetAppContentResponse::set_allocated_entrypoint(std::string* entrypo
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetAppContentResponse.entrypoint)
 }
 
+// .viam.app.v1.AppType app_type = 3 [json_name = "appType"];
+inline void GetAppContentResponse::clear_app_type() {
+  app_type_ = 0;
+}
+inline ::viam::app::v1::AppType GetAppContentResponse::_internal_app_type() const {
+  return static_cast< ::viam::app::v1::AppType >(app_type_);
+}
+inline ::viam::app::v1::AppType GetAppContentResponse::app_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetAppContentResponse.app_type)
+  return _internal_app_type();
+}
+inline void GetAppContentResponse::_internal_set_app_type(::viam::app::v1::AppType value) {
+  
+  app_type_ = value;
+}
+inline void GetAppContentResponse::set_app_type(::viam::app::v1::AppType value) {
+  _internal_set_app_type(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetAppContentResponse.app_type)
+}
+
 // -------------------------------------------------------------------
 
 // OrganizationSetLogoRequest
@@ -81023,6 +81080,11 @@ template <> struct is_proto_enum< ::viam::app::v1::Visibility> : ::std::true_typ
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::Visibility>() {
   return ::viam::app::v1::Visibility_descriptor();
+}
+template <> struct is_proto_enum< ::viam::app::v1::AppType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::AppType>() {
+  return ::viam::app::v1::AppType_descriptor();
 }
 template <> struct is_proto_enum< ::viam::app::v1::ClientAuthentication> : ::std::true_type {};
 template <>

@@ -6,19 +6,19 @@
 #include "service/discovery/v1/discovery.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/channel_interface.h>
-#include <grpcpp/impl/codegen/client_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
-#include <grpcpp/impl/codegen/rpc_service_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/impl/channel_interface.h>
+#include <grpcpp/impl/client_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/rpc_service_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/sync_stream.h>
 namespace viam {
 namespace service {
 namespace discovery {
@@ -31,78 +31,68 @@ static const char* DiscoveryService_method_names[] = {
 
 std::unique_ptr< DiscoveryService::Stub> DiscoveryService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< DiscoveryService::Stub> stub(new DiscoveryService::Stub(channel));
+  std::unique_ptr< DiscoveryService::Stub> stub(new DiscoveryService::Stub(channel, options));
   return stub;
 }
 
-DiscoveryService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_DiscoverResources_(DiscoveryService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(DiscoveryService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+DiscoveryService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_DiscoverResources_(DiscoveryService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(DiscoveryService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status DiscoveryService::Stub::DiscoverResources(::grpc::ClientContext* context, const ::viam::service::discovery::v1::DiscoverResourcesRequest& request, ::viam::service::discovery::v1::DiscoverResourcesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DiscoverResources_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::service::discovery::v1::DiscoverResourcesRequest, ::viam::service::discovery::v1::DiscoverResourcesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DiscoverResources_, context, request, response);
 }
 
-void DiscoveryService::Stub::experimental_async::DiscoverResources(::grpc::ClientContext* context, const ::viam::service::discovery::v1::DiscoverResourcesRequest* request, ::viam::service::discovery::v1::DiscoverResourcesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DiscoverResources_, context, request, response, std::move(f));
+void DiscoveryService::Stub::async::DiscoverResources(::grpc::ClientContext* context, const ::viam::service::discovery::v1::DiscoverResourcesRequest* request, ::viam::service::discovery::v1::DiscoverResourcesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::service::discovery::v1::DiscoverResourcesRequest, ::viam::service::discovery::v1::DiscoverResourcesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DiscoverResources_, context, request, response, std::move(f));
 }
 
-void DiscoveryService::Stub::experimental_async::DiscoverResources(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::discovery::v1::DiscoverResourcesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DiscoverResources_, context, request, response, std::move(f));
-}
-
-void DiscoveryService::Stub::experimental_async::DiscoverResources(::grpc::ClientContext* context, const ::viam::service::discovery::v1::DiscoverResourcesRequest* request, ::viam::service::discovery::v1::DiscoverResourcesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DiscoverResources_, context, request, response, reactor);
-}
-
-void DiscoveryService::Stub::experimental_async::DiscoverResources(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::discovery::v1::DiscoverResourcesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DiscoverResources_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::service::discovery::v1::DiscoverResourcesResponse>* DiscoveryService::Stub::AsyncDiscoverResourcesRaw(::grpc::ClientContext* context, const ::viam::service::discovery::v1::DiscoverResourcesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::discovery::v1::DiscoverResourcesResponse>::Create(channel_.get(), cq, rpcmethod_DiscoverResources_, context, request, true);
+void DiscoveryService::Stub::async::DiscoverResources(::grpc::ClientContext* context, const ::viam::service::discovery::v1::DiscoverResourcesRequest* request, ::viam::service::discovery::v1::DiscoverResourcesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DiscoverResources_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::service::discovery::v1::DiscoverResourcesResponse>* DiscoveryService::Stub::PrepareAsyncDiscoverResourcesRaw(::grpc::ClientContext* context, const ::viam::service::discovery::v1::DiscoverResourcesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::service::discovery::v1::DiscoverResourcesResponse>::Create(channel_.get(), cq, rpcmethod_DiscoverResources_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::service::discovery::v1::DiscoverResourcesResponse, ::viam::service::discovery::v1::DiscoverResourcesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DiscoverResources_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::service::discovery::v1::DiscoverResourcesResponse>* DiscoveryService::Stub::AsyncDiscoverResourcesRaw(::grpc::ClientContext* context, const ::viam::service::discovery::v1::DiscoverResourcesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDiscoverResourcesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status DiscoveryService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void DiscoveryService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void DiscoveryService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void DiscoveryService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
-}
-
-void DiscoveryService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
-}
-
-void DiscoveryService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* DiscoveryService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, true);
+void DiscoveryService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* DiscoveryService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* DiscoveryService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDoCommandRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 DiscoveryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DiscoveryService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< DiscoveryService::Service, ::viam::service::discovery::v1::DiscoverResourcesRequest, ::viam::service::discovery::v1::DiscoverResourcesResponse>(
+      new ::grpc::internal::RpcMethodHandler< DiscoveryService::Service, ::viam::service::discovery::v1::DiscoverResourcesRequest, ::viam::service::discovery::v1::DiscoverResourcesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DiscoveryService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::service::discovery::v1::DiscoverResourcesRequest* req,
              ::viam::service::discovery::v1::DiscoverResourcesResponse* resp) {
                return service->DiscoverResources(ctx, req, resp);
@@ -110,9 +100,9 @@ DiscoveryService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DiscoveryService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< DiscoveryService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+      new ::grpc::internal::RpcMethodHandler< DiscoveryService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DiscoveryService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::common::v1::DoCommandRequest* req,
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
