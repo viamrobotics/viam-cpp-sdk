@@ -114,23 +114,23 @@ BOOST_AUTO_TEST_CASE(test_frame_system_config) {
             auto proto1 = protos[0];
             auto proto2 = protos[1];
 
-            BOOST_CHECK_EQUAL(config1.frame.reference_frame, proto1.frame().reference_frame());
-            BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.coordinates.x,
-                              proto1.frame().pose_in_observer_frame().pose().x());
-            BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.orientation.o_x,
-                              proto1.frame().pose_in_observer_frame().pose().o_x());
-            BOOST_CHECK_EQUAL(config1.frame.pose_in_observer_frame.pose.theta,
-                              proto1.frame().pose_in_observer_frame().pose().theta());
+            BOOST_CHECK_EQUAL(config1.frame.name, proto1.frame().name());
+            BOOST_CHECK_EQUAL(config1.frame.pose.coordinates.x,
+                              proto1.frame().pose().x());
+            BOOST_CHECK_EQUAL(config1.frame.pose.orientation.o_x,
+                              proto1.frame().pose().o_x());
+            BOOST_CHECK_EQUAL(config1.frame.pose.theta,
+                              proto1.frame().pose().theta());
             BOOST_CHECK_EQUAL(to_proto(config1.kinematics).SerializeAsString(),
                               proto1.kinematics().SerializeAsString());
 
-            BOOST_CHECK_EQUAL(config2.frame.reference_frame, proto2.frame().reference_frame());
-            BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.coordinates.x,
-                              proto2.frame().pose_in_observer_frame().pose().x());
-            BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.orientation.o_x,
-                              proto2.frame().pose_in_observer_frame().pose().o_x());
-            BOOST_CHECK_EQUAL(config2.frame.pose_in_observer_frame.pose.theta,
-                              proto2.frame().pose_in_observer_frame().pose().theta());
+            BOOST_CHECK_EQUAL(config2.frame.name, proto2.frame().name());
+            BOOST_CHECK_EQUAL(config2.frame.pose.coordinates.x,
+                              proto2.frame().pose().x());
+            BOOST_CHECK_EQUAL(config2.frame.pose.orientation.o_x,
+                              proto2.frame().pose().o_x());
+            BOOST_CHECK_EQUAL(config2.frame.pose.theta,
+                              proto2.frame().pose().theta());
             BOOST_CHECK_EQUAL(to_proto(config2.kinematics).SerializeAsString(),
                               proto2.kinematics().SerializeAsString());
         });
