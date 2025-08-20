@@ -621,8 +621,34 @@ class GetImagesRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kFilterSourceNamesFieldNumber = 2,
     kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
   };
+  // repeated string filter_source_names = 2 [json_name = "filterSourceNames"];
+  int filter_source_names_size() const;
+  private:
+  int _internal_filter_source_names_size() const;
+  public:
+  void clear_filter_source_names();
+  const std::string& filter_source_names(int index) const;
+  std::string* mutable_filter_source_names(int index);
+  void set_filter_source_names(int index, const std::string& value);
+  void set_filter_source_names(int index, std::string&& value);
+  void set_filter_source_names(int index, const char* value);
+  void set_filter_source_names(int index, const char* value, size_t size);
+  std::string* add_filter_source_names();
+  void add_filter_source_names(const std::string& value);
+  void add_filter_source_names(std::string&& value);
+  void add_filter_source_names(const char* value);
+  void add_filter_source_names(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& filter_source_names() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_filter_source_names();
+  private:
+  const std::string& _internal_filter_source_names(int index) const;
+  std::string* _internal_add_filter_source_names();
+  public:
+
   // string name = 1 [json_name = "name"];
   void clear_name();
   const std::string& name() const;
@@ -637,6 +663,24 @@ class GetImagesRequest final :
   std::string* _internal_mutable_name();
   public:
 
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
   // @@protoc_insertion_point(class_scope:viam.component.camera.v1.GetImagesRequest)
  private:
   class _Internal;
@@ -644,7 +688,9 @@ class GetImagesRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> filter_source_names_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
 };
@@ -943,6 +989,7 @@ class Image final :
   enum : int {
     kSourceNameFieldNumber = 1,
     kImageFieldNumber = 3,
+    kMimeTypeFieldNumber = 4,
     kFormatFieldNumber = 2,
   };
   // string source_name = 1 [json_name = "sourceName"];
@@ -973,6 +1020,20 @@ class Image final :
   std::string* _internal_mutable_image();
   public:
 
+  // string mime_type = 4 [json_name = "mimeType"];
+  void clear_mime_type();
+  const std::string& mime_type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_mime_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_mime_type();
+  PROTOBUF_NODISCARD std::string* release_mime_type();
+  void set_allocated_mime_type(std::string* mime_type);
+  private:
+  const std::string& _internal_mime_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mime_type(const std::string& value);
+  std::string* _internal_mutable_mime_type();
+  public:
+
   // .viam.component.camera.v1.Format format = 2 [json_name = "format"];
   void clear_format();
   ::viam::component::camera::v1::Format format() const;
@@ -991,6 +1052,7 @@ class Image final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr source_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr image_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mime_type_;
   int format_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
@@ -3173,6 +3235,166 @@ inline void GetImagesRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetImagesRequest.name)
 }
 
+// repeated string filter_source_names = 2 [json_name = "filterSourceNames"];
+inline int GetImagesRequest::_internal_filter_source_names_size() const {
+  return filter_source_names_.size();
+}
+inline int GetImagesRequest::filter_source_names_size() const {
+  return _internal_filter_source_names_size();
+}
+inline void GetImagesRequest::clear_filter_source_names() {
+  filter_source_names_.Clear();
+}
+inline std::string* GetImagesRequest::add_filter_source_names() {
+  std::string* _s = _internal_add_filter_source_names();
+  // @@protoc_insertion_point(field_add_mutable:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+  return _s;
+}
+inline const std::string& GetImagesRequest::_internal_filter_source_names(int index) const {
+  return filter_source_names_.Get(index);
+}
+inline const std::string& GetImagesRequest::filter_source_names(int index) const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+  return _internal_filter_source_names(index);
+}
+inline std::string* GetImagesRequest::mutable_filter_source_names(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+  return filter_source_names_.Mutable(index);
+}
+inline void GetImagesRequest::set_filter_source_names(int index, const std::string& value) {
+  filter_source_names_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+}
+inline void GetImagesRequest::set_filter_source_names(int index, std::string&& value) {
+  filter_source_names_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+}
+inline void GetImagesRequest::set_filter_source_names(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  filter_source_names_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+}
+inline void GetImagesRequest::set_filter_source_names(int index, const char* value, size_t size) {
+  filter_source_names_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+}
+inline std::string* GetImagesRequest::_internal_add_filter_source_names() {
+  return filter_source_names_.Add();
+}
+inline void GetImagesRequest::add_filter_source_names(const std::string& value) {
+  filter_source_names_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+}
+inline void GetImagesRequest::add_filter_source_names(std::string&& value) {
+  filter_source_names_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+}
+inline void GetImagesRequest::add_filter_source_names(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  filter_source_names_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+}
+inline void GetImagesRequest::add_filter_source_names(const char* value, size_t size) {
+  filter_source_names_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetImagesRequest::filter_source_names() const {
+  // @@protoc_insertion_point(field_list:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+  return filter_source_names_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetImagesRequest::mutable_filter_source_names() {
+  // @@protoc_insertion_point(field_mutable_list:viam.component.camera.v1.GetImagesRequest.filter_source_names)
+  return &filter_source_names_;
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetImagesRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetImagesRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetImagesRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetImagesRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetImagesRequest.extra)
+  return _internal_extra();
+}
+inline void GetImagesRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.camera.v1.GetImagesRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetImagesRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetImagesRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.component.camera.v1.GetImagesRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetImagesRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetImagesRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetImagesRequest.extra)
+  return _msg;
+}
+inline void GetImagesRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetImagesRequest.extra)
+}
+
 // -------------------------------------------------------------------
 
 // GetImagesResponse
@@ -3424,6 +3646,56 @@ inline void Image::set_allocated_image(std::string* image) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.Image.image)
+}
+
+// string mime_type = 4 [json_name = "mimeType"];
+inline void Image::clear_mime_type() {
+  mime_type_.ClearToEmpty();
+}
+inline const std::string& Image::mime_type() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.Image.mime_type)
+  return _internal_mime_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Image::set_mime_type(ArgT0&& arg0, ArgT... args) {
+ 
+ mime_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.component.camera.v1.Image.mime_type)
+}
+inline std::string* Image::mutable_mime_type() {
+  std::string* _s = _internal_mutable_mime_type();
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.Image.mime_type)
+  return _s;
+}
+inline const std::string& Image::_internal_mime_type() const {
+  return mime_type_.Get();
+}
+inline void Image::_internal_set_mime_type(const std::string& value) {
+  
+  mime_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Image::_internal_mutable_mime_type() {
+  
+  return mime_type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Image::release_mime_type() {
+  // @@protoc_insertion_point(field_release:viam.component.camera.v1.Image.mime_type)
+  return mime_type_.Release();
+}
+inline void Image::set_allocated_mime_type(std::string* mime_type) {
+  if (mime_type != nullptr) {
+    
+  } else {
+    
+  }
+  mime_type_.SetAllocated(mime_type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (mime_type_.IsDefault()) {
+    mime_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.Image.mime_type)
 }
 
 // -------------------------------------------------------------------

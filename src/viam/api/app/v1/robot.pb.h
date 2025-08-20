@@ -6004,6 +6004,7 @@ class RemoteConfig final :
     kAddressFieldNumber = 2,
     kManagedByFieldNumber = 5,
     kSecretFieldNumber = 10,
+    kPrefixFieldNumber = 11,
     kFrameFieldNumber = 3,
     kAuthFieldNumber = 4,
     kConnectionCheckIntervalFieldNumber = 7,
@@ -6082,6 +6083,20 @@ class RemoteConfig final :
   const std::string& _internal_secret() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_secret(const std::string& value);
   std::string* _internal_mutable_secret();
+  public:
+
+  // string prefix = 11 [json_name = "prefix"];
+  void clear_prefix();
+  const std::string& prefix() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_prefix(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_prefix();
+  PROTOBUF_NODISCARD std::string* release_prefix();
+  void set_allocated_prefix(std::string* prefix);
+  private:
+  const std::string& _internal_prefix() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_prefix(const std::string& value);
+  std::string* _internal_mutable_prefix();
   public:
 
   // .viam.app.v1.Frame frame = 3 [json_name = "frame"];
@@ -6177,6 +6192,7 @@ class RemoteConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr address_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr managed_by_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr secret_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr prefix_;
   ::viam::app::v1::Frame* frame_;
   ::viam::app::v1::RemoteAuth* auth_;
   ::PROTOBUF_NAMESPACE_ID::Duration* connection_check_interval_;
@@ -15471,6 +15487,56 @@ inline void RemoteConfig::set_allocated_secret(std::string* secret) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RemoteConfig.secret)
+}
+
+// string prefix = 11 [json_name = "prefix"];
+inline void RemoteConfig::clear_prefix() {
+  prefix_.ClearToEmpty();
+}
+inline const std::string& RemoteConfig::prefix() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RemoteConfig.prefix)
+  return _internal_prefix();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RemoteConfig::set_prefix(ArgT0&& arg0, ArgT... args) {
+ 
+ prefix_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RemoteConfig.prefix)
+}
+inline std::string* RemoteConfig::mutable_prefix() {
+  std::string* _s = _internal_mutable_prefix();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RemoteConfig.prefix)
+  return _s;
+}
+inline const std::string& RemoteConfig::_internal_prefix() const {
+  return prefix_.Get();
+}
+inline void RemoteConfig::_internal_set_prefix(const std::string& value) {
+  
+  prefix_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RemoteConfig::_internal_mutable_prefix() {
+  
+  return prefix_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RemoteConfig::release_prefix() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RemoteConfig.prefix)
+  return prefix_.Release();
+}
+inline void RemoteConfig::set_allocated_prefix(std::string* prefix) {
+  if (prefix != nullptr) {
+    
+  } else {
+    
+  }
+  prefix_.SetAllocated(prefix, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (prefix_.IsDefault()) {
+    prefix_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RemoteConfig.prefix)
 }
 
 // -------------------------------------------------------------------

@@ -7,24 +7,23 @@
 #include "app/mltraining/v1/ml_training.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace viam {
 namespace app {
@@ -95,109 +94,35 @@ class MLTrainingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>> PrepareAsyncGetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>>(PrepareAsyncGetTrainingJobLogsRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       // SubmitTrainingJob submits a training job request.
       virtual void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SubmitTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SubmitTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void SubmitTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // SubmitCustomTrainingJob submits a custom training job request.
       virtual void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetTrainingJob retrieves a training job by its ID.
       virtual void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobRequest* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobRequest* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobRequest* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // ListTrainingJobs lists training jobs for a given organization ID and training status.
       virtual void ListTrainingJobs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ListTrainingJobs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void ListTrainingJobs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void ListTrainingJobs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void ListTrainingJobs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void ListTrainingJobs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // CancelTrainingJob cancels a training job that has not yet completed.
       virtual void CancelTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CancelTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void CancelTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void CancelTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void CancelTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void CancelTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // DeleteCompletedTrainingJob removes a completed training job from the database, whether the job succeeded or failed.
       virtual void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetTrainingJobLogs gets the logs for a given custom training job.
       virtual void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetTrainingJobLogs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetTrainingJobLogs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetTrainingJobLogs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::SubmitTrainingJobResponse>* AsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::SubmitTrainingJobResponse>* PrepareAsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>* AsyncSubmitCustomTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -215,7 +140,7 @@ class MLTrainingService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::SubmitTrainingJobResponse>> AsyncSubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::SubmitTrainingJobResponse>>(AsyncSubmitTrainingJobRaw(context, request, cq));
@@ -265,104 +190,34 @@ class MLTrainingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>> PrepareAsyncGetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>>(PrepareAsyncGetTrainingJobLogsRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
       void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      void SubmitTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SubmitTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void SubmitTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void SubmitCustomTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobRequest* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobRequest* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobRequest* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void ListTrainingJobs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, std::function<void(::grpc::Status)>) override;
-      void ListTrainingJobs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void ListTrainingJobs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void ListTrainingJobs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void ListTrainingJobs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void ListTrainingJobs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void CancelTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      void CancelTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void CancelTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void CancelTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void CancelTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void CancelTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetTrainingJobLogs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetTrainingJobLogs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetTrainingJobLogs(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::SubmitTrainingJobResponse>* AsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::SubmitTrainingJobResponse>* PrepareAsyncSubmitTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>* AsyncSubmitCustomTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -548,36 +403,22 @@ class MLTrainingService final {
   };
   typedef WithAsyncMethod_SubmitTrainingJob<WithAsyncMethod_SubmitCustomTrainingJob<WithAsyncMethod_GetTrainingJob<WithAsyncMethod_ListTrainingJobs<WithAsyncMethod_CancelTrainingJob<WithAsyncMethod_DeleteCompletedTrainingJob<WithAsyncMethod_GetTrainingJobLogs<Service > > > > > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_SubmitTrainingJob : public BaseClass {
+  class WithCallbackMethod_SubmitTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_SubmitTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::SubmitTrainingJobRequest, ::viam::app::mltraining::v1::SubmitTrainingJobResponse>(
+    WithCallbackMethod_SubmitTrainingJob() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::SubmitTrainingJobRequest, ::viam::app::mltraining::v1::SubmitTrainingJobResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response) { return this->SubmitTrainingJob(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response) { return this->SubmitTrainingJob(context, request, response); }));}
     void SetMessageAllocatorFor_SubmitTrainingJob(
-        ::grpc::experimental::MessageAllocator< ::viam::app::mltraining::v1::SubmitTrainingJobRequest, ::viam::app::mltraining::v1::SubmitTrainingJobResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::mltraining::v1::SubmitTrainingJobRequest, ::viam::app::mltraining::v1::SubmitTrainingJobResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::SubmitTrainingJobRequest, ::viam::app::mltraining::v1::SubmitTrainingJobResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::SubmitTrainingJobRequest, ::viam::app::mltraining::v1::SubmitTrainingJobResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_SubmitTrainingJob() override {
+    ~WithCallbackMethod_SubmitTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -585,46 +426,26 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SubmitTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* SubmitTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_SubmitCustomTrainingJob : public BaseClass {
+  class WithCallbackMethod_SubmitCustomTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_SubmitCustomTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>(
+    WithCallbackMethod_SubmitCustomTrainingJob() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response) { return this->SubmitCustomTrainingJob(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* request, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* response) { return this->SubmitCustomTrainingJob(context, request, response); }));}
     void SetMessageAllocatorFor_SubmitCustomTrainingJob(
-        ::grpc::experimental::MessageAllocator< ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_SubmitCustomTrainingJob() override {
+    ~WithCallbackMethod_SubmitCustomTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -632,46 +453,26 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SubmitCustomTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* SubmitCustomTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetTrainingJob : public BaseClass {
+  class WithCallbackMethod_GetTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetTrainingJobRequest, ::viam::app::mltraining::v1::GetTrainingJobResponse>(
+    WithCallbackMethod_GetTrainingJob() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetTrainingJobRequest, ::viam::app::mltraining::v1::GetTrainingJobResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::mltraining::v1::GetTrainingJobRequest* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response) { return this->GetTrainingJob(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::GetTrainingJobRequest* request, ::viam::app::mltraining::v1::GetTrainingJobResponse* response) { return this->GetTrainingJob(context, request, response); }));}
     void SetMessageAllocatorFor_GetTrainingJob(
-        ::grpc::experimental::MessageAllocator< ::viam::app::mltraining::v1::GetTrainingJobRequest, ::viam::app::mltraining::v1::GetTrainingJobResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::mltraining::v1::GetTrainingJobRequest, ::viam::app::mltraining::v1::GetTrainingJobResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetTrainingJobRequest, ::viam::app::mltraining::v1::GetTrainingJobResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetTrainingJobRequest, ::viam::app::mltraining::v1::GetTrainingJobResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetTrainingJob() override {
+    ~WithCallbackMethod_GetTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -679,46 +480,26 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::GetTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::GetTrainingJobResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::GetTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::GetTrainingJobResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::GetTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::GetTrainingJobResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_ListTrainingJobs : public BaseClass {
+  class WithCallbackMethod_ListTrainingJobs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_ListTrainingJobs() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::ListTrainingJobsRequest, ::viam::app::mltraining::v1::ListTrainingJobsResponse>(
+    WithCallbackMethod_ListTrainingJobs() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::ListTrainingJobsRequest, ::viam::app::mltraining::v1::ListTrainingJobsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response) { return this->ListTrainingJobs(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* request, ::viam::app::mltraining::v1::ListTrainingJobsResponse* response) { return this->ListTrainingJobs(context, request, response); }));}
     void SetMessageAllocatorFor_ListTrainingJobs(
-        ::grpc::experimental::MessageAllocator< ::viam::app::mltraining::v1::ListTrainingJobsRequest, ::viam::app::mltraining::v1::ListTrainingJobsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::mltraining::v1::ListTrainingJobsRequest, ::viam::app::mltraining::v1::ListTrainingJobsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::ListTrainingJobsRequest, ::viam::app::mltraining::v1::ListTrainingJobsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::ListTrainingJobsRequest, ::viam::app::mltraining::v1::ListTrainingJobsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_ListTrainingJobs() override {
+    ~WithCallbackMethod_ListTrainingJobs() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -726,46 +507,26 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ListTrainingJobs(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* /*request*/, ::viam::app::mltraining::v1::ListTrainingJobsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* ListTrainingJobs(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* /*request*/, ::viam::app::mltraining::v1::ListTrainingJobsResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::ListTrainingJobsRequest* /*request*/, ::viam::app::mltraining::v1::ListTrainingJobsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_CancelTrainingJob : public BaseClass {
+  class WithCallbackMethod_CancelTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_CancelTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::CancelTrainingJobRequest, ::viam::app::mltraining::v1::CancelTrainingJobResponse>(
+    WithCallbackMethod_CancelTrainingJob() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::CancelTrainingJobRequest, ::viam::app::mltraining::v1::CancelTrainingJobResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response) { return this->CancelTrainingJob(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* request, ::viam::app::mltraining::v1::CancelTrainingJobResponse* response) { return this->CancelTrainingJob(context, request, response); }));}
     void SetMessageAllocatorFor_CancelTrainingJob(
-        ::grpc::experimental::MessageAllocator< ::viam::app::mltraining::v1::CancelTrainingJobRequest, ::viam::app::mltraining::v1::CancelTrainingJobResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::mltraining::v1::CancelTrainingJobRequest, ::viam::app::mltraining::v1::CancelTrainingJobResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::CancelTrainingJobRequest, ::viam::app::mltraining::v1::CancelTrainingJobResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::CancelTrainingJobRequest, ::viam::app::mltraining::v1::CancelTrainingJobResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_CancelTrainingJob() override {
+    ~WithCallbackMethod_CancelTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -773,46 +534,26 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* CancelTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::CancelTrainingJobResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* CancelTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::CancelTrainingJobResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::CancelTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::CancelTrainingJobResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_DeleteCompletedTrainingJob : public BaseClass {
+  class WithCallbackMethod_DeleteCompletedTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_DeleteCompletedTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>(
+    WithCallbackMethod_DeleteCompletedTrainingJob() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response) { return this->DeleteCompletedTrainingJob(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response) { return this->DeleteCompletedTrainingJob(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteCompletedTrainingJob(
-        ::grpc::experimental::MessageAllocator< ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_DeleteCompletedTrainingJob() override {
+    ~WithCallbackMethod_DeleteCompletedTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -820,46 +561,26 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DeleteCompletedTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DeleteCompletedTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* /*request*/, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetTrainingJobLogs : public BaseClass {
+  class WithCallbackMethod_GetTrainingJobLogs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetTrainingJobLogs() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetTrainingJobLogsRequest, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>(
+    WithCallbackMethod_GetTrainingJobLogs() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetTrainingJobLogsRequest, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response) { return this->GetTrainingJobLogs(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response) { return this->GetTrainingJobLogs(context, request, response); }));}
     void SetMessageAllocatorFor_GetTrainingJobLogs(
-        ::grpc::experimental::MessageAllocator< ::viam::app::mltraining::v1::GetTrainingJobLogsRequest, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::mltraining::v1::GetTrainingJobLogsRequest, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetTrainingJobLogsRequest, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::GetTrainingJobLogsRequest, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetTrainingJobLogs() override {
+    ~WithCallbackMethod_GetTrainingJobLogs() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -867,20 +588,11 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetTrainingJobLogs(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* /*request*/, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetTrainingJobLogs(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* /*request*/, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* /*request*/, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_SubmitTrainingJob<ExperimentalWithCallbackMethod_SubmitCustomTrainingJob<ExperimentalWithCallbackMethod_GetTrainingJob<ExperimentalWithCallbackMethod_ListTrainingJobs<ExperimentalWithCallbackMethod_CancelTrainingJob<ExperimentalWithCallbackMethod_DeleteCompletedTrainingJob<ExperimentalWithCallbackMethod_GetTrainingJobLogs<Service > > > > > > > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_SubmitTrainingJob<ExperimentalWithCallbackMethod_SubmitCustomTrainingJob<ExperimentalWithCallbackMethod_GetTrainingJob<ExperimentalWithCallbackMethod_ListTrainingJobs<ExperimentalWithCallbackMethod_CancelTrainingJob<ExperimentalWithCallbackMethod_DeleteCompletedTrainingJob<ExperimentalWithCallbackMethod_GetTrainingJobLogs<Service > > > > > > > ExperimentalCallbackService;
+  typedef WithCallbackMethod_SubmitTrainingJob<WithCallbackMethod_SubmitCustomTrainingJob<WithCallbackMethod_GetTrainingJob<WithCallbackMethod_ListTrainingJobs<WithCallbackMethod_CancelTrainingJob<WithCallbackMethod_DeleteCompletedTrainingJob<WithCallbackMethod_GetTrainingJobLogs<Service > > > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SubmitTrainingJob : public BaseClass {
    private:
@@ -1141,27 +853,17 @@ class MLTrainingService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_SubmitTrainingJob : public BaseClass {
+  class WithRawCallbackMethod_SubmitTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_SubmitTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_SubmitTrainingJob() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SubmitTrainingJob(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SubmitTrainingJob(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_SubmitTrainingJob() override {
+    ~WithRawCallbackMethod_SubmitTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1169,37 +871,21 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SubmitTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* SubmitTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_SubmitCustomTrainingJob : public BaseClass {
+  class WithRawCallbackMethod_SubmitCustomTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_SubmitCustomTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_SubmitCustomTrainingJob() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SubmitCustomTrainingJob(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SubmitCustomTrainingJob(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_SubmitCustomTrainingJob() override {
+    ~WithRawCallbackMethod_SubmitCustomTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1207,37 +893,21 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SubmitCustomTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* SubmitCustomTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetTrainingJob : public BaseClass {
+  class WithRawCallbackMethod_GetTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetTrainingJob() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTrainingJob(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTrainingJob(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetTrainingJob() override {
+    ~WithRawCallbackMethod_GetTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1245,37 +915,21 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_ListTrainingJobs : public BaseClass {
+  class WithRawCallbackMethod_ListTrainingJobs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_ListTrainingJobs() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_ListTrainingJobs() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListTrainingJobs(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListTrainingJobs(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_ListTrainingJobs() override {
+    ~WithRawCallbackMethod_ListTrainingJobs() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1283,37 +937,21 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* ListTrainingJobs(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* ListTrainingJobs(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_CancelTrainingJob : public BaseClass {
+  class WithRawCallbackMethod_CancelTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_CancelTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_CancelTrainingJob() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CancelTrainingJob(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CancelTrainingJob(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_CancelTrainingJob() override {
+    ~WithRawCallbackMethod_CancelTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1321,37 +959,21 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* CancelTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* CancelTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_DeleteCompletedTrainingJob : public BaseClass {
+  class WithRawCallbackMethod_DeleteCompletedTrainingJob : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_DeleteCompletedTrainingJob() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_DeleteCompletedTrainingJob() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteCompletedTrainingJob(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteCompletedTrainingJob(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_DeleteCompletedTrainingJob() override {
+    ~WithRawCallbackMethod_DeleteCompletedTrainingJob() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1359,37 +981,21 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DeleteCompletedTrainingJob(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DeleteCompletedTrainingJob(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetTrainingJobLogs : public BaseClass {
+  class WithRawCallbackMethod_GetTrainingJobLogs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetTrainingJobLogs() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetTrainingJobLogs() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTrainingJobLogs(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTrainingJobLogs(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetTrainingJobLogs() override {
+    ~WithRawCallbackMethod_GetTrainingJobLogs() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1397,14 +1003,8 @@ class MLTrainingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetTrainingJobLogs(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetTrainingJobLogs(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_SubmitTrainingJob : public BaseClass {
@@ -1415,8 +1015,8 @@ class MLTrainingService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::mltraining::v1::SubmitTrainingJobRequest, ::viam::app::mltraining::v1::SubmitTrainingJobResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::mltraining::v1::SubmitTrainingJobRequest, ::viam::app::mltraining::v1::SubmitTrainingJobResponse>* streamer) {
                        return this->StreamedSubmitTrainingJob(context,
                          streamer);
@@ -1442,8 +1042,8 @@ class MLTrainingService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, ::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse>* streamer) {
                        return this->StreamedSubmitCustomTrainingJob(context,
                          streamer);
@@ -1469,8 +1069,8 @@ class MLTrainingService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::mltraining::v1::GetTrainingJobRequest, ::viam::app::mltraining::v1::GetTrainingJobResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::mltraining::v1::GetTrainingJobRequest, ::viam::app::mltraining::v1::GetTrainingJobResponse>* streamer) {
                        return this->StreamedGetTrainingJob(context,
                          streamer);
@@ -1496,8 +1096,8 @@ class MLTrainingService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::mltraining::v1::ListTrainingJobsRequest, ::viam::app::mltraining::v1::ListTrainingJobsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::mltraining::v1::ListTrainingJobsRequest, ::viam::app::mltraining::v1::ListTrainingJobsResponse>* streamer) {
                        return this->StreamedListTrainingJobs(context,
                          streamer);
@@ -1523,8 +1123,8 @@ class MLTrainingService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::mltraining::v1::CancelTrainingJobRequest, ::viam::app::mltraining::v1::CancelTrainingJobResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::mltraining::v1::CancelTrainingJobRequest, ::viam::app::mltraining::v1::CancelTrainingJobResponse>* streamer) {
                        return this->StreamedCancelTrainingJob(context,
                          streamer);
@@ -1550,8 +1150,8 @@ class MLTrainingService final {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>* streamer) {
                        return this->StreamedDeleteCompletedTrainingJob(context,
                          streamer);
@@ -1577,8 +1177,8 @@ class MLTrainingService final {
       ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::mltraining::v1::GetTrainingJobLogsRequest, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::mltraining::v1::GetTrainingJobLogsRequest, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>* streamer) {
                        return this->StreamedGetTrainingJobLogs(context,
                          streamer);

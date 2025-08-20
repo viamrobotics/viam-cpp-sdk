@@ -7,24 +7,23 @@
 #include "app/v1/billing.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace viam {
 namespace app {
@@ -96,102 +95,45 @@ class BillingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateOrganizationBillingTierResponse>> PrepareAsyncUpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateOrganizationBillingTierResponse>>(PrepareAsyncUpdateOrganizationBillingTierRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    // Directly create a flat fee invoice for an organization and charge on the spot
+    virtual ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>> AsyncCreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>>(AsyncCreateInvoiceAndChargeImmediatelyRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>> PrepareAsyncCreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>>(PrepareAsyncCreateInvoiceAndChargeImmediatelyRaw(context, request, cq));
+    }
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       // Detailed breakdown of current month's costs
       virtual void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // Org-level information (like billing email and payment details)
       virtual void GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetOrgBillingInformation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetOrgBillingInformation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetOrgBillingInformation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // Total outstanding balance and previous invoices
       virtual void GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetInvoicesSummary(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetInvoicesSummary(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetInvoicesSummary(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // Download a PDF invoice
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetInvoicePdf(::grpc::ClientContext* context, ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) = 0;
-      #else
-      virtual void GetInvoicePdf(::grpc::ClientContext* context, ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) = 0;
-      #endif
+      virtual void GetInvoicePdf(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) = 0;
       // Send an email with a prompt to the user's org's billing page.
       virtual void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // Get available billing tiers that can be assigned to organizations
       virtual void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // Update an organization's billing tier
       virtual void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
+      // Directly create a flat fee invoice for an organization and charge on the spot
+      virtual void CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageResponse>* AsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetCurrentMonthUsageResponse>* PrepareAsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetOrgBillingInformationResponse>* AsyncGetOrgBillingInformationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -207,10 +149,12 @@ class BillingService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetAvailableBillingTiersResponse>* PrepareAsyncGetAvailableBillingTiersRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* AsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* PrepareAsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* AsyncCreateInvoiceAndChargeImmediatelyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* PrepareAsyncCreateInvoiceAndChargeImmediatelyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>> AsyncGetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>>(AsyncGetCurrentMonthUsageRaw(context, request, cq));
@@ -262,97 +206,42 @@ class BillingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>> PrepareAsyncUpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>>(PrepareAsyncUpdateOrganizationBillingTierRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>> AsyncCreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>>(AsyncCreateInvoiceAndChargeImmediatelyRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>> PrepareAsyncCreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>>(PrepareAsyncCreateInvoiceAndChargeImmediatelyRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
      public:
       void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetCurrentMonthUsage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetOrgBillingInformation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetOrgBillingInformation(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetOrgBillingInformation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetOrgBillingInformation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetOrgBillingInformationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetInvoicesSummary(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetInvoicesSummary(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetInvoicesSummary(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetInvoicesSummary(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetInvoicesSummaryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetInvoicePdf(::grpc::ClientContext* context, ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) override;
-      #else
-      void GetInvoicePdf(::grpc::ClientContext* context, ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) override;
-      #endif
+      void GetInvoicePdf(::grpc::ClientContext* context, const ::viam::app::v1::GetInvoicePdfRequest* request, ::grpc::ClientReadReactor< ::viam::app::v1::GetInvoicePdfResponse>* reactor) override;
       void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)>) override;
-      void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void SendPaymentRequiredEmail(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, std::function<void(::grpc::Status)>) override;
-      void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
+      void CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response, std::function<void(::grpc::Status)>) override;
+      void CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>* AsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetCurrentMonthUsageResponse>* PrepareAsyncGetCurrentMonthUsageRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetOrgBillingInformationResponse>* AsyncGetOrgBillingInformationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -368,6 +257,8 @@ class BillingService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAvailableBillingTiersResponse>* PrepareAsyncGetAvailableBillingTiersRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* AsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* PrepareAsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* AsyncCreateInvoiceAndChargeImmediatelyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* PrepareAsyncCreateInvoiceAndChargeImmediatelyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetCurrentMonthUsage_;
     const ::grpc::internal::RpcMethod rpcmethod_GetOrgBillingInformation_;
     const ::grpc::internal::RpcMethod rpcmethod_GetInvoicesSummary_;
@@ -375,6 +266,7 @@ class BillingService final {
     const ::grpc::internal::RpcMethod rpcmethod_SendPaymentRequiredEmail_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAvailableBillingTiers_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateOrganizationBillingTier_;
+    const ::grpc::internal::RpcMethod rpcmethod_CreateInvoiceAndChargeImmediately_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -396,6 +288,8 @@ class BillingService final {
     virtual ::grpc::Status GetAvailableBillingTiers(::grpc::ServerContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response);
     // Update an organization's billing tier
     virtual ::grpc::Status UpdateOrganizationBillingTier(::grpc::ServerContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response);
+    // Directly create a flat fee invoice for an organization and charge on the spot
+    virtual ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ServerContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetCurrentMonthUsage : public BaseClass {
@@ -537,38 +431,44 @@ class BillingService final {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetCurrentMonthUsage<WithAsyncMethod_GetOrgBillingInformation<WithAsyncMethod_GetInvoicesSummary<WithAsyncMethod_GetInvoicePdf<WithAsyncMethod_SendPaymentRequiredEmail<WithAsyncMethod_GetAvailableBillingTiers<WithAsyncMethod_UpdateOrganizationBillingTier<Service > > > > > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetCurrentMonthUsage : public BaseClass {
+  class WithAsyncMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetCurrentMonthUsage() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>(
+    WithAsyncMethod_CreateInvoiceAndChargeImmediately() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_CreateInvoiceAndChargeImmediately() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* /*request*/, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateInvoiceAndChargeImmediately(::grpc::ServerContext* context, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetCurrentMonthUsage<WithAsyncMethod_GetOrgBillingInformation<WithAsyncMethod_GetInvoicesSummary<WithAsyncMethod_GetInvoicePdf<WithAsyncMethod_SendPaymentRequiredEmail<WithAsyncMethod_GetAvailableBillingTiers<WithAsyncMethod_UpdateOrganizationBillingTier<WithAsyncMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetCurrentMonthUsage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetCurrentMonthUsage() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) { return this->GetCurrentMonthUsage(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest* request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) { return this->GetCurrentMonthUsage(context, request, response); }));}
     void SetMessageAllocatorFor_GetCurrentMonthUsage(
-        ::grpc::experimental::MessageAllocator< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetCurrentMonthUsage() override {
+    ~WithCallbackMethod_GetCurrentMonthUsage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -576,46 +476,26 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetCurrentMonthUsage(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetCurrentMonthUsage(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetCurrentMonthUsageRequest* /*request*/, ::viam::app::v1::GetCurrentMonthUsageResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetOrgBillingInformation : public BaseClass {
+  class WithCallbackMethod_GetOrgBillingInformation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetOrgBillingInformation() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>(
+    WithCallbackMethod_GetOrgBillingInformation() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response) { return this->GetOrgBillingInformation(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetOrgBillingInformationRequest* request, ::viam::app::v1::GetOrgBillingInformationResponse* response) { return this->GetOrgBillingInformation(context, request, response); }));}
     void SetMessageAllocatorFor_GetOrgBillingInformation(
-        ::grpc::experimental::MessageAllocator< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetOrgBillingInformation() override {
+    ~WithCallbackMethod_GetOrgBillingInformation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -623,46 +503,26 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetOrgBillingInformation(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetOrgBillingInformationRequest* /*request*/, ::viam::app::v1::GetOrgBillingInformationResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetOrgBillingInformation(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::GetOrgBillingInformationRequest* /*request*/, ::viam::app::v1::GetOrgBillingInformationResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetOrgBillingInformationRequest* /*request*/, ::viam::app::v1::GetOrgBillingInformationResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetInvoicesSummary : public BaseClass {
+  class WithCallbackMethod_GetInvoicesSummary : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetInvoicesSummary() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>(
+    WithCallbackMethod_GetInvoicesSummary() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response) { return this->GetInvoicesSummary(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetInvoicesSummaryRequest* request, ::viam::app::v1::GetInvoicesSummaryResponse* response) { return this->GetInvoicesSummary(context, request, response); }));}
     void SetMessageAllocatorFor_GetInvoicesSummary(
-        ::grpc::experimental::MessageAllocator< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetInvoicesSummary() override {
+    ~WithCallbackMethod_GetInvoicesSummary() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -670,37 +530,21 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetInvoicesSummary(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetInvoicesSummaryRequest* /*request*/, ::viam::app::v1::GetInvoicesSummaryResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetInvoicesSummary(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::GetInvoicesSummaryRequest* /*request*/, ::viam::app::v1::GetInvoicesSummaryResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetInvoicesSummaryRequest* /*request*/, ::viam::app::v1::GetInvoicesSummaryResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetInvoicePdf : public BaseClass {
+  class WithCallbackMethod_GetInvoicePdf : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetInvoicePdf() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(3,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::viam::app::v1::GetInvoicePdfRequest, ::viam::app::v1::GetInvoicePdfResponse>(
+    WithCallbackMethod_GetInvoicePdf() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::viam::app::v1::GetInvoicePdfRequest, ::viam::app::v1::GetInvoicePdfResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::v1::GetInvoicePdfRequest* request) { return this->GetInvoicePdf(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetInvoicePdfRequest* request) { return this->GetInvoicePdf(context, request); }));
     }
-    ~ExperimentalWithCallbackMethod_GetInvoicePdf() override {
+    ~WithCallbackMethod_GetInvoicePdf() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -708,46 +552,26 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::viam::app::v1::GetInvoicePdfResponse>* GetInvoicePdf(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetInvoicePdfRequest* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::viam::app::v1::GetInvoicePdfResponse>* GetInvoicePdf(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::GetInvoicePdfRequest* /*request*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetInvoicePdfRequest* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_SendPaymentRequiredEmail : public BaseClass {
+  class WithCallbackMethod_SendPaymentRequiredEmail : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_SendPaymentRequiredEmail() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>(
+    WithCallbackMethod_SendPaymentRequiredEmail() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response) { return this->SendPaymentRequiredEmail(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::SendPaymentRequiredEmailRequest* request, ::viam::app::v1::SendPaymentRequiredEmailResponse* response) { return this->SendPaymentRequiredEmail(context, request, response); }));}
     void SetMessageAllocatorFor_SendPaymentRequiredEmail(
-        ::grpc::experimental::MessageAllocator< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_SendPaymentRequiredEmail() override {
+    ~WithCallbackMethod_SendPaymentRequiredEmail() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -755,46 +579,26 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SendPaymentRequiredEmail(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* SendPaymentRequiredEmail(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::SendPaymentRequiredEmailRequest* /*request*/, ::viam::app::v1::SendPaymentRequiredEmailResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetAvailableBillingTiers : public BaseClass {
+  class WithCallbackMethod_GetAvailableBillingTiers : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetAvailableBillingTiers() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetAvailableBillingTiersRequest, ::viam::app::v1::GetAvailableBillingTiersResponse>(
+    WithCallbackMethod_GetAvailableBillingTiers() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetAvailableBillingTiersRequest, ::viam::app::v1::GetAvailableBillingTiersResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response) { return this->GetAvailableBillingTiers(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response) { return this->GetAvailableBillingTiers(context, request, response); }));}
     void SetMessageAllocatorFor_GetAvailableBillingTiers(
-        ::grpc::experimental::MessageAllocator< ::viam::app::v1::GetAvailableBillingTiersRequest, ::viam::app::v1::GetAvailableBillingTiersResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::v1::GetAvailableBillingTiersRequest, ::viam::app::v1::GetAvailableBillingTiersResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::GetAvailableBillingTiersRequest, ::viam::app::v1::GetAvailableBillingTiersResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetAvailableBillingTiersRequest, ::viam::app::v1::GetAvailableBillingTiersResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetAvailableBillingTiers() override {
+    ~WithCallbackMethod_GetAvailableBillingTiers() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -802,46 +606,26 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetAvailableBillingTiers(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetAvailableBillingTiersRequest* /*request*/, ::viam::app::v1::GetAvailableBillingTiersResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetAvailableBillingTiers(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::GetAvailableBillingTiersRequest* /*request*/, ::viam::app::v1::GetAvailableBillingTiersResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetAvailableBillingTiersRequest* /*request*/, ::viam::app::v1::GetAvailableBillingTiersResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_UpdateOrganizationBillingTier : public BaseClass {
+  class WithCallbackMethod_UpdateOrganizationBillingTier : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_UpdateOrganizationBillingTier() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateOrganizationBillingTierRequest, ::viam::app::v1::UpdateOrganizationBillingTierResponse>(
+    WithCallbackMethod_UpdateOrganizationBillingTier() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateOrganizationBillingTierRequest, ::viam::app::v1::UpdateOrganizationBillingTierResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response) { return this->UpdateOrganizationBillingTier(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response) { return this->UpdateOrganizationBillingTier(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateOrganizationBillingTier(
-        ::grpc::experimental::MessageAllocator< ::viam::app::v1::UpdateOrganizationBillingTierRequest, ::viam::app::v1::UpdateOrganizationBillingTierResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::app::v1::UpdateOrganizationBillingTierRequest, ::viam::app::v1::UpdateOrganizationBillingTierResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateOrganizationBillingTierRequest, ::viam::app::v1::UpdateOrganizationBillingTierResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateOrganizationBillingTierRequest, ::viam::app::v1::UpdateOrganizationBillingTierResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_UpdateOrganizationBillingTier() override {
+    ~WithCallbackMethod_UpdateOrganizationBillingTier() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -849,20 +633,38 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* UpdateOrganizationBillingTier(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* /*request*/, ::viam::app::v1::UpdateOrganizationBillingTierResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* UpdateOrganizationBillingTier(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* /*request*/, ::viam::app::v1::UpdateOrganizationBillingTierResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* /*request*/, ::viam::app::v1::UpdateOrganizationBillingTierResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_GetCurrentMonthUsage<ExperimentalWithCallbackMethod_GetOrgBillingInformation<ExperimentalWithCallbackMethod_GetInvoicesSummary<ExperimentalWithCallbackMethod_GetInvoicePdf<ExperimentalWithCallbackMethod_SendPaymentRequiredEmail<ExperimentalWithCallbackMethod_GetAvailableBillingTiers<ExperimentalWithCallbackMethod_UpdateOrganizationBillingTier<Service > > > > > > > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_GetCurrentMonthUsage<ExperimentalWithCallbackMethod_GetOrgBillingInformation<ExperimentalWithCallbackMethod_GetInvoicesSummary<ExperimentalWithCallbackMethod_GetInvoicePdf<ExperimentalWithCallbackMethod_SendPaymentRequiredEmail<ExperimentalWithCallbackMethod_GetAvailableBillingTiers<ExperimentalWithCallbackMethod_UpdateOrganizationBillingTier<Service > > > > > > > ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CreateInvoiceAndChargeImmediately() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response) { return this->CreateInvoiceAndChargeImmediately(context, request, response); }));}
+    void SetMessageAllocatorFor_CreateInvoiceAndChargeImmediately(
+        ::grpc::MessageAllocator< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_CreateInvoiceAndChargeImmediately() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* /*request*/, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CreateInvoiceAndChargeImmediately(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* /*request*/, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetCurrentMonthUsage<WithCallbackMethod_GetOrgBillingInformation<WithCallbackMethod_GetInvoicesSummary<WithCallbackMethod_GetInvoicePdf<WithCallbackMethod_SendPaymentRequiredEmail<WithCallbackMethod_GetAvailableBillingTiers<WithCallbackMethod_UpdateOrganizationBillingTier<WithCallbackMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetCurrentMonthUsage : public BaseClass {
    private:
@@ -978,6 +780,23 @@ class BillingService final {
     }
     // disable synchronous version of this method
     ::grpc::Status UpdateOrganizationBillingTier(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* /*request*/, ::viam::app::v1::UpdateOrganizationBillingTierResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CreateInvoiceAndChargeImmediately() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_CreateInvoiceAndChargeImmediately() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* /*request*/, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1123,27 +942,37 @@ class BillingService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetCurrentMonthUsage : public BaseClass {
+  class WithRawMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetCurrentMonthUsage() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCurrentMonthUsage(context, request, response); }));
+    WithRawMethod_CreateInvoiceAndChargeImmediately() {
+      ::grpc::Service::MarkMethodRaw(7);
     }
-    ~ExperimentalWithRawCallbackMethod_GetCurrentMonthUsage() override {
+    ~WithRawMethod_CreateInvoiceAndChargeImmediately() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* /*request*/, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateInvoiceAndChargeImmediately(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetCurrentMonthUsage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetCurrentMonthUsage() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCurrentMonthUsage(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetCurrentMonthUsage() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1151,37 +980,21 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetCurrentMonthUsage(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetCurrentMonthUsage(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetOrgBillingInformation : public BaseClass {
+  class WithRawCallbackMethod_GetOrgBillingInformation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetOrgBillingInformation() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetOrgBillingInformation() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOrgBillingInformation(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOrgBillingInformation(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetOrgBillingInformation() override {
+    ~WithRawCallbackMethod_GetOrgBillingInformation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1189,37 +1002,21 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetOrgBillingInformation(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetOrgBillingInformation(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetInvoicesSummary : public BaseClass {
+  class WithRawCallbackMethod_GetInvoicesSummary : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetInvoicesSummary() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetInvoicesSummary() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetInvoicesSummary(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetInvoicesSummary(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetInvoicesSummary() override {
+    ~WithRawCallbackMethod_GetInvoicesSummary() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1227,37 +1024,21 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetInvoicesSummary(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetInvoicesSummary(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetInvoicePdf : public BaseClass {
+  class WithRawCallbackMethod_GetInvoicePdf : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetInvoicePdf() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(3,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetInvoicePdf() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const::grpc::ByteBuffer* request) { return this->GetInvoicePdf(context, request); }));
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->GetInvoicePdf(context, request); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetInvoicePdf() override {
+    ~WithRawCallbackMethod_GetInvoicePdf() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1265,37 +1046,21 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GetInvoicePdf(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* GetInvoicePdf(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_SendPaymentRequiredEmail : public BaseClass {
+  class WithRawCallbackMethod_SendPaymentRequiredEmail : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_SendPaymentRequiredEmail() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_SendPaymentRequiredEmail() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendPaymentRequiredEmail(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendPaymentRequiredEmail(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_SendPaymentRequiredEmail() override {
+    ~WithRawCallbackMethod_SendPaymentRequiredEmail() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1303,37 +1068,21 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SendPaymentRequiredEmail(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* SendPaymentRequiredEmail(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetAvailableBillingTiers : public BaseClass {
+  class WithRawCallbackMethod_GetAvailableBillingTiers : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetAvailableBillingTiers() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetAvailableBillingTiers() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAvailableBillingTiers(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAvailableBillingTiers(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetAvailableBillingTiers() override {
+    ~WithRawCallbackMethod_GetAvailableBillingTiers() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1341,37 +1090,21 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetAvailableBillingTiers(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetAvailableBillingTiers(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_UpdateOrganizationBillingTier : public BaseClass {
+  class WithRawCallbackMethod_UpdateOrganizationBillingTier : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_UpdateOrganizationBillingTier() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_UpdateOrganizationBillingTier() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateOrganizationBillingTier(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateOrganizationBillingTier(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_UpdateOrganizationBillingTier() override {
+    ~WithRawCallbackMethod_UpdateOrganizationBillingTier() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1379,14 +1112,30 @@ class BillingService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* UpdateOrganizationBillingTier(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* UpdateOrganizationBillingTier(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CreateInvoiceAndChargeImmediately() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateInvoiceAndChargeImmediately(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_CreateInvoiceAndChargeImmediately() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* /*request*/, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CreateInvoiceAndChargeImmediately(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetCurrentMonthUsage : public BaseClass {
@@ -1397,8 +1146,8 @@ class BillingService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::v1::GetCurrentMonthUsageRequest, ::viam::app::v1::GetCurrentMonthUsageResponse>* streamer) {
                        return this->StreamedGetCurrentMonthUsage(context,
                          streamer);
@@ -1424,8 +1173,8 @@ class BillingService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::v1::GetOrgBillingInformationRequest, ::viam::app::v1::GetOrgBillingInformationResponse>* streamer) {
                        return this->StreamedGetOrgBillingInformation(context,
                          streamer);
@@ -1451,8 +1200,8 @@ class BillingService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::v1::GetInvoicesSummaryRequest, ::viam::app::v1::GetInvoicesSummaryResponse>* streamer) {
                        return this->StreamedGetInvoicesSummary(context,
                          streamer);
@@ -1478,8 +1227,8 @@ class BillingService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::v1::SendPaymentRequiredEmailRequest, ::viam::app::v1::SendPaymentRequiredEmailResponse>* streamer) {
                        return this->StreamedSendPaymentRequiredEmail(context,
                          streamer);
@@ -1505,8 +1254,8 @@ class BillingService final {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetAvailableBillingTiersRequest, ::viam::app::v1::GetAvailableBillingTiersResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::v1::GetAvailableBillingTiersRequest, ::viam::app::v1::GetAvailableBillingTiersResponse>* streamer) {
                        return this->StreamedGetAvailableBillingTiers(context,
                          streamer);
@@ -1532,8 +1281,8 @@ class BillingService final {
       ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateOrganizationBillingTierRequest, ::viam::app::v1::UpdateOrganizationBillingTierResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::app::v1::UpdateOrganizationBillingTierRequest, ::viam::app::v1::UpdateOrganizationBillingTierResponse>* streamer) {
                        return this->StreamedUpdateOrganizationBillingTier(context,
                          streamer);
@@ -1550,7 +1299,34 @@ class BillingService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedUpdateOrganizationBillingTier(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::UpdateOrganizationBillingTierRequest,::viam::app::v1::UpdateOrganizationBillingTierResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithStreamedUnaryMethod_SendPaymentRequiredEmail<WithStreamedUnaryMethod_GetAvailableBillingTiers<WithStreamedUnaryMethod_UpdateOrganizationBillingTier<Service > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* streamer) {
+                       return this->StreamedCreateInvoiceAndChargeImmediately(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* /*request*/, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCreateInvoiceAndChargeImmediately(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest,::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithStreamedUnaryMethod_SendPaymentRequiredEmail<WithStreamedUnaryMethod_GetAvailableBillingTiers<WithStreamedUnaryMethod_UpdateOrganizationBillingTier<WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_GetInvoicePdf : public BaseClass {
    private:
@@ -1560,8 +1336,8 @@ class BillingService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::app::v1::GetInvoicePdfRequest, ::viam::app::v1::GetInvoicePdfResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerSplitStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
                      ::viam::app::v1::GetInvoicePdfRequest, ::viam::app::v1::GetInvoicePdfResponse>* streamer) {
                        return this->StreamedGetInvoicePdf(context,
                          streamer);
@@ -1579,7 +1355,7 @@ class BillingService final {
     virtual ::grpc::Status StreamedGetInvoicePdf(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::v1::GetInvoicePdfRequest,::viam::app::v1::GetInvoicePdfResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_GetInvoicePdf<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithSplitStreamingMethod_GetInvoicePdf<WithStreamedUnaryMethod_SendPaymentRequiredEmail<WithStreamedUnaryMethod_GetAvailableBillingTiers<WithStreamedUnaryMethod_UpdateOrganizationBillingTier<Service > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithSplitStreamingMethod_GetInvoicePdf<WithStreamedUnaryMethod_SendPaymentRequiredEmail<WithStreamedUnaryMethod_GetAvailableBillingTiers<WithStreamedUnaryMethod_UpdateOrganizationBillingTier<WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
