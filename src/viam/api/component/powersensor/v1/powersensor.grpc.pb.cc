@@ -6,19 +6,19 @@
 #include "component/powersensor/v1/powersensor.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/channel_interface.h>
-#include <grpcpp/impl/codegen/client_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
-#include <grpcpp/impl/codegen/rpc_service_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/impl/channel_interface.h>
+#include <grpcpp/impl/client_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/rpc_service_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/sync_stream.h>
 namespace viam {
 namespace component {
 namespace powersensor {
@@ -34,165 +34,140 @@ static const char* PowerSensorService_method_names[] = {
 
 std::unique_ptr< PowerSensorService::Stub> PowerSensorService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< PowerSensorService::Stub> stub(new PowerSensorService::Stub(channel));
+  std::unique_ptr< PowerSensorService::Stub> stub(new PowerSensorService::Stub(channel, options));
   return stub;
 }
 
-PowerSensorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_GetVoltage_(PowerSensorService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetCurrent_(PowerSensorService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPower_(PowerSensorService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetReadings_(PowerSensorService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(PowerSensorService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+PowerSensorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_GetVoltage_(PowerSensorService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCurrent_(PowerSensorService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPower_(PowerSensorService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReadings_(PowerSensorService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(PowerSensorService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status PowerSensorService::Stub::GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::viam::component::powersensor::v1::GetVoltageResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetVoltage_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetVoltage_, context, request, response);
 }
 
-void PowerSensorService::Stub::experimental_async::GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetVoltage_, context, request, response, std::move(f));
+void PowerSensorService::Stub::async::GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetVoltage_, context, request, response, std::move(f));
 }
 
-void PowerSensorService::Stub::experimental_async::GetVoltage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetVoltage_, context, request, response, std::move(f));
-}
-
-void PowerSensorService::Stub::experimental_async::GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetVoltage_, context, request, response, reactor);
-}
-
-void PowerSensorService::Stub::experimental_async::GetVoltage(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetVoltage_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetVoltageResponse>* PowerSensorService::Stub::AsyncGetVoltageRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::powersensor::v1::GetVoltageResponse>::Create(channel_.get(), cq, rpcmethod_GetVoltage_, context, request, true);
+void PowerSensorService::Stub::async::GetVoltage(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest* request, ::viam::component::powersensor::v1::GetVoltageResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetVoltage_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetVoltageResponse>* PowerSensorService::Stub::PrepareAsyncGetVoltageRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::powersensor::v1::GetVoltageResponse>::Create(channel_.get(), cq, rpcmethod_GetVoltage_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::powersensor::v1::GetVoltageResponse, ::viam::component::powersensor::v1::GetVoltageRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetVoltage_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetVoltageResponse>* PowerSensorService::Stub::AsyncGetVoltageRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetVoltageRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetVoltageRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status PowerSensorService::Stub::GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest& request, ::viam::component::powersensor::v1::GetCurrentResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetCurrent_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCurrent_, context, request, response);
 }
 
-void PowerSensorService::Stub::experimental_async::GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCurrent_, context, request, response, std::move(f));
+void PowerSensorService::Stub::async::GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCurrent_, context, request, response, std::move(f));
 }
 
-void PowerSensorService::Stub::experimental_async::GetCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetCurrent_, context, request, response, std::move(f));
-}
-
-void PowerSensorService::Stub::experimental_async::GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCurrent_, context, request, response, reactor);
-}
-
-void PowerSensorService::Stub::experimental_async::GetCurrent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetCurrent_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetCurrentResponse>* PowerSensorService::Stub::AsyncGetCurrentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::powersensor::v1::GetCurrentResponse>::Create(channel_.get(), cq, rpcmethod_GetCurrent_, context, request, true);
+void PowerSensorService::Stub::async::GetCurrent(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest* request, ::viam::component::powersensor::v1::GetCurrentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCurrent_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetCurrentResponse>* PowerSensorService::Stub::PrepareAsyncGetCurrentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::powersensor::v1::GetCurrentResponse>::Create(channel_.get(), cq, rpcmethod_GetCurrent_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::powersensor::v1::GetCurrentResponse, ::viam::component::powersensor::v1::GetCurrentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCurrent_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetCurrentResponse>* PowerSensorService::Stub::AsyncGetCurrentRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetCurrentRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetCurrentRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status PowerSensorService::Stub::GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::viam::component::powersensor::v1::GetPowerResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetPower_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPower_, context, request, response);
 }
 
-void PowerSensorService::Stub::experimental_async::GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPower_, context, request, response, std::move(f));
+void PowerSensorService::Stub::async::GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPower_, context, request, response, std::move(f));
 }
 
-void PowerSensorService::Stub::experimental_async::GetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetPowerResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPower_, context, request, response, std::move(f));
-}
-
-void PowerSensorService::Stub::experimental_async::GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPower_, context, request, response, reactor);
-}
-
-void PowerSensorService::Stub::experimental_async::GetPower(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPower_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPowerResponse>* PowerSensorService::Stub::AsyncGetPowerRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::powersensor::v1::GetPowerResponse>::Create(channel_.get(), cq, rpcmethod_GetPower_, context, request, true);
+void PowerSensorService::Stub::async::GetPower(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest* request, ::viam::component::powersensor::v1::GetPowerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPower_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPowerResponse>* PowerSensorService::Stub::PrepareAsyncGetPowerRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::powersensor::v1::GetPowerResponse>::Create(channel_.get(), cq, rpcmethod_GetPower_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::powersensor::v1::GetPowerResponse, ::viam::component::powersensor::v1::GetPowerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPower_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::powersensor::v1::GetPowerResponse>* PowerSensorService::Stub::AsyncGetPowerRaw(::grpc::ClientContext* context, const ::viam::component::powersensor::v1::GetPowerRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPowerRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status PowerSensorService::Stub::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::viam::common::v1::GetReadingsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetReadings_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReadings_, context, request, response);
 }
 
-void PowerSensorService::Stub::experimental_async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, std::move(f));
+void PowerSensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, std::move(f));
 }
 
-void PowerSensorService::Stub::experimental_async::GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, std::move(f));
-}
-
-void PowerSensorService::Stub::experimental_async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, reactor);
-}
-
-void PowerSensorService::Stub::experimental_async::GetReadings(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* PowerSensorService::Stub::AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetReadingsResponse>::Create(channel_.get(), cq, rpcmethod_GetReadings_, context, request, true);
+void PowerSensorService::Stub::async::GetReadings(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest* request, ::viam::common::v1::GetReadingsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReadings_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* PowerSensorService::Stub::PrepareAsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetReadingsResponse>::Create(channel_.get(), cq, rpcmethod_GetReadings_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetReadingsResponse, ::viam::common::v1::GetReadingsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReadings_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetReadingsResponse>* PowerSensorService::Stub::AsyncGetReadingsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetReadingsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetReadingsRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status PowerSensorService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void PowerSensorService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void PowerSensorService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void PowerSensorService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
-}
-
-void PowerSensorService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
-}
-
-void PowerSensorService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PowerSensorService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, true);
+void PowerSensorService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PowerSensorService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PowerSensorService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDoCommandRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 PowerSensorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       PowerSensorService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse>(
+      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::component::powersensor::v1::GetVoltageRequest, ::viam::component::powersensor::v1::GetVoltageResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](PowerSensorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::powersensor::v1::GetVoltageRequest* req,
              ::viam::component::powersensor::v1::GetVoltageResponse* resp) {
                return service->GetVoltage(ctx, req, resp);
@@ -200,9 +175,9 @@ PowerSensorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       PowerSensorService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse>(
+      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::component::powersensor::v1::GetCurrentRequest, ::viam::component::powersensor::v1::GetCurrentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](PowerSensorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::powersensor::v1::GetCurrentRequest* req,
              ::viam::component::powersensor::v1::GetCurrentResponse* resp) {
                return service->GetCurrent(ctx, req, resp);
@@ -210,9 +185,9 @@ PowerSensorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       PowerSensorService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse>(
+      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::component::powersensor::v1::GetPowerRequest, ::viam::component::powersensor::v1::GetPowerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](PowerSensorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::powersensor::v1::GetPowerRequest* req,
              ::viam::component::powersensor::v1::GetPowerResponse* resp) {
                return service->GetPower(ctx, req, resp);
@@ -220,9 +195,9 @@ PowerSensorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       PowerSensorService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse>(
+      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::common::v1::GetReadingsRequest, ::viam::common::v1::GetReadingsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](PowerSensorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::common::v1::GetReadingsRequest* req,
              ::viam::common::v1::GetReadingsResponse* resp) {
                return service->GetReadings(ctx, req, resp);
@@ -230,9 +205,9 @@ PowerSensorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       PowerSensorService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+      new ::grpc::internal::RpcMethodHandler< PowerSensorService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](PowerSensorService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::common::v1::DoCommandRequest* req,
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);

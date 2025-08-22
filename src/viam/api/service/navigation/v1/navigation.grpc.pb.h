@@ -7,24 +7,23 @@
 #include "service/navigation/v1/navigation.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace viam {
 namespace service {
@@ -113,141 +112,37 @@ class NavigationService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       virtual void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetModeResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       virtual void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::SetModeResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void SetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       virtual void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       virtual void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetWaypoints(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetWaypoints(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetWaypoints(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       virtual void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void AddWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::AddWaypointResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void AddWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void AddWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       virtual void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void RemoveWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void RemoveWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void RemoveWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       virtual void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetObstacles(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetObstacles(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetObstacles(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       virtual void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetPaths(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetPaths(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetPaths(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetProperties returns properties of the current navigation service, including the
       // map_type being operated on.
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetModeResponse>* AsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::GetModeResponse>* PrepareAsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::navigation::v1::SetModeResponse>* AsyncSetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -271,7 +166,7 @@ class NavigationService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::viam::service::navigation::v1::GetModeResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>> AsyncGetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>>(AsyncGetModeRaw(context, request, cq));
@@ -342,140 +237,40 @@ class NavigationService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
       void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetModeResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, std::function<void(::grpc::Status)>) override;
-      void SetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::SetModeResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void SetMode(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void SetMode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::SetModeResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetLocationResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetLocation(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetLocation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetLocationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetWaypoints(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetWaypoints(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetWaypoints(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetWaypoints(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetWaypointsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, std::function<void(::grpc::Status)>) override;
-      void AddWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::AddWaypointResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void AddWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void AddWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void AddWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::AddWaypointResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, std::function<void(::grpc::Status)>) override;
-      void RemoveWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void RemoveWaypoint(::grpc::ClientContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void RemoveWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void RemoveWaypoint(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetObstacles(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetObstacles(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetObstacles(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetObstacles(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetObstaclesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetPaths(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPathsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetPaths(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetPaths(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetPaths(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPathsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetProperties(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::navigation::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>* AsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::GetModeResponse>* PrepareAsyncGetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::GetModeRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::navigation::v1::SetModeResponse>* AsyncSetModeRaw(::grpc::ClientContext* context, const ::viam::service::navigation::v1::SetModeRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -729,36 +524,22 @@ class NavigationService final {
   };
   typedef WithAsyncMethod_GetMode<WithAsyncMethod_SetMode<WithAsyncMethod_GetLocation<WithAsyncMethod_GetWaypoints<WithAsyncMethod_AddWaypoint<WithAsyncMethod_RemoveWaypoint<WithAsyncMethod_GetObstacles<WithAsyncMethod_GetPaths<WithAsyncMethod_GetProperties<WithAsyncMethod_DoCommand<Service > > > > > > > > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetMode : public BaseClass {
+  class WithCallbackMethod_GetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetMode() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>(
+    WithCallbackMethod_GetMode() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response) { return this->GetMode(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetModeRequest* request, ::viam::service::navigation::v1::GetModeResponse* response) { return this->GetMode(context, request, response); }));}
     void SetMessageAllocatorFor_GetMode(
-        ::grpc::experimental::MessageAllocator< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetMode() override {
+    ~WithCallbackMethod_GetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -766,46 +547,26 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetMode(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetModeRequest* /*request*/, ::viam::service::navigation::v1::GetModeResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_SetMode : public BaseClass {
+  class WithCallbackMethod_SetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_SetMode() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>(
+    WithCallbackMethod_SetMode() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response) { return this->SetMode(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::SetModeRequest* request, ::viam::service::navigation::v1::SetModeResponse* response) { return this->SetMode(context, request, response); }));}
     void SetMessageAllocatorFor_SetMode(
-        ::grpc::experimental::MessageAllocator< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_SetMode() override {
+    ~WithCallbackMethod_SetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -813,46 +574,26 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* SetMode(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::SetModeRequest* /*request*/, ::viam::service::navigation::v1::SetModeResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetLocation : public BaseClass {
+  class WithCallbackMethod_GetLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetLocation() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>(
+    WithCallbackMethod_GetLocation() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response) { return this->GetLocation(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetLocationRequest* request, ::viam::service::navigation::v1::GetLocationResponse* response) { return this->GetLocation(context, request, response); }));}
     void SetMessageAllocatorFor_GetLocation(
-        ::grpc::experimental::MessageAllocator< ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetLocation() override {
+    ~WithCallbackMethod_GetLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -860,46 +601,26 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetLocation(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetLocationRequest* /*request*/, ::viam::service::navigation::v1::GetLocationResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetLocation(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetLocationRequest* /*request*/, ::viam::service::navigation::v1::GetLocationResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetLocationRequest* /*request*/, ::viam::service::navigation::v1::GetLocationResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetWaypoints : public BaseClass {
+  class WithCallbackMethod_GetWaypoints : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetWaypoints() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>(
+    WithCallbackMethod_GetWaypoints() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response) { return this->GetWaypoints(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetWaypointsRequest* request, ::viam::service::navigation::v1::GetWaypointsResponse* response) { return this->GetWaypoints(context, request, response); }));}
     void SetMessageAllocatorFor_GetWaypoints(
-        ::grpc::experimental::MessageAllocator< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetWaypoints() override {
+    ~WithCallbackMethod_GetWaypoints() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -907,46 +628,26 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetWaypoints(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetWaypoints(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetWaypointsRequest* /*request*/, ::viam::service::navigation::v1::GetWaypointsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_AddWaypoint : public BaseClass {
+  class WithCallbackMethod_AddWaypoint : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_AddWaypoint() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>(
+    WithCallbackMethod_AddWaypoint() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response) { return this->AddWaypoint(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::AddWaypointRequest* request, ::viam::service::navigation::v1::AddWaypointResponse* response) { return this->AddWaypoint(context, request, response); }));}
     void SetMessageAllocatorFor_AddWaypoint(
-        ::grpc::experimental::MessageAllocator< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_AddWaypoint() override {
+    ~WithCallbackMethod_AddWaypoint() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -954,46 +655,26 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* AddWaypoint(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* AddWaypoint(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::AddWaypointRequest* /*request*/, ::viam::service::navigation::v1::AddWaypointResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_RemoveWaypoint : public BaseClass {
+  class WithCallbackMethod_RemoveWaypoint : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_RemoveWaypoint() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>(
+    WithCallbackMethod_RemoveWaypoint() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response) { return this->RemoveWaypoint(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::RemoveWaypointRequest* request, ::viam::service::navigation::v1::RemoveWaypointResponse* response) { return this->RemoveWaypoint(context, request, response); }));}
     void SetMessageAllocatorFor_RemoveWaypoint(
-        ::grpc::experimental::MessageAllocator< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_RemoveWaypoint() override {
+    ~WithCallbackMethod_RemoveWaypoint() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1001,46 +682,26 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* RemoveWaypoint(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* RemoveWaypoint(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::RemoveWaypointRequest* /*request*/, ::viam::service::navigation::v1::RemoveWaypointResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetObstacles : public BaseClass {
+  class WithCallbackMethod_GetObstacles : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetObstacles() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>(
+    WithCallbackMethod_GetObstacles() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response) { return this->GetObstacles(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetObstaclesRequest* request, ::viam::service::navigation::v1::GetObstaclesResponse* response) { return this->GetObstacles(context, request, response); }));}
     void SetMessageAllocatorFor_GetObstacles(
-        ::grpc::experimental::MessageAllocator< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetObstacles() override {
+    ~WithCallbackMethod_GetObstacles() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1048,46 +709,26 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetObstacles(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetObstacles(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetObstaclesRequest* /*request*/, ::viam::service::navigation::v1::GetObstaclesResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetPaths : public BaseClass {
+  class WithCallbackMethod_GetPaths : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetPaths() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>(
+    WithCallbackMethod_GetPaths() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response) { return this->GetPaths(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetPathsRequest* request, ::viam::service::navigation::v1::GetPathsResponse* response) { return this->GetPaths(context, request, response); }));}
     void SetMessageAllocatorFor_GetPaths(
-        ::grpc::experimental::MessageAllocator< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetPaths() override {
+    ~WithCallbackMethod_GetPaths() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1095,46 +736,26 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPaths(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetPaths(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPathsRequest* /*request*/, ::viam::service::navigation::v1::GetPathsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetProperties : public BaseClass {
+  class WithCallbackMethod_GetProperties : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetProperties() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(8,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>(
+    WithCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::navigation::v1::GetPropertiesRequest* request, ::viam::service::navigation::v1::GetPropertiesResponse* response) { return this->GetProperties(context, request, response); }));}
     void SetMessageAllocatorFor_GetProperties(
-        ::grpc::experimental::MessageAllocator< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetProperties() override {
+    ~WithCallbackMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1142,46 +763,26 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetProperties(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetProperties(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::navigation::v1::GetPropertiesRequest* /*request*/, ::viam::service::navigation::v1::GetPropertiesResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
+  class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(9,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    WithCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_DoCommand() override {
+    ~WithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1189,20 +790,11 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_GetMode<ExperimentalWithCallbackMethod_SetMode<ExperimentalWithCallbackMethod_GetLocation<ExperimentalWithCallbackMethod_GetWaypoints<ExperimentalWithCallbackMethod_AddWaypoint<ExperimentalWithCallbackMethod_RemoveWaypoint<ExperimentalWithCallbackMethod_GetObstacles<ExperimentalWithCallbackMethod_GetPaths<ExperimentalWithCallbackMethod_GetProperties<ExperimentalWithCallbackMethod_DoCommand<Service > > > > > > > > > > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_GetMode<ExperimentalWithCallbackMethod_SetMode<ExperimentalWithCallbackMethod_GetLocation<ExperimentalWithCallbackMethod_GetWaypoints<ExperimentalWithCallbackMethod_AddWaypoint<ExperimentalWithCallbackMethod_RemoveWaypoint<ExperimentalWithCallbackMethod_GetObstacles<ExperimentalWithCallbackMethod_GetPaths<ExperimentalWithCallbackMethod_GetProperties<ExperimentalWithCallbackMethod_DoCommand<Service > > > > > > > > > > ExperimentalCallbackService;
+  typedef WithCallbackMethod_GetMode<WithCallbackMethod_SetMode<WithCallbackMethod_GetLocation<WithCallbackMethod_GetWaypoints<WithCallbackMethod_AddWaypoint<WithCallbackMethod_RemoveWaypoint<WithCallbackMethod_GetObstacles<WithCallbackMethod_GetPaths<WithCallbackMethod_GetProperties<WithCallbackMethod_DoCommand<Service > > > > > > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetMode : public BaseClass {
    private:
@@ -1574,27 +1166,17 @@ class NavigationService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetMode : public BaseClass {
+  class WithRawCallbackMethod_GetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetMode() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetMode() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetMode(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetMode(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetMode() override {
+    ~WithRawCallbackMethod_GetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1602,37 +1184,21 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetMode(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_SetMode : public BaseClass {
+  class WithRawCallbackMethod_SetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_SetMode() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_SetMode() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetMode(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetMode(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_SetMode() override {
+    ~WithRawCallbackMethod_SetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1640,37 +1206,21 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* SetMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* SetMode(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetLocation : public BaseClass {
+  class WithRawCallbackMethod_GetLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetLocation() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetLocation() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLocation(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLocation(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetLocation() override {
+    ~WithRawCallbackMethod_GetLocation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1678,37 +1228,21 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetLocation(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetLocation(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetWaypoints : public BaseClass {
+  class WithRawCallbackMethod_GetWaypoints : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetWaypoints() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetWaypoints() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetWaypoints(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetWaypoints(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetWaypoints() override {
+    ~WithRawCallbackMethod_GetWaypoints() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1716,37 +1250,21 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetWaypoints(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetWaypoints(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_AddWaypoint : public BaseClass {
+  class WithRawCallbackMethod_AddWaypoint : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_AddWaypoint() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_AddWaypoint() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddWaypoint(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddWaypoint(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_AddWaypoint() override {
+    ~WithRawCallbackMethod_AddWaypoint() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1754,37 +1272,21 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* AddWaypoint(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* AddWaypoint(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_RemoveWaypoint : public BaseClass {
+  class WithRawCallbackMethod_RemoveWaypoint : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_RemoveWaypoint() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_RemoveWaypoint() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveWaypoint(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveWaypoint(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_RemoveWaypoint() override {
+    ~WithRawCallbackMethod_RemoveWaypoint() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1792,37 +1294,21 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* RemoveWaypoint(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* RemoveWaypoint(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetObstacles : public BaseClass {
+  class WithRawCallbackMethod_GetObstacles : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetObstacles() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(6,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetObstacles() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetObstacles(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetObstacles(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetObstacles() override {
+    ~WithRawCallbackMethod_GetObstacles() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1830,37 +1316,21 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetObstacles(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetObstacles(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetPaths : public BaseClass {
+  class WithRawCallbackMethod_GetPaths : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetPaths() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(7,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetPaths() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPaths(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetPaths(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetPaths() override {
+    ~WithRawCallbackMethod_GetPaths() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1868,37 +1338,21 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetPaths(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetPaths(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetProperties : public BaseClass {
+  class WithRawCallbackMethod_GetProperties : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetProperties() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(8,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetProperties() {
+      ::grpc::Service::MarkMethodRawCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetProperties(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetProperties() override {
+    ~WithRawCallbackMethod_GetProperties() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1906,37 +1360,21 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetProperties(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetProperties(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
+  class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(9,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodRawCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
+    ~WithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1944,14 +1382,8 @@ class NavigationService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetMode : public BaseClass {
@@ -1962,8 +1394,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::navigation::v1::GetModeRequest, ::viam::service::navigation::v1::GetModeResponse>* streamer) {
                        return this->StreamedGetMode(context,
                          streamer);
@@ -1989,8 +1421,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::navigation::v1::SetModeRequest, ::viam::service::navigation::v1::SetModeResponse>* streamer) {
                        return this->StreamedSetMode(context,
                          streamer);
@@ -2016,8 +1448,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::navigation::v1::GetLocationRequest, ::viam::service::navigation::v1::GetLocationResponse>* streamer) {
                        return this->StreamedGetLocation(context,
                          streamer);
@@ -2043,8 +1475,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::navigation::v1::GetWaypointsRequest, ::viam::service::navigation::v1::GetWaypointsResponse>* streamer) {
                        return this->StreamedGetWaypoints(context,
                          streamer);
@@ -2070,8 +1502,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::navigation::v1::AddWaypointRequest, ::viam::service::navigation::v1::AddWaypointResponse>* streamer) {
                        return this->StreamedAddWaypoint(context,
                          streamer);
@@ -2097,8 +1529,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::navigation::v1::RemoveWaypointRequest, ::viam::service::navigation::v1::RemoveWaypointResponse>* streamer) {
                        return this->StreamedRemoveWaypoint(context,
                          streamer);
@@ -2124,8 +1556,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::navigation::v1::GetObstaclesRequest, ::viam::service::navigation::v1::GetObstaclesResponse>* streamer) {
                        return this->StreamedGetObstacles(context,
                          streamer);
@@ -2151,8 +1583,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::navigation::v1::GetPathsRequest, ::viam::service::navigation::v1::GetPathsResponse>* streamer) {
                        return this->StreamedGetPaths(context,
                          streamer);
@@ -2178,8 +1610,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::navigation::v1::GetPropertiesRequest, ::viam::service::navigation::v1::GetPropertiesResponse>* streamer) {
                        return this->StreamedGetProperties(context,
                          streamer);
@@ -2205,8 +1637,8 @@ class NavigationService final {
       ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);

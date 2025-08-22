@@ -6,19 +6,19 @@
 #include "component/encoder/v1/encoder.grpc.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/channel_interface.h>
-#include <grpcpp/impl/codegen/client_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
-#include <grpcpp/impl/codegen/rpc_service_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/impl/channel_interface.h>
+#include <grpcpp/impl/client_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/rpc_service_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/sync_stream.h>
 namespace viam {
 namespace component {
 namespace encoder {
@@ -34,165 +34,140 @@ static const char* EncoderService_method_names[] = {
 
 std::unique_ptr< EncoderService::Stub> EncoderService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< EncoderService::Stub> stub(new EncoderService::Stub(channel));
+  std::unique_ptr< EncoderService::Stub> stub(new EncoderService::Stub(channel, options));
   return stub;
 }
 
-EncoderService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_GetPosition_(EncoderService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ResetPosition_(EncoderService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProperties_(EncoderService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(EncoderService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(EncoderService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+EncoderService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_GetPosition_(EncoderService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResetPosition_(EncoderService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetProperties_(EncoderService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(EncoderService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(EncoderService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status EncoderService::Stub::GetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPositionRequest& request, ::viam::component::encoder::v1::GetPositionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetPosition_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::encoder::v1::GetPositionRequest, ::viam::component::encoder::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetPosition_, context, request, response);
 }
 
-void EncoderService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPositionRequest* request, ::viam::component::encoder::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
+void EncoderService::Stub::async::GetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPositionRequest* request, ::viam::component::encoder::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::encoder::v1::GetPositionRequest, ::viam::component::encoder::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
 }
 
-void EncoderService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::encoder::v1::GetPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, std::move(f));
-}
-
-void EncoderService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPositionRequest* request, ::viam::component::encoder::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
-}
-
-void EncoderService::Stub::experimental_async::GetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::encoder::v1::GetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::encoder::v1::GetPositionResponse>* EncoderService::Stub::AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::encoder::v1::GetPositionResponse>::Create(channel_.get(), cq, rpcmethod_GetPosition_, context, request, true);
+void EncoderService::Stub::async::GetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPositionRequest* request, ::viam::component::encoder::v1::GetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetPosition_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::encoder::v1::GetPositionResponse>* EncoderService::Stub::PrepareAsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::encoder::v1::GetPositionResponse>::Create(channel_.get(), cq, rpcmethod_GetPosition_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::encoder::v1::GetPositionResponse, ::viam::component::encoder::v1::GetPositionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetPosition_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::encoder::v1::GetPositionResponse>* EncoderService::Stub::AsyncGetPositionRaw(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPositionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status EncoderService::Stub::ResetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::ResetPositionRequest& request, ::viam::component::encoder::v1::ResetPositionResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_ResetPosition_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::encoder::v1::ResetPositionRequest, ::viam::component::encoder::v1::ResetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResetPosition_, context, request, response);
 }
 
-void EncoderService::Stub::experimental_async::ResetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::ResetPositionRequest* request, ::viam::component::encoder::v1::ResetPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetPosition_, context, request, response, std::move(f));
+void EncoderService::Stub::async::ResetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::ResetPositionRequest* request, ::viam::component::encoder::v1::ResetPositionResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::encoder::v1::ResetPositionRequest, ::viam::component::encoder::v1::ResetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetPosition_, context, request, response, std::move(f));
 }
 
-void EncoderService::Stub::experimental_async::ResetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::encoder::v1::ResetPositionResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_ResetPosition_, context, request, response, std::move(f));
-}
-
-void EncoderService::Stub::experimental_async::ResetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::ResetPositionRequest* request, ::viam::component::encoder::v1::ResetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetPosition_, context, request, response, reactor);
-}
-
-void EncoderService::Stub::experimental_async::ResetPosition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::encoder::v1::ResetPositionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_ResetPosition_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::encoder::v1::ResetPositionResponse>* EncoderService::Stub::AsyncResetPositionRaw(::grpc::ClientContext* context, const ::viam::component::encoder::v1::ResetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::encoder::v1::ResetPositionResponse>::Create(channel_.get(), cq, rpcmethod_ResetPosition_, context, request, true);
+void EncoderService::Stub::async::ResetPosition(::grpc::ClientContext* context, const ::viam::component::encoder::v1::ResetPositionRequest* request, ::viam::component::encoder::v1::ResetPositionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetPosition_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::encoder::v1::ResetPositionResponse>* EncoderService::Stub::PrepareAsyncResetPositionRaw(::grpc::ClientContext* context, const ::viam::component::encoder::v1::ResetPositionRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::encoder::v1::ResetPositionResponse>::Create(channel_.get(), cq, rpcmethod_ResetPosition_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::encoder::v1::ResetPositionResponse, ::viam::component::encoder::v1::ResetPositionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResetPosition_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::encoder::v1::ResetPositionResponse>* EncoderService::Stub::AsyncResetPositionRaw(::grpc::ClientContext* context, const ::viam::component::encoder::v1::ResetPositionRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncResetPositionRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status EncoderService::Stub::GetProperties(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPropertiesRequest& request, ::viam::component::encoder::v1::GetPropertiesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetProperties_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::encoder::v1::GetPropertiesRequest, ::viam::component::encoder::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetProperties_, context, request, response);
 }
 
-void EncoderService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPropertiesRequest* request, ::viam::component::encoder::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
+void EncoderService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPropertiesRequest* request, ::viam::component::encoder::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::encoder::v1::GetPropertiesRequest, ::viam::component::encoder::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
 }
 
-void EncoderService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::encoder::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, std::move(f));
-}
-
-void EncoderService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPropertiesRequest* request, ::viam::component::encoder::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
-}
-
-void EncoderService::Stub::experimental_async::GetProperties(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::encoder::v1::GetPropertiesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::component::encoder::v1::GetPropertiesResponse>* EncoderService::Stub::AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::encoder::v1::GetPropertiesResponse>::Create(channel_.get(), cq, rpcmethod_GetProperties_, context, request, true);
+void EncoderService::Stub::async::GetProperties(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPropertiesRequest* request, ::viam::component::encoder::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetProperties_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::component::encoder::v1::GetPropertiesResponse>* EncoderService::Stub::PrepareAsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::component::encoder::v1::GetPropertiesResponse>::Create(channel_.get(), cq, rpcmethod_GetProperties_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::encoder::v1::GetPropertiesResponse, ::viam::component::encoder::v1::GetPropertiesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetProperties_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::encoder::v1::GetPropertiesResponse>* EncoderService::Stub::AsyncGetPropertiesRaw(::grpc::ClientContext* context, const ::viam::component::encoder::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetPropertiesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status EncoderService::Stub::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_DoCommand_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DoCommand_, context, request, response);
 }
 
-void EncoderService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
+void EncoderService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
 }
 
-void EncoderService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, std::move(f));
-}
-
-void EncoderService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
-}
-
-void EncoderService::Stub::experimental_async::DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* EncoderService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, true);
+void EncoderService::Stub::async::DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DoCommand_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* EncoderService::Stub::PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::DoCommandResponse>::Create(channel_.get(), cq, rpcmethod_DoCommand_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::DoCommandResponse, ::viam::common::v1::DoCommandRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DoCommand_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* EncoderService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDoCommandRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 ::grpc::Status EncoderService::Stub::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::viam::common::v1::GetGeometriesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
 }
 
-void EncoderService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
+void EncoderService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
 }
 
-void EncoderService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, std::move(f));
-}
-
-void EncoderService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
-}
-
-void EncoderService::Stub::experimental_async::GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* EncoderService::Stub::AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, true);
+void EncoderService::Stub::async::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGeometries_, context, request, response, reactor);
 }
 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* EncoderService::Stub::PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::viam::common::v1::GetGeometriesResponse>::Create(channel_.get(), cq, rpcmethod_GetGeometries_, context, request, false);
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetGeometriesResponse, ::viam::common::v1::GetGeometriesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGeometries_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* EncoderService::Stub::AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetGeometriesRaw(context, request, cq);
+  result->StartCall();
+  return result;
 }
 
 EncoderService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EncoderService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::component::encoder::v1::GetPositionRequest, ::viam::component::encoder::v1::GetPositionResponse>(
+      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::component::encoder::v1::GetPositionRequest, ::viam::component::encoder::v1::GetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EncoderService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::encoder::v1::GetPositionRequest* req,
              ::viam::component::encoder::v1::GetPositionResponse* resp) {
                return service->GetPosition(ctx, req, resp);
@@ -200,9 +175,9 @@ EncoderService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EncoderService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::component::encoder::v1::ResetPositionRequest, ::viam::component::encoder::v1::ResetPositionResponse>(
+      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::component::encoder::v1::ResetPositionRequest, ::viam::component::encoder::v1::ResetPositionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EncoderService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::encoder::v1::ResetPositionRequest* req,
              ::viam::component::encoder::v1::ResetPositionResponse* resp) {
                return service->ResetPosition(ctx, req, resp);
@@ -210,9 +185,9 @@ EncoderService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EncoderService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::component::encoder::v1::GetPropertiesRequest, ::viam::component::encoder::v1::GetPropertiesResponse>(
+      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::component::encoder::v1::GetPropertiesRequest, ::viam::component::encoder::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EncoderService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::component::encoder::v1::GetPropertiesRequest* req,
              ::viam::component::encoder::v1::GetPropertiesResponse* resp) {
                return service->GetProperties(ctx, req, resp);
@@ -220,9 +195,9 @@ EncoderService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EncoderService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EncoderService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::common::v1::DoCommandRequest* req,
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
@@ -230,9 +205,9 @@ EncoderService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EncoderService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
+      new ::grpc::internal::RpcMethodHandler< EncoderService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EncoderService::Service* service,
-             ::grpc_impl::ServerContext* ctx,
+             ::grpc::ServerContext* ctx,
              const ::viam::common::v1::GetGeometriesRequest* req,
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);

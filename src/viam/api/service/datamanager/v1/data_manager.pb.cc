@@ -48,11 +48,40 @@ struct SyncResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SyncResponseDefaultTypeInternal _SyncResponse_default_instance_;
+PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsRequest::UploadBinaryDataToDatasetsRequest(
+    ::_pbi::ConstantInitialized)
+  : tags_()
+  , dataset_ids_()
+  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , binary_data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr)
+  , mime_type_(0)
+{}
+struct UploadBinaryDataToDatasetsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UploadBinaryDataToDatasetsRequestDefaultTypeInternal() {}
+  union {
+    UploadBinaryDataToDatasetsRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadBinaryDataToDatasetsRequestDefaultTypeInternal _UploadBinaryDataToDatasetsRequest_default_instance_;
+PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsResponse::UploadBinaryDataToDatasetsResponse(
+    ::_pbi::ConstantInitialized){}
+struct UploadBinaryDataToDatasetsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UploadBinaryDataToDatasetsResponseDefaultTypeInternal() {}
+  union {
+    UploadBinaryDataToDatasetsResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadBinaryDataToDatasetsResponseDefaultTypeInternal _UploadBinaryDataToDatasetsResponse_default_instance_;
 }  // namespace v1
 }  // namespace datamanager
 }  // namespace service
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto[2];
+static ::_pb::Metadata file_level_metadata_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto[4];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto = nullptr;
 
@@ -71,46 +100,83 @@ const uint32_t TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto::
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, binary_data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, tags_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, dataset_ids_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, extra_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::datamanager::v1::SyncRequest)},
   { 8, -1, -1, sizeof(::viam::service::datamanager::v1::SyncResponse)},
+  { 14, -1, -1, sizeof(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest)},
+  { 26, -1, -1, sizeof(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::viam::service::datamanager::v1::_SyncRequest_default_instance_._instance,
   &::viam::service::datamanager::v1::_SyncResponse_default_instance_._instance,
+  &::viam::service::datamanager::v1::_UploadBinaryDataToDatasetsRequest_default_instance_._instance,
+  &::viam::service::datamanager::v1::_UploadBinaryDataToDatasetsResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n)service/datamanager/v1/data_manager.pr"
-  "oto\022\033viam.service.datamanager.v1\032\026common"
-  "/v1/common.proto\032\034google/api/annotations"
-  ".proto\032\034google/protobuf/struct.proto\"P\n\013"
-  "SyncRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra"
-  "\030c \001(\0132\027.google.protobuf.StructR\005extra\"\016"
-  "\n\014SyncResponse2\273\002\n\022DataManagerService\022\225\001"
-  "\n\004Sync\022(.viam.service.datamanager.v1.Syn"
-  "cRequest\032).viam.service.datamanager.v1.S"
-  "yncResponse\"8\202\323\344\223\0022\"0/viam/api/v1/servic"
-  "e/datamanager/{name}/datasync\022\214\001\n\tDoComm"
-  "and\022 .viam.common.v1.DoCommandRequest\032!."
-  "viam.common.v1.DoCommandResponse\":\202\323\344\223\0024"
-  "\"2/viam/api/v1/service/datamanager/{name"
-  "}/do_commandBI\n\037com.viam.service.dataman"
-  "ager.v1Z&go.viam.com/api/service/dataman"
-  "ager/v1b\006proto3"
+  "oto\022\033viam.service.datamanager.v1\032\037app/da"
+  "tasync/v1/data_sync.proto\032\026common/v1/com"
+  "mon.proto\032\034google/api/annotations.proto\032"
+  "\034google/protobuf/struct.proto\"P\n\013SyncReq"
+  "uest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132"
+  "\027.google.protobuf.StructR\005extra\"\016\n\014SyncR"
+  "esponse\"\371\001\n!UploadBinaryDataToDatasetsRe"
+  "quest\022\022\n\004name\030\001 \001(\tR\004name\022\037\n\013binary_data"
+  "\030\002 \001(\014R\nbinaryData\022\022\n\004tags\030\003 \003(\tR\004tags\022\037"
+  "\n\013dataset_ids\030\004 \003(\tR\ndatasetIds\022;\n\tmime_"
+  "type\030\005 \001(\0162\036.viam.app.datasync.v1.MimeTy"
+  "peR\010mimeType\022-\n\005extra\030c \001(\0132\027.google.pro"
+  "tobuf.StructR\005extra\"$\n\"UploadBinaryDataT"
+  "oDatasetsResponse2\253\004\n\022DataManagerService"
+  "\022\225\001\n\004Sync\022(.viam.service.datamanager.v1."
+  "SyncRequest\032).viam.service.datamanager.v"
+  "1.SyncResponse\"8\202\323\344\223\0022\"0/viam/api/v1/ser"
+  "vice/datamanager/{name}/datasync\022\214\001\n\tDoC"
+  "ommand\022 .viam.common.v1.DoCommandRequest"
+  "\032!.viam.common.v1.DoCommandResponse\":\202\323\344"
+  "\223\0024\"2/viam/api/v1/service/datamanager/{n"
+  "ame}/do_command\022\355\001\n\032UploadBinaryDataToDa"
+  "tasets\022>.viam.service.datamanager.v1.Upl"
+  "oadBinaryDataToDatasetsRequest\032\?.viam.se"
+  "rvice.datamanager.v1.UploadBinaryDataToD"
+  "atasetsResponse\"N\202\323\344\223\002H\"F/viam/api/v1/se"
+  "rvice/datamanager/{name}/upload_binary_d"
+  "ata_to_datasetsBI\n\037com.viam.service.data"
+  "manager.v1Z&go.viam.com/api/service/data"
+  "manager/v1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps[3] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps[4] = {
+  &::descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto,
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto = {
-    false, false, 655, descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
+    false, false, 1218, descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
     "service/datamanager/v1/data_manager.proto",
-    &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once, descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps, 3, 2,
+    &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once, descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps, 4, 4,
     schemas, file_default_instances, TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto::offsets,
     file_level_metadata_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto, file_level_enum_descriptors_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
     file_level_service_descriptors_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
@@ -408,6 +474,442 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SyncResponse::GetClassData() c
       file_level_metadata_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto[1]);
 }
 
+// ===================================================================
+
+class UploadBinaryDataToDatasetsRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const UploadBinaryDataToDatasetsRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+UploadBinaryDataToDatasetsRequest::_Internal::extra(const UploadBinaryDataToDatasetsRequest* msg) {
+  return *msg->extra_;
+}
+void UploadBinaryDataToDatasetsRequest::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+UploadBinaryDataToDatasetsRequest::UploadBinaryDataToDatasetsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  tags_(arena),
+  dataset_ids_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+}
+UploadBinaryDataToDatasetsRequest::UploadBinaryDataToDatasetsRequest(const UploadBinaryDataToDatasetsRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      tags_(from.tags_),
+      dataset_ids_(from.dataset_ids_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  binary_data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    binary_data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_binary_data().empty()) {
+    binary_data_.Set(from._internal_binary_data(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  mime_type_ = from.mime_type_;
+  // @@protoc_insertion_point(copy_constructor:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+}
+
+inline void UploadBinaryDataToDatasetsRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+binary_data_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  binary_data_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&mime_type_) -
+    reinterpret_cast<char*>(&extra_)) + sizeof(mime_type_));
+}
+
+UploadBinaryDataToDatasetsRequest::~UploadBinaryDataToDatasetsRequest() {
+  // @@protoc_insertion_point(destructor:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UploadBinaryDataToDatasetsRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  binary_data_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void UploadBinaryDataToDatasetsRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void UploadBinaryDataToDatasetsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  tags_.Clear();
+  dataset_ids_.Clear();
+  name_.ClearToEmpty();
+  binary_data_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  mime_type_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UploadBinaryDataToDatasetsRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bytes binary_data = 2 [json_name = "binaryData"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_binary_data();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string tags = 3 [json_name = "tags"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_tags();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string dataset_ids = 4 [json_name = "datasetIds"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_dataset_ids();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.datasync.v1.MimeType mime_type = 5 [json_name = "mimeType"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_mime_type(static_cast<::viam::app::datasync::v1::MimeType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UploadBinaryDataToDatasetsRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // bytes binary_data = 2 [json_name = "binaryData"];
+  if (!this->_internal_binary_data().empty()) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_binary_data(), target);
+  }
+
+  // repeated string tags = 3 [json_name = "tags"];
+  for (int i = 0, n = this->_internal_tags_size(); i < n; i++) {
+    const auto& s = this->_internal_tags(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags");
+    target = stream->WriteString(3, s, target);
+  }
+
+  // repeated string dataset_ids = 4 [json_name = "datasetIds"];
+  for (int i = 0, n = this->_internal_dataset_ids_size(); i < n; i++) {
+    const auto& s = this->_internal_dataset_ids(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids");
+    target = stream->WriteString(4, s, target);
+  }
+
+  // .viam.app.datasync.v1.MimeType mime_type = 5 [json_name = "mimeType"];
+  if (this->_internal_mime_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      5, this->_internal_mime_type(), target);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+  return target;
+}
+
+size_t UploadBinaryDataToDatasetsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string tags = 3 [json_name = "tags"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      tags_.Get(i));
+  }
+
+  // repeated string dataset_ids = 4 [json_name = "datasetIds"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(dataset_ids_.size());
+  for (int i = 0, n = dataset_ids_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      dataset_ids_.Get(i));
+  }
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // bytes binary_data = 2 [json_name = "binaryData"];
+  if (!this->_internal_binary_data().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_binary_data());
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  // .viam.app.datasync.v1.MimeType mime_type = 5 [json_name = "mimeType"];
+  if (this->_internal_mime_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_mime_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadBinaryDataToDatasetsRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    UploadBinaryDataToDatasetsRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadBinaryDataToDatasetsRequest::GetClassData() const { return &_class_data_; }
+
+void UploadBinaryDataToDatasetsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<UploadBinaryDataToDatasetsRequest *>(to)->MergeFrom(
+      static_cast<const UploadBinaryDataToDatasetsRequest &>(from));
+}
+
+
+void UploadBinaryDataToDatasetsRequest::MergeFrom(const UploadBinaryDataToDatasetsRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  tags_.MergeFrom(from.tags_);
+  dataset_ids_.MergeFrom(from.dataset_ids_);
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (!from._internal_binary_data().empty()) {
+    _internal_set_binary_data(from._internal_binary_data());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  if (from._internal_mime_type() != 0) {
+    _internal_set_mime_type(from._internal_mime_type());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UploadBinaryDataToDatasetsRequest::CopyFrom(const UploadBinaryDataToDatasetsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UploadBinaryDataToDatasetsRequest::IsInitialized() const {
+  return true;
+}
+
+void UploadBinaryDataToDatasetsRequest::InternalSwap(UploadBinaryDataToDatasetsRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  tags_.InternalSwap(&other->tags_);
+  dataset_ids_.InternalSwap(&other->dataset_ids_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &binary_data_, lhs_arena,
+      &other->binary_data_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UploadBinaryDataToDatasetsRequest, mime_type_)
+      + sizeof(UploadBinaryDataToDatasetsRequest::mime_type_)
+      - PROTOBUF_FIELD_OFFSET(UploadBinaryDataToDatasetsRequest, extra_)>(
+          reinterpret_cast<char*>(&extra_),
+          reinterpret_cast<char*>(&other->extra_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UploadBinaryDataToDatasetsRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_getter, &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once,
+      file_level_metadata_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto[2]);
+}
+
+// ===================================================================
+
+class UploadBinaryDataToDatasetsResponse::_Internal {
+ public:
+};
+
+UploadBinaryDataToDatasetsResponse::UploadBinaryDataToDatasetsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.service.datamanager.v1.UploadBinaryDataToDatasetsResponse)
+}
+UploadBinaryDataToDatasetsResponse::UploadBinaryDataToDatasetsResponse(const UploadBinaryDataToDatasetsResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.service.datamanager.v1.UploadBinaryDataToDatasetsResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadBinaryDataToDatasetsResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadBinaryDataToDatasetsResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata UploadBinaryDataToDatasetsResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_getter, &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once,
+      file_level_metadata_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto[3]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace datamanager
@@ -421,6 +923,14 @@ Arena::CreateMaybeMessage< ::viam::service::datamanager::v1::SyncRequest >(Arena
 template<> PROTOBUF_NOINLINE ::viam::service::datamanager::v1::SyncResponse*
 Arena::CreateMaybeMessage< ::viam::service::datamanager::v1::SyncResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::service::datamanager::v1::SyncResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest*
+Arena::CreateMaybeMessage< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse*
+Arena::CreateMaybeMessage< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
