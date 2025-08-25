@@ -115,7 +115,7 @@ class ModelFamily {
     ModelFamily(std::string namespace_, std::string family);
 
     const std::string& get_namespace() const;
-    const std::string& get_family() const;
+    const std::string& family() const;
 
     std::string to_string() const;
 
@@ -132,8 +132,8 @@ class Model {
     Model(ModelFamily model, std::string model_name);
     Model();
 
-    const ModelFamily& get_model_family() const;
-    const std::string& get_model_name() const;
+    const ModelFamily& model_family() const;
+    const std::string& model_name() const;
 
     std::string to_string() const;
 

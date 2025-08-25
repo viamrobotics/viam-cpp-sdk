@@ -78,31 +78,31 @@ BOOST_AUTO_TEST_CASE(test_model) {
     ModelFamily mf("ns", "mf");
     BOOST_CHECK_EQUAL(mf.to_string(), "ns:mf");
     BOOST_CHECK_EQUAL(mf.get_namespace(), "ns");
-    BOOST_CHECK_EQUAL(mf.get_family(), "mf");
+    BOOST_CHECK_EQUAL(mf.family(), "mf");
 
     Model model1(mf, "model1");
     BOOST_CHECK_EQUAL(model1.to_string(), "ns:mf:model1");
-    BOOST_CHECK_EQUAL(model1.get_model_family().to_string(), "ns:mf");
-    BOOST_CHECK_EQUAL(model1.get_model_name(), "model1");
+    BOOST_CHECK_EQUAL(model1.model_family().to_string(), "ns:mf");
+    BOOST_CHECK_EQUAL(model1.model_name(), "model1");
     Model model2("ns", "mf", "model2");
     BOOST_CHECK_EQUAL(model2.to_string(), "ns:mf:model2");
-    BOOST_CHECK_EQUAL(model2.get_model_family().to_string(), "ns:mf");
-    BOOST_CHECK_EQUAL(model2.get_model_name(), "model2");
+    BOOST_CHECK_EQUAL(model2.model_family().to_string(), "ns:mf");
+    BOOST_CHECK_EQUAL(model2.model_name(), "model2");
 
     Model model3 = Model::from_str("ns:mf:model3");
     BOOST_CHECK_EQUAL(model3.to_string(), "ns:mf:model3");
-    BOOST_CHECK_EQUAL(model3.get_model_family().to_string(), "ns:mf");
-    BOOST_CHECK_EQUAL(model3.get_model_name(), "model3");
+    BOOST_CHECK_EQUAL(model3.model_family().to_string(), "ns:mf");
+    BOOST_CHECK_EQUAL(model3.model_name(), "model3");
     Model model4 = Model::from_str("model4");
     BOOST_CHECK_EQUAL(model4.to_string(), "rdk:builtin:model4");
-    BOOST_CHECK_EQUAL(model4.get_model_family().to_string(), "rdk:builtin");
-    BOOST_CHECK_EQUAL(model4.get_model_name(), "model4");
+    BOOST_CHECK_EQUAL(model4.model_family().to_string(), "rdk:builtin");
+    BOOST_CHECK_EQUAL(model4.model_name(), "model4");
 
     ModelFamily empty("", "");
     Model model5(empty, "model5");
     BOOST_CHECK_EQUAL(model5.to_string(), "model5");
-    BOOST_CHECK_EQUAL(model5.get_model_family().to_string(), "");
-    BOOST_CHECK_EQUAL(model5.get_model_name(), "model5");
+    BOOST_CHECK_EQUAL(model5.model_family().to_string(), "");
+    BOOST_CHECK_EQUAL(model5.model_name(), "model5");
 
     BOOST_CHECK_THROW(Model::from_str("@"), Exception);
 }

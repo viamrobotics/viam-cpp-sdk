@@ -195,7 +195,7 @@ const std::string& ModelFamily::get_namespace() const {
     return namespace_;
 }
 
-const std::string& ModelFamily::get_family() const {
+const std::string& ModelFamily::family() const {
     return family_;
 }
 
@@ -205,11 +205,11 @@ Model::Model(ModelFamily model_family, std::string model_name)
 Model::Model(std::string namespace_, std::string family, std::string model_name)
     : Model(ModelFamily(std::move(namespace_), std::move(family)), std::move(model_name)) {}
 
-const ModelFamily& Model::get_model_family() const {
+const ModelFamily& Model::model_family() const {
     return model_family_;
 }
 
-const std::string& Model::get_model_name() const {
+const std::string& Model::model_name() const {
     return model_name_;
 }
 
