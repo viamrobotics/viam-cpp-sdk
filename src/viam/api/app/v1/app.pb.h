@@ -1325,6 +1325,32 @@ inline bool Visibility_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Visibility>(
     Visibility_descriptor(), name, value);
 }
+enum AppType : int {
+  APP_TYPE_UNSPECIFIED = 0,
+  APP_TYPE_SINGLE_MACHINE = 1,
+  APP_TYPE_MULTI_MACHINE = 2,
+  AppType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  AppType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool AppType_IsValid(int value);
+constexpr AppType AppType_MIN = APP_TYPE_UNSPECIFIED;
+constexpr AppType AppType_MAX = APP_TYPE_MULTI_MACHINE;
+constexpr int AppType_ARRAYSIZE = AppType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* AppType_descriptor();
+template<typename T>
+inline const std::string& AppType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, AppType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function AppType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    AppType_descriptor(), enum_t_value);
+}
+inline bool AppType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, AppType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<AppType>(
+    AppType_descriptor(), name, value);
+}
 enum ClientAuthentication : int {
   CLIENT_AUTHENTICATION_UNSPECIFIED = 0,
   CLIENT_AUTHENTICATION_REQUIRED = 1,
@@ -26944,9 +26970,11 @@ class PartSummary final :
     kOsFieldNumber = 6,
     kPlatformFieldNumber = 7,
     kPublicIpAddressFieldNumber = 8,
+    kDnsNameFieldNumber = 10,
     kLastOnlineFieldNumber = 3,
     kViamServerVersionFieldNumber = 4,
     kViamAgentVersionFieldNumber = 5,
+    kIsMainPartFieldNumber = 11,
   };
   // repeated .viam.app.v1.FragmentSummary fragments = 9 [json_name = "fragments"];
   int fragments_size() const;
@@ -27048,6 +27076,24 @@ class PartSummary final :
   std::string* _internal_mutable_public_ip_address();
   public:
 
+  // optional string dns_name = 10 [json_name = "dnsName"];
+  bool has_dns_name() const;
+  private:
+  bool _internal_has_dns_name() const;
+  public:
+  void clear_dns_name();
+  const std::string& dns_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_dns_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_dns_name();
+  PROTOBUF_NODISCARD std::string* release_dns_name();
+  void set_allocated_dns_name(std::string* dns_name);
+  private:
+  const std::string& _internal_dns_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dns_name(const std::string& value);
+  std::string* _internal_mutable_dns_name();
+  public:
+
   // optional .google.protobuf.Timestamp last_online = 3 [json_name = "lastOnline"];
   bool has_last_online() const;
   private:
@@ -27102,6 +27148,15 @@ class PartSummary final :
       ::viam::app::v1::ViamAgentVersion* viam_agent_version);
   ::viam::app::v1::ViamAgentVersion* unsafe_arena_release_viam_agent_version();
 
+  // bool is_main_part = 11 [json_name = "isMainPart"];
+  void clear_is_main_part();
+  bool is_main_part() const;
+  void set_is_main_part(bool value);
+  private:
+  bool _internal_is_main_part() const;
+  void _internal_set_is_main_part(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.PartSummary)
  private:
   class _Internal;
@@ -27117,9 +27172,11 @@ class PartSummary final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr os_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr platform_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_ip_address_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dns_name_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_online_;
   ::viam::app::v1::ViamServerVersion* viam_server_version_;
   ::viam::app::v1::ViamAgentVersion* viam_agent_version_;
+  bool is_main_part_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -43337,6 +43394,7 @@ class GetAppContentResponse final :
   enum : int {
     kBlobPathFieldNumber = 1,
     kEntrypointFieldNumber = 2,
+    kAppTypeFieldNumber = 3,
   };
   // string blob_path = 1 [json_name = "blobPath"];
   void clear_blob_path();
@@ -43366,6 +43424,15 @@ class GetAppContentResponse final :
   std::string* _internal_mutable_entrypoint();
   public:
 
+  // .viam.app.v1.AppType app_type = 3 [json_name = "appType"];
+  void clear_app_type();
+  ::viam::app::v1::AppType app_type() const;
+  void set_app_type(::viam::app::v1::AppType value);
+  private:
+  ::viam::app::v1::AppType _internal_app_type() const;
+  void _internal_set_app_type(::viam::app::v1::AppType value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetAppContentResponse)
  private:
   class _Internal;
@@ -43375,6 +43442,7 @@ class GetAppContentResponse final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr blob_path_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
+  int app_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -65729,9 +65797,29 @@ inline void PartSummary::set_allocated_part_name(std::string* part_name) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PartSummary.part_name)
 }
 
+// bool is_main_part = 11 [json_name = "isMainPart"];
+inline void PartSummary::clear_is_main_part() {
+  is_main_part_ = false;
+}
+inline bool PartSummary::_internal_is_main_part() const {
+  return is_main_part_;
+}
+inline bool PartSummary::is_main_part() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PartSummary.is_main_part)
+  return _internal_is_main_part();
+}
+inline void PartSummary::_internal_set_is_main_part(bool value) {
+  
+  is_main_part_ = value;
+}
+inline void PartSummary::set_is_main_part(bool value) {
+  _internal_set_is_main_part(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.PartSummary.is_main_part)
+}
+
 // optional .google.protobuf.Timestamp last_online = 3 [json_name = "lastOnline"];
 inline bool PartSummary::_internal_has_last_online() const {
-  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
   PROTOBUF_ASSUME(!value || last_online_ != nullptr);
   return value;
 }
@@ -65754,14 +65842,14 @@ inline void PartSummary::unsafe_arena_set_allocated_last_online(
   }
   last_online_ = last_online;
   if (last_online) {
-    _has_bits_[0] |= 0x00000008u;
+    _has_bits_[0] |= 0x00000010u;
   } else {
-    _has_bits_[0] &= ~0x00000008u;
+    _has_bits_[0] &= ~0x00000010u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.PartSummary.last_online)
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PartSummary::release_last_online() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_online_;
   last_online_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -65777,13 +65865,13 @@ inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PartSummary::release_last_online() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PartSummary::unsafe_arena_release_last_online() {
   // @@protoc_insertion_point(field_release:viam.app.v1.PartSummary.last_online)
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_online_;
   last_online_ = nullptr;
   return temp;
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PartSummary::_internal_mutable_last_online() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
   if (last_online_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
     last_online_ = p;
@@ -65808,9 +65896,9 @@ inline void PartSummary::set_allocated_last_online(::PROTOBUF_NAMESPACE_ID::Time
       last_online = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, last_online, submessage_arena);
     }
-    _has_bits_[0] |= 0x00000008u;
+    _has_bits_[0] |= 0x00000010u;
   } else {
-    _has_bits_[0] &= ~0x00000008u;
+    _has_bits_[0] &= ~0x00000010u;
   }
   last_online_ = last_online;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PartSummary.last_online)
@@ -65818,7 +65906,7 @@ inline void PartSummary::set_allocated_last_online(::PROTOBUF_NAMESPACE_ID::Time
 
 // optional .viam.app.v1.ViamServerVersion viam_server_version = 4 [json_name = "viamServerVersion"];
 inline bool PartSummary::_internal_has_viam_server_version() const {
-  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
   PROTOBUF_ASSUME(!value || viam_server_version_ != nullptr);
   return value;
 }
@@ -65827,7 +65915,7 @@ inline bool PartSummary::has_viam_server_version() const {
 }
 inline void PartSummary::clear_viam_server_version() {
   if (viam_server_version_ != nullptr) viam_server_version_->Clear();
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline const ::viam::app::v1::ViamServerVersion& PartSummary::_internal_viam_server_version() const {
   const ::viam::app::v1::ViamServerVersion* p = viam_server_version_;
@@ -65845,14 +65933,14 @@ inline void PartSummary::unsafe_arena_set_allocated_viam_server_version(
   }
   viam_server_version_ = viam_server_version;
   if (viam_server_version) {
-    _has_bits_[0] |= 0x00000010u;
+    _has_bits_[0] |= 0x00000020u;
   } else {
-    _has_bits_[0] &= ~0x00000010u;
+    _has_bits_[0] &= ~0x00000020u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.PartSummary.viam_server_version)
 }
 inline ::viam::app::v1::ViamServerVersion* PartSummary::release_viam_server_version() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
   ::viam::app::v1::ViamServerVersion* temp = viam_server_version_;
   viam_server_version_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -65868,13 +65956,13 @@ inline ::viam::app::v1::ViamServerVersion* PartSummary::release_viam_server_vers
 }
 inline ::viam::app::v1::ViamServerVersion* PartSummary::unsafe_arena_release_viam_server_version() {
   // @@protoc_insertion_point(field_release:viam.app.v1.PartSummary.viam_server_version)
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
   ::viam::app::v1::ViamServerVersion* temp = viam_server_version_;
   viam_server_version_ = nullptr;
   return temp;
 }
 inline ::viam::app::v1::ViamServerVersion* PartSummary::_internal_mutable_viam_server_version() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
   if (viam_server_version_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::app::v1::ViamServerVersion>(GetArenaForAllocation());
     viam_server_version_ = p;
@@ -65898,9 +65986,9 @@ inline void PartSummary::set_allocated_viam_server_version(::viam::app::v1::Viam
       viam_server_version = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, viam_server_version, submessage_arena);
     }
-    _has_bits_[0] |= 0x00000010u;
+    _has_bits_[0] |= 0x00000020u;
   } else {
-    _has_bits_[0] &= ~0x00000010u;
+    _has_bits_[0] &= ~0x00000020u;
   }
   viam_server_version_ = viam_server_version;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PartSummary.viam_server_version)
@@ -65908,7 +65996,7 @@ inline void PartSummary::set_allocated_viam_server_version(::viam::app::v1::Viam
 
 // optional .viam.app.v1.ViamAgentVersion viam_agent_version = 5 [json_name = "viamAgentVersion"];
 inline bool PartSummary::_internal_has_viam_agent_version() const {
-  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
   PROTOBUF_ASSUME(!value || viam_agent_version_ != nullptr);
   return value;
 }
@@ -65917,7 +66005,7 @@ inline bool PartSummary::has_viam_agent_version() const {
 }
 inline void PartSummary::clear_viam_agent_version() {
   if (viam_agent_version_ != nullptr) viam_agent_version_->Clear();
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline const ::viam::app::v1::ViamAgentVersion& PartSummary::_internal_viam_agent_version() const {
   const ::viam::app::v1::ViamAgentVersion* p = viam_agent_version_;
@@ -65935,14 +66023,14 @@ inline void PartSummary::unsafe_arena_set_allocated_viam_agent_version(
   }
   viam_agent_version_ = viam_agent_version;
   if (viam_agent_version) {
-    _has_bits_[0] |= 0x00000020u;
+    _has_bits_[0] |= 0x00000040u;
   } else {
-    _has_bits_[0] &= ~0x00000020u;
+    _has_bits_[0] &= ~0x00000040u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.PartSummary.viam_agent_version)
 }
 inline ::viam::app::v1::ViamAgentVersion* PartSummary::release_viam_agent_version() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
   ::viam::app::v1::ViamAgentVersion* temp = viam_agent_version_;
   viam_agent_version_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -65958,13 +66046,13 @@ inline ::viam::app::v1::ViamAgentVersion* PartSummary::release_viam_agent_versio
 }
 inline ::viam::app::v1::ViamAgentVersion* PartSummary::unsafe_arena_release_viam_agent_version() {
   // @@protoc_insertion_point(field_release:viam.app.v1.PartSummary.viam_agent_version)
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
   ::viam::app::v1::ViamAgentVersion* temp = viam_agent_version_;
   viam_agent_version_ = nullptr;
   return temp;
 }
 inline ::viam::app::v1::ViamAgentVersion* PartSummary::_internal_mutable_viam_agent_version() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000040u;
   if (viam_agent_version_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::app::v1::ViamAgentVersion>(GetArenaForAllocation());
     viam_agent_version_ = p;
@@ -65988,9 +66076,9 @@ inline void PartSummary::set_allocated_viam_agent_version(::viam::app::v1::ViamA
       viam_agent_version = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, viam_agent_version, submessage_arena);
     }
-    _has_bits_[0] |= 0x00000020u;
+    _has_bits_[0] |= 0x00000040u;
   } else {
-    _has_bits_[0] &= ~0x00000020u;
+    _has_bits_[0] &= ~0x00000040u;
   }
   viam_agent_version_ = viam_agent_version;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PartSummary.viam_agent_version)
@@ -66198,6 +66286,74 @@ inline void PartSummary::set_allocated_public_ip_address(std::string* public_ip_
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PartSummary.public_ip_address)
+}
+
+// optional string dns_name = 10 [json_name = "dnsName"];
+inline bool PartSummary::_internal_has_dns_name() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool PartSummary::has_dns_name() const {
+  return _internal_has_dns_name();
+}
+inline void PartSummary::clear_dns_name() {
+  dns_name_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const std::string& PartSummary::dns_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PartSummary.dns_name)
+  return _internal_dns_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PartSummary::set_dns_name(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000008u;
+ dns_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.PartSummary.dns_name)
+}
+inline std::string* PartSummary::mutable_dns_name() {
+  std::string* _s = _internal_mutable_dns_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PartSummary.dns_name)
+  return _s;
+}
+inline const std::string& PartSummary::_internal_dns_name() const {
+  return dns_name_.Get();
+}
+inline void PartSummary::_internal_set_dns_name(const std::string& value) {
+  _has_bits_[0] |= 0x00000008u;
+  dns_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PartSummary::_internal_mutable_dns_name() {
+  _has_bits_[0] |= 0x00000008u;
+  return dns_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PartSummary::release_dns_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PartSummary.dns_name)
+  if (!_internal_has_dns_name()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000008u;
+  auto* p = dns_name_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (dns_name_.IsDefault()) {
+    dns_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void PartSummary::set_allocated_dns_name(std::string* dns_name) {
+  if (dns_name != nullptr) {
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  dns_name_.SetAllocated(dns_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (dns_name_.IsDefault()) {
+    dns_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PartSummary.dns_name)
 }
 
 // repeated .viam.app.v1.FragmentSummary fragments = 9 [json_name = "fragments"];
@@ -78161,6 +78317,26 @@ inline void GetAppContentResponse::set_allocated_entrypoint(std::string* entrypo
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetAppContentResponse.entrypoint)
 }
 
+// .viam.app.v1.AppType app_type = 3 [json_name = "appType"];
+inline void GetAppContentResponse::clear_app_type() {
+  app_type_ = 0;
+}
+inline ::viam::app::v1::AppType GetAppContentResponse::_internal_app_type() const {
+  return static_cast< ::viam::app::v1::AppType >(app_type_);
+}
+inline ::viam::app::v1::AppType GetAppContentResponse::app_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetAppContentResponse.app_type)
+  return _internal_app_type();
+}
+inline void GetAppContentResponse::_internal_set_app_type(::viam::app::v1::AppType value) {
+  
+  app_type_ = value;
+}
+inline void GetAppContentResponse::set_app_type(::viam::app::v1::AppType value) {
+  _internal_set_app_type(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetAppContentResponse.app_type)
+}
+
 // -------------------------------------------------------------------
 
 // OrganizationSetLogoRequest
@@ -81023,6 +81199,11 @@ template <> struct is_proto_enum< ::viam::app::v1::Visibility> : ::std::true_typ
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::Visibility>() {
   return ::viam::app::v1::Visibility_descriptor();
+}
+template <> struct is_proto_enum< ::viam::app::v1::AppType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::AppType>() {
+  return ::viam::app::v1::AppType_descriptor();
 }
 template <> struct is_proto_enum< ::viam::app::v1::ClientAuthentication> : ::std::true_type {};
 template <>

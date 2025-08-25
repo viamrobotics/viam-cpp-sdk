@@ -50,6 +50,12 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace viam {
 namespace app {
 namespace v1 {
+class CreateInvoiceAndChargeImmediatelyRequest;
+struct CreateInvoiceAndChargeImmediatelyRequestDefaultTypeInternal;
+extern CreateInvoiceAndChargeImmediatelyRequestDefaultTypeInternal _CreateInvoiceAndChargeImmediatelyRequest_default_instance_;
+class CreateInvoiceAndChargeImmediatelyResponse;
+struct CreateInvoiceAndChargeImmediatelyResponseDefaultTypeInternal;
+extern CreateInvoiceAndChargeImmediatelyResponseDefaultTypeInternal _CreateInvoiceAndChargeImmediatelyResponse_default_instance_;
 class GetAvailableBillingTiersRequest;
 struct GetAvailableBillingTiersRequestDefaultTypeInternal;
 extern GetAvailableBillingTiersRequestDefaultTypeInternal _GetAvailableBillingTiersRequest_default_instance_;
@@ -111,6 +117,8 @@ extern UsageCostDefaultTypeInternal _UsageCost_default_instance_;
 }  // namespace app
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
+template<> ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest>(Arena*);
+template<> ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>(Arena*);
 template<> ::viam::app::v1::GetAvailableBillingTiersRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetAvailableBillingTiersRequest>(Arena*);
 template<> ::viam::app::v1::GetAvailableBillingTiersResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetAvailableBillingTiersResponse>(Arena*);
 template<> ::viam::app::v1::GetCurrentMonthUsageRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetCurrentMonthUsageRequest>(Arena*);
@@ -3428,6 +3436,322 @@ class UpdateOrganizationBillingTierResponse final :
   typedef void DestructorSkippable_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
 };
+// -------------------------------------------------------------------
+
+class CreateInvoiceAndChargeImmediatelyRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest) */ {
+ public:
+  inline CreateInvoiceAndChargeImmediatelyRequest() : CreateInvoiceAndChargeImmediatelyRequest(nullptr) {}
+  ~CreateInvoiceAndChargeImmediatelyRequest() override;
+  explicit PROTOBUF_CONSTEXPR CreateInvoiceAndChargeImmediatelyRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateInvoiceAndChargeImmediatelyRequest(const CreateInvoiceAndChargeImmediatelyRequest& from);
+  CreateInvoiceAndChargeImmediatelyRequest(CreateInvoiceAndChargeImmediatelyRequest&& from) noexcept
+    : CreateInvoiceAndChargeImmediatelyRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateInvoiceAndChargeImmediatelyRequest& operator=(const CreateInvoiceAndChargeImmediatelyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateInvoiceAndChargeImmediatelyRequest& operator=(CreateInvoiceAndChargeImmediatelyRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateInvoiceAndChargeImmediatelyRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateInvoiceAndChargeImmediatelyRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateInvoiceAndChargeImmediatelyRequest*>(
+               &_CreateInvoiceAndChargeImmediatelyRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(CreateInvoiceAndChargeImmediatelyRequest& a, CreateInvoiceAndChargeImmediatelyRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateInvoiceAndChargeImmediatelyRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateInvoiceAndChargeImmediatelyRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateInvoiceAndChargeImmediatelyRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateInvoiceAndChargeImmediatelyRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateInvoiceAndChargeImmediatelyRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateInvoiceAndChargeImmediatelyRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateInvoiceAndChargeImmediatelyRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest";
+  }
+  protected:
+  explicit CreateInvoiceAndChargeImmediatelyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdToChargeFieldNumber = 1,
+    kDescriptionFieldNumber = 3,
+    kOrgIdForBrandingFieldNumber = 4,
+    kAmountFieldNumber = 2,
+  };
+  // string org_id_to_charge = 1 [json_name = "orgIdToCharge"];
+  void clear_org_id_to_charge();
+  const std::string& org_id_to_charge() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id_to_charge(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id_to_charge();
+  PROTOBUF_NODISCARD std::string* release_org_id_to_charge();
+  void set_allocated_org_id_to_charge(std::string* org_id_to_charge);
+  private:
+  const std::string& _internal_org_id_to_charge() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id_to_charge(const std::string& value);
+  std::string* _internal_mutable_org_id_to_charge();
+  public:
+
+  // optional string description = 3 [json_name = "description"];
+  bool has_description() const;
+  private:
+  bool _internal_has_description() const;
+  public:
+  void clear_description();
+  const std::string& description() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_description(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* description);
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(const std::string& value);
+  std::string* _internal_mutable_description();
+  public:
+
+  // optional string org_id_for_branding = 4 [json_name = "orgIdForBranding"];
+  bool has_org_id_for_branding() const;
+  private:
+  bool _internal_has_org_id_for_branding() const;
+  public:
+  void clear_org_id_for_branding();
+  const std::string& org_id_for_branding() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id_for_branding(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id_for_branding();
+  PROTOBUF_NODISCARD std::string* release_org_id_for_branding();
+  void set_allocated_org_id_for_branding(std::string* org_id_for_branding);
+  private:
+  const std::string& _internal_org_id_for_branding() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id_for_branding(const std::string& value);
+  std::string* _internal_mutable_org_id_for_branding();
+  public:
+
+  // double amount = 2 [json_name = "amount"];
+  void clear_amount();
+  double amount() const;
+  void set_amount(double value);
+  private:
+  double _internal_amount() const;
+  void _internal_set_amount(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_to_charge_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_for_branding_;
+  double amount_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateInvoiceAndChargeImmediatelyResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse) */ {
+ public:
+  inline CreateInvoiceAndChargeImmediatelyResponse() : CreateInvoiceAndChargeImmediatelyResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR CreateInvoiceAndChargeImmediatelyResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateInvoiceAndChargeImmediatelyResponse(const CreateInvoiceAndChargeImmediatelyResponse& from);
+  CreateInvoiceAndChargeImmediatelyResponse(CreateInvoiceAndChargeImmediatelyResponse&& from) noexcept
+    : CreateInvoiceAndChargeImmediatelyResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateInvoiceAndChargeImmediatelyResponse& operator=(const CreateInvoiceAndChargeImmediatelyResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateInvoiceAndChargeImmediatelyResponse& operator=(CreateInvoiceAndChargeImmediatelyResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateInvoiceAndChargeImmediatelyResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateInvoiceAndChargeImmediatelyResponse* internal_default_instance() {
+    return reinterpret_cast<const CreateInvoiceAndChargeImmediatelyResponse*>(
+               &_CreateInvoiceAndChargeImmediatelyResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(CreateInvoiceAndChargeImmediatelyResponse& a, CreateInvoiceAndChargeImmediatelyResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateInvoiceAndChargeImmediatelyResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateInvoiceAndChargeImmediatelyResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateInvoiceAndChargeImmediatelyResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateInvoiceAndChargeImmediatelyResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const CreateInvoiceAndChargeImmediatelyResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const CreateInvoiceAndChargeImmediatelyResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse";
+  }
+  protected:
+  explicit CreateInvoiceAndChargeImmediatelyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
 // ===================================================================
 
 
@@ -5599,9 +5923,227 @@ inline void UpdateOrganizationBillingTierRequest::set_allocated_billing_tier(std
 
 // UpdateOrganizationBillingTierResponse
 
+// -------------------------------------------------------------------
+
+// CreateInvoiceAndChargeImmediatelyRequest
+
+// string org_id_to_charge = 1 [json_name = "orgIdToCharge"];
+inline void CreateInvoiceAndChargeImmediatelyRequest::clear_org_id_to_charge() {
+  org_id_to_charge_.ClearToEmpty();
+}
+inline const std::string& CreateInvoiceAndChargeImmediatelyRequest::org_id_to_charge() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_to_charge)
+  return _internal_org_id_to_charge();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateInvoiceAndChargeImmediatelyRequest::set_org_id_to_charge(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_to_charge_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_to_charge)
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyRequest::mutable_org_id_to_charge() {
+  std::string* _s = _internal_mutable_org_id_to_charge();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_to_charge)
+  return _s;
+}
+inline const std::string& CreateInvoiceAndChargeImmediatelyRequest::_internal_org_id_to_charge() const {
+  return org_id_to_charge_.Get();
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::_internal_set_org_id_to_charge(const std::string& value) {
+  
+  org_id_to_charge_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyRequest::_internal_mutable_org_id_to_charge() {
+  
+  return org_id_to_charge_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyRequest::release_org_id_to_charge() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_to_charge)
+  return org_id_to_charge_.Release();
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::set_allocated_org_id_to_charge(std::string* org_id_to_charge) {
+  if (org_id_to_charge != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_to_charge_.SetAllocated(org_id_to_charge, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_to_charge_.IsDefault()) {
+    org_id_to_charge_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_to_charge)
+}
+
+// double amount = 2 [json_name = "amount"];
+inline void CreateInvoiceAndChargeImmediatelyRequest::clear_amount() {
+  amount_ = 0;
+}
+inline double CreateInvoiceAndChargeImmediatelyRequest::_internal_amount() const {
+  return amount_;
+}
+inline double CreateInvoiceAndChargeImmediatelyRequest::amount() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.amount)
+  return _internal_amount();
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::_internal_set_amount(double value) {
+  
+  amount_ = value;
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::set_amount(double value) {
+  _internal_set_amount(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.amount)
+}
+
+// optional string description = 3 [json_name = "description"];
+inline bool CreateInvoiceAndChargeImmediatelyRequest::_internal_has_description() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool CreateInvoiceAndChargeImmediatelyRequest::has_description() const {
+  return _internal_has_description();
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::clear_description() {
+  description_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& CreateInvoiceAndChargeImmediatelyRequest::description() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.description)
+  return _internal_description();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateInvoiceAndChargeImmediatelyRequest::set_description(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ description_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.description)
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyRequest::mutable_description() {
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.description)
+  return _s;
+}
+inline const std::string& CreateInvoiceAndChargeImmediatelyRequest::_internal_description() const {
+  return description_.Get();
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::_internal_set_description(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  description_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyRequest::_internal_mutable_description() {
+  _has_bits_[0] |= 0x00000001u;
+  return description_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyRequest::release_description() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.description)
+  if (!_internal_has_description()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = description_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (description_.IsDefault()) {
+    description_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::set_allocated_description(std::string* description) {
+  if (description != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  description_.SetAllocated(description, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (description_.IsDefault()) {
+    description_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.description)
+}
+
+// optional string org_id_for_branding = 4 [json_name = "orgIdForBranding"];
+inline bool CreateInvoiceAndChargeImmediatelyRequest::_internal_has_org_id_for_branding() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool CreateInvoiceAndChargeImmediatelyRequest::has_org_id_for_branding() const {
+  return _internal_has_org_id_for_branding();
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::clear_org_id_for_branding() {
+  org_id_for_branding_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& CreateInvoiceAndChargeImmediatelyRequest::org_id_for_branding() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_for_branding)
+  return _internal_org_id_for_branding();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateInvoiceAndChargeImmediatelyRequest::set_org_id_for_branding(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000002u;
+ org_id_for_branding_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_for_branding)
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyRequest::mutable_org_id_for_branding() {
+  std::string* _s = _internal_mutable_org_id_for_branding();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_for_branding)
+  return _s;
+}
+inline const std::string& CreateInvoiceAndChargeImmediatelyRequest::_internal_org_id_for_branding() const {
+  return org_id_for_branding_.Get();
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::_internal_set_org_id_for_branding(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  org_id_for_branding_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyRequest::_internal_mutable_org_id_for_branding() {
+  _has_bits_[0] |= 0x00000002u;
+  return org_id_for_branding_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyRequest::release_org_id_for_branding() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_for_branding)
+  if (!_internal_has_org_id_for_branding()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  auto* p = org_id_for_branding_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_for_branding_.IsDefault()) {
+    org_id_for_branding_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::set_allocated_org_id_for_branding(std::string* org_id_for_branding) {
+  if (org_id_for_branding != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  org_id_for_branding_.SetAllocated(org_id_for_branding, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_for_branding_.IsDefault()) {
+    org_id_for_branding_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_for_branding)
+}
+
+// -------------------------------------------------------------------
+
+// CreateInvoiceAndChargeImmediatelyResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
