@@ -191,11 +191,27 @@ const API& RPCSubtype::api() const {
 ModelFamily::ModelFamily(std::string namespace_, std::string family)
     : namespace_(std::move(namespace_)), family_(std::move(family)) {}
 
+const std::string& ModelFamily::get_namespace() const {
+    return namespace_;
+}
+
+const std::string& ModelFamily::family() const {
+    return family_;
+}
+
 Model::Model(ModelFamily model_family, std::string model_name)
     : model_family_(std::move(model_family)), model_name_(std::move(model_name)) {}
 
 Model::Model(std::string namespace_, std::string family, std::string model_name)
     : Model(ModelFamily(std::move(namespace_), std::move(family)), std::move(model_name)) {}
+
+const ModelFamily& Model::model_family() const {
+    return model_family_;
+}
+
+const std::string& Model::model_name() const {
+    return model_name_;
+}
 
 Model Model::from_str(std::string model) {
     if (std::regex_match(model, MODEL_REGEX)) {

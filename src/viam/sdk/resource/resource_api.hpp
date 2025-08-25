@@ -113,6 +113,10 @@ class RPCSubtype {
 class ModelFamily {
    public:
     ModelFamily(std::string namespace_, std::string family);
+
+    const std::string& get_namespace() const;
+    const std::string& family() const;
+
     std::string to_string() const;
 
    private:
@@ -124,11 +128,14 @@ class ModelFamily {
 /// @brief Defines the namespace_, family, and name for a particular resource model.
 class Model {
    public:
-    std::string to_string() const;
-
     Model(std::string namespace_, std::string family, std::string model_name);
     Model(ModelFamily model, std::string model_name);
     Model();
+
+    const ModelFamily& model_family() const;
+    const std::string& model_name() const;
+
+    std::string to_string() const;
 
     /// @brief Parses a single model string into a Model, using default values for namespace and
     /// family if not provided.
