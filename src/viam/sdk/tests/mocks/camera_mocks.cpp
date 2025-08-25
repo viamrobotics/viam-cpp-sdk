@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <viam/sdk/tests/mocks/camera_mocks.hpp>
 
 #include <viam/sdk/common/proto_value.hpp>
@@ -16,8 +17,23 @@ ProtoStruct MockCamera::do_command(const ProtoStruct&) {
 Camera::raw_image MockCamera::get_image(std::string, const ProtoStruct&) {
     return image_;
 }
-Camera::image_collection MockCamera::get_images() {
-    return images_;
+Camera::image_collection MockCamera::get_images(std::vector<std::string> filter_source_names,
+                                                const ProtoStruct& extra) {
+    last_filter_source_names_ = std::move(filter_source_names);
+    last_extra_ = extra;
+    if (last_filter_source_names_.empty()) {
+        return images_;
+    }
+    Camera::image_collection filtered = images_;
+    filtered.images.clear();
+    for (const auto& img : images_.images) {
+        if (std::find(last_filter_source_names_.begin(),
+                      last_filter_source_names_.end(),
+                      img.source_name) != last_filter_source_names_.end()) {
+            filtered.images.push_back(img);
+        }
+    }
+    return filtered;
 }
 Camera::point_cloud MockCamera::get_point_cloud(std::string, const ProtoStruct&) {
     return pc_;
@@ -43,13 +59,13 @@ Camera::image_collection fake_raw_images() {
     std::vector<Camera::raw_image> images;
     Camera::raw_image image1;
     image1.mime_type = "image/jpeg";
-    image1.source_name = "color_sensor";
+    image1.source_name = "color";
     std::vector<unsigned char> bytes1 = {'a', 'b', 'c'};
     image1.bytes = bytes1;
     images.push_back(image1);
     Camera::raw_image image2;
     image2.mime_type = "image/vnd.viam.dep";
-    image2.source_name = "depth_sensor";
+    image2.source_name = "depth";
     std::vector<unsigned char> bytes2 = {'d', 'e', 'f'};
     image2.bytes = bytes2;
     images.push_back(image2);

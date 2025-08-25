@@ -160,7 +160,27 @@ class Camera : public Component {
     /// @brief Get the next images from the camera as a vector of raw images with names and
     /// metadata.
     /// @return a vector of raw_images and associated response metadata.
-    virtual image_collection get_images() = 0;
+    inline image_collection get_images() {
+        return get_images({}, {});
+    }
+
+    /// @brief Get the next images from specific sources as a vector of raw images with names and
+    /// metadata.
+    /// @param filter_source_names the names of sources to receive images from. If empty, all
+    /// sources are returned.
+    /// @return a vector of raw_images and associated response metadata.
+    inline image_collection get_images(std::vector<std::string> filter_source_names) {
+        return get_images(std::move(filter_source_names), {});
+    }
+
+    /// @brief Get the next images from the camera as a vector of raw images with names and
+    /// metadata.
+    /// @param filter_source_names the names of sources to receive images from. If empty, all
+    /// sources are returned.
+    /// @param extra any additional arguments to the method.
+    /// @return a vector of raw_images and associated response metadata.
+    virtual image_collection get_images(std::vector<std::string> filter_source_names,
+                                        const ProtoStruct& extra) = 0;
 
     /// @brief Get the next `point_cloud` from the camera.
     /// @param mime_type the desired mime_type of the point_cloud (does not guarantee output type).
