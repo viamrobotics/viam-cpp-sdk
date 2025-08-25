@@ -441,7 +441,7 @@ that they are pre-populated.
 cmake -DVIAMCPPSDK_USE_DYNAMIC_PROTOS=ON ...
 ninja all   # FAILS!
 ninja generate-dynamic-protos
-nina all    # OK!
+ninja all    # OK!
 ```
 
 ### Build Issue: Proto Mismatch

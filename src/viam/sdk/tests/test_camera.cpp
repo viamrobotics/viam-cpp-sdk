@@ -51,6 +51,37 @@ BOOST_AUTO_TEST_CASE(test_get_images) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_images_filtering) {
+    std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
+    client_to_mock_pipeline<Camera>(mock, [&](Camera& client) {
+        // request only color
+        Camera::image_collection images = client.get_images({"color"});
+        BOOST_CHECK_EQUAL(images.images.size(), 1);
+        BOOST_CHECK_EQUAL(images.images[0].source_name, "color");
+
+        // empty filter returns all
+        Camera::image_collection all_images = client.get_images({});
+        BOOST_CHECK_EQUAL(all_images.images.size(), 2);
+
+        // verify filter propagated to mock
+        auto last_filter = mock->last_filter_source_names();
+        BOOST_CHECK_EQUAL(last_filter.size(), 0);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_images_with_extra) {
+    std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
+    client_to_mock_pipeline<Camera>(mock, [&](Camera& client) {
+        ProtoStruct extra;
+        extra["foo"] = ProtoValue("bar");
+        auto images = client.get_images({}, extra);
+        (void)images; // unused variable in test body
+        const auto& last_extra = mock->last_extra();
+        BOOST_CHECK(last_extra.at("foo").is_a<std::string>());
+        BOOST_CHECK_EQUAL(last_extra.at("foo").get_unchecked<std::string>(), "bar");
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_get_point_cloud) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
     client_to_mock_pipeline<Camera>(mock, [](Camera& client) {

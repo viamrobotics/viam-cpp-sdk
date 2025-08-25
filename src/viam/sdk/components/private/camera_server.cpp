@@ -83,12 +83,14 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     const ::viam::component::camera::v1::GetImagesRequest* request,
     ::viam::component::camera::v1::GetImagesResponse* response) noexcept {
     return make_service_helper<Camera>(
-        "CameraServer::GetImages", this, request)([&](auto&, auto& camera) {
-        const Camera::image_collection image_coll = camera->get_images();
+        "CameraServer::GetImages", this, request)([&](auto& helper, auto& camera) {
+        const Camera::image_collection image_coll =
+            camera->get_images({request->filter_source_names().begin(), request->filter_source_names().end()}, helper.getExtra());
         for (const auto& img : image_coll.images) {
             ::viam::component::camera::v1::Image proto_image;
             const std::string img_string = bytes_to_string(img.bytes);
             proto_image.set_source_name(img.source_name);
+            proto_image.set_mime_type(img.mime_type);
             proto_image.set_format(
                 MIME_string_to_format(Camera::normalize_mime_type(img.mime_type)));
             proto_image.set_image(img_string);
