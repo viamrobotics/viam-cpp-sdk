@@ -179,7 +179,8 @@ class Camera : public Component {
     /// sources are returned.
     /// @param extra any additional arguments to the method.
     /// @return a vector of raw_images and associated response metadata.
-    virtual image_collection get_images(std::vector<std::string> filter_source_names, const ProtoStruct& extra) = 0;
+    virtual image_collection get_images(std::vector<std::string> filter_source_names,
+                                        const ProtoStruct& extra) = 0;
 
     /// @brief Get the next `point_cloud` from the camera.
     /// @param mime_type the desired mime_type of the point_cloud (does not guarantee output type).
