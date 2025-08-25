@@ -139,17 +139,17 @@ std::vector<ResourceName> mock_proto_resource_names_response() {
 std::vector<RobotClient::frame_system_config> mock_config_response() {
     RobotClient::frame_system_config config;
     WorldState::transform t;
-    t.reference_frame = "some-reference-frame";
-    pose_in_frame pif("reference0", default_pose());
-    t.pose_in_observer_frame = pif;
+    t.name = "some-reference-frame";
+    t.parent = "some-reference-frame";
+    t.pose = default_pose();
     config.frame = t;
     config.kinematics = {{"fake-key", 1.0}};
 
     RobotClient::frame_system_config config1;
     WorldState::transform t1;
-    t1.reference_frame = "another-reference-frame";
-    pose_in_frame pif1("reference1", default_pose(1));
-    t1.pose_in_observer_frame = pif1;
+    t1.name = "another-reference-frame";
+    t1.parent = "another-reference-frame";
+    t1.pose = default_pose(1);
     config1.frame = t1;
     config1.kinematics = {{"new-fake-key", 2.0}};
 
@@ -162,12 +162,13 @@ std::vector<RobotClient::frame_system_config> mock_config_response() {
 std::vector<FrameSystemConfig> mock_proto_config_response() {
     FrameSystemConfig config;
     common::v1::Transform t;
-    *t.mutable_reference_frame() = "some-reference-frame";
+    *t.mutable_name() = "some-reference-frame";
     Pose pose = default_proto_pose();
     PoseInFrame pif;
     *pif.mutable_reference_frame() = "reference0";
     *pif.mutable_pose() = pose;
-    *t.mutable_pose_in_observer_frame() = pif;
+    *t.mutable_parent() = "some-reference-frame";
+    *t.mutable_pose() = pose;
     *config.mutable_frame() = t;
     google::protobuf::Struct s;
     google::protobuf::Value v;
@@ -178,12 +179,13 @@ std::vector<FrameSystemConfig> mock_proto_config_response() {
 
     FrameSystemConfig config1;
     common::v1::Transform t1;
-    *t1.mutable_reference_frame() = "another-reference-frame";
+    *t1.mutable_name() = "another-reference-frame";
     Pose pose1 = default_proto_pose(1);
     PoseInFrame pif1;
     *pif1.mutable_reference_frame() = "reference1";
     *pif1.mutable_pose() = pose1;
-    *t1.mutable_pose_in_observer_frame() = pif1;
+    *t1.mutable_parent() = "another-reference-frame";
+    *t1.mutable_pose() = pose1;
     *config1.mutable_frame() = t1;
     google::protobuf::Struct s1;
     google::protobuf::Value v1;

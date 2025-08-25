@@ -26,8 +26,9 @@ using namespace viam::sdk;
 
 WorldState mock_world_state() {
     WorldState::transform transform;
-    transform.reference_frame = "fake-reference-frame";
-    transform.pose_in_observer_frame = pose_in_frame("fake", {{2, 3, 4}, {5, 6, 7}, 8});
+    transform.name = "fake-reference-frame";
+    transform.parent = "fake-parent-frame";
+    transform.pose = {{2, 3, 4}, {5, 6, 7}, 8};
     WorldState::geometries_in_frame obstacle;
     obstacle.reference_frame = "ref";
 
