@@ -70,15 +70,16 @@ BOOST_AUTO_TEST_CASE(test_get_images_filtering) {
 }
 
 BOOST_AUTO_TEST_CASE(test_get_images_with_extra) {
-    auto mock = MockCamera::get_mock_camera();
-    CameraClient client("camera", std::make_shared<ClientChannel>("camera", "a", mock));
-    ProtoStruct extra;
-    extra["foo"] = ProtoValue("bar");
-    auto images = client.get_images({}, extra);
-    (void)images;  // unused variable in test body
-    const auto& last_extra = mock->last_extra();
-    BOOST_CHECK(last_extra.at("foo").is_a<std::string>());
-    BOOST_CHECK_EQUAL(last_extra.at("foo").get_unchecked<std::string>(), "bar");
+    std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
+    client_to_mock_pipeline<Camera>(mock, [&](Camera& client) {
+        ProtoStruct extra;
+        extra["foo"] = ProtoValue("bar");
+        auto images = client.get_images({}, extra);
+        (void)images;  // unused variable in test body
+        const auto& last_extra = mock->last_extra();
+        BOOST_CHECK(last_extra.at("foo").is_a<std::string>());
+        BOOST_CHECK_EQUAL(last_extra.at("foo").get_unchecked<std::string>(), "bar");
+    });
 }
 
 BOOST_AUTO_TEST_CASE(test_get_point_cloud) {
