@@ -126,14 +126,16 @@ Camera::raw_image CameraClient::get_image(std::string mime_type, const ProtoStru
         .invoke([](auto& response) { return from_proto(response); });
 };
 
-Camera::image_collection CameraClient::get_images(std::vector<std::string> filter_source_names, const ProtoStruct& extra) {
-    return make_client_helper(this, *stub_, &StubType::GetImages).with(extra, [&](auto& request) {
-        for (const auto& source_name : filter_source_names) {
-            *request.add_filter_source_names() = source_name;
-        }
-    }).invoke([](auto& response) {
-        return from_proto(response);
-    });
+Camera::image_collection CameraClient::get_images(std::vector<std::string> filter_source_names,
+                                                  const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetImages)
+        .with(extra,
+              [&](auto& request) {
+                  for (const auto& source_name : filter_source_names) {
+                      *request.add_filter_source_names() = source_name;
+                  }
+              })
+        .invoke([](auto& response) { return from_proto(response); });
 };
 
 Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type, const ProtoStruct& extra) {

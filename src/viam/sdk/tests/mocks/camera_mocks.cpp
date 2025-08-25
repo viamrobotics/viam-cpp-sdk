@@ -1,5 +1,5 @@
-#include <viam/sdk/tests/mocks/camera_mocks.hpp>
 #include <algorithm>
+#include <viam/sdk/tests/mocks/camera_mocks.hpp>
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/camera.hpp>
@@ -17,7 +17,8 @@ ProtoStruct MockCamera::do_command(const ProtoStruct&) {
 Camera::raw_image MockCamera::get_image(std::string, const ProtoStruct&) {
     return image_;
 }
-Camera::image_collection MockCamera::get_images(std::vector<std::string> filter_source_names, const ProtoStruct& extra) {
+Camera::image_collection MockCamera::get_images(std::vector<std::string> filter_source_names,
+                                                const ProtoStruct& extra) {
     last_filter_source_names_ = std::move(filter_source_names);
     last_extra_ = extra;
     if (last_filter_source_names_.empty()) {
@@ -26,7 +27,9 @@ Camera::image_collection MockCamera::get_images(std::vector<std::string> filter_
     Camera::image_collection filtered = images_;
     filtered.images.clear();
     for (const auto& img : images_.images) {
-        if (std::find(last_filter_source_names_.begin(), last_filter_source_names_.end(), img.source_name) != last_filter_source_names_.end()) {
+        if (std::find(last_filter_source_names_.begin(),
+                      last_filter_source_names_.end(),
+                      img.source_name) != last_filter_source_names_.end()) {
             filtered.images.push_back(img);
         }
     }
