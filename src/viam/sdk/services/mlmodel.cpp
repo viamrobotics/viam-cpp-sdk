@@ -108,7 +108,7 @@ std::ostream& operator<<(std::ostream& os, MLModelService::tensor_info::data_typ
     } else {
         // Cast to unsigned because uint8_t is unsigned char, and 0-9 are whitespace or non printing
         // characters
-        os << static_cast<unsigned>(static_cast<std::underlying_type_t<decltype(dt)>>(dt));
+        os << static_cast<unsigned>(dt);
     }
 
     return os;
