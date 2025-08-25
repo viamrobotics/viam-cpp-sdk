@@ -31,6 +31,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
+#include "app/datasync/v1/data_sync.pb.h"
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
 #include <google/protobuf/struct.pb.h>
@@ -58,6 +59,12 @@ extern SyncRequestDefaultTypeInternal _SyncRequest_default_instance_;
 class SyncResponse;
 struct SyncResponseDefaultTypeInternal;
 extern SyncResponseDefaultTypeInternal _SyncResponse_default_instance_;
+class UploadBinaryDataToDatasetsRequest;
+struct UploadBinaryDataToDatasetsRequestDefaultTypeInternal;
+extern UploadBinaryDataToDatasetsRequestDefaultTypeInternal _UploadBinaryDataToDatasetsRequest_default_instance_;
+class UploadBinaryDataToDatasetsResponse;
+struct UploadBinaryDataToDatasetsResponseDefaultTypeInternal;
+extern UploadBinaryDataToDatasetsResponseDefaultTypeInternal _UploadBinaryDataToDatasetsResponse_default_instance_;
 }  // namespace v1
 }  // namespace datamanager
 }  // namespace service
@@ -65,6 +72,8 @@ extern SyncResponseDefaultTypeInternal _SyncResponse_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::service::datamanager::v1::SyncRequest* Arena::CreateMaybeMessage<::viam::service::datamanager::v1::SyncRequest>(Arena*);
 template<> ::viam::service::datamanager::v1::SyncResponse* Arena::CreateMaybeMessage<::viam::service::datamanager::v1::SyncResponse>(Arena*);
+template<> ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* Arena::CreateMaybeMessage<::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest>(Arena*);
+template<> ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* Arena::CreateMaybeMessage<::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace service {
@@ -355,6 +364,369 @@ class SyncResponse final :
   typedef void DestructorSkippable_;
   friend struct ::TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto;
 };
+// -------------------------------------------------------------------
+
+class UploadBinaryDataToDatasetsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest) */ {
+ public:
+  inline UploadBinaryDataToDatasetsRequest() : UploadBinaryDataToDatasetsRequest(nullptr) {}
+  ~UploadBinaryDataToDatasetsRequest() override;
+  explicit PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadBinaryDataToDatasetsRequest(const UploadBinaryDataToDatasetsRequest& from);
+  UploadBinaryDataToDatasetsRequest(UploadBinaryDataToDatasetsRequest&& from) noexcept
+    : UploadBinaryDataToDatasetsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadBinaryDataToDatasetsRequest& operator=(const UploadBinaryDataToDatasetsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadBinaryDataToDatasetsRequest& operator=(UploadBinaryDataToDatasetsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadBinaryDataToDatasetsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadBinaryDataToDatasetsRequest* internal_default_instance() {
+    return reinterpret_cast<const UploadBinaryDataToDatasetsRequest*>(
+               &_UploadBinaryDataToDatasetsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(UploadBinaryDataToDatasetsRequest& a, UploadBinaryDataToDatasetsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadBinaryDataToDatasetsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadBinaryDataToDatasetsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadBinaryDataToDatasetsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadBinaryDataToDatasetsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UploadBinaryDataToDatasetsRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UploadBinaryDataToDatasetsRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UploadBinaryDataToDatasetsRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest";
+  }
+  protected:
+  explicit UploadBinaryDataToDatasetsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTagsFieldNumber = 3,
+    kDatasetIdsFieldNumber = 4,
+    kNameFieldNumber = 1,
+    kBinaryDataFieldNumber = 2,
+    kExtraFieldNumber = 99,
+    kMimeTypeFieldNumber = 5,
+  };
+  // repeated string tags = 3 [json_name = "tags"];
+  int tags_size() const;
+  private:
+  int _internal_tags_size() const;
+  public:
+  void clear_tags();
+  const std::string& tags(int index) const;
+  std::string* mutable_tags(int index);
+  void set_tags(int index, const std::string& value);
+  void set_tags(int index, std::string&& value);
+  void set_tags(int index, const char* value);
+  void set_tags(int index, const char* value, size_t size);
+  std::string* add_tags();
+  void add_tags(const std::string& value);
+  void add_tags(std::string&& value);
+  void add_tags(const char* value);
+  void add_tags(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tags();
+  private:
+  const std::string& _internal_tags(int index) const;
+  std::string* _internal_add_tags();
+  public:
+
+  // repeated string dataset_ids = 4 [json_name = "datasetIds"];
+  int dataset_ids_size() const;
+  private:
+  int _internal_dataset_ids_size() const;
+  public:
+  void clear_dataset_ids();
+  const std::string& dataset_ids(int index) const;
+  std::string* mutable_dataset_ids(int index);
+  void set_dataset_ids(int index, const std::string& value);
+  void set_dataset_ids(int index, std::string&& value);
+  void set_dataset_ids(int index, const char* value);
+  void set_dataset_ids(int index, const char* value, size_t size);
+  std::string* add_dataset_ids();
+  void add_dataset_ids(const std::string& value);
+  void add_dataset_ids(std::string&& value);
+  void add_dataset_ids(const char* value);
+  void add_dataset_ids(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& dataset_ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_dataset_ids();
+  private:
+  const std::string& _internal_dataset_ids(int index) const;
+  std::string* _internal_add_dataset_ids();
+  public:
+
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // bytes binary_data = 2 [json_name = "binaryData"];
+  void clear_binary_data();
+  const std::string& binary_data() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_binary_data(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_binary_data();
+  PROTOBUF_NODISCARD std::string* release_binary_data();
+  void set_allocated_binary_data(std::string* binary_data);
+  private:
+  const std::string& _internal_binary_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_binary_data(const std::string& value);
+  std::string* _internal_mutable_binary_data();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // .viam.app.datasync.v1.MimeType mime_type = 5 [json_name = "mimeType"];
+  void clear_mime_type();
+  ::viam::app::datasync::v1::MimeType mime_type() const;
+  void set_mime_type(::viam::app::datasync::v1::MimeType value);
+  private:
+  ::viam::app::datasync::v1::MimeType _internal_mime_type() const;
+  void _internal_set_mime_type(::viam::app::datasync::v1::MimeType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tags_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> dataset_ids_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr binary_data_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  int mime_type_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UploadBinaryDataToDatasetsResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.service.datamanager.v1.UploadBinaryDataToDatasetsResponse) */ {
+ public:
+  inline UploadBinaryDataToDatasetsResponse() : UploadBinaryDataToDatasetsResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadBinaryDataToDatasetsResponse(const UploadBinaryDataToDatasetsResponse& from);
+  UploadBinaryDataToDatasetsResponse(UploadBinaryDataToDatasetsResponse&& from) noexcept
+    : UploadBinaryDataToDatasetsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadBinaryDataToDatasetsResponse& operator=(const UploadBinaryDataToDatasetsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadBinaryDataToDatasetsResponse& operator=(UploadBinaryDataToDatasetsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadBinaryDataToDatasetsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadBinaryDataToDatasetsResponse* internal_default_instance() {
+    return reinterpret_cast<const UploadBinaryDataToDatasetsResponse*>(
+               &_UploadBinaryDataToDatasetsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(UploadBinaryDataToDatasetsResponse& a, UploadBinaryDataToDatasetsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadBinaryDataToDatasetsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadBinaryDataToDatasetsResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadBinaryDataToDatasetsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadBinaryDataToDatasetsResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const UploadBinaryDataToDatasetsResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const UploadBinaryDataToDatasetsResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.datamanager.v1.UploadBinaryDataToDatasetsResponse";
+  }
+  protected:
+  explicit UploadBinaryDataToDatasetsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.service.datamanager.v1.UploadBinaryDataToDatasetsResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto;
+};
 // ===================================================================
 
 
@@ -505,9 +877,376 @@ inline void SyncRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* ex
 
 // SyncResponse
 
+// -------------------------------------------------------------------
+
+// UploadBinaryDataToDatasetsRequest
+
+// string name = 1 [json_name = "name"];
+inline void UploadBinaryDataToDatasetsRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& UploadBinaryDataToDatasetsRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UploadBinaryDataToDatasetsRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.name)
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.name)
+  return _s;
+}
+inline const std::string& UploadBinaryDataToDatasetsRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void UploadBinaryDataToDatasetsRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.name)
+  return name_.Release();
+}
+inline void UploadBinaryDataToDatasetsRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.name)
+}
+
+// bytes binary_data = 2 [json_name = "binaryData"];
+inline void UploadBinaryDataToDatasetsRequest::clear_binary_data() {
+  binary_data_.ClearToEmpty();
+}
+inline const std::string& UploadBinaryDataToDatasetsRequest::binary_data() const {
+  // @@protoc_insertion_point(field_get:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.binary_data)
+  return _internal_binary_data();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UploadBinaryDataToDatasetsRequest::set_binary_data(ArgT0&& arg0, ArgT... args) {
+ 
+ binary_data_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.binary_data)
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::mutable_binary_data() {
+  std::string* _s = _internal_mutable_binary_data();
+  // @@protoc_insertion_point(field_mutable:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.binary_data)
+  return _s;
+}
+inline const std::string& UploadBinaryDataToDatasetsRequest::_internal_binary_data() const {
+  return binary_data_.Get();
+}
+inline void UploadBinaryDataToDatasetsRequest::_internal_set_binary_data(const std::string& value) {
+  
+  binary_data_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::_internal_mutable_binary_data() {
+  
+  return binary_data_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::release_binary_data() {
+  // @@protoc_insertion_point(field_release:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.binary_data)
+  return binary_data_.Release();
+}
+inline void UploadBinaryDataToDatasetsRequest::set_allocated_binary_data(std::string* binary_data) {
+  if (binary_data != nullptr) {
+    
+  } else {
+    
+  }
+  binary_data_.SetAllocated(binary_data, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (binary_data_.IsDefault()) {
+    binary_data_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.binary_data)
+}
+
+// repeated string tags = 3 [json_name = "tags"];
+inline int UploadBinaryDataToDatasetsRequest::_internal_tags_size() const {
+  return tags_.size();
+}
+inline int UploadBinaryDataToDatasetsRequest::tags_size() const {
+  return _internal_tags_size();
+}
+inline void UploadBinaryDataToDatasetsRequest::clear_tags() {
+  tags_.Clear();
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::add_tags() {
+  std::string* _s = _internal_add_tags();
+  // @@protoc_insertion_point(field_add_mutable:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+  return _s;
+}
+inline const std::string& UploadBinaryDataToDatasetsRequest::_internal_tags(int index) const {
+  return tags_.Get(index);
+}
+inline const std::string& UploadBinaryDataToDatasetsRequest::tags(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+  return _internal_tags(index);
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::mutable_tags(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+  return tags_.Mutable(index);
+}
+inline void UploadBinaryDataToDatasetsRequest::set_tags(int index, const std::string& value) {
+  tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+}
+inline void UploadBinaryDataToDatasetsRequest::set_tags(int index, std::string&& value) {
+  tags_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+}
+inline void UploadBinaryDataToDatasetsRequest::set_tags(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+}
+inline void UploadBinaryDataToDatasetsRequest::set_tags(int index, const char* value, size_t size) {
+  tags_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::_internal_add_tags() {
+  return tags_.Add();
+}
+inline void UploadBinaryDataToDatasetsRequest::add_tags(const std::string& value) {
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+}
+inline void UploadBinaryDataToDatasetsRequest::add_tags(std::string&& value) {
+  tags_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+}
+inline void UploadBinaryDataToDatasetsRequest::add_tags(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+}
+inline void UploadBinaryDataToDatasetsRequest::add_tags(const char* value, size_t size) {
+  tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+UploadBinaryDataToDatasetsRequest::tags() const {
+  // @@protoc_insertion_point(field_list:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+  return tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+UploadBinaryDataToDatasetsRequest::mutable_tags() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.tags)
+  return &tags_;
+}
+
+// repeated string dataset_ids = 4 [json_name = "datasetIds"];
+inline int UploadBinaryDataToDatasetsRequest::_internal_dataset_ids_size() const {
+  return dataset_ids_.size();
+}
+inline int UploadBinaryDataToDatasetsRequest::dataset_ids_size() const {
+  return _internal_dataset_ids_size();
+}
+inline void UploadBinaryDataToDatasetsRequest::clear_dataset_ids() {
+  dataset_ids_.Clear();
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::add_dataset_ids() {
+  std::string* _s = _internal_add_dataset_ids();
+  // @@protoc_insertion_point(field_add_mutable:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+  return _s;
+}
+inline const std::string& UploadBinaryDataToDatasetsRequest::_internal_dataset_ids(int index) const {
+  return dataset_ids_.Get(index);
+}
+inline const std::string& UploadBinaryDataToDatasetsRequest::dataset_ids(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+  return _internal_dataset_ids(index);
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::mutable_dataset_ids(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+  return dataset_ids_.Mutable(index);
+}
+inline void UploadBinaryDataToDatasetsRequest::set_dataset_ids(int index, const std::string& value) {
+  dataset_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+}
+inline void UploadBinaryDataToDatasetsRequest::set_dataset_ids(int index, std::string&& value) {
+  dataset_ids_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+}
+inline void UploadBinaryDataToDatasetsRequest::set_dataset_ids(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  dataset_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+}
+inline void UploadBinaryDataToDatasetsRequest::set_dataset_ids(int index, const char* value, size_t size) {
+  dataset_ids_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+}
+inline std::string* UploadBinaryDataToDatasetsRequest::_internal_add_dataset_ids() {
+  return dataset_ids_.Add();
+}
+inline void UploadBinaryDataToDatasetsRequest::add_dataset_ids(const std::string& value) {
+  dataset_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+}
+inline void UploadBinaryDataToDatasetsRequest::add_dataset_ids(std::string&& value) {
+  dataset_ids_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+}
+inline void UploadBinaryDataToDatasetsRequest::add_dataset_ids(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  dataset_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+}
+inline void UploadBinaryDataToDatasetsRequest::add_dataset_ids(const char* value, size_t size) {
+  dataset_ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+UploadBinaryDataToDatasetsRequest::dataset_ids() const {
+  // @@protoc_insertion_point(field_list:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+  return dataset_ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+UploadBinaryDataToDatasetsRequest::mutable_dataset_ids() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.dataset_ids)
+  return &dataset_ids_;
+}
+
+// .viam.app.datasync.v1.MimeType mime_type = 5 [json_name = "mimeType"];
+inline void UploadBinaryDataToDatasetsRequest::clear_mime_type() {
+  mime_type_ = 0;
+}
+inline ::viam::app::datasync::v1::MimeType UploadBinaryDataToDatasetsRequest::_internal_mime_type() const {
+  return static_cast< ::viam::app::datasync::v1::MimeType >(mime_type_);
+}
+inline ::viam::app::datasync::v1::MimeType UploadBinaryDataToDatasetsRequest::mime_type() const {
+  // @@protoc_insertion_point(field_get:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.mime_type)
+  return _internal_mime_type();
+}
+inline void UploadBinaryDataToDatasetsRequest::_internal_set_mime_type(::viam::app::datasync::v1::MimeType value) {
+  
+  mime_type_ = value;
+}
+inline void UploadBinaryDataToDatasetsRequest::set_mime_type(::viam::app::datasync::v1::MimeType value) {
+  _internal_set_mime_type(value);
+  // @@protoc_insertion_point(field_set:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.mime_type)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool UploadBinaryDataToDatasetsRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool UploadBinaryDataToDatasetsRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UploadBinaryDataToDatasetsRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UploadBinaryDataToDatasetsRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.extra)
+  return _internal_extra();
+}
+inline void UploadBinaryDataToDatasetsRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UploadBinaryDataToDatasetsRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UploadBinaryDataToDatasetsRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UploadBinaryDataToDatasetsRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UploadBinaryDataToDatasetsRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.extra)
+  return _msg;
+}
+inline void UploadBinaryDataToDatasetsRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// UploadBinaryDataToDatasetsResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

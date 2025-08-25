@@ -7,24 +7,23 @@
 #include "component/inputcontroller/v1/input_controller.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace viam {
 namespace component {
@@ -91,90 +90,32 @@ class InputControllerService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       // GetControls returns a list of GetControls provided by the Controller
       virtual void GetControls(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetControls(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetControls(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetControls(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetControls(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetControls(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetEvents returns a list of events representing the last event on each control of a give Input Controller
       virtual void GetEvents(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetEventsRequest* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetEvents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetEvents(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetEventsRequest* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetEvents(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetEventsRequest* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetEvents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetEvents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // StreamEvents starts a stream of InputControllerEvents for the given controls (buttons/axes) on a robot's input controller
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void StreamEvents(::grpc::ClientContext* context, ::viam::component::inputcontroller::v1::StreamEventsRequest* request, ::grpc::ClientReadReactor< ::viam::component::inputcontroller::v1::StreamEventsResponse>* reactor) = 0;
-      #else
-      virtual void StreamEvents(::grpc::ClientContext* context, ::viam::component::inputcontroller::v1::StreamEventsRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::component::inputcontroller::v1::StreamEventsResponse>* reactor) = 0;
-      #endif
+      virtual void StreamEvents(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::StreamEventsRequest* request, ::grpc::ClientReadReactor< ::viam::component::inputcontroller::v1::StreamEventsResponse>* reactor) = 0;
       // TriggerEvent, where supported, injects an InputControllerEvent into an input controller to (virtually) generate events
       // like button presses or axis movements
       virtual void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void TriggerEvent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void TriggerEvent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void TriggerEvent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // GetGeometries returns the geometries of the component in their current configuration
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::inputcontroller::v1::GetControlsResponse>* AsyncGetControlsRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::inputcontroller::v1::GetControlsResponse>* PrepareAsyncGetControlsRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::inputcontroller::v1::GetEventsResponse>* AsyncGetEventsRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetEventsRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -191,7 +132,7 @@ class InputControllerService final {
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status GetControls(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest& request, ::viam::component::inputcontroller::v1::GetControlsResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::inputcontroller::v1::GetControlsResponse>> AsyncGetControls(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::inputcontroller::v1::GetControlsResponse>>(AsyncGetControlsRaw(context, request, cq));
@@ -236,85 +177,31 @@ class InputControllerService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
       void GetControls(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetControls(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetControls(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetControls(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetControls(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetControls(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetEvents(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetEventsRequest* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetEvents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetEvents(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetEventsRequest* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetEvents(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetEventsRequest* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetEvents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetEvents(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void StreamEvents(::grpc::ClientContext* context, ::viam::component::inputcontroller::v1::StreamEventsRequest* request, ::grpc::ClientReadReactor< ::viam::component::inputcontroller::v1::StreamEventsResponse>* reactor) override;
-      #else
-      void StreamEvents(::grpc::ClientContext* context, ::viam::component::inputcontroller::v1::StreamEventsRequest* request, ::grpc::experimental::ClientReadReactor< ::viam::component::inputcontroller::v1::StreamEventsResponse>* reactor) override;
-      #endif
+      void StreamEvents(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::StreamEventsRequest* request, ::grpc::ClientReadReactor< ::viam::component::inputcontroller::v1::StreamEventsResponse>* reactor) override;
       void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, std::function<void(::grpc::Status)>) override;
-      void TriggerEvent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void TriggerEvent(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void TriggerEvent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void TriggerEvent(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void GetGeometries(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::component::inputcontroller::v1::GetControlsResponse>* AsyncGetControlsRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::inputcontroller::v1::GetControlsResponse>* PrepareAsyncGetControlsRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::inputcontroller::v1::GetEventsResponse>* AsyncGetEventsRaw(::grpc::ClientContext* context, const ::viam::component::inputcontroller::v1::GetEventsRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -477,36 +364,22 @@ class InputControllerService final {
   };
   typedef WithAsyncMethod_GetControls<WithAsyncMethod_GetEvents<WithAsyncMethod_StreamEvents<WithAsyncMethod_TriggerEvent<WithAsyncMethod_DoCommand<WithAsyncMethod_GetGeometries<Service > > > > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetControls : public BaseClass {
+  class WithCallbackMethod_GetControls : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetControls() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::GetControlsRequest, ::viam::component::inputcontroller::v1::GetControlsResponse>(
+    WithCallbackMethod_GetControls() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::GetControlsRequest, ::viam::component::inputcontroller::v1::GetControlsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::component::inputcontroller::v1::GetControlsRequest* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response) { return this->GetControls(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::component::inputcontroller::v1::GetControlsRequest* request, ::viam::component::inputcontroller::v1::GetControlsResponse* response) { return this->GetControls(context, request, response); }));}
     void SetMessageAllocatorFor_GetControls(
-        ::grpc::experimental::MessageAllocator< ::viam::component::inputcontroller::v1::GetControlsRequest, ::viam::component::inputcontroller::v1::GetControlsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::component::inputcontroller::v1::GetControlsRequest, ::viam::component::inputcontroller::v1::GetControlsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::GetControlsRequest, ::viam::component::inputcontroller::v1::GetControlsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::GetControlsRequest, ::viam::component::inputcontroller::v1::GetControlsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetControls() override {
+    ~WithCallbackMethod_GetControls() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -514,46 +387,26 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetControls(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::GetControlsRequest* /*request*/, ::viam::component::inputcontroller::v1::GetControlsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetControls(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::GetControlsRequest* /*request*/, ::viam::component::inputcontroller::v1::GetControlsResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::GetControlsRequest* /*request*/, ::viam::component::inputcontroller::v1::GetControlsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetEvents : public BaseClass {
+  class WithCallbackMethod_GetEvents : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetEvents() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::GetEventsRequest, ::viam::component::inputcontroller::v1::GetEventsResponse>(
+    WithCallbackMethod_GetEvents() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::GetEventsRequest, ::viam::component::inputcontroller::v1::GetEventsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::component::inputcontroller::v1::GetEventsRequest* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response) { return this->GetEvents(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::component::inputcontroller::v1::GetEventsRequest* request, ::viam::component::inputcontroller::v1::GetEventsResponse* response) { return this->GetEvents(context, request, response); }));}
     void SetMessageAllocatorFor_GetEvents(
-        ::grpc::experimental::MessageAllocator< ::viam::component::inputcontroller::v1::GetEventsRequest, ::viam::component::inputcontroller::v1::GetEventsResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::component::inputcontroller::v1::GetEventsRequest, ::viam::component::inputcontroller::v1::GetEventsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::GetEventsRequest, ::viam::component::inputcontroller::v1::GetEventsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::GetEventsRequest, ::viam::component::inputcontroller::v1::GetEventsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetEvents() override {
+    ~WithCallbackMethod_GetEvents() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -561,37 +414,21 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetEvents(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::GetEventsRequest* /*request*/, ::viam::component::inputcontroller::v1::GetEventsResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetEvents(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::GetEventsRequest* /*request*/, ::viam::component::inputcontroller::v1::GetEventsResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::GetEventsRequest* /*request*/, ::viam::component::inputcontroller::v1::GetEventsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_StreamEvents : public BaseClass {
+  class WithCallbackMethod_StreamEvents : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_StreamEvents() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::viam::component::inputcontroller::v1::StreamEventsRequest, ::viam::component::inputcontroller::v1::StreamEventsResponse>(
+    WithCallbackMethod_StreamEvents() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::viam::component::inputcontroller::v1::StreamEventsRequest, ::viam::component::inputcontroller::v1::StreamEventsResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::component::inputcontroller::v1::StreamEventsRequest* request) { return this->StreamEvents(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::viam::component::inputcontroller::v1::StreamEventsRequest* request) { return this->StreamEvents(context, request); }));
     }
-    ~ExperimentalWithCallbackMethod_StreamEvents() override {
+    ~WithCallbackMethod_StreamEvents() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -599,46 +436,26 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::viam::component::inputcontroller::v1::StreamEventsResponse>* StreamEvents(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::StreamEventsRequest* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::viam::component::inputcontroller::v1::StreamEventsResponse>* StreamEvents(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::StreamEventsRequest* /*request*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::StreamEventsRequest* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_TriggerEvent : public BaseClass {
+  class WithCallbackMethod_TriggerEvent : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_TriggerEvent() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::TriggerEventRequest, ::viam::component::inputcontroller::v1::TriggerEventResponse>(
+    WithCallbackMethod_TriggerEvent() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::TriggerEventRequest, ::viam::component::inputcontroller::v1::TriggerEventResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response) { return this->TriggerEvent(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::component::inputcontroller::v1::TriggerEventRequest* request, ::viam::component::inputcontroller::v1::TriggerEventResponse* response) { return this->TriggerEvent(context, request, response); }));}
     void SetMessageAllocatorFor_TriggerEvent(
-        ::grpc::experimental::MessageAllocator< ::viam::component::inputcontroller::v1::TriggerEventRequest, ::viam::component::inputcontroller::v1::TriggerEventResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::component::inputcontroller::v1::TriggerEventRequest, ::viam::component::inputcontroller::v1::TriggerEventResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::TriggerEventRequest, ::viam::component::inputcontroller::v1::TriggerEventResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::inputcontroller::v1::TriggerEventRequest, ::viam::component::inputcontroller::v1::TriggerEventResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_TriggerEvent() override {
+    ~WithCallbackMethod_TriggerEvent() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -646,46 +463,26 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TriggerEvent(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::TriggerEventRequest* /*request*/, ::viam::component::inputcontroller::v1::TriggerEventResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* TriggerEvent(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::TriggerEventRequest* /*request*/, ::viam::component::inputcontroller::v1::TriggerEventResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::inputcontroller::v1::TriggerEventRequest* /*request*/, ::viam::component::inputcontroller::v1::TriggerEventResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
+  class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    WithCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_DoCommand() override {
+    ~WithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -693,46 +490,26 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_GetGeometries : public BaseClass {
+  class WithCallbackMethod_GetGeometries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_GetGeometries() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
+    WithCallbackMethod_GetGeometries() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
-        ::grpc::experimental::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_GetGeometries() override {
+    ~WithCallbackMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -740,20 +517,11 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetGeometries(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_GetControls<ExperimentalWithCallbackMethod_GetEvents<ExperimentalWithCallbackMethod_StreamEvents<ExperimentalWithCallbackMethod_TriggerEvent<ExperimentalWithCallbackMethod_DoCommand<ExperimentalWithCallbackMethod_GetGeometries<Service > > > > > > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_GetControls<ExperimentalWithCallbackMethod_GetEvents<ExperimentalWithCallbackMethod_StreamEvents<ExperimentalWithCallbackMethod_TriggerEvent<ExperimentalWithCallbackMethod_DoCommand<ExperimentalWithCallbackMethod_GetGeometries<Service > > > > > > ExperimentalCallbackService;
+  typedef WithCallbackMethod_GetControls<WithCallbackMethod_GetEvents<WithCallbackMethod_StreamEvents<WithCallbackMethod_TriggerEvent<WithCallbackMethod_DoCommand<WithCallbackMethod_GetGeometries<Service > > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetControls : public BaseClass {
    private:
@@ -977,27 +745,17 @@ class InputControllerService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetControls : public BaseClass {
+  class WithRawCallbackMethod_GetControls : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetControls() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetControls() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetControls(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetControls(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetControls() override {
+    ~WithRawCallbackMethod_GetControls() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1005,37 +763,21 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetControls(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetControls(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetEvents : public BaseClass {
+  class WithRawCallbackMethod_GetEvents : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetEvents() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetEvents() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetEvents(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetEvents(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetEvents() override {
+    ~WithRawCallbackMethod_GetEvents() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1043,37 +785,21 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetEvents(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetEvents(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_StreamEvents : public BaseClass {
+  class WithRawCallbackMethod_StreamEvents : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_StreamEvents() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(2,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_StreamEvents() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const::grpc::ByteBuffer* request) { return this->StreamEvents(context, request); }));
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->StreamEvents(context, request); }));
     }
-    ~ExperimentalWithRawCallbackMethod_StreamEvents() override {
+    ~WithRawCallbackMethod_StreamEvents() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1081,37 +807,21 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* StreamEvents(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* StreamEvents(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_TriggerEvent : public BaseClass {
+  class WithRawCallbackMethod_TriggerEvent : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_TriggerEvent() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(3,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_TriggerEvent() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TriggerEvent(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TriggerEvent(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_TriggerEvent() override {
+    ~WithRawCallbackMethod_TriggerEvent() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1119,37 +829,21 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* TriggerEvent(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* TriggerEvent(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
+  class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(4,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
+    ~WithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1157,37 +851,21 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_GetGeometries : public BaseClass {
+  class WithRawCallbackMethod_GetGeometries : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_GetGeometries() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(5,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_GetGeometries() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_GetGeometries() override {
+    ~WithRawCallbackMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -1195,14 +873,8 @@ class InputControllerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* GetGeometries(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetControls : public BaseClass {
@@ -1213,8 +885,8 @@ class InputControllerService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::inputcontroller::v1::GetControlsRequest, ::viam::component::inputcontroller::v1::GetControlsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::component::inputcontroller::v1::GetControlsRequest, ::viam::component::inputcontroller::v1::GetControlsResponse>* streamer) {
                        return this->StreamedGetControls(context,
                          streamer);
@@ -1240,8 +912,8 @@ class InputControllerService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::inputcontroller::v1::GetEventsRequest, ::viam::component::inputcontroller::v1::GetEventsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::component::inputcontroller::v1::GetEventsRequest, ::viam::component::inputcontroller::v1::GetEventsResponse>* streamer) {
                        return this->StreamedGetEvents(context,
                          streamer);
@@ -1267,8 +939,8 @@ class InputControllerService final {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::component::inputcontroller::v1::TriggerEventRequest, ::viam::component::inputcontroller::v1::TriggerEventResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::component::inputcontroller::v1::TriggerEventRequest, ::viam::component::inputcontroller::v1::TriggerEventResponse>* streamer) {
                        return this->StreamedTriggerEvent(context,
                          streamer);
@@ -1294,8 +966,8 @@ class InputControllerService final {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);
@@ -1321,8 +993,8 @@ class InputControllerService final {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* streamer) {
                        return this->StreamedGetGeometries(context,
                          streamer);
@@ -1349,8 +1021,8 @@ class InputControllerService final {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::component::inputcontroller::v1::StreamEventsRequest, ::viam::component::inputcontroller::v1::StreamEventsResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerSplitStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
                      ::viam::component::inputcontroller::v1::StreamEventsRequest, ::viam::component::inputcontroller::v1::StreamEventsResponse>* streamer) {
                        return this->StreamedStreamEvents(context,
                          streamer);
