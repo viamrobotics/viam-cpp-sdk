@@ -48,10 +48,8 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
             const auto tensor_type = MLModelService::tensor_info::tensor_views_to_data_type(tensor);
             if (tensor_type != input.data_type) {
                 std::ostringstream message;
-                using ut = std::underlying_type<MLModelService::tensor_info::data_types>::type;
                 message << "Tensor input `" << input.name << "` was the wrong type; expected type "
-                        << static_cast<ut>(input.data_type) << " but got type "
-                        << static_cast<ut>(tensor_type);
+                        << input.data_type << " but got type " << tensor_type;
                 return helper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
             }
             inputs.emplace(input.name, std::move(tensor));
@@ -74,11 +72,9 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
                     MLModelService::tensor_info::tensor_views_to_data_type(tensor);
                 if (tensor_type != input.data_type) {
                     std::ostringstream message;
-                    using ut = std::underlying_type<MLModelService::tensor_info::data_types>::type;
                     message << "Tensor input `" << input.name
-                            << "` was the wrong type; expected type "
-                            << static_cast<ut>(input.data_type) << " but got type "
-                            << static_cast<ut>(tensor_type);
+                            << "` was the wrong type; expected type " << input.data_type
+                            << " but got type " << tensor_type;
                     return helper.fail(::grpc::INVALID_ARGUMENT, message.str().c_str());
                 }
                 inputs.emplace(std::move(input.name), std::move(tensor));
@@ -122,12 +118,8 @@ MLModelServiceServer::MLModelServiceServer(std::shared_ptr<ResourceManager> mana
                     MLModelService::tensor_info::data_type_to_string(s.data_type);
                 if (!string_for_data_type) {
                     std::ostringstream message;
-                    message
-                        << "Served MLModelService returned an unknown data type with value `"
-                        << static_cast<
-                               std::underlying_type<MLModelService::tensor_info::data_types>::type>(
-                               s.data_type)
-                        << "` in its metadata";
+                    message << "Served MLModelService returned an unknown data type with value `"
+                            << s.data_type << "` in its metadata";
                     return helper.fail(grpc::INTERNAL, message.str().c_str());
                 }
                 new_entry.set_data_type(string_for_data_type);

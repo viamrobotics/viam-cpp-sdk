@@ -14,6 +14,8 @@
 
 #pragma once
 
+#include <iosfwd>
+
 #include <boost/mpl/joint_view.hpp>
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/transform_view.hpp>
@@ -176,6 +178,8 @@ template <>
 struct API::traits<MLModelService> {
     static API api();
 };
+
+std::ostream& operator<<(std::ostream&, MLModelService::tensor_info::data_types);
 
 }  // namespace sdk
 }  // namespace viam
