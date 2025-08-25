@@ -100,6 +100,20 @@ const char* MLModelService::tensor_info::data_type_to_string(const data_types da
     return nullptr;
 }
 
+std::ostream& operator<<(std::ostream& os, MLModelService::tensor_info::data_types dt) {
+    const char* str = MLModelService::tensor_info::data_type_to_string(dt);
+
+    if (str) {
+        os << str;
+    } else {
+        // Cast to unsigned because uint8_t is unsigned char, and 0-9 are whitespace or non printing
+        // characters
+        os << static_cast<unsigned>(static_cast<std::underlying_type_t<decltype(dt)>>(dt));
+    }
+
+    return os;
+}
+
 MLModelService::tensor_info::data_types MLModelService::tensor_info::tensor_views_to_data_type(
     const tensor_views& view) {
     class visitor : public boost::static_visitor<data_types> {
