@@ -7,24 +7,23 @@
 #include "proto/rpc/v1/auth.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace proto {
 namespace rpc {
@@ -53,41 +52,27 @@ class AuthService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateResponse>> PrepareAsyncAuthenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateResponse>>(PrepareAsyncAuthenticateRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       // Authenticate attempts to authenticate the caller claiming to be
       // the given entity. The resulting response contains an access token
       // with the subject as the entity and the audience/issuer as the
       // provider of this service. This token should be used for all future
       // RPC requests.
       virtual void Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Authenticate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void Authenticate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void Authenticate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateResponse>* AsyncAuthenticateRaw(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateResponse>* PrepareAsyncAuthenticateRaw(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::proto::rpc::v1::AuthenticateResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateResponse>> AsyncAuthenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateResponse>>(AsyncAuthenticateRaw(context, request, cq));
@@ -95,32 +80,22 @@ class AuthService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateResponse>> PrepareAsyncAuthenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateResponse>>(PrepareAsyncAuthenticateRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
       void Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response, std::function<void(::grpc::Status)>) override;
-      void Authenticate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void Authenticate(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void Authenticate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void Authenticate(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateResponse>* AsyncAuthenticateRaw(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateResponse>* PrepareAsyncAuthenticateRaw(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Authenticate_;
@@ -160,36 +135,22 @@ class AuthService final {
   };
   typedef WithAsyncMethod_Authenticate<Service > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_Authenticate : public BaseClass {
+  class WithCallbackMethod_Authenticate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_Authenticate() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::v1::AuthenticateRequest, ::proto::rpc::v1::AuthenticateResponse>(
+    WithCallbackMethod_Authenticate() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::proto::rpc::v1::AuthenticateRequest, ::proto::rpc::v1::AuthenticateResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response) { return this->Authenticate(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::proto::rpc::v1::AuthenticateRequest* request, ::proto::rpc::v1::AuthenticateResponse* response) { return this->Authenticate(context, request, response); }));}
     void SetMessageAllocatorFor_Authenticate(
-        ::grpc::experimental::MessageAllocator< ::proto::rpc::v1::AuthenticateRequest, ::proto::rpc::v1::AuthenticateResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::proto::rpc::v1::AuthenticateRequest, ::proto::rpc::v1::AuthenticateResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::v1::AuthenticateRequest, ::proto::rpc::v1::AuthenticateResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::proto::rpc::v1::AuthenticateRequest, ::proto::rpc::v1::AuthenticateResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_Authenticate() override {
+    ~WithCallbackMethod_Authenticate() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -197,20 +158,11 @@ class AuthService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Authenticate(
-      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::v1::AuthenticateRequest* /*request*/, ::proto::rpc::v1::AuthenticateResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* Authenticate(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::proto::rpc::v1::AuthenticateRequest* /*request*/, ::proto::rpc::v1::AuthenticateResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::v1::AuthenticateRequest* /*request*/, ::proto::rpc::v1::AuthenticateResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_Authenticate<Service > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_Authenticate<Service > ExperimentalCallbackService;
+  typedef WithCallbackMethod_Authenticate<Service > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Authenticate : public BaseClass {
    private:
@@ -249,27 +201,17 @@ class AuthService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_Authenticate : public BaseClass {
+  class WithRawCallbackMethod_Authenticate : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_Authenticate() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_Authenticate() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Authenticate(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Authenticate(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_Authenticate() override {
+    ~WithRawCallbackMethod_Authenticate() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -277,14 +219,8 @@ class AuthService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Authenticate(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* Authenticate(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Authenticate : public BaseClass {
@@ -295,8 +231,8 @@ class AuthService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::proto::rpc::v1::AuthenticateRequest, ::proto::rpc::v1::AuthenticateResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::proto::rpc::v1::AuthenticateRequest, ::proto::rpc::v1::AuthenticateResponse>* streamer) {
                        return this->StreamedAuthenticate(context,
                          streamer);
@@ -346,9 +282,9 @@ class ExternalAuthService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateToResponse>> PrepareAsyncAuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateToResponse>>(PrepareAsyncAuthenticateToRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       // AuthenticateTo attempts to allow the caller to authenticate to another entity.
       // The resulting response contains an access token with the subject
       // as the calling entity, the audience as the other entity, and the issuer
@@ -357,32 +293,18 @@ class ExternalAuthService final {
       // This assumes that the caller is already authenticated to the
       // server implementing this service.
       virtual void AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void AuthenticateTo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateToResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void AuthenticateTo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateToResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void AuthenticateTo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateToResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateToResponse>* AsyncAuthenticateToRaw(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::proto::rpc::v1::AuthenticateToResponse>* PrepareAsyncAuthenticateToRaw(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::proto::rpc::v1::AuthenticateToResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateToResponse>> AsyncAuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateToResponse>>(AsyncAuthenticateToRaw(context, request, cq));
@@ -390,32 +312,22 @@ class ExternalAuthService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateToResponse>> PrepareAsyncAuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateToResponse>>(PrepareAsyncAuthenticateToRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    class async final :
+      public StubInterface::async_interface {
      public:
       void AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response, std::function<void(::grpc::Status)>) override;
-      void AuthenticateTo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateToResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void AuthenticateTo(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void AuthenticateTo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateToResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void AuthenticateTo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::proto::rpc::v1::AuthenticateToResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateToResponse>* AsyncAuthenticateToRaw(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::proto::rpc::v1::AuthenticateToResponse>* PrepareAsyncAuthenticateToRaw(::grpc::ClientContext* context, const ::proto::rpc::v1::AuthenticateToRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_AuthenticateTo_;
@@ -457,36 +369,22 @@ class ExternalAuthService final {
   };
   typedef WithAsyncMethod_AuthenticateTo<Service > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_AuthenticateTo : public BaseClass {
+  class WithCallbackMethod_AuthenticateTo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_AuthenticateTo() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::v1::AuthenticateToRequest, ::proto::rpc::v1::AuthenticateToResponse>(
+    WithCallbackMethod_AuthenticateTo() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::proto::rpc::v1::AuthenticateToRequest, ::proto::rpc::v1::AuthenticateToResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response) { return this->AuthenticateTo(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::proto::rpc::v1::AuthenticateToRequest* request, ::proto::rpc::v1::AuthenticateToResponse* response) { return this->AuthenticateTo(context, request, response); }));}
     void SetMessageAllocatorFor_AuthenticateTo(
-        ::grpc::experimental::MessageAllocator< ::proto::rpc::v1::AuthenticateToRequest, ::proto::rpc::v1::AuthenticateToResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::proto::rpc::v1::AuthenticateToRequest, ::proto::rpc::v1::AuthenticateToResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::proto::rpc::v1::AuthenticateToRequest, ::proto::rpc::v1::AuthenticateToResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::proto::rpc::v1::AuthenticateToRequest, ::proto::rpc::v1::AuthenticateToResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_AuthenticateTo() override {
+    ~WithCallbackMethod_AuthenticateTo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -494,20 +392,11 @@ class ExternalAuthService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* AuthenticateTo(
-      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::v1::AuthenticateToRequest* /*request*/, ::proto::rpc::v1::AuthenticateToResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* AuthenticateTo(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::proto::rpc::v1::AuthenticateToRequest* /*request*/, ::proto::rpc::v1::AuthenticateToResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::proto::rpc::v1::AuthenticateToRequest* /*request*/, ::proto::rpc::v1::AuthenticateToResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_AuthenticateTo<Service > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_AuthenticateTo<Service > ExperimentalCallbackService;
+  typedef WithCallbackMethod_AuthenticateTo<Service > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_AuthenticateTo : public BaseClass {
    private:
@@ -546,27 +435,17 @@ class ExternalAuthService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_AuthenticateTo : public BaseClass {
+  class WithRawCallbackMethod_AuthenticateTo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_AuthenticateTo() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_AuthenticateTo() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AuthenticateTo(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AuthenticateTo(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_AuthenticateTo() override {
+    ~WithRawCallbackMethod_AuthenticateTo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -574,14 +453,8 @@ class ExternalAuthService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* AuthenticateTo(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* AuthenticateTo(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_AuthenticateTo : public BaseClass {
@@ -592,8 +465,8 @@ class ExternalAuthService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::proto::rpc::v1::AuthenticateToRequest, ::proto::rpc::v1::AuthenticateToResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::proto::rpc::v1::AuthenticateToRequest, ::proto::rpc::v1::AuthenticateToResponse>* streamer) {
                        return this->StreamedAuthenticateTo(context,
                          streamer);

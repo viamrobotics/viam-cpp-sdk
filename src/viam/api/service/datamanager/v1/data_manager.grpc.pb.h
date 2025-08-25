@@ -7,24 +7,23 @@
 #include "service/datamanager/v1/data_manager.pb.h"
 
 #include <functional>
-#include <grpc/impl/codegen/port_platform.h>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
 #include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
 #include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
 #include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace viam {
 namespace service {
@@ -56,52 +55,41 @@ class DataManagerService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class experimental_async_interface {
+    // UploadBinaryDataToDatasets uploads binary data to specified datasets.
+    virtual ::grpc::Status UploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>> AsyncUploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>>(AsyncUploadBinaryDataToDatasetsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>> PrepareAsyncUploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>>(PrepareAsyncUploadBinaryDataToDatasetsRaw(context, request, cq));
+    }
+    class async_interface {
      public:
-      virtual ~experimental_async_interface() {}
+      virtual ~async_interface() {}
       // Sync performs a sync of the non-synced files for the specified service name,
       virtual void Sync(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest* request, ::viam::service::datamanager::v1::SyncResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Sync(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::datamanager::v1::SyncResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void Sync(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest* request, ::viam::service::datamanager::v1::SyncResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void Sync(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest* request, ::viam::service::datamanager::v1::SyncResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void Sync(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::datamanager::v1::SyncResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void Sync(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::datamanager::v1::SyncResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      #else
-      virtual void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      #endif
+      // UploadBinaryDataToDatasets uploads binary data to specified datasets.
+      virtual void UploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* request, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* request, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    typedef class experimental_async_interface async_interface;
-    #endif
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    async_interface* async() { return experimental_async(); }
-    #endif
-    virtual class experimental_async_interface* experimental_async() { return nullptr; }
-  private:
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::datamanager::v1::SyncResponse>* AsyncSyncRaw(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::datamanager::v1::SyncResponse>* PrepareAsyncSyncRaw(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>* AsyncUploadBinaryDataToDatasetsRaw(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>* PrepareAsyncUploadBinaryDataToDatasetsRaw(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
     ::grpc::Status Sync(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest& request, ::viam::service::datamanager::v1::SyncResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::SyncResponse>> AsyncSync(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::SyncResponse>>(AsyncSyncRaw(context, request, cq));
@@ -116,50 +104,42 @@ class DataManagerService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> PrepareAsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(PrepareAsyncDoCommandRaw(context, request, cq));
     }
-    class experimental_async final :
-      public StubInterface::experimental_async_interface {
+    ::grpc::Status UploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>> AsyncUploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>>(AsyncUploadBinaryDataToDatasetsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>> PrepareAsyncUploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>>(PrepareAsyncUploadBinaryDataToDatasetsRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
      public:
       void Sync(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest* request, ::viam::service::datamanager::v1::SyncResponse* response, std::function<void(::grpc::Status)>) override;
-      void Sync(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::datamanager::v1::SyncResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void Sync(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest* request, ::viam::service::datamanager::v1::SyncResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void Sync(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest* request, ::viam::service::datamanager::v1::SyncResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void Sync(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::datamanager::v1::SyncResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void Sync(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::service::datamanager::v1::SyncResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
-      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      #else
-      void DoCommand(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      #endif
+      void UploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* request, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* response, std::function<void(::grpc::Status)>) override;
+      void UploadBinaryDataToDatasets(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* request, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
-      explicit experimental_async(Stub* stub): stub_(stub) { }
+      explicit async(Stub* stub): stub_(stub) { }
       Stub* stub() { return stub_; }
       Stub* stub_;
     };
-    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+    class async* async() override { return &async_stub_; }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class experimental_async async_stub_{this};
+    class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::SyncResponse>* AsyncSyncRaw(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::SyncResponse>* PrepareAsyncSyncRaw(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::SyncRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>* AsyncUploadBinaryDataToDatasetsRaw(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>* PrepareAsyncUploadBinaryDataToDatasetsRaw(::grpc::ClientContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Sync_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
+    const ::grpc::internal::RpcMethod rpcmethod_UploadBinaryDataToDatasets_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -171,6 +151,8 @@ class DataManagerService final {
     virtual ::grpc::Status Sync(::grpc::ServerContext* context, const ::viam::service::datamanager::v1::SyncRequest* request, ::viam::service::datamanager::v1::SyncResponse* response);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
+    // UploadBinaryDataToDatasets uploads binary data to specified datasets.
+    virtual ::grpc::Status UploadBinaryDataToDatasets(::grpc::ServerContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* request, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Sync : public BaseClass {
@@ -212,38 +194,44 @@ class DataManagerService final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Sync<WithAsyncMethod_DoCommand<Service > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_Sync : public BaseClass {
+  class WithAsyncMethod_UploadBinaryDataToDatasets : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_Sync() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::datamanager::v1::SyncRequest, ::viam::service::datamanager::v1::SyncResponse>(
+    WithAsyncMethod_UploadBinaryDataToDatasets() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_UploadBinaryDataToDatasets() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadBinaryDataToDatasets(::grpc::ServerContext* /*context*/, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* /*request*/, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUploadBinaryDataToDatasets(::grpc::ServerContext* context, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Sync<WithAsyncMethod_DoCommand<WithAsyncMethod_UploadBinaryDataToDatasets<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Sync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Sync() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::datamanager::v1::SyncRequest, ::viam::service::datamanager::v1::SyncResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::service::datamanager::v1::SyncRequest* request, ::viam::service::datamanager::v1::SyncResponse* response) { return this->Sync(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::service::datamanager::v1::SyncRequest* request, ::viam::service::datamanager::v1::SyncResponse* response) { return this->Sync(context, request, response); }));}
     void SetMessageAllocatorFor_Sync(
-        ::grpc::experimental::MessageAllocator< ::viam::service::datamanager::v1::SyncRequest, ::viam::service::datamanager::v1::SyncResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::service::datamanager::v1::SyncRequest, ::viam::service::datamanager::v1::SyncResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::service::datamanager::v1::SyncRequest, ::viam::service::datamanager::v1::SyncResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::datamanager::v1::SyncRequest, ::viam::service::datamanager::v1::SyncResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_Sync() override {
+    ~WithCallbackMethod_Sync() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -251,46 +239,26 @@ class DataManagerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Sync(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::datamanager::v1::SyncRequest* /*request*/, ::viam::service::datamanager::v1::SyncResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* Sync(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::service::datamanager::v1::SyncRequest* /*request*/, ::viam::service::datamanager::v1::SyncResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::datamanager::v1::SyncRequest* /*request*/, ::viam::service::datamanager::v1::SyncResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_DoCommand : public BaseClass {
+  class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
+    WithCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
-        ::grpc::experimental::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+        ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-    #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
-    #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_DoCommand() override {
+    ~WithCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -298,20 +266,38 @@ class DataManagerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/)  { return nullptr; }
   };
-  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_Sync<ExperimentalWithCallbackMethod_DoCommand<Service > > CallbackService;
-  #endif
-
-  typedef ExperimentalWithCallbackMethod_Sync<ExperimentalWithCallbackMethod_DoCommand<Service > > ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_UploadBinaryDataToDatasets : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UploadBinaryDataToDatasets() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* request, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* response) { return this->UploadBinaryDataToDatasets(context, request, response); }));}
+    void SetMessageAllocatorFor_UploadBinaryDataToDatasets(
+        ::grpc::MessageAllocator< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_UploadBinaryDataToDatasets() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadBinaryDataToDatasets(::grpc::ServerContext* /*context*/, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* /*request*/, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UploadBinaryDataToDatasets(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* /*request*/, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Sync<WithCallbackMethod_DoCommand<WithCallbackMethod_UploadBinaryDataToDatasets<Service > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Sync : public BaseClass {
    private:
@@ -342,6 +328,23 @@ class DataManagerService final {
     }
     // disable synchronous version of this method
     ::grpc::Status DoCommand(::grpc::ServerContext* /*context*/, const ::viam::common::v1::DoCommandRequest* /*request*/, ::viam::common::v1::DoCommandResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UploadBinaryDataToDatasets : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UploadBinaryDataToDatasets() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_UploadBinaryDataToDatasets() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadBinaryDataToDatasets(::grpc::ServerContext* /*context*/, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* /*request*/, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -387,27 +390,37 @@ class DataManagerService final {
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_Sync : public BaseClass {
+  class WithRawMethod_UploadBinaryDataToDatasets : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_Sync() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Sync(context, request, response); }));
+    WithRawMethod_UploadBinaryDataToDatasets() {
+      ::grpc::Service::MarkMethodRaw(2);
     }
-    ~ExperimentalWithRawCallbackMethod_Sync() override {
+    ~WithRawMethod_UploadBinaryDataToDatasets() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadBinaryDataToDatasets(::grpc::ServerContext* /*context*/, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* /*request*/, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUploadBinaryDataToDatasets(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Sync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Sync() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Sync(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Sync() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -415,37 +428,21 @@ class DataManagerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* Sync(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* Sync(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_DoCommand : public BaseClass {
+  class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_DoCommand() {
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::Service::
-    #else
-      ::grpc::Service::experimental().
-    #endif
-        MarkMethodRawCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+    WithRawCallbackMethod_DoCommand() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-                   ::grpc::CallbackServerContext*
-    #else
-                   ::grpc::experimental::CallbackServerContext*
-    #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_DoCommand() override {
+    ~WithRawCallbackMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
@@ -453,14 +450,30 @@ class DataManagerService final {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* DoCommand(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #else
-    virtual ::grpc::experimental::ServerUnaryReactor* DoCommand(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
-    #endif
-      { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UploadBinaryDataToDatasets : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UploadBinaryDataToDatasets() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UploadBinaryDataToDatasets(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_UploadBinaryDataToDatasets() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadBinaryDataToDatasets(::grpc::ServerContext* /*context*/, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* /*request*/, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UploadBinaryDataToDatasets(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Sync : public BaseClass {
@@ -471,8 +484,8 @@ class DataManagerService final {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::service::datamanager::v1::SyncRequest, ::viam::service::datamanager::v1::SyncResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::service::datamanager::v1::SyncRequest, ::viam::service::datamanager::v1::SyncResponse>* streamer) {
                        return this->StreamedSync(context,
                          streamer);
@@ -498,8 +511,8 @@ class DataManagerService final {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
-            [this](::grpc_impl::ServerContext* context,
-                   ::grpc_impl::ServerUnaryStreamer<
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
                      ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* streamer) {
                        return this->StreamedDoCommand(context,
                          streamer);
@@ -516,9 +529,36 @@ class DataManagerService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDoCommand(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::DoCommandRequest,::viam::common::v1::DoCommandResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Sync<WithStreamedUnaryMethod_DoCommand<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UploadBinaryDataToDatasets : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UploadBinaryDataToDatasets() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>* streamer) {
+                       return this->StreamedUploadBinaryDataToDatasets(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_UploadBinaryDataToDatasets() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UploadBinaryDataToDatasets(::grpc::ServerContext* /*context*/, const ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest* /*request*/, ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUploadBinaryDataToDatasets(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest,::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Sync<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_UploadBinaryDataToDatasets<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Sync<WithStreamedUnaryMethod_DoCommand<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_Sync<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_UploadBinaryDataToDatasets<Service > > > StreamedService;
 };
 
 }  // namespace v1
