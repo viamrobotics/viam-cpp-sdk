@@ -54,6 +54,9 @@ Camera::image_collection from_proto(const viam::component::camera::v1::GetImages
         std::string img_string = img.image();
         const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
         raw_image.bytes = bytes;
+        // TODO(RSDK-11733): This is a temporary fix to support handling both the format and mime
+        // type. We will remove this once we remove the format field from the proto.
+        // We will remove this once we remove the format field from the proto.
         if (!img.mime_type().empty()) {
             raw_image.mime_type = img.mime_type();
         } else {
