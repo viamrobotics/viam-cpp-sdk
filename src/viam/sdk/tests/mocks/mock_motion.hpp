@@ -20,6 +20,7 @@ sdk::geo_point fake_geo_point();
 std::vector<sdk::geo_geometry> fake_obstacles();
 std::shared_ptr<sdk::motion_configuration> fake_motion_configuration();
 std::vector<sdk::geo_geometry> fake_bounding_regions();
+sdk::Motion::pseudolinear_constraint fake_pseudolinear_constraint();
 
 class MockMotion : public sdk::Motion {
    public:

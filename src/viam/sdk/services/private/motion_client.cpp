@@ -57,6 +57,17 @@ service::motion::v1::MotionConfiguration to_proto(const motion_configuration& mc
     return proto;
 }
 
+service::motion::v1::PseudolinearConstraint to_proto(const Motion::pseudolinear_constraint& plc) {
+    service::motion::v1::PseudolinearConstraint proto;
+    if (plc.line_tolerance_factor) {
+        proto.set_line_tolerance_factor(*plc.line_tolerance_factor);
+    }
+    if (plc.orientation_tolerance_factor) {
+        proto.set_orientation_tolerance_factor(*plc.orientation_tolerance_factor);
+    }
+    return proto;
+}
+
 service::motion::v1::Constraints to_proto(const Motion::constraints& cs) {
     service::motion::v1::Constraints proto;
     for (const auto& lc : cs.linear_constraints) {
@@ -81,6 +92,10 @@ service::motion::v1::Constraints to_proto(const Motion::constraints& cs) {
             *proto_cs.mutable_allows()->Add() = std::move(proto_allow);
         }
         *proto.mutable_collision_specification()->Add() = std::move(proto_cs);
+    }
+
+    for (const auto& plc : cs.pseudolinear_constraints) {
+        *proto.mutable_pseudolinear_constraint()->Add() = to_proto(plc);
     }
 
     return proto;

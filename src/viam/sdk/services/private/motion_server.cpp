@@ -133,6 +133,17 @@ motion_configuration from_proto(const service::motion::v1::MotionConfiguration& 
     return mc;
 }
 
+Motion::pseudolinear_constraint from_proto(const service::motion::v1::PseudolinearConstraint& proto) {
+    Motion::pseudolinear_constraint plc;
+    if (proto.has_line_tolerance_factor()) {
+        plc.line_tolerance_factor = proto.line_tolerance_factor();
+    }
+    if (proto.has_orientation_tolerance_factor()) {
+        plc.orientation_tolerance_factor = proto.orientation_tolerance_factor();
+    }
+    return plc;
+}
+
 MotionServer::MotionServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
 
@@ -166,10 +177,16 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
         css.push_back(cs);
     }
 
+    std::vector<Motion::pseudolinear_constraint> plcs;
+    for (const auto& proto_plc : proto.pseudolinear_constraint()) {
+        plcs.push_back(from_proto(proto_plc));
+    }
+
     Motion::constraints constraints;
     constraints.linear_constraints = lcs;
     constraints.orientation_constraints = ocs;
     constraints.collision_specifications = css;
+    constraints.pseudolineear_constraints = plcs;
 
     return constraints;
 }
