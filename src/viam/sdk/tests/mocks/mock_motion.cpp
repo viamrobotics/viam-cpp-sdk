@@ -180,6 +180,13 @@ std::vector<geo_geometry> fake_bounding_regions() {
     return {{fake_geo_point(), {std::move(gc)}}};
 }
 
+Motion::pseudolinear_constraint fake_pseudolinear_constraint() {
+    Motion::pseudolinear_constraint plc;
+    plc.line_tolerance_factor = 0.5f;
+    plc.orientation_tolerance_factor = 0.75f;
+    return plc;
+}
+
 }  // namespace motion
 }  // namespace sdktests
 }  // namespace viam

@@ -34,6 +34,14 @@ WorldState mock_world_state() {
     return WorldState({obstacle}, {transform});
 }
 
+// Add this function after `fake_bounding_regions()` or similar helper functions.
+Motion::pseudolinear_constraint fake_pseudolinear_constraint() {
+    Motion::pseudolinear_constraint plc;
+    plc.line_tolerance_factor = 0.5f;
+    plc.orientation_tolerance_factor = 0.75f;
+    return plc;
+}
+
 BOOST_AUTO_TEST_SUITE(test_mock)
 
 BOOST_AUTO_TEST_CASE(mock_get_api) {
@@ -175,11 +183,19 @@ BOOST_AUTO_TEST_CASE(test_move_and_get_pose) {
         BOOST_CHECK_EQUAL(pose, init_fake_pose());
 
         auto ws = std::make_shared<WorldState>(mock_world_state());
-        bool success = client.move(fake_pose(), fake_component_name(), ws, nullptr, fake_map());
+        // Create a constraints object with the new pseudolinear constraint
+        auto constraints = std::make_shared<Motion::constraints>();
+        constraints->pseudolinear_constraints.push_back(fake_pseudolinear_constraint());
+        bool success = client.move(fake_pose(), fake_component_name(), ws, constraints, fake_map()); // Pass the new constraints object
         BOOST_TEST(success);
 
         pose = client.get_pose(fake_component_name(), destination_frame, transforms, fake_map());
         BOOST_CHECK_EQUAL(pose, fake_pose());
+        // Add checks for the peek_constraints in the mock
+        BOOST_CHECK(mock->peek_constraints != nullptr);
+        BOOST_CHECK_EQUAL(mock->peek_constraints->pseudolinear_constraints.size(), 1);
+        BOOST_CHECK_CLOSE(mock->peek_constraints->pseudolinear_constraints[0].line_tolerance_factor.get(), fake_pseudolinear_constraint().line_tolerance_factor.get(), 0.0001);
+        BOOST_CHECK_CLOSE(mock->peek_constraints->pseudolinear_constraints[0].orientation_tolerance_factor.get(), fake_pseudolinear_constraint().orientation_tolerance_factor.get(), 0.0001);
     });
 }
 
