@@ -108,6 +108,9 @@ extern MeshDefaultTypeInternal _Mesh_default_instance_;
 class Orientation;
 struct OrientationDefaultTypeInternal;
 extern OrientationDefaultTypeInternal _Orientation_default_instance_;
+class PointCloud;
+struct PointCloudDefaultTypeInternal;
+extern PointCloudDefaultTypeInternal _PointCloud_default_instance_;
 class PointCloudObject;
 struct PointCloudObjectDefaultTypeInternal;
 extern PointCloudObjectDefaultTypeInternal _PointCloudObject_default_instance_;
@@ -160,6 +163,7 @@ template<> ::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse* Arena
 template<> ::viam::common::v1::LogEntry* Arena::CreateMaybeMessage<::viam::common::v1::LogEntry>(Arena*);
 template<> ::viam::common::v1::Mesh* Arena::CreateMaybeMessage<::viam::common::v1::Mesh>(Arena*);
 template<> ::viam::common::v1::Orientation* Arena::CreateMaybeMessage<::viam::common::v1::Orientation>(Arena*);
+template<> ::viam::common::v1::PointCloud* Arena::CreateMaybeMessage<::viam::common::v1::PointCloud>(Arena*);
 template<> ::viam::common::v1::PointCloudObject* Arena::CreateMaybeMessage<::viam::common::v1::PointCloudObject>(Arena*);
 template<> ::viam::common::v1::Pose* Arena::CreateMaybeMessage<::viam::common::v1::Pose>(Arena*);
 template<> ::viam::common::v1::PoseInFrame* Arena::CreateMaybeMessage<::viam::common::v1::PoseInFrame>(Arena*);
@@ -1772,6 +1776,154 @@ class Mesh final :
 };
 // -------------------------------------------------------------------
 
+class PointCloud final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.PointCloud) */ {
+ public:
+  inline PointCloud() : PointCloud(nullptr) {}
+  ~PointCloud() override;
+  explicit PROTOBUF_CONSTEXPR PointCloud(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PointCloud(const PointCloud& from);
+  PointCloud(PointCloud&& from) noexcept
+    : PointCloud() {
+    *this = ::std::move(from);
+  }
+
+  inline PointCloud& operator=(const PointCloud& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PointCloud& operator=(PointCloud&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PointCloud& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PointCloud* internal_default_instance() {
+    return reinterpret_cast<const PointCloud*>(
+               &_PointCloud_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(PointCloud& a, PointCloud& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PointCloud* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PointCloud* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PointCloud* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PointCloud>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PointCloud& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PointCloud& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PointCloud* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.PointCloud";
+  }
+  protected:
+  explicit PointCloud(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPointCloudFieldNumber = 1,
+  };
+  // bytes point_cloud = 1 [json_name = "pointCloud"];
+  void clear_point_cloud();
+  const std::string& point_cloud() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_point_cloud(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_point_cloud();
+  PROTOBUF_NODISCARD std::string* release_point_cloud();
+  void set_allocated_point_cloud(std::string* point_cloud);
+  private:
+  const std::string& _internal_point_cloud() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_point_cloud(const std::string& value);
+  std::string* _internal_mutable_point_cloud();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.PointCloud)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr point_cloud_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Geometry final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.Geometry) */ {
  public:
@@ -1820,6 +1972,7 @@ class Geometry final :
     kBox = 3,
     kCapsule = 5,
     kMesh = 6,
+    kPointcloud = 7,
     GEOMETRY_TYPE_NOT_SET = 0,
   };
 
@@ -1828,7 +1981,7 @@ class Geometry final :
                &_Geometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(Geometry& a, Geometry& b) {
     a.Swap(&b);
@@ -1905,6 +2058,7 @@ class Geometry final :
     kBoxFieldNumber = 3,
     kCapsuleFieldNumber = 5,
     kMeshFieldNumber = 6,
+    kPointcloudFieldNumber = 7,
   };
   // string label = 4 [json_name = "label"];
   void clear_label();
@@ -2010,6 +2164,24 @@ class Geometry final :
       ::viam::common::v1::Mesh* mesh);
   ::viam::common::v1::Mesh* unsafe_arena_release_mesh();
 
+  // .viam.common.v1.PointCloud pointcloud = 7 [json_name = "pointcloud"];
+  bool has_pointcloud() const;
+  private:
+  bool _internal_has_pointcloud() const;
+  public:
+  void clear_pointcloud();
+  const ::viam::common::v1::PointCloud& pointcloud() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::PointCloud* release_pointcloud();
+  ::viam::common::v1::PointCloud* mutable_pointcloud();
+  void set_allocated_pointcloud(::viam::common::v1::PointCloud* pointcloud);
+  private:
+  const ::viam::common::v1::PointCloud& _internal_pointcloud() const;
+  ::viam::common::v1::PointCloud* _internal_mutable_pointcloud();
+  public:
+  void unsafe_arena_set_allocated_pointcloud(
+      ::viam::common::v1::PointCloud* pointcloud);
+  ::viam::common::v1::PointCloud* unsafe_arena_release_pointcloud();
+
   void clear_geometry_type();
   GeometryTypeCase geometry_type_case() const;
   // @@protoc_insertion_point(class_scope:viam.common.v1.Geometry)
@@ -2019,6 +2191,7 @@ class Geometry final :
   void set_has_box();
   void set_has_capsule();
   void set_has_mesh();
+  void set_has_pointcloud();
 
   inline bool has_geometry_type() const;
   inline void clear_has_geometry_type();
@@ -2035,6 +2208,7 @@ class Geometry final :
     ::viam::common::v1::RectangularPrism* box_;
     ::viam::common::v1::Capsule* capsule_;
     ::viam::common::v1::Mesh* mesh_;
+    ::viam::common::v1::PointCloud* pointcloud_;
   } geometry_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
@@ -2091,7 +2265,7 @@ class GeometriesInFrame final :
                &_GeometriesInFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(GeometriesInFrame& a, GeometriesInFrame& b) {
     a.Swap(&b);
@@ -2259,7 +2433,7 @@ class PointCloudObject final :
                &_PointCloudObject_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(PointCloudObject& a, PointCloudObject& b) {
     a.Swap(&b);
@@ -2427,7 +2601,7 @@ class GeoPoint final :
                &_GeoPoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(GeoPoint& a, GeoPoint& b) {
     a.Swap(&b);
@@ -2581,7 +2755,7 @@ class GeoGeometry final :
                &_GeoGeometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(GeoGeometry& a, GeoGeometry& b) {
     a.Swap(&b);
@@ -2753,7 +2927,7 @@ class Transform final :
                &_Transform_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(Transform& a, Transform& b) {
     a.Swap(&b);
@@ -2825,8 +2999,10 @@ class Transform final :
 
   enum : int {
     kReferenceFrameFieldNumber = 1,
+    kUuidFieldNumber = 4,
     kPoseInObserverFrameFieldNumber = 2,
     kPhysicalObjectFieldNumber = 3,
+    kMetadataFieldNumber = 5,
   };
   // string reference_frame = 1 [json_name = "referenceFrame"];
   void clear_reference_frame();
@@ -2840,6 +3016,20 @@ class Transform final :
   const std::string& _internal_reference_frame() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_reference_frame(const std::string& value);
   std::string* _internal_mutable_reference_frame();
+  public:
+
+  // bytes uuid = 4 [json_name = "uuid"];
+  void clear_uuid();
+  const std::string& uuid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_uuid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_uuid();
+  PROTOBUF_NODISCARD std::string* release_uuid();
+  void set_allocated_uuid(std::string* uuid);
+  private:
+  const std::string& _internal_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_uuid(const std::string& value);
+  std::string* _internal_mutable_uuid();
   public:
 
   // .viam.common.v1.PoseInFrame pose_in_observer_frame = 2 [json_name = "poseInObserverFrame"];
@@ -2878,6 +3068,24 @@ class Transform final :
       ::viam::common::v1::Geometry* physical_object);
   ::viam::common::v1::Geometry* unsafe_arena_release_physical_object();
 
+  // optional .google.protobuf.Struct metadata = 5 [json_name = "metadata"];
+  bool has_metadata() const;
+  private:
+  bool _internal_has_metadata() const;
+  public:
+  void clear_metadata();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& metadata() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_metadata();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_metadata();
+  void set_allocated_metadata(::PROTOBUF_NAMESPACE_ID::Struct* metadata);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_metadata() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_metadata();
+  public:
+  void unsafe_arena_set_allocated_metadata(
+      ::PROTOBUF_NAMESPACE_ID::Struct* metadata);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_metadata();
+
   // @@protoc_insertion_point(class_scope:viam.common.v1.Transform)
  private:
   class _Internal;
@@ -2888,8 +3096,10 @@ class Transform final :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reference_frame_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uuid_;
   ::viam::common::v1::PoseInFrame* pose_in_observer_frame_;
   ::viam::common::v1::Geometry* physical_object_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* metadata_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2942,7 +3152,7 @@ class WorldState final :
                &_WorldState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(WorldState& a, WorldState& b) {
     a.Swap(&b);
@@ -3114,7 +3324,7 @@ class ActuatorStatus final :
                &_ActuatorStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(ActuatorStatus& a, ActuatorStatus& b) {
     a.Swap(&b);
@@ -3257,7 +3467,7 @@ class ResponseMetadata final :
                &_ResponseMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(ResponseMetadata& a, ResponseMetadata& b) {
     a.Swap(&b);
@@ -3410,7 +3620,7 @@ class DoCommandRequest final :
                &_DoCommandRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(DoCommandRequest& a, DoCommandRequest& b) {
     a.Swap(&b);
@@ -3578,7 +3788,7 @@ class DoCommandResponse final :
                &_DoCommandResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(DoCommandResponse& a, DoCommandResponse& b) {
     a.Swap(&b);
@@ -3730,7 +3940,7 @@ class GetKinematicsRequest final :
                &_GetKinematicsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(GetKinematicsRequest& a, GetKinematicsRequest& b) {
     a.Swap(&b);
@@ -3898,7 +4108,7 @@ class GetKinematicsResponse final :
                &_GetKinematicsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(GetKinematicsResponse& a, GetKinematicsResponse& b) {
     a.Swap(&b);
@@ -4057,7 +4267,7 @@ class GetGeometriesRequest final :
                &_GetGeometriesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(GetGeometriesRequest& a, GetGeometriesRequest& b) {
     a.Swap(&b);
@@ -4225,7 +4435,7 @@ class GetGeometriesResponse final :
                &_GetGeometriesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(GetGeometriesResponse& a, GetGeometriesResponse& b) {
     a.Swap(&b);
@@ -4377,7 +4587,7 @@ class GetReadingsRequest final :
                &_GetReadingsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(GetReadingsRequest& a, GetReadingsRequest& b) {
     a.Swap(&b);
@@ -4571,7 +4781,7 @@ class GetReadingsResponse final :
                &_GetReadingsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(GetReadingsResponse& a, GetReadingsResponse& b) {
     a.Swap(&b);
@@ -4729,7 +4939,7 @@ class LogEntry final :
                &_LogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(LogEntry& a, LogEntry& b) {
     a.Swap(&b);
@@ -5995,6 +6205,60 @@ inline void Mesh::set_allocated_mesh(std::string* mesh) {
 
 // -------------------------------------------------------------------
 
+// PointCloud
+
+// bytes point_cloud = 1 [json_name = "pointCloud"];
+inline void PointCloud::clear_point_cloud() {
+  point_cloud_.ClearToEmpty();
+}
+inline const std::string& PointCloud::point_cloud() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.PointCloud.point_cloud)
+  return _internal_point_cloud();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PointCloud::set_point_cloud(ArgT0&& arg0, ArgT... args) {
+ 
+ point_cloud_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.PointCloud.point_cloud)
+}
+inline std::string* PointCloud::mutable_point_cloud() {
+  std::string* _s = _internal_mutable_point_cloud();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.PointCloud.point_cloud)
+  return _s;
+}
+inline const std::string& PointCloud::_internal_point_cloud() const {
+  return point_cloud_.Get();
+}
+inline void PointCloud::_internal_set_point_cloud(const std::string& value) {
+  
+  point_cloud_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PointCloud::_internal_mutable_point_cloud() {
+  
+  return point_cloud_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PointCloud::release_point_cloud() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.PointCloud.point_cloud)
+  return point_cloud_.Release();
+}
+inline void PointCloud::set_allocated_point_cloud(std::string* point_cloud) {
+  if (point_cloud != nullptr) {
+    
+  } else {
+    
+  }
+  point_cloud_.SetAllocated(point_cloud, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (point_cloud_.IsDefault()) {
+    point_cloud_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.PointCloud.point_cloud)
+}
+
+// -------------------------------------------------------------------
+
 // Geometry
 
 // .viam.common.v1.Pose center = 1 [json_name = "center"];
@@ -6380,6 +6644,80 @@ inline ::viam::common::v1::Mesh* Geometry::_internal_mutable_mesh() {
 inline ::viam::common::v1::Mesh* Geometry::mutable_mesh() {
   ::viam::common::v1::Mesh* _msg = _internal_mutable_mesh();
   // @@protoc_insertion_point(field_mutable:viam.common.v1.Geometry.mesh)
+  return _msg;
+}
+
+// .viam.common.v1.PointCloud pointcloud = 7 [json_name = "pointcloud"];
+inline bool Geometry::_internal_has_pointcloud() const {
+  return geometry_type_case() == kPointcloud;
+}
+inline bool Geometry::has_pointcloud() const {
+  return _internal_has_pointcloud();
+}
+inline void Geometry::set_has_pointcloud() {
+  _oneof_case_[0] = kPointcloud;
+}
+inline void Geometry::clear_pointcloud() {
+  if (_internal_has_pointcloud()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete geometry_type_.pointcloud_;
+    }
+    clear_has_geometry_type();
+  }
+}
+inline ::viam::common::v1::PointCloud* Geometry::release_pointcloud() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.Geometry.pointcloud)
+  if (_internal_has_pointcloud()) {
+    clear_has_geometry_type();
+    ::viam::common::v1::PointCloud* temp = geometry_type_.pointcloud_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    geometry_type_.pointcloud_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::common::v1::PointCloud& Geometry::_internal_pointcloud() const {
+  return _internal_has_pointcloud()
+      ? *geometry_type_.pointcloud_
+      : reinterpret_cast< ::viam::common::v1::PointCloud&>(::viam::common::v1::_PointCloud_default_instance_);
+}
+inline const ::viam::common::v1::PointCloud& Geometry::pointcloud() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Geometry.pointcloud)
+  return _internal_pointcloud();
+}
+inline ::viam::common::v1::PointCloud* Geometry::unsafe_arena_release_pointcloud() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.common.v1.Geometry.pointcloud)
+  if (_internal_has_pointcloud()) {
+    clear_has_geometry_type();
+    ::viam::common::v1::PointCloud* temp = geometry_type_.pointcloud_;
+    geometry_type_.pointcloud_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Geometry::unsafe_arena_set_allocated_pointcloud(::viam::common::v1::PointCloud* pointcloud) {
+  clear_geometry_type();
+  if (pointcloud) {
+    set_has_pointcloud();
+    geometry_type_.pointcloud_ = pointcloud;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.Geometry.pointcloud)
+}
+inline ::viam::common::v1::PointCloud* Geometry::_internal_mutable_pointcloud() {
+  if (!_internal_has_pointcloud()) {
+    clear_geometry_type();
+    set_has_pointcloud();
+    geometry_type_.pointcloud_ = CreateMaybeMessage< ::viam::common::v1::PointCloud >(GetArenaForAllocation());
+  }
+  return geometry_type_.pointcloud_;
+}
+inline ::viam::common::v1::PointCloud* Geometry::mutable_pointcloud() {
+  ::viam::common::v1::PointCloud* _msg = _internal_mutable_pointcloud();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.Geometry.pointcloud)
   return _msg;
 }
 
@@ -7090,6 +7428,143 @@ inline void Transform::set_allocated_physical_object(::viam::common::v1::Geometr
   }
   physical_object_ = physical_object;
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Transform.physical_object)
+}
+
+// bytes uuid = 4 [json_name = "uuid"];
+inline void Transform::clear_uuid() {
+  uuid_.ClearToEmpty();
+}
+inline const std::string& Transform::uuid() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Transform.uuid)
+  return _internal_uuid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Transform::set_uuid(ArgT0&& arg0, ArgT... args) {
+ 
+ uuid_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.Transform.uuid)
+}
+inline std::string* Transform::mutable_uuid() {
+  std::string* _s = _internal_mutable_uuid();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.Transform.uuid)
+  return _s;
+}
+inline const std::string& Transform::_internal_uuid() const {
+  return uuid_.Get();
+}
+inline void Transform::_internal_set_uuid(const std::string& value) {
+  
+  uuid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Transform::_internal_mutable_uuid() {
+  
+  return uuid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Transform::release_uuid() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.Transform.uuid)
+  return uuid_.Release();
+}
+inline void Transform::set_allocated_uuid(std::string* uuid) {
+  if (uuid != nullptr) {
+    
+  } else {
+    
+  }
+  uuid_.SetAllocated(uuid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (uuid_.IsDefault()) {
+    uuid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Transform.uuid)
+}
+
+// optional .google.protobuf.Struct metadata = 5 [json_name = "metadata"];
+inline bool Transform::_internal_has_metadata() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || metadata_ != nullptr);
+  return value;
+}
+inline bool Transform::has_metadata() const {
+  return _internal_has_metadata();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& Transform::_internal_metadata() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = metadata_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& Transform::metadata() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Transform.metadata)
+  return _internal_metadata();
+}
+inline void Transform::unsafe_arena_set_allocated_metadata(
+    ::PROTOBUF_NAMESPACE_ID::Struct* metadata) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata_);
+  }
+  metadata_ = metadata;
+  if (metadata) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.Transform.metadata)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Transform::release_metadata() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = metadata_;
+  metadata_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Transform::unsafe_arena_release_metadata() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.Transform.metadata)
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = metadata_;
+  metadata_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Transform::_internal_mutable_metadata() {
+  _has_bits_[0] |= 0x00000002u;
+  if (metadata_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    metadata_ = p;
+  }
+  return metadata_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Transform::mutable_metadata() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_metadata();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.Transform.metadata)
+  return _msg;
+}
+inline void Transform::set_allocated_metadata(::PROTOBUF_NAMESPACE_ID::Struct* metadata) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata_);
+  }
+  if (metadata) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata));
+    if (message_arena != submessage_arena) {
+      metadata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, metadata, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  metadata_ = metadata;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Transform.metadata)
 }
 
 // -------------------------------------------------------------------
@@ -8550,6 +9025,8 @@ LogEntry::fields() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
