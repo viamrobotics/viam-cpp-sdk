@@ -135,6 +135,9 @@ extern PlanStep_StepEntry_DoNotUseDefaultTypeInternal _PlanStep_StepEntry_DoNotU
 class PlanWithStatus;
 struct PlanWithStatusDefaultTypeInternal;
 extern PlanWithStatusDefaultTypeInternal _PlanWithStatus_default_instance_;
+class PseudolinearConstraint;
+struct PseudolinearConstraintDefaultTypeInternal;
+extern PseudolinearConstraintDefaultTypeInternal _PseudolinearConstraint_default_instance_;
 class StopPlanRequest;
 struct StopPlanRequestDefaultTypeInternal;
 extern StopPlanRequestDefaultTypeInternal _StopPlanRequest_default_instance_;
@@ -172,6 +175,7 @@ template<> ::viam::service::motion::v1::PlanStatusWithID* Arena::CreateMaybeMess
 template<> ::viam::service::motion::v1::PlanStep* Arena::CreateMaybeMessage<::viam::service::motion::v1::PlanStep>(Arena*);
 template<> ::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse>(Arena*);
 template<> ::viam::service::motion::v1::PlanWithStatus* Arena::CreateMaybeMessage<::viam::service::motion::v1::PlanWithStatus>(Arena*);
+template<> ::viam::service::motion::v1::PseudolinearConstraint* Arena::CreateMaybeMessage<::viam::service::motion::v1::PseudolinearConstraint>(Arena*);
 template<> ::viam::service::motion::v1::StopPlanRequest* Arena::CreateMaybeMessage<::viam::service::motion::v1::StopPlanRequest>(Arena*);
 template<> ::viam::service::motion::v1::StopPlanResponse* Arena::CreateMaybeMessage<::viam::service::motion::v1::StopPlanResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -3396,6 +3400,7 @@ class Constraints final :
     kLinearConstraintFieldNumber = 1,
     kOrientationConstraintFieldNumber = 2,
     kCollisionSpecificationFieldNumber = 3,
+    kPseudolinearConstraintFieldNumber = 4,
   };
   // repeated .viam.service.motion.v1.LinearConstraint linear_constraint = 1 [json_name = "linearConstraint"];
   int linear_constraint_size() const;
@@ -3451,6 +3456,24 @@ class Constraints final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification >&
       collision_specification() const;
 
+  // repeated .viam.service.motion.v1.PseudolinearConstraint pseudolinear_constraint = 4 [json_name = "pseudolinearConstraint"];
+  int pseudolinear_constraint_size() const;
+  private:
+  int _internal_pseudolinear_constraint_size() const;
+  public:
+  void clear_pseudolinear_constraint();
+  ::viam::service::motion::v1::PseudolinearConstraint* mutable_pseudolinear_constraint(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PseudolinearConstraint >*
+      mutable_pseudolinear_constraint();
+  private:
+  const ::viam::service::motion::v1::PseudolinearConstraint& _internal_pseudolinear_constraint(int index) const;
+  ::viam::service::motion::v1::PseudolinearConstraint* _internal_add_pseudolinear_constraint();
+  public:
+  const ::viam::service::motion::v1::PseudolinearConstraint& pseudolinear_constraint(int index) const;
+  ::viam::service::motion::v1::PseudolinearConstraint* add_pseudolinear_constraint();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PseudolinearConstraint >&
+      pseudolinear_constraint() const;
+
   // @@protoc_insertion_point(class_scope:viam.service.motion.v1.Constraints)
  private:
   class _Internal;
@@ -3461,6 +3484,7 @@ class Constraints final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::LinearConstraint > linear_constraint_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::OrientationConstraint > orientation_constraint_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::CollisionSpecification > collision_specification_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PseudolinearConstraint > pseudolinear_constraint_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
@@ -3629,6 +3653,169 @@ class LinearConstraint final :
 };
 // -------------------------------------------------------------------
 
+class PseudolinearConstraint final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.PseudolinearConstraint) */ {
+ public:
+  inline PseudolinearConstraint() : PseudolinearConstraint(nullptr) {}
+  ~PseudolinearConstraint() override;
+  explicit PROTOBUF_CONSTEXPR PseudolinearConstraint(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PseudolinearConstraint(const PseudolinearConstraint& from);
+  PseudolinearConstraint(PseudolinearConstraint&& from) noexcept
+    : PseudolinearConstraint() {
+    *this = ::std::move(from);
+  }
+
+  inline PseudolinearConstraint& operator=(const PseudolinearConstraint& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PseudolinearConstraint& operator=(PseudolinearConstraint&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PseudolinearConstraint& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PseudolinearConstraint* internal_default_instance() {
+    return reinterpret_cast<const PseudolinearConstraint*>(
+               &_PseudolinearConstraint_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(PseudolinearConstraint& a, PseudolinearConstraint& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PseudolinearConstraint* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PseudolinearConstraint* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PseudolinearConstraint* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PseudolinearConstraint>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PseudolinearConstraint& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PseudolinearConstraint& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PseudolinearConstraint* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.service.motion.v1.PseudolinearConstraint";
+  }
+  protected:
+  explicit PseudolinearConstraint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLineToleranceFactorFieldNumber = 1,
+    kOrientationToleranceFactorFieldNumber = 2,
+  };
+  // optional float line_tolerance_factor = 1 [json_name = "lineToleranceFactor"];
+  bool has_line_tolerance_factor() const;
+  private:
+  bool _internal_has_line_tolerance_factor() const;
+  public:
+  void clear_line_tolerance_factor();
+  float line_tolerance_factor() const;
+  void set_line_tolerance_factor(float value);
+  private:
+  float _internal_line_tolerance_factor() const;
+  void _internal_set_line_tolerance_factor(float value);
+  public:
+
+  // optional float orientation_tolerance_factor = 2 [json_name = "orientationToleranceFactor"];
+  bool has_orientation_tolerance_factor() const;
+  private:
+  bool _internal_has_orientation_tolerance_factor() const;
+  public:
+  void clear_orientation_tolerance_factor();
+  float orientation_tolerance_factor() const;
+  void set_orientation_tolerance_factor(float value);
+  private:
+  float _internal_orientation_tolerance_factor() const;
+  void _internal_set_orientation_tolerance_factor(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.service.motion.v1.PseudolinearConstraint)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  float line_tolerance_factor_;
+  float orientation_tolerance_factor_;
+  friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
+};
+// -------------------------------------------------------------------
+
 class OrientationConstraint final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.service.motion.v1.OrientationConstraint) */ {
  public:
@@ -3677,7 +3864,7 @@ class OrientationConstraint final :
                &_OrientationConstraint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(OrientationConstraint& a, OrientationConstraint& b) {
     a.Swap(&b);
@@ -3825,7 +4012,7 @@ class CollisionSpecification_AllowedFrameCollisions final :
                &_CollisionSpecification_AllowedFrameCollisions_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(CollisionSpecification_AllowedFrameCollisions& a, CollisionSpecification_AllowedFrameCollisions& b) {
     a.Swap(&b);
@@ -3989,7 +4176,7 @@ class CollisionSpecification final :
                &_CollisionSpecification_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(CollisionSpecification& a, CollisionSpecification& b) {
     a.Swap(&b);
@@ -4143,7 +4330,7 @@ class PlanWithStatus final :
                &_PlanWithStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(PlanWithStatus& a, PlanWithStatus& b) {
     a.Swap(&b);
@@ -4335,7 +4522,7 @@ class PlanStatusWithID final :
                &_PlanStatusWithID_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(PlanStatusWithID& a, PlanStatusWithID& b) {
     a.Swap(&b);
@@ -4539,7 +4726,7 @@ class PlanStatus final :
                &_PlanStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(PlanStatus& a, PlanStatus& b) {
     a.Swap(&b);
@@ -4723,7 +4910,7 @@ class Plan final :
                &_Plan_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(Plan& a, Plan& b) {
     a.Swap(&b);
@@ -4953,7 +5140,7 @@ class PlanStep final :
                &_PlanStep_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(PlanStep& a, PlanStep& b) {
     a.Swap(&b);
@@ -5111,7 +5298,7 @@ class ComponentState final :
                &_ComponentState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(ComponentState& a, ComponentState& b) {
     a.Swap(&b);
@@ -8704,6 +8891,46 @@ Constraints::collision_specification() const {
   return collision_specification_;
 }
 
+// repeated .viam.service.motion.v1.PseudolinearConstraint pseudolinear_constraint = 4 [json_name = "pseudolinearConstraint"];
+inline int Constraints::_internal_pseudolinear_constraint_size() const {
+  return pseudolinear_constraint_.size();
+}
+inline int Constraints::pseudolinear_constraint_size() const {
+  return _internal_pseudolinear_constraint_size();
+}
+inline void Constraints::clear_pseudolinear_constraint() {
+  pseudolinear_constraint_.Clear();
+}
+inline ::viam::service::motion::v1::PseudolinearConstraint* Constraints::mutable_pseudolinear_constraint(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Constraints.pseudolinear_constraint)
+  return pseudolinear_constraint_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PseudolinearConstraint >*
+Constraints::mutable_pseudolinear_constraint() {
+  // @@protoc_insertion_point(field_mutable_list:viam.service.motion.v1.Constraints.pseudolinear_constraint)
+  return &pseudolinear_constraint_;
+}
+inline const ::viam::service::motion::v1::PseudolinearConstraint& Constraints::_internal_pseudolinear_constraint(int index) const {
+  return pseudolinear_constraint_.Get(index);
+}
+inline const ::viam::service::motion::v1::PseudolinearConstraint& Constraints::pseudolinear_constraint(int index) const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Constraints.pseudolinear_constraint)
+  return _internal_pseudolinear_constraint(index);
+}
+inline ::viam::service::motion::v1::PseudolinearConstraint* Constraints::_internal_add_pseudolinear_constraint() {
+  return pseudolinear_constraint_.Add();
+}
+inline ::viam::service::motion::v1::PseudolinearConstraint* Constraints::add_pseudolinear_constraint() {
+  ::viam::service::motion::v1::PseudolinearConstraint* _add = _internal_add_pseudolinear_constraint();
+  // @@protoc_insertion_point(field_add:viam.service.motion.v1.Constraints.pseudolinear_constraint)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PseudolinearConstraint >&
+Constraints::pseudolinear_constraint() const {
+  // @@protoc_insertion_point(field_list:viam.service.motion.v1.Constraints.pseudolinear_constraint)
+  return pseudolinear_constraint_;
+}
+
 // -------------------------------------------------------------------
 
 // LinearConstraint
@@ -8762,6 +8989,66 @@ inline void LinearConstraint::_internal_set_orientation_tolerance_degs(float val
 inline void LinearConstraint::set_orientation_tolerance_degs(float value) {
   _internal_set_orientation_tolerance_degs(value);
   // @@protoc_insertion_point(field_set:viam.service.motion.v1.LinearConstraint.orientation_tolerance_degs)
+}
+
+// -------------------------------------------------------------------
+
+// PseudolinearConstraint
+
+// optional float line_tolerance_factor = 1 [json_name = "lineToleranceFactor"];
+inline bool PseudolinearConstraint::_internal_has_line_tolerance_factor() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool PseudolinearConstraint::has_line_tolerance_factor() const {
+  return _internal_has_line_tolerance_factor();
+}
+inline void PseudolinearConstraint::clear_line_tolerance_factor() {
+  line_tolerance_factor_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline float PseudolinearConstraint::_internal_line_tolerance_factor() const {
+  return line_tolerance_factor_;
+}
+inline float PseudolinearConstraint::line_tolerance_factor() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PseudolinearConstraint.line_tolerance_factor)
+  return _internal_line_tolerance_factor();
+}
+inline void PseudolinearConstraint::_internal_set_line_tolerance_factor(float value) {
+  _has_bits_[0] |= 0x00000001u;
+  line_tolerance_factor_ = value;
+}
+inline void PseudolinearConstraint::set_line_tolerance_factor(float value) {
+  _internal_set_line_tolerance_factor(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.PseudolinearConstraint.line_tolerance_factor)
+}
+
+// optional float orientation_tolerance_factor = 2 [json_name = "orientationToleranceFactor"];
+inline bool PseudolinearConstraint::_internal_has_orientation_tolerance_factor() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool PseudolinearConstraint::has_orientation_tolerance_factor() const {
+  return _internal_has_orientation_tolerance_factor();
+}
+inline void PseudolinearConstraint::clear_orientation_tolerance_factor() {
+  orientation_tolerance_factor_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline float PseudolinearConstraint::_internal_orientation_tolerance_factor() const {
+  return orientation_tolerance_factor_;
+}
+inline float PseudolinearConstraint::orientation_tolerance_factor() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PseudolinearConstraint.orientation_tolerance_factor)
+  return _internal_orientation_tolerance_factor();
+}
+inline void PseudolinearConstraint::_internal_set_orientation_tolerance_factor(float value) {
+  _has_bits_[0] |= 0x00000002u;
+  orientation_tolerance_factor_ = value;
+}
+inline void PseudolinearConstraint::set_orientation_tolerance_factor(float value) {
+  _internal_set_orientation_tolerance_factor(value);
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.PseudolinearConstraint.orientation_tolerance_factor)
 }
 
 // -------------------------------------------------------------------
@@ -9980,6 +10267,8 @@ inline void ComponentState::set_allocated_pose(::viam::common::v1::Pose* pose) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
