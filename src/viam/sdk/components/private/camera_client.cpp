@@ -134,9 +134,13 @@ Camera::image_collection CameraClient::get_images(std::vector<std::string> filte
         .with(extra,
               [&](auto& request) {
                   if (!filter_source_names.empty()) {
-                      request.mutable_filter_source_names()->Add(
-                          std::make_move_iterator(filter_source_names.begin()),
-                          std::make_move_iterator(filter_source_names.end()));
+                    // Once gRPC version is bumped we can avoid the loop and transfer ownership
+                    // of the vector to the request.
+                    // *request.mutable_filter_source_names() = std::move(filter_source_names)
+                    request.mutable_filter_source_names()->Reserve(filter_source_names.size());
+                    for (auto& source_name : filter_source_names) {
+                        request.add_filter_source_names(std::move(source_name));
+                    }
                   }
               })
         .invoke([](auto& response) { return from_proto(response); });
