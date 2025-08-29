@@ -56,7 +56,6 @@ Camera::image_collection from_proto(const viam::component::camera::v1::GetImages
         raw_image.bytes = bytes;
         // TODO(RSDK-11733): This is a temporary fix to support handling both the format and mime
         // type. We will remove this once we remove the format field from the proto.
-        // We will remove this once we remove the format field from the proto.
         if (!img.mime_type().empty()) {
             raw_image.mime_type = img.mime_type();
         } else {
@@ -134,8 +133,10 @@ Camera::image_collection CameraClient::get_images(std::vector<std::string> filte
     return make_client_helper(this, *stub_, &StubType::GetImages)
         .with(extra,
               [&](auto& request) {
-                  for (const auto& source_name : filter_source_names) {
-                      *request.add_filter_source_names() = source_name;
+                  if (!filter_source_names.empty()) {
+                      request.mutable_filter_source_names()->Add(
+                          std::make_move_iterator(filter_source_names.begin()),
+                          std::make_move_iterator(filter_source_names.end()));
                   }
               })
         .invoke([](auto& response) { return from_proto(response); });
