@@ -26,7 +26,8 @@ class CameraClient : public Camera {
     CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     ProtoStruct do_command(const ProtoStruct& command) override;
     raw_image get_image(std::string mime_type, const ProtoStruct& extra) override;
-    image_collection get_images() override;
+    image_collection get_images(std::vector<std::string> filter_source_names,
+                                const ProtoStruct& extra) override;
     point_cloud get_point_cloud(std::string mime_type, const ProtoStruct& extra) override;
     properties get_properties() override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
@@ -42,6 +43,7 @@ class CameraClient : public Camera {
     // we need to include these `using` lines.
     using Camera::get_geometries;
     using Camera::get_image;
+    using Camera::get_images;
     using Camera::get_point_cloud;
 
    protected:
