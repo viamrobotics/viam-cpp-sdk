@@ -58,8 +58,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          brew install cmake
-          brew install python ninja buf
+          cmake --version
+          python --version
+          ninja --version
+          brew install buf
           python -m pip install conan
 
       - name: Create package
@@ -192,7 +194,7 @@ jobs:
         run: |
           apt-get install -y software-properties-common
           apt-add-repository -y 'deb https://archive.debian.org/debian bullseye-backports main'
-          
+
           apt-get update
           apt-get -y install cmake
 
