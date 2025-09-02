@@ -54,7 +54,13 @@ Camera::image_collection from_proto(const viam::component::camera::v1::GetImages
         std::string img_string = img.image();
         const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
         raw_image.bytes = bytes;
-        raw_image.mime_type = format_to_MIME_string(img.format());
+        // TODO(RSDK-11733): This is a temporary fix to support handling both the format and mime
+        // type. We will remove this once we remove the format field from the proto.
+        if (!img.mime_type().empty()) {
+            raw_image.mime_type = img.mime_type();
+        } else {
+            raw_image.mime_type = format_to_MIME_string(img.format());
+        }
         raw_image.source_name = img.source_name();
         images.push_back(raw_image);
     }
@@ -122,10 +128,21 @@ Camera::raw_image CameraClient::get_image(std::string mime_type, const ProtoStru
         .invoke([](auto& response) { return from_proto(response); });
 };
 
-Camera::image_collection CameraClient::get_images() {
-    return make_client_helper(this, *stub_, &StubType::GetImages).invoke([](auto& response) {
-        return from_proto(response);
-    });
+Camera::image_collection CameraClient::get_images(std::vector<std::string> filter_source_names,
+                                                  const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetImages)
+        .with(extra,
+              [&](auto& request) {
+                  if (!filter_source_names.empty()) {
+                      // in newer gRPC versions we would be able to call `Add` or `Assign` on an
+                      // iterator range rather than element-wise copy
+                      request.mutable_filter_source_names()->Reserve(filter_source_names.size());
+                      for (auto& source_name : filter_source_names) {
+                          request.add_filter_source_names(std::move(source_name));
+                      }
+                  }
+              })
+        .invoke([](auto& response) { return from_proto(response); });
 };
 
 Camera::point_cloud CameraClient::get_point_cloud(std::string mime_type, const ProtoStruct& extra) {
