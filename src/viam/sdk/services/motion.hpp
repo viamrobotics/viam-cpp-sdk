@@ -179,6 +179,15 @@ class Motion : public Service {
         std::vector<allowed_frame_collisions> allows;
     };
 
+    /// @struct pseudolinear_constraint
+    /// @brief Specifies that the component being moved should move pseudolinearly to its goal.
+    struct pseudolinear_constraint {
+        /// @brief The factor by which to multiply the default line tolerance.
+        boost::optional<float> line_tolerance_factor;
+        /// @brief The factor by which to multiply the default orientation tolerance.
+        boost::optional<float> orientation_tolerance_factor;
+    };
+
     /// @struct constraints
     /// @brief Specifies all constraints to be passed to Viam's motion planning, along
     /// with any optional parameters.
@@ -186,6 +195,7 @@ class Motion : public Service {
         std::vector<linear_constraint> linear_constraints;
         std::vector<orientation_constraint> orientation_constraints;
         std::vector<collision_specification> collision_specifications;
+        std::vector<pseudolinear_constraint> pseudolinear_constraints;
     };
 
     API api() const override;
