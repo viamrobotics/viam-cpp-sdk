@@ -103,8 +103,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          brew install cmake boost grpc protobuf xtensor
-          brew install pkg-config ninja buf
+          cmake --version
+          ninja --version
+          brew install boost grpc protobuf xtensor
+          brew install pkg-config buf
 
       - name: Setup build directory
         run: mkdir builds
