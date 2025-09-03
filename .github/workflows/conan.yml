@@ -62,7 +62,6 @@ jobs:
           python --version
           ninja --version
           brew install buf
-          python -m pip install conan
 
       - name: Create package
         run: |
@@ -116,7 +115,6 @@ jobs:
               less \
               ninja-build \
               python3 \
-              python3-pip \
               software-properties-common \
               sudo \
               wget \
@@ -127,7 +125,10 @@ jobs:
           apt-get update
           apt-get -y install cmake=3.25.2-0kitware1ubuntu22.04.1 cmake-data=3.25.2-0kitware1ubuntu22.04.1
 
-          pip install conan
+      - name: Setup conan
+        uses: conan-io/setup-conan@v1
+        with:
+          cache_packages: true
 
       - name: Create package
         shell: bash
@@ -200,16 +201,19 @@ jobs:
 
           apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
-      # Note bullseye can use regular pip + conan no problem, but
-      # bookworm is a managed environment, so we use a venv in both because it is more
-      # trouble to bifurcate them.
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Setup conan
+        uses: conan-io/setup-conan@v1
+        with:
+          cache_packages: true
+
       - name: Install conan in venv and create package
         shell: bash
         run: |
-          python3 -m venv ./conan_venv
-          source ./conan_venv/bin/activate
-
-          pip install conan
           conan profile detect
 
           conan install -r conancenter --update \
@@ -234,16 +238,17 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
 
       - name: Install dependencies
-        run: choco install -y conan git
+        run: choco install -y git
+
+      - name: Setup conan
+        uses: conan-io/setup-conan@v1
+        with:
+          cache_packages: true
+          home: c:/cache
 
       - name: Create package
         shell: powershell
         run: |
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          refreshenv
           conan profile detect
           conan create . --build=missing -o "&:shared=False"
-        env:
-          CONAN_USER_HOME: c:/cache
-          CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
