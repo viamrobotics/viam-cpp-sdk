@@ -118,7 +118,6 @@ jobs:
               gpg \
               less \
               ninja-build \
-              python3 \
               software-properties-common \
               sudo \
               wget \
@@ -128,6 +127,9 @@ jobs:
 
           apt-get update
           apt-get -y install cmake=3.25.2-0kitware1ubuntu22.04.1 cmake-data=3.25.2-0kitware1ubuntu22.04.1
+
+      - name: Setup python
+        uses: actions/setup-python@v5
 
       - name: Setup conan
         uses: conan-io/setup-conan@v1
