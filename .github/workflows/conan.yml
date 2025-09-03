@@ -63,6 +63,11 @@ jobs:
           ninja --version
           brew install buf
 
+      - name: Setup conan
+        uses: conan-io/setup-conan@v1
+        with:
+          cache_packages: true
+
       - name: Create package
         run: |
           # `buf` tries to read a CLI config file that we don't actually use located at
@@ -204,7 +209,7 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
       - name: Setup conan
         uses: conan-io/setup-conan@v1
