@@ -218,6 +218,7 @@ jobs:
         uses: conan-io/setup-conan@v1
         with:
           cache_packages: true
+          use_venv: ${{ matrix.image == 'debian:bookworm' }}
 
       - name: Create package
         shell: bash
