@@ -257,7 +257,8 @@ PROTOBUF_CONSTEXPR Constraints::Constraints(
     ::_pbi::ConstantInitialized)
   : linear_constraint_()
   , orientation_constraint_()
-  , collision_specification_(){}
+  , collision_specification_()
+  , pseudolinear_constraint_(){}
 struct ConstraintsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ConstraintsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -280,6 +281,19 @@ struct LinearConstraintDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LinearConstraintDefaultTypeInternal _LinearConstraint_default_instance_;
+PROTOBUF_CONSTEXPR PseudolinearConstraint::PseudolinearConstraint(
+    ::_pbi::ConstantInitialized)
+  : line_tolerance_factor_(0)
+  , orientation_tolerance_factor_(0){}
+struct PseudolinearConstraintDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PseudolinearConstraintDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PseudolinearConstraintDefaultTypeInternal() {}
+  union {
+    PseudolinearConstraint _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PseudolinearConstraintDefaultTypeInternal _PseudolinearConstraint_default_instance_;
 PROTOBUF_CONSTEXPR OrientationConstraint::OrientationConstraint(
     ::_pbi::ConstantInitialized)
   : orientation_tolerance_degs_(0){}
@@ -415,7 +429,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace motion
 }  // namespace service
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[28];
+static ::_pb::Metadata file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[29];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_service_2fmotion_2fv1_2fmotion_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_service_2fmotion_2fv1_2fmotion_2eproto = nullptr;
 
@@ -611,6 +625,7 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Constraints, linear_constraint_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Constraints, orientation_constraint_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Constraints, collision_specification_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Constraints, pseudolinear_constraint_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::LinearConstraint, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::LinearConstraint, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -619,6 +634,16 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::LinearConstraint, line_tolerance_mm_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::LinearConstraint, orientation_tolerance_degs_),
+  0,
+  1,
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PseudolinearConstraint, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PseudolinearConstraint, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PseudolinearConstraint, line_tolerance_factor_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PseudolinearConstraint, orientation_tolerance_factor_),
   0,
   1,
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::OrientationConstraint, _has_bits_),
@@ -728,17 +753,18 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 158, 169, -1, sizeof(::viam::service::motion::v1::GetPlanRequest)},
   { 174, -1, -1, sizeof(::viam::service::motion::v1::GetPlanResponse)},
   { 182, -1, -1, sizeof(::viam::service::motion::v1::Constraints)},
-  { 191, 199, -1, sizeof(::viam::service::motion::v1::LinearConstraint)},
-  { 201, 208, -1, sizeof(::viam::service::motion::v1::OrientationConstraint)},
-  { 209, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions)},
-  { 217, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification)},
-  { 224, -1, -1, sizeof(::viam::service::motion::v1::PlanWithStatus)},
-  { 233, -1, -1, sizeof(::viam::service::motion::v1::PlanStatusWithID)},
-  { 243, 252, -1, sizeof(::viam::service::motion::v1::PlanStatus)},
-  { 255, -1, -1, sizeof(::viam::service::motion::v1::Plan)},
-  { 265, 273, -1, sizeof(::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse)},
-  { 275, -1, -1, sizeof(::viam::service::motion::v1::PlanStep)},
-  { 282, -1, -1, sizeof(::viam::service::motion::v1::ComponentState)},
+  { 192, 200, -1, sizeof(::viam::service::motion::v1::LinearConstraint)},
+  { 202, 210, -1, sizeof(::viam::service::motion::v1::PseudolinearConstraint)},
+  { 212, 219, -1, sizeof(::viam::service::motion::v1::OrientationConstraint)},
+  { 220, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions)},
+  { 228, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification)},
+  { 235, -1, -1, sizeof(::viam::service::motion::v1::PlanWithStatus)},
+  { 244, -1, -1, sizeof(::viam::service::motion::v1::PlanStatusWithID)},
+  { 254, 263, -1, sizeof(::viam::service::motion::v1::PlanStatus)},
+  { 266, -1, -1, sizeof(::viam::service::motion::v1::Plan)},
+  { 276, 284, -1, sizeof(::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse)},
+  { 286, -1, -1, sizeof(::viam::service::motion::v1::PlanStep)},
+  { 293, -1, -1, sizeof(::viam::service::motion::v1::ComponentState)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -760,6 +786,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::service::motion::v1::_GetPlanResponse_default_instance_._instance,
   &::viam::service::motion::v1::_Constraints_default_instance_._instance,
   &::viam::service::motion::v1::_LinearConstraint_default_instance_._instance,
+  &::viam::service::motion::v1::_PseudolinearConstraint_default_instance_._instance,
   &::viam::service::motion::v1::_OrientationConstraint_default_instance_._instance,
   &::viam::service::motion::v1::_CollisionSpecification_AllowedFrameCollisions_default_instance_._instance,
   &::viam::service::motion::v1::_CollisionSpecification_default_instance_._instance,
@@ -865,7 +892,7 @@ const char descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto[] PR
   "tatus\030\001 \001(\0132&.viam.service.motion.v1.Pla"
   "nWithStatusR\025currentPlanWithStatus\022M\n\016re"
   "plan_history\030\002 \003(\0132&.viam.service.motion"
-  ".v1.PlanWithStatusR\rreplanHistory\"\263\002\n\013Co"
+  ".v1.PlanWithStatusR\rreplanHistory\"\234\003\n\013Co"
   "nstraints\022U\n\021linear_constraint\030\001 \003(\0132(.v"
   "iam.service.motion.v1.LinearConstraintR\020"
   "linearConstraint\022d\n\026orientation_constrai"
@@ -873,81 +900,89 @@ const char descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto[] PR
   "ationConstraintR\025orientationConstraint\022g"
   "\n\027collision_specification\030\003 \003(\0132..viam.s"
   "ervice.motion.v1.CollisionSpecificationR"
-  "\026collisionSpecification\"\273\001\n\020LinearConstr"
-  "aint\022/\n\021line_tolerance_mm\030\001 \001(\002H\000R\017lineT"
-  "oleranceMm\210\001\001\022A\n\032orientation_tolerance_d"
-  "egs\030\002 \001(\002H\001R\030orientationToleranceDegs\210\001\001"
-  "B\024\n\022_line_tolerance_mmB\035\n\033_orientation_t"
-  "olerance_degs\"y\n\025OrientationConstraint\022A"
-  "\n\032orientation_tolerance_degs\030\001 \001(\002H\000R\030or"
-  "ientationToleranceDegs\210\001\001B\035\n\033_orientatio"
-  "n_tolerance_degs\"\301\001\n\026CollisionSpecificat"
-  "ion\022]\n\006allows\030\001 \003(\0132E.viam.service.motio"
-  "n.v1.CollisionSpecification.AllowedFrame"
-  "CollisionsR\006allows\032H\n\026AllowedFrameCollis"
-  "ions\022\026\n\006frame1\030\001 \001(\tR\006frame1\022\026\n\006frame2\030\002"
-  " \001(\tR\006frame2\"\311\001\n\016PlanWithStatus\0220\n\004plan\030"
-  "\001 \001(\0132\034.viam.service.motion.v1.PlanR\004pla"
-  "n\022:\n\006status\030\002 \001(\0132\".viam.service.motion."
-  "v1.PlanStatusR\006status\022I\n\016status_history\030"
-  "\003 \003(\0132\".viam.service.motion.v1.PlanStatu"
-  "sR\rstatusHistory\"\317\001\n\020PlanStatusWithID\022\027\n"
-  "\007plan_id\030\001 \001(\tR\006planId\022C\n\016component_name"
-  "\030\002 \001(\0132\034.viam.common.v1.ResourceNameR\rco"
-  "mponentName\022!\n\014execution_id\030\003 \001(\tR\013execu"
-  "tionId\022:\n\006status\030\004 \001(\0132\".viam.service.mo"
-  "tion.v1.PlanStatusR\006status\"\247\001\n\nPlanStatu"
-  "s\0227\n\005state\030\001 \001(\0162!.viam.service.motion.v"
-  "1.PlanStateR\005state\0228\n\ttimestamp\030\002 \001(\0132\032."
-  "google.protobuf.TimestampR\ttimestamp\022\033\n\006"
-  "reason\030\003 \001(\tH\000R\006reason\210\001\001B\t\n\007_reason\"\266\001\n"
-  "\004Plan\022\016\n\002id\030\001 \001(\tR\002id\022C\n\016component_name\030"
+  "\026collisionSpecification\022g\n\027pseudolinear_"
+  "constraint\030\004 \003(\0132..viam.service.motion.v"
+  "1.PseudolinearConstraintR\026pseudolinearCo"
+  "nstraint\"\273\001\n\020LinearConstraint\022/\n\021line_to"
+  "lerance_mm\030\001 \001(\002H\000R\017lineToleranceMm\210\001\001\022A"
+  "\n\032orientation_tolerance_degs\030\002 \001(\002H\001R\030or"
+  "ientationToleranceDegs\210\001\001B\024\n\022_line_toler"
+  "ance_mmB\035\n\033_orientation_tolerance_degs\"\323"
+  "\001\n\026PseudolinearConstraint\0227\n\025line_tolera"
+  "nce_factor\030\001 \001(\002H\000R\023lineToleranceFactor\210"
+  "\001\001\022E\n\034orientation_tolerance_factor\030\002 \001(\002"
+  "H\001R\032orientationToleranceFactor\210\001\001B\030\n\026_li"
+  "ne_tolerance_factorB\037\n\035_orientation_tole"
+  "rance_factor\"y\n\025OrientationConstraint\022A\n"
+  "\032orientation_tolerance_degs\030\001 \001(\002H\000R\030ori"
+  "entationToleranceDegs\210\001\001B\035\n\033_orientation"
+  "_tolerance_degs\"\301\001\n\026CollisionSpecificati"
+  "on\022]\n\006allows\030\001 \003(\0132E.viam.service.motion"
+  ".v1.CollisionSpecification.AllowedFrameC"
+  "ollisionsR\006allows\032H\n\026AllowedFrameCollisi"
+  "ons\022\026\n\006frame1\030\001 \001(\tR\006frame1\022\026\n\006frame2\030\002 "
+  "\001(\tR\006frame2\"\311\001\n\016PlanWithStatus\0220\n\004plan\030\001"
+  " \001(\0132\034.viam.service.motion.v1.PlanR\004plan"
+  "\022:\n\006status\030\002 \001(\0132\".viam.service.motion.v"
+  "1.PlanStatusR\006status\022I\n\016status_history\030\003"
+  " \003(\0132\".viam.service.motion.v1.PlanStatus"
+  "R\rstatusHistory\"\317\001\n\020PlanStatusWithID\022\027\n\007"
+  "plan_id\030\001 \001(\tR\006planId\022C\n\016component_name\030"
   "\002 \001(\0132\034.viam.common.v1.ResourceNameR\rcom"
   "ponentName\022!\n\014execution_id\030\003 \001(\tR\013execut"
-  "ionId\0226\n\005steps\030\004 \003(\0132 .viam.service.moti"
-  "on.v1.PlanStepR\005steps\"\253\001\n\010PlanStep\022>\n\004st"
-  "ep\030\001 \003(\0132*.viam.service.motion.v1.PlanSt"
-  "ep.StepEntryR\004step\032_\n\tStepEntry\022\020\n\003key\030\001"
-  " \001(\tR\003key\022<\n\005value\030\002 \001(\0132&.viam.service."
-  "motion.v1.ComponentStateR\005value:\0028\001\":\n\016C"
-  "omponentState\022(\n\004pose\030\001 \001(\0132\024.viam.commo"
-  "n.v1.PoseR\004pose*\214\001\n\tPlanState\022\032\n\026PLAN_ST"
-  "ATE_UNSPECIFIED\020\000\022\032\n\026PLAN_STATE_IN_PROGR"
-  "ESS\020\001\022\026\n\022PLAN_STATE_STOPPED\020\002\022\030\n\024PLAN_ST"
-  "ATE_SUCCEEDED\020\003\022\025\n\021PLAN_STATE_FAILED\020\0042\314"
-  "\t\n\rMotionService\022\202\001\n\004Move\022#.viam.service"
-  ".motion.v1.MoveRequest\032$.viam.service.mo"
-  "tion.v1.MoveResponse\"/\202\323\344\223\002)\"\'/viam/api/"
-  "v1/service/motion/{name}/move\022\230\001\n\tMoveOn"
-  "Map\022(.viam.service.motion.v1.MoveOnMapRe"
-  "quest\032).viam.service.motion.v1.MoveOnMap"
-  "Response\"6\202\323\344\223\0020\"./viam/api/v1/service/m"
-  "otion/{name}/move_on_map\022\240\001\n\013MoveOnGlobe"
-  "\022*.viam.service.motion.v1.MoveOnGlobeReq"
-  "uest\032+.viam.service.motion.v1.MoveOnGlob"
-  "eResponse\"8\202\323\344\223\0022\"0/viam/api/v1/service/"
-  "motion/{name}/move_on_globe\022\216\001\n\007GetPose\022"
-  "&.viam.service.motion.v1.GetPoseRequest\032"
-  "\'.viam.service.motion.v1.GetPoseResponse"
-  "\"2\210\002\001\202\323\344\223\002)\022\'/viam/api/v1/service/motion"
-  "/{name}/pose\022\223\001\n\010StopPlan\022\'.viam.service"
-  ".motion.v1.StopPlanRequest\032(.viam.servic"
-  "e.motion.v1.StopPlanResponse\"4\202\323\344\223\002.\032,/v"
-  "iam/api/v1/service/motion/{name}/stop_pl"
-  "an\022\264\001\n\020ListPlanStatuses\022/.viam.service.m"
-  "otion.v1.ListPlanStatusesRequest\0320.viam."
-  "service.motion.v1.ListPlanStatusesRespon"
-  "se\"=\202\323\344\223\0027\0225/viam/api/v1/service/motion/"
-  "{name}/list_plan_statuses\022\217\001\n\007GetPlan\022&."
-  "viam.service.motion.v1.GetPlanRequest\032\'."
-  "viam.service.motion.v1.GetPlanResponse\"3"
-  "\202\323\344\223\002-\022+/viam/api/v1/service/motion/{nam"
-  "e}/get_plan\022\207\001\n\tDoCommand\022 .viam.common."
-  "v1.DoCommandRequest\032!.viam.common.v1.DoC"
-  "ommandResponse\"5\202\323\344\223\002/\"-/viam/api/v1/ser"
-  "vice/motion/{name}/do_commandB\?\n\032com.via"
-  "m.service.motion.v1Z!go.viam.com/api/ser"
-  "vice/motion/v1b\006proto3"
+  "ionId\022:\n\006status\030\004 \001(\0132\".viam.service.mot"
+  "ion.v1.PlanStatusR\006status\"\247\001\n\nPlanStatus"
+  "\0227\n\005state\030\001 \001(\0162!.viam.service.motion.v1"
+  ".PlanStateR\005state\0228\n\ttimestamp\030\002 \001(\0132\032.g"
+  "oogle.protobuf.TimestampR\ttimestamp\022\033\n\006r"
+  "eason\030\003 \001(\tH\000R\006reason\210\001\001B\t\n\007_reason\"\266\001\n\004"
+  "Plan\022\016\n\002id\030\001 \001(\tR\002id\022C\n\016component_name\030\002"
+  " \001(\0132\034.viam.common.v1.ResourceNameR\rcomp"
+  "onentName\022!\n\014execution_id\030\003 \001(\tR\013executi"
+  "onId\0226\n\005steps\030\004 \003(\0132 .viam.service.motio"
+  "n.v1.PlanStepR\005steps\"\253\001\n\010PlanStep\022>\n\004ste"
+  "p\030\001 \003(\0132*.viam.service.motion.v1.PlanSte"
+  "p.StepEntryR\004step\032_\n\tStepEntry\022\020\n\003key\030\001 "
+  "\001(\tR\003key\022<\n\005value\030\002 \001(\0132&.viam.service.m"
+  "otion.v1.ComponentStateR\005value:\0028\001\":\n\016Co"
+  "mponentState\022(\n\004pose\030\001 \001(\0132\024.viam.common"
+  ".v1.PoseR\004pose*\214\001\n\tPlanState\022\032\n\026PLAN_STA"
+  "TE_UNSPECIFIED\020\000\022\032\n\026PLAN_STATE_IN_PROGRE"
+  "SS\020\001\022\026\n\022PLAN_STATE_STOPPED\020\002\022\030\n\024PLAN_STA"
+  "TE_SUCCEEDED\020\003\022\025\n\021PLAN_STATE_FAILED\020\0042\314\t"
+  "\n\rMotionService\022\202\001\n\004Move\022#.viam.service."
+  "motion.v1.MoveRequest\032$.viam.service.mot"
+  "ion.v1.MoveResponse\"/\202\323\344\223\002)\"\'/viam/api/v"
+  "1/service/motion/{name}/move\022\230\001\n\tMoveOnM"
+  "ap\022(.viam.service.motion.v1.MoveOnMapReq"
+  "uest\032).viam.service.motion.v1.MoveOnMapR"
+  "esponse\"6\202\323\344\223\0020\"./viam/api/v1/service/mo"
+  "tion/{name}/move_on_map\022\240\001\n\013MoveOnGlobe\022"
+  "*.viam.service.motion.v1.MoveOnGlobeRequ"
+  "est\032+.viam.service.motion.v1.MoveOnGlobe"
+  "Response\"8\202\323\344\223\0022\"0/viam/api/v1/service/m"
+  "otion/{name}/move_on_globe\022\216\001\n\007GetPose\022&"
+  ".viam.service.motion.v1.GetPoseRequest\032\'"
+  ".viam.service.motion.v1.GetPoseResponse\""
+  "2\210\002\001\202\323\344\223\002)\022\'/viam/api/v1/service/motion/"
+  "{name}/pose\022\223\001\n\010StopPlan\022\'.viam.service."
+  "motion.v1.StopPlanRequest\032(.viam.service"
+  ".motion.v1.StopPlanResponse\"4\202\323\344\223\002.\032,/vi"
+  "am/api/v1/service/motion/{name}/stop_pla"
+  "n\022\264\001\n\020ListPlanStatuses\022/.viam.service.mo"
+  "tion.v1.ListPlanStatusesRequest\0320.viam.s"
+  "ervice.motion.v1.ListPlanStatusesRespons"
+  "e\"=\202\323\344\223\0027\0225/viam/api/v1/service/motion/{"
+  "name}/list_plan_statuses\022\217\001\n\007GetPlan\022&.v"
+  "iam.service.motion.v1.GetPlanRequest\032\'.v"
+  "iam.service.motion.v1.GetPlanResponse\"3\202"
+  "\323\344\223\002-\022+/viam/api/v1/service/motion/{name"
+  "}/get_plan\022\207\001\n\tDoCommand\022 .viam.common.v"
+  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
+  "mmandResponse\"5\202\323\344\223\002/\"-/viam/api/v1/serv"
+  "ice/motion/{name}/do_commandB\?\n\032com.viam"
+  ".service.motion.v1Z!go.viam.com/api/serv"
+  "ice/motion/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -957,9 +992,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto = {
-    false, false, 6982, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
+    false, false, 7301, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
     "service/motion/v1/motion.proto",
-    &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once, descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps, 4, 28,
+    &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once, descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps, 4, 29,
     schemas, file_default_instances, TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets,
     file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto, file_level_enum_descriptors_service_2fmotion_2fv1_2fmotion_2eproto,
     file_level_service_descriptors_service_2fmotion_2fv1_2fmotion_2eproto,
@@ -5580,7 +5615,8 @@ Constraints::Constraints(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
   linear_constraint_(arena),
   orientation_constraint_(arena),
-  collision_specification_(arena) {
+  collision_specification_(arena),
+  pseudolinear_constraint_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.motion.v1.Constraints)
 }
@@ -5588,7 +5624,8 @@ Constraints::Constraints(const Constraints& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       linear_constraint_(from.linear_constraint_),
       orientation_constraint_(from.orientation_constraint_),
-      collision_specification_(from.collision_specification_) {
+      collision_specification_(from.collision_specification_),
+      pseudolinear_constraint_(from.pseudolinear_constraint_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.motion.v1.Constraints)
 }
@@ -5622,6 +5659,7 @@ void Constraints::Clear() {
   linear_constraint_.Clear();
   orientation_constraint_.Clear();
   collision_specification_.Clear();
+  pseudolinear_constraint_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5667,6 +5705,19 @@ const char* Constraints::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.service.motion.v1.PseudolinearConstraint pseudolinear_constraint = 4 [json_name = "pseudolinearConstraint"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_pseudolinear_constraint(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -5723,6 +5774,14 @@ uint8_t* Constraints::_InternalSerialize(
         InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // repeated .viam.service.motion.v1.PseudolinearConstraint pseudolinear_constraint = 4 [json_name = "pseudolinearConstraint"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_pseudolinear_constraint_size()); i < n; i++) {
+    const auto& repfield = this->_internal_pseudolinear_constraint(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -5760,6 +5819,13 @@ size_t Constraints::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
+  // repeated .viam.service.motion.v1.PseudolinearConstraint pseudolinear_constraint = 4 [json_name = "pseudolinearConstraint"];
+  total_size += 1UL * this->_internal_pseudolinear_constraint_size();
+  for (const auto& msg : this->pseudolinear_constraint_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -5785,6 +5851,7 @@ void Constraints::MergeFrom(const Constraints& from) {
   linear_constraint_.MergeFrom(from.linear_constraint_);
   orientation_constraint_.MergeFrom(from.orientation_constraint_);
   collision_specification_.MergeFrom(from.collision_specification_);
+  pseudolinear_constraint_.MergeFrom(from.pseudolinear_constraint_);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -5805,6 +5872,7 @@ void Constraints::InternalSwap(Constraints* other) {
   linear_constraint_.InternalSwap(&other->linear_constraint_);
   orientation_constraint_.InternalSwap(&other->orientation_constraint_);
   collision_specification_.InternalSwap(&other->collision_specification_);
+  pseudolinear_constraint_.InternalSwap(&other->pseudolinear_constraint_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Constraints::GetMetadata() const {
@@ -6044,6 +6112,235 @@ void LinearConstraint::InternalSwap(LinearConstraint* other) {
 
 // ===================================================================
 
+class PseudolinearConstraint::_Internal {
+ public:
+  using HasBits = decltype(std::declval<PseudolinearConstraint>()._has_bits_);
+  static void set_has_line_tolerance_factor(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_orientation_tolerance_factor(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+};
+
+PseudolinearConstraint::PseudolinearConstraint(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.service.motion.v1.PseudolinearConstraint)
+}
+PseudolinearConstraint::PseudolinearConstraint(const PseudolinearConstraint& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&line_tolerance_factor_, &from.line_tolerance_factor_,
+    static_cast<size_t>(reinterpret_cast<char*>(&orientation_tolerance_factor_) -
+    reinterpret_cast<char*>(&line_tolerance_factor_)) + sizeof(orientation_tolerance_factor_));
+  // @@protoc_insertion_point(copy_constructor:viam.service.motion.v1.PseudolinearConstraint)
+}
+
+inline void PseudolinearConstraint::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&line_tolerance_factor_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&orientation_tolerance_factor_) -
+    reinterpret_cast<char*>(&line_tolerance_factor_)) + sizeof(orientation_tolerance_factor_));
+}
+
+PseudolinearConstraint::~PseudolinearConstraint() {
+  // @@protoc_insertion_point(destructor:viam.service.motion.v1.PseudolinearConstraint)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void PseudolinearConstraint::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void PseudolinearConstraint::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void PseudolinearConstraint::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.service.motion.v1.PseudolinearConstraint)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    ::memset(&line_tolerance_factor_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&orientation_tolerance_factor_) -
+        reinterpret_cast<char*>(&line_tolerance_factor_)) + sizeof(orientation_tolerance_factor_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* PseudolinearConstraint::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional float line_tolerance_factor = 1 [json_name = "lineToleranceFactor"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
+          _Internal::set_has_line_tolerance_factor(&has_bits);
+          line_tolerance_factor_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional float orientation_tolerance_factor = 2 [json_name = "orientationToleranceFactor"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          _Internal::set_has_orientation_tolerance_factor(&has_bits);
+          orientation_tolerance_factor_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* PseudolinearConstraint::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.service.motion.v1.PseudolinearConstraint)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional float line_tolerance_factor = 1 [json_name = "lineToleranceFactor"];
+  if (_internal_has_line_tolerance_factor()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_line_tolerance_factor(), target);
+  }
+
+  // optional float orientation_tolerance_factor = 2 [json_name = "orientationToleranceFactor"];
+  if (_internal_has_orientation_tolerance_factor()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_orientation_tolerance_factor(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.service.motion.v1.PseudolinearConstraint)
+  return target;
+}
+
+size_t PseudolinearConstraint::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.service.motion.v1.PseudolinearConstraint)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional float line_tolerance_factor = 1 [json_name = "lineToleranceFactor"];
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 + 4;
+    }
+
+    // optional float orientation_tolerance_factor = 2 [json_name = "orientationToleranceFactor"];
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 + 4;
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PseudolinearConstraint::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    PseudolinearConstraint::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PseudolinearConstraint::GetClassData() const { return &_class_data_; }
+
+void PseudolinearConstraint::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<PseudolinearConstraint *>(to)->MergeFrom(
+      static_cast<const PseudolinearConstraint &>(from));
+}
+
+
+void PseudolinearConstraint::MergeFrom(const PseudolinearConstraint& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.motion.v1.PseudolinearConstraint)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      line_tolerance_factor_ = from.line_tolerance_factor_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      orientation_tolerance_factor_ = from.orientation_tolerance_factor_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PseudolinearConstraint::CopyFrom(const PseudolinearConstraint& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.service.motion.v1.PseudolinearConstraint)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PseudolinearConstraint::IsInitialized() const {
+  return true;
+}
+
+void PseudolinearConstraint::InternalSwap(PseudolinearConstraint* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PseudolinearConstraint, orientation_tolerance_factor_)
+      + sizeof(PseudolinearConstraint::orientation_tolerance_factor_)
+      - PROTOBUF_FIELD_OFFSET(PseudolinearConstraint, line_tolerance_factor_)>(
+          reinterpret_cast<char*>(&line_tolerance_factor_),
+          reinterpret_cast<char*>(&other->line_tolerance_factor_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PseudolinearConstraint::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[18]);
+}
+
+// ===================================================================
+
 class OrientationConstraint::_Internal {
  public:
   using HasBits = decltype(std::declval<OrientationConstraint>()._has_bits_);
@@ -6221,7 +6518,7 @@ void OrientationConstraint::InternalSwap(OrientationConstraint* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata OrientationConstraint::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[18]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[19]);
 }
 
 // ===================================================================
@@ -6464,7 +6761,7 @@ void CollisionSpecification_AllowedFrameCollisions::InternalSwap(CollisionSpecif
 ::PROTOBUF_NAMESPACE_ID::Metadata CollisionSpecification_AllowedFrameCollisions::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[19]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[20]);
 }
 
 // ===================================================================
@@ -6642,7 +6939,7 @@ void CollisionSpecification::InternalSwap(CollisionSpecification* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CollisionSpecification::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[20]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[21]);
 }
 
 // ===================================================================
@@ -6910,7 +7207,7 @@ void PlanWithStatus::InternalSwap(PlanWithStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PlanWithStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[21]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[22]);
 }
 
 // ===================================================================
@@ -7249,7 +7546,7 @@ void PlanStatusWithID::InternalSwap(PlanStatusWithID* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PlanStatusWithID::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[22]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[23]);
 }
 
 // ===================================================================
@@ -7540,7 +7837,7 @@ void PlanStatus::InternalSwap(PlanStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PlanStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[23]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[24]);
 }
 
 // ===================================================================
@@ -7864,7 +8161,7 @@ void Plan::InternalSwap(Plan* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Plan::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[24]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[25]);
 }
 
 // ===================================================================
@@ -7878,7 +8175,7 @@ void PlanStep_StepEntry_DoNotUse::MergeFrom(const PlanStep_StepEntry_DoNotUse& o
 ::PROTOBUF_NAMESPACE_ID::Metadata PlanStep_StepEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[25]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[26]);
 }
 
 // ===================================================================
@@ -8085,7 +8382,7 @@ void PlanStep::InternalSwap(PlanStep* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PlanStep::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[26]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[27]);
 }
 
 // ===================================================================
@@ -8278,7 +8575,7 @@ void ComponentState::InternalSwap(ComponentState* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ComponentState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_getter, &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once,
-      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[27]);
+      file_level_metadata_service_2fmotion_2fv1_2fmotion_2eproto[28]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -8358,6 +8655,10 @@ Arena::CreateMaybeMessage< ::viam::service::motion::v1::Constraints >(Arena* are
 template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::LinearConstraint*
 Arena::CreateMaybeMessage< ::viam::service::motion::v1::LinearConstraint >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::service::motion::v1::LinearConstraint >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::PseudolinearConstraint*
+Arena::CreateMaybeMessage< ::viam::service::motion::v1::PseudolinearConstraint >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::service::motion::v1::PseudolinearConstraint >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::service::motion::v1::OrientationConstraint*
 Arena::CreateMaybeMessage< ::viam::service::motion::v1::OrientationConstraint >(Arena* arena) {
