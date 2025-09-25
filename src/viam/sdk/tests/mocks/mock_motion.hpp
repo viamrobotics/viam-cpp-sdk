@@ -13,9 +13,9 @@ namespace motion {
 sdk::pose_in_frame init_fake_pose();
 sdk::pose_in_frame fake_pose();
 
-sdk::Name fake_component_name();
-sdk::Name fake_slam_name();
-sdk::Name fake_movement_sensor_name();
+std::string fake_component_name();
+std::string fake_slam_name();
+std::string fake_movement_sensor_name();
 sdk::geo_point fake_geo_point();
 std::vector<sdk::geo_geometry> fake_obstacles();
 std::shared_ptr<sdk::motion_configuration> fake_motion_configuration();
@@ -24,14 +24,14 @@ std::vector<sdk::geo_geometry> fake_bounding_regions();
 class MockMotion : public sdk::Motion {
    public:
     bool move(const sdk::pose_in_frame& destination,
-              const sdk::Name& component_name,
+              const std::string& component_name,
               const std::shared_ptr<sdk::WorldState>& world_state,
               const std::shared_ptr<constraints>& constraints,
               const sdk::ProtoStruct& extra) override;
 
     std::string move_on_map(const sdk::pose& destination,
-                            const sdk::Name& component_name,
-                            const sdk::Name& slam_name,
+                            const std::string& component_name,
+                            const std::string& slam_name,
                             const std::shared_ptr<sdk::motion_configuration>& motion_configuration,
                             const std::vector<sdk::GeometryConfig>& obstacles,
                             const sdk::ProtoStruct& extra) override;
@@ -39,40 +39,40 @@ class MockMotion : public sdk::Motion {
     std::string move_on_globe(
         const sdk::geo_point& destination,
         const boost::optional<double>& heading,
-        const sdk::Name& component_name,
-        const sdk::Name& movement_sensor_name,
+        const std::string& component_name,
+        const std::string& movement_sensor_name,
         const std::vector<sdk::geo_geometry>& obstacles,
         const std::shared_ptr<sdk::motion_configuration>& motion_configuration,
         const std::vector<sdk::geo_geometry>& bounding_regions,
         const sdk::ProtoStruct& extra) override;
 
     sdk::pose_in_frame get_pose(
-        const sdk::Name& component_name,
+        const std::string& component_name,
         const std::string& destination_frame,
         const std::vector<sdk::WorldState::transform>& supplemental_transforms,
         const sdk::ProtoStruct& extra) override;
 
-    plan_with_status get_plan(const sdk::Name& component_name,
+    plan_with_status get_plan(const std::string& component_name,
                               const std::string& execution_id,
                               const sdk::ProtoStruct& extra) override;
 
     std::pair<plan_with_status, std::vector<plan_with_status>> get_plan_with_replan_history(
-        const sdk::Name& component_name,
+        const std::string& component_name,
         const std::string& execution_id,
         const sdk::ProtoStruct& extra) override;
 
-    plan_with_status get_latest_plan(const sdk::Name& component_name,
+    plan_with_status get_latest_plan(const std::string& component_name,
                                      const sdk::ProtoStruct& extra) override;
 
     std::pair<plan_with_status, std::vector<plan_with_status>> get_latest_plan_with_replan_history(
-        const sdk::Name& component_name, const sdk::ProtoStruct& extra) override;
+        const std::string& component_name, const sdk::ProtoStruct& extra) override;
 
     std::vector<plan_status_with_id> list_plan_statuses(const sdk::ProtoStruct& extra) override;
 
     std::vector<plan_status_with_id> list_active_plan_statuses(
         const sdk::ProtoStruct& extra) override;
 
-    void stop_plan(const sdk::Name& name, const sdk::ProtoStruct& extra) override;
+    void stop_plan(const std::string& name, const sdk::ProtoStruct& extra) override;
 
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     static std::shared_ptr<MockMotion> get_mock_motion();
@@ -84,9 +84,9 @@ class MockMotion : public sdk::Motion {
     // and ensure that the correct values were passed
     sdk::pose_in_frame current_location;
     sdk::pose peek_current_pose;
-    sdk::Name peek_component_name;
-    sdk::Name peek_movement_sensor_name;
-    sdk::Name peek_slam_name;
+    std::string peek_component_name;
+    std::string peek_movement_sensor_name;
+    std::string peek_slam_name;
     sdk::geo_point peek_destination;
     std::string peek_destination_frame;
     double peek_heading;
