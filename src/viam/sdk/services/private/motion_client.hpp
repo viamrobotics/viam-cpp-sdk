@@ -21,48 +21,48 @@ class MotionClient : public Motion {
     using interface_type = Motion;
     MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel);
     bool move(const pose_in_frame& destination,
-              const Name& component_name,
+              const std::string& component_name,
               const std::shared_ptr<WorldState>& world_state,
               const std::shared_ptr<constraints>& constraints,
               const ProtoStruct& extra) override;
 
     std::string move_on_map(const pose& destination,
-                            const Name& component_name,
-                            const Name& slam_name,
+                            const std::string& component_name,
+                            const std::string& slam_name,
                             const std::shared_ptr<motion_configuration>& motion_configuration,
                             const std::vector<GeometryConfig>& obstacles,
                             const ProtoStruct& extra) override;
 
     std::string move_on_globe(const geo_point& destination,
                               const boost::optional<double>& heading,
-                              const Name& component_name,
-                              const Name& movement_sensor_name,
+                              const std::string& component_name,
+                              const std::string& movement_sensor_name,
                               const std::vector<geo_geometry>& obstacles,
                               const std::shared_ptr<motion_configuration>& motion_configuration,
                               const std::vector<geo_geometry>& bounding_regions,
                               const ProtoStruct& extra) override;
 
-    pose_in_frame get_pose(const Name& component_name,
+    pose_in_frame get_pose(const std::string& component_name,
                            const std::string& destination_frame,
                            const std::vector<WorldState::transform>& supplemental_transforms,
                            const ProtoStruct& extra) override;
 
-    void stop_plan(const Name& component_name, const ProtoStruct& extra) override;
+    void stop_plan(const std::string& component_name, const ProtoStruct& extra) override;
 
-    Motion::plan_with_status get_latest_plan(const Name& component_name,
+    Motion::plan_with_status get_latest_plan(const std::string& component_name,
                                              const ProtoStruct& extra) override;
 
     std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
 
-    get_latest_plan_with_replan_history(const Name& component_name,
+    get_latest_plan_with_replan_history(const std::string& component_name,
                                         const ProtoStruct& extra) override;
 
-    Motion::plan_with_status get_plan(const Name& component_name,
+    Motion::plan_with_status get_plan(const std::string& component_name,
                                       const std::string& execution_id,
                                       const ProtoStruct& extra) override;
 
     std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
-    get_plan_with_replan_history(const Name& component_name,
+    get_plan_with_replan_history(const std::string& component_name,
                                  const std::string& execution_id,
                                  const ProtoStruct& extra) override;
 
@@ -99,7 +99,7 @@ class MotionClient : public Motion {
     std::vector<Motion::plan_status_with_id> list_plan_statuses_(bool only_active_plans,
                                                                  const ProtoStruct& extra);
     std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> get_plan_(
-        const Name& component_name,
+        const std::string& component_name,
         boost::optional<std::string> execution_id,
         bool last_plan_only,
         const ProtoStruct& extra);

@@ -22,8 +22,8 @@ using sdk::to_proto;
 
 service::motion::v1::ObstacleDetector to_proto(const obstacle_detector& od) {
     service::motion::v1::ObstacleDetector proto;
-    *proto.mutable_vision_service() = to_proto(od.vision_service);
-    *proto.mutable_camera() = to_proto(od.camera);
+    *proto.mutable_vision_service() = od.vision_service;
+    *proto.mutable_camera() = od.camera;
     return proto;
 }
 
@@ -130,7 +130,7 @@ std::vector<Motion::plan_status> from_proto(
 Motion::plan_status_with_id from_proto(const service::motion::v1::PlanStatusWithID& proto) {
     Motion::plan_status_with_id pswi;
     pswi.execution_id = proto.execution_id();
-    pswi.component_name = from_proto(proto.component_name());
+    pswi.component_name = proto.component_name();
     pswi.plan_id = proto.plan_id();
     pswi.status = from_proto(proto.status());
 
@@ -155,7 +155,7 @@ Motion::plan plan_from_proto(const service::motion::v1::Plan& proto) {
     Motion::plan plan;
     plan.id = proto.id();
     plan.execution_id = proto.execution_id();
-    plan.component_name = from_proto(proto.component_name());
+    plan.component_name = proto.component_name();
     plan.steps = steps_from_proto(proto.steps());
     return plan;
 }
@@ -184,14 +184,14 @@ MotionClient::MotionClient(std::string name, std::shared_ptr<grpc::Channel> chan
       channel_(std::move(channel)) {}
 
 bool MotionClient::move(const pose_in_frame& destination,
-                        const Name& component_name,
+                        const std::string& component_name,
                         const std::shared_ptr<WorldState>& world_state,
                         const std::shared_ptr<Motion::constraints>& constraints,
                         const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Move)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_component_name() = to_proto(component_name);
+                  *request.mutable_component_name() = component_name;
                   *request.mutable_destination() = to_proto(destination);
                   if (constraints) {
                       *request.mutable_constraints() = to_proto(*constraints);
@@ -205,8 +205,8 @@ bool MotionClient::move(const pose_in_frame& destination,
 
 std::string MotionClient::move_on_map(
     const pose& destination,
-    const Name& component_name,
-    const Name& slam_name,
+    const std::string& component_name,
+    const std::string& slam_name,
     const std::shared_ptr<motion_configuration>& motion_configuration,
     const std::vector<GeometryConfig>& obstacles,
     const ProtoStruct& extra) {
@@ -214,8 +214,8 @@ std::string MotionClient::move_on_map(
         .with(extra,
               [&](auto& request) {
                   *request.mutable_destination() = to_proto(destination);
-                  *request.mutable_component_name() = to_proto(component_name);
-                  *request.mutable_slam_service_name() = to_proto(slam_name);
+                  *request.mutable_component_name() = component_name;
+                  *request.mutable_slam_service_name() = slam_name;
 
                   for (const auto& obstacle : obstacles) {
                       *request.mutable_obstacles()->Add() = to_proto(obstacle);
@@ -231,8 +231,8 @@ std::string MotionClient::move_on_map(
 std::string MotionClient::move_on_globe(
     const geo_point& destination,
     const boost::optional<double>& heading,
-    const Name& component_name,
-    const Name& movement_sensor_name,
+    const std::string& component_name,
+    const std::string& movement_sensor_name,
     const std::vector<geo_geometry>& obstacles,
     const std::shared_ptr<motion_configuration>& motion_configuration,
     const std::vector<geo_geometry>& bounding_regions,
@@ -241,8 +241,8 @@ std::string MotionClient::move_on_globe(
         .with(extra,
               [&](auto& request) {
                   *request.mutable_destination() = to_proto(destination);
-                  *request.mutable_component_name() = to_proto(component_name);
-                  *request.mutable_movement_sensor_name() = to_proto(movement_sensor_name);
+                  *request.mutable_component_name() = component_name;
+                  *request.mutable_movement_sensor_name() = movement_sensor_name;
 
                   if (heading && !isnan(*heading)) {
                       request.set_heading(*heading);
@@ -260,14 +260,14 @@ std::string MotionClient::move_on_globe(
 }
 
 pose_in_frame MotionClient::get_pose(
-    const Name& component_name,
+    const std::string& component_name,
     const std::string& destination_frame,
     const std::vector<WorldState::transform>& supplemental_transforms,
     const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetPose)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_component_name() = to_proto(component_name);
+                  *request.mutable_component_name() = component_name;
                   *request.mutable_destination_frame() = destination_frame;
                   *request.mutable_supplemental_transforms() =
                       impl::to_repeated_field(supplemental_transforms);
@@ -275,14 +275,14 @@ pose_in_frame MotionClient::get_pose(
         .invoke([](auto& response) { return from_proto(response.pose()); });
 }
 
-void MotionClient::stop_plan(const Name& name, const ProtoStruct& extra) {
+void MotionClient::stop_plan(const std::string& name, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::StopPlan)
-        .with(extra, [&](auto& request) { *request.mutable_component_name() = to_proto(name); })
+        .with(extra, [&](auto& request) { *request.mutable_component_name() = name; })
         .invoke();
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> MotionClient::get_plan_(
-    const Name& component_name,
+    const std::string& component_name,
     boost::optional<std::string> execution_id,
     bool last_plan_only,
     const ProtoStruct& extra) {
@@ -302,25 +302,27 @@ std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> Motio
         });
 }
 
-Motion::plan_with_status MotionClient::get_plan(const Name& name,
+Motion::plan_with_status MotionClient::get_plan(const std::string& name,
                                                 const std::string& execution_id,
                                                 const ProtoStruct& extra) {
     return get_plan_(name, execution_id, true, extra).first;
 }
 
-Motion::plan_with_status MotionClient::get_latest_plan(const Name& name, const ProtoStruct& extra) {
+Motion::plan_with_status MotionClient::get_latest_plan(const std::string& name,
+                                                       const ProtoStruct& extra) {
     return get_plan_(name, {}, true, extra).first;
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
-MotionClient::get_plan_with_replan_history(const Name& name,
+MotionClient::get_plan_with_replan_history(const std::string& name,
                                            const std::string& execution_id,
                                            const ProtoStruct& extra) {
     return get_plan_(name, execution_id, false, extra);
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
-MotionClient::get_latest_plan_with_replan_history(const Name& name, const ProtoStruct& extra) {
+MotionClient::get_latest_plan_with_replan_history(const std::string& name,
+                                                  const ProtoStruct& extra) {
     return get_plan_(name, {}, false, extra);
 }
 
