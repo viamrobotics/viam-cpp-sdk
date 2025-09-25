@@ -16,7 +16,7 @@ namespace motion {
 using namespace viam::sdk;
 
 bool MockMotion::move(const pose_in_frame& destination,
-                      const Name& component_name,
+                      const std::string& component_name,
                       const std::shared_ptr<WorldState>& world_state,
                       const std::shared_ptr<constraints>& constraints,
                       const ProtoStruct&) {
@@ -29,8 +29,8 @@ bool MockMotion::move(const pose_in_frame& destination,
 
 std::string MockMotion::move_on_map(
     const pose& destination,
-    const Name& component_name,
-    const Name& slam_name,
+    const std::string& component_name,
+    const std::string& slam_name,
     const std::shared_ptr<motion_configuration>& motion_configuration,
     const std::vector<GeometryConfig>& obstacles,
     const ProtoStruct&) {
@@ -47,8 +47,8 @@ std::string MockMotion::move_on_map(
 std::string MockMotion::move_on_globe(
     const geo_point& destination,
     const boost::optional<double>& heading,
-    const Name& component_name,
-    const Name& movement_sensor_name,
+    const std::string& component_name,
+    const std::string& movement_sensor_name,
     const std::vector<geo_geometry>& obstacles,
     const std::shared_ptr<motion_configuration>& motion_configuration,
     const std::vector<geo_geometry>& bounding_regions,
@@ -63,7 +63,7 @@ std::string MockMotion::move_on_globe(
     return "execution-id";
 }
 
-pose_in_frame MockMotion::get_pose(const Name&,
+pose_in_frame MockMotion::get_pose(const std::string&,
                                    const std::string&,
                                    const std::vector<WorldState::transform>&,
                                    const ProtoStruct& extra) {
@@ -75,25 +75,25 @@ pose_in_frame MockMotion::get_pose(const Name&,
     return current_location;
 }
 
-Motion::plan_with_status MockMotion::get_plan(const sdk::Name&,
+Motion::plan_with_status MockMotion::get_plan(const std::string&,
                                               const std::string&,
                                               const sdk::ProtoStruct&) {
     return fake_plan_with_status();
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
-MockMotion::get_plan_with_replan_history(const sdk::Name&,
+MockMotion::get_plan_with_replan_history(const std::string&,
                                          const std::string&,
                                          const sdk::ProtoStruct&) {
     return {fake_plan_with_status(), {fake_plan_with_status()}};
 }
 
-Motion::plan_with_status MockMotion::get_latest_plan(const sdk::Name&, const sdk::ProtoStruct&) {
+Motion::plan_with_status MockMotion::get_latest_plan(const std::string&, const sdk::ProtoStruct&) {
     return fake_plan_with_status();
 }
 
 std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>>
-MockMotion::get_latest_plan_with_replan_history(const sdk::Name&, const sdk::ProtoStruct&) {
+MockMotion::get_latest_plan_with_replan_history(const std::string&, const sdk::ProtoStruct&) {
     return {fake_plan_with_status(), {fake_plan_with_status()}};
 }
 
@@ -106,7 +106,7 @@ std::vector<Motion::plan_status_with_id> MockMotion::list_plan_statuses(const sd
     return {fake_plan_status_with_id()};
 }
 
-void MockMotion::stop_plan(const sdk::Name&, const sdk::ProtoStruct&) {
+void MockMotion::stop_plan(const std::string&, const sdk::ProtoStruct&) {
     this->peek_stop_plan_called = true;
 }
 
@@ -147,16 +147,16 @@ pose_in_frame init_fake_pose() {
     return pose_in_frame("", {{0, 0, 0}, {0, 0, 0}, 0});
 }
 
-Name fake_component_name() {
-    return {{"acme", "component", "fake"}, "", "fake-component"};
+std::string fake_component_name() {
+    return "fake-component";
 }
 
-Name fake_slam_name() {
-    return {{"acme", "service", "slam"}, "", "fake-slam"};
+std::string fake_slam_name() {
+    return "fake-slam";
 }
 
-Name fake_movement_sensor_name() {
-    return {{"acme", "component", ""}, "", "fake-movement-sensor"};
+std::string fake_movement_sensor_name() {
+    return "fake-movement-sensor";
 }
 
 geo_point fake_geo_point() {
