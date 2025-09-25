@@ -20,7 +20,8 @@ jobs:
       # in the release job. Only very cursory effort was made to prune.
       - name: install dependencies
         run: |
-          sudo apt-get install -y software-properties-common
+          sudo apt-get update && apt-get upgrade -y
+          apt-get install -y software-properties-common
           apt-add-repository -y 'deb https://archive.debian.org/debian bullseye-backports main'
           apt-get update
           apt-get -y dist-upgrade
