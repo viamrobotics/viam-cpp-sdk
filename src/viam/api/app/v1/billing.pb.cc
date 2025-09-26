@@ -53,6 +53,35 @@ struct PaymentMethodCardDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PaymentMethodCardDefaultTypeInternal _PaymentMethodCard_default_instance_;
+PROTOBUF_CONSTEXPR VerificationInfo::VerificationInfo(
+    ::_pbi::ConstantInitialized)
+  : hosted_verification_page_url_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , arrival_date_(int64_t{0}){}
+struct VerificationInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR VerificationInfoDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~VerificationInfoDefaultTypeInternal() {}
+  union {
+    VerificationInfo _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VerificationInfoDefaultTypeInternal _VerificationInfo_default_instance_;
+PROTOBUF_CONSTEXPR PaymentMethodUSBankAccount::PaymentMethodUSBankAccount(
+    ::_pbi::ConstantInitialized)
+  : bank_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , last_four_digits_account_number_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , routing_number_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , account_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , verification_info_(nullptr){}
+struct PaymentMethodUSBankAccountDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PaymentMethodUSBankAccountDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PaymentMethodUSBankAccountDefaultTypeInternal() {}
+  union {
+    PaymentMethodUSBankAccount _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PaymentMethodUSBankAccountDefaultTypeInternal _PaymentMethodUSBankAccount_default_instance_;
 PROTOBUF_CONSTEXPR GetCurrentMonthUsageRequest::GetCurrentMonthUsageRequest(
     ::_pbi::ConstantInitialized)
   : org_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
@@ -152,6 +181,7 @@ PROTOBUF_CONSTEXPR GetOrgBillingInformationResponse::GetOrgBillingInformationRes
   : billing_email_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , billing_tier_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , method_(nullptr)
+  , method_us_bank_account_(nullptr)
   , type_(0)
 {}
 struct GetOrgBillingInformationResponseDefaultTypeInternal {
@@ -313,7 +343,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2fbilling_2eproto[21];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2fbilling_2eproto[23];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fbilling_2eproto[3];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2fbilling_2eproto = nullptr;
 
@@ -338,6 +368,30 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodCard, brand_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodCard, last_four_digits_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::VerificationInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::VerificationInfo, arrival_date_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::VerificationInfo, hosted_verification_page_url_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodUSBankAccount, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodUSBankAccount, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodUSBankAccount, bank_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodUSBankAccount, last_four_digits_account_number_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodUSBankAccount, routing_number_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodUSBankAccount, account_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodUSBankAccount, verification_info_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetCurrentMonthUsageRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -410,10 +464,12 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetOrgBillingInformationResponse, billing_email_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetOrgBillingInformationResponse, method_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetOrgBillingInformationResponse, billing_tier_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetOrgBillingInformationResponse, method_us_bank_account_),
   ~0u,
   ~0u,
   1,
   0,
+  2,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetInvoicesSummaryRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -509,30 +565,34 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::v1::InvoiceSummary)},
   { 12, -1, -1, sizeof(::viam::app::v1::PaymentMethodCard)},
-  { 20, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageRequest)},
-  { 27, -1, -1, sizeof(::viam::app::v1::UsageCost)},
-  { 35, -1, -1, sizeof(::viam::app::v1::ResourceUsageCostsBySource)},
-  { 44, -1, -1, sizeof(::viam::app::v1::ResourceUsageCosts)},
-  { 54, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageResponse)},
-  { 75, -1, -1, sizeof(::viam::app::v1::GetOrgBillingInformationRequest)},
-  { 82, 92, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
-  { 96, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
-  { 103, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
-  { 111, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
-  { 119, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
-  { 126, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailRequest)},
-  { 134, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailResponse)},
-  { 140, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersRequest)},
-  { 146, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersResponse)},
-  { 153, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierRequest)},
-  { 161, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierResponse)},
-  { 167, 177, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest)},
-  { 181, -1, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse)},
+  { 20, -1, -1, sizeof(::viam::app::v1::VerificationInfo)},
+  { 28, 39, -1, sizeof(::viam::app::v1::PaymentMethodUSBankAccount)},
+  { 44, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageRequest)},
+  { 51, -1, -1, sizeof(::viam::app::v1::UsageCost)},
+  { 59, -1, -1, sizeof(::viam::app::v1::ResourceUsageCostsBySource)},
+  { 68, -1, -1, sizeof(::viam::app::v1::ResourceUsageCosts)},
+  { 78, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageResponse)},
+  { 99, -1, -1, sizeof(::viam::app::v1::GetOrgBillingInformationRequest)},
+  { 106, 117, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
+  { 122, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
+  { 129, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
+  { 137, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
+  { 145, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
+  { 152, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailRequest)},
+  { 160, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailResponse)},
+  { 166, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersRequest)},
+  { 172, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersResponse)},
+  { 179, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierRequest)},
+  { 187, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierResponse)},
+  { 193, 203, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest)},
+  { 207, -1, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_InvoiceSummary_default_instance_._instance,
   &::viam::app::v1::_PaymentMethodCard_default_instance_._instance,
+  &::viam::app::v1::_VerificationInfo_default_instance_._instance,
+  &::viam::app::v1::_PaymentMethodUSBankAccount_default_instance_._instance,
   &::viam::app::v1::_GetCurrentMonthUsageRequest_default_instance_._instance,
   &::viam::app::v1::_UsageCost_default_instance_._instance,
   &::viam::app::v1::_ResourceUsageCostsBySource_default_instance_._instance,
@@ -565,144 +625,158 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "Date\0227\n\tpaid_date\030\006 \001(\0132\032.google.protobu"
   "f.TimestampR\010paidDate\"S\n\021PaymentMethodCa"
   "rd\022\024\n\005brand\030\001 \001(\tR\005brand\022(\n\020last_four_di"
-  "gits\030\002 \001(\tR\016lastFourDigits\"4\n\033GetCurrent"
-  "MonthUsageRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId"
-  "\"`\n\tUsageCost\022\?\n\rresource_type\030\001 \001(\0162\032.v"
-  "iam.app.v1.UsageCostTypeR\014resourceType\022\022"
-  "\n\004cost\030\002 \001(\001R\004cost\"\306\001\n\032ResourceUsageCost"
-  "sBySource\0228\n\013source_type\030\001 \001(\0162\027.viam.ap"
-  "p.v1.SourceTypeR\nsourceType\022Q\n\024resource_"
-  "usage_costs\030\002 \001(\0132\037.viam.app.v1.Resource"
-  "UsageCostsR\022resourceUsageCosts\022\033\n\ttier_n"
-  "ame\030\003 \001(\tR\010tierName\"\317\001\n\022ResourceUsageCos"
-  "ts\0227\n\013usage_costs\030\001 \003(\0132\026.viam.app.v1.Us"
-  "ageCostR\nusageCosts\022\032\n\010discount\030\002 \001(\001R\010d"
-  "iscount\022.\n\023total_with_discount\030\003 \001(\001R\021to"
-  "talWithDiscount\0224\n\026total_without_discoun"
-  "t\030\004 \001(\001R\024totalWithoutDiscount\"\315\007\n\034GetCur"
-  "rentMonthUsageResponse\0229\n\nstart_date\030\001 \001"
-  "(\0132\032.google.protobuf.TimestampR\tstartDat"
-  "e\0225\n\010end_date\030\002 \001(\0132\032.google.protobuf.Ti"
-  "mestampR\007endDate\022k\n\036resource_usage_costs"
-  "_by_source\030\016 \003(\0132\'.viam.app.v1.ResourceU"
-  "sageCostsBySourceR\032resourceUsageCostsByS"
-  "ource\022\032\n\010subtotal\030\017 \001(\001R\010subtotal\022;\n\030clo"
-  "ud_storage_usage_cost\030\003 \001(\001B\002\030\001R\025cloudSt"
-  "orageUsageCost\0227\n\026data_upload_usage_cost"
-  "\030\004 \001(\001B\002\030\001R\023dataUploadUsageCost\0225\n\025data_"
-  "egres_usage_cost\030\005 \001(\001B\002\030\001R\022dataEgresUsa"
-  "geCost\022=\n\031remote_control_usage_cost\030\006 \001("
-  "\001B\002\030\001R\026remoteControlUsageCost\022A\n\033standar"
-  "d_compute_usage_cost\030\007 \001(\001B\002\030\001R\030standard"
-  "ComputeUsageCost\022+\n\017discount_amount\030\010 \001("
-  "\001B\002\030\001R\016discountAmount\022=\n\031total_usage_wit"
-  "h_discount\030\t \001(\001B\002\030\001R\026totalUsageWithDisc"
-  "ount\022C\n\034total_usage_without_discount\030\n \001"
-  "(\001B\002\030\001R\031totalUsageWithoutDiscount\0227\n\026per"
-  "_machine_usage_cost\030\013 \001(\001B\002\030\001R\023perMachin"
-  "eUsageCost\022Q\n$binary_data_cloud_storage_"
-  "usage_cost\030\014 \001(\001B\002\030\001R\037binaryDataCloudSto"
-  "rageUsageCost\022F\n\036other_cloud_storage_usa"
-  "ge_cost\030\r \001(\001B\002\030\001R\032otherCloudStorageUsag"
-  "eCost\"8\n\037GetOrgBillingInformationRequest"
-  "\022\025\n\006org_id\030\001 \001(\tR\005orgId\"\374\001\n GetOrgBillin"
-  "gInformationResponse\0222\n\004type\030\001 \001(\0162\036.via"
-  "m.app.v1.PaymentMethodTypeR\004type\022#\n\rbill"
-  "ing_email\030\002 \001(\tR\014billingEmail\022;\n\006method\030"
-  "\003 \001(\0132\036.viam.app.v1.PaymentMethodCardH\000R"
-  "\006method\210\001\001\022&\n\014billing_tier\030\004 \001(\tH\001R\013bill"
-  "ingTier\210\001\001B\t\n\007_methodB\017\n\r_billing_tier\"2"
-  "\n\031GetInvoicesSummaryRequest\022\025\n\006org_id\030\001 "
-  "\001(\tR\005orgId\"\206\001\n\032GetInvoicesSummaryRespons"
-  "e\022/\n\023outstanding_balance\030\001 \001(\001R\022outstand"
-  "ingBalance\0227\n\010invoices\030\002 \003(\0132\033.viam.app."
-  "v1.InvoiceSummaryR\010invoices\"=\n\024GetInvoic"
-  "ePdfRequest\022\016\n\002id\030\001 \001(\tR\002id\022\025\n\006org_id\030\002 "
-  "\001(\tR\005orgId\"-\n\025GetInvoicePdfResponse\022\024\n\005c"
-  "hunk\030\001 \001(\014R\005chunk\"z\n\037SendPaymentRequired"
-  "EmailRequest\022&\n\017customer_org_id\030\001 \001(\tR\rc"
-  "ustomerOrgId\022/\n\024billing_owner_org_id\030\002 \001"
-  "(\tR\021billingOwnerOrgId\"\"\n SendPaymentRequ"
-  "iredEmailResponse\"!\n\037GetAvailableBilling"
-  "TiersRequest\"8\n GetAvailableBillingTiers"
-  "Response\022\024\n\005tiers\030\001 \003(\tR\005tiers\"r\n$Update"
-  "OrganizationBillingTierRequest\022\'\n\017organi"
-  "zation_id\030\001 \001(\tR\016organizationId\022!\n\014billi"
-  "ng_tier\030\002 \001(\tR\013billingTier\"\'\n%UpdateOrga"
-  "nizationBillingTierResponse\"\356\001\n(CreateIn"
-  "voiceAndChargeImmediatelyRequest\022\'\n\020org_"
-  "id_to_charge\030\001 \001(\tR\rorgIdToCharge\022\026\n\006amo"
-  "unt\030\002 \001(\001R\006amount\022%\n\013description\030\003 \001(\tH\000"
-  "R\013description\210\001\001\0222\n\023org_id_for_branding\030"
-  "\004 \001(\tH\001R\020orgIdForBranding\210\001\001B\016\n\014_descrip"
-  "tionB\026\n\024_org_id_for_branding\"+\n)CreateIn"
-  "voiceAndChargeImmediatelyResponse*V\n\021Pay"
-  "mentMethodType\022#\n\037PAYMENT_METHOD_TYPE_UN"
-  "SPECIFIED\020\000\022\034\n\030PAYMENT_METHOD_TYPE_CARD\020"
-  "\001*\250\010\n\rUsageCostType\022\037\n\033USAGE_COST_TYPE_U"
-  "NSPECIFIED\020\000\022#\n\033USAGE_COST_TYPE_DATA_UPL"
-  "OAD\020\001\032\002\010\001\022#\n\033USAGE_COST_TYPE_DATA_EGRESS"
-  "\020\002\032\002\010\001\022\"\n\036USAGE_COST_TYPE_REMOTE_CONTROL"
-  "\020\003\022$\n USAGE_COST_TYPE_STANDARD_COMPUTE\020\004"
-  "\022%\n\035USAGE_COST_TYPE_CLOUD_STORAGE\020\005\032\002\010\001\022"
-  "-\n)USAGE_COST_TYPE_BINARY_DATA_CLOUD_STO"
-  "RAGE\020\006\022+\n#USAGE_COST_TYPE_OTHER_CLOUD_ST"
-  "ORAGE\020\007\032\002\010\001\022\037\n\033USAGE_COST_TYPE_PER_MACHI"
-  "NE\020\010\022(\n$USAGE_COST_TYPE_TRIGGER_NOTIFICA"
-  "TION\020\t\022.\n*USAGE_COST_TYPE_TABULAR_DATA_C"
-  "LOUD_STORAGE\020\n\0220\n,USAGE_COST_TYPE_CONFIG"
-  "_HISTORY_CLOUD_STORAGE\020\013\022&\n\"USAGE_COST_T"
-  "YPE_LOGS_CLOUD_STORAGE\020\014\022/\n+USAGE_COST_T"
-  "YPE_TRAINING_LOGS_CLOUD_STORAGE\020\r\022*\n&USA"
-  "GE_COST_TYPE_PACKAGES_CLOUD_STORAGE\020\016\022&\n"
-  "\"USAGE_COST_TYPE_BINARY_DATA_UPLOAD\020\017\022\'\n"
-  "#USAGE_COST_TYPE_TABULAR_DATA_UPLOAD\020\020\022\037"
-  "\n\033USAGE_COST_TYPE_LOGS_UPLOAD\020\021\022&\n\"USAGE"
-  "_COST_TYPE_BINARY_DATA_EGRESS\020\022\022\'\n#USAGE"
-  "_COST_TYPE_TABULAR_DATA_EGRESS\020\023\022\037\n\033USAG"
-  "E_COST_TYPE_LOGS_EGRESS\020\024\022(\n$USAGE_COST_"
-  "TYPE_TRAINING_LOGS_EGRESS\020\025\0227\n3USAGE_COS"
-  "T_TYPE_TABULAR_DATA_DATABASE_CLOUD_STORA"
-  "GE\020\026\0221\n-USAGE_COST_TYPE_TABULAR_DATA_DAT"
-  "ABASE_COMPUTE\020\027\0223\n/USAGE_COST_TYPE_BINAR"
-  "Y_DATA_CROSS_REGION_EGRESS\020\030*X\n\nSourceTy"
-  "pe\022\033\n\027SOURCE_TYPE_UNSPECIFIED\020\000\022\023\n\017SOURC"
-  "E_TYPE_ORG\020\001\022\030\n\024SOURCE_TYPE_FRAGMENT\020\0022\307"
-  "\007\n\016BillingService\022k\n\024GetCurrentMonthUsag"
-  "e\022(.viam.app.v1.GetCurrentMonthUsageRequ"
-  "est\032).viam.app.v1.GetCurrentMonthUsageRe"
-  "sponse\022w\n\030GetOrgBillingInformation\022,.via"
-  "m.app.v1.GetOrgBillingInformationRequest"
-  "\032-.viam.app.v1.GetOrgBillingInformationR"
-  "esponse\022e\n\022GetInvoicesSummary\022&.viam.app"
-  ".v1.GetInvoicesSummaryRequest\032\'.viam.app"
-  ".v1.GetInvoicesSummaryResponse\022X\n\rGetInv"
-  "oicePdf\022!.viam.app.v1.GetInvoicePdfReque"
-  "st\032\".viam.app.v1.GetInvoicePdfResponse0\001"
-  "\022w\n\030SendPaymentRequiredEmail\022,.viam.app."
-  "v1.SendPaymentRequiredEmailRequest\032-.via"
-  "m.app.v1.SendPaymentRequiredEmailRespons"
-  "e\022w\n\030GetAvailableBillingTiers\022,.viam.app"
-  ".v1.GetAvailableBillingTiersRequest\032-.vi"
-  "am.app.v1.GetAvailableBillingTiersRespon"
-  "se\022\206\001\n\035UpdateOrganizationBillingTier\0221.v"
-  "iam.app.v1.UpdateOrganizationBillingTier"
-  "Request\0322.viam.app.v1.UpdateOrganization"
-  "BillingTierResponse\022\222\001\n!CreateInvoiceAnd"
-  "ChargeImmediately\0225.viam.app.v1.CreateIn"
-  "voiceAndChargeImmediatelyRequest\0326.viam."
-  "app.v1.CreateInvoiceAndChargeImmediately"
-  "ResponseB\030Z\026go.viam.com/api/app/v1b\006prot"
-  "o3"
+  "gits\030\002 \001(\tR\016lastFourDigits\"v\n\020Verificati"
+  "onInfo\022!\n\014arrival_date\030\001 \001(\003R\013arrivalDat"
+  "e\022\?\n\034hosted_verification_page_url\030\002 \001(\tR"
+  "\031hostedVerificationPageUrl\"\260\002\n\032PaymentMe"
+  "thodUSBankAccount\022\033\n\tbank_name\030\001 \001(\tR\010ba"
+  "nkName\022D\n\037last_four_digits_account_numbe"
+  "r\030\002 \001(\tR\033lastFourDigitsAccountNumber\022%\n\016"
+  "routing_number\030\003 \001(\tR\rroutingNumber\022!\n\014a"
+  "ccount_type\030\004 \001(\tR\013accountType\022O\n\021verifi"
+  "cation_info\030\005 \001(\0132\035.viam.app.v1.Verifica"
+  "tionInfoH\000R\020verificationInfo\210\001\001B\024\n\022_veri"
+  "fication_info\"4\n\033GetCurrentMonthUsageReq"
+  "uest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"`\n\tUsageCost"
+  "\022\?\n\rresource_type\030\001 \001(\0162\032.viam.app.v1.Us"
+  "ageCostTypeR\014resourceType\022\022\n\004cost\030\002 \001(\001R"
+  "\004cost\"\306\001\n\032ResourceUsageCostsBySource\0228\n\013"
+  "source_type\030\001 \001(\0162\027.viam.app.v1.SourceTy"
+  "peR\nsourceType\022Q\n\024resource_usage_costs\030\002"
+  " \001(\0132\037.viam.app.v1.ResourceUsageCostsR\022r"
+  "esourceUsageCosts\022\033\n\ttier_name\030\003 \001(\tR\010ti"
+  "erName\"\317\001\n\022ResourceUsageCosts\0227\n\013usage_c"
+  "osts\030\001 \003(\0132\026.viam.app.v1.UsageCostR\nusag"
+  "eCosts\022\032\n\010discount\030\002 \001(\001R\010discount\022.\n\023to"
+  "tal_with_discount\030\003 \001(\001R\021totalWithDiscou"
+  "nt\0224\n\026total_without_discount\030\004 \001(\001R\024tota"
+  "lWithoutDiscount\"\315\007\n\034GetCurrentMonthUsag"
+  "eResponse\0229\n\nstart_date\030\001 \001(\0132\032.google.p"
+  "rotobuf.TimestampR\tstartDate\0225\n\010end_date"
+  "\030\002 \001(\0132\032.google.protobuf.TimestampR\007endD"
+  "ate\022k\n\036resource_usage_costs_by_source\030\016 "
+  "\003(\0132\'.viam.app.v1.ResourceUsageCostsBySo"
+  "urceR\032resourceUsageCostsBySource\022\032\n\010subt"
+  "otal\030\017 \001(\001R\010subtotal\022;\n\030cloud_storage_us"
+  "age_cost\030\003 \001(\001B\002\030\001R\025cloudStorageUsageCos"
+  "t\0227\n\026data_upload_usage_cost\030\004 \001(\001B\002\030\001R\023d"
+  "ataUploadUsageCost\0225\n\025data_egres_usage_c"
+  "ost\030\005 \001(\001B\002\030\001R\022dataEgresUsageCost\022=\n\031rem"
+  "ote_control_usage_cost\030\006 \001(\001B\002\030\001R\026remote"
+  "ControlUsageCost\022A\n\033standard_compute_usa"
+  "ge_cost\030\007 \001(\001B\002\030\001R\030standardComputeUsageC"
+  "ost\022+\n\017discount_amount\030\010 \001(\001B\002\030\001R\016discou"
+  "ntAmount\022=\n\031total_usage_with_discount\030\t "
+  "\001(\001B\002\030\001R\026totalUsageWithDiscount\022C\n\034total"
+  "_usage_without_discount\030\n \001(\001B\002\030\001R\031total"
+  "UsageWithoutDiscount\0227\n\026per_machine_usag"
+  "e_cost\030\013 \001(\001B\002\030\001R\023perMachineUsageCost\022Q\n"
+  "$binary_data_cloud_storage_usage_cost\030\014 "
+  "\001(\001B\002\030\001R\037binaryDataCloudStorageUsageCost"
+  "\022F\n\036other_cloud_storage_usage_cost\030\r \001(\001"
+  "B\002\030\001R\032otherCloudStorageUsageCost\"8\n\037GetO"
+  "rgBillingInformationRequest\022\025\n\006org_id\030\001 "
+  "\001(\tR\005orgId\"\372\002\n GetOrgBillingInformationR"
+  "esponse\0222\n\004type\030\001 \001(\0162\036.viam.app.v1.Paym"
+  "entMethodTypeR\004type\022#\n\rbilling_email\030\002 \001"
+  "(\tR\014billingEmail\022;\n\006method\030\003 \001(\0132\036.viam."
+  "app.v1.PaymentMethodCardH\000R\006method\210\001\001\022&\n"
+  "\014billing_tier\030\004 \001(\tH\001R\013billingTier\210\001\001\022a\n"
+  "\026method_us_bank_account\030\005 \001(\0132\'.viam.app"
+  ".v1.PaymentMethodUSBankAccountH\002R\023method"
+  "UsBankAccount\210\001\001B\t\n\007_methodB\017\n\r_billing_"
+  "tierB\031\n\027_method_us_bank_account\"2\n\031GetIn"
+  "voicesSummaryRequest\022\025\n\006org_id\030\001 \001(\tR\005or"
+  "gId\"\206\001\n\032GetInvoicesSummaryResponse\022/\n\023ou"
+  "tstanding_balance\030\001 \001(\001R\022outstandingBala"
+  "nce\0227\n\010invoices\030\002 \003(\0132\033.viam.app.v1.Invo"
+  "iceSummaryR\010invoices\"=\n\024GetInvoicePdfReq"
+  "uest\022\016\n\002id\030\001 \001(\tR\002id\022\025\n\006org_id\030\002 \001(\tR\005or"
+  "gId\"-\n\025GetInvoicePdfResponse\022\024\n\005chunk\030\001 "
+  "\001(\014R\005chunk\"z\n\037SendPaymentRequiredEmailRe"
+  "quest\022&\n\017customer_org_id\030\001 \001(\tR\rcustomer"
+  "OrgId\022/\n\024billing_owner_org_id\030\002 \001(\tR\021bil"
+  "lingOwnerOrgId\"\"\n SendPaymentRequiredEma"
+  "ilResponse\"!\n\037GetAvailableBillingTiersRe"
+  "quest\"8\n GetAvailableBillingTiersRespons"
+  "e\022\024\n\005tiers\030\001 \003(\tR\005tiers\"r\n$UpdateOrganiz"
+  "ationBillingTierRequest\022\'\n\017organization_"
+  "id\030\001 \001(\tR\016organizationId\022!\n\014billing_tier"
+  "\030\002 \001(\tR\013billingTier\"\'\n%UpdateOrganizatio"
+  "nBillingTierResponse\"\356\001\n(CreateInvoiceAn"
+  "dChargeImmediatelyRequest\022\'\n\020org_id_to_c"
+  "harge\030\001 \001(\tR\rorgIdToCharge\022\026\n\006amount\030\002 \001"
+  "(\001R\006amount\022%\n\013description\030\003 \001(\tH\000R\013descr"
+  "iption\210\001\001\0222\n\023org_id_for_branding\030\004 \001(\tH\001"
+  "R\020orgIdForBranding\210\001\001B\016\n\014_descriptionB\026\n"
+  "\024_org_id_for_branding\"+\n)CreateInvoiceAn"
+  "dChargeImmediatelyResponse*}\n\021PaymentMet"
+  "hodType\022#\n\037PAYMENT_METHOD_TYPE_UNSPECIFI"
+  "ED\020\000\022\034\n\030PAYMENT_METHOD_TYPE_CARD\020\001\022%\n!PA"
+  "YMENT_METHOD_TYPE_USBANKACCOUNT\020\002*\250\010\n\rUs"
+  "ageCostType\022\037\n\033USAGE_COST_TYPE_UNSPECIFI"
+  "ED\020\000\022#\n\033USAGE_COST_TYPE_DATA_UPLOAD\020\001\032\002\010"
+  "\001\022#\n\033USAGE_COST_TYPE_DATA_EGRESS\020\002\032\002\010\001\022\""
+  "\n\036USAGE_COST_TYPE_REMOTE_CONTROL\020\003\022$\n US"
+  "AGE_COST_TYPE_STANDARD_COMPUTE\020\004\022%\n\035USAG"
+  "E_COST_TYPE_CLOUD_STORAGE\020\005\032\002\010\001\022-\n)USAGE"
+  "_COST_TYPE_BINARY_DATA_CLOUD_STORAGE\020\006\022+"
+  "\n#USAGE_COST_TYPE_OTHER_CLOUD_STORAGE\020\007\032"
+  "\002\010\001\022\037\n\033USAGE_COST_TYPE_PER_MACHINE\020\010\022(\n$"
+  "USAGE_COST_TYPE_TRIGGER_NOTIFICATION\020\t\022."
+  "\n*USAGE_COST_TYPE_TABULAR_DATA_CLOUD_STO"
+  "RAGE\020\n\0220\n,USAGE_COST_TYPE_CONFIG_HISTORY"
+  "_CLOUD_STORAGE\020\013\022&\n\"USAGE_COST_TYPE_LOGS"
+  "_CLOUD_STORAGE\020\014\022/\n+USAGE_COST_TYPE_TRAI"
+  "NING_LOGS_CLOUD_STORAGE\020\r\022*\n&USAGE_COST_"
+  "TYPE_PACKAGES_CLOUD_STORAGE\020\016\022&\n\"USAGE_C"
+  "OST_TYPE_BINARY_DATA_UPLOAD\020\017\022\'\n#USAGE_C"
+  "OST_TYPE_TABULAR_DATA_UPLOAD\020\020\022\037\n\033USAGE_"
+  "COST_TYPE_LOGS_UPLOAD\020\021\022&\n\"USAGE_COST_TY"
+  "PE_BINARY_DATA_EGRESS\020\022\022\'\n#USAGE_COST_TY"
+  "PE_TABULAR_DATA_EGRESS\020\023\022\037\n\033USAGE_COST_T"
+  "YPE_LOGS_EGRESS\020\024\022(\n$USAGE_COST_TYPE_TRA"
+  "INING_LOGS_EGRESS\020\025\0227\n3USAGE_COST_TYPE_T"
+  "ABULAR_DATA_DATABASE_CLOUD_STORAGE\020\026\0221\n-"
+  "USAGE_COST_TYPE_TABULAR_DATA_DATABASE_CO"
+  "MPUTE\020\027\0223\n/USAGE_COST_TYPE_BINARY_DATA_C"
+  "ROSS_REGION_EGRESS\020\030*X\n\nSourceType\022\033\n\027SO"
+  "URCE_TYPE_UNSPECIFIED\020\000\022\023\n\017SOURCE_TYPE_O"
+  "RG\020\001\022\030\n\024SOURCE_TYPE_FRAGMENT\020\0022\307\007\n\016Billi"
+  "ngService\022k\n\024GetCurrentMonthUsage\022(.viam"
+  ".app.v1.GetCurrentMonthUsageRequest\032).vi"
+  "am.app.v1.GetCurrentMonthUsageResponse\022w"
+  "\n\030GetOrgBillingInformation\022,.viam.app.v1"
+  ".GetOrgBillingInformationRequest\032-.viam."
+  "app.v1.GetOrgBillingInformationResponse\022"
+  "e\n\022GetInvoicesSummary\022&.viam.app.v1.GetI"
+  "nvoicesSummaryRequest\032\'.viam.app.v1.GetI"
+  "nvoicesSummaryResponse\022X\n\rGetInvoicePdf\022"
+  "!.viam.app.v1.GetInvoicePdfRequest\032\".via"
+  "m.app.v1.GetInvoicePdfResponse0\001\022w\n\030Send"
+  "PaymentRequiredEmail\022,.viam.app.v1.SendP"
+  "aymentRequiredEmailRequest\032-.viam.app.v1"
+  ".SendPaymentRequiredEmailResponse\022w\n\030Get"
+  "AvailableBillingTiers\022,.viam.app.v1.GetA"
+  "vailableBillingTiersRequest\032-.viam.app.v"
+  "1.GetAvailableBillingTiersResponse\022\206\001\n\035U"
+  "pdateOrganizationBillingTier\0221.viam.app."
+  "v1.UpdateOrganizationBillingTierRequest\032"
+  "2.viam.app.v1.UpdateOrganizationBillingT"
+  "ierResponse\022\222\001\n!CreateInvoiceAndChargeIm"
+  "mediately\0225.viam.app.v1.CreateInvoiceAnd"
+  "ChargeImmediatelyRequest\0326.viam.app.v1.C"
+  "reateInvoiceAndChargeImmediatelyResponse"
+  "B\030Z\026go.viam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 5522, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 6114, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
-    &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 21,
+    &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 23,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
     file_level_metadata_app_2fv1_2fbilling_2eproto, file_level_enum_descriptors_app_2fv1_2fbilling_2eproto,
     file_level_service_descriptors_app_2fv1_2fbilling_2eproto,
@@ -724,6 +798,7 @@ bool PaymentMethodType_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
+    case 2:
       return true;
     default:
       return false;
@@ -1455,6 +1530,619 @@ void PaymentMethodCard::InternalSwap(PaymentMethodCard* other) {
 
 // ===================================================================
 
+class VerificationInfo::_Internal {
+ public:
+};
+
+VerificationInfo::VerificationInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.VerificationInfo)
+}
+VerificationInfo::VerificationInfo(const VerificationInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  hosted_verification_page_url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    hosted_verification_page_url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_hosted_verification_page_url().empty()) {
+    hosted_verification_page_url_.Set(from._internal_hosted_verification_page_url(), 
+      GetArenaForAllocation());
+  }
+  arrival_date_ = from.arrival_date_;
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.VerificationInfo)
+}
+
+inline void VerificationInfo::SharedCtor() {
+hosted_verification_page_url_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  hosted_verification_page_url_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+arrival_date_ = int64_t{0};
+}
+
+VerificationInfo::~VerificationInfo() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.VerificationInfo)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void VerificationInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  hosted_verification_page_url_.Destroy();
+}
+
+void VerificationInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void VerificationInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.VerificationInfo)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  hosted_verification_page_url_.ClearToEmpty();
+  arrival_date_ = int64_t{0};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* VerificationInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int64 arrival_date = 1 [json_name = "arrivalDate"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          arrival_date_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string hosted_verification_page_url = 2 [json_name = "hostedVerificationPageUrl"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_hosted_verification_page_url();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.VerificationInfo.hosted_verification_page_url"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* VerificationInfo::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.VerificationInfo)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 arrival_date = 1 [json_name = "arrivalDate"];
+  if (this->_internal_arrival_date() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_arrival_date(), target);
+  }
+
+  // string hosted_verification_page_url = 2 [json_name = "hostedVerificationPageUrl"];
+  if (!this->_internal_hosted_verification_page_url().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_hosted_verification_page_url().data(), static_cast<int>(this->_internal_hosted_verification_page_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.VerificationInfo.hosted_verification_page_url");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_hosted_verification_page_url(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.VerificationInfo)
+  return target;
+}
+
+size_t VerificationInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.VerificationInfo)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string hosted_verification_page_url = 2 [json_name = "hostedVerificationPageUrl"];
+  if (!this->_internal_hosted_verification_page_url().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_hosted_verification_page_url());
+  }
+
+  // int64 arrival_date = 1 [json_name = "arrivalDate"];
+  if (this->_internal_arrival_date() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_arrival_date());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData VerificationInfo::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    VerificationInfo::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*VerificationInfo::GetClassData() const { return &_class_data_; }
+
+void VerificationInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<VerificationInfo *>(to)->MergeFrom(
+      static_cast<const VerificationInfo &>(from));
+}
+
+
+void VerificationInfo::MergeFrom(const VerificationInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.VerificationInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_hosted_verification_page_url().empty()) {
+    _internal_set_hosted_verification_page_url(from._internal_hosted_verification_page_url());
+  }
+  if (from._internal_arrival_date() != 0) {
+    _internal_set_arrival_date(from._internal_arrival_date());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void VerificationInfo::CopyFrom(const VerificationInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.VerificationInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool VerificationInfo::IsInitialized() const {
+  return true;
+}
+
+void VerificationInfo::InternalSwap(VerificationInfo* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &hosted_verification_page_url_, lhs_arena,
+      &other->hosted_verification_page_url_, rhs_arena
+  );
+  swap(arrival_date_, other->arrival_date_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata VerificationInfo::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[2]);
+}
+
+// ===================================================================
+
+class PaymentMethodUSBankAccount::_Internal {
+ public:
+  using HasBits = decltype(std::declval<PaymentMethodUSBankAccount>()._has_bits_);
+  static const ::viam::app::v1::VerificationInfo& verification_info(const PaymentMethodUSBankAccount* msg);
+  static void set_has_verification_info(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::viam::app::v1::VerificationInfo&
+PaymentMethodUSBankAccount::_Internal::verification_info(const PaymentMethodUSBankAccount* msg) {
+  return *msg->verification_info_;
+}
+PaymentMethodUSBankAccount::PaymentMethodUSBankAccount(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.PaymentMethodUSBankAccount)
+}
+PaymentMethodUSBankAccount::PaymentMethodUSBankAccount(const PaymentMethodUSBankAccount& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  bank_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    bank_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_bank_name().empty()) {
+    bank_name_.Set(from._internal_bank_name(), 
+      GetArenaForAllocation());
+  }
+  last_four_digits_account_number_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    last_four_digits_account_number_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_last_four_digits_account_number().empty()) {
+    last_four_digits_account_number_.Set(from._internal_last_four_digits_account_number(), 
+      GetArenaForAllocation());
+  }
+  routing_number_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    routing_number_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_routing_number().empty()) {
+    routing_number_.Set(from._internal_routing_number(), 
+      GetArenaForAllocation());
+  }
+  account_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    account_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_account_type().empty()) {
+    account_type_.Set(from._internal_account_type(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_verification_info()) {
+    verification_info_ = new ::viam::app::v1::VerificationInfo(*from.verification_info_);
+  } else {
+    verification_info_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.PaymentMethodUSBankAccount)
+}
+
+inline void PaymentMethodUSBankAccount::SharedCtor() {
+bank_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  bank_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+last_four_digits_account_number_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  last_four_digits_account_number_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+routing_number_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  routing_number_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+account_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  account_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+verification_info_ = nullptr;
+}
+
+PaymentMethodUSBankAccount::~PaymentMethodUSBankAccount() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.PaymentMethodUSBankAccount)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void PaymentMethodUSBankAccount::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  bank_name_.Destroy();
+  last_four_digits_account_number_.Destroy();
+  routing_number_.Destroy();
+  account_type_.Destroy();
+  if (this != internal_default_instance()) delete verification_info_;
+}
+
+void PaymentMethodUSBankAccount::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void PaymentMethodUSBankAccount::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.PaymentMethodUSBankAccount)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  bank_name_.ClearToEmpty();
+  last_four_digits_account_number_.ClearToEmpty();
+  routing_number_.ClearToEmpty();
+  account_type_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(verification_info_ != nullptr);
+    verification_info_->Clear();
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* PaymentMethodUSBankAccount::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string bank_name = 1 [json_name = "bankName"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_bank_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.PaymentMethodUSBankAccount.bank_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string last_four_digits_account_number = 2 [json_name = "lastFourDigitsAccountNumber"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_last_four_digits_account_number();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.PaymentMethodUSBankAccount.last_four_digits_account_number"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string routing_number = 3 [json_name = "routingNumber"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_routing_number();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.PaymentMethodUSBankAccount.routing_number"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string account_type = 4 [json_name = "accountType"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_account_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.PaymentMethodUSBankAccount.account_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .viam.app.v1.VerificationInfo verification_info = 5 [json_name = "verificationInfo"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_verification_info(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* PaymentMethodUSBankAccount::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.PaymentMethodUSBankAccount)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string bank_name = 1 [json_name = "bankName"];
+  if (!this->_internal_bank_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_bank_name().data(), static_cast<int>(this->_internal_bank_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.PaymentMethodUSBankAccount.bank_name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_bank_name(), target);
+  }
+
+  // string last_four_digits_account_number = 2 [json_name = "lastFourDigitsAccountNumber"];
+  if (!this->_internal_last_four_digits_account_number().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_last_four_digits_account_number().data(), static_cast<int>(this->_internal_last_four_digits_account_number().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.PaymentMethodUSBankAccount.last_four_digits_account_number");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_last_four_digits_account_number(), target);
+  }
+
+  // string routing_number = 3 [json_name = "routingNumber"];
+  if (!this->_internal_routing_number().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_routing_number().data(), static_cast<int>(this->_internal_routing_number().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.PaymentMethodUSBankAccount.routing_number");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_routing_number(), target);
+  }
+
+  // string account_type = 4 [json_name = "accountType"];
+  if (!this->_internal_account_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_account_type().data(), static_cast<int>(this->_internal_account_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.PaymentMethodUSBankAccount.account_type");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_account_type(), target);
+  }
+
+  // optional .viam.app.v1.VerificationInfo verification_info = 5 [json_name = "verificationInfo"];
+  if (_internal_has_verification_info()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::verification_info(this),
+        _Internal::verification_info(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.PaymentMethodUSBankAccount)
+  return target;
+}
+
+size_t PaymentMethodUSBankAccount::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.PaymentMethodUSBankAccount)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string bank_name = 1 [json_name = "bankName"];
+  if (!this->_internal_bank_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_bank_name());
+  }
+
+  // string last_four_digits_account_number = 2 [json_name = "lastFourDigitsAccountNumber"];
+  if (!this->_internal_last_four_digits_account_number().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_last_four_digits_account_number());
+  }
+
+  // string routing_number = 3 [json_name = "routingNumber"];
+  if (!this->_internal_routing_number().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_routing_number());
+  }
+
+  // string account_type = 4 [json_name = "accountType"];
+  if (!this->_internal_account_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_account_type());
+  }
+
+  // optional .viam.app.v1.VerificationInfo verification_info = 5 [json_name = "verificationInfo"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *verification_info_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PaymentMethodUSBankAccount::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    PaymentMethodUSBankAccount::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PaymentMethodUSBankAccount::GetClassData() const { return &_class_data_; }
+
+void PaymentMethodUSBankAccount::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<PaymentMethodUSBankAccount *>(to)->MergeFrom(
+      static_cast<const PaymentMethodUSBankAccount &>(from));
+}
+
+
+void PaymentMethodUSBankAccount::MergeFrom(const PaymentMethodUSBankAccount& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.PaymentMethodUSBankAccount)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_bank_name().empty()) {
+    _internal_set_bank_name(from._internal_bank_name());
+  }
+  if (!from._internal_last_four_digits_account_number().empty()) {
+    _internal_set_last_four_digits_account_number(from._internal_last_four_digits_account_number());
+  }
+  if (!from._internal_routing_number().empty()) {
+    _internal_set_routing_number(from._internal_routing_number());
+  }
+  if (!from._internal_account_type().empty()) {
+    _internal_set_account_type(from._internal_account_type());
+  }
+  if (from._internal_has_verification_info()) {
+    _internal_mutable_verification_info()->::viam::app::v1::VerificationInfo::MergeFrom(from._internal_verification_info());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PaymentMethodUSBankAccount::CopyFrom(const PaymentMethodUSBankAccount& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.PaymentMethodUSBankAccount)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PaymentMethodUSBankAccount::IsInitialized() const {
+  return true;
+}
+
+void PaymentMethodUSBankAccount::InternalSwap(PaymentMethodUSBankAccount* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &bank_name_, lhs_arena,
+      &other->bank_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &last_four_digits_account_number_, lhs_arena,
+      &other->last_four_digits_account_number_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &routing_number_, lhs_arena,
+      &other->routing_number_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &account_type_, lhs_arena,
+      &other->account_type_, rhs_arena
+  );
+  swap(verification_info_, other->verification_info_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PaymentMethodUSBankAccount::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[3]);
+}
+
+// ===================================================================
+
 class GetCurrentMonthUsageRequest::_Internal {
  public:
 };
@@ -1645,7 +2333,7 @@ void GetCurrentMonthUsageRequest::InternalSwap(GetCurrentMonthUsageRequest* othe
 ::PROTOBUF_NAMESPACE_ID::Metadata GetCurrentMonthUsageRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[2]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[4]);
 }
 
 // ===================================================================
@@ -1865,7 +2553,7 @@ void UsageCost::InternalSwap(UsageCost* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UsageCost::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[3]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[5]);
 }
 
 // ===================================================================
@@ -2137,7 +2825,7 @@ void ResourceUsageCostsBySource::InternalSwap(ResourceUsageCostsBySource* other)
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceUsageCostsBySource::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[4]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[6]);
 }
 
 // ===================================================================
@@ -2433,7 +3121,7 @@ void ResourceUsageCosts::InternalSwap(ResourceUsageCosts* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceUsageCosts::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[5]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[7]);
 }
 
 // ===================================================================
@@ -3127,7 +3815,7 @@ void GetCurrentMonthUsageResponse::InternalSwap(GetCurrentMonthUsageResponse* ot
 ::PROTOBUF_NAMESPACE_ID::Metadata GetCurrentMonthUsageResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[6]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[8]);
 }
 
 // ===================================================================
@@ -3322,7 +4010,7 @@ void GetOrgBillingInformationRequest::InternalSwap(GetOrgBillingInformationReque
 ::PROTOBUF_NAMESPACE_ID::Metadata GetOrgBillingInformationRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[7]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[9]);
 }
 
 // ===================================================================
@@ -3337,11 +4025,19 @@ class GetOrgBillingInformationResponse::_Internal {
   static void set_has_billing_tier(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
+  static const ::viam::app::v1::PaymentMethodUSBankAccount& method_us_bank_account(const GetOrgBillingInformationResponse* msg);
+  static void set_has_method_us_bank_account(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
 };
 
 const ::viam::app::v1::PaymentMethodCard&
 GetOrgBillingInformationResponse::_Internal::method(const GetOrgBillingInformationResponse* msg) {
   return *msg->method_;
+}
+const ::viam::app::v1::PaymentMethodUSBankAccount&
+GetOrgBillingInformationResponse::_Internal::method_us_bank_account(const GetOrgBillingInformationResponse* msg) {
+  return *msg->method_us_bank_account_;
 }
 GetOrgBillingInformationResponse::GetOrgBillingInformationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -3373,6 +4069,11 @@ GetOrgBillingInformationResponse::GetOrgBillingInformationResponse(const GetOrgB
     method_ = new ::viam::app::v1::PaymentMethodCard(*from.method_);
   } else {
     method_ = nullptr;
+  }
+  if (from._internal_has_method_us_bank_account()) {
+    method_us_bank_account_ = new ::viam::app::v1::PaymentMethodUSBankAccount(*from.method_us_bank_account_);
+  } else {
+    method_us_bank_account_ = nullptr;
   }
   type_ = from.type_;
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetOrgBillingInformationResponse)
@@ -3407,6 +4108,7 @@ inline void GetOrgBillingInformationResponse::SharedDtor() {
   billing_email_.Destroy();
   billing_tier_.Destroy();
   if (this != internal_default_instance()) delete method_;
+  if (this != internal_default_instance()) delete method_us_bank_account_;
 }
 
 void GetOrgBillingInformationResponse::SetCachedSize(int size) const {
@@ -3421,13 +4123,17 @@ void GetOrgBillingInformationResponse::Clear() {
 
   billing_email_.ClearToEmpty();
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
       billing_tier_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000002u) {
       GOOGLE_DCHECK(method_ != nullptr);
       method_->Clear();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      GOOGLE_DCHECK(method_us_bank_account_ != nullptr);
+      method_us_bank_account_->Clear();
     }
   }
   type_ = 0;
@@ -3476,6 +4182,14 @@ const char* GetOrgBillingInformationResponse::_InternalParse(const char* ptr, ::
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetOrgBillingInformationResponse.billing_tier"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .viam.app.v1.PaymentMethodUSBankAccount method_us_bank_account = 5 [json_name = "methodUsBankAccount"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_method_us_bank_account(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -3543,6 +4257,13 @@ uint8_t* GetOrgBillingInformationResponse::_InternalSerialize(
         4, this->_internal_billing_tier(), target);
   }
 
+  // optional .viam.app.v1.PaymentMethodUSBankAccount method_us_bank_account = 5 [json_name = "methodUsBankAccount"];
+  if (_internal_has_method_us_bank_account()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::method_us_bank_account(this),
+        _Internal::method_us_bank_account(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3567,7 +4288,7 @@ size_t GetOrgBillingInformationResponse::ByteSizeLong() const {
   }
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x00000007u) {
     // optional string billing_tier = 4 [json_name = "billingTier"];
     if (cached_has_bits & 0x00000001u) {
       total_size += 1 +
@@ -3580,6 +4301,13 @@ size_t GetOrgBillingInformationResponse::ByteSizeLong() const {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
           *method_);
+    }
+
+    // optional .viam.app.v1.PaymentMethodUSBankAccount method_us_bank_account = 5 [json_name = "methodUsBankAccount"];
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *method_us_bank_account_);
     }
 
   }
@@ -3615,12 +4343,15 @@ void GetOrgBillingInformationResponse::MergeFrom(const GetOrgBillingInformationR
     _internal_set_billing_email(from._internal_billing_email());
   }
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
       _internal_set_billing_tier(from._internal_billing_tier());
     }
     if (cached_has_bits & 0x00000002u) {
       _internal_mutable_method()->::viam::app::v1::PaymentMethodCard::MergeFrom(from._internal_method());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _internal_mutable_method_us_bank_account()->::viam::app::v1::PaymentMethodUSBankAccount::MergeFrom(from._internal_method_us_bank_account());
     }
   }
   if (from._internal_type() != 0) {
@@ -3665,7 +4396,7 @@ void GetOrgBillingInformationResponse::InternalSwap(GetOrgBillingInformationResp
 ::PROTOBUF_NAMESPACE_ID::Metadata GetOrgBillingInformationResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[8]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[10]);
 }
 
 // ===================================================================
@@ -3860,7 +4591,7 @@ void GetInvoicesSummaryRequest::InternalSwap(GetInvoicesSummaryRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetInvoicesSummaryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[9]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[11]);
 }
 
 // ===================================================================
@@ -4076,7 +4807,7 @@ void GetInvoicesSummaryResponse::InternalSwap(GetInvoicesSummaryResponse* other)
 ::PROTOBUF_NAMESPACE_ID::Metadata GetInvoicesSummaryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[10]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[12]);
 }
 
 // ===================================================================
@@ -4319,7 +5050,7 @@ void GetInvoicePdfRequest::InternalSwap(GetInvoicePdfRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetInvoicePdfRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[11]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[13]);
 }
 
 // ===================================================================
@@ -4509,7 +5240,7 @@ void GetInvoicePdfResponse::InternalSwap(GetInvoicePdfResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetInvoicePdfResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[12]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[14]);
 }
 
 // ===================================================================
@@ -4752,7 +5483,7 @@ void SendPaymentRequiredEmailRequest::InternalSwap(SendPaymentRequiredEmailReque
 ::PROTOBUF_NAMESPACE_ID::Metadata SendPaymentRequiredEmailRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[13]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[15]);
 }
 
 // ===================================================================
@@ -4791,7 +5522,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SendPaymentRequiredEmailRespon
 ::PROTOBUF_NAMESPACE_ID::Metadata SendPaymentRequiredEmailResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[14]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[16]);
 }
 
 // ===================================================================
@@ -4830,7 +5561,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetAvailableBillingTiersReques
 ::PROTOBUF_NAMESPACE_ID::Metadata GetAvailableBillingTiersRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[15]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[17]);
 }
 
 // ===================================================================
@@ -5013,7 +5744,7 @@ void GetAvailableBillingTiersResponse::InternalSwap(GetAvailableBillingTiersResp
 ::PROTOBUF_NAMESPACE_ID::Metadata GetAvailableBillingTiersResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[16]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[18]);
 }
 
 // ===================================================================
@@ -5256,7 +5987,7 @@ void UpdateOrganizationBillingTierRequest::InternalSwap(UpdateOrganizationBillin
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateOrganizationBillingTierRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[17]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[19]);
 }
 
 // ===================================================================
@@ -5295,7 +6026,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UpdateOrganizationBillingTierR
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateOrganizationBillingTierResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[18]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[20]);
 }
 
 // ===================================================================
@@ -5649,7 +6380,7 @@ void CreateInvoiceAndChargeImmediatelyRequest::InternalSwap(CreateInvoiceAndChar
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateInvoiceAndChargeImmediatelyRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[19]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[21]);
 }
 
 // ===================================================================
@@ -5688,7 +6419,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CreateInvoiceAndChargeImmediat
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateInvoiceAndChargeImmediatelyResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[20]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[22]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -5703,6 +6434,14 @@ Arena::CreateMaybeMessage< ::viam::app::v1::InvoiceSummary >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::viam::app::v1::PaymentMethodCard*
 Arena::CreateMaybeMessage< ::viam::app::v1::PaymentMethodCard >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::PaymentMethodCard >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::VerificationInfo*
+Arena::CreateMaybeMessage< ::viam::app::v1::VerificationInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::VerificationInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::PaymentMethodUSBankAccount*
+Arena::CreateMaybeMessage< ::viam::app::v1::PaymentMethodUSBankAccount >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::PaymentMethodUSBankAccount >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::app::v1::GetCurrentMonthUsageRequest*
 Arena::CreateMaybeMessage< ::viam::app::v1::GetCurrentMonthUsageRequest >(Arena* arena) {

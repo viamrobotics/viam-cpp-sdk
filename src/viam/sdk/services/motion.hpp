@@ -22,9 +22,10 @@ namespace sdk {
 /// @ingroup Motion
 struct obstacle_detector {
     /// @brief The name of the vision service to be used for obstacle detection.
-    Name vision_service;
+    std::string vision_service;
+
     /// @brief The name of the camera component to be used for obstacle detection.
-    Name camera;
+    std::string camera;
 
     friend bool operator==(const obstacle_detector& lhs, const obstacle_detector& rhs);
     friend std::ostream& operator<<(std::ostream& os, const obstacle_detector& v);
@@ -102,7 +103,7 @@ class Motion : public Service {
         std::string plan_id;
 
         /// @brief The component to be moved. Used for tracking and stopping.
-        Name component_name;
+        std::string component_name;
 
         /// @brief The unique ID which identifies the plan execution.
         std::string execution_id;
@@ -126,7 +127,7 @@ class Motion : public Service {
         std::string id;
 
         /// @brief The component requested to be moved. Used for tracking and stopping.
-        Name component_name;
+        std::string component_name;
 
         /// @brief The unique ID which identifies the execution.
         /// Multiple plans can share the same execution_id if they were generated due to replanning.
@@ -198,7 +199,7 @@ class Motion : public Service {
     /// @param constraints Constraints to apply to how the robot will move.
     /// @return Whether or not the move was successful.
     inline bool move(const pose_in_frame& destination,
-                     const Name& name,
+                     const std::string& name,
                      const std::shared_ptr<WorldState>& world_state,
                      const std::shared_ptr<constraints>& constraints) {
         return move(destination, name, world_state, constraints, {});
@@ -213,7 +214,7 @@ class Motion : public Service {
     /// @param extra Any additional arguments to the method.
     /// @return Whether or not the move was successful.
     virtual bool move(const pose_in_frame& destination,
-                      const Name& name,
+                      const std::string& name,
                       const std::shared_ptr<WorldState>& world_state,
                       const std::shared_ptr<constraints>& constraints,
                       const ProtoStruct& extra) = 0;
@@ -226,8 +227,8 @@ class Motion : public Service {
     /// @return The execution ID of the move_on_map request.
     inline std::string move_on_map(
         const pose& destination,
-        const Name& component_name,
-        const Name& slam_name,
+        const std::string& component_name,
+        const std::string& slam_name,
         const std::shared_ptr<motion_configuration>& motion_configuration,
         const std::vector<GeometryConfig>& obstacles) {
         return move_on_map(
@@ -243,8 +244,8 @@ class Motion : public Service {
     /// @return The execution ID of the move_on_map request.
     virtual std::string move_on_map(
         const pose& destination,
-        const Name& component_name,
-        const Name& slam_name,
+        const std::string& component_name,
+        const std::string& slam_name,
         const std::shared_ptr<motion_configuration>& motion_configuration,
         const std::vector<GeometryConfig>& obstacles,
         const ProtoStruct& extra) = 0;
@@ -262,8 +263,8 @@ class Motion : public Service {
     inline std::string move_on_globe(
         const geo_point& destination,
         const boost::optional<double>& heading,
-        const Name& component_name,
-        const Name& movement_sensor_name,
+        const std::string& component_name,
+        const std::string& movement_sensor_name,
         const std::vector<geo_geometry>& obstacles,
         const std::shared_ptr<motion_configuration>& motion_configuration,
         const std::vector<geo_geometry>& bounding_regions) {
@@ -291,8 +292,8 @@ class Motion : public Service {
     virtual std::string move_on_globe(
         const geo_point& destination,
         const boost::optional<double>& heading,
-        const Name& component_name,
-        const Name& movement_sensor_name,
+        const std::string& component_name,
+        const std::string& movement_sensor_name,
         const std::vector<geo_geometry>& obstacles,
         const std::shared_ptr<motion_configuration>& motion_configuration,
         const std::vector<geo_geometry>& bounding_regions,
@@ -306,7 +307,7 @@ class Motion : public Service {
     /// needed to compute the component's pose.
     /// @return The pose of the component.
     inline pose_in_frame get_pose(
-        const Name& component_name,
+        const std::string& component_name,
         const std::string& destination_frame,
         const std::vector<WorldState::transform>& supplemental_transforms) {
         return get_pose(component_name, destination_frame, supplemental_transforms, {});
@@ -321,28 +322,28 @@ class Motion : public Service {
     /// @param extra Any additional arguments to the method.
     /// @return The pose of the component.
     virtual pose_in_frame get_pose(
-        const Name& component_name,
+        const std::string& component_name,
         const std::string& destination_frame,
         const std::vector<WorldState::transform>& supplemental_transforms,
         const ProtoStruct& extra) = 0;
 
     /// @brief Stop a currently executing motion plan.
     /// @param component_name the component of the currently executing plan to stop.
-    inline void stop_plan(const Name& component_name) {
+    inline void stop_plan(const std::string& component_name) {
         return stop_plan(component_name, {});
     }
 
     /// @brief Stop a currently executing motion plan.
     /// @param component_name the component of the currently executing plan to stop.
     /// @param extra Any additional arguments to the method.
-    virtual void stop_plan(const Name& component_name, const ProtoStruct& extra) = 0;
+    virtual void stop_plan(const std::string& component_name, const ProtoStruct& extra) = 0;
 
     /// @brief Returns the plan and state history of the most recent execution to move a component.
     /// Returns a result if the last execution is still executing, or changed state within the last
     /// 24 hours without an intervening robot reinitialization.
     /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
     /// @return the plan and status of the most recent execution to move the requested component
-    inline plan_with_status get_latest_plan(const Name& component_name) {
+    inline plan_with_status get_latest_plan(const std::string& component_name) {
         return get_latest_plan(component_name, {});
     }
 
@@ -352,7 +353,7 @@ class Motion : public Service {
     /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
     /// @param extra Any additional arguments to the method.
     /// @return the plan and status of the most recent execution to move the requested component
-    virtual plan_with_status get_latest_plan(const Name& component_name,
+    virtual plan_with_status get_latest_plan(const std::string& component_name,
                                              const ProtoStruct& extra) = 0;
 
     /// @brief Returns the plan, state history, and replan history of the most recent execution to
@@ -362,7 +363,7 @@ class Motion : public Service {
     /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
     /// execution to move the requested component
     inline std::pair<plan_with_status, std::vector<plan_with_status>>
-    get_latest_plan_with_replan_history(Name component_name) {
+    get_latest_plan_with_replan_history(const std::string& component_name) {
         return get_latest_plan_with_replan_history(component_name, {});
     }
 
@@ -374,7 +375,8 @@ class Motion : public Service {
     /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
     /// execution to move the requested component
     virtual std::pair<plan_with_status, std::vector<plan_with_status>>
-    get_latest_plan_with_replan_history(const Name& component_name, const ProtoStruct& extra) = 0;
+    get_latest_plan_with_replan_history(const std::string& component_name,
+                                        const ProtoStruct& extra) = 0;
 
     /// @brief Returns the plan and state history of the requested plan. Returns a result
     /// if the last execution is still executing, or changed state within the last 24 hours
@@ -382,7 +384,8 @@ class Motion : public Service {
     /// @param component_name The name of the component which the MoveOnGlobe request asked to move.
     /// @param execution_id The execution id of the requested plan.
     /// @return the plan and status of the requested execution's move the requested component
-    inline plan_with_status get_plan(const Name& component_name, const std::string& execution_id) {
+    inline plan_with_status get_plan(const std::string& component_name,
+                                     const std::string& execution_id) {
         return get_plan(component_name, execution_id, {});
     }
 
@@ -393,7 +396,7 @@ class Motion : public Service {
     /// @param execution_id The execution id of the requested plan.
     /// @param extra Any additional arguments to the method.
     /// @return the plan and status of the requested execution's move the requested component
-    virtual plan_with_status get_plan(const Name& component_name,
+    virtual plan_with_status get_plan(const std::string& component_name,
                                       const std::string& execution_id,
                                       const ProtoStruct& extra) = 0;
 
@@ -405,7 +408,7 @@ class Motion : public Service {
     /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
     /// execution to move the requested component
     inline std::pair<plan_with_status, std::vector<plan_with_status>> get_plan_with_replan_history(
-        const Name& component_name, const std::string& execution_id) {
+        const std::string& component_name, const std::string& execution_id) {
         return get_plan_with_replan_history(component_name, execution_id, {});
     }
 
@@ -418,7 +421,9 @@ class Motion : public Service {
     /// @return a pair of (1) the plan and status and (2) the replan history of the most recent
     /// execution to move the requested component
     virtual std::pair<plan_with_status, std::vector<plan_with_status>> get_plan_with_replan_history(
-        const Name& component_name, const std::string& execution_id, const ProtoStruct& extra) = 0;
+        const std::string& component_name,
+        const std::string& execution_id,
+        const ProtoStruct& extra) = 0;
 
     /// @brief Returns the status of plans created by MoveOnGlobe requests.
     /// Includes statuses of plans that are executing, or are part of an executing that changed

@@ -27,8 +27,9 @@ namespace v1 {
 PROTOBUF_CONSTEXPR MoveRequest::MoveRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , destination_(nullptr)
-  , component_name_(nullptr)
+  , component_name_deprecated_(nullptr)
   , world_state_(nullptr)
   , constraints_(nullptr)
   , extra_(nullptr){}
@@ -57,9 +58,11 @@ PROTOBUF_CONSTEXPR MoveOnMapRequest::MoveOnMapRequest(
     ::_pbi::ConstantInitialized)
   : obstacles_()
   , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , slam_service_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , destination_(nullptr)
-  , component_name_(nullptr)
-  , slam_service_name_(nullptr)
+  , component_name_deprecated_(nullptr)
+  , slam_service_name_deprecated_(nullptr)
   , motion_configuration_(nullptr)
   , extra_(nullptr){}
 struct MoveOnMapRequestDefaultTypeInternal {
@@ -85,8 +88,10 @@ struct MoveOnMapResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MoveOnMapResponseDefaultTypeInternal _MoveOnMapResponse_default_instance_;
 PROTOBUF_CONSTEXPR ObstacleDetector::ObstacleDetector(
     ::_pbi::ConstantInitialized)
-  : vision_service_(nullptr)
-  , camera_(nullptr){}
+  : vision_service_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , camera_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , vision_service_deprecated_(nullptr)
+  , camera_deprecated_(nullptr){}
 struct ObstacleDetectorDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ObstacleDetectorDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -118,9 +123,11 @@ PROTOBUF_CONSTEXPR MoveOnGlobeRequest::MoveOnGlobeRequest(
   : obstacles_()
   , bounding_regions_()
   , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , movement_sensor_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , destination_(nullptr)
-  , component_name_(nullptr)
-  , movement_sensor_name_(nullptr)
+  , component_name_deprecated_(nullptr)
+  , movement_sensor_name_deprecated_(nullptr)
   , motion_configuration_(nullptr)
   , extra_(nullptr)
   , heading_(0){}
@@ -150,7 +157,8 @@ PROTOBUF_CONSTEXPR GetPoseRequest::GetPoseRequest(
   : supplemental_transforms_()
   , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , destination_frame_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , component_name_(nullptr)
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_deprecated_(nullptr)
   , extra_(nullptr){}
 struct GetPoseRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPoseRequestDefaultTypeInternal()
@@ -176,7 +184,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR StopPlanRequest::StopPlanRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , component_name_(nullptr)
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_deprecated_(nullptr)
   , extra_(nullptr){}
 struct StopPlanRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StopPlanRequestDefaultTypeInternal()
@@ -228,7 +237,8 @@ PROTOBUF_CONSTEXPR GetPlanRequest::GetPlanRequest(
     ::_pbi::ConstantInitialized)
   : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , execution_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , component_name_(nullptr)
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_deprecated_(nullptr)
   , extra_(nullptr)
   , last_plan_only_(false){}
 struct GetPlanRequestDefaultTypeInternal {
@@ -349,7 +359,8 @@ PROTOBUF_CONSTEXPR PlanStatusWithID::PlanStatusWithID(
     ::_pbi::ConstantInitialized)
   : plan_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , execution_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , component_name_(nullptr)
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_deprecated_(nullptr)
   , status_(nullptr){}
 struct PlanStatusWithIDDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PlanStatusWithIDDefaultTypeInternal()
@@ -380,7 +391,8 @@ PROTOBUF_CONSTEXPR Plan::Plan(
   : steps_()
   , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , execution_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , component_name_(nullptr){}
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_deprecated_(nullptr){}
 struct PlanDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PlanDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -442,15 +454,17 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveRequest, name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveRequest, destination_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveRequest, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveRequest, component_name_deprecated_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveRequest, world_state_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveRequest, constraints_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveRequest, component_name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveRequest, extra_),
   ~0u,
   ~0u,
   ~0u,
   0,
   1,
+  ~0u,
   ~0u,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveResponse, _internal_metadata_),
@@ -467,16 +481,20 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, destination_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, component_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, slam_service_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, component_name_deprecated_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, slam_service_name_deprecated_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, motion_configuration_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, obstacles_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, slam_service_name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnMapRequest, extra_),
   ~0u,
   ~0u,
   ~0u,
   ~0u,
   0,
+  ~0u,
+  ~0u,
   ~0u,
   ~0u,
   ~0u,  // no _has_bits_
@@ -492,6 +510,8 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ObstacleDetector, vision_service_deprecated_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ObstacleDetector, camera_deprecated_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ObstacleDetector, vision_service_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ObstacleDetector, camera_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MotionConfiguration, _has_bits_),
@@ -521,11 +541,13 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, destination_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, heading_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, component_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, movement_sensor_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, component_name_deprecated_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, movement_sensor_name_deprecated_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, obstacles_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, motion_configuration_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, bounding_regions_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, movement_sensor_name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::MoveOnGlobeRequest, extra_),
   ~0u,
   ~0u,
@@ -534,6 +556,8 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,
   ~0u,
   0,
+  ~0u,
+  ~0u,
   ~0u,
   ~0u,
   ~0u,  // no _has_bits_
@@ -550,9 +574,10 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseRequest, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseRequest, component_name_deprecated_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseRequest, destination_frame_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseRequest, supplemental_transforms_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseRequest, component_name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPoseResponse, _internal_metadata_),
@@ -568,6 +593,7 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::StopPlanRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::StopPlanRequest, component_name_deprecated_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::StopPlanRequest, component_name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::StopPlanRequest, extra_),
   ~0u,  // no _has_bits_
@@ -599,14 +625,16 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPlanRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPlanRequest, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPlanRequest, component_name_deprecated_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPlanRequest, last_plan_only_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPlanRequest, execution_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPlanRequest, component_name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPlanRequest, extra_),
   ~0u,
   ~0u,
   ~0u,
   0,
+  ~0u,
   ~0u,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::GetPlanResponse, _internal_metadata_),
@@ -685,9 +713,10 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStatusWithID, plan_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStatusWithID, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStatusWithID, component_name_deprecated_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStatusWithID, execution_id_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStatusWithID, status_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStatusWithID, component_name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStatus, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStatus, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -707,9 +736,10 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Plan, id_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Plan, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Plan, component_name_deprecated_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Plan, execution_id_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Plan, steps_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::Plan, component_name_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -736,35 +766,35 @@ const uint32_t TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::viam::service::motion::v1::ComponentState, pose_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 12, -1, sizeof(::viam::service::motion::v1::MoveRequest)},
-  { 18, -1, -1, sizeof(::viam::service::motion::v1::MoveResponse)},
-  { 25, 38, -1, sizeof(::viam::service::motion::v1::MoveOnMapRequest)},
-  { 45, -1, -1, sizeof(::viam::service::motion::v1::MoveOnMapResponse)},
-  { 52, -1, -1, sizeof(::viam::service::motion::v1::ObstacleDetector)},
-  { 60, 72, -1, sizeof(::viam::service::motion::v1::MotionConfiguration)},
-  { 78, 93, -1, sizeof(::viam::service::motion::v1::MoveOnGlobeRequest)},
-  { 102, -1, -1, sizeof(::viam::service::motion::v1::MoveOnGlobeResponse)},
-  { 109, -1, -1, sizeof(::viam::service::motion::v1::GetPoseRequest)},
-  { 120, -1, -1, sizeof(::viam::service::motion::v1::GetPoseResponse)},
-  { 127, -1, -1, sizeof(::viam::service::motion::v1::StopPlanRequest)},
-  { 136, -1, -1, sizeof(::viam::service::motion::v1::StopPlanResponse)},
-  { 142, -1, -1, sizeof(::viam::service::motion::v1::ListPlanStatusesRequest)},
-  { 151, -1, -1, sizeof(::viam::service::motion::v1::ListPlanStatusesResponse)},
-  { 158, 169, -1, sizeof(::viam::service::motion::v1::GetPlanRequest)},
-  { 174, -1, -1, sizeof(::viam::service::motion::v1::GetPlanResponse)},
-  { 182, -1, -1, sizeof(::viam::service::motion::v1::Constraints)},
-  { 192, 200, -1, sizeof(::viam::service::motion::v1::LinearConstraint)},
-  { 202, 210, -1, sizeof(::viam::service::motion::v1::PseudolinearConstraint)},
-  { 212, 219, -1, sizeof(::viam::service::motion::v1::OrientationConstraint)},
-  { 220, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions)},
-  { 228, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification)},
-  { 235, -1, -1, sizeof(::viam::service::motion::v1::PlanWithStatus)},
-  { 244, -1, -1, sizeof(::viam::service::motion::v1::PlanStatusWithID)},
-  { 254, 263, -1, sizeof(::viam::service::motion::v1::PlanStatus)},
-  { 266, -1, -1, sizeof(::viam::service::motion::v1::Plan)},
-  { 276, 284, -1, sizeof(::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse)},
-  { 286, -1, -1, sizeof(::viam::service::motion::v1::PlanStep)},
-  { 293, -1, -1, sizeof(::viam::service::motion::v1::ComponentState)},
+  { 0, 13, -1, sizeof(::viam::service::motion::v1::MoveRequest)},
+  { 20, -1, -1, sizeof(::viam::service::motion::v1::MoveResponse)},
+  { 27, 42, -1, sizeof(::viam::service::motion::v1::MoveOnMapRequest)},
+  { 51, -1, -1, sizeof(::viam::service::motion::v1::MoveOnMapResponse)},
+  { 58, -1, -1, sizeof(::viam::service::motion::v1::ObstacleDetector)},
+  { 68, 80, -1, sizeof(::viam::service::motion::v1::MotionConfiguration)},
+  { 86, 103, -1, sizeof(::viam::service::motion::v1::MoveOnGlobeRequest)},
+  { 114, -1, -1, sizeof(::viam::service::motion::v1::MoveOnGlobeResponse)},
+  { 121, -1, -1, sizeof(::viam::service::motion::v1::GetPoseRequest)},
+  { 133, -1, -1, sizeof(::viam::service::motion::v1::GetPoseResponse)},
+  { 140, -1, -1, sizeof(::viam::service::motion::v1::StopPlanRequest)},
+  { 150, -1, -1, sizeof(::viam::service::motion::v1::StopPlanResponse)},
+  { 156, -1, -1, sizeof(::viam::service::motion::v1::ListPlanStatusesRequest)},
+  { 165, -1, -1, sizeof(::viam::service::motion::v1::ListPlanStatusesResponse)},
+  { 172, 184, -1, sizeof(::viam::service::motion::v1::GetPlanRequest)},
+  { 190, -1, -1, sizeof(::viam::service::motion::v1::GetPlanResponse)},
+  { 198, -1, -1, sizeof(::viam::service::motion::v1::Constraints)},
+  { 208, 216, -1, sizeof(::viam::service::motion::v1::LinearConstraint)},
+  { 218, 226, -1, sizeof(::viam::service::motion::v1::PseudolinearConstraint)},
+  { 228, 235, -1, sizeof(::viam::service::motion::v1::OrientationConstraint)},
+  { 236, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification_AllowedFrameCollisions)},
+  { 244, -1, -1, sizeof(::viam::service::motion::v1::CollisionSpecification)},
+  { 251, -1, -1, sizeof(::viam::service::motion::v1::PlanWithStatus)},
+  { 260, -1, -1, sizeof(::viam::service::motion::v1::PlanStatusWithID)},
+  { 271, 280, -1, sizeof(::viam::service::motion::v1::PlanStatus)},
+  { 283, -1, -1, sizeof(::viam::service::motion::v1::Plan)},
+  { 294, 302, -1, sizeof(::viam::service::motion::v1::PlanStep_StepEntry_DoNotUse)},
+  { 304, -1, -1, sizeof(::viam::service::motion::v1::PlanStep)},
+  { 311, -1, -1, sizeof(::viam::service::motion::v1::ComponentState)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -804,185 +834,204 @@ const char descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto[] PR
   "ervice.motion.v1\032\026common/v1/common.proto"
   "\032\034google/api/annotations.proto\032\034google/p"
   "rotobuf/struct.proto\032\037google/protobuf/ti"
-  "mestamp.proto\"\202\003\n\013MoveRequest\022\022\n\004name\030\001 "
+  "mestamp.proto\"\302\003\n\013MoveRequest\022\022\n\004name\030\001 "
   "\001(\tR\004name\022=\n\013destination\030\002 \001(\0132\033.viam.co"
-  "mmon.v1.PoseInFrameR\013destination\022C\n\016comp"
-  "onent_name\030\003 \001(\0132\034.viam.common.v1.Resour"
-  "ceNameR\rcomponentName\022@\n\013world_state\030\004 \001"
-  "(\0132\032.viam.common.v1.WorldStateH\000R\nworldS"
-  "tate\210\001\001\022J\n\013constraints\030\005 \001(\0132#.viam.serv"
-  "ice.motion.v1.ConstraintsH\001R\013constraints"
-  "\210\001\001\022-\n\005extra\030c \001(\0132\027.google.protobuf.Str"
-  "uctR\005extraB\016\n\014_world_stateB\016\n\014_constrain"
-  "ts\"(\n\014MoveResponse\022\030\n\007success\030\001 \001(\010R\007suc"
-  "cess\"\322\003\n\020MoveOnMapRequest\022\022\n\004name\030\001 \001(\tR"
-  "\004name\0226\n\013destination\030\002 \001(\0132\024.viam.common"
-  ".v1.PoseR\013destination\022C\n\016component_name\030"
-  "\003 \001(\0132\034.viam.common.v1.ResourceNameR\rcom"
-  "ponentName\022H\n\021slam_service_name\030\004 \001(\0132\034."
-  "viam.common.v1.ResourceNameR\017slamService"
-  "Name\022c\n\024motion_configuration\030\005 \001(\0132+.via"
-  "m.service.motion.v1.MotionConfigurationH"
-  "\000R\023motionConfiguration\210\001\001\0226\n\tobstacles\030\006"
-  " \003(\0132\030.viam.common.v1.GeometryR\tobstacle"
-  "s\022-\n\005extra\030c \001(\0132\027.google.protobuf.Struc"
-  "tR\005extraB\027\n\025_motion_configuration\"6\n\021Mov"
-  "eOnMapResponse\022!\n\014execution_id\030\001 \001(\tR\013ex"
-  "ecutionId\"\215\001\n\020ObstacleDetector\022C\n\016vision"
-  "_service\030\001 \001(\0132\034.viam.common.v1.Resource"
-  "NameR\rvisionService\0224\n\006camera\030\002 \001(\0132\034.vi"
-  "am.common.v1.ResourceNameR\006camera\"\230\004\n\023Mo"
-  "tionConfiguration\022W\n\022obstacle_detectors\030"
-  "\001 \003(\0132(.viam.service.motion.v1.ObstacleD"
-  "etectorR\021obstacleDetectors\022F\n\035position_p"
-  "olling_frequency_hz\030\002 \001(\001H\000R\032positionPol"
-  "lingFrequencyHz\210\001\001\022F\n\035obstacle_polling_f"
-  "requency_hz\030\003 \001(\001H\001R\032obstaclePollingFreq"
-  "uencyHz\210\001\001\022-\n\020plan_deviation_m\030\004 \001(\001H\002R\016"
-  "planDeviationM\210\001\001\022,\n\020linear_m_per_sec\030\005 "
-  "\001(\001H\003R\rlinearMPerSec\210\001\001\0224\n\024angular_degs_"
-  "per_sec\030\006 \001(\001H\004R\021angularDegsPerSec\210\001\001B \n"
-  "\036_position_polling_frequency_hzB \n\036_obst"
-  "acle_polling_frequency_hzB\023\n\021_plan_devia"
-  "tion_mB\023\n\021_linear_m_per_secB\027\n\025_angular_"
-  "degs_per_sec\"\324\004\n\022MoveOnGlobeRequest\022\022\n\004n"
-  "ame\030\001 \001(\tR\004name\022:\n\013destination\030\002 \001(\0132\030.v"
-  "iam.common.v1.GeoPointR\013destination\022\035\n\007h"
-  "eading\030\003 \001(\001H\000R\007heading\210\001\001\022C\n\016component_"
-  "name\030\004 \001(\0132\034.viam.common.v1.ResourceName"
-  "R\rcomponentName\022N\n\024movement_sensor_name\030"
-  "\005 \001(\0132\034.viam.common.v1.ResourceNameR\022mov"
-  "ementSensorName\0229\n\tobstacles\030\006 \003(\0132\033.via"
+  "mmon.v1.PoseInFrameR\013destination\022\\\n\031comp"
+  "onent_name_deprecated\030\003 \001(\0132\034.viam.commo"
+  "n.v1.ResourceNameB\002\030\001R\027componentNameDepr"
+  "ecated\022@\n\013world_state\030\004 \001(\0132\032.viam.commo"
+  "n.v1.WorldStateH\000R\nworldState\210\001\001\022J\n\013cons"
+  "traints\030\005 \001(\0132#.viam.service.motion.v1.C"
+  "onstraintsH\001R\013constraints\210\001\001\022%\n\016componen"
+  "t_name\030\006 \001(\tR\rcomponentName\022-\n\005extra\030c \001"
+  "(\0132\027.google.protobuf.StructR\005extraB\016\n\014_w"
+  "orld_stateB\016\n\014_constraints\"(\n\014MoveRespon"
+  "se\022\030\n\007success\030\001 \001(\010R\007success\"\327\004\n\020MoveOnM"
+  "apRequest\022\022\n\004name\030\001 \001(\tR\004name\0226\n\013destina"
+  "tion\030\002 \001(\0132\024.viam.common.v1.PoseR\013destin"
+  "ation\022\\\n\031component_name_deprecated\030\003 \001(\013"
+  "2\034.viam.common.v1.ResourceNameB\002\030\001R\027comp"
+  "onentNameDeprecated\022a\n\034slam_service_name"
+  "_deprecated\030\004 \001(\0132\034.viam.common.v1.Resou"
+  "rceNameB\002\030\001R\031slamServiceNameDeprecated\022c"
+  "\n\024motion_configuration\030\005 \001(\0132+.viam.serv"
+  "ice.motion.v1.MotionConfigurationH\000R\023mot"
+  "ionConfiguration\210\001\001\0226\n\tobstacles\030\006 \003(\0132\030"
+  ".viam.common.v1.GeometryR\tobstacles\022%\n\016c"
+  "omponent_name\030\007 \001(\tR\rcomponentName\022*\n\021sl"
+  "am_service_name\030\010 \001(\tR\017slamServiceName\022-"
+  "\n\005extra\030c \001(\0132\027.google.protobuf.StructR\005"
+  "extraB\027\n\025_motion_configuration\"6\n\021MoveOn"
+  "MapResponse\022!\n\014execution_id\030\001 \001(\tR\013execu"
+  "tionId\"\376\001\n\020ObstacleDetector\022\\\n\031vision_se"
+  "rvice_deprecated\030\001 \001(\0132\034.viam.common.v1."
+  "ResourceNameB\002\030\001R\027visionServiceDeprecate"
+  "d\022M\n\021camera_deprecated\030\002 \001(\0132\034.viam.comm"
+  "on.v1.ResourceNameB\002\030\001R\020cameraDeprecated"
+  "\022%\n\016vision_service\030\003 \001(\tR\rvisionService\022"
+  "\026\n\006camera\030\004 \001(\tR\006camera\"\230\004\n\023MotionConfig"
+  "uration\022W\n\022obstacle_detectors\030\001 \003(\0132(.vi"
+  "am.service.motion.v1.ObstacleDetectorR\021o"
+  "bstacleDetectors\022F\n\035position_polling_fre"
+  "quency_hz\030\002 \001(\001H\000R\032positionPollingFreque"
+  "ncyHz\210\001\001\022F\n\035obstacle_polling_frequency_h"
+  "z\030\003 \001(\001H\001R\032obstaclePollingFrequencyHz\210\001\001"
+  "\022-\n\020plan_deviation_m\030\004 \001(\001H\002R\016planDeviat"
+  "ionM\210\001\001\022,\n\020linear_m_per_sec\030\005 \001(\001H\003R\rlin"
+  "earMPerSec\210\001\001\0224\n\024angular_degs_per_sec\030\006 "
+  "\001(\001H\004R\021angularDegsPerSec\210\001\001B \n\036_position"
+  "_polling_frequency_hzB \n\036_obstacle_polli"
+  "ng_frequency_hzB\023\n\021_plan_deviation_mB\023\n\021"
+  "_linear_m_per_secB\027\n\025_angular_degs_per_s"
+  "ec\"\337\005\n\022MoveOnGlobeRequest\022\022\n\004name\030\001 \001(\tR"
+  "\004name\022:\n\013destination\030\002 \001(\0132\030.viam.common"
+  ".v1.GeoPointR\013destination\022\035\n\007heading\030\003 \001"
+  "(\001H\000R\007heading\210\001\001\022\\\n\031component_name_depre"
+  "cated\030\004 \001(\0132\034.viam.common.v1.ResourceNam"
+  "eB\002\030\001R\027componentNameDeprecated\022g\n\037moveme"
+  "nt_sensor_name_deprecated\030\005 \001(\0132\034.viam.c"
+  "ommon.v1.ResourceNameB\002\030\001R\034movementSenso"
+  "rNameDeprecated\0229\n\tobstacles\030\006 \003(\0132\033.via"
   "m.common.v1.GeoGeometryR\tobstacles\022c\n\024mo"
   "tion_configuration\030\007 \001(\0132+.viam.service."
   "motion.v1.MotionConfigurationH\001R\023motionC"
   "onfiguration\210\001\001\022F\n\020bounding_regions\030\010 \003("
   "\0132\033.viam.common.v1.GeoGeometryR\017bounding"
-  "Regions\022-\n\005extra\030c \001(\0132\027.google.protobuf"
-  ".StructR\005extraB\n\n\010_headingB\027\n\025_motion_co"
-  "nfiguration\"8\n\023MoveOnGlobeResponse\022!\n\014ex"
-  "ecution_id\030\001 \001(\tR\013executionId\"\235\002\n\016GetPos"
-  "eRequest\022\022\n\004name\030\001 \001(\tR\004name\022C\n\016componen"
-  "t_name\030\002 \001(\0132\034.viam.common.v1.ResourceNa"
-  "meR\rcomponentName\022+\n\021destination_frame\030\003"
-  " \001(\tR\020destinationFrame\022R\n\027supplemental_t"
-  "ransforms\030\004 \003(\0132\031.viam.common.v1.Transfo"
-  "rmR\026supplementalTransforms\022-\n\005extra\030c \001("
-  "\0132\027.google.protobuf.StructR\005extra:\002\030\001\"F\n"
-  "\017GetPoseResponse\022/\n\004pose\030\001 \001(\0132\033.viam.co"
-  "mmon.v1.PoseInFrameR\004pose:\002\030\001\"\231\001\n\017StopPl"
-  "anRequest\022\022\n\004name\030\001 \001(\tR\004name\022C\n\016compone"
-  "nt_name\030\002 \001(\0132\034.viam.common.v1.ResourceN"
-  "ameR\rcomponentName\022-\n\005extra\030c \001(\0132\027.goog"
-  "le.protobuf.StructR\005extra\"\022\n\020StopPlanRes"
-  "ponse\"\210\001\n\027ListPlanStatusesRequest\022\022\n\004nam"
-  "e\030\001 \001(\tR\004name\022*\n\021only_active_plans\030\002 \001(\010"
-  "R\017onlyActivePlans\022-\n\005extra\030c \001(\0132\027.googl"
-  "e.protobuf.StructR\005extra\"y\n\030ListPlanStat"
-  "usesResponse\022]\n\026plan_statuses_with_ids\030\001"
-  " \003(\0132(.viam.service.motion.v1.PlanStatus"
-  "WithIDR\023planStatusesWithIds\"\367\001\n\016GetPlanR"
-  "equest\022\022\n\004name\030\001 \001(\tR\004name\022C\n\016component_"
-  "name\030\002 \001(\0132\034.viam.common.v1.ResourceName"
-  "R\rcomponentName\022$\n\016last_plan_only\030\003 \001(\010R"
-  "\014lastPlanOnly\022&\n\014execution_id\030\004 \001(\tH\000R\013e"
-  "xecutionId\210\001\001\022-\n\005extra\030c \001(\0132\027.google.pr"
-  "otobuf.StructR\005extraB\017\n\r_execution_id\"\301\001"
-  "\n\017GetPlanResponse\022_\n\030current_plan_with_s"
-  "tatus\030\001 \001(\0132&.viam.service.motion.v1.Pla"
-  "nWithStatusR\025currentPlanWithStatus\022M\n\016re"
-  "plan_history\030\002 \003(\0132&.viam.service.motion"
-  ".v1.PlanWithStatusR\rreplanHistory\"\234\003\n\013Co"
-  "nstraints\022U\n\021linear_constraint\030\001 \003(\0132(.v"
-  "iam.service.motion.v1.LinearConstraintR\020"
-  "linearConstraint\022d\n\026orientation_constrai"
-  "nt\030\002 \003(\0132-.viam.service.motion.v1.Orient"
-  "ationConstraintR\025orientationConstraint\022g"
-  "\n\027collision_specification\030\003 \003(\0132..viam.s"
-  "ervice.motion.v1.CollisionSpecificationR"
-  "\026collisionSpecification\022g\n\027pseudolinear_"
-  "constraint\030\004 \003(\0132..viam.service.motion.v"
-  "1.PseudolinearConstraintR\026pseudolinearCo"
-  "nstraint\"\273\001\n\020LinearConstraint\022/\n\021line_to"
-  "lerance_mm\030\001 \001(\002H\000R\017lineToleranceMm\210\001\001\022A"
-  "\n\032orientation_tolerance_degs\030\002 \001(\002H\001R\030or"
-  "ientationToleranceDegs\210\001\001B\024\n\022_line_toler"
-  "ance_mmB\035\n\033_orientation_tolerance_degs\"\323"
-  "\001\n\026PseudolinearConstraint\0227\n\025line_tolera"
-  "nce_factor\030\001 \001(\002H\000R\023lineToleranceFactor\210"
-  "\001\001\022E\n\034orientation_tolerance_factor\030\002 \001(\002"
-  "H\001R\032orientationToleranceFactor\210\001\001B\030\n\026_li"
-  "ne_tolerance_factorB\037\n\035_orientation_tole"
-  "rance_factor\"y\n\025OrientationConstraint\022A\n"
-  "\032orientation_tolerance_degs\030\001 \001(\002H\000R\030ori"
-  "entationToleranceDegs\210\001\001B\035\n\033_orientation"
-  "_tolerance_degs\"\301\001\n\026CollisionSpecificati"
-  "on\022]\n\006allows\030\001 \003(\0132E.viam.service.motion"
-  ".v1.CollisionSpecification.AllowedFrameC"
-  "ollisionsR\006allows\032H\n\026AllowedFrameCollisi"
-  "ons\022\026\n\006frame1\030\001 \001(\tR\006frame1\022\026\n\006frame2\030\002 "
-  "\001(\tR\006frame2\"\311\001\n\016PlanWithStatus\0220\n\004plan\030\001"
-  " \001(\0132\034.viam.service.motion.v1.PlanR\004plan"
-  "\022:\n\006status\030\002 \001(\0132\".viam.service.motion.v"
-  "1.PlanStatusR\006status\022I\n\016status_history\030\003"
-  " \003(\0132\".viam.service.motion.v1.PlanStatus"
-  "R\rstatusHistory\"\317\001\n\020PlanStatusWithID\022\027\n\007"
-  "plan_id\030\001 \001(\tR\006planId\022C\n\016component_name\030"
-  "\002 \001(\0132\034.viam.common.v1.ResourceNameR\rcom"
-  "ponentName\022!\n\014execution_id\030\003 \001(\tR\013execut"
-  "ionId\022:\n\006status\030\004 \001(\0132\".viam.service.mot"
-  "ion.v1.PlanStatusR\006status\"\247\001\n\nPlanStatus"
-  "\0227\n\005state\030\001 \001(\0162!.viam.service.motion.v1"
-  ".PlanStateR\005state\0228\n\ttimestamp\030\002 \001(\0132\032.g"
-  "oogle.protobuf.TimestampR\ttimestamp\022\033\n\006r"
-  "eason\030\003 \001(\tH\000R\006reason\210\001\001B\t\n\007_reason\"\266\001\n\004"
-  "Plan\022\016\n\002id\030\001 \001(\tR\002id\022C\n\016component_name\030\002"
-  " \001(\0132\034.viam.common.v1.ResourceNameR\rcomp"
-  "onentName\022!\n\014execution_id\030\003 \001(\tR\013executi"
-  "onId\0226\n\005steps\030\004 \003(\0132 .viam.service.motio"
-  "n.v1.PlanStepR\005steps\"\253\001\n\010PlanStep\022>\n\004ste"
-  "p\030\001 \003(\0132*.viam.service.motion.v1.PlanSte"
-  "p.StepEntryR\004step\032_\n\tStepEntry\022\020\n\003key\030\001 "
-  "\001(\tR\003key\022<\n\005value\030\002 \001(\0132&.viam.service.m"
-  "otion.v1.ComponentStateR\005value:\0028\001\":\n\016Co"
-  "mponentState\022(\n\004pose\030\001 \001(\0132\024.viam.common"
-  ".v1.PoseR\004pose*\214\001\n\tPlanState\022\032\n\026PLAN_STA"
-  "TE_UNSPECIFIED\020\000\022\032\n\026PLAN_STATE_IN_PROGRE"
-  "SS\020\001\022\026\n\022PLAN_STATE_STOPPED\020\002\022\030\n\024PLAN_STA"
-  "TE_SUCCEEDED\020\003\022\025\n\021PLAN_STATE_FAILED\020\0042\314\t"
-  "\n\rMotionService\022\202\001\n\004Move\022#.viam.service."
-  "motion.v1.MoveRequest\032$.viam.service.mot"
-  "ion.v1.MoveResponse\"/\202\323\344\223\002)\"\'/viam/api/v"
-  "1/service/motion/{name}/move\022\230\001\n\tMoveOnM"
-  "ap\022(.viam.service.motion.v1.MoveOnMapReq"
-  "uest\032).viam.service.motion.v1.MoveOnMapR"
-  "esponse\"6\202\323\344\223\0020\"./viam/api/v1/service/mo"
-  "tion/{name}/move_on_map\022\240\001\n\013MoveOnGlobe\022"
-  "*.viam.service.motion.v1.MoveOnGlobeRequ"
-  "est\032+.viam.service.motion.v1.MoveOnGlobe"
-  "Response\"8\202\323\344\223\0022\"0/viam/api/v1/service/m"
-  "otion/{name}/move_on_globe\022\216\001\n\007GetPose\022&"
-  ".viam.service.motion.v1.GetPoseRequest\032\'"
-  ".viam.service.motion.v1.GetPoseResponse\""
-  "2\210\002\001\202\323\344\223\002)\022\'/viam/api/v1/service/motion/"
-  "{name}/pose\022\223\001\n\010StopPlan\022\'.viam.service."
-  "motion.v1.StopPlanRequest\032(.viam.service"
-  ".motion.v1.StopPlanResponse\"4\202\323\344\223\002.\032,/vi"
-  "am/api/v1/service/motion/{name}/stop_pla"
-  "n\022\264\001\n\020ListPlanStatuses\022/.viam.service.mo"
-  "tion.v1.ListPlanStatusesRequest\0320.viam.s"
-  "ervice.motion.v1.ListPlanStatusesRespons"
-  "e\"=\202\323\344\223\0027\0225/viam/api/v1/service/motion/{"
-  "name}/list_plan_statuses\022\217\001\n\007GetPlan\022&.v"
-  "iam.service.motion.v1.GetPlanRequest\032\'.v"
-  "iam.service.motion.v1.GetPlanResponse\"3\202"
-  "\323\344\223\002-\022+/viam/api/v1/service/motion/{name"
-  "}/get_plan\022\207\001\n\tDoCommand\022 .viam.common.v"
-  "1.DoCommandRequest\032!.viam.common.v1.DoCo"
-  "mmandResponse\"5\202\323\344\223\002/\"-/viam/api/v1/serv"
-  "ice/motion/{name}/do_commandB\?\n\032com.viam"
-  ".service.motion.v1Z!go.viam.com/api/serv"
-  "ice/motion/v1b\006proto3"
+  "Regions\022%\n\016component_name\030\t \001(\tR\rcompone"
+  "ntName\0220\n\024movement_sensor_name\030\n \001(\tR\022mo"
+  "vementSensorName\022-\n\005extra\030c \001(\0132\027.google"
+  ".protobuf.StructR\005extraB\n\n\010_headingB\027\n\025_"
+  "motion_configuration\"8\n\023MoveOnGlobeRespo"
+  "nse\022!\n\014execution_id\030\001 \001(\tR\013executionId\"\335"
+  "\002\n\016GetPoseRequest\022\022\n\004name\030\001 \001(\tR\004name\022\\\n"
+  "\031component_name_deprecated\030\002 \001(\0132\034.viam."
+  "common.v1.ResourceNameB\002\030\001R\027componentNam"
+  "eDeprecated\022+\n\021destination_frame\030\003 \001(\tR\020"
+  "destinationFrame\022R\n\027supplemental_transfo"
+  "rms\030\004 \003(\0132\031.viam.common.v1.TransformR\026su"
+  "pplementalTransforms\022%\n\016component_name\030\005"
+  " \001(\tR\rcomponentName\022-\n\005extra\030c \001(\0132\027.goo"
+  "gle.protobuf.StructR\005extra:\002\030\001\"F\n\017GetPos"
+  "eResponse\022/\n\004pose\030\001 \001(\0132\033.viam.common.v1"
+  ".PoseInFrameR\004pose:\002\030\001\"\331\001\n\017StopPlanReque"
+  "st\022\022\n\004name\030\001 \001(\tR\004name\022\\\n\031component_name"
+  "_deprecated\030\002 \001(\0132\034.viam.common.v1.Resou"
+  "rceNameB\002\030\001R\027componentNameDeprecated\022%\n\016"
+  "component_name\030\003 \001(\tR\rcomponentName\022-\n\005e"
+  "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
+  "ra\"\022\n\020StopPlanResponse\"\210\001\n\027ListPlanStatu"
+  "sesRequest\022\022\n\004name\030\001 \001(\tR\004name\022*\n\021only_a"
+  "ctive_plans\030\002 \001(\010R\017onlyActivePlans\022-\n\005ex"
+  "tra\030c \001(\0132\027.google.protobuf.StructR\005extr"
+  "a\"y\n\030ListPlanStatusesResponse\022]\n\026plan_st"
+  "atuses_with_ids\030\001 \003(\0132(.viam.service.mot"
+  "ion.v1.PlanStatusWithIDR\023planStatusesWit"
+  "hIds\"\267\002\n\016GetPlanRequest\022\022\n\004name\030\001 \001(\tR\004n"
+  "ame\022\\\n\031component_name_deprecated\030\002 \001(\0132\034"
+  ".viam.common.v1.ResourceNameB\002\030\001R\027compon"
+  "entNameDeprecated\022$\n\016last_plan_only\030\003 \001("
+  "\010R\014lastPlanOnly\022&\n\014execution_id\030\004 \001(\tH\000R"
+  "\013executionId\210\001\001\022%\n\016component_name\030\005 \001(\tR"
+  "\rcomponentName\022-\n\005extra\030c \001(\0132\027.google.p"
+  "rotobuf.StructR\005extraB\017\n\r_execution_id\"\301"
+  "\001\n\017GetPlanResponse\022_\n\030current_plan_with_"
+  "status\030\001 \001(\0132&.viam.service.motion.v1.Pl"
+  "anWithStatusR\025currentPlanWithStatus\022M\n\016r"
+  "eplan_history\030\002 \003(\0132&.viam.service.motio"
+  "n.v1.PlanWithStatusR\rreplanHistory\"\234\003\n\013C"
+  "onstraints\022U\n\021linear_constraint\030\001 \003(\0132(."
+  "viam.service.motion.v1.LinearConstraintR"
+  "\020linearConstraint\022d\n\026orientation_constra"
+  "int\030\002 \003(\0132-.viam.service.motion.v1.Orien"
+  "tationConstraintR\025orientationConstraint\022"
+  "g\n\027collision_specification\030\003 \003(\0132..viam."
+  "service.motion.v1.CollisionSpecification"
+  "R\026collisionSpecification\022g\n\027pseudolinear"
+  "_constraint\030\004 \003(\0132..viam.service.motion."
+  "v1.PseudolinearConstraintR\026pseudolinearC"
+  "onstraint\"\273\001\n\020LinearConstraint\022/\n\021line_t"
+  "olerance_mm\030\001 \001(\002H\000R\017lineToleranceMm\210\001\001\022"
+  "A\n\032orientation_tolerance_degs\030\002 \001(\002H\001R\030o"
+  "rientationToleranceDegs\210\001\001B\024\n\022_line_tole"
+  "rance_mmB\035\n\033_orientation_tolerance_degs\""
+  "\323\001\n\026PseudolinearConstraint\0227\n\025line_toler"
+  "ance_factor\030\001 \001(\002H\000R\023lineToleranceFactor"
+  "\210\001\001\022E\n\034orientation_tolerance_factor\030\002 \001("
+  "\002H\001R\032orientationToleranceFactor\210\001\001B\030\n\026_l"
+  "ine_tolerance_factorB\037\n\035_orientation_tol"
+  "erance_factor\"y\n\025OrientationConstraint\022A"
+  "\n\032orientation_tolerance_degs\030\001 \001(\002H\000R\030or"
+  "ientationToleranceDegs\210\001\001B\035\n\033_orientatio"
+  "n_tolerance_degs\"\301\001\n\026CollisionSpecificat"
+  "ion\022]\n\006allows\030\001 \003(\0132E.viam.service.motio"
+  "n.v1.CollisionSpecification.AllowedFrame"
+  "CollisionsR\006allows\032H\n\026AllowedFrameCollis"
+  "ions\022\026\n\006frame1\030\001 \001(\tR\006frame1\022\026\n\006frame2\030\002"
+  " \001(\tR\006frame2\"\311\001\n\016PlanWithStatus\0220\n\004plan\030"
+  "\001 \001(\0132\034.viam.service.motion.v1.PlanR\004pla"
+  "n\022:\n\006status\030\002 \001(\0132\".viam.service.motion."
+  "v1.PlanStatusR\006status\022I\n\016status_history\030"
+  "\003 \003(\0132\".viam.service.motion.v1.PlanStatu"
+  "sR\rstatusHistory\"\217\002\n\020PlanStatusWithID\022\027\n"
+  "\007plan_id\030\001 \001(\tR\006planId\022\\\n\031component_name"
+  "_deprecated\030\002 \001(\0132\034.viam.common.v1.Resou"
+  "rceNameB\002\030\001R\027componentNameDeprecated\022!\n\014"
+  "execution_id\030\003 \001(\tR\013executionId\022:\n\006statu"
+  "s\030\004 \001(\0132\".viam.service.motion.v1.PlanSta"
+  "tusR\006status\022%\n\016component_name\030\005 \001(\tR\rcom"
+  "ponentName\"\247\001\n\nPlanStatus\0227\n\005state\030\001 \001(\016"
+  "2!.viam.service.motion.v1.PlanStateR\005sta"
+  "te\0228\n\ttimestamp\030\002 \001(\0132\032.google.protobuf."
+  "TimestampR\ttimestamp\022\033\n\006reason\030\003 \001(\tH\000R\006"
+  "reason\210\001\001B\t\n\007_reason\"\366\001\n\004Plan\022\016\n\002id\030\001 \001("
+  "\tR\002id\022\\\n\031component_name_deprecated\030\002 \001(\013"
+  "2\034.viam.common.v1.ResourceNameB\002\030\001R\027comp"
+  "onentNameDeprecated\022!\n\014execution_id\030\003 \001("
+  "\tR\013executionId\0226\n\005steps\030\004 \003(\0132 .viam.ser"
+  "vice.motion.v1.PlanStepR\005steps\022%\n\016compon"
+  "ent_name\030\005 \001(\tR\rcomponentName\"\253\001\n\010PlanSt"
+  "ep\022>\n\004step\030\001 \003(\0132*.viam.service.motion.v"
+  "1.PlanStep.StepEntryR\004step\032_\n\tStepEntry\022"
+  "\020\n\003key\030\001 \001(\tR\003key\022<\n\005value\030\002 \001(\0132&.viam."
+  "service.motion.v1.ComponentStateR\005value:"
+  "\0028\001\":\n\016ComponentState\022(\n\004pose\030\001 \001(\0132\024.vi"
+  "am.common.v1.PoseR\004pose*\214\001\n\tPlanState\022\032\n"
+  "\026PLAN_STATE_UNSPECIFIED\020\000\022\032\n\026PLAN_STATE_"
+  "IN_PROGRESS\020\001\022\026\n\022PLAN_STATE_STOPPED\020\002\022\030\n"
+  "\024PLAN_STATE_SUCCEEDED\020\003\022\025\n\021PLAN_STATE_FA"
+  "ILED\020\0042\314\t\n\rMotionService\022\202\001\n\004Move\022#.viam"
+  ".service.motion.v1.MoveRequest\032$.viam.se"
+  "rvice.motion.v1.MoveResponse\"/\202\323\344\223\002)\"\'/v"
+  "iam/api/v1/service/motion/{name}/move\022\230\001"
+  "\n\tMoveOnMap\022(.viam.service.motion.v1.Mov"
+  "eOnMapRequest\032).viam.service.motion.v1.M"
+  "oveOnMapResponse\"6\202\323\344\223\0020\"./viam/api/v1/s"
+  "ervice/motion/{name}/move_on_map\022\240\001\n\013Mov"
+  "eOnGlobe\022*.viam.service.motion.v1.MoveOn"
+  "GlobeRequest\032+.viam.service.motion.v1.Mo"
+  "veOnGlobeResponse\"8\202\323\344\223\0022\"0/viam/api/v1/"
+  "service/motion/{name}/move_on_globe\022\216\001\n\007"
+  "GetPose\022&.viam.service.motion.v1.GetPose"
+  "Request\032\'.viam.service.motion.v1.GetPose"
+  "Response\"2\210\002\001\202\323\344\223\002)\022\'/viam/api/v1/servic"
+  "e/motion/{name}/pose\022\223\001\n\010StopPlan\022\'.viam"
+  ".service.motion.v1.StopPlanRequest\032(.via"
+  "m.service.motion.v1.StopPlanResponse\"4\202\323"
+  "\344\223\002.\032,/viam/api/v1/service/motion/{name}"
+  "/stop_plan\022\264\001\n\020ListPlanStatuses\022/.viam.s"
+  "ervice.motion.v1.ListPlanStatusesRequest"
+  "\0320.viam.service.motion.v1.ListPlanStatus"
+  "esResponse\"=\202\323\344\223\0027\0225/viam/api/v1/service"
+  "/motion/{name}/list_plan_statuses\022\217\001\n\007Ge"
+  "tPlan\022&.viam.service.motion.v1.GetPlanRe"
+  "quest\032\'.viam.service.motion.v1.GetPlanRe"
+  "sponse\"3\202\323\344\223\002-\022+/viam/api/v1/service/mot"
+  "ion/{name}/get_plan\022\207\001\n\tDoCommand\022 .viam"
+  ".common.v1.DoCommandRequest\032!.viam.commo"
+  "n.v1.DoCommandResponse\"5\202\323\344\223\002/\"-/viam/ap"
+  "i/v1/service/motion/{name}/do_commandB\?\n"
+  "\032com.viam.service.motion.v1Z!go.viam.com"
+  "/api/service/motion/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -992,7 +1041,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto = {
-    false, false, 7301, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
+    false, false, 8070, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
     "service/motion/v1/motion.proto",
     &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once, descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps, 4, 29,
     schemas, file_default_instances, TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets,
@@ -1033,7 +1082,7 @@ class MoveRequest::_Internal {
  public:
   using HasBits = decltype(std::declval<MoveRequest>()._has_bits_);
   static const ::viam::common::v1::PoseInFrame& destination(const MoveRequest* msg);
-  static const ::viam::common::v1::ResourceName& component_name(const MoveRequest* msg);
+  static const ::viam::common::v1::ResourceName& component_name_deprecated(const MoveRequest* msg);
   static const ::viam::common::v1::WorldState& world_state(const MoveRequest* msg);
   static void set_has_world_state(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
@@ -1050,8 +1099,8 @@ MoveRequest::_Internal::destination(const MoveRequest* msg) {
   return *msg->destination_;
 }
 const ::viam::common::v1::ResourceName&
-MoveRequest::_Internal::component_name(const MoveRequest* msg) {
-  return *msg->component_name_;
+MoveRequest::_Internal::component_name_deprecated(const MoveRequest* msg) {
+  return *msg->component_name_deprecated_;
 }
 const ::viam::common::v1::WorldState&
 MoveRequest::_Internal::world_state(const MoveRequest* msg) {
@@ -1071,11 +1120,11 @@ void MoveRequest::clear_destination() {
   }
   destination_ = nullptr;
 }
-void MoveRequest::clear_component_name() {
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+void MoveRequest::clear_component_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
 }
 void MoveRequest::clear_world_state() {
   if (world_state_ != nullptr) world_state_->Clear();
@@ -1105,15 +1154,23 @@ MoveRequest::MoveRequest(const MoveRequest& from)
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
+  component_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_name().empty()) {
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_destination()) {
     destination_ = new ::viam::common::v1::PoseInFrame(*from.destination_);
   } else {
     destination_ = nullptr;
   }
-  if (from._internal_has_component_name()) {
-    component_name_ = new ::viam::common::v1::ResourceName(*from.component_name_);
+  if (from._internal_has_component_name_deprecated()) {
+    component_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.component_name_deprecated_);
   } else {
-    component_name_ = nullptr;
+    component_name_deprecated_ = nullptr;
   }
   if (from._internal_has_world_state()) {
     world_state_ = new ::viam::common::v1::WorldState(*from.world_state_);
@@ -1138,6 +1195,10 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&destination_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
@@ -1156,8 +1217,9 @@ MoveRequest::~MoveRequest() {
 inline void MoveRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
+  component_name_.Destroy();
   if (this != internal_default_instance()) delete destination_;
-  if (this != internal_default_instance()) delete component_name_;
+  if (this != internal_default_instance()) delete component_name_deprecated_;
   if (this != internal_default_instance()) delete world_state_;
   if (this != internal_default_instance()) delete constraints_;
   if (this != internal_default_instance()) delete extra_;
@@ -1174,14 +1236,15 @@ void MoveRequest::Clear() {
   (void) cached_has_bits;
 
   name_.ClearToEmpty();
+  component_name_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && destination_ != nullptr) {
     delete destination_;
   }
   destination_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
@@ -1226,10 +1289,10 @@ const char* MoveRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
+      // .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_component_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_component_name_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1247,6 +1310,16 @@ const char* MoveRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_constraints(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_name = 6 [json_name = "componentName"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_component_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.MoveRequest.component_name"));
         } else
           goto handle_unusual;
         continue;
@@ -1305,11 +1378,11 @@ uint8_t* MoveRequest::_InternalSerialize(
         _Internal::destination(this).GetCachedSize(), target, stream);
   }
 
-  // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::component_name(this),
-        _Internal::component_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(3, _Internal::component_name_deprecated(this),
+        _Internal::component_name_deprecated(this).GetCachedSize(), target, stream);
   }
 
   // optional .viam.common.v1.WorldState world_state = 4 [json_name = "worldState"];
@@ -1324,6 +1397,16 @@ uint8_t* MoveRequest::_InternalSerialize(
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(5, _Internal::constraints(this),
         _Internal::constraints(this).GetCachedSize(), target, stream);
+  }
+
+  // string component_name = 6 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_name().data(), static_cast<int>(this->_internal_component_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.MoveRequest.component_name");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_component_name(), target);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -1356,6 +1439,13 @@ size_t MoveRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
+  // string component_name = 6 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_name());
+  }
+
   // .viam.common.v1.PoseInFrame destination = 2 [json_name = "destination"];
   if (this->_internal_has_destination()) {
     total_size += 1 +
@@ -1363,11 +1453,11 @@ size_t MoveRequest::ByteSizeLong() const {
         *destination_);
   }
 
-  // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *component_name_);
+        *component_name_deprecated_);
   }
 
   cached_has_bits = _has_bits_[0];
@@ -1419,11 +1509,14 @@ void MoveRequest::MergeFrom(const MoveRequest& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
+  if (!from._internal_component_name().empty()) {
+    _internal_set_component_name(from._internal_component_name());
+  }
   if (from._internal_has_destination()) {
     _internal_mutable_destination()->::viam::common::v1::PoseInFrame::MergeFrom(from._internal_destination());
   }
-  if (from._internal_has_component_name()) {
-    _internal_mutable_component_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name());
+  if (from._internal_has_component_name_deprecated()) {
+    _internal_mutable_component_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name_deprecated());
   }
   cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
@@ -1460,6 +1553,10 @@ void MoveRequest::InternalSwap(MoveRequest* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &name_, lhs_arena,
       &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(MoveRequest, extra_)
@@ -1652,8 +1749,8 @@ class MoveOnMapRequest::_Internal {
  public:
   using HasBits = decltype(std::declval<MoveOnMapRequest>()._has_bits_);
   static const ::viam::common::v1::Pose& destination(const MoveOnMapRequest* msg);
-  static const ::viam::common::v1::ResourceName& component_name(const MoveOnMapRequest* msg);
-  static const ::viam::common::v1::ResourceName& slam_service_name(const MoveOnMapRequest* msg);
+  static const ::viam::common::v1::ResourceName& component_name_deprecated(const MoveOnMapRequest* msg);
+  static const ::viam::common::v1::ResourceName& slam_service_name_deprecated(const MoveOnMapRequest* msg);
   static const ::viam::service::motion::v1::MotionConfiguration& motion_configuration(const MoveOnMapRequest* msg);
   static void set_has_motion_configuration(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
@@ -1666,12 +1763,12 @@ MoveOnMapRequest::_Internal::destination(const MoveOnMapRequest* msg) {
   return *msg->destination_;
 }
 const ::viam::common::v1::ResourceName&
-MoveOnMapRequest::_Internal::component_name(const MoveOnMapRequest* msg) {
-  return *msg->component_name_;
+MoveOnMapRequest::_Internal::component_name_deprecated(const MoveOnMapRequest* msg) {
+  return *msg->component_name_deprecated_;
 }
 const ::viam::common::v1::ResourceName&
-MoveOnMapRequest::_Internal::slam_service_name(const MoveOnMapRequest* msg) {
-  return *msg->slam_service_name_;
+MoveOnMapRequest::_Internal::slam_service_name_deprecated(const MoveOnMapRequest* msg) {
+  return *msg->slam_service_name_deprecated_;
 }
 const ::viam::service::motion::v1::MotionConfiguration&
 MoveOnMapRequest::_Internal::motion_configuration(const MoveOnMapRequest* msg) {
@@ -1687,17 +1784,17 @@ void MoveOnMapRequest::clear_destination() {
   }
   destination_ = nullptr;
 }
-void MoveOnMapRequest::clear_component_name() {
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+void MoveOnMapRequest::clear_component_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
 }
-void MoveOnMapRequest::clear_slam_service_name() {
-  if (GetArenaForAllocation() == nullptr && slam_service_name_ != nullptr) {
-    delete slam_service_name_;
+void MoveOnMapRequest::clear_slam_service_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && slam_service_name_deprecated_ != nullptr) {
+    delete slam_service_name_deprecated_;
   }
-  slam_service_name_ = nullptr;
+  slam_service_name_deprecated_ = nullptr;
 }
 void MoveOnMapRequest::clear_obstacles() {
   obstacles_.Clear();
@@ -1728,20 +1825,36 @@ MoveOnMapRequest::MoveOnMapRequest(const MoveOnMapRequest& from)
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
+  component_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_name().empty()) {
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
+  }
+  slam_service_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    slam_service_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_slam_service_name().empty()) {
+    slam_service_name_.Set(from._internal_slam_service_name(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_destination()) {
     destination_ = new ::viam::common::v1::Pose(*from.destination_);
   } else {
     destination_ = nullptr;
   }
-  if (from._internal_has_component_name()) {
-    component_name_ = new ::viam::common::v1::ResourceName(*from.component_name_);
+  if (from._internal_has_component_name_deprecated()) {
+    component_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.component_name_deprecated_);
   } else {
-    component_name_ = nullptr;
+    component_name_deprecated_ = nullptr;
   }
-  if (from._internal_has_slam_service_name()) {
-    slam_service_name_ = new ::viam::common::v1::ResourceName(*from.slam_service_name_);
+  if (from._internal_has_slam_service_name_deprecated()) {
+    slam_service_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.slam_service_name_deprecated_);
   } else {
-    slam_service_name_ = nullptr;
+    slam_service_name_deprecated_ = nullptr;
   }
   if (from._internal_has_motion_configuration()) {
     motion_configuration_ = new ::viam::service::motion::v1::MotionConfiguration(*from.motion_configuration_);
@@ -1761,6 +1874,14 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+slam_service_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  slam_service_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&destination_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
@@ -1779,9 +1900,11 @@ MoveOnMapRequest::~MoveOnMapRequest() {
 inline void MoveOnMapRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
+  component_name_.Destroy();
+  slam_service_name_.Destroy();
   if (this != internal_default_instance()) delete destination_;
-  if (this != internal_default_instance()) delete component_name_;
-  if (this != internal_default_instance()) delete slam_service_name_;
+  if (this != internal_default_instance()) delete component_name_deprecated_;
+  if (this != internal_default_instance()) delete slam_service_name_deprecated_;
   if (this != internal_default_instance()) delete motion_configuration_;
   if (this != internal_default_instance()) delete extra_;
 }
@@ -1798,18 +1921,20 @@ void MoveOnMapRequest::Clear() {
 
   obstacles_.Clear();
   name_.ClearToEmpty();
+  component_name_.ClearToEmpty();
+  slam_service_name_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && destination_ != nullptr) {
     delete destination_;
   }
   destination_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && slam_service_name_ != nullptr) {
-    delete slam_service_name_;
+  component_name_deprecated_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && slam_service_name_deprecated_ != nullptr) {
+    delete slam_service_name_deprecated_;
   }
-  slam_service_name_ = nullptr;
+  slam_service_name_deprecated_ = nullptr;
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     GOOGLE_DCHECK(motion_configuration_ != nullptr);
@@ -1848,18 +1973,18 @@ const char* MoveOnMapRequest::_InternalParse(const char* ptr, ::_pbi::ParseConte
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
+      // .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_component_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_component_name_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName slam_service_name = 4 [json_name = "slamServiceName"];
+      // .viam.common.v1.ResourceName slam_service_name_deprecated = 4 [json_name = "slamServiceNameDeprecated", deprecated = true];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_slam_service_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_slam_service_name_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1882,6 +2007,26 @@ const char* MoveOnMapRequest::_InternalParse(const char* ptr, ::_pbi::ParseConte
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_name = 7 [json_name = "componentName"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_component_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.MoveOnMapRequest.component_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string slam_service_name = 8 [json_name = "slamServiceName"];
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          auto str = _internal_mutable_slam_service_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.MoveOnMapRequest.slam_service_name"));
         } else
           goto handle_unusual;
         continue;
@@ -1940,18 +2085,18 @@ uint8_t* MoveOnMapRequest::_InternalSerialize(
         _Internal::destination(this).GetCachedSize(), target, stream);
   }
 
-  // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::component_name(this),
-        _Internal::component_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(3, _Internal::component_name_deprecated(this),
+        _Internal::component_name_deprecated(this).GetCachedSize(), target, stream);
   }
 
-  // .viam.common.v1.ResourceName slam_service_name = 4 [json_name = "slamServiceName"];
-  if (this->_internal_has_slam_service_name()) {
+  // .viam.common.v1.ResourceName slam_service_name_deprecated = 4 [json_name = "slamServiceNameDeprecated", deprecated = true];
+  if (this->_internal_has_slam_service_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(4, _Internal::slam_service_name(this),
-        _Internal::slam_service_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(4, _Internal::slam_service_name_deprecated(this),
+        _Internal::slam_service_name_deprecated(this).GetCachedSize(), target, stream);
   }
 
   // optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 5 [json_name = "motionConfiguration"];
@@ -1967,6 +2112,26 @@ uint8_t* MoveOnMapRequest::_InternalSerialize(
     const auto& repfield = this->_internal_obstacles(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(6, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // string component_name = 7 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_name().data(), static_cast<int>(this->_internal_component_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.MoveOnMapRequest.component_name");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_component_name(), target);
+  }
+
+  // string slam_service_name = 8 [json_name = "slamServiceName"];
+  if (!this->_internal_slam_service_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_slam_service_name().data(), static_cast<int>(this->_internal_slam_service_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.MoveOnMapRequest.slam_service_name");
+    target = stream->WriteStringMaybeAliased(
+        8, this->_internal_slam_service_name(), target);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -2006,6 +2171,20 @@ size_t MoveOnMapRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
+  // string component_name = 7 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_name());
+  }
+
+  // string slam_service_name = 8 [json_name = "slamServiceName"];
+  if (!this->_internal_slam_service_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_slam_service_name());
+  }
+
   // .viam.common.v1.Pose destination = 2 [json_name = "destination"];
   if (this->_internal_has_destination()) {
     total_size += 1 +
@@ -2013,18 +2192,18 @@ size_t MoveOnMapRequest::ByteSizeLong() const {
         *destination_);
   }
 
-  // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *component_name_);
+        *component_name_deprecated_);
   }
 
-  // .viam.common.v1.ResourceName slam_service_name = 4 [json_name = "slamServiceName"];
-  if (this->_internal_has_slam_service_name()) {
+  // .viam.common.v1.ResourceName slam_service_name_deprecated = 4 [json_name = "slamServiceNameDeprecated", deprecated = true];
+  if (this->_internal_has_slam_service_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *slam_service_name_);
+        *slam_service_name_deprecated_);
   }
 
   // optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 5 [json_name = "motionConfiguration"];
@@ -2068,14 +2247,20 @@ void MoveOnMapRequest::MergeFrom(const MoveOnMapRequest& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
+  if (!from._internal_component_name().empty()) {
+    _internal_set_component_name(from._internal_component_name());
+  }
+  if (!from._internal_slam_service_name().empty()) {
+    _internal_set_slam_service_name(from._internal_slam_service_name());
+  }
   if (from._internal_has_destination()) {
     _internal_mutable_destination()->::viam::common::v1::Pose::MergeFrom(from._internal_destination());
   }
-  if (from._internal_has_component_name()) {
-    _internal_mutable_component_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name());
+  if (from._internal_has_component_name_deprecated()) {
+    _internal_mutable_component_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name_deprecated());
   }
-  if (from._internal_has_slam_service_name()) {
-    _internal_mutable_slam_service_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_slam_service_name());
+  if (from._internal_has_slam_service_name_deprecated()) {
+    _internal_mutable_slam_service_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_slam_service_name_deprecated());
   }
   if (from._internal_has_motion_configuration()) {
     _internal_mutable_motion_configuration()->::viam::service::motion::v1::MotionConfiguration::MergeFrom(from._internal_motion_configuration());
@@ -2107,6 +2292,14 @@ void MoveOnMapRequest::InternalSwap(MoveOnMapRequest* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &name_, lhs_arena,
       &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &slam_service_name_, lhs_arena,
+      &other->slam_service_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(MoveOnMapRequest, extra_)
@@ -2321,29 +2514,29 @@ void MoveOnMapResponse::InternalSwap(MoveOnMapResponse* other) {
 
 class ObstacleDetector::_Internal {
  public:
-  static const ::viam::common::v1::ResourceName& vision_service(const ObstacleDetector* msg);
-  static const ::viam::common::v1::ResourceName& camera(const ObstacleDetector* msg);
+  static const ::viam::common::v1::ResourceName& vision_service_deprecated(const ObstacleDetector* msg);
+  static const ::viam::common::v1::ResourceName& camera_deprecated(const ObstacleDetector* msg);
 };
 
 const ::viam::common::v1::ResourceName&
-ObstacleDetector::_Internal::vision_service(const ObstacleDetector* msg) {
-  return *msg->vision_service_;
+ObstacleDetector::_Internal::vision_service_deprecated(const ObstacleDetector* msg) {
+  return *msg->vision_service_deprecated_;
 }
 const ::viam::common::v1::ResourceName&
-ObstacleDetector::_Internal::camera(const ObstacleDetector* msg) {
-  return *msg->camera_;
+ObstacleDetector::_Internal::camera_deprecated(const ObstacleDetector* msg) {
+  return *msg->camera_deprecated_;
 }
-void ObstacleDetector::clear_vision_service() {
-  if (GetArenaForAllocation() == nullptr && vision_service_ != nullptr) {
-    delete vision_service_;
+void ObstacleDetector::clear_vision_service_deprecated() {
+  if (GetArenaForAllocation() == nullptr && vision_service_deprecated_ != nullptr) {
+    delete vision_service_deprecated_;
   }
-  vision_service_ = nullptr;
+  vision_service_deprecated_ = nullptr;
 }
-void ObstacleDetector::clear_camera() {
-  if (GetArenaForAllocation() == nullptr && camera_ != nullptr) {
-    delete camera_;
+void ObstacleDetector::clear_camera_deprecated() {
+  if (GetArenaForAllocation() == nullptr && camera_deprecated_ != nullptr) {
+    delete camera_deprecated_;
   }
-  camera_ = nullptr;
+  camera_deprecated_ = nullptr;
 }
 ObstacleDetector::ObstacleDetector(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -2354,24 +2547,48 @@ ObstacleDetector::ObstacleDetector(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 ObstacleDetector::ObstacleDetector(const ObstacleDetector& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_vision_service()) {
-    vision_service_ = new ::viam::common::v1::ResourceName(*from.vision_service_);
-  } else {
-    vision_service_ = nullptr;
+  vision_service_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    vision_service_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_vision_service().empty()) {
+    vision_service_.Set(from._internal_vision_service(), 
+      GetArenaForAllocation());
   }
-  if (from._internal_has_camera()) {
-    camera_ = new ::viam::common::v1::ResourceName(*from.camera_);
+  camera_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    camera_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_camera().empty()) {
+    camera_.Set(from._internal_camera(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_vision_service_deprecated()) {
+    vision_service_deprecated_ = new ::viam::common::v1::ResourceName(*from.vision_service_deprecated_);
   } else {
-    camera_ = nullptr;
+    vision_service_deprecated_ = nullptr;
+  }
+  if (from._internal_has_camera_deprecated()) {
+    camera_deprecated_ = new ::viam::common::v1::ResourceName(*from.camera_deprecated_);
+  } else {
+    camera_deprecated_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.motion.v1.ObstacleDetector)
 }
 
 inline void ObstacleDetector::SharedCtor() {
+vision_service_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  vision_service_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+camera_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  camera_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&vision_service_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&camera_) -
-    reinterpret_cast<char*>(&vision_service_)) + sizeof(camera_));
+    reinterpret_cast<char*>(&vision_service_deprecated_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&camera_deprecated_) -
+    reinterpret_cast<char*>(&vision_service_deprecated_)) + sizeof(camera_deprecated_));
 }
 
 ObstacleDetector::~ObstacleDetector() {
@@ -2385,8 +2602,10 @@ ObstacleDetector::~ObstacleDetector() {
 
 inline void ObstacleDetector::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete vision_service_;
-  if (this != internal_default_instance()) delete camera_;
+  vision_service_.Destroy();
+  camera_.Destroy();
+  if (this != internal_default_instance()) delete vision_service_deprecated_;
+  if (this != internal_default_instance()) delete camera_deprecated_;
 }
 
 void ObstacleDetector::SetCachedSize(int size) const {
@@ -2399,14 +2618,16 @@ void ObstacleDetector::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && vision_service_ != nullptr) {
-    delete vision_service_;
+  vision_service_.ClearToEmpty();
+  camera_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && vision_service_deprecated_ != nullptr) {
+    delete vision_service_deprecated_;
   }
-  vision_service_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && camera_ != nullptr) {
-    delete camera_;
+  vision_service_deprecated_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && camera_deprecated_ != nullptr) {
+    delete camera_deprecated_;
   }
-  camera_ = nullptr;
+  camera_deprecated_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2416,19 +2637,39 @@ const char* ObstacleDetector::_InternalParse(const char* ptr, ::_pbi::ParseConte
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .viam.common.v1.ResourceName vision_service = 1 [json_name = "visionService"];
+      // .viam.common.v1.ResourceName vision_service_deprecated = 1 [json_name = "visionServiceDeprecated", deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_vision_service(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_vision_service_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName camera = 2 [json_name = "camera"];
+      // .viam.common.v1.ResourceName camera_deprecated = 2 [json_name = "cameraDeprecated", deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_camera(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_camera_deprecated(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string vision_service = 3 [json_name = "visionService"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_vision_service();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.ObstacleDetector.vision_service"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string camera = 4 [json_name = "camera"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_camera();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.ObstacleDetector.camera"));
         } else
           goto handle_unusual;
         continue;
@@ -2461,18 +2702,38 @@ uint8_t* ObstacleDetector::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .viam.common.v1.ResourceName vision_service = 1 [json_name = "visionService"];
-  if (this->_internal_has_vision_service()) {
+  // .viam.common.v1.ResourceName vision_service_deprecated = 1 [json_name = "visionServiceDeprecated", deprecated = true];
+  if (this->_internal_has_vision_service_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::vision_service(this),
-        _Internal::vision_service(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(1, _Internal::vision_service_deprecated(this),
+        _Internal::vision_service_deprecated(this).GetCachedSize(), target, stream);
   }
 
-  // .viam.common.v1.ResourceName camera = 2 [json_name = "camera"];
-  if (this->_internal_has_camera()) {
+  // .viam.common.v1.ResourceName camera_deprecated = 2 [json_name = "cameraDeprecated", deprecated = true];
+  if (this->_internal_has_camera_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::camera(this),
-        _Internal::camera(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(2, _Internal::camera_deprecated(this),
+        _Internal::camera_deprecated(this).GetCachedSize(), target, stream);
+  }
+
+  // string vision_service = 3 [json_name = "visionService"];
+  if (!this->_internal_vision_service().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_vision_service().data(), static_cast<int>(this->_internal_vision_service().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.ObstacleDetector.vision_service");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_vision_service(), target);
+  }
+
+  // string camera = 4 [json_name = "camera"];
+  if (!this->_internal_camera().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_camera().data(), static_cast<int>(this->_internal_camera().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.ObstacleDetector.camera");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_camera(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2491,18 +2752,32 @@ size_t ObstacleDetector::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .viam.common.v1.ResourceName vision_service = 1 [json_name = "visionService"];
-  if (this->_internal_has_vision_service()) {
+  // string vision_service = 3 [json_name = "visionService"];
+  if (!this->_internal_vision_service().empty()) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *vision_service_);
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_vision_service());
   }
 
-  // .viam.common.v1.ResourceName camera = 2 [json_name = "camera"];
-  if (this->_internal_has_camera()) {
+  // string camera = 4 [json_name = "camera"];
+  if (!this->_internal_camera().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_camera());
+  }
+
+  // .viam.common.v1.ResourceName vision_service_deprecated = 1 [json_name = "visionServiceDeprecated", deprecated = true];
+  if (this->_internal_has_vision_service_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *camera_);
+        *vision_service_deprecated_);
+  }
+
+  // .viam.common.v1.ResourceName camera_deprecated = 2 [json_name = "cameraDeprecated", deprecated = true];
+  if (this->_internal_has_camera_deprecated()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *camera_deprecated_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -2527,11 +2802,17 @@ void ObstacleDetector::MergeFrom(const ObstacleDetector& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_vision_service()) {
-    _internal_mutable_vision_service()->::viam::common::v1::ResourceName::MergeFrom(from._internal_vision_service());
+  if (!from._internal_vision_service().empty()) {
+    _internal_set_vision_service(from._internal_vision_service());
   }
-  if (from._internal_has_camera()) {
-    _internal_mutable_camera()->::viam::common::v1::ResourceName::MergeFrom(from._internal_camera());
+  if (!from._internal_camera().empty()) {
+    _internal_set_camera(from._internal_camera());
+  }
+  if (from._internal_has_vision_service_deprecated()) {
+    _internal_mutable_vision_service_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_vision_service_deprecated());
+  }
+  if (from._internal_has_camera_deprecated()) {
+    _internal_mutable_camera_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_camera_deprecated());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2549,13 +2830,23 @@ bool ObstacleDetector::IsInitialized() const {
 
 void ObstacleDetector::InternalSwap(ObstacleDetector* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &vision_service_, lhs_arena,
+      &other->vision_service_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &camera_, lhs_arena,
+      &other->camera_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ObstacleDetector, camera_)
-      + sizeof(ObstacleDetector::camera_)
-      - PROTOBUF_FIELD_OFFSET(ObstacleDetector, vision_service_)>(
-          reinterpret_cast<char*>(&vision_service_),
-          reinterpret_cast<char*>(&other->vision_service_));
+      PROTOBUF_FIELD_OFFSET(ObstacleDetector, camera_deprecated_)
+      + sizeof(ObstacleDetector::camera_deprecated_)
+      - PROTOBUF_FIELD_OFFSET(ObstacleDetector, vision_service_deprecated_)>(
+          reinterpret_cast<char*>(&vision_service_deprecated_),
+          reinterpret_cast<char*>(&other->vision_service_deprecated_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ObstacleDetector::GetMetadata() const {
@@ -2913,8 +3204,8 @@ class MoveOnGlobeRequest::_Internal {
   static void set_has_heading(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }
-  static const ::viam::common::v1::ResourceName& component_name(const MoveOnGlobeRequest* msg);
-  static const ::viam::common::v1::ResourceName& movement_sensor_name(const MoveOnGlobeRequest* msg);
+  static const ::viam::common::v1::ResourceName& component_name_deprecated(const MoveOnGlobeRequest* msg);
+  static const ::viam::common::v1::ResourceName& movement_sensor_name_deprecated(const MoveOnGlobeRequest* msg);
   static const ::viam::service::motion::v1::MotionConfiguration& motion_configuration(const MoveOnGlobeRequest* msg);
   static void set_has_motion_configuration(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
@@ -2927,12 +3218,12 @@ MoveOnGlobeRequest::_Internal::destination(const MoveOnGlobeRequest* msg) {
   return *msg->destination_;
 }
 const ::viam::common::v1::ResourceName&
-MoveOnGlobeRequest::_Internal::component_name(const MoveOnGlobeRequest* msg) {
-  return *msg->component_name_;
+MoveOnGlobeRequest::_Internal::component_name_deprecated(const MoveOnGlobeRequest* msg) {
+  return *msg->component_name_deprecated_;
 }
 const ::viam::common::v1::ResourceName&
-MoveOnGlobeRequest::_Internal::movement_sensor_name(const MoveOnGlobeRequest* msg) {
-  return *msg->movement_sensor_name_;
+MoveOnGlobeRequest::_Internal::movement_sensor_name_deprecated(const MoveOnGlobeRequest* msg) {
+  return *msg->movement_sensor_name_deprecated_;
 }
 const ::viam::service::motion::v1::MotionConfiguration&
 MoveOnGlobeRequest::_Internal::motion_configuration(const MoveOnGlobeRequest* msg) {
@@ -2948,17 +3239,17 @@ void MoveOnGlobeRequest::clear_destination() {
   }
   destination_ = nullptr;
 }
-void MoveOnGlobeRequest::clear_component_name() {
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+void MoveOnGlobeRequest::clear_component_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
 }
-void MoveOnGlobeRequest::clear_movement_sensor_name() {
-  if (GetArenaForAllocation() == nullptr && movement_sensor_name_ != nullptr) {
-    delete movement_sensor_name_;
+void MoveOnGlobeRequest::clear_movement_sensor_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && movement_sensor_name_deprecated_ != nullptr) {
+    delete movement_sensor_name_deprecated_;
   }
-  movement_sensor_name_ = nullptr;
+  movement_sensor_name_deprecated_ = nullptr;
 }
 void MoveOnGlobeRequest::clear_obstacles() {
   obstacles_.Clear();
@@ -2994,20 +3285,36 @@ MoveOnGlobeRequest::MoveOnGlobeRequest(const MoveOnGlobeRequest& from)
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
+  component_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_name().empty()) {
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
+  }
+  movement_sensor_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    movement_sensor_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_movement_sensor_name().empty()) {
+    movement_sensor_name_.Set(from._internal_movement_sensor_name(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_destination()) {
     destination_ = new ::viam::common::v1::GeoPoint(*from.destination_);
   } else {
     destination_ = nullptr;
   }
-  if (from._internal_has_component_name()) {
-    component_name_ = new ::viam::common::v1::ResourceName(*from.component_name_);
+  if (from._internal_has_component_name_deprecated()) {
+    component_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.component_name_deprecated_);
   } else {
-    component_name_ = nullptr;
+    component_name_deprecated_ = nullptr;
   }
-  if (from._internal_has_movement_sensor_name()) {
-    movement_sensor_name_ = new ::viam::common::v1::ResourceName(*from.movement_sensor_name_);
+  if (from._internal_has_movement_sensor_name_deprecated()) {
+    movement_sensor_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.movement_sensor_name_deprecated_);
   } else {
-    movement_sensor_name_ = nullptr;
+    movement_sensor_name_deprecated_ = nullptr;
   }
   if (from._internal_has_motion_configuration()) {
     motion_configuration_ = new ::viam::service::motion::v1::MotionConfiguration(*from.motion_configuration_);
@@ -3028,6 +3335,14 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+movement_sensor_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  movement_sensor_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&destination_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&heading_) -
@@ -3046,9 +3361,11 @@ MoveOnGlobeRequest::~MoveOnGlobeRequest() {
 inline void MoveOnGlobeRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
+  component_name_.Destroy();
+  movement_sensor_name_.Destroy();
   if (this != internal_default_instance()) delete destination_;
-  if (this != internal_default_instance()) delete component_name_;
-  if (this != internal_default_instance()) delete movement_sensor_name_;
+  if (this != internal_default_instance()) delete component_name_deprecated_;
+  if (this != internal_default_instance()) delete movement_sensor_name_deprecated_;
   if (this != internal_default_instance()) delete motion_configuration_;
   if (this != internal_default_instance()) delete extra_;
 }
@@ -3066,18 +3383,20 @@ void MoveOnGlobeRequest::Clear() {
   obstacles_.Clear();
   bounding_regions_.Clear();
   name_.ClearToEmpty();
+  component_name_.ClearToEmpty();
+  movement_sensor_name_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && destination_ != nullptr) {
     delete destination_;
   }
   destination_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && movement_sensor_name_ != nullptr) {
-    delete movement_sensor_name_;
+  component_name_deprecated_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && movement_sensor_name_deprecated_ != nullptr) {
+    delete movement_sensor_name_deprecated_;
   }
-  movement_sensor_name_ = nullptr;
+  movement_sensor_name_deprecated_ = nullptr;
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     GOOGLE_DCHECK(motion_configuration_ != nullptr);
@@ -3126,18 +3445,18 @@ const char* MoveOnGlobeRequest::_InternalParse(const char* ptr, ::_pbi::ParseCon
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName component_name = 4 [json_name = "componentName"];
+      // .viam.common.v1.ResourceName component_name_deprecated = 4 [json_name = "componentNameDeprecated", deprecated = true];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_component_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_component_name_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName movement_sensor_name = 5 [json_name = "movementSensorName"];
+      // .viam.common.v1.ResourceName movement_sensor_name_deprecated = 5 [json_name = "movementSensorNameDeprecated", deprecated = true];
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
-          ptr = ctx->ParseMessage(_internal_mutable_movement_sensor_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_movement_sensor_name_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3173,6 +3492,26 @@ const char* MoveOnGlobeRequest::_InternalParse(const char* ptr, ::_pbi::ParseCon
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<66>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_name = 9 [json_name = "componentName"];
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          auto str = _internal_mutable_component_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.MoveOnGlobeRequest.component_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string movement_sensor_name = 10 [json_name = "movementSensorName"];
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+          auto str = _internal_mutable_movement_sensor_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name"));
         } else
           goto handle_unusual;
         continue;
@@ -3237,18 +3576,18 @@ uint8_t* MoveOnGlobeRequest::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_heading(), target);
   }
 
-  // .viam.common.v1.ResourceName component_name = 4 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 4 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(4, _Internal::component_name(this),
-        _Internal::component_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(4, _Internal::component_name_deprecated(this),
+        _Internal::component_name_deprecated(this).GetCachedSize(), target, stream);
   }
 
-  // .viam.common.v1.ResourceName movement_sensor_name = 5 [json_name = "movementSensorName"];
-  if (this->_internal_has_movement_sensor_name()) {
+  // .viam.common.v1.ResourceName movement_sensor_name_deprecated = 5 [json_name = "movementSensorNameDeprecated", deprecated = true];
+  if (this->_internal_has_movement_sensor_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(5, _Internal::movement_sensor_name(this),
-        _Internal::movement_sensor_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(5, _Internal::movement_sensor_name_deprecated(this),
+        _Internal::movement_sensor_name_deprecated(this).GetCachedSize(), target, stream);
   }
 
   // repeated .viam.common.v1.GeoGeometry obstacles = 6 [json_name = "obstacles"];
@@ -3272,6 +3611,26 @@ uint8_t* MoveOnGlobeRequest::_InternalSerialize(
     const auto& repfield = this->_internal_bounding_regions(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(8, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // string component_name = 9 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_name().data(), static_cast<int>(this->_internal_component_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.MoveOnGlobeRequest.component_name");
+    target = stream->WriteStringMaybeAliased(
+        9, this->_internal_component_name(), target);
+  }
+
+  // string movement_sensor_name = 10 [json_name = "movementSensorName"];
+  if (!this->_internal_movement_sensor_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_movement_sensor_name().data(), static_cast<int>(this->_internal_movement_sensor_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name");
+    target = stream->WriteStringMaybeAliased(
+        10, this->_internal_movement_sensor_name(), target);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -3318,6 +3677,20 @@ size_t MoveOnGlobeRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
+  // string component_name = 9 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_name());
+  }
+
+  // string movement_sensor_name = 10 [json_name = "movementSensorName"];
+  if (!this->_internal_movement_sensor_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_movement_sensor_name());
+  }
+
   // .viam.common.v1.GeoPoint destination = 2 [json_name = "destination"];
   if (this->_internal_has_destination()) {
     total_size += 1 +
@@ -3325,18 +3698,18 @@ size_t MoveOnGlobeRequest::ByteSizeLong() const {
         *destination_);
   }
 
-  // .viam.common.v1.ResourceName component_name = 4 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 4 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *component_name_);
+        *component_name_deprecated_);
   }
 
-  // .viam.common.v1.ResourceName movement_sensor_name = 5 [json_name = "movementSensorName"];
-  if (this->_internal_has_movement_sensor_name()) {
+  // .viam.common.v1.ResourceName movement_sensor_name_deprecated = 5 [json_name = "movementSensorNameDeprecated", deprecated = true];
+  if (this->_internal_has_movement_sensor_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *movement_sensor_name_);
+        *movement_sensor_name_deprecated_);
   }
 
   // optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 7 [json_name = "motionConfiguration"];
@@ -3386,14 +3759,20 @@ void MoveOnGlobeRequest::MergeFrom(const MoveOnGlobeRequest& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
+  if (!from._internal_component_name().empty()) {
+    _internal_set_component_name(from._internal_component_name());
+  }
+  if (!from._internal_movement_sensor_name().empty()) {
+    _internal_set_movement_sensor_name(from._internal_movement_sensor_name());
+  }
   if (from._internal_has_destination()) {
     _internal_mutable_destination()->::viam::common::v1::GeoPoint::MergeFrom(from._internal_destination());
   }
-  if (from._internal_has_component_name()) {
-    _internal_mutable_component_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name());
+  if (from._internal_has_component_name_deprecated()) {
+    _internal_mutable_component_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name_deprecated());
   }
-  if (from._internal_has_movement_sensor_name()) {
-    _internal_mutable_movement_sensor_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_movement_sensor_name());
+  if (from._internal_has_movement_sensor_name_deprecated()) {
+    _internal_mutable_movement_sensor_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_movement_sensor_name_deprecated());
   }
   if (from._internal_has_motion_configuration()) {
     _internal_mutable_motion_configuration()->::viam::service::motion::v1::MotionConfiguration::MergeFrom(from._internal_motion_configuration());
@@ -3429,6 +3808,14 @@ void MoveOnGlobeRequest::InternalSwap(MoveOnGlobeRequest* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &name_, lhs_arena,
       &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &movement_sensor_name_, lhs_arena,
+      &other->movement_sensor_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(MoveOnGlobeRequest, heading_)
@@ -3643,23 +4030,23 @@ void MoveOnGlobeResponse::InternalSwap(MoveOnGlobeResponse* other) {
 
 class GetPoseRequest::_Internal {
  public:
-  static const ::viam::common::v1::ResourceName& component_name(const GetPoseRequest* msg);
+  static const ::viam::common::v1::ResourceName& component_name_deprecated(const GetPoseRequest* msg);
   static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const GetPoseRequest* msg);
 };
 
 const ::viam::common::v1::ResourceName&
-GetPoseRequest::_Internal::component_name(const GetPoseRequest* msg) {
-  return *msg->component_name_;
+GetPoseRequest::_Internal::component_name_deprecated(const GetPoseRequest* msg) {
+  return *msg->component_name_deprecated_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetPoseRequest::_Internal::extra(const GetPoseRequest* msg) {
   return *msg->extra_;
 }
-void GetPoseRequest::clear_component_name() {
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+void GetPoseRequest::clear_component_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
 }
 void GetPoseRequest::clear_supplemental_transforms() {
   supplemental_transforms_.Clear();
@@ -3697,10 +4084,18 @@ GetPoseRequest::GetPoseRequest(const GetPoseRequest& from)
     destination_frame_.Set(from._internal_destination_frame(), 
       GetArenaForAllocation());
   }
-  if (from._internal_has_component_name()) {
-    component_name_ = new ::viam::common::v1::ResourceName(*from.component_name_);
+  component_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_name().empty()) {
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    component_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.component_name_deprecated_);
   } else {
-    component_name_ = nullptr;
+    component_name_deprecated_ = nullptr;
   }
   if (from._internal_has_extra()) {
     extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
@@ -3719,10 +4114,14 @@ destination_frame_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   destination_frame_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&component_name_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&component_name_deprecated_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&component_name_)) + sizeof(extra_));
+    reinterpret_cast<char*>(&component_name_deprecated_)) + sizeof(extra_));
 }
 
 GetPoseRequest::~GetPoseRequest() {
@@ -3738,7 +4137,8 @@ inline void GetPoseRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
   destination_frame_.Destroy();
-  if (this != internal_default_instance()) delete component_name_;
+  component_name_.Destroy();
+  if (this != internal_default_instance()) delete component_name_deprecated_;
   if (this != internal_default_instance()) delete extra_;
 }
 
@@ -3755,10 +4155,11 @@ void GetPoseRequest::Clear() {
   supplemental_transforms_.Clear();
   name_.ClearToEmpty();
   destination_frame_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+  component_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
     delete extra_;
   }
@@ -3782,10 +4183,10 @@ const char* GetPoseRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+      // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_component_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_component_name_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3810,6 +4211,16 @@ const char* GetPoseRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_name = 5 [json_name = "componentName"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_component_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.GetPoseRequest.component_name"));
         } else
           goto handle_unusual;
         continue;
@@ -3860,11 +4271,11 @@ uint8_t* GetPoseRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::component_name(this),
-        _Internal::component_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(2, _Internal::component_name_deprecated(this),
+        _Internal::component_name_deprecated(this).GetCachedSize(), target, stream);
   }
 
   // string destination_frame = 3 [json_name = "destinationFrame"];
@@ -3883,6 +4294,16 @@ uint8_t* GetPoseRequest::_InternalSerialize(
     const auto& repfield = this->_internal_supplemental_transforms(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_name().data(), static_cast<int>(this->_internal_component_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.GetPoseRequest.component_name");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_component_name(), target);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -3929,11 +4350,18 @@ size_t GetPoseRequest::ByteSizeLong() const {
         this->_internal_destination_frame());
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_name());
+  }
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *component_name_);
+        *component_name_deprecated_);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -3972,8 +4400,11 @@ void GetPoseRequest::MergeFrom(const GetPoseRequest& from) {
   if (!from._internal_destination_frame().empty()) {
     _internal_set_destination_frame(from._internal_destination_frame());
   }
-  if (from._internal_has_component_name()) {
-    _internal_mutable_component_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name());
+  if (!from._internal_component_name().empty()) {
+    _internal_set_component_name(from._internal_component_name());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    _internal_mutable_component_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name_deprecated());
   }
   if (from._internal_has_extra()) {
     _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
@@ -4006,12 +4437,16 @@ void GetPoseRequest::InternalSwap(GetPoseRequest* other) {
       &destination_frame_, lhs_arena,
       &other->destination_frame_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(GetPoseRequest, extra_)
       + sizeof(GetPoseRequest::extra_)
-      - PROTOBUF_FIELD_OFFSET(GetPoseRequest, component_name_)>(
-          reinterpret_cast<char*>(&component_name_),
-          reinterpret_cast<char*>(&other->component_name_));
+      - PROTOBUF_FIELD_OFFSET(GetPoseRequest, component_name_deprecated_)>(
+          reinterpret_cast<char*>(&component_name_deprecated_),
+          reinterpret_cast<char*>(&other->component_name_deprecated_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPoseRequest::GetMetadata() const {
@@ -4217,23 +4652,23 @@ void GetPoseResponse::InternalSwap(GetPoseResponse* other) {
 
 class StopPlanRequest::_Internal {
  public:
-  static const ::viam::common::v1::ResourceName& component_name(const StopPlanRequest* msg);
+  static const ::viam::common::v1::ResourceName& component_name_deprecated(const StopPlanRequest* msg);
   static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const StopPlanRequest* msg);
 };
 
 const ::viam::common::v1::ResourceName&
-StopPlanRequest::_Internal::component_name(const StopPlanRequest* msg) {
-  return *msg->component_name_;
+StopPlanRequest::_Internal::component_name_deprecated(const StopPlanRequest* msg) {
+  return *msg->component_name_deprecated_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 StopPlanRequest::_Internal::extra(const StopPlanRequest* msg) {
   return *msg->extra_;
 }
-void StopPlanRequest::clear_component_name() {
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+void StopPlanRequest::clear_component_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
 }
 void StopPlanRequest::clear_extra() {
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
@@ -4258,10 +4693,18 @@ StopPlanRequest::StopPlanRequest(const StopPlanRequest& from)
     name_.Set(from._internal_name(), 
       GetArenaForAllocation());
   }
-  if (from._internal_has_component_name()) {
-    component_name_ = new ::viam::common::v1::ResourceName(*from.component_name_);
+  component_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_name().empty()) {
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    component_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.component_name_deprecated_);
   } else {
-    component_name_ = nullptr;
+    component_name_deprecated_ = nullptr;
   }
   if (from._internal_has_extra()) {
     extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
@@ -4276,10 +4719,14 @@ name_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   name_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&component_name_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&component_name_deprecated_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&component_name_)) + sizeof(extra_));
+    reinterpret_cast<char*>(&component_name_deprecated_)) + sizeof(extra_));
 }
 
 StopPlanRequest::~StopPlanRequest() {
@@ -4294,7 +4741,8 @@ StopPlanRequest::~StopPlanRequest() {
 inline void StopPlanRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
-  if (this != internal_default_instance()) delete component_name_;
+  component_name_.Destroy();
+  if (this != internal_default_instance()) delete component_name_deprecated_;
   if (this != internal_default_instance()) delete extra_;
 }
 
@@ -4309,10 +4757,11 @@ void StopPlanRequest::Clear() {
   (void) cached_has_bits;
 
   name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+  component_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
     delete extra_;
   }
@@ -4336,11 +4785,21 @@ const char* StopPlanRequest::_InternalParse(const char* ptr, ::_pbi::ParseContex
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+      // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_component_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_component_name_deprecated(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_name = 3 [json_name = "componentName"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_component_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.StopPlanRequest.component_name"));
         } else
           goto handle_unusual;
         continue;
@@ -4391,11 +4850,21 @@ uint8_t* StopPlanRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::component_name(this),
-        _Internal::component_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(2, _Internal::component_name_deprecated(this),
+        _Internal::component_name_deprecated(this).GetCachedSize(), target, stream);
+  }
+
+  // string component_name = 3 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_name().data(), static_cast<int>(this->_internal_component_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.StopPlanRequest.component_name");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_component_name(), target);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -4428,11 +4897,18 @@ size_t StopPlanRequest::ByteSizeLong() const {
         this->_internal_name());
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // string component_name = 3 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_name());
+  }
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *component_name_);
+        *component_name_deprecated_);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -4467,8 +4943,11 @@ void StopPlanRequest::MergeFrom(const StopPlanRequest& from) {
   if (!from._internal_name().empty()) {
     _internal_set_name(from._internal_name());
   }
-  if (from._internal_has_component_name()) {
-    _internal_mutable_component_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name());
+  if (!from._internal_component_name().empty()) {
+    _internal_set_component_name(from._internal_component_name());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    _internal_mutable_component_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name_deprecated());
   }
   if (from._internal_has_extra()) {
     _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
@@ -4496,12 +4975,16 @@ void StopPlanRequest::InternalSwap(StopPlanRequest* other) {
       &name_, lhs_arena,
       &other->name_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(StopPlanRequest, extra_)
       + sizeof(StopPlanRequest::extra_)
-      - PROTOBUF_FIELD_OFFSET(StopPlanRequest, component_name_)>(
-          reinterpret_cast<char*>(&component_name_),
-          reinterpret_cast<char*>(&other->component_name_));
+      - PROTOBUF_FIELD_OFFSET(StopPlanRequest, component_name_deprecated_)>(
+          reinterpret_cast<char*>(&component_name_deprecated_),
+          reinterpret_cast<char*>(&other->component_name_deprecated_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StopPlanRequest::GetMetadata() const {
@@ -5007,7 +5490,7 @@ void ListPlanStatusesResponse::InternalSwap(ListPlanStatusesResponse* other) {
 class GetPlanRequest::_Internal {
  public:
   using HasBits = decltype(std::declval<GetPlanRequest>()._has_bits_);
-  static const ::viam::common::v1::ResourceName& component_name(const GetPlanRequest* msg);
+  static const ::viam::common::v1::ResourceName& component_name_deprecated(const GetPlanRequest* msg);
   static void set_has_execution_id(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -5015,18 +5498,18 @@ class GetPlanRequest::_Internal {
 };
 
 const ::viam::common::v1::ResourceName&
-GetPlanRequest::_Internal::component_name(const GetPlanRequest* msg) {
-  return *msg->component_name_;
+GetPlanRequest::_Internal::component_name_deprecated(const GetPlanRequest* msg) {
+  return *msg->component_name_deprecated_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetPlanRequest::_Internal::extra(const GetPlanRequest* msg) {
   return *msg->extra_;
 }
-void GetPlanRequest::clear_component_name() {
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+void GetPlanRequest::clear_component_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
 }
 void GetPlanRequest::clear_extra() {
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
@@ -5060,10 +5543,18 @@ GetPlanRequest::GetPlanRequest(const GetPlanRequest& from)
     execution_id_.Set(from._internal_execution_id(), 
       GetArenaForAllocation());
   }
-  if (from._internal_has_component_name()) {
-    component_name_ = new ::viam::common::v1::ResourceName(*from.component_name_);
+  component_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_name().empty()) {
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    component_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.component_name_deprecated_);
   } else {
-    component_name_ = nullptr;
+    component_name_deprecated_ = nullptr;
   }
   if (from._internal_has_extra()) {
     extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
@@ -5083,10 +5574,14 @@ execution_id_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   execution_id_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&component_name_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&component_name_deprecated_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&last_plan_only_) -
-    reinterpret_cast<char*>(&component_name_)) + sizeof(last_plan_only_));
+    reinterpret_cast<char*>(&component_name_deprecated_)) + sizeof(last_plan_only_));
 }
 
 GetPlanRequest::~GetPlanRequest() {
@@ -5102,7 +5597,8 @@ inline void GetPlanRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   name_.Destroy();
   execution_id_.Destroy();
-  if (this != internal_default_instance()) delete component_name_;
+  component_name_.Destroy();
+  if (this != internal_default_instance()) delete component_name_deprecated_;
   if (this != internal_default_instance()) delete extra_;
 }
 
@@ -5121,10 +5617,11 @@ void GetPlanRequest::Clear() {
   if (cached_has_bits & 0x00000001u) {
     execution_id_.ClearNonDefaultToEmpty();
   }
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+  component_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
   if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
     delete extra_;
   }
@@ -5151,10 +5648,10 @@ const char* GetPlanRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+      // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_component_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_component_name_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -5174,6 +5671,16 @@ const char* GetPlanRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.GetPlanRequest.execution_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_name = 5 [json_name = "componentName"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_component_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.GetPlanRequest.component_name"));
         } else
           goto handle_unusual;
         continue;
@@ -5225,11 +5732,11 @@ uint8_t* GetPlanRequest::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::component_name(this),
-        _Internal::component_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(2, _Internal::component_name_deprecated(this),
+        _Internal::component_name_deprecated(this).GetCachedSize(), target, stream);
   }
 
   // bool last_plan_only = 3 [json_name = "lastPlanOnly"];
@@ -5246,6 +5753,16 @@ uint8_t* GetPlanRequest::_InternalSerialize(
       "viam.service.motion.v1.GetPlanRequest.execution_id");
     target = stream->WriteStringMaybeAliased(
         4, this->_internal_execution_id(), target);
+  }
+
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_name().data(), static_cast<int>(this->_internal_component_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.GetPlanRequest.component_name");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_component_name(), target);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -5286,11 +5803,18 @@ size_t GetPlanRequest::ByteSizeLong() const {
         this->_internal_execution_id());
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_name());
+  }
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *component_name_);
+        *component_name_deprecated_);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -5333,8 +5857,11 @@ void GetPlanRequest::MergeFrom(const GetPlanRequest& from) {
   if (from._internal_has_execution_id()) {
     _internal_set_execution_id(from._internal_execution_id());
   }
-  if (from._internal_has_component_name()) {
-    _internal_mutable_component_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name());
+  if (!from._internal_component_name().empty()) {
+    _internal_set_component_name(from._internal_component_name());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    _internal_mutable_component_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name_deprecated());
   }
   if (from._internal_has_extra()) {
     _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
@@ -5370,12 +5897,16 @@ void GetPlanRequest::InternalSwap(GetPlanRequest* other) {
       &execution_id_, lhs_arena,
       &other->execution_id_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(GetPlanRequest, last_plan_only_)
       + sizeof(GetPlanRequest::last_plan_only_)
-      - PROTOBUF_FIELD_OFFSET(GetPlanRequest, component_name_)>(
-          reinterpret_cast<char*>(&component_name_),
-          reinterpret_cast<char*>(&other->component_name_));
+      - PROTOBUF_FIELD_OFFSET(GetPlanRequest, component_name_deprecated_)>(
+          reinterpret_cast<char*>(&component_name_deprecated_),
+          reinterpret_cast<char*>(&other->component_name_deprecated_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPlanRequest::GetMetadata() const {
@@ -7214,23 +7745,23 @@ void PlanWithStatus::InternalSwap(PlanWithStatus* other) {
 
 class PlanStatusWithID::_Internal {
  public:
-  static const ::viam::common::v1::ResourceName& component_name(const PlanStatusWithID* msg);
+  static const ::viam::common::v1::ResourceName& component_name_deprecated(const PlanStatusWithID* msg);
   static const ::viam::service::motion::v1::PlanStatus& status(const PlanStatusWithID* msg);
 };
 
 const ::viam::common::v1::ResourceName&
-PlanStatusWithID::_Internal::component_name(const PlanStatusWithID* msg) {
-  return *msg->component_name_;
+PlanStatusWithID::_Internal::component_name_deprecated(const PlanStatusWithID* msg) {
+  return *msg->component_name_deprecated_;
 }
 const ::viam::service::motion::v1::PlanStatus&
 PlanStatusWithID::_Internal::status(const PlanStatusWithID* msg) {
   return *msg->status_;
 }
-void PlanStatusWithID::clear_component_name() {
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+void PlanStatusWithID::clear_component_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
 }
 PlanStatusWithID::PlanStatusWithID(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -7257,10 +7788,18 @@ PlanStatusWithID::PlanStatusWithID(const PlanStatusWithID& from)
     execution_id_.Set(from._internal_execution_id(), 
       GetArenaForAllocation());
   }
-  if (from._internal_has_component_name()) {
-    component_name_ = new ::viam::common::v1::ResourceName(*from.component_name_);
+  component_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_name().empty()) {
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    component_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.component_name_deprecated_);
   } else {
-    component_name_ = nullptr;
+    component_name_deprecated_ = nullptr;
   }
   if (from._internal_has_status()) {
     status_ = new ::viam::service::motion::v1::PlanStatus(*from.status_);
@@ -7279,10 +7818,14 @@ execution_id_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   execution_id_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&component_name_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&component_name_deprecated_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&status_) -
-    reinterpret_cast<char*>(&component_name_)) + sizeof(status_));
+    reinterpret_cast<char*>(&component_name_deprecated_)) + sizeof(status_));
 }
 
 PlanStatusWithID::~PlanStatusWithID() {
@@ -7298,7 +7841,8 @@ inline void PlanStatusWithID::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   plan_id_.Destroy();
   execution_id_.Destroy();
-  if (this != internal_default_instance()) delete component_name_;
+  component_name_.Destroy();
+  if (this != internal_default_instance()) delete component_name_deprecated_;
   if (this != internal_default_instance()) delete status_;
 }
 
@@ -7314,10 +7858,11 @@ void PlanStatusWithID::Clear() {
 
   plan_id_.ClearToEmpty();
   execution_id_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+  component_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
   if (GetArenaForAllocation() == nullptr && status_ != nullptr) {
     delete status_;
   }
@@ -7341,10 +7886,10 @@ const char* PlanStatusWithID::_InternalParse(const char* ptr, ::_pbi::ParseConte
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+      // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_component_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_component_name_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -7364,6 +7909,16 @@ const char* PlanStatusWithID::_InternalParse(const char* ptr, ::_pbi::ParseConte
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_status(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_name = 5 [json_name = "componentName"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_component_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.PlanStatusWithID.component_name"));
         } else
           goto handle_unusual;
         continue;
@@ -7406,11 +7961,11 @@ uint8_t* PlanStatusWithID::_InternalSerialize(
         1, this->_internal_plan_id(), target);
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::component_name(this),
-        _Internal::component_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(2, _Internal::component_name_deprecated(this),
+        _Internal::component_name_deprecated(this).GetCachedSize(), target, stream);
   }
 
   // string execution_id = 3 [json_name = "executionId"];
@@ -7428,6 +7983,16 @@ uint8_t* PlanStatusWithID::_InternalSerialize(
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(4, _Internal::status(this),
         _Internal::status(this).GetCachedSize(), target, stream);
+  }
+
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_name().data(), static_cast<int>(this->_internal_component_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.PlanStatusWithID.component_name");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_component_name(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -7460,11 +8025,18 @@ size_t PlanStatusWithID::ByteSizeLong() const {
         this->_internal_execution_id());
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_name());
+  }
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *component_name_);
+        *component_name_deprecated_);
   }
 
   // .viam.service.motion.v1.PlanStatus status = 4 [json_name = "status"];
@@ -7502,8 +8074,11 @@ void PlanStatusWithID::MergeFrom(const PlanStatusWithID& from) {
   if (!from._internal_execution_id().empty()) {
     _internal_set_execution_id(from._internal_execution_id());
   }
-  if (from._internal_has_component_name()) {
-    _internal_mutable_component_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name());
+  if (!from._internal_component_name().empty()) {
+    _internal_set_component_name(from._internal_component_name());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    _internal_mutable_component_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name_deprecated());
   }
   if (from._internal_has_status()) {
     _internal_mutable_status()->::viam::service::motion::v1::PlanStatus::MergeFrom(from._internal_status());
@@ -7535,12 +8110,16 @@ void PlanStatusWithID::InternalSwap(PlanStatusWithID* other) {
       &execution_id_, lhs_arena,
       &other->execution_id_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(PlanStatusWithID, status_)
       + sizeof(PlanStatusWithID::status_)
-      - PROTOBUF_FIELD_OFFSET(PlanStatusWithID, component_name_)>(
-          reinterpret_cast<char*>(&component_name_),
-          reinterpret_cast<char*>(&other->component_name_));
+      - PROTOBUF_FIELD_OFFSET(PlanStatusWithID, component_name_deprecated_)>(
+          reinterpret_cast<char*>(&component_name_deprecated_),
+          reinterpret_cast<char*>(&other->component_name_deprecated_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PlanStatusWithID::GetMetadata() const {
@@ -7844,18 +8423,18 @@ void PlanStatus::InternalSwap(PlanStatus* other) {
 
 class Plan::_Internal {
  public:
-  static const ::viam::common::v1::ResourceName& component_name(const Plan* msg);
+  static const ::viam::common::v1::ResourceName& component_name_deprecated(const Plan* msg);
 };
 
 const ::viam::common::v1::ResourceName&
-Plan::_Internal::component_name(const Plan* msg) {
-  return *msg->component_name_;
+Plan::_Internal::component_name_deprecated(const Plan* msg) {
+  return *msg->component_name_deprecated_;
 }
-void Plan::clear_component_name() {
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+void Plan::clear_component_name_deprecated() {
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
 }
 Plan::Plan(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -7884,10 +8463,18 @@ Plan::Plan(const Plan& from)
     execution_id_.Set(from._internal_execution_id(), 
       GetArenaForAllocation());
   }
-  if (from._internal_has_component_name()) {
-    component_name_ = new ::viam::common::v1::ResourceName(*from.component_name_);
+  component_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_name().empty()) {
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    component_name_deprecated_ = new ::viam::common::v1::ResourceName(*from.component_name_deprecated_);
   } else {
-    component_name_ = nullptr;
+    component_name_deprecated_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.motion.v1.Plan)
 }
@@ -7901,7 +8488,11 @@ execution_id_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   execution_id_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-component_name_ = nullptr;
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_deprecated_ = nullptr;
 }
 
 Plan::~Plan() {
@@ -7917,7 +8508,8 @@ inline void Plan::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   id_.Destroy();
   execution_id_.Destroy();
-  if (this != internal_default_instance()) delete component_name_;
+  component_name_.Destroy();
+  if (this != internal_default_instance()) delete component_name_deprecated_;
 }
 
 void Plan::SetCachedSize(int size) const {
@@ -7933,10 +8525,11 @@ void Plan::Clear() {
   steps_.Clear();
   id_.ClearToEmpty();
   execution_id_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && component_name_ != nullptr) {
-    delete component_name_;
+  component_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && component_name_deprecated_ != nullptr) {
+    delete component_name_deprecated_;
   }
-  component_name_ = nullptr;
+  component_name_deprecated_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -7956,10 +8549,10 @@ const char* Plan::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
+      // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_component_name(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_component_name_deprecated(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -7984,6 +8577,16 @@ const char* Plan::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_name = 5 [json_name = "componentName"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_component_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.motion.v1.Plan.component_name"));
         } else
           goto handle_unusual;
         continue;
@@ -8026,11 +8629,11 @@ uint8_t* Plan::_InternalSerialize(
         1, this->_internal_id(), target);
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::component_name(this),
-        _Internal::component_name(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(2, _Internal::component_name_deprecated(this),
+        _Internal::component_name_deprecated(this).GetCachedSize(), target, stream);
   }
 
   // string execution_id = 3 [json_name = "executionId"];
@@ -8049,6 +8652,16 @@ uint8_t* Plan::_InternalSerialize(
     const auto& repfield = this->_internal_steps(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_name().data(), static_cast<int>(this->_internal_component_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.motion.v1.Plan.component_name");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_component_name(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -8088,11 +8701,18 @@ size_t Plan::ByteSizeLong() const {
         this->_internal_execution_id());
   }
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  if (this->_internal_has_component_name()) {
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_name());
+  }
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  if (this->_internal_has_component_name_deprecated()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *component_name_);
+        *component_name_deprecated_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -8124,8 +8744,11 @@ void Plan::MergeFrom(const Plan& from) {
   if (!from._internal_execution_id().empty()) {
     _internal_set_execution_id(from._internal_execution_id());
   }
-  if (from._internal_has_component_name()) {
-    _internal_mutable_component_name()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name());
+  if (!from._internal_component_name().empty()) {
+    _internal_set_component_name(from._internal_component_name());
+  }
+  if (from._internal_has_component_name_deprecated()) {
+    _internal_mutable_component_name_deprecated()->::viam::common::v1::ResourceName::MergeFrom(from._internal_component_name_deprecated());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -8155,7 +8778,11 @@ void Plan::InternalSwap(Plan* other) {
       &execution_id_, lhs_arena,
       &other->execution_id_, rhs_arena
   );
-  swap(component_name_, other->component_name_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
+  );
+  swap(component_name_deprecated_, other->component_name_deprecated_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Plan::GetMetadata() const {

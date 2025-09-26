@@ -334,8 +334,9 @@ class MoveRequest final :
 
   enum : int {
     kNameFieldNumber = 1,
+    kComponentNameFieldNumber = 6,
     kDestinationFieldNumber = 2,
-    kComponentNameFieldNumber = 3,
+    kComponentNameDeprecatedFieldNumber = 3,
     kWorldStateFieldNumber = 4,
     kConstraintsFieldNumber = 5,
     kExtraFieldNumber = 99,
@@ -352,6 +353,20 @@ class MoveRequest final :
   const std::string& _internal_name() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
   std::string* _internal_mutable_name();
+  public:
+
+  // string component_name = 6 [json_name = "componentName"];
+  void clear_component_name();
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
+  private:
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
   public:
 
   // .viam.common.v1.PoseInFrame destination = 2 [json_name = "destination"];
@@ -372,23 +387,23 @@ class MoveRequest final :
       ::viam::common::v1::PoseInFrame* destination);
   ::viam::common::v1::PoseInFrame* unsafe_arena_release_destination();
 
-  // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-  bool has_component_name() const;
+  // .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_component_name_deprecated() const;
   private:
-  bool _internal_has_component_name() const;
+  bool _internal_has_component_name_deprecated() const;
   public:
-  void clear_component_name();
-  const ::viam::common::v1::ResourceName& component_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
-  ::viam::common::v1::ResourceName* mutable_component_name();
-  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  PROTOBUF_DEPRECATED void clear_component_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& component_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_component_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_component_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated);
   private:
-  const ::viam::common::v1::ResourceName& _internal_component_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  const ::viam::common::v1::ResourceName& _internal_component_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name_deprecated();
   public:
-  void unsafe_arena_set_allocated_component_name(
-      ::viam::common::v1::ResourceName* component_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_component_name_deprecated(
+      ::viam::common::v1::ResourceName* component_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_component_name_deprecated();
 
   // optional .viam.common.v1.WorldState world_state = 4 [json_name = "worldState"];
   bool has_world_state() const;
@@ -454,8 +469,9 @@ class MoveRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
   ::viam::common::v1::PoseInFrame* destination_;
-  ::viam::common::v1::ResourceName* component_name_;
+  ::viam::common::v1::ResourceName* component_name_deprecated_;
   ::viam::common::v1::WorldState* world_state_;
   ::viam::service::motion::v1::Constraints* constraints_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
@@ -727,9 +743,11 @@ class MoveOnMapRequest final :
   enum : int {
     kObstaclesFieldNumber = 6,
     kNameFieldNumber = 1,
+    kComponentNameFieldNumber = 7,
+    kSlamServiceNameFieldNumber = 8,
     kDestinationFieldNumber = 2,
-    kComponentNameFieldNumber = 3,
-    kSlamServiceNameFieldNumber = 4,
+    kComponentNameDeprecatedFieldNumber = 3,
+    kSlamServiceNameDeprecatedFieldNumber = 4,
     kMotionConfigurationFieldNumber = 5,
     kExtraFieldNumber = 99,
   };
@@ -765,6 +783,34 @@ class MoveOnMapRequest final :
   std::string* _internal_mutable_name();
   public:
 
+  // string component_name = 7 [json_name = "componentName"];
+  void clear_component_name();
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
+  private:
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
+  public:
+
+  // string slam_service_name = 8 [json_name = "slamServiceName"];
+  void clear_slam_service_name();
+  const std::string& slam_service_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_slam_service_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_slam_service_name();
+  PROTOBUF_NODISCARD std::string* release_slam_service_name();
+  void set_allocated_slam_service_name(std::string* slam_service_name);
+  private:
+  const std::string& _internal_slam_service_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_slam_service_name(const std::string& value);
+  std::string* _internal_mutable_slam_service_name();
+  public:
+
   // .viam.common.v1.Pose destination = 2 [json_name = "destination"];
   bool has_destination() const;
   private:
@@ -783,41 +829,41 @@ class MoveOnMapRequest final :
       ::viam::common::v1::Pose* destination);
   ::viam::common::v1::Pose* unsafe_arena_release_destination();
 
-  // .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-  bool has_component_name() const;
+  // .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_component_name_deprecated() const;
   private:
-  bool _internal_has_component_name() const;
+  bool _internal_has_component_name_deprecated() const;
   public:
-  void clear_component_name();
-  const ::viam::common::v1::ResourceName& component_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
-  ::viam::common::v1::ResourceName* mutable_component_name();
-  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  PROTOBUF_DEPRECATED void clear_component_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& component_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_component_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_component_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated);
   private:
-  const ::viam::common::v1::ResourceName& _internal_component_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  const ::viam::common::v1::ResourceName& _internal_component_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name_deprecated();
   public:
-  void unsafe_arena_set_allocated_component_name(
-      ::viam::common::v1::ResourceName* component_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_component_name_deprecated(
+      ::viam::common::v1::ResourceName* component_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_component_name_deprecated();
 
-  // .viam.common.v1.ResourceName slam_service_name = 4 [json_name = "slamServiceName"];
-  bool has_slam_service_name() const;
+  // .viam.common.v1.ResourceName slam_service_name_deprecated = 4 [json_name = "slamServiceNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_slam_service_name_deprecated() const;
   private:
-  bool _internal_has_slam_service_name() const;
+  bool _internal_has_slam_service_name_deprecated() const;
   public:
-  void clear_slam_service_name();
-  const ::viam::common::v1::ResourceName& slam_service_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_slam_service_name();
-  ::viam::common::v1::ResourceName* mutable_slam_service_name();
-  void set_allocated_slam_service_name(::viam::common::v1::ResourceName* slam_service_name);
+  PROTOBUF_DEPRECATED void clear_slam_service_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& slam_service_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_slam_service_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_slam_service_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_slam_service_name_deprecated(::viam::common::v1::ResourceName* slam_service_name_deprecated);
   private:
-  const ::viam::common::v1::ResourceName& _internal_slam_service_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_slam_service_name();
+  const ::viam::common::v1::ResourceName& _internal_slam_service_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_slam_service_name_deprecated();
   public:
-  void unsafe_arena_set_allocated_slam_service_name(
-      ::viam::common::v1::ResourceName* slam_service_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_slam_service_name();
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_slam_service_name_deprecated(
+      ::viam::common::v1::ResourceName* slam_service_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_slam_service_name_deprecated();
 
   // optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 5 [json_name = "motionConfiguration"];
   bool has_motion_configuration() const;
@@ -866,9 +912,11 @@ class MoveOnMapRequest final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geometry > obstacles_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr slam_service_name_;
   ::viam::common::v1::Pose* destination_;
-  ::viam::common::v1::ResourceName* component_name_;
-  ::viam::common::v1::ResourceName* slam_service_name_;
+  ::viam::common::v1::ResourceName* component_name_deprecated_;
+  ::viam::common::v1::ResourceName* slam_service_name_deprecated_;
   ::viam::service::motion::v1::MotionConfiguration* motion_configuration_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
@@ -1142,44 +1190,74 @@ class ObstacleDetector final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kVisionServiceFieldNumber = 1,
-    kCameraFieldNumber = 2,
+    kVisionServiceFieldNumber = 3,
+    kCameraFieldNumber = 4,
+    kVisionServiceDeprecatedFieldNumber = 1,
+    kCameraDeprecatedFieldNumber = 2,
   };
-  // .viam.common.v1.ResourceName vision_service = 1 [json_name = "visionService"];
-  bool has_vision_service() const;
-  private:
-  bool _internal_has_vision_service() const;
-  public:
+  // string vision_service = 3 [json_name = "visionService"];
   void clear_vision_service();
-  const ::viam::common::v1::ResourceName& vision_service() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_vision_service();
-  ::viam::common::v1::ResourceName* mutable_vision_service();
-  void set_allocated_vision_service(::viam::common::v1::ResourceName* vision_service);
+  const std::string& vision_service() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_vision_service(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_vision_service();
+  PROTOBUF_NODISCARD std::string* release_vision_service();
+  void set_allocated_vision_service(std::string* vision_service);
   private:
-  const ::viam::common::v1::ResourceName& _internal_vision_service() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_vision_service();
+  const std::string& _internal_vision_service() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_vision_service(const std::string& value);
+  std::string* _internal_mutable_vision_service();
   public:
-  void unsafe_arena_set_allocated_vision_service(
-      ::viam::common::v1::ResourceName* vision_service);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_vision_service();
 
-  // .viam.common.v1.ResourceName camera = 2 [json_name = "camera"];
-  bool has_camera() const;
-  private:
-  bool _internal_has_camera() const;
-  public:
+  // string camera = 4 [json_name = "camera"];
   void clear_camera();
-  const ::viam::common::v1::ResourceName& camera() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_camera();
-  ::viam::common::v1::ResourceName* mutable_camera();
-  void set_allocated_camera(::viam::common::v1::ResourceName* camera);
+  const std::string& camera() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_camera(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_camera();
+  PROTOBUF_NODISCARD std::string* release_camera();
+  void set_allocated_camera(std::string* camera);
   private:
-  const ::viam::common::v1::ResourceName& _internal_camera() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_camera();
+  const std::string& _internal_camera() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_camera(const std::string& value);
+  std::string* _internal_mutable_camera();
   public:
-  void unsafe_arena_set_allocated_camera(
-      ::viam::common::v1::ResourceName* camera);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_camera();
+
+  // .viam.common.v1.ResourceName vision_service_deprecated = 1 [json_name = "visionServiceDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_vision_service_deprecated() const;
+  private:
+  bool _internal_has_vision_service_deprecated() const;
+  public:
+  PROTOBUF_DEPRECATED void clear_vision_service_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& vision_service_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_vision_service_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_vision_service_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_vision_service_deprecated(::viam::common::v1::ResourceName* vision_service_deprecated);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_vision_service_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_vision_service_deprecated();
+  public:
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_vision_service_deprecated(
+      ::viam::common::v1::ResourceName* vision_service_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_vision_service_deprecated();
+
+  // .viam.common.v1.ResourceName camera_deprecated = 2 [json_name = "cameraDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_camera_deprecated() const;
+  private:
+  bool _internal_has_camera_deprecated() const;
+  public:
+  PROTOBUF_DEPRECATED void clear_camera_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& camera_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_camera_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_camera_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_camera_deprecated(::viam::common::v1::ResourceName* camera_deprecated);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_camera_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_camera_deprecated();
+  public:
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_camera_deprecated(
+      ::viam::common::v1::ResourceName* camera_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_camera_deprecated();
 
   // @@protoc_insertion_point(class_scope:viam.service.motion.v1.ObstacleDetector)
  private:
@@ -1188,8 +1266,10 @@ class ObstacleDetector final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::viam::common::v1::ResourceName* vision_service_;
-  ::viam::common::v1::ResourceName* camera_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr vision_service_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr camera_;
+  ::viam::common::v1::ResourceName* vision_service_deprecated_;
+  ::viam::common::v1::ResourceName* camera_deprecated_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
@@ -1545,9 +1625,11 @@ class MoveOnGlobeRequest final :
     kObstaclesFieldNumber = 6,
     kBoundingRegionsFieldNumber = 8,
     kNameFieldNumber = 1,
+    kComponentNameFieldNumber = 9,
+    kMovementSensorNameFieldNumber = 10,
     kDestinationFieldNumber = 2,
-    kComponentNameFieldNumber = 4,
-    kMovementSensorNameFieldNumber = 5,
+    kComponentNameDeprecatedFieldNumber = 4,
+    kMovementSensorNameDeprecatedFieldNumber = 5,
     kMotionConfigurationFieldNumber = 7,
     kExtraFieldNumber = 99,
     kHeadingFieldNumber = 3,
@@ -1602,6 +1684,34 @@ class MoveOnGlobeRequest final :
   std::string* _internal_mutable_name();
   public:
 
+  // string component_name = 9 [json_name = "componentName"];
+  void clear_component_name();
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
+  private:
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
+  public:
+
+  // string movement_sensor_name = 10 [json_name = "movementSensorName"];
+  void clear_movement_sensor_name();
+  const std::string& movement_sensor_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_movement_sensor_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_movement_sensor_name();
+  PROTOBUF_NODISCARD std::string* release_movement_sensor_name();
+  void set_allocated_movement_sensor_name(std::string* movement_sensor_name);
+  private:
+  const std::string& _internal_movement_sensor_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_movement_sensor_name(const std::string& value);
+  std::string* _internal_mutable_movement_sensor_name();
+  public:
+
   // .viam.common.v1.GeoPoint destination = 2 [json_name = "destination"];
   bool has_destination() const;
   private:
@@ -1620,41 +1730,41 @@ class MoveOnGlobeRequest final :
       ::viam::common::v1::GeoPoint* destination);
   ::viam::common::v1::GeoPoint* unsafe_arena_release_destination();
 
-  // .viam.common.v1.ResourceName component_name = 4 [json_name = "componentName"];
-  bool has_component_name() const;
+  // .viam.common.v1.ResourceName component_name_deprecated = 4 [json_name = "componentNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_component_name_deprecated() const;
   private:
-  bool _internal_has_component_name() const;
+  bool _internal_has_component_name_deprecated() const;
   public:
-  void clear_component_name();
-  const ::viam::common::v1::ResourceName& component_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
-  ::viam::common::v1::ResourceName* mutable_component_name();
-  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  PROTOBUF_DEPRECATED void clear_component_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& component_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_component_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_component_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated);
   private:
-  const ::viam::common::v1::ResourceName& _internal_component_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  const ::viam::common::v1::ResourceName& _internal_component_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name_deprecated();
   public:
-  void unsafe_arena_set_allocated_component_name(
-      ::viam::common::v1::ResourceName* component_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_component_name_deprecated(
+      ::viam::common::v1::ResourceName* component_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_component_name_deprecated();
 
-  // .viam.common.v1.ResourceName movement_sensor_name = 5 [json_name = "movementSensorName"];
-  bool has_movement_sensor_name() const;
+  // .viam.common.v1.ResourceName movement_sensor_name_deprecated = 5 [json_name = "movementSensorNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_movement_sensor_name_deprecated() const;
   private:
-  bool _internal_has_movement_sensor_name() const;
+  bool _internal_has_movement_sensor_name_deprecated() const;
   public:
-  void clear_movement_sensor_name();
-  const ::viam::common::v1::ResourceName& movement_sensor_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_movement_sensor_name();
-  ::viam::common::v1::ResourceName* mutable_movement_sensor_name();
-  void set_allocated_movement_sensor_name(::viam::common::v1::ResourceName* movement_sensor_name);
+  PROTOBUF_DEPRECATED void clear_movement_sensor_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& movement_sensor_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_movement_sensor_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_movement_sensor_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_movement_sensor_name_deprecated(::viam::common::v1::ResourceName* movement_sensor_name_deprecated);
   private:
-  const ::viam::common::v1::ResourceName& _internal_movement_sensor_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_movement_sensor_name();
+  const ::viam::common::v1::ResourceName& _internal_movement_sensor_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_movement_sensor_name_deprecated();
   public:
-  void unsafe_arena_set_allocated_movement_sensor_name(
-      ::viam::common::v1::ResourceName* movement_sensor_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_movement_sensor_name();
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_movement_sensor_name_deprecated(
+      ::viam::common::v1::ResourceName* movement_sensor_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_movement_sensor_name_deprecated();
 
   // optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 7 [json_name = "motionConfiguration"];
   bool has_motion_configuration() const;
@@ -1717,9 +1827,11 @@ class MoveOnGlobeRequest final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry > obstacles_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoGeometry > bounding_regions_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr movement_sensor_name_;
   ::viam::common::v1::GeoPoint* destination_;
-  ::viam::common::v1::ResourceName* component_name_;
-  ::viam::common::v1::ResourceName* movement_sensor_name_;
+  ::viam::common::v1::ResourceName* component_name_deprecated_;
+  ::viam::common::v1::ResourceName* movement_sensor_name_deprecated_;
   ::viam::service::motion::v1::MotionConfiguration* motion_configuration_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   double heading_;
@@ -1997,7 +2109,8 @@ class GetPoseRequest final :
     kSupplementalTransformsFieldNumber = 4,
     kNameFieldNumber = 1,
     kDestinationFrameFieldNumber = 3,
-    kComponentNameFieldNumber = 2,
+    kComponentNameFieldNumber = 5,
+    kComponentNameDeprecatedFieldNumber = 2,
     kExtraFieldNumber = 99,
   };
   // repeated .viam.common.v1.Transform supplemental_transforms = 4 [json_name = "supplementalTransforms"];
@@ -2046,23 +2159,37 @@ class GetPoseRequest final :
   std::string* _internal_mutable_destination_frame();
   public:
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  bool has_component_name() const;
-  private:
-  bool _internal_has_component_name() const;
-  public:
+  // string component_name = 5 [json_name = "componentName"];
   void clear_component_name();
-  const ::viam::common::v1::ResourceName& component_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
-  ::viam::common::v1::ResourceName* mutable_component_name();
-  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
   private:
-  const ::viam::common::v1::ResourceName& _internal_component_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
   public:
-  void unsafe_arena_set_allocated_component_name(
-      ::viam::common::v1::ResourceName* component_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_component_name_deprecated() const;
+  private:
+  bool _internal_has_component_name_deprecated() const;
+  public:
+  PROTOBUF_DEPRECATED void clear_component_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& component_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_component_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_component_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name_deprecated();
+  public:
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_component_name_deprecated(
+      ::viam::common::v1::ResourceName* component_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_component_name_deprecated();
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   bool has_extra() const;
@@ -2092,7 +2219,8 @@ class GetPoseRequest final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Transform > supplemental_transforms_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr destination_frame_;
-  ::viam::common::v1::ResourceName* component_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
+  ::viam::common::v1::ResourceName* component_name_deprecated_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
@@ -2371,7 +2499,8 @@ class StopPlanRequest final :
 
   enum : int {
     kNameFieldNumber = 1,
-    kComponentNameFieldNumber = 2,
+    kComponentNameFieldNumber = 3,
+    kComponentNameDeprecatedFieldNumber = 2,
     kExtraFieldNumber = 99,
   };
   // string name = 1 [json_name = "name"];
@@ -2388,23 +2517,37 @@ class StopPlanRequest final :
   std::string* _internal_mutable_name();
   public:
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  bool has_component_name() const;
-  private:
-  bool _internal_has_component_name() const;
-  public:
+  // string component_name = 3 [json_name = "componentName"];
   void clear_component_name();
-  const ::viam::common::v1::ResourceName& component_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
-  ::viam::common::v1::ResourceName* mutable_component_name();
-  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
   private:
-  const ::viam::common::v1::ResourceName& _internal_component_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
   public:
-  void unsafe_arena_set_allocated_component_name(
-      ::viam::common::v1::ResourceName* component_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_component_name_deprecated() const;
+  private:
+  bool _internal_has_component_name_deprecated() const;
+  public:
+  PROTOBUF_DEPRECATED void clear_component_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& component_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_component_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_component_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name_deprecated();
+  public:
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_component_name_deprecated(
+      ::viam::common::v1::ResourceName* component_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_component_name_deprecated();
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   bool has_extra() const;
@@ -2432,7 +2575,8 @@ class StopPlanRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::viam::common::v1::ResourceName* component_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
+  ::viam::common::v1::ResourceName* component_name_deprecated_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
@@ -3007,7 +3151,8 @@ class GetPlanRequest final :
   enum : int {
     kNameFieldNumber = 1,
     kExecutionIdFieldNumber = 4,
-    kComponentNameFieldNumber = 2,
+    kComponentNameFieldNumber = 5,
+    kComponentNameDeprecatedFieldNumber = 2,
     kExtraFieldNumber = 99,
     kLastPlanOnlyFieldNumber = 3,
   };
@@ -3043,23 +3188,37 @@ class GetPlanRequest final :
   std::string* _internal_mutable_execution_id();
   public:
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  bool has_component_name() const;
-  private:
-  bool _internal_has_component_name() const;
-  public:
+  // string component_name = 5 [json_name = "componentName"];
   void clear_component_name();
-  const ::viam::common::v1::ResourceName& component_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
-  ::viam::common::v1::ResourceName* mutable_component_name();
-  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
   private:
-  const ::viam::common::v1::ResourceName& _internal_component_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
   public:
-  void unsafe_arena_set_allocated_component_name(
-      ::viam::common::v1::ResourceName* component_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_component_name_deprecated() const;
+  private:
+  bool _internal_has_component_name_deprecated() const;
+  public:
+  PROTOBUF_DEPRECATED void clear_component_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& component_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_component_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_component_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name_deprecated();
+  public:
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_component_name_deprecated(
+      ::viam::common::v1::ResourceName* component_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_component_name_deprecated();
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   bool has_extra() const;
@@ -3099,7 +3258,8 @@ class GetPlanRequest final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr execution_id_;
-  ::viam::common::v1::ResourceName* component_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
+  ::viam::common::v1::ResourceName* component_name_deprecated_;
   ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   bool last_plan_only_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
@@ -4595,7 +4755,8 @@ class PlanStatusWithID final :
   enum : int {
     kPlanIdFieldNumber = 1,
     kExecutionIdFieldNumber = 3,
-    kComponentNameFieldNumber = 2,
+    kComponentNameFieldNumber = 5,
+    kComponentNameDeprecatedFieldNumber = 2,
     kStatusFieldNumber = 4,
   };
   // string plan_id = 1 [json_name = "planId"];
@@ -4626,23 +4787,37 @@ class PlanStatusWithID final :
   std::string* _internal_mutable_execution_id();
   public:
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  bool has_component_name() const;
-  private:
-  bool _internal_has_component_name() const;
-  public:
+  // string component_name = 5 [json_name = "componentName"];
   void clear_component_name();
-  const ::viam::common::v1::ResourceName& component_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
-  ::viam::common::v1::ResourceName* mutable_component_name();
-  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
   private:
-  const ::viam::common::v1::ResourceName& _internal_component_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
   public:
-  void unsafe_arena_set_allocated_component_name(
-      ::viam::common::v1::ResourceName* component_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_component_name_deprecated() const;
+  private:
+  bool _internal_has_component_name_deprecated() const;
+  public:
+  PROTOBUF_DEPRECATED void clear_component_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& component_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_component_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_component_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name_deprecated();
+  public:
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_component_name_deprecated(
+      ::viam::common::v1::ResourceName* component_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_component_name_deprecated();
 
   // .viam.service.motion.v1.PlanStatus status = 4 [json_name = "status"];
   bool has_status() const;
@@ -4671,7 +4846,8 @@ class PlanStatusWithID final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr plan_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr execution_id_;
-  ::viam::common::v1::ResourceName* component_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
+  ::viam::common::v1::ResourceName* component_name_deprecated_;
   ::viam::service::motion::v1::PlanStatus* status_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
@@ -4984,7 +5160,8 @@ class Plan final :
     kStepsFieldNumber = 4,
     kIdFieldNumber = 1,
     kExecutionIdFieldNumber = 3,
-    kComponentNameFieldNumber = 2,
+    kComponentNameFieldNumber = 5,
+    kComponentNameDeprecatedFieldNumber = 2,
   };
   // repeated .viam.service.motion.v1.PlanStep steps = 4 [json_name = "steps"];
   int steps_size() const;
@@ -5032,23 +5209,37 @@ class Plan final :
   std::string* _internal_mutable_execution_id();
   public:
 
-  // .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-  bool has_component_name() const;
-  private:
-  bool _internal_has_component_name() const;
-  public:
+  // string component_name = 5 [json_name = "componentName"];
   void clear_component_name();
-  const ::viam::common::v1::ResourceName& component_name() const;
-  PROTOBUF_NODISCARD ::viam::common::v1::ResourceName* release_component_name();
-  ::viam::common::v1::ResourceName* mutable_component_name();
-  void set_allocated_component_name(::viam::common::v1::ResourceName* component_name);
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
   private:
-  const ::viam::common::v1::ResourceName& _internal_component_name() const;
-  ::viam::common::v1::ResourceName* _internal_mutable_component_name();
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
   public:
-  void unsafe_arena_set_allocated_component_name(
-      ::viam::common::v1::ResourceName* component_name);
-  ::viam::common::v1::ResourceName* unsafe_arena_release_component_name();
+
+  // .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+  PROTOBUF_DEPRECATED bool has_component_name_deprecated() const;
+  private:
+  bool _internal_has_component_name_deprecated() const;
+  public:
+  PROTOBUF_DEPRECATED void clear_component_name_deprecated();
+  PROTOBUF_DEPRECATED const ::viam::common::v1::ResourceName& component_name_deprecated() const;
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* release_component_name_deprecated();
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* mutable_component_name_deprecated();
+  PROTOBUF_DEPRECATED void set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated);
+  private:
+  const ::viam::common::v1::ResourceName& _internal_component_name_deprecated() const;
+  ::viam::common::v1::ResourceName* _internal_mutable_component_name_deprecated();
+  public:
+  PROTOBUF_DEPRECATED void unsafe_arena_set_allocated_component_name_deprecated(
+      ::viam::common::v1::ResourceName* component_name_deprecated);
+  PROTOBUF_DEPRECATED ::viam::common::v1::ResourceName* unsafe_arena_release_component_name_deprecated();
 
   // @@protoc_insertion_point(class_scope:viam.service.motion.v1.Plan)
  private:
@@ -5060,7 +5251,8 @@ class Plan final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion::v1::PlanStep > steps_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr execution_id_;
-  ::viam::common::v1::ResourceName* component_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
+  ::viam::common::v1::ResourceName* component_name_deprecated_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fmotion_2fv1_2fmotion_2eproto;
 };
@@ -5546,39 +5738,39 @@ inline void MoveRequest::set_allocated_destination(::viam::common::v1::PoseInFra
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveRequest.destination)
 }
 
-// .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-inline bool MoveRequest::_internal_has_component_name() const {
-  return this != internal_default_instance() && component_name_ != nullptr;
+// .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
+inline bool MoveRequest::_internal_has_component_name_deprecated() const {
+  return this != internal_default_instance() && component_name_deprecated_ != nullptr;
 }
-inline bool MoveRequest::has_component_name() const {
-  return _internal_has_component_name();
+inline bool MoveRequest::has_component_name_deprecated() const {
+  return _internal_has_component_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& MoveRequest::_internal_component_name() const {
-  const ::viam::common::v1::ResourceName* p = component_name_;
+inline const ::viam::common::v1::ResourceName& MoveRequest::_internal_component_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = component_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& MoveRequest::component_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveRequest.component_name)
-  return _internal_component_name();
+inline const ::viam::common::v1::ResourceName& MoveRequest::component_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveRequest.component_name_deprecated)
+  return _internal_component_name_deprecated();
 }
-inline void MoveRequest::unsafe_arena_set_allocated_component_name(
-    ::viam::common::v1::ResourceName* component_name) {
+inline void MoveRequest::unsafe_arena_set_allocated_component_name_deprecated(
+    ::viam::common::v1::ResourceName* component_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  component_name_ = component_name;
-  if (component_name) {
+  component_name_deprecated_ = component_name_deprecated;
+  if (component_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveRequest.component_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveRequest.component_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* MoveRequest::release_component_name() {
+inline ::viam::common::v1::ResourceName* MoveRequest::release_component_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -5590,45 +5782,45 @@ inline ::viam::common::v1::ResourceName* MoveRequest::release_component_name() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveRequest::unsafe_arena_release_component_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveRequest.component_name)
+inline ::viam::common::v1::ResourceName* MoveRequest::unsafe_arena_release_component_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveRequest.component_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveRequest::_internal_mutable_component_name() {
+inline ::viam::common::v1::ResourceName* MoveRequest::_internal_mutable_component_name_deprecated() {
   
-  if (component_name_ == nullptr) {
+  if (component_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    component_name_ = p;
+    component_name_deprecated_ = p;
   }
-  return component_name_;
+  return component_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* MoveRequest::mutable_component_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveRequest.component_name)
+inline ::viam::common::v1::ResourceName* MoveRequest::mutable_component_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveRequest.component_name_deprecated)
   return _msg;
 }
-inline void MoveRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+inline void MoveRequest::set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  if (component_name) {
+  if (component_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated));
     if (message_arena != submessage_arena) {
-      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, component_name, submessage_arena);
+      component_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  component_name_ = component_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveRequest.component_name)
+  component_name_deprecated_ = component_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveRequest.component_name_deprecated)
 }
 
 // optional .viam.common.v1.WorldState world_state = 4 [json_name = "worldState"];
@@ -5806,6 +5998,56 @@ inline void MoveRequest::set_allocated_constraints(::viam::service::motion::v1::
   }
   constraints_ = constraints;
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveRequest.constraints)
+}
+
+// string component_name = 6 [json_name = "componentName"];
+inline void MoveRequest::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& MoveRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveRequest.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MoveRequest::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveRequest.component_name)
+}
+inline std::string* MoveRequest::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveRequest.component_name)
+  return _s;
+}
+inline const std::string& MoveRequest::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void MoveRequest::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MoveRequest::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MoveRequest::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveRequest.component_name)
+  return component_name_.Release();
+}
+inline void MoveRequest::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveRequest.component_name)
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -6056,39 +6298,39 @@ inline void MoveOnMapRequest::set_allocated_destination(::viam::common::v1::Pose
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapRequest.destination)
 }
 
-// .viam.common.v1.ResourceName component_name = 3 [json_name = "componentName"];
-inline bool MoveOnMapRequest::_internal_has_component_name() const {
-  return this != internal_default_instance() && component_name_ != nullptr;
+// .viam.common.v1.ResourceName component_name_deprecated = 3 [json_name = "componentNameDeprecated", deprecated = true];
+inline bool MoveOnMapRequest::_internal_has_component_name_deprecated() const {
+  return this != internal_default_instance() && component_name_deprecated_ != nullptr;
 }
-inline bool MoveOnMapRequest::has_component_name() const {
-  return _internal_has_component_name();
+inline bool MoveOnMapRequest::has_component_name_deprecated() const {
+  return _internal_has_component_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& MoveOnMapRequest::_internal_component_name() const {
-  const ::viam::common::v1::ResourceName* p = component_name_;
+inline const ::viam::common::v1::ResourceName& MoveOnMapRequest::_internal_component_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = component_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& MoveOnMapRequest::component_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapRequest.component_name)
-  return _internal_component_name();
+inline const ::viam::common::v1::ResourceName& MoveOnMapRequest::component_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapRequest.component_name_deprecated)
+  return _internal_component_name_deprecated();
 }
-inline void MoveOnMapRequest::unsafe_arena_set_allocated_component_name(
-    ::viam::common::v1::ResourceName* component_name) {
+inline void MoveOnMapRequest::unsafe_arena_set_allocated_component_name_deprecated(
+    ::viam::common::v1::ResourceName* component_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  component_name_ = component_name;
-  if (component_name) {
+  component_name_deprecated_ = component_name_deprecated;
+  if (component_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapRequest.component_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapRequest.component_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* MoveOnMapRequest::release_component_name() {
+inline ::viam::common::v1::ResourceName* MoveOnMapRequest::release_component_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -6100,80 +6342,80 @@ inline ::viam::common::v1::ResourceName* MoveOnMapRequest::release_component_nam
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveOnMapRequest::unsafe_arena_release_component_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapRequest.component_name)
+inline ::viam::common::v1::ResourceName* MoveOnMapRequest::unsafe_arena_release_component_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapRequest.component_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveOnMapRequest::_internal_mutable_component_name() {
+inline ::viam::common::v1::ResourceName* MoveOnMapRequest::_internal_mutable_component_name_deprecated() {
   
-  if (component_name_ == nullptr) {
+  if (component_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    component_name_ = p;
+    component_name_deprecated_ = p;
   }
-  return component_name_;
+  return component_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* MoveOnMapRequest::mutable_component_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapRequest.component_name)
+inline ::viam::common::v1::ResourceName* MoveOnMapRequest::mutable_component_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapRequest.component_name_deprecated)
   return _msg;
 }
-inline void MoveOnMapRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+inline void MoveOnMapRequest::set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  if (component_name) {
+  if (component_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated));
     if (message_arena != submessage_arena) {
-      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, component_name, submessage_arena);
+      component_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  component_name_ = component_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapRequest.component_name)
+  component_name_deprecated_ = component_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapRequest.component_name_deprecated)
 }
 
-// .viam.common.v1.ResourceName slam_service_name = 4 [json_name = "slamServiceName"];
-inline bool MoveOnMapRequest::_internal_has_slam_service_name() const {
-  return this != internal_default_instance() && slam_service_name_ != nullptr;
+// .viam.common.v1.ResourceName slam_service_name_deprecated = 4 [json_name = "slamServiceNameDeprecated", deprecated = true];
+inline bool MoveOnMapRequest::_internal_has_slam_service_name_deprecated() const {
+  return this != internal_default_instance() && slam_service_name_deprecated_ != nullptr;
 }
-inline bool MoveOnMapRequest::has_slam_service_name() const {
-  return _internal_has_slam_service_name();
+inline bool MoveOnMapRequest::has_slam_service_name_deprecated() const {
+  return _internal_has_slam_service_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& MoveOnMapRequest::_internal_slam_service_name() const {
-  const ::viam::common::v1::ResourceName* p = slam_service_name_;
+inline const ::viam::common::v1::ResourceName& MoveOnMapRequest::_internal_slam_service_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = slam_service_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& MoveOnMapRequest::slam_service_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
-  return _internal_slam_service_name();
+inline const ::viam::common::v1::ResourceName& MoveOnMapRequest::slam_service_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapRequest.slam_service_name_deprecated)
+  return _internal_slam_service_name_deprecated();
 }
-inline void MoveOnMapRequest::unsafe_arena_set_allocated_slam_service_name(
-    ::viam::common::v1::ResourceName* slam_service_name) {
+inline void MoveOnMapRequest::unsafe_arena_set_allocated_slam_service_name_deprecated(
+    ::viam::common::v1::ResourceName* slam_service_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slam_service_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slam_service_name_deprecated_);
   }
-  slam_service_name_ = slam_service_name;
-  if (slam_service_name) {
+  slam_service_name_deprecated_ = slam_service_name_deprecated;
+  if (slam_service_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnMapRequest.slam_service_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* MoveOnMapRequest::release_slam_service_name() {
+inline ::viam::common::v1::ResourceName* MoveOnMapRequest::release_slam_service_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = slam_service_name_;
-  slam_service_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = slam_service_name_deprecated_;
+  slam_service_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -6185,45 +6427,45 @@ inline ::viam::common::v1::ResourceName* MoveOnMapRequest::release_slam_service_
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveOnMapRequest::unsafe_arena_release_slam_service_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
+inline ::viam::common::v1::ResourceName* MoveOnMapRequest::unsafe_arena_release_slam_service_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapRequest.slam_service_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = slam_service_name_;
-  slam_service_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = slam_service_name_deprecated_;
+  slam_service_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveOnMapRequest::_internal_mutable_slam_service_name() {
+inline ::viam::common::v1::ResourceName* MoveOnMapRequest::_internal_mutable_slam_service_name_deprecated() {
   
-  if (slam_service_name_ == nullptr) {
+  if (slam_service_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    slam_service_name_ = p;
+    slam_service_name_deprecated_ = p;
   }
-  return slam_service_name_;
+  return slam_service_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* MoveOnMapRequest::mutable_slam_service_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_slam_service_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
+inline ::viam::common::v1::ResourceName* MoveOnMapRequest::mutable_slam_service_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_slam_service_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapRequest.slam_service_name_deprecated)
   return _msg;
 }
-inline void MoveOnMapRequest::set_allocated_slam_service_name(::viam::common::v1::ResourceName* slam_service_name) {
+inline void MoveOnMapRequest::set_allocated_slam_service_name_deprecated(::viam::common::v1::ResourceName* slam_service_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(slam_service_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(slam_service_name_deprecated_);
   }
-  if (slam_service_name) {
+  if (slam_service_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slam_service_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slam_service_name_deprecated));
     if (message_arena != submessage_arena) {
-      slam_service_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, slam_service_name, submessage_arena);
+      slam_service_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, slam_service_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  slam_service_name_ = slam_service_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
+  slam_service_name_deprecated_ = slam_service_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapRequest.slam_service_name_deprecated)
 }
 
 // optional .viam.service.motion.v1.MotionConfiguration motion_configuration = 5 [json_name = "motionConfiguration"];
@@ -6351,6 +6593,106 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Geom
 MoveOnMapRequest::obstacles() const {
   // @@protoc_insertion_point(field_list:viam.service.motion.v1.MoveOnMapRequest.obstacles)
   return obstacles_;
+}
+
+// string component_name = 7 [json_name = "componentName"];
+inline void MoveOnMapRequest::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& MoveOnMapRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapRequest.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MoveOnMapRequest::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnMapRequest.component_name)
+}
+inline std::string* MoveOnMapRequest::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapRequest.component_name)
+  return _s;
+}
+inline const std::string& MoveOnMapRequest::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void MoveOnMapRequest::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MoveOnMapRequest::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MoveOnMapRequest::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapRequest.component_name)
+  return component_name_.Release();
+}
+inline void MoveOnMapRequest::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapRequest.component_name)
+}
+
+// string slam_service_name = 8 [json_name = "slamServiceName"];
+inline void MoveOnMapRequest::clear_slam_service_name() {
+  slam_service_name_.ClearToEmpty();
+}
+inline const std::string& MoveOnMapRequest::slam_service_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
+  return _internal_slam_service_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MoveOnMapRequest::set_slam_service_name(ArgT0&& arg0, ArgT... args) {
+ 
+ slam_service_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
+}
+inline std::string* MoveOnMapRequest::mutable_slam_service_name() {
+  std::string* _s = _internal_mutable_slam_service_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
+  return _s;
+}
+inline const std::string& MoveOnMapRequest::_internal_slam_service_name() const {
+  return slam_service_name_.Get();
+}
+inline void MoveOnMapRequest::_internal_set_slam_service_name(const std::string& value) {
+  
+  slam_service_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MoveOnMapRequest::_internal_mutable_slam_service_name() {
+  
+  return slam_service_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MoveOnMapRequest::release_slam_service_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
+  return slam_service_name_.Release();
+}
+inline void MoveOnMapRequest::set_allocated_slam_service_name(std::string* slam_service_name) {
+  if (slam_service_name != nullptr) {
+    
+  } else {
+    
+  }
+  slam_service_name_.SetAllocated(slam_service_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (slam_service_name_.IsDefault()) {
+    slam_service_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnMapRequest.slam_service_name)
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -6496,173 +6838,273 @@ inline void MoveOnMapResponse::set_allocated_execution_id(std::string* execution
 
 // ObstacleDetector
 
-// .viam.common.v1.ResourceName vision_service = 1 [json_name = "visionService"];
-inline bool ObstacleDetector::_internal_has_vision_service() const {
-  return this != internal_default_instance() && vision_service_ != nullptr;
+// .viam.common.v1.ResourceName vision_service_deprecated = 1 [json_name = "visionServiceDeprecated", deprecated = true];
+inline bool ObstacleDetector::_internal_has_vision_service_deprecated() const {
+  return this != internal_default_instance() && vision_service_deprecated_ != nullptr;
 }
-inline bool ObstacleDetector::has_vision_service() const {
-  return _internal_has_vision_service();
+inline bool ObstacleDetector::has_vision_service_deprecated() const {
+  return _internal_has_vision_service_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& ObstacleDetector::_internal_vision_service() const {
-  const ::viam::common::v1::ResourceName* p = vision_service_;
+inline const ::viam::common::v1::ResourceName& ObstacleDetector::_internal_vision_service_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = vision_service_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& ObstacleDetector::vision_service() const {
+inline const ::viam::common::v1::ResourceName& ObstacleDetector::vision_service_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.ObstacleDetector.vision_service_deprecated)
+  return _internal_vision_service_deprecated();
+}
+inline void ObstacleDetector::unsafe_arena_set_allocated_vision_service_deprecated(
+    ::viam::common::v1::ResourceName* vision_service_deprecated) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(vision_service_deprecated_);
+  }
+  vision_service_deprecated_ = vision_service_deprecated;
+  if (vision_service_deprecated) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.ObstacleDetector.vision_service_deprecated)
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::release_vision_service_deprecated() {
+  
+  ::viam::common::v1::ResourceName* temp = vision_service_deprecated_;
+  vision_service_deprecated_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::unsafe_arena_release_vision_service_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ObstacleDetector.vision_service_deprecated)
+  
+  ::viam::common::v1::ResourceName* temp = vision_service_deprecated_;
+  vision_service_deprecated_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::_internal_mutable_vision_service_deprecated() {
+  
+  if (vision_service_deprecated_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    vision_service_deprecated_ = p;
+  }
+  return vision_service_deprecated_;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::mutable_vision_service_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_vision_service_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ObstacleDetector.vision_service_deprecated)
+  return _msg;
+}
+inline void ObstacleDetector::set_allocated_vision_service_deprecated(::viam::common::v1::ResourceName* vision_service_deprecated) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(vision_service_deprecated_);
+  }
+  if (vision_service_deprecated) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(vision_service_deprecated));
+    if (message_arena != submessage_arena) {
+      vision_service_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, vision_service_deprecated, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  vision_service_deprecated_ = vision_service_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ObstacleDetector.vision_service_deprecated)
+}
+
+// .viam.common.v1.ResourceName camera_deprecated = 2 [json_name = "cameraDeprecated", deprecated = true];
+inline bool ObstacleDetector::_internal_has_camera_deprecated() const {
+  return this != internal_default_instance() && camera_deprecated_ != nullptr;
+}
+inline bool ObstacleDetector::has_camera_deprecated() const {
+  return _internal_has_camera_deprecated();
+}
+inline const ::viam::common::v1::ResourceName& ObstacleDetector::_internal_camera_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = camera_deprecated_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
+      ::viam::common::v1::_ResourceName_default_instance_);
+}
+inline const ::viam::common::v1::ResourceName& ObstacleDetector::camera_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.ObstacleDetector.camera_deprecated)
+  return _internal_camera_deprecated();
+}
+inline void ObstacleDetector::unsafe_arena_set_allocated_camera_deprecated(
+    ::viam::common::v1::ResourceName* camera_deprecated) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(camera_deprecated_);
+  }
+  camera_deprecated_ = camera_deprecated;
+  if (camera_deprecated) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.ObstacleDetector.camera_deprecated)
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::release_camera_deprecated() {
+  
+  ::viam::common::v1::ResourceName* temp = camera_deprecated_;
+  camera_deprecated_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::unsafe_arena_release_camera_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ObstacleDetector.camera_deprecated)
+  
+  ::viam::common::v1::ResourceName* temp = camera_deprecated_;
+  camera_deprecated_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::_internal_mutable_camera_deprecated() {
+  
+  if (camera_deprecated_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
+    camera_deprecated_ = p;
+  }
+  return camera_deprecated_;
+}
+inline ::viam::common::v1::ResourceName* ObstacleDetector::mutable_camera_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_camera_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ObstacleDetector.camera_deprecated)
+  return _msg;
+}
+inline void ObstacleDetector::set_allocated_camera_deprecated(::viam::common::v1::ResourceName* camera_deprecated) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(camera_deprecated_);
+  }
+  if (camera_deprecated) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(camera_deprecated));
+    if (message_arena != submessage_arena) {
+      camera_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, camera_deprecated, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  camera_deprecated_ = camera_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ObstacleDetector.camera_deprecated)
+}
+
+// string vision_service = 3 [json_name = "visionService"];
+inline void ObstacleDetector::clear_vision_service() {
+  vision_service_.ClearToEmpty();
+}
+inline const std::string& ObstacleDetector::vision_service() const {
   // @@protoc_insertion_point(field_get:viam.service.motion.v1.ObstacleDetector.vision_service)
   return _internal_vision_service();
 }
-inline void ObstacleDetector::unsafe_arena_set_allocated_vision_service(
-    ::viam::common::v1::ResourceName* vision_service) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(vision_service_);
-  }
-  vision_service_ = vision_service;
-  if (vision_service) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.ObstacleDetector.vision_service)
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ObstacleDetector::set_vision_service(ArgT0&& arg0, ArgT... args) {
+ 
+ vision_service_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.ObstacleDetector.vision_service)
 }
-inline ::viam::common::v1::ResourceName* ObstacleDetector::release_vision_service() {
-  
-  ::viam::common::v1::ResourceName* temp = vision_service_;
-  vision_service_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::viam::common::v1::ResourceName* ObstacleDetector::unsafe_arena_release_vision_service() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ObstacleDetector.vision_service)
-  
-  ::viam::common::v1::ResourceName* temp = vision_service_;
-  vision_service_ = nullptr;
-  return temp;
-}
-inline ::viam::common::v1::ResourceName* ObstacleDetector::_internal_mutable_vision_service() {
-  
-  if (vision_service_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    vision_service_ = p;
-  }
-  return vision_service_;
-}
-inline ::viam::common::v1::ResourceName* ObstacleDetector::mutable_vision_service() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_vision_service();
+inline std::string* ObstacleDetector::mutable_vision_service() {
+  std::string* _s = _internal_mutable_vision_service();
   // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ObstacleDetector.vision_service)
-  return _msg;
+  return _s;
 }
-inline void ObstacleDetector::set_allocated_vision_service(::viam::common::v1::ResourceName* vision_service) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(vision_service_);
-  }
-  if (vision_service) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(vision_service));
-    if (message_arena != submessage_arena) {
-      vision_service = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, vision_service, submessage_arena);
-    }
+inline const std::string& ObstacleDetector::_internal_vision_service() const {
+  return vision_service_.Get();
+}
+inline void ObstacleDetector::_internal_set_vision_service(const std::string& value) {
+  
+  vision_service_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ObstacleDetector::_internal_mutable_vision_service() {
+  
+  return vision_service_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ObstacleDetector::release_vision_service() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ObstacleDetector.vision_service)
+  return vision_service_.Release();
+}
+inline void ObstacleDetector::set_allocated_vision_service(std::string* vision_service) {
+  if (vision_service != nullptr) {
     
   } else {
     
   }
-  vision_service_ = vision_service;
+  vision_service_.SetAllocated(vision_service, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (vision_service_.IsDefault()) {
+    vision_service_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ObstacleDetector.vision_service)
 }
 
-// .viam.common.v1.ResourceName camera = 2 [json_name = "camera"];
-inline bool ObstacleDetector::_internal_has_camera() const {
-  return this != internal_default_instance() && camera_ != nullptr;
+// string camera = 4 [json_name = "camera"];
+inline void ObstacleDetector::clear_camera() {
+  camera_.ClearToEmpty();
 }
-inline bool ObstacleDetector::has_camera() const {
-  return _internal_has_camera();
-}
-inline const ::viam::common::v1::ResourceName& ObstacleDetector::_internal_camera() const {
-  const ::viam::common::v1::ResourceName* p = camera_;
-  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
-      ::viam::common::v1::_ResourceName_default_instance_);
-}
-inline const ::viam::common::v1::ResourceName& ObstacleDetector::camera() const {
+inline const std::string& ObstacleDetector::camera() const {
   // @@protoc_insertion_point(field_get:viam.service.motion.v1.ObstacleDetector.camera)
   return _internal_camera();
 }
-inline void ObstacleDetector::unsafe_arena_set_allocated_camera(
-    ::viam::common::v1::ResourceName* camera) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(camera_);
-  }
-  camera_ = camera;
-  if (camera) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.ObstacleDetector.camera)
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ObstacleDetector::set_camera(ArgT0&& arg0, ArgT... args) {
+ 
+ camera_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.ObstacleDetector.camera)
 }
-inline ::viam::common::v1::ResourceName* ObstacleDetector::release_camera() {
-  
-  ::viam::common::v1::ResourceName* temp = camera_;
-  camera_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::viam::common::v1::ResourceName* ObstacleDetector::unsafe_arena_release_camera() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ObstacleDetector.camera)
-  
-  ::viam::common::v1::ResourceName* temp = camera_;
-  camera_ = nullptr;
-  return temp;
-}
-inline ::viam::common::v1::ResourceName* ObstacleDetector::_internal_mutable_camera() {
-  
-  if (camera_ == nullptr) {
-    auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    camera_ = p;
-  }
-  return camera_;
-}
-inline ::viam::common::v1::ResourceName* ObstacleDetector::mutable_camera() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_camera();
+inline std::string* ObstacleDetector::mutable_camera() {
+  std::string* _s = _internal_mutable_camera();
   // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.ObstacleDetector.camera)
-  return _msg;
+  return _s;
 }
-inline void ObstacleDetector::set_allocated_camera(::viam::common::v1::ResourceName* camera) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(camera_);
-  }
-  if (camera) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(camera));
-    if (message_arena != submessage_arena) {
-      camera = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, camera, submessage_arena);
-    }
+inline const std::string& ObstacleDetector::_internal_camera() const {
+  return camera_.Get();
+}
+inline void ObstacleDetector::_internal_set_camera(const std::string& value) {
+  
+  camera_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ObstacleDetector::_internal_mutable_camera() {
+  
+  return camera_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ObstacleDetector::release_camera() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.ObstacleDetector.camera)
+  return camera_.Release();
+}
+inline void ObstacleDetector::set_allocated_camera(std::string* camera) {
+  if (camera != nullptr) {
     
   } else {
     
   }
-  camera_ = camera;
+  camera_.SetAllocated(camera, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (camera_.IsDefault()) {
+    camera_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.ObstacleDetector.camera)
 }
 
@@ -7017,39 +7459,39 @@ inline void MoveOnGlobeRequest::set_heading(double value) {
   // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeRequest.heading)
 }
 
-// .viam.common.v1.ResourceName component_name = 4 [json_name = "componentName"];
-inline bool MoveOnGlobeRequest::_internal_has_component_name() const {
-  return this != internal_default_instance() && component_name_ != nullptr;
+// .viam.common.v1.ResourceName component_name_deprecated = 4 [json_name = "componentNameDeprecated", deprecated = true];
+inline bool MoveOnGlobeRequest::_internal_has_component_name_deprecated() const {
+  return this != internal_default_instance() && component_name_deprecated_ != nullptr;
 }
-inline bool MoveOnGlobeRequest::has_component_name() const {
-  return _internal_has_component_name();
+inline bool MoveOnGlobeRequest::has_component_name_deprecated() const {
+  return _internal_has_component_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::_internal_component_name() const {
-  const ::viam::common::v1::ResourceName* p = component_name_;
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::_internal_component_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = component_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::component_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
-  return _internal_component_name();
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::component_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.component_name_deprecated)
+  return _internal_component_name_deprecated();
 }
-inline void MoveOnGlobeRequest::unsafe_arena_set_allocated_component_name(
-    ::viam::common::v1::ResourceName* component_name) {
+inline void MoveOnGlobeRequest::unsafe_arena_set_allocated_component_name_deprecated(
+    ::viam::common::v1::ResourceName* component_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  component_name_ = component_name;
-  if (component_name) {
+  component_name_deprecated_ = component_name_deprecated;
+  if (component_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.component_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::release_component_name() {
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::release_component_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -7061,80 +7503,80 @@ inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::release_component_n
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::unsafe_arena_release_component_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::unsafe_arena_release_component_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.component_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::_internal_mutable_component_name() {
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::_internal_mutable_component_name_deprecated() {
   
-  if (component_name_ == nullptr) {
+  if (component_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    component_name_ = p;
+    component_name_deprecated_ = p;
   }
-  return component_name_;
+  return component_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::mutable_component_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::mutable_component_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.component_name_deprecated)
   return _msg;
 }
-inline void MoveOnGlobeRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+inline void MoveOnGlobeRequest::set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  if (component_name) {
+  if (component_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated));
     if (message_arena != submessage_arena) {
-      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, component_name, submessage_arena);
+      component_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  component_name_ = component_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+  component_name_deprecated_ = component_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.component_name_deprecated)
 }
 
-// .viam.common.v1.ResourceName movement_sensor_name = 5 [json_name = "movementSensorName"];
-inline bool MoveOnGlobeRequest::_internal_has_movement_sensor_name() const {
-  return this != internal_default_instance() && movement_sensor_name_ != nullptr;
+// .viam.common.v1.ResourceName movement_sensor_name_deprecated = 5 [json_name = "movementSensorNameDeprecated", deprecated = true];
+inline bool MoveOnGlobeRequest::_internal_has_movement_sensor_name_deprecated() const {
+  return this != internal_default_instance() && movement_sensor_name_deprecated_ != nullptr;
 }
-inline bool MoveOnGlobeRequest::has_movement_sensor_name() const {
-  return _internal_has_movement_sensor_name();
+inline bool MoveOnGlobeRequest::has_movement_sensor_name_deprecated() const {
+  return _internal_has_movement_sensor_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::_internal_movement_sensor_name() const {
-  const ::viam::common::v1::ResourceName* p = movement_sensor_name_;
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::_internal_movement_sensor_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = movement_sensor_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::movement_sensor_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
-  return _internal_movement_sensor_name();
+inline const ::viam::common::v1::ResourceName& MoveOnGlobeRequest::movement_sensor_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name_deprecated)
+  return _internal_movement_sensor_name_deprecated();
 }
-inline void MoveOnGlobeRequest::unsafe_arena_set_allocated_movement_sensor_name(
-    ::viam::common::v1::ResourceName* movement_sensor_name) {
+inline void MoveOnGlobeRequest::unsafe_arena_set_allocated_movement_sensor_name_deprecated(
+    ::viam::common::v1::ResourceName* movement_sensor_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name_deprecated_);
   }
-  movement_sensor_name_ = movement_sensor_name;
-  if (movement_sensor_name) {
+  movement_sensor_name_deprecated_ = movement_sensor_name_deprecated;
+  if (movement_sensor_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::release_movement_sensor_name() {
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::release_movement_sensor_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = movement_sensor_name_;
-  movement_sensor_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = movement_sensor_name_deprecated_;
+  movement_sensor_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -7146,45 +7588,45 @@ inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::release_movement_se
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::unsafe_arena_release_movement_sensor_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::unsafe_arena_release_movement_sensor_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = movement_sensor_name_;
-  movement_sensor_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = movement_sensor_name_deprecated_;
+  movement_sensor_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::_internal_mutable_movement_sensor_name() {
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::_internal_mutable_movement_sensor_name_deprecated() {
   
-  if (movement_sensor_name_ == nullptr) {
+  if (movement_sensor_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    movement_sensor_name_ = p;
+    movement_sensor_name_deprecated_ = p;
   }
-  return movement_sensor_name_;
+  return movement_sensor_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::mutable_movement_sensor_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_movement_sensor_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+inline ::viam::common::v1::ResourceName* MoveOnGlobeRequest::mutable_movement_sensor_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_movement_sensor_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name_deprecated)
   return _msg;
 }
-inline void MoveOnGlobeRequest::set_allocated_movement_sensor_name(::viam::common::v1::ResourceName* movement_sensor_name) {
+inline void MoveOnGlobeRequest::set_allocated_movement_sensor_name_deprecated(::viam::common::v1::ResourceName* movement_sensor_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name_deprecated_);
   }
-  if (movement_sensor_name) {
+  if (movement_sensor_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(movement_sensor_name_deprecated));
     if (message_arena != submessage_arena) {
-      movement_sensor_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, movement_sensor_name, submessage_arena);
+      movement_sensor_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, movement_sensor_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  movement_sensor_name_ = movement_sensor_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+  movement_sensor_name_deprecated_ = movement_sensor_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name_deprecated)
 }
 
 // repeated .viam.common.v1.GeoGeometry obstacles = 6 [json_name = "obstacles"];
@@ -7349,6 +7791,106 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::GeoG
 MoveOnGlobeRequest::bounding_regions() const {
   // @@protoc_insertion_point(field_list:viam.service.motion.v1.MoveOnGlobeRequest.bounding_regions)
   return bounding_regions_;
+}
+
+// string component_name = 9 [json_name = "componentName"];
+inline void MoveOnGlobeRequest::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& MoveOnGlobeRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MoveOnGlobeRequest::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+}
+inline std::string* MoveOnGlobeRequest::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+  return _s;
+}
+inline const std::string& MoveOnGlobeRequest::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void MoveOnGlobeRequest::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeRequest::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeRequest::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+  return component_name_.Release();
+}
+inline void MoveOnGlobeRequest::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.component_name)
+}
+
+// string movement_sensor_name = 10 [json_name = "movementSensorName"];
+inline void MoveOnGlobeRequest::clear_movement_sensor_name() {
+  movement_sensor_name_.ClearToEmpty();
+}
+inline const std::string& MoveOnGlobeRequest::movement_sensor_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+  return _internal_movement_sensor_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MoveOnGlobeRequest::set_movement_sensor_name(ArgT0&& arg0, ArgT... args) {
+ 
+ movement_sensor_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+}
+inline std::string* MoveOnGlobeRequest::mutable_movement_sensor_name() {
+  std::string* _s = _internal_mutable_movement_sensor_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+  return _s;
+}
+inline const std::string& MoveOnGlobeRequest::_internal_movement_sensor_name() const {
+  return movement_sensor_name_.Get();
+}
+inline void MoveOnGlobeRequest::_internal_set_movement_sensor_name(const std::string& value) {
+  
+  movement_sensor_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeRequest::_internal_mutable_movement_sensor_name() {
+  
+  return movement_sensor_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MoveOnGlobeRequest::release_movement_sensor_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
+  return movement_sensor_name_.Release();
+}
+inline void MoveOnGlobeRequest::set_allocated_movement_sensor_name(std::string* movement_sensor_name) {
+  if (movement_sensor_name != nullptr) {
+    
+  } else {
+    
+  }
+  movement_sensor_name_.SetAllocated(movement_sensor_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (movement_sensor_name_.IsDefault()) {
+    movement_sensor_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.MoveOnGlobeRequest.movement_sensor_name)
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -7544,39 +8086,39 @@ inline void GetPoseRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPoseRequest.name)
 }
 
-// .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-inline bool GetPoseRequest::_internal_has_component_name() const {
-  return this != internal_default_instance() && component_name_ != nullptr;
+// .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+inline bool GetPoseRequest::_internal_has_component_name_deprecated() const {
+  return this != internal_default_instance() && component_name_deprecated_ != nullptr;
 }
-inline bool GetPoseRequest::has_component_name() const {
-  return _internal_has_component_name();
+inline bool GetPoseRequest::has_component_name_deprecated() const {
+  return _internal_has_component_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& GetPoseRequest::_internal_component_name() const {
-  const ::viam::common::v1::ResourceName* p = component_name_;
+inline const ::viam::common::v1::ResourceName& GetPoseRequest::_internal_component_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = component_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& GetPoseRequest::component_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPoseRequest.component_name)
-  return _internal_component_name();
+inline const ::viam::common::v1::ResourceName& GetPoseRequest::component_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPoseRequest.component_name_deprecated)
+  return _internal_component_name_deprecated();
 }
-inline void GetPoseRequest::unsafe_arena_set_allocated_component_name(
-    ::viam::common::v1::ResourceName* component_name) {
+inline void GetPoseRequest::unsafe_arena_set_allocated_component_name_deprecated(
+    ::viam::common::v1::ResourceName* component_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  component_name_ = component_name;
-  if (component_name) {
+  component_name_deprecated_ = component_name_deprecated;
+  if (component_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.GetPoseRequest.component_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.GetPoseRequest.component_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* GetPoseRequest::release_component_name() {
+inline ::viam::common::v1::ResourceName* GetPoseRequest::release_component_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -7588,45 +8130,45 @@ inline ::viam::common::v1::ResourceName* GetPoseRequest::release_component_name(
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* GetPoseRequest::unsafe_arena_release_component_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPoseRequest.component_name)
+inline ::viam::common::v1::ResourceName* GetPoseRequest::unsafe_arena_release_component_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPoseRequest.component_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* GetPoseRequest::_internal_mutable_component_name() {
+inline ::viam::common::v1::ResourceName* GetPoseRequest::_internal_mutable_component_name_deprecated() {
   
-  if (component_name_ == nullptr) {
+  if (component_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    component_name_ = p;
+    component_name_deprecated_ = p;
   }
-  return component_name_;
+  return component_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* GetPoseRequest::mutable_component_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPoseRequest.component_name)
+inline ::viam::common::v1::ResourceName* GetPoseRequest::mutable_component_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPoseRequest.component_name_deprecated)
   return _msg;
 }
-inline void GetPoseRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+inline void GetPoseRequest::set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  if (component_name) {
+  if (component_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated));
     if (message_arena != submessage_arena) {
-      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, component_name, submessage_arena);
+      component_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  component_name_ = component_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPoseRequest.component_name)
+  component_name_deprecated_ = component_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPoseRequest.component_name_deprecated)
 }
 
 // string destination_frame = 3 [json_name = "destinationFrame"];
@@ -7714,6 +8256,56 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::common::v1::Tran
 GetPoseRequest::supplemental_transforms() const {
   // @@protoc_insertion_point(field_list:viam.service.motion.v1.GetPoseRequest.supplemental_transforms)
   return supplemental_transforms_;
+}
+
+// string component_name = 5 [json_name = "componentName"];
+inline void GetPoseRequest::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& GetPoseRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPoseRequest.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPoseRequest::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.GetPoseRequest.component_name)
+}
+inline std::string* GetPoseRequest::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPoseRequest.component_name)
+  return _s;
+}
+inline const std::string& GetPoseRequest::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void GetPoseRequest::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPoseRequest::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPoseRequest::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPoseRequest.component_name)
+  return component_name_.Release();
+}
+inline void GetPoseRequest::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPoseRequest.component_name)
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -7944,39 +8536,39 @@ inline void StopPlanRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.StopPlanRequest.name)
 }
 
-// .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-inline bool StopPlanRequest::_internal_has_component_name() const {
-  return this != internal_default_instance() && component_name_ != nullptr;
+// .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+inline bool StopPlanRequest::_internal_has_component_name_deprecated() const {
+  return this != internal_default_instance() && component_name_deprecated_ != nullptr;
 }
-inline bool StopPlanRequest::has_component_name() const {
-  return _internal_has_component_name();
+inline bool StopPlanRequest::has_component_name_deprecated() const {
+  return _internal_has_component_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& StopPlanRequest::_internal_component_name() const {
-  const ::viam::common::v1::ResourceName* p = component_name_;
+inline const ::viam::common::v1::ResourceName& StopPlanRequest::_internal_component_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = component_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& StopPlanRequest::component_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.StopPlanRequest.component_name)
-  return _internal_component_name();
+inline const ::viam::common::v1::ResourceName& StopPlanRequest::component_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.StopPlanRequest.component_name_deprecated)
+  return _internal_component_name_deprecated();
 }
-inline void StopPlanRequest::unsafe_arena_set_allocated_component_name(
-    ::viam::common::v1::ResourceName* component_name) {
+inline void StopPlanRequest::unsafe_arena_set_allocated_component_name_deprecated(
+    ::viam::common::v1::ResourceName* component_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  component_name_ = component_name;
-  if (component_name) {
+  component_name_deprecated_ = component_name_deprecated;
+  if (component_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.StopPlanRequest.component_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.StopPlanRequest.component_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* StopPlanRequest::release_component_name() {
+inline ::viam::common::v1::ResourceName* StopPlanRequest::release_component_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -7988,44 +8580,94 @@ inline ::viam::common::v1::ResourceName* StopPlanRequest::release_component_name
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* StopPlanRequest::unsafe_arena_release_component_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.StopPlanRequest.component_name)
+inline ::viam::common::v1::ResourceName* StopPlanRequest::unsafe_arena_release_component_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.StopPlanRequest.component_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* StopPlanRequest::_internal_mutable_component_name() {
+inline ::viam::common::v1::ResourceName* StopPlanRequest::_internal_mutable_component_name_deprecated() {
   
-  if (component_name_ == nullptr) {
+  if (component_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    component_name_ = p;
+    component_name_deprecated_ = p;
   }
-  return component_name_;
+  return component_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* StopPlanRequest::mutable_component_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.StopPlanRequest.component_name)
+inline ::viam::common::v1::ResourceName* StopPlanRequest::mutable_component_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.StopPlanRequest.component_name_deprecated)
   return _msg;
 }
-inline void StopPlanRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+inline void StopPlanRequest::set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  if (component_name) {
+  if (component_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated));
     if (message_arena != submessage_arena) {
-      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, component_name, submessage_arena);
+      component_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  component_name_ = component_name;
+  component_name_deprecated_ = component_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.StopPlanRequest.component_name_deprecated)
+}
+
+// string component_name = 3 [json_name = "componentName"];
+inline void StopPlanRequest::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& StopPlanRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.StopPlanRequest.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void StopPlanRequest::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.StopPlanRequest.component_name)
+}
+inline std::string* StopPlanRequest::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.StopPlanRequest.component_name)
+  return _s;
+}
+inline const std::string& StopPlanRequest::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void StopPlanRequest::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* StopPlanRequest::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* StopPlanRequest::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.StopPlanRequest.component_name)
+  return component_name_.Release();
+}
+inline void StopPlanRequest::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.StopPlanRequest.component_name)
 }
 
@@ -8375,39 +9017,39 @@ inline void GetPlanRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanRequest.name)
 }
 
-// .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-inline bool GetPlanRequest::_internal_has_component_name() const {
-  return this != internal_default_instance() && component_name_ != nullptr;
+// .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+inline bool GetPlanRequest::_internal_has_component_name_deprecated() const {
+  return this != internal_default_instance() && component_name_deprecated_ != nullptr;
 }
-inline bool GetPlanRequest::has_component_name() const {
-  return _internal_has_component_name();
+inline bool GetPlanRequest::has_component_name_deprecated() const {
+  return _internal_has_component_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& GetPlanRequest::_internal_component_name() const {
-  const ::viam::common::v1::ResourceName* p = component_name_;
+inline const ::viam::common::v1::ResourceName& GetPlanRequest::_internal_component_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = component_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& GetPlanRequest::component_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanRequest.component_name)
-  return _internal_component_name();
+inline const ::viam::common::v1::ResourceName& GetPlanRequest::component_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanRequest.component_name_deprecated)
+  return _internal_component_name_deprecated();
 }
-inline void GetPlanRequest::unsafe_arena_set_allocated_component_name(
-    ::viam::common::v1::ResourceName* component_name) {
+inline void GetPlanRequest::unsafe_arena_set_allocated_component_name_deprecated(
+    ::viam::common::v1::ResourceName* component_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  component_name_ = component_name;
-  if (component_name) {
+  component_name_deprecated_ = component_name_deprecated;
+  if (component_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.GetPlanRequest.component_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.GetPlanRequest.component_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* GetPlanRequest::release_component_name() {
+inline ::viam::common::v1::ResourceName* GetPlanRequest::release_component_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -8419,45 +9061,45 @@ inline ::viam::common::v1::ResourceName* GetPlanRequest::release_component_name(
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* GetPlanRequest::unsafe_arena_release_component_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPlanRequest.component_name)
+inline ::viam::common::v1::ResourceName* GetPlanRequest::unsafe_arena_release_component_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPlanRequest.component_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* GetPlanRequest::_internal_mutable_component_name() {
+inline ::viam::common::v1::ResourceName* GetPlanRequest::_internal_mutable_component_name_deprecated() {
   
-  if (component_name_ == nullptr) {
+  if (component_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    component_name_ = p;
+    component_name_deprecated_ = p;
   }
-  return component_name_;
+  return component_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* GetPlanRequest::mutable_component_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPlanRequest.component_name)
+inline ::viam::common::v1::ResourceName* GetPlanRequest::mutable_component_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPlanRequest.component_name_deprecated)
   return _msg;
 }
-inline void GetPlanRequest::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+inline void GetPlanRequest::set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  if (component_name) {
+  if (component_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated));
     if (message_arena != submessage_arena) {
-      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, component_name, submessage_arena);
+      component_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  component_name_ = component_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanRequest.component_name)
+  component_name_deprecated_ = component_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanRequest.component_name_deprecated)
 }
 
 // bool last_plan_only = 3 [json_name = "lastPlanOnly"];
@@ -8546,6 +9188,56 @@ inline void GetPlanRequest::set_allocated_execution_id(std::string* execution_id
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanRequest.execution_id)
+}
+
+// string component_name = 5 [json_name = "componentName"];
+inline void GetPlanRequest::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& GetPlanRequest::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.GetPlanRequest.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPlanRequest::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.GetPlanRequest.component_name)
+}
+inline std::string* GetPlanRequest::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.GetPlanRequest.component_name)
+  return _s;
+}
+inline const std::string& GetPlanRequest::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void GetPlanRequest::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPlanRequest::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPlanRequest::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.GetPlanRequest.component_name)
+  return component_name_.Release();
+}
+inline void GetPlanRequest::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.GetPlanRequest.component_name)
 }
 
 // .google.protobuf.Struct extra = 99 [json_name = "extra"];
@@ -9509,39 +10201,39 @@ inline void PlanStatusWithID::set_allocated_plan_id(std::string* plan_id) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatusWithID.plan_id)
 }
 
-// .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-inline bool PlanStatusWithID::_internal_has_component_name() const {
-  return this != internal_default_instance() && component_name_ != nullptr;
+// .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+inline bool PlanStatusWithID::_internal_has_component_name_deprecated() const {
+  return this != internal_default_instance() && component_name_deprecated_ != nullptr;
 }
-inline bool PlanStatusWithID::has_component_name() const {
-  return _internal_has_component_name();
+inline bool PlanStatusWithID::has_component_name_deprecated() const {
+  return _internal_has_component_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& PlanStatusWithID::_internal_component_name() const {
-  const ::viam::common::v1::ResourceName* p = component_name_;
+inline const ::viam::common::v1::ResourceName& PlanStatusWithID::_internal_component_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = component_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& PlanStatusWithID::component_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatusWithID.component_name)
-  return _internal_component_name();
+inline const ::viam::common::v1::ResourceName& PlanStatusWithID::component_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatusWithID.component_name_deprecated)
+  return _internal_component_name_deprecated();
 }
-inline void PlanStatusWithID::unsafe_arena_set_allocated_component_name(
-    ::viam::common::v1::ResourceName* component_name) {
+inline void PlanStatusWithID::unsafe_arena_set_allocated_component_name_deprecated(
+    ::viam::common::v1::ResourceName* component_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  component_name_ = component_name;
-  if (component_name) {
+  component_name_deprecated_ = component_name_deprecated;
+  if (component_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.PlanStatusWithID.component_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.PlanStatusWithID.component_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* PlanStatusWithID::release_component_name() {
+inline ::viam::common::v1::ResourceName* PlanStatusWithID::release_component_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -9553,45 +10245,45 @@ inline ::viam::common::v1::ResourceName* PlanStatusWithID::release_component_nam
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* PlanStatusWithID::unsafe_arena_release_component_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanStatusWithID.component_name)
+inline ::viam::common::v1::ResourceName* PlanStatusWithID::unsafe_arena_release_component_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanStatusWithID.component_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* PlanStatusWithID::_internal_mutable_component_name() {
+inline ::viam::common::v1::ResourceName* PlanStatusWithID::_internal_mutable_component_name_deprecated() {
   
-  if (component_name_ == nullptr) {
+  if (component_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    component_name_ = p;
+    component_name_deprecated_ = p;
   }
-  return component_name_;
+  return component_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* PlanStatusWithID::mutable_component_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanStatusWithID.component_name)
+inline ::viam::common::v1::ResourceName* PlanStatusWithID::mutable_component_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanStatusWithID.component_name_deprecated)
   return _msg;
 }
-inline void PlanStatusWithID::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+inline void PlanStatusWithID::set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  if (component_name) {
+  if (component_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated));
     if (message_arena != submessage_arena) {
-      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, component_name, submessage_arena);
+      component_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  component_name_ = component_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatusWithID.component_name)
+  component_name_deprecated_ = component_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatusWithID.component_name_deprecated)
 }
 
 // string execution_id = 3 [json_name = "executionId"];
@@ -9732,6 +10424,56 @@ inline void PlanStatusWithID::set_allocated_status(::viam::service::motion::v1::
   }
   status_ = status;
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatusWithID.status)
+}
+
+// string component_name = 5 [json_name = "componentName"];
+inline void PlanStatusWithID::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& PlanStatusWithID::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.PlanStatusWithID.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PlanStatusWithID::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.PlanStatusWithID.component_name)
+}
+inline std::string* PlanStatusWithID::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.PlanStatusWithID.component_name)
+  return _s;
+}
+inline const std::string& PlanStatusWithID::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void PlanStatusWithID::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PlanStatusWithID::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PlanStatusWithID::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.PlanStatusWithID.component_name)
+  return component_name_.Release();
+}
+inline void PlanStatusWithID::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.PlanStatusWithID.component_name)
 }
 
 // -------------------------------------------------------------------
@@ -9965,39 +10707,39 @@ inline void Plan::set_allocated_id(std::string* id) {
   // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.Plan.id)
 }
 
-// .viam.common.v1.ResourceName component_name = 2 [json_name = "componentName"];
-inline bool Plan::_internal_has_component_name() const {
-  return this != internal_default_instance() && component_name_ != nullptr;
+// .viam.common.v1.ResourceName component_name_deprecated = 2 [json_name = "componentNameDeprecated", deprecated = true];
+inline bool Plan::_internal_has_component_name_deprecated() const {
+  return this != internal_default_instance() && component_name_deprecated_ != nullptr;
 }
-inline bool Plan::has_component_name() const {
-  return _internal_has_component_name();
+inline bool Plan::has_component_name_deprecated() const {
+  return _internal_has_component_name_deprecated();
 }
-inline const ::viam::common::v1::ResourceName& Plan::_internal_component_name() const {
-  const ::viam::common::v1::ResourceName* p = component_name_;
+inline const ::viam::common::v1::ResourceName& Plan::_internal_component_name_deprecated() const {
+  const ::viam::common::v1::ResourceName* p = component_name_deprecated_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::ResourceName&>(
       ::viam::common::v1::_ResourceName_default_instance_);
 }
-inline const ::viam::common::v1::ResourceName& Plan::component_name() const {
-  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Plan.component_name)
-  return _internal_component_name();
+inline const ::viam::common::v1::ResourceName& Plan::component_name_deprecated() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Plan.component_name_deprecated)
+  return _internal_component_name_deprecated();
 }
-inline void Plan::unsafe_arena_set_allocated_component_name(
-    ::viam::common::v1::ResourceName* component_name) {
+inline void Plan::unsafe_arena_set_allocated_component_name_deprecated(
+    ::viam::common::v1::ResourceName* component_name_deprecated) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  component_name_ = component_name;
-  if (component_name) {
+  component_name_deprecated_ = component_name_deprecated;
+  if (component_name_deprecated) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.Plan.component_name)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.service.motion.v1.Plan.component_name_deprecated)
 }
-inline ::viam::common::v1::ResourceName* Plan::release_component_name() {
+inline ::viam::common::v1::ResourceName* Plan::release_component_name_deprecated() {
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -10009,45 +10751,45 @@ inline ::viam::common::v1::ResourceName* Plan::release_component_name() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::common::v1::ResourceName* Plan::unsafe_arena_release_component_name() {
-  // @@protoc_insertion_point(field_release:viam.service.motion.v1.Plan.component_name)
+inline ::viam::common::v1::ResourceName* Plan::unsafe_arena_release_component_name_deprecated() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.Plan.component_name_deprecated)
   
-  ::viam::common::v1::ResourceName* temp = component_name_;
-  component_name_ = nullptr;
+  ::viam::common::v1::ResourceName* temp = component_name_deprecated_;
+  component_name_deprecated_ = nullptr;
   return temp;
 }
-inline ::viam::common::v1::ResourceName* Plan::_internal_mutable_component_name() {
+inline ::viam::common::v1::ResourceName* Plan::_internal_mutable_component_name_deprecated() {
   
-  if (component_name_ == nullptr) {
+  if (component_name_deprecated_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::common::v1::ResourceName>(GetArenaForAllocation());
-    component_name_ = p;
+    component_name_deprecated_ = p;
   }
-  return component_name_;
+  return component_name_deprecated_;
 }
-inline ::viam::common::v1::ResourceName* Plan::mutable_component_name() {
-  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name();
-  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Plan.component_name)
+inline ::viam::common::v1::ResourceName* Plan::mutable_component_name_deprecated() {
+  ::viam::common::v1::ResourceName* _msg = _internal_mutable_component_name_deprecated();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Plan.component_name_deprecated)
   return _msg;
 }
-inline void Plan::set_allocated_component_name(::viam::common::v1::ResourceName* component_name) {
+inline void Plan::set_allocated_component_name_deprecated(::viam::common::v1::ResourceName* component_name_deprecated) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated_);
   }
-  if (component_name) {
+  if (component_name_deprecated) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(component_name_deprecated));
     if (message_arena != submessage_arena) {
-      component_name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, component_name, submessage_arena);
+      component_name_deprecated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, component_name_deprecated, submessage_arena);
     }
     
   } else {
     
   }
-  component_name_ = component_name;
-  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.Plan.component_name)
+  component_name_deprecated_ = component_name_deprecated;
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.Plan.component_name_deprecated)
 }
 
 // string execution_id = 3 [json_name = "executionId"];
@@ -10138,6 +10880,56 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::service::motion:
 Plan::steps() const {
   // @@protoc_insertion_point(field_list:viam.service.motion.v1.Plan.steps)
   return steps_;
+}
+
+// string component_name = 5 [json_name = "componentName"];
+inline void Plan::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& Plan::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.service.motion.v1.Plan.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Plan::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.motion.v1.Plan.component_name)
+}
+inline std::string* Plan::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.service.motion.v1.Plan.component_name)
+  return _s;
+}
+inline const std::string& Plan::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void Plan::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Plan::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Plan::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.service.motion.v1.Plan.component_name)
+  return component_name_.Release();
+}
+inline void Plan::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.motion.v1.Plan.component_name)
 }
 
 // -------------------------------------------------------------------

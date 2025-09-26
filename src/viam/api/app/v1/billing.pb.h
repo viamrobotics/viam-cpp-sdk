@@ -92,6 +92,9 @@ extern InvoiceSummaryDefaultTypeInternal _InvoiceSummary_default_instance_;
 class PaymentMethodCard;
 struct PaymentMethodCardDefaultTypeInternal;
 extern PaymentMethodCardDefaultTypeInternal _PaymentMethodCard_default_instance_;
+class PaymentMethodUSBankAccount;
+struct PaymentMethodUSBankAccountDefaultTypeInternal;
+extern PaymentMethodUSBankAccountDefaultTypeInternal _PaymentMethodUSBankAccount_default_instance_;
 class ResourceUsageCosts;
 struct ResourceUsageCostsDefaultTypeInternal;
 extern ResourceUsageCostsDefaultTypeInternal _ResourceUsageCosts_default_instance_;
@@ -113,6 +116,9 @@ extern UpdateOrganizationBillingTierResponseDefaultTypeInternal _UpdateOrganizat
 class UsageCost;
 struct UsageCostDefaultTypeInternal;
 extern UsageCostDefaultTypeInternal _UsageCost_default_instance_;
+class VerificationInfo;
+struct VerificationInfoDefaultTypeInternal;
+extern VerificationInfoDefaultTypeInternal _VerificationInfo_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
@@ -131,6 +137,7 @@ template<> ::viam::app::v1::GetOrgBillingInformationRequest* Arena::CreateMaybeM
 template<> ::viam::app::v1::GetOrgBillingInformationResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetOrgBillingInformationResponse>(Arena*);
 template<> ::viam::app::v1::InvoiceSummary* Arena::CreateMaybeMessage<::viam::app::v1::InvoiceSummary>(Arena*);
 template<> ::viam::app::v1::PaymentMethodCard* Arena::CreateMaybeMessage<::viam::app::v1::PaymentMethodCard>(Arena*);
+template<> ::viam::app::v1::PaymentMethodUSBankAccount* Arena::CreateMaybeMessage<::viam::app::v1::PaymentMethodUSBankAccount>(Arena*);
 template<> ::viam::app::v1::ResourceUsageCosts* Arena::CreateMaybeMessage<::viam::app::v1::ResourceUsageCosts>(Arena*);
 template<> ::viam::app::v1::ResourceUsageCostsBySource* Arena::CreateMaybeMessage<::viam::app::v1::ResourceUsageCostsBySource>(Arena*);
 template<> ::viam::app::v1::SendPaymentRequiredEmailRequest* Arena::CreateMaybeMessage<::viam::app::v1::SendPaymentRequiredEmailRequest>(Arena*);
@@ -138,6 +145,7 @@ template<> ::viam::app::v1::SendPaymentRequiredEmailResponse* Arena::CreateMaybe
 template<> ::viam::app::v1::UpdateOrganizationBillingTierRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationBillingTierRequest>(Arena*);
 template<> ::viam::app::v1::UpdateOrganizationBillingTierResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateOrganizationBillingTierResponse>(Arena*);
 template<> ::viam::app::v1::UsageCost* Arena::CreateMaybeMessage<::viam::app::v1::UsageCost>(Arena*);
+template<> ::viam::app::v1::VerificationInfo* Arena::CreateMaybeMessage<::viam::app::v1::VerificationInfo>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace app {
@@ -146,12 +154,13 @@ namespace v1 {
 enum PaymentMethodType : int {
   PAYMENT_METHOD_TYPE_UNSPECIFIED = 0,
   PAYMENT_METHOD_TYPE_CARD = 1,
+  PAYMENT_METHOD_TYPE_USBANKACCOUNT = 2,
   PaymentMethodType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   PaymentMethodType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool PaymentMethodType_IsValid(int value);
 constexpr PaymentMethodType PaymentMethodType_MIN = PAYMENT_METHOD_TYPE_UNSPECIFIED;
-constexpr PaymentMethodType PaymentMethodType_MAX = PAYMENT_METHOD_TYPE_CARD;
+constexpr PaymentMethodType PaymentMethodType_MAX = PAYMENT_METHOD_TYPE_USBANKACCOUNT;
 constexpr int PaymentMethodType_ARRAYSIZE = PaymentMethodType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PaymentMethodType_descriptor();
@@ -643,6 +652,382 @@ class PaymentMethodCard final :
 };
 // -------------------------------------------------------------------
 
+class VerificationInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.VerificationInfo) */ {
+ public:
+  inline VerificationInfo() : VerificationInfo(nullptr) {}
+  ~VerificationInfo() override;
+  explicit PROTOBUF_CONSTEXPR VerificationInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  VerificationInfo(const VerificationInfo& from);
+  VerificationInfo(VerificationInfo&& from) noexcept
+    : VerificationInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline VerificationInfo& operator=(const VerificationInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline VerificationInfo& operator=(VerificationInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const VerificationInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const VerificationInfo* internal_default_instance() {
+    return reinterpret_cast<const VerificationInfo*>(
+               &_VerificationInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(VerificationInfo& a, VerificationInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(VerificationInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(VerificationInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  VerificationInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<VerificationInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const VerificationInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const VerificationInfo& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(VerificationInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.VerificationInfo";
+  }
+  protected:
+  explicit VerificationInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kHostedVerificationPageUrlFieldNumber = 2,
+    kArrivalDateFieldNumber = 1,
+  };
+  // string hosted_verification_page_url = 2 [json_name = "hostedVerificationPageUrl"];
+  void clear_hosted_verification_page_url();
+  const std::string& hosted_verification_page_url() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_hosted_verification_page_url(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_hosted_verification_page_url();
+  PROTOBUF_NODISCARD std::string* release_hosted_verification_page_url();
+  void set_allocated_hosted_verification_page_url(std::string* hosted_verification_page_url);
+  private:
+  const std::string& _internal_hosted_verification_page_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_hosted_verification_page_url(const std::string& value);
+  std::string* _internal_mutable_hosted_verification_page_url();
+  public:
+
+  // int64 arrival_date = 1 [json_name = "arrivalDate"];
+  void clear_arrival_date();
+  int64_t arrival_date() const;
+  void set_arrival_date(int64_t value);
+  private:
+  int64_t _internal_arrival_date() const;
+  void _internal_set_arrival_date(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.VerificationInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr hosted_verification_page_url_;
+  int64_t arrival_date_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PaymentMethodUSBankAccount final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.PaymentMethodUSBankAccount) */ {
+ public:
+  inline PaymentMethodUSBankAccount() : PaymentMethodUSBankAccount(nullptr) {}
+  ~PaymentMethodUSBankAccount() override;
+  explicit PROTOBUF_CONSTEXPR PaymentMethodUSBankAccount(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PaymentMethodUSBankAccount(const PaymentMethodUSBankAccount& from);
+  PaymentMethodUSBankAccount(PaymentMethodUSBankAccount&& from) noexcept
+    : PaymentMethodUSBankAccount() {
+    *this = ::std::move(from);
+  }
+
+  inline PaymentMethodUSBankAccount& operator=(const PaymentMethodUSBankAccount& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PaymentMethodUSBankAccount& operator=(PaymentMethodUSBankAccount&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PaymentMethodUSBankAccount& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PaymentMethodUSBankAccount* internal_default_instance() {
+    return reinterpret_cast<const PaymentMethodUSBankAccount*>(
+               &_PaymentMethodUSBankAccount_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(PaymentMethodUSBankAccount& a, PaymentMethodUSBankAccount& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PaymentMethodUSBankAccount* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PaymentMethodUSBankAccount* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PaymentMethodUSBankAccount* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PaymentMethodUSBankAccount>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PaymentMethodUSBankAccount& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PaymentMethodUSBankAccount& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PaymentMethodUSBankAccount* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.PaymentMethodUSBankAccount";
+  }
+  protected:
+  explicit PaymentMethodUSBankAccount(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBankNameFieldNumber = 1,
+    kLastFourDigitsAccountNumberFieldNumber = 2,
+    kRoutingNumberFieldNumber = 3,
+    kAccountTypeFieldNumber = 4,
+    kVerificationInfoFieldNumber = 5,
+  };
+  // string bank_name = 1 [json_name = "bankName"];
+  void clear_bank_name();
+  const std::string& bank_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_bank_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_bank_name();
+  PROTOBUF_NODISCARD std::string* release_bank_name();
+  void set_allocated_bank_name(std::string* bank_name);
+  private:
+  const std::string& _internal_bank_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bank_name(const std::string& value);
+  std::string* _internal_mutable_bank_name();
+  public:
+
+  // string last_four_digits_account_number = 2 [json_name = "lastFourDigitsAccountNumber"];
+  void clear_last_four_digits_account_number();
+  const std::string& last_four_digits_account_number() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_last_four_digits_account_number(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_last_four_digits_account_number();
+  PROTOBUF_NODISCARD std::string* release_last_four_digits_account_number();
+  void set_allocated_last_four_digits_account_number(std::string* last_four_digits_account_number);
+  private:
+  const std::string& _internal_last_four_digits_account_number() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_last_four_digits_account_number(const std::string& value);
+  std::string* _internal_mutable_last_four_digits_account_number();
+  public:
+
+  // string routing_number = 3 [json_name = "routingNumber"];
+  void clear_routing_number();
+  const std::string& routing_number() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_routing_number(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_routing_number();
+  PROTOBUF_NODISCARD std::string* release_routing_number();
+  void set_allocated_routing_number(std::string* routing_number);
+  private:
+  const std::string& _internal_routing_number() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_routing_number(const std::string& value);
+  std::string* _internal_mutable_routing_number();
+  public:
+
+  // string account_type = 4 [json_name = "accountType"];
+  void clear_account_type();
+  const std::string& account_type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_account_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_account_type();
+  PROTOBUF_NODISCARD std::string* release_account_type();
+  void set_allocated_account_type(std::string* account_type);
+  private:
+  const std::string& _internal_account_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account_type(const std::string& value);
+  std::string* _internal_mutable_account_type();
+  public:
+
+  // optional .viam.app.v1.VerificationInfo verification_info = 5 [json_name = "verificationInfo"];
+  bool has_verification_info() const;
+  private:
+  bool _internal_has_verification_info() const;
+  public:
+  void clear_verification_info();
+  const ::viam::app::v1::VerificationInfo& verification_info() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::VerificationInfo* release_verification_info();
+  ::viam::app::v1::VerificationInfo* mutable_verification_info();
+  void set_allocated_verification_info(::viam::app::v1::VerificationInfo* verification_info);
+  private:
+  const ::viam::app::v1::VerificationInfo& _internal_verification_info() const;
+  ::viam::app::v1::VerificationInfo* _internal_mutable_verification_info();
+  public:
+  void unsafe_arena_set_allocated_verification_info(
+      ::viam::app::v1::VerificationInfo* verification_info);
+  ::viam::app::v1::VerificationInfo* unsafe_arena_release_verification_info();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.PaymentMethodUSBankAccount)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bank_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr last_four_digits_account_number_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr routing_number_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr account_type_;
+  ::viam::app::v1::VerificationInfo* verification_info_;
+  friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetCurrentMonthUsageRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetCurrentMonthUsageRequest) */ {
  public:
@@ -691,7 +1076,7 @@ class GetCurrentMonthUsageRequest final :
                &_GetCurrentMonthUsageRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(GetCurrentMonthUsageRequest& a, GetCurrentMonthUsageRequest& b) {
     a.Swap(&b);
@@ -839,7 +1224,7 @@ class UsageCost final :
                &_UsageCost_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(UsageCost& a, UsageCost& b) {
     a.Swap(&b);
@@ -993,7 +1378,7 @@ class ResourceUsageCostsBySource final :
                &_ResourceUsageCostsBySource_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(ResourceUsageCostsBySource& a, ResourceUsageCostsBySource& b) {
     a.Swap(&b);
@@ -1172,7 +1557,7 @@ class ResourceUsageCosts final :
                &_ResourceUsageCosts_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(ResourceUsageCosts& a, ResourceUsageCosts& b) {
     a.Swap(&b);
@@ -1357,7 +1742,7 @@ class GetCurrentMonthUsageResponse final :
                &_GetCurrentMonthUsageResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(GetCurrentMonthUsageResponse& a, GetCurrentMonthUsageResponse& b) {
     a.Swap(&b);
@@ -1681,7 +2066,7 @@ class GetOrgBillingInformationRequest final :
                &_GetOrgBillingInformationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(GetOrgBillingInformationRequest& a, GetOrgBillingInformationRequest& b) {
     a.Swap(&b);
@@ -1829,7 +2214,7 @@ class GetOrgBillingInformationResponse final :
                &_GetOrgBillingInformationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(GetOrgBillingInformationResponse& a, GetOrgBillingInformationResponse& b) {
     a.Swap(&b);
@@ -1903,6 +2288,7 @@ class GetOrgBillingInformationResponse final :
     kBillingEmailFieldNumber = 2,
     kBillingTierFieldNumber = 4,
     kMethodFieldNumber = 3,
+    kMethodUsBankAccountFieldNumber = 5,
     kTypeFieldNumber = 1,
   };
   // string billing_email = 2 [json_name = "billingEmail"];
@@ -1955,6 +2341,24 @@ class GetOrgBillingInformationResponse final :
       ::viam::app::v1::PaymentMethodCard* method);
   ::viam::app::v1::PaymentMethodCard* unsafe_arena_release_method();
 
+  // optional .viam.app.v1.PaymentMethodUSBankAccount method_us_bank_account = 5 [json_name = "methodUsBankAccount"];
+  bool has_method_us_bank_account() const;
+  private:
+  bool _internal_has_method_us_bank_account() const;
+  public:
+  void clear_method_us_bank_account();
+  const ::viam::app::v1::PaymentMethodUSBankAccount& method_us_bank_account() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::PaymentMethodUSBankAccount* release_method_us_bank_account();
+  ::viam::app::v1::PaymentMethodUSBankAccount* mutable_method_us_bank_account();
+  void set_allocated_method_us_bank_account(::viam::app::v1::PaymentMethodUSBankAccount* method_us_bank_account);
+  private:
+  const ::viam::app::v1::PaymentMethodUSBankAccount& _internal_method_us_bank_account() const;
+  ::viam::app::v1::PaymentMethodUSBankAccount* _internal_mutable_method_us_bank_account();
+  public:
+  void unsafe_arena_set_allocated_method_us_bank_account(
+      ::viam::app::v1::PaymentMethodUSBankAccount* method_us_bank_account);
+  ::viam::app::v1::PaymentMethodUSBankAccount* unsafe_arena_release_method_us_bank_account();
+
   // .viam.app.v1.PaymentMethodType type = 1 [json_name = "type"];
   void clear_type();
   ::viam::app::v1::PaymentMethodType type() const;
@@ -1976,6 +2380,7 @@ class GetOrgBillingInformationResponse final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr billing_email_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr billing_tier_;
   ::viam::app::v1::PaymentMethodCard* method_;
+  ::viam::app::v1::PaymentMethodUSBankAccount* method_us_bank_account_;
   int type_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
 };
@@ -2029,7 +2434,7 @@ class GetInvoicesSummaryRequest final :
                &_GetInvoicesSummaryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(GetInvoicesSummaryRequest& a, GetInvoicesSummaryRequest& b) {
     a.Swap(&b);
@@ -2177,7 +2582,7 @@ class GetInvoicesSummaryResponse final :
                &_GetInvoicesSummaryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(GetInvoicesSummaryResponse& a, GetInvoicesSummaryResponse& b) {
     a.Swap(&b);
@@ -2340,7 +2745,7 @@ class GetInvoicePdfRequest final :
                &_GetInvoicePdfRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(GetInvoicePdfRequest& a, GetInvoicePdfRequest& b) {
     a.Swap(&b);
@@ -2504,7 +2909,7 @@ class GetInvoicePdfResponse final :
                &_GetInvoicePdfResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(GetInvoicePdfResponse& a, GetInvoicePdfResponse& b) {
     a.Swap(&b);
@@ -2652,7 +3057,7 @@ class SendPaymentRequiredEmailRequest final :
                &_SendPaymentRequiredEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(SendPaymentRequiredEmailRequest& a, SendPaymentRequiredEmailRequest& b) {
     a.Swap(&b);
@@ -2815,7 +3220,7 @@ class SendPaymentRequiredEmailResponse final :
                &_SendPaymentRequiredEmailResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    16;
 
   friend void swap(SendPaymentRequiredEmailResponse& a, SendPaymentRequiredEmailResponse& b) {
     a.Swap(&b);
@@ -2931,7 +3336,7 @@ class GetAvailableBillingTiersRequest final :
                &_GetAvailableBillingTiersRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    17;
 
   friend void swap(GetAvailableBillingTiersRequest& a, GetAvailableBillingTiersRequest& b) {
     a.Swap(&b);
@@ -3048,7 +3453,7 @@ class GetAvailableBillingTiersResponse final :
                &_GetAvailableBillingTiersResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    18;
 
   friend void swap(GetAvailableBillingTiersResponse& a, GetAvailableBillingTiersResponse& b) {
     a.Swap(&b);
@@ -3206,7 +3611,7 @@ class UpdateOrganizationBillingTierRequest final :
                &_UpdateOrganizationBillingTierRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    19;
 
   friend void swap(UpdateOrganizationBillingTierRequest& a, UpdateOrganizationBillingTierRequest& b) {
     a.Swap(&b);
@@ -3369,7 +3774,7 @@ class UpdateOrganizationBillingTierResponse final :
                &_UpdateOrganizationBillingTierResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    20;
 
   friend void swap(UpdateOrganizationBillingTierResponse& a, UpdateOrganizationBillingTierResponse& b) {
     a.Swap(&b);
@@ -3486,7 +3891,7 @@ class CreateInvoiceAndChargeImmediatelyRequest final :
                &_CreateInvoiceAndChargeImmediatelyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    21;
 
   friend void swap(CreateInvoiceAndChargeImmediatelyRequest& a, CreateInvoiceAndChargeImmediatelyRequest& b) {
     a.Swap(&b);
@@ -3685,7 +4090,7 @@ class CreateInvoiceAndChargeImmediatelyResponse final :
                &_CreateInvoiceAndChargeImmediatelyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    22;
 
   friend void swap(CreateInvoiceAndChargeImmediatelyResponse& a, CreateInvoiceAndChargeImmediatelyResponse& b) {
     a.Swap(&b);
@@ -4240,6 +4645,374 @@ inline void PaymentMethodCard::set_allocated_last_four_digits(std::string* last_
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PaymentMethodCard.last_four_digits)
+}
+
+// -------------------------------------------------------------------
+
+// VerificationInfo
+
+// int64 arrival_date = 1 [json_name = "arrivalDate"];
+inline void VerificationInfo::clear_arrival_date() {
+  arrival_date_ = int64_t{0};
+}
+inline int64_t VerificationInfo::_internal_arrival_date() const {
+  return arrival_date_;
+}
+inline int64_t VerificationInfo::arrival_date() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.VerificationInfo.arrival_date)
+  return _internal_arrival_date();
+}
+inline void VerificationInfo::_internal_set_arrival_date(int64_t value) {
+  
+  arrival_date_ = value;
+}
+inline void VerificationInfo::set_arrival_date(int64_t value) {
+  _internal_set_arrival_date(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.VerificationInfo.arrival_date)
+}
+
+// string hosted_verification_page_url = 2 [json_name = "hostedVerificationPageUrl"];
+inline void VerificationInfo::clear_hosted_verification_page_url() {
+  hosted_verification_page_url_.ClearToEmpty();
+}
+inline const std::string& VerificationInfo::hosted_verification_page_url() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.VerificationInfo.hosted_verification_page_url)
+  return _internal_hosted_verification_page_url();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void VerificationInfo::set_hosted_verification_page_url(ArgT0&& arg0, ArgT... args) {
+ 
+ hosted_verification_page_url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.VerificationInfo.hosted_verification_page_url)
+}
+inline std::string* VerificationInfo::mutable_hosted_verification_page_url() {
+  std::string* _s = _internal_mutable_hosted_verification_page_url();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.VerificationInfo.hosted_verification_page_url)
+  return _s;
+}
+inline const std::string& VerificationInfo::_internal_hosted_verification_page_url() const {
+  return hosted_verification_page_url_.Get();
+}
+inline void VerificationInfo::_internal_set_hosted_verification_page_url(const std::string& value) {
+  
+  hosted_verification_page_url_.Set(value, GetArenaForAllocation());
+}
+inline std::string* VerificationInfo::_internal_mutable_hosted_verification_page_url() {
+  
+  return hosted_verification_page_url_.Mutable(GetArenaForAllocation());
+}
+inline std::string* VerificationInfo::release_hosted_verification_page_url() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.VerificationInfo.hosted_verification_page_url)
+  return hosted_verification_page_url_.Release();
+}
+inline void VerificationInfo::set_allocated_hosted_verification_page_url(std::string* hosted_verification_page_url) {
+  if (hosted_verification_page_url != nullptr) {
+    
+  } else {
+    
+  }
+  hosted_verification_page_url_.SetAllocated(hosted_verification_page_url, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (hosted_verification_page_url_.IsDefault()) {
+    hosted_verification_page_url_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.VerificationInfo.hosted_verification_page_url)
+}
+
+// -------------------------------------------------------------------
+
+// PaymentMethodUSBankAccount
+
+// string bank_name = 1 [json_name = "bankName"];
+inline void PaymentMethodUSBankAccount::clear_bank_name() {
+  bank_name_.ClearToEmpty();
+}
+inline const std::string& PaymentMethodUSBankAccount::bank_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PaymentMethodUSBankAccount.bank_name)
+  return _internal_bank_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PaymentMethodUSBankAccount::set_bank_name(ArgT0&& arg0, ArgT... args) {
+ 
+ bank_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.PaymentMethodUSBankAccount.bank_name)
+}
+inline std::string* PaymentMethodUSBankAccount::mutable_bank_name() {
+  std::string* _s = _internal_mutable_bank_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PaymentMethodUSBankAccount.bank_name)
+  return _s;
+}
+inline const std::string& PaymentMethodUSBankAccount::_internal_bank_name() const {
+  return bank_name_.Get();
+}
+inline void PaymentMethodUSBankAccount::_internal_set_bank_name(const std::string& value) {
+  
+  bank_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PaymentMethodUSBankAccount::_internal_mutable_bank_name() {
+  
+  return bank_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PaymentMethodUSBankAccount::release_bank_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PaymentMethodUSBankAccount.bank_name)
+  return bank_name_.Release();
+}
+inline void PaymentMethodUSBankAccount::set_allocated_bank_name(std::string* bank_name) {
+  if (bank_name != nullptr) {
+    
+  } else {
+    
+  }
+  bank_name_.SetAllocated(bank_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (bank_name_.IsDefault()) {
+    bank_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PaymentMethodUSBankAccount.bank_name)
+}
+
+// string last_four_digits_account_number = 2 [json_name = "lastFourDigitsAccountNumber"];
+inline void PaymentMethodUSBankAccount::clear_last_four_digits_account_number() {
+  last_four_digits_account_number_.ClearToEmpty();
+}
+inline const std::string& PaymentMethodUSBankAccount::last_four_digits_account_number() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PaymentMethodUSBankAccount.last_four_digits_account_number)
+  return _internal_last_four_digits_account_number();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PaymentMethodUSBankAccount::set_last_four_digits_account_number(ArgT0&& arg0, ArgT... args) {
+ 
+ last_four_digits_account_number_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.PaymentMethodUSBankAccount.last_four_digits_account_number)
+}
+inline std::string* PaymentMethodUSBankAccount::mutable_last_four_digits_account_number() {
+  std::string* _s = _internal_mutable_last_four_digits_account_number();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PaymentMethodUSBankAccount.last_four_digits_account_number)
+  return _s;
+}
+inline const std::string& PaymentMethodUSBankAccount::_internal_last_four_digits_account_number() const {
+  return last_four_digits_account_number_.Get();
+}
+inline void PaymentMethodUSBankAccount::_internal_set_last_four_digits_account_number(const std::string& value) {
+  
+  last_four_digits_account_number_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PaymentMethodUSBankAccount::_internal_mutable_last_four_digits_account_number() {
+  
+  return last_four_digits_account_number_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PaymentMethodUSBankAccount::release_last_four_digits_account_number() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PaymentMethodUSBankAccount.last_four_digits_account_number)
+  return last_four_digits_account_number_.Release();
+}
+inline void PaymentMethodUSBankAccount::set_allocated_last_four_digits_account_number(std::string* last_four_digits_account_number) {
+  if (last_four_digits_account_number != nullptr) {
+    
+  } else {
+    
+  }
+  last_four_digits_account_number_.SetAllocated(last_four_digits_account_number, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (last_four_digits_account_number_.IsDefault()) {
+    last_four_digits_account_number_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PaymentMethodUSBankAccount.last_four_digits_account_number)
+}
+
+// string routing_number = 3 [json_name = "routingNumber"];
+inline void PaymentMethodUSBankAccount::clear_routing_number() {
+  routing_number_.ClearToEmpty();
+}
+inline const std::string& PaymentMethodUSBankAccount::routing_number() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PaymentMethodUSBankAccount.routing_number)
+  return _internal_routing_number();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PaymentMethodUSBankAccount::set_routing_number(ArgT0&& arg0, ArgT... args) {
+ 
+ routing_number_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.PaymentMethodUSBankAccount.routing_number)
+}
+inline std::string* PaymentMethodUSBankAccount::mutable_routing_number() {
+  std::string* _s = _internal_mutable_routing_number();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PaymentMethodUSBankAccount.routing_number)
+  return _s;
+}
+inline const std::string& PaymentMethodUSBankAccount::_internal_routing_number() const {
+  return routing_number_.Get();
+}
+inline void PaymentMethodUSBankAccount::_internal_set_routing_number(const std::string& value) {
+  
+  routing_number_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PaymentMethodUSBankAccount::_internal_mutable_routing_number() {
+  
+  return routing_number_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PaymentMethodUSBankAccount::release_routing_number() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PaymentMethodUSBankAccount.routing_number)
+  return routing_number_.Release();
+}
+inline void PaymentMethodUSBankAccount::set_allocated_routing_number(std::string* routing_number) {
+  if (routing_number != nullptr) {
+    
+  } else {
+    
+  }
+  routing_number_.SetAllocated(routing_number, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (routing_number_.IsDefault()) {
+    routing_number_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PaymentMethodUSBankAccount.routing_number)
+}
+
+// string account_type = 4 [json_name = "accountType"];
+inline void PaymentMethodUSBankAccount::clear_account_type() {
+  account_type_.ClearToEmpty();
+}
+inline const std::string& PaymentMethodUSBankAccount::account_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PaymentMethodUSBankAccount.account_type)
+  return _internal_account_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PaymentMethodUSBankAccount::set_account_type(ArgT0&& arg0, ArgT... args) {
+ 
+ account_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.PaymentMethodUSBankAccount.account_type)
+}
+inline std::string* PaymentMethodUSBankAccount::mutable_account_type() {
+  std::string* _s = _internal_mutable_account_type();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PaymentMethodUSBankAccount.account_type)
+  return _s;
+}
+inline const std::string& PaymentMethodUSBankAccount::_internal_account_type() const {
+  return account_type_.Get();
+}
+inline void PaymentMethodUSBankAccount::_internal_set_account_type(const std::string& value) {
+  
+  account_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PaymentMethodUSBankAccount::_internal_mutable_account_type() {
+  
+  return account_type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PaymentMethodUSBankAccount::release_account_type() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PaymentMethodUSBankAccount.account_type)
+  return account_type_.Release();
+}
+inline void PaymentMethodUSBankAccount::set_allocated_account_type(std::string* account_type) {
+  if (account_type != nullptr) {
+    
+  } else {
+    
+  }
+  account_type_.SetAllocated(account_type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (account_type_.IsDefault()) {
+    account_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PaymentMethodUSBankAccount.account_type)
+}
+
+// optional .viam.app.v1.VerificationInfo verification_info = 5 [json_name = "verificationInfo"];
+inline bool PaymentMethodUSBankAccount::_internal_has_verification_info() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || verification_info_ != nullptr);
+  return value;
+}
+inline bool PaymentMethodUSBankAccount::has_verification_info() const {
+  return _internal_has_verification_info();
+}
+inline void PaymentMethodUSBankAccount::clear_verification_info() {
+  if (verification_info_ != nullptr) verification_info_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::app::v1::VerificationInfo& PaymentMethodUSBankAccount::_internal_verification_info() const {
+  const ::viam::app::v1::VerificationInfo* p = verification_info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::VerificationInfo&>(
+      ::viam::app::v1::_VerificationInfo_default_instance_);
+}
+inline const ::viam::app::v1::VerificationInfo& PaymentMethodUSBankAccount::verification_info() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PaymentMethodUSBankAccount.verification_info)
+  return _internal_verification_info();
+}
+inline void PaymentMethodUSBankAccount::unsafe_arena_set_allocated_verification_info(
+    ::viam::app::v1::VerificationInfo* verification_info) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(verification_info_);
+  }
+  verification_info_ = verification_info;
+  if (verification_info) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.PaymentMethodUSBankAccount.verification_info)
+}
+inline ::viam::app::v1::VerificationInfo* PaymentMethodUSBankAccount::release_verification_info() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::VerificationInfo* temp = verification_info_;
+  verification_info_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::VerificationInfo* PaymentMethodUSBankAccount::unsafe_arena_release_verification_info() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PaymentMethodUSBankAccount.verification_info)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::VerificationInfo* temp = verification_info_;
+  verification_info_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::VerificationInfo* PaymentMethodUSBankAccount::_internal_mutable_verification_info() {
+  _has_bits_[0] |= 0x00000001u;
+  if (verification_info_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::VerificationInfo>(GetArenaForAllocation());
+    verification_info_ = p;
+  }
+  return verification_info_;
+}
+inline ::viam::app::v1::VerificationInfo* PaymentMethodUSBankAccount::mutable_verification_info() {
+  ::viam::app::v1::VerificationInfo* _msg = _internal_mutable_verification_info();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PaymentMethodUSBankAccount.verification_info)
+  return _msg;
+}
+inline void PaymentMethodUSBankAccount::set_allocated_verification_info(::viam::app::v1::VerificationInfo* verification_info) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete verification_info_;
+  }
+  if (verification_info) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(verification_info);
+    if (message_arena != submessage_arena) {
+      verification_info = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, verification_info, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  verification_info_ = verification_info;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PaymentMethodUSBankAccount.verification_info)
 }
 
 // -------------------------------------------------------------------
@@ -5348,6 +6121,96 @@ inline void GetOrgBillingInformationResponse::set_allocated_billing_tier(std::st
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.billing_tier)
 }
 
+// optional .viam.app.v1.PaymentMethodUSBankAccount method_us_bank_account = 5 [json_name = "methodUsBankAccount"];
+inline bool GetOrgBillingInformationResponse::_internal_has_method_us_bank_account() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || method_us_bank_account_ != nullptr);
+  return value;
+}
+inline bool GetOrgBillingInformationResponse::has_method_us_bank_account() const {
+  return _internal_has_method_us_bank_account();
+}
+inline void GetOrgBillingInformationResponse::clear_method_us_bank_account() {
+  if (method_us_bank_account_ != nullptr) method_us_bank_account_->Clear();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const ::viam::app::v1::PaymentMethodUSBankAccount& GetOrgBillingInformationResponse::_internal_method_us_bank_account() const {
+  const ::viam::app::v1::PaymentMethodUSBankAccount* p = method_us_bank_account_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::PaymentMethodUSBankAccount&>(
+      ::viam::app::v1::_PaymentMethodUSBankAccount_default_instance_);
+}
+inline const ::viam::app::v1::PaymentMethodUSBankAccount& GetOrgBillingInformationResponse::method_us_bank_account() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetOrgBillingInformationResponse.method_us_bank_account)
+  return _internal_method_us_bank_account();
+}
+inline void GetOrgBillingInformationResponse::unsafe_arena_set_allocated_method_us_bank_account(
+    ::viam::app::v1::PaymentMethodUSBankAccount* method_us_bank_account) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(method_us_bank_account_);
+  }
+  method_us_bank_account_ = method_us_bank_account;
+  if (method_us_bank_account) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.method_us_bank_account)
+}
+inline ::viam::app::v1::PaymentMethodUSBankAccount* GetOrgBillingInformationResponse::release_method_us_bank_account() {
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::PaymentMethodUSBankAccount* temp = method_us_bank_account_;
+  method_us_bank_account_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::PaymentMethodUSBankAccount* GetOrgBillingInformationResponse::unsafe_arena_release_method_us_bank_account() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetOrgBillingInformationResponse.method_us_bank_account)
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::PaymentMethodUSBankAccount* temp = method_us_bank_account_;
+  method_us_bank_account_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::PaymentMethodUSBankAccount* GetOrgBillingInformationResponse::_internal_mutable_method_us_bank_account() {
+  _has_bits_[0] |= 0x00000004u;
+  if (method_us_bank_account_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::PaymentMethodUSBankAccount>(GetArenaForAllocation());
+    method_us_bank_account_ = p;
+  }
+  return method_us_bank_account_;
+}
+inline ::viam::app::v1::PaymentMethodUSBankAccount* GetOrgBillingInformationResponse::mutable_method_us_bank_account() {
+  ::viam::app::v1::PaymentMethodUSBankAccount* _msg = _internal_mutable_method_us_bank_account();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetOrgBillingInformationResponse.method_us_bank_account)
+  return _msg;
+}
+inline void GetOrgBillingInformationResponse::set_allocated_method_us_bank_account(::viam::app::v1::PaymentMethodUSBankAccount* method_us_bank_account) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete method_us_bank_account_;
+  }
+  if (method_us_bank_account) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(method_us_bank_account);
+    if (message_arena != submessage_arena) {
+      method_us_bank_account = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, method_us_bank_account, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  method_us_bank_account_ = method_us_bank_account;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetOrgBillingInformationResponse.method_us_bank_account)
+}
+
 // -------------------------------------------------------------------
 
 // GetInvoicesSummaryRequest
@@ -6140,6 +7003,10 @@ inline void CreateInvoiceAndChargeImmediatelyRequest::set_allocated_org_id_for_b
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
