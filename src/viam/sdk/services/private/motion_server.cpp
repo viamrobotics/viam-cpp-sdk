@@ -205,8 +205,8 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnMap", this, request)([&](auto& helper, auto& motion) {
         const auto destination = from_proto(request->destination());
-        const auto component_name = request->component_name();
-        const auto slam_name = request->slam_service_name();
+        const auto& component_name = request->component_name();
+        const auto& slam_name = request->slam_service_name();
 
         std::shared_ptr<motion_configuration> mc;
         if (request->has_motion_configuration()) {
@@ -233,8 +233,8 @@ Motion::constraints from_proto(const service::motion::v1::Constraints& proto) {
     return make_service_helper<Motion>(
         "MotionServer::MoveOnGlobe", this, request)([&](auto& helper, auto& motion) {
         const auto destination = from_proto(request->destination());
-        const auto component_name = request->component_name();
-        const auto movement_sensor_name = request->movement_sensor_name();
+        const auto& component_name = request->component_name();
+        const auto& movement_sensor_name = request->movement_sensor_name();
         const std::vector<geo_geometry> obstacles = impl::from_repeated_field(request->obstacles());
         const std::vector<geo_geometry> bounding_regions =
             impl::from_repeated_field(request->bounding_regions());
