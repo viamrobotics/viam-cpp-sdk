@@ -50,14 +50,13 @@ BOOST_AUTO_TEST_CASE(mock_move_and_get_pose) {
 
     BOOST_CHECK_EQUAL(motion->current_location, init_fake_pose());
 
-    Name fake_name({"acme", "service", "motion"}, "fake-remote", "fake-motion");
     auto ws = std::make_shared<WorldState>(mock_world_state());
 
-    bool success = motion->move(fake_pose(), fake_name, ws, 0, fake_map());
+    bool success = motion->move(fake_pose(), "fake-motion", ws, 0, fake_map());
 
     BOOST_TEST(success);
     BOOST_CHECK_EQUAL(motion->current_location, fake_pose());
-    BOOST_CHECK_EQUAL(motion->peek_component_name, fake_name);
+    BOOST_CHECK_EQUAL(motion->peek_component_name, "fake-motion");
     BOOST_CHECK_EQUAL(*(motion->peek_world_state), *ws);
 }
 

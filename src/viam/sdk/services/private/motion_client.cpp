@@ -289,7 +289,7 @@ std::pair<Motion::plan_with_status, std::vector<Motion::plan_with_status>> Motio
     return make_client_helper(this, *stub_, &StubType::GetPlan)
         .with(extra,
               [&](auto& request) {
-                  *request.mutable_component_name() = to_proto(component_name);
+                  *request.mutable_component_name() = component_name;
                   request.set_last_plan_only(last_plan_only);
                   if (execution_id) {
                       *request.mutable_execution_id() = *execution_id;
