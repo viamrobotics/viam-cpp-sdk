@@ -417,6 +417,7 @@ set_target_properties(
 )
 
 target_include_directories(viamapi
+  SYSTEM
   PUBLIC
     # Unfortunately, the generated protos don't say 'viam/api' at
     # the beginning so we need the subdirectory include path so the
