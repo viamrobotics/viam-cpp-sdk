@@ -72,7 +72,7 @@ class ViamCppSdkRecipe(ConanFile):
     def build_requirements(self):
         if self.options.offline_proto_generation:
             self.tool_requires(self._grpc_requires())
-            self.tool_requires('protobuf/[>=3.17.1 <6.30.0]')
+            self.tool_requires('protobuf/<host_version>')
 
     def layout(self):
         cmake_layout(self)
