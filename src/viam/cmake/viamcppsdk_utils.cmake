@@ -51,14 +51,15 @@ function(viamcppsdk_get_buf)
     else()
       message(FATAL_ERROR "Unknown Windows platform to correct buf download URL: ${HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD}")
     endif()
+    set (_buf_exe_suffix ".exe")
   endif()
 
-  set(BUF_DOWNLOAD_URL https://github.com/bufbuild/buf/releases/latest/download/buf-${CMAKE_HOST_SYSTEM_NAME}-${HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD}${CMAKE_HOST_EXECUTABLE_SUFFIX})
+  set(BUF_DOWNLOAD_URL https://github.com/bufbuild/buf/releases/latest/download/buf-${CMAKE_HOST_SYSTEM_NAME}-${HOST_SYSTEM_PROCESSOR_FOR_BUF_DOWNLOAD}${_buf_exe_suffix})
 
   file(
     DOWNLOAD
     ${BUF_DOWNLOAD_URL}
-    ${CMAKE_CURRENT_BINARY_DIR}/buf_latest${CMAKE_HOST_EXECUTABLE_SUFFIX}
+    ${CMAKE_CURRENT_BINARY_DIR}/buf_latest${_buf_exe_suffix}
     STATUS buf_status
   )
 
@@ -69,6 +70,6 @@ function(viamcppsdk_get_buf)
     message(FATAL_ERROR "No local `buf` program found (try setting PATH?) and failed to download: ${buf_status_string} for ${BUF_DOWNLOAD_URL}")
   endif()
 
-  set(BUF_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/buf_latest${CMAKE_HOST_EXECUTABLE_SUFFIX} CACHE INTERNAL "buf command")
+  set(BUF_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/buf_latest${_buf_exe_suffix} CACHE INTERNAL "buf command")
   file(CHMOD ${BUF_COMMAND} PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
 endfunction()
