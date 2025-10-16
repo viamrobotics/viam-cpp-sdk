@@ -3966,6 +3966,7 @@ class CreateInvoiceAndChargeImmediatelyRequest final :
     kDescriptionFieldNumber = 3,
     kOrgIdForBrandingFieldNumber = 4,
     kAmountFieldNumber = 2,
+    kDisableEmailFieldNumber = 5,
   };
   // string org_id_to_charge = 1 [json_name = "orgIdToCharge"];
   void clear_org_id_to_charge();
@@ -4026,6 +4027,15 @@ class CreateInvoiceAndChargeImmediatelyRequest final :
   void _internal_set_amount(double value);
   public:
 
+  // bool disable_email = 5 [json_name = "disableEmail"];
+  void clear_disable_email();
+  bool disable_email() const;
+  void set_disable_email(bool value);
+  private:
+  bool _internal_disable_email() const;
+  void _internal_set_disable_email(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest)
  private:
   class _Internal;
@@ -4039,6 +4049,7 @@ class CreateInvoiceAndChargeImmediatelyRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_for_branding_;
   double amount_;
+  bool disable_email_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
 };
 // -------------------------------------------------------------------
@@ -6994,6 +7005,26 @@ inline void CreateInvoiceAndChargeImmediatelyRequest::set_allocated_org_id_for_b
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_for_branding)
+}
+
+// bool disable_email = 5 [json_name = "disableEmail"];
+inline void CreateInvoiceAndChargeImmediatelyRequest::clear_disable_email() {
+  disable_email_ = false;
+}
+inline bool CreateInvoiceAndChargeImmediatelyRequest::_internal_disable_email() const {
+  return disable_email_;
+}
+inline bool CreateInvoiceAndChargeImmediatelyRequest::disable_email() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.disable_email)
+  return _internal_disable_email();
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::_internal_set_disable_email(bool value) {
+  
+  disable_email_ = value;
+}
+inline void CreateInvoiceAndChargeImmediatelyRequest::set_disable_email(bool value) {
+  _internal_set_disable_email(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.disable_email)
 }
 
 // -------------------------------------------------------------------
