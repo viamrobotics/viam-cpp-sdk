@@ -57,6 +57,9 @@ namespace v1 {
 class ActuatorStatus;
 struct ActuatorStatusDefaultTypeInternal;
 extern ActuatorStatusDefaultTypeInternal _ActuatorStatus_default_instance_;
+class AudioInfo;
+struct AudioInfoDefaultTypeInternal;
+extern AudioInfoDefaultTypeInternal _AudioInfo_default_instance_;
 class Capsule;
 struct CapsuleDefaultTypeInternal;
 extern CapsuleDefaultTypeInternal _Capsule_default_instance_;
@@ -90,6 +93,12 @@ extern GetKinematicsRequestDefaultTypeInternal _GetKinematicsRequest_default_ins
 class GetKinematicsResponse;
 struct GetKinematicsResponseDefaultTypeInternal;
 extern GetKinematicsResponseDefaultTypeInternal _GetKinematicsResponse_default_instance_;
+class GetPropertiesRequest;
+struct GetPropertiesRequestDefaultTypeInternal;
+extern GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
+class GetPropertiesResponse;
+struct GetPropertiesResponseDefaultTypeInternal;
+extern GetPropertiesResponseDefaultTypeInternal _GetPropertiesResponse_default_instance_;
 class GetReadingsRequest;
 struct GetReadingsRequestDefaultTypeInternal;
 extern GetReadingsRequestDefaultTypeInternal _GetReadingsRequest_default_instance_;
@@ -146,6 +155,7 @@ extern WorldStateDefaultTypeInternal _WorldState_default_instance_;
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::common::v1::ActuatorStatus* Arena::CreateMaybeMessage<::viam::common::v1::ActuatorStatus>(Arena*);
+template<> ::viam::common::v1::AudioInfo* Arena::CreateMaybeMessage<::viam::common::v1::AudioInfo>(Arena*);
 template<> ::viam::common::v1::Capsule* Arena::CreateMaybeMessage<::viam::common::v1::Capsule>(Arena*);
 template<> ::viam::common::v1::DoCommandRequest* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandRequest>(Arena*);
 template<> ::viam::common::v1::DoCommandResponse* Arena::CreateMaybeMessage<::viam::common::v1::DoCommandResponse>(Arena*);
@@ -157,6 +167,8 @@ template<> ::viam::common::v1::GetGeometriesRequest* Arena::CreateMaybeMessage<:
 template<> ::viam::common::v1::GetGeometriesResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetGeometriesResponse>(Arena*);
 template<> ::viam::common::v1::GetKinematicsRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetKinematicsRequest>(Arena*);
 template<> ::viam::common::v1::GetKinematicsResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetKinematicsResponse>(Arena*);
+template<> ::viam::common::v1::GetPropertiesRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetPropertiesRequest>(Arena*);
+template<> ::viam::common::v1::GetPropertiesResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetPropertiesResponse>(Arena*);
 template<> ::viam::common::v1::GetReadingsRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetReadingsRequest>(Arena*);
 template<> ::viam::common::v1::GetReadingsResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetReadingsResponse>(Arena*);
 template<> ::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse>(Arena*);
@@ -5161,6 +5173,524 @@ class LogEntry final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
+// -------------------------------------------------------------------
+
+class AudioInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.AudioInfo) */ {
+ public:
+  inline AudioInfo() : AudioInfo(nullptr) {}
+  ~AudioInfo() override;
+  explicit PROTOBUF_CONSTEXPR AudioInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AudioInfo(const AudioInfo& from);
+  AudioInfo(AudioInfo&& from) noexcept
+    : AudioInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline AudioInfo& operator=(const AudioInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AudioInfo& operator=(AudioInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AudioInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AudioInfo* internal_default_instance() {
+    return reinterpret_cast<const AudioInfo*>(
+               &_AudioInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  friend void swap(AudioInfo& a, AudioInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AudioInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AudioInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AudioInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AudioInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AudioInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AudioInfo& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AudioInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.AudioInfo";
+  }
+  protected:
+  explicit AudioInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodecFieldNumber = 1,
+    kSampleRateHzFieldNumber = 2,
+    kNumChannelsFieldNumber = 3,
+  };
+  // string codec = 1 [json_name = "codec"];
+  void clear_codec();
+  const std::string& codec() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_codec(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_codec();
+  PROTOBUF_NODISCARD std::string* release_codec();
+  void set_allocated_codec(std::string* codec);
+  private:
+  const std::string& _internal_codec() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_codec(const std::string& value);
+  std::string* _internal_mutable_codec();
+  public:
+
+  // int32 sample_rate_hz = 2 [json_name = "sampleRateHz"];
+  void clear_sample_rate_hz();
+  int32_t sample_rate_hz() const;
+  void set_sample_rate_hz(int32_t value);
+  private:
+  int32_t _internal_sample_rate_hz() const;
+  void _internal_set_sample_rate_hz(int32_t value);
+  public:
+
+  // int32 num_channels = 3 [json_name = "numChannels"];
+  void clear_num_channels();
+  int32_t num_channels() const;
+  void set_num_channels(int32_t value);
+  private:
+  int32_t _internal_num_channels() const;
+  void _internal_set_num_channels(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.AudioInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr codec_;
+  int32_t sample_rate_hz_;
+  int32_t num_channels_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPropertiesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetPropertiesRequest) */ {
+ public:
+  inline GetPropertiesRequest() : GetPropertiesRequest(nullptr) {}
+  ~GetPropertiesRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPropertiesRequest(const GetPropertiesRequest& from);
+  GetPropertiesRequest(GetPropertiesRequest&& from) noexcept
+    : GetPropertiesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPropertiesRequest& operator=(const GetPropertiesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPropertiesRequest& operator=(GetPropertiesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPropertiesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPropertiesRequest* internal_default_instance() {
+    return reinterpret_cast<const GetPropertiesRequest*>(
+               &_GetPropertiesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    30;
+
+  friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPropertiesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPropertiesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPropertiesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPropertiesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPropertiesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPropertiesRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPropertiesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GetPropertiesRequest";
+  }
+  protected:
+  explicit GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GetPropertiesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetPropertiesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetPropertiesResponse) */ {
+ public:
+  inline GetPropertiesResponse() : GetPropertiesResponse(nullptr) {}
+  ~GetPropertiesResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetPropertiesResponse(const GetPropertiesResponse& from);
+  GetPropertiesResponse(GetPropertiesResponse&& from) noexcept
+    : GetPropertiesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetPropertiesResponse& operator=(const GetPropertiesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetPropertiesResponse& operator=(GetPropertiesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetPropertiesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetPropertiesResponse* internal_default_instance() {
+    return reinterpret_cast<const GetPropertiesResponse*>(
+               &_GetPropertiesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    31;
+
+  friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetPropertiesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetPropertiesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetPropertiesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetPropertiesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetPropertiesResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetPropertiesResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetPropertiesResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GetPropertiesResponse";
+  }
+  protected:
+  explicit GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSupportedCodecsFieldNumber = 1,
+    kSampleRateHzFieldNumber = 2,
+    kNumChannelsFieldNumber = 3,
+  };
+  // repeated string supported_codecs = 1 [json_name = "supportedCodecs"];
+  int supported_codecs_size() const;
+  private:
+  int _internal_supported_codecs_size() const;
+  public:
+  void clear_supported_codecs();
+  const std::string& supported_codecs(int index) const;
+  std::string* mutable_supported_codecs(int index);
+  void set_supported_codecs(int index, const std::string& value);
+  void set_supported_codecs(int index, std::string&& value);
+  void set_supported_codecs(int index, const char* value);
+  void set_supported_codecs(int index, const char* value, size_t size);
+  std::string* add_supported_codecs();
+  void add_supported_codecs(const std::string& value);
+  void add_supported_codecs(std::string&& value);
+  void add_supported_codecs(const char* value);
+  void add_supported_codecs(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& supported_codecs() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_supported_codecs();
+  private:
+  const std::string& _internal_supported_codecs(int index) const;
+  std::string* _internal_add_supported_codecs();
+  public:
+
+  // int32 sample_rate_hz = 2 [json_name = "sampleRateHz"];
+  void clear_sample_rate_hz();
+  int32_t sample_rate_hz() const;
+  void set_sample_rate_hz(int32_t value);
+  private:
+  int32_t _internal_sample_rate_hz() const;
+  void _internal_set_sample_rate_hz(int32_t value);
+  public:
+
+  // int32 num_channels = 3 [json_name = "numChannels"];
+  void clear_num_channels();
+  int32_t num_channels() const;
+  void set_num_channels(int32_t value);
+  private:
+  int32_t _internal_num_channels() const;
+  void _internal_set_num_channels(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GetPropertiesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> supported_codecs_;
+  int32_t sample_rate_hz_;
+  int32_t num_channels_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
 // ===================================================================
 
 static const int kSafetyHeartbeatMonitoredFieldNumber = 84260;
@@ -9022,9 +9552,367 @@ LogEntry::fields() const {
   return fields_;
 }
 
+// -------------------------------------------------------------------
+
+// AudioInfo
+
+// string codec = 1 [json_name = "codec"];
+inline void AudioInfo::clear_codec() {
+  codec_.ClearToEmpty();
+}
+inline const std::string& AudioInfo::codec() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.AudioInfo.codec)
+  return _internal_codec();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AudioInfo::set_codec(ArgT0&& arg0, ArgT... args) {
+ 
+ codec_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.AudioInfo.codec)
+}
+inline std::string* AudioInfo::mutable_codec() {
+  std::string* _s = _internal_mutable_codec();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.AudioInfo.codec)
+  return _s;
+}
+inline const std::string& AudioInfo::_internal_codec() const {
+  return codec_.Get();
+}
+inline void AudioInfo::_internal_set_codec(const std::string& value) {
+  
+  codec_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AudioInfo::_internal_mutable_codec() {
+  
+  return codec_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AudioInfo::release_codec() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.AudioInfo.codec)
+  return codec_.Release();
+}
+inline void AudioInfo::set_allocated_codec(std::string* codec) {
+  if (codec != nullptr) {
+    
+  } else {
+    
+  }
+  codec_.SetAllocated(codec, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (codec_.IsDefault()) {
+    codec_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.AudioInfo.codec)
+}
+
+// int32 sample_rate_hz = 2 [json_name = "sampleRateHz"];
+inline void AudioInfo::clear_sample_rate_hz() {
+  sample_rate_hz_ = 0;
+}
+inline int32_t AudioInfo::_internal_sample_rate_hz() const {
+  return sample_rate_hz_;
+}
+inline int32_t AudioInfo::sample_rate_hz() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.AudioInfo.sample_rate_hz)
+  return _internal_sample_rate_hz();
+}
+inline void AudioInfo::_internal_set_sample_rate_hz(int32_t value) {
+  
+  sample_rate_hz_ = value;
+}
+inline void AudioInfo::set_sample_rate_hz(int32_t value) {
+  _internal_set_sample_rate_hz(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.AudioInfo.sample_rate_hz)
+}
+
+// int32 num_channels = 3 [json_name = "numChannels"];
+inline void AudioInfo::clear_num_channels() {
+  num_channels_ = 0;
+}
+inline int32_t AudioInfo::_internal_num_channels() const {
+  return num_channels_;
+}
+inline int32_t AudioInfo::num_channels() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.AudioInfo.num_channels)
+  return _internal_num_channels();
+}
+inline void AudioInfo::_internal_set_num_channels(int32_t value) {
+  
+  num_channels_ = value;
+}
+inline void AudioInfo::set_num_channels(int32_t value) {
+  _internal_set_num_channels(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.AudioInfo.num_channels)
+}
+
+// -------------------------------------------------------------------
+
+// GetPropertiesRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetPropertiesRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetPropertiesRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetPropertiesRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPropertiesRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetPropertiesRequest.name)
+}
+inline std::string* GetPropertiesRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetPropertiesRequest.name)
+  return _s;
+}
+inline const std::string& GetPropertiesRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetPropertiesRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPropertiesRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPropertiesRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetPropertiesRequest.name)
+  return name_.Release();
+}
+inline void GetPropertiesRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetPropertiesRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool GetPropertiesRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool GetPropertiesRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPropertiesRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetPropertiesRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetPropertiesRequest.extra)
+  return _internal_extra();
+}
+inline void GetPropertiesRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GetPropertiesRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetPropertiesRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetPropertiesRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetPropertiesRequest.extra)
+  return _msg;
+}
+inline void GetPropertiesRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetPropertiesRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// GetPropertiesResponse
+
+// repeated string supported_codecs = 1 [json_name = "supportedCodecs"];
+inline int GetPropertiesResponse::_internal_supported_codecs_size() const {
+  return supported_codecs_.size();
+}
+inline int GetPropertiesResponse::supported_codecs_size() const {
+  return _internal_supported_codecs_size();
+}
+inline void GetPropertiesResponse::clear_supported_codecs() {
+  supported_codecs_.Clear();
+}
+inline std::string* GetPropertiesResponse::add_supported_codecs() {
+  std::string* _s = _internal_add_supported_codecs();
+  // @@protoc_insertion_point(field_add_mutable:viam.common.v1.GetPropertiesResponse.supported_codecs)
+  return _s;
+}
+inline const std::string& GetPropertiesResponse::_internal_supported_codecs(int index) const {
+  return supported_codecs_.Get(index);
+}
+inline const std::string& GetPropertiesResponse::supported_codecs(int index) const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetPropertiesResponse.supported_codecs)
+  return _internal_supported_codecs(index);
+}
+inline std::string* GetPropertiesResponse::mutable_supported_codecs(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetPropertiesResponse.supported_codecs)
+  return supported_codecs_.Mutable(index);
+}
+inline void GetPropertiesResponse::set_supported_codecs(int index, const std::string& value) {
+  supported_codecs_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetPropertiesResponse.supported_codecs)
+}
+inline void GetPropertiesResponse::set_supported_codecs(int index, std::string&& value) {
+  supported_codecs_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetPropertiesResponse.supported_codecs)
+}
+inline void GetPropertiesResponse::set_supported_codecs(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  supported_codecs_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.common.v1.GetPropertiesResponse.supported_codecs)
+}
+inline void GetPropertiesResponse::set_supported_codecs(int index, const char* value, size_t size) {
+  supported_codecs_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.common.v1.GetPropertiesResponse.supported_codecs)
+}
+inline std::string* GetPropertiesResponse::_internal_add_supported_codecs() {
+  return supported_codecs_.Add();
+}
+inline void GetPropertiesResponse::add_supported_codecs(const std::string& value) {
+  supported_codecs_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.common.v1.GetPropertiesResponse.supported_codecs)
+}
+inline void GetPropertiesResponse::add_supported_codecs(std::string&& value) {
+  supported_codecs_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.common.v1.GetPropertiesResponse.supported_codecs)
+}
+inline void GetPropertiesResponse::add_supported_codecs(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  supported_codecs_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.common.v1.GetPropertiesResponse.supported_codecs)
+}
+inline void GetPropertiesResponse::add_supported_codecs(const char* value, size_t size) {
+  supported_codecs_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.common.v1.GetPropertiesResponse.supported_codecs)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetPropertiesResponse::supported_codecs() const {
+  // @@protoc_insertion_point(field_list:viam.common.v1.GetPropertiesResponse.supported_codecs)
+  return supported_codecs_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetPropertiesResponse::mutable_supported_codecs() {
+  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.GetPropertiesResponse.supported_codecs)
+  return &supported_codecs_;
+}
+
+// int32 sample_rate_hz = 2 [json_name = "sampleRateHz"];
+inline void GetPropertiesResponse::clear_sample_rate_hz() {
+  sample_rate_hz_ = 0;
+}
+inline int32_t GetPropertiesResponse::_internal_sample_rate_hz() const {
+  return sample_rate_hz_;
+}
+inline int32_t GetPropertiesResponse::sample_rate_hz() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetPropertiesResponse.sample_rate_hz)
+  return _internal_sample_rate_hz();
+}
+inline void GetPropertiesResponse::_internal_set_sample_rate_hz(int32_t value) {
+  
+  sample_rate_hz_ = value;
+}
+inline void GetPropertiesResponse::set_sample_rate_hz(int32_t value) {
+  _internal_set_sample_rate_hz(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetPropertiesResponse.sample_rate_hz)
+}
+
+// int32 num_channels = 3 [json_name = "numChannels"];
+inline void GetPropertiesResponse::clear_num_channels() {
+  num_channels_ = 0;
+}
+inline int32_t GetPropertiesResponse::_internal_num_channels() const {
+  return num_channels_;
+}
+inline int32_t GetPropertiesResponse::num_channels() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetPropertiesResponse.num_channels)
+  return _internal_num_channels();
+}
+inline void GetPropertiesResponse::_internal_set_num_channels(int32_t value) {
+  
+  num_channels_ = value;
+}
+inline void GetPropertiesResponse::set_num_channels(int32_t value) {
+  _internal_set_num_channels(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetPropertiesResponse.num_channels)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
