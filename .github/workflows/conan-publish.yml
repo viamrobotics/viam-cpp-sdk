@@ -132,6 +132,8 @@ jobs:
         python3 -m venv ./conan_venv
         . ./conan_venv/bin/activate
 
+        pip install conan
+
         conan profile detect
         conan remote add viamconan $CONAN_REMOTE_URL
         conan remote auth -cc core:non_interactive=True viamconan
