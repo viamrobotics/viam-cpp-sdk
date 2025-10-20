@@ -64,6 +64,7 @@ jobs:
 
   build_linux:
     strategy:
+      fail-fast: false
       matrix:
         runner: [buildjet-8vcpu-ubuntu-2204, buildjet-8vcpu-ubuntu-2204-arm]
         image: [ubuntu:22.04, debian:bookworm]
@@ -105,6 +106,9 @@ jobs:
             software-properties-common \
             sudo \
             wget \
+
+        c++ --version
+        ldd --version
 
     - name: Install cmake (jammy)
       if: matrix.image == 'ubuntu:22.04'
