@@ -319,8 +319,7 @@ PROTOBUF_CONSTEXPR CreateInvoiceAndChargeImmediatelyRequest::CreateInvoiceAndCha
   : org_id_to_charge_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , org_id_for_branding_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , amount_(0)
-  , disable_email_(false){}
+  , amount_(0){}
 struct CreateInvoiceAndChargeImmediatelyRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CreateInvoiceAndChargeImmediatelyRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -552,12 +551,10 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, amount_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, description_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, org_id_for_branding_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, disable_email_),
   ~0u,
   ~0u,
   0,
   1,
-  ~0u,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -587,8 +584,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 172, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersResponse)},
   { 179, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierRequest)},
   { 187, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierResponse)},
-  { 193, 204, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest)},
-  { 209, -1, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse)},
+  { 193, 203, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest)},
+  { 207, -1, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -706,79 +703,78 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "ationBillingTierRequest\022\'\n\017organization_"
   "id\030\001 \001(\tR\016organizationId\022!\n\014billing_tier"
   "\030\002 \001(\tR\013billingTier\"\'\n%UpdateOrganizatio"
-  "nBillingTierResponse\"\223\002\n(CreateInvoiceAn"
+  "nBillingTierResponse\"\356\001\n(CreateInvoiceAn"
   "dChargeImmediatelyRequest\022\'\n\020org_id_to_c"
   "harge\030\001 \001(\tR\rorgIdToCharge\022\026\n\006amount\030\002 \001"
   "(\001R\006amount\022%\n\013description\030\003 \001(\tH\000R\013descr"
   "iption\210\001\001\0222\n\023org_id_for_branding\030\004 \001(\tH\001"
-  "R\020orgIdForBranding\210\001\001\022#\n\rdisable_email\030\005"
-  " \001(\010R\014disableEmailB\016\n\014_descriptionB\026\n\024_o"
-  "rg_id_for_branding\"+\n)CreateInvoiceAndCh"
-  "argeImmediatelyResponse*}\n\021PaymentMethod"
-  "Type\022#\n\037PAYMENT_METHOD_TYPE_UNSPECIFIED\020"
-  "\000\022\034\n\030PAYMENT_METHOD_TYPE_CARD\020\001\022%\n!PAYME"
-  "NT_METHOD_TYPE_USBANKACCOUNT\020\002*\250\010\n\rUsage"
-  "CostType\022\037\n\033USAGE_COST_TYPE_UNSPECIFIED\020"
-  "\000\022#\n\033USAGE_COST_TYPE_DATA_UPLOAD\020\001\032\002\010\001\022#"
-  "\n\033USAGE_COST_TYPE_DATA_EGRESS\020\002\032\002\010\001\022\"\n\036U"
-  "SAGE_COST_TYPE_REMOTE_CONTROL\020\003\022$\n USAGE"
-  "_COST_TYPE_STANDARD_COMPUTE\020\004\022%\n\035USAGE_C"
-  "OST_TYPE_CLOUD_STORAGE\020\005\032\002\010\001\022-\n)USAGE_CO"
-  "ST_TYPE_BINARY_DATA_CLOUD_STORAGE\020\006\022+\n#U"
-  "SAGE_COST_TYPE_OTHER_CLOUD_STORAGE\020\007\032\002\010\001"
-  "\022\037\n\033USAGE_COST_TYPE_PER_MACHINE\020\010\022(\n$USA"
-  "GE_COST_TYPE_TRIGGER_NOTIFICATION\020\t\022.\n*U"
-  "SAGE_COST_TYPE_TABULAR_DATA_CLOUD_STORAG"
-  "E\020\n\0220\n,USAGE_COST_TYPE_CONFIG_HISTORY_CL"
-  "OUD_STORAGE\020\013\022&\n\"USAGE_COST_TYPE_LOGS_CL"
-  "OUD_STORAGE\020\014\022/\n+USAGE_COST_TYPE_TRAININ"
-  "G_LOGS_CLOUD_STORAGE\020\r\022*\n&USAGE_COST_TYP"
-  "E_PACKAGES_CLOUD_STORAGE\020\016\022&\n\"USAGE_COST"
-  "_TYPE_BINARY_DATA_UPLOAD\020\017\022\'\n#USAGE_COST"
-  "_TYPE_TABULAR_DATA_UPLOAD\020\020\022\037\n\033USAGE_COS"
-  "T_TYPE_LOGS_UPLOAD\020\021\022&\n\"USAGE_COST_TYPE_"
-  "BINARY_DATA_EGRESS\020\022\022\'\n#USAGE_COST_TYPE_"
-  "TABULAR_DATA_EGRESS\020\023\022\037\n\033USAGE_COST_TYPE"
-  "_LOGS_EGRESS\020\024\022(\n$USAGE_COST_TYPE_TRAINI"
-  "NG_LOGS_EGRESS\020\025\0227\n3USAGE_COST_TYPE_TABU"
-  "LAR_DATA_DATABASE_CLOUD_STORAGE\020\026\0221\n-USA"
-  "GE_COST_TYPE_TABULAR_DATA_DATABASE_COMPU"
-  "TE\020\027\0223\n/USAGE_COST_TYPE_BINARY_DATA_CROS"
-  "S_REGION_EGRESS\020\030*X\n\nSourceType\022\033\n\027SOURC"
-  "E_TYPE_UNSPECIFIED\020\000\022\023\n\017SOURCE_TYPE_ORG\020"
-  "\001\022\030\n\024SOURCE_TYPE_FRAGMENT\020\0022\307\007\n\016BillingS"
-  "ervice\022k\n\024GetCurrentMonthUsage\022(.viam.ap"
-  "p.v1.GetCurrentMonthUsageRequest\032).viam."
-  "app.v1.GetCurrentMonthUsageResponse\022w\n\030G"
-  "etOrgBillingInformation\022,.viam.app.v1.Ge"
-  "tOrgBillingInformationRequest\032-.viam.app"
-  ".v1.GetOrgBillingInformationResponse\022e\n\022"
-  "GetInvoicesSummary\022&.viam.app.v1.GetInvo"
-  "icesSummaryRequest\032\'.viam.app.v1.GetInvo"
-  "icesSummaryResponse\022X\n\rGetInvoicePdf\022!.v"
-  "iam.app.v1.GetInvoicePdfRequest\032\".viam.a"
-  "pp.v1.GetInvoicePdfResponse0\001\022w\n\030SendPay"
-  "mentRequiredEmail\022,.viam.app.v1.SendPaym"
-  "entRequiredEmailRequest\032-.viam.app.v1.Se"
-  "ndPaymentRequiredEmailResponse\022w\n\030GetAva"
-  "ilableBillingTiers\022,.viam.app.v1.GetAvai"
-  "lableBillingTiersRequest\032-.viam.app.v1.G"
-  "etAvailableBillingTiersResponse\022\206\001\n\035Upda"
-  "teOrganizationBillingTier\0221.viam.app.v1."
-  "UpdateOrganizationBillingTierRequest\0322.v"
-  "iam.app.v1.UpdateOrganizationBillingTier"
-  "Response\022\222\001\n!CreateInvoiceAndChargeImmed"
-  "iately\0225.viam.app.v1.CreateInvoiceAndCha"
-  "rgeImmediatelyRequest\0326.viam.app.v1.Crea"
-  "teInvoiceAndChargeImmediatelyResponseB\030Z"
-  "\026go.viam.com/api/app/v1b\006proto3"
+  "R\020orgIdForBranding\210\001\001B\016\n\014_descriptionB\026\n"
+  "\024_org_id_for_branding\"+\n)CreateInvoiceAn"
+  "dChargeImmediatelyResponse*}\n\021PaymentMet"
+  "hodType\022#\n\037PAYMENT_METHOD_TYPE_UNSPECIFI"
+  "ED\020\000\022\034\n\030PAYMENT_METHOD_TYPE_CARD\020\001\022%\n!PA"
+  "YMENT_METHOD_TYPE_USBANKACCOUNT\020\002*\250\010\n\rUs"
+  "ageCostType\022\037\n\033USAGE_COST_TYPE_UNSPECIFI"
+  "ED\020\000\022#\n\033USAGE_COST_TYPE_DATA_UPLOAD\020\001\032\002\010"
+  "\001\022#\n\033USAGE_COST_TYPE_DATA_EGRESS\020\002\032\002\010\001\022\""
+  "\n\036USAGE_COST_TYPE_REMOTE_CONTROL\020\003\022$\n US"
+  "AGE_COST_TYPE_STANDARD_COMPUTE\020\004\022%\n\035USAG"
+  "E_COST_TYPE_CLOUD_STORAGE\020\005\032\002\010\001\022-\n)USAGE"
+  "_COST_TYPE_BINARY_DATA_CLOUD_STORAGE\020\006\022+"
+  "\n#USAGE_COST_TYPE_OTHER_CLOUD_STORAGE\020\007\032"
+  "\002\010\001\022\037\n\033USAGE_COST_TYPE_PER_MACHINE\020\010\022(\n$"
+  "USAGE_COST_TYPE_TRIGGER_NOTIFICATION\020\t\022."
+  "\n*USAGE_COST_TYPE_TABULAR_DATA_CLOUD_STO"
+  "RAGE\020\n\0220\n,USAGE_COST_TYPE_CONFIG_HISTORY"
+  "_CLOUD_STORAGE\020\013\022&\n\"USAGE_COST_TYPE_LOGS"
+  "_CLOUD_STORAGE\020\014\022/\n+USAGE_COST_TYPE_TRAI"
+  "NING_LOGS_CLOUD_STORAGE\020\r\022*\n&USAGE_COST_"
+  "TYPE_PACKAGES_CLOUD_STORAGE\020\016\022&\n\"USAGE_C"
+  "OST_TYPE_BINARY_DATA_UPLOAD\020\017\022\'\n#USAGE_C"
+  "OST_TYPE_TABULAR_DATA_UPLOAD\020\020\022\037\n\033USAGE_"
+  "COST_TYPE_LOGS_UPLOAD\020\021\022&\n\"USAGE_COST_TY"
+  "PE_BINARY_DATA_EGRESS\020\022\022\'\n#USAGE_COST_TY"
+  "PE_TABULAR_DATA_EGRESS\020\023\022\037\n\033USAGE_COST_T"
+  "YPE_LOGS_EGRESS\020\024\022(\n$USAGE_COST_TYPE_TRA"
+  "INING_LOGS_EGRESS\020\025\0227\n3USAGE_COST_TYPE_T"
+  "ABULAR_DATA_DATABASE_CLOUD_STORAGE\020\026\0221\n-"
+  "USAGE_COST_TYPE_TABULAR_DATA_DATABASE_CO"
+  "MPUTE\020\027\0223\n/USAGE_COST_TYPE_BINARY_DATA_C"
+  "ROSS_REGION_EGRESS\020\030*X\n\nSourceType\022\033\n\027SO"
+  "URCE_TYPE_UNSPECIFIED\020\000\022\023\n\017SOURCE_TYPE_O"
+  "RG\020\001\022\030\n\024SOURCE_TYPE_FRAGMENT\020\0022\307\007\n\016Billi"
+  "ngService\022k\n\024GetCurrentMonthUsage\022(.viam"
+  ".app.v1.GetCurrentMonthUsageRequest\032).vi"
+  "am.app.v1.GetCurrentMonthUsageResponse\022w"
+  "\n\030GetOrgBillingInformation\022,.viam.app.v1"
+  ".GetOrgBillingInformationRequest\032-.viam."
+  "app.v1.GetOrgBillingInformationResponse\022"
+  "e\n\022GetInvoicesSummary\022&.viam.app.v1.GetI"
+  "nvoicesSummaryRequest\032\'.viam.app.v1.GetI"
+  "nvoicesSummaryResponse\022X\n\rGetInvoicePdf\022"
+  "!.viam.app.v1.GetInvoicePdfRequest\032\".via"
+  "m.app.v1.GetInvoicePdfResponse0\001\022w\n\030Send"
+  "PaymentRequiredEmail\022,.viam.app.v1.SendP"
+  "aymentRequiredEmailRequest\032-.viam.app.v1"
+  ".SendPaymentRequiredEmailResponse\022w\n\030Get"
+  "AvailableBillingTiers\022,.viam.app.v1.GetA"
+  "vailableBillingTiersRequest\032-.viam.app.v"
+  "1.GetAvailableBillingTiersResponse\022\206\001\n\035U"
+  "pdateOrganizationBillingTier\0221.viam.app."
+  "v1.UpdateOrganizationBillingTierRequest\032"
+  "2.viam.app.v1.UpdateOrganizationBillingT"
+  "ierResponse\022\222\001\n!CreateInvoiceAndChargeIm"
+  "mediately\0225.viam.app.v1.CreateInvoiceAnd"
+  "ChargeImmediatelyRequest\0326.viam.app.v1.C"
+  "reateInvoiceAndChargeImmediatelyResponse"
+  "B\030Z\026go.viam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 6151, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 6114, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 23,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -6080,9 +6076,7 @@ CreateInvoiceAndChargeImmediatelyRequest::CreateInvoiceAndChargeImmediatelyReque
     org_id_for_branding_.Set(from._internal_org_id_for_branding(), 
       GetArenaForAllocation());
   }
-  ::memcpy(&amount_, &from.amount_,
-    static_cast<size_t>(reinterpret_cast<char*>(&disable_email_) -
-    reinterpret_cast<char*>(&amount_)) + sizeof(disable_email_));
+  amount_ = from.amount_;
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest)
 }
 
@@ -6099,10 +6093,7 @@ org_id_for_branding_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   org_id_for_branding_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&amount_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&disable_email_) -
-    reinterpret_cast<char*>(&amount_)) + sizeof(disable_email_));
+amount_ = 0;
 }
 
 CreateInvoiceAndChargeImmediatelyRequest::~CreateInvoiceAndChargeImmediatelyRequest() {
@@ -6141,9 +6132,7 @@ void CreateInvoiceAndChargeImmediatelyRequest::Clear() {
       org_id_for_branding_.ClearNonDefaultToEmpty();
     }
   }
-  ::memset(&amount_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&disable_email_) -
-      reinterpret_cast<char*>(&amount_)) + sizeof(disable_email_));
+  amount_ = 0;
   _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -6190,14 +6179,6 @@ const char* CreateInvoiceAndChargeImmediatelyRequest::_InternalParse(const char*
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.CreateInvoiceAndChargeImmediatelyRequest.org_id_for_branding"));
-        } else
-          goto handle_unusual;
-        continue;
-      // bool disable_email = 5 [json_name = "disableEmail"];
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          disable_email_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -6271,12 +6252,6 @@ uint8_t* CreateInvoiceAndChargeImmediatelyRequest::_InternalSerialize(
         4, this->_internal_org_id_for_branding(), target);
   }
 
-  // bool disable_email = 5 [json_name = "disableEmail"];
-  if (this->_internal_disable_email() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(5, this->_internal_disable_email(), target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -6326,11 +6301,6 @@ size_t CreateInvoiceAndChargeImmediatelyRequest::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
-  // bool disable_email = 5 [json_name = "disableEmail"];
-  if (this->_internal_disable_email() != 0) {
-    total_size += 1 + 1;
-  }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -6372,9 +6342,6 @@ void CreateInvoiceAndChargeImmediatelyRequest::MergeFrom(const CreateInvoiceAndC
   if (raw_amount != 0) {
     _internal_set_amount(from._internal_amount());
   }
-  if (from._internal_disable_email() != 0) {
-    _internal_set_disable_email(from._internal_disable_email());
-  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6407,12 +6374,7 @@ void CreateInvoiceAndChargeImmediatelyRequest::InternalSwap(CreateInvoiceAndChar
       &org_id_for_branding_, lhs_arena,
       &other->org_id_for_branding_, rhs_arena
   );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CreateInvoiceAndChargeImmediatelyRequest, disable_email_)
-      + sizeof(CreateInvoiceAndChargeImmediatelyRequest::disable_email_)
-      - PROTOBUF_FIELD_OFFSET(CreateInvoiceAndChargeImmediatelyRequest, amount_)>(
-          reinterpret_cast<char*>(&amount_),
-          reinterpret_cast<char*>(&other->amount_));
+  swap(amount_, other->amount_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateInvoiceAndChargeImmediatelyRequest::GetMetadata() const {

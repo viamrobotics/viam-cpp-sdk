@@ -132,10 +132,6 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/arm/v1/arm.grpc.pb.h
     ${PROTO_GEN_DIR}/component/arm/v1/arm.pb.cc
     ${PROTO_GEN_DIR}/component/arm/v1/arm.pb.h
-    ${PROTO_GEN_DIR}/component/audioin/v1/audioin.grpc.pb.cc
-    ${PROTO_GEN_DIR}/component/audioin/v1/audioin.grpc.pb.h
-    ${PROTO_GEN_DIR}/component/audioin/v1/audioin.pb.cc
-    ${PROTO_GEN_DIR}/component/audioin/v1/audioin.pb.h
     ${PROTO_GEN_DIR}/component/base/v1/base.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/base/v1/base.grpc.pb.h
     ${PROTO_GEN_DIR}/component/base/v1/base.pb.cc
@@ -298,8 +294,6 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/common/v1/common.pb.cc
     ${PROTO_GEN_DIR}/component/arm/v1/arm.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/arm/v1/arm.pb.cc
-    ${PROTO_GEN_DIR}/component/audioin/v1/audioin.grpc.pb.cc
-    ${PROTO_GEN_DIR}/component/audioin/v1/audioin.pb.cc
     ${PROTO_GEN_DIR}/component/base/v1/base.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/base/v1/base.pb.cc
     ${PROTO_GEN_DIR}/component/board/v1/board.grpc.pb.cc
@@ -364,8 +358,6 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/common/v1/common.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/arm/v1/arm.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/arm/v1/arm.pb.h
-      ${PROTO_GEN_DIR}/../../viam/api/component/audioin/v1/audioin.grpc.pb.h
-      ${PROTO_GEN_DIR}/../../viam/api/component/audioin/v1/audioin.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/base/v1/base.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/base/v1/base.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/board/v1/board.grpc.pb.h
