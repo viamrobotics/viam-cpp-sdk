@@ -52,14 +52,14 @@ jobs:
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
-          conan upload "viam-cpp-sdk/*" -r viamconan
+          conan upload "viam-cpp-sdk/*" -r viamconan -c
 
       - name: Upload additional deps
         if: inputs.upload_deps
         run: |
-          conan upload "boost/*" -r viamconan
-          conan upload "grpc/*" -r viamconan
-          conan upload "protobuf/*" -r viamconan
+          conan upload "boost/*" -r viamconan -c
+          conan upload "grpc/*" -r viamconan -c
+          conan upload "protobuf/*" -r viamconan -c
 
 
   build_linux:
@@ -143,11 +143,11 @@ jobs:
         . ./conan_venv/bin/activate
 
         conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
-        conan upload "viam-cpp-sdk/*" -r viamconan
+        conan upload "viam-cpp-sdk/*" -r viamconan -c
 
     - name: Upload additional deps
       if: inputs.upload_deps
       run: |
-        conan upload "boost/*" -r viamconan
-        conan upload "grpc/*" -r viamconan
-        conan upload "protobuf/*" -r viamconan
+        conan upload "boost/*" -r viamconan -c
+        conan upload "grpc/*" -r viamconan -c
+        conan upload "protobuf/*" -r viamconan -c
