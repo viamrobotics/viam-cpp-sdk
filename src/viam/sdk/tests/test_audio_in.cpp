@@ -28,11 +28,11 @@ BOOST_AUTO_TEST_CASE(test_get_audio) {
     std::shared_ptr<MockAudioIn> mock = MockAudioIn::get_mock_audio_in();
 
     client_to_mock_pipeline<AudioIn>(mock, [&](AudioIn& client) {
-        std::vector<AudioIn::AudioChunk> received_chunks;
+        std::vector<AudioIn::audio_chunk> received_chunks;
 
         // Test streaming for 1 second
         client.get_audio("pcm16",
-            [&](AudioIn::AudioChunk&& chunk) -> bool {
+            [&](AudioIn::audio_chunk&& chunk) -> bool {
                 received_chunks.push_back(std::move(chunk));
                 return received_chunks.size() < 3; // Stop stream after 3 chunks
             },

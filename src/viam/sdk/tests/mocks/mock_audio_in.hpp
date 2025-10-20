@@ -13,7 +13,7 @@ using viam::sdk::AudioIn;
 class MockAudioIn : public AudioIn {
 public:
     void get_audio(std::string const& codec,
-                   std::function<bool(AudioChunk&& chunk)> const& chunk_handler,
+                   std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
                    double const& duration_seconds,
                    int64_t const& previous_timestamp,
                    const sdk::ProtoStruct& extra) override;
@@ -32,11 +32,11 @@ public:
 private:
     AudioIn::properties properties_;
     viam::sdk::ProtoStruct map_;
-    std::vector<AudioChunk> mock_chunks_;
+    std::vector<audio_chunk> mock_chunks_;
 };
 
 AudioIn::properties fake_properties();
-std::vector<AudioIn::AudioChunk> fake_audio_chunks();
+std::vector<AudioIn::audio_chunk> fake_audio_chunks();
 
 }  // namespace audioin
 }  // namespace sdktests

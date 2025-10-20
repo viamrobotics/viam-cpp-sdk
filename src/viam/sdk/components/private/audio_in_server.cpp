@@ -20,7 +20,7 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
         make_service_helper<AudioIn>(
             "AudioInServer::GetAudio", this, request)([&](auto& helper, auto& audio_in) {
             std::string request_id = boost::uuids::to_string(boost::uuids::random_generator()());
-            auto writeChunk = [writer, context, request_id](AudioIn::AudioChunk && chunk) {
+            auto writeChunk = [writer, context, request_id](AudioIn::audio_chunk && chunk) {
                 if (context->IsCancelled()) {
                     // send bool to tell the resource to stop calling the callback function.
                     return false;

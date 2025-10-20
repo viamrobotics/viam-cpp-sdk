@@ -22,7 +22,7 @@ class AudioInClient : public AudioIn {
     AudioInClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
     void get_audio(std::string const& codec,
-                    std::function<bool(AudioChunk&& chunk)> const& chunk_handler,
+                    std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
                     double const& duration_seconds,
                     int64_t const& previous_timestamp,
                     const ProtoStruct& extra) override;

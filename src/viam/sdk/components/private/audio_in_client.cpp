@@ -30,7 +30,7 @@ AudioInClient::AudioInClient(std::string name, std::shared_ptr<grpc::Channel> ch
 
 
 void AudioInClient::get_audio(std::string  const& codec,
-                               std::function<bool(AudioChunk&& chunk)> const& chunk_handler,
+                               std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
                                double const& duration_seconds,
                                int64_t const& previous_timestamp,
                                const ProtoStruct& extra) {
@@ -43,8 +43,8 @@ void AudioInClient::get_audio(std::string  const& codec,
               })
         .invoke_stream([&](auto& response) {
 
-        // Create AudioChunk from response
-        AudioChunk chunk;
+        // Create audio_chunk from response
+        audio_chunk chunk;
 
         // Convert audio_data from string to std::vector<std::byte>
         const std::string& audio_data_str = response.audio().audio_data();

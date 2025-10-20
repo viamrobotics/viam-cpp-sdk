@@ -24,7 +24,7 @@ namespace sdk {
 class AudioIn : public Component {
     public:
     /// @struct properties
-    /// @brief Information about the AudioIn component
+    /// @brief properties of the AudioIn component
     struct properties {
         std::vector<std::string> supported_codecs;
         int sample_rate_hz;
@@ -32,19 +32,21 @@ class AudioIn : public Component {
     };
 
 
-    // AudioInfo describes information about a piece of audio data
-    struct AudioInfo {
+    /// @struct audio_info
+    /// @brief Information about a piece of audio data
+    struct audio_info {
         std::string codec;
         int sample_rate_hz;
         int num_channels;
     };
 
-
-    struct AudioChunk {
+    /// @struct audio_chunk
+    /// @brief A sequential chunk of audio data with timing information for continuous audio streams.
+    struct audio_chunk {
         std::vector<std::byte> audio_data;
-        AudioInfo audio_info;
-        int start_timestamp_ns;
-        int end_timestamp_ns;
+        audio_info audio_info;
+        int64_t start_timestamp_ns;
+        int64_t end_timestamp_ns;
         int sequence;
         std::string request_id;
     };
@@ -59,7 +61,7 @@ class AudioIn : public Component {
     /// @param previous_timestamp timestamp to start the audio stream from for continuity between multiple calls. If not set, will stream data
     // starting from the time the request was received by the server.
     inline void get_audio(std::string const& codec,
-                            std::function<bool(AudioChunk&& chunk)> const& chunk_handler,
+                            std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
                             double const& duration_seconds,
                             int64_t const& previous_timestamp) {
         return get_audio(codec, chunk_handler, duration_seconds, previous_timestamp, {});
@@ -77,7 +79,7 @@ class AudioIn : public Component {
     //starting from the time the request was received by the server.
     /// @param extra Any additional arguments to the method
     virtual void get_audio(std::string const& codec,
-                            std::function<bool(AudioChunk&& chunk)> const& chunk_handler,
+                            std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
                             double const& duration_seconds,
                             int64_t const& previous_timestamp,
                             const ProtoStruct& extra) = 0;

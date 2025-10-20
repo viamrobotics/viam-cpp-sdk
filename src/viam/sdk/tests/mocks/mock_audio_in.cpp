@@ -1,0 +1,95 @@
+#include <viam/sdk/tests/mocks/mock_audio_in.hpp>
+
+#include <thread>
+#include <chrono>
+
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/audio_in.hpp>
+#include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
+
+namespace viam {
+namespace sdktests {
+namespace audioin {
+
+using namespace viam::sdk;
+
+void MockAudioIn::get_audio(std::string const& codec,
+                           std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
+                           double const& duration_seconds,
+                           int64_t const& previous_timestamp,
+                           const ProtoStruct& extra) {
+
+    // Simulate streaming audio chunks
+    int chunk_count = 0;
+    int max_chunks = (duration_seconds == 0) ? 100 : static_cast<int>(duration_seconds * 100); // ~100 chunks per second
+
+    for (const auto& mock_chunk : mock_chunks_) {
+        if (chunk_count >= max_chunks) {
+            break;
+        }
+
+        // Create a copy of the chunk to pass to handler
+        audio_chunk chunk = mock_chunk;
+        chunk.sequence = chunk_count;
+        chunk.request_id = "mock-request-123";
+
+        // Call the chunk handler
+        if (!chunk_handler(std::move(chunk))) {
+            break; // Handler requested to stop
+        }
+
+        chunk_count++;
+
+        // Simulate chunk timing (~10ms per chunk)
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+}
+
+AudioIn::properties MockAudioIn::get_properties(const ProtoStruct& extra) {
+    return properties_;
+}
+
+ProtoStruct MockAudioIn::do_command(const ProtoStruct& command) {
+    return map_;
+}
+
+std::shared_ptr<MockAudioIn> MockAudioIn::get_mock_audio_in() {
+    auto audio_in = std::make_shared<MockAudioIn>("mock_audio_in");
+
+    audio_in->properties_ = fake_properties();
+    audio_in->mock_chunks_ = fake_audio_chunks();
+    audio_in->map_ = fake_map();
+
+    return audio_in;
+}
+
+AudioIn::properties fake_properties() {
+    AudioIn::properties props;
+    props.supported_codecs = {"pcm16", "pcm32"};
+    props.sample_rate_hz = 48000;
+    props.num_channels = 1;
+    return props;
+}
+
+std::vector<AudioIn::audio_chunk> fake_audio_chunks() {
+    std::vector<AudioIn::audio_chunk> chunks;
+
+    // Create 5 mock chunks with fake audio data
+    for (int i = 0; i < 5; ++i) {
+        AudioIn::audio_chunk chunk;
+        chunk.audio_data = std::vector<std::byte>(1024, static_cast<std::byte>(i + 1)); // 1KB of data
+        chunk.audio_info.codec = "pcm16";
+        chunk.audio_info.sample_rate_hz = 48000;
+        chunk.audio_info.num_channels = 1;
+        chunk.start_timestamp_ns = i * 10000000; // 10ms intervals
+        chunk.end_timestamp_ns = (i + 1) * 10000000;
+        chunks.push_back(chunk);
+    }
+
+    return chunks;
+}
+
+}  // namespace audioin
+}  // namespace sdktests
+}  // namespace viam
