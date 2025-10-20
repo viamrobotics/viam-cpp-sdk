@@ -71,6 +71,7 @@ target_sources(viamsdk
     common/world_state.cpp
     common/private/service_helper.cpp
     components/arm.cpp
+    components/audio_in.cpp
     components/base.cpp
     components/board.cpp
     components/button.cpp
@@ -86,6 +87,8 @@ target_sources(viamsdk
     components/power_sensor.cpp
     components/private/arm_client.cpp
     components/private/arm_server.cpp
+    components/private/audio_in_server.cpp
+    components/private/audio_in_client.cpp
     components/private/base_client.cpp
     components/private/base_server.cpp
     components/private/board_client.cpp
