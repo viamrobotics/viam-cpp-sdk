@@ -108,7 +108,7 @@ jobs:
             wget \
 
     - name: Install cmake (jammy)
-      if: matrix.image == ubuntu:22.04
+      if: matrix.image == 'ubuntu:22.04'
       run: |
         sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
         sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
@@ -117,7 +117,7 @@ jobs:
         apt-get -y install cmake=3.25.2-0kitware1ubuntu22.04.1 cmake-data=3.25.2-0kitware1ubuntu22.04.1
 
     - name: Install cmake (bookworm)
-      if: matrix.image == debian:bookworm
+      if: matrix.image == 'debian:bookworm'
       run: DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install cmake
 
     - name: Set up python/conan
