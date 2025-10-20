@@ -51,7 +51,7 @@ jobs:
           # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
-          conan create . --build=missing -s:a compiler.cppstd=17 -s:a "&:shared=False"
+          conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
           conan upload "viam-cpp-sdk/*" -r viamconan
 
       - name: Upload additional deps
@@ -142,7 +142,7 @@ jobs:
       run: |
         . ./conan_venv/bin/activate
 
-        conan create . --build=missing -s:a compiler.cppstd=17 -s:a "&:shared=False"
+        conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
         conan upload "viam-cpp-sdk/*" -r viamconan
 
     - name: Upload additional deps
