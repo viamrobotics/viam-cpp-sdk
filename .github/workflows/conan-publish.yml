@@ -64,13 +64,13 @@ jobs:
 
 
   build_linux:
-    runs-on: ${{ matrix.runs_on }}
-    container:
-      image: ${{ matrix.image }}
     strategy:
       matrix:
-        - runs_on: [buildjet-8vcpu-ubuntu-2204, buildjet-8vcpu-ubuntu-2204-arm]
-        - image: [ubuntu:22.04, debian:bookworm]
+        runner: [buildjet-8vcpu-ubuntu-2204, buildjet-8vcpu-ubuntu-2204-arm]
+        image: [ubuntu:22.04, debian:bookworm]
+    runs-on: ${{ matrix.runner }}
+    container:
+      image: ${{ matrix.image }}
 
     steps:
     - name: Checkout code
