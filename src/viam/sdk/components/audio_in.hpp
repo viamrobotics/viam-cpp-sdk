@@ -98,6 +98,17 @@ class AudioIn : public Component {
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Returns `GeometryConfig`s associated with the calling AudioIn.
+    /// @return The requested `GeometryConfig`s associated with the component.
+    inline std::vector<GeometryConfig> get_geometries() {
+        return get_geometries({});
+    }
+
+    /// @brief Returns `GeometryConfig`s associated with the calling AudioIn.
+    /// @param extra Any additional arguments to the method.
+    /// @return The requested `GeometryConfig`s associated with the component.
+    virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
+
     API api() const override;
 
    protected:
@@ -105,15 +116,12 @@ class AudioIn : public Component {
 
     };
 
-
     template <>
     struct API::traits<AudioIn> {
         static API api();
     };
 
     bool operator==(const AudioIn::properties& lhs, const AudioIn::properties& rhs);
-
-
 
 } // namespace sdk
 } // namespace viam

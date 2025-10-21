@@ -21,8 +21,6 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-
-
 AudioInClient::AudioInClient(std::string name, std::shared_ptr<grpc::Channel> channel)
     : AudioIn(std::move(name)),
       stub_(viam::component::audioin::v1::AudioInService::NewStub(channel)),
@@ -43,7 +41,7 @@ void AudioInClient::get_audio(std::string  const& codec,
               })
         .invoke_stream([&](auto& response) {
 
-        // Create audio_chunk from response
+        // Create audio_chunk struct from proto response
         audio_chunk chunk;
 
         // Convert audio_data from string to std::vector<std::byte>
@@ -70,7 +68,7 @@ AudioIn::properties AudioInClient::get_properties(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with(extra)
         .invoke([](auto& response) {
-            // Convert repeated field to vector
+            // Convert proto repeated field to vector
             std::vector<std::string> codecs;
             codecs.reserve(response.supported_codecs_size());
             for (const auto& codec : response.supported_codecs()) {
@@ -89,7 +87,11 @@ ProtoStruct AudioInClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
-
+std::vector<GeometryConfig> AudioInClient::get_geometries(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetGeometries)
+        .with(extra)
+        .invoke([](auto& response) { return from_proto(response); });
+};
 
 }  // namespace impl
 }  // namespace sdk

@@ -3,6 +3,7 @@
 #include <viam/sdk/tests/mocks/mock_audio_in.hpp>
 #include <boost/optional/optional_io.hpp>
 #include <boost/qvm/all.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
 #include <boost/test/included/unit_test.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -73,6 +74,17 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
         BOOST_CHECK(expected == props);
     });
 }
+
+BOOST_AUTO_TEST_CASE(test_get_geometries) {
+    std::shared_ptr<MockAudioIn> mock = MockAudioIn::get_mock_audio_in();
+    client_to_mock_pipeline<AudioIn>(mock, [](AudioIn& client) {
+        std::vector<GeometryConfig> result_geometries = client.get_geometries();
+        std::vector<GeometryConfig> expected_geometries = fake_geometries();
+
+        BOOST_CHECK(result_geometries == expected_geometries);
+    });
+}
+
 
 BOOST_AUTO_TEST_SUITE_END()
 

@@ -55,8 +55,6 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
         return ::grpc::Status();
     }
 
-
-
     ::grpc::Status AudioInServer::DoCommand(::grpc::ServerContext*,
                                     const ::viam::common::v1::DoCommandRequest* request,
                                     ::viam::common::v1::DoCommandResponse* response) noexcept {
@@ -65,7 +63,6 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
         *response->mutable_result() = to_proto(result);
     });
 }
-
 
     ::grpc::Status AudioInServer::GetProperties(
     grpc::ServerContext*,
@@ -83,7 +80,18 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-
+    ::grpc::Status AudioInServer::GetGeometries(
+    ::grpc::ServerContext*,
+    const ::viam::common::v1::GetGeometriesRequest* request,
+    ::viam::common::v1::GetGeometriesResponse* response) noexcept {
+    return make_service_helper<AudioIn>(
+        "AudioInServer::GetGeometries", this, request)([&](auto& helper, auto& audio_in) {
+        const std::vector<GeometryConfig> geometries = audio_in->get_geometries(helper.getExtra());
+        for (const auto& geometry : geometries) {
+            *response->mutable_geometries()->Add() = to_proto(geometry);
+        }
+    });
+}
 
 }  // namespace impl
 }  // namespace sdk

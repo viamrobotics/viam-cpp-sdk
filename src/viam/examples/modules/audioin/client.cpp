@@ -18,8 +18,6 @@ int main() {
     // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
     Instance inst;
 
-   auto machine = RobotClient::at_address(host, options);
-
     // Update these with your robot's connection details
     const char* uri = "";  // replace with your robot's URI
     DialOptions dial_options;
@@ -35,7 +33,7 @@ int main() {
     std::string address(uri);
     Options options(1, opts);
 
-    std::shared_ptr<RobotClient> robot = RobotClient::at_address(host, options);
+    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
 
     // Print resources
     VIAM_SDK_LOG(info) << "Resources:";

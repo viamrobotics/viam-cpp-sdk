@@ -26,19 +26,20 @@ class AudioInServer : public ResourceServer, public viam::component::audioin::v1
     explicit AudioInServer(std::shared_ptr<ResourceManager> manager);
 
     ::grpc::Status GetAudio(::grpc::ServerContext* context,
-                            const ::viam::component::audioin::v1::GetAudioRequest*,
-                            ::grpc::ServerWriter<::viam::component::audioin::v1::GetAudioResponse>* writer
+                        const ::viam::component::audioin::v1::GetAudioRequest*,
+                        ::grpc::ServerWriter<::viam::component::audioin::v1::GetAudioResponse>* writer
                         ) noexcept override;
-
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
-                    const ::viam::common::v1::DoCommandRequest* request,
-                    ::viam::common::v1::DoCommandResponse* response) noexcept override;
-
-
+                        const ::viam::common::v1::DoCommandRequest* request,
+                        ::viam::common::v1::DoCommandResponse* response) noexcept override;
+    ::grpc::Status GetGeometries(
+                        ::grpc::ServerContext* context,
+                        const ::viam::common::v1::GetGeometriesRequest* request,
+                        ::viam::common::v1::GetGeometriesResponse* response) noexcept override;
     ::grpc::Status GetProperties(
-        ::grpc::ServerContext* context,
-        const ::viam::common::v1::GetPropertiesRequest* request,
-        ::viam::common::v1::GetPropertiesResponse* response) noexcept override;
+                        ::grpc::ServerContext* context,
+                        const ::viam::common::v1::GetPropertiesRequest* request,
+                        ::viam::common::v1::GetPropertiesResponse* response) noexcept override;
     };
 
 

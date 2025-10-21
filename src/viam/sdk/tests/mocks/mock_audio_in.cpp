@@ -22,7 +22,7 @@ void MockAudioIn::get_audio(std::string const& codec,
 
     // Simulate streaming audio chunks
     int chunk_count = 0;
-    int max_chunks = (duration_seconds == 0) ? 100 : static_cast<int>(duration_seconds * 100); // ~100 chunks per second
+    int max_chunks = (duration_seconds == 0) ? 100 : static_cast<int>(duration_seconds * 100);
 
     for (const auto& mock_chunk : mock_chunks_) {
         if (chunk_count >= max_chunks) {
@@ -32,16 +32,13 @@ void MockAudioIn::get_audio(std::string const& codec,
         // Create a copy of the chunk to pass to handler
         audio_chunk chunk = mock_chunk;
         chunk.sequence = chunk_count;
-        chunk.request_id = "mock-request-123";
 
-        // Call the chunk handler
         if (!chunk_handler(std::move(chunk))) {
             break; // Handler requested to stop
         }
 
         chunk_count++;
 
-        // Simulate chunk timing (~10ms per chunk)
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
@@ -75,19 +72,22 @@ AudioIn::properties fake_properties() {
 std::vector<AudioIn::audio_chunk> fake_audio_chunks() {
     std::vector<AudioIn::audio_chunk> chunks;
 
-    // Create 5 mock chunks with fake audio data
     for (int i = 0; i < 5; ++i) {
         AudioIn::audio_chunk chunk;
-        chunk.audio_data = std::vector<std::byte>(1024, static_cast<std::byte>(i + 1)); // 1KB of data
+        chunk.audio_data = std::vector<std::byte>(1024, static_cast<std::byte>(i + 1));
         chunk.audio_info.codec = "pcm16";
         chunk.audio_info.sample_rate_hz = 48000;
         chunk.audio_info.num_channels = 1;
-        chunk.start_timestamp_ns = i * 10000000; // 10ms intervals
+        chunk.start_timestamp_ns = i * 10000000;
         chunk.end_timestamp_ns = (i + 1) * 10000000;
         chunks.push_back(chunk);
     }
 
     return chunks;
+}
+
+std::vector<GeometryConfig> MockAudioIn::get_geometries(const ProtoStruct&) {
+    return geometries_;
 }
 
 }  // namespace audioin

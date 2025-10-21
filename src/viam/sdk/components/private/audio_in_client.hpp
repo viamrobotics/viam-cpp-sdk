@@ -8,7 +8,6 @@
 #include <viam/api/component/audioin/v1/audioin.grpc.pb.h>
 
 #include <viam/sdk/components/audio_in.hpp>
-
 namespace viam {
 namespace sdk {
 namespace impl {
@@ -29,6 +28,7 @@ class AudioInClient : public AudioIn {
 
     properties get_properties(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
@@ -40,8 +40,9 @@ class AudioInClient : public AudioIn {
     // that calls the virtual method and passes a `nullptr` by default in place of the `extra`
     // param. In order to access these versions of the methods within the client code, however,
     // we need to include these `using` lines.
-   // using AudioIn::get_geometries;
+    using AudioIn::get_geometries;
     using AudioIn::get_audio;
+    using AudioIn::get_properties;
 
    private:
 

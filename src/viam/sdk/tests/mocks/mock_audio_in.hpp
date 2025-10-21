@@ -9,6 +9,7 @@ namespace sdktests {
 namespace audioin {
 
 using viam::sdk::AudioIn;
+using namespace viam::sdk;
 
 class MockAudioIn : public AudioIn {
 public:
@@ -22,6 +23,8 @@ public:
 
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
 
+    std::vector<GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
+
     static std::shared_ptr<MockAudioIn> get_mock_audio_in();
 
     MockAudioIn(std::string name) : AudioIn(std::move(name)) {}
@@ -33,6 +36,7 @@ private:
     AudioIn::properties properties_;
     viam::sdk::ProtoStruct map_;
     std::vector<audio_chunk> mock_chunks_;
+    std::vector<GeometryConfig> geometries_;
 };
 
 AudioIn::properties fake_properties();
