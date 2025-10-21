@@ -10,14 +10,14 @@ namespace sdk {
 
 /// @brief Common audio codecs
 namespace audio_codecs {
-    constexpr const char* PCM_16 = "pcm16";
-    constexpr const char* PCM_32 = "pcm32";
-    constexpr const char* PCM_32_FLOAT = "pcm32_float";
-    constexpr const char* MP3 = "mp3";
-    constexpr const char* AAC = "aac";
-    constexpr const char* OPUS = "opus";
-    constexpr const char* FLAC = "flac";
-}
+constexpr const char* PCM_16 = "pcm16";
+constexpr const char* PCM_32 = "pcm32";
+constexpr const char* PCM_32_FLOAT = "pcm32_float";
+constexpr const char* MP3 = "mp3";
+constexpr const char* AAC = "aac";
+constexpr const char* OPUS = "opus";
+constexpr const char* FLAC = "flac";
+}  // namespace audio_codecs
 
 /// @struct properties
 /// @brief Properties of an audio component (input or output)

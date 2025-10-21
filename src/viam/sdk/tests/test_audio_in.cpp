@@ -2,8 +2,8 @@
 #include <boost/optional/optional_io.hpp>
 #include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
-#include <viam/sdk/components/audio_in.hpp>
 #include <viam/sdk/common/audio.hpp>
+#include <viam/sdk/components/audio_in.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/mock_audio_in.hpp>
 #include <viam/sdk/tests/test_utils.hpp>

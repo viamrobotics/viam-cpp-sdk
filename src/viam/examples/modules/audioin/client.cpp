@@ -77,8 +77,7 @@ int main() {
     auto chunk_handler = [&](AudioIn::audio_chunk&& chunk) -> bool {
         chunk_count++;
         VIAM_SDK_LOG(info) << "Received chunk " << chunk_count
-                           << " - length: " << chunk.audio_data.size()
-                           << " bytes";
+                           << " - length: " << chunk.audio_data.size() << " bytes";
 
         for (const auto& byte : chunk.audio_data) {
             all_audio_data.push_back(static_cast<uint8_t>(byte));
@@ -95,7 +94,11 @@ int main() {
 
     std::string filename = "sine_wave_audio.wav";
     try {
-        write_wav_file(filename, all_audio_data, audio_codecs::PCM_16, props.sample_rate_hz, props.num_channels);
+        write_wav_file(filename,
+                       all_audio_data,
+                       audio_codecs::PCM_16,
+                       props.sample_rate_hz,
+                       props.num_channels);
         VIAM_SDK_LOG(info) << "Audio saved to " << filename;
         VIAM_SDK_LOG(info) << "To play: open " << filename << " (or use any audio player)";
     } catch (const std::exception& e) {

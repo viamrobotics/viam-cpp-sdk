@@ -1,7 +1,7 @@
 #pragma once
 
-#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/audio.hpp>
+#include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/audio_in.hpp>
 #include <viam/sdk/resource/resource.hpp>
 

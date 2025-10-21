@@ -44,8 +44,8 @@ void AudioInClient::get_audio(std::string const& codec,
 
             // Convert audio_data from string to std::vector<uint8_t>
             const std::string& audio_data_str = response.audio().audio_data();
-            chunk.audio_data.assign(
-                audio_data_str.c_str(), audio_data_str.c_str() + audio_data_str.size());
+            chunk.audio_data.assign(audio_data_str.c_str(),
+                                    audio_data_str.c_str() + audio_data_str.size());
 
             chunk.sequence_number = response.audio().sequence();
             chunk.request_id = response.request_id();

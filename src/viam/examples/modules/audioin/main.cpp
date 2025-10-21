@@ -89,7 +89,8 @@ ProtoStruct SineWaveAudioIn::do_command(const ProtoStruct& command) {
     return command;
 }
 
-// Generates a single audio sample representing a sine wave at the given frequency, amplitude, and time.
+// Generates a single audio sample representing a sine wave at the given frequency, amplitude, and
+// time.
 double SineWaveAudioIn::generate_sine_sample(double frequency,
                                              double amplitude,
                                              double time_seconds) {
@@ -101,8 +102,7 @@ int16_t SineWaveAudioIn::float_to_pcm16(double sample_value) {
     return static_cast<int16_t>(sample_value * 32767.0);
 }
 
-std::vector<uint8_t> SineWaveAudioIn::pcm16_samples_to_bytes(
-    const std::vector<int16_t>& samples) {
+std::vector<uint8_t> SineWaveAudioIn::pcm16_samples_to_bytes(const std::vector<int16_t>& samples) {
     std::vector<uint8_t> bytes(samples.size() * sizeof(int16_t));
     std::copy(reinterpret_cast<const uint8_t*>(samples.data()),
               reinterpret_cast<const uint8_t*>(samples.data()) + bytes.size(),
@@ -111,10 +111,10 @@ std::vector<uint8_t> SineWaveAudioIn::pcm16_samples_to_bytes(
 }
 
 AudioIn::audio_chunk SineWaveAudioIn::create_audio_chunk(const std::vector<int16_t>& samples,
-                                                          const std::string& codec,
-                                                          int sample_rate_hz,
-                                                          int num_channels,
-                                                          int sequence_number) {
+                                                         const std::string& codec,
+                                                         int sample_rate_hz,
+                                                         int num_channels,
+                                                         int sequence_number) {
     audio_chunk chunk;
     chunk.audio_data = pcm16_samples_to_bytes(samples);
     chunk.info.codec = codec;

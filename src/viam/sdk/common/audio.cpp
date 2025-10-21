@@ -15,7 +15,7 @@ void write_value(std::ofstream& out, const T& value) {
 
 bool operator==(const properties& lhs, const properties& rhs) {
     return std::tie(lhs.supported_codecs, lhs.sample_rate_hz, lhs.num_channels) ==
-    std::tie(rhs.supported_codecs, rhs.sample_rate_hz, rhs.num_channels);
+           std::tie(rhs.supported_codecs, rhs.sample_rate_hz, rhs.num_channels);
 }
 
 uint16_t get_bits_per_sample(const std::string& codec) {

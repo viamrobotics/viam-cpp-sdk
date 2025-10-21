@@ -5,9 +5,9 @@
 
 #include <string>
 
+#include <viam/sdk/common/audio.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/common/audio.hpp>
 #include <viam/sdk/config/resource.hpp>
 
 namespace viam {
