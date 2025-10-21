@@ -31,12 +31,12 @@ BOOST_AUTO_TEST_CASE(test_get_audio) {
     client_to_mock_pipeline<AudioIn>(mock, [&](AudioIn& client) {
         std::vector<AudioIn::audio_chunk> received_chunks;
 
-        // Test streaming for 1 second
         client.get_audio(
             "pcm16",
             [&](AudioIn::audio_chunk&& chunk) -> bool {
                 received_chunks.push_back(std::move(chunk));
-                return received_chunks.size() < 3;  // Stop stream after 3 chunks
+                 // Stop stream after 3 chunks
+                return received_chunks.size() < 3;
             },
             1.0,  // 1 second duration
             0     // No previous timestamp
@@ -44,15 +44,60 @@ BOOST_AUTO_TEST_CASE(test_get_audio) {
 
         BOOST_CHECK_EQUAL(received_chunks.size(), 3);
 
-        // Verify chunk properties
-        for (const auto& chunk : received_chunks) {
-            BOOST_CHECK_GT(chunk.audio_data.size(), 0);
+        // Check that request_id is consistent across all chunks
+        BOOST_CHECK(!received_chunks[0].request_id.empty());
+        std::string first_request_id = received_chunks[0].request_id;
+
+        for (size_t i = 0; i < received_chunks.size(); ++i) {
+            const auto& chunk = received_chunks[i];
+            BOOST_CHECK_EQUAL(chunk.audio_data.size(), 1024);
             BOOST_CHECK_EQUAL(chunk.info.codec, "pcm16");
             BOOST_CHECK_EQUAL(chunk.info.sample_rate_hz, 48000);
             BOOST_CHECK_EQUAL(chunk.info.num_channels, 1);
+            BOOST_CHECK_EQUAL(chunk.request_id, first_request_id);
+            BOOST_CHECK_EQUAL(chunk.sequence, static_cast<int>(i));
+            BOOST_CHECK_GE(chunk.start_timestamp_ns, 0);
+            BOOST_CHECK_GE(chunk.end_timestamp_ns, 0);
         }
     });
 }
+
+BOOST_AUTO_TEST_CASE(test_get_audio_request_ids_differ_across_calls) {
+    std::shared_ptr<MockAudioIn> mock = MockAudioIn::get_mock_audio_in();
+
+    client_to_mock_pipeline<AudioIn>(mock, [&](AudioIn& client) {
+        std::string first_request_id;
+        std::string second_request_id;
+
+        // First call
+        client.get_audio(
+            "pcm16",
+            [&](AudioIn::audio_chunk&& chunk) -> bool {
+                first_request_id = chunk.request_id;
+                return false;  // Stop after first chunk
+            },
+            1.0,
+            0
+        );
+
+        // Second call
+        client.get_audio(
+            "pcm16",
+            [&](AudioIn::audio_chunk&& chunk) -> bool {
+                second_request_id = chunk.request_id;
+                return false;  // Stop after first chunk
+            },
+            1.0,
+            0
+        );
+
+        // Request IDs should be different across separate calls
+        BOOST_CHECK(!first_request_id.empty());
+        BOOST_CHECK(!second_request_id.empty());
+        BOOST_CHECK_NE(first_request_id, second_request_id);
+    });
+}
+
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockAudioIn> mock = MockAudioIn::get_mock_audio_in();

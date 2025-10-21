@@ -56,6 +56,7 @@ std::shared_ptr<MockAudioIn> MockAudioIn::get_mock_audio_in() {
     audio_in->properties_ = fake_properties();
     audio_in->mock_chunks_ = fake_audio_chunks();
     audio_in->map_ = fake_map();
+    audio_in->geometries_ = fake_geometries();
 
     return audio_in;
 }
@@ -77,8 +78,9 @@ std::vector<AudioIn::audio_chunk> fake_audio_chunks() {
         chunk.info.codec = "pcm16";
         chunk.info.sample_rate_hz = 48000;
         chunk.info.num_channels = 1;
-        chunk.start_timestamp_ns = i * 10000000;
-        chunk.end_timestamp_ns = (i + 1) * 10000000;
+        chunk.start_timestamp_ns = static_cast<int64_t>(i) * 100;
+        chunk.end_timestamp_ns = static_cast<int64_t>(i + 1) * 100;
+        chunk.sequence = i;
         chunks.push_back(chunk);
     }
 
