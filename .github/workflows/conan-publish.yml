@@ -14,143 +14,143 @@ on:
         description: If true, publish slow-building deps as well
 
 jobs:
-  # build_macos:
-  #   # Not sure if we actually need x64 macos-latest
-  #   runs-on: macos-latest
+  build_macos:
+    # Not sure if we actually need x64 macos-latest
+    runs-on: macos-latest
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         ref: releases/${{ inputs.ref }}
-
-
-  #     - name: Install dependencies
-  #       run: |
-  #         cmake --version
-  #         python --version
-  #         ninja --version
-  #         brew install buf
-  #         python -m pip install conan
-
-  #     - name: Set up python/conan
-  #       env:
-  #         CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
-  #         CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
-  #         CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
-  #       run: |
-  #         conan profile detect
-  #         conan remote add viamconan $CONAN_REMOTE_URL
-  #         conan remote auth -cc core:non_interactive=True viamconan
-
-  #     - name: Create and upload package
-  #       run: |
-  #         # `buf` tries to read a CLI config file that we don't actually use located at
-  #         # ~/.config/buf/config.yaml. We don't always have permission to access this
-  #         # directory in CI, so we set the `BUF_CONFIG_DIR` to some other value that we
-  #         # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
-  #         # more details.
-  #         export BUF_CONFIG_DIR=$(mktemp -d)
-  #         conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
-  #         conan upload "viam-cpp-sdk/*" -r viamconan -c
-
-  #     - name: Upload additional deps
-  #       if: inputs.upload_deps
-  #       run: |
-  #         conan upload "boost/*" -r viamconan -c
-  #         conan upload "grpc/*" -r viamconan -c
-  #         conan upload "protobuf/*" -r viamconan -c
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: releases/${{ inputs.ref }}
 
 
-  # build_linux:
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       runner: [buildjet-8vcpu-ubuntu-2204, buildjet-8vcpu-ubuntu-2204-arm]
-  #       image: [ubuntu:22.04, debian:bookworm]
-  #   runs-on: ${{ matrix.runner }}
-  #   container:
-  #     image: ${{ matrix.image }}
+      - name: Install dependencies
+        run: |
+          cmake --version
+          python --version
+          ninja --version
+          brew install buf
+          python -m pip install conan
 
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v4
-  #     with:
-  #       ref: releases/${{ inputs.ref }}
+      - name: Set up python/conan
+        env:
+          CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
+          CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
+          CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
+        run: |
+          conan profile detect
+          conan remote add viamconan $CONAN_REMOTE_URL
+          conan remote auth -cc core:non_interactive=True viamconan
 
-  #   - name: Show platform info
-  #     run: |
-  #       uname -a
-  #       cat /etc/os-release
+      - name: Create and upload package
+        run: |
+          # `buf` tries to read a CLI config file that we don't actually use located at
+          # ~/.config/buf/config.yaml. We don't always have permission to access this
+          # directory in CI, so we set the `BUF_CONFIG_DIR` to some other value that we
+          # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
+          # more details.
+          export BUF_CONFIG_DIR=$(mktemp -d)
+          conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
+          conan upload "viam-cpp-sdk/*" -r viamconan -c
 
-  #   - name: Install common deps
-  #     run: |
-  #       apt-get update
-  #       apt-get -y dist-upgrade
-  #       DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-  #           autoconf \
-  #           automake \
-  #           build-essential \
-  #           ca-certificates \
-  #           curl \
-  #           doxygen \
-  #           g++ \
-  #           gdb \
-  #           gnupg \
-  #           gpg \
-  #           less \
-  #           ninja-build \
-  #           python3 \
-  #           python3-pip \
-  #           python3-venv \
-  #           software-properties-common \
-  #           sudo \
-  #           wget \
+      - name: Upload additional deps
+        if: inputs.upload_deps
+        run: |
+          conan upload "boost/*" -r viamconan -c
+          conan upload "grpc/*" -r viamconan -c
+          conan upload "protobuf/*" -r viamconan -c
 
-  #       c++ --version
-  #       ldd --version
 
-  #   - name: Install cmake (jammy)
-  #     if: matrix.image == 'ubuntu:22.04'
-  #     run: |
-  #       sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-  #       sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+  build_linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [buildjet-8vcpu-ubuntu-2204, buildjet-8vcpu-ubuntu-2204-arm]
+        image: [ubuntu:22.04, debian:bookworm]
+    runs-on: ${{ matrix.runner }}
+    container:
+      image: ${{ matrix.image }}
 
-  #       apt-get update
-  #       apt-get -y install cmake=3.25.2-0kitware1ubuntu22.04.1 cmake-data=3.25.2-0kitware1ubuntu22.04.1
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: releases/${{ inputs.ref }}
 
-  #   - name: Install cmake (bookworm)
-  #     if: matrix.image == 'debian:bookworm'
-  #     run: DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install cmake
+    - name: Show platform info
+      run: |
+        uname -a
+        cat /etc/os-release
 
-  #   - name: Set up python/conan
-  #     env:
-  #       CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
-  #       CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
-  #       CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
-  #     run: |
-  #       python3 -m venv ./conan_venv
-  #       . ./conan_venv/bin/activate
+    - name: Install common deps
+      run: |
+        apt-get update
+        apt-get -y dist-upgrade
+        DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+            autoconf \
+            automake \
+            build-essential \
+            ca-certificates \
+            curl \
+            doxygen \
+            g++ \
+            gdb \
+            gnupg \
+            gpg \
+            less \
+            ninja-build \
+            python3 \
+            python3-pip \
+            python3-venv \
+            software-properties-common \
+            sudo \
+            wget \
 
-  #       pip install conan
+        c++ --version
+        ldd --version
 
-  #       conan profile detect
-  #       conan remote add viamconan $CONAN_REMOTE_URL
-  #       conan remote auth -cc core:non_interactive=True viamconan
+    - name: Install cmake (jammy)
+      if: matrix.image == 'ubuntu:22.04'
+      run: |
+        sudo wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+        sudo echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
 
-  #   - name: Create and upload package
-  #     run: |
-  #       . ./conan_venv/bin/activate
+        apt-get update
+        apt-get -y install cmake=3.25.2-0kitware1ubuntu22.04.1 cmake-data=3.25.2-0kitware1ubuntu22.04.1
 
-  #       conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
-  #       conan upload "viam-cpp-sdk/*" -r viamconan -c
+    - name: Install cmake (bookworm)
+      if: matrix.image == 'debian:bookworm'
+      run: DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install cmake
 
-  #   - name: Upload additional deps
-  #     if: inputs.upload_deps && !(matrix.runner == 'buildjet-8vcpu-ubuntu-2204' && matrix.image == 'ubuntu:22.04')
-  #     run: |
-  #       conan upload "boost/*" -r viamconan -c
-  #       conan upload "grpc/*" -r viamconan -c
-  #       conan upload "protobuf/*" -r viamconan -c
+    - name: Set up python/conan
+      env:
+        CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
+        CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
+        CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
+      run: |
+        python3 -m venv ./conan_venv
+        . ./conan_venv/bin/activate
+
+        pip install conan
+
+        conan profile detect
+        conan remote add viamconan $CONAN_REMOTE_URL
+        conan remote auth -cc core:non_interactive=True viamconan
+
+    - name: Create and upload package
+      run: |
+        . ./conan_venv/bin/activate
+
+        conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
+        conan upload "viam-cpp-sdk/*" -r viamconan -c
+
+    - name: Upload additional deps
+      if: inputs.upload_deps && !(matrix.runner == 'buildjet-8vcpu-ubuntu-2204' && matrix.image == 'ubuntu:22.04')
+      run: |
+        conan upload "boost/*" -r viamconan -c
+        conan upload "grpc/*" -r viamconan -c
+        conan upload "protobuf/*" -r viamconan -c
 
   build_windows:
     runs-on: windows-latest
