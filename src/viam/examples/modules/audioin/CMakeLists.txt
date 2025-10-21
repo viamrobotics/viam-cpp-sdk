@@ -16,11 +16,6 @@ add_executable(audioin_module
   main.cpp
 )
 
-set_target_properties(audioin_module PROPERTIES
-  CXX_STANDARD 17
-  CXX_STANDARD_REQUIRED ON
-)
-
 target_link_libraries(audioin_module
   PRIVATE Threads::Threads
   viam-cpp-sdk::viamsdk
@@ -37,10 +32,6 @@ target_sources(audioin_client
     client.cpp
 )
 
-set_target_properties(audioin_client PROPERTIES
-  CXX_STANDARD 17
-  CXX_STANDARD_REQUIRED ON
-)
 
 target_link_libraries(audioin_client
   viam-cpp-sdk::viamsdk

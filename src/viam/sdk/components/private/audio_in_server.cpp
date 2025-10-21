@@ -27,7 +27,7 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
             ::viam::component::audioin::v1::GetAudioResponse response;
             auto* audio_chunk = response.mutable_audio();
 
-            // Convert audio_data from std::vector<std::byte> to string
+            // Convert audio_data from std::vector<uint8_t> to string
             std::string audio_data_str;
             audio_data_str.reserve(chunk.audio_data.size());
             for (const auto& byte : chunk.audio_data) {

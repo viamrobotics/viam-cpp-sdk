@@ -42,7 +42,7 @@ class AudioIn : public Component {
     /// @brief A sequential chunk of audio data with timing information for continuous audio
     /// streams.
     struct audio_chunk {
-        std::vector<std::byte> audio_data;
+        std::vector<uint8_t> audio_data;
         audio_info audio_info;
         int64_t start_timestamp_ns;
         int64_t end_timestamp_ns;

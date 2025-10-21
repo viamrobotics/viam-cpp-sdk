@@ -42,11 +42,11 @@ void AudioInClient::get_audio(std::string const& codec,
             // Create audio_chunk struct from proto response
             audio_chunk chunk;
 
-            // Convert audio_data from string to std::vector<std::byte>
+            // Convert audio_data from string to std::vector<uint8_t>
             const std::string& audio_data_str = response.audio().audio_data();
             chunk.audio_data.reserve(audio_data_str.size());
             for (char c : audio_data_str) {
-                chunk.audio_data.push_back(static_cast<std::byte>(c));
+                chunk.audio_data.push_back(static_cast<uint8_t>(c));
             }
 
             chunk.sequence = response.audio().sequence();

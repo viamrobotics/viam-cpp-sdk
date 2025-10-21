@@ -32,7 +32,7 @@ class SineWaveAudioIn : public AudioIn, public Reconfigurable {
 
     ProtoStruct do_command(const ProtoStruct&) override;
 
-    std::vector<GeometryConfig> get_geometries(const ProtoStruct&) {
+    std::vector<GeometryConfig> get_geometries(const ProtoStruct&) override {
         throw Exception("method not supported");
     }
 
@@ -120,7 +120,7 @@ void SineWaveAudioIn::get_audio(std::string const& codec,
 
         audio_chunk chunk;
 
-        // Convert int16_t samples to std::byte
+        // Convert int16_t samples to uint8_t bytes
         chunk.audio_data.resize(samples.size() * sizeof(int16_t));
         std::memcpy(chunk.audio_data.data(), samples.data(), chunk.audio_data.size());
 
