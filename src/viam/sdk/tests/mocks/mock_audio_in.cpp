@@ -3,6 +3,7 @@
 #include <chrono>
 #include <thread>
 
+#include <viam/sdk/common/audio.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/audio_in.hpp>
 #include <viam/sdk/resource/resource.hpp>
@@ -30,7 +31,7 @@ void MockAudioIn::get_audio(std::string const& codec,
 
         // Create a copy of the chunk to pass to handler
         audio_chunk chunk = mock_chunk;
-        chunk.sequence = chunk_count;
+        chunk.sequence_number = chunk_count;
 
         if (!chunk_handler(std::move(chunk))) {
             break;  // Handler requested to stop
@@ -42,7 +43,7 @@ void MockAudioIn::get_audio(std::string const& codec,
     }
 }
 
-AudioIn::properties MockAudioIn::get_properties(const ProtoStruct& extra) {
+properties MockAudioIn::get_properties(const ProtoStruct& extra) {
     return properties_;
 }
 
@@ -61,9 +62,9 @@ std::shared_ptr<MockAudioIn> MockAudioIn::get_mock_audio_in() {
     return audio_in;
 }
 
-AudioIn::properties fake_properties() {
-    AudioIn::properties props;
-    props.supported_codecs = {"pcm16", "pcm32"};
+properties fake_properties() {
+    properties props;
+    props.supported_codecs = {audio_codecs::PCM_16, audio_codecs::PCM_32};
     props.sample_rate_hz = 48000;
     props.num_channels = 1;
     return props;
@@ -75,12 +76,13 @@ std::vector<AudioIn::audio_chunk> fake_audio_chunks() {
     for (int i = 0; i < 5; ++i) {
         AudioIn::audio_chunk chunk;
         chunk.audio_data = std::vector<uint8_t>(1024, static_cast<uint8_t>(i + 1));
-        chunk.info.codec = "pcm16";
+        chunk.info.codec = audio_codecs::PCM_16;
         chunk.info.sample_rate_hz = 48000;
         chunk.info.num_channels = 1;
-        chunk.start_timestamp_ns = static_cast<int64_t>(i) * 100;
-        chunk.end_timestamp_ns = static_cast<int64_t>(i + 1) * 100;
-        chunk.sequence = i;
+        auto now = std::chrono::system_clock::now();
+        chunk.start_timestamp_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch());
+        chunk.end_timestamp_ns = chunk.start_timestamp_ns;
+        chunk.sequence_number = i;
         chunks.push_back(chunk);
     }
 

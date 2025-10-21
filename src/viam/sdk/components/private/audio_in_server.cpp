@@ -41,9 +41,9 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
             audio_info->set_sample_rate_hz(chunk.info.sample_rate_hz);
             audio_info->set_num_channels(chunk.info.num_channels);
 
-            audio_chunk->set_start_timestamp_nanoseconds(chunk.start_timestamp_ns);
-            audio_chunk->set_end_timestamp_nanoseconds(chunk.end_timestamp_ns);
-            audio_chunk->set_sequence(chunk.sequence);
+            audio_chunk->set_start_timestamp_nanoseconds(chunk.start_timestamp_ns.count());
+            audio_chunk->set_end_timestamp_nanoseconds(chunk.end_timestamp_ns.count());
+            audio_chunk->set_sequence(chunk.sequence_number);
             response.set_request_id(request_id);
             writer->Write(response);
             return true;
@@ -74,7 +74,7 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
     viam::common::v1::GetPropertiesResponse* response) noexcept {
     return make_service_helper<AudioIn>(
         "AudioInServer::GetProperties", this, request)([&](auto& helper, auto& audio_in) {
-        const AudioIn::properties result = audio_in->get_properties(helper.getExtra());
+        const properties result = audio_in->get_properties(helper.getExtra());
         for (const auto& codec : result.supported_codecs) {
             response->add_supported_codecs(codec);
         }

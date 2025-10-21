@@ -44,12 +44,10 @@ void AudioInClient::get_audio(std::string const& codec,
 
             // Convert audio_data from string to std::vector<uint8_t>
             const std::string& audio_data_str = response.audio().audio_data();
-            chunk.audio_data.reserve(audio_data_str.size());
-            for (char c : audio_data_str) {
-                chunk.audio_data.push_back(static_cast<uint8_t>(c));
-            }
+            chunk.audio_data.assign(
+                audio_data_str.c_str(), audio_data_str.c_str() + audio_data_str.size());
 
-            chunk.sequence = response.audio().sequence();
+            chunk.sequence_number = response.audio().sequence();
             chunk.request_id = response.request_id();
 
             if (response.audio().has_audio_info()) {
@@ -60,8 +58,7 @@ void AudioInClient::get_audio(std::string const& codec,
             return chunk_handler(std::move(chunk));
         });
 }
-
-AudioIn::properties AudioInClient::get_properties(const ProtoStruct& extra) {
+properties AudioInClient::get_properties(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with(extra)
         .invoke([](auto& response) {

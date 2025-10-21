@@ -3,6 +3,7 @@
 #include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
 #include <viam/sdk/components/audio_in.hpp>
+#include <viam/sdk/common/audio.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 #include <viam/sdk/tests/mocks/mock_audio_in.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -32,7 +33,7 @@ BOOST_AUTO_TEST_CASE(test_get_audio) {
         std::vector<AudioIn::audio_chunk> received_chunks;
 
         client.get_audio(
-            "pcm16",
+            audio_codecs::PCM_16,
             [&](AudioIn::audio_chunk&& chunk) -> bool {
                 received_chunks.push_back(std::move(chunk));
                 // Stop stream after 3 chunks
@@ -51,13 +52,13 @@ BOOST_AUTO_TEST_CASE(test_get_audio) {
         for (size_t i = 0; i < received_chunks.size(); ++i) {
             const auto& chunk = received_chunks[i];
             BOOST_CHECK_EQUAL(chunk.audio_data.size(), 1024);
-            BOOST_CHECK_EQUAL(chunk.info.codec, "pcm16");
+            BOOST_CHECK_EQUAL(chunk.info.codec, audio_codecs::PCM_16);
             BOOST_CHECK_EQUAL(chunk.info.sample_rate_hz, 48000);
             BOOST_CHECK_EQUAL(chunk.info.num_channels, 1);
             BOOST_CHECK_EQUAL(chunk.request_id, first_request_id);
-            BOOST_CHECK_EQUAL(chunk.sequence, static_cast<int>(i));
-            BOOST_CHECK_GE(chunk.start_timestamp_ns, 0);
-            BOOST_CHECK_GE(chunk.end_timestamp_ns, 0);
+            BOOST_CHECK_EQUAL(chunk.sequence_number, static_cast<int>(i));
+            BOOST_CHECK_GE(chunk.start_timestamp_ns.count(), 0);
+            BOOST_CHECK_GE(chunk.end_timestamp_ns.count(), 0);
         }
     });
 }
@@ -71,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_get_audio_request_ids_differ_across_calls) {
 
         // First call
         client.get_audio(
-            "pcm16",
+            audio_codecs::PCM_16,
             [&](AudioIn::audio_chunk&& chunk) -> bool {
                 first_request_id = chunk.request_id;
                 return false;  // Stop after first chunk
@@ -81,7 +82,7 @@ BOOST_AUTO_TEST_CASE(test_get_audio_request_ids_differ_across_calls) {
 
         // Second call
         client.get_audio(
-            "pcm16",
+            audio_codecs::PCM_16,
             [&](AudioIn::audio_chunk&& chunk) -> bool {
                 second_request_id = chunk.request_id;
                 return false;  // Stop after first chunk
@@ -111,8 +112,8 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 BOOST_AUTO_TEST_CASE(test_get_properties) {
     std::shared_ptr<MockAudioIn> mock = MockAudioIn::get_mock_audio_in();
     client_to_mock_pipeline<AudioIn>(mock, [](AudioIn& client) {
-        AudioIn::properties props = client.get_properties();
-        AudioIn::properties expected = fake_properties();
+        properties props = client.get_properties();
+        properties expected = fake_properties();
 
         BOOST_CHECK(expected == props);
     });

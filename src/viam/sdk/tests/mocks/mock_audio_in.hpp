@@ -1,6 +1,7 @@
 #pragma once
 
 #include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/common/audio.hpp>
 #include <viam/sdk/components/audio_in.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
@@ -19,7 +20,7 @@ class MockAudioIn : public AudioIn {
                    int64_t const& previous_timestamp,
                    const sdk::ProtoStruct& extra) override;
 
-    AudioIn::properties get_properties(const sdk::ProtoStruct& extra) override;
+    properties get_properties(const sdk::ProtoStruct& extra) override;
 
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
 
@@ -33,13 +34,13 @@ class MockAudioIn : public AudioIn {
     using AudioIn::get_properties;
 
    private:
-    AudioIn::properties properties_;
+    properties properties_;
     viam::sdk::ProtoStruct map_;
     std::vector<audio_chunk> mock_chunks_;
     std::vector<GeometryConfig> geometries_;
 };
 
-AudioIn::properties fake_properties();
+properties fake_properties();
 std::vector<AudioIn::audio_chunk> fake_audio_chunks();
 
 }  // namespace audioin

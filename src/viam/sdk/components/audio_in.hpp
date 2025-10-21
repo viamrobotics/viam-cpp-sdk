@@ -7,6 +7,7 @@
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
+#include <viam/sdk/common/audio.hpp>
 #include <viam/sdk/config/resource.hpp>
 
 namespace viam {
@@ -22,31 +23,15 @@ namespace sdk {
 /// specific AudioIn implementations. This class cannot be used on its own.
 class AudioIn : public Component {
    public:
-    /// @struct properties
-    /// @brief properties of the AudioIn component
-    struct properties {
-        std::vector<std::string> supported_codecs;
-        int sample_rate_hz;
-        int num_channels;
-    };
-
-    /// @struct audio_info
-    /// @brief Information about a piece of audio data
-    struct audio_info {
-        std::string codec;
-        int sample_rate_hz;
-        int num_channels;
-    };
-
     /// @struct audio_chunk
     /// @brief A sequential chunk of audio data with timing information for continuous audio
     /// streams.
     struct audio_chunk {
         std::vector<uint8_t> audio_data;
         audio_info info;
-        int64_t start_timestamp_ns;
-        int64_t end_timestamp_ns;
-        int sequence;
+        std::chrono::nanoseconds start_timestamp_ns;
+        std::chrono::nanoseconds end_timestamp_ns;
+        int sequence_number;  // sequential chunk number
         std::string request_id;
     };
 
@@ -54,7 +39,7 @@ class AudioIn : public Component {
     /// until completed or cancelled
     /// @param codec requested codec of the audio data
     /// @param chunk_handler callback function to call when an audio response is received.
-    /// For an infinite stream this should return true to keep streaming audio and false to indicate
+    /// This should return true to keep streaming audio and false to indicate
     /// that the stream should terminate. The callback function should not be blocking.
     /// @param duration_seconds duration of audio stream. If not set, stream duration is indefinite.
     /// @param previous_timestamp timestamp to start the audio stream from for continuity between
@@ -121,8 +106,6 @@ template <>
 struct API::traits<AudioIn> {
     static API api();
 };
-
-bool operator==(const AudioIn::properties& lhs, const AudioIn::properties& rhs);
 
 }  // namespace sdk
 }  // namespace viam
