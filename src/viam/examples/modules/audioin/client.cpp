@@ -18,32 +18,22 @@ int main() {
     // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
     Instance inst;
 
-      std::string host("xarm-main.aqb785vhl4.viam.cloud");
-    DialOptions dial_opts;
-    dial_opts.set_entity(std::string("88dcef8e-db7f-47dc-9b0f-eb08fdc5a97d"));
+   auto machine = RobotClient::at_address(host, options);
 
-    Credentials credentials("api-key", "eou798fi90d1fytv66c9lntv1ndwxj4g");
+    // Update these with your robot's connection details
+    const char* uri = "";  // replace with your robot's URI
+    DialOptions dial_options;
+    dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
 
-    dial_opts.set_credentials(credentials);
-    boost::optional<DialOptions> opts(dial_opts);
-    Options options(0, opts);
+    // Uncomment and fill out your credentials details if connecting securely
+    // std::string type = "api-key";
+    // std::string payload = "your-api-key-here";
+    // Credentials credentials(type, payload);
+    // dial_options.set_credentials(credentials);
 
-   // auto machine = RobotClient::at_address(host, options);
-
-    // // Update these with your robot's connection details
-    // const char* uri = "";  // replace with your robot's URI
-    // DialOptions dial_options;
-    // dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
-
-    // // Uncomment and fill out your credentials details if connecting securely
-    // // std::string type = "api-key";
-    // // std::string payload = "your-api-key-here";
-    // // Credentials credentials(type, payload);
-    // // dial_options.set_credentials(credentials);
-
-    // boost::optional<DialOptions> opts(dial_options);
-    // std::string address(uri);
-    // Options options(1, opts);
+    boost::optional<DialOptions> opts(dial_options);
+    std::string address(uri);
+    Options options(1, opts);
 
     std::shared_ptr<RobotClient> robot = RobotClient::at_address(host, options);
 
@@ -117,7 +107,6 @@ int main() {
     outfile.write(reinterpret_cast<const char*>(&chunk_size), 4);
     outfile.write("WAVE", 4);
 
-    // fmt sub-chunk
     outfile.write("fmt ", 4);
     uint32_t subchunk1_size = 16;  // PCM
     outfile.write(reinterpret_cast<const char*>(&subchunk1_size), 4);
@@ -129,7 +118,6 @@ int main() {
     outfile.write(reinterpret_cast<const char*>(&block_align), 2);
     outfile.write(reinterpret_cast<const char*>(&bits_per_sample), 2);
 
-    // data sub-chunk
     outfile.write("data", 4);
     outfile.write(reinterpret_cast<const char*>(&data_size), 4);
     outfile.write(reinterpret_cast<const char*>(all_audio_data.data()), data_size);
