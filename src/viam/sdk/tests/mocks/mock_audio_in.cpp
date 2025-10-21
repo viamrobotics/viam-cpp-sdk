@@ -1,7 +1,7 @@
 #include <viam/sdk/tests/mocks/mock_audio_in.hpp>
 
-#include <thread>
 #include <chrono>
+#include <thread>
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/components/audio_in.hpp>
@@ -15,11 +15,10 @@ namespace audioin {
 using namespace viam::sdk;
 
 void MockAudioIn::get_audio(std::string const& codec,
-                           std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
-                           double const& duration_seconds,
-                           int64_t const& previous_timestamp,
-                           const ProtoStruct& extra) {
-
+                            std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
+                            double const& duration_seconds,
+                            int64_t const& previous_timestamp,
+                            const ProtoStruct& extra) {
     // Simulate streaming audio chunks
     int chunk_count = 0;
     int max_chunks = (duration_seconds == 0) ? 100 : static_cast<int>(duration_seconds * 100);
@@ -34,7 +33,7 @@ void MockAudioIn::get_audio(std::string const& codec,
         chunk.sequence = chunk_count;
 
         if (!chunk_handler(std::move(chunk))) {
-            break; // Handler requested to stop
+            break;  // Handler requested to stop
         }
 
         chunk_count++;
