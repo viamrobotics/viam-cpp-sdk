@@ -53,9 +53,9 @@ void AudioInClient::get_audio(std::string const& codec,
             chunk.request_id = response.request_id();
 
             if (response.audio().has_audio_info()) {
-                chunk.audio_info.codec = response.audio().audio_info().codec();
-                chunk.audio_info.sample_rate_hz = response.audio().audio_info().sample_rate_hz();
-                chunk.audio_info.num_channels = response.audio().audio_info().num_channels();
+                chunk.info.codec = response.audio().audio_info().codec();
+                chunk.info.sample_rate_hz = response.audio().audio_info().sample_rate_hz();
+                chunk.info.num_channels = response.audio().audio_info().num_channels();
             }
             return chunk_handler(std::move(chunk));
         });

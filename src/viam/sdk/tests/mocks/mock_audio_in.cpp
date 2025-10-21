@@ -74,9 +74,9 @@ std::vector<AudioIn::audio_chunk> fake_audio_chunks() {
     for (int i = 0; i < 5; ++i) {
         AudioIn::audio_chunk chunk;
         chunk.audio_data = std::vector<uint8_t>(1024, static_cast<uint8_t>(i + 1));
-        chunk.audio_info.codec = "pcm16";
-        chunk.audio_info.sample_rate_hz = 48000;
-        chunk.audio_info.num_channels = 1;
+        chunk.info.codec = "pcm16";
+        chunk.info.sample_rate_hz = 48000;
+        chunk.info.num_channels = 1;
         chunk.start_timestamp_ns = i * 10000000;
         chunk.end_timestamp_ns = (i + 1) * 10000000;
         chunks.push_back(chunk);

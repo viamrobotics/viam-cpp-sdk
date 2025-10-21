@@ -43,7 +43,7 @@ class AudioIn : public Component {
     /// streams.
     struct audio_chunk {
         std::vector<uint8_t> audio_data;
-        audio_info audio_info;
+        audio_info info;
         int64_t start_timestamp_ns;
         int64_t end_timestamp_ns;
         int sequence;

@@ -37,9 +37,9 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
 
             // Set audio_info fields
             auto* audio_info = audio_chunk->mutable_audio_info();
-            audio_info->set_codec(std::move(chunk.audio_info.codec));
-            audio_info->set_sample_rate_hz(chunk.audio_info.sample_rate_hz);
-            audio_info->set_num_channels(chunk.audio_info.num_channels);
+            audio_info->set_codec(std::move(chunk.info.codec));
+            audio_info->set_sample_rate_hz(chunk.info.sample_rate_hz);
+            audio_info->set_num_channels(chunk.info.num_channels);
 
             audio_chunk->set_start_timestamp_nanoseconds(chunk.start_timestamp_ns);
             audio_chunk->set_end_timestamp_nanoseconds(chunk.end_timestamp_ns);

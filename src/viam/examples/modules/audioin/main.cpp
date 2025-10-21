@@ -125,9 +125,9 @@ void SineWaveAudioIn::get_audio(std::string const& codec,
         std::memcpy(chunk.audio_data.data(), samples.data(), chunk.audio_data.size());
 
         // Set audio info
-        chunk.audio_info.codec = codec;
-        chunk.audio_info.sample_rate_hz = sample_rate;
-        chunk.audio_info.num_channels = 1;
+        chunk.info.codec = codec;
+        chunk.info.sample_rate_hz = sample_rate;
+        chunk.info.num_channels = 1;
 
         // Get current timestamp in nanoseconds
         auto now = std::chrono::system_clock::now();

@@ -47,9 +47,9 @@ BOOST_AUTO_TEST_CASE(test_get_audio) {
         // Verify chunk properties
         for (const auto& chunk : received_chunks) {
             BOOST_CHECK_GT(chunk.audio_data.size(), 0);
-            BOOST_CHECK_EQUAL(chunk.audio_info.codec, "pcm16");
-            BOOST_CHECK_EQUAL(chunk.audio_info.sample_rate_hz, 48000);
-            BOOST_CHECK_EQUAL(chunk.audio_info.num_channels, 1);
+            BOOST_CHECK_EQUAL(chunk.info.codec, "pcm16");
+            BOOST_CHECK_EQUAL(chunk.info.sample_rate_hz, 48000);
+            BOOST_CHECK_EQUAL(chunk.info.num_channels, 1);
         }
     });
 }
