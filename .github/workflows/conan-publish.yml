@@ -165,11 +165,6 @@ jobs:
       run: choco install -y conan git
 
     - name: Set up python/conan
-      env:
-        CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
-        CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
-        CONAN_USER_HOME: c:/cache
-        CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
       shell: powershell
       run: |
         Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
@@ -179,6 +174,12 @@ jobs:
 
         conan remote add viamconan $env:CONAN_REMOTE_URL
         conan remote auth -cc core:non_interactive=True viamconan
+      env:
+        CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
+        CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
+        CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
+        CONAN_USER_HOME: c:/cache
+        CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
     - name: Create and upload package
       shell: powershell
