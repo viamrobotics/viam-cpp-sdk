@@ -1,16 +1,16 @@
+#include <chrono>
+#include <cmath>
+#include <cstring>
 #include <iostream>
 #include <memory>
 #include <sstream>
-#include <cmath>
-#include <cstring>
 #include <vector>
-#include <chrono>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/components/audio_in.hpp>
+#include <viam/sdk/components/sensor.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/module/service.hpp>
@@ -39,10 +39,10 @@ class SineWaveAudioIn : public AudioIn, public Reconfigurable {
     properties get_properties(const ProtoStruct&) override;
 
     void get_audio(std::string const& codec,
-                            std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
-                            double const& duration_seconds,
-                            int64_t const& previous_timestamp,
-                            const ProtoStruct& extra) override;
+                   std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
+                   double const& duration_seconds,
+                   int64_t const& previous_timestamp,
+                   const ProtoStruct& extra) override;
 
    private:
     double frequency_{440.0};
@@ -88,21 +88,19 @@ AudioIn::properties SineWaveAudioIn::get_properties(const ProtoStruct&) {
 }
 
 void SineWaveAudioIn::get_audio(std::string const& codec,
-                            std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
-                            double const& duration_seconds,
-                            int64_t const& previous_timestamp,
-                            const ProtoStruct& extra) {
-
-
+                                std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
+                                double const& duration_seconds,
+                                int64_t const& previous_timestamp,
+                                const ProtoStruct& extra) {
     const int sample_rate = 44100;  // 44.1 kHz
-    const double amplitude = 0.5;    // Half volume
-    const int chunk_size = 1024;     // Samples per chunk
+    const double amplitude = 0.5;   // Half volume
+    const int chunk_size = 1024;    // Samples per chunk
 
     int total_samples = static_cast<int>(duration_seconds * sample_rate);
     int num_chunks = (total_samples + chunk_size - 1) / chunk_size;
 
-    VIAM_RESOURCE_LOG(info) << "Generating sine wave: " << frequency_ << "Hz, "
-                           << duration_seconds << "s, " << num_chunks << " chunks";
+    VIAM_RESOURCE_LOG(info) << "Generating sine wave: " << frequency_ << "Hz, " << duration_seconds
+                            << "s, " << num_chunks << " chunks";
 
     for (int chunk_idx = 0; chunk_idx < num_chunks; ++chunk_idx) {
         int samples_in_chunk = std::min(chunk_size, total_samples - (chunk_idx * chunk_size));
@@ -133,8 +131,8 @@ void SineWaveAudioIn::get_audio(std::string const& codec,
 
         // Get current timestamp in nanoseconds
         auto now = std::chrono::system_clock::now();
-        auto nanos = std::chrono::duration_cast<std::chrono::nanoseconds>(
-            now.time_since_epoch()).count();
+        auto nanos =
+            std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch()).count();
         chunk.start_timestamp_ns = nanos;
         chunk.end_timestamp_ns = nanos;
         chunk.sequence = chunk_idx;
@@ -153,7 +151,6 @@ int main(int argc, char** argv) try {
     // Every Viam C++ SDK program must have one and only one Instance object which is created before
     // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
     Instance inst;
-
 
     Model sinewave_model("viam", "audio_in", "sinewave");
 

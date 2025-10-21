@@ -12,7 +12,7 @@ using viam::sdk::AudioIn;
 using namespace viam::sdk;
 
 class MockAudioIn : public AudioIn {
-public:
+   public:
     void get_audio(std::string const& codec,
                    std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
                    double const& duration_seconds,
@@ -32,7 +32,7 @@ public:
     using AudioIn::get_audio;
     using AudioIn::get_properties;
 
-private:
+   private:
     AudioIn::properties properties_;
     viam::sdk::ProtoStruct map_;
     std::vector<audio_chunk> mock_chunks_;

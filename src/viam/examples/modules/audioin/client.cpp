@@ -1,7 +1,7 @@
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <string>
-#include <fstream>
 #include <vector>
 
 #include <viam/sdk/common/instance.hpp>
@@ -66,8 +66,8 @@ int main() {
     auto chunk_handler = [&](AudioIn::audio_chunk&& chunk) -> bool {
         chunk_count++;
         VIAM_SDK_LOG(info) << "Received chunk " << chunk_count
-                          << " - length: " << chunk.audio_data.size()
-                          << " bytes, timestamp: " << chunk.start_timestamp_ns;
+                           << " - length: " << chunk.audio_data.size()
+                           << " bytes, timestamp: " << chunk.start_timestamp_ns;
 
         for (const auto& byte : chunk.audio_data) {
             all_audio_data.push_back(static_cast<uint8_t>(byte));

@@ -21,15 +21,14 @@ class AudioInClient : public AudioIn {
     AudioInClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
     void get_audio(std::string const& codec,
-                    std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
-                    double const& duration_seconds,
-                    int64_t const& previous_timestamp,
-                    const ProtoStruct& extra) override;
+                   std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
+                   double const& duration_seconds,
+                   int64_t const& previous_timestamp,
+                   const ProtoStruct& extra) override;
 
     properties get_properties(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
-
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of
@@ -40,12 +39,11 @@ class AudioInClient : public AudioIn {
     // that calls the virtual method and passes a `nullptr` by default in place of the `extra`
     // param. In order to access these versions of the methods within the client code, however,
     // we need to include these `using` lines.
-    using AudioIn::get_geometries;
     using AudioIn::get_audio;
+    using AudioIn::get_geometries;
     using AudioIn::get_properties;
 
    private:
-
     using StubType = viam::component::audioin::v1::AudioInService::StubInterface;
     std::unique_ptr<StubType> stub_;
     std::shared_ptr<grpc::Channel> channel_;

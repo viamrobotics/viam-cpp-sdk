@@ -1,10 +1,10 @@
 #define BOOST_TEST_MODULE test module test_audio_in
-#include <viam/sdk/components/audio_in.hpp>
-#include <viam/sdk/tests/mocks/mock_audio_in.hpp>
 #include <boost/optional/optional_io.hpp>
 #include <boost/qvm/all.hpp>
-#include <viam/sdk/spatialmath/geometry.hpp>
 #include <boost/test/included/unit_test.hpp>
+#include <viam/sdk/components/audio_in.hpp>
+#include <viam/sdk/spatialmath/geometry.hpp>
+#include <viam/sdk/tests/mocks/mock_audio_in.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
@@ -32,13 +32,14 @@ BOOST_AUTO_TEST_CASE(test_get_audio) {
         std::vector<AudioIn::audio_chunk> received_chunks;
 
         // Test streaming for 1 second
-        client.get_audio("pcm16",
+        client.get_audio(
+            "pcm16",
             [&](AudioIn::audio_chunk&& chunk) -> bool {
                 received_chunks.push_back(std::move(chunk));
-                return received_chunks.size() < 3; // Stop stream after 3 chunks
+                return received_chunks.size() < 3;  // Stop stream after 3 chunks
             },
-            1.0, // 1 second duration
-            0    // No previous timestamp
+            1.0,  // 1 second duration
+            0     // No previous timestamp
         );
 
         BOOST_CHECK_EQUAL(received_chunks.size(), 3);
@@ -85,9 +86,7 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
     });
 }
 
-
 BOOST_AUTO_TEST_SUITE_END()
 
-
-} // namespace sdktests
-} //namespace viam
+}  // namespace sdktests
+}  // namespace viam

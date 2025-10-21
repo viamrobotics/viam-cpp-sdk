@@ -9,7 +9,6 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 
-
 namespace viam {
 namespace sdk {
 
@@ -22,7 +21,7 @@ namespace sdk {
 /// This acts as an abstract parent class to be inherited from by any drivers representing
 /// specific AudioIn implementations. This class cannot be used on its own.
 class AudioIn : public Component {
-    public:
+   public:
     /// @struct properties
     /// @brief properties of the AudioIn component
     struct properties {
@@ -30,7 +29,6 @@ class AudioIn : public Component {
         int sample_rate_hz;
         int num_channels;
     };
-
 
     /// @struct audio_info
     /// @brief Information about a piece of audio data
@@ -41,7 +39,8 @@ class AudioIn : public Component {
     };
 
     /// @struct audio_chunk
-    /// @brief A sequential chunk of audio data with timing information for continuous audio streams.
+    /// @brief A sequential chunk of audio data with timing information for continuous audio
+    /// streams.
     struct audio_chunk {
         std::vector<std::byte> audio_data;
         audio_info audio_info;
@@ -55,41 +54,44 @@ class AudioIn : public Component {
     /// until completed or cancelled
     /// @param codec requested codec of the audio data
     /// @param chunk_handler callback function to call when an audio response is received.
-    /// For an infinite stream this should return true to keep streaming audio and false to indicate that the stream should terminate.
-    /// The callback function should not be blocking.
+    /// For an infinite stream this should return true to keep streaming audio and false to indicate
+    /// that the stream should terminate. The callback function should not be blocking.
     /// @param duration_seconds duration of audio stream. If not set, stream duration is indefinite.
-    /// @param previous_timestamp timestamp to start the audio stream from for continuity between multiple calls. If not set, will stream data
+    /// @param previous_timestamp timestamp to start the audio stream from for continuity between
+    /// multiple calls. If not set, will stream data
     // starting from the time the request was received by the server.
     inline void get_audio(std::string const& codec,
-                            std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
-                            double const& duration_seconds,
-                            int64_t const& previous_timestamp) {
+                          std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
+                          double const& duration_seconds,
+                          int64_t const& previous_timestamp) {
         return get_audio(codec, chunk_handler, duration_seconds, previous_timestamp, {});
     }
-
 
     /// @brief Get a stream of audio from the device
     /// until completed or cancelled
     /// @param codec requested codec of the audio data
     /// @param chunk_handler callback function to call when an audio response is received.
-    /// For an infinite stream this should return true to keep streaming audio and false to indicate that the stream should terminate.
-    /// The callback function should not be blocking.
+    /// For an infinite stream this should return true to keep streaming audio and false to indicate
+    /// that the stream should terminate. The callback function should not be blocking.
     /// @param duration_seconds duration of audio stream. If zero, stream duration is indefinite.
-    /// @param previous_timestamp timestamp to start the audio stream from for continuity between multiple calls. If zero, will stream data
-    //starting from the time the request was received by the server.
+    /// @param previous_timestamp timestamp to start the audio stream from for continuity between
+    /// multiple calls. If zero, will stream data
+    // starting from the time the request was received by the server.
     /// @param extra Any additional arguments to the method
     virtual void get_audio(std::string const& codec,
-                            std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
-                            double const& duration_seconds,
-                            int64_t const& previous_timestamp,
-                            const ProtoStruct& extra) = 0;
+                           std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
+                           double const& duration_seconds,
+                           int64_t const& previous_timestamp,
+                           const ProtoStruct& extra) = 0;
 
-    /// @brief Returns properties of the audio in device (supported codecs, sample rate, number of channels)
+    /// @brief Returns properties of the audio in device (supported codecs, sample rate, number of
+    /// channels)
     inline properties get_properties() {
         return get_properties({});
     }
 
-    /// @brief Returns properties of the audio in device (supported codecs, sample rate, number of channels)
+    /// @brief Returns properties of the audio in device (supported codecs, sample rate, number of
+    /// channels)
     /// @param extra Any additional arguments to the method
     virtual properties get_properties(const ProtoStruct& extra) = 0;
 
@@ -113,16 +115,14 @@ class AudioIn : public Component {
 
    protected:
     explicit AudioIn(std::string name);
+};
 
-    };
+template <>
+struct API::traits<AudioIn> {
+    static API api();
+};
 
-    template <>
-    struct API::traits<AudioIn> {
-        static API api();
-    };
+bool operator==(const AudioIn::properties& lhs, const AudioIn::properties& rhs);
 
-    bool operator==(const AudioIn::properties& lhs, const AudioIn::properties& rhs);
-
-} // namespace sdk
-} // namespace viam
-
+}  // namespace sdk
+}  // namespace viam
