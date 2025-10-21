@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(test_get_audio) {
             "pcm16",
             [&](AudioIn::audio_chunk&& chunk) -> bool {
                 received_chunks.push_back(std::move(chunk));
-                 // Stop stream after 3 chunks
+                // Stop stream after 3 chunks
                 return received_chunks.size() < 3;
             },
             1.0,  // 1 second duration
@@ -77,8 +77,7 @@ BOOST_AUTO_TEST_CASE(test_get_audio_request_ids_differ_across_calls) {
                 return false;  // Stop after first chunk
             },
             1.0,
-            0
-        );
+            0);
 
         // Second call
         client.get_audio(
@@ -88,8 +87,7 @@ BOOST_AUTO_TEST_CASE(test_get_audio_request_ids_differ_across_calls) {
                 return false;  // Stop after first chunk
             },
             1.0,
-            0
-        );
+            0);
 
         // Request IDs should be different across separate calls
         BOOST_CHECK(!first_request_id.empty());
@@ -97,7 +95,6 @@ BOOST_AUTO_TEST_CASE(test_get_audio_request_ids_differ_across_calls) {
         BOOST_CHECK_NE(first_request_id, second_request_id);
     });
 }
-
 
 BOOST_AUTO_TEST_CASE(test_do_command) {
     std::shared_ptr<MockAudioIn> mock = MockAudioIn::get_mock_audio_in();
