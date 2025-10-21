@@ -80,7 +80,8 @@ std::vector<AudioIn::audio_chunk> fake_audio_chunks() {
         chunk.info.sample_rate_hz = 48000;
         chunk.info.num_channels = 1;
         auto now = std::chrono::system_clock::now();
-        chunk.start_timestamp_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch());
+        chunk.start_timestamp_ns =
+            std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch());
         chunk.end_timestamp_ns = chunk.start_timestamp_ns;
         chunk.sequence_number = i;
         chunks.push_back(chunk);
