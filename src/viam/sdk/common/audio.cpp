@@ -38,20 +38,20 @@ void write_wav_file(const std::string& filename,
         throw std::runtime_error("Failed to open file for writing: " + filename);
     }
 
-    uint16_t bits_per_sample = get_bits_per_sample(codec);
-    uint32_t data_size = audio_data.size();
-    uint32_t byte_rate = sample_rate_hz * num_channels * (bits_per_sample / 8);
-    uint16_t block_align = num_channels * (bits_per_sample / 8);
+    const uint16_t bits_per_sample = get_bits_per_sample(codec);
+    const uint32_t data_size = audio_data.size();
+    const uint32_t byte_rate = sample_rate_hz * num_channels * (bits_per_sample / 8);
+    const uint16_t block_align = num_channels * (bits_per_sample / 8);
 
     outfile.write("RIFF", 4);
-    uint32_t chunk_size = 36 + data_size;
+    const uint32_t chunk_size = 36 + data_size;
     write_value(outfile, chunk_size);
     outfile.write("WAVE", 4);
 
     outfile.write("fmt ", 4);
-    uint32_t subchunk1_size = 16;
+    const uint32_t subchunk1_size = 16;
     write_value(outfile, subchunk1_size);
-    uint16_t audio_format = 1;
+    const uint16_t audio_format = 1;
     write_value(outfile, audio_format);
     write_value(outfile, num_channels);
     write_value(outfile, sample_rate_hz);
