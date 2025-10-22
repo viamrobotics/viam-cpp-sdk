@@ -21,9 +21,8 @@
 
 using namespace viam::sdk;
 
-    // Implements an AudioIn component that generates a sine wave for testing
-    class SineWaveAudioIn : public AudioIn,
-                            public Reconfigurable {
+// Implements an AudioIn component that generates a sine wave for testing
+class SineWaveAudioIn : public AudioIn, public Reconfigurable {
    public:
     SineWaveAudioIn(const ResourceConfig& cfg) : AudioIn(cfg.name()) {
         this->reconfigure({}, cfg);
