@@ -32,15 +32,11 @@ void AudioOutClient::play(std::vector<uint8_t> const& audio_data,
         .with(extra,
               [&](auto& request) {
                   // Convert audio_data from std::vector<uint8_t> to string
-                  std::string audio_data_str;
-                  audio_data_str.reserve(audio_data.size());
-                  for (const auto& byte : audio_data) {
-                      audio_data_str.push_back(static_cast<char>(byte));
-                  }
+                  std::string audio_data_str(audio_data.begin(), audio_data.end());
                   request.set_audio_data(std::move(audio_data_str));
 
                   if (info) {
-                      auto* proto_info = request.mutable_audio_info();
+                      ::viam::common::v1::AudioInfo* proto_info = request.mutable_audio_info();
                       proto_info->set_codec(info->codec);
                       proto_info->set_sample_rate_hz(info->sample_rate_hz);
                       proto_info->set_num_channels(info->num_channels);
@@ -53,7 +49,7 @@ audio_properties AudioOutClient::get_properties(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with(extra)
         .invoke([](auto& response) {
-            // Convert repeated field to vector
+            // Convert proto repeated field to vector
             std::vector<std::string> codecs;
             codecs.reserve(response.supported_codecs_size());
             for (const auto& codec : response.supported_codecs()) {

@@ -27,9 +27,9 @@ class AudioOut : public Component {
     using audio_info = viam::sdk::audio_info;
 
     /// @brief Play audio data
-    /// @param audio_data The raw audio data to play as bytes
-    /// @param info Optional info about the audio_data (codec, sample rate, channels). Pass nullptr
-    /// if not needed.
+    /// @param audio_data The audio data to play as bytes
+    /// @param info Optional info about the audio_data (codec, sample rate, channels). Required for
+    /// raw PCM data, pass nullptr if not needed.
     inline void play(std::vector<uint8_t> const& audio_data,
                      std::shared_ptr<audio_info> info = nullptr) {
         return play(audio_data, info, {});
@@ -37,8 +37,8 @@ class AudioOut : public Component {
 
     /// @brief Play audio through the audioout component
     /// @param audio_data The audio data to play
-    /// @param info Optional info about the audio_data (codec, sample rate, channels). Pass nullptr
-    /// if not needed.
+    /// @param info Optional info about the audio_data (codec, sample rate, channels). Required for
+    /// raw PCM data, pass nullptr if not needed.
     /// @param extra Any additional arguments to the method
     virtual void play(std::vector<uint8_t> const& audio_data,
                       std::shared_ptr<audio_info> info,

@@ -179,6 +179,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/version_metadata.hpp
       ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/arm.hpp
+      ../../viam/sdk/components/audio_out.hpp
       ../../viam/sdk/components/base.hpp
       ../../viam/sdk/components/board.hpp
       ../../viam/sdk/components/button.hpp

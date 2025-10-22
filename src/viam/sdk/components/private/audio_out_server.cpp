@@ -18,12 +18,9 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<AudioOut>(
         "AudioOutServer::Play", this, request)([&](auto& helper, auto& audio_out) {
         // Convert audio_data from string to std::vector<uint8_t>
-        const std::string& audio_data_str = request->audio_data();
         std::vector<uint8_t> audio_data;
-        audio_data.reserve(audio_data_str.size());
-        for (char c : audio_data_str) {
-            audio_data.push_back(static_cast<uint8_t>(c));
-        }
+        const std::string& audio_data_str = request->audio_data();
+        audio_data.assign(audio_data_str.c_str(), audio_data_str.c_str() + audio_data_str.size());
 
         std::shared_ptr<audio_info> info_ptr;
         if (request->has_audio_info()) {
