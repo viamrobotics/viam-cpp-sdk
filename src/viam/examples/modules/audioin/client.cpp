@@ -62,7 +62,7 @@ int main() {
     }
 
     VIAM_SDK_LOG(info) << "Getting audio properties...";
-    properties props = audio_in->get_properties();
+    audio_properties props = audio_in->get_properties();
     VIAM_SDK_LOG(info) << "Audio properties:";
     VIAM_SDK_LOG(info) << "  sample_rate_hz: " << props.sample_rate_hz;
     VIAM_SDK_LOG(info) << "  num_channels: " << props.num_channels;
