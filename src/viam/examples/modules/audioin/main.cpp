@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include <chrono>
 #include <cmath>
 #include <cstring>
@@ -18,7 +19,7 @@
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/resource/reconfigurable.hpp>
 
-using namespace viam::sdk;
+using namespace viam::sdk;w
 
 // Implements an AudioIn component that generates a sine wave for testing
 class SineWaveAudioIn : public AudioIn, public Reconfigurable {
