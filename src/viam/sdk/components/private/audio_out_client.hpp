@@ -21,15 +21,16 @@ class AudioOutClient : public AudioOut {
     using interface_type = AudioOut;
     AudioOutClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
-    void play(std::vector<uint8_t> const& audio_data, std::shared_ptr<audio_info> info, const ProtoStruct& extra) override;
+    void play(std::vector<uint8_t> const& audio_data,
+              std::shared_ptr<audio_info> info,
+              const ProtoStruct& extra) override;
     audio_properties get_properties(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
-
-    using AudioOut::play;
-    using AudioOut::get_properties;
     using AudioOut::get_geometries;
+    using AudioOut::get_properties;
+    using AudioOut::play;
 
    private:
     using StubType = viam::component::audioout::v1::AudioOutService::StubInterface;

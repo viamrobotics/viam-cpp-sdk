@@ -30,8 +30,8 @@ class AudioOutServer : public ResourceServer,
                         ::viam::component::audioout::v1::PlayResponse* response) noexcept override;
 
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
-                              const ::viam::common::v1::DoCommandRequest* request,
-                              ::viam::common::v1::DoCommandResponse* response) noexcept override;
+                             const ::viam::common::v1::DoCommandRequest* request,
+                             ::viam::common::v1::DoCommandResponse* response) noexcept override;
 
     ::grpc::Status GetGeometries(
         ::grpc::ServerContext* context,

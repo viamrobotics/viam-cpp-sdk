@@ -24,7 +24,6 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "audio_out");
 }
 
-
 BOOST_AUTO_TEST_CASE(test_play) {
     std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
     client_to_mock_pipeline<AudioOut>(mock, [mock](AudioOut& client) {
@@ -43,7 +42,6 @@ BOOST_AUTO_TEST_CASE(test_play) {
         BOOST_CHECK(mock->last_played_audio_ == audio_data);
         BOOST_CHECK(mock->last_played_audio_info_ != nullptr);
         BOOST_CHECK(*mock->last_played_audio_info_ == *info);
-
     });
 }
 
@@ -59,7 +57,6 @@ BOOST_AUTO_TEST_CASE(test_play_no_audio_info) {
         client.play(audio_data, nullptr, {});
         BOOST_CHECK(mock->last_played_audio_ == audio_data);
         BOOST_CHECK(mock->last_played_audio_info_ == nullptr);
-
     });
 }
 
