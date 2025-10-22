@@ -112,8 +112,8 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
 BOOST_AUTO_TEST_CASE(test_get_properties) {
     std::shared_ptr<MockAudioIn> mock = MockAudioIn::get_mock_audio_in();
     client_to_mock_pipeline<AudioIn>(mock, [](AudioIn& client) {
-        properties props = client.get_properties();
-        properties expected = fake_properties();
+        audio_properties props = client.get_properties();
+        audio_properties expected = fake_properties();
 
         BOOST_CHECK(expected == props);
     });

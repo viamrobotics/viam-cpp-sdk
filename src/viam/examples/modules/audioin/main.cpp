@@ -37,7 +37,7 @@ class SineWaveAudioIn : public AudioIn, public Reconfigurable {
         throw Exception("method not supported");
     }
 
-    properties get_properties(const ProtoStruct&) override;
+    audio_properties get_properties(const ProtoStruct&) override;
 
     void get_audio(std::string const& codec,
                    std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
@@ -133,8 +133,8 @@ AudioIn::audio_chunk SineWaveAudioIn::create_audio_chunk(const std::vector<int16
     return chunk;
 }
 
-properties SineWaveAudioIn::get_properties(const ProtoStruct&) {
-    properties props;
+audio_properties SineWaveAudioIn::get_properties(const ProtoStruct&) {
+    audio_properties props;
     props.supported_codecs = {audio_codecs::PCM_16};
     props.sample_rate_hz = 44100;
     props.num_channels = 1;

@@ -58,7 +58,7 @@ void AudioInClient::get_audio(std::string const& codec,
             return chunk_handler(std::move(chunk));
         });
 }
-properties AudioInClient::get_properties(const ProtoStruct& extra) {
+audio_properties AudioInClient::get_properties(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with(extra)
         .invoke([](auto& response) {
@@ -69,7 +69,7 @@ properties AudioInClient::get_properties(const ProtoStruct& extra) {
                 codecs.push_back(codec);
             }
 
-            return properties{
+            return audio_properties{
                 std::move(codecs), response.sample_rate_hz(), response.num_channels()};
         });
 }

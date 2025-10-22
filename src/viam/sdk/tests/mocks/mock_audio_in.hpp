@@ -20,7 +20,7 @@ class MockAudioIn : public AudioIn {
                    int64_t const& previous_timestamp,
                    const sdk::ProtoStruct& extra) override;
 
-    properties get_properties(const sdk::ProtoStruct& extra) override;
+    audio_properties get_properties(const sdk::ProtoStruct& extra) override;
 
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
 
@@ -34,13 +34,13 @@ class MockAudioIn : public AudioIn {
     using AudioIn::get_properties;
 
    private:
-    properties properties_;
+    audio_properties properties_;
     viam::sdk::ProtoStruct map_;
     std::vector<audio_chunk> mock_chunks_;
     std::vector<GeometryConfig> geometries_;
 };
 
-properties fake_properties();
+audio_properties fake_properties();
 std::vector<AudioIn::audio_chunk> fake_audio_chunks();
 
 }  // namespace audioin

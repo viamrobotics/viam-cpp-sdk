@@ -43,7 +43,7 @@ void MockAudioIn::get_audio(std::string const& codec,
     }
 }
 
-properties MockAudioIn::get_properties(const ProtoStruct& extra) {
+audio_properties MockAudioIn::get_properties(const ProtoStruct& extra) {
     return properties_;
 }
 
@@ -62,8 +62,8 @@ std::shared_ptr<MockAudioIn> MockAudioIn::get_mock_audio_in() {
     return audio_in;
 }
 
-properties fake_properties() {
-    properties props;
+audio_properties fake_properties() {
+    audio_properties props;
     props.supported_codecs = {audio_codecs::PCM_16, audio_codecs::PCM_32};
     props.sample_rate_hz = 48000;
     props.num_channels = 1;

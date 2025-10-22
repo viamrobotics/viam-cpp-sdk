@@ -19,9 +19,9 @@ constexpr const char* OPUS = "opus";
 constexpr const char* FLAC = "flac";
 }  // namespace audio_codecs
 
-/// @struct properties
+/// @struct audio_properties
 /// @brief Properties of an audio component (input or output)
-struct properties {
+struct audio_properties {
     std::vector<std::string> supported_codecs;
     int sample_rate_hz;
     int num_channels;
@@ -36,7 +36,7 @@ struct audio_info {
 };
 
 /// @brief Equality operator for properties
-bool operator==(const properties& lhs, const properties& rhs);
+bool operator==(const audio_properties& lhs, const audio_properties& rhs);
 
 uint16_t get_bits_per_sample(const std::string& codec);
 

@@ -71,14 +71,14 @@ class AudioIn : public Component {
 
     /// @brief Returns properties of the audio in device (supported codecs, sample rate, number of
     /// channels)
-    inline properties get_properties() {
+    inline audio_properties get_properties() {
         return get_properties({});
     }
 
     /// @brief Returns properties of the audio in device (supported codecs, sample rate, number of
     /// channels)
     /// @param extra Any additional arguments to the method
-    virtual properties get_properties(const ProtoStruct& extra) = 0;
+    virtual audio_properties get_properties(const ProtoStruct& extra) = 0;
 
     // @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.

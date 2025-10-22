@@ -74,7 +74,7 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
     viam::common::v1::GetPropertiesResponse* response) noexcept {
     return make_service_helper<AudioIn>(
         "AudioInServer::GetProperties", this, request)([&](auto& helper, auto& audio_in) {
-        const properties result = audio_in->get_properties(helper.getExtra());
+        const audio_properties result = audio_in->get_properties(helper.getExtra());
         for (const auto& codec : result.supported_codecs) {
             response->add_supported_codecs(codec);
         }

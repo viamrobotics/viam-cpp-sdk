@@ -13,7 +13,7 @@ void write_value(std::ofstream& out, const T& value) {
 }
 }  // anonymous namespace
 
-bool operator==(const properties& lhs, const properties& rhs) {
+bool operator==(const audio_properties& lhs, const audio_properties& rhs) {
     return std::tie(lhs.supported_codecs, lhs.sample_rate_hz, lhs.num_channels) ==
            std::tie(rhs.supported_codecs, rhs.sample_rate_hz, rhs.num_channels);
 }
