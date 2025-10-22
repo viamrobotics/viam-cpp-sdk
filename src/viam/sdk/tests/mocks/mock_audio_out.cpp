@@ -12,9 +12,9 @@ namespace audioout {
 
 using namespace viam::sdk;
 
-void MockAudioOut::play(std::vector<std::byte> const& audio_data, const ProtoStruct& extra) {
-    // Store the audio data for verification in tests
+void MockAudioOut::play(std::vector<uint8_t> const& audio_data, audio_info const* info,const ProtoStruct& extra) {
     last_played_audio_ = audio_data;
+    last_played_audio_info_ = info;
 }
 
 AudioOut::properties MockAudioOut::get_properties(const ProtoStruct& extra) {
@@ -23,6 +23,10 @@ AudioOut::properties MockAudioOut::get_properties(const ProtoStruct& extra) {
 
 ProtoStruct MockAudioOut::do_command(const ProtoStruct& command) {
     return map_;
+}
+
+std::vector<GeometryConfig> MockAudioOut::get_geometries(const ProtoStruct&) {
+    return geometries_;
 }
 
 std::shared_ptr<MockAudioOut> MockAudioOut::get_mock_audio_out() {

@@ -26,12 +26,11 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
                 audio_data.push_back(static_cast<uint8_t>(c));
             }
 
-            info audio_info;
-            info.supported_codecs =
-
-
-
-            audio_out->play(audio_data, helper.getExtra());
+            audio_info info;
+            info.codec = request->audio_info().codec();
+            info.sample_rate_hz = request->audio_info().sample_rate_hz();
+            info.num_channels = request->audio_info().num_channels();
+            audio_out->play(audio_data, &info, helper.getExtra());
         });
 }
 

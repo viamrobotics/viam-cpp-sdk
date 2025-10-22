@@ -24,18 +24,40 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "audio_out");
 }
 
+
 BOOST_AUTO_TEST_CASE(test_play) {
     std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
-    client_to_mock_pipeline<AudioOut>(mock, [](AudioOut& client) {
-        // Create some test audio data
-        std::vector<std::byte> audio_data;
-        audio_data.push_back(std::byte{0x01});
-        audio_data.push_back(std::byte{0x02});
-        audio_data.push_back(std::byte{0x03});
-        audio_data.push_back(std::byte{0x04});
+    client_to_mock_pipeline<AudioOut>(mock, [mock](AudioOut& client) {
+        std::vector<std::uint8_t> audio_data;
+        audio_data.push_back(1);
+        audio_data.push_back(2);
+        audio_data.push_back(3);
+        audio_data.push_back(4);
 
-        client.play(audio_data, {});
-        // Note: We could verify the data was received by the mock if needed
+        audio_info info;
+        info.codec = audio_codecs::PCM_16;
+        info.sample_rate_hz = 44100;
+        info.num_channels = 1;
+
+        client.play(audio_data, &info, {});
+        BOOST_CHECK(mock->last_played_audio_ == audio_data);
+        BOOST_CHECK(mock->last_played_audio_info_ == &info);
+
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_play_no_audio_info) {
+    std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
+    client_to_mock_pipeline<AudioOut>(mock, [mock](AudioOut& client) {
+        std::vector<std::uint8_t> audio_data;
+        audio_data.push_back(4);
+        audio_data.push_back(2);
+        audio_data.push_back(4);
+        audio_data.push_back(4);
+
+        client.play(audio_data, nullptr, {});
+        BOOST_CHECK(mock->last_played_audio_ == audio_data);
+
     });
 }
 
