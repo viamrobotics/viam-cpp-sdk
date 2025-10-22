@@ -20,7 +20,6 @@
 #include <viam/sdk/resource/reconfigurable.hpp>
 
 using namespace viam::sdk;
-w
 
     // Implements an AudioIn component that generates a sine wave for testing
     class SineWaveAudioIn : public AudioIn,
