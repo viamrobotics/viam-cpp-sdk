@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <stdexcept>
+#include <tuple>
 
 namespace viam {
 namespace sdk {

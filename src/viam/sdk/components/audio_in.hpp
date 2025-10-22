@@ -4,7 +4,6 @@
 #pragma once
 
 #include <string>
-#include <tuple>
 
 #include <viam/sdk/common/audio.hpp>
 #include <viam/sdk/common/proto_value.hpp>
