@@ -12,12 +12,12 @@ namespace audioout {
 
 using namespace viam::sdk;
 
-void MockAudioOut::play(std::vector<uint8_t> const& audio_data, audio_info const* info,const ProtoStruct& extra) {
+void MockAudioOut::play(std::vector<uint8_t> const& audio_data, std::shared_ptr<audio_info> info, const ProtoStruct& extra) {
     last_played_audio_ = audio_data;
     last_played_audio_info_ = info;
 }
 
-AudioOut::properties MockAudioOut::get_properties(const ProtoStruct& extra) {
+audio_properties MockAudioOut::get_properties(const ProtoStruct& extra) {
     return properties_;
 }
 
@@ -39,8 +39,8 @@ std::shared_ptr<MockAudioOut> MockAudioOut::get_mock_audio_out() {
     return audio_out;
 }
 
-properties fake_properties() {
-    properties props;
+audio_properties fake_properties() {
+    audio_properties props;
     props.supported_codecs = {"pcm16", "pcm32"};
     props.sample_rate_hz = 48000;
     props.num_channels = 2;
