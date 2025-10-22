@@ -5,7 +5,8 @@ on:
   # Additional logic in the prepare job below makes it so scheduled builds only run
   # on new commits.
   schedule:
-    - cron: "15 11 * * 1-5"
+    - cron: '0 10 * * *'  # 10 AM UTC daily (6 AM EDT / 5 AM EST)
+    - cron: '0 10 * * 0'  # 10 AM UTC every Sunday (weekly unconditional run)
   workflow_dispatch:
   pull_request:
     paths:
@@ -38,7 +39,8 @@ jobs:
         uses: andymckay/cancel-action@0.2
         if: |
           github.event_name == 'schedule' &&
-          steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit-hash
+          steps.git_info.outputs.current_commit == steps.last_successful_commit.outputs.commit-hash &&
+          github.event.schedule != '0 10 * * 0'
 
   build_macos:
     if: github.repository_owner == 'viamrobotics'
