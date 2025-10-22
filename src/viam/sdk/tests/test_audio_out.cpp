@@ -34,14 +34,15 @@ BOOST_AUTO_TEST_CASE(test_play) {
         audio_data.push_back(3);
         audio_data.push_back(4);
 
-        audio_info info;
-        info.codec = audio_codecs::PCM_16;
-        info.sample_rate_hz = 44100;
-        info.num_channels = 1;
+        auto info = std::make_shared<audio_info>();
+        info->codec = audio_codecs::PCM_16;
+        info->sample_rate_hz = 44100;
+        info->num_channels = 1;
 
-        client.play(audio_data, &info, {});
+        client.play(audio_data, info, {});
         BOOST_CHECK(mock->last_played_audio_ == audio_data);
-        BOOST_CHECK(mock->last_played_audio_info_ == &info);
+        BOOST_CHECK(mock->last_played_audio_info_ != nullptr);
+        BOOST_CHECK(*mock->last_played_audio_info_ == *info);
 
     });
 }
@@ -57,6 +58,7 @@ BOOST_AUTO_TEST_CASE(test_play_no_audio_info) {
 
         client.play(audio_data, nullptr, {});
         BOOST_CHECK(mock->last_played_audio_ == audio_data);
+        BOOST_CHECK(mock->last_played_audio_info_ == nullptr);
 
     });
 }
@@ -64,9 +66,9 @@ BOOST_AUTO_TEST_CASE(test_play_no_audio_info) {
 BOOST_AUTO_TEST_CASE(test_get_properties) {
     std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
     client_to_mock_pipeline<AudioOut>(mock, [](AudioOut& client) {
-        properties expected = fake_properties();
+        audio_properties expected = fake_properties();
 
-        properties result = client.get_properties({});
+        audio_properties result = client.get_properties({});
 
         BOOST_CHECK(result == expected);
     });

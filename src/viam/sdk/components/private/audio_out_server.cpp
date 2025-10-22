@@ -26,11 +26,14 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
                 audio_data.push_back(static_cast<uint8_t>(c));
             }
 
-            audio_info info;
-            info.codec = request->audio_info().codec();
-            info.sample_rate_hz = request->audio_info().sample_rate_hz();
-            info.num_channels = request->audio_info().num_channels();
-            audio_out->play(audio_data, &info, helper.getExtra());
+            std::shared_ptr<audio_info> info_ptr;
+            if (request->has_audio_info()) {
+                info_ptr = std::make_shared<audio_info>();
+                info_ptr->codec = request->audio_info().codec();
+                info_ptr->sample_rate_hz = request->audio_info().sample_rate_hz();
+                info_ptr->num_channels = request->audio_info().num_channels();
+            }
+            audio_out->play(audio_data, info_ptr, helper.getExtra());
         });
 }
 
@@ -65,7 +68,7 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     ::viam::common::v1::GetPropertiesResponse* response) noexcept {
     return make_service_helper<AudioOut>("AudioOutServer::GetProperties", this, request)(
         [&](auto& helper, auto& audio_out) {
-            const AudioOut::properties result = audio_out->get_properties(helper.getExtra());
+            const audio_properties result = audio_out->get_properties(helper.getExtra());
 
             // Copy supported_codecs vector to repeated field
             for (const auto& codec : result.supported_codecs) {

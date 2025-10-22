@@ -3,6 +3,7 @@
 /// @brief Defines an `AudioOut` component.
 #pragma once
 
+#include <memory>
 #include <string>
 
 #include <viam/sdk/common/audio.hpp>
@@ -23,13 +24,12 @@ namespace sdk {
 /// specific AudioOut implementations. This class cannot be used on its own.
 class AudioOut : public Component {
    public:
-    using properties = viam::sdk::properties;
     using audio_info = viam::sdk::audio_info;
 
     /// @brief Play audio data
     /// @param audio_data The raw audio data to play as bytes
     /// @param info Optional info about the audio_data (codec, sample rate, channels). Pass nullptr if not needed.
-    inline void play(std::vector<uint8_t> const& audio_data, audio_info const* info = nullptr) {
+    inline void play(std::vector<uint8_t> const& audio_data, std::shared_ptr<audio_info> info = nullptr) {
         return play(audio_data, info, {});
     }
 
@@ -37,16 +37,16 @@ class AudioOut : public Component {
     /// @param audio_data The audio data to play
     /// @param info Optional info about the audio_data (codec, sample rate, channels). Pass nullptr if not needed.
     /// @param extra Any additional arguments to the method
-    virtual void play(std::vector<uint8_t> const& audio_data, audio_info const* info, const ProtoStruct& extra) = 0;
+    virtual void play(std::vector<uint8_t> const& audio_data, std::shared_ptr<audio_info> info, const ProtoStruct& extra) = 0;
 
     /// @brief Returns properties of the audio out device (supported codecs, sample rate, number of channels)
-    inline properties get_properties() {
+    inline audio_properties get_properties() {
         return get_properties({});
     }
 
     /// @brief Returns properties of the audio out device (supported codecs, sample rate, number of channels)
     /// @param extra Any additional arguments to the method
-    virtual properties get_properties(const ProtoStruct& extra) = 0;
+    virtual audio_properties get_properties(const ProtoStruct& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param command the command to execute.

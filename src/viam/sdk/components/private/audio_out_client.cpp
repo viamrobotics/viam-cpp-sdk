@@ -25,7 +25,7 @@ AudioOutClient::AudioOutClient(std::string name, std::shared_ptr<grpc::Channel> 
       stub_(viam::component::audioout::v1::AudioOutService::NewStub(channel)),
       channel_(std::move(channel)) {}
 
-void AudioOutClient::play(std::vector<uint8_t> const& audio_data, audio_info const* info, const ProtoStruct& extra) {
+void AudioOutClient::play(std::vector<uint8_t> const& audio_data, std::shared_ptr<audio_info> info, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Play)
         .with(extra, [&](auto& request) {
             // Convert audio_data from std::vector<uint8_t> to string
@@ -36,7 +36,7 @@ void AudioOutClient::play(std::vector<uint8_t> const& audio_data, audio_info con
             }
             request.set_audio_data(std::move(audio_data_str));
 
-            if (info != nullptr) {
+            if (info) {
                 auto* proto_info = request.mutable_audio_info();
                 proto_info->set_codec(info->codec);
                 proto_info->set_sample_rate_hz(info->sample_rate_hz);
@@ -46,7 +46,7 @@ void AudioOutClient::play(std::vector<uint8_t> const& audio_data, audio_info con
         .invoke([](auto& response) {});
 }
 
-AudioOut::properties AudioOutClient::get_properties(const ProtoStruct& extra) {
+audio_properties AudioOutClient::get_properties(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetProperties)
         .with(extra)
         .invoke([](auto& response) {
@@ -57,7 +57,7 @@ AudioOut::properties AudioOutClient::get_properties(const ProtoStruct& extra) {
                 codecs.push_back(codec);
             }
 
-            return properties{std::move(codecs),
+            return audio_properties{std::move(codecs),
                               response.sample_rate_hz(),
                               response.num_channels()};
         });
