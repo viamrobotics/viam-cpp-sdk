@@ -13,5 +13,8 @@ var searchData=
   ['audioin_10',['AudioIn',['../classviam_1_1sdk_1_1AudioIn.html',1,'viam::sdk']]],
   ['audioinclient_11',['AudioInClient',['../classviam_1_1sdk_1_1impl_1_1AudioInClient.html',1,'viam::sdk::impl']]],
   ['audioinserver_12',['AudioInServer',['../classviam_1_1sdk_1_1impl_1_1AudioInServer.html',1,'viam::sdk::impl']]],
-  ['axis_5fangles_13',['axis_angles',['../structviam_1_1sdk_1_1axis__angles.html',1,'viam::sdk']]]
+  ['audioout_13',['AudioOut',['../classviam_1_1sdk_1_1AudioOut.html',1,'viam::sdk']]],
+  ['audiooutclient_14',['AudioOutClient',['../classviam_1_1sdk_1_1impl_1_1AudioOutClient.html',1,'viam::sdk::impl']]],
+  ['audiooutserver_15',['AudioOutServer',['../classviam_1_1sdk_1_1impl_1_1AudioOutServer.html',1,'viam::sdk::impl']]],
+  ['axis_5fangles_16',['axis_angles',['../structviam_1_1sdk_1_1axis__angles.html',1,'viam::sdk']]]
 ];
