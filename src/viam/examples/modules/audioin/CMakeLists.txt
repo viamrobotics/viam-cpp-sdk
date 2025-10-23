@@ -12,7 +12,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_subdirectory(tflite)
-add_subdirectory(simple)
-add_subdirectory(complex)
-add_subdirectory(audioin)
+add_executable(audioin_module
+  main.cpp
+)
+
+target_link_libraries(audioin_module
+  PRIVATE Threads::Threads
+  viam-cpp-sdk::viamsdk
+)
+
+install(
+  TARGETS audioin_module
+  COMPONENT examples
+)
+
+add_executable(audioin_client)
+target_sources(audioin_client
+  PRIVATE
+    client.cpp
+)
+
+
+target_link_libraries(audioin_client
+  viam-cpp-sdk::viamsdk
+)
+
+install(
+  TARGETS audioin_client
+  COMPONENT examples
+)
