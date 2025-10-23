@@ -9,6 +9,11 @@
         "func": "get_properties",
         "args": []
     },
+    "audio_out": {
+        "client": "AudioOut",
+        "func": "get_properties",
+        "args": []
+    },
     "button": {
         "client": "Button",
         "func": "push",

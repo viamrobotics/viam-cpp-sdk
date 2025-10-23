@@ -23,6 +23,7 @@ target_sources(viamsdk_test
     mocks/mlmodel_mocks.cpp
     mocks/mock_arm.cpp
     mocks/mock_audio_in.cpp
+    mocks/mock_audio_out.cpp
     mocks/mock_base.cpp
     mocks/mock_board.cpp
     mocks/mock_button.cpp
@@ -57,6 +58,7 @@ viamcppsdk_link_viam_api(viamsdk_test PUBLIC)
 
 viamcppsdk_add_boost_test(test_arm.cpp)
 viamcppsdk_add_boost_test(test_audio_in.cpp)
+viamcppsdk_add_boost_test(test_audio_out.cpp)
 viamcppsdk_add_boost_test(test_base.cpp)
 viamcppsdk_add_boost_test(test_board.cpp)
 viamcppsdk_add_boost_test(test_button.cpp)
