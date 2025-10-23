@@ -60,6 +60,7 @@ endif()
 
 target_sources(viamsdk
   PRIVATE
+    common/audio.cpp
     common/client_helper.cpp
     common/exception.cpp
     common/instance.cpp
@@ -71,6 +72,7 @@ target_sources(viamsdk
     common/world_state.cpp
     common/private/service_helper.cpp
     components/arm.cpp
+    components/audio_in.cpp
     components/base.cpp
     components/board.cpp
     components/button.cpp
@@ -86,6 +88,8 @@ target_sources(viamsdk
     components/power_sensor.cpp
     components/private/arm_client.cpp
     components/private/arm_server.cpp
+    components/private/audio_in_server.cpp
+    components/private/audio_in_client.cpp
     components/private/base_client.cpp
     components/private/base_server.cpp
     components/private/board_client.cpp
@@ -163,6 +167,7 @@ target_sources(viamsdk
       ../..
       ${CMAKE_CURRENT_BINARY_DIR}/../..
     FILES
+      ../../viam/sdk/common/audio.hpp
       ../../viam/sdk/common/client_helper.hpp
       ../../viam/sdk/common/exception.hpp
       ../../viam/sdk/common/instance.hpp
@@ -174,6 +179,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/version_metadata.hpp
       ../../viam/sdk/common/world_state.hpp
       ../../viam/sdk/components/arm.hpp
+      ../../viam/sdk/components/audio_in.hpp
       ../../viam/sdk/components/base.hpp
       ../../viam/sdk/components/board.hpp
       ../../viam/sdk/components/button.hpp

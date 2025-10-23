@@ -4,6 +4,11 @@
         "func": "get_end_position",
         "args": []
     },
+     "audio_in": {
+        "client": "AudioIn",
+        "func": "get_properties",
+        "args": []
+    },
     "button": {
         "client": "Button",
         "func": "push",
