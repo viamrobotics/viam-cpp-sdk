@@ -19,11 +19,6 @@ bool operator==(const audio_properties& lhs, const audio_properties& rhs) {
            std::tie(rhs.supported_codecs, rhs.sample_rate_hz, rhs.num_channels);
 }
 
-bool operator==(const audio_info& lhs, const audio_info& rhs) {
-    return std::tie(lhs.codec, lhs.sample_rate_hz, lhs.num_channels) ==
-           std::tie(rhs.codec, rhs.sample_rate_hz, rhs.num_channels);
-}
-
 uint16_t get_bits_per_sample(const std::string& codec) {
     if (codec == audio_codecs::PCM_16) {
         return 16;

@@ -14,6 +14,8 @@
 #include <viam/sdk/common/private/instance.hpp>
 #include <viam/sdk/components/private/arm_client.hpp>
 #include <viam/sdk/components/private/arm_server.hpp>
+#include <viam/sdk/components/private/audio_in_client.hpp>
+#include <viam/sdk/components/private/audio_in_server.hpp>
 #include <viam/sdk/components/private/audio_out_client.hpp>
 #include <viam/sdk/components/private/audio_out_server.hpp>
 #include <viam/sdk/components/private/base_client.hpp>
@@ -203,6 +205,7 @@ const google::protobuf::ServiceDescriptor* ResourceServerRegistration::service_d
 void Registry::register_resources() {
     // Register all components
     register_resource<impl::ArmClient, impl::ArmServer>();
+    register_resource<impl::AudioInClient, impl::AudioInServer>();
     register_resource<impl::AudioOutClient, impl::AudioOutServer>();
     register_resource<impl::BaseClient, impl::BaseServer>();
     register_resource<impl::BoardClient, impl::BoardServer>();
