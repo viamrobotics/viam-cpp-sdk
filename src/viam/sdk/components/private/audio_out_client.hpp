@@ -22,7 +22,7 @@ class AudioOutClient : public AudioOut {
     AudioOutClient(std::string name, std::shared_ptr<grpc::Channel> channel);
 
     void play(std::vector<uint8_t> const& audio_data,
-              std::shared_ptr<audio_info> info,
+              boost::optional<audio_info> info,
               const ProtoStruct& extra) override;
     audio_properties get_properties(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;

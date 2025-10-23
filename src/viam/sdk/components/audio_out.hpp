@@ -3,8 +3,9 @@
 /// @brief Defines an `AudioOut` component.
 #pragma once
 
-#include <memory>
 #include <string>
+
+#include <boost/optional/optional.hpp>
 
 #include <viam/sdk/common/audio.hpp>
 #include <viam/sdk/common/proto_value.hpp>
@@ -29,19 +30,19 @@ class AudioOut : public Component {
     /// @brief Play audio data
     /// @param audio_data The audio data to play as bytes
     /// @param info Optional info about the audio_data (codec, sample rate, channels). Required for
-    /// raw PCM data, pass nullptr if not needed.
+    /// raw PCM data.
     inline void play(std::vector<uint8_t> const& audio_data,
-                     std::shared_ptr<audio_info> info = nullptr) {
+                     boost::optional<audio_info> info) {
         return play(audio_data, info, {});
     }
 
     /// @brief Play audio through the audioout component
     /// @param audio_data The audio data to play
     /// @param info Optional info about the audio_data (codec, sample rate, channels). Required for
-    /// raw PCM data, pass nullptr if not needed.
+    /// raw PCM data.
     /// @param extra Any additional arguments to the method
     virtual void play(std::vector<uint8_t> const& audio_data,
-                      std::shared_ptr<audio_info> info,
+                      boost::optional<audio_info> info,
                       const ProtoStruct& extra) = 0;
 
     /// @brief Returns properties of the audio out device (supported codecs, sample rate, number of

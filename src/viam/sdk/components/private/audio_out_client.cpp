@@ -26,7 +26,7 @@ AudioOutClient::AudioOutClient(std::string name, std::shared_ptr<grpc::Channel> 
       channel_(std::move(channel)) {}
 
 void AudioOutClient::play(std::vector<uint8_t> const& audio_data,
-                          std::shared_ptr<audio_info> info,
+                          boost::optional<audio_info> info,
                           const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Play)
         .with(extra,

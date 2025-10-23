@@ -13,7 +13,7 @@ namespace audioout {
 using namespace viam::sdk;
 
 void MockAudioOut::play(std::vector<uint8_t> const& audio_data,
-                        std::shared_ptr<audio_info> info,
+                        boost::optional<audio_info> info,
                         const ProtoStruct& extra) {
     last_played_audio_ = audio_data;
     last_played_audio_info_ = info;

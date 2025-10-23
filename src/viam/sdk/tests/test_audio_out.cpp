@@ -33,15 +33,14 @@ BOOST_AUTO_TEST_CASE(test_play) {
         audio_data.push_back(3);
         audio_data.push_back(4);
 
-        auto info = std::make_shared<audio_info>();
-        info->codec = audio_codecs::PCM_16;
-        info->sample_rate_hz = 44100;
-        info->num_channels = 1;
+        audio_info info;
+        info.codec = audio_codecs::PCM_16;
+        info.sample_rate_hz = 44100;
+        info.num_channels = 1;
 
         client.play(audio_data, info, {});
         BOOST_CHECK(mock->last_played_audio_ == audio_data);
-        BOOST_CHECK(mock->last_played_audio_info_ != nullptr);
-        BOOST_CHECK(*mock->last_played_audio_info_ == *info);
+        BOOST_CHECK(*mock->last_played_audio_info_ == info);
     });
 }
 
@@ -54,9 +53,9 @@ BOOST_AUTO_TEST_CASE(test_play_no_audio_info) {
         audio_data.push_back(4);
         audio_data.push_back(4);
 
-        client.play(audio_data, nullptr, {});
+        client.play(audio_data, {}, {});
         BOOST_CHECK(mock->last_played_audio_ == audio_data);
-        BOOST_CHECK(mock->last_played_audio_info_ == nullptr);
+        BOOST_CHECK(!mock->last_played_audio_info_);
     });
 }
 
