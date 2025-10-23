@@ -38,6 +38,9 @@ struct audio_info {
 /// @brief Equality operator for properties
 bool operator==(const audio_properties& lhs, const audio_properties& rhs);
 
+/// @brief Equality operator for audio_info
+bool operator==(const audio_info& lhs, const audio_info& rhs);
+
 uint16_t get_bits_per_sample(const std::string& codec);
 
 void write_wav_file(const std::string& filename,
