@@ -17,35 +17,21 @@ int main() {
     // Every Viam C++ SDK program must have one and only one Instance object which is created before
     // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
     Instance inst;
+    const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
+    DialOptions dial_options;
+    dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
 
-    std::string host("xarm-main.aqb785vhl4.viam.cloud");
-    DialOptions dial_opts;
-    dial_opts.set_entity(std::string("88dcef8e-db7f-47dc-9b0f-eb08fdc5a97d"));
+    // Uncomment and fill out your credentials details if connecting securely
+    // std::string type = "api-key";
+    // std::string payload = "your-api-key-here";
+    // Credentials credentials(type, payload);
+    // dial_options.set_credentials(credentials);
 
-    Credentials credentials("api-key", "eou798fi90d1fytv66c9lntv1ndwxj4g");
+    boost::optional<DialOptions> opts(dial_options);
+    std::string address(uri);
+    Options options(1, opts);
 
-    dial_opts.set_credentials(credentials);
-    boost::optional<DialOptions> opts(dial_opts);
-    Options options(0, opts);
-
-    auto robot = RobotClient::at_address(host, options);
-
-    // // Update these with your robot's connection details
-    // const char* uri = "";  // replace with your robot's URI
-    // DialOptions dial_options;
-    // dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
-
-    // // Uncomment and fill out your credentials details if connecting securely
-    // // std::string type = "api-key";
-    // // std::string payload = "your-api-key-here";
-    // // Credentials credentials(type, payload);
-    // // dial_options.set_credentials(credentials);
-
-    // boost::optional<DialOptions> opts(dial_options);
-    // std::string address(uri);
-    // Options options(1, opts);
-
-    // std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
+    std::shared_ptr<RobotClient> robot = RobotClient::at_address(address, options);
 
     // Print resources
     VIAM_SDK_LOG(info) << "Resources:";
