@@ -7,5 +7,11 @@ var searchData=
   ['arm_4',['Arm',['../classviam_1_1sdk_1_1Arm.html',1,'viam::sdk']]],
   ['armclient_5',['ArmClient',['../classviam_1_1sdk_1_1impl_1_1ArmClient.html',1,'viam::sdk::impl']]],
   ['armserver_6',['ArmServer',['../classviam_1_1sdk_1_1impl_1_1ArmServer.html',1,'viam::sdk::impl']]],
-  ['axis_5fangles_7',['axis_angles',['../structviam_1_1sdk_1_1axis__angles.html',1,'viam::sdk']]]
+  ['audio_5fchunk_7',['audio_chunk',['../structviam_1_1sdk_1_1AudioIn_1_1audio__chunk.html',1,'viam::sdk::AudioIn']]],
+  ['audio_5finfo_8',['audio_info',['../structviam_1_1sdk_1_1audio__info.html',1,'viam::sdk']]],
+  ['audio_5fproperties_9',['audio_properties',['../structviam_1_1sdk_1_1audio__properties.html',1,'viam::sdk']]],
+  ['audioin_10',['AudioIn',['../classviam_1_1sdk_1_1AudioIn.html',1,'viam::sdk']]],
+  ['audioinclient_11',['AudioInClient',['../classviam_1_1sdk_1_1impl_1_1AudioInClient.html',1,'viam::sdk::impl']]],
+  ['audioinserver_12',['AudioInServer',['../classviam_1_1sdk_1_1impl_1_1AudioInServer.html',1,'viam::sdk::impl']]],
+  ['axis_5fangles_13',['axis_angles',['../structviam_1_1sdk_1_1axis__angles.html',1,'viam::sdk']]]
 ];

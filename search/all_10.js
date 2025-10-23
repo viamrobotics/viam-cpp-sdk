@@ -21,7 +21,7 @@ var searchData=
   ['related_20to_20logging_18',['Classes related to logging',['../group__Log.html',1,'']]],
   ['related_20to_20sdk_20exceptions_19',['Classes related to SDK exceptions.',['../group__Exception.html',1,'']]],
   ['related_20to_20the_20arm_20component_20',['Classes related to the Arm component.',['../group__Arm.html',1,'']]],
-  ['related_20to_20the_20base_20component_21',['Classes related to the Base component.',['../group__Base.html',1,'']]],
+  ['related_20to_20the_20audioin_20component_21',['Classes related to the AudioIn component.',['../group__Base.html',1,'']]],
   ['related_20to_20the_20button_20component_22',['Classes related to the Button component.',['../group__Button.html',1,'']]],
   ['related_20to_20the_20discovery_20service_23',['Classes related to the Discovery service.',['../group__Discovery.html',1,'']]],
   ['related_20to_20the_20gantry_20component_24',['Classes related to the Gantry component',['../group__Gantry.html',1,'']]],
