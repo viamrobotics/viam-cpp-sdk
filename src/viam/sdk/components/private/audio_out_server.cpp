@@ -24,11 +24,9 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
 
         boost::optional<audio_info> info;
         if (request->has_audio_info()) {
-            info.emplace(audio_info{
-            request->audio_info().codec(),
-            request->audio_info().sample_rate_hz(),
-            request->audio_info().num_channels()
-    });
+            info.emplace(audio_info{request->audio_info().codec(),
+                                    request->audio_info().sample_rate_hz(),
+                                    request->audio_info().num_channels()});
         }
         audio_out->play(audio_data, info, helper.getExtra());
     });

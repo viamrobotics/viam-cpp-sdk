@@ -15,7 +15,7 @@ using namespace viam::sdk;
 class MockAudioOut : public AudioOut {
    public:
     void play(std::vector<uint8_t> const& audio_data,
-              std::shared_ptr<audio_info> info,
+              boost::optional<audio_info> info,
               const sdk::ProtoStruct& extra) override;
     audio_properties get_properties(const sdk::ProtoStruct& extra) override;
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
@@ -33,7 +33,7 @@ class MockAudioOut : public AudioOut {
     viam::sdk::ProtoStruct map_;
     std::vector<GeometryConfig> geometries_;
     std::vector<uint8_t> last_played_audio_;
-    std::shared_ptr<audio_info> last_played_audio_info_;
+    boost::optional<audio_info> last_played_audio_info_;
 };
 
 audio_properties fake_properties();

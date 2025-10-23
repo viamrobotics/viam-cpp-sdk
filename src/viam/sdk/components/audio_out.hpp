@@ -31,8 +31,7 @@ class AudioOut : public Component {
     /// @param audio_data The audio data to play as bytes
     /// @param info Optional info about the audio_data (codec, sample rate, channels). Required for
     /// raw PCM data.
-    inline void play(std::vector<uint8_t> const& audio_data,
-                     boost::optional<audio_info> info) {
+    inline void play(std::vector<uint8_t> const& audio_data, boost::optional<audio_info> info) {
         return play(audio_data, info, {});
     }
 
