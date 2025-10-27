@@ -107,9 +107,6 @@ jobs:
             sudo \
             wget \
 
-        c++ --version
-        ldd --version
-
     - name: Install cmake (jammy)
       if: matrix.image == 'ubuntu:22.04'
       run: |
