@@ -233,9 +233,6 @@ const boost::optional<DialOptions>& Options::dial_options() const {
     return dial_options_;
 }
 
-Credentials::Credentials(std::string payload)
-    : type_("robot-location-secret"), payload_(std::move(payload)) {}
-
 Credentials::Credentials(std::string type, std::string payload)
     : type_(std::move(type)), payload_(std::move(payload)) {}
 
