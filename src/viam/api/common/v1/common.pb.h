@@ -338,37 +338,11 @@ class ResourceName final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRemotePathFieldNumber = 5,
     kNamespaceFieldNumber = 1,
     kTypeFieldNumber = 2,
     kSubtypeFieldNumber = 3,
     kNameFieldNumber = 4,
-    kLocalNameFieldNumber = 6,
   };
-  // repeated string remote_path = 5 [json_name = "remotePath"];
-  int remote_path_size() const;
-  private:
-  int _internal_remote_path_size() const;
-  public:
-  void clear_remote_path();
-  const std::string& remote_path(int index) const;
-  std::string* mutable_remote_path(int index);
-  void set_remote_path(int index, const std::string& value);
-  void set_remote_path(int index, std::string&& value);
-  void set_remote_path(int index, const char* value);
-  void set_remote_path(int index, const char* value, size_t size);
-  std::string* add_remote_path();
-  void add_remote_path(const std::string& value);
-  void add_remote_path(std::string&& value);
-  void add_remote_path(const char* value);
-  void add_remote_path(const char* value, size_t size);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& remote_path() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_remote_path();
-  private:
-  const std::string& _internal_remote_path(int index) const;
-  std::string* _internal_add_remote_path();
-  public:
-
   // string namespace = 1 [json_name = "namespace"];
   void clear_namespace_();
   const std::string& namespace_() const;
@@ -425,20 +399,6 @@ class ResourceName final :
   std::string* _internal_mutable_name();
   public:
 
-  // string local_name = 6 [json_name = "localName"];
-  void clear_local_name();
-  const std::string& local_name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_local_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_local_name();
-  PROTOBUF_NODISCARD std::string* release_local_name();
-  void set_allocated_local_name(std::string* local_name);
-  private:
-  const std::string& _internal_local_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_local_name(const std::string& value);
-  std::string* _internal_mutable_local_name();
-  public:
-
   // @@protoc_insertion_point(class_scope:viam.common.v1.ResourceName)
  private:
   class _Internal;
@@ -446,12 +406,10 @@ class ResourceName final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> remote_path_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr namespace__;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr type_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr subtype_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr local_name_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
@@ -5904,131 +5862,6 @@ inline void ResourceName::set_allocated_name(std::string* name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.ResourceName.name)
-}
-
-// repeated string remote_path = 5 [json_name = "remotePath"];
-inline int ResourceName::_internal_remote_path_size() const {
-  return remote_path_.size();
-}
-inline int ResourceName::remote_path_size() const {
-  return _internal_remote_path_size();
-}
-inline void ResourceName::clear_remote_path() {
-  remote_path_.Clear();
-}
-inline std::string* ResourceName::add_remote_path() {
-  std::string* _s = _internal_add_remote_path();
-  // @@protoc_insertion_point(field_add_mutable:viam.common.v1.ResourceName.remote_path)
-  return _s;
-}
-inline const std::string& ResourceName::_internal_remote_path(int index) const {
-  return remote_path_.Get(index);
-}
-inline const std::string& ResourceName::remote_path(int index) const {
-  // @@protoc_insertion_point(field_get:viam.common.v1.ResourceName.remote_path)
-  return _internal_remote_path(index);
-}
-inline std::string* ResourceName::mutable_remote_path(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.common.v1.ResourceName.remote_path)
-  return remote_path_.Mutable(index);
-}
-inline void ResourceName::set_remote_path(int index, const std::string& value) {
-  remote_path_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:viam.common.v1.ResourceName.remote_path)
-}
-inline void ResourceName::set_remote_path(int index, std::string&& value) {
-  remote_path_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:viam.common.v1.ResourceName.remote_path)
-}
-inline void ResourceName::set_remote_path(int index, const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  remote_path_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:viam.common.v1.ResourceName.remote_path)
-}
-inline void ResourceName::set_remote_path(int index, const char* value, size_t size) {
-  remote_path_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:viam.common.v1.ResourceName.remote_path)
-}
-inline std::string* ResourceName::_internal_add_remote_path() {
-  return remote_path_.Add();
-}
-inline void ResourceName::add_remote_path(const std::string& value) {
-  remote_path_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:viam.common.v1.ResourceName.remote_path)
-}
-inline void ResourceName::add_remote_path(std::string&& value) {
-  remote_path_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:viam.common.v1.ResourceName.remote_path)
-}
-inline void ResourceName::add_remote_path(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  remote_path_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:viam.common.v1.ResourceName.remote_path)
-}
-inline void ResourceName::add_remote_path(const char* value, size_t size) {
-  remote_path_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:viam.common.v1.ResourceName.remote_path)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-ResourceName::remote_path() const {
-  // @@protoc_insertion_point(field_list:viam.common.v1.ResourceName.remote_path)
-  return remote_path_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-ResourceName::mutable_remote_path() {
-  // @@protoc_insertion_point(field_mutable_list:viam.common.v1.ResourceName.remote_path)
-  return &remote_path_;
-}
-
-// string local_name = 6 [json_name = "localName"];
-inline void ResourceName::clear_local_name() {
-  local_name_.ClearToEmpty();
-}
-inline const std::string& ResourceName::local_name() const {
-  // @@protoc_insertion_point(field_get:viam.common.v1.ResourceName.local_name)
-  return _internal_local_name();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void ResourceName::set_local_name(ArgT0&& arg0, ArgT... args) {
- 
- local_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.common.v1.ResourceName.local_name)
-}
-inline std::string* ResourceName::mutable_local_name() {
-  std::string* _s = _internal_mutable_local_name();
-  // @@protoc_insertion_point(field_mutable:viam.common.v1.ResourceName.local_name)
-  return _s;
-}
-inline const std::string& ResourceName::_internal_local_name() const {
-  return local_name_.Get();
-}
-inline void ResourceName::_internal_set_local_name(const std::string& value) {
-  
-  local_name_.Set(value, GetArenaForAllocation());
-}
-inline std::string* ResourceName::_internal_mutable_local_name() {
-  
-  return local_name_.Mutable(GetArenaForAllocation());
-}
-inline std::string* ResourceName::release_local_name() {
-  // @@protoc_insertion_point(field_release:viam.common.v1.ResourceName.local_name)
-  return local_name_.Release();
-}
-inline void ResourceName::set_allocated_local_name(std::string* local_name) {
-  if (local_name != nullptr) {
-    
-  } else {
-    
-  }
-  local_name_.SetAllocated(local_name, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (local_name_.IsDefault()) {
-    local_name_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.ResourceName.local_name)
 }
 
 // -------------------------------------------------------------------
