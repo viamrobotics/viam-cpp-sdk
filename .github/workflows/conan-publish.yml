@@ -41,7 +41,7 @@ jobs:
         run: |
           conan profile detect
           conan remote add viamconan $CONAN_REMOTE_URL
-          conan remote auth -cc core:non_interactive=True viamconan
+          conan remote auth --force -cc core:non_interactive=True viamconan
 
       - name: Create and upload package
         run: |
@@ -133,7 +133,7 @@ jobs:
 
         conan profile detect
         conan remote add viamconan $CONAN_REMOTE_URL
-        conan remote auth -cc core:non_interactive=True viamconan
+        conan remote auth --force -cc core:non_interactive=True viamconan
 
     - name: Create and upload package
       run: |
@@ -171,7 +171,7 @@ jobs:
         conan profile detect
 
         conan remote add viamconan $env:CONAN_REMOTE_URL
-        conan remote auth -cc core:non_interactive=True viamconan
+        conan remote auth --force -cc core:non_interactive=True viamconan
       env:
         CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
         CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
