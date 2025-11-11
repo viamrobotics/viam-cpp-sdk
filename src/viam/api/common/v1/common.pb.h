@@ -81,6 +81,15 @@ extern GeometriesInFrameDefaultTypeInternal _GeometriesInFrame_default_instance_
 class Geometry;
 struct GeometryDefaultTypeInternal;
 extern GeometryDefaultTypeInternal _Geometry_default_instance_;
+class Get3DModelsRequest;
+struct Get3DModelsRequestDefaultTypeInternal;
+extern Get3DModelsRequestDefaultTypeInternal _Get3DModelsRequest_default_instance_;
+class Get3DModelsResponse;
+struct Get3DModelsResponseDefaultTypeInternal;
+extern Get3DModelsResponseDefaultTypeInternal _Get3DModelsResponse_default_instance_;
+class Get3DModelsResponse_ModelsEntry_DoNotUse;
+struct Get3DModelsResponse_ModelsEntry_DoNotUseDefaultTypeInternal;
+extern Get3DModelsResponse_ModelsEntry_DoNotUseDefaultTypeInternal _Get3DModelsResponse_ModelsEntry_DoNotUse_default_instance_;
 class GetGeometriesRequest;
 struct GetGeometriesRequestDefaultTypeInternal;
 extern GetGeometriesRequestDefaultTypeInternal _GetGeometriesRequest_default_instance_;
@@ -163,6 +172,9 @@ template<> ::viam::common::v1::GeoGeometry* Arena::CreateMaybeMessage<::viam::co
 template<> ::viam::common::v1::GeoPoint* Arena::CreateMaybeMessage<::viam::common::v1::GeoPoint>(Arena*);
 template<> ::viam::common::v1::GeometriesInFrame* Arena::CreateMaybeMessage<::viam::common::v1::GeometriesInFrame>(Arena*);
 template<> ::viam::common::v1::Geometry* Arena::CreateMaybeMessage<::viam::common::v1::Geometry>(Arena*);
+template<> ::viam::common::v1::Get3DModelsRequest* Arena::CreateMaybeMessage<::viam::common::v1::Get3DModelsRequest>(Arena*);
+template<> ::viam::common::v1::Get3DModelsResponse* Arena::CreateMaybeMessage<::viam::common::v1::Get3DModelsResponse>(Arena*);
+template<> ::viam::common::v1::Get3DModelsResponse_ModelsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::common::v1::Get3DModelsResponse_ModelsEntry_DoNotUse>(Arena*);
 template<> ::viam::common::v1::GetGeometriesRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetGeometriesRequest>(Arena*);
 template<> ::viam::common::v1::GetGeometriesResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetGeometriesResponse>(Arena*);
 template<> ::viam::common::v1::GetKinematicsRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetKinematicsRequest>(Arena*);
@@ -4509,6 +4521,358 @@ class GetGeometriesResponse final :
 };
 // -------------------------------------------------------------------
 
+class Get3DModelsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.Get3DModelsRequest) */ {
+ public:
+  inline Get3DModelsRequest() : Get3DModelsRequest(nullptr) {}
+  ~Get3DModelsRequest() override;
+  explicit PROTOBUF_CONSTEXPR Get3DModelsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Get3DModelsRequest(const Get3DModelsRequest& from);
+  Get3DModelsRequest(Get3DModelsRequest&& from) noexcept
+    : Get3DModelsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline Get3DModelsRequest& operator=(const Get3DModelsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Get3DModelsRequest& operator=(Get3DModelsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Get3DModelsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Get3DModelsRequest* internal_default_instance() {
+    return reinterpret_cast<const Get3DModelsRequest*>(
+               &_Get3DModelsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    25;
+
+  friend void swap(Get3DModelsRequest& a, Get3DModelsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Get3DModelsRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Get3DModelsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Get3DModelsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Get3DModelsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Get3DModelsRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Get3DModelsRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Get3DModelsRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.Get3DModelsRequest";
+  }
+  protected:
+  explicit Get3DModelsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kExtraFieldNumber = 99,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.Get3DModelsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Get3DModelsResponse_ModelsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<Get3DModelsResponse_ModelsEntry_DoNotUse, 
+    std::string, ::viam::common::v1::Mesh,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<Get3DModelsResponse_ModelsEntry_DoNotUse, 
+    std::string, ::viam::common::v1::Mesh,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  Get3DModelsResponse_ModelsEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR Get3DModelsResponse_ModelsEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit Get3DModelsResponse_ModelsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const Get3DModelsResponse_ModelsEntry_DoNotUse& other);
+  static const Get3DModelsResponse_ModelsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const Get3DModelsResponse_ModelsEntry_DoNotUse*>(&_Get3DModelsResponse_ModelsEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.common.v1.Get3DModelsResponse.ModelsEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class Get3DModelsResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.Get3DModelsResponse) */ {
+ public:
+  inline Get3DModelsResponse() : Get3DModelsResponse(nullptr) {}
+  ~Get3DModelsResponse() override;
+  explicit PROTOBUF_CONSTEXPR Get3DModelsResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Get3DModelsResponse(const Get3DModelsResponse& from);
+  Get3DModelsResponse(Get3DModelsResponse&& from) noexcept
+    : Get3DModelsResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline Get3DModelsResponse& operator=(const Get3DModelsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Get3DModelsResponse& operator=(Get3DModelsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Get3DModelsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Get3DModelsResponse* internal_default_instance() {
+    return reinterpret_cast<const Get3DModelsResponse*>(
+               &_Get3DModelsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    27;
+
+  friend void swap(Get3DModelsResponse& a, Get3DModelsResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Get3DModelsResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Get3DModelsResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Get3DModelsResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Get3DModelsResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Get3DModelsResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Get3DModelsResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Get3DModelsResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.Get3DModelsResponse";
+  }
+  protected:
+  explicit Get3DModelsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModelsFieldNumber = 1,
+  };
+  // map<string, .viam.common.v1.Mesh> models = 1 [json_name = "models"];
+  int models_size() const;
+  private:
+  int _internal_models_size() const;
+  public:
+  void clear_models();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >&
+      _internal_models() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >*
+      _internal_mutable_models();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >&
+      models() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >*
+      mutable_models();
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.Get3DModelsResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      Get3DModelsResponse_ModelsEntry_DoNotUse,
+      std::string, ::viam::common::v1::Mesh,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> models_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetReadingsRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetReadingsRequest) */ {
  public:
@@ -4557,7 +4921,7 @@ class GetReadingsRequest final :
                &_GetReadingsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    28;
 
   friend void swap(GetReadingsRequest& a, GetReadingsRequest& b) {
     a.Swap(&b);
@@ -4751,7 +5115,7 @@ class GetReadingsResponse final :
                &_GetReadingsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    30;
 
   friend void swap(GetReadingsResponse& a, GetReadingsResponse& b) {
     a.Swap(&b);
@@ -4909,7 +5273,7 @@ class LogEntry final :
                &_LogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    31;
 
   friend void swap(LogEntry& a, LogEntry& b) {
     a.Swap(&b);
@@ -5181,7 +5545,7 @@ class AudioInfo final :
                &_AudioInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    32;
 
   friend void swap(AudioInfo& a, AudioInfo& b) {
     a.Swap(&b);
@@ -5351,7 +5715,7 @@ class GetPropertiesRequest final :
                &_GetPropertiesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    33;
 
   friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
     a.Swap(&b);
@@ -5519,7 +5883,7 @@ class GetPropertiesResponse final :
                &_GetPropertiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    34;
 
   friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
     a.Swap(&b);
@@ -8755,6 +9119,180 @@ GetGeometriesResponse::geometries() const {
 
 // -------------------------------------------------------------------
 
+// Get3DModelsRequest
+
+// string name = 1 [json_name = "name"];
+inline void Get3DModelsRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& Get3DModelsRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Get3DModelsRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Get3DModelsRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.Get3DModelsRequest.name)
+}
+inline std::string* Get3DModelsRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.Get3DModelsRequest.name)
+  return _s;
+}
+inline const std::string& Get3DModelsRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void Get3DModelsRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Get3DModelsRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Get3DModelsRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.Get3DModelsRequest.name)
+  return name_.Release();
+}
+inline void Get3DModelsRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Get3DModelsRequest.name)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool Get3DModelsRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool Get3DModelsRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& Get3DModelsRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& Get3DModelsRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.Get3DModelsRequest.extra)
+  return _internal_extra();
+}
+inline void Get3DModelsRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.Get3DModelsRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Get3DModelsRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Get3DModelsRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.Get3DModelsRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Get3DModelsRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* Get3DModelsRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.Get3DModelsRequest.extra)
+  return _msg;
+}
+inline void Get3DModelsRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.Get3DModelsRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// Get3DModelsResponse
+
+// map<string, .viam.common.v1.Mesh> models = 1 [json_name = "models"];
+inline int Get3DModelsResponse::_internal_models_size() const {
+  return models_.size();
+}
+inline int Get3DModelsResponse::models_size() const {
+  return _internal_models_size();
+}
+inline void Get3DModelsResponse::clear_models() {
+  models_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >&
+Get3DModelsResponse::_internal_models() const {
+  return models_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >&
+Get3DModelsResponse::models() const {
+  // @@protoc_insertion_point(field_map:viam.common.v1.Get3DModelsResponse.models)
+  return _internal_models();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >*
+Get3DModelsResponse::_internal_mutable_models() {
+  return models_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::common::v1::Mesh >*
+Get3DModelsResponse::mutable_models() {
+  // @@protoc_insertion_point(field_mutable_map:viam.common.v1.Get3DModelsResponse.models)
+  return _internal_mutable_models();
+}
+
+// -------------------------------------------------------------------
+
 // GetReadingsRequest
 
 // string name = 1 [json_name = "name"];
@@ -9740,6 +10278,12 @@ inline void GetPropertiesResponse::set_num_channels(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
