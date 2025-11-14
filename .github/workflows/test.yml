@@ -15,7 +15,8 @@ jobs:
   test_ubuntu:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
-    container: ghcr.io/viamrobotics/cpp-base:bullseye-amd64
+    container:
+      image: debian:bookworm
     strategy:
       fail-fast: false
       matrix:
@@ -24,6 +25,48 @@ jobs:
           - BUILD_SHARED: OFF
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get -y dist-upgrade
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              cmake \
+              curl \
+              doxygen \
+              g++ \
+              gdb \
+              git \
+              gnupg \
+              gpg \
+              less \
+              libboost-all-dev \
+              libc-ares-dev \
+              libgrpc++-dev \
+              libprotobuf-dev \
+              libre2-dev \
+              libssl-dev \
+              ninja-build \
+              pkg-config \
+              protobuf-compiler-grpc \
+              software-properties-common \
+              sudo \
+              wget \
+              zlib1g-dev
+
+          bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
+          apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
+          apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install -t llvm-toolchain-bookworm-15 \
+            clang-15 \
+            clang-tidy-15 \
+            clang-format
+
+
+
       - name: cmake
         run: |
           mkdir build
@@ -35,13 +78,16 @@ jobs:
             -DVIAMCPPSDK_BUILD_EXAMPLES=ON \
             -DVIAMCPPSDK_CLANG_TIDY=${{ inputs.no-tidy && 'OFF' || 'ON' }} \
             -DVIAMCPPSDK_SANITIZED_BUILD=${{ matrix.BUILD_SHARED }}
+
       - name: build
         run: |
           cmake --build build --target install
           cmake --install build
+
       - name: test
         working-directory: build
         run: ../etc/docker/tests/run_test.sh
+
   test_windows:
     if: github.repository_owner == 'viamrobotics'
     runs-on: windows-latest
