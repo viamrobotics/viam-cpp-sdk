@@ -58,6 +58,7 @@ jobs:
 
           bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
           apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
+          apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install -t llvm-toolchain-bookworm-15 \
             clang-15 \
