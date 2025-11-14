@@ -1,6 +1,5 @@
 name: Test conan packages
 
-# Temp
 on:
   # Runs for PRs that directly change conan code, and weekdays at 11:15pm UTC.
   # Additional logic in the prepare job below makes it so scheduled builds only run
