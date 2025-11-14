@@ -230,14 +230,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: aarch64-debian-bullseye
-            platform: linux_aarch64-debian-bullseye
-            image: debian:bullseye
-            runs_on: buildjet-8vcpu-ubuntu-2204-arm
-          - target: x86_64-debian-bullseye
-            platform: linux_x86_64-debian-bullseye
-            image: debian:bullseye
-            runs_on: buildjet-8vcpu-ubuntu-2204
           - target: aarch64-debian-bookworm
             platform: linux_aarch64-debian-bookworm
             image: debian:bookworm
@@ -282,17 +274,6 @@ jobs:
               sudo \
               wget \
               zlib1g-dev
-
-      - name: Update CMake for bullseye
-        if: ${{ matrix.image  == 'debian:bullseye' }}
-        run: |
-          sudo apt-get install -y software-properties-common
-          apt-add-repository -y 'deb https://archive.debian.org/debian bullseye-backports main'
-
-          apt-get update
-          apt-get -y install cmake
-
-          apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
       - name: Setup build directory
         run: mkdir builds
