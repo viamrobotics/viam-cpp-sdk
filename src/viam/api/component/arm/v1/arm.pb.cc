@@ -464,7 +464,7 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "ax_vel_degs_per_sec\030\001 \001(\001H\000R\020maxVelDegsP"
   "erSec\210\001\001\0225\n\025max_acc_degs_per_sec2\030\002 \001(\001H"
   "\001R\021maxAccDegsPerSec2\210\001\001B\027\n\025_max_vel_degs"
-  "_per_secB\030\n\026_max_acc_degs_per_sec22\361\014\n\nA"
+  "_per_secB\030\n\026_max_acc_degs_per_sec22\377\r\n\nA"
   "rmService\022\241\001\n\016GetEndPosition\022,.viam.comp"
   "onent.arm.v1.GetEndPositionRequest\032-.via"
   "m.component.arm.v1.GetEndPositionRespons"
@@ -506,8 +506,12 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "am.common.v1.GetGeometriesRequest\032%.viam"
   ".common.v1.GetGeometriesResponse\"4\202\323\344\223\002."
   "\022,/viam/api/v1/component/arm/{name}/geom"
-  "etriesB=\n\031com.viam.component.arm.v1Z go."
-  "viam.com/api/component/arm/v1b\006proto3"
+  "etries\022\213\001\n\013Get3DModels\022\".viam.common.v1."
+  "Get3DModelsRequest\032#.viam.common.v1.Get3"
+  "DModelsResponse\"3\202\323\344\223\002-\022+/viam/api/v1/co"
+  "mponent/arm/{name}/3d_modelsB=\n\031com.viam"
+  ".component.arm.v1Z go.viam.com/api/compo"
+  "nent/arm/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv1_2farm_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -516,7 +520,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv
 };
 static ::_pbi::once_flag descriptor_table_component_2farm_2fv1_2farm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2farm_2fv1_2farm_2eproto = {
-    false, false, 3437, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
+    false, false, 3579, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
     "component/arm/v1/arm.proto",
     &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 3, 17,
     schemas, file_default_instances, TableStruct_component_2farm_2fv1_2farm_2eproto::offsets,
