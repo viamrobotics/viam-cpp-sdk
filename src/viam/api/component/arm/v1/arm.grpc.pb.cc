@@ -35,6 +35,7 @@ static const char* ArmService_method_names[] = {
   "/viam.component.arm.v1.ArmService/DoCommand",
   "/viam.component.arm.v1.ArmService/GetKinematics",
   "/viam.component.arm.v1.ArmService/GetGeometries",
+  "/viam.component.arm.v1.ArmService/Get3DModels",
 };
 
 std::unique_ptr< ArmService::Stub> ArmService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -54,6 +55,7 @@ ArmService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_DoCommand_(ArmService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetKinematics_(ArmService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetGeometries_(ArmService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Get3DModels_(ArmService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status ArmService::Stub::GetEndPosition(::grpc::ClientContext* context, const ::viam::component::arm::v1::GetEndPositionRequest& request, ::viam::component::arm::v1::GetEndPositionResponse* response) {
@@ -286,6 +288,29 @@ void ArmService::Stub::async::GetGeometries(::grpc::ClientContext* context, cons
   return result;
 }
 
+::grpc::Status ArmService::Stub::Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::viam::common::v1::Get3DModelsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get3DModels_, context, request, response);
+}
+
+void ArmService::Stub::async::Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get3DModels_, context, request, response, std::move(f));
+}
+
+void ArmService::Stub::async::Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get3DModels_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>* ArmService::Stub::PrepareAsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::Get3DModelsResponse, ::viam::common::v1::Get3DModelsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get3DModels_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>* ArmService::Stub::AsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGet3DModelsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ArmService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       ArmService_method_names[0],
@@ -387,6 +412,16 @@ ArmService::Service::Service() {
              ::viam::common::v1::GetGeometriesResponse* resp) {
                return service->GetGeometries(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      ArmService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< ArmService::Service, ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](ArmService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::common::v1::Get3DModelsRequest* req,
+             ::viam::common::v1::Get3DModelsResponse* resp) {
+               return service->Get3DModels(ctx, req, resp);
+             }, this)));
 }
 
 ArmService::Service::~Service() {
@@ -456,6 +491,13 @@ ArmService::Service::~Service() {
 }
 
 ::grpc::Status ArmService::Service::GetGeometries(::grpc::ServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status ArmService::Service::Get3DModels(::grpc::ServerContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -4055,9 +4055,10 @@ class CreateInvoiceAndChargeImmediatelyRequest final :
 // -------------------------------------------------------------------
 
 class CreateInvoiceAndChargeImmediatelyResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse) */ {
  public:
   inline CreateInvoiceAndChargeImmediatelyResponse() : CreateInvoiceAndChargeImmediatelyResponse(nullptr) {}
+  ~CreateInvoiceAndChargeImmediatelyResponse() override;
   explicit PROTOBUF_CONSTEXPR CreateInvoiceAndChargeImmediatelyResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   CreateInvoiceAndChargeImmediatelyResponse(const CreateInvoiceAndChargeImmediatelyResponse& from);
@@ -4130,15 +4131,27 @@ class CreateInvoiceAndChargeImmediatelyResponse final :
   CreateInvoiceAndChargeImmediatelyResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<CreateInvoiceAndChargeImmediatelyResponse>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const CreateInvoiceAndChargeImmediatelyResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const CreateInvoiceAndChargeImmediatelyResponse& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
-  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateInvoiceAndChargeImmediatelyResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateInvoiceAndChargeImmediatelyResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateInvoiceAndChargeImmediatelyResponse* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -4159,6 +4172,23 @@ class CreateInvoiceAndChargeImmediatelyResponse final :
 
   // accessors -------------------------------------------------------
 
+  enum : int {
+    kInvoiceIdFieldNumber = 1,
+  };
+  // string invoice_id = 1 [json_name = "invoiceId"];
+  void clear_invoice_id();
+  const std::string& invoice_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_invoice_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_invoice_id();
+  PROTOBUF_NODISCARD std::string* release_invoice_id();
+  void set_allocated_invoice_id(std::string* invoice_id);
+  private:
+  const std::string& _internal_invoice_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_invoice_id(const std::string& value);
+  std::string* _internal_mutable_invoice_id();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse)
  private:
   class _Internal;
@@ -4166,6 +4196,8 @@ class CreateInvoiceAndChargeImmediatelyResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr invoice_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
 };
 // ===================================================================
@@ -7030,6 +7062,56 @@ inline void CreateInvoiceAndChargeImmediatelyRequest::set_disable_email(bool val
 // -------------------------------------------------------------------
 
 // CreateInvoiceAndChargeImmediatelyResponse
+
+// string invoice_id = 1 [json_name = "invoiceId"];
+inline void CreateInvoiceAndChargeImmediatelyResponse::clear_invoice_id() {
+  invoice_id_.ClearToEmpty();
+}
+inline const std::string& CreateInvoiceAndChargeImmediatelyResponse::invoice_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.invoice_id)
+  return _internal_invoice_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateInvoiceAndChargeImmediatelyResponse::set_invoice_id(ArgT0&& arg0, ArgT... args) {
+ 
+ invoice_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.invoice_id)
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyResponse::mutable_invoice_id() {
+  std::string* _s = _internal_mutable_invoice_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.invoice_id)
+  return _s;
+}
+inline const std::string& CreateInvoiceAndChargeImmediatelyResponse::_internal_invoice_id() const {
+  return invoice_id_.Get();
+}
+inline void CreateInvoiceAndChargeImmediatelyResponse::_internal_set_invoice_id(const std::string& value) {
+  
+  invoice_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyResponse::_internal_mutable_invoice_id() {
+  
+  return invoice_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateInvoiceAndChargeImmediatelyResponse::release_invoice_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.invoice_id)
+  return invoice_id_.Release();
+}
+inline void CreateInvoiceAndChargeImmediatelyResponse::set_allocated_invoice_id(std::string* invoice_id) {
+  if (invoice_id != nullptr) {
+    
+  } else {
+    
+  }
+  invoice_id_.SetAllocated(invoice_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (invoice_id_.IsDefault()) {
+    invoice_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateInvoiceAndChargeImmediatelyResponse.invoice_id)
+}
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop

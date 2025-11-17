@@ -123,6 +123,14 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
+    // Get3DModels returns the 3D models of the component
+    virtual ::grpc::Status Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::viam::common::v1::Get3DModelsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>> AsyncGet3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>>(AsyncGet3DModelsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>> PrepareAsyncGet3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>>(PrepareAsyncGet3DModelsRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -160,6 +168,9 @@ class ArmService final {
       // GetGeometries returns the geometries of the component in their current configuration
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Get3DModels returns the 3D models of the component
+      virtual void Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -185,6 +196,8 @@ class ArmService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetKinematicsResponse>* PrepareAsyncGetKinematicsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>* AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetGeometriesResponse>* PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>* AsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::Get3DModelsResponse>* PrepareAsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -259,6 +272,13 @@ class ArmService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>> PrepareAsyncGetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>>(PrepareAsyncGetGeometriesRaw(context, request, cq));
     }
+    ::grpc::Status Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::viam::common::v1::Get3DModelsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>> AsyncGet3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>>(AsyncGet3DModelsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>> PrepareAsyncGet3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>>(PrepareAsyncGet3DModelsRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -282,6 +302,8 @@ class ArmService final {
       void GetKinematics(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, std::function<void(::grpc::Status)>) override;
       void GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, std::function<void(::grpc::Status)>) override;
+      void Get3DModels(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -313,6 +335,8 @@ class ArmService final {
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetKinematicsResponse>* PrepareAsyncGetKinematicsRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetKinematicsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* AsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetGeometriesResponse>* PrepareAsyncGetGeometriesRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>* AsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::common::v1::Get3DModelsResponse>* PrepareAsyncGet3DModelsRaw(::grpc::ClientContext* context, const ::viam::common::v1::Get3DModelsRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetEndPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_MoveToPosition_;
     const ::grpc::internal::RpcMethod rpcmethod_GetJointPositions_;
@@ -323,6 +347,7 @@ class ArmService final {
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
     const ::grpc::internal::RpcMethod rpcmethod_GetKinematics_;
     const ::grpc::internal::RpcMethod rpcmethod_GetGeometries_;
+    const ::grpc::internal::RpcMethod rpcmethod_Get3DModels_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -354,6 +379,8 @@ class ArmService final {
     virtual ::grpc::Status GetKinematics(::grpc::ServerContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response);
     // GetGeometries returns the geometries of the component in their current configuration
     virtual ::grpc::Status GetGeometries(::grpc::ServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response);
+    // Get3DModels returns the 3D models of the component
+    virtual ::grpc::Status Get3DModels(::grpc::ServerContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetEndPosition : public BaseClass {
@@ -555,7 +582,27 @@ class ArmService final {
       ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_MoveThroughJointPositions<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetKinematics<WithAsyncMethod_GetGeometries<Service > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Get3DModels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Get3DModels() {
+      ::grpc::Service::MarkMethodAsync(10);
+    }
+    ~WithAsyncMethod_Get3DModels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get3DModels(::grpc::ServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet3DModels(::grpc::ServerContext* context, ::viam::common::v1::Get3DModelsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::Get3DModelsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetEndPosition<WithAsyncMethod_MoveToPosition<WithAsyncMethod_GetJointPositions<WithAsyncMethod_MoveToJointPositions<WithAsyncMethod_MoveThroughJointPositions<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_DoCommand<WithAsyncMethod_GetKinematics<WithAsyncMethod_GetGeometries<WithAsyncMethod_Get3DModels<Service > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetEndPosition : public BaseClass {
    private:
@@ -826,7 +873,34 @@ class ArmService final {
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetEndPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetJointPositions<WithCallbackMethod_MoveToJointPositions<WithCallbackMethod_MoveThroughJointPositions<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetKinematics<WithCallbackMethod_GetGeometries<Service > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Get3DModels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Get3DModels() {
+      ::grpc::Service::MarkMethodCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::common::v1::Get3DModelsRequest* request, ::viam::common::v1::Get3DModelsResponse* response) { return this->Get3DModels(context, request, response); }));}
+    void SetMessageAllocatorFor_Get3DModels(
+        ::grpc::MessageAllocator< ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Get3DModels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get3DModels(::grpc::ServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get3DModels(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetEndPosition<WithCallbackMethod_MoveToPosition<WithCallbackMethod_GetJointPositions<WithCallbackMethod_MoveToJointPositions<WithCallbackMethod_MoveThroughJointPositions<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_DoCommand<WithCallbackMethod_GetKinematics<WithCallbackMethod_GetGeometries<WithCallbackMethod_Get3DModels<Service > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetEndPosition : public BaseClass {
@@ -994,6 +1068,23 @@ class ArmService final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetGeometries(::grpc::ServerContext* /*context*/, const ::viam::common::v1::GetGeometriesRequest* /*request*/, ::viam::common::v1::GetGeometriesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Get3DModels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Get3DModels() {
+      ::grpc::Service::MarkMethodGeneric(10);
+    }
+    ~WithGenericMethod_Get3DModels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get3DModels(::grpc::ServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1196,6 +1287,26 @@ class ArmService final {
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Get3DModels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Get3DModels() {
+      ::grpc::Service::MarkMethodRaw(10);
+    }
+    ~WithRawMethod_Get3DModels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get3DModels(::grpc::ServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet3DModels(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1416,6 +1527,28 @@ class ArmService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetGeometries(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Get3DModels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Get3DModels() {
+      ::grpc::Service::MarkMethodRawCallback(10,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get3DModels(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Get3DModels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get3DModels(::grpc::ServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get3DModels(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1688,9 +1821,36 @@ class ArmService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetGeometries(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetGeometriesRequest,::viam::common::v1::GetGeometriesResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Get3DModels : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Get3DModels() {
+      ::grpc::Service::MarkMethodStreamed(10,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::common::v1::Get3DModelsRequest, ::viam::common::v1::Get3DModelsResponse>* streamer) {
+                       return this->StreamedGet3DModels(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Get3DModels() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Get3DModels(::grpc::ServerContext* /*context*/, const ::viam::common::v1::Get3DModelsRequest* /*request*/, ::viam::common::v1::Get3DModelsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGet3DModels(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::Get3DModelsRequest,::viam::common::v1::Get3DModelsResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_Get3DModels<Service > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<Service > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetEndPosition<WithStreamedUnaryMethod_MoveToPosition<WithStreamedUnaryMethod_GetJointPositions<WithStreamedUnaryMethod_MoveToJointPositions<WithStreamedUnaryMethod_MoveThroughJointPositions<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetKinematics<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_Get3DModels<Service > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
