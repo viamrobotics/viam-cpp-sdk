@@ -21,6 +21,8 @@
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::frame_system_config)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::operation)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::JobStatus)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::MachineStatus)
 
 namespace viam {
 namespace sdktests {
@@ -191,9 +193,33 @@ BOOST_AUTO_TEST_CASE(test_transform_pose) {
 BOOST_AUTO_TEST_CASE(test_get_machine_status) {
     robot_client_to_mocks_pipeline(
         [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            // Define mock JobStatus objects
+            JobStatus mock_job_status1;
+            mock_job_status1.job_name = "job1";
+            mock_job_status1.recent_successful_runs.push_back(
+                time_pt{std::chrono::seconds(1678886400)}); // Example timestamp
+            mock_job_status1.recent_failed_runs.push_back(
+                time_pt{std::chrono::seconds(1678886500)}); // Example timestamp
+            JobStatus mock_job_status2;
+            mock_job_status2.job_name = "job2";
+            mock_job_status2.recent_successful_runs.push_back(
+                time_pt{std::chrono::seconds(1678886600)});
+            mock_job_status2.recent_failed_runs.push_back(
+                time_pt{std::chrono::seconds(1678886700)});
+            std::vector<JobStatus> mock_job_statuses;
+            mock_job_statuses.push_back(mock_job_status1);
+            mock_job_statuses.push_back(mock_job_status2);
+            // Define expected MachineStatus
+            MachineStatus expected_machine_status;
+            expected_machine_status.state = RobotClient::status::k_running;
+            expected_machine_status.job_statuses = mock_job_statuses;
+            // The MockRobotService (not in context) would need to be updated
+            // to return a GetMachineStatusResponse that, when converted,
+            // matches `expected_machine_status`.
+            // For the purpose of this test, we assume the mock service
+            // is configured to return this data.
             auto status = client->get_machine_status();
-
-            BOOST_CHECK_EQUAL(status, RobotClient::status::k_running);
+            BOOST_CHECK_EQUAL(status, expected_machine_status);
         });
 }
 

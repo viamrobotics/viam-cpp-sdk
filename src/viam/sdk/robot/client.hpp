@@ -37,6 +37,23 @@ struct LogBackend;
 
 /// @defgroup Robot Classes related to a Robot representation.
 
+/// @brief Represents the status of a job on the robot.
+/// @ingroup Robot
+struct JobStatus {
+    std::string job_name;
+    std::vector<time_pt> recent_successful_runs;
+    std::vector<time_pt> recent_failed_runs;
+    friend bool operator==(const JobStatus& lhs, const JobStatus& rhs);
+};
+
+/// @brief Represents the overall machine status of the robot.
+/// @ingroup Robot
+struct MachineStatus {
+    viam::sdk::RobotClient::status state;
+    std::vector<JobStatus> job_statuses;
+    friend bool operator==(const MachineStatus& lhs, const MachineStatus& rhs);
+};
+
 /// @class RobotClient client.hpp "robot/client.hpp"
 /// @brief gRPC client for a robot, to be used for all interactions with a robot.
 /// There are two ways to instantiate a robot:
@@ -165,7 +182,7 @@ class RobotClient {
     void cancel_operation(std::string id);
 
     /// @brief gets the current status of the machine
-    status get_machine_status() const;
+    MachineStatus get_machine_status() const;
 
    private:
     friend class ModuleService;
@@ -215,6 +232,16 @@ struct from_proto_impl<robot::v1::Operation> {
 template <>
 struct from_proto_impl<robot::v1::FrameSystemConfig> {
     RobotClient::frame_system_config operator()(const robot::v1::FrameSystemConfig*) const;
+};
+
+template <>
+struct from_proto_impl<robot::v1::JobStatus> {
+    JobStatus operator()(const robot::v1::JobStatus*) const;
+};
+
+template <>
+struct from_proto_impl<robot::v1::GetMachineStatusResponse> {
+    MachineStatus operator()(const robot::v1::GetMachineStatusResponse*) const;
 };
 
 }  // namespace proto_convert_details

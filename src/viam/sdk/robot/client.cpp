@@ -37,6 +37,8 @@ namespace sdk {
 using google::protobuf::RepeatedPtrField;
 using viam::common::v1::Transform;
 using viam::robot::v1::FrameSystemConfig;
+using viam::robot::v1::JobStatus;
+using viam::robot::v1::GetMachineStatusResponse;
 using viam::robot::v1::Operation;
 using viam::robot::v1::RobotService;
 
@@ -57,6 +59,33 @@ RobotClient::frame_system_config from_proto_impl<FrameSystemConfig>::operator()(
         fsconfig.kinematics = from_proto(proto->kinematics());
     }
     return fsconfig;
+}
+
+JobStatus from_proto_impl<viam::robot::v1::JobStatus>::operator()(
+    const viam::robot::v1::JobStatus* proto) const {
+    JobStatus job_status;
+    job_status.job_name = proto->job_name();
+    job_status.recent_successful_runs = sdk::impl::from_repeated_field(proto->recent_successful_runs());
+    job_status.recent_failed_runs = sdk::impl::from_repeated_field(proto->recent_failed_runs());
+    return job_status;
+}
+
+GetMachineStatusResponse from_proto_impl<viam::robot::v1::GetMachineStatusResponse>::operator()(
+    const viam::robot::v1::GetMachineStatusResponse* proto) const {
+    MachineStatus machine_status;
+    switch (proto->state()) {
+        case robot::v1::GetMachineStatusResponse_State_STATE_INITIALIZING:
+            machine_status.state = RobotClient::status::k_initializing;
+            break;
+        case robot::v1::GetMachineStatusResponse_State_STATE_RUNNING:
+            machine_status.state = RobotClient::status::k_running;
+            break;
+        case robot::v1::GetMachineStatusResponse_State_STATE_UNSPECIFIED:
+        default:
+            machine_status.state = RobotClient::status::k_unspecified;
+    }
+    machine_status.job_statuses = sdk::impl::from_repeated_field(proto->job_statuses());
+    return machine_status;
 }
 
 RobotClient::operation from_proto_impl<Operation>::operator()(const Operation* proto) const {
@@ -81,6 +110,16 @@ bool operator==(const RobotClient::frame_system_config& lhs,
                 const RobotClient::frame_system_config& rhs) {
     return lhs.frame == rhs.frame && to_proto(lhs.kinematics).SerializeAsString() ==
                                          to_proto(rhs.kinematics).SerializeAsString();
+}
+
+bool operator==(const JobStatus& lhs, const JobStatus& rhs) {
+    return lhs.job_name == rhs.job_name &&
+           lhs.recent_successful_runs == rhs.recent_successful_runs &&
+           lhs.recent_failed_runs == rhs.recent_failed_runs;
+}
+
+bool operator==(const MachineStatus& lhs, const MachineStatus& rhs) {
+    return lhs.state == rhs.state && lhs.job_statuses == rhs.job_statuses;
 }
 
 bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
@@ -444,17 +483,7 @@ std::ostream& operator<<(std::ostream& os, const RobotClient::status& v) {
 
 RobotClient::status RobotClient::get_machine_status() const {
     return impl::client_helper(impl_, &RobotService::Stub::GetMachineStatus)
-        .invoke([](const auto& resp) {
-            switch (resp.state()) {
-                case robot::v1::GetMachineStatusResponse_State_STATE_INITIALIZING:
-                    return RobotClient::status::k_initializing;
-                case robot::v1::GetMachineStatusResponse_State_STATE_RUNNING:
-                    return RobotClient::status::k_running;
-                case robot::v1::GetMachineStatusResponse_State_STATE_UNSPECIFIED:
-                default:
-                    return RobotClient::status::k_unspecified;
-            }
-        });
+        .invoke([](const auto& resp) { return from_proto(resp); });
 }
 
 }  // namespace sdk
