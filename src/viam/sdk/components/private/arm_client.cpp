@@ -111,8 +111,8 @@ std::map<std::string, mesh> ArmClient::get_3d_models(const ProtoStruct& extra) {
         .with(extra)
         .invoke([](auto& response) {
             std::map<std::string, mesh> models;
-            for (const auto& [key, value] : response.models()) {
-                models.emplace(key, from_proto(value));
+            for (const auto& entry : response.models()) {
+                models.emplace(entry.first, from_proto(entry.second));
             }
             return models;
         });
