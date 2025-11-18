@@ -32,6 +32,7 @@ static const char* MLTrainingService_method_names[] = {
   "/viam.app.mltraining.v1.MLTrainingService/CancelTrainingJob",
   "/viam.app.mltraining.v1.MLTrainingService/DeleteCompletedTrainingJob",
   "/viam.app.mltraining.v1.MLTrainingService/GetTrainingJobLogs",
+  "/viam.app.mltraining.v1.MLTrainingService/ListSupportedContainers",
 };
 
 std::unique_ptr< MLTrainingService::Stub> MLTrainingService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -48,6 +49,7 @@ MLTrainingService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& 
   , rpcmethod_CancelTrainingJob_(MLTrainingService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DeleteCompletedTrainingJob_(MLTrainingService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetTrainingJobLogs_(MLTrainingService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListSupportedContainers_(MLTrainingService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MLTrainingService::Stub::SubmitTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::SubmitTrainingJobRequest& request, ::viam::app::mltraining::v1::SubmitTrainingJobResponse* response) {
@@ -211,6 +213,29 @@ void MLTrainingService::Stub::async::GetTrainingJobLogs(::grpc::ClientContext* c
   return result;
 }
 
+::grpc::Status MLTrainingService::Stub::ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::mltraining::v1::ListSupportedContainersRequest, ::viam::app::mltraining::v1::ListSupportedContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListSupportedContainers_, context, request, response);
+}
+
+void MLTrainingService::Stub::async::ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::mltraining::v1::ListSupportedContainersRequest, ::viam::app::mltraining::v1::ListSupportedContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListSupportedContainers_, context, request, response, std::move(f));
+}
+
+void MLTrainingService::Stub::async::ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListSupportedContainers_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListSupportedContainersResponse>* MLTrainingService::Stub::PrepareAsyncListSupportedContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::mltraining::v1::ListSupportedContainersResponse, ::viam::app::mltraining::v1::ListSupportedContainersRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListSupportedContainers_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListSupportedContainersResponse>* MLTrainingService::Stub::AsyncListSupportedContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListSupportedContainersRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MLTrainingService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MLTrainingService_method_names[0],
@@ -282,6 +307,16 @@ MLTrainingService::Service::Service() {
              ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* resp) {
                return service->GetTrainingJobLogs(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MLTrainingService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MLTrainingService::Service, ::viam::app::mltraining::v1::ListSupportedContainersRequest, ::viam::app::mltraining::v1::ListSupportedContainersResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MLTrainingService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::mltraining::v1::ListSupportedContainersRequest* req,
+             ::viam::app::mltraining::v1::ListSupportedContainersResponse* resp) {
+               return service->ListSupportedContainers(ctx, req, resp);
+             }, this)));
 }
 
 MLTrainingService::Service::~Service() {
@@ -330,6 +365,13 @@ MLTrainingService::Service::~Service() {
 }
 
 ::grpc::Status MLTrainingService::Service::GetTrainingJobLogs(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MLTrainingService::Service::ListSupportedContainers(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response) {
   (void) context;
   (void) request;
   (void) response;
