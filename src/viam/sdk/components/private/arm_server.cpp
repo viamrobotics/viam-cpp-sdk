@@ -140,10 +140,11 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
                                       ::viam::common::v1::Get3DModelsResponse* response) noexcept {
     return make_service_helper<Arm>(
         "ArmServer::Get3DModels", this, request)([&](auto& helper, auto& arm) {
-        const std::map<std::string, common::v1::Mesh> models =
-            arm->get_3d_models(helper.getExtra());
+        const std::map<std::string, mesh> models = arm->get_3d_models(helper.getExtra());
 
-        response->mutable_models()->insert(models.begin(), models.end());
+        for (const auto& [key, mesh] : models) {
+            response->mutable_models()->insert({key, to_proto(mesh)});
+        }
     });
 }
 

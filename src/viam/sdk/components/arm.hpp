@@ -3,12 +3,12 @@
 /// @brief Defines an `Arm` component
 #pragma once
 
-#include <common/v1/common.pb.h>
 #include <string>
 
 #include <boost/optional/optional.hpp>
 #include <boost/variant/variant.hpp>
 
+#include <viam/sdk/common/mesh.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
@@ -146,11 +146,11 @@ class Arm : public Component, public Stoppable {
     /// @brief Returns `3DModel`s associated with the calling arm
     /// @param extra Any additional arguments to the method
     /// @return A map of `3DModel`s associated with the calling arm
-    virtual std::map<std::string, common::v1::Mesh> get_3d_models(const ProtoStruct& extra) = 0;
+    virtual std::map<std::string, mesh> get_3d_models(const ProtoStruct& extra) = 0;
 
     /// @brief Returns `3DModel`s associated with the calling arm
     /// @return A map of `3DModel`s associated with the calling arm
-    inline std::map<std::string, common::v1::Mesh> get_3d_models() {
+    inline std::map<std::string, mesh> get_3d_models() {
         return get_3d_models({});
     }
 

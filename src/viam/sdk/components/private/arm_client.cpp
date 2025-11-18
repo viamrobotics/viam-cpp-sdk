@@ -106,12 +106,15 @@ Arm::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
         });
 }
 
-std::map<std::string, common::v1::Mesh> ArmClient::get_3d_models(const ProtoStruct& extra) {
+std::map<std::string, mesh> ArmClient::get_3d_models(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Get3DModels)
         .with(extra)
         .invoke([](auto& response) {
-            return std::map<std::string, common::v1::Mesh>(response.models().begin(),
-                                                           response.models().end());
+            std::map<std::string, mesh> models;
+            for (const auto& [key, value] : response.models()) {
+                models.emplace(key, from_proto(value));
+            }
+            return models;
         });
 }
 
