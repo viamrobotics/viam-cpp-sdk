@@ -3,6 +3,7 @@
 /// @brief Defines an `Arm` component
 #pragma once
 
+#include <common/v1/common.pb.h>
 #include <string>
 
 #include <boost/optional/optional.hpp>
@@ -140,6 +141,17 @@ class Arm : public Component, public Stoppable {
     /// and the object's type indicating the file format.
     inline KinematicsData get_kinematics() {
         return get_kinematics({});
+    }
+
+    /// @brief Returns `3DModel`s associated with the calling arm
+    /// @param extra Any additional arguments to the method
+    /// @return A map of `3DModel`s associated with the calling arm
+    virtual std::map<std::string, common::v1::Mesh> get_3d_models(const ProtoStruct& extra) = 0;
+
+    /// @brief Returns `3DModel`s associated with the calling arm
+    /// @return A map of `3DModel`s associated with the calling arm
+    inline std::map<std::string, common::v1::Mesh> get_3d_models() {
+        return get_3d_models({});
     }
 
     /// @brief Returns `GeometryConfig`s associated with the calling arm

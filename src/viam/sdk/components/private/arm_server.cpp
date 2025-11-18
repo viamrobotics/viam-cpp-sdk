@@ -135,6 +135,18 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status ArmServer::Get3DModels(::grpc::ServerContext*,
+                                      const ::viam::common::v1::Get3DModelsRequest* request,
+                                      ::viam::common::v1::Get3DModelsResponse* response) noexcept {
+    return make_service_helper<Arm>(
+        "ArmServer::Get3DModels", this, request)([&](auto& helper, auto& arm) {
+        const std::map<std::string, common::v1::Mesh> models =
+            arm->get_3d_models(helper.getExtra());
+
+        response->mutable_models()->insert(models.begin(), models.end());
+    });
+}
+
 ::grpc::Status ArmServer::GetGeometries(
     ::grpc::ServerContext*,
     const ::viam::common::v1::GetGeometriesRequest* request,

@@ -7,6 +7,7 @@ namespace sdktests {
 namespace arm {
 
 sdk::Arm::KinematicsData fake_kinematics();
+std::map<std::string, common::v1::Mesh> fake_3d_models();
 
 class MockArm : public sdk::Arm {
    public:
@@ -29,7 +30,7 @@ class MockArm : public sdk::Arm {
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     sdk::Arm::KinematicsData get_kinematics(const sdk::ProtoStruct&) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct&) override;
-
+    std::map<std::string, common::v1::Mesh> get_3d_models(const sdk::ProtoStruct&) override;
     sdk::pose current_location;
     std::vector<double> joint_positions;
     std::vector<std::vector<double>> move_thru_positions;

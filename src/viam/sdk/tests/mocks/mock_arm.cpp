@@ -7,6 +7,10 @@ namespace viam {
 namespace sdktests {
 namespace arm {
 
+std::map<std::string, common::v1::Mesh> fake_3d_models() {
+    return {{"model1", common::v1::Mesh::default_instance()}};
+}
+
 sdk::Arm::KinematicsData fake_kinematics() {
     return sdk::Arm::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}};
 }
@@ -57,6 +61,10 @@ sdk::Arm::KinematicsData MockArm::get_kinematics(const sdk::ProtoStruct&) {
 
 std::vector<sdk::GeometryConfig> MockArm::get_geometries(const sdk::ProtoStruct&) {
     return fake_geometries();
+}
+
+std::map<std::string, common::v1::Mesh> MockArm::get_3d_models(const sdk::ProtoStruct&) {
+    return fake_3d_models();
 }
 
 }  // namespace arm
