@@ -44,4 +44,4 @@ RUN apt-get -y --no-install-recommends install -t llvm-toolchain-jammy-15 \
     clang-tidy-15 \
     clang-format
 
-RUN apt-get -y install cmake
+RUN apt-get -y install cmake=3.25.2-0kitware1ubuntu22.04.1 cmake-data=3.25.2-0kitware1ubuntu22.04.1
