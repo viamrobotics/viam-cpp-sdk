@@ -94,6 +94,14 @@ class MLTrainingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>> PrepareAsyncGetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>>(PrepareAsyncGetTrainingJobLogsRaw(context, request, cq));
     }
+    // ListSupportedContainers gets all the containers one can use for a custom training job.
+    virtual ::grpc::Status ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListSupportedContainersResponse>> AsyncListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListSupportedContainersResponse>>(AsyncListSupportedContainersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListSupportedContainersResponse>> PrepareAsyncListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListSupportedContainersResponse>>(PrepareAsyncListSupportedContainersRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -118,6 +126,9 @@ class MLTrainingService final {
       // GetTrainingJobLogs gets the logs for a given custom training job.
       virtual void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // ListSupportedContainers gets all the containers one can use for a custom training job.
+      virtual void ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -137,6 +148,8 @@ class MLTrainingService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>* PrepareAsyncDeleteCompletedTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>* AsyncGetTrainingJobLogsRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>* PrepareAsyncGetTrainingJobLogsRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListSupportedContainersResponse>* AsyncListSupportedContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::mltraining::v1::ListSupportedContainersResponse>* PrepareAsyncListSupportedContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -190,6 +203,13 @@ class MLTrainingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>> PrepareAsyncGetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>>(PrepareAsyncGetTrainingJobLogsRaw(context, request, cq));
     }
+    ::grpc::Status ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListSupportedContainersResponse>> AsyncListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListSupportedContainersResponse>>(AsyncListSupportedContainersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListSupportedContainersResponse>> PrepareAsyncListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListSupportedContainersResponse>>(PrepareAsyncListSupportedContainersRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -207,6 +227,8 @@ class MLTrainingService final {
       void DeleteCompletedTrainingJob(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, std::function<void(::grpc::Status)>) override;
       void GetTrainingJobLogs(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListSupportedContainers(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -232,6 +254,8 @@ class MLTrainingService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>* PrepareAsyncDeleteCompletedTrainingJobRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>* AsyncGetTrainingJobLogsRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::GetTrainingJobLogsResponse>* PrepareAsyncGetTrainingJobLogsRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListSupportedContainersResponse>* AsyncListSupportedContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::mltraining::v1::ListSupportedContainersResponse>* PrepareAsyncListSupportedContainersRaw(::grpc::ClientContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SubmitTrainingJob_;
     const ::grpc::internal::RpcMethod rpcmethod_SubmitCustomTrainingJob_;
     const ::grpc::internal::RpcMethod rpcmethod_GetTrainingJob_;
@@ -239,6 +263,7 @@ class MLTrainingService final {
     const ::grpc::internal::RpcMethod rpcmethod_CancelTrainingJob_;
     const ::grpc::internal::RpcMethod rpcmethod_DeleteCompletedTrainingJob_;
     const ::grpc::internal::RpcMethod rpcmethod_GetTrainingJobLogs_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListSupportedContainers_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -260,6 +285,8 @@ class MLTrainingService final {
     virtual ::grpc::Status DeleteCompletedTrainingJob(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* request, ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* response);
     // GetTrainingJobLogs gets the logs for a given custom training job.
     virtual ::grpc::Status GetTrainingJobLogs(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* request, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* response);
+    // ListSupportedContainers gets all the containers one can use for a custom training job.
+    virtual ::grpc::Status ListSupportedContainers(::grpc::ServerContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SubmitTrainingJob : public BaseClass {
@@ -401,7 +428,27 @@ class MLTrainingService final {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SubmitTrainingJob<WithAsyncMethod_SubmitCustomTrainingJob<WithAsyncMethod_GetTrainingJob<WithAsyncMethod_ListTrainingJobs<WithAsyncMethod_CancelTrainingJob<WithAsyncMethod_DeleteCompletedTrainingJob<WithAsyncMethod_GetTrainingJobLogs<Service > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_ListSupportedContainers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListSupportedContainers() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_ListSupportedContainers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSupportedContainers(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* /*request*/, ::viam::app::mltraining::v1::ListSupportedContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListSupportedContainers(::grpc::ServerContext* context, ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::mltraining::v1::ListSupportedContainersResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_SubmitTrainingJob<WithAsyncMethod_SubmitCustomTrainingJob<WithAsyncMethod_GetTrainingJob<WithAsyncMethod_ListTrainingJobs<WithAsyncMethod_CancelTrainingJob<WithAsyncMethod_DeleteCompletedTrainingJob<WithAsyncMethod_GetTrainingJobLogs<WithAsyncMethod_ListSupportedContainers<Service > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SubmitTrainingJob : public BaseClass {
    private:
@@ -591,7 +638,34 @@ class MLTrainingService final {
     virtual ::grpc::ServerUnaryReactor* GetTrainingJobLogs(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* /*request*/, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SubmitTrainingJob<WithCallbackMethod_SubmitCustomTrainingJob<WithCallbackMethod_GetTrainingJob<WithCallbackMethod_ListTrainingJobs<WithCallbackMethod_CancelTrainingJob<WithCallbackMethod_DeleteCompletedTrainingJob<WithCallbackMethod_GetTrainingJobLogs<Service > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_ListSupportedContainers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ListSupportedContainers() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::ListSupportedContainersRequest, ::viam::app::mltraining::v1::ListSupportedContainersResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* request, ::viam::app::mltraining::v1::ListSupportedContainersResponse* response) { return this->ListSupportedContainers(context, request, response); }));}
+    void SetMessageAllocatorFor_ListSupportedContainers(
+        ::grpc::MessageAllocator< ::viam::app::mltraining::v1::ListSupportedContainersRequest, ::viam::app::mltraining::v1::ListSupportedContainersResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::mltraining::v1::ListSupportedContainersRequest, ::viam::app::mltraining::v1::ListSupportedContainersResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ListSupportedContainers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSupportedContainers(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* /*request*/, ::viam::app::mltraining::v1::ListSupportedContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListSupportedContainers(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* /*request*/, ::viam::app::mltraining::v1::ListSupportedContainersResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_SubmitTrainingJob<WithCallbackMethod_SubmitCustomTrainingJob<WithCallbackMethod_GetTrainingJob<WithCallbackMethod_ListTrainingJobs<WithCallbackMethod_CancelTrainingJob<WithCallbackMethod_DeleteCompletedTrainingJob<WithCallbackMethod_GetTrainingJobLogs<WithCallbackMethod_ListSupportedContainers<Service > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SubmitTrainingJob : public BaseClass {
@@ -708,6 +782,23 @@ class MLTrainingService final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetTrainingJobLogs(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* /*request*/, ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListSupportedContainers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListSupportedContainers() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_ListSupportedContainers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSupportedContainers(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* /*request*/, ::viam::app::mltraining::v1::ListSupportedContainersResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -850,6 +941,26 @@ class MLTrainingService final {
     }
     void RequestGetTrainingJobLogs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListSupportedContainers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListSupportedContainers() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_ListSupportedContainers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSupportedContainers(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* /*request*/, ::viam::app::mltraining::v1::ListSupportedContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListSupportedContainers(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1004,6 +1115,28 @@ class MLTrainingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetTrainingJobLogs(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ListSupportedContainers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ListSupportedContainers() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListSupportedContainers(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ListSupportedContainers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSupportedContainers(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* /*request*/, ::viam::app::mltraining::v1::ListSupportedContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListSupportedContainers(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1195,9 +1328,36 @@ class MLTrainingService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetTrainingJobLogs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::mltraining::v1::GetTrainingJobLogsRequest,::viam::app::mltraining::v1::GetTrainingJobLogsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_SubmitCustomTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<WithStreamedUnaryMethod_ListTrainingJobs<WithStreamedUnaryMethod_CancelTrainingJob<WithStreamedUnaryMethod_DeleteCompletedTrainingJob<WithStreamedUnaryMethod_GetTrainingJobLogs<Service > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListSupportedContainers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListSupportedContainers() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::mltraining::v1::ListSupportedContainersRequest, ::viam::app::mltraining::v1::ListSupportedContainersResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::mltraining::v1::ListSupportedContainersRequest, ::viam::app::mltraining::v1::ListSupportedContainersResponse>* streamer) {
+                       return this->StreamedListSupportedContainers(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ListSupportedContainers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListSupportedContainers(::grpc::ServerContext* /*context*/, const ::viam::app::mltraining::v1::ListSupportedContainersRequest* /*request*/, ::viam::app::mltraining::v1::ListSupportedContainersResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListSupportedContainers(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::mltraining::v1::ListSupportedContainersRequest,::viam::app::mltraining::v1::ListSupportedContainersResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_SubmitCustomTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<WithStreamedUnaryMethod_ListTrainingJobs<WithStreamedUnaryMethod_CancelTrainingJob<WithStreamedUnaryMethod_DeleteCompletedTrainingJob<WithStreamedUnaryMethod_GetTrainingJobLogs<WithStreamedUnaryMethod_ListSupportedContainers<Service > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_SubmitCustomTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<WithStreamedUnaryMethod_ListTrainingJobs<WithStreamedUnaryMethod_CancelTrainingJob<WithStreamedUnaryMethod_DeleteCompletedTrainingJob<WithStreamedUnaryMethod_GetTrainingJobLogs<Service > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SubmitTrainingJob<WithStreamedUnaryMethod_SubmitCustomTrainingJob<WithStreamedUnaryMethod_GetTrainingJob<WithStreamedUnaryMethod_ListTrainingJobs<WithStreamedUnaryMethod_CancelTrainingJob<WithStreamedUnaryMethod_DeleteCompletedTrainingJob<WithStreamedUnaryMethod_GetTrainingJobLogs<WithStreamedUnaryMethod_ListSupportedContainers<Service > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
