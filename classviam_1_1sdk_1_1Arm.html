@@ -167,6 +167,12 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a1684010009781539671c88c57bae7d68" id="r_a1684010009781539671c88c57bae7d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1684010009781539671c88c57bae7d68">get_kinematics</a> ()</td></tr>
 <tr class="memdesc:a1684010009781539671c88c57bae7d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
 <tr class="separator:a1684010009781539671c88c57bae7d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a751ef5b774cbcf40a0aef9a8c99586ba" id="r_a751ef5b774cbcf40a0aef9a8c99586ba"><td class="memItemLeft" align="right" valign="top">virtual std::map&lt; std::string, <a class="el" href="structviam_1_1sdk_1_1mesh.html">mesh</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a751ef5b774cbcf40a0aef9a8c99586ba">get_3d_models</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:a751ef5b774cbcf40a0aef9a8c99586ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code>3DModel</code>s associated with the calling arm.  <br /></td></tr>
+<tr class="separator:a751ef5b774cbcf40a0aef9a8c99586ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0eeb5efca86caa6faeedd95d4c14d61" id="r_aa0eeb5efca86caa6faeedd95d4c14d61"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="structviam_1_1sdk_1_1mesh.html">mesh</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0eeb5efca86caa6faeedd95d4c14d61">get_3d_models</a> ()</td></tr>
+<tr class="memdesc:aa0eeb5efca86caa6faeedd95d4c14d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code>3DModel</code>s associated with the calling arm.  <br /></td></tr>
+<tr class="separator:aa0eeb5efca86caa6faeedd95d4c14d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5604ac4418042783a0227e43c573a9ac" id="r_a5604ac4418042783a0227e43c573a9ac"><td class="memItemLeft" align="right" valign="top"><a id="a5604ac4418042783a0227e43c573a9ac" name="a5604ac4418042783a0227e43c573a9ac"></a>
 std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_geometries</b> ()</td></tr>
 <tr class="memdesc:a5604ac4418042783a0227e43c573a9ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling arm. <br /></td></tr>
@@ -309,6 +315,70 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a6cafc2d7a89783c9c83cfb3cfa351a2c">viam::sdk::impl::ArmClient</a>.</p>
+
+</div>
+</div>
+<a id="aa0eeb5efca86caa6faeedd95d4c14d61" name="aa0eeb5efca86caa6faeedd95d4c14d61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0eeb5efca86caa6faeedd95d4c14d61">&#9670;&#160;</a></span>get_3d_models() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; std::string, <a class="el" href="structviam_1_1sdk_1_1mesh.html">mesh</a> &gt; viam::sdk::Arm::get_3d_models </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns <code>3DModel</code>s associated with the calling arm. </p>
+<dl class="section return"><dt>Returns</dt><dd>A map of <code>3DModel</code>s associated with the calling arm </dd></dl>
+
+</div>
+</div>
+<a id="a751ef5b774cbcf40a0aef9a8c99586ba" name="a751ef5b774cbcf40a0aef9a8c99586ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a751ef5b774cbcf40a0aef9a8c99586ba">&#9670;&#160;</a></span>get_3d_models() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::map&lt; std::string, <a class="el" href="structviam_1_1sdk_1_1mesh.html">mesh</a> &gt; viam::sdk::Arm::get_3d_models </td>
+          <td>(</td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns <code>3DModel</code>s associated with the calling arm. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A map of <code>3DModel</code>s associated with the calling arm </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a1bab05d0e0afe4263c6b95a2c52f19f3">viam::sdk::impl::ArmClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a751ef5b774cbcf40a0aef9a8c99586ba">viam::sdk::impl::ArmClient</a>.</p>
 
 </div>
 </div>
