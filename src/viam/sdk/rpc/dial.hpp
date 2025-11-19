@@ -12,6 +12,7 @@ namespace viam {
 namespace sdk {
 
 class DialOptions;
+
 class ViamChannel {
     ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
 
@@ -32,32 +33,47 @@ class ViamChannel {
     /// @throws Exception if it is unable to establish a connection to the provided URI
     static ViamChannel dial(const char* uri, const boost::optional<DialOptions>& options);
 
-    // @brief Dials to a robot at the given URI address, using the provided dial options (or default
-    // options is none are provided). Additionally specifies that this dial is an initial connection
-    // attempt and so uses the initial connection options.
-    /// In general, use of this method is discouraged. `RobotClient::at_address(...)` is the
-    /// preferred method to connect to a robot, and creates the channel itself.
+    /// @brief Dials to a robot at the given URI address, using the provided dial options (or
+    /// default options is none are provided).
+    /// Additionally specifies that this dial is an initial
+    /// connection attempt and so uses the initial connection options. In general, use of this
+    /// method is discouraged. `RobotClient::at_address(...)` is the preferred method to connect to
+    /// a robot, and creates the channel itself.
     /// @throws Exception if it is unable to establish a connection to the provided URI within
     /// the given number of initial connection attempts
     static ViamChannel dial_initial(const char* uri, const boost::optional<DialOptions>& options);
 
     const std::shared_ptr<GrpcChannel>& channel() const;
 
-    void close();
+    /// @brief Returns the bearer token for connecting to the robot if one is needed; else returns
+    /// null.
+    /// @remark When dialing with disable_webrtc = true and grpc >= 1.43.0, a bearer token is needed
+    /// for all client requests. If you use ClientHelper for client requests this is handled
+    /// automatically, otherwise you will have to add this to the client context of a grpc call.
+    const boost::optional<std::string>& auth_token() const;
 
     const char* get_channel_addr() const;
 
+    void close();
+
    private:
-    const char* uri_;
     struct impl;
 
+    static ViamChannel dial_direct(const char* uri, const DialOptions& opts);
+
+    const char* uri_;
+
     std::shared_ptr<GrpcChannel> channel_;
+
+    boost::optional<std::string> auth_token_;
 
     std::unique_ptr<impl> pimpl_;
 };
 
 class Credentials {
    public:
+    /// @deprecated use `Credentials(std::string type, std::string payload)`
+    Credentials(std::string payload);
     Credentials(std::string type, std::string payload);
     const std::string& type() const;
     const std::string& payload() const;
@@ -74,6 +90,7 @@ class DialOptions {
     const boost::optional<Credentials>& credentials() const;
     const boost::optional<std::string>& entity() const;
     bool allows_insecure_downgrade() const;
+    bool webrtc_disabled() const;
     const std::chrono::duration<float>& timeout() const;
     int initial_connection_attempts() const;
     std::chrono::duration<float> initial_connection_attempt_timeout() const;
@@ -81,6 +98,7 @@ class DialOptions {
     DialOptions& set_entity(boost::optional<std::string> entity);
     DialOptions& set_credentials(boost::optional<Credentials> creds);
     DialOptions& set_allow_insecure_downgrade(bool allow);
+    DialOptions& set_webrtc_disabled(bool disable_webrtc);
     DialOptions& set_timeout(std::chrono::duration<float> timeout);
     DialOptions& set_initial_connection_attempts(int attempts);
     DialOptions& set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
@@ -98,6 +116,12 @@ class DialOptions {
     /// @brief Allows the RPC connection to be downgraded to an insecure connection if detected.
     /// This is only used when credentials are not present.
     bool allow_insecure_downgrade_ = false;
+
+    /// @brief Bypass WebRTC and connect directly to the robot.
+    /// This dials directly through grpc bypassing rust utils.
+    /// @remark Direct dialing should generally be done with a machine URI of the form
+    /// <part>.<location>.local.viam.cloud:8080
+    bool disable_webrtc_ = false;
 
     /// @brief Duration before the dial connection times out
     /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
