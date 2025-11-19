@@ -253,8 +253,32 @@ find_package(Threads REQUIRED)
 # `target_link_directories` call down in src/CMakeLists.txt, as it
 # will no longer be needed.
 set(viam_rust_utils_file ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils${CMAKE_STATIC_LIBRARY_SUFFIX})
+set(viam_rust_utils_header_file ${CMAKE_CURRENT_BINARY_DIR}/viam_rust_utils.h)
 
 file(GLOB viam_rust_utils_files ${PROJECT_SOURCE_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}viam_rust_utils*${CMAKE_STATIC_LIBRARY_SUFFIX})
+file(GLOB existing_viam_rust_utils_header_file ${PROJECT_SOURCE_DIR}/viam_rust_utils.h)
+
+if (NOT existing_viam_rust_utils_header_file)
+  file(
+    DOWNLOAD
+    https://github.com/viamrobotics/rust-utils/releases/latest/download/viam_rust_utils.h
+    ${viam_rust_utils_header_file}
+    STATUS lvruh_status
+  )
+  list(GET lvruh_status 0 lvruh_status_code)
+  list(GET lvruh_status 1 lvruh_status_string)
+
+  if(NOT lvruh_status_code EQUAL 0)
+    message(FATAL_ERROR "No local viam_rust_utils.h found and failed to download: ${lvruh_status_string}")
+  endif()
+#configure_file(${CMAKE_CURRENT_BINARY_DIR}/viam_rust_utils.h src/viam/sdk/rpc/private/viam_rust_utils.h COPYONLY)
+else()
+  FILE(COPY_FILE
+    ${existing_viam_rust_utils_header_file}
+    ${viam_rust_utils_header_file}
+    ONLY_IF_DIFFERENT
+  )
+endif()
 
 if (viam_rust_utils_files)
   list(LENGTH viam_rust_utils_files num_viam_rust_utils_files)
