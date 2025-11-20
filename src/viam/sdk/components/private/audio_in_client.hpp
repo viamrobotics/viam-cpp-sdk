@@ -8,6 +8,7 @@
 #include <viam/api/component/audioin/v1/audioin.grpc.pb.h>
 
 #include <viam/sdk/components/audio_in.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -20,6 +21,7 @@ class AudioInClient : public AudioIn {
    public:
     using interface_type = AudioIn;
     AudioInClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    AudioInClient(std::string name, ViamChannel& channel);
 
     void get_audio(std::string const& codec,
                    std::function<bool(audio_chunk&& chunk)> const& chunk_handler,

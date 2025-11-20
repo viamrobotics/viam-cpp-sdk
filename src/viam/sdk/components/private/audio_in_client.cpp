@@ -26,6 +26,11 @@ AudioInClient::AudioInClient(std::string name, std::shared_ptr<grpc::Channel> ch
       stub_(viam::component::audioin::v1::AudioInService::NewStub(channel)),
       channel_(std::move(channel)) {}
 
+AudioInClient::AudioInClient(std::string name, ViamChannel& channel)
+    : AudioIn(std::move(name)),
+      stub_(viam::component::audioin::v1::AudioInService::NewStub(channel.channel())),
+      channel_(nullptr) {}
+
 void AudioInClient::get_audio(std::string const& codec,
                               std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
                               double const& duration_seconds,
