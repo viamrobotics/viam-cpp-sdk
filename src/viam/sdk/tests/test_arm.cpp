@@ -104,6 +104,26 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_3d_models) {
+    std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [](Arm& client) {
+        const auto& models = client.get_3d_models();
+        const auto& expected = fake_3d_models();
+
+        // Compare keysets directly
+        std::set<std::string> model_keys;
+        std::set<std::string> expected_keys;
+        for (const auto& [key, _] : models) {
+            model_keys.insert(key);
+        }
+        for (const auto& [key, _] : expected) {
+            expected_keys.insert(key);
+        }
+        BOOST_CHECK_EQUAL_COLLECTIONS(
+            model_keys.begin(), model_keys.end(), expected_keys.begin(), expected_keys.end());
+    });
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests

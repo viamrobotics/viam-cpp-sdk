@@ -126,6 +126,9 @@ extern GetVersionRequestDefaultTypeInternal _GetVersionRequest_default_instance_
 class GetVersionResponse;
 struct GetVersionResponseDefaultTypeInternal;
 extern GetVersionResponseDefaultTypeInternal _GetVersionResponse_default_instance_;
+class JobStatus;
+struct JobStatusDefaultTypeInternal;
+extern JobStatusDefaultTypeInternal _JobStatus_default_instance_;
 class ListTunnelsRequest;
 struct ListTunnelsRequestDefaultTypeInternal;
 extern ListTunnelsRequestDefaultTypeInternal _ListTunnelsRequest_default_instance_;
@@ -259,6 +262,7 @@ template<> ::viam::robot::v1::GetStatusRequest* Arena::CreateMaybeMessage<::viam
 template<> ::viam::robot::v1::GetStatusResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetStatusResponse>(Arena*);
 template<> ::viam::robot::v1::GetVersionRequest* Arena::CreateMaybeMessage<::viam::robot::v1::GetVersionRequest>(Arena*);
 template<> ::viam::robot::v1::GetVersionResponse* Arena::CreateMaybeMessage<::viam::robot::v1::GetVersionResponse>(Arena*);
+template<> ::viam::robot::v1::JobStatus* Arena::CreateMaybeMessage<::viam::robot::v1::JobStatus>(Arena*);
 template<> ::viam::robot::v1::ListTunnelsRequest* Arena::CreateMaybeMessage<::viam::robot::v1::ListTunnelsRequest>(Arena*);
 template<> ::viam::robot::v1::ListTunnelsResponse* Arena::CreateMaybeMessage<::viam::robot::v1::ListTunnelsResponse>(Arena*);
 template<> ::viam::robot::v1::LogRequest* Arena::CreateMaybeMessage<::viam::robot::v1::LogRequest>(Arena*);
@@ -8312,6 +8316,7 @@ class GetMachineStatusResponse final :
 
   enum : int {
     kResourcesFieldNumber = 1,
+    kJobStatusesFieldNumber = 4,
     kConfigFieldNumber = 2,
     kStateFieldNumber = 3,
   };
@@ -8332,6 +8337,24 @@ class GetMachineStatusResponse final :
   ::viam::robot::v1::ResourceStatus* add_resources();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ResourceStatus >&
       resources() const;
+
+  // repeated .viam.robot.v1.JobStatus job_statuses = 4 [json_name = "jobStatuses"];
+  int job_statuses_size() const;
+  private:
+  int _internal_job_statuses_size() const;
+  public:
+  void clear_job_statuses();
+  ::viam::robot::v1::JobStatus* mutable_job_statuses(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::JobStatus >*
+      mutable_job_statuses();
+  private:
+  const ::viam::robot::v1::JobStatus& _internal_job_statuses(int index) const;
+  ::viam::robot::v1::JobStatus* _internal_add_job_statuses();
+  public:
+  const ::viam::robot::v1::JobStatus& job_statuses(int index) const;
+  ::viam::robot::v1::JobStatus* add_job_statuses();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::JobStatus >&
+      job_statuses() const;
 
   // .viam.robot.v1.ConfigStatus config = 2 [json_name = "config"];
   bool has_config() const;
@@ -8368,8 +8391,197 @@ class GetMachineStatusResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ResourceStatus > resources_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::JobStatus > job_statuses_;
   ::viam::robot::v1::ConfigStatus* config_;
   int state_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class JobStatus final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.JobStatus) */ {
+ public:
+  inline JobStatus() : JobStatus(nullptr) {}
+  ~JobStatus() override;
+  explicit PROTOBUF_CONSTEXPR JobStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  JobStatus(const JobStatus& from);
+  JobStatus(JobStatus&& from) noexcept
+    : JobStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline JobStatus& operator=(const JobStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JobStatus& operator=(JobStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JobStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const JobStatus* internal_default_instance() {
+    return reinterpret_cast<const JobStatus*>(
+               &_JobStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    53;
+
+  friend void swap(JobStatus& a, JobStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(JobStatus* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JobStatus* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JobStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<JobStatus>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const JobStatus& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const JobStatus& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(JobStatus* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.JobStatus";
+  }
+  protected:
+  explicit JobStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRecentSuccessfulRunsFieldNumber = 2,
+    kRecentFailedRunsFieldNumber = 3,
+    kJobNameFieldNumber = 1,
+  };
+  // repeated .google.protobuf.Timestamp recent_successful_runs = 2 [json_name = "recentSuccessfulRuns"];
+  int recent_successful_runs_size() const;
+  private:
+  int _internal_recent_successful_runs_size() const;
+  public:
+  void clear_recent_successful_runs();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_recent_successful_runs(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp >*
+      mutable_recent_successful_runs();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_recent_successful_runs(int index) const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_add_recent_successful_runs();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& recent_successful_runs(int index) const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* add_recent_successful_runs();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp >&
+      recent_successful_runs() const;
+
+  // repeated .google.protobuf.Timestamp recent_failed_runs = 3 [json_name = "recentFailedRuns"];
+  int recent_failed_runs_size() const;
+  private:
+  int _internal_recent_failed_runs_size() const;
+  public:
+  void clear_recent_failed_runs();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_recent_failed_runs(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp >*
+      mutable_recent_failed_runs();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_recent_failed_runs(int index) const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_add_recent_failed_runs();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& recent_failed_runs(int index) const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* add_recent_failed_runs();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp >&
+      recent_failed_runs() const;
+
+  // string job_name = 1 [json_name = "jobName"];
+  void clear_job_name();
+  const std::string& job_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_job_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_job_name();
+  PROTOBUF_NODISCARD std::string* release_job_name();
+  void set_allocated_job_name(std::string* job_name);
+  private:
+  const std::string& _internal_job_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_job_name(const std::string& value);
+  std::string* _internal_mutable_job_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.JobStatus)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp > recent_successful_runs_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp > recent_failed_runs_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr job_name_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
 };
@@ -8423,7 +8635,7 @@ class ResourceStatus final :
                &_ResourceStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    54;
 
   friend void swap(ResourceStatus& a, ResourceStatus& b) {
     a.Swap(&b);
@@ -8697,7 +8909,7 @@ class ConfigStatus final :
                &_ConfigStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    55;
 
   friend void swap(ConfigStatus& a, ConfigStatus& b) {
     a.Swap(&b);
@@ -8864,7 +9076,7 @@ class GetVersionRequest final :
                &_GetVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    56;
 
   friend void swap(GetVersionRequest& a, GetVersionRequest& b) {
     a.Swap(&b);
@@ -8981,7 +9193,7 @@ class GetVersionResponse final :
                &_GetVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    57;
 
   friend void swap(GetVersionResponse& a, GetVersionResponse& b) {
     a.Swap(&b);
@@ -9161,7 +9373,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    58;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -9365,7 +9577,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    59;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -13430,6 +13642,174 @@ inline void GetMachineStatusResponse::set_state(::viam::robot::v1::GetMachineSta
   // @@protoc_insertion_point(field_set:viam.robot.v1.GetMachineStatusResponse.state)
 }
 
+// repeated .viam.robot.v1.JobStatus job_statuses = 4 [json_name = "jobStatuses"];
+inline int GetMachineStatusResponse::_internal_job_statuses_size() const {
+  return job_statuses_.size();
+}
+inline int GetMachineStatusResponse::job_statuses_size() const {
+  return _internal_job_statuses_size();
+}
+inline void GetMachineStatusResponse::clear_job_statuses() {
+  job_statuses_.Clear();
+}
+inline ::viam::robot::v1::JobStatus* GetMachineStatusResponse::mutable_job_statuses(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetMachineStatusResponse.job_statuses)
+  return job_statuses_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::JobStatus >*
+GetMachineStatusResponse::mutable_job_statuses() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.GetMachineStatusResponse.job_statuses)
+  return &job_statuses_;
+}
+inline const ::viam::robot::v1::JobStatus& GetMachineStatusResponse::_internal_job_statuses(int index) const {
+  return job_statuses_.Get(index);
+}
+inline const ::viam::robot::v1::JobStatus& GetMachineStatusResponse::job_statuses(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetMachineStatusResponse.job_statuses)
+  return _internal_job_statuses(index);
+}
+inline ::viam::robot::v1::JobStatus* GetMachineStatusResponse::_internal_add_job_statuses() {
+  return job_statuses_.Add();
+}
+inline ::viam::robot::v1::JobStatus* GetMachineStatusResponse::add_job_statuses() {
+  ::viam::robot::v1::JobStatus* _add = _internal_add_job_statuses();
+  // @@protoc_insertion_point(field_add:viam.robot.v1.GetMachineStatusResponse.job_statuses)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::JobStatus >&
+GetMachineStatusResponse::job_statuses() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.GetMachineStatusResponse.job_statuses)
+  return job_statuses_;
+}
+
+// -------------------------------------------------------------------
+
+// JobStatus
+
+// string job_name = 1 [json_name = "jobName"];
+inline void JobStatus::clear_job_name() {
+  job_name_.ClearToEmpty();
+}
+inline const std::string& JobStatus::job_name() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.JobStatus.job_name)
+  return _internal_job_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void JobStatus::set_job_name(ArgT0&& arg0, ArgT... args) {
+ 
+ job_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.JobStatus.job_name)
+}
+inline std::string* JobStatus::mutable_job_name() {
+  std::string* _s = _internal_mutable_job_name();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.JobStatus.job_name)
+  return _s;
+}
+inline const std::string& JobStatus::_internal_job_name() const {
+  return job_name_.Get();
+}
+inline void JobStatus::_internal_set_job_name(const std::string& value) {
+  
+  job_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* JobStatus::_internal_mutable_job_name() {
+  
+  return job_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* JobStatus::release_job_name() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.JobStatus.job_name)
+  return job_name_.Release();
+}
+inline void JobStatus::set_allocated_job_name(std::string* job_name) {
+  if (job_name != nullptr) {
+    
+  } else {
+    
+  }
+  job_name_.SetAllocated(job_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (job_name_.IsDefault()) {
+    job_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.JobStatus.job_name)
+}
+
+// repeated .google.protobuf.Timestamp recent_successful_runs = 2 [json_name = "recentSuccessfulRuns"];
+inline int JobStatus::_internal_recent_successful_runs_size() const {
+  return recent_successful_runs_.size();
+}
+inline int JobStatus::recent_successful_runs_size() const {
+  return _internal_recent_successful_runs_size();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* JobStatus::mutable_recent_successful_runs(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.JobStatus.recent_successful_runs)
+  return recent_successful_runs_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp >*
+JobStatus::mutable_recent_successful_runs() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.JobStatus.recent_successful_runs)
+  return &recent_successful_runs_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& JobStatus::_internal_recent_successful_runs(int index) const {
+  return recent_successful_runs_.Get(index);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& JobStatus::recent_successful_runs(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.JobStatus.recent_successful_runs)
+  return _internal_recent_successful_runs(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* JobStatus::_internal_add_recent_successful_runs() {
+  return recent_successful_runs_.Add();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* JobStatus::add_recent_successful_runs() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _add = _internal_add_recent_successful_runs();
+  // @@protoc_insertion_point(field_add:viam.robot.v1.JobStatus.recent_successful_runs)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp >&
+JobStatus::recent_successful_runs() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.JobStatus.recent_successful_runs)
+  return recent_successful_runs_;
+}
+
+// repeated .google.protobuf.Timestamp recent_failed_runs = 3 [json_name = "recentFailedRuns"];
+inline int JobStatus::_internal_recent_failed_runs_size() const {
+  return recent_failed_runs_.size();
+}
+inline int JobStatus::recent_failed_runs_size() const {
+  return _internal_recent_failed_runs_size();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* JobStatus::mutable_recent_failed_runs(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.JobStatus.recent_failed_runs)
+  return recent_failed_runs_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp >*
+JobStatus::mutable_recent_failed_runs() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.JobStatus.recent_failed_runs)
+  return &recent_failed_runs_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& JobStatus::_internal_recent_failed_runs(int index) const {
+  return recent_failed_runs_.Get(index);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& JobStatus::recent_failed_runs(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.JobStatus.recent_failed_runs)
+  return _internal_recent_failed_runs(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* JobStatus::_internal_add_recent_failed_runs() {
+  return recent_failed_runs_.Add();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* JobStatus::add_recent_failed_runs() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _add = _internal_add_recent_failed_runs();
+  // @@protoc_insertion_point(field_add:viam.robot.v1.JobStatus.recent_failed_runs)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Timestamp >&
+JobStatus::recent_failed_runs() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.JobStatus.recent_failed_runs)
+  return recent_failed_runs_;
+}
+
 // -------------------------------------------------------------------
 
 // ResourceStatus
@@ -14429,6 +14809,8 @@ inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame*
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -62,6 +62,9 @@ extern CancelTrainingJobRequestDefaultTypeInternal _CancelTrainingJobRequest_def
 class CancelTrainingJobResponse;
 struct CancelTrainingJobResponseDefaultTypeInternal;
 extern CancelTrainingJobResponseDefaultTypeInternal _CancelTrainingJobResponse_default_instance_;
+class Container;
+struct ContainerDefaultTypeInternal;
+extern ContainerDefaultTypeInternal _Container_default_instance_;
 class DeleteCompletedTrainingJobRequest;
 struct DeleteCompletedTrainingJobRequestDefaultTypeInternal;
 extern DeleteCompletedTrainingJobRequestDefaultTypeInternal _DeleteCompletedTrainingJobRequest_default_instance_;
@@ -80,6 +83,15 @@ extern GetTrainingJobRequestDefaultTypeInternal _GetTrainingJobRequest_default_i
 class GetTrainingJobResponse;
 struct GetTrainingJobResponseDefaultTypeInternal;
 extern GetTrainingJobResponseDefaultTypeInternal _GetTrainingJobResponse_default_instance_;
+class ListSupportedContainersRequest;
+struct ListSupportedContainersRequestDefaultTypeInternal;
+extern ListSupportedContainersRequestDefaultTypeInternal _ListSupportedContainersRequest_default_instance_;
+class ListSupportedContainersResponse;
+struct ListSupportedContainersResponseDefaultTypeInternal;
+extern ListSupportedContainersResponseDefaultTypeInternal _ListSupportedContainersResponse_default_instance_;
+class ListSupportedContainersResponse_ContainerMapEntry_DoNotUse;
+struct ListSupportedContainersResponse_ContainerMapEntry_DoNotUseDefaultTypeInternal;
+extern ListSupportedContainersResponse_ContainerMapEntry_DoNotUseDefaultTypeInternal _ListSupportedContainersResponse_ContainerMapEntry_DoNotUse_default_instance_;
 class ListTrainingJobsRequest;
 struct ListTrainingJobsRequestDefaultTypeInternal;
 extern ListTrainingJobsRequestDefaultTypeInternal _ListTrainingJobsRequest_default_instance_;
@@ -117,12 +129,16 @@ extern TrainingJobMetadata_ArgumentsEntry_DoNotUseDefaultTypeInternal _TrainingJ
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::app::mltraining::v1::CancelTrainingJobRequest* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::CancelTrainingJobRequest>(Arena*);
 template<> ::viam::app::mltraining::v1::CancelTrainingJobResponse* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::CancelTrainingJobResponse>(Arena*);
+template<> ::viam::app::mltraining::v1::Container* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::Container>(Arena*);
 template<> ::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest>(Arena*);
 template<> ::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse>(Arena*);
 template<> ::viam::app::mltraining::v1::GetTrainingJobLogsRequest* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::GetTrainingJobLogsRequest>(Arena*);
 template<> ::viam::app::mltraining::v1::GetTrainingJobLogsResponse* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::GetTrainingJobLogsResponse>(Arena*);
 template<> ::viam::app::mltraining::v1::GetTrainingJobRequest* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::GetTrainingJobRequest>(Arena*);
 template<> ::viam::app::mltraining::v1::GetTrainingJobResponse* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::GetTrainingJobResponse>(Arena*);
+template<> ::viam::app::mltraining::v1::ListSupportedContainersRequest* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::ListSupportedContainersRequest>(Arena*);
+template<> ::viam::app::mltraining::v1::ListSupportedContainersResponse* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::ListSupportedContainersResponse>(Arena*);
+template<> ::viam::app::mltraining::v1::ListSupportedContainersResponse_ContainerMapEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::ListSupportedContainersResponse_ContainerMapEntry_DoNotUse>(Arena*);
 template<> ::viam::app::mltraining::v1::ListTrainingJobsRequest* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::ListTrainingJobsRequest>(Arena*);
 template<> ::viam::app::mltraining::v1::ListTrainingJobsResponse* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::ListTrainingJobsResponse>(Arena*);
 template<> ::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest* Arena::CreateMaybeMessage<::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest>(Arena*);
@@ -775,6 +791,7 @@ class SubmitCustomTrainingJobRequest final :
     kModelNameFieldNumber = 4,
     kModelVersionFieldNumber = 5,
     kRegistryItemVersionFieldNumber = 6,
+    kContainerVersionFieldNumber = 8,
   };
   // map<string, string> arguments = 7 [json_name = "arguments"];
   int arguments_size() const;
@@ -877,6 +894,20 @@ class SubmitCustomTrainingJobRequest final :
   std::string* _internal_mutable_registry_item_version();
   public:
 
+  // string container_version = 8 [json_name = "containerVersion"];
+  void clear_container_version();
+  const std::string& container_version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_container_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_container_version();
+  PROTOBUF_NODISCARD std::string* release_container_version();
+  void set_allocated_container_version(std::string* container_version);
+  private:
+  const std::string& _internal_container_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_container_version(const std::string& value);
+  std::string* _internal_mutable_container_version();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest)
  private:
   class _Internal;
@@ -895,6 +926,7 @@ class SubmitCustomTrainingJobRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr registry_item_version_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr container_version_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
 };
@@ -1819,6 +1851,7 @@ class TrainingJobMetadata final :
     kModelVersionFieldNumber = 14,
     kRegistryItemIdFieldNumber = 19,
     kRegistryItemVersionFieldNumber = 20,
+    kContainerVersionFieldNumber = 22,
     kCreatedOnFieldNumber = 3,
     kLastModifiedFieldNumber = 4,
     kErrorStatusFieldNumber = 8,
@@ -1982,6 +2015,20 @@ class TrainingJobMetadata final :
   std::string* _internal_mutable_registry_item_version();
   public:
 
+  // string container_version = 22 [json_name = "containerVersion", (.tagger.v1.tags) = "bson:\"container_version\" json:\"container_version\""];
+  void clear_container_version();
+  const std::string& container_version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_container_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_container_version();
+  PROTOBUF_NODISCARD std::string* release_container_version();
+  void set_allocated_container_version(std::string* container_version);
+  private:
+  const std::string& _internal_container_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_container_version(const std::string& value);
+  std::string* _internal_mutable_container_version();
+  public:
+
   // .google.protobuf.Timestamp created_on = 3 [json_name = "createdOn", (.tagger.v1.tags) = "bson:\"created_on\" json:\"created_on\""];
   bool has_created_on() const;
   private:
@@ -2129,6 +2176,7 @@ class TrainingJobMetadata final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr registry_item_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr registry_item_version_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr container_version_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_modified_;
   ::google::rpc::Status* error_status_;
@@ -3190,6 +3238,522 @@ class GetTrainingJobLogsResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ListSupportedContainersRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.ListSupportedContainersRequest) */ {
+ public:
+  inline ListSupportedContainersRequest() : ListSupportedContainersRequest(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR ListSupportedContainersRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListSupportedContainersRequest(const ListSupportedContainersRequest& from);
+  ListSupportedContainersRequest(ListSupportedContainersRequest&& from) noexcept
+    : ListSupportedContainersRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListSupportedContainersRequest& operator=(const ListSupportedContainersRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListSupportedContainersRequest& operator=(ListSupportedContainersRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListSupportedContainersRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListSupportedContainersRequest* internal_default_instance() {
+    return reinterpret_cast<const ListSupportedContainersRequest*>(
+               &_ListSupportedContainersRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(ListSupportedContainersRequest& a, ListSupportedContainersRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListSupportedContainersRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListSupportedContainersRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListSupportedContainersRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListSupportedContainersRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ListSupportedContainersRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ListSupportedContainersRequest& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.mltraining.v1.ListSupportedContainersRequest";
+  }
+  protected:
+  explicit ListSupportedContainersRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.ListSupportedContainersRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListSupportedContainersResponse_ContainerMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ListSupportedContainersResponse_ContainerMapEntry_DoNotUse, 
+    std::string, ::viam::app::mltraining::v1::Container,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ListSupportedContainersResponse_ContainerMapEntry_DoNotUse, 
+    std::string, ::viam::app::mltraining::v1::Container,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  ListSupportedContainersResponse_ContainerMapEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR ListSupportedContainersResponse_ContainerMapEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit ListSupportedContainersResponse_ContainerMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const ListSupportedContainersResponse_ContainerMapEntry_DoNotUse& other);
+  static const ListSupportedContainersResponse_ContainerMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const ListSupportedContainersResponse_ContainerMapEntry_DoNotUse*>(&_ListSupportedContainersResponse_ContainerMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "viam.app.mltraining.v1.ListSupportedContainersResponse.ContainerMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class ListSupportedContainersResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.ListSupportedContainersResponse) */ {
+ public:
+  inline ListSupportedContainersResponse() : ListSupportedContainersResponse(nullptr) {}
+  ~ListSupportedContainersResponse() override;
+  explicit PROTOBUF_CONSTEXPR ListSupportedContainersResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListSupportedContainersResponse(const ListSupportedContainersResponse& from);
+  ListSupportedContainersResponse(ListSupportedContainersResponse&& from) noexcept
+    : ListSupportedContainersResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListSupportedContainersResponse& operator=(const ListSupportedContainersResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListSupportedContainersResponse& operator=(ListSupportedContainersResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListSupportedContainersResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListSupportedContainersResponse* internal_default_instance() {
+    return reinterpret_cast<const ListSupportedContainersResponse*>(
+               &_ListSupportedContainersResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(ListSupportedContainersResponse& a, ListSupportedContainersResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListSupportedContainersResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListSupportedContainersResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListSupportedContainersResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListSupportedContainersResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListSupportedContainersResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListSupportedContainersResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListSupportedContainersResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.mltraining.v1.ListSupportedContainersResponse";
+  }
+  protected:
+  explicit ListSupportedContainersResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kContainerMapFieldNumber = 1,
+  };
+  // map<string, .viam.app.mltraining.v1.Container> container_map = 1 [json_name = "containerMap"];
+  int container_map_size() const;
+  private:
+  int _internal_container_map_size() const;
+  public:
+  void clear_container_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::app::mltraining::v1::Container >&
+      _internal_container_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::app::mltraining::v1::Container >*
+      _internal_mutable_container_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::app::mltraining::v1::Container >&
+      container_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::app::mltraining::v1::Container >*
+      mutable_container_map();
+
+  // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.ListSupportedContainersResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      ListSupportedContainersResponse_ContainerMapEntry_DoNotUse,
+      std::string, ::viam::app::mltraining::v1::Container,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> container_map_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Container final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.mltraining.v1.Container) */ {
+ public:
+  inline Container() : Container(nullptr) {}
+  ~Container() override;
+  explicit PROTOBUF_CONSTEXPR Container(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Container(const Container& from);
+  Container(Container&& from) noexcept
+    : Container() {
+    *this = ::std::move(from);
+  }
+
+  inline Container& operator=(const Container& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Container& operator=(Container&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Container& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Container* internal_default_instance() {
+    return reinterpret_cast<const Container*>(
+               &_Container_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(Container& a, Container& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Container* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Container* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Container* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Container>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Container& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Container& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Container* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.mltraining.v1.Container";
+  }
+  protected:
+  explicit Container(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kKeyFieldNumber = 1,
+    kUriFieldNumber = 2,
+    kFrameworkFieldNumber = 3,
+    kDescriptionFieldNumber = 4,
+    kEolFieldNumber = 5,
+  };
+  // string key = 1 [json_name = "key"];
+  void clear_key();
+  const std::string& key() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_key(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_key();
+  PROTOBUF_NODISCARD std::string* release_key();
+  void set_allocated_key(std::string* key);
+  private:
+  const std::string& _internal_key() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_key(const std::string& value);
+  std::string* _internal_mutable_key();
+  public:
+
+  // string uri = 2 [json_name = "uri"];
+  void clear_uri();
+  const std::string& uri() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_uri(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_uri();
+  PROTOBUF_NODISCARD std::string* release_uri();
+  void set_allocated_uri(std::string* uri);
+  private:
+  const std::string& _internal_uri() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_uri(const std::string& value);
+  std::string* _internal_mutable_uri();
+  public:
+
+  // string framework = 3 [json_name = "framework"];
+  void clear_framework();
+  const std::string& framework() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_framework(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_framework();
+  PROTOBUF_NODISCARD std::string* release_framework();
+  void set_allocated_framework(std::string* framework);
+  private:
+  const std::string& _internal_framework() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_framework(const std::string& value);
+  std::string* _internal_mutable_framework();
+  public:
+
+  // string description = 4 [json_name = "description"];
+  void clear_description();
+  const std::string& description() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_description(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* description);
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(const std::string& value);
+  std::string* _internal_mutable_description();
+  public:
+
+  // .google.protobuf.Timestamp eol = 5 [json_name = "eol"];
+  bool has_eol() const;
+  private:
+  bool _internal_has_eol() const;
+  public:
+  void clear_eol();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& eol() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_eol();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_eol();
+  void set_allocated_eol(::PROTOBUF_NAMESPACE_ID::Timestamp* eol);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_eol() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_eol();
+  public:
+  void unsafe_arena_set_allocated_eol(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* eol);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_eol();
+
+  // @@protoc_insertion_point(class_scope:viam.app.mltraining.v1.Container)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uri_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr framework_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* eol_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto;
+};
 // ===================================================================
 
 
@@ -3903,6 +4467,56 @@ inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
 SubmitCustomTrainingJobRequest::mutable_arguments() {
   // @@protoc_insertion_point(field_mutable_map:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.arguments)
   return _internal_mutable_arguments();
+}
+
+// string container_version = 8 [json_name = "containerVersion"];
+inline void SubmitCustomTrainingJobRequest::clear_container_version() {
+  container_version_.ClearToEmpty();
+}
+inline const std::string& SubmitCustomTrainingJobRequest::container_version() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.container_version)
+  return _internal_container_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SubmitCustomTrainingJobRequest::set_container_version(ArgT0&& arg0, ArgT... args) {
+ 
+ container_version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.container_version)
+}
+inline std::string* SubmitCustomTrainingJobRequest::mutable_container_version() {
+  std::string* _s = _internal_mutable_container_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.container_version)
+  return _s;
+}
+inline const std::string& SubmitCustomTrainingJobRequest::_internal_container_version() const {
+  return container_version_.Get();
+}
+inline void SubmitCustomTrainingJobRequest::_internal_set_container_version(const std::string& value) {
+  
+  container_version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SubmitCustomTrainingJobRequest::_internal_mutable_container_version() {
+  
+  return container_version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SubmitCustomTrainingJobRequest::release_container_version() {
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.container_version)
+  return container_version_.Release();
+}
+inline void SubmitCustomTrainingJobRequest::set_allocated_container_version(std::string* container_version) {
+  if (container_version != nullptr) {
+    
+  } else {
+    
+  }
+  container_version_.SetAllocated(container_version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (container_version_.IsDefault()) {
+    container_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest.container_version)
 }
 
 // -------------------------------------------------------------------
@@ -5240,6 +5854,56 @@ TrainingJobMetadata::mutable_arguments() {
   return _internal_mutable_arguments();
 }
 
+// string container_version = 22 [json_name = "containerVersion", (.tagger.v1.tags) = "bson:\"container_version\" json:\"container_version\""];
+inline void TrainingJobMetadata::clear_container_version() {
+  container_version_.ClearToEmpty();
+}
+inline const std::string& TrainingJobMetadata::container_version() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.TrainingJobMetadata.container_version)
+  return _internal_container_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TrainingJobMetadata::set_container_version(ArgT0&& arg0, ArgT... args) {
+ 
+ container_version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.TrainingJobMetadata.container_version)
+}
+inline std::string* TrainingJobMetadata::mutable_container_version() {
+  std::string* _s = _internal_mutable_container_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.TrainingJobMetadata.container_version)
+  return _s;
+}
+inline const std::string& TrainingJobMetadata::_internal_container_version() const {
+  return container_version_.Get();
+}
+inline void TrainingJobMetadata::_internal_set_container_version(const std::string& value) {
+  
+  container_version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TrainingJobMetadata::_internal_mutable_container_version() {
+  
+  return container_version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* TrainingJobMetadata::release_container_version() {
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.TrainingJobMetadata.container_version)
+  return container_version_.Release();
+}
+inline void TrainingJobMetadata::set_allocated_container_version(std::string* container_version) {
+  if (container_version != nullptr) {
+    
+  } else {
+    
+  }
+  container_version_.SetAllocated(container_version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (container_version_.IsDefault()) {
+    container_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.TrainingJobMetadata.container_version)
+}
+
 // -------------------------------------------------------------------
 
 // CancelTrainingJobRequest
@@ -5761,9 +6425,345 @@ inline void GetTrainingJobLogsResponse::set_allocated_next_page_token(std::strin
   // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.GetTrainingJobLogsResponse.next_page_token)
 }
 
+// -------------------------------------------------------------------
+
+// ListSupportedContainersRequest
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// ListSupportedContainersResponse
+
+// map<string, .viam.app.mltraining.v1.Container> container_map = 1 [json_name = "containerMap"];
+inline int ListSupportedContainersResponse::_internal_container_map_size() const {
+  return container_map_.size();
+}
+inline int ListSupportedContainersResponse::container_map_size() const {
+  return _internal_container_map_size();
+}
+inline void ListSupportedContainersResponse::clear_container_map() {
+  container_map_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::app::mltraining::v1::Container >&
+ListSupportedContainersResponse::_internal_container_map() const {
+  return container_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::app::mltraining::v1::Container >&
+ListSupportedContainersResponse::container_map() const {
+  // @@protoc_insertion_point(field_map:viam.app.mltraining.v1.ListSupportedContainersResponse.container_map)
+  return _internal_container_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::app::mltraining::v1::Container >*
+ListSupportedContainersResponse::_internal_mutable_container_map() {
+  return container_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::viam::app::mltraining::v1::Container >*
+ListSupportedContainersResponse::mutable_container_map() {
+  // @@protoc_insertion_point(field_mutable_map:viam.app.mltraining.v1.ListSupportedContainersResponse.container_map)
+  return _internal_mutable_container_map();
+}
+
+// -------------------------------------------------------------------
+
+// Container
+
+// string key = 1 [json_name = "key"];
+inline void Container::clear_key() {
+  key_.ClearToEmpty();
+}
+inline const std::string& Container::key() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.Container.key)
+  return _internal_key();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Container::set_key(ArgT0&& arg0, ArgT... args) {
+ 
+ key_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.Container.key)
+}
+inline std::string* Container::mutable_key() {
+  std::string* _s = _internal_mutable_key();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.Container.key)
+  return _s;
+}
+inline const std::string& Container::_internal_key() const {
+  return key_.Get();
+}
+inline void Container::_internal_set_key(const std::string& value) {
+  
+  key_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Container::_internal_mutable_key() {
+  
+  return key_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Container::release_key() {
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.Container.key)
+  return key_.Release();
+}
+inline void Container::set_allocated_key(std::string* key) {
+  if (key != nullptr) {
+    
+  } else {
+    
+  }
+  key_.SetAllocated(key, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (key_.IsDefault()) {
+    key_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.Container.key)
+}
+
+// string uri = 2 [json_name = "uri"];
+inline void Container::clear_uri() {
+  uri_.ClearToEmpty();
+}
+inline const std::string& Container::uri() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.Container.uri)
+  return _internal_uri();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Container::set_uri(ArgT0&& arg0, ArgT... args) {
+ 
+ uri_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.Container.uri)
+}
+inline std::string* Container::mutable_uri() {
+  std::string* _s = _internal_mutable_uri();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.Container.uri)
+  return _s;
+}
+inline const std::string& Container::_internal_uri() const {
+  return uri_.Get();
+}
+inline void Container::_internal_set_uri(const std::string& value) {
+  
+  uri_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Container::_internal_mutable_uri() {
+  
+  return uri_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Container::release_uri() {
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.Container.uri)
+  return uri_.Release();
+}
+inline void Container::set_allocated_uri(std::string* uri) {
+  if (uri != nullptr) {
+    
+  } else {
+    
+  }
+  uri_.SetAllocated(uri, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (uri_.IsDefault()) {
+    uri_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.Container.uri)
+}
+
+// string framework = 3 [json_name = "framework"];
+inline void Container::clear_framework() {
+  framework_.ClearToEmpty();
+}
+inline const std::string& Container::framework() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.Container.framework)
+  return _internal_framework();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Container::set_framework(ArgT0&& arg0, ArgT... args) {
+ 
+ framework_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.Container.framework)
+}
+inline std::string* Container::mutable_framework() {
+  std::string* _s = _internal_mutable_framework();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.Container.framework)
+  return _s;
+}
+inline const std::string& Container::_internal_framework() const {
+  return framework_.Get();
+}
+inline void Container::_internal_set_framework(const std::string& value) {
+  
+  framework_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Container::_internal_mutable_framework() {
+  
+  return framework_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Container::release_framework() {
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.Container.framework)
+  return framework_.Release();
+}
+inline void Container::set_allocated_framework(std::string* framework) {
+  if (framework != nullptr) {
+    
+  } else {
+    
+  }
+  framework_.SetAllocated(framework, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (framework_.IsDefault()) {
+    framework_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.Container.framework)
+}
+
+// string description = 4 [json_name = "description"];
+inline void Container::clear_description() {
+  description_.ClearToEmpty();
+}
+inline const std::string& Container::description() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.Container.description)
+  return _internal_description();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Container::set_description(ArgT0&& arg0, ArgT... args) {
+ 
+ description_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.mltraining.v1.Container.description)
+}
+inline std::string* Container::mutable_description() {
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.Container.description)
+  return _s;
+}
+inline const std::string& Container::_internal_description() const {
+  return description_.Get();
+}
+inline void Container::_internal_set_description(const std::string& value) {
+  
+  description_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Container::_internal_mutable_description() {
+  
+  return description_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Container::release_description() {
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.Container.description)
+  return description_.Release();
+}
+inline void Container::set_allocated_description(std::string* description) {
+  if (description != nullptr) {
+    
+  } else {
+    
+  }
+  description_.SetAllocated(description, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (description_.IsDefault()) {
+    description_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.Container.description)
+}
+
+// .google.protobuf.Timestamp eol = 5 [json_name = "eol"];
+inline bool Container::_internal_has_eol() const {
+  return this != internal_default_instance() && eol_ != nullptr;
+}
+inline bool Container::has_eol() const {
+  return _internal_has_eol();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Container::_internal_eol() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = eol_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Container::eol() const {
+  // @@protoc_insertion_point(field_get:viam.app.mltraining.v1.Container.eol)
+  return _internal_eol();
+}
+inline void Container::unsafe_arena_set_allocated_eol(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* eol) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(eol_);
+  }
+  eol_ = eol;
+  if (eol) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.mltraining.v1.Container.eol)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Container::release_eol() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = eol_;
+  eol_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Container::unsafe_arena_release_eol() {
+  // @@protoc_insertion_point(field_release:viam.app.mltraining.v1.Container.eol)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = eol_;
+  eol_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Container::_internal_mutable_eol() {
+  
+  if (eol_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    eol_ = p;
+  }
+  return eol_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Container::mutable_eol() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_eol();
+  // @@protoc_insertion_point(field_mutable:viam.app.mltraining.v1.Container.eol)
+  return _msg;
+}
+inline void Container::set_allocated_eol(::PROTOBUF_NAMESPACE_ID::Timestamp* eol) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(eol_);
+  }
+  if (eol) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(eol));
+    if (message_arena != submessage_arena) {
+      eol = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, eol, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  eol_ = eol;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.mltraining.v1.Container.eol)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
