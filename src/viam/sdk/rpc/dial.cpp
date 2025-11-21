@@ -20,7 +20,8 @@ namespace viam {
 namespace sdk {
 
 struct ViamChannel::impl {
-    impl(const char* path, void* runtime) : path(path), rust_runtime(runtime) {}
+    impl(const char* path, void* runtime)
+        : path(path), rust_runtime(reinterpret_cast<viam_dial_ffi*>(runtime)) {}
 
     impl(const impl&) = delete;
 
@@ -38,12 +39,13 @@ struct ViamChannel::impl {
     }
 
     ~impl() {
-        free_string(path);
-        free_rust_runtime(rust_runtime);
+        auto& p = const_cast<char*&>(path);
+        viam_free_string(p);
+        viam_free_rust_runtime(rust_runtime);
     }
 
     const char* path;
-    void* rust_runtime;
+    viam_dial_ffi* rust_runtime;
 };
 
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
@@ -158,7 +160,7 @@ ViamChannel ViamChannel::dial_initial(const char* uri,
 }
 
 ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions>& options) {
-    void* ptr = init_rust_runtime();
+    viam_dial_ffi* ptr = viam_init_rust_runtime();
     const DialOptions opts = options.get_value_or(DialOptions());
     const std::chrono::duration<float> float_timeout = opts.timeout();
     const char* type = nullptr;
@@ -172,10 +174,10 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
     if (opts.entity()) {
         entity = opts.entity()->c_str();
     }
-    char* proxy_path = ::dial(
+    char* proxy_path = ::viam_dial(
         uri, entity, type, payload, opts.allows_insecure_downgrade(), float_timeout.count(), ptr);
     if (!proxy_path) {
-        free_rust_runtime(ptr);
+        viam_free_rust_runtime(ptr);
         throw Exception(ErrorCondition::k_connection, "Unable to establish connecting path");
     }
 
