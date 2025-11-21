@@ -271,7 +271,6 @@ if (NOT existing_viam_rust_utils_header_file)
   if(NOT lvruh_status_code EQUAL 0)
     message(FATAL_ERROR "No local viam_rust_utils.h found and failed to download: ${lvruh_status_string}")
   endif()
-#configure_file(${CMAKE_CURRENT_BINARY_DIR}/viam_rust_utils.h src/viam/sdk/rpc/private/viam_rust_utils.h COPYONLY)
 else()
   FILE(COPY_FILE
     ${existing_viam_rust_utils_header_file}
