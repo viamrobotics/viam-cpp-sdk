@@ -160,7 +160,7 @@ ViamChannel ViamChannel::dial_initial(const char* uri,
 }
 
 ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions>& options) {
-    viam_dial_ffi* ptr = init_rust_runtime();
+    viam_dial_ffi* ptr = viam_init_rust_runtime();
     const DialOptions opts = options.get_value_or(DialOptions());
     const std::chrono::duration<float> float_timeout = opts.timeout();
     const char* type = nullptr;
@@ -174,10 +174,10 @@ ViamChannel ViamChannel::dial(const char* uri, const boost::optional<DialOptions
     if (opts.entity()) {
         entity = opts.entity()->c_str();
     }
-    char* proxy_path = ::dial(
+    char* proxy_path = ::viam_dial(
         uri, entity, type, payload, opts.allows_insecure_downgrade(), float_timeout.count(), ptr);
     if (!proxy_path) {
-        free_rust_runtime(ptr);
+        viam_free_rust_runtime(ptr);
         throw Exception(ErrorCondition::k_connection, "Unable to establish connecting path");
     }
 
