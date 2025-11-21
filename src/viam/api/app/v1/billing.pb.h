@@ -203,12 +203,14 @@ enum UsageCostType : int {
   USAGE_COST_TYPE_TABULAR_DATA_DATABASE_CLOUD_STORAGE = 22,
   USAGE_COST_TYPE_TABULAR_DATA_DATABASE_COMPUTE = 23,
   USAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_EGRESS = 24,
+  USAGE_COST_TYPE_PIPELINE_SINK_CLOUD_STORAGE = 25,
+  USAGE_COST_TYPE_PIPELINE_SINK_COMPUTE = 26,
   UsageCostType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   UsageCostType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool UsageCostType_IsValid(int value);
 constexpr UsageCostType UsageCostType_MIN = USAGE_COST_TYPE_UNSPECIFIED;
-constexpr UsageCostType UsageCostType_MAX = USAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_EGRESS;
+constexpr UsageCostType UsageCostType_MAX = USAGE_COST_TYPE_PIPELINE_SINK_COMPUTE;
 constexpr int UsageCostType_ARRAYSIZE = UsageCostType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* UsageCostType_descriptor();
