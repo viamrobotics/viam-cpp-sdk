@@ -30,32 +30,33 @@ namespace sdk {
 
 struct ViamChannel::impl {
     struct cstr_delete {
-        void operator()(const char* str) noexcept {
-            free_string(str);
+        void operator()(char* str) noexcept {
+            viam_free_string(str);
         }
     };
 
     struct rust_rt_delete {
-        void operator()(void* rt) noexcept {
+        void operator()(viam_dial_ffi* rt) noexcept {
             free_rust_runtime(rt);
         }
     };
 
-    impl(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime)
+    impl(std::shared_ptr<GrpcChannel> channel, char* path, viam_dial_ffi* runtime)
         : channel_(std::move(channel)), path(path), rust_runtime(runtime) {}
 
     impl(std::shared_ptr<GrpcChannel> channel) : channel_(std::move(channel)) {}
 
     std::shared_ptr<GrpcChannel> channel_;
 
-    std::unique_ptr<const char, cstr_delete> path;
-    std::unique_ptr<void, rust_rt_delete> rust_runtime;
+    std::unique_ptr<char, cstr_delete> path;
+    std::unique_ptr<viam_dial_ffi, rust_rt_delete> rust_runtime;
 
     boost::optional<std::string> auth_token_;
 };
 
-ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
-    : pimpl_(std::make_unique<ViamChannel::impl>(std::move(channel), path, runtime)) {}
+ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, char* path, void* runtime)
+    : pimpl_(std::make_unique<ViamChannel::impl>(
+          std::move(channel), path, reinterpret_cast<viam_dial_ffi*>(runtime))) {}
 
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel)
     : pimpl_(std::make_unique<ViamChannel::impl>(std::move(channel))) {}
@@ -192,7 +193,7 @@ ViamChannel ViamChannel::dial(const char* uri,
     }
 
     const std::chrono::duration<float> timeout = opts.timeout();
-    void* ptr = init_rust_runtime();
+    viam_dial_ffi* ptr = ::viam_init_rust_runtime();
     const char* type = nullptr;
     const char* entity = nullptr;
     const char* payload = nullptr;
@@ -205,12 +206,10 @@ ViamChannel ViamChannel::dial(const char* uri,
     if (opts.entity()) {
         entity = opts.entity()->c_str();
     }
-
-    char* proxy_path =
-        ::dial(uri, entity, type, payload, opts.allows_insecure_downgrade(), timeout.count(), ptr);
-
+    char* proxy_path = ::viam_dial(
+        uri, entity, type, payload, opts.allows_insecure_downgrade(), timeout.count(), ptr);
     if (!proxy_path) {
-        free_rust_runtime(ptr);
+        viam_free_rust_runtime(ptr);
         throw Exception(ErrorCondition::k_connection, "Unable to establish connecting path");
     }
 

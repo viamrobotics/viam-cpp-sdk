@@ -2,18 +2,18 @@
 
 #include <cstdlib>
 
-void* init_rust_runtime() {
+viam_dial_ffi* viam_init_rust_runtime() {
     abort();
 }
 
-int free_rust_runtime(void*) {
+int viam_free_rust_runtime(viam_dial_ffi*) {
     abort();
 }
 
-void free_string(const char*) {
+void viam_free_string(char*) {
     abort();
 }
 
-char* dial(const char*, const char*, const char*, const char*, bool, float, void*) {
+char* viam_dial(const char*, const char*, const char*, const char*, bool, float, viam_dial_ffi*) {
     abort();
 }

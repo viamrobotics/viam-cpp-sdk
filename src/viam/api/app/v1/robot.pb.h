@@ -1020,6 +1020,7 @@ class JobConfig final :
     kResourceFieldNumber = 3,
     kMethodFieldNumber = 4,
     kCommandFieldNumber = 5,
+    kLogConfigurationFieldNumber = 6,
   };
   // string name = 1 [json_name = "name"];
   void clear_name();
@@ -1095,6 +1096,24 @@ class JobConfig final :
       ::PROTOBUF_NAMESPACE_ID::Struct* command);
   ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_command();
 
+  // .viam.app.v1.LogConfiguration log_configuration = 6 [json_name = "logConfiguration"];
+  bool has_log_configuration() const;
+  private:
+  bool _internal_has_log_configuration() const;
+  public:
+  void clear_log_configuration();
+  const ::viam::app::v1::LogConfiguration& log_configuration() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::LogConfiguration* release_log_configuration();
+  ::viam::app::v1::LogConfiguration* mutable_log_configuration();
+  void set_allocated_log_configuration(::viam::app::v1::LogConfiguration* log_configuration);
+  private:
+  const ::viam::app::v1::LogConfiguration& _internal_log_configuration() const;
+  ::viam::app::v1::LogConfiguration* _internal_mutable_log_configuration();
+  public:
+  void unsafe_arena_set_allocated_log_configuration(
+      ::viam::app::v1::LogConfiguration* log_configuration);
+  ::viam::app::v1::LogConfiguration* unsafe_arena_release_log_configuration();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.JobConfig)
  private:
   class _Internal;
@@ -1107,6 +1126,7 @@ class JobConfig final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr method_;
   ::PROTOBUF_NAMESPACE_ID::Struct* command_;
+  ::viam::app::v1::LogConfiguration* log_configuration_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
 };
@@ -10028,6 +10048,96 @@ inline void JobConfig::set_allocated_command(::PROTOBUF_NAMESPACE_ID::Struct* co
   }
   command_ = command;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.JobConfig.command)
+}
+
+// .viam.app.v1.LogConfiguration log_configuration = 6 [json_name = "logConfiguration"];
+inline bool JobConfig::_internal_has_log_configuration() const {
+  return this != internal_default_instance() && log_configuration_ != nullptr;
+}
+inline bool JobConfig::has_log_configuration() const {
+  return _internal_has_log_configuration();
+}
+inline void JobConfig::clear_log_configuration() {
+  if (GetArenaForAllocation() == nullptr && log_configuration_ != nullptr) {
+    delete log_configuration_;
+  }
+  log_configuration_ = nullptr;
+}
+inline const ::viam::app::v1::LogConfiguration& JobConfig::_internal_log_configuration() const {
+  const ::viam::app::v1::LogConfiguration* p = log_configuration_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::LogConfiguration&>(
+      ::viam::app::v1::_LogConfiguration_default_instance_);
+}
+inline const ::viam::app::v1::LogConfiguration& JobConfig::log_configuration() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.JobConfig.log_configuration)
+  return _internal_log_configuration();
+}
+inline void JobConfig::unsafe_arena_set_allocated_log_configuration(
+    ::viam::app::v1::LogConfiguration* log_configuration) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(log_configuration_);
+  }
+  log_configuration_ = log_configuration;
+  if (log_configuration) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.JobConfig.log_configuration)
+}
+inline ::viam::app::v1::LogConfiguration* JobConfig::release_log_configuration() {
+  
+  ::viam::app::v1::LogConfiguration* temp = log_configuration_;
+  log_configuration_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::LogConfiguration* JobConfig::unsafe_arena_release_log_configuration() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.JobConfig.log_configuration)
+  
+  ::viam::app::v1::LogConfiguration* temp = log_configuration_;
+  log_configuration_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::LogConfiguration* JobConfig::_internal_mutable_log_configuration() {
+  
+  if (log_configuration_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::LogConfiguration>(GetArenaForAllocation());
+    log_configuration_ = p;
+  }
+  return log_configuration_;
+}
+inline ::viam::app::v1::LogConfiguration* JobConfig::mutable_log_configuration() {
+  ::viam::app::v1::LogConfiguration* _msg = _internal_mutable_log_configuration();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.JobConfig.log_configuration)
+  return _msg;
+}
+inline void JobConfig::set_allocated_log_configuration(::viam::app::v1::LogConfiguration* log_configuration) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete log_configuration_;
+  }
+  if (log_configuration) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(log_configuration);
+    if (message_arena != submessage_arena) {
+      log_configuration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, log_configuration, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  log_configuration_ = log_configuration;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.JobConfig.log_configuration)
 }
 
 // -------------------------------------------------------------------

@@ -49,8 +49,8 @@ If you are connecting to a robot with authentication you will need to
 add credentials. Update path code :
 
 ``` c++
-void *ptr = init_rust_runtime();
-char *path = dial("<your robot uri here>", "<your authentication type>", "<your authentication payload>", false, ptr);
+void *ptr = viam_init_rust_runtime();
+char *path = viam_dial("<your robot uri here>", "<your authentication type>", "<your authentication payload>", false, ptr);
 ```
 
 Then to obtain a robot client do :

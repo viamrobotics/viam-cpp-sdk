@@ -108,6 +108,18 @@ Arm::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
         });
 }
 
+std::map<std::string, mesh> ArmClient::get_3d_models(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::Get3DModels)
+        .with(extra)
+        .invoke([](auto& response) {
+            std::map<std::string, mesh> models;
+            for (const auto& entry : response.models()) {
+                models.emplace(entry.first, from_proto(entry.second));
+            }
+            return models;
+        });
+}
+
 std::vector<GeometryConfig> ArmClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)

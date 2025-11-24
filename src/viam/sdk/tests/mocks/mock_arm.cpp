@@ -1,3 +1,4 @@
+#include "viam/sdk/common/mesh.hpp"
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 
 #include "mock_arm.hpp"
@@ -6,6 +7,10 @@
 namespace viam {
 namespace sdktests {
 namespace arm {
+
+std::map<std::string, sdk::mesh> fake_3d_models() {
+    return {{"model1", sdk::mesh{"model1", {1, 2, 3, 4}}}};
+}
 
 sdk::Arm::KinematicsData fake_kinematics() {
     return sdk::Arm::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}};
@@ -57,6 +62,10 @@ sdk::Arm::KinematicsData MockArm::get_kinematics(const sdk::ProtoStruct&) {
 
 std::vector<sdk::GeometryConfig> MockArm::get_geometries(const sdk::ProtoStruct&) {
     return fake_geometries();
+}
+
+std::map<std::string, sdk::mesh> MockArm::get_3d_models(const sdk::ProtoStruct&) {
+    return fake_3d_models();
 }
 
 }  // namespace arm

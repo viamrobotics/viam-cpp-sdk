@@ -354,7 +354,7 @@ const char descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto[] 
   "sMm\022\033\n\tis_moving\030\003 \001(\010R\010isMoving\"%\n\017IsMo"
   "vingRequest\022\022\n\004name\030\001 \001(\tR\004name\"/\n\020IsMov"
   "ingResponse\022\033\n\tis_moving\030\001 \001(\010R\010isMoving"
-  "2\332\t\n\rGantryService\022\241\001\n\013GetPosition\022,.via"
+  "2\362\n\n\rGantryService\022\241\001\n\013GetPosition\022,.via"
   "m.component.gantry.v1.GetPositionRequest"
   "\032-.viam.component.gantry.v1.GetPositionR"
   "esponse\"5\202\323\344\223\002/\022-/viam/api/v1/component/"
@@ -381,13 +381,16 @@ const char descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto[] 
   "Command\022 .viam.common.v1.DoCommandReques"
   "t\032!.viam.common.v1.DoCommandResponse\"7\202\323"
   "\344\223\0021\"//viam/api/v1/component/gantry/{nam"
-  "e}/do_command\022\225\001\n\rGetGeometries\022$.viam.c"
-  "ommon.v1.GetGeometriesRequest\032%.viam.com"
-  "mon.v1.GetGeometriesResponse\"7\202\323\344\223\0021\022//v"
-  "iam/api/v1/component/gantry/{name}/geome"
-  "triesBC\n\034com.viam.component.gantry.v1Z#g"
-  "o.viam.com/api/component/gantry/v1b\006prot"
-  "o3"
+  "e}/do_command\022\225\001\n\rGetKinematics\022$.viam.c"
+  "ommon.v1.GetKinematicsRequest\032%.viam.com"
+  "mon.v1.GetKinematicsResponse\"7\202\323\344\223\0021\022//v"
+  "iam/api/v1/component/gantry/{name}/kinem"
+  "atics\022\225\001\n\rGetGeometries\022$.viam.common.v1"
+  ".GetGeometriesRequest\032%.viam.common.v1.G"
+  "etGeometriesResponse\"7\202\323\344\223\0021\022//viam/api/"
+  "v1/component/gantry/{name}/geometriesBC\n"
+  "\034com.viam.component.gantry.v1Z#go.viam.c"
+  "om/api/component/gantry/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -396,7 +399,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgantry_
 };
 static ::_pbi::once_flag descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto = {
-    false, false, 2362, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
+    false, false, 2514, descriptor_table_protodef_component_2fgantry_2fv1_2fgantry_2eproto,
     "component/gantry/v1/gantry.proto",
     &descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_once, descriptor_table_component_2fgantry_2fv1_2fgantry_2eproto_deps, 3, 13,
     schemas, file_default_instances, TableStruct_component_2fgantry_2fv1_2fgantry_2eproto::offsets,

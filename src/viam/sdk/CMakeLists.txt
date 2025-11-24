@@ -28,6 +28,7 @@ else()
 endif()
 message(WARNING "api proto label is ${VIAMCPPSDK_API_PROTO_LABEL}")
 configure_file(common/private/version_metadata.hpp.in common/private/version_metadata.hpp @ONLY)
+configure_file(${CMAKE_CURRENT_BINARY_DIR}/../../../viam_rust_utils.h rpc/private/viam_rust_utils.h COPYONLY)
 
 # Configure the grpc client forward declarations file
 configure_file(common/grpc_fwd.hpp.in common/grpc_fwd.hpp)
@@ -66,6 +67,7 @@ target_sources(viamsdk
     common/exception.cpp
     common/instance.cpp
     common/linear_algebra.cpp
+    common/mesh.cpp
     common/pose.cpp
     common/proto_value.cpp
     common/utils.cpp
@@ -177,6 +179,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/exception.hpp
       ../../viam/sdk/common/instance.hpp
       ../../viam/sdk/common/linear_algebra.hpp
+      ../../viam/sdk/common/mesh.hpp
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_convert.hpp
       ../../viam/sdk/common/proto_value.hpp
@@ -314,7 +317,7 @@ endif()
 # TODO several of these dependencies should properly be attached to `viam_rust_utils`,
 # not `viamsdk`. However, we currently are unable to do so while maintaining compilation
 if (APPLE)
-  target_link_libraries(viamsdk PUBLIC "-framework Security")
+  target_link_libraries(viamsdk PUBLIC "-framework CoreFoundation" "-framework Security")
 elseif (NOT WIN32)
   target_link_libraries(viamsdk PRIVATE dl)
   target_link_libraries(viamsdk PRIVATE rt)

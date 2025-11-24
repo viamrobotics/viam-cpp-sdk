@@ -25,7 +25,7 @@ class Credentials {
 };
 
 class ViamChannel {
-    ViamChannel(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime);
+    ViamChannel(std::shared_ptr<GrpcChannel> channel, char* path, void* runtime);
 
    public:
     class Options {

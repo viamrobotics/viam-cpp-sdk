@@ -36,10 +36,12 @@ class ArmClient : public Arm {
     void stop(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
     Arm::KinematicsData get_kinematics(const ProtoStruct& extra) override;
+    std::map<std::string, mesh> get_3d_models(const ProtoStruct& extra) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     // Using declarations to introduce convenience overloads of interface which do not need to be
     // passed the ProtoStruct parameter.
+    using Arm::get_3d_models;
     using Arm::get_end_position;
     using Arm::get_geometries;
     using Arm::get_joint_positions;
