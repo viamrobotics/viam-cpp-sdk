@@ -22,7 +22,7 @@ int main() try {
     // You can find this on app.viam.com
     vs::Credentials credentials("", "");
 
-    vs::DialOptions dial_options;
+    vs::ViamChannel::Options dial_options;
 
     // If you have credentials, use this to pass them to the robot
     // dial_options.credentials = credentials;
