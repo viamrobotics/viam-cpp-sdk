@@ -41,16 +41,24 @@ struct ViamChannel::impl {
         }
     };
 
-    impl(const char* path, void* runtime) : path(path), rust_runtime(runtime) {}
+    impl(std::shared_ptr<GrpcChannel> channel, const char* path, void* runtime)
+        : channel_(std::move(channel)), path(path), rust_runtime(runtime) {}
+
+    impl(std::shared_ptr<GrpcChannel> channel) : channel_(std::move(channel)) {}
+
+    std::shared_ptr<GrpcChannel> channel_;
 
     std::unique_ptr<const char, cstr_delete> path;
     std::unique_ptr<void, rust_rt_delete> rust_runtime;
+
+    boost::optional<std::string> auth_token_;
 };
 
 ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel, const char* path, void* runtime)
-    : channel_(std::move(channel)), pimpl_(std::make_unique<ViamChannel::impl>(path, runtime)) {}
+    : pimpl_(std::make_unique<ViamChannel::impl>(std::move(channel), path, runtime)) {}
 
-ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel) : channel_(std::move(channel)) {}
+ViamChannel::ViamChannel(std::shared_ptr<grpc::Channel> channel)
+    : pimpl_(std::make_unique<ViamChannel::impl>(std::move(channel))) {}
 
 ViamChannel::ViamChannel(ViamChannel&&) noexcept = default;
 
@@ -249,7 +257,7 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
     c_opts.set_check_call_host(false);
     auto creds = grpc::experimental::TlsCredentials(c_opts);
     auto result = ViamChannel(sdk::impl::create_viam_grpc_channel(uri, creds));
-    result.auth_token_ = resp.access_token();
+    result.pimpl_->auth_token_ = resp.access_token();
 
     return result;
 #else
@@ -261,11 +269,11 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const DialOptions& opts) {
 }
 
 const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
-    return channel_;
+    return pimpl_->channel_;
 }
 
 const boost::optional<std::string>& ViamChannel::auth_token() const {
-    return auth_token_;
+    return pimpl_->auth_token_;
 }
 
 void ViamChannel::close() {

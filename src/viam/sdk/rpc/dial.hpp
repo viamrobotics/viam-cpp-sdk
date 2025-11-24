@@ -63,10 +63,6 @@ class ViamChannel {
 
     const char* uri_;
 
-    std::shared_ptr<GrpcChannel> channel_;
-
-    boost::optional<std::string> auth_token_;
-
     std::unique_ptr<impl> pimpl_;
 };
 
