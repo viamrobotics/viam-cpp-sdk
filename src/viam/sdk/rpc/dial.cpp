@@ -264,6 +264,10 @@ const std::shared_ptr<grpc::Channel>& ViamChannel::channel() const {
     return channel_;
 }
 
+const boost::optional<std::string>& ViamChannel::auth_token() const {
+    return auth_token_;
+}
+
 void ViamChannel::close() {
     pimpl_.reset();
 }

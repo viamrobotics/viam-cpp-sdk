@@ -5,6 +5,8 @@
 #include <string>
 #include <utility>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/audioin/v1/audioin.grpc.pb.h>
 #include <viam/api/component/audioin/v1/audioin.pb.h>
@@ -21,15 +23,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-AudioInClient::AudioInClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-    : AudioIn(std::move(name)),
-      stub_(viam::component::audioin::v1::AudioInService::NewStub(channel)),
-      channel_(std::move(channel)) {}
-
-AudioInClient::AudioInClient(std::string name, ViamChannel& channel)
+AudioInClient::AudioInClient(std::string name, const ViamChannel& channel)
     : AudioIn(std::move(name)),
       stub_(viam::component::audioin::v1::AudioInService::NewStub(channel.channel())),
-      channel_(nullptr) {}
+      channel_(&channel) {}
 
 void AudioInClient::get_audio(std::string const& codec,
                               std::function<bool(audio_chunk&& chunk)> const& chunk_handler,

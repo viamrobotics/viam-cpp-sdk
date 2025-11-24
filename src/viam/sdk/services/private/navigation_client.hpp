@@ -3,10 +3,9 @@
 /// @brief Implements a gRPC client for the `Navigation` service.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/service/navigation/v1/navigation.grpc.pb.h>
 
+#include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/navigation.hpp>
 
 namespace viam {
@@ -19,7 +18,11 @@ namespace impl {
 class NavigationClient : public Navigation {
    public:
     using interface_type = Navigation;
-    NavigationClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    NavigationClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     Mode get_mode(const ProtoStruct& extra) override;
     void set_mode(const Mode mode, const ProtoStruct& extra) override;
@@ -35,7 +38,7 @@ class NavigationClient : public Navigation {
    private:
     using StubType = service::navigation::v1::NavigationService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

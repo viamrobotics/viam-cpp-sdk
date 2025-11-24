@@ -5,6 +5,8 @@
 #include <string>
 #include <utility>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
@@ -108,10 +110,10 @@ Camera::properties from_proto(const viam::component::camera::v1::GetPropertiesRe
             (proto.frame_rate())};
 }
 
-CameraClient::CameraClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+CameraClient::CameraClient(std::string name, const ViamChannel& channel)
     : Camera(std::move(name)),
-      stub_(viam::component::camera::v1::CameraService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::camera::v1::CameraService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 ProtoStruct CameraClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)

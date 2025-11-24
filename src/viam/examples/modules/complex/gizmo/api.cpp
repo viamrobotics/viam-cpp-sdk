@@ -169,8 +169,8 @@ grpc::Status GizmoServer::DoTwo(::grpc::ServerContext* context,
 
 /* Gizmo client methods */
 
-GizmoClient::GizmoClient(std::string name, std::shared_ptr<grpc::Channel> channel)
-    : Gizmo(std::move(name)), stub_(GizmoService::NewStub(channel)), channel_(std::move(channel)) {}
+GizmoClient::GizmoClient(std::string name, const ViamChannel& channel)
+    : Gizmo(std::move(name)), stub_(GizmoService::NewStub(channel.channel())), channel_(&channel) {}
 
 bool GizmoClient::do_one(std::string arg1) {
     return make_client_helper(this, *stub_, &StubType::DoOne)
