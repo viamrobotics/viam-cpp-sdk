@@ -130,7 +130,9 @@ class ViamChannel {
     std::unique_ptr<impl> pimpl_;
 };
 
-using DialOptions [[deprecated]] = ViamChannel::Options;
+using DialOptions
+    [[deprecated("This class is now a member class of ViamChannel::Options. The alias DialOptions "
+                 "may be removed in a future version")]] = ViamChannel::Options;
 
 class Options {
    public:
