@@ -32,6 +32,12 @@ ClientContext::ClientContext() : wrapped_context_(std::make_unique<GrpcClientCon
     add_viam_client_version_();
 }
 
+ClientContext::ClientContext(const ViamChannel& channel) : ClientContext() {
+    if (channel.auth_token().has_value()) {
+        wrapped_context_->AddMetadata("authorization", "Bearer " + *channel.auth_token());
+    }
+}
+
 ClientContext::~ClientContext() = default;
 
 ClientContext::operator const GrpcClientContext*() const {

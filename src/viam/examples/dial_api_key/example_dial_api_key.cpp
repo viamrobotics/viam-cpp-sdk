@@ -33,9 +33,9 @@ int main(int argc, char* argv[]) {
         std::cout << desc << std::endl;
         return 0;
     }
-    boost::optional<DialOptions> opts;
+    boost::optional<ViamChannel::Options> opts;
     if (vm.count("entity") && vm.count("api-key")) {
-        DialOptions dial_options;
+        ViamChannel::Options dial_options;
         dial_options.set_entity(vm["entity"].as<std::string>());
         Credentials credentials("api-key", vm["api-key"].as<std::string>());
         dial_options.set_credentials(credentials);

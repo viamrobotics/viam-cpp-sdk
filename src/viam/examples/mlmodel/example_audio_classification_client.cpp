@@ -242,7 +242,7 @@ int main(int argc, char* argv[]) try {
         // Connect to the robot at the given URL with the provided
         // secret. Please see other examples for more details on
         // connecting to robots with the C++ SDK.
-        viam::sdk::DialOptions dial_options;
+        viam::sdk::ViamChannel::Options dial_options;
         dial_options.set_entity(opt_api_key_id.get());
         dial_options.set_credentials(viam::sdk::Credentials("api-key", opt_api_key.get()));
 

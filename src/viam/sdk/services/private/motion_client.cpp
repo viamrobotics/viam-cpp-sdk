@@ -2,6 +2,7 @@
 
 #include <math.h>
 
+#include <grpcpp/channel.h>
 #include <grpcpp/support/status.h>
 
 #include <viam/api/service/motion/v1/motion.grpc.pb.h>
@@ -178,10 +179,10 @@ std::vector<Motion::plan_with_status> from_proto(
     return plans;
 }
 
-MotionClient::MotionClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+MotionClient::MotionClient(std::string name, const ViamChannel& channel)
     : Motion(std::move(name)),
-      stub_(service::motion::v1::MotionService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(service::motion::v1::MotionService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 bool MotionClient::move(const pose_in_frame& destination,
                         const std::string& component_name,

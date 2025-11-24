@@ -3,12 +3,11 @@
 /// @brief Implements a gRPC client for the `GenericComponent`.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/generic/v1/generic.grpc.pb.h>
 
 #include <viam/sdk/components/generic.hpp>
 #include <viam/sdk/robot/client.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -20,7 +19,11 @@ namespace impl {
 class GenericComponentClient : public GenericComponent {
    public:
     using interface_type = GenericComponent;
-    GenericComponentClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    GenericComponentClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
     ProtoStruct do_command(const ProtoStruct& command) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
@@ -36,7 +39,7 @@ class GenericComponentClient : public GenericComponent {
    private:
     using StubType = viam::component::generic::v1::GenericService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

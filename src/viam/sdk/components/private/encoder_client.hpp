@@ -3,12 +3,11 @@
 /// @brief Implements a gRPC client for the `Encoder` component.
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/encoder/v1/encoder.grpc.pb.h>
 
 #include <viam/sdk/components/encoder.hpp>
 #include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -20,7 +19,11 @@ namespace impl {
 class EncoderClient : public Encoder {
    public:
     using interface_type = Encoder;
-    EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    EncoderClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
     position get_position(const ProtoStruct& extra, position_type position_type) override;
     void reset_position(const ProtoStruct& extra) override;
     properties get_properties(const ProtoStruct& extra) override;
@@ -44,7 +47,7 @@ class EncoderClient : public Encoder {
    private:
     using StubType = viam::component::encoder::v1::EncoderService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

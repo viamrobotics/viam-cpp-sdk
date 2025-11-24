@@ -5,6 +5,8 @@
 #include <string>
 #include <utility>
 
+#include <grpcpp/channel.h>
+
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/component/audioout/v1/audioout.grpc.pb.h>
 #include <viam/api/component/audioout/v1/audioout.pb.h>
@@ -20,10 +22,11 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-AudioOutClient::AudioOutClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+AudioOutClient::AudioOutClient(std::string name, const ViamChannel& channel)
     : AudioOut(std::move(name)),
-      stub_(viam::component::audioout::v1::AudioOutService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::audioout::v1::AudioOutService::NewStub(
+          std::static_pointer_cast<::grpc::ChannelInterface>(channel.channel()))),
+      channel_(&channel) {}
 
 void AudioOutClient::play(std::vector<uint8_t> const& audio_data,
                           boost::optional<audio_info> info,
