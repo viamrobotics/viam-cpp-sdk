@@ -59,7 +59,7 @@ class ResourceClientRegistration {
     /// @param channel A channel connected to the client.
     /// @return A `shared_ptr` to the resource client.
     virtual std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                        ViamChannel& channel) const = 0;
+                                                        const ViamChannel& channel) const = 0;
 };
 
 // TODO(RSDK-6616): instead of std::functions, consider making these functions
@@ -131,7 +131,7 @@ class Registry {
             using ResourceClientRegistration::ResourceClientRegistration;
 
             std::shared_ptr<Resource> create_rpc_client(std::string name,
-                                                        ViamChannel& channel) const override {
+                                                        const ViamChannel& channel) const override {
                 return std::make_shared<ResourceClientT>(std::move(name), channel);
             }
         };
