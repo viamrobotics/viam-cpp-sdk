@@ -208,15 +208,23 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const std::lock_guard<std::mutex> lock(parent.lock_);
         const viam::module::v1::HandlerMap hm = to_proto(parent.module_->handles());
         *response->mutable_handlermap() = hm;
-        auto new_parent_addr = parent.grpc_conn_protocol_ + request->parent_address();
-        if (parent.parent_addr_ != new_parent_addr) {
-            parent.parent_addr_ = std::move(new_parent_addr);
-            Options opts{0, boost::none};
-            opts.set_check_every_interval(std::chrono::seconds{5})
-                .set_reconnect_every_interval(std::chrono::seconds{1});
-            parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
-            parent.parent_->connect_logging();
+
+
+        char * no_module_parent;
+        no_module_parent = std::getenv("VIAM_NO_MODULE_PARENT");
+        if (strcmp(no_module_parent, "true") != 0) {
+            auto new_parent_addr = parent.grpc_conn_protocol_ + request->parent_address();
+            if (parent.parent_addr_ != new_parent_addr) {
+                parent.parent_addr_ = std::move(new_parent_addr);
+                Options opts{0, boost::none};
+                opts.set_check_every_interval(std::chrono::seconds{5})
+                    .set_reconnect_every_interval(std::chrono::seconds{1});
+                parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
+                parent.parent_->connect_logging();
+            }
         }
+
+
         response->set_ready(parent.module_->ready());
         return grpc::Status();
     }
