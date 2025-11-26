@@ -209,8 +209,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const viam::module::v1::HandlerMap hm = to_proto(parent.module_->handles());
         *response->mutable_handlermap() = hm;
 
-
-        char * no_module_parent;
+        char* no_module_parent;
         no_module_parent = std::getenv("VIAM_NO_MODULE_PARENT");
         if (strcmp(no_module_parent, "true") != 0) {
             auto new_parent_addr = parent.grpc_conn_protocol_ + request->parent_address();
@@ -223,7 +222,6 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                 parent.parent_->connect_logging();
             }
         }
-
 
         response->set_ready(parent.module_->ready());
         return grpc::Status();
