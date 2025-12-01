@@ -117,6 +117,9 @@ class ViamChannel {
     /// @brief Returns the address of the robot to which this channel is connected.
     const char* get_channel_addr() const;
 
+    /// @brief Closes the connection of this channel to its associated robot.
+    /// This method is called by the destructor of ViamChannel. No further operations can be
+    /// performed on the channel afterwards except to assign a new value to it.
     void close();
 
    private:
