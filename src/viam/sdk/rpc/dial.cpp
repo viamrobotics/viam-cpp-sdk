@@ -37,7 +37,7 @@ struct ViamChannel::impl {
 
     struct rust_rt_delete {
         void operator()(viam_dial_ffi* rt) noexcept {
-            free_rust_runtime(rt);
+            viam_free_rust_runtime(rt);
         }
     };
 
