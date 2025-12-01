@@ -22,18 +22,18 @@ int main() try {
     // You can find this on app.viam.com
     vs::Credentials credentials("", "");
 
-    vs::ViamChannel::Options dial_options;
+    vs::ViamChannel::Options channel_options;
 
     // If you have credentials, use this to pass them to the robot
-    // dial_options.credentials = credentials;
+    // channel_options.credentials = credentials;
 
     // This is for an example. Care should be taken before exercising this option in production.
-    dial_options.set_allow_insecure_downgrade(
+    channel_options.set_allow_insecure_downgrade(
         (credentials.type().empty() && credentials.payload().empty()));
 
     // Set the refresh interval of the robot (in seconds) (0 = auto refresh) and the dial
     // options
-    vs::Options options = vs::Options(1, dial_options);
+    vs::Options options = vs::Options(1, channel_options);
 
     std::shared_ptr<vs::RobotClient> robot = vs::RobotClient::at_address(robot_address, options);
     VIAM_SDK_LOG(info) << "Successfully connected to the robot";

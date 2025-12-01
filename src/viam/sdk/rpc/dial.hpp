@@ -134,8 +134,9 @@ using DialOptions
 
 class Options {
    public:
-    Options(unsigned int refresh_interval, boost::optional<ViamChannel::Options> dial_options)
-        : refresh_interval_(std::move(refresh_interval)), dial_options_(std::move(dial_options)) {}
+    Options(unsigned int refresh_interval, boost::optional<ViamChannel::Options> channel_options)
+        : refresh_interval_(std::move(refresh_interval)),
+          channel_options_(std::move(channel_options)) {}
 
     std::chrono::seconds refresh_interval() const;
     std::chrono::seconds check_every_interval() const;
@@ -146,7 +147,12 @@ class Options {
 
     /// @brief Sets the frequency (in seconds) to attempt to reconnect when connectivity is lost
     Options& set_reconnect_every_interval(std::chrono::seconds interval);
+
+    [[deprecated(
+        "This member has been renamed to channel_options; please update your function calls.")]]
     const boost::optional<ViamChannel::Options>& dial_options() const;
+
+    const boost::optional<ViamChannel::Options>& channel_options() const;
 
    private:
     /// @brief How often to refresh the status/parts of the robot, in seconds. If set to 0, the
@@ -164,7 +170,7 @@ class Options {
     /// @note Setting to a non-zero value is useful in modules but may result in delays shutting
     /// down client code
     std::chrono::seconds reconnect_every_interval_{0};
-    boost::optional<ViamChannel::Options> dial_options_;
+    boost::optional<ViamChannel::Options> channel_options_;
 };
 
 }  // namespace sdk

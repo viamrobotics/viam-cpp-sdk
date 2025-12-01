@@ -27,16 +27,16 @@ int main() {
     Instance inst;
 
     const char* uri = "http://localhost:8080/";  // replace with your URI if connecting securely
-    ViamChannel::Options dial_options;
-    dial_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
+    ViamChannel::Options channel_options;
+    channel_options.set_allow_insecure_downgrade(true);  // set to false if connecting securely
 
     // Uncomment and fill out your credentials details if connecting securely
     // std::string type = "<your authentication type>";
     // std::string payload = "<your authentication payload>";
     // Credentials credentials(type, payload);
-    // dial_options.set_credentials(credentials);
+    // channel_options.set_credentials(credentials);
 
-    boost::optional<ViamChannel::Options> opts(dial_options);
+    boost::optional<ViamChannel::Options> opts(channel_options);
     std::string address(uri);
     Options options(1, opts);
 

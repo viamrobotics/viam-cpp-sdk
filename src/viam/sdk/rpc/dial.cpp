@@ -309,7 +309,11 @@ std::chrono::seconds Options::refresh_interval() const {
 }
 
 const boost::optional<ViamChannel::Options>& Options::dial_options() const {
-    return dial_options_;
+    return channel_options_;
+}
+
+const boost::optional<ViamChannel::Options>& Options::channel_options() const {
+    return channel_options_;
 }
 
 Credentials::Credentials(std::string type, std::string payload)
