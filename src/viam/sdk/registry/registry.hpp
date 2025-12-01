@@ -58,6 +58,8 @@ class ResourceClientRegistration {
     /// @param name The name of the resource.
     /// @param channel A channel connected to the client.
     /// @return A `shared_ptr` to the resource client.
+    /// @remark The lifetime of the returned resource must be a subset of the lifetime of the
+    /// @p channel with which it was created.
     virtual std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                         const ViamChannel& channel) const = 0;
 };
@@ -130,6 +132,9 @@ class Registry {
            public:
             using ResourceClientRegistration::ResourceClientRegistration;
 
+            /// @remark The lifetime of the returned resource must be a subset of the lifetime of
+            /// the
+            /// @p channel with which it was created.
             std::shared_ptr<Resource> create_rpc_client(std::string name,
                                                         const ViamChannel& channel) const override {
                 return std::make_shared<ResourceClientT>(std::move(name), channel);
