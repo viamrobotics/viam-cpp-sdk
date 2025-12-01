@@ -223,10 +223,14 @@ ViamChannel ViamChannel::dial(const char* uri,
     }
     address += proxy_path;
 
-    return ViamChannel(
+    auto chan = ViamChannel(
         sdk::impl::create_viam_grpc_channel(address, grpc::InsecureChannelCredentials()),
         proxy_path,
         ptr);
+
+    chan.uri_ = uri;
+
+    return chan;
 }
 
 ViamChannel ViamChannel::dial_direct(const char* uri, const ViamChannel::Options& opts) {
@@ -259,6 +263,8 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const ViamChannel::Options
     c_opts.set_check_call_host(false);
     auto creds = grpc::experimental::TlsCredentials(c_opts);
     auto result = ViamChannel(sdk::impl::create_viam_grpc_channel(uri, creds));
+
+    result.uri_ = uri;
     result.pimpl_->auth_token_ = resp.access_token();
 
     return result;

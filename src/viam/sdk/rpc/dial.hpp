@@ -114,6 +114,7 @@ class ViamChannel {
     /// automatically, otherwise you will have to add this to the client context of a grpc call.
     const boost::optional<std::string>& auth_token() const;
 
+    /// @brief Returns the address of the robot to which this channel is connected.
     const char* get_channel_addr() const;
 
     void close();
