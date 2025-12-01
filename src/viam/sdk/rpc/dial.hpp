@@ -141,14 +141,24 @@ class Options {
         : refresh_interval_(std::move(refresh_interval)),
           channel_options_(std::move(channel_options)) {}
 
+    /// @brief How often to refresh the status/parts of the robot, in seconds. If set to 0, the
+    /// robot will not automatically refresh.
     std::chrono::seconds refresh_interval() const;
+
     std::chrono::seconds check_every_interval() const;
+
     std::chrono::seconds reconnect_every_interval() const;
 
-    /// @brief Sets the frequency (in seconds) to verify connectivity
+    /// @brief Sets how often to verify connectivity to the robot, in seconds. If set to 0, will not
+    /// check, will default to the `reconnect_every_interval_` value. Defaults to 0.
+    /// @note Setting to a non-zero value is useful in modules but may result in delays shutting
+    /// down client code
     Options& set_check_every_interval(std::chrono::seconds interval);
 
-    /// @brief Sets the frequency (in seconds) to attempt to reconnect when connectivity is lost
+    /// @brief Sets how often to attempt to reconnect to the robot when disconnected. If set to 0,
+    /// will not attempt to reconnect. Defaults to 0.
+    /// @note Setting to a non-zero value is useful in modules but may result in delays shutting
+    /// down client code
     Options& set_reconnect_every_interval(std::chrono::seconds interval);
 
     [[deprecated(
@@ -158,21 +168,12 @@ class Options {
     const boost::optional<ViamChannel::Options>& channel_options() const;
 
    private:
-    /// @brief How often to refresh the status/parts of the robot, in seconds. If set to 0, the
-    /// robot will not automatically refresh.
     std::chrono::seconds refresh_interval_{0};
 
-    /// @brief How often to verify connectivity to the robot, in seconds. If set to 0, will not
-    /// check, will default to the `reconnect_every_interval_` value. Defaults to 0.
-    /// @note Setting to a non-zero value is useful in modules but may result in delays shutting
-    /// down client code
     std::chrono::seconds check_every_interval_{0};
 
-    /// @brief How often to attempt to reconnect to the robot when disconnected. If set to 0,
-    /// will not attempt to reconnect. Defaults to 0.
-    /// @note Setting to a non-zero value is useful in modules but may result in delays shutting
-    /// down client code
     std::chrono::seconds reconnect_every_interval_{0};
+
     boost::optional<ViamChannel::Options> channel_options_;
 };
 
