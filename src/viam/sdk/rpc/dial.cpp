@@ -37,7 +37,7 @@ struct ViamChannel::impl {
 
     struct rust_rt_delete {
         void operator()(viam_dial_ffi* rt) noexcept {
-            free_rust_runtime(rt);
+            viam_free_rust_runtime(rt);
         }
     };
 
@@ -223,10 +223,14 @@ ViamChannel ViamChannel::dial(const char* uri,
     }
     address += proxy_path;
 
-    return ViamChannel(
+    auto chan = ViamChannel(
         sdk::impl::create_viam_grpc_channel(address, grpc::InsecureChannelCredentials()),
         proxy_path,
         ptr);
+
+    chan.uri_ = uri;
+
+    return chan;
 }
 
 ViamChannel ViamChannel::dial_direct(const char* uri, const ViamChannel::Options& opts) {
@@ -259,6 +263,8 @@ ViamChannel ViamChannel::dial_direct(const char* uri, const ViamChannel::Options
     c_opts.set_check_call_host(false);
     auto creds = grpc::experimental::TlsCredentials(c_opts);
     auto result = ViamChannel(sdk::impl::create_viam_grpc_channel(uri, creds));
+
+    result.uri_ = uri;
     result.pimpl_->auth_token_ = resp.access_token();
 
     return result;
@@ -309,7 +315,11 @@ std::chrono::seconds Options::refresh_interval() const {
 }
 
 const boost::optional<ViamChannel::Options>& Options::dial_options() const {
-    return dial_options_;
+    return channel_options_;
+}
+
+const boost::optional<ViamChannel::Options>& Options::channel_options() const {
+    return channel_options_;
 }
 
 Credentials::Credentials(std::string type, std::string payload)

@@ -114,8 +114,12 @@ class ViamChannel {
     /// automatically, otherwise you will have to add this to the client context of a grpc call.
     const boost::optional<std::string>& auth_token() const;
 
+    /// @brief Returns the address of the robot to which this channel is connected.
     const char* get_channel_addr() const;
 
+    /// @brief Closes the connection of this channel to its associated robot.
+    /// This method is called by the destructor of ViamChannel. No further operations can be
+    /// performed on the channel afterwards except to assign a new value to it.
     void close();
 
    private:
@@ -132,39 +136,49 @@ using DialOptions
     [[deprecated("This class is now a member class of ViamChannel::Options. The alias DialOptions "
                  "may be removed in a future version")]] = ViamChannel::Options;
 
+/// @brief Courtesy alias for opting into the deprecated name for ViamChannel::Options.
+using DialOptionsDeprecated = ViamChannel::Options;
+
 class Options {
    public:
-    Options(unsigned int refresh_interval, boost::optional<ViamChannel::Options> dial_options)
-        : refresh_interval_(std::move(refresh_interval)), dial_options_(std::move(dial_options)) {}
+    Options(unsigned int refresh_interval, boost::optional<ViamChannel::Options> channel_options)
+        : refresh_interval_(std::move(refresh_interval)),
+          channel_options_(std::move(channel_options)) {}
 
-    std::chrono::seconds refresh_interval() const;
-    std::chrono::seconds check_every_interval() const;
-    std::chrono::seconds reconnect_every_interval() const;
-
-    /// @brief Sets the frequency (in seconds) to verify connectivity
-    Options& set_check_every_interval(std::chrono::seconds interval);
-
-    /// @brief Sets the frequency (in seconds) to attempt to reconnect when connectivity is lost
-    Options& set_reconnect_every_interval(std::chrono::seconds interval);
-    const boost::optional<ViamChannel::Options>& dial_options() const;
-
-   private:
     /// @brief How often to refresh the status/parts of the robot, in seconds. If set to 0, the
     /// robot will not automatically refresh.
-    std::chrono::seconds refresh_interval_{0};
+    std::chrono::seconds refresh_interval() const;
 
-    /// @brief How often to verify connectivity to the robot, in seconds. If set to 0, will not
+    std::chrono::seconds check_every_interval() const;
+
+    std::chrono::seconds reconnect_every_interval() const;
+
+    /// @brief Sets how often to verify connectivity to the robot, in seconds. If set to 0, will not
     /// check, will default to the `reconnect_every_interval_` value. Defaults to 0.
     /// @note Setting to a non-zero value is useful in modules but may result in delays shutting
     /// down client code
-    std::chrono::seconds check_every_interval_{0};
+    Options& set_check_every_interval(std::chrono::seconds interval);
 
-    /// @brief How often to attempt to reconnect to the robot when disconnected. If set to 0,
+    /// @brief Sets how often to attempt to reconnect to the robot when disconnected. If set to 0,
     /// will not attempt to reconnect. Defaults to 0.
     /// @note Setting to a non-zero value is useful in modules but may result in delays shutting
     /// down client code
+    Options& set_reconnect_every_interval(std::chrono::seconds interval);
+
+    [[deprecated(
+        "This member has been renamed to channel_options; please update your function calls.")]]
+    const boost::optional<ViamChannel::Options>& dial_options() const;
+
+    const boost::optional<ViamChannel::Options>& channel_options() const;
+
+   private:
+    std::chrono::seconds refresh_interval_{0};
+
+    std::chrono::seconds check_every_interval_{0};
+
     std::chrono::seconds reconnect_every_interval_{0};
-    boost::optional<ViamChannel::Options> dial_options_;
+
+    boost::optional<ViamChannel::Options> channel_options_;
 };
 
 }  // namespace sdk
