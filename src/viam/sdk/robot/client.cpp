@@ -283,9 +283,9 @@ void RobotClient::check_connection() {
 
         for (int i = 0; i < 3; ++i) {
             try {
-                auto channel = ViamChannel::dial(uri, {});
+                viam_channel_ = ViamChannel::dial(uri, {});
                 impl_ = std::make_unique<RobotClient::impl>(
-                    RobotService::NewStub(channel.channel()), channel);
+                    RobotService::NewStub(viam_channel_.channel()), viam_channel_);
                 refresh();
                 connected = true;
             } catch (const std::exception& e) {
