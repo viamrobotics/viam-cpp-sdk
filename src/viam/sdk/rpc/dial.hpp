@@ -132,6 +132,9 @@ using DialOptions
     [[deprecated("This class is now a member class of ViamChannel::Options. The alias DialOptions "
                  "may be removed in a future version")]] = ViamChannel::Options;
 
+/// @brief Courtesy alias for opting into the deprecated name for ViamChannel::Options.
+using DialOptionsDeprecated = ViamChannel::Options;
+
 class Options {
    public:
     Options(unsigned int refresh_interval, boost::optional<ViamChannel::Options> channel_options)
