@@ -38,6 +38,7 @@ BOOST_AUTO_TEST_CASE(test_get_image) {
         Camera::raw_image expected_image = fake_raw_image();
 
         BOOST_CHECK(expected_image == image);
+        BOOST_CHECK(expected_image.annotations == image.annotations);
     });
 }
 
@@ -48,6 +49,8 @@ BOOST_AUTO_TEST_CASE(test_get_images) {
         Camera::image_collection images = client.get_images();
 
         BOOST_CHECK(expected_images == images);
+        BOOST_CHECK(expected_images.images[0].annotations == images.images[0].annotations);
+        BOOST_CHECK(expected_images.images[1].annotations == images.images[1].annotations);
     });
 }
 
@@ -145,6 +148,24 @@ BOOST_AUTO_TEST_CASE(test_depth_map_encode_decode) {
 
     BOOST_CHECK_EQUAL_COLLECTIONS(
         result_values.begin(), result_values.end(), expected_values.begin(), expected_values.end());
+}
+
+BOOST_AUTO_TEST_CASE(test_annotation_equality) {
+    Camera::annotation annotation1 = fake_annotation();
+    Camera::annotation annotation2 = fake_annotation();
+    BOOST_CHECK(annotation1 == annotation2);
+
+    annotation2.type = "different_type";
+    BOOST_CHECK(annotation1 != annotation2);
+}
+
+BOOST_AUTO_TEST_CASE(test_annotations_equality) {
+    Camera::annotations annotations1 = fake_annotations();
+    Camera::annotations annotations2 = fake_annotations();
+    BOOST_CHECK(annotations1 == annotations2);
+
+    annotations2.annotations[0].type = "different_type";
+    BOOST_CHECK(annotations1 != annotations2);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -20,6 +20,7 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
+#include <viam/api/app/data/v1/data.pb.h>
 
 namespace viam {
 namespace sdk {
@@ -89,6 +90,7 @@ class Camera : public Component {
         std::string mime_type;
         std::vector<unsigned char> bytes;
         std::string source_name;
+        Camera::annotations annotations;
     };
 
     /// @struct image_collection
@@ -106,6 +108,20 @@ class Camera : public Component {
     /// the second axis is width. Each depth value represents the distance from the camera
     /// to a point in the scene.
     using depth_map = xt::xarray<uint16_t>;
+
+    /// @struct annotation
+    /// @brief Represents a single annotation with its type, bounding box, and text content.
+    struct annotation {
+        std::string type;
+        std::string bounding_box;
+        std::string text_content;
+    };
+
+    /// @struct annotations
+    /// @brief A collection of annotations.
+    struct annotations {
+        std::vector<annotation> annotations;
+    };
 
     /// Encodes the dimensions and depth values of a depth map into a raw binary format
     /// (MIME type FORMAT_RAW_DEPTH).
@@ -227,6 +243,8 @@ bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs);
 bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic_parameters& rhs);
 bool operator==(const Camera::distortion_parameters& lhs, const Camera::distortion_parameters& rhs);
 bool operator==(const Camera::properties& lhs, const Camera::properties& rhs);
+bool operator==(const Camera::annotation& lhs, const Camera::annotation& rhs);
+bool operator==(const Camera::annotations& lhs, const Camera::annotations& rhs);
 
 }  // namespace sdk
 }  // namespace viam

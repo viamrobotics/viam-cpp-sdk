@@ -81,6 +81,34 @@ response_metadata from_proto_impl<common::v1::ResponseMetadata>::operator()(
     return {from_proto(proto->captured_at())};
 }
 
+void to_proto_impl<Camera::annotation>::operator()(const Camera::annotation& self,
+                                                    viam::app::data::v1::Annotation* proto) const {
+    proto->set_type(self.type);
+    proto->set_bounding_box(self.bounding_box);
+    proto->set_text_content(self.text_content);
+}
+
+Camera::annotation from_proto_impl<viam::app::data::v1::Annotation>::operator()(
+    const viam::app::data::v1::Annotation* proto) const {
+    return {proto->type(), proto->bounding_box(), proto->text_content()};
+}
+
+void to_proto_impl<Camera::annotations>::operator()(const Camera::annotations& self,
+                                                     viam::app::data::v1::Annotations* proto) const {
+    for (const auto& annotation : self.annotations) {
+        *proto->add_annotations() = to_proto(annotation);
+    }
+}
+
+Camera::annotations from_proto_impl<viam::app::data::v1::Annotations>::operator()(
+    const viam::app::data::v1::Annotations* proto) const {
+    Camera::annotations annotations;
+    for (const auto& annotation_proto : proto->annotations()) {
+        annotations.annotations.push_back(from_proto(annotation_proto));
+    }
+    return annotations;
+}
+
 }  // namespace proto_convert_details
 
 std::vector<unsigned char> string_to_bytes(const std::string& s) {

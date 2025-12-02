@@ -51,6 +51,7 @@ Camera::raw_image fake_raw_image() {
     image.source_name = "";
     std::vector<unsigned char> bytes = {'a', 'b', 'c'};
     image.bytes = bytes;
+    image.annotations = fake_annotations();
     return image;
 }
 
@@ -62,12 +63,14 @@ Camera::image_collection fake_raw_images() {
     image1.source_name = "color";
     std::vector<unsigned char> bytes1 = {'a', 'b', 'c'};
     image1.bytes = bytes1;
+    image1.annotations = fake_annotations();
     images.push_back(image1);
     Camera::raw_image image2;
     image2.mime_type = "image/vnd.viam.dep";
     image2.source_name = "depth";
     std::vector<unsigned char> bytes2 = {'d', 'e', 'f'};
     image2.bytes = bytes2;
+    image2.annotations = fake_annotations();
     images.push_back(image2);
     std::chrono::seconds seconds(12345);
     std::chrono::nanoseconds nanos(0);
@@ -116,6 +119,20 @@ Camera::properties fake_properties() {
     return properties;
 }
 
+Camera::annotation fake_annotation() {
+    Camera::annotation annotation;
+    annotation.type = "test_type";
+    annotation.bounding_box = "test_bounding_box";
+    annotation.text_content = "test_text_content";
+    return annotation;
+}
+
+Camera::annotations fake_annotations() {
+    Camera::annotations annotations;
+    annotations.annotations.push_back(fake_annotation());
+    return annotations;
+}
+
 std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     auto camera = std::make_shared<MockCamera>("mock_camera");
 
@@ -127,6 +144,7 @@ std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     camera->distortion_parameters_ = fake_distortion_parameters();
     camera->map_ = fake_map();
     camera->geometries_ = fake_geometries();
+    camera->annotations_ = fake_annotations();
     return camera;
 }
 

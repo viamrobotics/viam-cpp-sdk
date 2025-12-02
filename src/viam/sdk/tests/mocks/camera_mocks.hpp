@@ -35,6 +35,7 @@ class MockCamera : public Camera {
     Camera::image_collection images_;
     Camera::point_cloud pc_;
     ProtoStruct map_;
+    Camera::annotations annotations_;
     std::vector<GeometryConfig> geometries_;
     std::vector<std::string> last_filter_source_names_;
     ProtoStruct last_extra_;
@@ -46,6 +47,8 @@ Camera::point_cloud fake_point_cloud();
 Camera::intrinsic_parameters fake_intrinsic_parameters();
 Camera::distortion_parameters fake_distortion_parameters();
 Camera::properties fake_properties();
+Camera::annotation fake_annotation();
+Camera::annotations fake_annotations();
 
 }  // namespace camera
 }  // namespace sdktests

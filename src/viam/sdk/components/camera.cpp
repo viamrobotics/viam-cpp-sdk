@@ -138,7 +138,7 @@ bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs) 
 
 bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs) {
     return lhs.mime_type == rhs.mime_type && lhs.bytes == rhs.bytes &&
-           lhs.source_name == rhs.source_name;
+           lhs.source_name == rhs.source_name && lhs.annotations == rhs.annotations;
 }
 
 bool operator==(const Camera::image_collection& lhs, const Camera::image_collection& rhs) {
@@ -160,6 +160,15 @@ bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
            lhs.intrinsic_parameters == rhs.intrinsic_parameters &&
            lhs.distortion_parameters == rhs.distortion_parameters &&
            lhs.frame_rate == rhs.frame_rate;
+}
+
+bool operator==(const Camera::annotation& lhs, const Camera::annotation& rhs) {
+    return lhs.type == rhs.type && lhs.bounding_box == rhs.bounding_box &&
+           lhs.text_content == rhs.text_content;
+}
+
+bool operator==(const Camera::annotations& lhs, const Camera::annotations& rhs) {
+    return lhs.annotations == rhs.annotations;
 }
 
 }  // namespace sdk

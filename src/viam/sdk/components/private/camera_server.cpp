@@ -59,6 +59,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
 
         *response->mutable_mime_type() = image.mime_type;
         *response->mutable_image() = img_string;
+        *response->mutable_annotations() = to_proto(image.annotations);
     });
 }
 
@@ -95,6 +96,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
             proto_image.set_format(
                 MIME_string_to_format(Camera::normalize_mime_type(img.mime_type)));
             proto_image.set_image(img_string);
+            *proto_image.mutable_annotations() = to_proto(img.annotations);
             *response->mutable_images()->Add() = std::move(proto_image);
         }
         *response->mutable_response_metadata() = to_proto(image_coll.metadata);

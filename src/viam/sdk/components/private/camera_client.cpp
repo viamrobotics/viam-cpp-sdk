@@ -43,6 +43,7 @@ Camera::raw_image from_proto(const viam::component::camera::v1::GetImageResponse
     raw_image.bytes = bytes;
     raw_image.mime_type = proto.mime_type();
     raw_image.source_name = "";
+    raw_image.annotations = from_proto(proto.annotations());
     return raw_image;
 }
 
@@ -62,6 +63,7 @@ Camera::image_collection from_proto(const viam::component::camera::v1::GetImages
             raw_image.mime_type = format_to_MIME_string(img.format());
         }
         raw_image.source_name = img.source_name();
+        raw_image.annotations = from_proto(img.annotations());
         images.push_back(raw_image);
     }
     image_collection.images = std::move(images);
