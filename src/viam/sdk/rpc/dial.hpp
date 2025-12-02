@@ -165,8 +165,7 @@ class Options {
     /// down client code
     Options& set_reconnect_every_interval(std::chrono::seconds interval);
 
-    [[deprecated(
-        "This member has been renamed to channel_options; please update your function calls.")]]
+    [[deprecated("Please update your function calls to channel_options")]]
     const boost::optional<ViamChannel::Options>& dial_options() const;
 
     const boost::optional<ViamChannel::Options>& channel_options() const;
