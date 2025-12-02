@@ -31,6 +31,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "app/data/v1/data.pb.h"
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
 #include "google/api/httpbody.pb.h"
@@ -990,6 +991,7 @@ class Image final :
     kSourceNameFieldNumber = 1,
     kImageFieldNumber = 3,
     kMimeTypeFieldNumber = 4,
+    kAnnotationsFieldNumber = 5,
     kFormatFieldNumber = 2,
   };
   // string source_name = 1 [json_name = "sourceName"];
@@ -1034,6 +1036,24 @@ class Image final :
   std::string* _internal_mutable_mime_type();
   public:
 
+  // .viam.app.data.v1.Annotations annotations = 5 [json_name = "annotations"];
+  bool has_annotations() const;
+  private:
+  bool _internal_has_annotations() const;
+  public:
+  void clear_annotations();
+  const ::viam::app::data::v1::Annotations& annotations() const;
+  PROTOBUF_NODISCARD ::viam::app::data::v1::Annotations* release_annotations();
+  ::viam::app::data::v1::Annotations* mutable_annotations();
+  void set_allocated_annotations(::viam::app::data::v1::Annotations* annotations);
+  private:
+  const ::viam::app::data::v1::Annotations& _internal_annotations() const;
+  ::viam::app::data::v1::Annotations* _internal_mutable_annotations();
+  public:
+  void unsafe_arena_set_allocated_annotations(
+      ::viam::app::data::v1::Annotations* annotations);
+  ::viam::app::data::v1::Annotations* unsafe_arena_release_annotations();
+
   // .viam.component.camera.v1.Format format = 2 [json_name = "format"];
   void clear_format();
   ::viam::component::camera::v1::Format format() const;
@@ -1053,6 +1073,7 @@ class Image final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr source_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr image_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mime_type_;
+  ::viam::app::data::v1::Annotations* annotations_;
   int format_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
@@ -3696,6 +3717,91 @@ inline void Image::set_allocated_mime_type(std::string* mime_type) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.Image.mime_type)
+}
+
+// .viam.app.data.v1.Annotations annotations = 5 [json_name = "annotations"];
+inline bool Image::_internal_has_annotations() const {
+  return this != internal_default_instance() && annotations_ != nullptr;
+}
+inline bool Image::has_annotations() const {
+  return _internal_has_annotations();
+}
+inline const ::viam::app::data::v1::Annotations& Image::_internal_annotations() const {
+  const ::viam::app::data::v1::Annotations* p = annotations_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::data::v1::Annotations&>(
+      ::viam::app::data::v1::_Annotations_default_instance_);
+}
+inline const ::viam::app::data::v1::Annotations& Image::annotations() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.Image.annotations)
+  return _internal_annotations();
+}
+inline void Image::unsafe_arena_set_allocated_annotations(
+    ::viam::app::data::v1::Annotations* annotations) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(annotations_);
+  }
+  annotations_ = annotations;
+  if (annotations) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.camera.v1.Image.annotations)
+}
+inline ::viam::app::data::v1::Annotations* Image::release_annotations() {
+  
+  ::viam::app::data::v1::Annotations* temp = annotations_;
+  annotations_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::data::v1::Annotations* Image::unsafe_arena_release_annotations() {
+  // @@protoc_insertion_point(field_release:viam.component.camera.v1.Image.annotations)
+  
+  ::viam::app::data::v1::Annotations* temp = annotations_;
+  annotations_ = nullptr;
+  return temp;
+}
+inline ::viam::app::data::v1::Annotations* Image::_internal_mutable_annotations() {
+  
+  if (annotations_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::data::v1::Annotations>(GetArenaForAllocation());
+    annotations_ = p;
+  }
+  return annotations_;
+}
+inline ::viam::app::data::v1::Annotations* Image::mutable_annotations() {
+  ::viam::app::data::v1::Annotations* _msg = _internal_mutable_annotations();
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.Image.annotations)
+  return _msg;
+}
+inline void Image::set_allocated_annotations(::viam::app::data::v1::Annotations* annotations) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(annotations_);
+  }
+  if (annotations) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(annotations));
+    if (message_arena != submessage_arena) {
+      annotations = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, annotations, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  annotations_ = annotations;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.Image.annotations)
 }
 
 // -------------------------------------------------------------------
