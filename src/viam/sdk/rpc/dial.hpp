@@ -67,9 +67,6 @@ class ViamChannel {
         Options& set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
 
        private:
-        // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying
-        // on a `local` uri. We should update dial logic to consider such a flag.
-
         boost::optional<std::string> auth_entity_;
 
         boost::optional<Credentials> credentials_;
