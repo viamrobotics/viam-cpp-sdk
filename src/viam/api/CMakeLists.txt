@@ -19,6 +19,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 endif()
 
 set(BUF_PROTO_COMPONENTS
+  app/data
   app/mltraining
   app/packages
   app/v1
@@ -112,6 +113,9 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     # it sanely? We would need to filter out (or add in) the headers.
 
     # This list is needed for the core library.
+    ${PROTO_GEN_DIR}/app/data/v1/data.grpc.pb.cc
+    ${PROTO_GEN_DIR}/app/data/v1/data.grpc.pb.h
+    ${PROTO_GEN_DIR}/app/data/v1/data.pb.cc
     ${PROTO_GEN_DIR}/app/mltraining/v1/ml_training.pb.cc
     ${PROTO_GEN_DIR}/app/mltraining/v1/ml_training.pb.h
     ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
@@ -292,6 +296,9 @@ add_library(viam-cpp-sdk::viamapi ALIAS viamapi)
 
 target_sources(viamapi
   PRIVATE
+    ${PROTO_GEN_DIR}/app/data/v1/data.grpc.pb.cc
+    ${PROTO_GEN_DIR}/app/data/v1/data.grpc.pb.h
+    ${PROTO_GEN_DIR}/app/data/v1/data.pb.cc
     ${PROTO_GEN_DIR}/app/mltraining/v1/ml_training.pb.cc
     ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.grpc.pb.cc
