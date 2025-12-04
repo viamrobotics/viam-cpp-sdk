@@ -24,7 +24,7 @@ const GrpcServerContext& GrpcContextObserver::context() const noexcept {
 std::vector<std::string> GrpcContextObserver::get_client_metadata_field_values(
     const std::string& key) const {
     std::vector<std::string> values;
-    const auto& metadata = context_.client_metadata();
+    const auto& metadata = context().client_metadata();
     auto range = metadata.equal_range(grpc::string_ref(key));
     for (auto it = range.first; it != range.second; ++it) {
         values.emplace_back(it->second.data(), it->second.size());
