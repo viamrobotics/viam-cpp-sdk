@@ -134,6 +134,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         extra = from_proto(request->extra());
     }
 
+    const GrpcContextObserver::Enable enable{*context};
     const Board::analog_response result = board->read_analog(request->analog_reader_name(), extra);
     response->set_value(result.value);
     response->set_min_range(result.min_range);
@@ -164,7 +165,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         extra = from_proto(request->extra());
     }
 
+    const GrpcContextObserver::Enable enable{*context};
     board->write_analog(request->pin(), request->value(), extra);
+
     return ::grpc::Status();
 }
 
@@ -189,6 +192,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         extra = from_proto(request->extra());
     }
 
+    const GrpcContextObserver::Enable enable{*context};
     const Board::digital_value result =
         board->read_digital_interrupt(request->digital_interrupt_name(), extra);
     response->set_value(result);
