@@ -1,5 +1,9 @@
 #include <viam/sdk/app/client.hpp>
 
+#include <viam/api/app/data/v1/data.grpc.pb.h>
+#include <viam/api/app/data/v1/data.pb.h>
+
+#include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/exception.hpp>
 
 namespace viam {
@@ -18,6 +22,10 @@ AppClient AppClient::connect(const char* uri,
     opts.set_entity(auth_entity);
 
     return AppClient(ViamChannel::dial_direct(uri, opts));
+}
+
+const ViamChannel& AppClient::channel() const {
+    return channel_;
 }
 
 AppClient::AppClient(ViamChannel channel) : channel_(std::move(channel)) {}
