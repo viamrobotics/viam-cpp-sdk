@@ -16704,6 +16704,7 @@ class GetRobotPartLogsRequest final :
     kEndFieldNumber = 7,
     kLimitFieldNumber = 8,
     kErrorsOnlyFieldNumber = 2,
+    kUserFacingOnlyFieldNumber = 10,
   };
   // repeated string levels = 5 [json_name = "levels"];
   int levels_size() const;
@@ -16855,6 +16856,19 @@ class GetRobotPartLogsRequest final :
   void _internal_set_errors_only(bool value);
   public:
 
+  // optional bool user_facing_only = 10 [json_name = "userFacingOnly"];
+  bool has_user_facing_only() const;
+  private:
+  bool _internal_has_user_facing_only() const;
+  public:
+  void clear_user_facing_only();
+  bool user_facing_only() const;
+  void set_user_facing_only(bool value);
+  private:
+  bool _internal_user_facing_only() const;
+  void _internal_set_user_facing_only(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotPartLogsRequest)
  private:
   class _Internal;
@@ -16873,6 +16887,7 @@ class GetRobotPartLogsRequest final :
   ::PROTOBUF_NAMESPACE_ID::Timestamp* end_;
   int64_t limit_;
   bool errors_only_;
+  bool user_facing_only_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -58339,6 +58354,34 @@ inline void GetRobotPartLogsRequest::set_allocated_source(std::string* source) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartLogsRequest.source)
+}
+
+// optional bool user_facing_only = 10 [json_name = "userFacingOnly"];
+inline bool GetRobotPartLogsRequest::_internal_has_user_facing_only() const {
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  return value;
+}
+inline bool GetRobotPartLogsRequest::has_user_facing_only() const {
+  return _internal_has_user_facing_only();
+}
+inline void GetRobotPartLogsRequest::clear_user_facing_only() {
+  user_facing_only_ = false;
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline bool GetRobotPartLogsRequest::_internal_user_facing_only() const {
+  return user_facing_only_;
+}
+inline bool GetRobotPartLogsRequest::user_facing_only() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartLogsRequest.user_facing_only)
+  return _internal_user_facing_only();
+}
+inline void GetRobotPartLogsRequest::_internal_set_user_facing_only(bool value) {
+  _has_bits_[0] |= 0x00000040u;
+  user_facing_only_ = value;
+}
+inline void GetRobotPartLogsRequest::set_user_facing_only(bool value) {
+  _internal_set_user_facing_only(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartLogsRequest.user_facing_only)
 }
 
 // -------------------------------------------------------------------
