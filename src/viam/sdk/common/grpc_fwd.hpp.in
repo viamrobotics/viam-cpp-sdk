@@ -87,7 +87,7 @@ using GrpcServer = ::grpc_impl::Server;
 
 using GrpcServerBuilder = ::grpc_impl::ServerBuilder;
 
-using GrpcServerContext = ::grpc_impl::ServerBuilder;
+using GrpcServerContext = ::grpc_impl::ServerContext;
 
 using GrpcServerCredentials = ::grpc_impl::ServerCredentials;
 
