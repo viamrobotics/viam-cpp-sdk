@@ -38,44 +38,47 @@ class ViamChannel {
         int initial_connection_attempts() const;
         std::chrono::duration<float> initial_connection_attempt_timeout() const;
 
+        /// @brief Set the URL to authenticate against.
         Options& set_entity(boost::optional<std::string> entity);
+
+        /// @brief Set Credentials for connecting to the robot.
         Options& set_credentials(boost::optional<Credentials> creds);
+
+        /// @brief Set whether to allow the RPC connection to be downgraded to an insecure
+        /// connection if detected. This is only used when credentials are not present.
         Options& set_allow_insecure_downgrade(bool allow);
-        Options& set_webrtc_disabled(bool disable_webrtc);
-        Options& set_timeout(std::chrono::duration<float> timeout);
-        Options& set_initial_connection_attempts(int attempts);
-        Options& set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
 
-       private:
-        // TODO (RSDK-917): We currently don't provide a flag for disabling webRTC, instead relying
-        // on a `local` uri. We should update dial logic to consider such a flag.
-
-        /// @brief the URL to authenticate against.
-        boost::optional<std::string> auth_entity_;
-
-        /// @brief Credentials for connecting to the robot.
-        boost::optional<Credentials> credentials_;
-
-        /// @brief Allows the RPC connection to be downgraded to an insecure connection if detected.
-        /// This is only used when credentials are not present.
-        bool allow_insecure_downgrade_ = false;
-
-        /// @brief Bypass WebRTC and connect directly to the robot.
+        /// @brief Set whether to bypass WebRTC and connect directly to the robot.
         /// This dials directly through grpc bypassing rust utils.
         /// @remark Direct dialing should generally be done with a machine URI of the form
         /// <part>.<location>.local.viam.cloud:8080
+        Options& set_webrtc_disabled(bool disable_webrtc);
+
+        /// @brief Set the duration before the dial connection times out
+        /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
+        Options& set_timeout(std::chrono::duration<float> timeout);
+
+        /// @brief Set the number of attempts to make when initially connecting to a robot
+        /// If set to 0 or a negative integer, will attempt to reconnect forever.
+        Options& set_initial_connection_attempts(int attempts);
+
+        /// @brief Set the timeout of connection attempts when initially dialing a robot
+        /// Defaults to 20sec to match the default timeout duration
+        Options& set_initial_connection_attempt_timeout(std::chrono::duration<float> timeout);
+
+       private:
+        boost::optional<std::string> auth_entity_;
+
+        boost::optional<Credentials> credentials_;
+
+        bool allow_insecure_downgrade_ = false;
+
         bool disable_webrtc_ = false;
 
-        /// @brief Duration before the dial connection times out
-        /// Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
         std::chrono::duration<float> timeout_{20};
 
-        /// @brief Number of attempts to make when initially connecting to a robot
-        /// If set to 0 or a negative integer, will attempt to reconnect forever.
         int initial_connection_attempts_ = 3;
 
-        /// @brief Timeout of connection attempts when initially dialing a robot
-        /// Defaults to 20sec to match the default timeout duration
         std::chrono::duration<float> initial_connection_attempt_timeout_{20};
     };
 
