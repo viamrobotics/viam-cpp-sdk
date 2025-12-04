@@ -31,11 +31,12 @@ GripperServer::GripperServer(std::shared_ptr<ResourceManager> manager)
     const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request,
     ::viam::component::gripper::v1::IsHoldingSomethingResponse* response) noexcept {
     return make_service_helper<Gripper>(
-        "GripperServer::IsHoldingSomething", this, context, request)([&](auto& helper, auto& gripper) {
-        const Gripper::holding_status res = gripper->is_holding_something(helper.getExtra());
-        response->set_is_holding_something(res.is_holding_something);
-        *(response->mutable_meta()) = to_proto(res.meta);
-    });
+        "GripperServer::IsHoldingSomething", this, context, request)(
+        [&](auto& helper, auto& gripper) {
+            const Gripper::holding_status res = gripper->is_holding_something(helper.getExtra());
+            response->set_is_holding_something(res.is_holding_something);
+            *(response->mutable_meta()) = to_proto(res.meta);
+        });
 }
 
 ::grpc::Status GripperServer::Stop(::grpc::ServerContext* context,

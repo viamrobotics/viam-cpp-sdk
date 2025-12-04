@@ -19,15 +19,15 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext* context,
     const ::viam::component::posetracker::v1::GetPosesRequest* request,
     ::viam::component::posetracker::v1::GetPosesResponse* response) noexcept {
-    return make_service_helper<PoseTracker>(
-        "PoseTrackerServer::GetPoses", this, context, request)([&](auto& helper, auto& pose_tracker) {
-        const PoseTracker::pose_map result = pose_tracker->get_poses(
-            {request->body_names().begin(), request->body_names().end()}, helper.getExtra());
+    return make_service_helper<PoseTracker>("PoseTrackerServer::GetPoses", this, context, request)(
+        [&](auto& helper, auto& pose_tracker) {
+            const PoseTracker::pose_map result = pose_tracker->get_poses(
+                {request->body_names().begin(), request->body_names().end()}, helper.getExtra());
 
-        for (const auto& pair : result) {
-            response->mutable_body_poses()->insert({pair.first, to_proto(pair.second)});
-        }
-    });
+            for (const auto& pair : result) {
+                response->mutable_body_poses()->insert({pair.first, to_proto(pair.second)});
+            }
+        });
 }
 
 ::grpc::Status PoseTrackerServer::DoCommand(
@@ -46,13 +46,14 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<PoseTracker>(
-        "PoseTrackerServer::GetGeometries", this, context, request)([&](auto& helper, auto& pose_tracker) {
-        const std::vector<GeometryConfig> geometries =
-            pose_tracker->get_geometries(helper.getExtra());
-        for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = to_proto(geometry);
-        }
-    });
+        "PoseTrackerServer::GetGeometries", this, context, request)(
+        [&](auto& helper, auto& pose_tracker) {
+            const std::vector<GeometryConfig> geometries =
+                pose_tracker->get_geometries(helper.getExtra());
+            for (const auto& geometry : geometries) {
+                *response->mutable_geometries()->Add() = to_proto(geometry);
+            }
+        });
 }
 
 }  // namespace impl

@@ -46,31 +46,32 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
-    return make_service_helper<AudioOut>(
-        "AudioOutServer::GetGeometries", this, context, request)([&](auto& helper, auto& audio_out) {
-        const std::vector<GeometryConfig> geometries = audio_out->get_geometries(helper.getExtra());
-        for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = to_proto(geometry);
-        }
-    });
+    return make_service_helper<AudioOut>("AudioOutServer::GetGeometries", this, context, request)(
+        [&](auto& helper, auto& audio_out) {
+            const std::vector<GeometryConfig> geometries =
+                audio_out->get_geometries(helper.getExtra());
+            for (const auto& geometry : geometries) {
+                *response->mutable_geometries()->Add() = to_proto(geometry);
+            }
+        });
 }
 
 ::grpc::Status AudioOutServer::GetProperties(
     ::grpc::ServerContext* context,
     const ::viam::common::v1::GetPropertiesRequest* request,
     ::viam::common::v1::GetPropertiesResponse* response) noexcept {
-    return make_service_helper<AudioOut>(
-        "AudioOutServer::GetProperties", this, context, request)([&](auto& helper, auto& audio_out) {
-        const audio_properties result = audio_out->get_properties(helper.getExtra());
+    return make_service_helper<AudioOut>("AudioOutServer::GetProperties", this, context, request)(
+        [&](auto& helper, auto& audio_out) {
+            const audio_properties result = audio_out->get_properties(helper.getExtra());
 
-        // Copy supported_codecs vector to repeated field
-        for (const auto& codec : result.supported_codecs) {
-            response->add_supported_codecs(codec);
-        }
+            // Copy supported_codecs vector to repeated field
+            for (const auto& codec : result.supported_codecs) {
+                response->add_supported_codecs(codec);
+            }
 
-        response->set_sample_rate_hz(result.sample_rate_hz);
-        response->set_num_channels(result.num_channels);
-    });
+            response->set_sample_rate_hz(result.sample_rate_hz);
+            response->set_num_channels(result.num_channels);
+        });
 }
 
 }  // namespace impl

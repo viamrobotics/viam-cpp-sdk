@@ -34,9 +34,10 @@ SwitchServer::SwitchServer(std::shared_ptr<ResourceManager> manager)
     const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request,
     ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response) noexcept {
     return make_service_helper<Switch>(
-        "SwitchServer::GetNumberOfPositions", this, context, request)([&](auto& helper, auto& switch_) {
-        response->set_number_of_positions(switch_->get_number_of_positions(helper.getExtra()));
-    });
+        "SwitchServer::GetNumberOfPositions", this, context, request)(
+        [&](auto& helper, auto& switch_) {
+            response->set_number_of_positions(switch_->get_number_of_positions(helper.getExtra()));
+        });
 }
 
 ::grpc::Status SwitchServer::DoCommand(::grpc::ServerContext* context,

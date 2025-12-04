@@ -90,7 +90,8 @@ using namespace service::navigation::v1;
 ::grpc::Status NavigationServer::RemoveWaypoint(::grpc::ServerContext* context,
                                                 const RemoveWaypointRequest* request,
                                                 RemoveWaypointResponse*) noexcept {
-    return make_service_helper<Navigation>("NavigationServer::RemoveWaypoint", this, context, request)(
+    return make_service_helper<Navigation>(
+        "NavigationServer::RemoveWaypoint", this, context, request)(
         [&](auto& helper, auto& nav) { nav->remove_waypoint(request->id(), helper.getExtra()); });
 }
 

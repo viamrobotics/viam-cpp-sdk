@@ -17,13 +17,14 @@ using namespace service::discovery::v1;
     const ::viam::service::discovery::v1::DiscoverResourcesRequest* request,
     ::viam::service::discovery::v1::DiscoverResourcesResponse* response) noexcept {
     return make_service_helper<Discovery>(
-        "DiscoveryServer::DiscoverResources", this, context, request)([&](auto& helper, auto& discovery) {
-        const std::vector<ResourceConfig> resources =
-            discovery->discover_resources(helper.getExtra());
-        for (const auto& resource : resources) {
-            *response->mutable_discoveries()->Add() = to_proto(resource);
-        }
-    });
+        "DiscoveryServer::DiscoverResources", this, context, request)(
+        [&](auto& helper, auto& discovery) {
+            const std::vector<ResourceConfig> resources =
+                discovery->discover_resources(helper.getExtra());
+            for (const auto& resource : resources) {
+                *response->mutable_discoveries()->Add() = to_proto(resource);
+            }
+        });
 }
 
 ::grpc::Status DiscoveryServer::DoCommand(

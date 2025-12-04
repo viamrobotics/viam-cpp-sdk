@@ -69,7 +69,8 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext* context,
     const ::viam::component::base::v1::IsMovingRequest* request,
     ::viam::component::base::v1::IsMovingResponse* response) noexcept {
-    return make_service_helper<Base>("BaseServer::IsMoving", this, context, request)([&](auto&, auto& base) {
+    return make_service_helper<Base>(
+        "BaseServer::IsMoving", this, context, request)([&](auto&, auto& base) {
         const bool result = base->is_moving();
         response->set_is_moving(result);
     });
