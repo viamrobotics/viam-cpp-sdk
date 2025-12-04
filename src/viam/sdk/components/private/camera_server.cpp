@@ -37,22 +37,22 @@ viam::component::camera::v1::DistortionParameters to_proto(
 CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
 
-::grpc::Status CameraServer::DoCommand(::grpc::ServerContext*,
+::grpc::Status CameraServer::DoCommand(::grpc::ServerContext* context,
                                        const ::viam::common::v1::DoCommandRequest* request,
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Camera>(
-        "CameraServer::DoCommand", this, request)([&](auto&, auto& camera) {
+        "CameraServer::DoCommand", this, context, request)([&](auto&, auto& camera) {
         const ProtoStruct result = camera->do_command(from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
     });
 }
 
 ::grpc::Status CameraServer::GetImage(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetImageRequest* request,
     ::viam::component::camera::v1::GetImageResponse* response) noexcept {
     return make_service_helper<Camera>(
-        "CameraServer::GetImage", this, request)([&](auto& helper, auto& camera) {
+        "CameraServer::GetImage", this, context, request)([&](auto& helper, auto& camera) {
         const Camera::raw_image image = camera->get_image(request->mime_type(), helper.getExtra());
 
         const std::string img_string = bytes_to_string(image.bytes);
@@ -79,11 +79,11 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status CameraServer::GetImages(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetImagesRequest* request,
     ::viam::component::camera::v1::GetImagesResponse* response) noexcept {
     return make_service_helper<Camera>(
-        "CameraServer::GetImages", this, request)([&](auto& helper, auto& camera) {
+        "CameraServer::GetImages", this, context, request)([&](auto& helper, auto& camera) {
         const Camera::image_collection image_coll = camera->get_images(
             {request->filter_source_names().begin(), request->filter_source_names().end()},
             helper.getExtra());
@@ -102,11 +102,11 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status CameraServer::RenderFrame(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::RenderFrameRequest* request,
     ::google::api::HttpBody* response) noexcept {
     return make_service_helper<Camera>(
-        "CameraServer::RenderFrame", this, request)([&](auto& helper, auto& camera) {
+        "CameraServer::RenderFrame", this, context, request)([&](auto& helper, auto& camera) {
         const Camera::raw_image image = camera->get_image(request->mime_type(), helper.getExtra());
 
         response->set_data(bytes_to_string(image.bytes));
@@ -115,11 +115,11 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status CameraServer::GetPointCloud(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetPointCloudRequest* request,
     ::viam::component::camera::v1::GetPointCloudResponse* response) noexcept {
     return make_service_helper<Camera>(
-        "CameraServer::GetPointCloud", this, request)([&](auto& helper, auto& camera) {
+        "CameraServer::GetPointCloud", this, context, request)([&](auto& helper, auto& camera) {
         const Camera::point_cloud point_cloud =
             camera->get_point_cloud(request->mime_type(), helper.getExtra());
         *response->mutable_mime_type() = "pointcloud/pcd";
@@ -128,11 +128,11 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status CameraServer::GetGeometries(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<Camera>(
-        "CameraServer::GetGeometries", this, request)([&](auto& helper, auto& camera) {
+        "CameraServer::GetGeometries", this, context, request)([&](auto& helper, auto& camera) {
         const std::vector<GeometryConfig> geometries = camera->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
             *response->mutable_geometries()->Add() = to_proto(geometry);
@@ -141,11 +141,11 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status CameraServer::GetProperties(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetPropertiesRequest* request,
     ::viam::component::camera::v1::GetPropertiesResponse* response) noexcept {
     return make_service_helper<Camera>(
-        "CameraServer::GetProperties", this, request)([&](auto&, auto& camera) {
+        "CameraServer::GetProperties", this, context, request)([&](auto&, auto& camera) {
         const Camera::properties properties = camera->get_properties();
 
         *response->mutable_distortion_parameters() = to_proto(properties.distortion_parameters);

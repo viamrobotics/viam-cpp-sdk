@@ -26,58 +26,59 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status MovementSensorServer::GetLinearVelocity(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const GetLinearVelocityRequest* request,
     GetLinearVelocityResponse* response) noexcept {
-    return make_service_helper<MovementSensor>("MovementSensorServer::GetLinearVelocity",
-                                               this,
-                                               request)([&](auto& helper, auto& movementsensor) {
-        const Vector3 result = movementsensor->get_linear_velocity(helper.getExtra());
-        *response->mutable_linear_velocity() = to_proto(result);
-    });
+    return make_service_helper<MovementSensor>(
+        "MovementSensorServer::GetLinearVelocity", this, context, request)(
+        [&](auto& helper, auto& movementsensor) {
+            const Vector3 result = movementsensor->get_linear_velocity(helper.getExtra());
+            *response->mutable_linear_velocity() = to_proto(result);
+        });
 }
 
 ::grpc::Status MovementSensorServer::GetAngularVelocity(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const GetAngularVelocityRequest* request,
     GetAngularVelocityResponse* response) noexcept {
-    return make_service_helper<MovementSensor>("MovementSensorServer::GetAngularVelocity",
-                                               this,
-                                               request)([&](auto& helper, auto& movementsensor) {
-        const Vector3 result = movementsensor->get_angular_velocity(helper.getExtra());
-        *response->mutable_angular_velocity() = to_proto(result);
-    });
+    return make_service_helper<MovementSensor>(
+        "MovementSensorServer::GetAngularVelocity", this, context, request)(
+        [&](auto& helper, auto& movementsensor) {
+            const Vector3 result = movementsensor->get_angular_velocity(helper.getExtra());
+            *response->mutable_angular_velocity() = to_proto(result);
+        });
 }
 
 ::grpc::Status MovementSensorServer::GetCompassHeading(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const GetCompassHeadingRequest* request,
     GetCompassHeadingResponse* response) noexcept {
-    return make_service_helper<MovementSensor>("MovementSensorServer::GetCompassHeading",
-                                               this,
-                                               request)([&](auto& helper, auto& movementsensor) {
-        const MovementSensor::compassheading result =
-            movementsensor->get_compass_heading(helper.getExtra());
-        response->set_value(result.value);
-    });
+    return make_service_helper<MovementSensor>(
+        "MovementSensorServer::GetCompassHeading", this, context, request)(
+        [&](auto& helper, auto& movementsensor) {
+            const MovementSensor::compassheading result =
+                movementsensor->get_compass_heading(helper.getExtra());
+            response->set_value(result.value);
+        });
 }
 
-::grpc::Status MovementSensorServer::GetOrientation(::grpc::ServerContext*,
+::grpc::Status MovementSensorServer::GetOrientation(::grpc::ServerContext* context,
                                                     const GetOrientationRequest* request,
                                                     GetOrientationResponse* response) noexcept {
-    return make_service_helper<MovementSensor>("MovementSensorServer::GetOrientation",
-                                               this,
-                                               request)([&](auto& helper, auto& movementsensor) {
-        const MovementSensor::orientation result =
-            movementsensor->get_orientation(helper.getExtra());
-        *response->mutable_orientation() = to_proto(result);
-    });
+    return make_service_helper<MovementSensor>(
+        "MovementSensorServer::GetOrientation", this, context, request)(
+        [&](auto& helper, auto& movementsensor) {
+            const MovementSensor::orientation result =
+                movementsensor->get_orientation(helper.getExtra());
+            *response->mutable_orientation() = to_proto(result);
+        });
 }
 
-::grpc::Status MovementSensorServer::GetPosition(::grpc::ServerContext*,
+::grpc::Status MovementSensorServer::GetPosition(::grpc::ServerContext* context,
                                                  const GetPositionRequest* request,
                                                  GetPositionResponse* response) noexcept {
-    return make_service_helper<MovementSensor>("MovementSensorServer::GetPosition", this, request)(
+    return make_service_helper<MovementSensor>(
+        "MovementSensorServer::GetPosition", this, context, request)(
         [&](auto& helper, auto& movementsensor) {
             const MovementSensor::position result = movementsensor->get_position(helper.getExtra());
             *response->mutable_coordinate() = to_proto(result.coordinate);
@@ -85,12 +86,12 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
         });
 }
 
-::grpc::Status MovementSensorServer::GetProperties(::grpc::ServerContext*,
+::grpc::Status MovementSensorServer::GetProperties(::grpc::ServerContext* context,
                                                    const GetPropertiesRequest* request,
                                                    GetPropertiesResponse* response) noexcept {
-    return make_service_helper<MovementSensor>("MovementSensorServer::GetProperties",
-                                               this,
-                                               request)([&](auto& helper, auto& movementsensor) {
+    return make_service_helper<MovementSensor>(
+        "MovementSensorServer::GetProperties", this, context, request)([&](auto& helper,
+                                                                           auto& movementsensor) {
         const MovementSensor::properties result = movementsensor->get_properties(helper.getExtra());
         response->set_linear_velocity_supported(result.linear_velocity_supported);
         response->set_angular_velocity_supported(result.angular_velocity_supported);
@@ -101,10 +102,11 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
-::grpc::Status MovementSensorServer::GetAccuracy(::grpc::ServerContext*,
+::grpc::Status MovementSensorServer::GetAccuracy(::grpc::ServerContext* context,
                                                  const GetAccuracyRequest* request,
                                                  GetAccuracyResponse* response) noexcept {
-    return make_service_helper<MovementSensor>("MovementSensorServer::GetAccuracy", this, request)(
+    return make_service_helper<MovementSensor>(
+        "MovementSensorServer::GetAccuracy", this, context, request)(
         [&](auto& helper, auto& movementsensor) {
             const auto result = movementsensor->get_accuracy(helper.getExtra());
             for (const auto& i : result) {
@@ -114,40 +116,41 @@ MovementSensorServer::MovementSensorServer(std::shared_ptr<ResourceManager> mana
 }
 
 ::grpc::Status MovementSensorServer::GetLinearAcceleration(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const GetLinearAccelerationRequest* request,
     GetLinearAccelerationResponse* response) noexcept {
-    return make_service_helper<MovementSensor>("MovementSensorServer::GetLinearAcceleration",
-                                               this,
-                                               request)([&](auto& helper, auto& movementsensor) {
-        const Vector3 result = movementsensor->get_linear_acceleration(helper.getExtra());
-        *response->mutable_linear_acceleration() = to_proto(result);
-    });
+    return make_service_helper<MovementSensor>(
+        "MovementSensorServer::GetLinearAcceleration", this, context, request)(
+        [&](auto& helper, auto& movementsensor) {
+            const Vector3 result = movementsensor->get_linear_acceleration(helper.getExtra());
+            *response->mutable_linear_acceleration() = to_proto(result);
+        });
 }
 
 ::grpc::Status MovementSensorServer::DoCommand(
-    grpc::ServerContext*,
+    grpc::ServerContext* context,
     const viam::common::v1::DoCommandRequest* request,
     viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<MovementSensor>(
-        "MovementSensorServer::DoCommand", this, request)([&](auto&, auto& movementsensor) {
-        const ProtoStruct result = movementsensor->do_command(from_proto(request->command()));
-        *response->mutable_result() = to_proto(result);
-    });
+        "MovementSensorServer::DoCommand", this, context, request)(
+        [&](auto&, auto& movementsensor) {
+            const ProtoStruct result = movementsensor->do_command(from_proto(request->command()));
+            *response->mutable_result() = to_proto(result);
+        });
 }
 
 ::grpc::Status MovementSensorServer::GetGeometries(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
-    return make_service_helper<MovementSensor>("MovementSensorServer::GetGeometries",
-                                               this,
-                                               request)([&](auto& helper, auto& movementsensor) {
-        const auto geometries = movementsensor->get_geometries(helper.getExtra());
-        for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = to_proto(geometry);
-        }
-    });
+    return make_service_helper<MovementSensor>(
+        "MovementSensorServer::GetGeometries", this, context, request)(
+        [&](auto& helper, auto& movementsensor) {
+            const auto geometries = movementsensor->get_geometries(helper.getExtra());
+            for (const auto& geometry : geometries) {
+                *response->mutable_geometries()->Add() = to_proto(geometry);
+            }
+        });
 }
 
 }  // namespace impl

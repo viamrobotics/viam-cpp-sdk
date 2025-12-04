@@ -17,29 +17,29 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status BaseServer::MoveStraight(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::base::v1::MoveStraightRequest* request,
     ::viam::component::base::v1::MoveStraightResponse*) noexcept {
     return make_service_helper<Base>(
-        "BaseServer::MoveStraight", this, request)([&](auto& helper, auto& base) {
+        "BaseServer::MoveStraight", this, context, request)([&](auto& helper, auto& base) {
         base->move_straight(request->distance_mm(), request->mm_per_sec(), helper.getExtra());
     });
 }
 
-::grpc::Status BaseServer::Spin(::grpc::ServerContext*,
+::grpc::Status BaseServer::Spin(::grpc::ServerContext* context,
                                 const ::viam::component::base::v1::SpinRequest* request,
                                 ::viam::component::base::v1::SpinResponse*) noexcept {
     return make_service_helper<Base>(
-        "BaseServer::Spin", this, request)([&](auto& helper, auto& base) {
+        "BaseServer::Spin", this, context, request)([&](auto& helper, auto& base) {
         base->spin(request->angle_deg(), request->degs_per_sec(), helper.getExtra());
     });
 }
 
-::grpc::Status BaseServer::SetPower(::grpc::ServerContext*,
+::grpc::Status BaseServer::SetPower(::grpc::ServerContext* context,
                                     const ::viam::component::base::v1::SetPowerRequest* request,
                                     ::viam::component::base::v1::SetPowerResponse*) noexcept {
     return make_service_helper<Base>(
-        "BaseServer::SetPower", this, request)([&](auto& helper, auto& base) {
+        "BaseServer::SetPower", this, context, request)([&](auto& helper, auto& base) {
         auto linear = from_proto(request->linear());
         auto angular = from_proto(request->angular());
         base->set_power(linear, angular, helper.getExtra());
@@ -47,40 +47,40 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status BaseServer::SetVelocity(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::base::v1::SetVelocityRequest* request,
     ::viam::component::base::v1::SetVelocityResponse*) noexcept {
     return make_service_helper<Base>(
-        "BaseServer::SetVelocity", this, request)([&](auto& helper, auto& base) {
+        "BaseServer::SetVelocity", this, context, request)([&](auto& helper, auto& base) {
         auto linear = from_proto(request->linear());
         auto angular = from_proto(request->angular());
         base->set_velocity(linear, angular, helper.getExtra());
     });
 }
 
-::grpc::Status BaseServer::Stop(::grpc::ServerContext*,
+::grpc::Status BaseServer::Stop(::grpc::ServerContext* context,
                                 const ::viam::component::base::v1::StopRequest* request,
                                 ::viam::component::base::v1::StopResponse*) noexcept {
-    return make_service_helper<Base>("BaseServer::Stop", this, request)(
+    return make_service_helper<Base>("BaseServer::Stop", this, context, request)(
         [&](auto& helper, auto& base) { base->stop(helper.getExtra()); });
 }
 
 ::grpc::Status BaseServer::IsMoving(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::base::v1::IsMovingRequest* request,
     ::viam::component::base::v1::IsMovingResponse* response) noexcept {
-    return make_service_helper<Base>("BaseServer::IsMoving", this, request)([&](auto&, auto& base) {
+    return make_service_helper<Base>("BaseServer::IsMoving", this, context, request)([&](auto&, auto& base) {
         const bool result = base->is_moving();
         response->set_is_moving(result);
     });
 }
 
 ::grpc::Status BaseServer::GetGeometries(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<Base>(
-        "BaseServer::GetGeometries", this, request)([&](auto& helper, auto& base) {
+        "BaseServer::GetGeometries", this, context, request)([&](auto& helper, auto& base) {
         const std::vector<GeometryConfig> geometries = base->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
             *response->mutable_geometries()->Add() = to_proto(geometry);
@@ -89,11 +89,11 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status BaseServer::GetProperties(
-    grpc::ServerContext*,
+    grpc::ServerContext* context,
     const viam::component::base::v1::GetPropertiesRequest* request,
     viam::component::base::v1::GetPropertiesResponse* response) noexcept {
     return make_service_helper<Base>(
-        "BaseServer::GetProperties", this, request)([&](auto& helper, auto& base) {
+        "BaseServer::GetProperties", this, context, request)([&](auto& helper, auto& base) {
         const Base::properties result = base->get_properties(helper.getExtra());
         response->set_width_meters(result.width_meters);
         response->set_turning_radius_meters(result.turning_radius_meters);
@@ -101,11 +101,11 @@ BaseServer::BaseServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status BaseServer::DoCommand(grpc::ServerContext*,
+::grpc::Status BaseServer::DoCommand(grpc::ServerContext* context,
                                      const viam::common::v1::DoCommandRequest* request,
                                      viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Base>(
-        "BaseServer::DoCommand", this, request)([&](auto&, auto& base) {
+        "BaseServer::DoCommand", this, context, request)([&](auto&, auto& base) {
         const ProtoStruct result = base->do_command(from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
     });

@@ -25,6 +25,8 @@ class Server;
 
 class ServerBuilder;
 
+class ServerContext;
+
 class ServerCredentials;
 
 }  // namespace grpc
@@ -42,6 +44,8 @@ using GrpcClientReaderInterface = ::grpc::ClientReaderInterface<T>;
 using GrpcServer = ::grpc::Server;
 
 using GrpcServerBuilder = ::grpc::ServerBuilder;
+
+using GrpcServerContext = ::grpc::ServerContext;
 
 using GrpcServerCredentials = ::grpc::ServerCredentials;
 
@@ -63,6 +67,8 @@ class Server;
 
 class ServerBuilder;
 
+class ServerContext;
+
 class ServerCredentials;
 
 }  // namespace grpc_impl
@@ -80,6 +86,8 @@ using GrpcClientReaderInterface = ::grpc_impl::ClientReaderInterface<T>;
 using GrpcServer = ::grpc_impl::Server;
 
 using GrpcServerBuilder = ::grpc_impl::ServerBuilder;
+
+using GrpcServerContext = ::grpc_impl::ServerBuilder;
 
 using GrpcServerCredentials = ::grpc_impl::ServerCredentials;
 

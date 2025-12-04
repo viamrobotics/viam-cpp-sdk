@@ -12,11 +12,11 @@ namespace impl {
 AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
 
-::grpc::Status AudioOutServer::Play(::grpc::ServerContext*,
+::grpc::Status AudioOutServer::Play(::grpc::ServerContext* context,
                                     const ::viam::component::audioout::v1::PlayRequest* request,
                                     ::viam::component::audioout::v1::PlayResponse*) noexcept {
     return make_service_helper<AudioOut>(
-        "AudioOutServer::Play", this, request)([&](auto& helper, auto& audio_out) {
+        "AudioOutServer::Play", this, context, request)([&](auto& helper, auto& audio_out) {
         // Convert audio_data from string to std::vector<uint8_t>
         std::vector<uint8_t> audio_data;
         const std::string& audio_data_str = request->audio_data();
@@ -32,22 +32,22 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status AudioOutServer::DoCommand(::grpc::ServerContext*,
+::grpc::Status AudioOutServer::DoCommand(::grpc::ServerContext* context,
                                          const ::viam::common::v1::DoCommandRequest* request,
                                          ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<AudioOut>(
-        "AudioOutServer::DoCommand", this, request)([&](auto&, auto& audio_out) {
+        "AudioOutServer::DoCommand", this, context, request)([&](auto&, auto& audio_out) {
         const ProtoStruct result = audio_out->do_command(from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
     });
 }
 
 ::grpc::Status AudioOutServer::GetGeometries(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<AudioOut>(
-        "AudioOutServer::GetGeometries", this, request)([&](auto& helper, auto& audio_out) {
+        "AudioOutServer::GetGeometries", this, context, request)([&](auto& helper, auto& audio_out) {
         const std::vector<GeometryConfig> geometries = audio_out->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
             *response->mutable_geometries()->Add() = to_proto(geometry);
@@ -56,11 +56,11 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status AudioOutServer::GetProperties(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::common::v1::GetPropertiesRequest* request,
     ::viam::common::v1::GetPropertiesResponse* response) noexcept {
     return make_service_helper<AudioOut>(
-        "AudioOutServer::GetProperties", this, request)([&](auto& helper, auto& audio_out) {
+        "AudioOutServer::GetProperties", this, context, request)([&](auto& helper, auto& audio_out) {
         const audio_properties result = audio_out->get_properties(helper.getExtra());
 
         // Copy supported_codecs vector to repeated field
