@@ -100,10 +100,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6a7ef115a3f1c2caffa099d6982a7d5a" id="r_a6a7ef115a3f1c2caffa099d6982a7d5a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; const <a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html">ModelRegistration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a7ef115a3f1c2caffa099d6982a7d5a">lookup_model</a> (const <a class="el" href="classviam_1_1sdk_1_1API.html">API</a> &amp;api, const <a class="el" href="classviam_1_1sdk_1_1Model.html">Model</a> &amp;model) const</td></tr>
 <tr class="memdesc:a6a7ef115a3f1c2caffa099d6982a7d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a given registered resource.  <br /></td></tr>
 <tr class="separator:a6a7ef115a3f1c2caffa099d6982a7d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6ae34de491b91d0eee0f4f71b97219c" id="r_ae6ae34de491b91d0eee0f4f71b97219c"><td class="memTemplParams" colspan="2"><a id="ae6ae34de491b91d0eee0f4f71b97219c" name="ae6ae34de491b91d0eee0f4f71b97219c"></a>
-template&lt;typename ResourceClientT &gt; </td></tr>
-<tr class="memitem:ae6ae34de491b91d0eee0f4f71b97219c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>register_resource_client</b> ()</td></tr>
-<tr class="memdesc:ae6ae34de491b91d0eee0f4f71b97219c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a resource client constructor. <br /></td></tr>
+<tr class="memitem:ae6ae34de491b91d0eee0f4f71b97219c" id="r_ae6ae34de491b91d0eee0f4f71b97219c"><td class="memTemplParams" colspan="2">template&lt;typename ResourceClientT &gt; </td></tr>
+<tr class="memitem:ae6ae34de491b91d0eee0f4f71b97219c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae6ae34de491b91d0eee0f4f71b97219c">register_resource_client</a> ()</td></tr>
+<tr class="memdesc:ae6ae34de491b91d0eee0f4f71b97219c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a resource client constructor.  <br /></td></tr>
 <tr class="separator:ae6ae34de491b91d0eee0f4f71b97219c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4145499b8920de7e2393c75dbba21dc6" id="r_a4145499b8920de7e2393c75dbba21dc6"><td class="memTemplParams" colspan="2"><a id="a4145499b8920de7e2393c75dbba21dc6" name="a4145499b8920de7e2393c75dbba21dc6"></a>
 template&lt;typename ResourceServerT &gt; </td></tr>
@@ -281,6 +280,36 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b></td></t
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ae6ae34de491b91d0eee0f4f71b97219c" name="ae6ae34de491b91d0eee0f4f71b97219c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ae34de491b91d0eee0f4f71b97219c">&#9670;&#160;</a></span>register_resource_client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ResourceClientT &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::Registry::register_resource_client </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register a resource client constructor. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>The lifetime of the returned resource must be a subset of the lifetime of the <code>channel</code> with which it was created.</dd></dl>
 
 </div>
 </div>

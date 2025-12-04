@@ -76,6 +76,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1ViamChannel-members.html">List of all members</a>  </div>
@@ -83,6 +84,11 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">Options</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a48cd0fd24a8c0858e08fb94909be3f1a" id="r_a48cd0fd24a8c0858e08fb94909be3f1a"><td class="memItemLeft" align="right" valign="top"><a id="a48cd0fd24a8c0858e08fb94909be3f1a" name="a48cd0fd24a8c0858e08fb94909be3f1a"></a>
@@ -97,24 +103,50 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2a3f6c99f06471f1897dd38e8654002f" id="r_a2a3f6c99f06471f1897dd38e8654002f"><td class="memItemLeft" align="right" valign="top"><a id="a2a3f6c99f06471f1897dd38e8654002f" name="a2a3f6c99f06471f1897dd38e8654002f"></a>
 const std::shared_ptr&lt; GrpcChannel &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>channel</b> () const</td></tr>
 <tr class="separator:a2a3f6c99f06471f1897dd38e8654002f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61b539518f4f236551938bc964fd9c21" id="r_a61b539518f4f236551938bc964fd9c21"><td class="memItemLeft" align="right" valign="top"><a id="a61b539518f4f236551938bc964fd9c21" name="a61b539518f4f236551938bc964fd9c21"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
-<tr class="separator:a61b539518f4f236551938bc964fd9c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3718f87baf4f38b30728f14e99d96170" id="r_a3718f87baf4f38b30728f14e99d96170"><td class="memItemLeft" align="right" valign="top">const boost::optional&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3718f87baf4f38b30728f14e99d96170">auth_token</a> () const</td></tr>
+<tr class="memdesc:a3718f87baf4f38b30728f14e99d96170"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the bearer token for connecting to the robot if one is needed; else returns null.  <br /></td></tr>
+<tr class="separator:a3718f87baf4f38b30728f14e99d96170"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87dc58d4b7420fa8b25bedeb44cb2521" id="r_a87dc58d4b7420fa8b25bedeb44cb2521"><td class="memItemLeft" align="right" valign="top"><a id="a87dc58d4b7420fa8b25bedeb44cb2521" name="a87dc58d4b7420fa8b25bedeb44cb2521"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>get_channel_addr</b> () const</td></tr>
+<tr class="memdesc:a87dc58d4b7420fa8b25bedeb44cb2521"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the address of the robot to which this channel is connected. <br /></td></tr>
 <tr class="separator:a87dc58d4b7420fa8b25bedeb44cb2521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61b539518f4f236551938bc964fd9c21" id="r_a61b539518f4f236551938bc964fd9c21"><td class="memItemLeft" align="right" valign="top"><a id="a61b539518f4f236551938bc964fd9c21" name="a61b539518f4f236551938bc964fd9c21"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
+<tr class="memdesc:a61b539518f4f236551938bc964fd9c21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the connection of this channel to its associated robot. This method is called by the destructor of <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a>. No further operations can be performed on the channel afterwards except to assign a new value to it. <br /></td></tr>
+<tr class="separator:a61b539518f4f236551938bc964fd9c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ad0d2cf97f3dd8edd623f18b3b6f20238" id="r_ad0d2cf97f3dd8edd623f18b3b6f20238"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0d2cf97f3dd8edd623f18b3b6f20238">dial</a> (const char *uri, const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1DialOptions.html">DialOptions</a> &gt; &amp;options)</td></tr>
-<tr class="memdesc:ad0d2cf97f3dd8edd623f18b3b6f20238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects to a robot at the given URI address, using the provided dial options (or default options is none are provided). Ignores initial connection options specifying how many times to attempt to connect and with what timeout. In general, use of this method is discouraged. <code>RobotClient::at_address(...)</code> is the preferred method to connect to a robot, and creates the channel itself.  <br /></td></tr>
-<tr class="separator:ad0d2cf97f3dd8edd623f18b3b6f20238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97496ea0de39f2271e533d04a67faf38" id="r_a97496ea0de39f2271e533d04a67faf38"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97496ea0de39f2271e533d04a67faf38">dial_initial</a> (const char *uri, const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1DialOptions.html">DialOptions</a> &gt; &amp;options)</td></tr>
-<tr class="separator:a97496ea0de39f2271e533d04a67faf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52263ff22e48ff93a98dfb271e80be02" id="r_a52263ff22e48ff93a98dfb271e80be02"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52263ff22e48ff93a98dfb271e80be02">dial</a> (const char *uri, const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">Options</a> &gt; &amp;options)</td></tr>
+<tr class="memdesc:a52263ff22e48ff93a98dfb271e80be02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects to a robot at the given URI address, using the provided dial options (or default options is none are provided). Ignores initial connection options specifying how many times to attempt to connect and with what timeout. In general, use of this method is discouraged. <code>RobotClient::at_address(...)</code> is the preferred method to connect to a robot, and creates the channel itself.  <br /></td></tr>
+<tr class="separator:a52263ff22e48ff93a98dfb271e80be02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace58fb3544473c9d0b17445e7c2584ba" id="r_ace58fb3544473c9d0b17445e7c2584ba"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace58fb3544473c9d0b17445e7c2584ba">dial_initial</a> (const char *uri, const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">Options</a> &gt; &amp;options)</td></tr>
+<tr class="memdesc:ace58fb3544473c9d0b17445e7c2584ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dials to a robot at the given URI address, using the provided dial options (or default options is none are provided). Additionally specifies that this dial is an initial connection attempt and so uses the initial connection options. In general, use of this method is discouraged. <code>RobotClient::at_address(...)</code> is the preferred method to connect to a robot, and creates the channel itself.  <br /></td></tr>
+<tr class="separator:ace58fb3544473c9d0b17445e7c2584ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad0d2cf97f3dd8edd623f18b3b6f20238" name="ad0d2cf97f3dd8edd623f18b3b6f20238"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0d2cf97f3dd8edd623f18b3b6f20238">&#9670;&#160;</a></span>dial()</h2>
+<a id="a3718f87baf4f38b30728f14e99d96170" name="a3718f87baf4f38b30728f14e99d96170"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3718f87baf4f38b30728f14e99d96170">&#9670;&#160;</a></span>auth_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const boost::optional&lt; std::string &gt; &amp; viam::sdk::ViamChannel::auth_token </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the bearer token for connecting to the robot if one is needed; else returns null. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>When dialing with disable_webrtc = true and grpc &gt;= 1.43.0, a bearer token is needed for all client requests. If you use <a class="el" href="classviam_1_1sdk_1_1ClientHelper.html">ClientHelper</a> for client requests this is handled automatically, otherwise you will have to add this to the client context of a grpc call. </dd></dl>
+
+</div>
+</div>
+<a id="a52263ff22e48ff93a98dfb271e80be02" name="a52263ff22e48ff93a98dfb271e80be02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52263ff22e48ff93a98dfb271e80be02">&#9670;&#160;</a></span>dial()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,7 +162,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1DialOptions.html">DialOptions</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
+          <td class="paramtype">const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">Options</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -150,8 +182,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a97496ea0de39f2271e533d04a67faf38" name="a97496ea0de39f2271e533d04a67faf38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97496ea0de39f2271e533d04a67faf38">&#9670;&#160;</a></span>dial_initial()</h2>
+<a id="ace58fb3544473c9d0b17445e7c2584ba" name="ace58fb3544473c9d0b17445e7c2584ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace58fb3544473c9d0b17445e7c2584ba">&#9670;&#160;</a></span>dial_initial()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,7 +199,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1DialOptions.html">DialOptions</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
+          <td class="paramtype">const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">Options</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -176,7 +208,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>In general, use of this method is discouraged. <code>RobotClient::at_address(...)</code> is the preferred method to connect to a robot, and creates the channel itself. </p><dl class="exception"><dt>Exceptions</dt><dd>
+
+<p>Dials to a robot at the given URI address, using the provided dial options (or default options is none are provided). Additionally specifies that this dial is an initial connection attempt and so uses the initial connection options. In general, use of this method is discouraged. <code>RobotClient::at_address(...)</code> is the preferred method to connect to a robot, and creates the channel itself. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classviam_1_1sdk_1_1Exception.html" title="Defines an exception type for the SDK.">Exception</a></td><td>if it is unable to establish a connection to the provided URI within the given number of initial connection attempts </td></tr>
   </table>

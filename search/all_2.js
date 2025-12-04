@@ -31,7 +31,7 @@ var searchData=
   ['client_2ehpp_28',['client.hpp',['../client_8hpp.html',1,'']]],
   ['clientcontext_29',['ClientContext',['../classviam_1_1sdk_1_1ClientContext.html',1,'viam::sdk']]],
   ['clienthelper_30',['ClientHelper',['../classviam_1_1sdk_1_1ClientHelper.html',1,'viam::sdk']]],
-  ['close_31',['close',['../classviam_1_1sdk_1_1RobotClient.html#a282c43833b86045f77f14aff324d173f',1,'viam::sdk::RobotClient']]],
+  ['close_31',['close',['../classviam_1_1sdk_1_1RobotClient.html#a282c43833b86045f77f14aff324d173f',1,'viam::sdk::RobotClient::close()'],['../classviam_1_1sdk_1_1ViamChannel.html#a61b539518f4f236551938bc964fd9c21',1,'viam::sdk::ViamChannel::close()']]],
   ['collision_5fspecification_32',['collision_specification',['../structviam_1_1sdk_1_1Motion_1_1collision__specification.html',1,'viam::sdk::Motion']]],
   ['compassheading_33',['compassheading',['../structviam_1_1sdk_1_1MovementSensor_1_1compassheading.html',1,'viam::sdk::MovementSensor']]],
   ['component_34',['component',['../group__Arm.html',1,'Classes related to the Arm component.'],['../group__Base.html',1,'Classes related to the AudioIn component.'],['../group__AudioOut.html',1,'Classes related to the AudioOut component.'],['../group__Button.html',1,'Classes related to the Button component.'],['../group__Gantry.html',1,'Classes related to the Gantry component'],['../group__Gripper.html',1,'Classes related to the Gripper component.'],['../group__MovementSensor.html',1,'Classes related to the MovementSensor component.'],['../group__PoseTracker.html',1,'Classes related to the PoseTracker component.'],['../group__PowerSensor.html',1,'Classes related to the PowerSensor component.'],['../group__Sensor.html',1,'Classes related to the Sensor component.'],['../group__Servo.html',1,'Classes related to the Servo component.'],['../group__Switch.html',1,'Classes related to the Switch component.']]],
@@ -42,7 +42,7 @@ var searchData=
   ['construct_5fresource_39',['construct_resource',['../classviam_1_1sdk_1_1ModelRegistration.html#a4089b61b35308baec8f6bf3c116c82aa',1,'viam::sdk::ModelRegistration']]],
   ['coordinates_40',['coordinates',['../structviam_1_1sdk_1_1coordinates.html',1,'viam::sdk']]],
   ['create_5fresource_5fserver_41',['create_resource_server',['../classviam_1_1sdk_1_1ResourceServerRegistration.html#ac29e547bd2badcc93001233b9bd495cd',1,'viam::sdk::ResourceServerRegistration']]],
-  ['create_5frpc_5fclient_42',['create_rpc_client',['../classviam_1_1sdk_1_1ResourceClientRegistration.html#a2f791b6faca0f11dae7f7c03927b9d52',1,'viam::sdk::ResourceClientRegistration']]],
+  ['create_5frpc_5fclient_42',['create_rpc_client',['../classviam_1_1sdk_1_1ResourceClientRegistration.html#af331ade3a82a27c257031d1395ea390e',1,'viam::sdk::ResourceClientRegistration']]],
   ['creation_43',['Creation',['../classviam_1_1sdk_1_1Instance.html#a8a82a81310c4339011555fbe15689aa8',1,'viam::sdk::Instance']]],
   ['credentials_44',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk']]],
   ['current_45',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor::current'],['../classviam_1_1sdk_1_1Instance.html#a39639c15c58001c546d82db34c070f8e',1,'viam::sdk::Instance::current()']]]

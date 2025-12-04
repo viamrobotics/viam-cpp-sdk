@@ -109,9 +109,12 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>interface_type</b> =
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af047d30651e591ca071921ebfb6abed5" id="r_af047d30651e591ca071921ebfb6abed5"><td class="memItemLeft" align="right" valign="top"><a id="af047d30651e591ca071921ebfb6abed5" name="af047d30651e591ca071921ebfb6abed5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>AudioInClient</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, std::shared_ptr&lt; grpc::Channel &gt; channel)</td></tr>
-<tr class="separator:af047d30651e591ca071921ebfb6abed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6896d4585485bf8adc8cd2cbfcd7bd1a" id="r_a6896d4585485bf8adc8cd2cbfcd7bd1a"><td class="memItemLeft" align="right" valign="top"><a id="a6896d4585485bf8adc8cd2cbfcd7bd1a" name="a6896d4585485bf8adc8cd2cbfcd7bd1a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AudioInClient</b> (std::string <a class="el" href="classviam_1_1sdk_1_1Resource.html#a52ea612e31f5c09785b500bd2610d97d">name</a>, const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> &amp;channel)</td></tr>
+<tr class="separator:a6896d4585485bf8adc8cd2cbfcd7bd1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a265cc0fe3eca1d1b1397f1842d577990" id="r_a265cc0fe3eca1d1b1397f1842d577990"><td class="memItemLeft" align="right" valign="top"><a id="a265cc0fe3eca1d1b1397f1842d577990" name="a265cc0fe3eca1d1b1397f1842d577990"></a>
+const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>channel</b> () const</td></tr>
+<tr class="separator:a265cc0fe3eca1d1b1397f1842d577990"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a25e22de786045f51801db584f69a47" id="r_a7a25e22de786045f51801db584f69a47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a25e22de786045f51801db584f69a47">get_audio</a> (std::string const &amp;codec, std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1AudioIn_1_1audio__chunk.html">audio_chunk</a> &amp;&amp;chunk)&gt; const &amp;chunk_handler, double const &amp;duration_seconds, int64_t const &amp;previous_timestamp, const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:a7a25e22de786045f51801db584f69a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a stream of audio from the device until completed or cancelled.  <br /></td></tr>
 <tr class="separator:a7a25e22de786045f51801db584f69a47"><td class="memSeparator" colspan="2">&#160;</td></tr>

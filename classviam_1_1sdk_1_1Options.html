@@ -84,11 +84,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab797ee04caa229b0ff5c6452d813d35b" id="r_ab797ee04caa229b0ff5c6452d813d35b"><td class="memItemLeft" align="right" valign="top"><a id="ab797ee04caa229b0ff5c6452d813d35b" name="ab797ee04caa229b0ff5c6452d813d35b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Options</b> (unsigned int refresh_interval, boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1DialOptions.html">DialOptions</a> &gt; dial_options)</td></tr>
-<tr class="separator:ab797ee04caa229b0ff5c6452d813d35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3afa879b25a072e2c87e8fa9d0fcb7e" id="r_aa3afa879b25a072e2c87e8fa9d0fcb7e"><td class="memItemLeft" align="right" valign="top"><a id="aa3afa879b25a072e2c87e8fa9d0fcb7e" name="aa3afa879b25a072e2c87e8fa9d0fcb7e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Options</b> (unsigned int refresh_interval, boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">ViamChannel::Options</a> &gt; channel_options)</td></tr>
+<tr class="separator:aa3afa879b25a072e2c87e8fa9d0fcb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad723be92c75a7048991ae5bac67b2f65" id="r_ad723be92c75a7048991ae5bac67b2f65"><td class="memItemLeft" align="right" valign="top"><a id="ad723be92c75a7048991ae5bac67b2f65" name="ad723be92c75a7048991ae5bac67b2f65"></a>
 std::chrono::seconds&#160;</td><td class="memItemRight" valign="bottom"><b>refresh_interval</b> () const</td></tr>
+<tr class="memdesc:ad723be92c75a7048991ae5bac67b2f65"><td class="mdescLeft">&#160;</td><td class="mdescRight">How often to refresh the status/parts of the robot, in seconds. If set to 0, the robot will not automatically refresh. <br /></td></tr>
 <tr class="separator:ad723be92c75a7048991ae5bac67b2f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac571069760d3ecd885d485da725114b3" id="r_ac571069760d3ecd885d485da725114b3"><td class="memItemLeft" align="right" valign="top"><a id="ac571069760d3ecd885d485da725114b3" name="ac571069760d3ecd885d485da725114b3"></a>
 std::chrono::seconds&#160;</td><td class="memItemRight" valign="bottom"><b>check_every_interval</b> () const</td></tr>
@@ -96,18 +97,60 @@ std::chrono::seconds&#160;</td><td class="memItemRight" valign="bottom"><b>check
 <tr class="memitem:a0af62d6000e6fc7137aadece283004b9" id="r_a0af62d6000e6fc7137aadece283004b9"><td class="memItemLeft" align="right" valign="top"><a id="a0af62d6000e6fc7137aadece283004b9" name="a0af62d6000e6fc7137aadece283004b9"></a>
 std::chrono::seconds&#160;</td><td class="memItemRight" valign="bottom"><b>reconnect_every_interval</b> () const</td></tr>
 <tr class="separator:a0af62d6000e6fc7137aadece283004b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefa355bf65852076c18ac96bdbd72bdb" id="r_aefa355bf65852076c18ac96bdbd72bdb"><td class="memItemLeft" align="right" valign="top"><a id="aefa355bf65852076c18ac96bdbd72bdb" name="aefa355bf65852076c18ac96bdbd72bdb"></a>
-<a class="el" href="classviam_1_1sdk_1_1Options.html">Options</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set_check_every_interval</b> (std::chrono::seconds interval)</td></tr>
-<tr class="memdesc:aefa355bf65852076c18ac96bdbd72bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency (in seconds) to verify connectivity. <br /></td></tr>
+<tr class="memitem:aefa355bf65852076c18ac96bdbd72bdb" id="r_aefa355bf65852076c18ac96bdbd72bdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">Options</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefa355bf65852076c18ac96bdbd72bdb">set_check_every_interval</a> (std::chrono::seconds interval)</td></tr>
+<tr class="memdesc:aefa355bf65852076c18ac96bdbd72bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets how often to verify connectivity to the robot, in seconds. If set to 0, will not check, will default to the <code>reconnect_every_interval_</code> value. Defaults to 0.  <br /></td></tr>
 <tr class="separator:aefa355bf65852076c18ac96bdbd72bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7347429ae3d63b708b1cd27a356a6007" id="r_a7347429ae3d63b708b1cd27a356a6007"><td class="memItemLeft" align="right" valign="top"><a id="a7347429ae3d63b708b1cd27a356a6007" name="a7347429ae3d63b708b1cd27a356a6007"></a>
-<a class="el" href="classviam_1_1sdk_1_1Options.html">Options</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set_reconnect_every_interval</b> (std::chrono::seconds interval)</td></tr>
-<tr class="memdesc:a7347429ae3d63b708b1cd27a356a6007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency (in seconds) to attempt to reconnect when connectivity is lost. <br /></td></tr>
+<tr class="memitem:a7347429ae3d63b708b1cd27a356a6007" id="r_a7347429ae3d63b708b1cd27a356a6007"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">Options</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7347429ae3d63b708b1cd27a356a6007">set_reconnect_every_interval</a> (std::chrono::seconds interval)</td></tr>
+<tr class="memdesc:a7347429ae3d63b708b1cd27a356a6007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets how often to attempt to reconnect to the robot when disconnected. If set to 0, will not attempt to reconnect. Defaults to 0.  <br /></td></tr>
 <tr class="separator:a7347429ae3d63b708b1cd27a356a6007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9c42c30e7e6d0ecfb88caefa4a3b3dc" id="r_aa9c42c30e7e6d0ecfb88caefa4a3b3dc"><td class="memItemLeft" align="right" valign="top"><a id="aa9c42c30e7e6d0ecfb88caefa4a3b3dc" name="aa9c42c30e7e6d0ecfb88caefa4a3b3dc"></a>
-const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1DialOptions.html">DialOptions</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>dial_options</b> () const</td></tr>
-<tr class="separator:aa9c42c30e7e6d0ecfb88caefa4a3b3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02bd630f0624e0413b265cdeaf2cdc3a" id="r_a02bd630f0624e0413b265cdeaf2cdc3a"><td class="memItemLeft" align="right" valign="top"><a id="a02bd630f0624e0413b265cdeaf2cdc3a" name="a02bd630f0624e0413b265cdeaf2cdc3a"></a>
+const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">ViamChannel::Options</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>dial_options</b> () const</td></tr>
+<tr class="separator:a02bd630f0624e0413b265cdeaf2cdc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2a7a086dabc438808f64fa78ebe8c69" id="r_ab2a7a086dabc438808f64fa78ebe8c69"><td class="memItemLeft" align="right" valign="top"><a id="ab2a7a086dabc438808f64fa78ebe8c69" name="ab2a7a086dabc438808f64fa78ebe8c69"></a>
+const boost::optional&lt; <a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">ViamChannel::Options</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>channel_options</b> () const</td></tr>
+<tr class="separator:ab2a7a086dabc438808f64fa78ebe8c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aefa355bf65852076c18ac96bdbd72bdb" name="aefa355bf65852076c18ac96bdbd72bdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefa355bf65852076c18ac96bdbd72bdb">&#9670;&#160;</a></span>set_check_every_interval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">Options</a> &amp; viam::sdk::Options::set_check_every_interval </td>
+          <td>(</td>
+          <td class="paramtype">std::chrono::seconds</td>          <td class="paramname"><span class="paramname"><em>interval</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets how often to verify connectivity to the robot, in seconds. If set to 0, will not check, will default to the <code>reconnect_every_interval_</code> value. Defaults to 0. </p>
+<dl class="section note"><dt>Note</dt><dd>Setting to a non-zero value is useful in modules but may result in delays shutting down client code </dd></dl>
+
+</div>
+</div>
+<a id="a7347429ae3d63b708b1cd27a356a6007" name="a7347429ae3d63b708b1cd27a356a6007"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7347429ae3d63b708b1cd27a356a6007">&#9670;&#160;</a></span>set_reconnect_every_interval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classviam_1_1sdk_1_1ViamChannel_1_1Options.html">Options</a> &amp; viam::sdk::Options::set_reconnect_every_interval </td>
+          <td>(</td>
+          <td class="paramtype">std::chrono::seconds</td>          <td class="paramname"><span class="paramname"><em>interval</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets how often to attempt to reconnect to the robot when disconnected. If set to 0, will not attempt to reconnect. Defaults to 0. </p>
+<dl class="section note"><dt>Note</dt><dd>Setting to a non-zero value is useful in modules but may result in delays shutting down client code </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/viam/sdk/rpc/<a class="el" href="dial_8hpp_source.html">dial.hpp</a></li>
 </ul>

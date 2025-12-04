@@ -11,7 +11,7 @@ var searchData=
   ['operation_8',['operation',['../structviam_1_1sdk_1_1RobotClient_1_1operation.html',1,'viam::sdk::RobotClient']]],
   ['operator_3d_9',['operator=',['../classviam_1_1sdk_1_1ProtoValue.html#a5b6428bbf343bd04c1ad7c55697b4666',1,'viam::sdk::ProtoValue']]],
   ['operator_3d_3d_10',['operator==',['../classviam_1_1sdk_1_1ProtoValue.html#a743e5f6dc6e0f06f218f019c7fef7142',1,'viam::sdk::ProtoValue']]],
-  ['options_11',['Options',['../classviam_1_1sdk_1_1Options.html',1,'viam::sdk']]],
+  ['options_11',['Options',['../classviam_1_1sdk_1_1Options.html',1,'viam::sdk::Options'],['../classviam_1_1sdk_1_1ViamChannel_1_1Options.html',1,'viam::sdk::ViamChannel::Options']]],
   ['orientation_12',['orientation',['../structviam_1_1sdk_1_1MovementSensor_1_1orientation.html',1,'viam::sdk::MovementSensor']]],
   ['orientation_5fconstraint_13',['orientation_constraint',['../structviam_1_1sdk_1_1Motion_1_1orientation__constraint.html',1,'viam::sdk::Motion']]],
   ['orientation_5fvector_14',['orientation_vector',['../structviam_1_1sdk_1_1orientation__vector.html',1,'viam::sdk']]],

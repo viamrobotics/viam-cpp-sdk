@@ -44,5 +44,6 @@ var searchData=
   ['audioout_20component_41',['Classes related to the AudioOut component.',['../group__AudioOut.html',1,'']]],
   ['audiooutclient_42',['AudioOutClient',['../classviam_1_1sdk_1_1impl_1_1AudioOutClient.html',1,'viam::sdk::impl']]],
   ['audiooutserver_43',['AudioOutServer',['../classviam_1_1sdk_1_1impl_1_1AudioOutServer.html',1,'viam::sdk::impl']]],
-  ['axis_5fangles_44',['axis_angles',['../structviam_1_1sdk_1_1axis__angles.html',1,'viam::sdk']]]
+  ['auth_5ftoken_44',['auth_token',['../classviam_1_1sdk_1_1ViamChannel.html#a3718f87baf4f38b30728f14e99d96170',1,'viam::sdk::ViamChannel']]],
+  ['axis_5fangles_45',['axis_angles',['../structviam_1_1sdk_1_1axis__angles.html',1,'viam::sdk']]]
 ];
