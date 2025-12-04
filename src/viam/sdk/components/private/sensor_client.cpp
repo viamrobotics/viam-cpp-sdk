@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/sensor_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <memory>
 #include <string>
 #include <utility>
@@ -16,10 +18,10 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
-SensorClient::SensorClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+SensorClient::SensorClient(std::string name, const ViamChannel& channel)
     : Sensor(std::move(name)),
-      stub_(viam::component::sensor::v1::SensorService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::sensor::v1::SensorService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 using namespace viam::common::v1;
 

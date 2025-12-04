@@ -22,12 +22,12 @@ int main() {
     Instance inst;
 
     const char* uri = "<your robot URI here>";
-    DialOptions dial_options;
+    ViamChannel::Options channel_options;
     std::string type = "<your authentication type>";
     std::string payload = "<your authentication payload>";
     Credentials credentials(type, payload);
-    dial_options.set_credentials(credentials);
-    boost::optional<DialOptions> opts(dial_options);
+    channel_options.set_credentials(credentials);
+    boost::optional<ViamChannel::Options> opts(channel_options);
     std::string address(uri);
     Options options(1, opts);
 
