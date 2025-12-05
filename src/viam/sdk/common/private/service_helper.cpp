@@ -19,6 +19,10 @@ namespace sdk {
     return fail(::grpc::INVALID_ARGUMENT, "Called without a `request` object");
 }
 
+::grpc::Status ServiceHelperBase::failNoContext() const noexcept {
+    return fail(::grpc::INVALID_ARGUMENT, "Called without a `context` object");
+}
+
 ::grpc::Status ServiceHelperBase::failNoResource(const std::string& name) const noexcept try {
     std::ostringstream stream;
     stream << "Failed to find resource `" << name << "`";

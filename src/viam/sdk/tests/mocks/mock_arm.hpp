@@ -37,6 +37,7 @@ class MockArm : public sdk::Arm {
     sdk::Arm::MoveOptions move_opts;
     bool peek_stop_called;
     sdk::ProtoStruct peek_command;
+    std::vector<std::string> viam_client_metadata;
 };
 
 }  // namespace arm

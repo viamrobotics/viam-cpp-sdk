@@ -59,6 +59,7 @@ BOOST_AUTO_TEST_CASE(thru_joint_positions) {
         BOOST_CHECK_EQUAL(mock->move_thru_positions, positions);
         BOOST_CHECK_EQUAL(mock->move_opts.max_vel_degs_per_sec, 1.0);
         BOOST_CHECK_EQUAL(mock->move_opts.max_acc_degs_per_sec2, 2.0);
+        BOOST_CHECK_GT(mock->viam_client_metadata.size(), 0);
     });
 }
 
