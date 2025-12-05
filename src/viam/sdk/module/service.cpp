@@ -210,27 +210,27 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const viam::module::v1::HandlerMap hm = to_proto(parent.module_->handles());
         *response->mutable_handlermap() = hm;
 
-        // // Doing this with a string_ref is more verbose but I think more readable than having to
-        // use
-        // // strcmp below
-        // boost::string_ref no_module_parent;
+        // Doing this with a string_ref is more verbose but I think more readable than having to
+        use
+            // strcmp below
+            boost::string_ref no_module_parent;
 
-        // if (const char* envp =
-        //         std::getenv("VIAM_NO_MODULE_PARENT")) {  // NOLINT(concurrency-mt-unsafe)
-        //     no_module_parent = envp;
-        // }
-
-        // if (no_module_parent != "true") {
-        auto new_parent_addr = parent.grpc_conn_protocol_ + request->parent_address();
-        if (parent.parent_addr_ != new_parent_addr) {
-            parent.parent_addr_ = std::move(new_parent_addr);
-            Options opts{0, boost::none};
-            opts.set_check_every_interval(std::chrono::seconds{5})
-                .set_reconnect_every_interval(std::chrono::seconds{1});
-            parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
-            parent.parent_->connect_logging();
+        if (const char* envp =
+                std::getenv("VIAM_NO_MODULE_PARENT")) {  // NOLINT(concurrency-mt-unsafe)
+            no_module_parent = envp;
         }
-        // }
+
+        if (no_module_parent != "true") {
+            auto new_parent_addr = parent.grpc_conn_protocol_ + request->parent_address();
+            if (parent.parent_addr_ != new_parent_addr) {
+                parent.parent_addr_ = std::move(new_parent_addr);
+                Options opts{0, boost::none};
+                opts.set_check_every_interval(std::chrono::seconds{5})
+                    .set_reconnect_every_interval(std::chrono::seconds{1});
+                parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
+                parent.parent_->connect_logging();
+            }
+        }
 
         response->set_ready(parent.module_->ready());
         return grpc::Status();
