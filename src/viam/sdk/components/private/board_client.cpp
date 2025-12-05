@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/board_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <algorithm>
 #include <memory>
 #include <stdexcept>
@@ -49,10 +51,10 @@ viam::component::board::v1::PowerMode to_proto(Board::power_mode power_mode) {
     }
 }
 
-BoardClient::BoardClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+BoardClient::BoardClient(std::string name, const ViamChannel& channel)
     : Board(std::move(name)),
-      stub_(viam::component::board::v1::BoardService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::board::v1::BoardService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 void BoardClient::set_gpio(const std::string& pin, bool high, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::SetGPIO)

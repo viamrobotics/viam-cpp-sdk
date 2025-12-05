@@ -16,8 +16,7 @@
 
 #include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
 
-#include <grpcpp/channel.h>
-
+#include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/services/mlmodel.hpp>
 
 namespace viam {
@@ -34,7 +33,11 @@ class MLModelServiceClient : public MLModelService {
     using interface_type = MLModelService;
     using service_type = viam::service::mlmodel::v1::MLModelService;
 
-    MLModelServiceClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    MLModelServiceClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
                                               const ProtoStruct& extra) override;
@@ -53,8 +56,8 @@ class MLModelServiceClient : public MLModelService {
     using MLModelService::metadata;
 
    private:
-    std::shared_ptr<grpc::Channel> channel_;
     std::unique_ptr<service_type::StubInterface> stub_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

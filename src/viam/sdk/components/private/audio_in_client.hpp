@@ -3,11 +3,10 @@
 /// @brief Implements a gRPC client for the `AudioIn` component
 #pragma once
 
-#include <grpcpp/channel.h>
-
 #include <viam/api/component/audioin/v1/audioin.grpc.pb.h>
 
 #include <viam/sdk/components/audio_in.hpp>
+#include <viam/sdk/rpc/dial.hpp>
 
 namespace viam {
 namespace sdk {
@@ -19,7 +18,11 @@ namespace impl {
 class AudioInClient : public AudioIn {
    public:
     using interface_type = AudioIn;
-    AudioInClient(std::string name, std::shared_ptr<grpc::Channel> channel);
+    AudioInClient(std::string name, const ViamChannel& channel);
+
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
 
     void get_audio(std::string const& codec,
                    std::function<bool(audio_chunk&& chunk)> const& chunk_handler,
@@ -38,7 +41,7 @@ class AudioInClient : public AudioIn {
    private:
     using StubType = viam::component::audioin::v1::AudioInService::StubInterface;
     std::unique_ptr<StubType> stub_;
-    std::shared_ptr<grpc::Channel> channel_;
+    const ViamChannel* channel_;
 };
 
 }  // namespace impl

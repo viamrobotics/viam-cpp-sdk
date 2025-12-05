@@ -92,11 +92,11 @@ void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     // Create a resource-specific client to the mock over an established
     // in-process gRPC channel.
     auto test_server = TestServer(server);
-    auto grpc_channel = test_server.grpc_in_process_channel();
+    auto channel = sdk::ViamChannel(test_server.grpc_in_process_channel());
 
     auto resource_client = sdk::Registry::get()
                                .lookup_resource_client(API::get<ResourceType>())
-                               ->create_rpc_client(mock->name(), std::move(grpc_channel));
+                               ->create_rpc_client(mock->name(), channel);
 
     // Run the passed-in test case on the created stack and give access to the
     // created resource-specific client.

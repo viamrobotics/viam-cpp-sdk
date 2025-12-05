@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/encoder_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <memory>
 #include <string>
 #include <utility>
@@ -45,10 +47,10 @@ Encoder::properties from_proto(const viam::component::encoder::v1::GetProperties
     return properties;
 }
 
-EncoderClient::EncoderClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+EncoderClient::EncoderClient(std::string name, const ViamChannel& channel)
     : Encoder(std::move(name)),
-      stub_(viam::component::encoder::v1::EncoderService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::encoder::v1::EncoderService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 Encoder::position EncoderClient::get_position(const ProtoStruct& extra,
                                               position_type position_type) {

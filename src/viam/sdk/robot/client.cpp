@@ -89,7 +89,8 @@ bool operator==(const RobotClient::operation& lhs, const RobotClient::operation&
 }
 
 struct RobotClient::impl {
-    impl(std::unique_ptr<RobotService::Stub> stub) : stub(std::move(stub)) {}
+    impl(std::unique_ptr<RobotService::Stub> stub, ViamChannel& channel)
+        : stub(std::move(stub)), channel_(&channel) {}
 
     ~impl() {
         if (log_sink) {
@@ -107,7 +108,12 @@ struct RobotClient::impl {
         return make_client_helper(self.get(), *self->stub, m);
     }
 
+    const ViamChannel& channel() const {
+        return *channel_;
+    }
+
     std::unique_ptr<RobotService::Stub> stub;
+    const ViamChannel* channel_;
 
     // See doc comment for RobotClient::connect_logging. This pointer is non-null and installed as a
     // sink only for apps being run by viam-server as a module.
@@ -207,7 +213,7 @@ void RobotClient::refresh() {
         if (rs) {
             try {
                 const std::shared_ptr<Resource> rpc_client =
-                    rs->create_rpc_client(name.name(), viam_channel_.channel());
+                    rs->create_rpc_client(name.name(), viam_channel_);
                 const Name name_({name.namespace_(), name.type(), name.subtype()}, "", name.name());
                 new_resources.emplace(name_, rpc_client);
             } catch (const std::exception& exc) {
@@ -277,9 +283,9 @@ void RobotClient::check_connection() {
 
         for (int i = 0; i < 3; ++i) {
             try {
-                auto channel = ViamChannel::dial(uri, {});
-                impl_ =
-                    std::make_unique<RobotClient::impl>(RobotService::NewStub(channel.channel()));
+                viam_channel_ = ViamChannel::dial(uri, {});
+                impl_ = std::make_unique<RobotClient::impl>(
+                    RobotService::NewStub(viam_channel_.channel()), viam_channel_);
                 refresh();
                 connected = true;
             } catch (const std::exception& e) {
@@ -295,7 +301,8 @@ void RobotClient::check_connection() {
 
 RobotClient::RobotClient(ViamChannel channel)
     : viam_channel_(std::move(channel)),
-      impl_(std::make_unique<impl>(RobotService::NewStub(viam_channel_.channel()))) {}
+      impl_(std::make_unique<impl>(RobotService::NewStub(viam_channel_.channel()), viam_channel_)) {
+}
 
 std::vector<Name> RobotClient::resource_names() const {
     const std::lock_guard<std::mutex> lock(lock_);
@@ -355,8 +362,8 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,
 std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
                                                      const Options& options) {
     const char* uri = address.c_str();
-    auto robot =
-        RobotClient::with_channel(ViamChannel::dial_initial(uri, options.dial_options()), options);
+    auto robot = RobotClient::with_channel(
+        ViamChannel::dial_initial(uri, options.channel_options()), options);
 
     return robot;
 };
@@ -364,9 +371,9 @@ std::shared_ptr<RobotClient> RobotClient::at_address(const std::string& address,
 std::shared_ptr<RobotClient> RobotClient::at_local_socket(const std::string& address,
                                                           const Options& options) {
     // TODO (RSDK-10720) - refactor/replace `at_local_socket`
-    auto robot = RobotClient::with_channel(
-        ViamChannel(sdk::impl::create_viam_channel(address, grpc::InsecureChannelCredentials())),
-        options);
+    auto robot = RobotClient::with_channel(ViamChannel(sdk::impl::create_viam_grpc_channel(
+                                               address, grpc::InsecureChannelCredentials())),
+                                           options);
 
     return robot;
 };

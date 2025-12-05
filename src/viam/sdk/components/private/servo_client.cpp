@@ -1,5 +1,7 @@
 #include <viam/sdk/components/private/servo_client.hpp>
 
+#include <grpcpp/channel.h>
+
 #include <algorithm>
 #include <memory>
 #include <stdexcept>
@@ -25,10 +27,10 @@ Servo::position from_proto(const viam::component::servo::v1::GetPositionResponse
     return proto.position_deg();
 }
 
-ServoClient::ServoClient(std::string name, std::shared_ptr<grpc::Channel> channel)
+ServoClient::ServoClient(std::string name, const ViamChannel& channel)
     : Servo(std::move(name)),
-      stub_(viam::component::servo::v1::ServoService::NewStub(channel)),
-      channel_(std::move(channel)) {}
+      stub_(viam::component::servo::v1::ServoService::NewStub(channel.channel())),
+      channel_(&channel) {}
 
 void ServoClient::move(uint32_t angle_deg, const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::Move)
