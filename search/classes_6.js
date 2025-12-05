@@ -19,5 +19,6 @@ var searchData=
   ['gripper_16',['Gripper',['../classviam_1_1sdk_1_1Gripper.html',1,'viam::sdk']]],
   ['gripperclient_17',['GripperClient',['../classviam_1_1sdk_1_1impl_1_1GripperClient.html',1,'viam::sdk::impl']]],
   ['gripperserver_18',['GripperServer',['../classviam_1_1sdk_1_1impl_1_1GripperServer.html',1,'viam::sdk::impl']]],
-  ['grpcexception_19',['GRPCException',['../classviam_1_1sdk_1_1GRPCException.html',1,'viam::sdk']]]
+  ['grpccontextobserver_19',['GrpcContextObserver',['../classviam_1_1sdk_1_1GrpcContextObserver.html',1,'viam::sdk']]],
+  ['grpcexception_20',['GRPCException',['../classviam_1_1sdk_1_1GRPCException.html',1,'viam::sdk']]]
 ];

@@ -8,5 +8,6 @@ var searchData=
   ['generic_5fserver_2ehpp_5',['generic_server.hpp',['../components_2private_2generic__server_8hpp.html',1,'']]],
   ['gripper_2ehpp_6',['gripper.hpp',['../gripper_8hpp.html',1,'']]],
   ['gripper_5fclient_2ehpp_7',['gripper_client.hpp',['../gripper__client_8hpp.html',1,'']]],
-  ['gripper_5fserver_2ehpp_8',['gripper_server.hpp',['../gripper__server_8hpp.html',1,'']]]
+  ['gripper_5fserver_2ehpp_8',['gripper_server.hpp',['../gripper__server_8hpp.html',1,'']]],
+  ['grpc_5fcontext_5fobserver_2ehpp_9',['grpc_context_observer.hpp',['../grpc__context__observer_8hpp.html',1,'']]]
 ];

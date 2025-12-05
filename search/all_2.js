@@ -40,10 +40,11 @@ var searchData=
   ['connectivity_20and_20webrtc_20functionality_37',['A Note on Connectivity and webRTC Functionality',['../index.html#autotoc_md6',1,'']]],
   ['constraints_38',['constraints',['../structviam_1_1sdk_1_1Motion_1_1constraints.html',1,'viam::sdk::Motion']]],
   ['construct_5fresource_39',['construct_resource',['../classviam_1_1sdk_1_1ModelRegistration.html#a4089b61b35308baec8f6bf3c116c82aa',1,'viam::sdk::ModelRegistration']]],
-  ['coordinates_40',['coordinates',['../structviam_1_1sdk_1_1coordinates.html',1,'viam::sdk']]],
-  ['create_5fresource_5fserver_41',['create_resource_server',['../classviam_1_1sdk_1_1ResourceServerRegistration.html#ac29e547bd2badcc93001233b9bd495cd',1,'viam::sdk::ResourceServerRegistration']]],
-  ['create_5frpc_5fclient_42',['create_rpc_client',['../classviam_1_1sdk_1_1ResourceClientRegistration.html#af331ade3a82a27c257031d1395ea390e',1,'viam::sdk::ResourceClientRegistration']]],
-  ['creation_43',['Creation',['../classviam_1_1sdk_1_1Instance.html#a8a82a81310c4339011555fbe15689aa8',1,'viam::sdk::Instance']]],
-  ['credentials_44',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk']]],
-  ['current_45',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor::current'],['../classviam_1_1sdk_1_1Instance.html#a39639c15c58001c546d82db34c070f8e',1,'viam::sdk::Instance::current()']]]
+  ['context_40',['context',['../classviam_1_1sdk_1_1GrpcContextObserver.html#ab59947533087c2501750b7fb54a20a27',1,'viam::sdk::GrpcContextObserver']]],
+  ['coordinates_41',['coordinates',['../structviam_1_1sdk_1_1coordinates.html',1,'viam::sdk']]],
+  ['create_5fresource_5fserver_42',['create_resource_server',['../classviam_1_1sdk_1_1ResourceServerRegistration.html#ac29e547bd2badcc93001233b9bd495cd',1,'viam::sdk::ResourceServerRegistration']]],
+  ['create_5frpc_5fclient_43',['create_rpc_client',['../classviam_1_1sdk_1_1ResourceClientRegistration.html#af331ade3a82a27c257031d1395ea390e',1,'viam::sdk::ResourceClientRegistration']]],
+  ['creation_44',['Creation',['../classviam_1_1sdk_1_1Instance.html#a8a82a81310c4339011555fbe15689aa8',1,'viam::sdk::Instance']]],
+  ['credentials_45',['Credentials',['../classviam_1_1sdk_1_1Credentials.html',1,'viam::sdk']]],
+  ['current_46',['current',['../structviam_1_1sdk_1_1PowerSensor_1_1current.html',1,'viam::sdk::PowerSensor::current'],['../classviam_1_1sdk_1_1Instance.html#a39639c15c58001c546d82db34c070f8e',1,'viam::sdk::Instance::current()'],['../classviam_1_1sdk_1_1GrpcContextObserver.html#a4dd8729ae94434729b40194f305e4927',1,'viam::sdk::GrpcContextObserver::current()']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: Class Members</title>
+<title>Viam C++ SDK: viam::sdk::GrpcContextObserver::Enable Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,7 +48,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -70,20 +69,36 @@ $(function() {
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1GrpcContextObserver.html">GrpcContextObserver</a></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1GrpcContextObserver_1_1Enable.html">Enable</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classviam_1_1sdk_1_1GrpcContextObserver_1_1Enable-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">viam::sdk::GrpcContextObserver::Enable Class Reference</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
-<h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
-<li>camera&#160;:&#160;<a class="el" href="structviam_1_1sdk_1_1obstacle__detector.html#a5a13275f9db9504b50843192ed740c22">viam::sdk::obstacle_detector</a></li>
-<li>cancel_operation()&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1RobotClient.html#a5f95ba72f3142fed2b648c93ad92f3c0">viam::sdk::RobotClient</a></li>
-<li>close()&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1RobotClient.html#a282c43833b86045f77f14aff324d173f">viam::sdk::RobotClient</a>, <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html#a61b539518f4f236551938bc964fd9c21">viam::sdk::ViamChannel</a></li>
-<li>component_name&#160;:&#160;<a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan.html#a62bc1d9a42ed4a7f09eba4d377633403">viam::sdk::Motion::plan</a>, <a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#a938900876ca30090794822e7ee1eb178">viam::sdk::Motion::plan_status_with_id</a></li>
-<li>construct_resource&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1ModelRegistration.html#a4089b61b35308baec8f6bf3c116c82aa">viam::sdk::ModelRegistration</a></li>
-<li>context()&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1GrpcContextObserver.html#ab59947533087c2501750b7fb54a20a27">viam::sdk::GrpcContextObserver</a></li>
-<li>create_resource_server()&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1ResourceServerRegistration.html#ac29e547bd2badcc93001233b9bd495cd">viam::sdk::ResourceServerRegistration</a></li>
-<li>create_rpc_client()&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1ResourceClientRegistration.html#af331ade3a82a27c257031d1395ea390e">viam::sdk::ResourceClientRegistration</a></li>
-<li>Creation&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1Instance.html#a8a82a81310c4339011555fbe15689aa8">viam::sdk::Instance</a></li>
-<li>current()&#160;:&#160;<a class="el" href="classviam_1_1sdk_1_1GrpcContextObserver.html#a4dd8729ae94434729b40194f305e4927">viam::sdk::GrpcContextObserver</a>, <a class="el" href="classviam_1_1sdk_1_1Instance.html#a39639c15c58001c546d82db34c070f8e">viam::sdk::Instance</a></li>
+<p>RAII helper for activating the gRPC context observer for the current thread.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="grpc__context__observer_8hpp_source.html">grpc_context_observer.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6d8603532d4b9a7d03d87541f0a34b0d" id="r_a6d8603532d4b9a7d03d87541f0a34b0d"><td class="memItemLeft" align="right" valign="top"><a id="a6d8603532d4b9a7d03d87541f0a34b0d" name="a6d8603532d4b9a7d03d87541f0a34b0d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Enable</b> (const GrpcServerContext &amp;<a class="el" href="classviam_1_1sdk_1_1GrpcContextObserver.html#ab59947533087c2501750b7fb54a20a27">context</a>)</td></tr>
+<tr class="separator:a6d8603532d4b9a7d03d87541f0a34b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>RAII helper for activating the gRPC context observer for the current thread. </p>
+<p>Instances of this class establish the thread-local context observer when constructed and automatically remove it when destroyed. This ensures proper cleanup even in the presence of exceptions.</p>
+<dl class="section note"><dt>Note</dt><dd>This class is for internal SDK use only. Users of the SDK do not need to instantiate this class directly. </dd></dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/viam/sdk/rpc/private/<a class="el" href="private_2grpc__context__observer_8hpp_source.html">grpc_context_observer.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

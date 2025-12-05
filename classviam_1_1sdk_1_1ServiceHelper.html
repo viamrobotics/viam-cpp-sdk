@@ -95,9 +95,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ade4fdbad63b1a2eb21e52b123e014f54" id="r_ade4fdbad63b1a2eb21e52b123e014f54"><td class="memItemLeft" align="right" valign="top"><a id="ade4fdbad63b1a2eb21e52b123e014f54" name="ade4fdbad63b1a2eb21e52b123e014f54"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ServiceHelper</b> (const char *method, <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> *rs, RequestType *request) noexcept</td></tr>
-<tr class="separator:ade4fdbad63b1a2eb21e52b123e014f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6afd1ed6378de08e19804544847f58c" id="r_ae6afd1ed6378de08e19804544847f58c"><td class="memItemLeft" align="right" valign="top"><a id="ae6afd1ed6378de08e19804544847f58c" name="ae6afd1ed6378de08e19804544847f58c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ServiceHelper</b> (const char *method, <a class="el" href="classviam_1_1sdk_1_1ResourceServer.html">ResourceServer</a> *rs, const GrpcServerContext *context, RequestType *request) noexcept</td></tr>
+<tr class="separator:ae6afd1ed6378de08e19804544847f58c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1893edd32d10ce84889afde03e66d1cd" id="r_a1893edd32d10ce84889afde03e66d1cd"><td class="memTemplParams" colspan="2"><a id="a1893edd32d10ce84889afde03e66d1cd" name="a1893edd32d10ce84889afde03e66d1cd"></a>
 template&lt;typename Callable &gt; </td></tr>
 <tr class="memitem:a1893edd32d10ce84889afde03e66d1cd"><td class="memTemplItemLeft" align="right" valign="top">::grpc::Status&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (Callable &amp;&amp;callable) const noexcept</td></tr>
@@ -109,6 +109,9 @@ auto&#160;</td><td class="memItemRight" valign="bottom"><b>getExtra</b> () const
 <tr class="memitem:accbacad10bf454fbe9ed00683198d57a inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase" id="r_accbacad10bf454fbe9ed00683198d57a"><td class="memItemLeft" align="right" valign="top">
 ::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>fail</b> (::grpc::StatusCode code, const char *message) const noexcept</td></tr>
 <tr class="separator:accbacad10bf454fbe9ed00683198d57a inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87cb27d4a0d13cf377ceed89edf4a17a inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase" id="r_a87cb27d4a0d13cf377ceed89edf4a17a"><td class="memItemLeft" align="right" valign="top">
+::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failNoContext</b> () const noexcept</td></tr>
+<tr class="separator:a87cb27d4a0d13cf377ceed89edf4a17a inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5602fa549f6a90e45767777b75013d0 inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase" id="r_ab5602fa549f6a90e45767777b75013d0"><td class="memItemLeft" align="right" valign="top">
 ::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>failNoRequest</b> () const noexcept</td></tr>
 <tr class="separator:ab5602fa549f6a90e45767777b75013d0 inherit pub_methods_classviam_1_1sdk_1_1ServiceHelperBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
