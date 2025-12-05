@@ -3,6 +3,9 @@
 /// @brief Provides access to gRPC server context information during request processing.
 #pragma once
 
+#include <string>
+#include <vector>
+
 #include <boost/optional/optional.hpp>
 
 #include <viam/sdk/common/grpc_fwd.hpp>
