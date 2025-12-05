@@ -99,14 +99,14 @@ class ServiceHelper : public ServiceHelperBase {
     }
 
     ResourceServer* rs_;
-    const ::grpc::ServerContext* context_;
+    const GrpcServerContext* context_;
     RequestType* request_;
 };
 
 template <typename ServiceType, typename RequestType>
 auto make_service_helper(const char* method,
                          ResourceServer* rs,
-                         ::grpc::ServerContext* context,
+                         GrpcServerContext* context,
                          RequestType* request) {
     return ServiceHelper<ServiceType, RequestType>{method, rs, context, request};
 }
