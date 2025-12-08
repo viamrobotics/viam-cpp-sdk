@@ -4,7 +4,10 @@
 
 #include <grpcpp/support/status.h>
 
+#include <viam/sdk/common/grpc_fwd.hpp>
+
 #include <viam/sdk/resource/resource_server_base.hpp>
+#include <viam/sdk/rpc/private/grpc_context_observer.hpp>
 
 namespace viam {
 namespace sdk {
@@ -12,6 +15,8 @@ namespace sdk {
 class ServiceHelperBase {
    public:
     ::grpc::Status fail(::grpc::StatusCode code, const char* message) const noexcept;
+
+    ::grpc::Status failNoContext() const noexcept;
 
     ::grpc::Status failNoRequest() const noexcept;
 
@@ -31,11 +36,17 @@ class ServiceHelperBase {
 template <typename ServiceType, typename RequestType>
 class ServiceHelper : public ServiceHelperBase {
    public:
-    ServiceHelper(const char* method, ResourceServer* rs, RequestType* request) noexcept
-        : ServiceHelperBase{method}, rs_{rs}, request_{request} {};
+    ServiceHelper(const char* method,
+                  ResourceServer* rs,
+                  const GrpcServerContext* context,
+                  RequestType* request) noexcept
+        : ServiceHelperBase{method}, rs_{rs}, context_{context}, request_{request} {};
 
     template <typename Callable>
     ::grpc::Status operator()(Callable&& callable) const noexcept try {
+        if (!context_) {
+            return failNoContext();
+        }
         if (!request_) {
             return failNoRequest();
         }
@@ -43,6 +54,7 @@ class ServiceHelper : public ServiceHelperBase {
         if (!resource) {
             return failNoResource(request_->name());
         }
+        const GrpcContextObserver::Enable enable{*context_};
         return invoke_(std::forward<Callable>(callable), std::move(resource));
     } catch (const std::exception& xcp) {
         return failStdException(xcp);
@@ -87,12 +99,16 @@ class ServiceHelper : public ServiceHelperBase {
     }
 
     ResourceServer* rs_;
+    const GrpcServerContext* context_;
     RequestType* request_;
 };
 
 template <typename ServiceType, typename RequestType>
-auto make_service_helper(const char* method, ResourceServer* rs, RequestType* request) {
-    return ServiceHelper<ServiceType, RequestType>{method, rs, request};
+auto make_service_helper(const char* method,
+                         ResourceServer* rs,
+                         GrpcServerContext* context,
+                         RequestType* request) {
+    return ServiceHelper<ServiceType, RequestType>{method, rs, context, request};
 }
 
 }  // namespace sdk

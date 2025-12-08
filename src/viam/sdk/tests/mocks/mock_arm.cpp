@@ -1,4 +1,5 @@
 #include "viam/sdk/common/mesh.hpp"
+#include "viam/sdk/rpc/grpc_context_observer.hpp"
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 
 #include "mock_arm.hpp"
@@ -40,6 +41,10 @@ void MockArm::move_to_joint_positions(const std::vector<double>& positions,
 void MockArm::move_through_joint_positions(const std::vector<std::vector<double>>& positions,
                                            const Arm::MoveOptions& opts,
                                            const sdk::ProtoStruct&) {
+    const auto& observer = GrpcContextObserver::current();
+    if (observer) {
+        viam_client_metadata = observer->get_client_metadata_field_values("viam_client");
+    }
     move_thru_positions = positions;
     move_opts = opts;
 }

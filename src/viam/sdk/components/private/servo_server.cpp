@@ -13,48 +13,48 @@ namespace impl {
 ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
 
-::grpc::Status ServoServer::Move(::grpc::ServerContext*,
+::grpc::Status ServoServer::Move(::grpc::ServerContext* context,
                                  const ::viam::component::servo::v1::MoveRequest* request,
                                  ::viam::component::servo::v1::MoveResponse*) noexcept {
-    return make_service_helper<Servo>("ServoServer::Move", this, request)(
+    return make_service_helper<Servo>("ServoServer::Move", this, context, request)(
         [&](auto& helper, auto& servo) { servo->move(request->angle_deg(), helper.getExtra()); });
 }
 
 ::grpc::Status ServoServer::GetPosition(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::servo::v1::GetPositionRequest* request,
     ::viam::component::servo::v1::GetPositionResponse* response) noexcept {
     return make_service_helper<Servo>(
-        "ServoServer::GetPosition", this, request)([&](auto& helper, auto& servo) {
+        "ServoServer::GetPosition", this, context, request)([&](auto& helper, auto& servo) {
         const Servo::position result = servo->get_position(helper.getExtra());
         response->set_position_deg(result);
     });
 }
 
-::grpc::Status ServoServer::Stop(::grpc::ServerContext*,
+::grpc::Status ServoServer::Stop(::grpc::ServerContext* context,
                                  const ::viam::component::servo::v1::StopRequest* request,
                                  ::viam::component::servo::v1::StopResponse*) noexcept {
-    return make_service_helper<Servo>("ServoServer::Stop", this, request)(
+    return make_service_helper<Servo>("ServoServer::Stop", this, context, request)(
         [&](auto& helper, auto& servo) { servo->stop(helper.getExtra()); });
 }
 
 ::grpc::Status ServoServer::IsMoving(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::component::servo::v1::IsMovingRequest* request,
     ::viam::component::servo::v1::IsMovingResponse* response) noexcept {
     return make_service_helper<Servo>(
-        "ServoServer::IsMoving", this, request)([&](auto&, auto& servo) {
+        "ServoServer::IsMoving", this, context, request)([&](auto&, auto& servo) {
         const bool result = servo->is_moving();
         response->set_is_moving(result);
     });
 }
 
 ::grpc::Status ServoServer::GetGeometries(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<Servo>(
-        "ServoServer::GetGeometries", this, request)([&](auto& helper, auto& servo) {
+        "ServoServer::GetGeometries", this, context, request)([&](auto& helper, auto& servo) {
         const std::vector<GeometryConfig> geometries = servo->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
             *response->mutable_geometries()->Add() = to_proto(geometry);
@@ -62,11 +62,11 @@ ServoServer::ServoServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status ServoServer::DoCommand(grpc::ServerContext*,
+::grpc::Status ServoServer::DoCommand(grpc::ServerContext* context,
                                       const viam::common::v1::DoCommandRequest* request,
                                       viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Servo>(
-        "ServoServer::GetGeometries", this, request)([&](auto&, auto& servo) {
+        "ServoServer::GetGeometries", this, context, request)([&](auto&, auto& servo) {
         const ProtoStruct result = servo->do_command(from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
     });

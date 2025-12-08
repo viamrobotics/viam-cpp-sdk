@@ -147,6 +147,7 @@ target_sources(viamsdk
     resource/stoppable.cpp
     robot/client.cpp
     rpc/dial.cpp
+    rpc/grpc_context_observer.cpp
     rpc/server.cpp
     rpc/private/viam_grpc_channel.cpp
     services/discovery.cpp
@@ -223,6 +224,7 @@ target_sources(viamsdk
       ../../viam/sdk/resource/stoppable.hpp
       ../../viam/sdk/robot/client.hpp
       ../../viam/sdk/rpc/dial.hpp
+      ../../viam/sdk/rpc/grpc_context_observer.hpp
       ../../viam/sdk/rpc/message_sizes.hpp
       ../../viam/sdk/rpc/server.hpp
       ../../viam/sdk/services/discovery.hpp

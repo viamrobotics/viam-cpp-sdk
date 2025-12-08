@@ -17,7 +17,7 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
     const ::viam::component::audioin::v1::GetAudioRequest* request,
     ::grpc::ServerWriter<::viam::component::audioin::v1::GetAudioResponse>* writer) noexcept {
     make_service_helper<AudioIn>(
-        "AudioInServer::GetAudio", this, request)([&](auto& helper, auto& audio_in) {
+        "AudioInServer::GetAudio", this, context, request)([&](auto& helper, auto& audio_in) {
         const std::string request_id = boost::uuids::to_string(boost::uuids::random_generator()());
         auto writeChunk = [writer, context, request_id](AudioIn::audio_chunk&& chunk) {
             if (context->IsCancelled()) {
@@ -58,22 +58,22 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
     return ::grpc::Status();
 }
 
-::grpc::Status AudioInServer::DoCommand(::grpc::ServerContext*,
+::grpc::Status AudioInServer::DoCommand(::grpc::ServerContext* context,
                                         const ::viam::common::v1::DoCommandRequest* request,
                                         ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<AudioIn>(
-        "AudioInServer::DoCommand", this, request)([&](auto&, auto& audio_in) {
+        "AudioInServer::DoCommand", this, context, request)([&](auto&, auto& audio_in) {
         const ProtoStruct result = audio_in->do_command(from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
     });
 }
 
 ::grpc::Status AudioInServer::GetProperties(
-    grpc::ServerContext*,
+    grpc::ServerContext* context,
     const viam::common::v1::GetPropertiesRequest* request,
     viam::common::v1::GetPropertiesResponse* response) noexcept {
     return make_service_helper<AudioIn>(
-        "AudioInServer::GetProperties", this, request)([&](auto& helper, auto& audio_in) {
+        "AudioInServer::GetProperties", this, context, request)([&](auto& helper, auto& audio_in) {
         const audio_properties result = audio_in->get_properties(helper.getExtra());
         for (const auto& codec : result.supported_codecs) {
             response->add_supported_codecs(codec);
@@ -85,11 +85,11 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status AudioInServer::GetGeometries(
-    ::grpc::ServerContext*,
+    ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,
     ::viam::common::v1::GetGeometriesResponse* response) noexcept {
     return make_service_helper<AudioIn>(
-        "AudioInServer::GetGeometries", this, request)([&](auto& helper, auto& audio_in) {
+        "AudioInServer::GetGeometries", this, context, request)([&](auto& helper, auto& audio_in) {
         const std::vector<GeometryConfig> geometries = audio_in->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
             *response->mutable_geometries()->Add() = to_proto(geometry);
