@@ -1,29 +1,16 @@
 #include <viam/sdk/rpc/dial.hpp>
 
-#include <vector>
-
-#include <cstdint>
-
 namespace viam {
 namespace sdk {
 
-class AppClient {
+class ViamClient {
    public:
-    enum class TabularDataSourceType { standard, hot_storage, pipeline_sink };
-
-    static AppClient from_env();
+    static ViamClient from_env();
 
     const ViamChannel& channel() const;
 
-    std::vector<std::vector<std::uint8_t>> tabular_data_by_mql(
-        const std::string& org_id,
-        const std::vector<std::vector<std::uint8_t>>& mql_binary,
-        TabularDataSourceType src_type,
-        const std::string& pipeline_id,
-        const std::string& query_prefix);
-
    private:
-    AppClient(ViamChannel channel);
+    ViamClient(ViamChannel channel);
 
     ViamChannel channel_;
 };
