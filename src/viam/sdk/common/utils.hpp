@@ -115,5 +115,7 @@ ProtoStruct with_debug_entry(ProtoStruct&& map);
 /// @param extra The extra ProtoStruct.
 bool from_dm_from_extra(const ProtoStruct& extra);
 
+std::string get_env(const char* var);
+
 }  // namespace sdk
 }  // namespace viam
