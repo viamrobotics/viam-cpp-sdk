@@ -23,7 +23,7 @@ AppClient AppClient::from_env() {
     opts.set_webrtc_disabled(true);
     opts.set_entity(api_key_id);
 
-    return AppClient(ViamChannel::dial_direct("https://app.viam.com:443", opts));
+    return AppClient(ViamChannel::dial_direct("app.viam.com:443", opts));
 }
 
 const ViamChannel& AppClient::channel() const {
