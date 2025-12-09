@@ -5,23 +5,25 @@
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/utils.hpp>
 
 namespace viam {
 namespace sdk {
 
-AppClient AppClient::connect(const char* uri,
-                             const Credentials& credentials,
-                             const std::string& auth_entity) {
-    if (credentials.type() != "api-key") {
-        throw Exception("AppClient connection requires API key");
+AppClient AppClient::from_env() {
+    std::string api_key = get_env("VIAM_API_KEY");
+    std::string api_key_id = get_env("VIAM_API_KEY_ID");
+
+    if (api_key.empty() || api_key_id.empty()) {
+        throw Exception("VIAM_API_KEY and VIAM_API_KEY_ID must both be set");
     }
 
     ViamChannel::Options opts;
-    opts.set_credentials(credentials);
+    opts.set_credentials(Credentials("api-key", api_key));
     opts.set_webrtc_disabled(true);
-    opts.set_entity(auth_entity);
+    opts.set_entity(api_key_id);
 
-    return AppClient(ViamChannel::dial_direct(uri, opts));
+    return AppClient(ViamChannel::dial_direct("https://app.viam.com:443", opts));
 }
 
 const ViamChannel& AppClient::channel() const {

@@ -11,9 +11,7 @@ class AppClient {
    public:
     enum class TabularDataSourceType { standard, hot_storage, pipeline_sink };
 
-    static AppClient connect(const char* uri,
-                             const Credentials& credentials,
-                             const std::string& auth_entity);
+    static AppClient from_env();
 
     const ViamChannel& channel() const;
 
