@@ -16,6 +16,9 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 
   string(REGEX MATCH "api[ \t\r\n]*commit: ([A-Za-z0-9_]*)" _ ${lockfile})
   set(BUF_VIAM_API_SOURCE buf.build/viamrobotics/api:${CMAKE_MATCH_1})
+
+  string(REGEX MATCH "opentelemetry[ \t\r\n]*commit: ([A-Za-z0-9_]*)" _ ${lockfile})
+  set(BUF_OPENTEL_SOURCE buf.build/opentelemetry/opentelemetry:${CMAKE_MATCH_1})
 endif()
 
 set(BUF_PROTO_COMPONENTS
@@ -216,6 +219,18 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/google/api/http.pb.h
     ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/status.pb.h
+    ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.grpc.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.grpc.pb.h
+    ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.pb.h
+    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.grpc.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.grpc.pb.h
+    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.pb.h
+    ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.grpc.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.grpc.pb.h
+    ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.pb.h
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.h
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
@@ -252,6 +267,7 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     COMMAND ${BUF_COMMAND} generate ${BUF_GOOGLE_API_SOURCE} --template buf.gen.yaml --path google/rpc --path google/api
     COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_GOUTILS_SOURCE} --template buf.gen.yaml
     COMMAND ${BUF_COMMAND} generate ${BUF_VIAM_API_SOURCE} --template buf.gen.yaml --path ${BUF_PROTO_COMPONENTS_JOINED}
+    COMMAND ${BUF_COMMAND} generate ${BUF_OPENTEL_SOURCE} --template buf.gen.yaml
 
     # After generating the protos, include a step to invoke a search-and-replace for switch -> switch_ in the Switch component files
     COMMAND ${CMAKE_COMMAND} "-DSWITCH_REPLACE_PATHS=\"${VIAMCPPSDK_SWITCH_REPLACE_PATHS}\"" -P ${CMAKE_CURRENT_SOURCE_DIR}/viamcppsdk_replace_switch.cmake
@@ -283,7 +299,7 @@ endif(VIAMCPPSDK_USE_DYNAMIC_PROTOS)
 
 add_custom_target(
   update-buf
-  COMMAND buf mod update ${CMAKE_CURRENT_SOURCE_DIR}
+  COMMAND buf dep update ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 # Declare the viamcpp library, and attach sources,
@@ -353,6 +369,12 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.grpc.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.grpc.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.grpc.pb.cc
+    ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.cc

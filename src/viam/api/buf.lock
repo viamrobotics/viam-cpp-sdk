@@ -13,3 +13,7 @@ deps:
     owner: viamrobotics
     repository: goutils
     commit: 5fff320e3fab4611aea8180e09bcb5e5
+  - remote: buf.build
+    owner: opentelemetry
+    repository: opentelemetry
+    commit: 648a3e2f02e14fe187656ea4ac3befa1

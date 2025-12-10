@@ -9,3 +9,4 @@ deps:
   - buf.build/googleapis/googleapis
   - buf.build/viamrobotics/api
   - buf.build/viamrobotics/goutils
+  - buf.build/opentelemetry/opentelemetry
