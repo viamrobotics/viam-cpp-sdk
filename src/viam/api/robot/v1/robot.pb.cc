@@ -23,6 +23,29 @@ namespace _pbi = _pb::internal;
 namespace viam {
 namespace robot {
 namespace v1 {
+PROTOBUF_CONSTEXPR SendTracesRequest::SendTracesRequest(
+    ::_pbi::ConstantInitialized)
+  : resource_spans_(){}
+struct SendTracesRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SendTracesRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SendTracesRequestDefaultTypeInternal() {}
+  union {
+    SendTracesRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SendTracesRequestDefaultTypeInternal _SendTracesRequest_default_instance_;
+PROTOBUF_CONSTEXPR SendTracesResponse::SendTracesResponse(
+    ::_pbi::ConstantInitialized){}
+struct SendTracesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SendTracesResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SendTracesResponseDefaultTypeInternal() {}
+  union {
+    SendTracesResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SendTracesResponseDefaultTypeInternal _SendTracesResponse_default_instance_;
 PROTOBUF_CONSTEXPR TunnelRequest::TunnelRequest(
     ::_pbi::ConstantInitialized)
   : data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -775,11 +798,24 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace robot
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_robot_2fv1_2frobot_2eproto[60];
+static ::_pb::Metadata file_level_metadata_robot_2fv1_2frobot_2eproto[62];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_robot_2fv1_2frobot_2eproto[3];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_robot_2fv1_2frobot_2eproto = nullptr;
 
 const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::SendTracesRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::SendTracesRequest, resource_spans_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::robot::v1::SendTracesResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::TunnelRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1246,69 +1282,73 @@ const uint32_t TableStruct_robot_2fv1_2frobot_2eproto::offsets[] PROTOBUF_SECTIO
   PROTOBUF_FIELD_OFFSET(::viam::robot::v1::GetPoseResponse, pose_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::viam::robot::v1::TunnelRequest)},
-  { 8, -1, -1, sizeof(::viam::robot::v1::TunnelResponse)},
-  { 15, -1, -1, sizeof(::viam::robot::v1::ListTunnelsRequest)},
-  { 21, -1, -1, sizeof(::viam::robot::v1::ListTunnelsResponse)},
-  { 28, -1, -1, sizeof(::viam::robot::v1::Tunnel)},
-  { 36, -1, -1, sizeof(::viam::robot::v1::FrameSystemConfig)},
-  { 44, -1, -1, sizeof(::viam::robot::v1::FrameSystemConfigRequest)},
-  { 51, -1, -1, sizeof(::viam::robot::v1::FrameSystemConfigResponse)},
-  { 58, -1, -1, sizeof(::viam::robot::v1::TransformPoseRequest)},
-  { 67, -1, -1, sizeof(::viam::robot::v1::TransformPoseResponse)},
-  { 74, -1, -1, sizeof(::viam::robot::v1::TransformPCDRequest)},
-  { 83, -1, -1, sizeof(::viam::robot::v1::TransformPCDResponse)},
-  { 90, -1, -1, sizeof(::viam::robot::v1::ResourceNamesRequest)},
-  { 96, -1, -1, sizeof(::viam::robot::v1::ResourceNamesResponse)},
-  { 103, -1, -1, sizeof(::viam::robot::v1::ResourceRPCSubtype)},
-  { 111, -1, -1, sizeof(::viam::robot::v1::ResourceRPCSubtypesRequest)},
-  { 117, -1, -1, sizeof(::viam::robot::v1::ResourceRPCSubtypesResponse)},
-  { 124, 135, -1, sizeof(::viam::robot::v1::Operation)},
-  { 140, -1, -1, sizeof(::viam::robot::v1::GetOperationsRequest)},
-  { 146, -1, -1, sizeof(::viam::robot::v1::GetOperationsResponse)},
-  { 153, -1, -1, sizeof(::viam::robot::v1::CancelOperationRequest)},
-  { 160, -1, -1, sizeof(::viam::robot::v1::CancelOperationResponse)},
-  { 166, -1, -1, sizeof(::viam::robot::v1::BlockForOperationRequest)},
-  { 173, -1, -1, sizeof(::viam::robot::v1::BlockForOperationResponse)},
-  { 179, 188, -1, sizeof(::viam::robot::v1::PeerConnectionInfo)},
-  { 191, 199, -1, sizeof(::viam::robot::v1::Session)},
-  { 201, -1, -1, sizeof(::viam::robot::v1::GetSessionsRequest)},
-  { 207, -1, -1, sizeof(::viam::robot::v1::GetSessionsResponse)},
-  { 214, -1, -1, sizeof(::viam::robot::v1::ModuleModel)},
-  { 224, -1, -1, sizeof(::viam::robot::v1::GetModelsFromModulesRequest)},
-  { 230, -1, -1, sizeof(::viam::robot::v1::GetModelsFromModulesResponse)},
-  { 237, -1, -1, sizeof(::viam::robot::v1::Status)},
-  { 246, -1, -1, sizeof(::viam::robot::v1::GetStatusRequest)},
-  { 253, -1, -1, sizeof(::viam::robot::v1::GetStatusResponse)},
-  { 260, -1, -1, sizeof(::viam::robot::v1::StreamStatusRequest)},
-  { 268, -1, -1, sizeof(::viam::robot::v1::StreamStatusResponse)},
-  { 275, -1, -1, sizeof(::viam::robot::v1::StopExtraParameters)},
-  { 283, -1, -1, sizeof(::viam::robot::v1::StopAllRequest)},
-  { 290, -1, -1, sizeof(::viam::robot::v1::StopAllResponse)},
-  { 296, -1, -1, sizeof(::viam::robot::v1::StartSessionRequest)},
-  { 303, -1, -1, sizeof(::viam::robot::v1::StartSessionResponse)},
-  { 311, -1, -1, sizeof(::viam::robot::v1::SendSessionHeartbeatRequest)},
-  { 318, -1, -1, sizeof(::viam::robot::v1::SendSessionHeartbeatResponse)},
-  { 324, -1, -1, sizeof(::viam::robot::v1::LogRequest)},
-  { 331, -1, -1, sizeof(::viam::robot::v1::LogResponse)},
-  { 337, -1, -1, sizeof(::viam::robot::v1::GetCloudMetadataRequest)},
-  { 343, -1, -1, sizeof(::viam::robot::v1::GetCloudMetadataResponse)},
-  { 354, -1, -1, sizeof(::viam::robot::v1::RestartModuleRequest)},
-  { 363, -1, -1, sizeof(::viam::robot::v1::RestartModuleResponse)},
-  { 369, -1, -1, sizeof(::viam::robot::v1::ShutdownRequest)},
-  { 375, -1, -1, sizeof(::viam::robot::v1::ShutdownResponse)},
-  { 381, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusRequest)},
-  { 387, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusResponse)},
-  { 397, -1, -1, sizeof(::viam::robot::v1::JobStatus)},
-  { 406, 418, -1, sizeof(::viam::robot::v1::ResourceStatus)},
-  { 424, -1, -1, sizeof(::viam::robot::v1::ConfigStatus)},
-  { 432, -1, -1, sizeof(::viam::robot::v1::GetVersionRequest)},
-  { 438, -1, -1, sizeof(::viam::robot::v1::GetVersionResponse)},
-  { 447, -1, -1, sizeof(::viam::robot::v1::GetPoseRequest)},
-  { 457, -1, -1, sizeof(::viam::robot::v1::GetPoseResponse)},
+  { 0, -1, -1, sizeof(::viam::robot::v1::SendTracesRequest)},
+  { 7, -1, -1, sizeof(::viam::robot::v1::SendTracesResponse)},
+  { 13, -1, -1, sizeof(::viam::robot::v1::TunnelRequest)},
+  { 21, -1, -1, sizeof(::viam::robot::v1::TunnelResponse)},
+  { 28, -1, -1, sizeof(::viam::robot::v1::ListTunnelsRequest)},
+  { 34, -1, -1, sizeof(::viam::robot::v1::ListTunnelsResponse)},
+  { 41, -1, -1, sizeof(::viam::robot::v1::Tunnel)},
+  { 49, -1, -1, sizeof(::viam::robot::v1::FrameSystemConfig)},
+  { 57, -1, -1, sizeof(::viam::robot::v1::FrameSystemConfigRequest)},
+  { 64, -1, -1, sizeof(::viam::robot::v1::FrameSystemConfigResponse)},
+  { 71, -1, -1, sizeof(::viam::robot::v1::TransformPoseRequest)},
+  { 80, -1, -1, sizeof(::viam::robot::v1::TransformPoseResponse)},
+  { 87, -1, -1, sizeof(::viam::robot::v1::TransformPCDRequest)},
+  { 96, -1, -1, sizeof(::viam::robot::v1::TransformPCDResponse)},
+  { 103, -1, -1, sizeof(::viam::robot::v1::ResourceNamesRequest)},
+  { 109, -1, -1, sizeof(::viam::robot::v1::ResourceNamesResponse)},
+  { 116, -1, -1, sizeof(::viam::robot::v1::ResourceRPCSubtype)},
+  { 124, -1, -1, sizeof(::viam::robot::v1::ResourceRPCSubtypesRequest)},
+  { 130, -1, -1, sizeof(::viam::robot::v1::ResourceRPCSubtypesResponse)},
+  { 137, 148, -1, sizeof(::viam::robot::v1::Operation)},
+  { 153, -1, -1, sizeof(::viam::robot::v1::GetOperationsRequest)},
+  { 159, -1, -1, sizeof(::viam::robot::v1::GetOperationsResponse)},
+  { 166, -1, -1, sizeof(::viam::robot::v1::CancelOperationRequest)},
+  { 173, -1, -1, sizeof(::viam::robot::v1::CancelOperationResponse)},
+  { 179, -1, -1, sizeof(::viam::robot::v1::BlockForOperationRequest)},
+  { 186, -1, -1, sizeof(::viam::robot::v1::BlockForOperationResponse)},
+  { 192, 201, -1, sizeof(::viam::robot::v1::PeerConnectionInfo)},
+  { 204, 212, -1, sizeof(::viam::robot::v1::Session)},
+  { 214, -1, -1, sizeof(::viam::robot::v1::GetSessionsRequest)},
+  { 220, -1, -1, sizeof(::viam::robot::v1::GetSessionsResponse)},
+  { 227, -1, -1, sizeof(::viam::robot::v1::ModuleModel)},
+  { 237, -1, -1, sizeof(::viam::robot::v1::GetModelsFromModulesRequest)},
+  { 243, -1, -1, sizeof(::viam::robot::v1::GetModelsFromModulesResponse)},
+  { 250, -1, -1, sizeof(::viam::robot::v1::Status)},
+  { 259, -1, -1, sizeof(::viam::robot::v1::GetStatusRequest)},
+  { 266, -1, -1, sizeof(::viam::robot::v1::GetStatusResponse)},
+  { 273, -1, -1, sizeof(::viam::robot::v1::StreamStatusRequest)},
+  { 281, -1, -1, sizeof(::viam::robot::v1::StreamStatusResponse)},
+  { 288, -1, -1, sizeof(::viam::robot::v1::StopExtraParameters)},
+  { 296, -1, -1, sizeof(::viam::robot::v1::StopAllRequest)},
+  { 303, -1, -1, sizeof(::viam::robot::v1::StopAllResponse)},
+  { 309, -1, -1, sizeof(::viam::robot::v1::StartSessionRequest)},
+  { 316, -1, -1, sizeof(::viam::robot::v1::StartSessionResponse)},
+  { 324, -1, -1, sizeof(::viam::robot::v1::SendSessionHeartbeatRequest)},
+  { 331, -1, -1, sizeof(::viam::robot::v1::SendSessionHeartbeatResponse)},
+  { 337, -1, -1, sizeof(::viam::robot::v1::LogRequest)},
+  { 344, -1, -1, sizeof(::viam::robot::v1::LogResponse)},
+  { 350, -1, -1, sizeof(::viam::robot::v1::GetCloudMetadataRequest)},
+  { 356, -1, -1, sizeof(::viam::robot::v1::GetCloudMetadataResponse)},
+  { 367, -1, -1, sizeof(::viam::robot::v1::RestartModuleRequest)},
+  { 376, -1, -1, sizeof(::viam::robot::v1::RestartModuleResponse)},
+  { 382, -1, -1, sizeof(::viam::robot::v1::ShutdownRequest)},
+  { 388, -1, -1, sizeof(::viam::robot::v1::ShutdownResponse)},
+  { 394, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusRequest)},
+  { 400, -1, -1, sizeof(::viam::robot::v1::GetMachineStatusResponse)},
+  { 410, -1, -1, sizeof(::viam::robot::v1::JobStatus)},
+  { 419, 431, -1, sizeof(::viam::robot::v1::ResourceStatus)},
+  { 437, -1, -1, sizeof(::viam::robot::v1::ConfigStatus)},
+  { 445, -1, -1, sizeof(::viam::robot::v1::GetVersionRequest)},
+  { 451, -1, -1, sizeof(::viam::robot::v1::GetVersionResponse)},
+  { 460, -1, -1, sizeof(::viam::robot::v1::GetPoseRequest)},
+  { 470, -1, -1, sizeof(::viam::robot::v1::GetPoseResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
+  &::viam::robot::v1::_SendTracesRequest_default_instance_._instance,
+  &::viam::robot::v1::_SendTracesResponse_default_instance_._instance,
   &::viam::robot::v1::_TunnelRequest_default_instance_._instance,
   &::viam::robot::v1::_TunnelResponse_default_instance_._instance,
   &::viam::robot::v1::_ListTunnelsRequest_default_instance_._instance,
@@ -1376,245 +1416,253 @@ const char descriptor_table_protodef_robot_2fv1_2frobot_2eproto[] PROTOBUF_SECTI
   "ommon/v1/common.proto\032\034google/api/annota"
   "tions.proto\032\036google/protobuf/duration.pr"
   "oto\032\034google/protobuf/struct.proto\032\037googl"
-  "e/protobuf/timestamp.proto\"N\n\rTunnelRequ"
-  "est\022)\n\020destination_port\030\001 \001(\rR\017destinati"
-  "onPort\022\022\n\004data\030\002 \001(\014R\004data\"$\n\016TunnelResp"
-  "onse\022\022\n\004data\030\001 \001(\014R\004data\"\024\n\022ListTunnelsR"
-  "equest\"F\n\023ListTunnelsResponse\022/\n\007tunnels"
-  "\030\001 \003(\0132\025.viam.robot.v1.TunnelR\007tunnels\"f"
-  "\n\006Tunnel\022\022\n\004port\030\001 \001(\rR\004port\022H\n\022connecti"
-  "on_timeout\030\002 \001(\0132\031.google.protobuf.Durat"
-  "ionR\021connectionTimeout\"}\n\021FrameSystemCon"
-  "fig\022/\n\005frame\030\001 \001(\0132\031.viam.common.v1.Tran"
-  "sformR\005frame\0227\n\nkinematics\030\002 \001(\0132\027.googl"
-  "e.protobuf.StructR\nkinematics\"n\n\030FrameSy"
-  "stemConfigRequest\022R\n\027supplemental_transf"
-  "orms\030\001 \003(\0132\031.viam.common.v1.TransformR\026s"
-  "upplementalTransforms\"o\n\031FrameSystemConf"
-  "igResponse\022R\n\024frame_system_configs\030\001 \003(\013"
-  "2 .viam.robot.v1.FrameSystemConfigR\022fram"
-  "eSystemConfigs\"\301\001\n\024TransformPoseRequest\022"
-  "3\n\006source\030\001 \001(\0132\033.viam.common.v1.PoseInF"
-  "rameR\006source\022 \n\013destination\030\002 \001(\tR\013desti"
-  "nation\022R\n\027supplemental_transforms\030\003 \003(\0132"
-  "\031.viam.common.v1.TransformR\026supplemental"
-  "Transforms\"H\n\025TransformPoseResponse\022/\n\004p"
-  "ose\030\001 \001(\0132\033.viam.common.v1.PoseInFrameR\004"
-  "pose\"w\n\023TransformPCDRequest\022&\n\017point_clo"
-  "ud_pcd\030\001 \001(\014R\rpointCloudPcd\022\026\n\006source\030\002 "
-  "\001(\tR\006source\022 \n\013destination\030\003 \001(\tR\013destin"
-  "ation\">\n\024TransformPCDResponse\022&\n\017point_c"
-  "loud_pcd\030\001 \001(\014R\rpointCloudPcd\"\026\n\024Resourc"
-  "eNamesRequest\"S\n\025ResourceNamesResponse\022:"
-  "\n\tresources\030\001 \003(\0132\034.viam.common.v1.Resou"
-  "rceNameR\tresources\"q\n\022ResourceRPCSubtype"
-  "\0226\n\007subtype\030\001 \001(\0132\034.viam.common.v1.Resou"
-  "rceNameR\007subtype\022#\n\rproto_service\030\002 \001(\tR"
-  "\014protoService\"\034\n\032ResourceRPCSubtypesRequ"
-  "est\"t\n\033ResourceRPCSubtypesResponse\022U\n\025re"
-  "source_rpc_subtypes\030\001 \003(\0132!.viam.robot.v"
-  "1.ResourceRPCSubtypeR\023resourceRpcSubtype"
-  "s\"\323\001\n\tOperation\022\016\n\002id\030\001 \001(\tR\002id\022\026\n\006metho"
-  "d\030\002 \001(\tR\006method\0225\n\targuments\030\003 \001(\0132\027.goo"
-  "gle.protobuf.StructR\targuments\0224\n\007starte"
-  "d\030\004 \001(\0132\032.google.protobuf.TimestampR\007sta"
-  "rted\022\"\n\nsession_id\030\005 \001(\tH\000R\tsessionId\210\001\001"
-  "B\r\n\013_session_id\"\026\n\024GetOperationsRequest\""
-  "Q\n\025GetOperationsResponse\0228\n\noperations\030\001"
-  " \003(\0132\030.viam.robot.v1.OperationR\noperatio"
-  "ns\"(\n\026CancelOperationRequest\022\016\n\002id\030\001 \001(\t"
-  "R\002id\"\031\n\027CancelOperationResponse\"*\n\030Block"
-  "ForOperationRequest\022\016\n\002id\030\001 \001(\tR\002id\"\033\n\031B"
-  "lockForOperationResponse\"\306\001\n\022PeerConnect"
-  "ionInfo\0225\n\004type\030\001 \001(\0162!.viam.robot.v1.Pe"
-  "erConnectionTypeR\004type\022*\n\016remote_address"
-  "\030\002 \001(\tH\000R\rremoteAddress\210\001\001\022(\n\rlocal_addr"
-  "ess\030\003 \001(\tH\001R\014localAddress\210\001\001B\021\n\017_remote_"
-  "addressB\020\n\016_local_address\"\214\001\n\007Session\022\016\n"
-  "\002id\030\001 \001(\tR\002id\022X\n\024peer_connection_info\030\002 "
-  "\001(\0132!.viam.robot.v1.PeerConnectionInfoH\000"
-  "R\022peerConnectionInfo\210\001\001B\027\n\025_peer_connect"
-  "ion_info\"\024\n\022GetSessionsRequest\"I\n\023GetSes"
-  "sionsResponse\0222\n\010sessions\030\001 \003(\0132\026.viam.r"
-  "obot.v1.SessionR\010sessions\"\202\001\n\013ModuleMode"
-  "l\022\037\n\013module_name\030\001 \001(\tR\nmoduleName\022\024\n\005mo"
-  "del\030\002 \001(\tR\005model\022\020\n\003api\030\003 \001(\tR\003api\022*\n\021fr"
-  "om_local_module\030\004 \001(\010R\017fromLocalModule\"\035"
-  "\n\033GetModelsFromModulesRequest\"R\n\034GetMode"
-  "lsFromModulesResponse\0222\n\006models\030\001 \003(\0132\032."
-  "viam.robot.v1.ModuleModelR\006models\"\264\001\n\006St"
-  "atus\0220\n\004name\030\001 \001(\0132\034.viam.common.v1.Reso"
-  "urceNameR\004name\022/\n\006status\030\002 \001(\0132\027.google."
-  "protobuf.StructR\006status\022G\n\021last_reconfig"
-  "ured\030\003 \001(\0132\032.google.protobuf.TimestampR\020"
-  "lastReconfigured\"W\n\020GetStatusRequest\022C\n\016"
-  "resource_names\030\001 \003(\0132\034.viam.common.v1.Re"
-  "sourceNameR\rresourceNames\"B\n\021GetStatusRe"
-  "sponse\022-\n\006status\030\001 \003(\0132\025.viam.robot.v1.S"
-  "tatusR\006status\"\213\001\n\023StreamStatusRequest\022C\n"
-  "\016resource_names\030\001 \003(\0132\034.viam.common.v1.R"
-  "esourceNameR\rresourceNames\022/\n\005every\030\002 \001("
-  "\0132\031.google.protobuf.DurationR\005every\"E\n\024S"
-  "treamStatusResponse\022-\n\006status\030\001 \003(\0132\025.vi"
-  "am.robot.v1.StatusR\006status\"x\n\023StopExtraP"
-  "arameters\0220\n\004name\030\001 \001(\0132\034.viam.common.v1"
-  ".ResourceNameR\004name\022/\n\006params\030\002 \001(\0132\027.go"
-  "ogle.protobuf.StructR\006params\"J\n\016StopAllR"
-  "equest\0228\n\005extra\030c \003(\0132\".viam.robot.v1.St"
-  "opExtraParametersR\005extra\"\021\n\017StopAllRespo"
-  "nse\"-\n\023StartSessionRequest\022\026\n\006resume\030\001 \001"
-  "(\tR\006resume\"l\n\024StartSessionResponse\022\016\n\002id"
-  "\030\001 \001(\tR\002id\022D\n\020heartbeat_window\030\002 \001(\0132\031.g"
-  "oogle.protobuf.DurationR\017heartbeatWindow"
-  "\"-\n\033SendSessionHeartbeatRequest\022\016\n\002id\030\001 "
-  "\001(\tR\002id\"\036\n\034SendSessionHeartbeatResponse\""
-  ":\n\nLogRequest\022,\n\004logs\030\001 \003(\0132\030.viam.commo"
-  "n.v1.LogEntryR\004logs\"\r\n\013LogResponse\"\031\n\027Ge"
-  "tCloudMetadataRequest\"\320\001\n\030GetCloudMetada"
-  "taResponse\022&\n\rrobot_part_id\030\001 \001(\tB\002\030\001R\013r"
-  "obotPartId\022$\n\016primary_org_id\030\002 \001(\tR\014prim"
-  "aryOrgId\022\037\n\013location_id\030\003 \001(\tR\nlocationI"
-  "d\022\035\n\nmachine_id\030\004 \001(\tR\tmachineId\022&\n\017mach"
-  "ine_part_id\030\005 \001(\tR\rmachinePartId\"f\n\024Rest"
-  "artModuleRequest\022\035\n\tmodule_id\030\001 \001(\tH\000R\010m"
-  "oduleId\022!\n\013module_name\030\002 \001(\tH\000R\nmoduleNa"
-  "meB\014\n\nid_or_name\"\027\n\025RestartModuleRespons"
-  "e\"\021\n\017ShutdownRequest\"\022\n\020ShutdownResponse"
-  "\"\031\n\027GetMachineStatusRequest\"\331\002\n\030GetMachi"
-  "neStatusResponse\022;\n\tresources\030\001 \003(\0132\035.vi"
-  "am.robot.v1.ResourceStatusR\tresources\0223\n"
-  "\006config\030\002 \001(\0132\033.viam.robot.v1.ConfigStat"
-  "usR\006config\022C\n\005state\030\003 \001(\0162-.viam.robot.v"
-  "1.GetMachineStatusResponse.StateR\005state\022"
-  ";\n\014job_statuses\030\004 \003(\0132\030.viam.robot.v1.Jo"
-  "bStatusR\013jobStatuses\"I\n\005State\022\025\n\021STATE_U"
-  "NSPECIFIED\020\000\022\026\n\022STATE_INITIALIZING\020\001\022\021\n\r"
-  "STATE_RUNNING\020\002\"\302\001\n\tJobStatus\022\031\n\010job_nam"
-  "e\030\001 \001(\tR\007jobName\022P\n\026recent_successful_ru"
-  "ns\030\002 \003(\0132\032.google.protobuf.TimestampR\024re"
-  "centSuccessfulRuns\022H\n\022recent_failed_runs"
-  "\030\003 \003(\0132\032.google.protobuf.TimestampR\020rece"
-  "ntFailedRuns\"\340\003\n\016ResourceStatus\0220\n\004name\030"
-  "\001 \001(\0132\034.viam.common.v1.ResourceNameR\004nam"
-  "e\0229\n\005state\030\002 \001(\0162#.viam.robot.v1.Resourc"
-  "eStatus.StateR\005state\022=\n\014last_updated\030\003 \001"
-  "(\0132\032.google.protobuf.TimestampR\013lastUpda"
-  "ted\022\032\n\010revision\030\004 \001(\tR\010revision\022\024\n\005error"
-  "\030\005 \001(\tR\005error\022S\n\016cloud_metadata\030\006 \001(\0132\'."
-  "viam.robot.v1.GetCloudMetadataResponseH\000"
-  "R\rcloudMetadata\210\001\001\"\207\001\n\005State\022\025\n\021STATE_UN"
-  "SPECIFIED\020\000\022\026\n\022STATE_UNCONFIGURED\020\001\022\025\n\021S"
-  "TATE_CONFIGURING\020\002\022\017\n\013STATE_READY\020\003\022\022\n\016S"
-  "TATE_REMOVING\020\004\022\023\n\017STATE_UNHEALTHY\020\005B\021\n\017"
-  "_cloud_metadata\"i\n\014ConfigStatus\022\032\n\010revis"
-  "ion\030\001 \001(\tR\010revision\022=\n\014last_updated\030\002 \001("
-  "\0132\032.google.protobuf.TimestampR\013lastUpdat"
-  "ed\"\023\n\021GetVersionRequest\"k\n\022GetVersionRes"
-  "ponse\022\032\n\010platform\030\001 \001(\tR\010platform\022\030\n\007ver"
-  "sion\030\002 \001(\tR\007version\022\037\n\013api_version\030\003 \001(\t"
-  "R\napiVersion\"\347\001\n\016GetPoseRequest\022%\n\016compo"
-  "nent_name\030\001 \001(\tR\rcomponentName\022+\n\021destin"
-  "ation_frame\030\002 \001(\tR\020destinationFrame\022R\n\027s"
-  "upplemental_transforms\030\003 \003(\0132\031.viam.comm"
-  "on.v1.TransformR\026supplementalTransforms\022"
-  "-\n\005extra\030c \001(\0132\027.google.protobuf.StructR"
-  "\005extra\"B\n\017GetPoseResponse\022/\n\004pose\030\001 \001(\0132"
-  "\033.viam.common.v1.PoseInFrameR\004pose*z\n\022Pe"
-  "erConnectionType\022$\n PEER_CONNECTION_TYPE"
-  "_UNSPECIFIED\020\000\022\035\n\031PEER_CONNECTION_TYPE_G"
-  "RPC\020\001\022\037\n\033PEER_CONNECTION_TYPE_WEBRTC\020\0022\200"
-  "\030\n\014RobotService\022\200\001\n\rGetOperations\022#.viam"
-  ".robot.v1.GetOperationsRequest\032$.viam.ro"
-  "bot.v1.GetOperationsResponse\"$\202\323\344\223\002\036\022\034/v"
-  "iam/api/v1/operations/list\022x\n\013GetSession"
-  "s\022!.viam.robot.v1.GetSessionsRequest\032\".v"
-  "iam.robot.v1.GetSessionsResponse\"\"\202\323\344\223\002\034"
-  "\022\032/viam/api/v1/sessions/list\022\177\n\rResource"
-  "Names\022#.viam.robot.v1.ResourceNamesReque"
-  "st\032$.viam.robot.v1.ResourceNamesResponse"
-  "\"#\202\323\344\223\002\035\022\033/viam/api/v1/resources/list\022\235\001"
-  "\n\023ResourceRPCSubtypes\022).viam.robot.v1.Re"
-  "sourceRPCSubtypesRequest\032*.viam.robot.v1"
-  ".ResourceRPCSubtypesResponse\"/\202\323\344\223\002)\022\'/v"
-  "iam/api/v1/resource_rpc_subtypes/list\022\210\001"
-  "\n\017CancelOperation\022%.viam.robot.v1.Cancel"
-  "OperationRequest\032&.viam.robot.v1.CancelO"
-  "perationResponse\"&\202\323\344\223\002 \"\036/viam/api/v1/o"
-  "perations/cancel\022\215\001\n\021BlockForOperation\022\'"
-  ".viam.robot.v1.BlockForOperationRequest\032"
-  "(.viam.robot.v1.BlockForOperationRespons"
-  "e\"%\202\323\344\223\002\037\"\035/viam/api/v1/operations/block"
-  "\022\223\001\n\024GetModelsFromModules\022*.viam.robot.v"
-  "1.GetModelsFromModulesRequest\032+.viam.rob"
-  "ot.v1.GetModelsFromModulesResponse\"\"\202\323\344\223"
-  "\002\034\022\032/viam/api/v1/module_models\022n\n\tGetSta"
-  "tus\022\037.viam.robot.v1.GetStatusRequest\032 .v"
-  "iam.robot.v1.GetStatusResponse\"\036\210\002\001\202\323\344\223\002"
-  "\025\022\023/viam/api/v1/status\022\200\001\n\014StreamStatus\022"
-  "\".viam.robot.v1.StreamStatusRequest\032#.vi"
-  "am.robot.v1.StreamStatusResponse\"%\210\002\001\202\323\344"
-  "\223\002\034\022\032/viam/api/v1/status/stream0\001\022g\n\007Sto"
-  "pAll\022\035.viam.robot.v1.StopAllRequest\032\036.vi"
-  "am.robot.v1.StopAllResponse\"\035\202\323\344\223\002\027\022\025/vi"
-  "am/api/v1/stop_all\022v\n\014StartSession\022\".via"
-  "m.robot.v1.StartSessionRequest\032#.viam.ro"
-  "bot.v1.StartSessionResponse\"\035\202\323\344\223\002\027\"\025/vi"
-  "am/api/v1/sessions\022\235\001\n\024SendSessionHeartb"
-  "eat\022*.viam.robot.v1.SendSessionHeartbeat"
-  "Request\032+.viam.robot.v1.SendSessionHeart"
-  "beatResponse\",\202\323\344\223\002&\"$/viam/api/v1/sessi"
-  "ons/{id}/heartbeat\022V\n\003Log\022\031.viam.robot.v"
-  "1.LogRequest\032\032.viam.robot.v1.LogResponse"
-  "\"\030\202\323\344\223\002\022\"\020/viam/api/v1/log\022\210\001\n\020GetCloudM"
-  "etadata\022&.viam.robot.v1.GetCloudMetadata"
-  "Request\032\'.viam.robot.v1.GetCloudMetadata"
-  "Response\"#\202\323\344\223\002\035\022\033/viam/api/v1/cloud_met"
-  "adata\022\177\n\rRestartModule\022#.viam.robot.v1.R"
-  "estartModuleRequest\032$.viam.robot.v1.Rest"
-  "artModuleResponse\"#\202\323\344\223\002\035\"\033/viam/api/v1/"
-  "restart_module\022j\n\010Shutdown\022\036.viam.robot."
-  "v1.ShutdownRequest\032\037.viam.robot.v1.Shutd"
-  "ownResponse\"\035\202\323\344\223\002\027\"\025/viam/api/v1/shutdo"
-  "wn\022\210\001\n\020GetMachineStatus\022&.viam.robot.v1."
-  "GetMachineStatusRequest\032\'.viam.robot.v1."
-  "GetMachineStatusResponse\"#\202\323\344\223\002\035\022\033/viam/"
-  "api/v1/machine_status\022o\n\nGetVersion\022 .vi"
-  "am.robot.v1.GetVersionRequest\032!.viam.rob"
-  "ot.v1.GetVersionResponse\"\034\202\323\344\223\002\026\022\024/viam/"
-  "api/v1/version\022I\n\006Tunnel\022\034.viam.robot.v1"
-  ".TunnelRequest\032\035.viam.robot.v1.TunnelRes"
-  "ponse(\0010\001\022w\n\013ListTunnels\022!.viam.robot.v1"
-  ".ListTunnelsRequest\032\".viam.robot.v1.List"
-  "TunnelsResponse\"!\202\323\344\223\002\033\022\031/viam/api/v1/li"
-  "st_tunnels\022\220\001\n\021FrameSystemConfig\022\'.viam."
-  "robot.v1.FrameSystemConfigRequest\032(.viam"
-  ".robot.v1.FrameSystemConfigResponse\"(\202\323\344"
-  "\223\002\"\022 /viam/api/v1/frame_system/config\022p\n"
-  "\007GetPose\022\035.viam.robot.v1.GetPoseRequest\032"
-  "\036.viam.robot.v1.GetPoseResponse\"&\202\323\344\223\002 \022"
-  "\036/viam/api/v1/frame_system/pose\022\214\001\n\rTran"
-  "sformPose\022#.viam.robot.v1.TransformPoseR"
-  "equest\032$.viam.robot.v1.TransformPoseResp"
-  "onse\"0\202\323\344\223\002*\022(/viam/api/v1/frame_system/"
-  "transform_pose\022\210\001\n\014TransformPCD\022\".viam.r"
-  "obot.v1.TransformPCDRequest\032#.viam.robot"
-  ".v1.TransformPCDResponse\"/\202\323\344\223\002)\022\'/viam/"
-  "api/v1/frame_system/transform_pcdB-\n\021com"
-  ".viam.robot.v1Z\030go.viam.com/api/robot/v1"
-  "b\006proto3"
+  "e/protobuf/timestamp.proto\032(opentelemetr"
+  "y/proto/trace/v1/trace.proto\"g\n\021SendTrac"
+  "esRequest\022R\n\016resource_spans\030\001 \003(\0132+.open"
+  "telemetry.proto.trace.v1.ResourceSpansR\r"
+  "resourceSpans\"\024\n\022SendTracesResponse\"N\n\rT"
+  "unnelRequest\022)\n\020destination_port\030\001 \001(\rR\017"
+  "destinationPort\022\022\n\004data\030\002 \001(\014R\004data\"$\n\016T"
+  "unnelResponse\022\022\n\004data\030\001 \001(\014R\004data\"\024\n\022Lis"
+  "tTunnelsRequest\"F\n\023ListTunnelsResponse\022/"
+  "\n\007tunnels\030\001 \003(\0132\025.viam.robot.v1.TunnelR\007"
+  "tunnels\"f\n\006Tunnel\022\022\n\004port\030\001 \001(\rR\004port\022H\n"
+  "\022connection_timeout\030\002 \001(\0132\031.google.proto"
+  "buf.DurationR\021connectionTimeout\"}\n\021Frame"
+  "SystemConfig\022/\n\005frame\030\001 \001(\0132\031.viam.commo"
+  "n.v1.TransformR\005frame\0227\n\nkinematics\030\002 \001("
+  "\0132\027.google.protobuf.StructR\nkinematics\"n"
+  "\n\030FrameSystemConfigRequest\022R\n\027supplement"
+  "al_transforms\030\001 \003(\0132\031.viam.common.v1.Tra"
+  "nsformR\026supplementalTransforms\"o\n\031FrameS"
+  "ystemConfigResponse\022R\n\024frame_system_conf"
+  "igs\030\001 \003(\0132 .viam.robot.v1.FrameSystemCon"
+  "figR\022frameSystemConfigs\"\301\001\n\024TransformPos"
+  "eRequest\0223\n\006source\030\001 \001(\0132\033.viam.common.v"
+  "1.PoseInFrameR\006source\022 \n\013destination\030\002 \001"
+  "(\tR\013destination\022R\n\027supplemental_transfor"
+  "ms\030\003 \003(\0132\031.viam.common.v1.TransformR\026sup"
+  "plementalTransforms\"H\n\025TransformPoseResp"
+  "onse\022/\n\004pose\030\001 \001(\0132\033.viam.common.v1.Pose"
+  "InFrameR\004pose\"w\n\023TransformPCDRequest\022&\n\017"
+  "point_cloud_pcd\030\001 \001(\014R\rpointCloudPcd\022\026\n\006"
+  "source\030\002 \001(\tR\006source\022 \n\013destination\030\003 \001("
+  "\tR\013destination\">\n\024TransformPCDResponse\022&"
+  "\n\017point_cloud_pcd\030\001 \001(\014R\rpointCloudPcd\"\026"
+  "\n\024ResourceNamesRequest\"S\n\025ResourceNamesR"
+  "esponse\022:\n\tresources\030\001 \003(\0132\034.viam.common"
+  ".v1.ResourceNameR\tresources\"q\n\022ResourceR"
+  "PCSubtype\0226\n\007subtype\030\001 \001(\0132\034.viam.common"
+  ".v1.ResourceNameR\007subtype\022#\n\rproto_servi"
+  "ce\030\002 \001(\tR\014protoService\"\034\n\032ResourceRPCSub"
+  "typesRequest\"t\n\033ResourceRPCSubtypesRespo"
+  "nse\022U\n\025resource_rpc_subtypes\030\001 \003(\0132!.via"
+  "m.robot.v1.ResourceRPCSubtypeR\023resourceR"
+  "pcSubtypes\"\323\001\n\tOperation\022\016\n\002id\030\001 \001(\tR\002id"
+  "\022\026\n\006method\030\002 \001(\tR\006method\0225\n\targuments\030\003 "
+  "\001(\0132\027.google.protobuf.StructR\targuments\022"
+  "4\n\007started\030\004 \001(\0132\032.google.protobuf.Times"
+  "tampR\007started\022\"\n\nsession_id\030\005 \001(\tH\000R\tses"
+  "sionId\210\001\001B\r\n\013_session_id\"\026\n\024GetOperation"
+  "sRequest\"Q\n\025GetOperationsResponse\0228\n\nope"
+  "rations\030\001 \003(\0132\030.viam.robot.v1.OperationR"
+  "\noperations\"(\n\026CancelOperationRequest\022\016\n"
+  "\002id\030\001 \001(\tR\002id\"\031\n\027CancelOperationResponse"
+  "\"*\n\030BlockForOperationRequest\022\016\n\002id\030\001 \001(\t"
+  "R\002id\"\033\n\031BlockForOperationResponse\"\306\001\n\022Pe"
+  "erConnectionInfo\0225\n\004type\030\001 \001(\0162!.viam.ro"
+  "bot.v1.PeerConnectionTypeR\004type\022*\n\016remot"
+  "e_address\030\002 \001(\tH\000R\rremoteAddress\210\001\001\022(\n\rl"
+  "ocal_address\030\003 \001(\tH\001R\014localAddress\210\001\001B\021\n"
+  "\017_remote_addressB\020\n\016_local_address\"\214\001\n\007S"
+  "ession\022\016\n\002id\030\001 \001(\tR\002id\022X\n\024peer_connectio"
+  "n_info\030\002 \001(\0132!.viam.robot.v1.PeerConnect"
+  "ionInfoH\000R\022peerConnectionInfo\210\001\001B\027\n\025_pee"
+  "r_connection_info\"\024\n\022GetSessionsRequest\""
+  "I\n\023GetSessionsResponse\0222\n\010sessions\030\001 \003(\013"
+  "2\026.viam.robot.v1.SessionR\010sessions\"\202\001\n\013M"
+  "oduleModel\022\037\n\013module_name\030\001 \001(\tR\nmoduleN"
+  "ame\022\024\n\005model\030\002 \001(\tR\005model\022\020\n\003api\030\003 \001(\tR\003"
+  "api\022*\n\021from_local_module\030\004 \001(\010R\017fromLoca"
+  "lModule\"\035\n\033GetModelsFromModulesRequest\"R"
+  "\n\034GetModelsFromModulesResponse\0222\n\006models"
+  "\030\001 \003(\0132\032.viam.robot.v1.ModuleModelR\006mode"
+  "ls\"\264\001\n\006Status\0220\n\004name\030\001 \001(\0132\034.viam.commo"
+  "n.v1.ResourceNameR\004name\022/\n\006status\030\002 \001(\0132"
+  "\027.google.protobuf.StructR\006status\022G\n\021last"
+  "_reconfigured\030\003 \001(\0132\032.google.protobuf.Ti"
+  "mestampR\020lastReconfigured\"W\n\020GetStatusRe"
+  "quest\022C\n\016resource_names\030\001 \003(\0132\034.viam.com"
+  "mon.v1.ResourceNameR\rresourceNames\"B\n\021Ge"
+  "tStatusResponse\022-\n\006status\030\001 \003(\0132\025.viam.r"
+  "obot.v1.StatusR\006status\"\213\001\n\023StreamStatusR"
+  "equest\022C\n\016resource_names\030\001 \003(\0132\034.viam.co"
+  "mmon.v1.ResourceNameR\rresourceNames\022/\n\005e"
+  "very\030\002 \001(\0132\031.google.protobuf.DurationR\005e"
+  "very\"E\n\024StreamStatusResponse\022-\n\006status\030\001"
+  " \003(\0132\025.viam.robot.v1.StatusR\006status\"x\n\023S"
+  "topExtraParameters\0220\n\004name\030\001 \001(\0132\034.viam."
+  "common.v1.ResourceNameR\004name\022/\n\006params\030\002"
+  " \001(\0132\027.google.protobuf.StructR\006params\"J\n"
+  "\016StopAllRequest\0228\n\005extra\030c \003(\0132\".viam.ro"
+  "bot.v1.StopExtraParametersR\005extra\"\021\n\017Sto"
+  "pAllResponse\"-\n\023StartSessionRequest\022\026\n\006r"
+  "esume\030\001 \001(\tR\006resume\"l\n\024StartSessionRespo"
+  "nse\022\016\n\002id\030\001 \001(\tR\002id\022D\n\020heartbeat_window\030"
+  "\002 \001(\0132\031.google.protobuf.DurationR\017heartb"
+  "eatWindow\"-\n\033SendSessionHeartbeatRequest"
+  "\022\016\n\002id\030\001 \001(\tR\002id\"\036\n\034SendSessionHeartbeat"
+  "Response\":\n\nLogRequest\022,\n\004logs\030\001 \003(\0132\030.v"
+  "iam.common.v1.LogEntryR\004logs\"\r\n\013LogRespo"
+  "nse\"\031\n\027GetCloudMetadataRequest\"\320\001\n\030GetCl"
+  "oudMetadataResponse\022&\n\rrobot_part_id\030\001 \001"
+  "(\tB\002\030\001R\013robotPartId\022$\n\016primary_org_id\030\002 "
+  "\001(\tR\014primaryOrgId\022\037\n\013location_id\030\003 \001(\tR\n"
+  "locationId\022\035\n\nmachine_id\030\004 \001(\tR\tmachineI"
+  "d\022&\n\017machine_part_id\030\005 \001(\tR\rmachinePartI"
+  "d\"f\n\024RestartModuleRequest\022\035\n\tmodule_id\030\001"
+  " \001(\tH\000R\010moduleId\022!\n\013module_name\030\002 \001(\tH\000R"
+  "\nmoduleNameB\014\n\nid_or_name\"\027\n\025RestartModu"
+  "leResponse\"\021\n\017ShutdownRequest\"\022\n\020Shutdow"
+  "nResponse\"\031\n\027GetMachineStatusRequest\"\331\002\n"
+  "\030GetMachineStatusResponse\022;\n\tresources\030\001"
+  " \003(\0132\035.viam.robot.v1.ResourceStatusR\tres"
+  "ources\0223\n\006config\030\002 \001(\0132\033.viam.robot.v1.C"
+  "onfigStatusR\006config\022C\n\005state\030\003 \001(\0162-.via"
+  "m.robot.v1.GetMachineStatusResponse.Stat"
+  "eR\005state\022;\n\014job_statuses\030\004 \003(\0132\030.viam.ro"
+  "bot.v1.JobStatusR\013jobStatuses\"I\n\005State\022\025"
+  "\n\021STATE_UNSPECIFIED\020\000\022\026\n\022STATE_INITIALIZ"
+  "ING\020\001\022\021\n\rSTATE_RUNNING\020\002\"\302\001\n\tJobStatus\022\031"
+  "\n\010job_name\030\001 \001(\tR\007jobName\022P\n\026recent_succ"
+  "essful_runs\030\002 \003(\0132\032.google.protobuf.Time"
+  "stampR\024recentSuccessfulRuns\022H\n\022recent_fa"
+  "iled_runs\030\003 \003(\0132\032.google.protobuf.Timest"
+  "ampR\020recentFailedRuns\"\340\003\n\016ResourceStatus"
+  "\0220\n\004name\030\001 \001(\0132\034.viam.common.v1.Resource"
+  "NameR\004name\0229\n\005state\030\002 \001(\0162#.viam.robot.v"
+  "1.ResourceStatus.StateR\005state\022=\n\014last_up"
+  "dated\030\003 \001(\0132\032.google.protobuf.TimestampR"
+  "\013lastUpdated\022\032\n\010revision\030\004 \001(\tR\010revision"
+  "\022\024\n\005error\030\005 \001(\tR\005error\022S\n\016cloud_metadata"
+  "\030\006 \001(\0132\'.viam.robot.v1.GetCloudMetadataR"
+  "esponseH\000R\rcloudMetadata\210\001\001\"\207\001\n\005State\022\025\n"
+  "\021STATE_UNSPECIFIED\020\000\022\026\n\022STATE_UNCONFIGUR"
+  "ED\020\001\022\025\n\021STATE_CONFIGURING\020\002\022\017\n\013STATE_REA"
+  "DY\020\003\022\022\n\016STATE_REMOVING\020\004\022\023\n\017STATE_UNHEAL"
+  "THY\020\005B\021\n\017_cloud_metadata\"i\n\014ConfigStatus"
+  "\022\032\n\010revision\030\001 \001(\tR\010revision\022=\n\014last_upd"
+  "ated\030\002 \001(\0132\032.google.protobuf.TimestampR\013"
+  "lastUpdated\"\023\n\021GetVersionRequest\"k\n\022GetV"
+  "ersionResponse\022\032\n\010platform\030\001 \001(\tR\010platfo"
+  "rm\022\030\n\007version\030\002 \001(\tR\007version\022\037\n\013api_vers"
+  "ion\030\003 \001(\tR\napiVersion\"\347\001\n\016GetPoseRequest"
+  "\022%\n\016component_name\030\001 \001(\tR\rcomponentName\022"
+  "+\n\021destination_frame\030\002 \001(\tR\020destinationF"
+  "rame\022R\n\027supplemental_transforms\030\003 \003(\0132\031."
+  "viam.common.v1.TransformR\026supplementalTr"
+  "ansforms\022-\n\005extra\030c \001(\0132\027.google.protobu"
+  "f.StructR\005extra\"B\n\017GetPoseResponse\022/\n\004po"
+  "se\030\001 \001(\0132\033.viam.common.v1.PoseInFrameR\004p"
+  "ose*z\n\022PeerConnectionType\022$\n PEER_CONNEC"
+  "TION_TYPE_UNSPECIFIED\020\000\022\035\n\031PEER_CONNECTI"
+  "ON_TYPE_GRPC\020\001\022\037\n\033PEER_CONNECTION_TYPE_W"
+  "EBRTC\020\0022\360\030\n\014RobotService\022\200\001\n\rGetOperatio"
+  "ns\022#.viam.robot.v1.GetOperationsRequest\032"
+  "$.viam.robot.v1.GetOperationsResponse\"$\202"
+  "\323\344\223\002\036\022\034/viam/api/v1/operations/list\022x\n\013G"
+  "etSessions\022!.viam.robot.v1.GetSessionsRe"
+  "quest\032\".viam.robot.v1.GetSessionsRespons"
+  "e\"\"\202\323\344\223\002\034\022\032/viam/api/v1/sessions/list\022\177\n"
+  "\rResourceNames\022#.viam.robot.v1.ResourceN"
+  "amesRequest\032$.viam.robot.v1.ResourceName"
+  "sResponse\"#\202\323\344\223\002\035\022\033/viam/api/v1/resource"
+  "s/list\022\235\001\n\023ResourceRPCSubtypes\022).viam.ro"
+  "bot.v1.ResourceRPCSubtypesRequest\032*.viam"
+  ".robot.v1.ResourceRPCSubtypesResponse\"/\202"
+  "\323\344\223\002)\022\'/viam/api/v1/resource_rpc_subtype"
+  "s/list\022\210\001\n\017CancelOperation\022%.viam.robot."
+  "v1.CancelOperationRequest\032&.viam.robot.v"
+  "1.CancelOperationResponse\"&\202\323\344\223\002 \"\036/viam"
+  "/api/v1/operations/cancel\022\215\001\n\021BlockForOp"
+  "eration\022\'.viam.robot.v1.BlockForOperatio"
+  "nRequest\032(.viam.robot.v1.BlockForOperati"
+  "onResponse\"%\202\323\344\223\002\037\"\035/viam/api/v1/operati"
+  "ons/block\022\223\001\n\024GetModelsFromModules\022*.via"
+  "m.robot.v1.GetModelsFromModulesRequest\032+"
+  ".viam.robot.v1.GetModelsFromModulesRespo"
+  "nse\"\"\202\323\344\223\002\034\022\032/viam/api/v1/module_models\022"
+  "n\n\tGetStatus\022\037.viam.robot.v1.GetStatusRe"
+  "quest\032 .viam.robot.v1.GetStatusResponse\""
+  "\036\210\002\001\202\323\344\223\002\025\022\023/viam/api/v1/status\022\200\001\n\014Stre"
+  "amStatus\022\".viam.robot.v1.StreamStatusReq"
+  "uest\032#.viam.robot.v1.StreamStatusRespons"
+  "e\"%\210\002\001\202\323\344\223\002\034\022\032/viam/api/v1/status/stream"
+  "0\001\022g\n\007StopAll\022\035.viam.robot.v1.StopAllReq"
+  "uest\032\036.viam.robot.v1.StopAllResponse\"\035\202\323"
+  "\344\223\002\027\022\025/viam/api/v1/stop_all\022v\n\014StartSess"
+  "ion\022\".viam.robot.v1.StartSessionRequest\032"
+  "#.viam.robot.v1.StartSessionResponse\"\035\202\323"
+  "\344\223\002\027\"\025/viam/api/v1/sessions\022\235\001\n\024SendSess"
+  "ionHeartbeat\022*.viam.robot.v1.SendSession"
+  "HeartbeatRequest\032+.viam.robot.v1.SendSes"
+  "sionHeartbeatResponse\",\202\323\344\223\002&\"$/viam/api"
+  "/v1/sessions/{id}/heartbeat\022V\n\003Log\022\031.via"
+  "m.robot.v1.LogRequest\032\032.viam.robot.v1.Lo"
+  "gResponse\"\030\202\323\344\223\002\022\"\020/viam/api/v1/log\022\210\001\n\020"
+  "GetCloudMetadata\022&.viam.robot.v1.GetClou"
+  "dMetadataRequest\032\'.viam.robot.v1.GetClou"
+  "dMetadataResponse\"#\202\323\344\223\002\035\022\033/viam/api/v1/"
+  "cloud_metadata\022\177\n\rRestartModule\022#.viam.r"
+  "obot.v1.RestartModuleRequest\032$.viam.robo"
+  "t.v1.RestartModuleResponse\"#\202\323\344\223\002\035\"\033/via"
+  "m/api/v1/restart_module\022j\n\010Shutdown\022\036.vi"
+  "am.robot.v1.ShutdownRequest\032\037.viam.robot"
+  ".v1.ShutdownResponse\"\035\202\323\344\223\002\027\"\025/viam/api/"
+  "v1/shutdown\022\210\001\n\020GetMachineStatus\022&.viam."
+  "robot.v1.GetMachineStatusRequest\032\'.viam."
+  "robot.v1.GetMachineStatusResponse\"#\202\323\344\223\002"
+  "\035\022\033/viam/api/v1/machine_status\022o\n\nGetVer"
+  "sion\022 .viam.robot.v1.GetVersionRequest\032!"
+  ".viam.robot.v1.GetVersionResponse\"\034\202\323\344\223\002"
+  "\026\022\024/viam/api/v1/version\022I\n\006Tunnel\022\034.viam"
+  ".robot.v1.TunnelRequest\032\035.viam.robot.v1."
+  "TunnelResponse(\0010\001\022w\n\013ListTunnels\022!.viam"
+  ".robot.v1.ListTunnelsRequest\032\".viam.robo"
+  "t.v1.ListTunnelsResponse\"!\202\323\344\223\002\033\022\031/viam/"
+  "api/v1/list_tunnels\022\220\001\n\021FrameSystemConfi"
+  "g\022\'.viam.robot.v1.FrameSystemConfigReque"
+  "st\032(.viam.robot.v1.FrameSystemConfigResp"
+  "onse\"(\202\323\344\223\002\"\022 /viam/api/v1/frame_system/"
+  "config\022p\n\007GetPose\022\035.viam.robot.v1.GetPos"
+  "eRequest\032\036.viam.robot.v1.GetPoseResponse"
+  "\"&\202\323\344\223\002 \022\036/viam/api/v1/frame_system/pose"
+  "\022\214\001\n\rTransformPose\022#.viam.robot.v1.Trans"
+  "formPoseRequest\032$.viam.robot.v1.Transfor"
+  "mPoseResponse\"0\202\323\344\223\002*\022(/viam/api/v1/fram"
+  "e_system/transform_pose\022\210\001\n\014TransformPCD"
+  "\022\".viam.robot.v1.TransformPCDRequest\032#.v"
+  "iam.robot.v1.TransformPCDResponse\"/\202\323\344\223\002"
+  ")\022\'/viam/api/v1/frame_system/transform_p"
+  "cd\022n\n\nSendTraces\022 .viam.robot.v1.SendTra"
+  "cesRequest\032!.viam.robot.v1.SendTracesRes"
+  "ponse\"\033\202\323\344\223\002\025\"\023/viam/api/v1/tracesB-\n\021co"
+  "m.viam.robot.v1Z\030go.viam.com/api/robot/v"
+  "1b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_robot_2fv1_2frobot_2eproto_deps[5] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_robot_2fv1_2frobot_2eproto_deps[6] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
   &::descriptor_table_google_2fapi_2fannotations_2eproto,
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
   &::descriptor_table_google_2fprotobuf_2fstruct_2eproto,
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
+  &::descriptor_table_opentelemetry_2fproto_2ftrace_2fv1_2ftrace_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_robot_2fv1_2frobot_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_robot_2fv1_2frobot_2eproto = {
-    false, false, 9168, descriptor_table_protodef_robot_2fv1_2frobot_2eproto,
+    false, false, 9449, descriptor_table_protodef_robot_2fv1_2frobot_2eproto,
     "robot/v1/robot.proto",
-    &descriptor_table_robot_2fv1_2frobot_2eproto_once, descriptor_table_robot_2fv1_2frobot_2eproto_deps, 5, 60,
+    &descriptor_table_robot_2fv1_2frobot_2eproto_once, descriptor_table_robot_2fv1_2frobot_2eproto_deps, 6, 62,
     schemas, file_default_instances, TableStruct_robot_2fv1_2frobot_2eproto::offsets,
     file_level_metadata_robot_2fv1_2frobot_2eproto, file_level_enum_descriptors_robot_2fv1_2frobot_2eproto,
     file_level_service_descriptors_robot_2fv1_2frobot_2eproto,
@@ -1695,6 +1743,226 @@ bool PeerConnectionType_IsValid(int value) {
   }
 }
 
+
+// ===================================================================
+
+class SendTracesRequest::_Internal {
+ public:
+};
+
+void SendTracesRequest::clear_resource_spans() {
+  resource_spans_.Clear();
+}
+SendTracesRequest::SendTracesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  resource_spans_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.robot.v1.SendTracesRequest)
+}
+SendTracesRequest::SendTracesRequest(const SendTracesRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      resource_spans_(from.resource_spans_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.robot.v1.SendTracesRequest)
+}
+
+inline void SendTracesRequest::SharedCtor() {
+}
+
+SendTracesRequest::~SendTracesRequest() {
+  // @@protoc_insertion_point(destructor:viam.robot.v1.SendTracesRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SendTracesRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void SendTracesRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SendTracesRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.robot.v1.SendTracesRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  resource_spans_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SendTracesRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .opentelemetry.proto.trace.v1.ResourceSpans resource_spans = 1 [json_name = "resourceSpans"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_resource_spans(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SendTracesRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.robot.v1.SendTracesRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .opentelemetry.proto.trace.v1.ResourceSpans resource_spans = 1 [json_name = "resourceSpans"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_resource_spans_size()); i < n; i++) {
+    const auto& repfield = this->_internal_resource_spans(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.robot.v1.SendTracesRequest)
+  return target;
+}
+
+size_t SendTracesRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.robot.v1.SendTracesRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .opentelemetry.proto.trace.v1.ResourceSpans resource_spans = 1 [json_name = "resourceSpans"];
+  total_size += 1UL * this->_internal_resource_spans_size();
+  for (const auto& msg : this->resource_spans_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SendTracesRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SendTracesRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SendTracesRequest::GetClassData() const { return &_class_data_; }
+
+void SendTracesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SendTracesRequest *>(to)->MergeFrom(
+      static_cast<const SendTracesRequest &>(from));
+}
+
+
+void SendTracesRequest::MergeFrom(const SendTracesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.robot.v1.SendTracesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  resource_spans_.MergeFrom(from.resource_spans_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SendTracesRequest::CopyFrom(const SendTracesRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.robot.v1.SendTracesRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SendTracesRequest::IsInitialized() const {
+  return true;
+}
+
+void SendTracesRequest::InternalSwap(SendTracesRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  resource_spans_.InternalSwap(&other->resource_spans_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SendTracesRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
+      file_level_metadata_robot_2fv1_2frobot_2eproto[0]);
+}
+
+// ===================================================================
+
+class SendTracesResponse::_Internal {
+ public:
+};
+
+SendTracesResponse::SendTracesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.robot.v1.SendTracesResponse)
+}
+SendTracesResponse::SendTracesResponse(const SendTracesResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.robot.v1.SendTracesResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SendTracesResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SendTracesResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata SendTracesResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
+      file_level_metadata_robot_2fv1_2frobot_2eproto[1]);
+}
 
 // ===================================================================
 
@@ -1909,7 +2177,7 @@ void TunnelRequest::InternalSwap(TunnelRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TunnelRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[0]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[2]);
 }
 
 // ===================================================================
@@ -2099,7 +2367,7 @@ void TunnelResponse::InternalSwap(TunnelResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TunnelResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[1]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[3]);
 }
 
 // ===================================================================
@@ -2138,7 +2406,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ListTunnelsRequest::GetClassDa
 ::PROTOBUF_NAMESPACE_ID::Metadata ListTunnelsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[2]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[4]);
 }
 
 // ===================================================================
@@ -2316,7 +2584,7 @@ void ListTunnelsResponse::InternalSwap(ListTunnelsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListTunnelsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[3]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[5]);
 }
 
 // ===================================================================
@@ -2541,7 +2809,7 @@ void Tunnel::InternalSwap(Tunnel* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Tunnel::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[4]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[6]);
 }
 
 // ===================================================================
@@ -2788,7 +3056,7 @@ void FrameSystemConfig::InternalSwap(FrameSystemConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FrameSystemConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[5]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[7]);
 }
 
 // ===================================================================
@@ -2969,7 +3237,7 @@ void FrameSystemConfigRequest::InternalSwap(FrameSystemConfigRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FrameSystemConfigRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[6]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[8]);
 }
 
 // ===================================================================
@@ -3147,7 +3415,7 @@ void FrameSystemConfigResponse::InternalSwap(FrameSystemConfigResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FrameSystemConfigResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[7]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[9]);
 }
 
 // ===================================================================
@@ -3426,7 +3694,7 @@ void TransformPoseRequest::InternalSwap(TransformPoseRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TransformPoseRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[8]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[10]);
 }
 
 // ===================================================================
@@ -3619,7 +3887,7 @@ void TransformPoseResponse::InternalSwap(TransformPoseResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TransformPoseResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[9]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[11]);
 }
 
 // ===================================================================
@@ -3905,7 +4173,7 @@ void TransformPCDRequest::InternalSwap(TransformPCDRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TransformPCDRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[10]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[12]);
 }
 
 // ===================================================================
@@ -4095,7 +4363,7 @@ void TransformPCDResponse::InternalSwap(TransformPCDResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TransformPCDResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[11]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[13]);
 }
 
 // ===================================================================
@@ -4134,7 +4402,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResourceNamesRequest::GetClass
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceNamesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[12]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[14]);
 }
 
 // ===================================================================
@@ -4315,7 +4583,7 @@ void ResourceNamesResponse::InternalSwap(ResourceNamesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceNamesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[13]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[15]);
 }
 
 // ===================================================================
@@ -4558,7 +4826,7 @@ void ResourceRPCSubtype::InternalSwap(ResourceRPCSubtype* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceRPCSubtype::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[14]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[16]);
 }
 
 // ===================================================================
@@ -4597,7 +4865,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResourceRPCSubtypesRequest::Ge
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceRPCSubtypesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[15]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[17]);
 }
 
 // ===================================================================
@@ -4775,7 +5043,7 @@ void ResourceRPCSubtypesResponse::InternalSwap(ResourceRPCSubtypesResponse* othe
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceRPCSubtypesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[16]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[18]);
 }
 
 // ===================================================================
@@ -5181,7 +5449,7 @@ void Operation::InternalSwap(Operation* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Operation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[17]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[19]);
 }
 
 // ===================================================================
@@ -5220,7 +5488,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetOperationsRequest::GetClass
 ::PROTOBUF_NAMESPACE_ID::Metadata GetOperationsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[18]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[20]);
 }
 
 // ===================================================================
@@ -5398,7 +5666,7 @@ void GetOperationsResponse::InternalSwap(GetOperationsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetOperationsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[19]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[21]);
 }
 
 // ===================================================================
@@ -5593,7 +5861,7 @@ void CancelOperationRequest::InternalSwap(CancelOperationRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CancelOperationRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[20]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[22]);
 }
 
 // ===================================================================
@@ -5632,7 +5900,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CancelOperationResponse::GetCl
 ::PROTOBUF_NAMESPACE_ID::Metadata CancelOperationResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[21]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[23]);
 }
 
 // ===================================================================
@@ -5827,7 +6095,7 @@ void BlockForOperationRequest::InternalSwap(BlockForOperationRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata BlockForOperationRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[22]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[24]);
 }
 
 // ===================================================================
@@ -5866,7 +6134,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BlockForOperationResponse::Get
 ::PROTOBUF_NAMESPACE_ID::Metadata BlockForOperationResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[23]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[25]);
 }
 
 // ===================================================================
@@ -6163,7 +6431,7 @@ void PeerConnectionInfo::InternalSwap(PeerConnectionInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PeerConnectionInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[24]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[26]);
 }
 
 // ===================================================================
@@ -6411,7 +6679,7 @@ void Session::InternalSwap(Session* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Session::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[25]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[27]);
 }
 
 // ===================================================================
@@ -6450,7 +6718,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetSessionsRequest::GetClassDa
 ::PROTOBUF_NAMESPACE_ID::Metadata GetSessionsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[26]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[28]);
 }
 
 // ===================================================================
@@ -6628,7 +6896,7 @@ void GetSessionsResponse::InternalSwap(GetSessionsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetSessionsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[27]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[29]);
 }
 
 // ===================================================================
@@ -6945,7 +7213,7 @@ void ModuleModel::InternalSwap(ModuleModel* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ModuleModel::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[28]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[30]);
 }
 
 // ===================================================================
@@ -6984,7 +7252,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetModelsFromModulesRequest::G
 ::PROTOBUF_NAMESPACE_ID::Metadata GetModelsFromModulesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[29]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[31]);
 }
 
 // ===================================================================
@@ -7162,7 +7430,7 @@ void GetModelsFromModulesResponse::InternalSwap(GetModelsFromModulesResponse* ot
 ::PROTOBUF_NAMESPACE_ID::Metadata GetModelsFromModulesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[30]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[32]);
 }
 
 // ===================================================================
@@ -7455,7 +7723,7 @@ void Status::InternalSwap(Status* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Status::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[31]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[33]);
 }
 
 // ===================================================================
@@ -7636,7 +7904,7 @@ void GetStatusRequest::InternalSwap(GetStatusRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetStatusRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[32]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[34]);
 }
 
 // ===================================================================
@@ -7814,7 +8082,7 @@ void GetStatusResponse::InternalSwap(GetStatusResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetStatusResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[33]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[35]);
 }
 
 // ===================================================================
@@ -8043,7 +8311,7 @@ void StreamStatusRequest::InternalSwap(StreamStatusRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamStatusRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[34]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[36]);
 }
 
 // ===================================================================
@@ -8221,7 +8489,7 @@ void StreamStatusResponse::InternalSwap(StreamStatusResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamStatusResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[35]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[37]);
 }
 
 // ===================================================================
@@ -8468,7 +8736,7 @@ void StopExtraParameters::InternalSwap(StopExtraParameters* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata StopExtraParameters::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[36]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[38]);
 }
 
 // ===================================================================
@@ -8646,7 +8914,7 @@ void StopAllRequest::InternalSwap(StopAllRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata StopAllRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[37]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[39]);
 }
 
 // ===================================================================
@@ -8685,7 +8953,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StopAllResponse::GetClassData(
 ::PROTOBUF_NAMESPACE_ID::Metadata StopAllResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[38]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[40]);
 }
 
 // ===================================================================
@@ -8880,7 +9148,7 @@ void StartSessionRequest::InternalSwap(StartSessionRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata StartSessionRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[39]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[41]);
 }
 
 // ===================================================================
@@ -9123,7 +9391,7 @@ void StartSessionResponse::InternalSwap(StartSessionResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata StartSessionResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[40]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[42]);
 }
 
 // ===================================================================
@@ -9318,7 +9586,7 @@ void SendSessionHeartbeatRequest::InternalSwap(SendSessionHeartbeatRequest* othe
 ::PROTOBUF_NAMESPACE_ID::Metadata SendSessionHeartbeatRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[41]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[43]);
 }
 
 // ===================================================================
@@ -9357,7 +9625,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SendSessionHeartbeatResponse::
 ::PROTOBUF_NAMESPACE_ID::Metadata SendSessionHeartbeatResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[42]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[44]);
 }
 
 // ===================================================================
@@ -9538,7 +9806,7 @@ void LogRequest::InternalSwap(LogRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LogRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[43]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[45]);
 }
 
 // ===================================================================
@@ -9577,7 +9845,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LogResponse::GetClassData() co
 ::PROTOBUF_NAMESPACE_ID::Metadata LogResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[44]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[46]);
 }
 
 // ===================================================================
@@ -9616,7 +9884,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetCloudMetadataRequest::GetCl
 ::PROTOBUF_NAMESPACE_ID::Metadata GetCloudMetadataRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[45]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[47]);
 }
 
 // ===================================================================
@@ -10003,7 +10271,7 @@ void GetCloudMetadataResponse::InternalSwap(GetCloudMetadataResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetCloudMetadataResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[46]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[48]);
 }
 
 // ===================================================================
@@ -10260,7 +10528,7 @@ void RestartModuleRequest::InternalSwap(RestartModuleRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RestartModuleRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[47]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[49]);
 }
 
 // ===================================================================
@@ -10299,7 +10567,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RestartModuleResponse::GetClas
 ::PROTOBUF_NAMESPACE_ID::Metadata RestartModuleResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[48]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[50]);
 }
 
 // ===================================================================
@@ -10338,7 +10606,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ShutdownRequest::GetClassData(
 ::PROTOBUF_NAMESPACE_ID::Metadata ShutdownRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[49]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[51]);
 }
 
 // ===================================================================
@@ -10377,7 +10645,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ShutdownResponse::GetClassData
 ::PROTOBUF_NAMESPACE_ID::Metadata ShutdownResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[50]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[52]);
 }
 
 // ===================================================================
@@ -10416,7 +10684,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetMachineStatusRequest::GetCl
 ::PROTOBUF_NAMESPACE_ID::Metadata GetMachineStatusRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[51]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[53]);
 }
 
 // ===================================================================
@@ -10704,7 +10972,7 @@ void GetMachineStatusResponse::InternalSwap(GetMachineStatusResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetMachineStatusResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[52]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[54]);
 }
 
 // ===================================================================
@@ -10971,7 +11239,7 @@ void JobStatus::InternalSwap(JobStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JobStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[53]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[55]);
 }
 
 // ===================================================================
@@ -11394,7 +11662,7 @@ void ResourceStatus::InternalSwap(ResourceStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[54]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[56]);
 }
 
 // ===================================================================
@@ -11637,7 +11905,7 @@ void ConfigStatus::InternalSwap(ConfigStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ConfigStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[55]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[57]);
 }
 
 // ===================================================================
@@ -11676,7 +11944,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetVersionRequest::GetClassDat
 ::PROTOBUF_NAMESPACE_ID::Metadata GetVersionRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[56]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[58]);
 }
 
 // ===================================================================
@@ -11967,7 +12235,7 @@ void GetVersionResponse::InternalSwap(GetVersionResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetVersionResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[57]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[59]);
 }
 
 // ===================================================================
@@ -12294,7 +12562,7 @@ void GetPoseRequest::InternalSwap(GetPoseRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPoseRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[58]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[60]);
 }
 
 // ===================================================================
@@ -12487,7 +12755,7 @@ void GetPoseResponse::InternalSwap(GetPoseResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPoseResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_robot_2fv1_2frobot_2eproto_getter, &descriptor_table_robot_2fv1_2frobot_2eproto_once,
-      file_level_metadata_robot_2fv1_2frobot_2eproto[59]);
+      file_level_metadata_robot_2fv1_2frobot_2eproto[61]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -12495,6 +12763,14 @@ void GetPoseResponse::InternalSwap(GetPoseResponse* other) {
 }  // namespace robot
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::viam::robot::v1::SendTracesRequest*
+Arena::CreateMaybeMessage< ::viam::robot::v1::SendTracesRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::robot::v1::SendTracesRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::robot::v1::SendTracesResponse*
+Arena::CreateMaybeMessage< ::viam::robot::v1::SendTracesResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::robot::v1::SendTracesResponse >(arena);
+}
 template<> PROTOBUF_NOINLINE ::viam::robot::v1::TunnelRequest*
 Arena::CreateMaybeMessage< ::viam::robot::v1::TunnelRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::robot::v1::TunnelRequest >(arena);

@@ -48,6 +48,7 @@ static const char* RobotService_method_names[] = {
   "/viam.robot.v1.RobotService/GetPose",
   "/viam.robot.v1.RobotService/TransformPose",
   "/viam.robot.v1.RobotService/TransformPCD",
+  "/viam.robot.v1.RobotService/SendTraces",
 };
 
 std::unique_ptr< RobotService::Stub> RobotService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -81,6 +82,7 @@ RobotService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_GetPose_(RobotService_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_TransformPose_(RobotService_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_TransformPCD_(RobotService_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SendTraces_(RobotService_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status RobotService::Stub::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::viam::robot::v1::GetOperationsResponse* response) {
@@ -621,6 +623,29 @@ void RobotService::Stub::async::TransformPCD(::grpc::ClientContext* context, con
   return result;
 }
 
+::grpc::Status RobotService::Stub::SendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::viam::robot::v1::SendTracesResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::SendTracesRequest, ::viam::robot::v1::SendTracesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SendTraces_, context, request, response);
+}
+
+void RobotService::Stub::async::SendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::SendTracesRequest, ::viam::robot::v1::SendTracesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendTraces_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::async::SendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SendTraces_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendTracesResponse>* RobotService::Stub::PrepareAsyncSendTracesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::SendTracesResponse, ::viam::robot::v1::SendTracesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SendTraces_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendTracesResponse>* RobotService::Stub::AsyncSendTracesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSendTracesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[0],
@@ -862,6 +887,16 @@ RobotService::Service::Service() {
              ::viam::robot::v1::TransformPCDResponse* resp) {
                return service->TransformPCD(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RobotService_method_names[24],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::SendTracesRequest, ::viam::robot::v1::SendTracesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RobotService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::robot::v1::SendTracesRequest* req,
+             ::viam::robot::v1::SendTracesResponse* resp) {
+               return service->SendTraces(ctx, req, resp);
+             }, this)));
 }
 
 RobotService::Service::~Service() {
@@ -1028,6 +1063,13 @@ RobotService::Service::~Service() {
 }
 
 ::grpc::Status RobotService::Service::TransformPCD(::grpc::ServerContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RobotService::Service::SendTraces(::grpc::ServerContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response) {
   (void) context;
   (void) request;
   (void) response;
