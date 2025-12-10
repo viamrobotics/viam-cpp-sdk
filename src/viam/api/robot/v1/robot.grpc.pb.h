@@ -234,6 +234,13 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::TransformPCDResponse>> PrepareAsyncTransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::TransformPCDResponse>>(PrepareAsyncTransformPCDRaw(context, request, cq));
     }
+    virtual ::grpc::Status SendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::viam::robot::v1::SendTracesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::SendTracesResponse>> AsyncSendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::SendTracesResponse>>(AsyncSendTracesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::SendTracesResponse>> PrepareAsyncSendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::SendTracesResponse>>(PrepareAsyncSendTracesRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -307,6 +314,8 @@ class RobotService final {
       // TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
       virtual void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -362,6 +371,8 @@ class RobotService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::TransformPoseResponse>* PrepareAsyncTransformPoseRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::TransformPCDResponse>* AsyncTransformPCDRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::TransformPCDResponse>* PrepareAsyncTransformPCDRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::SendTracesResponse>* AsyncSendTracesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::robot::v1::SendTracesResponse>* PrepareAsyncSendTracesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -538,6 +549,13 @@ class RobotService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPCDResponse>> PrepareAsyncTransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPCDResponse>>(PrepareAsyncTransformPCDRaw(context, request, cq));
     }
+    ::grpc::Status SendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::viam::robot::v1::SendTracesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendTracesResponse>> AsyncSendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendTracesResponse>>(AsyncSendTracesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendTracesResponse>> PrepareAsyncSendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendTracesResponse>>(PrepareAsyncSendTracesRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -587,6 +605,8 @@ class RobotService final {
       void TransformPose(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, std::function<void(::grpc::Status)>) override;
       void TransformPCD(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response, std::function<void(::grpc::Status)>) override;
+      void SendTraces(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -648,6 +668,8 @@ class RobotService final {
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPoseResponse>* PrepareAsyncTransformPoseRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPoseRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPCDResponse>* AsyncTransformPCDRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::TransformPCDResponse>* PrepareAsyncTransformPCDRaw(::grpc::ClientContext* context, const ::viam::robot::v1::TransformPCDRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendTracesResponse>* AsyncSendTracesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::robot::v1::SendTracesResponse>* PrepareAsyncSendTracesRaw(::grpc::ClientContext* context, const ::viam::robot::v1::SendTracesRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetOperations_;
     const ::grpc::internal::RpcMethod rpcmethod_GetSessions_;
     const ::grpc::internal::RpcMethod rpcmethod_ResourceNames_;
@@ -672,6 +694,7 @@ class RobotService final {
     const ::grpc::internal::RpcMethod rpcmethod_GetPose_;
     const ::grpc::internal::RpcMethod rpcmethod_TransformPose_;
     const ::grpc::internal::RpcMethod rpcmethod_TransformPCD_;
+    const ::grpc::internal::RpcMethod rpcmethod_SendTraces_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -727,6 +750,7 @@ class RobotService final {
     virtual ::grpc::Status TransformPose(::grpc::ServerContext* context, const ::viam::robot::v1::TransformPoseRequest* request, ::viam::robot::v1::TransformPoseResponse* response);
     // TransformPose returns a point cloud in one referenceframe in a desired referenceframe.
     virtual ::grpc::Status TransformPCD(::grpc::ServerContext* context, const ::viam::robot::v1::TransformPCDRequest* request, ::viam::robot::v1::TransformPCDResponse* response);
+    virtual ::grpc::Status SendTraces(::grpc::ServerContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetOperations : public BaseClass {
@@ -1208,7 +1232,27 @@ class RobotService final {
       ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_GetModelsFromModules<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<WithAsyncMethod_RestartModule<WithAsyncMethod_Shutdown<WithAsyncMethod_GetMachineStatus<WithAsyncMethod_GetVersion<WithAsyncMethod_Tunnel<WithAsyncMethod_ListTunnels<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_GetPose<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<Service > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SendTraces : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SendTraces() {
+      ::grpc::Service::MarkMethodAsync(24);
+    }
+    ~WithAsyncMethod_SendTraces() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendTraces(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::SendTracesRequest* /*request*/, ::viam::robot::v1::SendTracesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSendTraces(::grpc::ServerContext* context, ::viam::robot::v1::SendTracesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::robot::v1::SendTracesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetOperations<WithAsyncMethod_GetSessions<WithAsyncMethod_ResourceNames<WithAsyncMethod_ResourceRPCSubtypes<WithAsyncMethod_CancelOperation<WithAsyncMethod_BlockForOperation<WithAsyncMethod_GetModelsFromModules<WithAsyncMethod_GetStatus<WithAsyncMethod_StreamStatus<WithAsyncMethod_StopAll<WithAsyncMethod_StartSession<WithAsyncMethod_SendSessionHeartbeat<WithAsyncMethod_Log<WithAsyncMethod_GetCloudMetadata<WithAsyncMethod_RestartModule<WithAsyncMethod_Shutdown<WithAsyncMethod_GetMachineStatus<WithAsyncMethod_GetVersion<WithAsyncMethod_Tunnel<WithAsyncMethod_ListTunnels<WithAsyncMethod_FrameSystemConfig<WithAsyncMethod_GetPose<WithAsyncMethod_TransformPose<WithAsyncMethod_TransformPCD<WithAsyncMethod_SendTraces<Service > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetOperations : public BaseClass {
    private:
@@ -1848,7 +1892,34 @@ class RobotService final {
     virtual ::grpc::ServerUnaryReactor* TransformPCD(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::TransformPCDRequest* /*request*/, ::viam::robot::v1::TransformPCDResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetOperations<WithCallbackMethod_GetSessions<WithCallbackMethod_ResourceNames<WithCallbackMethod_ResourceRPCSubtypes<WithCallbackMethod_CancelOperation<WithCallbackMethod_BlockForOperation<WithCallbackMethod_GetModelsFromModules<WithCallbackMethod_GetStatus<WithCallbackMethod_StreamStatus<WithCallbackMethod_StopAll<WithCallbackMethod_StartSession<WithCallbackMethod_SendSessionHeartbeat<WithCallbackMethod_Log<WithCallbackMethod_GetCloudMetadata<WithCallbackMethod_RestartModule<WithCallbackMethod_Shutdown<WithCallbackMethod_GetMachineStatus<WithCallbackMethod_GetVersion<WithCallbackMethod_Tunnel<WithCallbackMethod_ListTunnels<WithCallbackMethod_FrameSystemConfig<WithCallbackMethod_GetPose<WithCallbackMethod_TransformPose<WithCallbackMethod_TransformPCD<Service > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SendTraces : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SendTraces() {
+      ::grpc::Service::MarkMethodCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::SendTracesRequest, ::viam::robot::v1::SendTracesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response) { return this->SendTraces(context, request, response); }));}
+    void SetMessageAllocatorFor_SendTraces(
+        ::grpc::MessageAllocator< ::viam::robot::v1::SendTracesRequest, ::viam::robot::v1::SendTracesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(24);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::robot::v1::SendTracesRequest, ::viam::robot::v1::SendTracesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SendTraces() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendTraces(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::SendTracesRequest* /*request*/, ::viam::robot::v1::SendTracesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SendTraces(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::robot::v1::SendTracesRequest* /*request*/, ::viam::robot::v1::SendTracesResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetOperations<WithCallbackMethod_GetSessions<WithCallbackMethod_ResourceNames<WithCallbackMethod_ResourceRPCSubtypes<WithCallbackMethod_CancelOperation<WithCallbackMethod_BlockForOperation<WithCallbackMethod_GetModelsFromModules<WithCallbackMethod_GetStatus<WithCallbackMethod_StreamStatus<WithCallbackMethod_StopAll<WithCallbackMethod_StartSession<WithCallbackMethod_SendSessionHeartbeat<WithCallbackMethod_Log<WithCallbackMethod_GetCloudMetadata<WithCallbackMethod_RestartModule<WithCallbackMethod_Shutdown<WithCallbackMethod_GetMachineStatus<WithCallbackMethod_GetVersion<WithCallbackMethod_Tunnel<WithCallbackMethod_ListTunnels<WithCallbackMethod_FrameSystemConfig<WithCallbackMethod_GetPose<WithCallbackMethod_TransformPose<WithCallbackMethod_TransformPCD<WithCallbackMethod_SendTraces<Service > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetOperations : public BaseClass {
@@ -2254,6 +2325,23 @@ class RobotService final {
     }
     // disable synchronous version of this method
     ::grpc::Status TransformPCD(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::TransformPCDRequest* /*request*/, ::viam::robot::v1::TransformPCDResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SendTraces : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SendTraces() {
+      ::grpc::Service::MarkMethodGeneric(24);
+    }
+    ~WithGenericMethod_SendTraces() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendTraces(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::SendTracesRequest* /*request*/, ::viam::robot::v1::SendTracesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2736,6 +2824,26 @@ class RobotService final {
     }
     void RequestTransformPCD(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SendTraces : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SendTraces() {
+      ::grpc::Service::MarkMethodRaw(24);
+    }
+    ~WithRawMethod_SendTraces() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendTraces(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::SendTracesRequest* /*request*/, ::viam::robot::v1::SendTracesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSendTraces(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3265,6 +3373,28 @@ class RobotService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* TransformPCD(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SendTraces : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SendTraces() {
+      ::grpc::Service::MarkMethodRawCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SendTraces(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SendTraces() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SendTraces(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::SendTracesRequest* /*request*/, ::viam::robot::v1::SendTracesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SendTraces(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -3861,7 +3991,34 @@ class RobotService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedTransformPCD(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::TransformPCDRequest,::viam::robot::v1::TransformPCDResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<Service > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SendTraces : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SendTraces() {
+      ::grpc::Service::MarkMethodStreamed(24,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::robot::v1::SendTracesRequest, ::viam::robot::v1::SendTracesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::robot::v1::SendTracesRequest, ::viam::robot::v1::SendTracesResponse>* streamer) {
+                       return this->StreamedSendTraces(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SendTraces() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SendTraces(::grpc::ServerContext* /*context*/, const ::viam::robot::v1::SendTracesRequest* /*request*/, ::viam::robot::v1::SendTracesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSendTraces(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::robot::v1::SendTracesRequest,::viam::robot::v1::SendTracesResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_SendTraces<Service > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_StreamStatus : public BaseClass {
    private:
@@ -3890,7 +4047,7 @@ class RobotService final {
     virtual ::grpc::Status StreamedStreamStatus(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::robot::v1::StreamStatusRequest,::viam::robot::v1::StreamStatusResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_StreamStatus<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<Service > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetOperations<WithStreamedUnaryMethod_GetSessions<WithStreamedUnaryMethod_ResourceNames<WithStreamedUnaryMethod_ResourceRPCSubtypes<WithStreamedUnaryMethod_CancelOperation<WithStreamedUnaryMethod_BlockForOperation<WithStreamedUnaryMethod_GetModelsFromModules<WithStreamedUnaryMethod_GetStatus<WithSplitStreamingMethod_StreamStatus<WithStreamedUnaryMethod_StopAll<WithStreamedUnaryMethod_StartSession<WithStreamedUnaryMethod_SendSessionHeartbeat<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_GetCloudMetadata<WithStreamedUnaryMethod_RestartModule<WithStreamedUnaryMethod_Shutdown<WithStreamedUnaryMethod_GetMachineStatus<WithStreamedUnaryMethod_GetVersion<WithStreamedUnaryMethod_ListTunnels<WithStreamedUnaryMethod_FrameSystemConfig<WithStreamedUnaryMethod_GetPose<WithStreamedUnaryMethod_TransformPose<WithStreamedUnaryMethod_TransformPCD<WithStreamedUnaryMethod_SendTraces<Service > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

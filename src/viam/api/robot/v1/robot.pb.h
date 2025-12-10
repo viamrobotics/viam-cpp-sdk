@@ -37,6 +37,7 @@
 #include <google/protobuf/duration.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include <google/protobuf/timestamp.pb.h>
+#include "opentelemetry/proto/trace/v1/trace.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_robot_2fv1_2frobot_2eproto
@@ -180,6 +181,12 @@ extern SendSessionHeartbeatRequestDefaultTypeInternal _SendSessionHeartbeatReque
 class SendSessionHeartbeatResponse;
 struct SendSessionHeartbeatResponseDefaultTypeInternal;
 extern SendSessionHeartbeatResponseDefaultTypeInternal _SendSessionHeartbeatResponse_default_instance_;
+class SendTracesRequest;
+struct SendTracesRequestDefaultTypeInternal;
+extern SendTracesRequestDefaultTypeInternal _SendTracesRequest_default_instance_;
+class SendTracesResponse;
+struct SendTracesResponseDefaultTypeInternal;
+extern SendTracesResponseDefaultTypeInternal _SendTracesResponse_default_instance_;
 class Session;
 struct SessionDefaultTypeInternal;
 extern SessionDefaultTypeInternal _Session_default_instance_;
@@ -280,6 +287,8 @@ template<> ::viam::robot::v1::RestartModuleRequest* Arena::CreateMaybeMessage<::
 template<> ::viam::robot::v1::RestartModuleResponse* Arena::CreateMaybeMessage<::viam::robot::v1::RestartModuleResponse>(Arena*);
 template<> ::viam::robot::v1::SendSessionHeartbeatRequest* Arena::CreateMaybeMessage<::viam::robot::v1::SendSessionHeartbeatRequest>(Arena*);
 template<> ::viam::robot::v1::SendSessionHeartbeatResponse* Arena::CreateMaybeMessage<::viam::robot::v1::SendSessionHeartbeatResponse>(Arena*);
+template<> ::viam::robot::v1::SendTracesRequest* Arena::CreateMaybeMessage<::viam::robot::v1::SendTracesRequest>(Arena*);
+template<> ::viam::robot::v1::SendTracesResponse* Arena::CreateMaybeMessage<::viam::robot::v1::SendTracesResponse>(Arena*);
 template<> ::viam::robot::v1::Session* Arena::CreateMaybeMessage<::viam::robot::v1::Session>(Arena*);
 template<> ::viam::robot::v1::ShutdownRequest* Arena::CreateMaybeMessage<::viam::robot::v1::ShutdownRequest>(Arena*);
 template<> ::viam::robot::v1::ShutdownResponse* Arena::CreateMaybeMessage<::viam::robot::v1::ShutdownResponse>(Arena*);
@@ -386,6 +395,274 @@ inline bool PeerConnectionType_Parse(
 }
 // ===================================================================
 
+class SendTracesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.SendTracesRequest) */ {
+ public:
+  inline SendTracesRequest() : SendTracesRequest(nullptr) {}
+  ~SendTracesRequest() override;
+  explicit PROTOBUF_CONSTEXPR SendTracesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SendTracesRequest(const SendTracesRequest& from);
+  SendTracesRequest(SendTracesRequest&& from) noexcept
+    : SendTracesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SendTracesRequest& operator=(const SendTracesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SendTracesRequest& operator=(SendTracesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SendTracesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SendTracesRequest* internal_default_instance() {
+    return reinterpret_cast<const SendTracesRequest*>(
+               &_SendTracesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(SendTracesRequest& a, SendTracesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SendTracesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SendTracesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SendTracesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SendTracesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SendTracesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SendTracesRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SendTracesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.SendTracesRequest";
+  }
+  protected:
+  explicit SendTracesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResourceSpansFieldNumber = 1,
+  };
+  // repeated .opentelemetry.proto.trace.v1.ResourceSpans resource_spans = 1 [json_name = "resourceSpans"];
+  int resource_spans_size() const;
+  private:
+  int _internal_resource_spans_size() const;
+  public:
+  void clear_resource_spans();
+  ::opentelemetry::proto::trace::v1::ResourceSpans* mutable_resource_spans(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::opentelemetry::proto::trace::v1::ResourceSpans >*
+      mutable_resource_spans();
+  private:
+  const ::opentelemetry::proto::trace::v1::ResourceSpans& _internal_resource_spans(int index) const;
+  ::opentelemetry::proto::trace::v1::ResourceSpans* _internal_add_resource_spans();
+  public:
+  const ::opentelemetry::proto::trace::v1::ResourceSpans& resource_spans(int index) const;
+  ::opentelemetry::proto::trace::v1::ResourceSpans* add_resource_spans();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::opentelemetry::proto::trace::v1::ResourceSpans >&
+      resource_spans() const;
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.SendTracesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::opentelemetry::proto::trace::v1::ResourceSpans > resource_spans_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SendTracesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.robot.v1.SendTracesResponse) */ {
+ public:
+  inline SendTracesResponse() : SendTracesResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR SendTracesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SendTracesResponse(const SendTracesResponse& from);
+  SendTracesResponse(SendTracesResponse&& from) noexcept
+    : SendTracesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SendTracesResponse& operator=(const SendTracesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SendTracesResponse& operator=(SendTracesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SendTracesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SendTracesResponse* internal_default_instance() {
+    return reinterpret_cast<const SendTracesResponse*>(
+               &_SendTracesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(SendTracesResponse& a, SendTracesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SendTracesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SendTracesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SendTracesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SendTracesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const SendTracesResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const SendTracesResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.SendTracesResponse";
+  }
+  protected:
+  explicit SendTracesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.SendTracesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class TunnelRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.TunnelRequest) */ {
  public:
@@ -434,7 +711,7 @@ class TunnelRequest final :
                &_TunnelRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    2;
 
   friend void swap(TunnelRequest& a, TunnelRequest& b) {
     a.Swap(&b);
@@ -593,7 +870,7 @@ class TunnelResponse final :
                &_TunnelResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   friend void swap(TunnelResponse& a, TunnelResponse& b) {
     a.Swap(&b);
@@ -740,7 +1017,7 @@ class ListTunnelsRequest final :
                &_ListTunnelsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(ListTunnelsRequest& a, ListTunnelsRequest& b) {
     a.Swap(&b);
@@ -857,7 +1134,7 @@ class ListTunnelsResponse final :
                &_ListTunnelsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(ListTunnelsResponse& a, ListTunnelsResponse& b) {
     a.Swap(&b);
@@ -1009,7 +1286,7 @@ class Tunnel final :
                &_Tunnel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(Tunnel& a, Tunnel& b) {
     a.Swap(&b);
@@ -1172,7 +1449,7 @@ class FrameSystemConfig final :
                &_FrameSystemConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(FrameSystemConfig& a, FrameSystemConfig& b) {
     a.Swap(&b);
@@ -1344,7 +1621,7 @@ class FrameSystemConfigRequest final :
                &_FrameSystemConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(FrameSystemConfigRequest& a, FrameSystemConfigRequest& b) {
     a.Swap(&b);
@@ -1496,7 +1773,7 @@ class FrameSystemConfigResponse final :
                &_FrameSystemConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(FrameSystemConfigResponse& a, FrameSystemConfigResponse& b) {
     a.Swap(&b);
@@ -1648,7 +1925,7 @@ class TransformPoseRequest final :
                &_TransformPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(TransformPoseRequest& a, TransformPoseRequest& b) {
     a.Swap(&b);
@@ -1836,7 +2113,7 @@ class TransformPoseResponse final :
                &_TransformPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(TransformPoseResponse& a, TransformPoseResponse& b) {
     a.Swap(&b);
@@ -1988,7 +2265,7 @@ class TransformPCDRequest final :
                &_TransformPCDRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(TransformPCDRequest& a, TransformPCDRequest& b) {
     a.Swap(&b);
@@ -2168,7 +2445,7 @@ class TransformPCDResponse final :
                &_TransformPCDResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(TransformPCDResponse& a, TransformPCDResponse& b) {
     a.Swap(&b);
@@ -2315,7 +2592,7 @@ class ResourceNamesRequest final :
                &_ResourceNamesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(ResourceNamesRequest& a, ResourceNamesRequest& b) {
     a.Swap(&b);
@@ -2432,7 +2709,7 @@ class ResourceNamesResponse final :
                &_ResourceNamesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(ResourceNamesResponse& a, ResourceNamesResponse& b) {
     a.Swap(&b);
@@ -2584,7 +2861,7 @@ class ResourceRPCSubtype final :
                &_ResourceRPCSubtype_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    16;
 
   friend void swap(ResourceRPCSubtype& a, ResourceRPCSubtype& b) {
     a.Swap(&b);
@@ -2751,7 +3028,7 @@ class ResourceRPCSubtypesRequest final :
                &_ResourceRPCSubtypesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    17;
 
   friend void swap(ResourceRPCSubtypesRequest& a, ResourceRPCSubtypesRequest& b) {
     a.Swap(&b);
@@ -2868,7 +3145,7 @@ class ResourceRPCSubtypesResponse final :
                &_ResourceRPCSubtypesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    18;
 
   friend void swap(ResourceRPCSubtypesResponse& a, ResourceRPCSubtypesResponse& b) {
     a.Swap(&b);
@@ -3020,7 +3297,7 @@ class Operation final :
                &_Operation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    19;
 
   friend void swap(Operation& a, Operation& b) {
     a.Swap(&b);
@@ -3244,7 +3521,7 @@ class GetOperationsRequest final :
                &_GetOperationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    20;
 
   friend void swap(GetOperationsRequest& a, GetOperationsRequest& b) {
     a.Swap(&b);
@@ -3361,7 +3638,7 @@ class GetOperationsResponse final :
                &_GetOperationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    21;
 
   friend void swap(GetOperationsResponse& a, GetOperationsResponse& b) {
     a.Swap(&b);
@@ -3513,7 +3790,7 @@ class CancelOperationRequest final :
                &_CancelOperationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    22;
 
   friend void swap(CancelOperationRequest& a, CancelOperationRequest& b) {
     a.Swap(&b);
@@ -3660,7 +3937,7 @@ class CancelOperationResponse final :
                &_CancelOperationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    23;
 
   friend void swap(CancelOperationResponse& a, CancelOperationResponse& b) {
     a.Swap(&b);
@@ -3777,7 +4054,7 @@ class BlockForOperationRequest final :
                &_BlockForOperationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    24;
 
   friend void swap(BlockForOperationRequest& a, BlockForOperationRequest& b) {
     a.Swap(&b);
@@ -3924,7 +4201,7 @@ class BlockForOperationResponse final :
                &_BlockForOperationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    25;
 
   friend void swap(BlockForOperationResponse& a, BlockForOperationResponse& b) {
     a.Swap(&b);
@@ -4041,7 +4318,7 @@ class PeerConnectionInfo final :
                &_PeerConnectionInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    26;
 
   friend void swap(PeerConnectionInfo& a, PeerConnectionInfo& b) {
     a.Swap(&b);
@@ -4225,7 +4502,7 @@ class Session final :
                &_Session_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    27;
 
   friend void swap(Session& a, Session& b) {
     a.Swap(&b);
@@ -4393,7 +4670,7 @@ class GetSessionsRequest final :
                &_GetSessionsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    28;
 
   friend void swap(GetSessionsRequest& a, GetSessionsRequest& b) {
     a.Swap(&b);
@@ -4510,7 +4787,7 @@ class GetSessionsResponse final :
                &_GetSessionsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    29;
 
   friend void swap(GetSessionsResponse& a, GetSessionsResponse& b) {
     a.Swap(&b);
@@ -4662,7 +4939,7 @@ class ModuleModel final :
                &_ModuleModel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    30;
 
   friend void swap(ModuleModel& a, ModuleModel& b) {
     a.Swap(&b);
@@ -4852,7 +5129,7 @@ class GetModelsFromModulesRequest final :
                &_GetModelsFromModulesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    31;
 
   friend void swap(GetModelsFromModulesRequest& a, GetModelsFromModulesRequest& b) {
     a.Swap(&b);
@@ -4969,7 +5246,7 @@ class GetModelsFromModulesResponse final :
                &_GetModelsFromModulesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    32;
 
   friend void swap(GetModelsFromModulesResponse& a, GetModelsFromModulesResponse& b) {
     a.Swap(&b);
@@ -5121,7 +5398,7 @@ class Status final :
                &_Status_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    33;
 
   friend void swap(Status& a, Status& b) {
     a.Swap(&b);
@@ -5313,7 +5590,7 @@ class GetStatusRequest final :
                &_GetStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    34;
 
   friend void swap(GetStatusRequest& a, GetStatusRequest& b) {
     a.Swap(&b);
@@ -5465,7 +5742,7 @@ class GetStatusResponse final :
                &_GetStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    35;
 
   friend void swap(GetStatusResponse& a, GetStatusResponse& b) {
     a.Swap(&b);
@@ -5617,7 +5894,7 @@ class StreamStatusRequest final :
                &_StreamStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    36;
 
   friend void swap(StreamStatusRequest& a, StreamStatusRequest& b) {
     a.Swap(&b);
@@ -5789,7 +6066,7 @@ class StreamStatusResponse final :
                &_StreamStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    37;
 
   friend void swap(StreamStatusResponse& a, StreamStatusResponse& b) {
     a.Swap(&b);
@@ -5941,7 +6218,7 @@ class StopExtraParameters final :
                &_StopExtraParameters_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    38;
 
   friend void swap(StopExtraParameters& a, StopExtraParameters& b) {
     a.Swap(&b);
@@ -6113,7 +6390,7 @@ class StopAllRequest final :
                &_StopAllRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    39;
 
   friend void swap(StopAllRequest& a, StopAllRequest& b) {
     a.Swap(&b);
@@ -6264,7 +6541,7 @@ class StopAllResponse final :
                &_StopAllResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    40;
 
   friend void swap(StopAllResponse& a, StopAllResponse& b) {
     a.Swap(&b);
@@ -6381,7 +6658,7 @@ class StartSessionRequest final :
                &_StartSessionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    41;
 
   friend void swap(StartSessionRequest& a, StartSessionRequest& b) {
     a.Swap(&b);
@@ -6529,7 +6806,7 @@ class StartSessionResponse final :
                &_StartSessionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    42;
 
   friend void swap(StartSessionResponse& a, StartSessionResponse& b) {
     a.Swap(&b);
@@ -6697,7 +6974,7 @@ class SendSessionHeartbeatRequest final :
                &_SendSessionHeartbeatRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    43;
 
   friend void swap(SendSessionHeartbeatRequest& a, SendSessionHeartbeatRequest& b) {
     a.Swap(&b);
@@ -6844,7 +7121,7 @@ class SendSessionHeartbeatResponse final :
                &_SendSessionHeartbeatResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    44;
 
   friend void swap(SendSessionHeartbeatResponse& a, SendSessionHeartbeatResponse& b) {
     a.Swap(&b);
@@ -6961,7 +7238,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    45;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -7112,7 +7389,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    46;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -7228,7 +7505,7 @@ class GetCloudMetadataRequest final :
                &_GetCloudMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    47;
 
   friend void swap(GetCloudMetadataRequest& a, GetCloudMetadataRequest& b) {
     a.Swap(&b);
@@ -7345,7 +7622,7 @@ class GetCloudMetadataResponse final :
                &_GetCloudMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    48;
 
   friend void swap(GetCloudMetadataResponse& a, GetCloudMetadataResponse& b) {
     a.Swap(&b);
@@ -7563,7 +7840,7 @@ class RestartModuleRequest final :
                &_RestartModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    49;
 
   friend void swap(RestartModuleRequest& a, RestartModuleRequest& b) {
     a.Swap(&b);
@@ -7747,7 +8024,7 @@ class RestartModuleResponse final :
                &_RestartModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    50;
 
   friend void swap(RestartModuleResponse& a, RestartModuleResponse& b) {
     a.Swap(&b);
@@ -7863,7 +8140,7 @@ class ShutdownRequest final :
                &_ShutdownRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    51;
 
   friend void swap(ShutdownRequest& a, ShutdownRequest& b) {
     a.Swap(&b);
@@ -7979,7 +8256,7 @@ class ShutdownResponse final :
                &_ShutdownResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    52;
 
   friend void swap(ShutdownResponse& a, ShutdownResponse& b) {
     a.Swap(&b);
@@ -8095,7 +8372,7 @@ class GetMachineStatusRequest final :
                &_GetMachineStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    53;
 
   friend void swap(GetMachineStatusRequest& a, GetMachineStatusRequest& b) {
     a.Swap(&b);
@@ -8212,7 +8489,7 @@ class GetMachineStatusResponse final :
                &_GetMachineStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    54;
 
   friend void swap(GetMachineStatusResponse& a, GetMachineStatusResponse& b) {
     a.Swap(&b);
@@ -8447,7 +8724,7 @@ class JobStatus final :
                &_JobStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    55;
 
   friend void swap(JobStatus& a, JobStatus& b) {
     a.Swap(&b);
@@ -8635,7 +8912,7 @@ class ResourceStatus final :
                &_ResourceStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    56;
 
   friend void swap(ResourceStatus& a, ResourceStatus& b) {
     a.Swap(&b);
@@ -8909,7 +9186,7 @@ class ConfigStatus final :
                &_ConfigStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    57;
 
   friend void swap(ConfigStatus& a, ConfigStatus& b) {
     a.Swap(&b);
@@ -9076,7 +9353,7 @@ class GetVersionRequest final :
                &_GetVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    58;
 
   friend void swap(GetVersionRequest& a, GetVersionRequest& b) {
     a.Swap(&b);
@@ -9193,7 +9470,7 @@ class GetVersionResponse final :
                &_GetVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    59;
 
   friend void swap(GetVersionResponse& a, GetVersionResponse& b) {
     a.Swap(&b);
@@ -9373,7 +9650,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    60;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -9577,7 +9854,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    61;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -9688,6 +9965,51 @@ class GetPoseResponse final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// SendTracesRequest
+
+// repeated .opentelemetry.proto.trace.v1.ResourceSpans resource_spans = 1 [json_name = "resourceSpans"];
+inline int SendTracesRequest::_internal_resource_spans_size() const {
+  return resource_spans_.size();
+}
+inline int SendTracesRequest::resource_spans_size() const {
+  return _internal_resource_spans_size();
+}
+inline ::opentelemetry::proto::trace::v1::ResourceSpans* SendTracesRequest::mutable_resource_spans(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.SendTracesRequest.resource_spans)
+  return resource_spans_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::opentelemetry::proto::trace::v1::ResourceSpans >*
+SendTracesRequest::mutable_resource_spans() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.SendTracesRequest.resource_spans)
+  return &resource_spans_;
+}
+inline const ::opentelemetry::proto::trace::v1::ResourceSpans& SendTracesRequest::_internal_resource_spans(int index) const {
+  return resource_spans_.Get(index);
+}
+inline const ::opentelemetry::proto::trace::v1::ResourceSpans& SendTracesRequest::resource_spans(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.SendTracesRequest.resource_spans)
+  return _internal_resource_spans(index);
+}
+inline ::opentelemetry::proto::trace::v1::ResourceSpans* SendTracesRequest::_internal_add_resource_spans() {
+  return resource_spans_.Add();
+}
+inline ::opentelemetry::proto::trace::v1::ResourceSpans* SendTracesRequest::add_resource_spans() {
+  ::opentelemetry::proto::trace::v1::ResourceSpans* _add = _internal_add_resource_spans();
+  // @@protoc_insertion_point(field_add:viam.robot.v1.SendTracesRequest.resource_spans)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::opentelemetry::proto::trace::v1::ResourceSpans >&
+SendTracesRequest::resource_spans() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.SendTracesRequest.resource_spans)
+  return resource_spans_;
+}
+
+// -------------------------------------------------------------------
+
+// SendTracesResponse
+
+// -------------------------------------------------------------------
+
 // TunnelRequest
 
 // uint32 destination_port = 1 [json_name = "destinationPort"];
@@ -14809,6 +15131,10 @@ inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame*
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

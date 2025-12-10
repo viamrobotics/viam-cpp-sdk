@@ -1189,6 +1189,33 @@ inline bool SharedSecret_State_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<SharedSecret_State>(
     SharedSecret_State_descriptor(), name, value);
 }
+enum OnlineState : int {
+  ONLINE_STATE_UNSPECIFIED = 0,
+  ONLINE_STATE_ONLINE = 1,
+  ONLINE_STATE_OFFLINE = 2,
+  ONLINE_STATE_AWAITING_SETUP = 3,
+  OnlineState_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  OnlineState_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool OnlineState_IsValid(int value);
+constexpr OnlineState OnlineState_MIN = ONLINE_STATE_UNSPECIFIED;
+constexpr OnlineState OnlineState_MAX = ONLINE_STATE_AWAITING_SETUP;
+constexpr int OnlineState_ARRAYSIZE = OnlineState_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* OnlineState_descriptor();
+template<typename T>
+inline const std::string& OnlineState_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, OnlineState>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function OnlineState_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    OnlineState_descriptor(), enum_t_value);
+}
+inline bool OnlineState_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, OnlineState* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<OnlineState>(
+    OnlineState_descriptor(), name, value);
+}
 enum AuthenticationType : int {
   AUTHENTICATION_TYPE_UNSPECIFIED = 0,
   AUTHENTICATION_TYPE_WEB_OAUTH = 1,
@@ -1816,6 +1843,8 @@ class RobotPart final :
     kCreatedOnFieldNumber = 13,
     kLastUpdatedFieldNumber = 15,
     kMainPartFieldNumber = 8,
+    kOnlineStateFieldNumber = 16,
+    kSecondsSinceOnlineFieldNumber = 17,
   };
   // repeated .viam.app.v1.SharedSecret secrets = 14 [json_name = "secrets", (.tagger.v1.tags) = "bson:\"secrets\""];
   int secrets_size() const;
@@ -2046,6 +2075,24 @@ class RobotPart final :
   void _internal_set_main_part(bool value);
   public:
 
+  // .viam.app.v1.OnlineState online_state = 16 [json_name = "onlineState", (.tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
+  void clear_online_state();
+  ::viam::app::v1::OnlineState online_state() const;
+  void set_online_state(::viam::app::v1::OnlineState value);
+  private:
+  ::viam::app::v1::OnlineState _internal_online_state() const;
+  void _internal_set_online_state(::viam::app::v1::OnlineState value);
+  public:
+
+  // int64 seconds_since_online = 17 [json_name = "secondsSinceOnline", (.tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
+  void clear_seconds_since_online();
+  int64_t seconds_since_online() const;
+  void set_seconds_since_online(int64_t value);
+  private:
+  int64_t _internal_seconds_since_online() const;
+  void _internal_set_seconds_since_online(int64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.RobotPart)
  private:
   class _Internal;
@@ -2068,6 +2115,8 @@ class RobotPart final :
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated_;
   bool main_part_;
+  int online_state_;
+  int64_t seconds_since_online_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -48542,6 +48591,46 @@ inline void RobotPart::set_allocated_last_updated(::PROTOBUF_NAMESPACE_ID::Times
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RobotPart.last_updated)
 }
 
+// .viam.app.v1.OnlineState online_state = 16 [json_name = "onlineState", (.tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
+inline void RobotPart::clear_online_state() {
+  online_state_ = 0;
+}
+inline ::viam::app::v1::OnlineState RobotPart::_internal_online_state() const {
+  return static_cast< ::viam::app::v1::OnlineState >(online_state_);
+}
+inline ::viam::app::v1::OnlineState RobotPart::online_state() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotPart.online_state)
+  return _internal_online_state();
+}
+inline void RobotPart::_internal_set_online_state(::viam::app::v1::OnlineState value) {
+  
+  online_state_ = value;
+}
+inline void RobotPart::set_online_state(::viam::app::v1::OnlineState value) {
+  _internal_set_online_state(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.RobotPart.online_state)
+}
+
+// int64 seconds_since_online = 17 [json_name = "secondsSinceOnline", (.tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
+inline void RobotPart::clear_seconds_since_online() {
+  seconds_since_online_ = int64_t{0};
+}
+inline int64_t RobotPart::_internal_seconds_since_online() const {
+  return seconds_since_online_;
+}
+inline int64_t RobotPart::seconds_since_online() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotPart.seconds_since_online)
+  return _internal_seconds_since_online();
+}
+inline void RobotPart::_internal_set_seconds_since_online(int64_t value) {
+  
+  seconds_since_online_ = value;
+}
+inline void RobotPart::set_seconds_since_online(int64_t value) {
+  _internal_set_seconds_since_online(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.RobotPart.seconds_since_online)
+}
+
 // -------------------------------------------------------------------
 
 // RobotPartHistoryEntry
@@ -81217,6 +81306,11 @@ template <> struct is_proto_enum< ::viam::app::v1::SharedSecret_State> : ::std::
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::SharedSecret_State>() {
   return ::viam::app::v1::SharedSecret_State_descriptor();
+}
+template <> struct is_proto_enum< ::viam::app::v1::OnlineState> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::OnlineState>() {
+  return ::viam::app::v1::OnlineState_descriptor();
 }
 template <> struct is_proto_enum< ::viam::app::v1::AuthenticationType> : ::std::true_type {};
 template <>
