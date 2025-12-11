@@ -1,5 +1,7 @@
 #include <viam/sdk/common/utils.hpp>
 
+#include <cstdlib>
+
 #include <random>
 #include <unordered_map>
 #include <vector>
@@ -166,6 +168,14 @@ std::pair<std::string, std::string> long_name_to_remote_and_short(const std::str
                                              });
 
     return {std::move(remote_name), std::move(name)};
+}
+
+std::string get_env(const char* var) {
+    if (const char* envp = std::getenv(var)) {  // NOLINT(concurrency-mt-unsafe)
+        return envp;
+    }
+
+    return {};
 }
 
 }  // namespace sdk
