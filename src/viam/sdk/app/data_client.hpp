@@ -21,6 +21,8 @@ class DataClient {
         std::string query_prefix;
     };
 
+    using MQLBinary = std::vector<uint8_t>;
+
     static DataClient from_viam_client(const ViamClient&);
 
     DataClient(DataClient&&) = default;
@@ -31,10 +33,9 @@ class DataClient {
 
     const ViamChannel& channel() const;
 
-    std::vector<std::vector<std::uint8_t>> tabular_data_by_mql(
-        const std::string& org_id,
-        const std::vector<std::vector<std::uint8_t>>& mql_binary,
-        const TabularDataByMQLOpts& opts);
+    std::vector<MQLBinary> tabular_data_by_mql(const std::string& org_id,
+                                               const std::vector<MQLBinary>& mql_binary,
+                                               const TabularDataByMQLOpts& opts);
 
    private:
     DataClient(const ViamChannel& channel);

@@ -43,9 +43,9 @@ const ViamChannel& DataClient::channel() const {
     return pimpl_->channel();
 }
 
-std::vector<std::vector<std::uint8_t>> DataClient::tabular_data_by_mql(
+std::vector<DataClient::MQLBinary> DataClient::tabular_data_by_mql(
     const std::string& org_id,
-    const std::vector<std::vector<std::uint8_t>>& mql_binary,
+    const std::vector<DataClient::MQLBinary>& mql_binary,
     const DataClient::TabularDataByMQLOpts& opts) {
     return pimpl_->client_helper(&DataService::Stub::TabularDataByMQL)
         .with([&](app::data::v1::TabularDataByMQLRequest& req) {
@@ -80,7 +80,7 @@ std::vector<std::vector<std::uint8_t>> DataClient::tabular_data_by_mql(
             }
         })
         .invoke([](const app::data::v1::TabularDataByMQLResponse& resp) {
-            std::vector<std::vector<uint8_t>> result;
+            std::vector<DataClient::MQLBinary> result;
 
             for (const auto& str : resp.raw_data()) {
                 result.push_back(string_to_bytes(str));
