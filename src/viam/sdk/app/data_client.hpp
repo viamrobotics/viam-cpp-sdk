@@ -23,6 +23,10 @@ class DataClient {
 
     static DataClient from_viam_client(const ViamClient&);
 
+    DataClient(DataClient&&) = default;
+
+    DataClient& operator=(DataClient&&) = default;
+
     ~DataClient();
 
     const ViamChannel& channel() const;
