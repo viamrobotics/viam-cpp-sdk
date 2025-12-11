@@ -7,8 +7,8 @@ namespace viam {
 namespace sdk {
 
 ViamClient ViamClient::from_env() {
-    std::string api_key = get_env("VIAM_API_KEY");
-    std::string api_key_id = get_env("VIAM_API_KEY_ID");
+    const std::string api_key = get_env("VIAM_API_KEY");
+    const std::string api_key_id = get_env("VIAM_API_KEY_ID");
 
     if (api_key.empty() || api_key_id.empty()) {
         throw Exception("VIAM_API_KEY and VIAM_API_KEY_ID must both be set");
