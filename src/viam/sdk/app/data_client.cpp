@@ -1,5 +1,7 @@
 #include <viam/sdk/app/data_client.hpp>
 
+#include <boost/config.hpp>
+
 #include <grpcpp/channel.h>
 
 #include <viam/api/app/data/v1/data.grpc.pb.h>
@@ -29,6 +31,10 @@ struct DataClient::impl {
     std::unique_ptr<DataService::Stub> stub;
 };
 
+DataClient DataClient::from_viam_client(const ViamClient& client) {
+    return DataClient(client.channel());
+}
+
 DataClient::DataClient(const ViamChannel& channel) : pimpl_(std::make_unique<impl>(channel)) {}
 
 DataClient::~DataClient() = default;
@@ -40,9 +46,7 @@ const ViamChannel& DataClient::channel() const {
 std::vector<std::vector<std::uint8_t>> DataClient::tabular_data_by_mql(
     const std::string& org_id,
     const std::vector<std::vector<std::uint8_t>>& mql_binary,
-    TabularDataSourceType src_type,
-    const std::string& pipeline_id,
-    const std::string& query_prefix) {
+    const DataClient::TabularDataByMQLOpts& opts) {
     return pimpl_->client_helper(&DataService::Stub::TabularDataByMQL)
         .with([&](app::data::v1::TabularDataByMQLRequest& req) {
             req.set_organization_id(org_id);
@@ -51,7 +55,29 @@ std::vector<std::vector<std::uint8_t>> DataClient::tabular_data_by_mql(
                 *(req.mutable_mql_binary()->Add()) = bytes_to_string(query);
             }
 
-            req.set_query_prefix_name(query_prefix);
+            switch (opts.src_type) {
+                case TabularDataSourceType::standard:
+                    req.mutable_data_source()->set_type(
+                        app::data::v1::TABULAR_DATA_SOURCE_TYPE_STANDARD);
+                    break;
+                case TabularDataSourceType::hot_storage:
+                    BOOST_FALLTHROUGH;
+                default:
+                    req.mutable_data_source()->set_type(
+                        app::data::v1::TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE);
+                    break;
+                case TabularDataSourceType::pipeline_sink:
+                    req.mutable_data_source()->set_type(
+                        app::data::v1::TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK);
+            }
+
+            if (!opts.pipeline_id.empty()) {
+                req.mutable_data_source()->set_pipeline_id(opts.pipeline_id);
+            }
+
+            if (!opts.query_prefix.empty()) {
+                req.set_query_prefix_name(opts.query_prefix);
+            }
         })
         .invoke([](const app::data::v1::TabularDataByMQLResponse& resp) {
             std::vector<std::vector<uint8_t>> result;

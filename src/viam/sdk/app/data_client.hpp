@@ -15,7 +15,13 @@ class DataClient {
    public:
     enum class TabularDataSourceType { standard, hot_storage, pipeline_sink };
 
-    DataClient(const ViamChannel& channel);
+    struct TabularDataByMQLOpts {
+        TabularDataSourceType src_type = TabularDataSourceType::hot_storage;
+        std::string pipeline_id;
+        std::string query_prefix;
+    };
+
+    static DataClient from_viam_client(const ViamClient&);
 
     ~DataClient();
 
@@ -24,11 +30,11 @@ class DataClient {
     std::vector<std::vector<std::uint8_t>> tabular_data_by_mql(
         const std::string& org_id,
         const std::vector<std::vector<std::uint8_t>>& mql_binary,
-        TabularDataSourceType src_type,
-        const std::string& pipeline_id,
-        const std::string& query_prefix);
+        const TabularDataByMQLOpts& opts);
 
    private:
+    DataClient(const ViamChannel& channel);
+
     struct impl;
 
     std::unique_ptr<impl> pimpl_;
