@@ -115,6 +115,11 @@ ProtoStruct with_debug_entry(ProtoStruct&& map);
 /// @param extra The extra ProtoStruct.
 bool from_dm_from_extra(const ProtoStruct& extra);
 
+/// @brief Wrapper around std::getenv for obtaining environment variables.
+/// @return The value of the environment variable with name @param var, or the empty string if no
+/// such variable exists.
+/// @remark std::getenv is inherently racy as the environment variable may be modified outside the
+/// program, so we choose to copy the value to a std::string.
 std::string get_env(const char* var);
 
 }  // namespace sdk
