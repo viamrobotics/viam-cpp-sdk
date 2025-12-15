@@ -6,7 +6,7 @@
 namespace viam {
 namespace sdk {
 
-ViamClient ViamClient::from_env() {
+ViamClient ViamClient::from_env(const char* uri) {
     boost::optional<std::string> api_key = get_env("VIAM_API_KEY");
     boost::optional<std::string> api_key_id = get_env("VIAM_API_KEY_ID");
 
@@ -19,7 +19,11 @@ ViamClient ViamClient::from_env() {
     opts.set_webrtc_disabled(true);
     opts.set_entity(std::move(api_key_id));
 
-    return ViamClient(ViamChannel::dial_direct("app.viam.com:443", opts));
+    return ViamClient(ViamChannel::dial_direct(uri, opts));
+}
+
+ViamClient ViamClient::from_env() {
+    return ViamClient::from_env("app.viam.com");
 }
 
 const ViamChannel& ViamClient::channel() const {
