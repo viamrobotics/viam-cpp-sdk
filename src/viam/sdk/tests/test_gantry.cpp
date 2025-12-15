@@ -8,6 +8,7 @@
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<double>)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Gantry::KinematicsData)
 
 namespace viam {
 namespace sdktests {
@@ -68,6 +69,14 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
     client_to_mock_pipeline<Gantry>(mock, [](Gantry& client) {
         const auto& geometries = client.get_geometries();
         BOOST_CHECK_EQUAL(geometries, fake_geometries());
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_kinematics) {
+    std::shared_ptr<MockGantry> mock = MockGantry::get_mock_gantry();
+    client_to_mock_pipeline<Gantry>(mock, [](Gantry& client) {
+        const auto& kinematics = client.get_kinematics();
+        BOOST_CHECK_EQUAL(kinematics, fake_kinematics());
     });
 }
 

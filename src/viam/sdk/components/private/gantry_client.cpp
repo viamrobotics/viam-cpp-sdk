@@ -71,6 +71,25 @@ ProtoStruct GantryClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
+Gantry::KinematicsData GantryClient::get_kinematics(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetKinematics)
+        .with(extra)
+        .invoke([](auto& response) -> Gantry::KinematicsData {
+            std::vector<unsigned char> bytes(response.kinematics_data().begin(),
+                                             response.kinematics_data().end());
+            switch (response.format()) {
+                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
+                    return Gantry::KinematicsDataSVA(std::move(bytes));
+                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
+                    return Gantry::KinematicsDataURDF(std::move(bytes));
+                case common::v1::KinematicsFileFormat::
+                    KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
+                default:
+                    return Gantry::KinematicsDataUnspecified{};
+            }
+        });
+}
+
 std::vector<GeometryConfig> GantryClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)

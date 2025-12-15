@@ -10,6 +10,10 @@ std::vector<double> fake_lengths() {
     return {1.0, 2.0, 3.0, 4.0};
 }
 
+sdk::Gantry::KinematicsData fake_kinematics() {
+    return sdk::Gantry::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}};
+}
+
 std::shared_ptr<MockGantry> MockGantry::get_mock_gantry() {
     return std::make_shared<MockGantry>("mock_gantry");
 }
@@ -47,6 +51,10 @@ sdk::ProtoStruct MockGantry::do_command(const sdk::ProtoStruct& command) {
 
 std::vector<sdk::GeometryConfig> MockGantry::get_geometries(const sdk::ProtoStruct&) {
     return fake_geometries();
+}
+
+sdk::Gantry::KinematicsData MockGantry::get_kinematics(const sdk::ProtoStruct&) {
+    return fake_kinematics();
 }
 
 }  // namespace gantry

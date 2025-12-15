@@ -80,6 +80,37 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status GantryServer::GetKinematics(::grpc::ServerContext* context,
+                                           const ::viam::common::v1::GetKinematicsRequest* request,
+                                           ::viam::common::v1::GetKinematicsResponse* response) noexcept {
+    return make_service_helper<Gantry>(
+        "GantryServer::GetKinematics", this, context, request)([&](auto& helper, auto& gantry) {
+        const Gantry::KinematicsData result = gantry->get_kinematics(helper.getExtra());
+
+        struct Visitor {
+            using FileFormat = common::v1::KinematicsFileFormat;
+            auto operator()(const Gantry::KinematicsDataUnspecified&) const noexcept {
+                return FileFormat::KINEMATICS_FILE_FORMAT_UNSPECIFIED;
+            }
+
+            auto operator()(const Gantry::KinematicsDataSVA&) const noexcept {
+                return FileFormat::KINEMATICS_FILE_FORMAT_SVA;
+            }
+
+            auto operator()(const Gantry::KinematicsDataURDF&) const noexcept {
+                return FileFormat::KINEMATICS_FILE_FORMAT_URDF;
+            }
+        } visitor;
+
+        boost::apply_visitor(
+            [&](const auto& v) {
+                response->set_format(visitor(v));
+                response->mutable_kinematics_data()->assign(v.bytes.begin(), v.bytes.end());
+            },
+            result);
+    });
+}
+
 ::grpc::Status GantryServer::GetGeometries(
     ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,

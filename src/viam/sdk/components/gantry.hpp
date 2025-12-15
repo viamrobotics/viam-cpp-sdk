@@ -3,6 +3,7 @@
 /// @brief Defines a `Gantry` component
 #pragma once
 
+#include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 
 namespace viam {
@@ -16,9 +17,14 @@ namespace sdk {
 /// @ingroup Gantry
 ///
 /// This acts as an abstract parent class to be inherited from by any drivers representing
-/// specific arm implementations. This class cannot be used on its own.
+/// specific gantry implementations. This class cannot be used on its own.
 class Gantry : public Component, public Stoppable {
    public:
+    /// @brief Kinematics data types (aliases for shared kinematics types)
+    using KinematicsDataUnspecified = ::viam::sdk::KinematicsDataUnspecified;
+    using KinematicsDataSVA = ::viam::sdk::KinematicsDataSVA;
+    using KinematicsDataURDF = ::viam::sdk::KinematicsDataURDF;
+    using KinematicsData = ::viam::sdk::KinematicsData;
     /// @struct movement_coordinate
     /// @brief A coordinate for moving a single axis of a gantry to a desired position at a
     /// requested speed.
@@ -94,6 +100,19 @@ class Gantry : public Component, public Stoppable {
     /// @brief Returns `GeometryConfig`s associated with the calling gantry
     /// @param extra Any additional arguments to the method
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
+
+    /// @brief Get the kinematics data associated with the gantry.
+    /// @param extra Any additional arguments to the method.
+    /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
+    /// and the object's type indicating the file format.
+    virtual KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
+
+    /// @brief Get the kinematics data associated with the gantry.
+    /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
+    /// and the object's type indicating the file format.
+    inline KinematicsData get_kinematics() {
+        return get_kinematics({});
+    }
 
     API api() const override;
 
