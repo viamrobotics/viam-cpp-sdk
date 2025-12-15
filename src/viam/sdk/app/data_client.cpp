@@ -91,5 +91,9 @@ std::vector<DataClient::BSONBytes> DataClient::tabular_data_by_mql(
         });
 }
 
+std::vector<DataClient::BSONBytes> DataClient::tabular_data_by_mql(
+    const std::string& org_id, const std::vector<DataClient::BSONBytes>& mql_binary) {
+    return tabular_data_by_mql(org_id, mql_binary, TabularDataByMQLOpts{});
+}
 }  // namespace sdk
 }  // namespace viam

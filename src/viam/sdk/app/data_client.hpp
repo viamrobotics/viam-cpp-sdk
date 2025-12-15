@@ -51,6 +51,10 @@ class DataClient {
                                                const std::vector<BSONBytes>& mql_binary,
                                                const TabularDataByMQLOpts& opts);
 
+    /// @brief Convenience overload with default options.
+    std::vector<BSONBytes> tabular_data_by_mql(const std::string& org_id,
+                                               const std::vector<BSONBytes>& mql_binary);
+
    private:
     DataClient(const ViamChannel& channel);
 
