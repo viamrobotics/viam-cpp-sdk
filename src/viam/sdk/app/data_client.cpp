@@ -43,9 +43,9 @@ const ViamChannel& DataClient::channel() const {
     return pimpl_->channel();
 }
 
-std::vector<DataClient::MQLBinary> DataClient::tabular_data_by_mql(
+std::vector<DataClient::BSONBytes> DataClient::tabular_data_by_mql(
     const std::string& org_id,
-    const std::vector<DataClient::MQLBinary>& mql_binary,
+    const std::vector<DataClient::BSONBytes>& mql_binary,
     const DataClient::TabularDataByMQLOpts& opts) {
     return pimpl_->client_helper(&DataService::Stub::TabularDataByMQL)
         .with([&](app::data::v1::TabularDataByMQLRequest& req) {
@@ -56,31 +56,32 @@ std::vector<DataClient::MQLBinary> DataClient::tabular_data_by_mql(
             }
 
             switch (opts.src_type) {
-                case TabularDataSourceType::standard:
+                case TabularDataSourceType::k_standard:
                     req.mutable_data_source()->set_type(
                         app::data::v1::TABULAR_DATA_SOURCE_TYPE_STANDARD);
                     break;
-                case TabularDataSourceType::hot_storage:
+                case TabularDataSourceType::k_hot_storage:
                     BOOST_FALLTHROUGH;
                 default:
                     req.mutable_data_source()->set_type(
                         app::data::v1::TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE);
                     break;
-                case TabularDataSourceType::pipeline_sink:
+                case TabularDataSourceType::k_pipeline_sink:
                     req.mutable_data_source()->set_type(
                         app::data::v1::TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK);
+                    break;
             }
 
-            if (!opts.pipeline_id.empty()) {
-                req.mutable_data_source()->set_pipeline_id(opts.pipeline_id);
+            if (opts.pipeline_id.has_value()) {
+                req.mutable_data_source()->set_pipeline_id(*opts.pipeline_id);
             }
 
-            if (!opts.query_prefix.empty()) {
-                req.set_query_prefix_name(opts.query_prefix);
+            if (opts.query_prefix.has_value()) {
+                req.set_query_prefix_name(*opts.query_prefix);
             }
         })
         .invoke([](const app::data::v1::TabularDataByMQLResponse& resp) {
-            std::vector<DataClient::MQLBinary> result;
+            std::vector<DataClient::BSONBytes> result;
 
             for (const auto& str : resp.raw_data()) {
                 result.push_back(string_to_bytes(str));
