@@ -56,17 +56,17 @@ std::vector<std::vector<std::uint8_t>> DataClient::tabular_data_by_mql(
             }
 
             switch (opts.src_type) {
-                case TabularDataSourceType::standard:
+                case TabularDataSourceType::k_standard:
                     req.mutable_data_source()->set_type(
                         app::data::v1::TABULAR_DATA_SOURCE_TYPE_STANDARD);
                     break;
-                case TabularDataSourceType::hot_storage:
+                case TabularDataSourceType::k_hot_storage:
                     BOOST_FALLTHROUGH;
                 default:
                     req.mutable_data_source()->set_type(
                         app::data::v1::TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE);
                     break;
-                case TabularDataSourceType::pipeline_sink:
+                case TabularDataSourceType::k_pipeline_sink:
                     req.mutable_data_source()->set_type(
                         app::data::v1::TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK);
             }

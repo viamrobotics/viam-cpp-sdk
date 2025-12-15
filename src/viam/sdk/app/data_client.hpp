@@ -13,10 +13,10 @@ namespace sdk {
 
 class DataClient {
    public:
-    enum class TabularDataSourceType { standard, hot_storage, pipeline_sink };
+    enum class TabularDataSourceType { k_standard, k_hot_storage, k_pipeline_sink };
 
     struct TabularDataByMQLOpts {
-        TabularDataSourceType src_type = TabularDataSourceType::hot_storage;
+        TabularDataSourceType src_type = TabularDataSourceType::k_hot_storage;
         std::string pipeline_id;
         std::string query_prefix;
     };
