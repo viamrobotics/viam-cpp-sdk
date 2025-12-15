@@ -36,12 +36,12 @@ class GantryClient : public Gantry {
     Gantry::KinematicsData get_kinematics(const ProtoStruct& extra) override;
 
     using Gantry::get_geometries;
+    using Gantry::get_kinematics;
     using Gantry::get_lengths;
     using Gantry::get_position;
     using Gantry::home;
     using Gantry::move_to_position;
     using Gantry::stop;
-    using Gantry::get_kinematics;
 
    private:
     using StubType = viam::component::gantry::v1::GantryService::StubInterface;

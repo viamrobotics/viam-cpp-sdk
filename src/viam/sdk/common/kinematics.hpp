@@ -47,4 +47,3 @@ using KinematicsData =
 
 }  // namespace sdk
 }  // namespace viam
-
