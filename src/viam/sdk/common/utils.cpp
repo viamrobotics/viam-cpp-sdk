@@ -178,5 +178,17 @@ boost::optional<std::string> get_env(const char* var) {
     return {};
 }
 
+bool is_env_var_true(const char* var) {
+    if (const auto& val = get_env(var)) {
+        for (const char* truth : {"true", "yes", "1", "TRUE", "YES"}) {
+            if (*val == truth) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 }  // namespace sdk
 }  // namespace viam

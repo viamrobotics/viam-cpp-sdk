@@ -18,7 +18,7 @@ class DataClient {
     enum class TabularDataSourceType { k_standard, k_hot_storage, k_pipeline_sink };
 
     /// @brief Options which are passed to a tabular_data_by_mql request.
-    struct TabularDataByMQLOpts {
+    struct tabular_data_by_mql_opts {
         /// @brief Source type for the query.
         TabularDataSourceType src_type = TabularDataSourceType::k_hot_storage;
 
@@ -49,7 +49,11 @@ class DataClient {
     /// to perform BSON encoding/decoding with their library of choice.
     std::vector<BSONBytes> tabular_data_by_mql(const std::string& org_id,
                                                const std::vector<BSONBytes>& mql_binary,
-                                               const TabularDataByMQLOpts& opts);
+                                               const tabular_data_by_mql_opts& opts);
+
+    /// @brief Convenience overload with default options.
+    std::vector<BSONBytes> tabular_data_by_mql(const std::string& org_id,
+                                               const std::vector<BSONBytes>& mql_binary);
 
    private:
     DataClient(const ViamChannel& channel);

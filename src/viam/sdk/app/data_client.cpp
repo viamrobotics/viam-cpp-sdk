@@ -46,7 +46,7 @@ const ViamChannel& DataClient::channel() const {
 std::vector<DataClient::BSONBytes> DataClient::tabular_data_by_mql(
     const std::string& org_id,
     const std::vector<DataClient::BSONBytes>& mql_binary,
-    const DataClient::TabularDataByMQLOpts& opts) {
+    const DataClient::tabular_data_by_mql_opts& opts) {
     return pimpl_->client_helper(&DataService::Stub::TabularDataByMQL)
         .with([&](app::data::v1::TabularDataByMQLRequest& req) {
             req.set_organization_id(org_id);
@@ -91,5 +91,9 @@ std::vector<DataClient::BSONBytes> DataClient::tabular_data_by_mql(
         });
 }
 
+std::vector<DataClient::BSONBytes> DataClient::tabular_data_by_mql(
+    const std::string& org_id, const std::vector<DataClient::BSONBytes>& mql_binary) {
+    return tabular_data_by_mql(org_id, mql_binary, tabular_data_by_mql_opts{});
+}
 }  // namespace sdk
 }  // namespace viam

@@ -121,5 +121,9 @@ bool from_dm_from_extra(const ProtoStruct& extra);
 /// program, so we choose to copy the value to a std::string.
 boost::optional<std::string> get_env(const char* var);
 
+/// @brief Returns whether the environment variable with name @param var is set, and equal to
+/// "true", "yes", "1", "TRUE", or "YES"
+bool is_env_var_true(const char* var);
+
 }  // namespace sdk
 }  // namespace viam
