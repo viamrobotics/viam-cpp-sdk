@@ -12,18 +12,22 @@ namespace sdk {
 
 class DataConsumer {
    public:
-    struct QueryOptions {
+    struct query_options {
         /// @brief How far back should the data be included.
         std::chrono::milliseconds time_back;
 
         /// @brief Any additional query stages to be included after the default query.
-        std::vector<DataClient::MQLBinary> additional_stages;
+        std::vector<DataClient::BSONBytes> additional_stages;
     };
+
+    static DataClient::BSONBytes default_query(
+        const std::string& part_id,
+        std::chrono::time_point<std::chrono::system_clock, std::chrono::milliseconds> time_point);
 
     DataConsumer(DataClient& dc);
 
-    std::vector<DataClient::MQLBinary> query_tabular_data(const std::string& resource,
-                                                          QueryOptions opts);
+    std::vector<DataClient::BSONBytes> query_tabular_data(const std::string& resource,
+                                                          query_options opts);
 
    private:
     DataClient& client_;
