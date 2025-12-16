@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reason_0',['reason',['../structviam_1_1sdk_1_1Motion_1_1plan__status.html#ad8eb9b5f3f556d0faefbb55c1913e092',1,'viam::sdk::Motion::plan_status']]]
+  ['query_5fprefix_0',['query_prefix',['../structviam_1_1sdk_1_1DataClient_1_1tabular__data__by__mql__opts.html#a1bbf28bf55a956a9323baf3f314eebc9',1,'viam::sdk::DataClient::tabular_data_by_mql_opts']]]
 ];
