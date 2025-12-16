@@ -115,5 +115,15 @@ ProtoStruct with_debug_entry(ProtoStruct&& map);
 /// @param extra The extra ProtoStruct.
 bool from_dm_from_extra(const ProtoStruct& extra);
 
+/// @brief Wrapper around std::getenv for obtaining environment variables.
+/// @return The value of the environment variable with name @param var, if set.
+/// @remark std::getenv is inherently racy as the environment variable may be modified outside the
+/// program, so we choose to copy the value to a std::string.
+boost::optional<std::string> get_env(const char* var);
+
+/// @brief Returns whether the environment variable with name @param var is set, and equal to
+/// "true", "yes", "1", "TRUE", or "YES"
+bool is_env_var_true(const char* var);
+
 }  // namespace sdk
 }  // namespace viam
