@@ -47,10 +47,9 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status CameraServer::GetImage(
-    ::grpc::ServerContext*,
-    const ::viam::component::camera::v1::GetImageRequest*,
-    ::viam::component::camera::v1::GetImageResponse*) noexcept {
+::grpc::Status CameraServer::GetImage(::grpc::ServerContext*,
+                                      const ::viam::component::camera::v1::GetImageRequest*,
+                                      ::viam::component::camera::v1::GetImageResponse*) noexcept {
     return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED,
                           "GetImage is deprecated. Use GetImages instead.");
 }
@@ -76,10 +75,9 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status CameraServer::RenderFrame(
-    ::grpc::ServerContext*,
-    const ::viam::component::camera::v1::RenderFrameRequest*,
-    ::google::api::HttpBody*) noexcept {
+::grpc::Status CameraServer::RenderFrame(::grpc::ServerContext*,
+                                         const ::viam::component::camera::v1::RenderFrameRequest*,
+                                         ::google::api::HttpBody*) noexcept {
     return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED,
                           "RenderFrame is deprecated. Use GetImages instead.");
 }
