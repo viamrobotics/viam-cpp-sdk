@@ -23,31 +23,6 @@ namespace impl {
 using sdk::from_proto;
 using sdk::to_proto;
 
-std::string format_to_MIME_string(viam::component::camera::v1::Format format) {
-    switch (format) {
-        case viam::component::camera::v1::FORMAT_RAW_RGBA:
-            return "image/vnd.viam.rgba";
-        case viam::component::camera::v1::FORMAT_RAW_DEPTH:
-            return "image/vnd.viam.dep";
-        case viam::component::camera::v1::FORMAT_JPEG:
-            return "image/jpeg";
-        case viam::component::camera::v1::FORMAT_PNG:
-            return "image/png";
-        default:
-            return "";
-    }
-}
-
-Camera::raw_image from_proto(const viam::component::camera::v1::GetImageResponse& proto) {
-    Camera::raw_image raw_image;
-    std::string img_string = proto.image();
-    const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
-    raw_image.bytes = bytes;
-    raw_image.mime_type = proto.mime_type();
-    raw_image.source_name = "";
-    return raw_image;
-}
-
 Camera::image_collection from_proto(const viam::component::camera::v1::GetImagesResponse& proto) {
     Camera::image_collection image_collection;
     std::vector<Camera::raw_image> images;
@@ -56,13 +31,7 @@ Camera::image_collection from_proto(const viam::component::camera::v1::GetImages
         std::string img_string = img.image();
         const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
         raw_image.bytes = bytes;
-        // TODO(RSDK-11733): This is a temporary fix to support handling both the format and mime
-        // type. We will remove this once we remove the format field from the proto.
-        if (!img.mime_type().empty()) {
-            raw_image.mime_type = img.mime_type();
-        } else {
-            raw_image.mime_type = format_to_MIME_string(img.format());
-        }
+        raw_image.mime_type = img.mime_type();
         raw_image.source_name = img.source_name();
         images.push_back(raw_image);
     }
@@ -119,15 +88,6 @@ ProtoStruct CameraClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
         .invoke([](auto& response) { return from_proto(response.result()); });
-};
-
-Camera::raw_image CameraClient::get_image(std::string mime_type, const ProtoStruct& extra) {
-    return make_client_helper(this, *stub_, &StubType::GetImage)
-        .with(extra,
-              [&](auto& request) {
-                  *request.mutable_mime_type() = Camera::normalize_mime_type(mime_type);
-              })
-        .invoke([](auto& response) { return from_proto(response); });
 };
 
 Camera::image_collection CameraClient::get_images(std::vector<std::string> filter_source_names,

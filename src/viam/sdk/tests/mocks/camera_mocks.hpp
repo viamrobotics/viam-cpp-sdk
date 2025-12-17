@@ -11,7 +11,6 @@ using namespace viam::sdk;
 class MockCamera : public Camera {
    public:
     ProtoStruct do_command(const ProtoStruct& command) override;
-    raw_image get_image(std::string mime_type, const sdk::ProtoStruct& extra) override;
     image_collection get_images(std::vector<std::string> filter_source_names,
                                 const sdk::ProtoStruct& extra) override;
     point_cloud get_point_cloud(std::string mime_type, const sdk::ProtoStruct& extra) override;
@@ -31,7 +30,6 @@ class MockCamera : public Camera {
     Camera::intrinsic_parameters intrinsic_parameters_;
     Camera::distortion_parameters distortion_parameters_;
     Camera::properties camera_properties_;
-    Camera::raw_image image_;
     Camera::image_collection images_;
     Camera::point_cloud pc_;
     ProtoStruct map_;
@@ -40,7 +38,6 @@ class MockCamera : public Camera {
     ProtoStruct last_extra_;
 };
 
-Camera::raw_image fake_raw_image();
 Camera::image_collection fake_raw_images();
 Camera::point_cloud fake_point_cloud();
 Camera::intrinsic_parameters fake_intrinsic_parameters();

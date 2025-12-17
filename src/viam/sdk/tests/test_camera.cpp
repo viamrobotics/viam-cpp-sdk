@@ -31,16 +31,6 @@ BOOST_AUTO_TEST_CASE(mock_get_api) {
     BOOST_CHECK_EQUAL(static_api.resource_subtype(), "camera");
 }
 
-BOOST_AUTO_TEST_CASE(test_get_image) {
-    std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
-    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
-        Camera::raw_image image = client.get_image("JPEG");
-        Camera::raw_image expected_image = fake_raw_image();
-
-        BOOST_CHECK(expected_image == image);
-    });
-}
-
 BOOST_AUTO_TEST_CASE(test_get_images) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
     client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
