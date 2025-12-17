@@ -47,35 +47,11 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status CameraServer::GetImage(
-    ::grpc::ServerContext* context,
-    const ::viam::component::camera::v1::GetImageRequest* request,
-    ::viam::component::camera::v1::GetImageResponse* response) noexcept {
-    return make_service_helper<Camera>(
-        "CameraServer::GetImage", this, context, request)([&](auto& helper, auto& camera) {
-        const Camera::raw_image image = camera->get_image(request->mime_type(), helper.getExtra());
-
-        const std::string img_string = bytes_to_string(image.bytes);
-
-        *response->mutable_mime_type() = image.mime_type;
-        *response->mutable_image() = img_string;
-    });
-}
-
-::viam::component::camera::v1::Format MIME_string_to_format(const std::string& mime_string) {
-    if (mime_string == "image/vnd.viam.rgba") {
-        return viam::component::camera::v1::FORMAT_RAW_RGBA;
-    }
-    if (mime_string == "image/vnd.viam.dep") {
-        return viam::component::camera::v1::FORMAT_RAW_DEPTH;
-    }
-    if (mime_string == "image/jpeg") {
-        return viam::component::camera::v1::FORMAT_JPEG;
-    }
-    if (mime_string == "image/png") {
-        return viam::component::camera::v1::FORMAT_PNG;
-    }
-    return viam::component::camera::v1::FORMAT_UNSPECIFIED;
+::grpc::Status CameraServer::GetImage(::grpc::ServerContext*,
+                                      const ::viam::component::camera::v1::GetImageRequest*,
+                                      ::viam::component::camera::v1::GetImageResponse*) noexcept {
+    return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED,
+                          "GetImage is deprecated. Use GetImages instead.");
 }
 
 ::grpc::Status CameraServer::GetImages(
@@ -92,8 +68,6 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
             const std::string img_string = bytes_to_string(img.bytes);
             proto_image.set_source_name(img.source_name);
             proto_image.set_mime_type(img.mime_type);
-            proto_image.set_format(
-                MIME_string_to_format(Camera::normalize_mime_type(img.mime_type)));
             proto_image.set_image(img_string);
             *response->mutable_images()->Add() = std::move(proto_image);
         }
@@ -101,17 +75,11 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status CameraServer::RenderFrame(
-    ::grpc::ServerContext* context,
-    const ::viam::component::camera::v1::RenderFrameRequest* request,
-    ::google::api::HttpBody* response) noexcept {
-    return make_service_helper<Camera>(
-        "CameraServer::RenderFrame", this, context, request)([&](auto& helper, auto& camera) {
-        const Camera::raw_image image = camera->get_image(request->mime_type(), helper.getExtra());
-
-        response->set_data(bytes_to_string(image.bytes));
-        response->set_content_type(image.mime_type);
-    });
+::grpc::Status CameraServer::RenderFrame(::grpc::ServerContext*,
+                                         const ::viam::component::camera::v1::RenderFrameRequest*,
+                                         ::google::api::HttpBody*) noexcept {
+    return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED,
+                          "RenderFrame is deprecated. Use GetImages instead.");
 }
 
 ::grpc::Status CameraServer::GetPointCloud(
