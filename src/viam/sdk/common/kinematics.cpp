@@ -13,8 +13,8 @@ KinematicsData get_kinematics(
 
 namespace proto_convert_details {
 
-void to_proto_impl<KinematicsData>::operator()(const KinematicsData& self,
-                                               ::viam::common::v1::GetKinematicsResponse* proto) const {
+void to_proto_impl<KinematicsData>::operator()(
+    const KinematicsData& self, ::viam::common::v1::GetKinematicsResponse* proto) const {
     struct Visitor {
         using FileFormat = common::v1::KinematicsFileFormat;
         auto operator()(const KinematicsDataUnspecified&) const noexcept {
