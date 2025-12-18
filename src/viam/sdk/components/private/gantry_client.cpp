@@ -72,10 +72,10 @@ ProtoStruct GantryClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
-KinematicsData GantryClient::get_kinematics(const ProtoStruct& extra) {
+::viam::sdk::KinematicsData GantryClient::get_kinematics(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
-        .invoke([](auto& response) -> KinematicsData { return from_proto(response); });
+        .invoke([](auto& response) -> ::viam::sdk::KinematicsData { return from_proto(response); });
 }
 
 std::vector<GeometryConfig> GantryClient::get_geometries(const ProtoStruct& extra) {

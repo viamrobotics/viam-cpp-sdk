@@ -81,9 +81,10 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status GantryServer::GetKinematics(::grpc::ServerContext* context,
-                                           const ::common::v1::GetKinematicsRequest* request,
-                                           ::common::v1::GetKinematicsResponse* response) noexcept {
+::grpc::Status GantryServer::GetKinematics(
+    ::grpc::ServerContext* context,
+    const ::viam::common::v1::GetKinematicsRequest* request,
+    ::viam::common::v1::GetKinematicsResponse* response) noexcept {
     return make_service_helper<Gantry>(
         "GantryServer::GetKinematics", this, context, request)([&](auto& helper, auto& gantry) {
         *response = to_proto(gantry->get_kinematics(helper.getExtra()));

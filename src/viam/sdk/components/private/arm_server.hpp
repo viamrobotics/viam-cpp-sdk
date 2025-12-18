@@ -62,9 +62,10 @@ class ArmServer : public ResourceServer, public viam::component::arm::v1::ArmSer
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) noexcept override;
 
-    ::grpc::Status GetKinematics(::grpc::ServerContext* context,
-                                 const ::common::v1::GetKinematicsRequest* request,
-                                 ::common::v1::GetKinematicsResponse* response) noexcept override;
+    ::grpc::Status GetKinematics(
+        ::grpc::ServerContext* context,
+        const ::viam::common::v1::GetKinematicsRequest* request,
+        ::viam::common::v1::GetKinematicsResponse* response) noexcept override;
 
     ::grpc::Status Get3DModels(::grpc::ServerContext* context,
                                const ::viam::common::v1::Get3DModelsRequest* request,
