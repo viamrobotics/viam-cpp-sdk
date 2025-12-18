@@ -117,8 +117,7 @@ class Arm : public Component, public Stoppable {
     /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
     /// and the object's type indicating the file format.
     inline ::viam::sdk::KinematicsData get_kinematics() {
-        return ::viam::sdk::get_kinematics(
-            [this](const ProtoStruct& extra) { return get_kinematics(extra); });
+        return get_kinematics({});
     }
 
     /// @brief Returns `3DModel`s associated with the calling arm

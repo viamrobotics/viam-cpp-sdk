@@ -6,11 +6,6 @@
 namespace viam {
 namespace sdk {
 
-KinematicsData get_kinematics(
-    std::function<KinematicsData(const ProtoStruct&)> get_kinematics_func) {
-    return get_kinematics_func({});
-}
-
 namespace proto_convert_details {
 
 void to_proto_impl<KinematicsData>::operator()(

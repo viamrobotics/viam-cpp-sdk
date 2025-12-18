@@ -87,8 +87,7 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
     ::viam::common::v1::GetKinematicsResponse* response) noexcept {
     return make_service_helper<Gantry>(
         "GantryServer::GetKinematics", this, context, request)([&](auto& helper, auto& gantry) {
-        const KinematicsData result = gantry->get_kinematics(helper.getExtra());
-        *response = to_proto(result);
+        *response = to_proto(gantry->get_kinematics(helper.getExtra()));
     });
 }
 

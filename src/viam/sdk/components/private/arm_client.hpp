@@ -35,7 +35,7 @@ class ArmClient : public Arm {
     bool is_moving() override;
     void stop(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
-    KinematicsData get_kinematics(const ProtoStruct& extra) override;
+    ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) override;
     std::map<std::string, mesh> get_3d_models(const ProtoStruct& extra) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 

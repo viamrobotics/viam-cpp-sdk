@@ -1,20 +1,10 @@
 #pragma once
 
 #include <boost/variant/variant.hpp>
-#include <functional>
 #include <vector>
 
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
-
-namespace viam {
-namespace common {
-namespace v1 {
-class GetKinematicsResponse;
-enum KinematicsFileFormat : int;
-}  // namespace v1
-}  // namespace common
-}  // namespace viam
 
 namespace viam {
 namespace sdk {
@@ -57,12 +47,6 @@ struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF>, EqCompare<KinematicsD
 /// @returns The data in Viam's Spatial Vector Algebra (SVA) format, or URDF.
 using KinematicsData =
     boost::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
-
-/// @brief Helper function to get kinematics data without extra parameters.
-/// @param get_kinematics_func Function that takes ProtoStruct and returns KinematicsData.
-/// @return A variant of kinematics data.
-KinematicsData get_kinematics(
-    std::function<KinematicsData(const ProtoStruct&)> get_kinematics_func);
 
 namespace proto_convert_details {
 
