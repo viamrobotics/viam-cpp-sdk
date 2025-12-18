@@ -210,15 +210,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const viam::module::v1::HandlerMap hm = to_proto(parent.module_->handles());
         *response->mutable_handlermap() = hm;
 
-        // Using string_ref is more verbose but I think more readable than strcmp
-        boost::string_ref no_module_parent;
-
-        if (const char* envp =
-                std::getenv("VIAM_NO_MODULE_PARENT")) {  // NOLINT(concurrency-mt-unsafe)
-            no_module_parent = envp;
-        }
-
-        if (no_module_parent != "true") {
+        if (!is_env_var_true("VIAM_NO_MODULE_PARENT")) {
             auto new_parent_addr = parent.grpc_conn_protocol_ + request->parent_address();
             if (parent.parent_addr_ != new_parent_addr) {
                 parent.parent_addr_ = std::move(new_parent_addr);
