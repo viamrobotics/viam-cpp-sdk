@@ -54,13 +54,14 @@ using KinematicsData =
 KinematicsData get_kinematics(
     std::function<KinematicsData(const ProtoStruct&)> get_kinematics_func);
 
-// Forward declaration
+namespace viam {
 namespace common {
 namespace v1 {
 class GetKinematicsResponse;
 enum KinematicsFileFormat : int;
 }  // namespace v1
 }  // namespace common
+}  // namespace viam
 
 /// @brief Convert a GetKinematicsResponse protobuf message to KinematicsData.
 /// @param response The protobuf response containing format and kinematics_data.
