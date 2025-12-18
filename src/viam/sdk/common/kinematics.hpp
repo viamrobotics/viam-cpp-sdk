@@ -67,24 +67,24 @@ enum KinematicsFileFormat : int;
 /// @brief Convert a GetKinematicsResponse protobuf message to KinematicsData.
 /// @param response The protobuf response containing format and kinematics_data.
 /// @return A variant of kinematics data.
-KinematicsData kinematics_from_proto(const ::viam::common::v1::GetKinematicsResponse& response);
+KinematicsData kinematics_from_proto(const common::v1::GetKinematicsResponse& response);
 
 /// @brief Convert KinematicsData to a GetKinematicsResponse protobuf message.
 /// @param kinematics The kinematics data variant to convert.
 /// @param response The protobuf response to populate with format and kinematics_data.
 void kinematics_to_proto(const KinematicsData& kinematics,
-                         ::viam::common::v1::GetKinematicsResponse* response);
+                         common::v1::GetKinematicsResponse* response);
 
 namespace proto_convert_details {
 
 template <>
 struct to_proto_impl<KinematicsData> {
-    void operator()(const KinematicsData&, ::viam::common::v1::GetKinematicsResponse*) const;
+    void operator()(const KinematicsData&, common::v1::GetKinematicsResponse*) const;
 };
 
 template <>
-struct from_proto_impl<::viam::common::v1::GetKinematicsResponse> {
-    KinematicsData operator()(const ::viam::common::v1::GetKinematicsResponse*) const;
+struct from_proto_impl<common::v1::GetKinematicsResponse> {
+    KinematicsData operator()(const common::v1::GetKinematicsResponse*) const;
 };
 
 }  // namespace proto_convert_details

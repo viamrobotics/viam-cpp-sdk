@@ -11,15 +11,15 @@ KinematicsData get_kinematics(
     return get_kinematics_func({});
 }
 
-KinematicsData kinematics_from_proto(const ::viam::common::v1::GetKinematicsResponse& response) {
+KinematicsData kinematics_from_proto(const common::v1::GetKinematicsResponse& response) {
     std::vector<unsigned char> bytes(response.kinematics_data().begin(),
                                      response.kinematics_data().end());
     switch (response.format()) {
-        case ::viam::common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
+        case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
             return KinematicsDataSVA(std::move(bytes));
-        case ::viam::common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
+        case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
             return KinematicsDataURDF(std::move(bytes));
-        case ::viam::common::v1::KinematicsFileFormat::
+        case common::v1::KinematicsFileFormat::
             KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
         default:
             return KinematicsDataUnspecified{};
@@ -27,9 +27,9 @@ KinematicsData kinematics_from_proto(const ::viam::common::v1::GetKinematicsResp
 }
 
 void kinematics_to_proto(const KinematicsData& kinematics,
-                         ::viam::common::v1::GetKinematicsResponse* response) {
+                         common::v1::GetKinematicsResponse* response) {
     struct Visitor {
-        using FileFormat = ::viam::common::v1::KinematicsFileFormat;
+        using FileFormat = common::v1::KinematicsFileFormat;
         auto operator()(const KinematicsDataUnspecified&) const noexcept {
             return FileFormat::KINEMATICS_FILE_FORMAT_UNSPECIFIED;
         }
@@ -54,12 +54,12 @@ void kinematics_to_proto(const KinematicsData& kinematics,
 namespace proto_convert_details {
 
 void to_proto_impl<KinematicsData>::operator()(const KinematicsData& self,
-                                                ::viam::common::v1::GetKinematicsResponse* proto) const {
+                                                common::v1::GetKinematicsResponse* proto) const {
     kinematics_to_proto(self, proto);
 }
 
-KinematicsData from_proto_impl<::viam::common::v1::GetKinematicsResponse>::operator()(
-    const ::viam::common::v1::GetKinematicsResponse* proto) const {
+KinematicsData from_proto_impl<common::v1::GetKinematicsResponse>::operator()(
+    const common::v1::GetKinematicsResponse* proto) const {
     return kinematics_from_proto(*proto);
 }
 
