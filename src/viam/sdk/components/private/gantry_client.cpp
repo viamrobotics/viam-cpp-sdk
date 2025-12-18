@@ -72,11 +72,11 @@ ProtoStruct GantryClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
-::viam::sdk::KinematicsData GantryClient::get_kinematics(const ProtoStruct& extra) {
+KinematicsData GantryClient::get_kinematics(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
-        .invoke([](auto& response) -> ::viam::sdk::KinematicsData {
-            return ::viam::sdk::kinematics_from_proto(response);
+        .invoke([](auto& response) -> KinematicsData {
+            return kinematics_from_proto(response);
         });
 }
 
