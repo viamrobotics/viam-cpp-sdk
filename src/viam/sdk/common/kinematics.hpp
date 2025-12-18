@@ -1,7 +1,10 @@
 #pragma once
 
 #include <boost/variant/variant.hpp>
+#include <functional>
 #include <vector>
+
+#include <viam/sdk/common/proto_value.hpp>
 
 namespace viam {
 namespace sdk {
@@ -44,6 +47,31 @@ struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF>, EqCompare<KinematicsD
 /// @returns The data in Viam's Spatial Vector Algebra (SVA) format, or URDF.
 using KinematicsData =
     boost::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
+
+/// @brief Helper function to get kinematics data without extra parameters.
+/// @param get_kinematics_func Function that takes ProtoStruct and returns KinematicsData.
+/// @return A variant of kinematics data.
+KinematicsData get_kinematics(
+    std::function<KinematicsData(const ProtoStruct&)> get_kinematics_func);
+
+// Forward declaration
+namespace common {
+namespace v1 {
+class GetKinematicsResponse;
+enum KinematicsFileFormat : int;
+}  // namespace v1
+}  // namespace common
+
+/// @brief Convert a GetKinematicsResponse protobuf message to KinematicsData.
+/// @param response The protobuf response containing format and kinematics_data.
+/// @return A variant of kinematics data.
+KinematicsData kinematics_from_proto(const ::viam::common::v1::GetKinematicsResponse& response);
+
+/// @brief Convert KinematicsData to a GetKinematicsResponse protobuf message.
+/// @param kinematics The kinematics data variant to convert.
+/// @param response The protobuf response to populate with format and kinematics_data.
+void kinematics_to_proto(const KinematicsData& kinematics,
+                         ::viam::common::v1::GetKinematicsResponse* response);
 
 }  // namespace sdk
 }  // namespace viam

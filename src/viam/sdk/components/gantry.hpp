@@ -20,11 +20,6 @@ namespace sdk {
 /// specific gantry implementations. This class cannot be used on its own.
 class Gantry : public Component, public Stoppable {
    public:
-    /// @brief Kinematics data types (aliases for shared kinematics types)
-    using KinematicsDataUnspecified = ::viam::sdk::KinematicsDataUnspecified;
-    using KinematicsDataSVA = ::viam::sdk::KinematicsDataSVA;
-    using KinematicsDataURDF = ::viam::sdk::KinematicsDataURDF;
-    using KinematicsData = ::viam::sdk::KinematicsData;
     /// @struct movement_coordinate
     /// @brief A coordinate for moving a single axis of a gantry to a desired position at a
     /// requested speed.
@@ -105,13 +100,14 @@ class Gantry : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method.
     /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
     /// and the object's type indicating the file format.
-    virtual KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
+    virtual ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
 
     /// @brief Get the kinematics data associated with the gantry.
     /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
     /// and the object's type indicating the file format.
-    inline KinematicsData get_kinematics() {
-        return get_kinematics({});
+    inline ::viam::sdk::KinematicsData get_kinematics() {
+        return ::viam::sdk::get_kinematics(
+            [this](const ProtoStruct& extra) { return get_kinematics(extra); });
     }
 
     API api() const override;

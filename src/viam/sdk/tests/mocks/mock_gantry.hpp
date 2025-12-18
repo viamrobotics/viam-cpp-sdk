@@ -7,7 +7,7 @@ namespace sdktests {
 namespace gantry {
 
 std::vector<double> fake_lengths();
-sdk::Gantry::KinematicsData fake_kinematics();
+sdk::KinematicsData fake_kinematics();
 
 class MockGantry : public sdk::Gantry {
    public:

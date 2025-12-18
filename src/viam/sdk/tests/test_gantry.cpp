@@ -8,7 +8,7 @@
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<double>)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Gantry::KinematicsData)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::KinematicsData)
 
 namespace viam {
 namespace sdktests {
