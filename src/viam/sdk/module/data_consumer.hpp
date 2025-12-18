@@ -22,6 +22,7 @@ class DataConsumer {
 
     static DataClient::BSONBytes default_query(
         const std::string& part_id,
+        const std::string& resource,
         std::chrono::time_point<std::chrono::system_clock, std::chrono::milliseconds> time_point);
 
     DataConsumer(DataClient& dc);
