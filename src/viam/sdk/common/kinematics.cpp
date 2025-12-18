@@ -14,7 +14,7 @@ KinematicsData get_kinematics(
 namespace proto_convert_details {
 
 void to_proto_impl<KinematicsData>::operator()(const KinematicsData& self,
-                                                common::v1::GetKinematicsResponse* proto) const {
+                                               common::v1::GetKinematicsResponse* proto) const {
     struct Visitor {
         using FileFormat = common::v1::KinematicsFileFormat;
         auto operator()(const KinematicsDataUnspecified&) const noexcept {
@@ -47,8 +47,7 @@ KinematicsData from_proto_impl<common::v1::GetKinematicsResponse>::operator()(
             return KinematicsDataSVA(std::move(bytes));
         case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
             return KinematicsDataURDF(std::move(bytes));
-        case common::v1::KinematicsFileFormat::
-            KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
+        case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
         default:
             return KinematicsDataUnspecified{};
     }
