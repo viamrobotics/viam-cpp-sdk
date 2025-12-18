@@ -127,6 +127,7 @@ class ViamChannel {
 
    private:
     struct impl;
+    friend class ViamClient;
 
     static ViamChannel dial_direct(const char* uri, const Options& opts);
 

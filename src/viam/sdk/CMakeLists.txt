@@ -61,6 +61,8 @@ endif()
 
 target_sources(viamsdk
   PRIVATE
+    app/data_client.cpp
+    app/viam_client.cpp
     common/audio.cpp
     common/audio.cpp
     common/client_helper.cpp
@@ -174,6 +176,8 @@ target_sources(viamsdk
       ../..
       ${CMAKE_CURRENT_BINARY_DIR}/../..
     FILES
+      ../../viam/sdk/app/data_client.hpp
+      ../../viam/sdk/app/viam_client.hpp
       ../../viam/sdk/common/audio.hpp
       ../../viam/sdk/common/client_helper.hpp
       ../../viam/sdk/common/audio.hpp
