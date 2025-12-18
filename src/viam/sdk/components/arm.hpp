@@ -27,15 +27,14 @@ namespace sdk {
 class Arm : public Component, public Stoppable {
    public:
     /// @brief Kinematics data types (aliases for shared kinematics types)
-    [[deprecated(
-        "Use ::viam::sdk::KinematicsDataUnspecified instead")]] using KinematicsDataUnspecified =
-        ::viam::sdk::KinematicsDataUnspecified;
-    [[deprecated("Use ::viam::sdk::KinematicsDataSVA instead")]] using KinematicsDataSVA =
-        ::viam::sdk::KinematicsDataSVA;
-    [[deprecated("Use ::viam::sdk::KinematicsDataURDF instead")]] using KinematicsDataURDF =
-        ::viam::sdk::KinematicsDataURDF;
-    [[deprecated("Use ::viam::sdk::KinematicsData instead")]] using KinematicsData =
-        ::viam::sdk::KinematicsData;
+    [[deprecated("Use ::viam::sdk::KinematicsDataUnspecified instead")]]
+    using KinematicsDataUnspecified = ::viam::sdk::KinematicsDataUnspecified;
+    [[deprecated("Use ::viam::sdk::KinematicsDataSVA instead")]]
+    using KinematicsDataSVA = ::viam::sdk::KinematicsDataSVA;
+    [[deprecated("Use ::viam::sdk::KinematicsDataURDF instead")]]
+    using KinematicsDataURDF = ::viam::sdk::KinematicsDataURDF;
+    [[deprecated("Use ::viam::sdk::KinematicsData instead")]]
+    using KinematicsData = ::viam::sdk::KinematicsData;
 
     /// @brief Movement specifications for move_through_join_positions.
     struct MoveOptions {
@@ -117,7 +116,7 @@ class Arm : public Component, public Stoppable {
     /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
     /// and the object's type indicating the file format.
     inline KinematicsData get_kinematics() {
-        return get_kinematics([this](const ProtoStruct& extra) { return get_kinematics(extra); });
+        return ::viam::sdk::get_kinematics([this](const ProtoStruct& extra) { return get_kinematics(extra); });
     }
 
     /// @brief Returns `3DModel`s associated with the calling arm

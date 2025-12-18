@@ -8,6 +8,15 @@
 #include <viam/sdk/common/proto_value.hpp>
 
 namespace viam {
+namespace common {
+namespace v1 {
+class GetKinematicsResponse;
+enum KinematicsFileFormat : int;
+}  // namespace v1
+}  // namespace common
+}  // namespace viam
+
+namespace viam {
 namespace sdk {
 
 // Base class for use below in defining kinematics data strong typedefs
@@ -55,25 +64,16 @@ using KinematicsData =
 KinematicsData get_kinematics(
     std::function<KinematicsData(const ProtoStruct&)> get_kinematics_func);
 
-namespace viam {
-namespace common {
-namespace v1 {
-class GetKinematicsResponse;
-enum KinematicsFileFormat : int;
-}  // namespace v1
-}  // namespace common
-}  // namespace viam
-
 namespace proto_convert_details {
 
 template <>
 struct to_proto_impl<KinematicsData> {
-    void operator()(const KinematicsData&, common::v1::GetKinematicsResponse*) const;
+    void operator()(const KinematicsData&, ::viam::common::v1::GetKinematicsResponse*) const;
 };
 
 template <>
-struct from_proto_impl<common::v1::GetKinematicsResponse> {
-    KinematicsData operator()(const common::v1::GetKinematicsResponse*) const;
+struct from_proto_impl<::viam::common::v1::GetKinematicsResponse> {
+    KinematicsData operator()(const ::viam::common::v1::GetKinematicsResponse*) const;
 };
 
 }  // namespace proto_convert_details
