@@ -19,7 +19,8 @@ KinematicsData kinematics_from_proto(const ::viam::common::v1::GetKinematicsResp
             return KinematicsDataSVA(std::move(bytes));
         case ::viam::common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
             return KinematicsDataURDF(std::move(bytes));
-        case ::viam::common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
+        case ::viam::common::v1::KinematicsFileFormat::
+            KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
         default:
             return KinematicsDataUnspecified{};
     }
@@ -50,6 +51,18 @@ void kinematics_to_proto(const KinematicsData& kinematics,
         kinematics);
 }
 
+namespace proto_convert_details {
+
+void to_proto_impl<KinematicsData>::operator()(const KinematicsData& self,
+                                                ::viam::common::v1::GetKinematicsResponse* proto) const {
+    kinematics_to_proto(self, proto);
+}
+
+KinematicsData from_proto_impl<::viam::common::v1::GetKinematicsResponse>::operator()(
+    const ::viam::common::v1::GetKinematicsResponse* proto) const {
+    return kinematics_from_proto(*proto);
+}
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam
-

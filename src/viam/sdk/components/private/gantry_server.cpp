@@ -88,7 +88,7 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Gantry>(
         "GantryServer::GetKinematics", this, context, request)([&](auto& helper, auto& gantry) {
         const KinematicsData result = gantry->get_kinematics(helper.getExtra());
-        kinematics_to_proto(result, response);
+        *response = to_proto(result);
     });
 }
 

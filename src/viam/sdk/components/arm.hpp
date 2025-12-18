@@ -27,14 +27,15 @@ namespace sdk {
 class Arm : public Component, public Stoppable {
    public:
     /// @brief Kinematics data types (aliases for shared kinematics types)
-    [[deprecated("Use ::viam::sdk::KinematicsDataUnspecified instead")]]
-    using KinematicsDataUnspecified = ::viam::sdk::KinematicsDataUnspecified;
-    [[deprecated("Use ::viam::sdk::KinematicsDataSVA instead")]]
-    using KinematicsDataSVA = ::viam::sdk::KinematicsDataSVA;
-    [[deprecated("Use ::viam::sdk::KinematicsDataURDF instead")]]
-    using KinematicsDataURDF = ::viam::sdk::KinematicsDataURDF;
-    [[deprecated("Use ::viam::sdk::KinematicsData instead")]]
-    using KinematicsData = ::viam::sdk::KinematicsData;
+    [[deprecated(
+        "Use ::viam::sdk::KinematicsDataUnspecified instead")]] using KinematicsDataUnspecified =
+        ::viam::sdk::KinematicsDataUnspecified;
+    [[deprecated("Use ::viam::sdk::KinematicsDataSVA instead")]] using KinematicsDataSVA =
+        ::viam::sdk::KinematicsDataSVA;
+    [[deprecated("Use ::viam::sdk::KinematicsDataURDF instead")]] using KinematicsDataURDF =
+        ::viam::sdk::KinematicsDataURDF;
+    [[deprecated("Use ::viam::sdk::KinematicsData instead")]] using KinematicsData =
+        ::viam::sdk::KinematicsData;
 
     /// @brief Movement specifications for move_through_join_positions.
     struct MoveOptions {

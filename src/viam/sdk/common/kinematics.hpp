@@ -4,6 +4,7 @@
 #include <functional>
 #include <vector>
 
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 
 namespace viam {
@@ -74,5 +75,18 @@ KinematicsData kinematics_from_proto(const ::viam::common::v1::GetKinematicsResp
 void kinematics_to_proto(const KinematicsData& kinematics,
                          ::viam::common::v1::GetKinematicsResponse* response);
 
+namespace proto_convert_details {
+
+template <>
+struct to_proto_impl<KinematicsData> {
+    void operator()(const KinematicsData&, ::viam::common::v1::GetKinematicsResponse*) const;
+};
+
+template <>
+struct from_proto_impl<::viam::common::v1::GetKinematicsResponse> {
+    KinematicsData operator()(const ::viam::common::v1::GetKinematicsResponse*) const;
+};
+
+}  // namespace proto_convert_details
 }  // namespace sdk
 }  // namespace viam
