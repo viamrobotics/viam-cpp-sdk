@@ -52,12 +52,12 @@ namespace proto_convert_details {
 
 template <>
 struct to_proto_impl<KinematicsData> {
-    void operator()(const KinematicsData&, ::viam::common::v1::GetKinematicsResponse*) const;
+    void operator()(const KinematicsData&, ::common::v1::GetKinematicsResponse*) const;
 };
 
 template <>
-struct from_proto_impl<::viam::common::v1::GetKinematicsResponse> {
-    KinematicsData operator()(const ::viam::common::v1::GetKinematicsResponse*) const;
+struct from_proto_impl<::common::v1::GetKinematicsResponse> {
+    KinematicsData operator()(const ::common::v1::GetKinematicsResponse*) const;
 };
 
 }  // namespace proto_convert_details

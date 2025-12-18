@@ -9,7 +9,7 @@ namespace sdk {
 namespace proto_convert_details {
 
 void to_proto_impl<KinematicsData>::operator()(
-    const KinematicsData& self, ::viam::common::v1::GetKinematicsResponse* proto) const {
+    const KinematicsData& self, ::common::v1::GetKinematicsResponse* proto) const {
     struct Visitor {
         using FileFormat = common::v1::KinematicsFileFormat;
         auto operator()(const KinematicsDataUnspecified&) const noexcept {
@@ -33,8 +33,8 @@ void to_proto_impl<KinematicsData>::operator()(
         self);
 }
 
-KinematicsData from_proto_impl<::viam::common::v1::GetKinematicsResponse>::operator()(
-    const ::viam::common::v1::GetKinematicsResponse* proto) const {
+KinematicsData from_proto_impl<::common::v1::GetKinematicsResponse>::operator()(
+    const ::common::v1::GetKinematicsResponse* proto) const {
     std::vector<unsigned char> bytes(proto->kinematics_data().begin(),
                                      proto->kinematics_data().end());
     switch (proto->format()) {
