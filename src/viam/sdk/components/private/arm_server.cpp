@@ -105,10 +105,9 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status ArmServer::GetKinematics(
-    ::grpc::ServerContext* context,
-    const ::common::v1::GetKinematicsRequest* request,
-    ::common::v1::GetKinematicsResponse* response) noexcept {
+::grpc::Status ArmServer::GetKinematics(::grpc::ServerContext* context,
+                                        const ::common::v1::GetKinematicsRequest* request,
+                                        ::common::v1::GetKinematicsResponse* response) noexcept {
     return make_service_helper<Arm>(
         "ArmServer::GetKinematics", this, context, request)([&](auto& helper, auto& arm) {
         *response = to_proto(arm->get_kinematics(helper.getExtra()));

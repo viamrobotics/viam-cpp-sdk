@@ -57,10 +57,9 @@ class GantryServer : public ResourceServer,
                                      const ::viam::common::v1::DoCommandRequest* request,
                                      ::viam::common::v1::DoCommandResponse* response) noexcept;
 
-    virtual ::grpc::Status GetKinematics(
-        ::grpc::ServerContext* context,
-        const ::common::v1::GetKinematicsRequest* request,
-        ::common::v1::GetKinematicsResponse* response) noexcept;
+    virtual ::grpc::Status GetKinematics(::grpc::ServerContext* context,
+                                         const ::common::v1::GetKinematicsRequest* request,
+                                         ::common::v1::GetKinematicsResponse* response) noexcept;
 
     virtual ::grpc::Status GetGeometries(
         ::grpc::ServerContext* context,
