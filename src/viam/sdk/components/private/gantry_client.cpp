@@ -12,6 +12,9 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
 GantryClient::GantryClient(std::string name, const ViamChannel& channel)
     : Gantry(std::move(name)),
       stub_(viam::component::gantry::v1::GantryService::NewStub(channel.channel())),

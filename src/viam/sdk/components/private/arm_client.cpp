@@ -12,6 +12,9 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+using sdk::from_proto;
+using sdk::to_proto;
+
 ArmClient::ArmClient(std::string name, const ViamChannel& channel)
     : Arm(std::move(name)),
       stub_(viam::component::arm::v1::ArmService::NewStub(channel.channel())),
