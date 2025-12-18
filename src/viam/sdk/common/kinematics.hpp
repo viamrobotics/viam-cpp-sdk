@@ -3,9 +3,16 @@
 #include <boost/variant/variant.hpp>
 #include <vector>
 
-#include <viam/api/common/v1/common.pb.h>
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
+
+namespace viam {
+namespace common {
+namespace v1 {
+class GetKinematicsResponse;
+}
+}  // namespace common
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
