@@ -11,23 +11,10 @@ KinematicsData get_kinematics(
     return get_kinematics_func({});
 }
 
-KinematicsData kinematics_from_proto(const common::v1::GetKinematicsResponse& response) {
-    std::vector<unsigned char> bytes(response.kinematics_data().begin(),
-                                     response.kinematics_data().end());
-    switch (response.format()) {
-        case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
-            return KinematicsDataSVA(std::move(bytes));
-        case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
-            return KinematicsDataURDF(std::move(bytes));
-        case common::v1::KinematicsFileFormat::
-            KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
-        default:
-            return KinematicsDataUnspecified{};
-    }
-}
+namespace proto_convert_details {
 
-void kinematics_to_proto(const KinematicsData& kinematics,
-                         common::v1::GetKinematicsResponse* response) {
+void to_proto_impl<KinematicsData>::operator()(const KinematicsData& self,
+                                                common::v1::GetKinematicsResponse* proto) const {
     struct Visitor {
         using FileFormat = common::v1::KinematicsFileFormat;
         auto operator()(const KinematicsDataUnspecified&) const noexcept {
@@ -45,22 +32,26 @@ void kinematics_to_proto(const KinematicsData& kinematics,
 
     boost::apply_visitor(
         [&](const auto& v) {
-            response->set_format(visitor(v));
-            response->mutable_kinematics_data()->assign(v.bytes.begin(), v.bytes.end());
+            proto->set_format(visitor(v));
+            proto->mutable_kinematics_data()->assign(v.bytes.begin(), v.bytes.end());
         },
-        kinematics);
-}
-
-namespace proto_convert_details {
-
-void to_proto_impl<KinematicsData>::operator()(const KinematicsData& self,
-                                                common::v1::GetKinematicsResponse* proto) const {
-    kinematics_to_proto(self, proto);
+        self);
 }
 
 KinematicsData from_proto_impl<common::v1::GetKinematicsResponse>::operator()(
     const common::v1::GetKinematicsResponse* proto) const {
-    return kinematics_from_proto(*proto);
+    std::vector<unsigned char> bytes(proto->kinematics_data().begin(),
+                                     proto->kinematics_data().end());
+    switch (proto->format()) {
+        case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
+            return KinematicsDataSVA(std::move(bytes));
+        case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
+            return KinematicsDataURDF(std::move(bytes));
+        case common::v1::KinematicsFileFormat::
+            KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
+        default:
+            return KinematicsDataUnspecified{};
+    }
 }
 
 }  // namespace proto_convert_details
