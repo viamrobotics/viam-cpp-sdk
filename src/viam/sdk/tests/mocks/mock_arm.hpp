@@ -6,7 +6,7 @@ namespace viam {
 namespace sdktests {
 namespace arm {
 
-sdk::Arm::KinematicsData fake_kinematics();
+sdk::KinematicsData fake_kinematics();
 std::map<std::string, sdk::mesh> fake_3d_models();
 
 class MockArm : public sdk::Arm {
@@ -28,7 +28,7 @@ class MockArm : public sdk::Arm {
     void stop(const sdk::ProtoStruct&) override;
     bool is_moving() override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
-    sdk::Arm::KinematicsData get_kinematics(const sdk::ProtoStruct&) override;
+    sdk::KinematicsData get_kinematics(const sdk::ProtoStruct&) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct&) override;
     std::map<std::string, sdk::mesh> get_3d_models(const sdk::ProtoStruct&) override;
     sdk::pose current_location;

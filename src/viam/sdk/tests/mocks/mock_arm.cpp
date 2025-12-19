@@ -13,8 +13,8 @@ std::map<std::string, sdk::mesh> fake_3d_models() {
     return {{"model1", sdk::mesh{"model1", {1, 2, 3, 4}}}};
 }
 
-sdk::Arm::KinematicsData fake_kinematics() {
-    return sdk::Arm::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}};
+sdk::KinematicsData fake_kinematics() {
+    return sdk::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}};
 }
 
 sdk::pose MockArm::get_end_position(const sdk::ProtoStruct& extra) {
@@ -61,7 +61,7 @@ sdk::ProtoStruct MockArm::do_command(const sdk::ProtoStruct& command) {
     return (peek_command = command);
 }
 
-sdk::Arm::KinematicsData MockArm::get_kinematics(const sdk::ProtoStruct&) {
+sdk::KinematicsData MockArm::get_kinematics(const sdk::ProtoStruct&) {
     return fake_kinematics();
 }
 
