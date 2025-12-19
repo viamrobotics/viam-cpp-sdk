@@ -7,7 +7,7 @@ var searchData=
   ['kind_3c_20protostruct_20_3e_4',['kind&lt; ProtoStruct &gt;',['../structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01ProtoStruct_01_4.html',1,'viam::sdk::proto_value_details']]],
   ['kind_3c_20std_3a_3anullptr_5ft_20_3e_5',['kind&lt; std::nullptr_t &gt;',['../structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01std_1_1nullptr__t_01_4.html',1,'viam::sdk::proto_value_details']]],
   ['kind_3c_20std_3a_3astring_20_3e_6',['kind&lt; std::string &gt;',['../structviam_1_1sdk_1_1proto__value__details_1_1kind_3_01std_1_1string_01_4.html',1,'viam::sdk::proto_value_details']]],
-  ['kinematicsdatasva_7',['KinematicsDataSVA',['../structviam_1_1sdk_1_1Arm_1_1KinematicsDataSVA.html',1,'viam::sdk::Arm']]],
-  ['kinematicsdataunspecified_8',['KinematicsDataUnspecified',['../structviam_1_1sdk_1_1Arm_1_1KinematicsDataUnspecified.html',1,'viam::sdk::Arm']]],
-  ['kinematicsdataurdf_9',['KinematicsDataURDF',['../structviam_1_1sdk_1_1Arm_1_1KinematicsDataURDF.html',1,'viam::sdk::Arm']]]
+  ['kinematicsdatasva_7',['KinematicsDataSVA',['../structviam_1_1sdk_1_1KinematicsDataSVA.html',1,'viam::sdk']]],
+  ['kinematicsdataunspecified_8',['KinematicsDataUnspecified',['../structviam_1_1sdk_1_1KinematicsDataUnspecified.html',1,'viam::sdk']]],
+  ['kinematicsdataurdf_9',['KinematicsDataURDF',['../structviam_1_1sdk_1_1KinematicsDataURDF.html',1,'viam::sdk']]]
 ];

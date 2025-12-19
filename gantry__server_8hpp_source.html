@@ -138,17 +138,22 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                                     const ::viam::common::v1::DoCommandRequest* request,</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                                     ::viam::common::v1::DoCommandResponse* response) <span class="keyword">noexcept</span>;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    virtual ::grpc::Status GetGeometries(</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    virtual ::grpc::Status GetKinematics(</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        ::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        const ::viam::common::v1::GetGeometriesRequest* request,</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        ::viam::common::v1::GetGeometriesResponse* response) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        const ::viam::common::v1::GetKinematicsRequest* request,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        ::viam::common::v1::GetKinematicsResponse* response) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    virtual ::grpc::Status GetGeometries(</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        ::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        const ::viam::common::v1::GetGeometriesRequest* request,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        ::viam::common::v1::GetGeometriesResponse* response) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>};</div>
 </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}  <span class="comment">// namespace impl</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}  <span class="comment">// namespace viam</span></div>
-<div class="ttc" id="aclassviam_1_1sdk_1_1Gantry_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Gantry.html">viam::sdk::Gantry</a></div><div class="ttdoc">A Gantry represents a physical gantry and can be used for controlling gantries of N axes.</div><div class="ttdef"><b>Definition</b> gantry.hpp:20</div></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}  <span class="comment">// namespace impl</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}  <span class="comment">// namespace viam</span></div>
+<div class="ttc" id="aclassviam_1_1sdk_1_1Gantry_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Gantry.html">viam::sdk::Gantry</a></div><div class="ttdoc">A Gantry represents a physical gantry and can be used for controlling gantries of N axes.</div><div class="ttdef"><b>Definition</b> gantry.hpp:21</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition</b> resource_server_base.hpp:8</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1impl_1_1GantryServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1impl_1_1GantryServer.html">viam::sdk::impl::GantryServer</a></div><div class="ttdoc">gRPC server implementation of a Gantry component.</div><div class="ttdef"><b>Definition</b> gantry_server.hpp:21</div></div>
 <div class="ttc" id="agantry_8hpp_html"><div class="ttname"><a href="gantry_8hpp.html">gantry.hpp</a></div><div class="ttdoc">Defines a Gantry component.</div></div>

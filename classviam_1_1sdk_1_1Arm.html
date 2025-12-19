@@ -77,7 +77,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classviam_1_1sdk_1_1Arm-members.html">List of all members</a>  </div>
@@ -106,21 +105,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1KinematicsDataSVA.html">KinematicsDataSVA</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1KinematicsDataUnspecified.html">KinematicsDataUnspecified</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1KinematicsDataURDF.html">KinematicsDataURDF</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html">MoveOptions</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Movement specifications for move_through_join_positions.  <a href="structviam_1_1sdk_1_1Arm_1_1MoveOptions.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:a72ace37c311ae8bf430df9ccf3ad0775" id="r_a72ace37c311ae8bf430df9ccf3ad0775"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a></td></tr>
-<tr class="memdesc:a72ace37c311ae8bf430df9ccf3ad0775"><td class="mdescLeft">&#160;</td><td class="mdescRight">The kinematics of the component.  <br /></td></tr>
-<tr class="separator:a72ace37c311ae8bf430df9ccf3ad0775"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -161,12 +148,12 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a3df792e51781954f58f6a27e2a98b502" id="r_a3df792e51781954f58f6a27e2a98b502"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3df792e51781954f58f6a27e2a98b502">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a3df792e51781954f58f6a27e2a98b502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a3df792e51781954f58f6a27e2a98b502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5210d16301b990695a75b2c5e2c1dfbd" id="r_a5210d16301b990695a75b2c5e2c1dfbd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5210d16301b990695a75b2c5e2c1dfbd">get_kinematics</a> (const ProtoStruct &amp;extra)=0</td></tr>
-<tr class="memdesc:a5210d16301b990695a75b2c5e2c1dfbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
-<tr class="separator:a5210d16301b990695a75b2c5e2c1dfbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1684010009781539671c88c57bae7d68" id="r_a1684010009781539671c88c57bae7d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1684010009781539671c88c57bae7d68">get_kinematics</a> ()</td></tr>
-<tr class="memdesc:a1684010009781539671c88c57bae7d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
-<tr class="separator:a1684010009781539671c88c57bae7d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa085a48c54126411386854680adf7ec3" id="r_aa085a48c54126411386854680adf7ec3"><td class="memItemLeft" align="right" valign="top">virtual::viam::sdk::KinematicsData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa085a48c54126411386854680adf7ec3">get_kinematics</a> (const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:aa085a48c54126411386854680adf7ec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
+<tr class="separator:aa085a48c54126411386854680adf7ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aea09232415532177ef67ae9474bedd" id="r_a5aea09232415532177ef67ae9474bedd"><td class="memItemLeft" align="right" valign="top">inline ::viam::sdk::KinematicsData&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5aea09232415532177ef67ae9474bedd">get_kinematics</a> ()</td></tr>
+<tr class="memdesc:a5aea09232415532177ef67ae9474bedd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the kinematics data associated with the arm.  <br /></td></tr>
+<tr class="separator:a5aea09232415532177ef67ae9474bedd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a751ef5b774cbcf40a0aef9a8c99586ba" id="r_a751ef5b774cbcf40a0aef9a8c99586ba"><td class="memItemLeft" align="right" valign="top">virtual std::map&lt; std::string, <a class="el" href="structviam_1_1sdk_1_1mesh.html">mesh</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a751ef5b774cbcf40a0aef9a8c99586ba">get_3d_models</a> (const ProtoStruct &amp;extra)=0</td></tr>
 <tr class="memdesc:a751ef5b774cbcf40a0aef9a8c99586ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code>3DModel</code>s associated with the calling arm.  <br /></td></tr>
 <tr class="separator:a751ef5b774cbcf40a0aef9a8c99586ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -232,27 +219,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An <code><a class="el" href="classviam_1_1sdk_1_1Arm.html" title="An Arm represents a physical robot arm that exists in three-dimensional space.">Arm</a></code> represents a physical robot arm that exists in three-dimensional space. </p>
 <p>This acts as an abstract parent class to be inherited from by any drivers representing specific arm implementations. This class cannot be used on its own. </p>
-</div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a72ace37c311ae8bf430df9ccf3ad0775" name="a72ace37c311ae8bf430df9ccf3ad0775"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72ace37c311ae8bf430df9ccf3ad0775">&#9670;&#160;</a></span>KinematicsData</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#a72ace37c311ae8bf430df9ccf3ad0775">viam::sdk::Arm::KinematicsData</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"> </div>
-<div class="line">        boost::variant&lt;KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF&gt;</div>
-</div><!-- fragment -->
-<p>The kinematics of the component. </p>
-<dl class="section return"><dt>Returns</dt><dd>The data in Viam's Spatial Vector Algebra (SVA) format, or URDF. </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="afd2ecaaf6572ef29d81b92d2dbd4e1dd" name="afd2ecaaf6572ef29d81b92d2dbd4e1dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afd2ecaaf6572ef29d81b92d2dbd4e1dd">&#9670;&#160;</a></span>api()</h2>
 
@@ -516,8 +483,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a1684010009781539671c88c57bae7d68" name="a1684010009781539671c88c57bae7d68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1684010009781539671c88c57bae7d68">&#9670;&#160;</a></span>get_kinematics() <span class="overload">[1/2]</span></h2>
+<a id="a5aea09232415532177ef67ae9474bedd" name="a5aea09232415532177ef67ae9474bedd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5aea09232415532177ef67ae9474bedd">&#9670;&#160;</a></span>get_kinematics() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -526,7 +493,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a> viam::sdk::Arm::get_kinematics </td>
+          <td class="memname">inline ::viam::sdk::KinematicsData viam::sdk::Arm::get_kinematics </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -544,8 +511,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a5210d16301b990695a75b2c5e2c1dfbd" name="a5210d16301b990695a75b2c5e2c1dfbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5210d16301b990695a75b2c5e2c1dfbd">&#9670;&#160;</a></span>get_kinematics() <span class="overload">[2/2]</span></h2>
+<a id="aa085a48c54126411386854680adf7ec3" name="aa085a48c54126411386854680adf7ec3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa085a48c54126411386854680adf7ec3">&#9670;&#160;</a></span>get_kinematics() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -554,7 +521,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="#a72ace37c311ae8bf430df9ccf3ad0775">KinematicsData</a> viam::sdk::Arm::get_kinematics </td>
+          <td class="memname">virtual::viam::sdk::KinematicsData viam::sdk::Arm::get_kinematics </td>
           <td>(</td>
           <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span></td><td>)</td>
           <td></td>
@@ -576,7 +543,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A variant of kinematics data, with bytes field containing the raw bytes of the file and the object's type indicating the file format. </dd></dl>
 
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#ade7188c3473c99d2952dfddf5b9dd617">viam::sdk::impl::ArmClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a5210d16301b990695a75b2c5e2c1dfbd">viam::sdk::impl::ArmClient</a>.</p>
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a42ca7eb894f18eb740e37f67d079d6cb">viam::sdk::impl::ArmClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#aa085a48c54126411386854680adf7ec3">viam::sdk::impl::ArmClient</a>.</p>
 
 </div>
 </div>

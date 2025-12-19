@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kinematicsdata_0',['KinematicsData',['../classviam_1_1sdk_1_1Arm.html#a72ace37c311ae8bf430df9ccf3ad0775',1,'viam::sdk::Arm']]]
+  ['logsource_0',['LogSource',['../group__Log.html#gaf5591a93c7e183a679724bc5f278f39f',1,'viam::sdk']]]
 ];

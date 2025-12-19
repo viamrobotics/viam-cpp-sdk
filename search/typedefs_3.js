@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logsource_0',['LogSource',['../group__Log.html#gaf5591a93c7e183a679724bc5f278f39f',1,'viam::sdk']]]
+  ['mime_5ftypes_0',['mime_types',['../classviam_1_1sdk_1_1Camera.html#ad07b74c95a1fb9435323b4bf590112cd',1,'viam::sdk::Camera']]]
 ];
