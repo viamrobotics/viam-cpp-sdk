@@ -6,10 +6,14 @@
 #include <viam/api/component/gantry/v1/gantry.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/kinematics.hpp>
 
 namespace viam {
 namespace sdk {
 namespace impl {
+
+using sdk::from_proto;
+using sdk::to_proto;
 
 GantryClient::GantryClient(std::string name, const ViamChannel& channel)
     : Gantry(std::move(name)),
@@ -69,6 +73,12 @@ ProtoStruct GantryClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
         .invoke([](auto& response) { return from_proto(response.result()); });
+}
+
+::viam::sdk::KinematicsData GantryClient::get_kinematics(const ProtoStruct& extra) {
+    return make_client_helper(this, *stub_, &StubType::GetKinematics)
+        .with(extra)
+        .invoke([](auto& response) -> ::viam::sdk::KinematicsData { return from_proto(response); });
 }
 
 std::vector<GeometryConfig> GantryClient::get_geometries(const ProtoStruct& extra) {
