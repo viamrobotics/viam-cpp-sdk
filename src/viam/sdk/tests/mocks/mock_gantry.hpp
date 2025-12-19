@@ -7,6 +7,7 @@ namespace sdktests {
 namespace gantry {
 
 std::vector<double> fake_lengths();
+sdk::KinematicsData fake_kinematics();
 
 class MockGantry : public sdk::Gantry {
    public:
@@ -23,6 +24,7 @@ class MockGantry : public sdk::Gantry {
     void stop(const sdk::ProtoStruct& extra) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
+    sdk::KinematicsData get_kinematics(const sdk::ProtoStruct& extra) override;
 
     std::vector<double> peek_positions;
     bool peek_stop_called{false};

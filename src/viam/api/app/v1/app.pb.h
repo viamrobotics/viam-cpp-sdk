@@ -1613,6 +1613,8 @@ class Robot final :
     kLocationFieldNumber = 3,
     kLastAccessFieldNumber = 4,
     kCreatedOnFieldNumber = 5,
+    kSecondsSinceOnlineFieldNumber = 7,
+    kOnlineStateFieldNumber = 6,
   };
   // string id = 1 [json_name = "id", (.tagger.v1.tags) = "bson:\"_id\" json:\"id,omitempty\""];
   void clear_id();
@@ -1692,6 +1694,24 @@ class Robot final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_on();
 
+  // int64 seconds_since_online = 7 [json_name = "secondsSinceOnline", (.tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
+  void clear_seconds_since_online();
+  int64_t seconds_since_online() const;
+  void set_seconds_since_online(int64_t value);
+  private:
+  int64_t _internal_seconds_since_online() const;
+  void _internal_set_seconds_since_online(int64_t value);
+  public:
+
+  // .viam.app.v1.OnlineState online_state = 6 [json_name = "onlineState", (.tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
+  void clear_online_state();
+  ::viam::app::v1::OnlineState online_state() const;
+  void set_online_state(::viam::app::v1::OnlineState value);
+  private:
+  ::viam::app::v1::OnlineState _internal_online_state() const;
+  void _internal_set_online_state(::viam::app::v1::OnlineState value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.Robot)
  private:
   class _Internal;
@@ -1704,6 +1724,8 @@ class Robot final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_access_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_on_;
+  int64_t seconds_since_online_;
+  int online_state_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -27038,7 +27060,10 @@ class PartSummary final :
     kLastOnlineFieldNumber = 3,
     kViamServerVersionFieldNumber = 4,
     kViamAgentVersionFieldNumber = 5,
+    kLastAccessFieldNumber = 14,
     kIsMainPartFieldNumber = 11,
+    kOnlineStateFieldNumber = 12,
+    kSecondsSinceOnlineFieldNumber = 13,
   };
   // repeated .viam.app.v1.FragmentSummary fragments = 9 [json_name = "fragments"];
   int fragments_size() const;
@@ -27212,6 +27237,24 @@ class PartSummary final :
       ::viam::app::v1::ViamAgentVersion* viam_agent_version);
   ::viam::app::v1::ViamAgentVersion* unsafe_arena_release_viam_agent_version();
 
+  // optional .google.protobuf.Timestamp last_access = 14 [json_name = "lastAccess"];
+  bool has_last_access() const;
+  private:
+  bool _internal_has_last_access() const;
+  public:
+  void clear_last_access();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_access() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_access();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_access();
+  void set_allocated_last_access(::PROTOBUF_NAMESPACE_ID::Timestamp* last_access);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_access() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_access();
+  public:
+  void unsafe_arena_set_allocated_last_access(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_access);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_access();
+
   // bool is_main_part = 11 [json_name = "isMainPart"];
   void clear_is_main_part();
   bool is_main_part() const;
@@ -27219,6 +27262,24 @@ class PartSummary final :
   private:
   bool _internal_is_main_part() const;
   void _internal_set_is_main_part(bool value);
+  public:
+
+  // .viam.app.v1.OnlineState online_state = 12 [json_name = "onlineState"];
+  void clear_online_state();
+  ::viam::app::v1::OnlineState online_state() const;
+  void set_online_state(::viam::app::v1::OnlineState value);
+  private:
+  ::viam::app::v1::OnlineState _internal_online_state() const;
+  void _internal_set_online_state(::viam::app::v1::OnlineState value);
+  public:
+
+  // int64 seconds_since_online = 13 [json_name = "secondsSinceOnline"];
+  void clear_seconds_since_online();
+  int64_t seconds_since_online() const;
+  void set_seconds_since_online(int64_t value);
+  private:
+  int64_t _internal_seconds_since_online() const;
+  void _internal_set_seconds_since_online(int64_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.PartSummary)
@@ -27240,7 +27301,10 @@ class PartSummary final :
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_online_;
   ::viam::app::v1::ViamServerVersion* viam_server_version_;
   ::viam::app::v1::ViamAgentVersion* viam_agent_version_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* last_access_;
   bool is_main_part_;
+  int online_state_;
+  int64_t seconds_since_online_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -47702,6 +47766,46 @@ inline void Robot::set_allocated_created_on(::PROTOBUF_NAMESPACE_ID::Timestamp* 
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Robot.created_on)
 }
 
+// .viam.app.v1.OnlineState online_state = 6 [json_name = "onlineState", (.tagger.v1.tags) = "bson:\"online_state\" json:\"online_state,omitempty\""];
+inline void Robot::clear_online_state() {
+  online_state_ = 0;
+}
+inline ::viam::app::v1::OnlineState Robot::_internal_online_state() const {
+  return static_cast< ::viam::app::v1::OnlineState >(online_state_);
+}
+inline ::viam::app::v1::OnlineState Robot::online_state() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Robot.online_state)
+  return _internal_online_state();
+}
+inline void Robot::_internal_set_online_state(::viam::app::v1::OnlineState value) {
+  
+  online_state_ = value;
+}
+inline void Robot::set_online_state(::viam::app::v1::OnlineState value) {
+  _internal_set_online_state(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.Robot.online_state)
+}
+
+// int64 seconds_since_online = 7 [json_name = "secondsSinceOnline", (.tagger.v1.tags) = "bson:\"seconds_since_online\" json:\"seconds_since_online,omitempty\""];
+inline void Robot::clear_seconds_since_online() {
+  seconds_since_online_ = int64_t{0};
+}
+inline int64_t Robot::_internal_seconds_since_online() const {
+  return seconds_since_online_;
+}
+inline int64_t Robot::seconds_since_online() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Robot.seconds_since_online)
+  return _internal_seconds_since_online();
+}
+inline void Robot::_internal_set_seconds_since_online(int64_t value) {
+  
+  seconds_since_online_ = value;
+}
+inline void Robot::set_seconds_since_online(int64_t value) {
+  _internal_set_seconds_since_online(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.Robot.seconds_since_online)
+}
+
 // -------------------------------------------------------------------
 
 // RobotPart
@@ -65947,6 +66051,133 @@ inline void PartSummary::_internal_set_is_main_part(bool value) {
 inline void PartSummary::set_is_main_part(bool value) {
   _internal_set_is_main_part(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.PartSummary.is_main_part)
+}
+
+// .viam.app.v1.OnlineState online_state = 12 [json_name = "onlineState"];
+inline void PartSummary::clear_online_state() {
+  online_state_ = 0;
+}
+inline ::viam::app::v1::OnlineState PartSummary::_internal_online_state() const {
+  return static_cast< ::viam::app::v1::OnlineState >(online_state_);
+}
+inline ::viam::app::v1::OnlineState PartSummary::online_state() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PartSummary.online_state)
+  return _internal_online_state();
+}
+inline void PartSummary::_internal_set_online_state(::viam::app::v1::OnlineState value) {
+  
+  online_state_ = value;
+}
+inline void PartSummary::set_online_state(::viam::app::v1::OnlineState value) {
+  _internal_set_online_state(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.PartSummary.online_state)
+}
+
+// int64 seconds_since_online = 13 [json_name = "secondsSinceOnline"];
+inline void PartSummary::clear_seconds_since_online() {
+  seconds_since_online_ = int64_t{0};
+}
+inline int64_t PartSummary::_internal_seconds_since_online() const {
+  return seconds_since_online_;
+}
+inline int64_t PartSummary::seconds_since_online() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PartSummary.seconds_since_online)
+  return _internal_seconds_since_online();
+}
+inline void PartSummary::_internal_set_seconds_since_online(int64_t value) {
+  
+  seconds_since_online_ = value;
+}
+inline void PartSummary::set_seconds_since_online(int64_t value) {
+  _internal_set_seconds_since_online(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.PartSummary.seconds_since_online)
+}
+
+// optional .google.protobuf.Timestamp last_access = 14 [json_name = "lastAccess"];
+inline bool PartSummary::_internal_has_last_access() const {
+  bool value = (_has_bits_[0] & 0x00000080u) != 0;
+  PROTOBUF_ASSUME(!value || last_access_ != nullptr);
+  return value;
+}
+inline bool PartSummary::has_last_access() const {
+  return _internal_has_last_access();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& PartSummary::_internal_last_access() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = last_access_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& PartSummary::last_access() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.PartSummary.last_access)
+  return _internal_last_access();
+}
+inline void PartSummary::unsafe_arena_set_allocated_last_access(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_access) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_access_);
+  }
+  last_access_ = last_access;
+  if (last_access) {
+    _has_bits_[0] |= 0x00000080u;
+  } else {
+    _has_bits_[0] &= ~0x00000080u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.PartSummary.last_access)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PartSummary::release_last_access() {
+  _has_bits_[0] &= ~0x00000080u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_access_;
+  last_access_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PartSummary::unsafe_arena_release_last_access() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.PartSummary.last_access)
+  _has_bits_[0] &= ~0x00000080u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_access_;
+  last_access_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PartSummary::_internal_mutable_last_access() {
+  _has_bits_[0] |= 0x00000080u;
+  if (last_access_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_access_ = p;
+  }
+  return last_access_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* PartSummary::mutable_last_access() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_access();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.PartSummary.last_access)
+  return _msg;
+}
+inline void PartSummary::set_allocated_last_access(::PROTOBUF_NAMESPACE_ID::Timestamp* last_access) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_access_);
+  }
+  if (last_access) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_access));
+    if (message_arena != submessage_arena) {
+      last_access = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_access, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000080u;
+  } else {
+    _has_bits_[0] &= ~0x00000080u;
+  }
+  last_access_ = last_access;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.PartSummary.last_access)
 }
 
 // optional .google.protobuf.Timestamp last_online = 3 [json_name = "lastOnline"];
