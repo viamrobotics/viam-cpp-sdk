@@ -123,7 +123,7 @@ std::vector<DataClient::BSONBytes> DataConsumer::query_tabular_data(
 
     opts.additional_stages.insert(opts.additional_stages.begin(), std::move(base_query));
 
-    return client_.tabular_data_by_mql(org_id, opts.additional_stages, {});
+    return client_.tabular_data_by_mql(org_id, opts.additional_stages);
 }
 
 }  // namespace sdk
