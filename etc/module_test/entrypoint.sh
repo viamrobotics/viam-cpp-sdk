@@ -3,7 +3,7 @@ set -eux
 
 MODULE_PORT=8080
 
-sudo viam-server -version
+viam-server -version
 
 echo "Starting module..."
 envsubst < etc/module_test/config.json.in > config.json
