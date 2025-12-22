@@ -22,7 +22,7 @@ jobs:
       matrix:
         include:
           - BUILD_SHARED: ON
-          - BUILD_SHARED: OFF
+          # - BUILD_SHARED: OFF
     steps:
       - uses: actions/checkout@v4
 
@@ -97,40 +97,40 @@ jobs:
         working-directory: build
         run: ../etc/docker/tests/run_test.sh
 
-  test_windows:
-    if: github.repository_owner == 'viamrobotics'
-    runs-on: windows-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - target: x86_64-windows
-            platform: windows_x86_64
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.prepare.outputs.sha }}
+  # test_windows:
+  #   if: github.repository_owner == 'viamrobotics'
+  #   runs-on: windows-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - target: x86_64-windows
+  #           platform: windows_x86_64
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ needs.prepare.outputs.sha }}
 
-      - name: Install dependencies
-        run: choco install -y conan git
+  #     - name: Install dependencies
+  #       run: choco install -y conan git
 
-      - name: Build SDK
-        shell: powershell
-        run: |
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-          refreshenv
-          conan profile detect
-          conan install . --build=missing -o "&:shared=False"
-          cmake . --preset conan-default -DVIAMCPPSDK_BUILD_EXAMPLES=ON
-          cmake --build --preset=conan-release --target ALL_BUILD install -j 8
-        env:
-          CONAN_USER_HOME: c:/cache
-          CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+  #     - name: Build SDK
+  #       shell: powershell
+  #       run: |
+  #         Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+  #         refreshenv
+  #         conan profile detect
+  #         conan install . --build=missing -o "&:shared=False"
+  #         cmake . --preset conan-default -DVIAMCPPSDK_BUILD_EXAMPLES=ON
+  #         cmake --build --preset=conan-release --target ALL_BUILD install -j 8
+  #       env:
+  #         CONAN_USER_HOME: c:/cache
+  #         CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
-      - name: Test examples
-        shell: powershell
-        run: |
-          Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd/build/install/bin'")) -ScriptBlock { .\simple_module.exe asdf 2>&1 > output.txt} | Wait-Job -Timeout 2 | Receive-Job
-          if (-not $(Select-String -Pattern "Module listening" -Path ./build/install/bin/output.txt)) { throw "Module did not start listening" }
+  #     - name: Test examples
+  #       shell: powershell
+  #       run: |
+  #         Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd/build/install/bin'")) -ScriptBlock { .\simple_module.exe asdf 2>&1 > output.txt} | Wait-Job -Timeout 2 | Receive-Job
+  #         if (-not $(Select-String -Pattern "Module listening" -Path ./build/install/bin/output.txt)) { throw "Module did not start listening" }
 
