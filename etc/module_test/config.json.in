@@ -1,0 +1,23 @@
+{
+    "network": {
+        "fqdn": "something-unique",
+        "bind_address": ":$MODULE_PORT"
+    },
+    "modules": [
+        {
+            "name": "SimpleModule",
+            "executable_path": "$PWD/build/install/bin/simple_module"
+        }
+    ],
+    "components": [
+        {
+            "name": "mysensor",
+            "type": "sensor",
+            "model": "viam:sensor:mysensor",
+            "attributes": {
+                "multiplier": 2
+            },
+            "depends_on": []
+        }
+    ]
+}
