@@ -37,8 +37,8 @@ DataClient DataClient::from_viam_client(const ViamClient& client) {
 
 DataClient::DataClient(const ViamChannel& channel) : pimpl_(std::make_unique<impl>(channel)) {}
 
-DataClient::DataClient(DataClient&&) = default;
-DataClient& DataClient::operator=(DataClient&&) = default;
+DataClient::DataClient(DataClient&&) noexcept = default;
+DataClient& DataClient::operator=(DataClient&&) noexcept = default;
 
 DataClient::~DataClient() = default;
 

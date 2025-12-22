@@ -33,9 +33,9 @@ class DataClient {
 
     static DataClient from_viam_client(const ViamClient&);
 
-    DataClient(DataClient&&);
+    DataClient(DataClient&&) noexcept;
 
-    DataClient& operator=(DataClient&&);
+    DataClient& operator=(DataClient&&) noexcept;
 
     ~DataClient();
 
