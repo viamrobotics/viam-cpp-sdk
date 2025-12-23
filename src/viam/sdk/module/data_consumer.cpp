@@ -43,7 +43,7 @@ struct writer {
 
         write_bytes(uint8_t{0});  // end of object
 
-        *reinterpret_cast<int32_t*>(&buf.front()) = buf.size();
+        *reinterpret_cast<int32_t*>(&buf.front()) = static_cast<int32_t>(buf.size());
     }
 
     void write_entry(const std::string& key, const std::string& val) {
