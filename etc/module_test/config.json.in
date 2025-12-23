@@ -1,7 +1,7 @@
 {
     "network": {
         "fqdn": "something-unique",
-        "bind_address": ":$MODULE_PORT"
+        "bind_address": ":8080"
     },
     "modules": [
         {
