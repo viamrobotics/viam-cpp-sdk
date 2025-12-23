@@ -21,7 +21,7 @@ struct writer {
 
     void write_cstring(const std::string& val) {
         std::copy_n(
-            reinterpret_cast<uint8_t const*>(val.data()), val.size() + 1u, std::back_inserter(buf));
+            reinterpret_cast<uint8_t const*>(val.data()), val.size() + 1U, std::back_inserter(buf));
     }
 
     void write_header(int8_t object_id, const std::string& key) {
@@ -49,7 +49,7 @@ struct writer {
     void write_entry(const std::string& key, const std::string& val) {
         write_header(int8_t{2}, key);
 
-        write_bytes(static_cast<int32_t>(val.size() + 1u));  // string size + null byte
+        write_bytes(static_cast<int32_t>(val.size() + 1U));  // string size + null byte
 
         write_cstring(val);
     }
