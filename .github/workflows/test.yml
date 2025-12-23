@@ -37,6 +37,7 @@ jobs:
               curl \
               doxygen \
               g++ \
+              gettext \
               gdb \
               git \
               gnupg \
@@ -48,6 +49,7 @@ jobs:
               libprotobuf-dev \
               libre2-dev \
               libssl-dev \
+              lsof \
               ninja-build \
               pkg-config \
               protobuf-compiler-grpc \
