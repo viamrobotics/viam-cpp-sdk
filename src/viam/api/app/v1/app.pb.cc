@@ -2515,7 +2515,11 @@ PROTOBUF_CONSTEXPR ModuleMetadata::ModuleMetadata(
   , apps_()
   , entrypoint_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , first_run_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , markdown_description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , markdown_description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , source_type_(0)
+
+  , language_(0)
+{}
 struct ModuleMetadataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ModuleMetadataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -2691,6 +2695,10 @@ PROTOBUF_CONSTEXPR ListRegistryItemsRequest::ListRegistryItemsRequest(
   , statuses_()
   , _statuses_cached_byte_size_(0)
   , public_namespaces_()
+  , module_source_types_()
+  , _module_source_types_cached_byte_size_(0)
+  , module_languages_()
+  , _module_languages_cached_byte_size_(0)
   , organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , search_term_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , page_token_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -2868,7 +2876,11 @@ PROTOBUF_CONSTEXPR UpdateModuleMetadata::UpdateModuleMetadata(
     ::_pbi::ConstantInitialized)
   : models_()
   , apps_()
-  , entrypoint_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , entrypoint_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , source_type_(0)
+
+  , language_(0)
+{}
 struct UpdateModuleMetadataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UpdateModuleMetadataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -3703,7 +3715,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace app
 }  // namespace viam
 static ::_pb::Metadata file_level_metadata_app_2fv1_2fapp_2eproto[277];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fapp_2eproto[12];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fapp_2eproto[14];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2fapp_2eproto = nullptr;
 
 const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -5369,12 +5381,16 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, first_run_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, markdown_description_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, apps_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, source_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ModuleMetadata, language_),
   ~0u,
   ~0u,
   ~0u,
   0,
   1,
   ~0u,
+  2,
+  3,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::MLModelMetadata, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -5504,6 +5520,8 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListRegistryItemsRequest, page_token_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListRegistryItemsRequest, public_namespaces_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListRegistryItemsRequest, include_markdown_documentation_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListRegistryItemsRequest, module_source_types_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListRegistryItemsRequest, module_languages_),
   0,
   ~0u,
   ~0u,
@@ -5513,6 +5531,8 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   2,
   ~0u,
   3,
+  ~0u,
+  ~0u,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::ListRegistryItemsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -5627,7 +5647,7 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleResponse, url_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleMetadata, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleMetadata, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -5636,6 +5656,13 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleMetadata, models_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleMetadata, entrypoint_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleMetadata, apps_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleMetadata, source_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateModuleMetadata, language_),
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateMLModelMetadata, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -6384,93 +6411,93 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 1614, -1, -1, sizeof(::viam::app::v1::AuthorizedPermissions)},
   { 1623, -1, -1, sizeof(::viam::app::v1::CheckPermissionsResponse)},
   { 1630, 1643, -1, sizeof(::viam::app::v1::ModuleVersion)},
-  { 1650, 1662, -1, sizeof(::viam::app::v1::ModuleMetadata)},
-  { 1668, -1, -1, sizeof(::viam::app::v1::MLModelMetadata)},
-  { 1677, -1, -1, sizeof(::viam::app::v1::MLTrainingVersion)},
-  { 1685, -1, -1, sizeof(::viam::app::v1::MLTrainingMetadata)},
-  { 1695, -1, -1, sizeof(::viam::app::v1::RegistryItem)},
-  { 1719, 1727, -1, sizeof(::viam::app::v1::GetRegistryItemRequest)},
-  { 1729, -1, -1, sizeof(::viam::app::v1::GetRegistryItemResponse)},
-  { 1736, -1, -1, sizeof(::viam::app::v1::CreateRegistryItemRequest)},
-  { 1745, -1, -1, sizeof(::viam::app::v1::CreateRegistryItemResponse)},
-  { 1751, 1767, -1, sizeof(::viam::app::v1::UpdateRegistryItemRequest)},
-  { 1776, -1, -1, sizeof(::viam::app::v1::UpdateRegistryItemResponse)},
-  { 1782, 1797, -1, sizeof(::viam::app::v1::ListRegistryItemsRequest)},
-  { 1806, -1, -1, sizeof(::viam::app::v1::ListRegistryItemsResponse)},
-  { 1813, -1, -1, sizeof(::viam::app::v1::DeleteRegistryItemRequest)},
-  { 1820, -1, -1, sizeof(::viam::app::v1::DeleteRegistryItemResponse)},
-  { 1826, -1, -1, sizeof(::viam::app::v1::RenameRegistryItemRequest)},
-  { 1834, -1, -1, sizeof(::viam::app::v1::RenameRegistryItemResponse)},
-  { 1841, -1, -1, sizeof(::viam::app::v1::TransferRegistryItemRequest)},
-  { 1849, -1, -1, sizeof(::viam::app::v1::TransferRegistryItemResponse)},
-  { 1855, -1, -1, sizeof(::viam::app::v1::CreateModuleRequest)},
-  { 1863, -1, -1, sizeof(::viam::app::v1::CreateModuleResponse)},
-  { 1871, 1886, -1, sizeof(::viam::app::v1::UpdateModuleRequest)},
-  { 1895, 1907, -1, sizeof(::viam::app::v1::App)},
-  { 1913, -1, -1, sizeof(::viam::app::v1::UpdateModuleResponse)},
-  { 1920, -1, -1, sizeof(::viam::app::v1::UpdateModuleMetadata)},
-  { 1929, -1, -1, sizeof(::viam::app::v1::UpdateMLModelMetadata)},
-  { 1937, -1, -1, sizeof(::viam::app::v1::UpdateMLTrainingMetadata)},
-  { 1946, 1957, -1, sizeof(::viam::app::v1::Model)},
-  { 1962, -1, -1, sizeof(::viam::app::v1::ModuleFileInfo)},
-  { 1972, -1, -1, sizeof(::viam::app::v1::UploadModuleFileRequest)},
-  { 1981, -1, -1, sizeof(::viam::app::v1::UploadModuleFileResponse)},
-  { 1988, 1996, -1, sizeof(::viam::app::v1::GetModuleRequest)},
-  { 1998, -1, -1, sizeof(::viam::app::v1::GetModuleResponse)},
-  { 2005, 2026, -1, sizeof(::viam::app::v1::Module)},
-  { 2041, 2054, -1, sizeof(::viam::app::v1::VersionHistory)},
-  { 2061, -1, -1, sizeof(::viam::app::v1::Uploads)},
-  { 2069, 2077, -1, sizeof(::viam::app::v1::ListModulesRequest)},
-  { 2079, -1, -1, sizeof(::viam::app::v1::ListModulesResponse)},
-  { 2086, -1, -1, sizeof(::viam::app::v1::GetUserIDByEmailRequest)},
-  { 2093, -1, -1, sizeof(::viam::app::v1::GetUserIDByEmailResponse)},
-  { 2100, -1, -1, sizeof(::viam::app::v1::ListOrganizationsByUserRequest)},
-  { 2107, 2118, -1, sizeof(::viam::app::v1::OrgDetails)},
-  { 2123, -1, -1, sizeof(::viam::app::v1::ListOrganizationsByUserResponse)},
-  { 2130, 2140, -1, sizeof(::viam::app::v1::SearchOrganizationsRequest)},
-  { 2144, -1, -1, sizeof(::viam::app::v1::SearchOrganizationsResponse)},
-  { 2151, -1, -1, sizeof(::viam::app::v1::CreateKeyRequest)},
-  { 2159, -1, -1, sizeof(::viam::app::v1::CreateKeyResponse)},
-  { 2167, -1, -1, sizeof(::viam::app::v1::DeleteKeyRequest)},
-  { 2174, -1, -1, sizeof(::viam::app::v1::DeleteKeyResponse)},
-  { 2180, -1, -1, sizeof(::viam::app::v1::RenameKeyRequest)},
-  { 2188, -1, -1, sizeof(::viam::app::v1::RenameKeyResponse)},
-  { 2196, -1, -1, sizeof(::viam::app::v1::AuthorizationDetails)},
-  { 2207, -1, -1, sizeof(::viam::app::v1::APIKeyWithAuthorizations)},
-  { 2215, -1, -1, sizeof(::viam::app::v1::ListKeysRequest)},
-  { 2222, -1, -1, sizeof(::viam::app::v1::ListKeysResponse)},
-  { 2229, -1, -1, sizeof(::viam::app::v1::RotateKeyRequest)},
-  { 2236, -1, -1, sizeof(::viam::app::v1::RotateKeyResponse)},
-  { 2244, -1, -1, sizeof(::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest)},
-  { 2251, -1, -1, sizeof(::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse)},
-  { 2259, -1, -1, sizeof(::viam::app::v1::GetAppContentRequest)},
-  { 2267, -1, -1, sizeof(::viam::app::v1::GetAppContentResponse)},
-  { 2276, -1, -1, sizeof(::viam::app::v1::OrganizationSetLogoRequest)},
-  { 2284, -1, -1, sizeof(::viam::app::v1::OrganizationSetLogoResponse)},
-  { 2290, -1, -1, sizeof(::viam::app::v1::OrganizationGetLogoRequest)},
-  { 2297, -1, -1, sizeof(::viam::app::v1::OrganizationGetLogoResponse)},
-  { 2304, -1, -1, sizeof(::viam::app::v1::EnableAuthServiceRequest)},
-  { 2311, -1, -1, sizeof(::viam::app::v1::EnableAuthServiceResponse)},
-  { 2317, -1, -1, sizeof(::viam::app::v1::DisableAuthServiceRequest)},
-  { 2324, -1, -1, sizeof(::viam::app::v1::DisableAuthServiceResponse)},
-  { 2330, -1, -1, sizeof(::viam::app::v1::CreateOAuthAppRequest)},
-  { 2339, -1, -1, sizeof(::viam::app::v1::CreateOAuthAppResponse)},
-  { 2347, -1, -1, sizeof(::viam::app::v1::ReadOAuthAppRequest)},
-  { 2355, -1, -1, sizeof(::viam::app::v1::ReadOAuthAppResponse)},
-  { 2364, -1, -1, sizeof(::viam::app::v1::UpdateOAuthAppRequest)},
-  { 2374, -1, -1, sizeof(::viam::app::v1::UpdateOAuthAppResponse)},
-  { 2380, -1, -1, sizeof(::viam::app::v1::DeleteOAuthAppRequest)},
-  { 2388, -1, -1, sizeof(::viam::app::v1::DeleteOAuthAppResponse)},
-  { 2394, -1, -1, sizeof(::viam::app::v1::ListOAuthAppsRequest)},
-  { 2401, -1, -1, sizeof(::viam::app::v1::ListOAuthAppsResponse)},
-  { 2408, -1, -1, sizeof(::viam::app::v1::OAuthConfig)},
-  { 2421, -1, -1, sizeof(::viam::app::v1::GetAppBrandingRequest)},
-  { 2429, 2437, -1, sizeof(::viam::app::v1::TextOverrides_FieldsEntry_DoNotUse)},
-  { 2439, -1, -1, sizeof(::viam::app::v1::TextOverrides)},
-  { 2446, 2454, -1, sizeof(::viam::app::v1::GetAppBrandingResponse_TextCustomizationsEntry_DoNotUse)},
-  { 2456, 2465, -1, sizeof(::viam::app::v1::GetAppBrandingResponse)},
-  { 2468, -1, -1, sizeof(::viam::app::v1::AppCustomizations)},
-  { 2475, 2483, -1, sizeof(::viam::app::v1::MachinePickerCustomizations)},
+  { 1650, 1664, -1, sizeof(::viam::app::v1::ModuleMetadata)},
+  { 1672, -1, -1, sizeof(::viam::app::v1::MLModelMetadata)},
+  { 1681, -1, -1, sizeof(::viam::app::v1::MLTrainingVersion)},
+  { 1689, -1, -1, sizeof(::viam::app::v1::MLTrainingMetadata)},
+  { 1699, -1, -1, sizeof(::viam::app::v1::RegistryItem)},
+  { 1723, 1731, -1, sizeof(::viam::app::v1::GetRegistryItemRequest)},
+  { 1733, -1, -1, sizeof(::viam::app::v1::GetRegistryItemResponse)},
+  { 1740, -1, -1, sizeof(::viam::app::v1::CreateRegistryItemRequest)},
+  { 1749, -1, -1, sizeof(::viam::app::v1::CreateRegistryItemResponse)},
+  { 1755, 1771, -1, sizeof(::viam::app::v1::UpdateRegistryItemRequest)},
+  { 1780, -1, -1, sizeof(::viam::app::v1::UpdateRegistryItemResponse)},
+  { 1786, 1803, -1, sizeof(::viam::app::v1::ListRegistryItemsRequest)},
+  { 1814, -1, -1, sizeof(::viam::app::v1::ListRegistryItemsResponse)},
+  { 1821, -1, -1, sizeof(::viam::app::v1::DeleteRegistryItemRequest)},
+  { 1828, -1, -1, sizeof(::viam::app::v1::DeleteRegistryItemResponse)},
+  { 1834, -1, -1, sizeof(::viam::app::v1::RenameRegistryItemRequest)},
+  { 1842, -1, -1, sizeof(::viam::app::v1::RenameRegistryItemResponse)},
+  { 1849, -1, -1, sizeof(::viam::app::v1::TransferRegistryItemRequest)},
+  { 1857, -1, -1, sizeof(::viam::app::v1::TransferRegistryItemResponse)},
+  { 1863, -1, -1, sizeof(::viam::app::v1::CreateModuleRequest)},
+  { 1871, -1, -1, sizeof(::viam::app::v1::CreateModuleResponse)},
+  { 1879, 1894, -1, sizeof(::viam::app::v1::UpdateModuleRequest)},
+  { 1903, 1915, -1, sizeof(::viam::app::v1::App)},
+  { 1921, -1, -1, sizeof(::viam::app::v1::UpdateModuleResponse)},
+  { 1928, 1939, -1, sizeof(::viam::app::v1::UpdateModuleMetadata)},
+  { 1944, -1, -1, sizeof(::viam::app::v1::UpdateMLModelMetadata)},
+  { 1952, -1, -1, sizeof(::viam::app::v1::UpdateMLTrainingMetadata)},
+  { 1961, 1972, -1, sizeof(::viam::app::v1::Model)},
+  { 1977, -1, -1, sizeof(::viam::app::v1::ModuleFileInfo)},
+  { 1987, -1, -1, sizeof(::viam::app::v1::UploadModuleFileRequest)},
+  { 1996, -1, -1, sizeof(::viam::app::v1::UploadModuleFileResponse)},
+  { 2003, 2011, -1, sizeof(::viam::app::v1::GetModuleRequest)},
+  { 2013, -1, -1, sizeof(::viam::app::v1::GetModuleResponse)},
+  { 2020, 2041, -1, sizeof(::viam::app::v1::Module)},
+  { 2056, 2069, -1, sizeof(::viam::app::v1::VersionHistory)},
+  { 2076, -1, -1, sizeof(::viam::app::v1::Uploads)},
+  { 2084, 2092, -1, sizeof(::viam::app::v1::ListModulesRequest)},
+  { 2094, -1, -1, sizeof(::viam::app::v1::ListModulesResponse)},
+  { 2101, -1, -1, sizeof(::viam::app::v1::GetUserIDByEmailRequest)},
+  { 2108, -1, -1, sizeof(::viam::app::v1::GetUserIDByEmailResponse)},
+  { 2115, -1, -1, sizeof(::viam::app::v1::ListOrganizationsByUserRequest)},
+  { 2122, 2133, -1, sizeof(::viam::app::v1::OrgDetails)},
+  { 2138, -1, -1, sizeof(::viam::app::v1::ListOrganizationsByUserResponse)},
+  { 2145, 2155, -1, sizeof(::viam::app::v1::SearchOrganizationsRequest)},
+  { 2159, -1, -1, sizeof(::viam::app::v1::SearchOrganizationsResponse)},
+  { 2166, -1, -1, sizeof(::viam::app::v1::CreateKeyRequest)},
+  { 2174, -1, -1, sizeof(::viam::app::v1::CreateKeyResponse)},
+  { 2182, -1, -1, sizeof(::viam::app::v1::DeleteKeyRequest)},
+  { 2189, -1, -1, sizeof(::viam::app::v1::DeleteKeyResponse)},
+  { 2195, -1, -1, sizeof(::viam::app::v1::RenameKeyRequest)},
+  { 2203, -1, -1, sizeof(::viam::app::v1::RenameKeyResponse)},
+  { 2211, -1, -1, sizeof(::viam::app::v1::AuthorizationDetails)},
+  { 2222, -1, -1, sizeof(::viam::app::v1::APIKeyWithAuthorizations)},
+  { 2230, -1, -1, sizeof(::viam::app::v1::ListKeysRequest)},
+  { 2237, -1, -1, sizeof(::viam::app::v1::ListKeysResponse)},
+  { 2244, -1, -1, sizeof(::viam::app::v1::RotateKeyRequest)},
+  { 2251, -1, -1, sizeof(::viam::app::v1::RotateKeyResponse)},
+  { 2259, -1, -1, sizeof(::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest)},
+  { 2266, -1, -1, sizeof(::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse)},
+  { 2274, -1, -1, sizeof(::viam::app::v1::GetAppContentRequest)},
+  { 2282, -1, -1, sizeof(::viam::app::v1::GetAppContentResponse)},
+  { 2291, -1, -1, sizeof(::viam::app::v1::OrganizationSetLogoRequest)},
+  { 2299, -1, -1, sizeof(::viam::app::v1::OrganizationSetLogoResponse)},
+  { 2305, -1, -1, sizeof(::viam::app::v1::OrganizationGetLogoRequest)},
+  { 2312, -1, -1, sizeof(::viam::app::v1::OrganizationGetLogoResponse)},
+  { 2319, -1, -1, sizeof(::viam::app::v1::EnableAuthServiceRequest)},
+  { 2326, -1, -1, sizeof(::viam::app::v1::EnableAuthServiceResponse)},
+  { 2332, -1, -1, sizeof(::viam::app::v1::DisableAuthServiceRequest)},
+  { 2339, -1, -1, sizeof(::viam::app::v1::DisableAuthServiceResponse)},
+  { 2345, -1, -1, sizeof(::viam::app::v1::CreateOAuthAppRequest)},
+  { 2354, -1, -1, sizeof(::viam::app::v1::CreateOAuthAppResponse)},
+  { 2362, -1, -1, sizeof(::viam::app::v1::ReadOAuthAppRequest)},
+  { 2370, -1, -1, sizeof(::viam::app::v1::ReadOAuthAppResponse)},
+  { 2379, -1, -1, sizeof(::viam::app::v1::UpdateOAuthAppRequest)},
+  { 2389, -1, -1, sizeof(::viam::app::v1::UpdateOAuthAppResponse)},
+  { 2395, -1, -1, sizeof(::viam::app::v1::DeleteOAuthAppRequest)},
+  { 2403, -1, -1, sizeof(::viam::app::v1::DeleteOAuthAppResponse)},
+  { 2409, -1, -1, sizeof(::viam::app::v1::ListOAuthAppsRequest)},
+  { 2416, -1, -1, sizeof(::viam::app::v1::ListOAuthAppsResponse)},
+  { 2423, -1, -1, sizeof(::viam::app::v1::OAuthConfig)},
+  { 2436, -1, -1, sizeof(::viam::app::v1::GetAppBrandingRequest)},
+  { 2444, 2452, -1, sizeof(::viam::app::v1::TextOverrides_FieldsEntry_DoNotUse)},
+  { 2454, -1, -1, sizeof(::viam::app::v1::TextOverrides)},
+  { 2461, 2469, -1, sizeof(::viam::app::v1::GetAppBrandingResponse_TextCustomizationsEntry_DoNotUse)},
+  { 2471, 2480, -1, sizeof(::viam::app::v1::GetAppBrandingResponse)},
+  { 2483, -1, -1, sizeof(::viam::app::v1::AppCustomizations)},
+  { 2490, 2498, -1, sizeof(::viam::app::v1::MachinePickerCustomizations)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -7345,15 +7372,19 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "run\030\005 \001(\tH\000R\010firstRun\210\001\001\0226\n\024markdown_des"
   "cription\030\006 \001(\tH\001R\023markdownDescription\210\001\001"
   "\022$\n\004apps\030\007 \003(\0132\020.viam.app.v1.AppR\004appsB\014"
-  "\n\n_first_runB\027\n\025_markdown_description\"\273\002"
+  "\n\n_first_runB\027\n\025_markdown_description\"\333\003"
   "\n\016ModuleMetadata\022*\n\006models\030\001 \003(\0132\022.viam."
   "app.v1.ModelR\006models\0226\n\010versions\030\002 \003(\0132\032"
   ".viam.app.v1.ModuleVersionR\010versions\022\036\n\n"
   "entrypoint\030\003 \001(\tR\nentrypoint\022 \n\tfirst_ru"
   "n\030\004 \001(\tH\000R\010firstRun\210\001\001\0226\n\024markdown_descr"
   "iption\030\005 \001(\tH\001R\023markdownDescription\210\001\001\022$"
-  "\n\004apps\030\006 \003(\0132\020.viam.app.v1.AppR\004appsB\014\n\n"
-  "_first_runB\027\n\025_markdown_description\"\300\001\n\017"
+  "\n\004apps\030\006 \003(\0132\020.viam.app.v1.AppR\004apps\022C\n\013"
+  "source_type\030\007 \001(\0162\035.viam.app.v1.ModuleSo"
+  "urceTypeH\002R\nsourceType\210\001\001\022<\n\010language\030\010 "
+  "\001(\0162\033.viam.app.v1.ModuleLanguageH\003R\010lang"
+  "uage\210\001\001B\014\n\n_first_runB\027\n\025_markdown_descr"
+  "iptionB\016\n\014_source_typeB\013\n\t_language\"\300\001\n\017"
   "MLModelMetadata\022\032\n\010versions\030\001 \003(\tR\010versi"
   "ons\022@\n\nmodel_type\030\002 \001(\0162!.viam.app.mltra"
   "ining.v1.ModelTypeR\tmodelType\022O\n\017model_f"
@@ -7417,7 +7448,7 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "own_description\030\t \001(\tH\002R\023markdownDescrip"
   "tion\210\001\001B\n\n\010metadataB\006\n\004_urlB\027\n\025_markdown"
   "_description\"\034\n\032UpdateRegistryItemRespon"
-  "se\"\261\004\n\030ListRegistryItemsRequest\022,\n\017organ"
+  "se\"\310\005\n\030ListRegistryItemsRequest\022,\n\017organ"
   "ization_id\030\001 \001(\tH\000R\016organizationId\210\001\001\0227\n"
   "\005types\030\002 \003(\0162!.viam.app.packages.v1.Pack"
   "ageTypeR\005types\022;\n\014visibilities\030\003 \003(\0162\027.v"
@@ -7429,538 +7460,552 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "\022+\n\021public_namespaces\030\010 \003(\tR\020publicNames"
   "paces\022I\n\036include_markdown_documentation\030"
   "\t \001(\010H\003R\034includeMarkdownDocumentation\210\001\001"
-  "B\022\n\020_organization_idB\016\n\014_search_termB\r\n\013"
-  "_page_tokenB!\n\037_include_markdown_documen"
-  "tation\"L\n\031ListRegistryItemsResponse\022/\n\005i"
-  "tems\030\001 \003(\0132\031.viam.app.v1.RegistryItemR\005i"
-  "tems\"4\n\031DeleteRegistryItemRequest\022\027\n\007ite"
-  "m_id\030\001 \001(\tR\006itemId\"\034\n\032DeleteRegistryItem"
-  "Response\"O\n\031RenameRegistryItemRequest\022\027\n"
-  "\007item_id\030\001 \001(\tR\006itemId\022\031\n\010new_name\030\002 \001(\t"
-  "R\007newName\"K\n\032RenameRegistryItemResponse\022"
-  "-\n\004item\030\001 \001(\0132\031.viam.app.v1.RegistryItem"
-  "R\004item\"h\n\033TransferRegistryItemRequest\022\027\n"
-  "\007item_id\030\001 \001(\tR\006itemId\0220\n\024new_public_nam"
-  "espace\030\002 \001(\tR\022newPublicNamespace\"\036\n\034Tran"
-  "sferRegistryItemResponse\"R\n\023CreateModule"
-  "Request\022\'\n\017organization_id\030\001 \001(\tR\016organi"
-  "zationId\022\022\n\004name\030\002 \001(\tR\004name\"E\n\024CreateMo"
-  "duleResponse\022\033\n\tmodule_id\030\001 \001(\tR\010moduleI"
-  "d\022\020\n\003url\030\002 \001(\tR\003url\"\222\003\n\023UpdateModuleRequ"
-  "est\022\033\n\tmodule_id\030\001 \001(\tR\010moduleId\0227\n\nvisi"
-  "bility\030\002 \001(\0162\027.viam.app.v1.VisibilityR\nv"
-  "isibility\022\020\n\003url\030\003 \001(\tR\003url\022 \n\013descripti"
-  "on\030\004 \001(\tR\013description\022*\n\006models\030\005 \003(\0132\022."
-  "viam.app.v1.ModelR\006models\022\036\n\nentrypoint\030"
-  "\006 \001(\tR\nentrypoint\022 \n\tfirst_run\030\007 \001(\tH\000R\010"
-  "firstRun\210\001\001\022$\n\004apps\030\010 \003(\0132\020.viam.app.v1."
-  "AppR\004apps\0226\n\024markdown_description\030\t \001(\tH"
-  "\001R\023markdownDescription\210\001\001B\014\n\n_first_runB"
-  "\027\n\025_markdown_description\"\350\001\n\003App\022\022\n\004name"
-  "\030\001 \001(\tR\004name\022\022\n\004type\030\002 \001(\tR\004type\022\036\n\nentr"
-  "ypoint\030\003 \001(\tR\nentrypoint\022!\n\014fragment_ids"
-  "\030\004 \003(\tR\013fragmentIds\022 \n\tlogo_path\030\005 \001(\tH\000"
-  "R\010logoPath\210\001\001\022F\n\016customizations\030\006 \001(\0132\036."
-  "viam.app.v1.AppCustomizationsR\016customiza"
-  "tionsB\014\n\n_logo_path\"(\n\024UpdateModuleRespo"
-  "nse\022\020\n\003url\030\001 \001(\tR\003url\"\210\001\n\024UpdateModuleMe"
-  "tadata\022*\n\006models\030\001 \003(\0132\022.viam.app.v1.Mod"
-  "elR\006models\022\036\n\nentrypoint\030\002 \001(\tR\nentrypoi"
-  "nt\022$\n\004apps\030\003 \003(\0132\020.viam.app.v1.AppR\004apps"
-  "\"\252\001\n\025UpdateMLModelMetadata\022@\n\nmodel_type"
-  "\030\001 \001(\0162!.viam.app.mltraining.v1.ModelTyp"
-  "eR\tmodelType\022O\n\017model_framework\030\002 \001(\0162&."
-  "viam.app.mltraining.v1.ModelFrameworkR\016m"
-  "odelFramework\"\303\001\n\030UpdateMLTrainingMetada"
-  "ta\022@\n\nmodel_type\030\001 \001(\0162!.viam.app.mltrai"
-  "ning.v1.ModelTypeR\tmodelType\022O\n\017model_fr"
-  "amework\030\002 \001(\0162&.viam.app.mltraining.v1.M"
-  "odelFrameworkR\016modelFramework\022\024\n\005draft\030\003"
-  " \001(\010R\005draft\"\354\001\n\005Model\022\020\n\003api\030\001 \001(\tR\003api\022"
-  "\024\n\005model\030\002 \001(\tR\005model\022:\n\026markdown_docume"
-  "ntation\030\003 \001(\tH\000R\025markdownDocumentation\210\001"
-  "\001\022%\n\013description\030\004 \001(\tH\001R\013description\210\001\001"
-  "\022-\n\022supported_hardware\030\005 \003(\tR\021supportedH"
-  "ardwareB\031\n\027_markdown_documentationB\016\n\014_d"
-  "escription\"\210\001\n\016ModuleFileInfo\022\033\n\tmodule_"
-  "id\030\001 \001(\tR\010moduleId\022\030\n\007version\030\002 \001(\tR\007ver"
-  "sion\022\032\n\010platform\030\003 \001(\tR\010platform\022#\n\rplat"
-  "form_tags\030\005 \003(\tR\014platformTags\"\207\001\n\027Upload"
-  "ModuleFileRequest\022G\n\020module_file_info\030\001 "
-  "\001(\0132\033.viam.app.v1.ModuleFileInfoH\000R\016modu"
-  "leFileInfo\022\024\n\004file\030\002 \001(\014H\000R\004fileB\r\n\013modu"
-  "le_file\",\n\030UploadModuleFileResponse\022\020\n\003u"
-  "rl\030\001 \001(\tR\003url\"\235\001\n\020GetModuleRequest\022\033\n\tmo"
-  "dule_id\030\001 \001(\tR\010moduleId\022I\n\036include_markd"
-  "own_documentation\030\002 \001(\010H\000R\034includeMarkdo"
-  "wnDocumentation\210\001\001B!\n\037_include_markdown_"
-  "documentation\"@\n\021GetModuleResponse\022+\n\006mo"
-  "dule\030\001 \001(\0132\023.viam.app.v1.ModuleR\006module\""
-  "\214\005\n\006Module\022\033\n\tmodule_id\030\001 \001(\tR\010moduleId\022"
-  "\022\n\004name\030\002 \001(\tR\004name\0227\n\nvisibility\030\003 \001(\0162"
-  "\027.viam.app.v1.VisibilityR\nvisibility\0227\n\010"
-  "versions\030\004 \003(\0132\033.viam.app.v1.VersionHist"
-  "oryR\010versions\022\020\n\003url\030\005 \001(\tR\003url\022 \n\013descr"
-  "iption\030\006 \001(\tR\013description\022*\n\006models\030\007 \003("
-  "\0132\022.viam.app.v1.ModelR\006models\022*\n\021total_r"
-  "obot_usage\030\010 \001(\003R\017totalRobotUsage\0228\n\030tot"
-  "al_organization_usage\030\t \001(\003R\026totalOrgani"
-  "zationUsage\022\'\n\017organization_id\030\n \001(\tR\016or"
-  "ganizationId\022\036\n\nentrypoint\030\013 \001(\tR\nentryp"
-  "oint\022)\n\020public_namespace\030\014 \001(\tR\017publicNa"
-  "mespace\022 \n\tfirst_run\030\r \001(\tH\000R\010firstRun\210\001"
-  "\001\0226\n\024markdown_description\030\016 \001(\tH\001R\023markd"
-  "ownDescription\210\001\001\022$\n\004apps\030\017 \003(\0132\020.viam.a"
-  "pp.v1.AppR\004appsB\014\n\n_first_runB\027\n\025_markdo"
-  "wn_description\"\311\002\n\016VersionHistory\022\030\n\007ver"
-  "sion\030\001 \001(\tR\007version\022*\n\005files\030\002 \003(\0132\024.via"
-  "m.app.v1.UploadsR\005files\022*\n\006models\030\003 \003(\0132"
-  "\022.viam.app.v1.ModelR\006models\022\036\n\nentrypoin"
-  "t\030\004 \001(\tR\nentrypoint\022 \n\tfirst_run\030\005 \001(\tH\000"
-  "R\010firstRun\210\001\001\0226\n\024markdown_description\030\006 "
-  "\001(\tH\001R\023markdownDescription\210\001\001\022$\n\004apps\030\007 "
-  "\003(\0132\020.viam.app.v1.AppR\004appsB\014\n\n_first_ru"
-  "nB\027\n\025_markdown_description\"b\n\007Uploads\022\032\n"
-  "\010platform\030\001 \001(\tR\010platform\022;\n\013uploaded_at"
-  "\030\002 \001(\0132\032.google.protobuf.TimestampR\nuplo"
-  "adedAt\"\304\001\n\022ListModulesRequest\022,\n\017organiz"
-  "ation_id\030\001 \001(\tH\000R\016organizationId\210\001\001\022I\n\036i"
-  "nclude_markdown_documentation\030\002 \001(\010H\001R\034i"
-  "ncludeMarkdownDocumentation\210\001\001B\022\n\020_organ"
-  "ization_idB!\n\037_include_markdown_document"
-  "ation\"D\n\023ListModulesResponse\022-\n\007modules\030"
-  "\001 \003(\0132\023.viam.app.v1.ModuleR\007modules\"/\n\027G"
-  "etUserIDByEmailRequest\022\024\n\005email\030\001 \001(\tR\005e"
-  "mail\"3\n\030GetUserIDByEmailResponse\022\027\n\007user"
-  "_id\030\001 \001(\tR\006userId\"9\n\036ListOrganizationsBy"
-  "UserRequest\022\027\n\007user_id\030\001 \001(\tR\006userId\"\346\001\n"
-  "\nOrgDetails\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\031\n\010or"
-  "g_name\030\002 \001(\tR\007orgName\022\034\n\007org_cid\030\003 \001(\tH\000"
-  "R\006orgCid\210\001\001\022.\n\020public_namespace\030\004 \001(\tH\001R"
-  "\017publicNamespace\210\001\001\022&\n\014billing_tier\030\005 \001("
-  "\tH\002R\013billingTier\210\001\001B\n\n\010_org_cidB\023\n\021_publ"
-  "ic_namespaceB\017\n\r_billing_tier\"N\n\037ListOrg"
-  "anizationsByUserResponse\022+\n\004orgs\030\001 \003(\0132\027"
-  ".viam.app.v1.OrgDetailsR\004orgs\"\324\001\n\032Search"
-  "OrganizationsRequest\022\032\n\006org_id\030\001 \001(\tH\000R\005"
-  "orgId\210\001\001\022\036\n\010org_name\030\002 \001(\tH\001R\007orgName\210\001\001"
-  "\022\025\n\003cid\030\003 \001(\tH\002R\003cid\210\001\001\022.\n\020public_namesp"
-  "ace\030\004 \001(\tH\003R\017publicNamespace\210\001\001B\t\n\007_org_"
-  "idB\013\n\t_org_nameB\006\n\004_cidB\023\n\021_public_names"
-  "pace\"\\\n\033SearchOrganizationsResponse\022=\n\ro"
-  "rganizations\030\001 \003(\0132\027.viam.app.v1.OrgDeta"
-  "ilsR\rorganizations\"j\n\020CreateKeyRequest\022B"
-  "\n\016authorizations\030\001 \003(\0132\032.viam.app.v1.Aut"
-  "horizationR\016authorizations\022\022\n\004name\030\002 \001(\t"
-  "R\004name\"5\n\021CreateKeyResponse\022\020\n\003key\030\001 \001(\t"
-  "R\003key\022\016\n\002id\030\002 \001(\tR\002id\"\"\n\020DeleteKeyReques"
-  "t\022\016\n\002id\030\001 \001(\tR\002id\"\023\n\021DeleteKeyResponse\"6"
-  "\n\020RenameKeyRequest\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004na"
-  "me\030\002 \001(\tR\004name\"7\n\021RenameKeyResponse\022\016\n\002i"
-  "d\030\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\tR\004name\"\315\001\n\024Auth"
-  "orizationDetails\022-\n\022authorization_type\030\001"
-  " \001(\tR\021authorizationType\022)\n\020authorization"
-  "_id\030\002 \001(\tR\017authorizationId\022#\n\rresource_t"
-  "ype\030\003 \001(\tR\014resourceType\022\037\n\013resource_id\030\004"
-  " \001(\tR\nresourceId\022\025\n\006org_id\030\005 \001(\tR\005orgId\""
-  "\223\001\n\030APIKeyWithAuthorizations\022,\n\007api_key\030"
-  "\001 \001(\0132\023.viam.app.v1.APIKeyR\006apiKey\022I\n\016au"
-  "thorizations\030\002 \003(\0132!.viam.app.v1.Authori"
-  "zationDetailsR\016authorizations\"(\n\017ListKey"
-  "sRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"T\n\020ListK"
-  "eysResponse\022@\n\010api_keys\030\001 \003(\0132%.viam.app"
-  ".v1.APIKeyWithAuthorizationsR\007apiKeys\"\"\n"
-  "\020RotateKeyRequest\022\016\n\002id\030\001 \001(\tR\002id\"5\n\021Rot"
-  "ateKeyResponse\022\016\n\002id\030\001 \001(\tR\002id\022\020\n\003key\030\002 "
-  "\001(\tR\003key\"\?\n-CreateKeyFromExistingKeyAuth"
-  "orizationsRequest\022\016\n\002id\030\001 \001(\tR\002id\"R\n.Cre"
-  "ateKeyFromExistingKeyAuthorizationsRespo"
-  "nse\022\016\n\002id\030\001 \001(\tR\002id\022\020\n\003key\030\002 \001(\tR\003key\"U\n"
-  "\024GetAppContentRequest\022)\n\020public_namespac"
-  "e\030\001 \001(\tR\017publicNamespace\022\022\n\004name\030\002 \001(\tR\004"
-  "name\"\205\001\n\025GetAppContentResponse\022\033\n\tblob_p"
-  "ath\030\001 \001(\tR\010blobPath\022\036\n\nentrypoint\030\002 \001(\tR"
-  "\nentrypoint\022/\n\010app_type\030\003 \001(\0162\024.viam.app"
-  ".v1.AppTypeR\007appType\"G\n\032OrganizationSetL"
-  "ogoRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\022\n\004log"
-  "o\030\002 \001(\014R\004logo\"\035\n\033OrganizationSetLogoResp"
-  "onse\"3\n\032OrganizationGetLogoRequest\022\025\n\006or"
-  "g_id\030\001 \001(\tR\005orgId\"/\n\033OrganizationGetLogo"
-  "Response\022\020\n\003url\030\001 \001(\tR\003url\"1\n\030EnableAuth"
-  "ServiceRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"\033\n"
-  "\031EnableAuthServiceResponse\"2\n\031DisableAut"
-  "hServiceRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"\034"
-  "\n\032DisableAuthServiceResponse\"\214\001\n\025CreateO"
-  "AuthAppRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\037\n"
-  "\013client_name\030\002 \001(\tR\nclientName\022;\n\014oauth_"
-  "config\030\003 \001(\0132\030.viam.app.v1.OAuthConfigR\013"
-  "oauthConfig\"Z\n\026CreateOAuthAppResponse\022\033\n"
-  "\tclient_id\030\001 \001(\tR\010clientId\022#\n\rclient_sec"
-  "ret\030\002 \001(\tR\014clientSecret\"I\n\023ReadOAuthAppR"
-  "equest\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\033\n\tclient_"
-  "id\030\002 \001(\tR\010clientId\"\231\001\n\024ReadOAuthAppRespo"
-  "nse\022\037\n\013client_name\030\001 \001(\tR\nclientName\022#\n\r"
-  "client_secret\030\002 \001(\tR\014clientSecret\022;\n\014oau"
-  "th_config\030\003 \001(\0132\030.viam.app.v1.OAuthConfi"
-  "gR\013oauthConfig\"\251\001\n\025UpdateOAuthAppRequest"
-  "\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\033\n\tclient_id\030\002 \001"
-  "(\tR\010clientId\022\037\n\013client_name\030\003 \001(\tR\nclien"
-  "tName\022;\n\014oauth_config\030\004 \001(\0132\030.viam.app.v"
-  "1.OAuthConfigR\013oauthConfig\"\030\n\026UpdateOAut"
-  "hAppResponse\"K\n\025DeleteOAuthAppRequest\022\025\n"
+  "\022M\n\023module_source_types\030\n \003(\0162\035.viam.app"
+  ".v1.ModuleSourceTypeR\021moduleSourceTypes\022"
+  "F\n\020module_languages\030\013 \003(\0162\033.viam.app.v1."
+  "ModuleLanguageR\017moduleLanguagesB\022\n\020_orga"
+  "nization_idB\016\n\014_search_termB\r\n\013_page_tok"
+  "enB!\n\037_include_markdown_documentation\"L\n"
+  "\031ListRegistryItemsResponse\022/\n\005items\030\001 \003("
+  "\0132\031.viam.app.v1.RegistryItemR\005items\"4\n\031D"
+  "eleteRegistryItemRequest\022\027\n\007item_id\030\001 \001("
+  "\tR\006itemId\"\034\n\032DeleteRegistryItemResponse\""
+  "O\n\031RenameRegistryItemRequest\022\027\n\007item_id\030"
+  "\001 \001(\tR\006itemId\022\031\n\010new_name\030\002 \001(\tR\007newName"
+  "\"K\n\032RenameRegistryItemResponse\022-\n\004item\030\001"
+  " \001(\0132\031.viam.app.v1.RegistryItemR\004item\"h\n"
+  "\033TransferRegistryItemRequest\022\027\n\007item_id\030"
+  "\001 \001(\tR\006itemId\0220\n\024new_public_namespace\030\002 "
+  "\001(\tR\022newPublicNamespace\"\036\n\034TransferRegis"
+  "tryItemResponse\"R\n\023CreateModuleRequest\022\'"
+  "\n\017organization_id\030\001 \001(\tR\016organizationId\022"
+  "\022\n\004name\030\002 \001(\tR\004name\"E\n\024CreateModuleRespo"
+  "nse\022\033\n\tmodule_id\030\001 \001(\tR\010moduleId\022\020\n\003url\030"
+  "\002 \001(\tR\003url\"\222\003\n\023UpdateModuleRequest\022\033\n\tmo"
+  "dule_id\030\001 \001(\tR\010moduleId\0227\n\nvisibility\030\002 "
+  "\001(\0162\027.viam.app.v1.VisibilityR\nvisibility"
+  "\022\020\n\003url\030\003 \001(\tR\003url\022 \n\013description\030\004 \001(\tR"
+  "\013description\022*\n\006models\030\005 \003(\0132\022.viam.app."
+  "v1.ModelR\006models\022\036\n\nentrypoint\030\006 \001(\tR\nen"
+  "trypoint\022 \n\tfirst_run\030\007 \001(\tH\000R\010firstRun\210"
+  "\001\001\022$\n\004apps\030\010 \003(\0132\020.viam.app.v1.AppR\004apps"
+  "\0226\n\024markdown_description\030\t \001(\tH\001R\023markdo"
+  "wnDescription\210\001\001B\014\n\n_first_runB\027\n\025_markd"
+  "own_description\"\350\001\n\003App\022\022\n\004name\030\001 \001(\tR\004n"
+  "ame\022\022\n\004type\030\002 \001(\tR\004type\022\036\n\nentrypoint\030\003 "
+  "\001(\tR\nentrypoint\022!\n\014fragment_ids\030\004 \003(\tR\013f"
+  "ragmentIds\022 \n\tlogo_path\030\005 \001(\tH\000R\010logoPat"
+  "h\210\001\001\022F\n\016customizations\030\006 \001(\0132\036.viam.app."
+  "v1.AppCustomizationsR\016customizationsB\014\n\n"
+  "_logo_path\"(\n\024UpdateModuleResponse\022\020\n\003ur"
+  "l\030\001 \001(\tR\003url\"\250\002\n\024UpdateModuleMetadata\022*\n"
+  "\006models\030\001 \003(\0132\022.viam.app.v1.ModelR\006model"
+  "s\022\036\n\nentrypoint\030\002 \001(\tR\nentrypoint\022$\n\004app"
+  "s\030\003 \003(\0132\020.viam.app.v1.AppR\004apps\022C\n\013sourc"
+  "e_type\030\004 \001(\0162\035.viam.app.v1.ModuleSourceT"
+  "ypeH\000R\nsourceType\210\001\001\022<\n\010language\030\005 \001(\0162\033"
+  ".viam.app.v1.ModuleLanguageH\001R\010language\210"
+  "\001\001B\016\n\014_source_typeB\013\n\t_language\"\252\001\n\025Upda"
+  "teMLModelMetadata\022@\n\nmodel_type\030\001 \001(\0162!."
+  "viam.app.mltraining.v1.ModelTypeR\tmodelT"
+  "ype\022O\n\017model_framework\030\002 \001(\0162&.viam.app."
+  "mltraining.v1.ModelFrameworkR\016modelFrame"
+  "work\"\303\001\n\030UpdateMLTrainingMetadata\022@\n\nmod"
+  "el_type\030\001 \001(\0162!.viam.app.mltraining.v1.M"
+  "odelTypeR\tmodelType\022O\n\017model_framework\030\002"
+  " \001(\0162&.viam.app.mltraining.v1.ModelFrame"
+  "workR\016modelFramework\022\024\n\005draft\030\003 \001(\010R\005dra"
+  "ft\"\354\001\n\005Model\022\020\n\003api\030\001 \001(\tR\003api\022\024\n\005model\030"
+  "\002 \001(\tR\005model\022:\n\026markdown_documentation\030\003"
+  " \001(\tH\000R\025markdownDocumentation\210\001\001\022%\n\013desc"
+  "ription\030\004 \001(\tH\001R\013description\210\001\001\022-\n\022suppo"
+  "rted_hardware\030\005 \003(\tR\021supportedHardwareB\031"
+  "\n\027_markdown_documentationB\016\n\014_descriptio"
+  "n\"\210\001\n\016ModuleFileInfo\022\033\n\tmodule_id\030\001 \001(\tR"
+  "\010moduleId\022\030\n\007version\030\002 \001(\tR\007version\022\032\n\010p"
+  "latform\030\003 \001(\tR\010platform\022#\n\rplatform_tags"
+  "\030\005 \003(\tR\014platformTags\"\207\001\n\027UploadModuleFil"
+  "eRequest\022G\n\020module_file_info\030\001 \001(\0132\033.via"
+  "m.app.v1.ModuleFileInfoH\000R\016moduleFileInf"
+  "o\022\024\n\004file\030\002 \001(\014H\000R\004fileB\r\n\013module_file\","
+  "\n\030UploadModuleFileResponse\022\020\n\003url\030\001 \001(\tR"
+  "\003url\"\235\001\n\020GetModuleRequest\022\033\n\tmodule_id\030\001"
+  " \001(\tR\010moduleId\022I\n\036include_markdown_docum"
+  "entation\030\002 \001(\010H\000R\034includeMarkdownDocumen"
+  "tation\210\001\001B!\n\037_include_markdown_documenta"
+  "tion\"@\n\021GetModuleResponse\022+\n\006module\030\001 \001("
+  "\0132\023.viam.app.v1.ModuleR\006module\"\214\005\n\006Modul"
+  "e\022\033\n\tmodule_id\030\001 \001(\tR\010moduleId\022\022\n\004name\030\002"
+  " \001(\tR\004name\0227\n\nvisibility\030\003 \001(\0162\027.viam.ap"
+  "p.v1.VisibilityR\nvisibility\0227\n\010versions\030"
+  "\004 \003(\0132\033.viam.app.v1.VersionHistoryR\010vers"
+  "ions\022\020\n\003url\030\005 \001(\tR\003url\022 \n\013description\030\006 "
+  "\001(\tR\013description\022*\n\006models\030\007 \003(\0132\022.viam."
+  "app.v1.ModelR\006models\022*\n\021total_robot_usag"
+  "e\030\010 \001(\003R\017totalRobotUsage\0228\n\030total_organi"
+  "zation_usage\030\t \001(\003R\026totalOrganizationUsa"
+  "ge\022\'\n\017organization_id\030\n \001(\tR\016organizatio"
+  "nId\022\036\n\nentrypoint\030\013 \001(\tR\nentrypoint\022)\n\020p"
+  "ublic_namespace\030\014 \001(\tR\017publicNamespace\022 "
+  "\n\tfirst_run\030\r \001(\tH\000R\010firstRun\210\001\001\0226\n\024mark"
+  "down_description\030\016 \001(\tH\001R\023markdownDescri"
+  "ption\210\001\001\022$\n\004apps\030\017 \003(\0132\020.viam.app.v1.App"
+  "R\004appsB\014\n\n_first_runB\027\n\025_markdown_descri"
+  "ption\"\311\002\n\016VersionHistory\022\030\n\007version\030\001 \001("
+  "\tR\007version\022*\n\005files\030\002 \003(\0132\024.viam.app.v1."
+  "UploadsR\005files\022*\n\006models\030\003 \003(\0132\022.viam.ap"
+  "p.v1.ModelR\006models\022\036\n\nentrypoint\030\004 \001(\tR\n"
+  "entrypoint\022 \n\tfirst_run\030\005 \001(\tH\000R\010firstRu"
+  "n\210\001\001\0226\n\024markdown_description\030\006 \001(\tH\001R\023ma"
+  "rkdownDescription\210\001\001\022$\n\004apps\030\007 \003(\0132\020.via"
+  "m.app.v1.AppR\004appsB\014\n\n_first_runB\027\n\025_mar"
+  "kdown_description\"b\n\007Uploads\022\032\n\010platform"
+  "\030\001 \001(\tR\010platform\022;\n\013uploaded_at\030\002 \001(\0132\032."
+  "google.protobuf.TimestampR\nuploadedAt\"\304\001"
+  "\n\022ListModulesRequest\022,\n\017organization_id\030"
+  "\001 \001(\tH\000R\016organizationId\210\001\001\022I\n\036include_ma"
+  "rkdown_documentation\030\002 \001(\010H\001R\034includeMar"
+  "kdownDocumentation\210\001\001B\022\n\020_organization_i"
+  "dB!\n\037_include_markdown_documentation\"D\n\023"
+  "ListModulesResponse\022-\n\007modules\030\001 \003(\0132\023.v"
+  "iam.app.v1.ModuleR\007modules\"/\n\027GetUserIDB"
+  "yEmailRequest\022\024\n\005email\030\001 \001(\tR\005email\"3\n\030G"
+  "etUserIDByEmailResponse\022\027\n\007user_id\030\001 \001(\t"
+  "R\006userId\"9\n\036ListOrganizationsByUserReque"
+  "st\022\027\n\007user_id\030\001 \001(\tR\006userId\"\346\001\n\nOrgDetai"
+  "ls\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\031\n\010org_name\030\002 "
+  "\001(\tR\007orgName\022\034\n\007org_cid\030\003 \001(\tH\000R\006orgCid\210"
+  "\001\001\022.\n\020public_namespace\030\004 \001(\tH\001R\017publicNa"
+  "mespace\210\001\001\022&\n\014billing_tier\030\005 \001(\tH\002R\013bill"
+  "ingTier\210\001\001B\n\n\010_org_cidB\023\n\021_public_namesp"
+  "aceB\017\n\r_billing_tier\"N\n\037ListOrganization"
+  "sByUserResponse\022+\n\004orgs\030\001 \003(\0132\027.viam.app"
+  ".v1.OrgDetailsR\004orgs\"\324\001\n\032SearchOrganizat"
+  "ionsRequest\022\032\n\006org_id\030\001 \001(\tH\000R\005orgId\210\001\001\022"
+  "\036\n\010org_name\030\002 \001(\tH\001R\007orgName\210\001\001\022\025\n\003cid\030\003"
+  " \001(\tH\002R\003cid\210\001\001\022.\n\020public_namespace\030\004 \001(\t"
+  "H\003R\017publicNamespace\210\001\001B\t\n\007_org_idB\013\n\t_or"
+  "g_nameB\006\n\004_cidB\023\n\021_public_namespace\"\\\n\033S"
+  "earchOrganizationsResponse\022=\n\rorganizati"
+  "ons\030\001 \003(\0132\027.viam.app.v1.OrgDetailsR\rorga"
+  "nizations\"j\n\020CreateKeyRequest\022B\n\016authori"
+  "zations\030\001 \003(\0132\032.viam.app.v1.Authorizatio"
+  "nR\016authorizations\022\022\n\004name\030\002 \001(\tR\004name\"5\n"
+  "\021CreateKeyResponse\022\020\n\003key\030\001 \001(\tR\003key\022\016\n\002"
+  "id\030\002 \001(\tR\002id\"\"\n\020DeleteKeyRequest\022\016\n\002id\030\001"
+  " \001(\tR\002id\"\023\n\021DeleteKeyResponse\"6\n\020RenameK"
+  "eyRequest\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\tR"
+  "\004name\"7\n\021RenameKeyResponse\022\016\n\002id\030\001 \001(\tR\002"
+  "id\022\022\n\004name\030\002 \001(\tR\004name\"\315\001\n\024Authorization"
+  "Details\022-\n\022authorization_type\030\001 \001(\tR\021aut"
+  "horizationType\022)\n\020authorization_id\030\002 \001(\t"
+  "R\017authorizationId\022#\n\rresource_type\030\003 \001(\t"
+  "R\014resourceType\022\037\n\013resource_id\030\004 \001(\tR\nres"
+  "ourceId\022\025\n\006org_id\030\005 \001(\tR\005orgId\"\223\001\n\030APIKe"
+  "yWithAuthorizations\022,\n\007api_key\030\001 \001(\0132\023.v"
+  "iam.app.v1.APIKeyR\006apiKey\022I\n\016authorizati"
+  "ons\030\002 \003(\0132!.viam.app.v1.AuthorizationDet"
+  "ailsR\016authorizations\"(\n\017ListKeysRequest\022"
+  "\025\n\006org_id\030\001 \001(\tR\005orgId\"T\n\020ListKeysRespon"
+  "se\022@\n\010api_keys\030\001 \003(\0132%.viam.app.v1.APIKe"
+  "yWithAuthorizationsR\007apiKeys\"\"\n\020RotateKe"
+  "yRequest\022\016\n\002id\030\001 \001(\tR\002id\"5\n\021RotateKeyRes"
+  "ponse\022\016\n\002id\030\001 \001(\tR\002id\022\020\n\003key\030\002 \001(\tR\003key\""
+  "\?\n-CreateKeyFromExistingKeyAuthorization"
+  "sRequest\022\016\n\002id\030\001 \001(\tR\002id\"R\n.CreateKeyFro"
+  "mExistingKeyAuthorizationsResponse\022\016\n\002id"
+  "\030\001 \001(\tR\002id\022\020\n\003key\030\002 \001(\tR\003key\"U\n\024GetAppCo"
+  "ntentRequest\022)\n\020public_namespace\030\001 \001(\tR\017"
+  "publicNamespace\022\022\n\004name\030\002 \001(\tR\004name\"\205\001\n\025"
+  "GetAppContentResponse\022\033\n\tblob_path\030\001 \001(\t"
+  "R\010blobPath\022\036\n\nentrypoint\030\002 \001(\tR\nentrypoi"
+  "nt\022/\n\010app_type\030\003 \001(\0162\024.viam.app.v1.AppTy"
+  "peR\007appType\"G\n\032OrganizationSetLogoReques"
+  "t\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\022\n\004logo\030\002 \001(\014R\004"
+  "logo\"\035\n\033OrganizationSetLogoResponse\"3\n\032O"
+  "rganizationGetLogoRequest\022\025\n\006org_id\030\001 \001("
+  "\tR\005orgId\"/\n\033OrganizationGetLogoResponse\022"
+  "\020\n\003url\030\001 \001(\tR\003url\"1\n\030EnableAuthServiceRe"
+  "quest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"\033\n\031EnableAu"
+  "thServiceResponse\"2\n\031DisableAuthServiceR"
+  "equest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"\034\n\032Disable"
+  "AuthServiceResponse\"\214\001\n\025CreateOAuthAppRe"
+  "quest\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\037\n\013client_n"
+  "ame\030\002 \001(\tR\nclientName\022;\n\014oauth_config\030\003 "
+  "\001(\0132\030.viam.app.v1.OAuthConfigR\013oauthConf"
+  "ig\"Z\n\026CreateOAuthAppResponse\022\033\n\tclient_i"
+  "d\030\001 \001(\tR\010clientId\022#\n\rclient_secret\030\002 \001(\t"
+  "R\014clientSecret\"I\n\023ReadOAuthAppRequest\022\025\n"
   "\006org_id\030\001 \001(\tR\005orgId\022\033\n\tclient_id\030\002 \001(\tR"
-  "\010clientId\"\030\n\026DeleteOAuthAppResponse\"-\n\024L"
-  "istOAuthAppsRequest\022\025\n\006org_id\030\001 \001(\tR\005org"
-  "Id\"6\n\025ListOAuthAppsResponse\022\035\n\nclient_id"
-  "s\030\001 \003(\tR\tclientIds\"\366\002\n\013OAuthConfig\022V\n\025cl"
-  "ient_authentication\030\001 \001(\0162!.viam.app.v1."
-  "ClientAuthenticationR\024clientAuthenticati"
-  "on\022%\n\004pkce\030\002 \001(\0162\021.viam.app.v1.PKCER\004pkc"
-  "e\022A\n\016url_validation\030\003 \001(\0162\032.viam.app.v1."
-  "URLValidationR\rurlValidation\022\037\n\013origin_u"
-  "ris\030\004 \003(\tR\noriginUris\022#\n\rredirect_uris\030\005"
-  " \003(\tR\014redirectUris\022\035\n\nlogout_uri\030\006 \001(\tR\t"
-  "logoutUri\022@\n\016enabled_grants\030\007 \003(\0162\031.viam"
-  ".app.v1.EnabledGrantR\renabledGrants\"V\n\025G"
-  "etAppBrandingRequest\022)\n\020public_namespace"
-  "\030\001 \001(\tR\017publicNamespace\022\022\n\004name\030\002 \001(\tR\004n"
-  "ame\"\212\001\n\rTextOverrides\022>\n\006fields\030\001 \003(\0132&."
-  "viam.app.v1.TextOverrides.FieldsEntryR\006f"
-  "ields\0329\n\013FieldsEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024"
-  "\n\005value\030\002 \001(\tR\005value:\0028\001\"\274\002\n\026GetAppBrand"
-  "ingResponse\022 \n\tlogo_path\030\001 \001(\tH\000R\010logoPa"
-  "th\210\001\001\022l\n\023text_customizations\030\002 \003(\0132;.via"
-  "m.app.v1.GetAppBrandingResponse.TextCust"
-  "omizationsEntryR\022textCustomizations\022!\n\014f"
-  "ragment_ids\030\003 \003(\tR\013fragmentIds\032a\n\027TextCu"
-  "stomizationsEntry\022\020\n\003key\030\001 \001(\tR\003key\0220\n\005v"
-  "alue\030\002 \001(\0132\032.viam.app.v1.TextOverridesR\005"
-  "value:\0028\001B\014\n\n_logo_path\"d\n\021AppCustomizat"
-  "ions\022O\n\016machine_picker\030\001 \001(\0132(.viam.app."
-  "v1.MachinePickerCustomizationsR\rmachineP"
-  "icker\"|\n\033MachinePickerCustomizations\022\035\n\007"
-  "heading\030\001 \001(\tH\000R\007heading\210\001\001\022#\n\nsubheadin"
-  "g\030\002 \001(\tH\001R\nsubheading\210\001\001B\n\n\010_headingB\r\n\013"
-  "_subheading*\177\n\013OnlineState\022\034\n\030ONLINE_STA"
-  "TE_UNSPECIFIED\020\000\022\027\n\023ONLINE_STATE_ONLINE\020"
-  "\001\022\030\n\024ONLINE_STATE_OFFLINE\020\002\022\037\n\033ONLINE_ST"
-  "ATE_AWAITING_SETUP\020\003*\321\001\n\022AuthenticationT"
-  "ype\022#\n\037AUTHENTICATION_TYPE_UNSPECIFIED\020\000"
-  "\022!\n\035AUTHENTICATION_TYPE_WEB_OAUTH\020\001\022\037\n\033A"
-  "UTHENTICATION_TYPE_API_KEY\020\002\022)\n%AUTHENTI"
-  "CATION_TYPE_ROBOT_PART_SECRET\020\003\022\'\n#AUTHE"
-  "NTICATION_TYPE_LOCATION_SECRET\020\004*\243\001\n\022Fra"
-  "gmentVisibility\022#\n\037FRAGMENT_VISIBILITY_U"
-  "NSPECIFIED\020\000\022\037\n\033FRAGMENT_VISIBILITY_PRIV"
-  "ATE\020\001\022\036\n\032FRAGMENT_VISIBILITY_PUBLIC\020\002\022\'\n"
-  "#FRAGMENT_VISIBILITY_PUBLIC_UNLISTED\020\003*\335"
-  "\001\n\021FragmentErrorType\022#\n\037FRAGMENT_ERROR_T"
-  "YPE_UNSPECIFIED\020\000\022!\n\035FRAGMENT_ERROR_TYPE"
-  "_NO_ACCESS\020\001\022.\n*FRAGMENT_ERROR_TYPE_NEST"
-  "ING_LIMIT_EXCEEDED\020\002\022(\n$FRAGMENT_ERROR_T"
-  "YPE_CHILD_ID_INVALID\020\003\022&\n\"FRAGMENT_ERROR"
-  "_TYPE_CYCLE_DETECTED\020\004*\207\001\n\022RegistryItemS"
-  "tatus\022$\n REGISTRY_ITEM_STATUS_UNSPECIFIE"
-  "D\020\000\022\"\n\036REGISTRY_ITEM_STATUS_PUBLISHED\020\001\022"
-  "\'\n#REGISTRY_ITEM_STATUS_IN_DEVELOPMENT\020\002"
-  "*w\n\nVisibility\022\032\n\026VISIBILITY_UNSPECIFIED"
-  "\020\000\022\026\n\022VISIBILITY_PRIVATE\020\001\022\025\n\021VISIBILITY"
-  "_PUBLIC\020\002\022\036\n\032VISIBILITY_PUBLIC_UNLISTED\020"
-  "\003*\\\n\007AppType\022\030\n\024APP_TYPE_UNSPECIFIED\020\000\022\033"
-  "\n\027APP_TYPE_SINGLE_MACHINE\020\001\022\032\n\026APP_TYPE_"
-  "MULTI_MACHINE\020\002*\301\001\n\024ClientAuthentication"
-  "\022%\n!CLIENT_AUTHENTICATION_UNSPECIFIED\020\000\022"
-  "\"\n\036CLIENT_AUTHENTICATION_REQUIRED\020\001\022&\n\"C"
-  "LIENT_AUTHENTICATION_NOT_REQUIRED\020\002\0226\n2C"
-  "LIENT_AUTHENTICATION_NOT_REQUIRED_WHEN_U"
-  "SING_PKCE\020\003*~\n\004PKCE\022\024\n\020PKCE_UNSPECIFIED\020"
-  "\000\022\021\n\rPKCE_REQUIRED\020\001\022\025\n\021PKCE_NOT_REQUIRE"
-  "D\020\002\0226\n2PKCE_NOT_REQUIRED_WHEN_USING_CLIE"
-  "NT_AUTHENTICATION\020\003*s\n\rURLValidation\022\036\n\032"
-  "URL_VALIDATION_UNSPECIFIED\020\000\022\036\n\032URL_VALI"
-  "DATION_EXACT_MATCH\020\001\022\"\n\036URL_VALIDATION_A"
-  "LLOW_WILDCARDS\020\002*\313\001\n\014EnabledGrant\022\035\n\031ENA"
-  "BLED_GRANT_UNSPECIFIED\020\000\022$\n ENABLED_GRAN"
-  "T_AUTHORIZATION_CODE\020\001\022\032\n\026ENABLED_GRANT_"
-  "IMPLICIT\020\002\022\032\n\026ENABLED_GRANT_PASSWORD\020\003\022\037"
-  "\n\033ENABLED_GRANT_REFRESH_TOKEN\020\004\022\035\n\031ENABL"
-  "ED_GRANT_DEVICE_CODE\020\0052\372U\n\nAppService\022_\n"
-  "\020GetUserIDByEmail\022$.viam.app.v1.GetUserI"
-  "DByEmailRequest\032%.viam.app.v1.GetUserIDB"
-  "yEmailResponse\022e\n\022CreateOrganization\022&.v"
-  "iam.app.v1.CreateOrganizationRequest\032\'.v"
-  "iam.app.v1.CreateOrganizationResponse\022b\n"
-  "\021ListOrganizations\022%.viam.app.v1.ListOrg"
-  "anizationsRequest\032&.viam.app.v1.ListOrga"
-  "nizationsResponse\022\233\001\n$GetOrganizationsWi"
-  "thAccessToLocation\0228.viam.app.v1.GetOrga"
-  "nizationsWithAccessToLocationRequest\0329.v"
-  "iam.app.v1.GetOrganizationsWithAccessToL"
-  "ocationResponse\022t\n\027ListOrganizationsByUs"
-  "er\022+.viam.app.v1.ListOrganizationsByUser"
-  "Request\032,.viam.app.v1.ListOrganizationsB"
-  "yUserResponse\022h\n\023SearchOrganizations\022\'.v"
-  "iam.app.v1.SearchOrganizationsRequest\032(."
-  "viam.app.v1.SearchOrganizationsResponse\022"
-  "\\\n\017GetOrganization\022#.viam.app.v1.GetOrga"
-  "nizationRequest\032$.viam.app.v1.GetOrganiz"
-  "ationResponse\022\233\001\n$GetOrganizationNamespa"
-  "ceAvailability\0228.viam.app.v1.GetOrganiza"
-  "tionNamespaceAvailabilityRequest\0329.viam."
-  "app.v1.GetOrganizationNamespaceAvailabil"
-  "ityResponse\022e\n\022UpdateOrganization\022&.viam"
-  ".app.v1.UpdateOrganizationRequest\032\'.viam"
-  ".app.v1.UpdateOrganizationResponse\022\200\001\n\033U"
-  "pdateOrganizationNamespace\022/.viam.app.v1"
-  ".UpdateOrganizationNamespaceRequest\0320.vi"
-  "am.app.v1.UpdateOrganizationNamespaceRes"
-  "ponse\022e\n\022DeleteOrganization\022&.viam.app.v"
-  "1.DeleteOrganizationRequest\032\'.viam.app.v"
-  "1.DeleteOrganizationResponse\022t\n\027GetOrgan"
-  "izationMetadata\022+.viam.app.v1.GetOrganiz"
-  "ationMetadataRequest\032,.viam.app.v1.GetOr"
-  "ganizationMetadataResponse\022}\n\032UpdateOrga"
-  "nizationMetadata\022..viam.app.v1.UpdateOrg"
-  "anizationMetadataRequest\032/.viam.app.v1.U"
-  "pdateOrganizationMetadataResponse\022t\n\027Lis"
-  "tOrganizationMembers\022+.viam.app.v1.ListO"
-  "rganizationMembersRequest\032,.viam.app.v1."
-  "ListOrganizationMembersResponse\022w\n\030Creat"
-  "eOrganizationInvite\022,.viam.app.v1.Create"
-  "OrganizationInviteRequest\032-.viam.app.v1."
-  "CreateOrganizationInviteResponse\022\241\001\n&Upd"
-  "ateOrganizationInviteAuthorizations\022:.vi"
-  "am.app.v1.UpdateOrganizationInviteAuthor"
-  "izationsRequest\032;.viam.app.v1.UpdateOrga"
-  "nizationInviteAuthorizationsResponse\022w\n\030"
-  "DeleteOrganizationMember\022,.viam.app.v1.D"
-  "eleteOrganizationMemberRequest\032-.viam.ap"
-  "p.v1.DeleteOrganizationMemberResponse\022w\n"
-  "\030DeleteOrganizationInvite\022,.viam.app.v1."
-  "DeleteOrganizationInviteRequest\032-.viam.a"
-  "pp.v1.DeleteOrganizationInviteResponse\022w"
-  "\n\030ResendOrganizationInvite\022,.viam.app.v1"
-  ".ResendOrganizationInviteRequest\032-.viam."
-  "app.v1.ResendOrganizationInviteResponse\022"
-  "k\n\024EnableBillingService\022(.viam.app.v1.En"
-  "ableBillingServiceRequest\032).viam.app.v1."
-  "EnableBillingServiceResponse\022n\n\025DisableB"
-  "illingService\022).viam.app.v1.DisableBilli"
-  "ngServiceRequest\032*.viam.app.v1.DisableBi"
-  "llingServiceResponse\022k\n\024UpdateBillingSer"
-  "vice\022(.viam.app.v1.UpdateBillingServiceR"
-  "equest\032).viam.app.v1.UpdateBillingServic"
-  "eResponse\022t\n\027GetBillingServiceConfig\022+.v"
-  "iam.app.v1.GetBillingServiceConfigReques"
-  "t\032,.viam.app.v1.GetBillingServiceConfigR"
-  "esponse\022\200\001\n\033OrganizationSetSupportEmail\022"
-  "/.viam.app.v1.OrganizationSetSupportEmai"
-  "lRequest\0320.viam.app.v1.OrganizationSetSu"
-  "pportEmailResponse\022\200\001\n\033OrganizationGetSu"
-  "pportEmail\022/.viam.app.v1.OrganizationGet"
-  "SupportEmailRequest\0320.viam.app.v1.Organi"
-  "zationGetSupportEmailResponse\022h\n\023Organiz"
-  "ationSetLogo\022\'.viam.app.v1.OrganizationS"
-  "etLogoRequest\032(.viam.app.v1.Organization"
-  "SetLogoResponse\022h\n\023OrganizationGetLogo\022\'"
-  ".viam.app.v1.OrganizationGetLogoRequest\032"
-  "(.viam.app.v1.OrganizationGetLogoRespons"
-  "e\022b\n\021EnableAuthService\022%.viam.app.v1.Ena"
-  "bleAuthServiceRequest\032&.viam.app.v1.Enab"
-  "leAuthServiceResponse\022e\n\022DisableAuthServ"
-  "ice\022&.viam.app.v1.DisableAuthServiceRequ"
-  "est\032\'.viam.app.v1.DisableAuthServiceResp"
-  "onse\022Y\n\016CreateOAuthApp\022\".viam.app.v1.Cre"
-  "ateOAuthAppRequest\032#.viam.app.v1.CreateO"
-  "AuthAppResponse\022S\n\014ReadOAuthApp\022 .viam.a"
-  "pp.v1.ReadOAuthAppRequest\032!.viam.app.v1."
-  "ReadOAuthAppResponse\022Y\n\016UpdateOAuthApp\022\""
-  ".viam.app.v1.UpdateOAuthAppRequest\032#.via"
-  "m.app.v1.UpdateOAuthAppResponse\022Y\n\016Delet"
-  "eOAuthApp\022\".viam.app.v1.DeleteOAuthAppRe"
-  "quest\032#.viam.app.v1.DeleteOAuthAppRespon"
-  "se\022V\n\rListOAuthApps\022!.viam.app.v1.ListOA"
-  "uthAppsRequest\032\".viam.app.v1.ListOAuthAp"
-  "psResponse\022Y\n\016CreateLocation\022\".viam.app."
-  "v1.CreateLocationRequest\032#.viam.app.v1.C"
-  "reateLocationResponse\022P\n\013GetLocation\022\037.v"
-  "iam.app.v1.GetLocationRequest\032 .viam.app"
-  ".v1.GetLocationResponse\022Y\n\016UpdateLocatio"
-  "n\022\".viam.app.v1.UpdateLocationRequest\032#."
-  "viam.app.v1.UpdateLocationResponse\022Y\n\016De"
-  "leteLocation\022\".viam.app.v1.DeleteLocatio"
-  "nRequest\032#.viam.app.v1.DeleteLocationRes"
-  "ponse\022h\n\023GetLocationMetadata\022\'.viam.app."
-  "v1.GetLocationMetadataRequest\032(.viam.app"
-  ".v1.GetLocationMetadataResponse\022q\n\026Updat"
-  "eLocationMetadata\022*.viam.app.v1.UpdateLo"
-  "cationMetadataRequest\032+.viam.app.v1.Upda"
-  "teLocationMetadataResponse\022V\n\rListLocati"
-  "ons\022!.viam.app.v1.ListLocationsRequest\032\""
-  ".viam.app.v1.ListLocationsResponse\022V\n\rSh"
-  "areLocation\022!.viam.app.v1.ShareLocationR"
-  "equest\032\".viam.app.v1.ShareLocationRespon"
-  "se\022\\\n\017UnshareLocation\022#.viam.app.v1.Unsh"
-  "areLocationRequest\032$.viam.app.v1.Unshare"
-  "LocationResponse\022S\n\014LocationAuth\022 .viam."
-  "app.v1.LocationAuthRequest\032!.viam.app.v1"
-  ".LocationAuthResponse\022k\n\024CreateLocationS"
-  "ecret\022(.viam.app.v1.CreateLocationSecret"
-  "Request\032).viam.app.v1.CreateLocationSecr"
-  "etResponse\022k\n\024DeleteLocationSecret\022(.via"
-  "m.app.v1.DeleteLocationSecretRequest\032).v"
-  "iam.app.v1.DeleteLocationSecretResponse\022"
-  "G\n\010GetRobot\022\034.viam.app.v1.GetRobotReques"
-  "t\032\035.viam.app.v1.GetRobotResponse\022_\n\020GetR"
-  "obotMetadata\022$.viam.app.v1.GetRobotMetad"
-  "ataRequest\032%.viam.app.v1.GetRobotMetadat"
-  "aResponse\022h\n\023UpdateRobotMetadata\022\'.viam."
-  "app.v1.UpdateRobotMetadataRequest\032(.viam"
-  ".app.v1.UpdateRobotMetadataResponse\022k\n\024G"
-  "etRoverRentalRobots\022(.viam.app.v1.GetRov"
-  "erRentalRobotsRequest\032).viam.app.v1.GetR"
-  "overRentalRobotsResponse\022V\n\rGetRobotPart"
-  "s\022!.viam.app.v1.GetRobotPartsRequest\032\".v"
-  "iam.app.v1.GetRobotPartsResponse\022S\n\014GetR"
-  "obotPart\022 .viam.app.v1.GetRobotPartReque"
-  "st\032!.viam.app.v1.GetRobotPartResponse\022\206\001"
-  "\n\035GetRobotPartByNameAndLocation\0221.viam.a"
-  "pp.v1.GetRobotPartByNameAndLocationReque"
-  "st\0322.viam.app.v1.GetRobotPartByNameAndLo"
-  "cationResponse\022_\n\020GetRobotPartLogs\022$.via"
-  "m.app.v1.GetRobotPartLogsRequest\032%.viam."
-  "app.v1.GetRobotPartLogsResponse\022d\n\021TailR"
-  "obotPartLogs\022%.viam.app.v1.TailRobotPart"
-  "LogsRequest\032&.viam.app.v1.TailRobotPartL"
-  "ogsResponse0\001\022h\n\023GetRobotPartHistory\022\'.v"
-  "iam.app.v1.GetRobotPartHistoryRequest\032(."
-  "viam.app.v1.GetRobotPartHistoryResponse\022"
-  "\\\n\017UpdateRobotPart\022#.viam.app.v1.UpdateR"
-  "obotPartRequest\032$.viam.app.v1.UpdateRobo"
-  "tPartResponse\022S\n\014NewRobotPart\022 .viam.app"
-  ".v1.NewRobotPartRequest\032!.viam.app.v1.Ne"
-  "wRobotPartResponse\022\\\n\017DeleteRobotPart\022#."
-  "viam.app.v1.DeleteRobotPartRequest\032$.via"
-  "m.app.v1.DeleteRobotPartResponse\022k\n\024GetR"
-  "obotPartMetadata\022(.viam.app.v1.GetRobotP"
-  "artMetadataRequest\032).viam.app.v1.GetRobo"
-  "tPartMetadataResponse\022t\n\027UpdateRobotPart"
-  "Metadata\022+.viam.app.v1.UpdateRobotPartMe"
-  "tadataRequest\032,.viam.app.v1.UpdateRobotP"
-  "artMetadataResponse\022\\\n\017GetRobotAPIKeys\022#"
-  ".viam.app.v1.GetRobotAPIKeysRequest\032$.vi"
-  "am.app.v1.GetRobotAPIKeysResponse\022Y\n\016Mar"
-  "kPartAsMain\022\".viam.app.v1.MarkPartAsMain"
-  "Request\032#.viam.app.v1.MarkPartAsMainResp"
-  "onse\022e\n\022MarkPartForRestart\022&.viam.app.v1"
-  ".MarkPartForRestartRequest\032\'.viam.app.v1"
-  ".MarkPartForRestartResponse\022n\n\025CreateRob"
-  "otPartSecret\022).viam.app.v1.CreateRobotPa"
-  "rtSecretRequest\032*.viam.app.v1.CreateRobo"
-  "tPartSecretResponse\022n\n\025DeleteRobotPartSe"
-  "cret\022).viam.app.v1.DeleteRobotPartSecret"
-  "Request\032*.viam.app.v1.DeleteRobotPartSec"
-  "retResponse\022M\n\nListRobots\022\036.viam.app.v1."
-  "ListRobotsRequest\032\037.viam.app.v1.ListRobo"
-  "tsResponse\022q\n\026ListRobotsForLocations\022*.v"
-  "iam.app.v1.ListRobotsForLocationsRequest"
-  "\032+.viam.app.v1.ListRobotsForLocationsRes"
-  "ponse\022_\n\020ListRobotsForOrg\022$.viam.app.v1."
-  "ListRobotsForOrgRequest\032%.viam.app.v1.Li"
-  "stRobotsForOrgResponse\022G\n\010NewRobot\022\034.via"
-  "m.app.v1.NewRobotRequest\032\035.viam.app.v1.N"
-  "ewRobotResponse\022P\n\013UpdateRobot\022\037.viam.ap"
-  "p.v1.UpdateRobotRequest\032 .viam.app.v1.Up"
-  "dateRobotResponse\022P\n\013DeleteRobot\022\037.viam."
-  "app.v1.DeleteRobotRequest\032 .viam.app.v1."
-  "DeleteRobotResponse\022V\n\rListFragments\022!.v"
-  "iam.app.v1.ListFragmentsRequest\032\".viam.a"
-  "pp.v1.ListFragmentsResponse\022P\n\013GetFragme"
-  "nt\022\037.viam.app.v1.GetFragmentRequest\032 .vi"
-  "am.app.v1.GetFragmentResponse\022Y\n\016CreateF"
-  "ragment\022\".viam.app.v1.CreateFragmentRequ"
-  "est\032#.viam.app.v1.CreateFragmentResponse"
-  "\022Y\n\016UpdateFragment\022\".viam.app.v1.UpdateF"
-  "ragmentRequest\032#.viam.app.v1.UpdateFragm"
-  "entResponse\022Y\n\016DeleteFragment\022\".viam.app"
-  ".v1.DeleteFragmentRequest\032#.viam.app.v1."
-  "DeleteFragmentResponse\022h\n\023ListNestedFrag"
-  "ments\022\'.viam.app.v1.ListNestedFragmentsR"
-  "equest\032(.viam.app.v1.ListNestedFragments"
-  "Response\022k\n\024ListMachineFragments\022(.viam."
-  "app.v1.ListMachineFragmentsRequest\032).via"
-  "m.app.v1.ListMachineFragmentsResponse\022k\n"
-  "\024ListMachineSummaries\022(.viam.app.v1.List"
-  "MachineSummariesRequest\032).viam.app.v1.Li"
-  "stMachineSummariesResponse\022e\n\022GetFragmen"
-  "tHistory\022&.viam.app.v1.GetFragmentHistor"
-  "yRequest\032\'.viam.app.v1.GetFragmentHistor"
-  "yResponse\022_\n\020GetFragmentUsage\022$.viam.app"
-  ".v1.GetFragmentUsageRequest\032%.viam.app.v"
-  "1.GetFragmentUsageResponse\022Y\n\016SetFragmen"
-  "tTag\022\".viam.app.v1.SetFragmentTagRequest"
-  "\032#.viam.app.v1.SetFragmentTagResponse\022b\n"
-  "\021DeleteFragmentTag\022%.viam.app.v1.DeleteF"
-  "ragmentTagRequest\032&.viam.app.v1.DeleteFr"
-  "agmentTagResponse\022D\n\007AddRole\022\033.viam.app."
-  "v1.AddRoleRequest\032\034.viam.app.v1.AddRoleR"
-  "esponse\022M\n\nRemoveRole\022\036.viam.app.v1.Remo"
-  "veRoleRequest\032\037.viam.app.v1.RemoveRoleRe"
-  "sponse\022M\n\nChangeRole\022\036.viam.app.v1.Chang"
-  "eRoleRequest\032\037.viam.app.v1.ChangeRoleRes"
-  "ponse\022e\n\022ListAuthorizations\022&.viam.app.v"
-  "1.ListAuthorizationsRequest\032\'.viam.app.v"
-  "1.ListAuthorizationsResponse\022_\n\020CheckPer"
-  "missions\022$.viam.app.v1.CheckPermissionsR"
-  "equest\032%.viam.app.v1.CheckPermissionsRes"
-  "ponse\022\\\n\017GetRegistryItem\022#.viam.app.v1.G"
-  "etRegistryItemRequest\032$.viam.app.v1.GetR"
-  "egistryItemResponse\022e\n\022CreateRegistryIte"
-  "m\022&.viam.app.v1.CreateRegistryItemReques"
-  "t\032\'.viam.app.v1.CreateRegistryItemRespon"
-  "se\022e\n\022UpdateRegistryItem\022&.viam.app.v1.U"
-  "pdateRegistryItemRequest\032\'.viam.app.v1.U"
-  "pdateRegistryItemResponse\022b\n\021ListRegistr"
-  "yItems\022%.viam.app.v1.ListRegistryItemsRe"
-  "quest\032&.viam.app.v1.ListRegistryItemsRes"
-  "ponse\022e\n\022DeleteRegistryItem\022&.viam.app.v"
-  "1.DeleteRegistryItemRequest\032\'.viam.app.v"
-  "1.DeleteRegistryItemResponse\022e\n\022RenameRe"
-  "gistryItem\022&.viam.app.v1.RenameRegistryI"
-  "temRequest\032\'.viam.app.v1.RenameRegistryI"
-  "temResponse\022k\n\024TransferRegistryItem\022(.vi"
-  "am.app.v1.TransferRegistryItemRequest\032)."
-  "viam.app.v1.TransferRegistryItemResponse"
-  "\022S\n\014CreateModule\022 .viam.app.v1.CreateMod"
-  "uleRequest\032!.viam.app.v1.CreateModuleRes"
-  "ponse\022S\n\014UpdateModule\022 .viam.app.v1.Upda"
-  "teModuleRequest\032!.viam.app.v1.UpdateModu"
-  "leResponse\022a\n\020UploadModuleFile\022$.viam.ap"
-  "p.v1.UploadModuleFileRequest\032%.viam.app."
-  "v1.UploadModuleFileResponse(\001\022J\n\tGetModu"
-  "le\022\035.viam.app.v1.GetModuleRequest\032\036.viam"
-  ".app.v1.GetModuleResponse\022P\n\013ListModules"
-  "\022\037.viam.app.v1.ListModulesRequest\032 .viam"
-  ".app.v1.ListModulesResponse\022J\n\tCreateKey"
-  "\022\035.viam.app.v1.CreateKeyRequest\032\036.viam.a"
-  "pp.v1.CreateKeyResponse\022J\n\tDeleteKey\022\035.v"
-  "iam.app.v1.DeleteKeyRequest\032\036.viam.app.v"
-  "1.DeleteKeyResponse\022G\n\010ListKeys\022\034.viam.a"
-  "pp.v1.ListKeysRequest\032\035.viam.app.v1.List"
-  "KeysResponse\022J\n\tRenameKey\022\035.viam.app.v1."
-  "RenameKeyRequest\032\036.viam.app.v1.RenameKey"
-  "Response\022J\n\tRotateKey\022\035.viam.app.v1.Rota"
-  "teKeyRequest\032\036.viam.app.v1.RotateKeyResp"
-  "onse\022\241\001\n&CreateKeyFromExistingKeyAuthori"
-  "zations\022:.viam.app.v1.CreateKeyFromExist"
-  "ingKeyAuthorizationsRequest\032;.viam.app.v"
-  "1.CreateKeyFromExistingKeyAuthorizations"
-  "Response\022V\n\rGetAppContent\022!.viam.app.v1."
-  "GetAppContentRequest\032\".viam.app.v1.GetAp"
-  "pContentResponse\022Y\n\016GetAppBranding\022\".via"
-  "m.app.v1.GetAppBrandingRequest\032#.viam.ap"
-  "p.v1.GetAppBrandingResponseB\030Z\026go.viam.c"
-  "om/api/app/v1b\006proto3"
+  "\010clientId\"\231\001\n\024ReadOAuthAppResponse\022\037\n\013cl"
+  "ient_name\030\001 \001(\tR\nclientName\022#\n\rclient_se"
+  "cret\030\002 \001(\tR\014clientSecret\022;\n\014oauth_config"
+  "\030\003 \001(\0132\030.viam.app.v1.OAuthConfigR\013oauthC"
+  "onfig\"\251\001\n\025UpdateOAuthAppRequest\022\025\n\006org_i"
+  "d\030\001 \001(\tR\005orgId\022\033\n\tclient_id\030\002 \001(\tR\010clien"
+  "tId\022\037\n\013client_name\030\003 \001(\tR\nclientName\022;\n\014"
+  "oauth_config\030\004 \001(\0132\030.viam.app.v1.OAuthCo"
+  "nfigR\013oauthConfig\"\030\n\026UpdateOAuthAppRespo"
+  "nse\"K\n\025DeleteOAuthAppRequest\022\025\n\006org_id\030\001"
+  " \001(\tR\005orgId\022\033\n\tclient_id\030\002 \001(\tR\010clientId"
+  "\"\030\n\026DeleteOAuthAppResponse\"-\n\024ListOAuthA"
+  "ppsRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"6\n\025Lis"
+  "tOAuthAppsResponse\022\035\n\nclient_ids\030\001 \003(\tR\t"
+  "clientIds\"\366\002\n\013OAuthConfig\022V\n\025client_auth"
+  "entication\030\001 \001(\0162!.viam.app.v1.ClientAut"
+  "henticationR\024clientAuthentication\022%\n\004pkc"
+  "e\030\002 \001(\0162\021.viam.app.v1.PKCER\004pkce\022A\n\016url_"
+  "validation\030\003 \001(\0162\032.viam.app.v1.URLValida"
+  "tionR\rurlValidation\022\037\n\013origin_uris\030\004 \003(\t"
+  "R\noriginUris\022#\n\rredirect_uris\030\005 \003(\tR\014red"
+  "irectUris\022\035\n\nlogout_uri\030\006 \001(\tR\tlogoutUri"
+  "\022@\n\016enabled_grants\030\007 \003(\0162\031.viam.app.v1.E"
+  "nabledGrantR\renabledGrants\"V\n\025GetAppBran"
+  "dingRequest\022)\n\020public_namespace\030\001 \001(\tR\017p"
+  "ublicNamespace\022\022\n\004name\030\002 \001(\tR\004name\"\212\001\n\rT"
+  "extOverrides\022>\n\006fields\030\001 \003(\0132&.viam.app."
+  "v1.TextOverrides.FieldsEntryR\006fields\0329\n\013"
+  "FieldsEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002"
+  " \001(\tR\005value:\0028\001\"\274\002\n\026GetAppBrandingRespon"
+  "se\022 \n\tlogo_path\030\001 \001(\tH\000R\010logoPath\210\001\001\022l\n\023"
+  "text_customizations\030\002 \003(\0132;.viam.app.v1."
+  "GetAppBrandingResponse.TextCustomization"
+  "sEntryR\022textCustomizations\022!\n\014fragment_i"
+  "ds\030\003 \003(\tR\013fragmentIds\032a\n\027TextCustomizati"
+  "onsEntry\022\020\n\003key\030\001 \001(\tR\003key\0220\n\005value\030\002 \001("
+  "\0132\032.viam.app.v1.TextOverridesR\005value:\0028\001"
+  "B\014\n\n_logo_path\"d\n\021AppCustomizations\022O\n\016m"
+  "achine_picker\030\001 \001(\0132(.viam.app.v1.Machin"
+  "ePickerCustomizationsR\rmachinePicker\"|\n\033"
+  "MachinePickerCustomizations\022\035\n\007heading\030\001"
+  " \001(\tH\000R\007heading\210\001\001\022#\n\nsubheading\030\002 \001(\tH\001"
+  "R\nsubheading\210\001\001B\n\n\010_headingB\r\n\013_subheadi"
+  "ng*\177\n\013OnlineState\022\034\n\030ONLINE_STATE_UNSPEC"
+  "IFIED\020\000\022\027\n\023ONLINE_STATE_ONLINE\020\001\022\030\n\024ONLI"
+  "NE_STATE_OFFLINE\020\002\022\037\n\033ONLINE_STATE_AWAIT"
+  "ING_SETUP\020\003*\321\001\n\022AuthenticationType\022#\n\037AU"
+  "THENTICATION_TYPE_UNSPECIFIED\020\000\022!\n\035AUTHE"
+  "NTICATION_TYPE_WEB_OAUTH\020\001\022\037\n\033AUTHENTICA"
+  "TION_TYPE_API_KEY\020\002\022)\n%AUTHENTICATION_TY"
+  "PE_ROBOT_PART_SECRET\020\003\022\'\n#AUTHENTICATION"
+  "_TYPE_LOCATION_SECRET\020\004*\243\001\n\022FragmentVisi"
+  "bility\022#\n\037FRAGMENT_VISIBILITY_UNSPECIFIE"
+  "D\020\000\022\037\n\033FRAGMENT_VISIBILITY_PRIVATE\020\001\022\036\n\032"
+  "FRAGMENT_VISIBILITY_PUBLIC\020\002\022\'\n#FRAGMENT"
+  "_VISIBILITY_PUBLIC_UNLISTED\020\003*\335\001\n\021Fragme"
+  "ntErrorType\022#\n\037FRAGMENT_ERROR_TYPE_UNSPE"
+  "CIFIED\020\000\022!\n\035FRAGMENT_ERROR_TYPE_NO_ACCES"
+  "S\020\001\022.\n*FRAGMENT_ERROR_TYPE_NESTING_LIMIT"
+  "_EXCEEDED\020\002\022(\n$FRAGMENT_ERROR_TYPE_CHILD"
+  "_ID_INVALID\020\003\022&\n\"FRAGMENT_ERROR_TYPE_CYC"
+  "LE_DETECTED\020\004*{\n\020ModuleSourceType\022\"\n\036MOD"
+  "ULE_SOURCE_TYPE_UNSPECIFIED\020\000\022\037\n\033MODULE_"
+  "SOURCE_TYPE_EXTERNAL\020\001\022\"\n\036MODULE_SOURCE_"
+  "TYPE_VIAM_HOSTED\020\002*\202\001\n\016ModuleLanguage\022\037\n"
+  "\033MODULE_LANGUAGE_UNSPECIFIED\020\000\022\032\n\026MODULE"
+  "_LANGUAGE_GOLANG\020\001\022\032\n\026MODULE_LANGUAGE_PY"
+  "THON\020\002\022\027\n\023MODULE_LANGUAGE_CPP\020\003*\207\001\n\022Regi"
+  "stryItemStatus\022$\n REGISTRY_ITEM_STATUS_U"
+  "NSPECIFIED\020\000\022\"\n\036REGISTRY_ITEM_STATUS_PUB"
+  "LISHED\020\001\022\'\n#REGISTRY_ITEM_STATUS_IN_DEVE"
+  "LOPMENT\020\002*w\n\nVisibility\022\032\n\026VISIBILITY_UN"
+  "SPECIFIED\020\000\022\026\n\022VISIBILITY_PRIVATE\020\001\022\025\n\021V"
+  "ISIBILITY_PUBLIC\020\002\022\036\n\032VISIBILITY_PUBLIC_"
+  "UNLISTED\020\003*\\\n\007AppType\022\030\n\024APP_TYPE_UNSPEC"
+  "IFIED\020\000\022\033\n\027APP_TYPE_SINGLE_MACHINE\020\001\022\032\n\026"
+  "APP_TYPE_MULTI_MACHINE\020\002*\301\001\n\024ClientAuthe"
+  "ntication\022%\n!CLIENT_AUTHENTICATION_UNSPE"
+  "CIFIED\020\000\022\"\n\036CLIENT_AUTHENTICATION_REQUIR"
+  "ED\020\001\022&\n\"CLIENT_AUTHENTICATION_NOT_REQUIR"
+  "ED\020\002\0226\n2CLIENT_AUTHENTICATION_NOT_REQUIR"
+  "ED_WHEN_USING_PKCE\020\003*~\n\004PKCE\022\024\n\020PKCE_UNS"
+  "PECIFIED\020\000\022\021\n\rPKCE_REQUIRED\020\001\022\025\n\021PKCE_NO"
+  "T_REQUIRED\020\002\0226\n2PKCE_NOT_REQUIRED_WHEN_U"
+  "SING_CLIENT_AUTHENTICATION\020\003*s\n\rURLValid"
+  "ation\022\036\n\032URL_VALIDATION_UNSPECIFIED\020\000\022\036\n"
+  "\032URL_VALIDATION_EXACT_MATCH\020\001\022\"\n\036URL_VAL"
+  "IDATION_ALLOW_WILDCARDS\020\002*\313\001\n\014EnabledGra"
+  "nt\022\035\n\031ENABLED_GRANT_UNSPECIFIED\020\000\022$\n ENA"
+  "BLED_GRANT_AUTHORIZATION_CODE\020\001\022\032\n\026ENABL"
+  "ED_GRANT_IMPLICIT\020\002\022\032\n\026ENABLED_GRANT_PAS"
+  "SWORD\020\003\022\037\n\033ENABLED_GRANT_REFRESH_TOKEN\020\004"
+  "\022\035\n\031ENABLED_GRANT_DEVICE_CODE\020\0052\372U\n\nAppS"
+  "ervice\022_\n\020GetUserIDByEmail\022$.viam.app.v1"
+  ".GetUserIDByEmailRequest\032%.viam.app.v1.G"
+  "etUserIDByEmailResponse\022e\n\022CreateOrganiz"
+  "ation\022&.viam.app.v1.CreateOrganizationRe"
+  "quest\032\'.viam.app.v1.CreateOrganizationRe"
+  "sponse\022b\n\021ListOrganizations\022%.viam.app.v"
+  "1.ListOrganizationsRequest\032&.viam.app.v1"
+  ".ListOrganizationsResponse\022\233\001\n$GetOrgani"
+  "zationsWithAccessToLocation\0228.viam.app.v"
+  "1.GetOrganizationsWithAccessToLocationRe"
+  "quest\0329.viam.app.v1.GetOrganizationsWith"
+  "AccessToLocationResponse\022t\n\027ListOrganiza"
+  "tionsByUser\022+.viam.app.v1.ListOrganizati"
+  "onsByUserRequest\032,.viam.app.v1.ListOrgan"
+  "izationsByUserResponse\022h\n\023SearchOrganiza"
+  "tions\022\'.viam.app.v1.SearchOrganizationsR"
+  "equest\032(.viam.app.v1.SearchOrganizations"
+  "Response\022\\\n\017GetOrganization\022#.viam.app.v"
+  "1.GetOrganizationRequest\032$.viam.app.v1.G"
+  "etOrganizationResponse\022\233\001\n$GetOrganizati"
+  "onNamespaceAvailability\0228.viam.app.v1.Ge"
+  "tOrganizationNamespaceAvailabilityReques"
+  "t\0329.viam.app.v1.GetOrganizationNamespace"
+  "AvailabilityResponse\022e\n\022UpdateOrganizati"
+  "on\022&.viam.app.v1.UpdateOrganizationReque"
+  "st\032\'.viam.app.v1.UpdateOrganizationRespo"
+  "nse\022\200\001\n\033UpdateOrganizationNamespace\022/.vi"
+  "am.app.v1.UpdateOrganizationNamespaceReq"
+  "uest\0320.viam.app.v1.UpdateOrganizationNam"
+  "espaceResponse\022e\n\022DeleteOrganization\022&.v"
+  "iam.app.v1.DeleteOrganizationRequest\032\'.v"
+  "iam.app.v1.DeleteOrganizationResponse\022t\n"
+  "\027GetOrganizationMetadata\022+.viam.app.v1.G"
+  "etOrganizationMetadataRequest\032,.viam.app"
+  ".v1.GetOrganizationMetadataResponse\022}\n\032U"
+  "pdateOrganizationMetadata\022..viam.app.v1."
+  "UpdateOrganizationMetadataRequest\032/.viam"
+  ".app.v1.UpdateOrganizationMetadataRespon"
+  "se\022t\n\027ListOrganizationMembers\022+.viam.app"
+  ".v1.ListOrganizationMembersRequest\032,.via"
+  "m.app.v1.ListOrganizationMembersResponse"
+  "\022w\n\030CreateOrganizationInvite\022,.viam.app."
+  "v1.CreateOrganizationInviteRequest\032-.via"
+  "m.app.v1.CreateOrganizationInviteRespons"
+  "e\022\241\001\n&UpdateOrganizationInviteAuthorizat"
+  "ions\022:.viam.app.v1.UpdateOrganizationInv"
+  "iteAuthorizationsRequest\032;.viam.app.v1.U"
+  "pdateOrganizationInviteAuthorizationsRes"
+  "ponse\022w\n\030DeleteOrganizationMember\022,.viam"
+  ".app.v1.DeleteOrganizationMemberRequest\032"
+  "-.viam.app.v1.DeleteOrganizationMemberRe"
+  "sponse\022w\n\030DeleteOrganizationInvite\022,.via"
+  "m.app.v1.DeleteOrganizationInviteRequest"
+  "\032-.viam.app.v1.DeleteOrganizationInviteR"
+  "esponse\022w\n\030ResendOrganizationInvite\022,.vi"
+  "am.app.v1.ResendOrganizationInviteReques"
+  "t\032-.viam.app.v1.ResendOrganizationInvite"
+  "Response\022k\n\024EnableBillingService\022(.viam."
+  "app.v1.EnableBillingServiceRequest\032).via"
+  "m.app.v1.EnableBillingServiceResponse\022n\n"
+  "\025DisableBillingService\022).viam.app.v1.Dis"
+  "ableBillingServiceRequest\032*.viam.app.v1."
+  "DisableBillingServiceResponse\022k\n\024UpdateB"
+  "illingService\022(.viam.app.v1.UpdateBillin"
+  "gServiceRequest\032).viam.app.v1.UpdateBill"
+  "ingServiceResponse\022t\n\027GetBillingServiceC"
+  "onfig\022+.viam.app.v1.GetBillingServiceCon"
+  "figRequest\032,.viam.app.v1.GetBillingServi"
+  "ceConfigResponse\022\200\001\n\033OrganizationSetSupp"
+  "ortEmail\022/.viam.app.v1.OrganizationSetSu"
+  "pportEmailRequest\0320.viam.app.v1.Organiza"
+  "tionSetSupportEmailResponse\022\200\001\n\033Organiza"
+  "tionGetSupportEmail\022/.viam.app.v1.Organi"
+  "zationGetSupportEmailRequest\0320.viam.app."
+  "v1.OrganizationGetSupportEmailResponse\022h"
+  "\n\023OrganizationSetLogo\022\'.viam.app.v1.Orga"
+  "nizationSetLogoRequest\032(.viam.app.v1.Org"
+  "anizationSetLogoResponse\022h\n\023Organization"
+  "GetLogo\022\'.viam.app.v1.OrganizationGetLog"
+  "oRequest\032(.viam.app.v1.OrganizationGetLo"
+  "goResponse\022b\n\021EnableAuthService\022%.viam.a"
+  "pp.v1.EnableAuthServiceRequest\032&.viam.ap"
+  "p.v1.EnableAuthServiceResponse\022e\n\022Disabl"
+  "eAuthService\022&.viam.app.v1.DisableAuthSe"
+  "rviceRequest\032\'.viam.app.v1.DisableAuthSe"
+  "rviceResponse\022Y\n\016CreateOAuthApp\022\".viam.a"
+  "pp.v1.CreateOAuthAppRequest\032#.viam.app.v"
+  "1.CreateOAuthAppResponse\022S\n\014ReadOAuthApp"
+  "\022 .viam.app.v1.ReadOAuthAppRequest\032!.via"
+  "m.app.v1.ReadOAuthAppResponse\022Y\n\016UpdateO"
+  "AuthApp\022\".viam.app.v1.UpdateOAuthAppRequ"
+  "est\032#.viam.app.v1.UpdateOAuthAppResponse"
+  "\022Y\n\016DeleteOAuthApp\022\".viam.app.v1.DeleteO"
+  "AuthAppRequest\032#.viam.app.v1.DeleteOAuth"
+  "AppResponse\022V\n\rListOAuthApps\022!.viam.app."
+  "v1.ListOAuthAppsRequest\032\".viam.app.v1.Li"
+  "stOAuthAppsResponse\022Y\n\016CreateLocation\022\"."
+  "viam.app.v1.CreateLocationRequest\032#.viam"
+  ".app.v1.CreateLocationResponse\022P\n\013GetLoc"
+  "ation\022\037.viam.app.v1.GetLocationRequest\032 "
+  ".viam.app.v1.GetLocationResponse\022Y\n\016Upda"
+  "teLocation\022\".viam.app.v1.UpdateLocationR"
+  "equest\032#.viam.app.v1.UpdateLocationRespo"
+  "nse\022Y\n\016DeleteLocation\022\".viam.app.v1.Dele"
+  "teLocationRequest\032#.viam.app.v1.DeleteLo"
+  "cationResponse\022h\n\023GetLocationMetadata\022\'."
+  "viam.app.v1.GetLocationMetadataRequest\032("
+  ".viam.app.v1.GetLocationMetadataResponse"
+  "\022q\n\026UpdateLocationMetadata\022*.viam.app.v1"
+  ".UpdateLocationMetadataRequest\032+.viam.ap"
+  "p.v1.UpdateLocationMetadataResponse\022V\n\rL"
+  "istLocations\022!.viam.app.v1.ListLocations"
+  "Request\032\".viam.app.v1.ListLocationsRespo"
+  "nse\022V\n\rShareLocation\022!.viam.app.v1.Share"
+  "LocationRequest\032\".viam.app.v1.ShareLocat"
+  "ionResponse\022\\\n\017UnshareLocation\022#.viam.ap"
+  "p.v1.UnshareLocationRequest\032$.viam.app.v"
+  "1.UnshareLocationResponse\022S\n\014LocationAut"
+  "h\022 .viam.app.v1.LocationAuthRequest\032!.vi"
+  "am.app.v1.LocationAuthResponse\022k\n\024Create"
+  "LocationSecret\022(.viam.app.v1.CreateLocat"
+  "ionSecretRequest\032).viam.app.v1.CreateLoc"
+  "ationSecretResponse\022k\n\024DeleteLocationSec"
+  "ret\022(.viam.app.v1.DeleteLocationSecretRe"
+  "quest\032).viam.app.v1.DeleteLocationSecret"
+  "Response\022G\n\010GetRobot\022\034.viam.app.v1.GetRo"
+  "botRequest\032\035.viam.app.v1.GetRobotRespons"
+  "e\022_\n\020GetRobotMetadata\022$.viam.app.v1.GetR"
+  "obotMetadataRequest\032%.viam.app.v1.GetRob"
+  "otMetadataResponse\022h\n\023UpdateRobotMetadat"
+  "a\022\'.viam.app.v1.UpdateRobotMetadataReque"
+  "st\032(.viam.app.v1.UpdateRobotMetadataResp"
+  "onse\022k\n\024GetRoverRentalRobots\022(.viam.app."
+  "v1.GetRoverRentalRobotsRequest\032).viam.ap"
+  "p.v1.GetRoverRentalRobotsResponse\022V\n\rGet"
+  "RobotParts\022!.viam.app.v1.GetRobotPartsRe"
+  "quest\032\".viam.app.v1.GetRobotPartsRespons"
+  "e\022S\n\014GetRobotPart\022 .viam.app.v1.GetRobot"
+  "PartRequest\032!.viam.app.v1.GetRobotPartRe"
+  "sponse\022\206\001\n\035GetRobotPartByNameAndLocation"
+  "\0221.viam.app.v1.GetRobotPartByNameAndLoca"
+  "tionRequest\0322.viam.app.v1.GetRobotPartBy"
+  "NameAndLocationResponse\022_\n\020GetRobotPartL"
+  "ogs\022$.viam.app.v1.GetRobotPartLogsReques"
+  "t\032%.viam.app.v1.GetRobotPartLogsResponse"
+  "\022d\n\021TailRobotPartLogs\022%.viam.app.v1.Tail"
+  "RobotPartLogsRequest\032&.viam.app.v1.TailR"
+  "obotPartLogsResponse0\001\022h\n\023GetRobotPartHi"
+  "story\022\'.viam.app.v1.GetRobotPartHistoryR"
+  "equest\032(.viam.app.v1.GetRobotPartHistory"
+  "Response\022\\\n\017UpdateRobotPart\022#.viam.app.v"
+  "1.UpdateRobotPartRequest\032$.viam.app.v1.U"
+  "pdateRobotPartResponse\022S\n\014NewRobotPart\022 "
+  ".viam.app.v1.NewRobotPartRequest\032!.viam."
+  "app.v1.NewRobotPartResponse\022\\\n\017DeleteRob"
+  "otPart\022#.viam.app.v1.DeleteRobotPartRequ"
+  "est\032$.viam.app.v1.DeleteRobotPartRespons"
+  "e\022k\n\024GetRobotPartMetadata\022(.viam.app.v1."
+  "GetRobotPartMetadataRequest\032).viam.app.v"
+  "1.GetRobotPartMetadataResponse\022t\n\027Update"
+  "RobotPartMetadata\022+.viam.app.v1.UpdateRo"
+  "botPartMetadataRequest\032,.viam.app.v1.Upd"
+  "ateRobotPartMetadataResponse\022\\\n\017GetRobot"
+  "APIKeys\022#.viam.app.v1.GetRobotAPIKeysReq"
+  "uest\032$.viam.app.v1.GetRobotAPIKeysRespon"
+  "se\022Y\n\016MarkPartAsMain\022\".viam.app.v1.MarkP"
+  "artAsMainRequest\032#.viam.app.v1.MarkPartA"
+  "sMainResponse\022e\n\022MarkPartForRestart\022&.vi"
+  "am.app.v1.MarkPartForRestartRequest\032\'.vi"
+  "am.app.v1.MarkPartForRestartResponse\022n\n\025"
+  "CreateRobotPartSecret\022).viam.app.v1.Crea"
+  "teRobotPartSecretRequest\032*.viam.app.v1.C"
+  "reateRobotPartSecretResponse\022n\n\025DeleteRo"
+  "botPartSecret\022).viam.app.v1.DeleteRobotP"
+  "artSecretRequest\032*.viam.app.v1.DeleteRob"
+  "otPartSecretResponse\022M\n\nListRobots\022\036.via"
+  "m.app.v1.ListRobotsRequest\032\037.viam.app.v1"
+  ".ListRobotsResponse\022q\n\026ListRobotsForLoca"
+  "tions\022*.viam.app.v1.ListRobotsForLocatio"
+  "nsRequest\032+.viam.app.v1.ListRobotsForLoc"
+  "ationsResponse\022_\n\020ListRobotsForOrg\022$.via"
+  "m.app.v1.ListRobotsForOrgRequest\032%.viam."
+  "app.v1.ListRobotsForOrgResponse\022G\n\010NewRo"
+  "bot\022\034.viam.app.v1.NewRobotRequest\032\035.viam"
+  ".app.v1.NewRobotResponse\022P\n\013UpdateRobot\022"
+  "\037.viam.app.v1.UpdateRobotRequest\032 .viam."
+  "app.v1.UpdateRobotResponse\022P\n\013DeleteRobo"
+  "t\022\037.viam.app.v1.DeleteRobotRequest\032 .via"
+  "m.app.v1.DeleteRobotResponse\022V\n\rListFrag"
+  "ments\022!.viam.app.v1.ListFragmentsRequest"
+  "\032\".viam.app.v1.ListFragmentsResponse\022P\n\013"
+  "GetFragment\022\037.viam.app.v1.GetFragmentReq"
+  "uest\032 .viam.app.v1.GetFragmentResponse\022Y"
+  "\n\016CreateFragment\022\".viam.app.v1.CreateFra"
+  "gmentRequest\032#.viam.app.v1.CreateFragmen"
+  "tResponse\022Y\n\016UpdateFragment\022\".viam.app.v"
+  "1.UpdateFragmentRequest\032#.viam.app.v1.Up"
+  "dateFragmentResponse\022Y\n\016DeleteFragment\022\""
+  ".viam.app.v1.DeleteFragmentRequest\032#.via"
+  "m.app.v1.DeleteFragmentResponse\022h\n\023ListN"
+  "estedFragments\022\'.viam.app.v1.ListNestedF"
+  "ragmentsRequest\032(.viam.app.v1.ListNested"
+  "FragmentsResponse\022k\n\024ListMachineFragment"
+  "s\022(.viam.app.v1.ListMachineFragmentsRequ"
+  "est\032).viam.app.v1.ListMachineFragmentsRe"
+  "sponse\022k\n\024ListMachineSummaries\022(.viam.ap"
+  "p.v1.ListMachineSummariesRequest\032).viam."
+  "app.v1.ListMachineSummariesResponse\022e\n\022G"
+  "etFragmentHistory\022&.viam.app.v1.GetFragm"
+  "entHistoryRequest\032\'.viam.app.v1.GetFragm"
+  "entHistoryResponse\022_\n\020GetFragmentUsage\022$"
+  ".viam.app.v1.GetFragmentUsageRequest\032%.v"
+  "iam.app.v1.GetFragmentUsageResponse\022Y\n\016S"
+  "etFragmentTag\022\".viam.app.v1.SetFragmentT"
+  "agRequest\032#.viam.app.v1.SetFragmentTagRe"
+  "sponse\022b\n\021DeleteFragmentTag\022%.viam.app.v"
+  "1.DeleteFragmentTagRequest\032&.viam.app.v1"
+  ".DeleteFragmentTagResponse\022D\n\007AddRole\022\033."
+  "viam.app.v1.AddRoleRequest\032\034.viam.app.v1"
+  ".AddRoleResponse\022M\n\nRemoveRole\022\036.viam.ap"
+  "p.v1.RemoveRoleRequest\032\037.viam.app.v1.Rem"
+  "oveRoleResponse\022M\n\nChangeRole\022\036.viam.app"
+  ".v1.ChangeRoleRequest\032\037.viam.app.v1.Chan"
+  "geRoleResponse\022e\n\022ListAuthorizations\022&.v"
+  "iam.app.v1.ListAuthorizationsRequest\032\'.v"
+  "iam.app.v1.ListAuthorizationsResponse\022_\n"
+  "\020CheckPermissions\022$.viam.app.v1.CheckPer"
+  "missionsRequest\032%.viam.app.v1.CheckPermi"
+  "ssionsResponse\022\\\n\017GetRegistryItem\022#.viam"
+  ".app.v1.GetRegistryItemRequest\032$.viam.ap"
+  "p.v1.GetRegistryItemResponse\022e\n\022CreateRe"
+  "gistryItem\022&.viam.app.v1.CreateRegistryI"
+  "temRequest\032\'.viam.app.v1.CreateRegistryI"
+  "temResponse\022e\n\022UpdateRegistryItem\022&.viam"
+  ".app.v1.UpdateRegistryItemRequest\032\'.viam"
+  ".app.v1.UpdateRegistryItemResponse\022b\n\021Li"
+  "stRegistryItems\022%.viam.app.v1.ListRegist"
+  "ryItemsRequest\032&.viam.app.v1.ListRegistr"
+  "yItemsResponse\022e\n\022DeleteRegistryItem\022&.v"
+  "iam.app.v1.DeleteRegistryItemRequest\032\'.v"
+  "iam.app.v1.DeleteRegistryItemResponse\022e\n"
+  "\022RenameRegistryItem\022&.viam.app.v1.Rename"
+  "RegistryItemRequest\032\'.viam.app.v1.Rename"
+  "RegistryItemResponse\022k\n\024TransferRegistry"
+  "Item\022(.viam.app.v1.TransferRegistryItemR"
+  "equest\032).viam.app.v1.TransferRegistryIte"
+  "mResponse\022S\n\014CreateModule\022 .viam.app.v1."
+  "CreateModuleRequest\032!.viam.app.v1.Create"
+  "ModuleResponse\022S\n\014UpdateModule\022 .viam.ap"
+  "p.v1.UpdateModuleRequest\032!.viam.app.v1.U"
+  "pdateModuleResponse\022a\n\020UploadModuleFile\022"
+  "$.viam.app.v1.UploadModuleFileRequest\032%."
+  "viam.app.v1.UploadModuleFileResponse(\001\022J"
+  "\n\tGetModule\022\035.viam.app.v1.GetModuleReque"
+  "st\032\036.viam.app.v1.GetModuleResponse\022P\n\013Li"
+  "stModules\022\037.viam.app.v1.ListModulesReque"
+  "st\032 .viam.app.v1.ListModulesResponse\022J\n\t"
+  "CreateKey\022\035.viam.app.v1.CreateKeyRequest"
+  "\032\036.viam.app.v1.CreateKeyResponse\022J\n\tDele"
+  "teKey\022\035.viam.app.v1.DeleteKeyRequest\032\036.v"
+  "iam.app.v1.DeleteKeyResponse\022G\n\010ListKeys"
+  "\022\034.viam.app.v1.ListKeysRequest\032\035.viam.ap"
+  "p.v1.ListKeysResponse\022J\n\tRenameKey\022\035.via"
+  "m.app.v1.RenameKeyRequest\032\036.viam.app.v1."
+  "RenameKeyResponse\022J\n\tRotateKey\022\035.viam.ap"
+  "p.v1.RotateKeyRequest\032\036.viam.app.v1.Rota"
+  "teKeyResponse\022\241\001\n&CreateKeyFromExistingK"
+  "eyAuthorizations\022:.viam.app.v1.CreateKey"
+  "FromExistingKeyAuthorizationsRequest\032;.v"
+  "iam.app.v1.CreateKeyFromExistingKeyAutho"
+  "rizationsResponse\022V\n\rGetAppContent\022!.via"
+  "m.app.v1.GetAppContentRequest\032\".viam.app"
+  ".v1.GetAppContentResponse\022Y\n\016GetAppBrand"
+  "ing\022\".viam.app.v1.GetAppBrandingRequest\032"
+  "#.viam.app.v1.GetAppBrandingResponseB\030Z\026"
+  "go.viam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2eproto_deps[6] = {
   &::descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
@@ -7972,7 +8017,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2epr
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fapp_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fapp_2eproto = {
-    false, false, 48261, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
+    false, false, 48990, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
     "app/v1/app.proto",
     &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 6, 277,
     schemas, file_default_instances, TableStruct_app_2fv1_2fapp_2eproto::offsets,
@@ -8077,9 +8122,40 @@ bool FragmentErrorType_IsValid(int value) {
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RegistryItemStatus_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ModuleSourceType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fapp_2eproto);
   return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[5];
+}
+bool ModuleSourceType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ModuleLanguage_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fapp_2eproto);
+  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[6];
+}
+bool ModuleLanguage_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RegistryItemStatus_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fapp_2eproto);
+  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[7];
 }
 bool RegistryItemStatus_IsValid(int value) {
   switch (value) {
@@ -8094,7 +8170,7 @@ bool RegistryItemStatus_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Visibility_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fapp_2eproto);
-  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[6];
+  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[8];
 }
 bool Visibility_IsValid(int value) {
   switch (value) {
@@ -8110,7 +8186,7 @@ bool Visibility_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* AppType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fapp_2eproto);
-  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[7];
+  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[9];
 }
 bool AppType_IsValid(int value) {
   switch (value) {
@@ -8125,7 +8201,7 @@ bool AppType_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ClientAuthentication_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fapp_2eproto);
-  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[8];
+  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[10];
 }
 bool ClientAuthentication_IsValid(int value) {
   switch (value) {
@@ -8141,7 +8217,7 @@ bool ClientAuthentication_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PKCE_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fapp_2eproto);
-  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[9];
+  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[11];
 }
 bool PKCE_IsValid(int value) {
   switch (value) {
@@ -8157,7 +8233,7 @@ bool PKCE_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* URLValidation_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fapp_2eproto);
-  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[10];
+  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[12];
 }
 bool URLValidation_IsValid(int value) {
   switch (value) {
@@ -8172,7 +8248,7 @@ bool URLValidation_IsValid(int value) {
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EnabledGrant_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_app_2fv1_2fapp_2eproto);
-  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[11];
+  return file_level_enum_descriptors_app_2fv1_2fapp_2eproto[13];
 }
 bool EnabledGrant_IsValid(int value) {
   switch (value) {
@@ -50534,6 +50610,12 @@ class ModuleMetadata::_Internal {
   static void set_has_markdown_description(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }
+  static void set_has_source_type(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_language(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
 };
 
 ModuleMetadata::ModuleMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -50576,6 +50658,9 @@ ModuleMetadata::ModuleMetadata(const ModuleMetadata& from)
     markdown_description_.Set(from._internal_markdown_description(), 
       GetArenaForAllocation());
   }
+  ::memcpy(&source_type_, &from.source_type_,
+    static_cast<size_t>(reinterpret_cast<char*>(&language_) -
+    reinterpret_cast<char*>(&source_type_)) + sizeof(language_));
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.ModuleMetadata)
 }
 
@@ -50592,6 +50677,10 @@ markdown_description_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   markdown_description_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&source_type_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&language_) -
+    reinterpret_cast<char*>(&source_type_)) + sizeof(language_));
 }
 
 ModuleMetadata::~ModuleMetadata() {
@@ -50632,6 +50721,11 @@ void ModuleMetadata::Clear() {
     if (cached_has_bits & 0x00000002u) {
       markdown_description_.ClearNonDefaultToEmpty();
     }
+  }
+  if (cached_has_bits & 0x0000000cu) {
+    ::memset(&source_type_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&language_) -
+        reinterpret_cast<char*>(&source_type_)) + sizeof(language_));
   }
   _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -50710,6 +50804,24 @@ const char* ModuleMetadata::_InternalParse(const char* ptr, ::_pbi::ParseContext
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .viam.app.v1.ModuleSourceType source_type = 7 [json_name = "sourceType"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_source_type(static_cast<::viam::app::v1::ModuleSourceType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .viam.app.v1.ModuleLanguage language = 8 [json_name = "language"];
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_language(static_cast<::viam::app::v1::ModuleLanguage>(val));
         } else
           goto handle_unusual;
         continue;
@@ -50797,6 +50909,20 @@ uint8_t* ModuleMetadata::_InternalSerialize(
         InternalWriteMessage(6, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // optional .viam.app.v1.ModuleSourceType source_type = 7 [json_name = "sourceType"];
+  if (_internal_has_source_type()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      7, this->_internal_source_type(), target);
+  }
+
+  // optional .viam.app.v1.ModuleLanguage language = 8 [json_name = "language"];
+  if (_internal_has_language()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      8, this->_internal_language(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -50842,7 +50968,7 @@ size_t ModuleMetadata::ByteSizeLong() const {
   }
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x0000000fu) {
     // optional string first_run = 4 [json_name = "firstRun"];
     if (cached_has_bits & 0x00000001u) {
       total_size += 1 +
@@ -50855,6 +50981,18 @@ size_t ModuleMetadata::ByteSizeLong() const {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_markdown_description());
+    }
+
+    // optional .viam.app.v1.ModuleSourceType source_type = 7 [json_name = "sourceType"];
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::EnumSize(this->_internal_source_type());
+    }
+
+    // optional .viam.app.v1.ModuleLanguage language = 8 [json_name = "language"];
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::EnumSize(this->_internal_language());
     }
 
   }
@@ -50887,13 +51025,20 @@ void ModuleMetadata::MergeFrom(const ModuleMetadata& from) {
     _internal_set_entrypoint(from._internal_entrypoint());
   }
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x0000000fu) {
     if (cached_has_bits & 0x00000001u) {
       _internal_set_first_run(from._internal_first_run());
     }
     if (cached_has_bits & 0x00000002u) {
       _internal_set_markdown_description(from._internal_markdown_description());
     }
+    if (cached_has_bits & 0x00000004u) {
+      source_type_ = from.source_type_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      language_ = from.language_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -50930,6 +51075,12 @@ void ModuleMetadata::InternalSwap(ModuleMetadata* other) {
       &markdown_description_, lhs_arena,
       &other->markdown_description_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ModuleMetadata, language_)
+      + sizeof(ModuleMetadata::language_)
+      - PROTOBUF_FIELD_OFFSET(ModuleMetadata, source_type_)>(
+          reinterpret_cast<char*>(&source_type_),
+          reinterpret_cast<char*>(&other->source_type_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ModuleMetadata::GetMetadata() const {
@@ -54006,7 +54157,9 @@ ListRegistryItemsRequest::ListRegistryItemsRequest(::PROTOBUF_NAMESPACE_ID::Aren
   visibilities_(arena),
   platforms_(arena),
   statuses_(arena),
-  public_namespaces_(arena) {
+  public_namespaces_(arena),
+  module_source_types_(arena),
+  module_languages_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.v1.ListRegistryItemsRequest)
 }
@@ -54017,7 +54170,9 @@ ListRegistryItemsRequest::ListRegistryItemsRequest(const ListRegistryItemsReques
       visibilities_(from.visibilities_),
       platforms_(from.platforms_),
       statuses_(from.statuses_),
-      public_namespaces_(from.public_namespaces_) {
+      public_namespaces_(from.public_namespaces_),
+      module_source_types_(from.module_source_types_),
+      module_languages_(from.module_languages_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   organization_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -54094,6 +54249,8 @@ void ListRegistryItemsRequest::Clear() {
   platforms_.Clear();
   statuses_.Clear();
   public_namespaces_.Clear();
+  module_source_types_.Clear();
+  module_languages_.Clear();
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
@@ -54223,6 +54380,30 @@ const char* ListRegistryItemsRequest::_InternalParse(const char* ptr, ::_pbi::Pa
         } else
           goto handle_unusual;
         continue;
+      // repeated .viam.app.v1.ModuleSourceType module_source_types = 10 [json_name = "moduleSourceTypes"];
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedEnumParser(_internal_mutable_module_source_types(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 80) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_add_module_source_types(static_cast<::viam::app::v1::ModuleSourceType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .viam.app.v1.ModuleLanguage module_languages = 11 [json_name = "moduleLanguages"];
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedEnumParser(_internal_mutable_module_languages(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 88) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_add_module_languages(static_cast<::viam::app::v1::ModuleLanguage>(val));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -54336,6 +54517,24 @@ uint8_t* ListRegistryItemsRequest::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(9, this->_internal_include_markdown_documentation(), target);
   }
 
+  // repeated .viam.app.v1.ModuleSourceType module_source_types = 10 [json_name = "moduleSourceTypes"];
+  {
+    int byte_size = _module_source_types_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteEnumPacked(
+          10, module_source_types_, byte_size, target);
+    }
+  }
+
+  // repeated .viam.app.v1.ModuleLanguage module_languages = 11 [json_name = "moduleLanguages"];
+  {
+    int byte_size = _module_languages_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteEnumPacked(
+          11, module_languages_, byte_size, target);
+    }
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -54419,6 +54618,40 @@ size_t ListRegistryItemsRequest::ByteSizeLong() const {
       public_namespaces_.Get(i));
   }
 
+  // repeated .viam.app.v1.ModuleSourceType module_source_types = 10 [json_name = "moduleSourceTypes"];
+  {
+    size_t data_size = 0;
+    unsigned int count = static_cast<unsigned int>(this->_internal_module_source_types_size());for (unsigned int i = 0; i < count; i++) {
+      data_size += ::_pbi::WireFormatLite::EnumSize(
+        this->_internal_module_source_types(static_cast<int>(i)));
+    }
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _module_source_types_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // repeated .viam.app.v1.ModuleLanguage module_languages = 11 [json_name = "moduleLanguages"];
+  {
+    size_t data_size = 0;
+    unsigned int count = static_cast<unsigned int>(this->_internal_module_languages_size());for (unsigned int i = 0; i < count; i++) {
+      data_size += ::_pbi::WireFormatLite::EnumSize(
+        this->_internal_module_languages(static_cast<int>(i)));
+    }
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _module_languages_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
   cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
     // optional string organization_id = 1 [json_name = "organizationId"];
@@ -54475,6 +54708,8 @@ void ListRegistryItemsRequest::MergeFrom(const ListRegistryItemsRequest& from) {
   platforms_.MergeFrom(from.platforms_);
   statuses_.MergeFrom(from.statuses_);
   public_namespaces_.MergeFrom(from.public_namespaces_);
+  module_source_types_.MergeFrom(from.module_source_types_);
+  module_languages_.MergeFrom(from.module_languages_);
   cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
     if (cached_has_bits & 0x00000001u) {
@@ -54516,6 +54751,8 @@ void ListRegistryItemsRequest::InternalSwap(ListRegistryItemsRequest* other) {
   platforms_.InternalSwap(&other->platforms_);
   statuses_.InternalSwap(&other->statuses_);
   public_namespaces_.InternalSwap(&other->public_namespaces_);
+  module_source_types_.InternalSwap(&other->module_source_types_);
+  module_languages_.InternalSwap(&other->module_languages_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &organization_id_, lhs_arena,
       &other->organization_id_, rhs_arena
@@ -57333,6 +57570,13 @@ void UpdateModuleResponse::InternalSwap(UpdateModuleResponse* other) {
 
 class UpdateModuleMetadata::_Internal {
  public:
+  using HasBits = decltype(std::declval<UpdateModuleMetadata>()._has_bits_);
+  static void set_has_source_type(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_language(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
 };
 
 UpdateModuleMetadata::UpdateModuleMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -57345,6 +57589,7 @@ UpdateModuleMetadata::UpdateModuleMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena
 }
 UpdateModuleMetadata::UpdateModuleMetadata(const UpdateModuleMetadata& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_),
       models_(from.models_),
       apps_(from.apps_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -57356,6 +57601,9 @@ UpdateModuleMetadata::UpdateModuleMetadata(const UpdateModuleMetadata& from)
     entrypoint_.Set(from._internal_entrypoint(), 
       GetArenaForAllocation());
   }
+  ::memcpy(&source_type_, &from.source_type_,
+    static_cast<size_t>(reinterpret_cast<char*>(&language_) -
+    reinterpret_cast<char*>(&source_type_)) + sizeof(language_));
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.UpdateModuleMetadata)
 }
 
@@ -57364,6 +57612,10 @@ entrypoint_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   entrypoint_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&source_type_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&language_) -
+    reinterpret_cast<char*>(&source_type_)) + sizeof(language_));
 }
 
 UpdateModuleMetadata::~UpdateModuleMetadata() {
@@ -57393,11 +57645,19 @@ void UpdateModuleMetadata::Clear() {
   models_.Clear();
   apps_.Clear();
   entrypoint_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    ::memset(&source_type_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&language_) -
+        reinterpret_cast<char*>(&source_type_)) + sizeof(language_));
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* UpdateModuleMetadata::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -57438,6 +57698,24 @@ const char* UpdateModuleMetadata::_InternalParse(const char* ptr, ::_pbi::ParseC
         } else
           goto handle_unusual;
         continue;
+      // optional .viam.app.v1.ModuleSourceType source_type = 4 [json_name = "sourceType"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_source_type(static_cast<::viam::app::v1::ModuleSourceType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .viam.app.v1.ModuleLanguage language = 5 [json_name = "language"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_language(static_cast<::viam::app::v1::ModuleLanguage>(val));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -57454,6 +57732,7 @@ const char* UpdateModuleMetadata::_InternalParse(const char* ptr, ::_pbi::ParseC
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -57493,6 +57772,20 @@ uint8_t* UpdateModuleMetadata::_InternalSerialize(
         InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // optional .viam.app.v1.ModuleSourceType source_type = 4 [json_name = "sourceType"];
+  if (_internal_has_source_type()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      4, this->_internal_source_type(), target);
+  }
+
+  // optional .viam.app.v1.ModuleLanguage language = 5 [json_name = "language"];
+  if (_internal_has_language()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      5, this->_internal_language(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -57530,6 +57823,21 @@ size_t UpdateModuleMetadata::ByteSizeLong() const {
         this->_internal_entrypoint());
   }
 
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional .viam.app.v1.ModuleSourceType source_type = 4 [json_name = "sourceType"];
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::EnumSize(this->_internal_source_type());
+    }
+
+    // optional .viam.app.v1.ModuleLanguage language = 5 [json_name = "language"];
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::EnumSize(this->_internal_language());
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -57557,6 +57865,16 @@ void UpdateModuleMetadata::MergeFrom(const UpdateModuleMetadata& from) {
   if (!from._internal_entrypoint().empty()) {
     _internal_set_entrypoint(from._internal_entrypoint());
   }
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      source_type_ = from.source_type_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      language_ = from.language_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -57576,12 +57894,19 @@ void UpdateModuleMetadata::InternalSwap(UpdateModuleMetadata* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   models_.InternalSwap(&other->models_);
   apps_.InternalSwap(&other->apps_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &entrypoint_, lhs_arena,
       &other->entrypoint_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UpdateModuleMetadata, language_)
+      + sizeof(UpdateModuleMetadata::language_)
+      - PROTOBUF_FIELD_OFFSET(UpdateModuleMetadata, source_type_)>(
+          reinterpret_cast<char*>(&source_type_),
+          reinterpret_cast<char*>(&other->source_type_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateModuleMetadata::GetMetadata() const {
