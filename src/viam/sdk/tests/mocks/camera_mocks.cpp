@@ -14,9 +14,6 @@ using namespace viam::sdk;
 ProtoStruct MockCamera::do_command(const ProtoStruct&) {
     return map_;
 }
-Camera::raw_image MockCamera::get_image(std::string, const ProtoStruct&) {
-    return image_;
-}
 Camera::image_collection MockCamera::get_images(std::vector<std::string> filter_source_names,
                                                 const ProtoStruct& extra) {
     last_filter_source_names_ = std::move(filter_source_names);
@@ -43,15 +40,6 @@ std::vector<GeometryConfig> MockCamera::get_geometries(const ProtoStruct&) {
 }
 Camera::properties MockCamera::get_properties() {
     return camera_properties_;
-}
-
-Camera::raw_image fake_raw_image() {
-    Camera::raw_image image;
-    image.mime_type = "JPEG";
-    image.source_name = "";
-    std::vector<unsigned char> bytes = {'a', 'b', 'c'};
-    image.bytes = bytes;
-    return image;
 }
 
 Camera::image_collection fake_raw_images() {
@@ -119,7 +107,6 @@ Camera::properties fake_properties() {
 std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     auto camera = std::make_shared<MockCamera>("mock_camera");
 
-    camera->image_ = fake_raw_image();
     camera->images_ = fake_raw_images();
     camera->pc_ = fake_point_cloud();
     camera->camera_properties_ = fake_properties();

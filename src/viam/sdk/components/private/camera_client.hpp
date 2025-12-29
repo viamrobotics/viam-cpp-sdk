@@ -31,8 +31,6 @@ class CameraClient : public Camera {
 
     ProtoStruct do_command(const ProtoStruct& command) override;
 
-    raw_image get_image(std::string mime_type, const ProtoStruct& extra) override;
-
     image_collection get_images(std::vector<std::string> filter_source_names,
                                 const ProtoStruct& extra) override;
 
@@ -52,7 +50,6 @@ class CameraClient : public Camera {
     // param. In order to access these versions of the methods within the client code, however,
     // we need to include these `using` lines.
     using Camera::get_geometries;
-    using Camera::get_image;
     using Camera::get_images;
     using Camera::get_point_cloud;
 
