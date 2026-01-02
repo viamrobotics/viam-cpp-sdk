@@ -7,6 +7,7 @@
 # readability-implicit-bool-conversion: We have decided that !ptr-type is cleaner than ptr-type==nullptr
 # readability-magic-numbers: This encourages useless variables and extra lint lines
 # misc-include-cleaner: TODO(RSDK-5479) this is overly finnicky, add IWYU support and fix.
+# misc-no-recursion: global ban on recursion seems absurd
 # readability-function-cognitive-complexity: No, complexity is subjective and sometimes necessary.
 # readability-else-after-return: No, this causes code complexification
 Checks: >
@@ -26,6 +27,7 @@ Checks: >
   -readability-implicit-bool-conversion,
   -readability-magic-numbers,
   -misc-include-cleaner,
+  -misc-no-recursion,
   -readability-function-cognitive-complexity,
   -readability-else-after-return,
 WarningsAsErrors: '*'

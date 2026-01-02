@@ -136,6 +136,7 @@ target_sources(viamsdk
     config/resource.cpp
     log/logging.cpp
     log/private/log_backend.cpp
+    module/data_consumer.cpp
     module/handler_map.cpp
     module/module.cpp
     module/service.cpp
@@ -213,6 +214,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/switch.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/log/logging.hpp
+      ../../viam/sdk/module/data_consumer.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
       ../../viam/sdk/module/service.hpp
