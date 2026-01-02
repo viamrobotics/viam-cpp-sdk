@@ -1311,6 +1311,59 @@ inline bool FragmentErrorType_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<FragmentErrorType>(
     FragmentErrorType_descriptor(), name, value);
 }
+enum ModuleSourceType : int {
+  MODULE_SOURCE_TYPE_UNSPECIFIED = 0,
+  MODULE_SOURCE_TYPE_EXTERNAL = 1,
+  MODULE_SOURCE_TYPE_VIAM_HOSTED = 2,
+  ModuleSourceType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  ModuleSourceType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool ModuleSourceType_IsValid(int value);
+constexpr ModuleSourceType ModuleSourceType_MIN = MODULE_SOURCE_TYPE_UNSPECIFIED;
+constexpr ModuleSourceType ModuleSourceType_MAX = MODULE_SOURCE_TYPE_VIAM_HOSTED;
+constexpr int ModuleSourceType_ARRAYSIZE = ModuleSourceType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ModuleSourceType_descriptor();
+template<typename T>
+inline const std::string& ModuleSourceType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ModuleSourceType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ModuleSourceType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ModuleSourceType_descriptor(), enum_t_value);
+}
+inline bool ModuleSourceType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ModuleSourceType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ModuleSourceType>(
+    ModuleSourceType_descriptor(), name, value);
+}
+enum ModuleLanguage : int {
+  MODULE_LANGUAGE_UNSPECIFIED = 0,
+  MODULE_LANGUAGE_GOLANG = 1,
+  MODULE_LANGUAGE_PYTHON = 2,
+  MODULE_LANGUAGE_CPP = 3,
+  ModuleLanguage_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  ModuleLanguage_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool ModuleLanguage_IsValid(int value);
+constexpr ModuleLanguage ModuleLanguage_MIN = MODULE_LANGUAGE_UNSPECIFIED;
+constexpr ModuleLanguage ModuleLanguage_MAX = MODULE_LANGUAGE_CPP;
+constexpr int ModuleLanguage_ARRAYSIZE = ModuleLanguage_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ModuleLanguage_descriptor();
+template<typename T>
+inline const std::string& ModuleLanguage_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ModuleLanguage>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ModuleLanguage_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ModuleLanguage_descriptor(), enum_t_value);
+}
+inline bool ModuleLanguage_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ModuleLanguage* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ModuleLanguage>(
+    ModuleLanguage_descriptor(), name, value);
+}
 enum RegistryItemStatus : int {
   REGISTRY_ITEM_STATUS_UNSPECIFIED = 0,
   REGISTRY_ITEM_STATUS_PUBLISHED = 1,
@@ -33066,6 +33119,8 @@ class ModuleMetadata final :
     kEntrypointFieldNumber = 3,
     kFirstRunFieldNumber = 4,
     kMarkdownDescriptionFieldNumber = 5,
+    kSourceTypeFieldNumber = 7,
+    kLanguageFieldNumber = 8,
   };
   // repeated .viam.app.v1.Model models = 1 [json_name = "models"];
   int models_size() const;
@@ -33171,6 +33226,32 @@ class ModuleMetadata final :
   std::string* _internal_mutable_markdown_description();
   public:
 
+  // optional .viam.app.v1.ModuleSourceType source_type = 7 [json_name = "sourceType"];
+  bool has_source_type() const;
+  private:
+  bool _internal_has_source_type() const;
+  public:
+  void clear_source_type();
+  ::viam::app::v1::ModuleSourceType source_type() const;
+  void set_source_type(::viam::app::v1::ModuleSourceType value);
+  private:
+  ::viam::app::v1::ModuleSourceType _internal_source_type() const;
+  void _internal_set_source_type(::viam::app::v1::ModuleSourceType value);
+  public:
+
+  // optional .viam.app.v1.ModuleLanguage language = 8 [json_name = "language"];
+  bool has_language() const;
+  private:
+  bool _internal_has_language() const;
+  public:
+  void clear_language();
+  ::viam::app::v1::ModuleLanguage language() const;
+  void set_language(::viam::app::v1::ModuleLanguage value);
+  private:
+  ::viam::app::v1::ModuleLanguage _internal_language() const;
+  void _internal_set_language(::viam::app::v1::ModuleLanguage value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleMetadata)
  private:
   class _Internal;
@@ -33186,6 +33267,8 @@ class ModuleMetadata final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_description_;
+  int source_type_;
+  int language_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -35293,6 +35376,8 @@ class ListRegistryItemsRequest final :
     kPlatformsFieldNumber = 4,
     kStatusesFieldNumber = 5,
     kPublicNamespacesFieldNumber = 8,
+    kModuleSourceTypesFieldNumber = 10,
+    kModuleLanguagesFieldNumber = 11,
     kOrganizationIdFieldNumber = 1,
     kSearchTermFieldNumber = 6,
     kPageTokenFieldNumber = 7,
@@ -35397,6 +35482,40 @@ class ListRegistryItemsRequest final :
   std::string* _internal_add_public_namespaces();
   public:
 
+  // repeated .viam.app.v1.ModuleSourceType module_source_types = 10 [json_name = "moduleSourceTypes"];
+  int module_source_types_size() const;
+  private:
+  int _internal_module_source_types_size() const;
+  public:
+  void clear_module_source_types();
+  private:
+  ::viam::app::v1::ModuleSourceType _internal_module_source_types(int index) const;
+  void _internal_add_module_source_types(::viam::app::v1::ModuleSourceType value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* _internal_mutable_module_source_types();
+  public:
+  ::viam::app::v1::ModuleSourceType module_source_types(int index) const;
+  void set_module_source_types(int index, ::viam::app::v1::ModuleSourceType value);
+  void add_module_source_types(::viam::app::v1::ModuleSourceType value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>& module_source_types() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* mutable_module_source_types();
+
+  // repeated .viam.app.v1.ModuleLanguage module_languages = 11 [json_name = "moduleLanguages"];
+  int module_languages_size() const;
+  private:
+  int _internal_module_languages_size() const;
+  public:
+  void clear_module_languages();
+  private:
+  ::viam::app::v1::ModuleLanguage _internal_module_languages(int index) const;
+  void _internal_add_module_languages(::viam::app::v1::ModuleLanguage value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* _internal_mutable_module_languages();
+  public:
+  ::viam::app::v1::ModuleLanguage module_languages(int index) const;
+  void set_module_languages(int index, ::viam::app::v1::ModuleLanguage value);
+  void add_module_languages(::viam::app::v1::ModuleLanguage value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>& module_languages() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>* mutable_module_languages();
+
   // optional string organization_id = 1 [json_name = "organizationId"];
   bool has_organization_id() const;
   private:
@@ -35481,6 +35600,10 @@ class ListRegistryItemsRequest final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField<int> statuses_;
   mutable std::atomic<int> _statuses_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> public_namespaces_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int> module_source_types_;
+  mutable std::atomic<int> _module_source_types_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField<int> module_languages_;
+  mutable std::atomic<int> _module_languages_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr search_term_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr page_token_;
@@ -37634,6 +37757,8 @@ class UpdateModuleMetadata final :
     kModelsFieldNumber = 1,
     kAppsFieldNumber = 3,
     kEntrypointFieldNumber = 2,
+    kSourceTypeFieldNumber = 4,
+    kLanguageFieldNumber = 5,
   };
   // repeated .viam.app.v1.Model models = 1 [json_name = "models"];
   int models_size() const;
@@ -37685,6 +37810,32 @@ class UpdateModuleMetadata final :
   std::string* _internal_mutable_entrypoint();
   public:
 
+  // optional .viam.app.v1.ModuleSourceType source_type = 4 [json_name = "sourceType"];
+  bool has_source_type() const;
+  private:
+  bool _internal_has_source_type() const;
+  public:
+  void clear_source_type();
+  ::viam::app::v1::ModuleSourceType source_type() const;
+  void set_source_type(::viam::app::v1::ModuleSourceType value);
+  private:
+  ::viam::app::v1::ModuleSourceType _internal_source_type() const;
+  void _internal_set_source_type(::viam::app::v1::ModuleSourceType value);
+  public:
+
+  // optional .viam.app.v1.ModuleLanguage language = 5 [json_name = "language"];
+  bool has_language() const;
+  private:
+  bool _internal_has_language() const;
+  public:
+  void clear_language();
+  ::viam::app::v1::ModuleLanguage language() const;
+  void set_language(::viam::app::v1::ModuleLanguage value);
+  private:
+  ::viam::app::v1::ModuleLanguage _internal_language() const;
+  void _internal_set_language(::viam::app::v1::ModuleLanguage value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateModuleMetadata)
  private:
   class _Internal;
@@ -37692,10 +37843,13 @@ class UpdateModuleMetadata final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::Model > models_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App > apps_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  int source_type_;
+  int language_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -70621,6 +70775,62 @@ ModuleMetadata::apps() const {
   return apps_;
 }
 
+// optional .viam.app.v1.ModuleSourceType source_type = 7 [json_name = "sourceType"];
+inline bool ModuleMetadata::_internal_has_source_type() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool ModuleMetadata::has_source_type() const {
+  return _internal_has_source_type();
+}
+inline void ModuleMetadata::clear_source_type() {
+  source_type_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline ::viam::app::v1::ModuleSourceType ModuleMetadata::_internal_source_type() const {
+  return static_cast< ::viam::app::v1::ModuleSourceType >(source_type_);
+}
+inline ::viam::app::v1::ModuleSourceType ModuleMetadata::source_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleMetadata.source_type)
+  return _internal_source_type();
+}
+inline void ModuleMetadata::_internal_set_source_type(::viam::app::v1::ModuleSourceType value) {
+  _has_bits_[0] |= 0x00000004u;
+  source_type_ = value;
+}
+inline void ModuleMetadata::set_source_type(::viam::app::v1::ModuleSourceType value) {
+  _internal_set_source_type(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleMetadata.source_type)
+}
+
+// optional .viam.app.v1.ModuleLanguage language = 8 [json_name = "language"];
+inline bool ModuleMetadata::_internal_has_language() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool ModuleMetadata::has_language() const {
+  return _internal_has_language();
+}
+inline void ModuleMetadata::clear_language() {
+  language_ = 0;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline ::viam::app::v1::ModuleLanguage ModuleMetadata::_internal_language() const {
+  return static_cast< ::viam::app::v1::ModuleLanguage >(language_);
+}
+inline ::viam::app::v1::ModuleLanguage ModuleMetadata::language() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleMetadata.language)
+  return _internal_language();
+}
+inline void ModuleMetadata::_internal_set_language(::viam::app::v1::ModuleLanguage value) {
+  _has_bits_[0] |= 0x00000008u;
+  language_ = value;
+}
+inline void ModuleMetadata::set_language(::viam::app::v1::ModuleLanguage value) {
+  _internal_set_language(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ModuleMetadata.language)
+}
+
 // -------------------------------------------------------------------
 
 // MLModelMetadata
@@ -73142,6 +73352,92 @@ inline void ListRegistryItemsRequest::set_include_markdown_documentation(bool va
   // @@protoc_insertion_point(field_set:viam.app.v1.ListRegistryItemsRequest.include_markdown_documentation)
 }
 
+// repeated .viam.app.v1.ModuleSourceType module_source_types = 10 [json_name = "moduleSourceTypes"];
+inline int ListRegistryItemsRequest::_internal_module_source_types_size() const {
+  return module_source_types_.size();
+}
+inline int ListRegistryItemsRequest::module_source_types_size() const {
+  return _internal_module_source_types_size();
+}
+inline void ListRegistryItemsRequest::clear_module_source_types() {
+  module_source_types_.Clear();
+}
+inline ::viam::app::v1::ModuleSourceType ListRegistryItemsRequest::_internal_module_source_types(int index) const {
+  return static_cast< ::viam::app::v1::ModuleSourceType >(module_source_types_.Get(index));
+}
+inline ::viam::app::v1::ModuleSourceType ListRegistryItemsRequest::module_source_types(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListRegistryItemsRequest.module_source_types)
+  return _internal_module_source_types(index);
+}
+inline void ListRegistryItemsRequest::set_module_source_types(int index, ::viam::app::v1::ModuleSourceType value) {
+  module_source_types_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListRegistryItemsRequest.module_source_types)
+}
+inline void ListRegistryItemsRequest::_internal_add_module_source_types(::viam::app::v1::ModuleSourceType value) {
+  module_source_types_.Add(value);
+}
+inline void ListRegistryItemsRequest::add_module_source_types(::viam::app::v1::ModuleSourceType value) {
+  _internal_add_module_source_types(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListRegistryItemsRequest.module_source_types)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>&
+ListRegistryItemsRequest::module_source_types() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ListRegistryItemsRequest.module_source_types)
+  return module_source_types_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
+ListRegistryItemsRequest::_internal_mutable_module_source_types() {
+  return &module_source_types_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
+ListRegistryItemsRequest::mutable_module_source_types() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListRegistryItemsRequest.module_source_types)
+  return _internal_mutable_module_source_types();
+}
+
+// repeated .viam.app.v1.ModuleLanguage module_languages = 11 [json_name = "moduleLanguages"];
+inline int ListRegistryItemsRequest::_internal_module_languages_size() const {
+  return module_languages_.size();
+}
+inline int ListRegistryItemsRequest::module_languages_size() const {
+  return _internal_module_languages_size();
+}
+inline void ListRegistryItemsRequest::clear_module_languages() {
+  module_languages_.Clear();
+}
+inline ::viam::app::v1::ModuleLanguage ListRegistryItemsRequest::_internal_module_languages(int index) const {
+  return static_cast< ::viam::app::v1::ModuleLanguage >(module_languages_.Get(index));
+}
+inline ::viam::app::v1::ModuleLanguage ListRegistryItemsRequest::module_languages(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ListRegistryItemsRequest.module_languages)
+  return _internal_module_languages(index);
+}
+inline void ListRegistryItemsRequest::set_module_languages(int index, ::viam::app::v1::ModuleLanguage value) {
+  module_languages_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.ListRegistryItemsRequest.module_languages)
+}
+inline void ListRegistryItemsRequest::_internal_add_module_languages(::viam::app::v1::ModuleLanguage value) {
+  module_languages_.Add(value);
+}
+inline void ListRegistryItemsRequest::add_module_languages(::viam::app::v1::ModuleLanguage value) {
+  _internal_add_module_languages(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.ListRegistryItemsRequest.module_languages)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>&
+ListRegistryItemsRequest::module_languages() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.ListRegistryItemsRequest.module_languages)
+  return module_languages_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
+ListRegistryItemsRequest::_internal_mutable_module_languages() {
+  return &module_languages_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
+ListRegistryItemsRequest::mutable_module_languages() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.ListRegistryItemsRequest.module_languages)
+  return _internal_mutable_module_languages();
+}
+
 // -------------------------------------------------------------------
 
 // ListRegistryItemsResponse
@@ -74771,6 +75067,62 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::App >&
 UpdateModuleMetadata::apps() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.UpdateModuleMetadata.apps)
   return apps_;
+}
+
+// optional .viam.app.v1.ModuleSourceType source_type = 4 [json_name = "sourceType"];
+inline bool UpdateModuleMetadata::_internal_has_source_type() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UpdateModuleMetadata::has_source_type() const {
+  return _internal_has_source_type();
+}
+inline void UpdateModuleMetadata::clear_source_type() {
+  source_type_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::viam::app::v1::ModuleSourceType UpdateModuleMetadata::_internal_source_type() const {
+  return static_cast< ::viam::app::v1::ModuleSourceType >(source_type_);
+}
+inline ::viam::app::v1::ModuleSourceType UpdateModuleMetadata::source_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleMetadata.source_type)
+  return _internal_source_type();
+}
+inline void UpdateModuleMetadata::_internal_set_source_type(::viam::app::v1::ModuleSourceType value) {
+  _has_bits_[0] |= 0x00000001u;
+  source_type_ = value;
+}
+inline void UpdateModuleMetadata::set_source_type(::viam::app::v1::ModuleSourceType value) {
+  _internal_set_source_type(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleMetadata.source_type)
+}
+
+// optional .viam.app.v1.ModuleLanguage language = 5 [json_name = "language"];
+inline bool UpdateModuleMetadata::_internal_has_language() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool UpdateModuleMetadata::has_language() const {
+  return _internal_has_language();
+}
+inline void UpdateModuleMetadata::clear_language() {
+  language_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline ::viam::app::v1::ModuleLanguage UpdateModuleMetadata::_internal_language() const {
+  return static_cast< ::viam::app::v1::ModuleLanguage >(language_);
+}
+inline ::viam::app::v1::ModuleLanguage UpdateModuleMetadata::language() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateModuleMetadata.language)
+  return _internal_language();
+}
+inline void UpdateModuleMetadata::_internal_set_language(::viam::app::v1::ModuleLanguage value) {
+  _has_bits_[0] |= 0x00000002u;
+  language_ = value;
+}
+inline void UpdateModuleMetadata::set_language(::viam::app::v1::ModuleLanguage value) {
+  _internal_set_language(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateModuleMetadata.language)
 }
 
 // -------------------------------------------------------------------
@@ -82323,6 +82675,16 @@ template <> struct is_proto_enum< ::viam::app::v1::FragmentErrorType> : ::std::t
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::FragmentErrorType>() {
   return ::viam::app::v1::FragmentErrorType_descriptor();
+}
+template <> struct is_proto_enum< ::viam::app::v1::ModuleSourceType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::ModuleSourceType>() {
+  return ::viam::app::v1::ModuleSourceType_descriptor();
+}
+template <> struct is_proto_enum< ::viam::app::v1::ModuleLanguage> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::app::v1::ModuleLanguage>() {
+  return ::viam::app::v1::ModuleLanguage_descriptor();
 }
 template <> struct is_proto_enum< ::viam::app::v1::RegistryItemStatus> : ::std::true_type {};
 template <>
