@@ -37,6 +37,7 @@ jobs:
               curl \
               doxygen \
               g++ \
+              gettext \
               gdb \
               git \
               gnupg \
@@ -48,6 +49,7 @@ jobs:
               libprotobuf-dev \
               libre2-dev \
               libssl-dev \
+              lsof \
               ninja-build \
               pkg-config \
               protobuf-compiler-grpc \
@@ -64,6 +66,12 @@ jobs:
             clang-15 \
             clang-tidy-15 \
             clang-format
+
+      - name: Build viam server
+        run: |
+          curl https://storage.googleapis.com/packages.viam.com/apps/viam-server/viam-server-latest-x86_64 -o viam-server
+          chmod 755 viam-server
+          mv viam-server /usr/local/bin
 
 
 
@@ -83,6 +91,9 @@ jobs:
         run: |
           cmake --build build --target install
           cmake --install build
+
+      - name: Module test
+        run: etc/module_test/entrypoint.sh
 
       - name: test
         working-directory: build
