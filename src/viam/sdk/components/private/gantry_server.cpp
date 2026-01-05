@@ -1,5 +1,6 @@
 #include <viam/sdk/components/private/gantry_server.hpp>
 
+#include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 
 namespace viam {
@@ -77,6 +78,16 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
         "GantryServer::DoCommand", this, context, request)([&](auto&, auto& gantry) {
         const ProtoStruct result = gantry->do_command(from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
+    });
+}
+
+::grpc::Status GantryServer::GetKinematics(
+    ::grpc::ServerContext* context,
+    const ::viam::common::v1::GetKinematicsRequest* request,
+    ::viam::common::v1::GetKinematicsResponse* response) noexcept {
+    return make_service_helper<Gantry>(
+        "GantryServer::GetKinematics", this, context, request)([&](auto& helper, auto& gantry) {
+        *response = to_proto(gantry->get_kinematics(helper.getExtra()));
     });
 }
 

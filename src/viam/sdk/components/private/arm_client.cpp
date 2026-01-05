@@ -6,10 +6,14 @@
 #include <viam/api/component/arm/v1/arm.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/kinematics.hpp>
 
 namespace viam {
 namespace sdk {
 namespace impl {
+
+using sdk::from_proto;
+using sdk::to_proto;
 
 ArmClient::ArmClient(std::string name, const ViamChannel& channel)
     : Arm(std::move(name)),
@@ -89,23 +93,10 @@ ProtoStruct ArmClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
-Arm::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
+::viam::sdk::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
-        .invoke([](auto& response) -> Arm::KinematicsData {
-            std::vector<unsigned char> bytes(response.kinematics_data().begin(),
-                                             response.kinematics_data().end());
-            switch (response.format()) {
-                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_SVA:
-                    return Arm::KinematicsDataSVA(std::move(bytes));
-                case common::v1::KinematicsFileFormat::KINEMATICS_FILE_FORMAT_URDF:
-                    return Arm::KinematicsDataURDF(std::move(bytes));
-                case common::v1::KinematicsFileFormat::
-                    KINEMATICS_FILE_FORMAT_UNSPECIFIED:  // fallthrough
-                default:
-                    return Arm::KinematicsDataUnspecified{};
-            }
-        });
+        .invoke([](auto& response) -> ::viam::sdk::KinematicsData { return from_proto(response); });
 }
 
 std::map<std::string, mesh> ArmClient::get_3d_models(const ProtoStruct& extra) {

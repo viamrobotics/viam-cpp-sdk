@@ -6,14 +6,14 @@ deps:
     repository: googleapis
     commit: 004180b77378443887d3b55cabc00384
   - remote: buf.build
+    owner: opentelemetry
+    repository: opentelemetry
+    commit: 648a3e2f02e14fe187656ea4ac3befa1
+  - remote: buf.build
     owner: viamrobotics
     repository: api
-    commit: f0ff755cec224349b55e18e909ae8964
+    commit: d179f7d41acb47f3beeced05ea08360a
   - remote: buf.build
     owner: viamrobotics
     repository: goutils
     commit: 5fff320e3fab4611aea8180e09bcb5e5
-  - remote: buf.build
-    owner: opentelemetry
-    repository: opentelemetry
-    commit: 648a3e2f02e14fe187656ea4ac3befa1

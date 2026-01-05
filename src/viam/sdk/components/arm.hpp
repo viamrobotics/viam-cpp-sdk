@@ -6,8 +6,8 @@
 #include <string>
 
 #include <boost/optional/optional.hpp>
-#include <boost/variant/variant.hpp>
 
+#include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/mesh.hpp>
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
@@ -25,40 +25,17 @@ namespace sdk {
 /// This acts as an abstract parent class to be inherited from by any drivers representing
 /// specific arm implementations. This class cannot be used on its own.
 class Arm : public Component, public Stoppable {
-    // Base class for use below in defining kinematics data strong typedefs
-    template <class Tag>
-    struct raw_bytes {
-        // Pre c++17 our derived classes aren't aggregate initializable so we need to define
-        // and using declare some ctors
-
-        raw_bytes() = default;
-        raw_bytes(std::vector<unsigned char> b) : bytes(std::move(b)) {}
-
-        std::vector<unsigned char> bytes{};
-    };
-
-    // Comparison operator helper for the data types below
-    template <class DataType>
-    struct EqCompare {
-        inline friend bool operator==(const DataType& lhs, const DataType& rhs) {
-            return lhs.bytes == rhs.bytes;
-        }
-    };
-
    public:
-    struct KinematicsDataUnspecified : raw_bytes<KinematicsDataUnspecified>,
-                                       EqCompare<KinematicsDataUnspecified> {};
-    struct KinematicsDataSVA : raw_bytes<KinematicsDataSVA>, EqCompare<KinematicsDataSVA> {
-        using raw_bytes<KinematicsDataSVA>::raw_bytes;
-    };
-    struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF>, EqCompare<KinematicsDataURDF> {
-        using raw_bytes<KinematicsDataURDF>::raw_bytes;
-    };
-
-    /// @brief The kinematics of the component.
-    /// @returns The data in Viam's Spatial Vector Algebra (SVA) format, or URDF.
-    using KinematicsData =
-        boost::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
+    /// @brief Kinematics data types (aliases for shared kinematics types)
+    using KinematicsDataUnspecified
+        [[deprecated("Use ::viam::sdk::KinematicsDataUnspecified instead")]] =
+            ::viam::sdk::KinematicsDataUnspecified;
+    using KinematicsDataSVA [[deprecated("Use ::viam::sdk::KinematicsDataSVA instead")]] =
+        ::viam::sdk::KinematicsDataSVA;
+    using KinematicsDataURDF [[deprecated("Use ::viam::sdk::KinematicsDataURDF instead")]] =
+        ::viam::sdk::KinematicsDataURDF;
+    using KinematicsData [[deprecated("Use ::viam::sdk::KinematicsData instead")]] =
+        ::viam::sdk::KinematicsData;
 
     /// @brief Movement specifications for move_through_join_positions.
     struct MoveOptions {
@@ -134,12 +111,12 @@ class Arm : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method.
     /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
     /// and the object's type indicating the file format.
-    virtual KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
+    virtual ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
 
     /// @brief Get the kinematics data associated with the arm.
     /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
     /// and the object's type indicating the file format.
-    inline KinematicsData get_kinematics() {
+    inline ::viam::sdk::KinematicsData get_kinematics() {
         return get_kinematics({});
     }
 

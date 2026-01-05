@@ -182,6 +182,9 @@ extern ServiceConfigDefaultTypeInternal _ServiceConfig_default_instance_;
 class SessionsConfig;
 struct SessionsConfigDefaultTypeInternal;
 extern SessionsConfigDefaultTypeInternal _SessionsConfig_default_instance_;
+class TracingConfig;
+struct TracingConfigDefaultTypeInternal;
+extern TracingConfigDefaultTypeInternal _TracingConfig_default_instance_;
 class TrafficTunnelEndpoint;
 struct TrafficTunnelEndpointDefaultTypeInternal;
 extern TrafficTunnelEndpointDefaultTypeInternal _TrafficTunnelEndpoint_default_instance_;
@@ -234,6 +237,7 @@ template<> ::viam::app::v1::ResourceLevelServiceConfig* Arena::CreateMaybeMessag
 template<> ::viam::app::v1::RobotConfig* Arena::CreateMaybeMessage<::viam::app::v1::RobotConfig>(Arena*);
 template<> ::viam::app::v1::ServiceConfig* Arena::CreateMaybeMessage<::viam::app::v1::ServiceConfig>(Arena*);
 template<> ::viam::app::v1::SessionsConfig* Arena::CreateMaybeMessage<::viam::app::v1::SessionsConfig>(Arena*);
+template<> ::viam::app::v1::TracingConfig* Arena::CreateMaybeMessage<::viam::app::v1::TracingConfig>(Arena*);
 template<> ::viam::app::v1::TrafficTunnelEndpoint* Arena::CreateMaybeMessage<::viam::app::v1::TrafficTunnelEndpoint>(Arena*);
 template<> ::viam::app::v1::Translation* Arena::CreateMaybeMessage<::viam::app::v1::Translation>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -404,6 +408,7 @@ class RobotConfig final :
     kNetworkFieldNumber = 6,
     kAuthFieldNumber = 7,
     kMaintenanceFieldNumber = 16,
+    kTracingFieldNumber = 19,
     kDebugFieldNumber = 8,
     kDisablePartialStartFieldNumber = 10,
     kEnableWebProfileFieldNumber = 13,
@@ -657,6 +662,24 @@ class RobotConfig final :
       ::viam::app::v1::MaintenanceConfig* maintenance);
   ::viam::app::v1::MaintenanceConfig* unsafe_arena_release_maintenance();
 
+  // optional .viam.app.v1.TracingConfig tracing = 19 [json_name = "tracing"];
+  bool has_tracing() const;
+  private:
+  bool _internal_has_tracing() const;
+  public:
+  void clear_tracing();
+  const ::viam::app::v1::TracingConfig& tracing() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::TracingConfig* release_tracing();
+  ::viam::app::v1::TracingConfig* mutable_tracing();
+  void set_allocated_tracing(::viam::app::v1::TracingConfig* tracing);
+  private:
+  const ::viam::app::v1::TracingConfig& _internal_tracing() const;
+  ::viam::app::v1::TracingConfig* _internal_mutable_tracing();
+  public:
+  void unsafe_arena_set_allocated_tracing(
+      ::viam::app::v1::TracingConfig* tracing);
+  ::viam::app::v1::TracingConfig* unsafe_arena_release_tracing();
+
   // optional bool debug = 8 [json_name = "debug"];
   bool has_debug() const;
   private:
@@ -724,6 +747,7 @@ class RobotConfig final :
   ::viam::app::v1::NetworkConfig* network_;
   ::viam::app::v1::AuthConfig* auth_;
   ::viam::app::v1::MaintenanceConfig* maintenance_;
+  ::viam::app::v1::TracingConfig* tracing_;
   bool debug_;
   bool disable_partial_start_;
   bool enable_web_profile_;
@@ -1132,6 +1156,187 @@ class JobConfig final :
 };
 // -------------------------------------------------------------------
 
+class TracingConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.TracingConfig) */ {
+ public:
+  inline TracingConfig() : TracingConfig(nullptr) {}
+  ~TracingConfig() override;
+  explicit PROTOBUF_CONSTEXPR TracingConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TracingConfig(const TracingConfig& from);
+  TracingConfig(TracingConfig&& from) noexcept
+    : TracingConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline TracingConfig& operator=(const TracingConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TracingConfig& operator=(TracingConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TracingConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TracingConfig* internal_default_instance() {
+    return reinterpret_cast<const TracingConfig*>(
+               &_TracingConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(TracingConfig& a, TracingConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TracingConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TracingConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TracingConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TracingConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TracingConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TracingConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TracingConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.TracingConfig";
+  }
+  protected:
+  explicit TracingConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOtlpEndpointFieldNumber = 4,
+    kEnabledFieldNumber = 1,
+    kDiskFieldNumber = 2,
+    kConsoleFieldNumber = 3,
+  };
+  // string otlp_endpoint = 4 [json_name = "otlpEndpoint"];
+  void clear_otlp_endpoint();
+  const std::string& otlp_endpoint() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_otlp_endpoint(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_otlp_endpoint();
+  PROTOBUF_NODISCARD std::string* release_otlp_endpoint();
+  void set_allocated_otlp_endpoint(std::string* otlp_endpoint);
+  private:
+  const std::string& _internal_otlp_endpoint() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_otlp_endpoint(const std::string& value);
+  std::string* _internal_mutable_otlp_endpoint();
+  public:
+
+  // bool enabled = 1 [json_name = "enabled"];
+  void clear_enabled();
+  bool enabled() const;
+  void set_enabled(bool value);
+  private:
+  bool _internal_enabled() const;
+  void _internal_set_enabled(bool value);
+  public:
+
+  // bool disk = 2 [json_name = "disk"];
+  void clear_disk();
+  bool disk() const;
+  void set_disk(bool value);
+  private:
+  bool _internal_disk() const;
+  void _internal_set_disk(bool value);
+  public:
+
+  // bool console = 3 [json_name = "console"];
+  void clear_console();
+  bool console() const;
+  void set_console(bool value);
+  private:
+  bool _internal_console() const;
+  void _internal_set_console(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.TracingConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr otlp_endpoint_;
+  bool enabled_;
+  bool disk_;
+  bool console_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class LocationSecret final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.LocationSecret) */ {
  public:
@@ -1180,7 +1385,7 @@ class LocationSecret final :
                &_LocationSecret_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(LocationSecret& a, LocationSecret& b) {
     a.Swap(&b);
@@ -1344,7 +1549,7 @@ class AppValidationStatus final :
                &_AppValidationStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(AppValidationStatus& a, AppValidationStatus& b) {
     a.Swap(&b);
@@ -1492,7 +1697,7 @@ class CloudConfig final :
                &_CloudConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(CloudConfig& a, CloudConfig& b) {
     a.Swap(&b);
@@ -1815,7 +2020,7 @@ class ComponentConfig final :
                &_ComponentConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(ComponentConfig& a, ComponentConfig& b) {
     a.Swap(&b);
@@ -2133,7 +2338,7 @@ class ResourceLevelServiceConfig final :
                &_ResourceLevelServiceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(ResourceLevelServiceConfig& a, ResourceLevelServiceConfig& b) {
     a.Swap(&b);
@@ -2329,7 +2534,7 @@ class ProcessConfig final :
                &_ProcessConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(ProcessConfig& a, ProcessConfig& b) {
     a.Swap(&b);
@@ -2630,7 +2835,7 @@ class ServiceConfig final :
                &_ServiceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(ServiceConfig& a, ServiceConfig& b) {
     a.Swap(&b);
@@ -2928,7 +3133,7 @@ class NetworkConfig final :
                &_NetworkConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(NetworkConfig& a, NetworkConfig& b) {
     a.Swap(&b);
@@ -3175,7 +3380,7 @@ class SessionsConfig final :
                &_SessionsConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(SessionsConfig& a, SessionsConfig& b) {
     a.Swap(&b);
@@ -3327,7 +3532,7 @@ class TrafficTunnelEndpoint final :
                &_TrafficTunnelEndpoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(TrafficTunnelEndpoint& a, TrafficTunnelEndpoint& b) {
     a.Swap(&b);
@@ -3490,7 +3695,7 @@ class AuthConfig final :
                &_AuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(AuthConfig& a, AuthConfig& b) {
     a.Swap(&b);
@@ -3689,7 +3894,7 @@ class JWKSFile final :
                &_JWKSFile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(JWKSFile& a, JWKSFile& b) {
     a.Swap(&b);
@@ -3841,7 +4046,7 @@ class ExternalAuthConfig final :
                &_ExternalAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(ExternalAuthConfig& a, ExternalAuthConfig& b) {
     a.Swap(&b);
@@ -3993,7 +4198,7 @@ class AuthHandlerConfig final :
                &_AuthHandlerConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(AuthHandlerConfig& a, AuthHandlerConfig& b) {
     a.Swap(&b);
@@ -4156,7 +4361,7 @@ class Frame final :
                &_Frame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(Frame& a, Frame& b) {
     a.Swap(&b);
@@ -4364,7 +4569,7 @@ class LogConfiguration final :
                &_LogConfiguration_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(LogConfiguration& a, LogConfiguration& b) {
     a.Swap(&b);
@@ -4512,7 +4717,7 @@ class Translation final :
                &_Translation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(Translation& a, Translation& b) {
     a.Swap(&b);
@@ -4676,7 +4881,7 @@ class Orientation_NoOrientation final :
                &_Orientation_NoOrientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(Orientation_NoOrientation& a, Orientation_NoOrientation& b) {
     a.Swap(&b);
@@ -4793,7 +4998,7 @@ class Orientation_OrientationVectorRadians final :
                &_Orientation_OrientationVectorRadians_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(Orientation_OrientationVectorRadians& a, Orientation_OrientationVectorRadians& b) {
     a.Swap(&b);
@@ -4969,7 +5174,7 @@ class Orientation_OrientationVectorDegrees final :
                &_Orientation_OrientationVectorDegrees_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(Orientation_OrientationVectorDegrees& a, Orientation_OrientationVectorDegrees& b) {
     a.Swap(&b);
@@ -5145,7 +5350,7 @@ class Orientation_EulerAngles final :
                &_Orientation_EulerAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(Orientation_EulerAngles& a, Orientation_EulerAngles& b) {
     a.Swap(&b);
@@ -5310,7 +5515,7 @@ class Orientation_AxisAngles final :
                &_Orientation_AxisAngles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(Orientation_AxisAngles& a, Orientation_AxisAngles& b) {
     a.Swap(&b);
@@ -5486,7 +5691,7 @@ class Orientation_Quaternion final :
                &_Orientation_Quaternion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(Orientation_Quaternion& a, Orientation_Quaternion& b) {
     a.Swap(&b);
@@ -5672,7 +5877,7 @@ class Orientation final :
                &_Orientation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(Orientation& a, Orientation& b) {
     a.Swap(&b);
@@ -5948,7 +6153,7 @@ class RemoteConfig final :
                &_RemoteConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(RemoteConfig& a, RemoteConfig& b) {
     a.Swap(&b);
@@ -6271,7 +6476,7 @@ class RemoteAuth_Credentials final :
                &_RemoteAuth_Credentials_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(RemoteAuth_Credentials& a, RemoteAuth_Credentials& b) {
     a.Swap(&b);
@@ -6430,7 +6635,7 @@ class RemoteAuth final :
                &_RemoteAuth_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(RemoteAuth& a, RemoteAuth& b) {
     a.Swap(&b);
@@ -6600,7 +6805,7 @@ class AgentInfo final :
                &_AgentInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(AgentInfo& a, AgentInfo& b) {
     a.Swap(&b);
@@ -6869,7 +7074,7 @@ class ConfigRequest final :
                &_ConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(ConfigRequest& a, ConfigRequest& b) {
     a.Swap(&b);
@@ -7038,7 +7243,7 @@ class ConfigResponse final :
                &_ConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(ConfigResponse& a, ConfigResponse& b) {
     a.Swap(&b);
@@ -7190,7 +7395,7 @@ class CertificateRequest final :
                &_CertificateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(CertificateRequest& a, CertificateRequest& b) {
     a.Swap(&b);
@@ -7338,7 +7543,7 @@ class CertificateResponse final :
                &_CertificateResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(CertificateResponse& a, CertificateResponse& b) {
     a.Swap(&b);
@@ -7518,7 +7723,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -7685,7 +7890,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -7802,7 +8007,7 @@ class NeedsRestartRequest final :
                &_NeedsRestartRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(NeedsRestartRequest& a, NeedsRestartRequest& b) {
     a.Swap(&b);
@@ -7950,7 +8155,7 @@ class NeedsRestartResponse final :
                &_NeedsRestartResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    40;
 
   friend void swap(NeedsRestartResponse& a, NeedsRestartResponse& b) {
     a.Swap(&b);
@@ -8157,7 +8362,7 @@ class ModuleConfig final :
                &_ModuleConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    42;
 
   friend void swap(ModuleConfig& a, ModuleConfig& b) {
     a.Swap(&b);
@@ -8446,7 +8651,7 @@ class PackageConfig final :
                &_PackageConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   friend void swap(PackageConfig& a, PackageConfig& b) {
     a.Swap(&b);
@@ -8662,7 +8867,7 @@ class MaintenanceConfig final :
                &_MaintenanceConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    44;
 
   friend void swap(MaintenanceConfig& a, MaintenanceConfig& b) {
     a.Swap(&b);
@@ -9223,7 +9428,7 @@ inline void RobotConfig::set_allocated_auth(::viam::app::v1::AuthConfig* auth) {
 
 // optional bool debug = 8 [json_name = "debug"];
 inline bool RobotConfig::_internal_has_debug() const {
-  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
   return value;
 }
 inline bool RobotConfig::has_debug() const {
@@ -9231,7 +9436,7 @@ inline bool RobotConfig::has_debug() const {
 }
 inline void RobotConfig::clear_debug() {
   debug_ = false;
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline bool RobotConfig::_internal_debug() const {
   return debug_;
@@ -9241,7 +9446,7 @@ inline bool RobotConfig::debug() const {
   return _internal_debug();
 }
 inline void RobotConfig::_internal_set_debug(bool value) {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
   debug_ = value;
 }
 inline void RobotConfig::set_debug(bool value) {
@@ -9291,7 +9496,7 @@ RobotConfig::modules() const {
 
 // optional bool disable_partial_start = 10 [json_name = "disablePartialStart"];
 inline bool RobotConfig::_internal_has_disable_partial_start() const {
-  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
   return value;
 }
 inline bool RobotConfig::has_disable_partial_start() const {
@@ -9299,7 +9504,7 @@ inline bool RobotConfig::has_disable_partial_start() const {
 }
 inline void RobotConfig::clear_disable_partial_start() {
   disable_partial_start_ = false;
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline bool RobotConfig::_internal_disable_partial_start() const {
   return disable_partial_start_;
@@ -9309,7 +9514,7 @@ inline bool RobotConfig::disable_partial_start() const {
   return _internal_disable_partial_start();
 }
 inline void RobotConfig::_internal_set_disable_partial_start(bool value) {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
   disable_partial_start_ = value;
 }
 inline void RobotConfig::set_disable_partial_start(bool value) {
@@ -9655,6 +9860,96 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::JobConf
 RobotConfig::jobs() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.RobotConfig.jobs)
   return jobs_;
+}
+
+// optional .viam.app.v1.TracingConfig tracing = 19 [json_name = "tracing"];
+inline bool RobotConfig::_internal_has_tracing() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || tracing_ != nullptr);
+  return value;
+}
+inline bool RobotConfig::has_tracing() const {
+  return _internal_has_tracing();
+}
+inline void RobotConfig::clear_tracing() {
+  if (tracing_ != nullptr) tracing_->Clear();
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const ::viam::app::v1::TracingConfig& RobotConfig::_internal_tracing() const {
+  const ::viam::app::v1::TracingConfig* p = tracing_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::TracingConfig&>(
+      ::viam::app::v1::_TracingConfig_default_instance_);
+}
+inline const ::viam::app::v1::TracingConfig& RobotConfig::tracing() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotConfig.tracing)
+  return _internal_tracing();
+}
+inline void RobotConfig::unsafe_arena_set_allocated_tracing(
+    ::viam::app::v1::TracingConfig* tracing) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(tracing_);
+  }
+  tracing_ = tracing;
+  if (tracing) {
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RobotConfig.tracing)
+}
+inline ::viam::app::v1::TracingConfig* RobotConfig::release_tracing() {
+  _has_bits_[0] &= ~0x00000008u;
+  ::viam::app::v1::TracingConfig* temp = tracing_;
+  tracing_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::TracingConfig* RobotConfig::unsafe_arena_release_tracing() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RobotConfig.tracing)
+  _has_bits_[0] &= ~0x00000008u;
+  ::viam::app::v1::TracingConfig* temp = tracing_;
+  tracing_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::TracingConfig* RobotConfig::_internal_mutable_tracing() {
+  _has_bits_[0] |= 0x00000008u;
+  if (tracing_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::TracingConfig>(GetArenaForAllocation());
+    tracing_ = p;
+  }
+  return tracing_;
+}
+inline ::viam::app::v1::TracingConfig* RobotConfig::mutable_tracing() {
+  ::viam::app::v1::TracingConfig* _msg = _internal_mutable_tracing();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotConfig.tracing)
+  return _msg;
+}
+inline void RobotConfig::set_allocated_tracing(::viam::app::v1::TracingConfig* tracing) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete tracing_;
+  }
+  if (tracing) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(tracing);
+    if (message_arena != submessage_arena) {
+      tracing = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, tracing, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  tracing_ = tracing;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RobotConfig.tracing)
 }
 
 // -------------------------------------------------------------------
@@ -10138,6 +10433,120 @@ inline void JobConfig::set_allocated_log_configuration(::viam::app::v1::LogConfi
   }
   log_configuration_ = log_configuration;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.JobConfig.log_configuration)
+}
+
+// -------------------------------------------------------------------
+
+// TracingConfig
+
+// bool enabled = 1 [json_name = "enabled"];
+inline void TracingConfig::clear_enabled() {
+  enabled_ = false;
+}
+inline bool TracingConfig::_internal_enabled() const {
+  return enabled_;
+}
+inline bool TracingConfig::enabled() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.TracingConfig.enabled)
+  return _internal_enabled();
+}
+inline void TracingConfig::_internal_set_enabled(bool value) {
+  
+  enabled_ = value;
+}
+inline void TracingConfig::set_enabled(bool value) {
+  _internal_set_enabled(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.TracingConfig.enabled)
+}
+
+// bool disk = 2 [json_name = "disk"];
+inline void TracingConfig::clear_disk() {
+  disk_ = false;
+}
+inline bool TracingConfig::_internal_disk() const {
+  return disk_;
+}
+inline bool TracingConfig::disk() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.TracingConfig.disk)
+  return _internal_disk();
+}
+inline void TracingConfig::_internal_set_disk(bool value) {
+  
+  disk_ = value;
+}
+inline void TracingConfig::set_disk(bool value) {
+  _internal_set_disk(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.TracingConfig.disk)
+}
+
+// bool console = 3 [json_name = "console"];
+inline void TracingConfig::clear_console() {
+  console_ = false;
+}
+inline bool TracingConfig::_internal_console() const {
+  return console_;
+}
+inline bool TracingConfig::console() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.TracingConfig.console)
+  return _internal_console();
+}
+inline void TracingConfig::_internal_set_console(bool value) {
+  
+  console_ = value;
+}
+inline void TracingConfig::set_console(bool value) {
+  _internal_set_console(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.TracingConfig.console)
+}
+
+// string otlp_endpoint = 4 [json_name = "otlpEndpoint"];
+inline void TracingConfig::clear_otlp_endpoint() {
+  otlp_endpoint_.ClearToEmpty();
+}
+inline const std::string& TracingConfig::otlp_endpoint() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.TracingConfig.otlp_endpoint)
+  return _internal_otlp_endpoint();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TracingConfig::set_otlp_endpoint(ArgT0&& arg0, ArgT... args) {
+ 
+ otlp_endpoint_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.TracingConfig.otlp_endpoint)
+}
+inline std::string* TracingConfig::mutable_otlp_endpoint() {
+  std::string* _s = _internal_mutable_otlp_endpoint();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.TracingConfig.otlp_endpoint)
+  return _s;
+}
+inline const std::string& TracingConfig::_internal_otlp_endpoint() const {
+  return otlp_endpoint_.Get();
+}
+inline void TracingConfig::_internal_set_otlp_endpoint(const std::string& value) {
+  
+  otlp_endpoint_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TracingConfig::_internal_mutable_otlp_endpoint() {
+  
+  return otlp_endpoint_.Mutable(GetArenaForAllocation());
+}
+inline std::string* TracingConfig::release_otlp_endpoint() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.TracingConfig.otlp_endpoint)
+  return otlp_endpoint_.Release();
+}
+inline void TracingConfig::set_allocated_otlp_endpoint(std::string* otlp_endpoint) {
+  if (otlp_endpoint != nullptr) {
+    
+  } else {
+    
+  }
+  otlp_endpoint_.SetAllocated(otlp_endpoint, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (otlp_endpoint_.IsDefault()) {
+    otlp_endpoint_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.TracingConfig.otlp_endpoint)
 }
 
 // -------------------------------------------------------------------
@@ -17959,6 +18368,8 @@ inline void MaintenanceConfig::set_allocated_maintenance_allowed_key(std::string
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
