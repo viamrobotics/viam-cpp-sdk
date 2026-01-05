@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include <algorithm>
+#include <iterator>
 #include <vector>
 
 #include <viam/sdk/common/proto_value.hpp>
