@@ -140,12 +140,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af468b148e304181de0c3dc4a00482d3f" id="r_af468b148e304181de0c3dc4a00482d3f"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af468b148e304181de0c3dc4a00482d3f">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:af468b148e304181de0c3dc4a00482d3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:af468b148e304181de0c3dc4a00482d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38a947544d389d2915cf6ea932abf7a0" id="r_a38a947544d389d2915cf6ea932abf7a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38a947544d389d2915cf6ea932abf7a0">get_image</a> (std::string mime_type)</td></tr>
-<tr class="memdesc:a38a947544d389d2915cf6ea932abf7a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next image from the camera as a raw image.  <br /></td></tr>
-<tr class="separator:a38a947544d389d2915cf6ea932abf7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a809c80371d84fdda7676190373bcc6bb" id="r_a809c80371d84fdda7676190373bcc6bb"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a809c80371d84fdda7676190373bcc6bb">get_image</a> (std::string mime_type, const ProtoStruct &amp;extra)=0</td></tr>
-<tr class="memdesc:a809c80371d84fdda7676190373bcc6bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next image from the camera as a raw image.  <br /></td></tr>
-<tr class="separator:a809c80371d84fdda7676190373bcc6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9189bde5a973d671b449d752bc64436" id="r_ab9189bde5a973d671b449d752bc64436"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9189bde5a973d671b449d752bc64436">get_images</a> ()</td></tr>
 <tr class="memdesc:ab9189bde5a973d671b449d752bc64436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next images from the camera as a vector of raw images with names and metadata.  <br /></td></tr>
 <tr class="separator:ab9189bde5a973d671b449d752bc64436"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -438,81 +432,6 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the component. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#a263f8474fe3c78dc353e11f1a19e2461">viam::sdk::impl::CameraClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#a223285d6ad01589205f7a08439fc2922">viam::sdk::impl::CameraClient</a>.</p>
-
-</div>
-</div>
-<a id="a38a947544d389d2915cf6ea932abf7a0" name="a38a947544d389d2915cf6ea932abf7a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38a947544d389d2915cf6ea932abf7a0">&#9670;&#160;</a></span>get_image() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a> viam::sdk::Camera::get_image </td>
-          <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>mime_type</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the next image from the camera as a raw image. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mime_type</td><td>the desired mime_type of the image (does not guarantee output type). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The frame as a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html" title="the raw bytes, mime type of an image, and name of the source that produced it.">raw_image</a></code>. </dd></dl>
-
-</div>
-</div>
-<a id="a809c80371d84fdda7676190373bcc6bb" name="a809c80371d84fdda7676190373bcc6bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a809c80371d84fdda7676190373bcc6bb">&#9670;&#160;</a></span>get_image() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html">raw_image</a> viam::sdk::Camera::get_image </td>
-          <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>mime_type</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the next image from the camera as a raw image. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mime_type</td><td>the desired mime_type of the image (does not guarantee output type). </td></tr>
-    <tr><td class="paramname">extra</td><td>any additional arguments to the method. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The frame as a <code><a class="el" href="structviam_1_1sdk_1_1Camera_1_1raw__image.html" title="the raw bytes, mime type of an image, and name of the source that produced it.">raw_image</a></code>. </dd></dl>
-
-<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#ab8a6dce62680e9e08142d56410a2d181">viam::sdk::impl::CameraClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1CameraClient.html#a809c80371d84fdda7676190373bcc6bb">viam::sdk::impl::CameraClient</a>.</p>
 
 </div>
 </div>
