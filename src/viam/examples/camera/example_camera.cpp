@@ -57,11 +57,11 @@ int main() try {
                        << intrinsics.height_px;
 
     std::string output_file("img.png");
-    std::string image_mime_type("image/png");
 
-    VIAM_SDK_LOG(info) << "Getting image from camera ";
+    VIAM_SDK_LOG(info) << "Getting images from camera ";
 
-    vs::Camera::raw_image img = camera->get_image(image_mime_type);
+    vs::Camera::image_collection images = camera->get_images();
+    vs::Camera::raw_image img = images.images[0];
 
     VIAM_SDK_LOG(info) << "Got image of mime type: " << img.mime_type;
 
