@@ -140,6 +140,7 @@ target_sources(viamsdk
     module/handler_map.cpp
     module/module.cpp
     module/service.cpp
+    module/private/data_consumer_query.cpp
     referenceframe/frame.cpp
     registry/registry.cpp
     resource/reconfigurable.cpp

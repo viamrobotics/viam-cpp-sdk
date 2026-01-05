@@ -6,6 +6,7 @@
 #include <cstdint>
 
 #include <chrono>
+#include <string>
 #include <vector>
 
 #include <viam/sdk/app/data_client.hpp>
@@ -30,13 +31,6 @@ class DataConsumer {
         /// @brief Any additional query stages to be included after the default query.
         std::vector<DataClient::BSONBytes> additional_stages;
     };
-
-    /// @brief Helper function used by query_tabular_data to construct the BSON-encoded default
-    /// query.
-    static DataClient::BSONBytes default_query(
-        const std::string& part_id,
-        const std::string& resource,
-        std::chrono::time_point<std::chrono::system_clock, std::chrono::milliseconds> time_point);
 
     DataConsumer(DataClient& dc);
 
