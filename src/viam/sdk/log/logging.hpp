@@ -91,8 +91,8 @@ class LogManager {
     void set_global_log_level(int argc, char** argv);
 
     /// @brief Set the channel name of log messages to be associated with a C++ module.
-    /// @remark The channel name will default to the value of the environment variable
-    /// VIAM_MODULE_NAME if set.
+    /// @remark The channel name will be set to the value of the environment variable
+    /// VIAM_MODULE_NAME if set, otherwise it defaults to the value of @ref default_module_name.
     void set_module_name(const std::string& name);
 
     /// @brief Set the module logger severity.
