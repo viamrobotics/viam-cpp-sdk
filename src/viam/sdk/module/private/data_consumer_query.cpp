@@ -45,7 +45,7 @@ struct writer {
         std::copy_n(reinterpret_cast<uint8_t const*>(&doc_size), sizeof(doc_size), buf.begin());
     }
 
-    void write_bson_doc(const ProtoStruct& top_level) {
+    void write_bson_doc(const ProtoStruct& top_level) {  // NOLINT(misc-no-recursion)
         // First four bytes are total object size; push it here then calculate it at the end
         write_bytes(int32_t{});
 
