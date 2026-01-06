@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['_7esignalmanager_0',['~SignalManager',['../classviam_1_1sdk_1_1SignalManager.html#a8c946f6a55d435ade87c198f2b02a563',1,'viam::sdk::SignalManager']]]
+  ['wait_0',['wait',['../classviam_1_1sdk_1_1SignalManager.html#a35da6e5e1dd8ec4e97ba2a61feaccfd1',1,'viam::sdk::SignalManager::wait()'],['../classviam_1_1sdk_1_1Server.html#a832bd6e83f58f082dd362b8930dd60f1',1,'viam::sdk::Server::wait()']]],
+  ['with_5fchannel_1',['with_channel',['../classviam_1_1sdk_1_1RobotClient.html#aa72c642e003923ce805464988704bf6d',1,'viam::sdk::RobotClient']]],
+  ['write_5fanalog_2',['write_analog',['../classviam_1_1sdk_1_1Board.html#abc311cfbf00eff084a0984e01dccc0a7',1,'viam::sdk::Board::write_analog(const std::string &amp;pin, int value)'],['../classviam_1_1sdk_1_1Board.html#aa58acbacf9c0652ea8a48aa3c1a83ba3',1,'viam::sdk::Board::write_analog(const std::string &amp;pin, int value, const ProtoStruct &amp;extra)=0'],['../classviam_1_1sdk_1_1impl_1_1BoardClient.html#a24c99d6fbabf772bf7f8b7e3dea854d7',1,'viam::sdk::impl::BoardClient::write_analog(const std::string &amp;pin, int value, const ProtoStruct &amp;extra) override'],['../classviam_1_1sdk_1_1impl_1_1BoardClient.html#abc311cfbf00eff084a0984e01dccc0a7',1,'viam::sdk::impl::BoardClient::write_analog(const std::string &amp;pin, int value)'],['../classviam_1_1sdk_1_1impl_1_1BoardClient.html#aa58acbacf9c0652ea8a48aa3c1a83ba3',1,'viam::sdk::impl::BoardClient::write_analog(const std::string &amp;pin, int value, const ProtoStruct &amp;extra)=0']]]
 ];
