@@ -68,6 +68,10 @@ const char* global_resource_name() {
     return "Viam C++ SDK";
 }
 
+const char* default_module_name() {
+    return "Viam C++ Module";
+}
+
 bool LogManager::Filter::operator()(const boost::log::attribute_value_set& attrs) const {
     auto sev = attrs[attr_sev_type{}];
     if (!sev) {
@@ -111,6 +115,16 @@ void LogManager::set_global_log_level(int argc, char** argv) {
             return;
         }
     }
+}
+
+void LogManager::set_module_log_name(const std::string& name) {
+    module_logger_.channel(name);
+
+    VIAM_SDK_LOG(debug) << "Overrode module log name";
+}
+
+void LogManager::set_module_log_level(log_level lvl) {
+    module_level_ = lvl;
 }
 
 void LogManager::set_resource_log_level(const std::string& resource, log_level lvl) {

@@ -86,6 +86,13 @@ class LogManager {
     /// how to start modules with a "log-level" commandline argument.
     void set_global_log_level(int argc, char** argv);
 
+    /// @brief Set the channel name of log messages to be associated with a C++ module.
+    /// @remark
+    void set_module_name(const std::string& name);
+
+    /// @brief Set the module logger severity.
+    void set_module_log_level(log_level);
+
     /// @brief Set the logger severity for a resource.
     ///
     /// LogManager can maintain separate severity levels for individual resources. For example, you
@@ -100,6 +107,11 @@ class LogManager {
     ///
     /// Users should prefer to log messages using the logging macros below.
     LogSource& global_logger();
+
+    /// @brief Return the SDK module log source.
+    ///
+    /// Users should prefer to log messages using the logging macros below.
+    LogSource& module_logger();
 
    private:
     friend class RobotClient;
@@ -117,10 +129,14 @@ class LogManager {
     void disable_console_logging();
 
     LogSource sdk_logger_;
+
+    LogSource module_logger_;
+
     boost::shared_ptr<boost::log::sinks::synchronous_sink<boost::log::sinks::text_ostream_backend>>
         console_sink_;
 
     log_level global_level_{log_level::info};
+    log_level module_level_{log_level::info};
 
     std::map<std::string, log_level> resource_levels_;
 };
@@ -152,6 +168,13 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 ///
 /// Use this macro to generate log messages pertaining to the SDK at large.
 #define VIAM_SDK_LOG(level) VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().global_logger(), level)
+
+/// @brief Log macro for logs related to a module.
+/// @ingroup Log
+///
+/// Use this macro to generate log messages pertaining to a Viam C++ module.
+#define VIAM_MODULE_LOG(level) \
+    VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().module_logger(), level)
 
 /// @brief Log macro for resource-level logs.
 /// @ingroup Log
