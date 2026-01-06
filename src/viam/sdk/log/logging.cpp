@@ -78,6 +78,10 @@ bool LogManager::Filter::operator()(const boost::log::attribute_value_set& attrs
         return false;
     }
 
+    if (attrs["module_log_tag"]) {
+        return *sev >= parent->module_level_;
+    }
+
     auto resource = attrs[attr_channel_type{}];
     if (resource) {
         auto it = parent->resource_levels_.find(*resource);
@@ -117,7 +121,7 @@ void LogManager::set_global_log_level(int argc, char** argv) {
     }
 }
 
-void LogManager::set_module_log_name(const std::string& name) {
+void LogManager::set_module_name(const std::string& name) {
     module_logger_.channel(name);
 
     VIAM_SDK_LOG(debug) << "Overrode module log name";
@@ -127,12 +131,26 @@ void LogManager::set_module_log_level(log_level lvl) {
     module_level_ = lvl;
 }
 
+LogSource& LogManager::module_logger() {
+    return module_logger_;
+}
+
 void LogManager::set_resource_log_level(const std::string& resource, log_level lvl) {
     resource_levels_[resource] = lvl;
 }
 
 void LogManager::init_logging() {
     sdk_logger_.channel(global_resource_name());
+
+    module_logger_.channel(get_env("VIAM_MODULE_NAME").value_or(default_module_name()));
+
+    struct module_tag {};
+
+    // This tag attribute is used by the logging filter to identify log records originating from the
+    // module logger.
+    module_logger_.add_attribute("module_log_tag",
+                                 boost::log::attributes::make_constant(module_tag{}));
+
     boost::log::core::get()->add_global_attribute("TimeStamp",
                                                   boost::log::attributes::local_clock());
 
