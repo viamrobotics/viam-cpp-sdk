@@ -17,6 +17,8 @@ namespace impl {
 
 namespace {
 
+namespace endian = boost::endian;
+
 enum class object_type : int8_t { k_string = 2, k_document = 3, k_datetime = 9 };
 
 struct writer {
@@ -37,6 +39,12 @@ struct writer {
         write_cstring(key);
     }
 
+    void write_doc_size() {
+        const auto doc_size = endian::native_to_little(static_cast<int32_t>(buf.size()));
+
+        std::copy_n(reinterpret_cast<uint8_t const*>(&doc_size), sizeof(doc_size), buf.begin());
+    }
+
     void write_bson_doc(const ProtoStruct& top_level) {
         // First four bytes are total object size; push it here then calculate it at the end
         write_bytes(int32_t{});
@@ -50,14 +58,14 @@ struct writer {
         }
 
         write_bytes(uint8_t{0});  // end of object
-
-        *reinterpret_cast<int32_t*>(&buf.front()) = static_cast<int32_t>(buf.size());
+        write_doc_size();
     }
 
     void write_entry(const std::string& key, const std::string& val) {
         write_header(object_type::k_string, key);
 
-        write_bytes(static_cast<int32_t>(val.size() + 1U));  // string size + null byte
+        write_bytes(endian::native_to_little(
+            static_cast<int32_t>(val.size() + 1U)));  // string size + null byte
 
         write_cstring(val);
     }
@@ -74,7 +82,7 @@ struct writer {
     void write_entry(const std::string& key, double timestamp) {
         write_header(object_type::k_datetime, key);
 
-        write_bytes(static_cast<int64_t>(timestamp));
+        write_bytes(endian::native_to_little(static_cast<int64_t>(timestamp)));
     }
 
     template <typename T>
