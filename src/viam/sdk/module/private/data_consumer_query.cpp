@@ -6,12 +6,18 @@
 #include <iterator>
 #include <vector>
 
+#include <boost/endian/conversion.hpp>
+
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/proto_value_visit.hpp>
 
 namespace viam {
 namespace sdk {
 namespace impl {
+
+namespace {
+
+enum class object_type : int8_t { k_string = 2, k_document = 3, k_datetime = 9 };
 
 struct writer {
     std::vector<uint8_t> buf;
@@ -26,8 +32,8 @@ struct writer {
             reinterpret_cast<uint8_t const*>(val.data()), val.size() + 1U, std::back_inserter(buf));
     }
 
-    void write_header(int8_t object_id, const std::string& key) {
-        write_bytes(object_id);
+    void write_header(object_type object_id, const std::string& key) {
+        write_bytes(static_cast<int8_t>(object_id));
         write_cstring(key);
     }
 
@@ -49,7 +55,7 @@ struct writer {
     }
 
     void write_entry(const std::string& key, const std::string& val) {
-        write_header(int8_t{2}, key);
+        write_header(object_type::k_string, key);
 
         write_bytes(static_cast<int32_t>(val.size() + 1U));  // string size + null byte
 
@@ -57,7 +63,7 @@ struct writer {
     }
 
     void write_entry(const std::string& key, const ProtoStruct& doc) {
-        write_header(int8_t{3}, key);
+        write_header(object_type::k_document, key);
 
         writer inner;
         inner.write_bson_doc(doc);
@@ -66,7 +72,7 @@ struct writer {
     }
 
     void write_entry(const std::string& key, double timestamp) {
-        write_header(int8_t{9}, key);
+        write_header(object_type::k_datetime, key);
 
         write_bytes(static_cast<int64_t>(timestamp));
     }
@@ -76,6 +82,8 @@ struct writer {
         throw std::logic_error("unexpected visitor case");
     }
 };
+
+}  // namespace
 
 DataClient::BSONBytes default_historical_data_query(
     const std::string& part_id,
