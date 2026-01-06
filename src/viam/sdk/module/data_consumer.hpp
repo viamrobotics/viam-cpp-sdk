@@ -32,6 +32,9 @@ class DataConsumer {
         std::vector<DataClient::BSONBytes> additional_stages;
     };
 
+    /// @brief Construct a DataConsumer from the DataClient which will be used to access the Viam
+    /// app.
+    /// @remark DataConsumer does not own @param dc and must not outlive it.
     DataConsumer(DataClient& dc);
 
     /// @brief Query historical module data for @param resource.
