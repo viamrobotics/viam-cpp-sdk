@@ -52,7 +52,9 @@ struct writer {
         for (const auto& item : top_level) {
             const std::string& key = item.first;
 
-            auto visitor = [&key, this](const auto& val) { write_entry(key, val); };
+            auto visitor = [&key, this](const auto& val) {  // NOLINT(misc-no-recursion)
+                write_entry(key, val);
+            };
 
             visit(visitor, item.second);
         }
@@ -70,7 +72,7 @@ struct writer {
         write_cstring(val);
     }
 
-    void write_entry(const std::string& key, const ProtoStruct& doc) {
+    void write_entry(const std::string& key, const ProtoStruct& doc) {  // NOLINT(misc-no-recursion)
         write_header(object_type::k_document, key);
 
         writer inner;
