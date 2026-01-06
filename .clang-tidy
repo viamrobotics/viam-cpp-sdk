@@ -26,7 +26,6 @@ Checks: >
   -readability-implicit-bool-conversion,
   -readability-magic-numbers,
   -misc-include-cleaner,
-  -misc-no-recursion,
   -readability-function-cognitive-complexity,
   -readability-else-after-return,
 WarningsAsErrors: '*'
