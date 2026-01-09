@@ -83,8 +83,8 @@ int main(int argc, char** argv) try {
     // any other C++ SDK objects and stays alive until all Viam C++ SDK objects are destroyed.
     Instance inst;
 
-    // Write general log statements with the VIAM_SDK_LOG macro
-    VIAM_SDK_LOG(info) << "Starting up simple sensor module";
+    // Write log statements related to your module with the VIAM_MODULE_LOG macro
+    VIAM_MODULE_LOG(info) << "Starting up simple sensor module";
 
     Model mysensor_model("viam", "sensor", "mysensor");
 
