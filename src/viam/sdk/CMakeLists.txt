@@ -194,6 +194,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/version_metadata.hpp
       ../../viam/sdk/common/world_state.hpp
+      ../../viam/sdk/common/kinematics.hpp
       ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/audio_in.hpp
       ../../viam/sdk/components/audio_out.hpp
