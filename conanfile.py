@@ -57,9 +57,8 @@ class ViamCppSdkRecipe(ConanFile):
 
     def requirements(self):
         if self.settings.os == "Windows":
-            # This is temporary pending the resolution of a windows compilation
-            # issue on boost 1.88.0
-            self.requires('boost/[>=1.74.0 <1.88.0]', transitive_headers=True)
+            # We exclude only version 1.88.0 which had an MSVC preprocessor bug affecting some headers
+            self.requires('boost/[>=1.74.0 <1.88.0 || >=1.89.0]', transitive_headers=True)
         else:
             self.requires('boost/[>=1.74.0]', transitive_headers=True)
 
