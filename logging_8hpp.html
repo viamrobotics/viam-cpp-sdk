@@ -116,6 +116,9 @@ Macros</h2></td></tr>
 <tr class="memitem:gab35bc9dc93a02ef947130b9d23e8a051" id="r_gab35bc9dc93a02ef947130b9d23e8a051"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Log.html#gab35bc9dc93a02ef947130b9d23e8a051">VIAM_SDK_LOG</a>(level)&#160;&#160;&#160;VIAM_SDK_LOG_IMPL(<a class="el" href="classviam_1_1sdk_1_1LogManager.html#a3145a8b708b58314e9ebe6562fd244f7">::viam::sdk::LogManager::get</a>().global_logger(), level)</td></tr>
 <tr class="memdesc:gab35bc9dc93a02ef947130b9d23e8a051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log macro for general SDK logs.  <br /></td></tr>
 <tr class="separator:gab35bc9dc93a02ef947130b9d23e8a051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e0bd45893e33ca916171e23d45bfce1" id="r_ga0e0bd45893e33ca916171e23d45bfce1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Log.html#ga0e0bd45893e33ca916171e23d45bfce1">VIAM_MODULE_LOG</a>(level)&#160;&#160;&#160;    VIAM_SDK_LOG_IMPL(<a class="el" href="classviam_1_1sdk_1_1LogManager.html#a3145a8b708b58314e9ebe6562fd244f7">::viam::sdk::LogManager::get</a>().module_logger(), level)</td></tr>
+<tr class="memdesc:ga0e0bd45893e33ca916171e23d45bfce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log macro for logs related to a module.  <br /></td></tr>
+<tr class="separator:ga0e0bd45893e33ca916171e23d45bfce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5f00547ef3446074c72172c83983e26b" id="r_ga5f00547ef3446074c72172c83983e26b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Log.html#ga5f00547ef3446074c72172c83983e26b">VIAM_RESOURCE_LOG</a>(level)&#160;&#160;&#160;VIAM_SDK_LOG_IMPL(this-&gt;logger_, level)</td></tr>
 <tr class="memdesc:ga5f00547ef3446074c72172c83983e26b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log macro for resource-level logs.  <br /></td></tr>
 <tr class="separator:ga5f00547ef3446074c72172c83983e26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,8 +157,12 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>viam::s
 <tr class="separator:a0bb7f5a34cc5859e7387fb79e2dbceab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafcb1e406279925a02fb301f1e1762d95" id="r_gafcb1e406279925a02fb301f1e1762d95"><td class="memItemLeft" align="right" valign="top">
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::global_resource_name</b> ()</td></tr>
-<tr class="memdesc:gafcb1e406279925a02fb301f1e1762d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the "channel name" of general log messages not originating from resources. <br /></td></tr>
+<tr class="memdesc:gafcb1e406279925a02fb301f1e1762d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the "channel name" of general log messages related to the Viam C++ SDK. <br /></td></tr>
 <tr class="separator:gafcb1e406279925a02fb301f1e1762d95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac124a1b113865db116b7009736e58839" id="r_gac124a1b113865db116b7009736e58839"><td class="memItemLeft" align="right" valign="top">
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::default_module_name</b> ()</td></tr>
+<tr class="memdesc:gac124a1b113865db116b7009736e58839"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the default "channel name" of log messages related to a Viam C++ module. <br /></td></tr>
+<tr class="separator:gac124a1b113865db116b7009736e58839"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a536e943ee4c12a36dcc00edeab5e53ac" id="r_a536e943ee4c12a36dcc00edeab5e53ac"><td class="memItemLeft" align="right" valign="top"><a id="a536e943ee4c12a36dcc00edeab5e53ac" name="a536e943ee4c12a36dcc00edeab5e53ac"></a>
 boost::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::log_detail::trim_filename</b> (const char *file)</td></tr>
 <tr class="separator:a536e943ee4c12a36dcc00edeab5e53ac"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -108,12 +108,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>set_global_log_level<
 <tr class="memitem:ac28618b25698d9de5358bacec8f1bb96" id="r_ac28618b25698d9de5358bacec8f1bb96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac28618b25698d9de5358bacec8f1bb96">set_global_log_level</a> (int argc, char **argv)</td></tr>
 <tr class="memdesc:ac28618b25698d9de5358bacec8f1bb96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the global logger severity from a command line argument vector.  <br /></td></tr>
 <tr class="separator:ac28618b25698d9de5358bacec8f1bb96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d7a7603b14f19b24afb9b03c6a78731" id="r_a4d7a7603b14f19b24afb9b03c6a78731"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d7a7603b14f19b24afb9b03c6a78731">set_module_name</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a4d7a7603b14f19b24afb9b03c6a78731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the channel name of log messages to be associated with a C++ module.  <br /></td></tr>
+<tr class="separator:a4d7a7603b14f19b24afb9b03c6a78731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3813de53ad7890996b705c8b78c8383e" id="r_a3813de53ad7890996b705c8b78c8383e"><td class="memItemLeft" align="right" valign="top"><a id="a3813de53ad7890996b705c8b78c8383e" name="a3813de53ad7890996b705c8b78c8383e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_module_log_level</b> (<a class="el" href="group__Log.html#ga2e95fe370303fb61a95fee5f99288ca7">log_level</a>)</td></tr>
+<tr class="memdesc:a3813de53ad7890996b705c8b78c8383e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the module logger severity. <br /></td></tr>
+<tr class="separator:a3813de53ad7890996b705c8b78c8383e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3c93dcb3379fc11a658f8ad79fa4ad2" id="r_aa3c93dcb3379fc11a658f8ad79fa4ad2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3c93dcb3379fc11a658f8ad79fa4ad2">set_resource_log_level</a> (const std::string &amp;resource, <a class="el" href="group__Log.html#ga2e95fe370303fb61a95fee5f99288ca7">log_level</a>)</td></tr>
 <tr class="memdesc:aa3c93dcb3379fc11a658f8ad79fa4ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the logger severity for a resource.  <br /></td></tr>
 <tr class="separator:aa3c93dcb3379fc11a658f8ad79fa4ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab709ee197d965638d0bc8b9367aba53c" id="r_ab709ee197d965638d0bc8b9367aba53c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__Log.html#gaf5591a93c7e183a679724bc5f278f39f">LogSource</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab709ee197d965638d0bc8b9367aba53c">global_logger</a> ()</td></tr>
 <tr class="memdesc:ab709ee197d965638d0bc8b9367aba53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the SDK global log source.  <br /></td></tr>
 <tr class="separator:ab709ee197d965638d0bc8b9367aba53c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a467839fb750952a871b4a9b397509930" id="r_a467839fb750952a871b4a9b397509930"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__Log.html#gaf5591a93c7e183a679724bc5f278f39f">LogSource</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a467839fb750952a871b4a9b397509930">module_logger</a> ()</td></tr>
+<tr class="memdesc:a467839fb750952a871b4a9b397509930"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the SDK module log source.  <br /></td></tr>
+<tr class="separator:a467839fb750952a871b4a9b397509930"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -182,6 +192,26 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b></td></t
 
 </div>
 </div>
+<a id="a467839fb750952a871b4a9b397509930" name="a467839fb750952a871b4a9b397509930"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a467839fb750952a871b4a9b397509930">&#9670;&#160;</a></span>module_logger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__Log.html#gaf5591a93c7e183a679724bc5f278f39f">LogSource</a> &amp; viam::sdk::LogManager::module_logger </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the SDK module log source. </p>
+<p>Users should prefer to log messages using the logging macros below. </p>
+
+</div>
+</div>
 <a id="ac28618b25698d9de5358bacec8f1bb96" name="ac28618b25698d9de5358bacec8f1bb96"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac28618b25698d9de5358bacec8f1bb96">&#9670;&#160;</a></span>set_global_log_level()</h2>
 
@@ -203,6 +233,26 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b></td></t
 
 <p>Set the global logger severity from a command line argument vector. </p>
 <p>Sets severity to debug if "--log-level=debug" is the third argument. Sets severity to info otherwise. Useful for module implementations. See LogLevel documentation in the RDK for more information on how to start modules with a "log-level" commandline argument. </p>
+
+</div>
+</div>
+<a id="a4d7a7603b14f19b24afb9b03c6a78731" name="a4d7a7603b14f19b24afb9b03c6a78731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d7a7603b14f19b24afb9b03c6a78731">&#9670;&#160;</a></span>set_module_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::LogManager::set_module_name </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the channel name of log messages to be associated with a C++ module. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>The channel name will be set to the value of the environment variable VIAM_MODULE_NAME if set, otherwise it defaults to the value of <a class="el" href="group__Log.html#gac124a1b113865db116b7009736e58839">default_module_name</a>. </dd></dl>
 
 </div>
 </div>
