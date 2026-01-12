@@ -15,6 +15,7 @@
 #include <boost/log/sinks/text_ostream_backend.hpp>
 #include <boost/log/sources/severity_channel_logger.hpp>
 #include <boost/log/utility/manipulators/add_value.hpp>
+#include <boost/preprocessor/facilities/overload.hpp>
 #include <boost/utility/string_view.hpp>
 
 namespace viam {
@@ -141,6 +142,9 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
                                  "TimeStamp",
                                  boost::log::attributes::local_clock::value_type);
 
+}  // namespace sdk
+}  // namespace viam
+
 #define VIAM_SDK_LOG_IMPL(lg, level)                                                 \
     BOOST_LOG_SEV((lg), ::viam::sdk::log_level::level)                               \
         << ::boost::log::add_value(::viam::sdk::attr_file_type{},                    \
@@ -153,13 +157,28 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// Use this macro to generate log messages pertaining to the SDK at large.
 #define VIAM_SDK_LOG(level) VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().global_logger(), level)
 
-/// @brief Log macro for resource-level logs.
+/// @brief In-member log macro for resource-level logs.
 /// @ingroup Log
 ///
 /// This macro can only be called from the definition of a member function of a class inheriting
 /// @ref Resource. It will log messages to the log source of that specific resource, allowing
 /// resource-level log filtering.
-#define VIAM_RESOURCE_LOG(level) VIAM_SDK_LOG_IMPL(this->logger_, level)
+#define VIAM_RESOURCE_LOG_THIS(level) VIAM_SDK_LOG_IMPL(this->logger_, level)
 
-}  // namespace sdk
-}  // namespace viam
+// Single argument overload, used for macro overloading below.
+#define VIAM_RESOURCE_LOG_IMPL_1(level) VIAM_RESOURCE_LOG_THIS(level)
+
+// Two argument overload, used for macro overloading below.
+#define VIAM_RESOURCE_LOG_IMPL_2(resource, level) \
+    VIAM_SDK_LOG_IMPL(::viam::sdk::log_detail::logger_access::logger(resource), level)
+
+/// @brief Log macro for resource-level logs.
+/// @ingroup Log
+///
+/// For compatibility, this macro can be called with just a level as an argument, and will log as if
+/// by @ref VIAM_RESOURCE_LOG_THIS, which should be preferred for this use case.
+/// Otherwise, it can be called with a reference to a resource and a severity level,
+///     VIAM_RESOURCE_LOG(my_arm, info) << "Message relating to my_arm resource";
+/// in which case the log message will be associated with the log source of that resource, allowing
+/// resource-level log filtering.
+#define VIAM_RESOURCE_LOG(...) BOOST_PP_OVERLOAD(VIAM_RESOURCE_LOG_IMPL_, __VA_ARGS__)(__VA_ARGS__)

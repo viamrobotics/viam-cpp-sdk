@@ -91,7 +91,7 @@ struct LogSensor : sensor::MockSensor {
 
     sdk::ProtoStruct get_readings(const sdk::ProtoStruct& extra) override {
         VIAM_RESOURCE_LOG(info) << "sensor info";
-        VIAM_RESOURCE_LOG(error) << "sensor error";
+        VIAM_RESOURCE_LOG_THIS(error) << "sensor error";
         return sensor::MockSensor::get_readings(extra);
     }
 };
