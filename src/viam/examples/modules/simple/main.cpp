@@ -66,9 +66,9 @@ void MySensor::reconfigure(const Dependencies&, const ResourceConfig& cfg) {
 
 ProtoStruct MySensor::do_command(const ProtoStruct& command) {
     for (const auto& entry : command) {
-        // The VIAM_RESOURCE_LOG macro will associate log messages to the current resource and can
-        // be filtered upon
-        VIAM_RESOURCE_LOG(info) << "Command entry " << entry.first;
+        // The VIAM_RESOURCE_LOG_THIS macro will associate log messages to the current resource and
+        // can be filtered upon.
+        VIAM_RESOURCE_LOG_THIS(info) << "Command entry " << entry.first;
     }
 
     return command;
