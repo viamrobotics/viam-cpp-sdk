@@ -104,8 +104,12 @@ BOOST_AUTO_TEST_CASE(test_resource_filter) {
     errorSensor->set_log_level(sdk::log_level::error);
 
     for (auto sensor : {defaultSensor, errorSensor}) {
-        client_to_mock_pipeline<Sensor>(sensor,
-                                        [&](Sensor& client) { (void)client.get_readings({}); });
+        client_to_mock_pipeline<Sensor>(sensor, [&](Sensor& client) {
+            (void)client.get_readings({});
+
+            // test non-member function version
+            VIAM_RESOURCE_LOG(client, info) << "sensor info2";
+        });
     }
 
     std::vector<std::string> defaultLogs;
@@ -129,11 +133,14 @@ BOOST_AUTO_TEST_CASE(test_resource_filter) {
         }
     }
 
-    BOOST_ASSERT(defaultLogs.size() == 2);
+    BOOST_ASSERT(defaultLogs.size() == 3);
     {
         BOOST_TEST_MESSAGE("default logs\n" << defaultLogs.front() << "\n" << defaultLogs.back());
-        BOOST_CHECK(defaultLogs.front().find("sensor info") != std::string::npos);
-        BOOST_CHECK(defaultLogs.back().find("sensor error") != std::string::npos);
+
+        auto it = defaultLogs.begin();
+        BOOST_CHECK(it->find("sensor info") != std::string::npos);
+        BOOST_CHECK((++it)->find("sensor error") != std::string::npos);
+        BOOST_CHECK((++it)->find("sensor info2") != std::string::npos);
     }
 
     BOOST_ASSERT(errLogs.size() == 1);
