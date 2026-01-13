@@ -46,6 +46,22 @@ BOOST_AUTO_TEST_CASE(test_global_name) {
     BOOST_CHECK(rec.find(sdk::global_resource_name()) == std::string::npos);
 }
 
+BOOST_AUTO_TEST_CASE(test_module_name) {
+    cout_redirect redirect;
+
+    sdk::LogManager::get().set_module_name("my module");
+
+    VIAM_MODULE_LOG(info) << "after";
+    const std::string rec = redirect.os.str();
+    redirect.release();
+
+    for (const char* s : {"my module", "after"}) {
+        BOOST_CHECK(rec.find(s) != std::string::npos);
+    }
+
+    BOOST_CHECK(rec.find(sdk::default_module_name()) == std::string::npos);
+}
+
 BOOST_AUTO_TEST_CASE(test_global_filter) {
     cout_redirect redirect;
 
@@ -84,6 +100,33 @@ BOOST_AUTO_TEST_CASE(test_global_filter) {
         BOOST_TEST_INFO("Checking for " << not_logged << " not in log rec\n" << rec);
         BOOST_CHECK(rec.find(not_logged) == std::string::npos);
     }
+}
+
+BOOST_AUTO_TEST_CASE(test_module_filter) {
+    cout_redirect redirect;
+
+    VIAM_MODULE_LOG(info) << "info1";
+    VIAM_MODULE_LOG(error) << "error1";
+    VIAM_MODULE_LOG(trace) << "trace1";  // not logged
+
+    auto& logger = sdk::LogManager::get();
+
+    using ll = sdk::log_level;
+
+    logger.set_module_log_level(ll::trace);
+
+    VIAM_MODULE_LOG(trace) << "trace2";
+    VIAM_MODULE_LOG(info) << "info2";
+
+    const std::string rec = redirect.os.str();
+    redirect.release();
+
+    for (const char* logged : {"info1", "error1", "trace2", "info2"}) {
+        BOOST_TEST_INFO("Checking for " << logged << " in log rec\n" << rec);
+        BOOST_CHECK(rec.find(logged) != std::string::npos);
+    }
+
+    BOOST_CHECK(rec.find("trace1") == std::string::npos);
 }
 
 struct LogSensor : sensor::MockSensor {

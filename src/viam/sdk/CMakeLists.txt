@@ -136,9 +136,11 @@ target_sources(viamsdk
     config/resource.cpp
     log/logging.cpp
     log/private/log_backend.cpp
+    module/data_consumer.cpp
     module/handler_map.cpp
     module/module.cpp
     module/service.cpp
+    module/private/data_consumer_query.cpp
     referenceframe/frame.cpp
     registry/registry.cpp
     resource/reconfigurable.cpp
@@ -192,6 +194,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/utils.hpp
       ../../viam/sdk/common/version_metadata.hpp
       ../../viam/sdk/common/world_state.hpp
+      ../../viam/sdk/common/kinematics.hpp
       ../../viam/sdk/components/arm.hpp
       ../../viam/sdk/components/audio_in.hpp
       ../../viam/sdk/components/audio_out.hpp
@@ -213,6 +216,7 @@ target_sources(viamsdk
       ../../viam/sdk/components/switch.hpp
       ../../viam/sdk/config/resource.hpp
       ../../viam/sdk/log/logging.hpp
+      ../../viam/sdk/module/data_consumer.hpp
       ../../viam/sdk/module/handler_map.hpp
       ../../viam/sdk/module/module.hpp
       ../../viam/sdk/module/service.hpp
