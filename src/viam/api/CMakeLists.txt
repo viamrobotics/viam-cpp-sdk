@@ -42,6 +42,8 @@ if (VIAMCPPSDK_USE_LOCAL_PROTOS)
     message(FATAL_ERROR "The VIAMCPPSDK_USE_LOCAL_PROTOS option requires VIAMCPPSDK_USE_DYNAMIC_PROTOS=ON")
   endif()
 
+  # TODO: I believe it is no longer necessary for the Viam API repo to be a sibling repo of the Viam C++ SDK repo.
+  # Maybe try to detect the sibling configuration as before, but also allow the option to pass the directory as a CMake arg.
   if (NOT EXISTS ${PROJECT_SOURCE_DIR}/../api/proto/viam)
     message(FATAL_ERROR "No Viam api repository was found in the parent directory")
   endif()
