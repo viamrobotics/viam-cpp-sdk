@@ -3,10 +3,10 @@ set(PROTO_GEN_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
   # reads in buf.lock and grabs the commit hashes supported by this version of C++ SDK
-  if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/buf.lock)
+  if (NOT EXISTS ${PROJECT_SOURCE_DIR}/buf.lock)
     message(FATAL_ERROR "No `buf.lock` file was found in the src/viam/api directory")
   endif()
-  file(READ ${CMAKE_CURRENT_SOURCE_DIR}/buf.lock lockfile)
+  file(READ ${PROJECT_SOURCE_DIR}/buf.lock lockfile)
 
   string(REGEX MATCH "googleapis[ \t\r\n]*commit: ([A-Za-z0-9_]*)" _ ${lockfile})
   set(BUF_GOOGLE_API_SOURCE buf.build/googleapis/googleapis:${CMAKE_MATCH_1})
