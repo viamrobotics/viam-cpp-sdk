@@ -2,7 +2,7 @@ version: v2
 managed:
   enabled: true
 plugins:
-  - local: protoc-gen-buf.build/grpc/cpp:v@VIAMCPPSDK_GRPCXX_VERSION@
+  - remote: buf.build/grpc/cpp:v@VIAMCPPSDK_GRPCXX_VERSION@
     out: gen/viam/api
-  - local: protoc-gen-buf.build/protocolbuffers/cpp:v@VIAMCPPSDK_PROTOC_VERSION@
+  - remote: buf.build/protocolbuffers/cpp:v@VIAMCPPSDK_PROTOC_VERSION@
     out: gen/viam/api
