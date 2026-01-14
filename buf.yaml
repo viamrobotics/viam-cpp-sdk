@@ -1,6 +1,4 @@
 version: v2
-modules:
-  - path: src/viam/api
 deps:
   - buf.build/googleapis/googleapis
   - buf.build/opentelemetry/opentelemetry
