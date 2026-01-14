@@ -42,17 +42,13 @@ if (VIAMCPPSDK_USE_LOCAL_PROTOS)
     message(FATAL_ERROR "The VIAMCPPSDK_USE_LOCAL_PROTOS option requires VIAMCPPSDK_USE_DYNAMIC_PROTOS=ON")
   endif()
 
-  if (NOT EXISTS ${PROJECT_SOURCE_DIR}/../buf.work.yaml)
-    message(FATAL_ERROR "No `buf.work.yaml` file was found in the parent directory")
-  endif()
-
   if (NOT EXISTS ${PROJECT_SOURCE_DIR}/../api/proto/viam)
     message(FATAL_ERROR "No Viam api repository was found in the parent directory")
   endif()
 
-  file(RELATIVE_PATH BUF_LOCAL_PROTO_PATH ${CMAKE_CURRENT_BINARY_DIR} ${PROJECT_SOURCE_DIR}/..)
+  file(RELATIVE_PATH BUF_LOCAL_PROTO_PATH ${CMAKE_CURRENT_BINARY_DIR} ${PROJECT_SOURCE_DIR}/../api)
   set(BUF_VIAM_API_SOURCE ${BUF_LOCAL_PROTO_PATH})
-  list(TRANSFORM BUF_PROTO_COMPONENTS PREPEND ${BUF_LOCAL_PROTO_PATH}/api/proto/viam/)
+  list(TRANSFORM BUF_PROTO_COMPONENTS PREPEND ${BUF_LOCAL_PROTO_PATH}/proto/viam/)
 endif()
 
 list(JOIN BUF_PROTO_COMPONENTS , BUF_PROTO_COMPONENTS_JOINED)
