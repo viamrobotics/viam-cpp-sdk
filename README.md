@@ -11,7 +11,7 @@
 
 ## Getting Started
 
-Please see [BUILDING.md](https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md) for instructions on how to use CMake-based build system for this project.
+Please see [BUILDING.md](BUILDING.md) for instructions on how to use CMake-based build system for this project.
 
 ## Building Documentation Locally for Testing
 The C++ sdk uses [Doxygen](https://www.doxygen.nl/) to generate documentation.

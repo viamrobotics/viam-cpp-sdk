@@ -1,21 +1,28 @@
 # Viam C++ SDK - Build Instructions
 ## Overview
 
-The `viam-cpp-sdk` has a newly introduced CMake build system to
-replace the existing Makefile infrastructure. This document explains
-how to use the new infrastructure.
+The Viam C++ SDK uses CMake for build system generation. Below,
+we walk through the use case of directly invoking CMake to develop on
+Linux or Mac, with the help of the system package manager.
+Some other approaches are possible, covered in separate documents. These include
+
+- Using the Conan package manager. This allows you to manage dependencies with Conan, or to
+create or consume a Viam C++ SDK package. This is supported on Windows, Linux, and Mac, but on
+Windows it is the only approach with first class support. This also provides a practical way to work
+with older Linux distributions where the system packages may not otherwise be usable.
+- Using Docker for C++ SDK or Module development.
+
+Generally speaking, a developer may want to _build the SDK_ for the purpose of developing the SDK itself,
+or they may want to _build against the SDK_ for the purpose of writing a Viam C++ Module based on the
+Viam C++ SDK. In this document and the others linked above, we will distinguish between these use cases.
 
 If you experience problems while following this guide, please see the
-`Limitations, Known Issues, and Troubleshooting` section at the bottom
-to see if your issue (and hopefully a workaround) is covered there.
+[Limitations, Known Issues, and Troubleshooting](#limitations-known-issues-and-troubleshooting)
+section at the bottom to see if your issue (and hopefully a workaround) is covered there.
 
-PLEASE NOTE: It is very likely that you will need to rebuild the
-generated sources as part of building the SDK. Please see the
-documentation on `VIAMCPPSDK_USE_DYNAMIC_PROTOS` below, and the
-additional comments about mismatched protobufs in the troubleshooting
-guide, before continuing further.
+## Building the SDK
 
-## Software Prerequisites
+### Software Prerequisites
 
 The project depends on [CMake](https://cmake.org/) >= 3.25,
 [Boost](https://www.boost.org/) >= 1.74, [gRPC](https://grpc.io/) >=
@@ -25,22 +32,21 @@ and on the transitive dependencies of
 those projects.
 
 You will need to install these required dependencies before building
-the Viam C++ SDK, preferably by way of your system package manager:
+the Viam C++ SDK, preferably using your system package manager:
 
-- Debian: `apt-get install cmake build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev`
+- Linux: `apt-get install cmake build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev`
 - MacOS with Homebrew: `brew install cmake boost grpc protobuf xtensor`
 
 There are also several optional or conditionally required dependencies:
 
-- Debian: `apt-get install pkg-config ninja-build protobuf-compiler-grpc`
+- Linux: `apt-get install pkg-config ninja-build protobuf-compiler-grpc`
 - MacOS with Homebrew: `brew install pkg-config ninja buf`
 
-The `pkg-config` dependency is needed if your local system does not
-provide CMake `find_package` support for one or more required
-dependencies like `gRPC`.
+The `pkg-config` dependency is needed for very old Ubuntu (Jammy) or Debian (Bullseye)
+for which the system `gRPC` package does not have CMake `find_package` support.
 
 The `ninja[-build]` dependency is only required if you want to use
-Ninja as the target build system, so is entirely optional.
+Ninja as the target build system.
 
 You will need `protobuf-compiler-grpc` if you intend to do local
 dynamic protobuf generation (see the relevant SDK options below) or if
@@ -67,12 +73,7 @@ manually rather than via your package manager, though this is likely
 to make it more difficult to correctly configure the build of the Viam
 C++ SDK.
 
-## Obtaining the `viam-cpp-sdk` Source
-
-Just clone https://github.com/viamrobotics/viam-cpp-sdk into a
-directory of your choice and checkout the branch or tag of interest.
-
-## Invoking CMake to Generate a Build System
+### Invoking CMake to Generate a Build System
 
 This document doesn't intend to provide a complete guide for how CMake
 is used, as that is a complex topic. Please consult the [CMake
@@ -89,7 +90,8 @@ under the root of the project. The `viam-cpp-sdk` top-level
 starting there:
 
 ``` shell
-git clone https://github.com/viamrobotics/viam-cpp-sdk
+git clone https://github.com/viamrobotics/viam-cpp-sdk.git
+# Optionally: git checkout branch-or-tag-of-interest
 cd viam-cpp-sdk
 mkdir build
 cd build
@@ -120,7 +122,7 @@ show this, since the `build` directory is ignored.
 If you wish to use a different generator than Ninja, change the
 argument to `-G` above to the build system you wish to generate for.
 
-## Building and Installing the SDK
+### Building and Installing the SDK
 
 To compile all targets in the SDK:
 
@@ -262,7 +264,7 @@ version mismatches.
 
 ## Building for ARM Windows
 
-The C++ SDK works well on windows for both client and module code 
+The C++ SDK works well on windows for both client and module code
 provided there is internet connectivity. However, some manual work is
 required to build for client code on ARM64 architecture.
 
