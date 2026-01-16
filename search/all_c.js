@@ -8,6 +8,6 @@ var searchData=
   ['navigationclient_5',['NavigationClient',['../classviam_1_1sdk_1_1impl_1_1NavigationClient.html',1,'viam::sdk::impl']]],
   ['navigationserver_6',['NavigationServer',['../classviam_1_1sdk_1_1impl_1_1NavigationServer.html',1,'viam::sdk::impl']]],
   ['normalize_5fmime_5ftype_7',['normalize_mime_type',['../classviam_1_1sdk_1_1Camera.html#ae1347ee02a13c6027cc7cb166de3b56b',1,'viam::sdk::Camera']]],
-  ['note_20on_20connectivity_20and_20webrtc_20functionality_8',['A Note on Connectivity and webRTC Functionality',['../index.html#autotoc_md6',1,'']]],
-  ['note_20on_20logging_9',['A note on logging',['../index.html#autotoc_md7',1,'']]]
+  ['note_20on_20connectivity_20and_20webrtc_20functionality_8',['A Note on Connectivity and webRTC Functionality',['../index.html#autotoc_md5',1,'']]],
+  ['note_20on_20logging_9',['A note on logging',['../index.html#autotoc_md6',1,'']]]
 ];

@@ -90,37 +90,26 @@ Repository Layout</h1>
 </ul>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Getting Started</h1>
-<p>Please see <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md">BUILDING.md</a> for instructions on how to use CMake-based build system for this project.</p>
-<p>NOTE: Windows is not supported. If you are using Windows, build the project in WSL.</p>
+<p>Please see BUILDING.md for instructions on how to use CMake-based build system for this project.</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
-Using Docker for Development</h1>
-<p>Some Dockerfiles are provided for C++ SDK development, either for developing on the SDK itself, or for module development. The docker images are split up into base images, found in <a href="etc/docker/base-images">etc/docker/base-images</a>, and an <a href="etc/docker/Dockerfile.sdk-build">SDK build image</a>. The base images install apt packages required to build and develop the SDK, whereas the SDK build image is meant to be built on top of a base image using multi-stage Docker building.</p>
-<p>From the root of this repository, run </p><div class="fragment"><div class="line">docker build -t base/bullseye -f etc/docker/base-images/Dockerfile.debian.bullseye .</div>
-</div><!-- fragment --><p> This will create a Debian Bullseye base image. Note the use of the <code>-t base/bullseye</code> arg to assign a tag to the image, which is important for the next step. You can then use <code>Dockerfile.sdk-build</code> in a couple different ways.</p>
-<div class="fragment"><div class="line">docker build --build-arg BASE_TAG=base/bullseye --build-arg GIT_TAG=[...] -f etc/docker/Dockerfile.sdk-build .</div>
-</div><!-- fragment --><p>This will use <code>base/bullseye</code> as a base to build the SDK version provided in <code>GIT_TAG</code>, which should be a tagged release version. The SDK will be cloned from <a href="https://github.com/viamrobotics/viam-cpp-sdk/">https://github.com/viamrobotics/viam-cpp-sdk/</a>. This is the recommended approach for C++ module development, which should generally be done against a tagged release.</p>
-<p>You can also do </p><div class="fragment"><div class="line">docker build --build-arg BASE_TAG=base/bullseye --build-arg REPO_SETUP=copy -f etc/docker/Dockerfile.sdk-build .</div>
-</div><!-- fragment --><p>Note the use of the build argument <code>REPO_SETUP=copy</code>, which adds a Docker instruction to copy the SDK repo from the current working directory, rather than cloning from GitHub. This approach may make more sense for developing on the SDK itself, or if your C++ SDK development relies on a localversion of the SDK.</p>
-<p>The examples above illustrated the use of several <code>--build-arg</code> arguments, namely <code>BASE_TAG</code>, <code>GIT_TAG</code>, and <code>REPO_SETUP</code>. Please see <a href="etc/docker/Dockerfile.sdk-build">Dockerfile.sdk-build</a> for a complete account of all build arguments and their defaults.</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
 Building Documentation Locally for Testing</h1>
 <p>The C++ sdk uses <a href="https://www.doxygen.nl/">Doxygen</a> to generate documentation. An automated workflow will generate and update our documentation on each merge, and publish it to <a href="https://cpp.viam.dev">cpp.viam.dev</a>.</p>
 <p>Generating documentation locally to observe changes while developing with the C++ SDK is simple. First, make sure doxygen is installed, e.g., </p><div class="fragment"><div class="line">(on mac) brew install doxygen</div>
 <div class="line">(on linux) apt-get install -y doxygen</div>
 </div><!-- fragment --><p>Next, generate the documentation. From the SDK root, run: </p><div class="fragment"><div class="line">./bin/build-docs.sh</div>
 </div><!-- fragment --><p>That will run <code>doxygen Doxyfile</code> and create the <code>etc/docs/api/current</code> folder. Then simply open the <code>index.html</code> file in your preferred browser to view the documentation.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 A Note on Connectivity and webRTC Functionality</h1>
 <p>The rust webRTC implementation (which C++ relies on via rust's foreign function interface) is still new, and liable to have bugs. At a minimum, we expect that calls to <code>ShellService::shell()</code> have a high likelihood of strange behavior. If you encounter any issues with streaming requests over webRTC, direct dial (by disabling webrtc as above) should resolve them. And please file a bug report! We will endeavor to be as responsive as possible, and resolve issues as quickly as possible.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 A note on logging</h1>
 <p>Users should only interact with logging via the macros, classes, and functions in <a href="src/viam/sdk/log/logging.hpp"><code>viam/sdk/log/logging.hpp</code></a>. Logging is implemented using Boost.Log, but this is an implementation detail subject to change without warning. In particular, using Boost.Log macros such as <code>BOOST_LOG_TRIVIAL</code> or <code>BOOST_LOG_SEV</code> is undefined behavior which will likely fail to output log messages.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Running Tests</h1>
 <p>Tests for the SDK are located in <code>src/viam/sdk/tests</code>. The CMakeLists.txt file in that directory defines how to build them. When the SDK is built, the test executables are placed in the test folder within your specified build directory (e.g., <code>build</code>, if you followed the instructions in <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/BUILDING.md"><code>BUILDING.md</code></a>). The test executable files can be run individually. To run the entire test suite at once, navigate to the <code>tests</code> folder in your build directory and run: </p><div class="fragment"><div class="line">ctest</div>
 </div><!-- fragment --><p> Or to avoid navigating all the way to the folder you can specify the test directory, for example: </p><div class="fragment"><div class="line">ctest --test-dir build/src/viam/sdk/tests/</div>
 </div><!-- fragment --><p> Additionally, for more useful ctest options explore: </p><div class="fragment"><div class="line">ctest --help</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 License</h1>
 <p>Copyright 2022 Viam Inc.</p>
 <p>Apache 2.0 - See <a href="https://github.com/viamrobotics/viam-cpp-sdk/blob/main/LICENSE">LICENSE</a> file </p>

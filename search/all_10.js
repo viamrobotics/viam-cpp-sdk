@@ -63,5 +63,5 @@ var searchData=
   ['robot_20representation_60',['Classes related to a Robot representation.',['../group__Robot.html',1,'']]],
   ['robotclient_61',['RobotClient',['../classviam_1_1sdk_1_1RobotClient.html',1,'viam::sdk']]],
   ['rpcsubtype_62',['RPCSubtype',['../classviam_1_1sdk_1_1RPCSubtype.html',1,'viam::sdk']]],
-  ['running_20tests_63',['Running Tests',['../index.html#autotoc_md8',1,'']]]
+  ['running_20tests_63',['Running Tests',['../index.html#autotoc_md7',1,'']]]
 ];
