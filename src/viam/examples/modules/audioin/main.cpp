@@ -85,7 +85,7 @@ void SineWaveAudioIn::reconfigure(const Dependencies&, const ResourceConfig& cfg
 
 ProtoStruct SineWaveAudioIn::do_command(const ProtoStruct& command) {
     for (const auto& entry : command) {
-        VIAM_RESOURCE_LOG(info) << "Command entry " << entry.first;
+        VIAM_RESOURCE_LOG_THIS(info) << "Command entry " << entry.first;
     }
     return command;
 }
@@ -154,8 +154,8 @@ void SineWaveAudioIn::get_audio(std::string const& codec,
     int total_samples = static_cast<int>(duration_seconds * sample_rate);
     int num_chunks = (total_samples + chunk_size - 1) / chunk_size;
 
-    VIAM_RESOURCE_LOG(info) << "Generating sine wave: " << frequency_ << "Hz, " << duration_seconds
-                            << "s, " << num_chunks << " chunks";
+    VIAM_RESOURCE_LOG_THIS(info) << "Generating sine wave: " << frequency_ << "Hz, "
+                                 << duration_seconds << "s, " << num_chunks << " chunks";
 
     for (int chunk_idx = 0; chunk_idx < num_chunks; ++chunk_idx) {
         int samples_in_chunk = std::min(chunk_size, total_samples - (chunk_idx * chunk_size));
@@ -173,12 +173,12 @@ void SineWaveAudioIn::get_audio(std::string const& codec,
         audio_chunk chunk = create_audio_chunk(samples, codec, sample_rate, 1, chunk_idx);
 
         if (!chunk_handler(std::move(chunk))) {
-            VIAM_RESOURCE_LOG(info) << "Chunk handler returned false, stopping";
+            VIAM_RESOURCE_LOG_THIS(info) << "Chunk handler returned false, stopping";
             break;
         }
     }
 
-    VIAM_RESOURCE_LOG(info) << "Finished generating sine wave";
+    VIAM_RESOURCE_LOG_THIS(info) << "Finished generating sine wave";
 }
 
 int main(int argc, char** argv) try {
