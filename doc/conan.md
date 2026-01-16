@@ -108,7 +108,8 @@ for local SDK development.
 
 From the root of this repo, you can do
 ``` shell
-conan install . --build=missing # optionally specify --output-folder=build-conan
+# optionally specify --output-folder=build-conan to not use the build/ dir
+conan install . --build=missing
 ```
 to install dependencies with `conan`. And then
 ``` shell
