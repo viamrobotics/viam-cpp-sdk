@@ -1,4 +1,4 @@
-# Copyright 2023 Viam Inc.
+# Copyright 2026 Viam Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-version: v1
+version: v2
 plugins:
-  - name: cpp
+  - protoc_builtin: cpp
     out: gen/viam/api
-  - name: cpp-grpc
+  - local: ${VIAMCPPSDK_GRPC_CPP_PLUGIN}
     out: gen/viam/api
-    path: ${VIAMCPPSDK_GRPC_CPP_PLUGIN}
