@@ -1,21 +1,29 @@
 # Viam C++ SDK - Build Instructions
 ## Overview
 
-The `viam-cpp-sdk` has a newly introduced CMake build system to
-replace the existing Makefile infrastructure. This document explains
-how to use the new infrastructure.
+The Viam C++ SDK uses CMake for build system generation. Below,
+we walk through the use case of directly invoking CMake to develop on
+Linux or Mac, with the help of the system package manager.
+Some other approaches are possible, covered in separate documents. These include
+
+- [Using the Conan package manager.](conan.md)
+This allows you to manage dependencies with Conan, or to
+create or consume a Viam C++ SDK package. This is supported on Windows, Linux, and Mac, but on
+Windows it is the only approach with first class support. This also provides a practical way to work
+with older Linux distributions where the system packages may not otherwise be usable.
+- [Using Docker for C++ SDK or Module development.](docker-dev.md)
+
+Generally speaking, a developer may want to _build the SDK_ for the purpose of developing the SDK itself,
+or they may want to _build against the SDK_ for the purpose of writing a Viam C++ Module based on the
+Viam C++ SDK. In this document and the others linked above, we will distinguish between these use cases.
 
 If you experience problems while following this guide, please see the
-`Limitations, Known Issues, and Troubleshooting` section at the bottom
-to see if your issue (and hopefully a workaround) is covered there.
+[Limitations, Known Issues, and Troubleshooting](#limitations-known-issues-and-troubleshooting)
+section at the bottom to see if your issue (and hopefully a workaround) is covered there.
 
-PLEASE NOTE: It is very likely that you will need to rebuild the
-generated sources as part of building the SDK. Please see the
-documentation on `VIAMCPPSDK_USE_DYNAMIC_PROTOS` below, and the
-additional comments about mismatched protobufs in the troubleshooting
-guide, before continuing further.
+## Building the SDK
 
-## Software Prerequisites
+### Software Prerequisites
 
 The project depends on [CMake](https://cmake.org/) >= 3.25,
 [Boost](https://www.boost.org/) >= 1.74, [gRPC](https://grpc.io/) >=
@@ -25,22 +33,21 @@ and on the transitive dependencies of
 those projects.
 
 You will need to install these required dependencies before building
-the Viam C++ SDK, preferably by way of your system package manager:
+the Viam C++ SDK, preferably using your system package manager:
 
-- Debian: `apt-get install cmake build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev`
+- Linux: `apt-get install cmake build-essential libboost-all-dev libgrpc++-dev libprotobuf-dev libxtensor-dev`
 - MacOS with Homebrew: `brew install cmake boost grpc protobuf xtensor`
 
 There are also several optional or conditionally required dependencies:
 
-- Debian: `apt-get install pkg-config ninja-build protobuf-compiler-grpc`
+- Linux: `apt-get install pkg-config ninja-build protobuf-compiler-grpc`
 - MacOS with Homebrew: `brew install pkg-config ninja buf`
 
-The `pkg-config` dependency is needed if your local system does not
-provide CMake `find_package` support for one or more required
-dependencies like `gRPC`.
+The `pkg-config` dependency is needed for very old Ubuntu (Jammy) or Debian (Bullseye)
+for which the system `gRPC` package does not have CMake `find_package` support.
 
 The `ninja[-build]` dependency is only required if you want to use
-Ninja as the target build system, so is entirely optional.
+Ninja as the target build system.
 
 You will need `protobuf-compiler-grpc` if you intend to do local
 dynamic protobuf generation (see the relevant SDK options below) or if
@@ -67,12 +74,7 @@ manually rather than via your package manager, though this is likely
 to make it more difficult to correctly configure the build of the Viam
 C++ SDK.
 
-## Obtaining the `viam-cpp-sdk` Source
-
-Just clone https://github.com/viamrobotics/viam-cpp-sdk into a
-directory of your choice and checkout the branch or tag of interest.
-
-## Invoking CMake to Generate a Build System
+### Invoking CMake to Generate a Build System
 
 This document doesn't intend to provide a complete guide for how CMake
 is used, as that is a complex topic. Please consult the [CMake
@@ -89,7 +91,8 @@ under the root of the project. The `viam-cpp-sdk` top-level
 starting there:
 
 ``` shell
-git clone https://github.com/viamrobotics/viam-cpp-sdk
+git clone https://github.com/viamrobotics/viam-cpp-sdk.git
+# Optionally: git checkout branch-or-tag-of-interest
 cd viam-cpp-sdk
 mkdir build
 cd build
@@ -120,7 +123,7 @@ show this, since the `build` directory is ignored.
 If you wish to use a different generator than Ninja, change the
 argument to `-G` above to the build system you wish to generate for.
 
-## Building and Installing the SDK
+### Building and Installing the SDK
 
 To compile all targets in the SDK:
 
@@ -141,128 +144,9 @@ an installation tree under `build/install`.
 
 If the build did not succeed, please see the next section.
 
-## Building with `conan`
-
-The Viam C++ SDK provides first class support for the `conan` C++
-package manager. This section will go into more detail
-without assuming any familiarity with `conan`, but please consult the
-[`conan` docs](https://docs.conan.io/2/introduction.html) for more info.
-
-To use `conan`, you'll need to have `python` and `pip` on your system if
-you don't already. For example,
-
-- Debian: `apt-get install python3 python3-pip`
-- MacOS with Homebrew: `brew install python`
-
-and then, optionally in a venv if you prefer,
-
-```shell
-pip install conan
-conan profile detect
-```
-
-The second line detects a default [`conan`
-profile](https://docs.conan.io/2/reference/config_files/profiles.html)
-encapsulating your build environment, which you can modify as needed.
-
-Next note that there are two possible approaches here, which complement
-or supersede some of the other sections in this document. Namely, it is
-possible to
-
-1. use `conan` to build and package the SDK; OR
-2. use `conan` to obtain the [software
-   prerequisites](#software-prerequisites) for the SDK.
-
-Option 1. makes more sense for [building against the
-SDK](#building-against-the-sdk) as you would in module development.
-There we use `conan` to get the SDK's dependencies, and then to  build,
-install, and package the SDK, which can then be consumed by declaring it
-as a `conan` dependency.
-
-Option 2. makes more sense for doing locally development *on* the SDK
-while using `conan` to get dependencies instead of your system package
-manager. Note that Option 1 implies a superset of Option 2.
-
-In either case, `conan` will use the [`conanfile.py`](/conanfile.py).
-Note that we build with `offline_proto_generation=True` by default.
-
-### Option 1. Creating and consuming the SDK `conan` package.
-
-Here we use `conan` to package and install the SDK so that we can build
-against it by declaring it as a dependency in a
-`conanfile.txt` or a `conanfile.py`.
-
-To do this, call `conan create .` from the project root. This will build
-and test the `viam-cpp-sdk` recipe, adding it into your local cache. See
-the [conan docs](https://docs.conan.io/2/reference/commands/create.html)
-for more info on `conan create`, as we will omit any details about using
-profiles, options, or settings to customize the build.
-
-Once this is done, the `viam-cpp-sdk` package is ready to be consumed.
-The example projects show a [minimal
-`conanfile.txt`](src/viam/examples/project/cmake/conanfile.txt). With
-this `conanfile.txt` in the same directory as your project's
-`CMakeLists.txt`, you can then do, for example,
-
-```shell
-conan install . --output-folder=build-conan --build=missing
-cmake . --preset=conan-release
-cmake --build --preset=conan-release -j 8
-```
-
-Note that this can be done with the same `CMakeLists.txt` from the
-[example project](src/viam/examples/project/cmake/CMakeLists.txt): it is
-agnostic of the use of `conan` to package the SDK as opposed to the SDK
-having been built and installed manually.
-
-It is also possible to build using a `conanfile.py` rather than a
-`conanfile.txt`, see again the [conan
-docs](https://docs.conan.io/2/tutorial/consuming_packages/the_flexibility_of_conanfile_py.html#consuming-packages-flexibility-of-conanfile-py),
-or look at the [`test_package/conanfile.py`](test_package/conanfile.py)
-which is the test package recipe.
-
-### Option 2. Using `conan` to manage the SDK dependencies
-
-Here we use `conan` to grab the SDK dependencies, setting ourselves up
-for local SDK development.
-
-From the root of this repo, you can do
-``` shell
-conan install . --output-folder=build-conan --build=missing
-```
-to install dependencies with `conan`. And then
-``` shell
-cmake . --preset conan-release
-cmake --build --preset=conan-release -j
-```
-The `conan install` sets up some
-[cmake-presets](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html)
-which are used to resolve `--preset conan-release` above. Among other
-things, this tells CMake about the `conan_toolchain.cmake` generated by
-`conan`, and runs CMake with certain environment variables set.
-
-If you do not want to use cmake-presets, you can do
-``` shell
-cd build-conan
-source conanbuild.sh
-cmake .. -G Ninja -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
-```
-and later call `source deactivate_conanbuild.sh`. The `conanbuild.sh`
-script does the same environment variable setting as the cmake-presets,
-but it may be preferable if you would rather invoke your build system
-directly.
-
-PLEASE NOTE: Whether by cmake-presets or `conanbuild.sh`, you MUST, one
-way or another, make the `PATH` entries set by `conan` available to
-CMake, because `buf` requires that `protoc` is available on `PATH`. If
-you do not do this then `buf generate` will fail outright, or, if you
-have a different version of `protoc` available in your `PATH`, it will
-silently fail and later cause compilation failures due to protobuf
-version mismatches.
-
 ## Building for ARM Windows
 
-The C++ SDK works well on windows for both client and module code 
+The C++ SDK works well on windows for both client and module code
 provided there is internet connectivity. However, some manual work is
 required to build for client code on ARM64 architecture.
 
