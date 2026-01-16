@@ -80,7 +80,7 @@ profiles, options, or settings to customize the build.
 
 Once this is done, the `viam-cpp-sdk` package is ready to be consumed.
 The example projects show a [minimal
-`conanfile.txt`](src/viam/examples/project/cmake/conanfile.txt). With
+`conanfile.txt`](../src/viam/examples/project/cmake/conanfile.txt). With
 this `conanfile.txt` in the same directory as your project's
 `CMakeLists.txt`, you can then do, for example,
 
@@ -91,14 +91,14 @@ cmake --build --preset=conan-release -j 8
 ```
 
 Note that this can be done with the same `CMakeLists.txt` from the
-[example project](src/viam/examples/project/cmake/CMakeLists.txt): it is
+[example project](../src/viam/examples/project/cmake/CMakeLists.txt): it is
 agnostic of the use of `conan` to package the SDK as opposed to the SDK
 having been built and installed manually.
 
 It is also possible to build using a `conanfile.py` rather than a
 `conanfile.txt`, see again the [conan
 docs](https://docs.conan.io/2/tutorial/consuming_packages/the_flexibility_of_conanfile_py.html#consuming-packages-flexibility-of-conanfile-py),
-or look at the [`test_package/conanfile.py`](test_package/conanfile.py)
+or look at the [`test_package/conanfile.py`](../test_package/conanfile.py)
 which is the test package recipe.
 
 ### Option 2. Using `conan` to manage the SDK dependencies
