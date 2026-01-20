@@ -1,4 +1,4 @@
-# Copyright 2023 Viam Inc.
+# Copyright 2026 Viam Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,13 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-version: v1
+version: v2
+modules:
+  - path: proto
 deps:
   - buf.build/googleapis/googleapis
-breaking:
-  use:
-    - FILE
 lint:
   use:
     - DEFAULT
+  except:
+    - FIELD_NOT_REQUIRED
+    - PACKAGE_NO_IMPORT_CYCLE
+  disallow_comment_ignores: true
+breaking:
+  use:
+    - FILE
+  except:
+    - EXTENSION_NO_DELETE
+    - FIELD_SAME_DEFAULT
