@@ -7,7 +7,7 @@ var searchData=
   ['viam_20c_20sdk_4',['Viam C++ SDK',['../index.html',1,'']]],
   ['viam_3a_3asdk_3a_3aaudio_5fcodecs_5',['audio_codecs',['../namespaceviam_1_1sdk_1_1audio__codecs.html',1,'viam::sdk']]],
   ['viam_5fmodule_5flog_6',['VIAM_MODULE_LOG',['../group__Log.html#ga0e0bd45893e33ca916171e23d45bfce1',1,'logging.hpp']]],
-  ['viam_5fresource_5flog_7',['VIAM_RESOURCE_LOG',['../group__Log.html#ga5f00547ef3446074c72172c83983e26b',1,'logging.hpp']]],
+  ['viam_5fresource_5flog_7',['VIAM_RESOURCE_LOG',['../group__Log.html#ga639fa8e3ab5f7a176ad230c76fe44c11',1,'logging.hpp']]],
   ['viam_5fsdk_5flog_8',['VIAM_SDK_LOG',['../group__Log.html#gab35bc9dc93a02ef947130b9d23e8a051',1,'logging.hpp']]],
   ['viamchannel_9',['ViamChannel',['../classviam_1_1sdk_1_1ViamChannel.html',1,'viam::sdk']]],
   ['viamclient_10',['ViamClient',['../classviam_1_1sdk_1_1ViamClient.html',1,'viam::sdk']]],

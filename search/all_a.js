@@ -11,12 +11,13 @@ var searchData=
   ['locationresponse_8',['LocationResponse',['../structviam_1_1sdk_1_1Navigation_1_1LocationResponse.html',1,'viam::sdk::Navigation']]],
   ['log_5flevel_9',['log_level',['../group__Log.html#ga2e95fe370303fb61a95fee5f99288ca7',1,'viam::sdk']]],
   ['logbackend_10',['LogBackend',['../structviam_1_1sdk_1_1impl_1_1LogBackend.html',1,'viam::sdk::impl']]],
-  ['logging_11',['A note on logging',['../index.html#autotoc_md6',1,'']]],
-  ['logging_12',['Classes related to logging',['../group__Log.html',1,'']]],
-  ['logging_2ehpp_13',['logging.hpp',['../logging_8hpp.html',1,'']]],
-  ['logmanager_14',['LogManager',['../classviam_1_1sdk_1_1LogManager.html',1,'viam::sdk']]],
-  ['logsource_15',['LogSource',['../group__Log.html#gaf5591a93c7e183a679724bc5f278f39f',1,'viam::sdk']]],
-  ['lookup_5fmodel_16',['lookup_model',['../classviam_1_1sdk_1_1Registry.html#aea741b88a5ca1368a358151b63c790a0',1,'viam::sdk::Registry::lookup_model(const std::string &amp;name) const'],['../classviam_1_1sdk_1_1Registry.html#a6a7ef115a3f1c2caffa099d6982a7d5a',1,'viam::sdk::Registry::lookup_model(const API &amp;api, const Model &amp;model) const']]],
-  ['lookup_5fresource_5fclient_17',['lookup_resource_client',['../classviam_1_1sdk_1_1Registry.html#a26955c77ef2b3c4fe84391d941cbfd9d',1,'viam::sdk::Registry']]],
-  ['lookup_5fresource_5fserver_18',['lookup_resource_server',['../classviam_1_1sdk_1_1Registry.html#a8e897bd494e0fcf479209d704ef2e98b',1,'viam::sdk::Registry::lookup_resource_server()'],['../classviam_1_1sdk_1_1Server.html#a14b271b6df18c3b0198b1975444569af',1,'viam::sdk::Server::lookup_resource_server()']]]
+  ['logger_5faccess_11',['logger_access',['../structviam_1_1sdk_1_1log__detail_1_1logger__access.html',1,'viam::sdk::log_detail']]],
+  ['logging_12',['A note on logging',['../index.html#autotoc_md6',1,'']]],
+  ['logging_13',['Classes related to logging',['../group__Log.html',1,'']]],
+  ['logging_2ehpp_14',['logging.hpp',['../logging_8hpp.html',1,'']]],
+  ['logmanager_15',['LogManager',['../classviam_1_1sdk_1_1LogManager.html',1,'viam::sdk']]],
+  ['logsource_16',['LogSource',['../group__Log.html#gaf5591a93c7e183a679724bc5f278f39f',1,'viam::sdk']]],
+  ['lookup_5fmodel_17',['lookup_model',['../classviam_1_1sdk_1_1Registry.html#aea741b88a5ca1368a358151b63c790a0',1,'viam::sdk::Registry::lookup_model(const std::string &amp;name) const'],['../classviam_1_1sdk_1_1Registry.html#a6a7ef115a3f1c2caffa099d6982a7d5a',1,'viam::sdk::Registry::lookup_model(const API &amp;api, const Model &amp;model) const']]],
+  ['lookup_5fresource_5fclient_18',['lookup_resource_client',['../classviam_1_1sdk_1_1Registry.html#a26955c77ef2b3c4fe84391d941cbfd9d',1,'viam::sdk::Registry']]],
+  ['lookup_5fresource_5fserver_19',['lookup_resource_server',['../classviam_1_1sdk_1_1Registry.html#a8e897bd494e0fcf479209d704ef2e98b',1,'viam::sdk::Registry::lookup_resource_server()'],['../classviam_1_1sdk_1_1Server.html#a14b271b6df18c3b0198b1975444569af',1,'viam::sdk::Server::lookup_resource_server()']]]
 ];

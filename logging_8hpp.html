@@ -97,6 +97,7 @@ $(function() {
 <code>#include &lt;boost/log/sinks/text_ostream_backend.hpp&gt;</code><br />
 <code>#include &lt;boost/log/sources/severity_channel_logger.hpp&gt;</code><br />
 <code>#include &lt;boost/log/utility/manipulators/add_value.hpp&gt;</code><br />
+<code>#include &lt;boost/preprocessor/facilities/overload.hpp&gt;</code><br />
 <code>#include &lt;boost/utility/string_view.hpp&gt;</code><br />
 </div>
 <p><a href="logging_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -119,9 +120,15 @@ Macros</h2></td></tr>
 <tr class="memitem:ga0e0bd45893e33ca916171e23d45bfce1" id="r_ga0e0bd45893e33ca916171e23d45bfce1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Log.html#ga0e0bd45893e33ca916171e23d45bfce1">VIAM_MODULE_LOG</a>(level)&#160;&#160;&#160;    VIAM_SDK_LOG_IMPL(<a class="el" href="classviam_1_1sdk_1_1LogManager.html#a3145a8b708b58314e9ebe6562fd244f7">::viam::sdk::LogManager::get</a>().module_logger(), level)</td></tr>
 <tr class="memdesc:ga0e0bd45893e33ca916171e23d45bfce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log macro for logs related to a module.  <br /></td></tr>
 <tr class="separator:ga0e0bd45893e33ca916171e23d45bfce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5f00547ef3446074c72172c83983e26b" id="r_ga5f00547ef3446074c72172c83983e26b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Log.html#ga5f00547ef3446074c72172c83983e26b">VIAM_RESOURCE_LOG</a>(level)&#160;&#160;&#160;VIAM_SDK_LOG_IMPL(this-&gt;logger_, level)</td></tr>
-<tr class="memdesc:ga5f00547ef3446074c72172c83983e26b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log macro for resource-level logs.  <br /></td></tr>
-<tr class="separator:ga5f00547ef3446074c72172c83983e26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a345c02f186594f348409737041bf2573" id="r_a345c02f186594f348409737041bf2573"><td class="memItemLeft" align="right" valign="top"><a id="a345c02f186594f348409737041bf2573" name="a345c02f186594f348409737041bf2573"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIAM_RESOURCE_LOG_IMPL_1</b>(level)&#160;&#160;&#160;VIAM_RESOURCE_LOG_IMPL_2(*this, level)</td></tr>
+<tr class="separator:a345c02f186594f348409737041bf2573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c447850e8c0bedc987ba6e48d6697d" id="r_a14c447850e8c0bedc987ba6e48d6697d"><td class="memItemLeft" align="right" valign="top"><a id="a14c447850e8c0bedc987ba6e48d6697d" name="a14c447850e8c0bedc987ba6e48d6697d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VIAM_RESOURCE_LOG_IMPL_2</b>(resource,  level)&#160;&#160;&#160;    VIAM_SDK_LOG_IMPL(::viam::sdk::log_detail::logger_access::logger(resource), level)</td></tr>
+<tr class="separator:a14c447850e8c0bedc987ba6e48d6697d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga639fa8e3ab5f7a176ad230c76fe44c11" id="r_ga639fa8e3ab5f7a176ad230c76fe44c11"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Log.html#ga639fa8e3ab5f7a176ad230c76fe44c11">VIAM_RESOURCE_LOG</a>(...)</td></tr>
+<tr class="memdesc:ga639fa8e3ab5f7a176ad230c76fe44c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log macro for resource-level logs, allowing resource-level filtering.  <br /></td></tr>
+<tr class="separator:ga639fa8e3ab5f7a176ad230c76fe44c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>

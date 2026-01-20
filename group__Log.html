@@ -95,9 +95,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ga0e0bd45893e33ca916171e23d45bfce1" id="r_ga0e0bd45893e33ca916171e23d45bfce1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0e0bd45893e33ca916171e23d45bfce1">VIAM_MODULE_LOG</a>(level)&#160;&#160;&#160;    VIAM_SDK_LOG_IMPL(<a class="el" href="classviam_1_1sdk_1_1LogManager.html#a3145a8b708b58314e9ebe6562fd244f7">::viam::sdk::LogManager::get</a>().module_logger(), level)</td></tr>
 <tr class="memdesc:ga0e0bd45893e33ca916171e23d45bfce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log macro for logs related to a module.  <br /></td></tr>
 <tr class="separator:ga0e0bd45893e33ca916171e23d45bfce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5f00547ef3446074c72172c83983e26b" id="r_ga5f00547ef3446074c72172c83983e26b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga5f00547ef3446074c72172c83983e26b">VIAM_RESOURCE_LOG</a>(level)&#160;&#160;&#160;VIAM_SDK_LOG_IMPL(this-&gt;logger_, level)</td></tr>
-<tr class="memdesc:ga5f00547ef3446074c72172c83983e26b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log macro for resource-level logs.  <br /></td></tr>
-<tr class="separator:ga5f00547ef3446074c72172c83983e26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga639fa8e3ab5f7a176ad230c76fe44c11" id="r_ga639fa8e3ab5f7a176ad230c76fe44c11"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga639fa8e3ab5f7a176ad230c76fe44c11">VIAM_RESOURCE_LOG</a>(...)</td></tr>
+<tr class="memdesc:ga639fa8e3ab5f7a176ad230c76fe44c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log macro for resource-level logs, allowing resource-level filtering.  <br /></td></tr>
+<tr class="separator:ga639fa8e3ab5f7a176ad230c76fe44c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -149,12 +149,12 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::de
 </div><div class="memdoc">
 
 <p>Log macro for logs related to a module. </p>
-<p>Use this macro to generate log messages pertaining to a Viam C++ module. </p>
+<p>Use this macro to generate log messages pertaining to a Viam C++ module. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classviam_1_1sdk_1_1LogManager.html#a4d7a7603b14f19b24afb9b03c6a78731" title="Set the channel name of log messages to be associated with a C++ module.">viam::sdk::LogManager::set_module_name</a> and <a class="el" href="classviam_1_1sdk_1_1LogManager.html#a3813de53ad7890996b705c8b78c8383e" title="Set the module logger severity.">viam::sdk::LogManager::set_module_log_level</a>. </dd></dl>
 
 </div>
 </div>
-<a id="ga5f00547ef3446074c72172c83983e26b" name="ga5f00547ef3446074c72172c83983e26b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5f00547ef3446074c72172c83983e26b">&#9670;&#160;</a></span>VIAM_RESOURCE_LOG</h2>
+<a id="ga639fa8e3ab5f7a176ad230c76fe44c11" name="ga639fa8e3ab5f7a176ad230c76fe44c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga639fa8e3ab5f7a176ad230c76fe44c11">&#9670;&#160;</a></span>VIAM_RESOURCE_LOG</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,14 +162,17 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::de
         <tr>
           <td class="memname">#define VIAM_RESOURCE_LOG</td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">level</span></td><td>)</td>
-          <td>&#160;&#160;&#160;VIAM_SDK_LOG_IMPL(this-&gt;logger_, level)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Log macro for resource-level logs. </p>
-<p>This macro can only be called from the definition of a member function of a class inheriting Resource. It will log messages to the log source of that specific resource, allowing resource-level log filtering. </p>
+<b>Value:</b><div class="fragment"><div class="line">    BOOST_PP_CAT(BOOST_PP_OVERLOAD(VIAM_RESOURCE_LOG_IMPL_, __VA_ARGS__)(__VA_ARGS__), \</div>
+<div class="line">                 BOOST_PP_EMPTY())</div>
+</div><!-- fragment -->
+<p>Log macro for resource-level logs, allowing resource-level filtering. </p>
+<p>This macro can be called like <code><a class="el" href="#ga639fa8e3ab5f7a176ad230c76fe44c11" title="Log macro for resource-level logs, allowing resource-level filtering.">VIAM_RESOURCE_LOG(resource, level)</a></code> to associate log messages with <code>resource</code>, or, as a particular case, <code><a class="el" href="#ga639fa8e3ab5f7a176ad230c76fe44c11" title="Log macro for resource-level logs, allowing resource-level filtering.">VIAM_RESOURCE_LOG(*this, level)</a></code> from within a member function definition. </p><dl class="section remark"><dt>Remarks</dt><dd>For compatiblity with earlier SDK versions, calling with a single argument as in <code><a class="el" href="#ga639fa8e3ab5f7a176ad230c76fe44c11" title="Log macro for resource-level logs, allowing resource-level filtering.">VIAM_RESOURCE_LOG(level)</a></code> will log as if by <code><a class="el" href="#ga639fa8e3ab5f7a176ad230c76fe44c11" title="Log macro for resource-level logs, allowing resource-level filtering.">VIAM_RESOURCE_LOG(*this, level)</a></code>. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classviam_1_1sdk_1_1Resource.html#a2091e8cad8343b26b0e8666616eaeaa7" title="Set the log level for log messages originating from this Resource.">viam::sdk::Resource::set_log_level</a>. </dd></dl>
 
 </div>
 </div>
@@ -189,7 +192,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>viam::sdk::de
 </div><div class="memdoc">
 
 <p>Log macro for general SDK logs. </p>
-<p>Use this macro to generate log messages pertaining to the SDK at large. </p>
+<p>Use this macro to generate log messages pertaining to the SDK at large. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classviam_1_1sdk_1_1LogManager.html#ad63b44c0f2ec3637636cf9f0e4f895a3" title="Override the channel name of general log messages not originating from resources.">viam::sdk::LogManager::set_global_resource_name</a> and <a class="el" href="classviam_1_1sdk_1_1LogManager.html#a5930353f61eb86bddd29d1808d4a2cd6" title="Set the global logger severity.">viam::sdk::LogManager::set_global_log_level</a>. </dd></dl>
 
 </div>
 </div>
