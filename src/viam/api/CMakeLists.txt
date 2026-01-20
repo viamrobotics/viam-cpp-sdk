@@ -4,7 +4,7 @@ set(PROTO_GEN_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
   # reads in buf.lock and grabs the commit hashes supported by this version of C++ SDK
   if (NOT EXISTS ${PROJECT_SOURCE_DIR}/buf.lock)
-    message(FATAL_ERROR "No `buf.lock` file was found in the src/viam/api directory")
+    message(FATAL_ERROR "No `buf.lock` file was found in the project source directory")
   endif()
   file(READ ${PROJECT_SOURCE_DIR}/buf.lock lockfile)
 

@@ -26,7 +26,7 @@ class ViamCppSdkRecipe(ConanFile):
         "shared": True
     }
 
-    exports_sources = "CMakeLists.txt", "LICENSE", "src/*"
+    exports_sources = "CMakeLists.txt", "LICENSE", "src/*", "buf.lock"
 
     def set_version(self):
         content = load(self, "CMakeLists.txt")
@@ -46,13 +46,13 @@ class ViamCppSdkRecipe(ConanFile):
     def _xtensor_requires(self):
         if valid_max_cppstd(self, 14, False):
             return 'xtensor/[>=0.24.3 <0.26.0]'
-        
+
         return 'xtensor/[>=0.24.3]'
 
     def _grpc_requires(self):
         if valid_max_cppstd(self, 14, False):
             return 'grpc/[>=1.48.4 <1.70.0]'
-        
+
         return 'grpc/[>=1.48.4]'
 
     def requirements(self):
