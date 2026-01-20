@@ -134,7 +134,7 @@ struct LogSensor : sensor::MockSensor {
 
     sdk::ProtoStruct get_readings(const sdk::ProtoStruct& extra) override {
         VIAM_RESOURCE_LOG(info) << "sensor info";
-        VIAM_RESOURCE_LOG_THIS(error) << "sensor error";
+        VIAM_RESOURCE_LOG(*this, error) << "sensor error";
         return sensor::MockSensor::get_readings(extra);
     }
 };
@@ -150,7 +150,7 @@ BOOST_AUTO_TEST_CASE(test_resource_filter) {
         client_to_mock_pipeline<Sensor>(sensor, [&](Sensor& client) {
             (void)client.get_readings({});
 
-            // test non-member function version
+            // test outside of member function
             VIAM_RESOURCE_LOG(client, info) << "sensor info2";
         });
     }

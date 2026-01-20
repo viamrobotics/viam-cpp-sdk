@@ -106,8 +106,8 @@ void MyBase::set_power(const Vector3& linear, const Vector3& angular, const Prot
 }
 
 ProtoStruct MyBase::do_command(const ProtoStruct& command) {
-    // The VIAM_RESOURCE_LOG_THIS macro will associate log messages to the current resource
-    VIAM_RESOURCE_LOG_THIS(info) << "Received DoCommand request";
+    // The VIAM_RESOURCE_LOG macro will associate log messages to the current resource
+    VIAM_RESOURCE_LOG(*this, info) << "Received DoCommand request";
     return command;
 }
 

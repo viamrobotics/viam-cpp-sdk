@@ -185,28 +185,19 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 #define VIAM_MODULE_LOG(level) \
     VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().module_logger(), level)
 
-/// @brief Log macro for resource-level logs.
-/// @ingroup Log
-///
-/// This macro can only be called from the definition of a member function of a class inheriting
-/// @ref Resource. It will log messages to the log source of that specific resource, allowing
-/// resource-level log filtering.
-#define VIAM_RESOURCE_LOG_THIS(level) VIAM_SDK_LOG_IMPL(this->logger_, level)
-
 // Single argument overload, used for macro overloading below.
-#define VIAM_RESOURCE_LOG_IMPL_1(level) VIAM_RESOURCE_LOG_THIS(level)
+#define VIAM_RESOURCE_LOG_IMPL_1(level) VIAM_RESOURCE_LOG_IMPL_2((*this), level)
 
 // Two argument overload, used for macro overloading below.
 #define VIAM_RESOURCE_LOG_IMPL_2(resource, level) \
     VIAM_SDK_LOG_IMPL(::viam::sdk::log_detail::logger_access::logger(resource), level)
 
-/// @brief Log macro for resource-level logs.
+/// @brief Log macro for resource-level logs, allowing resource-level filtering.
 /// @ingroup Log
 ///
-/// For compatibility, this macro can be called with just a level as an argument, and will log as if
-/// by @ref VIAM_RESOURCE_LOG_THIS, which should be preferred for this use case.
-/// Otherwise, it can be called with a reference to a resource and a severity level,
-///     VIAM_RESOURCE_LOG(my_arm, info) << "Message relating to my_arm resource";
-/// in which case the log message will be associated with the log source of that resource, allowing
-/// resource-level log filtering.
+/// This macro can be called like `VIAM_RESOURCE_LOG(resource, level)` to associate log messages
+/// with `resource`, or, as a particular case, `VIAM_RESOURCE_LOG(*this, level)` from within a
+/// member function definition.
+/// @remark For compatiblity with earlier SDK versions, calling with a single argument as in
+/// `VIAM_RESOURCE_LOG(level)` will log as if by `VIAM_RESOURCE_LOG(*this, level)`.
 #define VIAM_RESOURCE_LOG(...) BOOST_PP_OVERLOAD(VIAM_RESOURCE_LOG_IMPL_, __VA_ARGS__)(__VA_ARGS__)
