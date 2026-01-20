@@ -4573,25 +4573,25 @@ class FragmentImportList final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kImportsFieldNumber = 1,
+    kFragmentsFieldNumber = 1,
   };
-  // repeated .viam.app.v1.FragmentImport imports = 1 [json_name = "imports"];
-  int imports_size() const;
+  // repeated .viam.app.v1.FragmentImport fragments = 1 [json_name = "fragments"];
+  int fragments_size() const;
   private:
-  int _internal_imports_size() const;
+  int _internal_fragments_size() const;
   public:
-  void clear_imports();
-  ::viam::app::v1::FragmentImport* mutable_imports(int index);
+  void clear_fragments();
+  ::viam::app::v1::FragmentImport* mutable_fragments(int index);
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentImport >*
-      mutable_imports();
+      mutable_fragments();
   private:
-  const ::viam::app::v1::FragmentImport& _internal_imports(int index) const;
-  ::viam::app::v1::FragmentImport* _internal_add_imports();
+  const ::viam::app::v1::FragmentImport& _internal_fragments(int index) const;
+  ::viam::app::v1::FragmentImport* _internal_add_fragments();
   public:
-  const ::viam::app::v1::FragmentImport& imports(int index) const;
-  ::viam::app::v1::FragmentImport* add_imports();
+  const ::viam::app::v1::FragmentImport& fragments(int index) const;
+  ::viam::app::v1::FragmentImport* add_fragments();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentImport >&
-      imports() const;
+      fragments() const;
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.FragmentImportList)
  private:
@@ -4600,7 +4600,7 @@ class FragmentImportList final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentImport > imports_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentImport > fragments_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -4730,7 +4730,7 @@ class UpdateOrganizationRequest final :
     kPublicNamespaceFieldNumber = 3,
     kRegionFieldNumber = 4,
     kCidFieldNumber = 5,
-    kFragmentImportsFieldNumber = 6,
+    kDefaultFragmentsFieldNumber = 6,
   };
   // string organization_id = 1 [json_name = "organizationId"];
   void clear_organization_id();
@@ -4818,23 +4818,23 @@ class UpdateOrganizationRequest final :
   std::string* _internal_mutable_cid();
   public:
 
-  // optional .viam.app.v1.FragmentImportList fragment_imports = 6 [json_name = "fragmentImports"];
-  bool has_fragment_imports() const;
+  // optional .viam.app.v1.FragmentImportList default_fragments = 6 [json_name = "defaultFragments"];
+  bool has_default_fragments() const;
   private:
-  bool _internal_has_fragment_imports() const;
+  bool _internal_has_default_fragments() const;
   public:
-  void clear_fragment_imports();
-  const ::viam::app::v1::FragmentImportList& fragment_imports() const;
-  PROTOBUF_NODISCARD ::viam::app::v1::FragmentImportList* release_fragment_imports();
-  ::viam::app::v1::FragmentImportList* mutable_fragment_imports();
-  void set_allocated_fragment_imports(::viam::app::v1::FragmentImportList* fragment_imports);
+  void clear_default_fragments();
+  const ::viam::app::v1::FragmentImportList& default_fragments() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::FragmentImportList* release_default_fragments();
+  ::viam::app::v1::FragmentImportList* mutable_default_fragments();
+  void set_allocated_default_fragments(::viam::app::v1::FragmentImportList* default_fragments);
   private:
-  const ::viam::app::v1::FragmentImportList& _internal_fragment_imports() const;
-  ::viam::app::v1::FragmentImportList* _internal_mutable_fragment_imports();
+  const ::viam::app::v1::FragmentImportList& _internal_default_fragments() const;
+  ::viam::app::v1::FragmentImportList* _internal_mutable_default_fragments();
   public:
-  void unsafe_arena_set_allocated_fragment_imports(
-      ::viam::app::v1::FragmentImportList* fragment_imports);
-  ::viam::app::v1::FragmentImportList* unsafe_arena_release_fragment_imports();
+  void unsafe_arena_set_allocated_default_fragments(
+      ::viam::app::v1::FragmentImportList* default_fragments);
+  ::viam::app::v1::FragmentImportList* unsafe_arena_release_default_fragments();
 
   // @@protoc_insertion_point(class_scope:viam.app.v1.UpdateOrganizationRequest)
  private:
@@ -4850,7 +4850,7 @@ class UpdateOrganizationRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr region_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr cid_;
-  ::viam::app::v1::FragmentImportList* fragment_imports_;
+  ::viam::app::v1::FragmentImportList* default_fragments_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -51225,44 +51225,44 @@ inline void GetOrganizationNamespaceAvailabilityResponse::set_available(bool val
 
 // FragmentImportList
 
-// repeated .viam.app.v1.FragmentImport imports = 1 [json_name = "imports"];
-inline int FragmentImportList::_internal_imports_size() const {
-  return imports_.size();
+// repeated .viam.app.v1.FragmentImport fragments = 1 [json_name = "fragments"];
+inline int FragmentImportList::_internal_fragments_size() const {
+  return fragments_.size();
 }
-inline int FragmentImportList::imports_size() const {
-  return _internal_imports_size();
+inline int FragmentImportList::fragments_size() const {
+  return _internal_fragments_size();
 }
-inline void FragmentImportList::clear_imports() {
-  imports_.Clear();
+inline void FragmentImportList::clear_fragments() {
+  fragments_.Clear();
 }
-inline ::viam::app::v1::FragmentImport* FragmentImportList::mutable_imports(int index) {
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentImportList.imports)
-  return imports_.Mutable(index);
+inline ::viam::app::v1::FragmentImport* FragmentImportList::mutable_fragments(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentImportList.fragments)
+  return fragments_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentImport >*
-FragmentImportList::mutable_imports() {
-  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.FragmentImportList.imports)
-  return &imports_;
+FragmentImportList::mutable_fragments() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.FragmentImportList.fragments)
+  return &fragments_;
 }
-inline const ::viam::app::v1::FragmentImport& FragmentImportList::_internal_imports(int index) const {
-  return imports_.Get(index);
+inline const ::viam::app::v1::FragmentImport& FragmentImportList::_internal_fragments(int index) const {
+  return fragments_.Get(index);
 }
-inline const ::viam::app::v1::FragmentImport& FragmentImportList::imports(int index) const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentImportList.imports)
-  return _internal_imports(index);
+inline const ::viam::app::v1::FragmentImport& FragmentImportList::fragments(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentImportList.fragments)
+  return _internal_fragments(index);
 }
-inline ::viam::app::v1::FragmentImport* FragmentImportList::_internal_add_imports() {
-  return imports_.Add();
+inline ::viam::app::v1::FragmentImport* FragmentImportList::_internal_add_fragments() {
+  return fragments_.Add();
 }
-inline ::viam::app::v1::FragmentImport* FragmentImportList::add_imports() {
-  ::viam::app::v1::FragmentImport* _add = _internal_add_imports();
-  // @@protoc_insertion_point(field_add:viam.app.v1.FragmentImportList.imports)
+inline ::viam::app::v1::FragmentImport* FragmentImportList::add_fragments() {
+  ::viam::app::v1::FragmentImport* _add = _internal_add_fragments();
+  // @@protoc_insertion_point(field_add:viam.app.v1.FragmentImportList.fragments)
   return _add;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::FragmentImport >&
-FragmentImportList::imports() const {
-  // @@protoc_insertion_point(field_list:viam.app.v1.FragmentImportList.imports)
-  return imports_;
+FragmentImportList::fragments() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.FragmentImportList.fragments)
+  return fragments_;
 }
 
 // -------------------------------------------------------------------
@@ -51591,45 +51591,45 @@ inline void UpdateOrganizationRequest::set_allocated_cid(std::string* cid) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationRequest.cid)
 }
 
-// optional .viam.app.v1.FragmentImportList fragment_imports = 6 [json_name = "fragmentImports"];
-inline bool UpdateOrganizationRequest::_internal_has_fragment_imports() const {
+// optional .viam.app.v1.FragmentImportList default_fragments = 6 [json_name = "defaultFragments"];
+inline bool UpdateOrganizationRequest::_internal_has_default_fragments() const {
   bool value = (_has_bits_[0] & 0x00000010u) != 0;
-  PROTOBUF_ASSUME(!value || fragment_imports_ != nullptr);
+  PROTOBUF_ASSUME(!value || default_fragments_ != nullptr);
   return value;
 }
-inline bool UpdateOrganizationRequest::has_fragment_imports() const {
-  return _internal_has_fragment_imports();
+inline bool UpdateOrganizationRequest::has_default_fragments() const {
+  return _internal_has_default_fragments();
 }
-inline void UpdateOrganizationRequest::clear_fragment_imports() {
-  if (fragment_imports_ != nullptr) fragment_imports_->Clear();
+inline void UpdateOrganizationRequest::clear_default_fragments() {
+  if (default_fragments_ != nullptr) default_fragments_->Clear();
   _has_bits_[0] &= ~0x00000010u;
 }
-inline const ::viam::app::v1::FragmentImportList& UpdateOrganizationRequest::_internal_fragment_imports() const {
-  const ::viam::app::v1::FragmentImportList* p = fragment_imports_;
+inline const ::viam::app::v1::FragmentImportList& UpdateOrganizationRequest::_internal_default_fragments() const {
+  const ::viam::app::v1::FragmentImportList* p = default_fragments_;
   return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::FragmentImportList&>(
       ::viam::app::v1::_FragmentImportList_default_instance_);
 }
-inline const ::viam::app::v1::FragmentImportList& UpdateOrganizationRequest::fragment_imports() const {
-  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateOrganizationRequest.fragment_imports)
-  return _internal_fragment_imports();
+inline const ::viam::app::v1::FragmentImportList& UpdateOrganizationRequest::default_fragments() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateOrganizationRequest.default_fragments)
+  return _internal_default_fragments();
 }
-inline void UpdateOrganizationRequest::unsafe_arena_set_allocated_fragment_imports(
-    ::viam::app::v1::FragmentImportList* fragment_imports) {
+inline void UpdateOrganizationRequest::unsafe_arena_set_allocated_default_fragments(
+    ::viam::app::v1::FragmentImportList* default_fragments) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(fragment_imports_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(default_fragments_);
   }
-  fragment_imports_ = fragment_imports;
-  if (fragment_imports) {
+  default_fragments_ = default_fragments;
+  if (default_fragments) {
     _has_bits_[0] |= 0x00000010u;
   } else {
     _has_bits_[0] &= ~0x00000010u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateOrganizationRequest.fragment_imports)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateOrganizationRequest.default_fragments)
 }
-inline ::viam::app::v1::FragmentImportList* UpdateOrganizationRequest::release_fragment_imports() {
+inline ::viam::app::v1::FragmentImportList* UpdateOrganizationRequest::release_default_fragments() {
   _has_bits_[0] &= ~0x00000010u;
-  ::viam::app::v1::FragmentImportList* temp = fragment_imports_;
-  fragment_imports_ = nullptr;
+  ::viam::app::v1::FragmentImportList* temp = default_fragments_;
+  default_fragments_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -51641,44 +51641,44 @@ inline ::viam::app::v1::FragmentImportList* UpdateOrganizationRequest::release_f
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::viam::app::v1::FragmentImportList* UpdateOrganizationRequest::unsafe_arena_release_fragment_imports() {
-  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateOrganizationRequest.fragment_imports)
+inline ::viam::app::v1::FragmentImportList* UpdateOrganizationRequest::unsafe_arena_release_default_fragments() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateOrganizationRequest.default_fragments)
   _has_bits_[0] &= ~0x00000010u;
-  ::viam::app::v1::FragmentImportList* temp = fragment_imports_;
-  fragment_imports_ = nullptr;
+  ::viam::app::v1::FragmentImportList* temp = default_fragments_;
+  default_fragments_ = nullptr;
   return temp;
 }
-inline ::viam::app::v1::FragmentImportList* UpdateOrganizationRequest::_internal_mutable_fragment_imports() {
+inline ::viam::app::v1::FragmentImportList* UpdateOrganizationRequest::_internal_mutable_default_fragments() {
   _has_bits_[0] |= 0x00000010u;
-  if (fragment_imports_ == nullptr) {
+  if (default_fragments_ == nullptr) {
     auto* p = CreateMaybeMessage<::viam::app::v1::FragmentImportList>(GetArenaForAllocation());
-    fragment_imports_ = p;
+    default_fragments_ = p;
   }
-  return fragment_imports_;
+  return default_fragments_;
 }
-inline ::viam::app::v1::FragmentImportList* UpdateOrganizationRequest::mutable_fragment_imports() {
-  ::viam::app::v1::FragmentImportList* _msg = _internal_mutable_fragment_imports();
-  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateOrganizationRequest.fragment_imports)
+inline ::viam::app::v1::FragmentImportList* UpdateOrganizationRequest::mutable_default_fragments() {
+  ::viam::app::v1::FragmentImportList* _msg = _internal_mutable_default_fragments();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateOrganizationRequest.default_fragments)
   return _msg;
 }
-inline void UpdateOrganizationRequest::set_allocated_fragment_imports(::viam::app::v1::FragmentImportList* fragment_imports) {
+inline void UpdateOrganizationRequest::set_allocated_default_fragments(::viam::app::v1::FragmentImportList* default_fragments) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete fragment_imports_;
+    delete default_fragments_;
   }
-  if (fragment_imports) {
+  if (default_fragments) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(fragment_imports);
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(default_fragments);
     if (message_arena != submessage_arena) {
-      fragment_imports = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, fragment_imports, submessage_arena);
+      default_fragments = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, default_fragments, submessage_arena);
     }
     _has_bits_[0] |= 0x00000010u;
   } else {
     _has_bits_[0] &= ~0x00000010u;
   }
-  fragment_imports_ = fragment_imports;
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationRequest.fragment_imports)
+  default_fragments_ = default_fragments;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateOrganizationRequest.default_fragments)
 }
 
 // -------------------------------------------------------------------

@@ -3,10 +3,10 @@ set(PROTO_GEN_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
   # reads in buf.lock and grabs the commit hashes supported by this version of C++ SDK
-  if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/buf.lock)
-    message(FATAL_ERROR "No `buf.lock` file was found in the src/viam/api directory")
+  if (NOT EXISTS ${PROJECT_SOURCE_DIR}/buf.lock)
+    message(FATAL_ERROR "No `buf.lock` file was found in the project source directory")
   endif()
-  file(READ ${CMAKE_CURRENT_SOURCE_DIR}/buf.lock lockfile)
+  file(READ ${PROJECT_SOURCE_DIR}/buf.lock lockfile)
 
   string(REGEX MATCH "googleapis[ \t\r\n]*commit: ([A-Za-z0-9_]*)" _ ${lockfile})
   set(BUF_GOOGLE_API_SOURCE buf.build/googleapis/googleapis:${CMAKE_MATCH_1})
@@ -42,17 +42,15 @@ if (VIAMCPPSDK_USE_LOCAL_PROTOS)
     message(FATAL_ERROR "The VIAMCPPSDK_USE_LOCAL_PROTOS option requires VIAMCPPSDK_USE_DYNAMIC_PROTOS=ON")
   endif()
 
-  if (NOT EXISTS ${PROJECT_SOURCE_DIR}/../buf.work.yaml)
-    message(FATAL_ERROR "No `buf.work.yaml` file was found in the parent directory")
-  endif()
-
+  # TODO: I believe it is no longer necessary for the Viam API repo to be a sibling repo of the Viam C++ SDK repo.
+  # Maybe try to detect the sibling configuration as before, but also allow the option to pass the directory as a CMake arg.
   if (NOT EXISTS ${PROJECT_SOURCE_DIR}/../api/proto/viam)
     message(FATAL_ERROR "No Viam api repository was found in the parent directory")
   endif()
 
-  file(RELATIVE_PATH BUF_LOCAL_PROTO_PATH ${CMAKE_CURRENT_BINARY_DIR} ${PROJECT_SOURCE_DIR}/..)
+  file(RELATIVE_PATH BUF_LOCAL_PROTO_PATH ${CMAKE_CURRENT_BINARY_DIR} ${PROJECT_SOURCE_DIR}/../api)
   set(BUF_VIAM_API_SOURCE ${BUF_LOCAL_PROTO_PATH})
-  list(TRANSFORM BUF_PROTO_COMPONENTS PREPEND ${BUF_LOCAL_PROTO_PATH}/api/proto/viam/)
+  list(TRANSFORM BUF_PROTO_COMPONENTS PREPEND ${BUF_LOCAL_PROTO_PATH}/proto/viam/)
 endif()
 
 list(JOIN BUF_PROTO_COMPONENTS , BUF_PROTO_COMPONENTS_JOINED)
