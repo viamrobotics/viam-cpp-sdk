@@ -204,4 +204,6 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// @remark For compatiblity with earlier SDK versions, calling with a single argument as in
 /// `VIAM_RESOURCE_LOG(level)` will log as if by `VIAM_RESOURCE_LOG(*this, level)`.
 /// @see viam::sdk::Resource::set_log_level.
-#define VIAM_RESOURCE_LOG(...) BOOST_PP_OVERLOAD(VIAM_RESOURCE_LOG_IMPL_, __VA_ARGS__)(__VA_ARGS__)
+#define VIAM_RESOURCE_LOG(...)                                                         \
+    BOOST_PP_CAT(BOOST_PP_OVERLOAD(VIAM_RESOURCE_LOG_IMPL_, __VA_ARGS__)(__VA_ARGS__), \
+                 BOOST_PP_EMPTY())
