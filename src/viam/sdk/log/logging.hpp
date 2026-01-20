@@ -176,12 +176,15 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// @ingroup Log
 ///
 /// Use this macro to generate log messages pertaining to the SDK at large.
+/// @see viam::sdk::LogManager::set_global_resource_name and
+/// viam::sdk::LogManager::set_global_log_level.
 #define VIAM_SDK_LOG(level) VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().global_logger(), level)
 
 /// @brief Log macro for logs related to a module.
 /// @ingroup Log
 ///
 /// Use this macro to generate log messages pertaining to a Viam C++ module.
+/// @see viam::sdk::LogManager::set_module_name and viam::sdk::LogManager::set_module_log_level.
 #define VIAM_MODULE_LOG(level) \
     VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().module_logger(), level)
 
@@ -200,4 +203,5 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// member function definition.
 /// @remark For compatiblity with earlier SDK versions, calling with a single argument as in
 /// `VIAM_RESOURCE_LOG(level)` will log as if by `VIAM_RESOURCE_LOG(*this, level)`.
+/// @see viam::sdk::Resource::set_log_level.
 #define VIAM_RESOURCE_LOG(...) BOOST_PP_OVERLOAD(VIAM_RESOURCE_LOG_IMPL_, __VA_ARGS__)(__VA_ARGS__)
