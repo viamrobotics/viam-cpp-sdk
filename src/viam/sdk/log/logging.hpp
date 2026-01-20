@@ -15,6 +15,7 @@
 #include <boost/log/sinks/text_ostream_backend.hpp>
 #include <boost/log/sources/severity_channel_logger.hpp>
 #include <boost/log/utility/manipulators/add_value.hpp>
+#include <boost/preprocessor/facilities/overload.hpp>
 #include <boost/utility/string_view.hpp>
 
 namespace viam {
@@ -162,6 +163,9 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
                                  "TimeStamp",
                                  boost::log::attributes::local_clock::value_type);
 
+}  // namespace sdk
+}  // namespace viam
+
 #define VIAM_SDK_LOG_IMPL(lg, level)                                                 \
     BOOST_LOG_SEV((lg), ::viam::sdk::log_level::level)                               \
         << ::boost::log::add_value(::viam::sdk::attr_file_type{},                    \
@@ -172,22 +176,34 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
 /// @ingroup Log
 ///
 /// Use this macro to generate log messages pertaining to the SDK at large.
+/// @see viam::sdk::LogManager::set_global_resource_name and
+/// viam::sdk::LogManager::set_global_log_level.
 #define VIAM_SDK_LOG(level) VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().global_logger(), level)
 
 /// @brief Log macro for logs related to a module.
 /// @ingroup Log
 ///
 /// Use this macro to generate log messages pertaining to a Viam C++ module.
+/// @see viam::sdk::LogManager::set_module_name and viam::sdk::LogManager::set_module_log_level.
 #define VIAM_MODULE_LOG(level) \
     VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().module_logger(), level)
 
-/// @brief Log macro for resource-level logs.
+// Single argument overload, used for macro overloading below.
+#define VIAM_RESOURCE_LOG_IMPL_1(level) VIAM_RESOURCE_LOG_IMPL_2(*this, level)
+
+// Two argument overload, used for macro overloading below.
+#define VIAM_RESOURCE_LOG_IMPL_2(resource, level) \
+    VIAM_SDK_LOG_IMPL(::viam::sdk::log_detail::logger_access::logger(resource), level)
+
+/// @brief Log macro for resource-level logs, allowing resource-level filtering.
 /// @ingroup Log
 ///
-/// This macro can only be called from the definition of a member function of a class inheriting
-/// @ref Resource. It will log messages to the log source of that specific resource, allowing
-/// resource-level log filtering.
-#define VIAM_RESOURCE_LOG(level) VIAM_SDK_LOG_IMPL(this->logger_, level)
-
-}  // namespace sdk
-}  // namespace viam
+/// This macro can be called like `VIAM_RESOURCE_LOG(resource, level)` to associate log messages
+/// with `resource`, or, as a particular case, `VIAM_RESOURCE_LOG(*this, level)` from within a
+/// member function definition.
+/// @remark For compatiblity with earlier SDK versions, calling with a single argument as in
+/// `VIAM_RESOURCE_LOG(level)` will log as if by `VIAM_RESOURCE_LOG(*this, level)`.
+/// @see viam::sdk::Resource::set_log_level.
+#define VIAM_RESOURCE_LOG(...)                                                         \
+    BOOST_PP_CAT(BOOST_PP_OVERLOAD(VIAM_RESOURCE_LOG_IMPL_, __VA_ARGS__)(__VA_ARGS__), \
+                 BOOST_PP_EMPTY())
