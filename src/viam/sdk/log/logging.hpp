@@ -189,7 +189,7 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
     VIAM_SDK_LOG_IMPL(::viam::sdk::LogManager::get().module_logger(), level)
 
 // Single argument overload, used for macro overloading below.
-#define VIAM_RESOURCE_LOG_IMPL_1(level) VIAM_RESOURCE_LOG_IMPL_2((*this), level)
+#define VIAM_RESOURCE_LOG_IMPL_1(level) VIAM_RESOURCE_LOG_IMPL_2(*this, level)
 
 // Two argument overload, used for macro overloading below.
 #define VIAM_RESOURCE_LOG_IMPL_2(resource, level) \
