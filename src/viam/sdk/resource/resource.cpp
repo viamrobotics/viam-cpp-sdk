@@ -33,5 +33,13 @@ void Resource::set_log_level(log_level ll) const {
     LogManager::get().set_resource_log_level(name_, ll);
 }
 
+namespace log_detail {
+
+LogSource& logger_access::logger(const Resource& r) {
+    return r.logger_;
+}
+
+}  // namespace log_detail
+
 }  // namespace sdk
 }  // namespace viam

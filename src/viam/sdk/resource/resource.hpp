@@ -14,6 +14,12 @@ class Resource;
 
 using Dependencies = std::unordered_map<Name, std::shared_ptr<Resource>>;
 
+namespace log_detail {
+
+struct logger_access;
+
+}  // namespace log_detail
+
 class Resource {
    public:
     virtual ~Resource();
@@ -35,9 +41,11 @@ class Resource {
     std::string name_;
 
    protected:
+    friend log_detail::logger_access;
+
     Name get_resource_name(const std::string& type) const;
 
-    LogSource logger_;
+    mutable LogSource logger_;
 };
 
 template <>
@@ -46,6 +54,16 @@ struct API::traits<Resource> {
         return {"rdk", "resource", "Resource"};
     }
 };
+
+namespace log_detail {
+
+// This is an attorney-client helper to avoid making the logger an outright public member of
+// Resource.
+struct logger_access {
+    static LogSource& logger(const Resource&);
+};
+
+}  // namespace log_detail
 
 }  // namespace sdk
 }  // namespace viam
