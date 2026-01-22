@@ -52,6 +52,7 @@ struct KinematicsDataSVA : raw_bytes<KinematicsDataSVA>, EqCompare<KinematicsDat
 /// @brief Kinematics data in URDF format
 struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF>, EqCompare<KinematicsDataURDF> {
     using raw_bytes<KinematicsDataURDF>::raw_bytes;
+    std::map<std::string, mesh> meshes_by_urdf_filepath;
 };
 
 /// @brief The kinematics of a component.
