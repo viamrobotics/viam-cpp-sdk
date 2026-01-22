@@ -57,11 +57,10 @@ const std::string& GeometryConfig::get_label() const {
 }
 
 std::ostream& operator<<(std::ostream& os, const pose& v) {
-    os << "{ coordinates: "
-       << "{ x: " << v.coordinates.x << ", y: " << v.coordinates.y << ", z: " << v.coordinates.z
-       << "},\norientation: "
-       << "{ o_x: " << v.orientation.o_x << ", o_y: " << v.orientation.o_y
-       << ", o_z: " << v.orientation.o_z << "},\ntheta: " << v.theta << "}";
+    os << "{ coordinates: " << "{ x: " << v.coordinates.x << ", y: " << v.coordinates.y
+       << ", z: " << v.coordinates.z << "},\norientation: " << "{ o_x: " << v.orientation.o_x
+       << ", o_y: " << v.orientation.o_y << ", o_z: " << v.orientation.o_z
+       << "},\ntheta: " << v.theta << "}";
     return os;
 }
 

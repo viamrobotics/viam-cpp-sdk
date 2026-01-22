@@ -23,9 +23,7 @@ struct mesh {
     std::vector<unsigned char> data;
 };
 
-inline bool operator==(const mesh& lhs, const mesh& rhs) {
-    return lhs.content_type == rhs.content_type && lhs.data == rhs.data;
-}
+bool operator==(const mesh& lhs, const mesh& rhs);
 
 namespace proto_convert_details {
 

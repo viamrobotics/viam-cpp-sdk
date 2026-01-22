@@ -13,11 +13,12 @@ std::map<std::string, sdk::mesh> fake_3d_models() {
     return {{"model1", sdk::mesh{"model1", {1, 2, 3, 4}}}};
 }
 
-sdk::KinematicsResponse fake_kinematics() {
-    return sdk::KinematicsResponse{
-        sdk::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}},
-        {}
-    };
+sdk::KinematicsData fake_kinematics() {
+    return sdk::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}};
+}
+
+sdk::KinematicsResponse fake_kinematics_response() {
+    return sdk::KinematicsResponse{fake_kinematics(), {}};
 }
 
 sdk::pose MockArm::get_end_position(const sdk::ProtoStruct& extra) {
@@ -64,8 +65,12 @@ sdk::ProtoStruct MockArm::do_command(const sdk::ProtoStruct& command) {
     return (peek_command = command);
 }
 
-sdk::KinematicsResponse MockArm::get_kinematics(const sdk::ProtoStruct&) {
+sdk::KinematicsData MockArm::get_kinematics(const sdk::ProtoStruct&) {
     return fake_kinematics();
+}
+
+sdk::KinematicsResponse MockArm::get_kinematics_response(const sdk::ProtoStruct&) {
+    return fake_kinematics_response();
 }
 
 std::vector<sdk::GeometryConfig> MockArm::get_geometries(const sdk::ProtoStruct&) {

@@ -404,11 +404,9 @@ int main(int argc, char* argv[]) try {
         return EXIT_SUCCESS;
     }
 } catch (const std::exception& ex) {
-    std::cerr << argv[0] << ": "
-              << "Failed: a std::exception was thrown: `" << ex.what() << "``\n";
+    std::cerr << argv[0] << ": " << "Failed: a std::exception was thrown: `" << ex.what() << "``\n";
     return EXIT_FAILURE;
 } catch (...) {
-    std::cerr << argv[0] << ": "
-              << "Failed: an unknown exception was thrown\n";
+    std::cerr << argv[0] << ": " << "Failed: an unknown exception was thrown\n";
     return EXIT_FAILURE;
 }

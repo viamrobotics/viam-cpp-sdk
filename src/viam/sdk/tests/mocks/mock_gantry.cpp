@@ -10,11 +10,12 @@ std::vector<double> fake_lengths() {
     return {1.0, 2.0, 3.0, 4.0};
 }
 
-sdk::KinematicsResponse fake_kinematics() {
-    return sdk::KinematicsResponse{
-        sdk::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}},
-        {}
-    };
+sdk::KinematicsData fake_kinematics() {
+    return sdk::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}};
+}
+
+sdk::KinematicsResponse fake_kinematics_response() {
+    return sdk::KinematicsResponse{fake_kinematics(), {}};
 }
 
 std::shared_ptr<MockGantry> MockGantry::get_mock_gantry() {
@@ -56,8 +57,12 @@ std::vector<sdk::GeometryConfig> MockGantry::get_geometries(const sdk::ProtoStru
     return fake_geometries();
 }
 
-sdk::KinematicsResponse MockGantry::get_kinematics(const sdk::ProtoStruct&) {
+sdk::KinematicsData MockGantry::get_kinematics(const sdk::ProtoStruct&) {
     return fake_kinematics();
+}
+
+sdk::KinematicsResponse MockGantry::get_kinematics_response(const sdk::ProtoStruct&) {
+    return fake_kinematics_response();
 }
 
 }  // namespace gantry

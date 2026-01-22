@@ -33,10 +33,12 @@ class GantryClient : public Gantry {
     void stop(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
-    ::viam::sdk::KinematicsResponse get_kinematics(const ProtoStruct& extra) override;
+    ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) override;
+    ::viam::sdk::KinematicsResponse get_kinematics_response(const ProtoStruct& extra) override;
 
     using Gantry::get_geometries;
     using Gantry::get_kinematics;
+    using Gantry::get_kinematics_response;
     using Gantry::get_lengths;
     using Gantry::get_position;
     using Gantry::home;

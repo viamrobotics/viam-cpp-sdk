@@ -109,13 +109,24 @@ class Arm : public Component, public Stoppable {
 
     /// @brief Get the kinematics data associated with the arm.
     /// @param extra Any additional arguments to the method.
-    /// @return Kinematics response containing the kinematics data and optional meshes.
-    virtual ::viam::sdk::KinematicsResponse get_kinematics(const ProtoStruct& extra) = 0;
+    /// @return A variant of kinematics data, with the type indicating the format of the data.
+    virtual ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
 
     /// @brief Get the kinematics data associated with the arm.
-    /// @return Kinematics response containing the kinematics data and optional meshes.
-    inline ::viam::sdk::KinematicsResponse get_kinematics() {
+    /// @return A variant of kinematics data, with the type indicating the format of the data.
+    inline ::viam::sdk::KinematicsData get_kinematics() {
         return get_kinematics({});
+    }
+
+    /// @brief Get the full kinematics response associated with the arm.
+    /// @param extra Any additional arguments to the method.
+    /// @return Kinematics response containing the kinematics data and optional meshes.
+    virtual ::viam::sdk::KinematicsResponse get_kinematics_response(const ProtoStruct& extra) = 0;
+
+    /// @brief Get the full kinematics response associated with the arm.
+    /// @return Kinematics response containing the kinematics data and optional meshes.
+    inline ::viam::sdk::KinematicsResponse get_kinematics_response() {
+        return get_kinematics_response({});
     }
 
     /// @brief Returns `3DModel`s associated with the calling arm
