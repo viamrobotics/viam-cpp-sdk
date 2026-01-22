@@ -25,14 +25,15 @@ namespace service {
 namespace video {
 namespace v1 {
 PROTOBUF_CONSTEXPR GetVideoRequest::GetVideoRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , video_codec_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , video_container_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , request_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , start_timestamp_(nullptr)
-  , end_timestamp_(nullptr)
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.video_codec_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.video_container_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.request_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.start_timestamp_)*/nullptr
+  , /*decltype(_impl_.end_timestamp_)*/nullptr
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetVideoRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetVideoRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -43,10 +44,11 @@ struct GetVideoRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetVideoRequestDefaultTypeInternal _GetVideoRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetVideoResponse::GetVideoResponse(
-    ::_pbi::ConstantInitialized)
-  : video_data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , video_container_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , request_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.video_data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.video_container_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.request_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetVideoResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetVideoResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -71,22 +73,22 @@ const uint32_t TableStruct_service_2fvideo_2fv1_2fvideo_2eproto::offsets[] PROTO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, start_timestamp_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, end_timestamp_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, video_codec_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, video_container_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, request_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, _impl_.start_timestamp_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, _impl_.end_timestamp_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, _impl_.video_codec_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, _impl_.video_container_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, _impl_.request_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoResponse, video_data_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoResponse, video_container_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoResponse, request_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoResponse, _impl_.video_data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoResponse, _impl_.video_container_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::video::v1::GetVideoResponse, _impl_.request_id_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::video::v1::GetVideoRequest)},
@@ -162,114 +164,128 @@ class GetVideoRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 GetVideoRequest::_Internal::start_timestamp(const GetVideoRequest* msg) {
-  return *msg->start_timestamp_;
+  return *msg->_impl_.start_timestamp_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 GetVideoRequest::_Internal::end_timestamp(const GetVideoRequest* msg) {
-  return *msg->end_timestamp_;
+  return *msg->_impl_.end_timestamp_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetVideoRequest::_Internal::extra(const GetVideoRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetVideoRequest::clear_start_timestamp() {
-  if (GetArenaForAllocation() == nullptr && start_timestamp_ != nullptr) {
-    delete start_timestamp_;
+  if (GetArenaForAllocation() == nullptr && _impl_.start_timestamp_ != nullptr) {
+    delete _impl_.start_timestamp_;
   }
-  start_timestamp_ = nullptr;
+  _impl_.start_timestamp_ = nullptr;
 }
 void GetVideoRequest::clear_end_timestamp() {
-  if (GetArenaForAllocation() == nullptr && end_timestamp_ != nullptr) {
-    delete end_timestamp_;
+  if (GetArenaForAllocation() == nullptr && _impl_.end_timestamp_ != nullptr) {
+    delete _impl_.end_timestamp_;
   }
-  end_timestamp_ = nullptr;
+  _impl_.end_timestamp_ = nullptr;
 }
 void GetVideoRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetVideoRequest::GetVideoRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.video.v1.GetVideoRequest)
 }
 GetVideoRequest::GetVideoRequest(const GetVideoRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetVideoRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.video_codec_){}
+    , decltype(_impl_.video_container_){}
+    , decltype(_impl_.request_id_){}
+    , decltype(_impl_.start_timestamp_){nullptr}
+    , decltype(_impl_.end_timestamp_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  video_codec_.InitDefault();
+  _impl_.video_codec_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    video_codec_.Set("", GetArenaForAllocation());
+    _impl_.video_codec_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_video_codec().empty()) {
-    video_codec_.Set(from._internal_video_codec(), 
-      GetArenaForAllocation());
+    _this->_impl_.video_codec_.Set(from._internal_video_codec(), 
+      _this->GetArenaForAllocation());
   }
-  video_container_.InitDefault();
+  _impl_.video_container_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    video_container_.Set("", GetArenaForAllocation());
+    _impl_.video_container_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_video_container().empty()) {
-    video_container_.Set(from._internal_video_container(), 
-      GetArenaForAllocation());
+    _this->_impl_.video_container_.Set(from._internal_video_container(), 
+      _this->GetArenaForAllocation());
   }
-  request_id_.InitDefault();
+  _impl_.request_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    request_id_.Set("", GetArenaForAllocation());
+    _impl_.request_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_request_id().empty()) {
-    request_id_.Set(from._internal_request_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.request_id_.Set(from._internal_request_id(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_start_timestamp()) {
-    start_timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.start_timestamp_);
-  } else {
-    start_timestamp_ = nullptr;
+    _this->_impl_.start_timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.start_timestamp_);
   }
   if (from._internal_has_end_timestamp()) {
-    end_timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.end_timestamp_);
-  } else {
-    end_timestamp_ = nullptr;
+    _this->_impl_.end_timestamp_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.end_timestamp_);
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.video.v1.GetVideoRequest)
 }
 
-inline void GetVideoRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-video_codec_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  video_codec_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-video_container_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  video_container_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-request_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  request_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&start_timestamp_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&start_timestamp_)) + sizeof(extra_));
+inline void GetVideoRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.video_codec_){}
+    , decltype(_impl_.video_container_){}
+    , decltype(_impl_.request_id_){}
+    , decltype(_impl_.start_timestamp_){nullptr}
+    , decltype(_impl_.end_timestamp_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.video_codec_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.video_codec_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.video_container_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.video_container_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.request_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.request_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetVideoRequest::~GetVideoRequest() {
@@ -283,17 +299,17 @@ GetVideoRequest::~GetVideoRequest() {
 
 inline void GetVideoRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  video_codec_.Destroy();
-  video_container_.Destroy();
-  request_id_.Destroy();
-  if (this != internal_default_instance()) delete start_timestamp_;
-  if (this != internal_default_instance()) delete end_timestamp_;
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.video_codec_.Destroy();
+  _impl_.video_container_.Destroy();
+  _impl_.request_id_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.start_timestamp_;
+  if (this != internal_default_instance()) delete _impl_.end_timestamp_;
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetVideoRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetVideoRequest::Clear() {
@@ -302,22 +318,22 @@ void GetVideoRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  video_codec_.ClearToEmpty();
-  video_container_.ClearToEmpty();
-  request_id_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && start_timestamp_ != nullptr) {
-    delete start_timestamp_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.video_codec_.ClearToEmpty();
+  _impl_.video_container_.ClearToEmpty();
+  _impl_.request_id_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.start_timestamp_ != nullptr) {
+    delete _impl_.start_timestamp_;
   }
-  start_timestamp_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && end_timestamp_ != nullptr) {
-    delete end_timestamp_;
+  _impl_.start_timestamp_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.end_timestamp_ != nullptr) {
+    delete _impl_.end_timestamp_;
   }
-  end_timestamp_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.end_timestamp_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -529,67 +545,66 @@ size_t GetVideoRequest::ByteSizeLong() const {
   if (this->_internal_has_start_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *start_timestamp_);
+        *_impl_.start_timestamp_);
   }
 
   // .google.protobuf.Timestamp end_timestamp = 3 [json_name = "endTimestamp"];
   if (this->_internal_has_end_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *end_timestamp_);
+        *_impl_.end_timestamp_);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetVideoRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetVideoRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetVideoRequest::GetClassData() const { return &_class_data_; }
 
-void GetVideoRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetVideoRequest *>(to)->MergeFrom(
-      static_cast<const GetVideoRequest &>(from));
-}
 
-
-void GetVideoRequest::MergeFrom(const GetVideoRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.video.v1.GetVideoRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetVideoRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetVideoRequest*>(&to_msg);
+  auto& from = static_cast<const GetVideoRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.video.v1.GetVideoRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_video_codec().empty()) {
-    _internal_set_video_codec(from._internal_video_codec());
+    _this->_internal_set_video_codec(from._internal_video_codec());
   }
   if (!from._internal_video_container().empty()) {
-    _internal_set_video_container(from._internal_video_container());
+    _this->_internal_set_video_container(from._internal_video_container());
   }
   if (!from._internal_request_id().empty()) {
-    _internal_set_request_id(from._internal_request_id());
+    _this->_internal_set_request_id(from._internal_request_id());
   }
   if (from._internal_has_start_timestamp()) {
-    _internal_mutable_start_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_start_timestamp());
+    _this->_internal_mutable_start_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_start_timestamp());
   }
   if (from._internal_has_end_timestamp()) {
-    _internal_mutable_end_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_end_timestamp());
+    _this->_internal_mutable_end_timestamp()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_end_timestamp());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetVideoRequest::CopyFrom(const GetVideoRequest& from) {
@@ -609,27 +624,27 @@ void GetVideoRequest::InternalSwap(GetVideoRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &video_codec_, lhs_arena,
-      &other->video_codec_, rhs_arena
+      &_impl_.video_codec_, lhs_arena,
+      &other->_impl_.video_codec_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &video_container_, lhs_arena,
-      &other->video_container_, rhs_arena
+      &_impl_.video_container_, lhs_arena,
+      &other->_impl_.video_container_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &request_id_, lhs_arena,
-      &other->request_id_, rhs_arena
+      &_impl_.request_id_, lhs_arena,
+      &other->_impl_.request_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetVideoRequest, extra_)
-      + sizeof(GetVideoRequest::extra_)
-      - PROTOBUF_FIELD_OFFSET(GetVideoRequest, start_timestamp_)>(
-          reinterpret_cast<char*>(&start_timestamp_),
-          reinterpret_cast<char*>(&other->start_timestamp_));
+      PROTOBUF_FIELD_OFFSET(GetVideoRequest, _impl_.extra_)
+      + sizeof(GetVideoRequest::_impl_.extra_)
+      - PROTOBUF_FIELD_OFFSET(GetVideoRequest, _impl_.start_timestamp_)>(
+          reinterpret_cast<char*>(&_impl_.start_timestamp_),
+          reinterpret_cast<char*>(&other->_impl_.start_timestamp_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetVideoRequest::GetMetadata() const {
@@ -647,52 +662,68 @@ class GetVideoResponse::_Internal {
 GetVideoResponse::GetVideoResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.video.v1.GetVideoResponse)
 }
 GetVideoResponse::GetVideoResponse(const GetVideoResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetVideoResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.video_data_){}
+    , decltype(_impl_.video_container_){}
+    , decltype(_impl_.request_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  video_data_.InitDefault();
+  _impl_.video_data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    video_data_.Set("", GetArenaForAllocation());
+    _impl_.video_data_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_video_data().empty()) {
-    video_data_.Set(from._internal_video_data(), 
-      GetArenaForAllocation());
+    _this->_impl_.video_data_.Set(from._internal_video_data(), 
+      _this->GetArenaForAllocation());
   }
-  video_container_.InitDefault();
+  _impl_.video_container_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    video_container_.Set("", GetArenaForAllocation());
+    _impl_.video_container_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_video_container().empty()) {
-    video_container_.Set(from._internal_video_container(), 
-      GetArenaForAllocation());
+    _this->_impl_.video_container_.Set(from._internal_video_container(), 
+      _this->GetArenaForAllocation());
   }
-  request_id_.InitDefault();
+  _impl_.request_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    request_id_.Set("", GetArenaForAllocation());
+    _impl_.request_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_request_id().empty()) {
-    request_id_.Set(from._internal_request_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.request_id_.Set(from._internal_request_id(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.video.v1.GetVideoResponse)
 }
 
-inline void GetVideoResponse::SharedCtor() {
-video_data_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  video_data_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-video_container_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  video_container_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-request_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  request_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void GetVideoResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.video_data_){}
+    , decltype(_impl_.video_container_){}
+    , decltype(_impl_.request_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.video_data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.video_data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.video_container_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.video_container_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.request_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.request_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetVideoResponse::~GetVideoResponse() {
@@ -706,13 +737,13 @@ GetVideoResponse::~GetVideoResponse() {
 
 inline void GetVideoResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  video_data_.Destroy();
-  video_container_.Destroy();
-  request_id_.Destroy();
+  _impl_.video_data_.Destroy();
+  _impl_.video_container_.Destroy();
+  _impl_.request_id_.Destroy();
 }
 
 void GetVideoResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetVideoResponse::Clear() {
@@ -721,9 +752,9 @@ void GetVideoResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  video_data_.ClearToEmpty();
-  video_container_.ClearToEmpty();
-  request_id_.ClearToEmpty();
+  _impl_.video_data_.ClearToEmpty();
+  _impl_.video_container_.ClearToEmpty();
+  _impl_.request_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -854,38 +885,34 @@ size_t GetVideoResponse::ByteSizeLong() const {
         this->_internal_request_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetVideoResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetVideoResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetVideoResponse::GetClassData() const { return &_class_data_; }
 
-void GetVideoResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetVideoResponse *>(to)->MergeFrom(
-      static_cast<const GetVideoResponse &>(from));
-}
 
-
-void GetVideoResponse::MergeFrom(const GetVideoResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.video.v1.GetVideoResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetVideoResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetVideoResponse*>(&to_msg);
+  auto& from = static_cast<const GetVideoResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.video.v1.GetVideoResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_video_data().empty()) {
-    _internal_set_video_data(from._internal_video_data());
+    _this->_internal_set_video_data(from._internal_video_data());
   }
   if (!from._internal_video_container().empty()) {
-    _internal_set_video_container(from._internal_video_container());
+    _this->_internal_set_video_container(from._internal_video_container());
   }
   if (!from._internal_request_id().empty()) {
-    _internal_set_request_id(from._internal_request_id());
+    _this->_internal_set_request_id(from._internal_request_id());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetVideoResponse::CopyFrom(const GetVideoResponse& from) {
@@ -905,16 +932,16 @@ void GetVideoResponse::InternalSwap(GetVideoResponse* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &video_data_, lhs_arena,
-      &other->video_data_, rhs_arena
+      &_impl_.video_data_, lhs_arena,
+      &other->_impl_.video_data_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &video_container_, lhs_arena,
-      &other->video_container_, rhs_arena
+      &_impl_.video_container_, lhs_arena,
+      &other->_impl_.video_container_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &request_id_, lhs_arena,
-      &other->request_id_, rhs_arena
+      &_impl_.request_id_, lhs_arena,
+      &other->_impl_.request_id_, rhs_arena
   );
 }
 

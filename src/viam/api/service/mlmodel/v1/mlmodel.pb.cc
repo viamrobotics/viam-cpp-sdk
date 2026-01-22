@@ -25,10 +25,11 @@ namespace service {
 namespace mlmodel {
 namespace v1 {
 PROTOBUF_CONSTEXPR InferRequest::InferRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , input_tensors_(nullptr)
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.input_tensors_)*/nullptr
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct InferRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR InferRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -39,8 +40,9 @@ struct InferRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InferRequestDefaultTypeInternal _InferRequest_default_instance_;
 PROTOBUF_CONSTEXPR InferResponse::InferResponse(
-    ::_pbi::ConstantInitialized)
-  : output_tensors_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.output_tensors_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct InferResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR InferResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -51,9 +53,10 @@ struct InferResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InferResponseDefaultTypeInternal _InferResponse_default_instance_;
 PROTOBUF_CONSTEXPR MetadataRequest::MetadataRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct MetadataRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MetadataRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -64,8 +67,9 @@ struct MetadataRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MetadataRequestDefaultTypeInternal _MetadataRequest_default_instance_;
 PROTOBUF_CONSTEXPR MetadataResponse::MetadataResponse(
-    ::_pbi::ConstantInitialized)
-  : metadata_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.metadata_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct MetadataResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MetadataResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -76,12 +80,13 @@ struct MetadataResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MetadataResponseDefaultTypeInternal _MetadataResponse_default_instance_;
 PROTOBUF_CONSTEXPR Metadata::Metadata(
-    ::_pbi::ConstantInitialized)
-  : input_info_()
-  , output_info_()
-  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.input_info_)*/{}
+  , /*decltype(_impl_.output_info_)*/{}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.description_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct MetadataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MetadataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -92,14 +97,15 @@ struct MetadataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MetadataDefaultTypeInternal _Metadata_default_instance_;
 PROTOBUF_CONSTEXPR TensorInfo::TensorInfo(
-    ::_pbi::ConstantInitialized)
-  : shape_()
-  , _shape_cached_byte_size_(0)
-  , associated_files_()
-  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , data_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.shape_)*/{}
+  , /*decltype(_impl_._shape_cached_byte_size_)*/{0}
+  , /*decltype(_impl_.associated_files_)*/{}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.description_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.data_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TensorInfoDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TensorInfoDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -110,11 +116,11 @@ struct TensorInfoDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TensorInfoDefaultTypeInternal _TensorInfo_default_instance_;
 PROTOBUF_CONSTEXPR File::File(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , label_type_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.description_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.label_type_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FileDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FileDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -125,8 +131,9 @@ struct FileDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileDefaultTypeInternal _File_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataInt8::FlatTensorDataInt8(
-    ::_pbi::ConstantInitialized)
-  : data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataInt8DefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataInt8DefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -137,8 +144,9 @@ struct FlatTensorDataInt8DefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataInt8DefaultTypeInternal _FlatTensorDataInt8_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataUInt8::FlatTensorDataUInt8(
-    ::_pbi::ConstantInitialized)
-  : data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataUInt8DefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataUInt8DefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -149,8 +157,9 @@ struct FlatTensorDataUInt8DefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataUInt8DefaultTypeInternal _FlatTensorDataUInt8_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataInt16::FlatTensorDataInt16(
-    ::_pbi::ConstantInitialized)
-  : data_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataInt16DefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataInt16DefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -161,8 +170,9 @@ struct FlatTensorDataInt16DefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataInt16DefaultTypeInternal _FlatTensorDataInt16_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataUInt16::FlatTensorDataUInt16(
-    ::_pbi::ConstantInitialized)
-  : data_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataUInt16DefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataUInt16DefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -173,8 +183,9 @@ struct FlatTensorDataUInt16DefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataUInt16DefaultTypeInternal _FlatTensorDataUInt16_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataInt32::FlatTensorDataInt32(
-    ::_pbi::ConstantInitialized)
-  : data_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataInt32DefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataInt32DefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -185,8 +196,9 @@ struct FlatTensorDataInt32DefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataInt32DefaultTypeInternal _FlatTensorDataInt32_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataUInt32::FlatTensorDataUInt32(
-    ::_pbi::ConstantInitialized)
-  : data_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataUInt32DefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataUInt32DefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -197,8 +209,9 @@ struct FlatTensorDataUInt32DefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataUInt32DefaultTypeInternal _FlatTensorDataUInt32_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataInt64::FlatTensorDataInt64(
-    ::_pbi::ConstantInitialized)
-  : data_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataInt64DefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataInt64DefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -209,8 +222,9 @@ struct FlatTensorDataInt64DefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataInt64DefaultTypeInternal _FlatTensorDataInt64_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataUInt64::FlatTensorDataUInt64(
-    ::_pbi::ConstantInitialized)
-  : data_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataUInt64DefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataUInt64DefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -221,8 +235,9 @@ struct FlatTensorDataUInt64DefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataUInt64DefaultTypeInternal _FlatTensorDataUInt64_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataFloat::FlatTensorDataFloat(
-    ::_pbi::ConstantInitialized)
-  : data_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataFloatDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataFloatDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -233,8 +248,9 @@ struct FlatTensorDataFloatDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataFloatDefaultTypeInternal _FlatTensorDataFloat_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensorDataDouble::FlatTensorDataDouble(
-    ::_pbi::ConstantInitialized)
-  : data_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorDataDoubleDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDataDoubleDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -245,9 +261,11 @@ struct FlatTensorDataDoubleDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDataDoubleDefaultTypeInternal _FlatTensorDataDouble_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensor::FlatTensor(
-    ::_pbi::ConstantInitialized)
-  : shape_()
-  , _oneof_case_{}{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.shape_)*/{}
+  , /*decltype(_impl_.tensor_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_._oneof_case_)*/{}} {}
 struct FlatTensorDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -258,7 +276,7 @@ struct FlatTensorDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensorDefaultTypeInternal _FlatTensor_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensors_TensorsEntry_DoNotUse::FlatTensors_TensorsEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct FlatTensors_TensorsEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensors_TensorsEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -269,8 +287,9 @@ struct FlatTensors_TensorsEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FlatTensors_TensorsEntry_DoNotUseDefaultTypeInternal _FlatTensors_TensorsEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR FlatTensors::FlatTensors(
-    ::_pbi::ConstantInitialized)
-  : tensors_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.tensors_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FlatTensorsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FlatTensorsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -295,140 +314,140 @@ const uint32_t TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto::offsets[] P
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, input_tensors_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, _impl_.input_tensors_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferResponse, output_tensors_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::InferResponse, _impl_.output_tensors_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::MetadataRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::MetadataRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::MetadataRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::MetadataRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::MetadataRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::MetadataResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::MetadataResponse, metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::MetadataResponse, _impl_.metadata_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, type_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, description_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, input_info_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, output_info_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, _impl_.type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, _impl_.description_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, _impl_.input_info_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::Metadata, _impl_.output_info_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, description_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, data_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, shape_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, associated_files_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, _impl_.description_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, _impl_.data_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, _impl_.shape_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, _impl_.associated_files_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::TensorInfo, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::File, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::File, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::File, description_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::File, label_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::File, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::File, _impl_.description_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::File, _impl_.label_type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt8, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt8, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt8, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt8, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt8, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt8, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt16, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt16, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt16, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt16, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt16, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt16, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt32, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt32, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt32, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt32, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt32, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt32, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt64, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt64, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataInt64, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt64, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt64, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataUInt64, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataFloat, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataFloat, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataFloat, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataDouble, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataDouble, data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensorDataDouble, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensor, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensor, _oneof_case_[0]),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensor, _impl_._oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensor, shape_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensor, _impl_.shape_),
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
@@ -439,7 +458,7 @@ const uint32_t TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto::offsets[] P
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensor, tensor_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensor, _impl_.tensor_),
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensors_TensorsEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensors_TensorsEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -456,7 +475,7 @@ const uint32_t TableStruct_service_2fmlmodel_2fv1_2fmlmodel_2eproto::offsets[] P
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensors, tensors_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::mlmodel::v1::FlatTensors, _impl_.tensors_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::mlmodel::v1::InferRequest)},
@@ -636,57 +655,65 @@ class InferRequest::_Internal {
 
 const ::viam::service::mlmodel::v1::FlatTensors&
 InferRequest::_Internal::input_tensors(const InferRequest* msg) {
-  return *msg->input_tensors_;
+  return *msg->_impl_.input_tensors_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 InferRequest::_Internal::extra(const InferRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void InferRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 InferRequest::InferRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.InferRequest)
 }
 InferRequest::InferRequest(const InferRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  InferRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.input_tensors_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_input_tensors()) {
-    input_tensors_ = new ::viam::service::mlmodel::v1::FlatTensors(*from.input_tensors_);
-  } else {
-    input_tensors_ = nullptr;
+    _this->_impl_.input_tensors_ = new ::viam::service::mlmodel::v1::FlatTensors(*from._impl_.input_tensors_);
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.InferRequest)
 }
 
-inline void InferRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&input_tensors_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&input_tensors_)) + sizeof(extra_));
+inline void InferRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.input_tensors_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 InferRequest::~InferRequest() {
@@ -700,13 +727,13 @@ InferRequest::~InferRequest() {
 
 inline void InferRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete input_tensors_;
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.input_tensors_;
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void InferRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void InferRequest::Clear() {
@@ -715,15 +742,15 @@ void InferRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && input_tensors_ != nullptr) {
-    delete input_tensors_;
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.input_tensors_ != nullptr) {
+    delete _impl_.input_tensors_;
   }
-  input_tensors_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.input_tensors_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -839,48 +866,46 @@ size_t InferRequest::ByteSizeLong() const {
   if (this->_internal_has_input_tensors()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *input_tensors_);
+        *_impl_.input_tensors_);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData InferRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     InferRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*InferRequest::GetClassData() const { return &_class_data_; }
 
-void InferRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<InferRequest *>(to)->MergeFrom(
-      static_cast<const InferRequest &>(from));
-}
 
-
-void InferRequest::MergeFrom(const InferRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.InferRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void InferRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<InferRequest*>(&to_msg);
+  auto& from = static_cast<const InferRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.InferRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_input_tensors()) {
-    _internal_mutable_input_tensors()->::viam::service::mlmodel::v1::FlatTensors::MergeFrom(from._internal_input_tensors());
+    _this->_internal_mutable_input_tensors()->::viam::service::mlmodel::v1::FlatTensors::MergeFrom(
+        from._internal_input_tensors());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void InferRequest::CopyFrom(const InferRequest& from) {
@@ -900,15 +925,15 @@ void InferRequest::InternalSwap(InferRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(InferRequest, extra_)
-      + sizeof(InferRequest::extra_)
-      - PROTOBUF_FIELD_OFFSET(InferRequest, input_tensors_)>(
-          reinterpret_cast<char*>(&input_tensors_),
-          reinterpret_cast<char*>(&other->input_tensors_));
+      PROTOBUF_FIELD_OFFSET(InferRequest, _impl_.extra_)
+      + sizeof(InferRequest::_impl_.extra_)
+      - PROTOBUF_FIELD_OFFSET(InferRequest, _impl_.input_tensors_)>(
+          reinterpret_cast<char*>(&_impl_.input_tensors_),
+          reinterpret_cast<char*>(&other->_impl_.input_tensors_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata InferRequest::GetMetadata() const {
@@ -926,27 +951,36 @@ class InferResponse::_Internal {
 
 const ::viam::service::mlmodel::v1::FlatTensors&
 InferResponse::_Internal::output_tensors(const InferResponse* msg) {
-  return *msg->output_tensors_;
+  return *msg->_impl_.output_tensors_;
 }
 InferResponse::InferResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.InferResponse)
 }
 InferResponse::InferResponse(const InferResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  InferResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.output_tensors_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_output_tensors()) {
-    output_tensors_ = new ::viam::service::mlmodel::v1::FlatTensors(*from.output_tensors_);
-  } else {
-    output_tensors_ = nullptr;
+    _this->_impl_.output_tensors_ = new ::viam::service::mlmodel::v1::FlatTensors(*from._impl_.output_tensors_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.InferResponse)
 }
 
-inline void InferResponse::SharedCtor() {
-output_tensors_ = nullptr;
+inline void InferResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.output_tensors_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 InferResponse::~InferResponse() {
@@ -960,11 +994,11 @@ InferResponse::~InferResponse() {
 
 inline void InferResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete output_tensors_;
+  if (this != internal_default_instance()) delete _impl_.output_tensors_;
 }
 
 void InferResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void InferResponse::Clear() {
@@ -973,10 +1007,10 @@ void InferResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && output_tensors_ != nullptr) {
-    delete output_tensors_;
+  if (GetArenaForAllocation() == nullptr && _impl_.output_tensors_ != nullptr) {
+    delete _impl_.output_tensors_;
   }
-  output_tensors_ = nullptr;
+  _impl_.output_tensors_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1050,35 +1084,32 @@ size_t InferResponse::ByteSizeLong() const {
   if (this->_internal_has_output_tensors()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *output_tensors_);
+        *_impl_.output_tensors_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData InferResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     InferResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*InferResponse::GetClassData() const { return &_class_data_; }
 
-void InferResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<InferResponse *>(to)->MergeFrom(
-      static_cast<const InferResponse &>(from));
-}
 
-
-void InferResponse::MergeFrom(const InferResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.InferResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void InferResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<InferResponse*>(&to_msg);
+  auto& from = static_cast<const InferResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.InferResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_output_tensors()) {
-    _internal_mutable_output_tensors()->::viam::service::mlmodel::v1::FlatTensors::MergeFrom(from._internal_output_tensors());
+    _this->_internal_mutable_output_tensors()->::viam::service::mlmodel::v1::FlatTensors::MergeFrom(
+        from._internal_output_tensors());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void InferResponse::CopyFrom(const InferResponse& from) {
@@ -1095,7 +1126,7 @@ bool InferResponse::IsInitialized() const {
 void InferResponse::InternalSwap(InferResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(output_tensors_, other->output_tensors_);
+  swap(_impl_.output_tensors_, other->_impl_.output_tensors_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata InferResponse::GetMetadata() const {
@@ -1113,45 +1144,56 @@ class MetadataRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 MetadataRequest::_Internal::extra(const MetadataRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void MetadataRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 MetadataRequest::MetadataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.MetadataRequest)
 }
 MetadataRequest::MetadataRequest(const MetadataRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  MetadataRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.MetadataRequest)
 }
 
-inline void MetadataRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void MetadataRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 MetadataRequest::~MetadataRequest() {
@@ -1165,12 +1207,12 @@ MetadataRequest::~MetadataRequest() {
 
 inline void MetadataRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void MetadataRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void MetadataRequest::Clear() {
@@ -1179,11 +1221,11 @@ void MetadataRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1284,38 +1326,35 @@ size_t MetadataRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MetadataRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     MetadataRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MetadataRequest::GetClassData() const { return &_class_data_; }
 
-void MetadataRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<MetadataRequest *>(to)->MergeFrom(
-      static_cast<const MetadataRequest &>(from));
-}
 
-
-void MetadataRequest::MergeFrom(const MetadataRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.MetadataRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void MetadataRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<MetadataRequest*>(&to_msg);
+  auto& from = static_cast<const MetadataRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.MetadataRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void MetadataRequest::CopyFrom(const MetadataRequest& from) {
@@ -1335,10 +1374,10 @@ void MetadataRequest::InternalSwap(MetadataRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MetadataRequest::GetMetadata() const {
@@ -1356,27 +1395,36 @@ class MetadataResponse::_Internal {
 
 const ::viam::service::mlmodel::v1::Metadata&
 MetadataResponse::_Internal::metadata(const MetadataResponse* msg) {
-  return *msg->metadata_;
+  return *msg->_impl_.metadata_;
 }
 MetadataResponse::MetadataResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.MetadataResponse)
 }
 MetadataResponse::MetadataResponse(const MetadataResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  MetadataResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.metadata_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_metadata()) {
-    metadata_ = new ::viam::service::mlmodel::v1::Metadata(*from.metadata_);
-  } else {
-    metadata_ = nullptr;
+    _this->_impl_.metadata_ = new ::viam::service::mlmodel::v1::Metadata(*from._impl_.metadata_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.MetadataResponse)
 }
 
-inline void MetadataResponse::SharedCtor() {
-metadata_ = nullptr;
+inline void MetadataResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.metadata_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 MetadataResponse::~MetadataResponse() {
@@ -1390,11 +1438,11 @@ MetadataResponse::~MetadataResponse() {
 
 inline void MetadataResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete metadata_;
+  if (this != internal_default_instance()) delete _impl_.metadata_;
 }
 
 void MetadataResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void MetadataResponse::Clear() {
@@ -1403,10 +1451,10 @@ void MetadataResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && metadata_ != nullptr) {
-    delete metadata_;
+  if (GetArenaForAllocation() == nullptr && _impl_.metadata_ != nullptr) {
+    delete _impl_.metadata_;
   }
-  metadata_ = nullptr;
+  _impl_.metadata_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1480,35 +1528,32 @@ size_t MetadataResponse::ByteSizeLong() const {
   if (this->_internal_has_metadata()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *metadata_);
+        *_impl_.metadata_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MetadataResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     MetadataResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MetadataResponse::GetClassData() const { return &_class_data_; }
 
-void MetadataResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<MetadataResponse *>(to)->MergeFrom(
-      static_cast<const MetadataResponse &>(from));
-}
 
-
-void MetadataResponse::MergeFrom(const MetadataResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.MetadataResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void MetadataResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<MetadataResponse*>(&to_msg);
+  auto& from = static_cast<const MetadataResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.MetadataResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_metadata()) {
-    _internal_mutable_metadata()->::viam::service::mlmodel::v1::Metadata::MergeFrom(from._internal_metadata());
+    _this->_internal_mutable_metadata()->::viam::service::mlmodel::v1::Metadata::MergeFrom(
+        from._internal_metadata());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void MetadataResponse::CopyFrom(const MetadataResponse& from) {
@@ -1525,7 +1570,7 @@ bool MetadataResponse::IsInitialized() const {
 void MetadataResponse::InternalSwap(MetadataResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(metadata_, other->metadata_);
+  swap(_impl_.metadata_, other->_impl_.metadata_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MetadataResponse::GetMetadata() const {
@@ -1542,57 +1587,73 @@ class Metadata::_Internal {
 
 Metadata::Metadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  input_info_(arena),
-  output_info_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.Metadata)
 }
 Metadata::Metadata(const Metadata& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      input_info_(from.input_info_),
-      output_info_(from.output_info_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Metadata* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.input_info_){from._impl_.input_info_}
+    , decltype(_impl_.output_info_){from._impl_.output_info_}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.type_){}
+    , decltype(_impl_.description_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  type_.InitDefault();
+  _impl_.type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    type_.Set("", GetArenaForAllocation());
+    _impl_.type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_type().empty()) {
-    type_.Set(from._internal_type(), 
-      GetArenaForAllocation());
+    _this->_impl_.type_.Set(from._internal_type(), 
+      _this->GetArenaForAllocation());
   }
-  description_.InitDefault();
+  _impl_.description_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    description_.Set("", GetArenaForAllocation());
+    _impl_.description_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_description().empty()) {
-    description_.Set(from._internal_description(), 
-      GetArenaForAllocation());
+    _this->_impl_.description_.Set(from._internal_description(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.Metadata)
 }
 
-inline void Metadata::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-type_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  type_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-description_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  description_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void Metadata::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.input_info_){arena}
+    , decltype(_impl_.output_info_){arena}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.type_){}
+    , decltype(_impl_.description_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Metadata::~Metadata() {
@@ -1606,13 +1667,15 @@ Metadata::~Metadata() {
 
 inline void Metadata::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  type_.Destroy();
-  description_.Destroy();
+  _impl_.input_info_.~RepeatedPtrField();
+  _impl_.output_info_.~RepeatedPtrField();
+  _impl_.name_.Destroy();
+  _impl_.type_.Destroy();
+  _impl_.description_.Destroy();
 }
 
 void Metadata::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Metadata::Clear() {
@@ -1621,11 +1684,11 @@ void Metadata::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  input_info_.Clear();
-  output_info_.Clear();
-  name_.ClearToEmpty();
-  type_.ClearToEmpty();
-  description_.ClearToEmpty();
+  _impl_.input_info_.Clear();
+  _impl_.output_info_.Clear();
+  _impl_.name_.ClearToEmpty();
+  _impl_.type_.ClearToEmpty();
+  _impl_.description_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1784,14 +1847,14 @@ size_t Metadata::ByteSizeLong() const {
 
   // repeated .viam.service.mlmodel.v1.TensorInfo input_info = 4 [json_name = "inputInfo"];
   total_size += 1UL * this->_internal_input_info_size();
-  for (const auto& msg : this->input_info_) {
+  for (const auto& msg : this->_impl_.input_info_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .viam.service.mlmodel.v1.TensorInfo output_info = 5 [json_name = "outputInfo"];
   total_size += 1UL * this->_internal_output_info_size();
-  for (const auto& msg : this->output_info_) {
+  for (const auto& msg : this->_impl_.output_info_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1817,40 +1880,36 @@ size_t Metadata::ByteSizeLong() const {
         this->_internal_description());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Metadata::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Metadata::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Metadata::GetClassData() const { return &_class_data_; }
 
-void Metadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Metadata *>(to)->MergeFrom(
-      static_cast<const Metadata &>(from));
-}
 
-
-void Metadata::MergeFrom(const Metadata& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.Metadata)
-  GOOGLE_DCHECK_NE(&from, this);
+void Metadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Metadata*>(&to_msg);
+  auto& from = static_cast<const Metadata&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.Metadata)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  input_info_.MergeFrom(from.input_info_);
-  output_info_.MergeFrom(from.output_info_);
+  _this->_impl_.input_info_.MergeFrom(from._impl_.input_info_);
+  _this->_impl_.output_info_.MergeFrom(from._impl_.output_info_);
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_type().empty()) {
-    _internal_set_type(from._internal_type());
+    _this->_internal_set_type(from._internal_type());
   }
   if (!from._internal_description().empty()) {
-    _internal_set_description(from._internal_description());
+    _this->_internal_set_description(from._internal_description());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Metadata::CopyFrom(const Metadata& from) {
@@ -1869,19 +1928,19 @@ void Metadata::InternalSwap(Metadata* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  input_info_.InternalSwap(&other->input_info_);
-  output_info_.InternalSwap(&other->output_info_);
+  _impl_.input_info_.InternalSwap(&other->_impl_.input_info_);
+  _impl_.output_info_.InternalSwap(&other->_impl_.output_info_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &type_, lhs_arena,
-      &other->type_, rhs_arena
+      &_impl_.type_, lhs_arena,
+      &other->_impl_.type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &description_, lhs_arena,
-      &other->description_, rhs_arena
+      &_impl_.description_, lhs_arena,
+      &other->_impl_.description_, rhs_arena
   );
 }
 
@@ -1900,73 +1959,90 @@ class TensorInfo::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 TensorInfo::_Internal::extra(const TensorInfo* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void TensorInfo::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 TensorInfo::TensorInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  shape_(arena),
-  associated_files_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.TensorInfo)
 }
 TensorInfo::TensorInfo(const TensorInfo& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      shape_(from.shape_),
-      associated_files_(from.associated_files_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  TensorInfo* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.shape_){from._impl_.shape_}
+    , /*decltype(_impl_._shape_cached_byte_size_)*/{0}
+    , decltype(_impl_.associated_files_){from._impl_.associated_files_}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.data_type_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  description_.InitDefault();
+  _impl_.description_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    description_.Set("", GetArenaForAllocation());
+    _impl_.description_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_description().empty()) {
-    description_.Set(from._internal_description(), 
-      GetArenaForAllocation());
+    _this->_impl_.description_.Set(from._internal_description(), 
+      _this->GetArenaForAllocation());
   }
-  data_type_.InitDefault();
+  _impl_.data_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    data_type_.Set("", GetArenaForAllocation());
+    _impl_.data_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_data_type().empty()) {
-    data_type_.Set(from._internal_data_type(), 
-      GetArenaForAllocation());
+    _this->_impl_.data_type_.Set(from._internal_data_type(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.TensorInfo)
 }
 
-inline void TensorInfo::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-description_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  description_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-data_type_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  data_type_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void TensorInfo::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.shape_){arena}
+    , /*decltype(_impl_._shape_cached_byte_size_)*/{0}
+    , decltype(_impl_.associated_files_){arena}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.data_type_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.data_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TensorInfo::~TensorInfo() {
@@ -1980,14 +2056,16 @@ TensorInfo::~TensorInfo() {
 
 inline void TensorInfo::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  description_.Destroy();
-  data_type_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.shape_.~RepeatedField();
+  _impl_.associated_files_.~RepeatedPtrField();
+  _impl_.name_.Destroy();
+  _impl_.description_.Destroy();
+  _impl_.data_type_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void TensorInfo::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TensorInfo::Clear() {
@@ -1996,15 +2074,15 @@ void TensorInfo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  shape_.Clear();
-  associated_files_.Clear();
-  name_.ClearToEmpty();
-  description_.ClearToEmpty();
-  data_type_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.shape_.Clear();
+  _impl_.associated_files_.Clear();
+  _impl_.name_.ClearToEmpty();
+  _impl_.description_.ClearToEmpty();
+  _impl_.data_type_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2137,7 +2215,7 @@ uint8_t* TensorInfo::_InternalSerialize(
 
   // repeated int32 shape = 4 [json_name = "shape"];
   {
-    int byte_size = _shape_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._shape_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt32Packed(
           4, _internal_shape(), byte_size, target);
@@ -2178,20 +2256,20 @@ size_t TensorInfo::ByteSizeLong() const {
   // repeated int32 shape = 4 [json_name = "shape"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->shape_);
+      Int32Size(this->_impl_.shape_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _shape_cached_byte_size_.store(cached_size,
+    _impl_._shape_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
 
   // repeated .viam.service.mlmodel.v1.File associated_files = 5 [json_name = "associatedFiles"];
   total_size += 1UL * this->_internal_associated_files_size();
-  for (const auto& msg : this->associated_files_) {
+  for (const auto& msg : this->_impl_.associated_files_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -2221,46 +2299,43 @@ size_t TensorInfo::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TensorInfo::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     TensorInfo::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TensorInfo::GetClassData() const { return &_class_data_; }
 
-void TensorInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<TensorInfo *>(to)->MergeFrom(
-      static_cast<const TensorInfo &>(from));
-}
 
-
-void TensorInfo::MergeFrom(const TensorInfo& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.TensorInfo)
-  GOOGLE_DCHECK_NE(&from, this);
+void TensorInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TensorInfo*>(&to_msg);
+  auto& from = static_cast<const TensorInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.TensorInfo)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  shape_.MergeFrom(from.shape_);
-  associated_files_.MergeFrom(from.associated_files_);
+  _this->_impl_.shape_.MergeFrom(from._impl_.shape_);
+  _this->_impl_.associated_files_.MergeFrom(from._impl_.associated_files_);
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_description().empty()) {
-    _internal_set_description(from._internal_description());
+    _this->_internal_set_description(from._internal_description());
   }
   if (!from._internal_data_type().empty()) {
-    _internal_set_data_type(from._internal_data_type());
+    _this->_internal_set_data_type(from._internal_data_type());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void TensorInfo::CopyFrom(const TensorInfo& from) {
@@ -2279,21 +2354,21 @@ void TensorInfo::InternalSwap(TensorInfo* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  shape_.InternalSwap(&other->shape_);
-  associated_files_.InternalSwap(&other->associated_files_);
+  _impl_.shape_.InternalSwap(&other->_impl_.shape_);
+  _impl_.associated_files_.InternalSwap(&other->_impl_.associated_files_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &description_, lhs_arena,
-      &other->description_, rhs_arena
+      &_impl_.description_, lhs_arena,
+      &other->_impl_.description_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &data_type_, lhs_arena,
-      &other->data_type_, rhs_arena
+      &_impl_.data_type_, lhs_arena,
+      &other->_impl_.data_type_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TensorInfo::GetMetadata() const {
@@ -2311,42 +2386,57 @@ class File::_Internal {
 File::File(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.File)
 }
 File::File(const File& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  File* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.label_type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  description_.InitDefault();
+  _impl_.description_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    description_.Set("", GetArenaForAllocation());
+    _impl_.description_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_description().empty()) {
-    description_.Set(from._internal_description(), 
-      GetArenaForAllocation());
+    _this->_impl_.description_.Set(from._internal_description(), 
+      _this->GetArenaForAllocation());
   }
-  label_type_ = from.label_type_;
+  _this->_impl_.label_type_ = from._impl_.label_type_;
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.File)
 }
 
-inline void File::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-description_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  description_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-label_type_ = 0;
+inline void File::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.label_type_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 File::~File() {
@@ -2360,12 +2450,12 @@ File::~File() {
 
 inline void File::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  description_.Destroy();
+  _impl_.name_.Destroy();
+  _impl_.description_.Destroy();
 }
 
 void File::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void File::Clear() {
@@ -2374,9 +2464,9 @@ void File::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  description_.ClearToEmpty();
-  label_type_ = 0;
+  _impl_.name_.ClearToEmpty();
+  _impl_.description_.ClearToEmpty();
+  _impl_.label_type_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2507,38 +2597,34 @@ size_t File::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_label_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData File::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     File::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*File::GetClassData() const { return &_class_data_; }
 
-void File::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<File *>(to)->MergeFrom(
-      static_cast<const File &>(from));
-}
 
-
-void File::MergeFrom(const File& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.File)
-  GOOGLE_DCHECK_NE(&from, this);
+void File::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<File*>(&to_msg);
+  auto& from = static_cast<const File&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.File)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_description().empty()) {
-    _internal_set_description(from._internal_description());
+    _this->_internal_set_description(from._internal_description());
   }
   if (from._internal_label_type() != 0) {
-    _internal_set_label_type(from._internal_label_type());
+    _this->_internal_set_label_type(from._internal_label_type());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void File::CopyFrom(const File& from) {
@@ -2558,14 +2644,14 @@ void File::InternalSwap(File* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &description_, lhs_arena,
-      &other->description_, rhs_arena
+      &_impl_.description_, lhs_arena,
+      &other->_impl_.description_, rhs_arena
   );
-  swap(label_type_, other->label_type_);
+  swap(_impl_.label_type_, other->_impl_.label_type_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata File::GetMetadata() const {
@@ -2583,28 +2669,40 @@ class FlatTensorDataInt8::_Internal {
 FlatTensorDataInt8::FlatTensorDataInt8(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataInt8)
 }
 FlatTensorDataInt8::FlatTensorDataInt8(const FlatTensorDataInt8& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataInt8* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  data_.InitDefault();
+  _impl_.data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    data_.Set("", GetArenaForAllocation());
+    _impl_.data_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_data().empty()) {
-    data_.Set(from._internal_data(), 
-      GetArenaForAllocation());
+    _this->_impl_.data_.Set(from._internal_data(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataInt8)
 }
 
-inline void FlatTensorDataInt8::SharedCtor() {
-data_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  data_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void FlatTensorDataInt8::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 FlatTensorDataInt8::~FlatTensorDataInt8() {
@@ -2618,11 +2716,11 @@ FlatTensorDataInt8::~FlatTensorDataInt8() {
 
 inline void FlatTensorDataInt8::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  data_.Destroy();
+  _impl_.data_.Destroy();
 }
 
 void FlatTensorDataInt8::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataInt8::Clear() {
@@ -2631,7 +2729,7 @@ void FlatTensorDataInt8::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.ClearToEmpty();
+  _impl_.data_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2708,32 +2806,28 @@ size_t FlatTensorDataInt8::ByteSizeLong() const {
         this->_internal_data());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataInt8::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataInt8::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataInt8::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataInt8::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataInt8 *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataInt8 &>(from));
-}
 
-
-void FlatTensorDataInt8::MergeFrom(const FlatTensorDataInt8& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataInt8)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataInt8::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataInt8*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataInt8&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataInt8)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_data().empty()) {
-    _internal_set_data(from._internal_data());
+    _this->_internal_set_data(from._internal_data());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataInt8::CopyFrom(const FlatTensorDataInt8& from) {
@@ -2753,8 +2847,8 @@ void FlatTensorDataInt8::InternalSwap(FlatTensorDataInt8* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &data_, lhs_arena,
-      &other->data_, rhs_arena
+      &_impl_.data_, lhs_arena,
+      &other->_impl_.data_, rhs_arena
   );
 }
 
@@ -2773,28 +2867,40 @@ class FlatTensorDataUInt8::_Internal {
 FlatTensorDataUInt8::FlatTensorDataUInt8(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataUInt8)
 }
 FlatTensorDataUInt8::FlatTensorDataUInt8(const FlatTensorDataUInt8& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataUInt8* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  data_.InitDefault();
+  _impl_.data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    data_.Set("", GetArenaForAllocation());
+    _impl_.data_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_data().empty()) {
-    data_.Set(from._internal_data(), 
-      GetArenaForAllocation());
+    _this->_impl_.data_.Set(from._internal_data(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataUInt8)
 }
 
-inline void FlatTensorDataUInt8::SharedCtor() {
-data_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  data_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void FlatTensorDataUInt8::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 FlatTensorDataUInt8::~FlatTensorDataUInt8() {
@@ -2808,11 +2914,11 @@ FlatTensorDataUInt8::~FlatTensorDataUInt8() {
 
 inline void FlatTensorDataUInt8::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  data_.Destroy();
+  _impl_.data_.Destroy();
 }
 
 void FlatTensorDataUInt8::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataUInt8::Clear() {
@@ -2821,7 +2927,7 @@ void FlatTensorDataUInt8::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.ClearToEmpty();
+  _impl_.data_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2898,32 +3004,28 @@ size_t FlatTensorDataUInt8::ByteSizeLong() const {
         this->_internal_data());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataUInt8::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataUInt8::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataUInt8::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataUInt8::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataUInt8 *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataUInt8 &>(from));
-}
 
-
-void FlatTensorDataUInt8::MergeFrom(const FlatTensorDataUInt8& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataUInt8)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataUInt8::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataUInt8*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataUInt8&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataUInt8)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_data().empty()) {
-    _internal_set_data(from._internal_data());
+    _this->_internal_set_data(from._internal_data());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataUInt8::CopyFrom(const FlatTensorDataUInt8& from) {
@@ -2943,8 +3045,8 @@ void FlatTensorDataUInt8::InternalSwap(FlatTensorDataUInt8* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &data_, lhs_arena,
-      &other->data_, rhs_arena
+      &_impl_.data_, lhs_arena,
+      &other->_impl_.data_, rhs_arena
   );
 }
 
@@ -2962,19 +3064,29 @@ class FlatTensorDataInt16::_Internal {
 
 FlatTensorDataInt16::FlatTensorDataInt16(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataInt16)
 }
 FlatTensorDataInt16::FlatTensorDataInt16(const FlatTensorDataInt16& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataInt16* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){from._impl_.data_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataInt16)
 }
 
-inline void FlatTensorDataInt16::SharedCtor() {
+inline void FlatTensorDataInt16::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FlatTensorDataInt16::~FlatTensorDataInt16() {
@@ -2988,10 +3100,11 @@ FlatTensorDataInt16::~FlatTensorDataInt16() {
 
 inline void FlatTensorDataInt16::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.data_.~RepeatedField();
 }
 
 void FlatTensorDataInt16::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataInt16::Clear() {
@@ -3000,7 +3113,7 @@ void FlatTensorDataInt16::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
+  _impl_.data_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3082,30 +3195,26 @@ size_t FlatTensorDataInt16::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataInt16::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataInt16::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataInt16::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataInt16::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataInt16 *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataInt16 &>(from));
-}
 
-
-void FlatTensorDataInt16::MergeFrom(const FlatTensorDataInt16& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataInt16)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataInt16::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataInt16*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataInt16&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataInt16)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.data_.MergeFrom(from._impl_.data_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataInt16::CopyFrom(const FlatTensorDataInt16& from) {
@@ -3122,7 +3231,7 @@ bool FlatTensorDataInt16::IsInitialized() const {
 void FlatTensorDataInt16::InternalSwap(FlatTensorDataInt16* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
+  _impl_.data_.InternalSwap(&other->_impl_.data_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensorDataInt16::GetMetadata() const {
@@ -3139,19 +3248,29 @@ class FlatTensorDataUInt16::_Internal {
 
 FlatTensorDataUInt16::FlatTensorDataUInt16(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataUInt16)
 }
 FlatTensorDataUInt16::FlatTensorDataUInt16(const FlatTensorDataUInt16& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataUInt16* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){from._impl_.data_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataUInt16)
 }
 
-inline void FlatTensorDataUInt16::SharedCtor() {
+inline void FlatTensorDataUInt16::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FlatTensorDataUInt16::~FlatTensorDataUInt16() {
@@ -3165,10 +3284,11 @@ FlatTensorDataUInt16::~FlatTensorDataUInt16() {
 
 inline void FlatTensorDataUInt16::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.data_.~RepeatedField();
 }
 
 void FlatTensorDataUInt16::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataUInt16::Clear() {
@@ -3177,7 +3297,7 @@ void FlatTensorDataUInt16::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
+  _impl_.data_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3259,30 +3379,26 @@ size_t FlatTensorDataUInt16::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataUInt16::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataUInt16::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataUInt16::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataUInt16::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataUInt16 *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataUInt16 &>(from));
-}
 
-
-void FlatTensorDataUInt16::MergeFrom(const FlatTensorDataUInt16& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataUInt16)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataUInt16::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataUInt16*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataUInt16&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataUInt16)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.data_.MergeFrom(from._impl_.data_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataUInt16::CopyFrom(const FlatTensorDataUInt16& from) {
@@ -3299,7 +3415,7 @@ bool FlatTensorDataUInt16::IsInitialized() const {
 void FlatTensorDataUInt16::InternalSwap(FlatTensorDataUInt16* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
+  _impl_.data_.InternalSwap(&other->_impl_.data_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensorDataUInt16::GetMetadata() const {
@@ -3316,19 +3432,29 @@ class FlatTensorDataInt32::_Internal {
 
 FlatTensorDataInt32::FlatTensorDataInt32(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataInt32)
 }
 FlatTensorDataInt32::FlatTensorDataInt32(const FlatTensorDataInt32& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataInt32* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){from._impl_.data_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataInt32)
 }
 
-inline void FlatTensorDataInt32::SharedCtor() {
+inline void FlatTensorDataInt32::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FlatTensorDataInt32::~FlatTensorDataInt32() {
@@ -3342,10 +3468,11 @@ FlatTensorDataInt32::~FlatTensorDataInt32() {
 
 inline void FlatTensorDataInt32::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.data_.~RepeatedField();
 }
 
 void FlatTensorDataInt32::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataInt32::Clear() {
@@ -3354,7 +3481,7 @@ void FlatTensorDataInt32::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
+  _impl_.data_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3436,30 +3563,26 @@ size_t FlatTensorDataInt32::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataInt32::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataInt32::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataInt32::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataInt32::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataInt32 *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataInt32 &>(from));
-}
 
-
-void FlatTensorDataInt32::MergeFrom(const FlatTensorDataInt32& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataInt32)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataInt32::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataInt32*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataInt32&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataInt32)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.data_.MergeFrom(from._impl_.data_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataInt32::CopyFrom(const FlatTensorDataInt32& from) {
@@ -3476,7 +3599,7 @@ bool FlatTensorDataInt32::IsInitialized() const {
 void FlatTensorDataInt32::InternalSwap(FlatTensorDataInt32* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
+  _impl_.data_.InternalSwap(&other->_impl_.data_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensorDataInt32::GetMetadata() const {
@@ -3493,19 +3616,29 @@ class FlatTensorDataUInt32::_Internal {
 
 FlatTensorDataUInt32::FlatTensorDataUInt32(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataUInt32)
 }
 FlatTensorDataUInt32::FlatTensorDataUInt32(const FlatTensorDataUInt32& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataUInt32* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){from._impl_.data_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataUInt32)
 }
 
-inline void FlatTensorDataUInt32::SharedCtor() {
+inline void FlatTensorDataUInt32::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FlatTensorDataUInt32::~FlatTensorDataUInt32() {
@@ -3519,10 +3652,11 @@ FlatTensorDataUInt32::~FlatTensorDataUInt32() {
 
 inline void FlatTensorDataUInt32::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.data_.~RepeatedField();
 }
 
 void FlatTensorDataUInt32::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataUInt32::Clear() {
@@ -3531,7 +3665,7 @@ void FlatTensorDataUInt32::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
+  _impl_.data_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3613,30 +3747,26 @@ size_t FlatTensorDataUInt32::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataUInt32::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataUInt32::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataUInt32::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataUInt32::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataUInt32 *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataUInt32 &>(from));
-}
 
-
-void FlatTensorDataUInt32::MergeFrom(const FlatTensorDataUInt32& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataUInt32)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataUInt32::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataUInt32*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataUInt32&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataUInt32)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.data_.MergeFrom(from._impl_.data_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataUInt32::CopyFrom(const FlatTensorDataUInt32& from) {
@@ -3653,7 +3783,7 @@ bool FlatTensorDataUInt32::IsInitialized() const {
 void FlatTensorDataUInt32::InternalSwap(FlatTensorDataUInt32* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
+  _impl_.data_.InternalSwap(&other->_impl_.data_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensorDataUInt32::GetMetadata() const {
@@ -3670,19 +3800,29 @@ class FlatTensorDataInt64::_Internal {
 
 FlatTensorDataInt64::FlatTensorDataInt64(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataInt64)
 }
 FlatTensorDataInt64::FlatTensorDataInt64(const FlatTensorDataInt64& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataInt64* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){from._impl_.data_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataInt64)
 }
 
-inline void FlatTensorDataInt64::SharedCtor() {
+inline void FlatTensorDataInt64::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FlatTensorDataInt64::~FlatTensorDataInt64() {
@@ -3696,10 +3836,11 @@ FlatTensorDataInt64::~FlatTensorDataInt64() {
 
 inline void FlatTensorDataInt64::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.data_.~RepeatedField();
 }
 
 void FlatTensorDataInt64::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataInt64::Clear() {
@@ -3708,7 +3849,7 @@ void FlatTensorDataInt64::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
+  _impl_.data_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3790,30 +3931,26 @@ size_t FlatTensorDataInt64::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataInt64::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataInt64::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataInt64::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataInt64::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataInt64 *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataInt64 &>(from));
-}
 
-
-void FlatTensorDataInt64::MergeFrom(const FlatTensorDataInt64& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataInt64)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataInt64::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataInt64*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataInt64&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataInt64)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.data_.MergeFrom(from._impl_.data_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataInt64::CopyFrom(const FlatTensorDataInt64& from) {
@@ -3830,7 +3967,7 @@ bool FlatTensorDataInt64::IsInitialized() const {
 void FlatTensorDataInt64::InternalSwap(FlatTensorDataInt64* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
+  _impl_.data_.InternalSwap(&other->_impl_.data_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensorDataInt64::GetMetadata() const {
@@ -3847,19 +3984,29 @@ class FlatTensorDataUInt64::_Internal {
 
 FlatTensorDataUInt64::FlatTensorDataUInt64(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataUInt64)
 }
 FlatTensorDataUInt64::FlatTensorDataUInt64(const FlatTensorDataUInt64& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataUInt64* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){from._impl_.data_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataUInt64)
 }
 
-inline void FlatTensorDataUInt64::SharedCtor() {
+inline void FlatTensorDataUInt64::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FlatTensorDataUInt64::~FlatTensorDataUInt64() {
@@ -3873,10 +4020,11 @@ FlatTensorDataUInt64::~FlatTensorDataUInt64() {
 
 inline void FlatTensorDataUInt64::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.data_.~RepeatedField();
 }
 
 void FlatTensorDataUInt64::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataUInt64::Clear() {
@@ -3885,7 +4033,7 @@ void FlatTensorDataUInt64::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
+  _impl_.data_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3967,30 +4115,26 @@ size_t FlatTensorDataUInt64::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataUInt64::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataUInt64::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataUInt64::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataUInt64::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataUInt64 *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataUInt64 &>(from));
-}
 
-
-void FlatTensorDataUInt64::MergeFrom(const FlatTensorDataUInt64& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataUInt64)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataUInt64::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataUInt64*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataUInt64&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataUInt64)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.data_.MergeFrom(from._impl_.data_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataUInt64::CopyFrom(const FlatTensorDataUInt64& from) {
@@ -4007,7 +4151,7 @@ bool FlatTensorDataUInt64::IsInitialized() const {
 void FlatTensorDataUInt64::InternalSwap(FlatTensorDataUInt64* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
+  _impl_.data_.InternalSwap(&other->_impl_.data_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensorDataUInt64::GetMetadata() const {
@@ -4024,19 +4168,29 @@ class FlatTensorDataFloat::_Internal {
 
 FlatTensorDataFloat::FlatTensorDataFloat(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataFloat)
 }
 FlatTensorDataFloat::FlatTensorDataFloat(const FlatTensorDataFloat& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataFloat* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){from._impl_.data_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataFloat)
 }
 
-inline void FlatTensorDataFloat::SharedCtor() {
+inline void FlatTensorDataFloat::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FlatTensorDataFloat::~FlatTensorDataFloat() {
@@ -4050,10 +4204,11 @@ FlatTensorDataFloat::~FlatTensorDataFloat() {
 
 inline void FlatTensorDataFloat::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.data_.~RepeatedField();
 }
 
 void FlatTensorDataFloat::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataFloat::Clear() {
@@ -4062,7 +4217,7 @@ void FlatTensorDataFloat::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
+  _impl_.data_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4144,30 +4299,26 @@ size_t FlatTensorDataFloat::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataFloat::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataFloat::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataFloat::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataFloat::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataFloat *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataFloat &>(from));
-}
 
-
-void FlatTensorDataFloat::MergeFrom(const FlatTensorDataFloat& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataFloat)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataFloat::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataFloat*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataFloat&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataFloat)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.data_.MergeFrom(from._impl_.data_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataFloat::CopyFrom(const FlatTensorDataFloat& from) {
@@ -4184,7 +4335,7 @@ bool FlatTensorDataFloat::IsInitialized() const {
 void FlatTensorDataFloat::InternalSwap(FlatTensorDataFloat* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
+  _impl_.data_.InternalSwap(&other->_impl_.data_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensorDataFloat::GetMetadata() const {
@@ -4201,19 +4352,29 @@ class FlatTensorDataDouble::_Internal {
 
 FlatTensorDataDouble::FlatTensorDataDouble(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensorDataDouble)
 }
 FlatTensorDataDouble::FlatTensorDataDouble(const FlatTensorDataDouble& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensorDataDouble* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){from._impl_.data_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensorDataDouble)
 }
 
-inline void FlatTensorDataDouble::SharedCtor() {
+inline void FlatTensorDataDouble::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FlatTensorDataDouble::~FlatTensorDataDouble() {
@@ -4227,10 +4388,11 @@ FlatTensorDataDouble::~FlatTensorDataDouble() {
 
 inline void FlatTensorDataDouble::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.data_.~RepeatedField();
 }
 
 void FlatTensorDataDouble::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensorDataDouble::Clear() {
@@ -4239,7 +4401,7 @@ void FlatTensorDataDouble::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
+  _impl_.data_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4321,30 +4483,26 @@ size_t FlatTensorDataDouble::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensorDataDouble::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensorDataDouble::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensorDataDouble::GetClassData() const { return &_class_data_; }
 
-void FlatTensorDataDouble::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensorDataDouble *>(to)->MergeFrom(
-      static_cast<const FlatTensorDataDouble &>(from));
-}
 
-
-void FlatTensorDataDouble::MergeFrom(const FlatTensorDataDouble& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataDouble)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensorDataDouble::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensorDataDouble*>(&to_msg);
+  auto& from = static_cast<const FlatTensorDataDouble&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensorDataDouble)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.data_.MergeFrom(from._impl_.data_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensorDataDouble::CopyFrom(const FlatTensorDataDouble& from) {
@@ -4361,7 +4519,7 @@ bool FlatTensorDataDouble::IsInitialized() const {
 void FlatTensorDataDouble::InternalSwap(FlatTensorDataDouble* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
+  _impl_.data_.InternalSwap(&other->_impl_.data_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensorDataDouble::GetMetadata() const {
@@ -4388,43 +4546,43 @@ class FlatTensor::_Internal {
 
 const ::viam::service::mlmodel::v1::FlatTensorDataInt8&
 FlatTensor::_Internal::int8_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.int8_tensor_;
+  return *msg->_impl_.tensor_.int8_tensor_;
 }
 const ::viam::service::mlmodel::v1::FlatTensorDataUInt8&
 FlatTensor::_Internal::uint8_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.uint8_tensor_;
+  return *msg->_impl_.tensor_.uint8_tensor_;
 }
 const ::viam::service::mlmodel::v1::FlatTensorDataInt16&
 FlatTensor::_Internal::int16_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.int16_tensor_;
+  return *msg->_impl_.tensor_.int16_tensor_;
 }
 const ::viam::service::mlmodel::v1::FlatTensorDataUInt16&
 FlatTensor::_Internal::uint16_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.uint16_tensor_;
+  return *msg->_impl_.tensor_.uint16_tensor_;
 }
 const ::viam::service::mlmodel::v1::FlatTensorDataInt32&
 FlatTensor::_Internal::int32_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.int32_tensor_;
+  return *msg->_impl_.tensor_.int32_tensor_;
 }
 const ::viam::service::mlmodel::v1::FlatTensorDataUInt32&
 FlatTensor::_Internal::uint32_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.uint32_tensor_;
+  return *msg->_impl_.tensor_.uint32_tensor_;
 }
 const ::viam::service::mlmodel::v1::FlatTensorDataInt64&
 FlatTensor::_Internal::int64_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.int64_tensor_;
+  return *msg->_impl_.tensor_.int64_tensor_;
 }
 const ::viam::service::mlmodel::v1::FlatTensorDataUInt64&
 FlatTensor::_Internal::uint64_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.uint64_tensor_;
+  return *msg->_impl_.tensor_.uint64_tensor_;
 }
 const ::viam::service::mlmodel::v1::FlatTensorDataFloat&
 FlatTensor::_Internal::float_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.float_tensor_;
+  return *msg->_impl_.tensor_.float_tensor_;
 }
 const ::viam::service::mlmodel::v1::FlatTensorDataDouble&
 FlatTensor::_Internal::double_tensor(const FlatTensor* msg) {
-  return *msg->tensor_.double_tensor_;
+  return *msg->_impl_.tensor_.double_tensor_;
 }
 void FlatTensor::set_allocated_int8_tensor(::viam::service::mlmodel::v1::FlatTensorDataInt8* int8_tensor) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -4437,7 +4595,7 @@ void FlatTensor::set_allocated_int8_tensor(::viam::service::mlmodel::v1::FlatTen
           message_arena, int8_tensor, submessage_arena);
     }
     set_has_int8_tensor();
-    tensor_.int8_tensor_ = int8_tensor;
+    _impl_.tensor_.int8_tensor_ = int8_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.int8_tensor)
 }
@@ -4452,7 +4610,7 @@ void FlatTensor::set_allocated_uint8_tensor(::viam::service::mlmodel::v1::FlatTe
           message_arena, uint8_tensor, submessage_arena);
     }
     set_has_uint8_tensor();
-    tensor_.uint8_tensor_ = uint8_tensor;
+    _impl_.tensor_.uint8_tensor_ = uint8_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.uint8_tensor)
 }
@@ -4467,7 +4625,7 @@ void FlatTensor::set_allocated_int16_tensor(::viam::service::mlmodel::v1::FlatTe
           message_arena, int16_tensor, submessage_arena);
     }
     set_has_int16_tensor();
-    tensor_.int16_tensor_ = int16_tensor;
+    _impl_.tensor_.int16_tensor_ = int16_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.int16_tensor)
 }
@@ -4482,7 +4640,7 @@ void FlatTensor::set_allocated_uint16_tensor(::viam::service::mlmodel::v1::FlatT
           message_arena, uint16_tensor, submessage_arena);
     }
     set_has_uint16_tensor();
-    tensor_.uint16_tensor_ = uint16_tensor;
+    _impl_.tensor_.uint16_tensor_ = uint16_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.uint16_tensor)
 }
@@ -4497,7 +4655,7 @@ void FlatTensor::set_allocated_int32_tensor(::viam::service::mlmodel::v1::FlatTe
           message_arena, int32_tensor, submessage_arena);
     }
     set_has_int32_tensor();
-    tensor_.int32_tensor_ = int32_tensor;
+    _impl_.tensor_.int32_tensor_ = int32_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.int32_tensor)
 }
@@ -4512,7 +4670,7 @@ void FlatTensor::set_allocated_uint32_tensor(::viam::service::mlmodel::v1::FlatT
           message_arena, uint32_tensor, submessage_arena);
     }
     set_has_uint32_tensor();
-    tensor_.uint32_tensor_ = uint32_tensor;
+    _impl_.tensor_.uint32_tensor_ = uint32_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.uint32_tensor)
 }
@@ -4527,7 +4685,7 @@ void FlatTensor::set_allocated_int64_tensor(::viam::service::mlmodel::v1::FlatTe
           message_arena, int64_tensor, submessage_arena);
     }
     set_has_int64_tensor();
-    tensor_.int64_tensor_ = int64_tensor;
+    _impl_.tensor_.int64_tensor_ = int64_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.int64_tensor)
 }
@@ -4542,7 +4700,7 @@ void FlatTensor::set_allocated_uint64_tensor(::viam::service::mlmodel::v1::FlatT
           message_arena, uint64_tensor, submessage_arena);
     }
     set_has_uint64_tensor();
-    tensor_.uint64_tensor_ = uint64_tensor;
+    _impl_.tensor_.uint64_tensor_ = uint64_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.uint64_tensor)
 }
@@ -4557,7 +4715,7 @@ void FlatTensor::set_allocated_float_tensor(::viam::service::mlmodel::v1::FlatTe
           message_arena, float_tensor, submessage_arena);
     }
     set_has_float_tensor();
-    tensor_.float_tensor_ = float_tensor;
+    _impl_.tensor_.float_tensor_ = float_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.float_tensor)
 }
@@ -4572,61 +4730,76 @@ void FlatTensor::set_allocated_double_tensor(::viam::service::mlmodel::v1::FlatT
           message_arena, double_tensor, submessage_arena);
     }
     set_has_double_tensor();
-    tensor_.double_tensor_ = double_tensor;
+    _impl_.tensor_.double_tensor_ = double_tensor;
   }
   // @@protoc_insertion_point(field_set_allocated:viam.service.mlmodel.v1.FlatTensor.double_tensor)
 }
 FlatTensor::FlatTensor(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  shape_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.mlmodel.v1.FlatTensor)
 }
 FlatTensor::FlatTensor(const FlatTensor& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      shape_(from.shape_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensor* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.shape_){from._impl_.shape_}
+    , decltype(_impl_.tensor_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   clear_has_tensor();
   switch (from.tensor_case()) {
     case kInt8Tensor: {
-      _internal_mutable_int8_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt8::MergeFrom(from._internal_int8_tensor());
+      _this->_internal_mutable_int8_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt8::MergeFrom(
+          from._internal_int8_tensor());
       break;
     }
     case kUint8Tensor: {
-      _internal_mutable_uint8_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt8::MergeFrom(from._internal_uint8_tensor());
+      _this->_internal_mutable_uint8_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt8::MergeFrom(
+          from._internal_uint8_tensor());
       break;
     }
     case kInt16Tensor: {
-      _internal_mutable_int16_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt16::MergeFrom(from._internal_int16_tensor());
+      _this->_internal_mutable_int16_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt16::MergeFrom(
+          from._internal_int16_tensor());
       break;
     }
     case kUint16Tensor: {
-      _internal_mutable_uint16_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt16::MergeFrom(from._internal_uint16_tensor());
+      _this->_internal_mutable_uint16_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt16::MergeFrom(
+          from._internal_uint16_tensor());
       break;
     }
     case kInt32Tensor: {
-      _internal_mutable_int32_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt32::MergeFrom(from._internal_int32_tensor());
+      _this->_internal_mutable_int32_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt32::MergeFrom(
+          from._internal_int32_tensor());
       break;
     }
     case kUint32Tensor: {
-      _internal_mutable_uint32_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt32::MergeFrom(from._internal_uint32_tensor());
+      _this->_internal_mutable_uint32_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt32::MergeFrom(
+          from._internal_uint32_tensor());
       break;
     }
     case kInt64Tensor: {
-      _internal_mutable_int64_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt64::MergeFrom(from._internal_int64_tensor());
+      _this->_internal_mutable_int64_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt64::MergeFrom(
+          from._internal_int64_tensor());
       break;
     }
     case kUint64Tensor: {
-      _internal_mutable_uint64_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt64::MergeFrom(from._internal_uint64_tensor());
+      _this->_internal_mutable_uint64_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt64::MergeFrom(
+          from._internal_uint64_tensor());
       break;
     }
     case kFloatTensor: {
-      _internal_mutable_float_tensor()->::viam::service::mlmodel::v1::FlatTensorDataFloat::MergeFrom(from._internal_float_tensor());
+      _this->_internal_mutable_float_tensor()->::viam::service::mlmodel::v1::FlatTensorDataFloat::MergeFrom(
+          from._internal_float_tensor());
       break;
     }
     case kDoubleTensor: {
-      _internal_mutable_double_tensor()->::viam::service::mlmodel::v1::FlatTensorDataDouble::MergeFrom(from._internal_double_tensor());
+      _this->_internal_mutable_double_tensor()->::viam::service::mlmodel::v1::FlatTensorDataDouble::MergeFrom(
+          from._internal_double_tensor());
       break;
     }
     case TENSOR_NOT_SET: {
@@ -4636,8 +4809,17 @@ FlatTensor::FlatTensor(const FlatTensor& from)
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensor)
 }
 
-inline void FlatTensor::SharedCtor() {
-clear_has_tensor();
+inline void FlatTensor::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.shape_){arena}
+    , decltype(_impl_.tensor_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}
+  };
+  clear_has_tensor();
 }
 
 FlatTensor::~FlatTensor() {
@@ -4651,13 +4833,14 @@ FlatTensor::~FlatTensor() {
 
 inline void FlatTensor::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.shape_.~RepeatedField();
   if (has_tensor()) {
     clear_tensor();
   }
 }
 
 void FlatTensor::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensor::clear_tensor() {
@@ -4665,61 +4848,61 @@ void FlatTensor::clear_tensor() {
   switch (tensor_case()) {
     case kInt8Tensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.int8_tensor_;
+        delete _impl_.tensor_.int8_tensor_;
       }
       break;
     }
     case kUint8Tensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.uint8_tensor_;
+        delete _impl_.tensor_.uint8_tensor_;
       }
       break;
     }
     case kInt16Tensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.int16_tensor_;
+        delete _impl_.tensor_.int16_tensor_;
       }
       break;
     }
     case kUint16Tensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.uint16_tensor_;
+        delete _impl_.tensor_.uint16_tensor_;
       }
       break;
     }
     case kInt32Tensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.int32_tensor_;
+        delete _impl_.tensor_.int32_tensor_;
       }
       break;
     }
     case kUint32Tensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.uint32_tensor_;
+        delete _impl_.tensor_.uint32_tensor_;
       }
       break;
     }
     case kInt64Tensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.int64_tensor_;
+        delete _impl_.tensor_.int64_tensor_;
       }
       break;
     }
     case kUint64Tensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.uint64_tensor_;
+        delete _impl_.tensor_.uint64_tensor_;
       }
       break;
     }
     case kFloatTensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.float_tensor_;
+        delete _impl_.tensor_.float_tensor_;
       }
       break;
     }
     case kDoubleTensor: {
       if (GetArenaForAllocation() == nullptr) {
-        delete tensor_.double_tensor_;
+        delete _impl_.tensor_.double_tensor_;
       }
       break;
     }
@@ -4727,7 +4910,7 @@ void FlatTensor::clear_tensor() {
       break;
     }
   }
-  _oneof_case_[0] = TENSOR_NOT_SET;
+  _impl_._oneof_case_[0] = TENSOR_NOT_SET;
 }
 
 
@@ -4737,7 +4920,7 @@ void FlatTensor::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  shape_.Clear();
+  _impl_.shape_.Clear();
   clear_tensor();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -4975,145 +5158,151 @@ size_t FlatTensor::ByteSizeLong() const {
     case kInt8Tensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.int8_tensor_);
+          *_impl_.tensor_.int8_tensor_);
       break;
     }
     // .viam.service.mlmodel.v1.FlatTensorDataUInt8 uint8_tensor = 3 [json_name = "uint8Tensor"];
     case kUint8Tensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.uint8_tensor_);
+          *_impl_.tensor_.uint8_tensor_);
       break;
     }
     // .viam.service.mlmodel.v1.FlatTensorDataInt16 int16_tensor = 4 [json_name = "int16Tensor"];
     case kInt16Tensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.int16_tensor_);
+          *_impl_.tensor_.int16_tensor_);
       break;
     }
     // .viam.service.mlmodel.v1.FlatTensorDataUInt16 uint16_tensor = 5 [json_name = "uint16Tensor"];
     case kUint16Tensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.uint16_tensor_);
+          *_impl_.tensor_.uint16_tensor_);
       break;
     }
     // .viam.service.mlmodel.v1.FlatTensorDataInt32 int32_tensor = 6 [json_name = "int32Tensor"];
     case kInt32Tensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.int32_tensor_);
+          *_impl_.tensor_.int32_tensor_);
       break;
     }
     // .viam.service.mlmodel.v1.FlatTensorDataUInt32 uint32_tensor = 7 [json_name = "uint32Tensor"];
     case kUint32Tensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.uint32_tensor_);
+          *_impl_.tensor_.uint32_tensor_);
       break;
     }
     // .viam.service.mlmodel.v1.FlatTensorDataInt64 int64_tensor = 8 [json_name = "int64Tensor"];
     case kInt64Tensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.int64_tensor_);
+          *_impl_.tensor_.int64_tensor_);
       break;
     }
     // .viam.service.mlmodel.v1.FlatTensorDataUInt64 uint64_tensor = 9 [json_name = "uint64Tensor"];
     case kUint64Tensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.uint64_tensor_);
+          *_impl_.tensor_.uint64_tensor_);
       break;
     }
     // .viam.service.mlmodel.v1.FlatTensorDataFloat float_tensor = 10 [json_name = "floatTensor"];
     case kFloatTensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.float_tensor_);
+          *_impl_.tensor_.float_tensor_);
       break;
     }
     // .viam.service.mlmodel.v1.FlatTensorDataDouble double_tensor = 11 [json_name = "doubleTensor"];
     case kDoubleTensor: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *tensor_.double_tensor_);
+          *_impl_.tensor_.double_tensor_);
       break;
     }
     case TENSOR_NOT_SET: {
       break;
     }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensor::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensor::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensor::GetClassData() const { return &_class_data_; }
 
-void FlatTensor::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensor *>(to)->MergeFrom(
-      static_cast<const FlatTensor &>(from));
-}
 
-
-void FlatTensor::MergeFrom(const FlatTensor& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensor)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensor::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensor*>(&to_msg);
+  auto& from = static_cast<const FlatTensor&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensor)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  shape_.MergeFrom(from.shape_);
+  _this->_impl_.shape_.MergeFrom(from._impl_.shape_);
   switch (from.tensor_case()) {
     case kInt8Tensor: {
-      _internal_mutable_int8_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt8::MergeFrom(from._internal_int8_tensor());
+      _this->_internal_mutable_int8_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt8::MergeFrom(
+          from._internal_int8_tensor());
       break;
     }
     case kUint8Tensor: {
-      _internal_mutable_uint8_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt8::MergeFrom(from._internal_uint8_tensor());
+      _this->_internal_mutable_uint8_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt8::MergeFrom(
+          from._internal_uint8_tensor());
       break;
     }
     case kInt16Tensor: {
-      _internal_mutable_int16_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt16::MergeFrom(from._internal_int16_tensor());
+      _this->_internal_mutable_int16_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt16::MergeFrom(
+          from._internal_int16_tensor());
       break;
     }
     case kUint16Tensor: {
-      _internal_mutable_uint16_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt16::MergeFrom(from._internal_uint16_tensor());
+      _this->_internal_mutable_uint16_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt16::MergeFrom(
+          from._internal_uint16_tensor());
       break;
     }
     case kInt32Tensor: {
-      _internal_mutable_int32_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt32::MergeFrom(from._internal_int32_tensor());
+      _this->_internal_mutable_int32_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt32::MergeFrom(
+          from._internal_int32_tensor());
       break;
     }
     case kUint32Tensor: {
-      _internal_mutable_uint32_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt32::MergeFrom(from._internal_uint32_tensor());
+      _this->_internal_mutable_uint32_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt32::MergeFrom(
+          from._internal_uint32_tensor());
       break;
     }
     case kInt64Tensor: {
-      _internal_mutable_int64_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt64::MergeFrom(from._internal_int64_tensor());
+      _this->_internal_mutable_int64_tensor()->::viam::service::mlmodel::v1::FlatTensorDataInt64::MergeFrom(
+          from._internal_int64_tensor());
       break;
     }
     case kUint64Tensor: {
-      _internal_mutable_uint64_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt64::MergeFrom(from._internal_uint64_tensor());
+      _this->_internal_mutable_uint64_tensor()->::viam::service::mlmodel::v1::FlatTensorDataUInt64::MergeFrom(
+          from._internal_uint64_tensor());
       break;
     }
     case kFloatTensor: {
-      _internal_mutable_float_tensor()->::viam::service::mlmodel::v1::FlatTensorDataFloat::MergeFrom(from._internal_float_tensor());
+      _this->_internal_mutable_float_tensor()->::viam::service::mlmodel::v1::FlatTensorDataFloat::MergeFrom(
+          from._internal_float_tensor());
       break;
     }
     case kDoubleTensor: {
-      _internal_mutable_double_tensor()->::viam::service::mlmodel::v1::FlatTensorDataDouble::MergeFrom(from._internal_double_tensor());
+      _this->_internal_mutable_double_tensor()->::viam::service::mlmodel::v1::FlatTensorDataDouble::MergeFrom(
+          from._internal_double_tensor());
       break;
     }
     case TENSOR_NOT_SET: {
       break;
     }
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensor::CopyFrom(const FlatTensor& from) {
@@ -5130,9 +5319,9 @@ bool FlatTensor::IsInitialized() const {
 void FlatTensor::InternalSwap(FlatTensor* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  shape_.InternalSwap(&other->shape_);
-  swap(tensor_, other->tensor_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
+  _impl_.shape_.InternalSwap(&other->_impl_.shape_);
+  swap(_impl_.tensor_, other->_impl_.tensor_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensor::GetMetadata() const {
@@ -5163,9 +5352,8 @@ class FlatTensors::_Internal {
 
 FlatTensors::FlatTensors(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  tensors_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &FlatTensors::ArenaDtor);
   }
@@ -5173,12 +5361,24 @@ FlatTensors::FlatTensors(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 FlatTensors::FlatTensors(const FlatTensors& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FlatTensors* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.tensors_)*/{}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  tensors_.MergeFrom(from.tensors_);
+  _this->_impl_.tensors_.MergeFrom(from._impl_.tensors_);
   // @@protoc_insertion_point(copy_constructor:viam.service.mlmodel.v1.FlatTensors)
 }
 
-inline void FlatTensors::SharedCtor() {
+inline void FlatTensors::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.tensors_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FlatTensors::~FlatTensors() {
@@ -5193,15 +5393,16 @@ FlatTensors::~FlatTensors() {
 
 inline void FlatTensors::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  tensors_.Destruct();
+  _impl_.tensors_.Destruct();
+  _impl_.tensors_.~MapField();
 }
 
 void FlatTensors::ArenaDtor(void* object) {
   FlatTensors* _this = reinterpret_cast< FlatTensors* >(object);
-  _this->tensors_.Destruct();
+  _this->_impl_.tensors_.Destruct();
 }
 void FlatTensors::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FlatTensors::Clear() {
@@ -5210,7 +5411,7 @@ void FlatTensors::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  tensors_.Clear();
+  _impl_.tensors_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5226,7 +5427,7 @@ const char* FlatTensors::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&tensors_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.tensors_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
@@ -5313,30 +5514,26 @@ size_t FlatTensors::ByteSizeLong() const {
     total_size += FlatTensors_TensorsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FlatTensors::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FlatTensors::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FlatTensors::GetClassData() const { return &_class_data_; }
 
-void FlatTensors::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FlatTensors *>(to)->MergeFrom(
-      static_cast<const FlatTensors &>(from));
-}
 
-
-void FlatTensors::MergeFrom(const FlatTensors& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensors)
-  GOOGLE_DCHECK_NE(&from, this);
+void FlatTensors::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FlatTensors*>(&to_msg);
+  auto& from = static_cast<const FlatTensors&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.mlmodel.v1.FlatTensors)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  tensors_.MergeFrom(from.tensors_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.tensors_.MergeFrom(from._impl_.tensors_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FlatTensors::CopyFrom(const FlatTensors& from) {
@@ -5353,7 +5550,7 @@ bool FlatTensors::IsInitialized() const {
 void FlatTensors::InternalSwap(FlatTensors* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  tensors_.InternalSwap(&other->tensors_);
+  _impl_.tensors_.InternalSwap(&other->_impl_.tensors_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatTensors::GetMetadata() const {

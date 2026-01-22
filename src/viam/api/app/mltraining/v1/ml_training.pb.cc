@@ -25,16 +25,15 @@ namespace app {
 namespace mltraining {
 namespace v1 {
 PROTOBUF_CONSTEXPR SubmitTrainingJobRequest::SubmitTrainingJobRequest(
-    ::_pbi::ConstantInitialized)
-  : tags_()
-  , organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , model_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , model_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , dataset_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , model_type_(0)
-
-  , model_framework_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.tags_)*/{}
+  , /*decltype(_impl_.organization_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.model_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.model_version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.dataset_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.model_type_)*/0
+  , /*decltype(_impl_.model_framework_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SubmitTrainingJobRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SubmitTrainingJobRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -45,8 +44,9 @@ struct SubmitTrainingJobRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitTrainingJobRequestDefaultTypeInternal _SubmitTrainingJobRequest_default_instance_;
 PROTOBUF_CONSTEXPR SubmitTrainingJobResponse::SubmitTrainingJobResponse(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SubmitTrainingJobResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SubmitTrainingJobResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -57,7 +57,7 @@ struct SubmitTrainingJobResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitTrainingJobResponseDefaultTypeInternal _SubmitTrainingJobResponse_default_instance_;
 PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -68,15 +68,16 @@ struct SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUseDefaultTypeInternal _SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobRequest(
-    ::_pbi::ConstantInitialized)
-  : arguments_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
-  , dataset_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , registry_item_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , model_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , model_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , registry_item_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , container_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.arguments_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.dataset_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.registry_item_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.organization_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.model_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.model_version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.registry_item_version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.container_version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SubmitCustomTrainingJobRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SubmitCustomTrainingJobRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -87,8 +88,9 @@ struct SubmitCustomTrainingJobRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitCustomTrainingJobRequestDefaultTypeInternal _SubmitCustomTrainingJobRequest_default_instance_;
 PROTOBUF_CONSTEXPR SubmitCustomTrainingJobResponse::SubmitCustomTrainingJobResponse(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SubmitCustomTrainingJobResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SubmitCustomTrainingJobResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -99,8 +101,9 @@ struct SubmitCustomTrainingJobResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitCustomTrainingJobResponseDefaultTypeInternal _SubmitCustomTrainingJobResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetTrainingJobRequest::GetTrainingJobRequest(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetTrainingJobRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetTrainingJobRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -111,8 +114,9 @@ struct GetTrainingJobRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTrainingJobRequestDefaultTypeInternal _GetTrainingJobRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetTrainingJobResponse::GetTrainingJobResponse(
-    ::_pbi::ConstantInitialized)
-  : metadata_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.metadata_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetTrainingJobResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetTrainingJobResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -123,10 +127,10 @@ struct GetTrainingJobResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTrainingJobResponseDefaultTypeInternal _GetTrainingJobResponse_default_instance_;
 PROTOBUF_CONSTEXPR ListTrainingJobsRequest::ListTrainingJobsRequest(
-    ::_pbi::ConstantInitialized)
-  : organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , status_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.organization_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.status_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ListTrainingJobsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ListTrainingJobsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -137,8 +141,9 @@ struct ListTrainingJobsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListTrainingJobsRequestDefaultTypeInternal _ListTrainingJobsRequest_default_instance_;
 PROTOBUF_CONSTEXPR ListTrainingJobsResponse::ListTrainingJobsResponse(
-    ::_pbi::ConstantInitialized)
-  : jobs_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.jobs_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ListTrainingJobsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ListTrainingJobsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -149,7 +154,7 @@ struct ListTrainingJobsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListTrainingJobsResponseDefaultTypeInternal _ListTrainingJobsResponse_default_instance_;
 PROTOBUF_CONSTEXPR TrainingJobMetadata_ArgumentsEntry_DoNotUse::TrainingJobMetadata_ArgumentsEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct TrainingJobMetadata_ArgumentsEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TrainingJobMetadata_ArgumentsEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -160,30 +165,28 @@ struct TrainingJobMetadata_ArgumentsEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TrainingJobMetadata_ArgumentsEntry_DoNotUseDefaultTypeInternal _TrainingJobMetadata_ArgumentsEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR TrainingJobMetadata::TrainingJobMetadata(
-    ::_pbi::ConstantInitialized)
-  : tags_()
-  , arguments_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
-  , synced_model_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , dataset_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , model_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , model_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , registry_item_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , registry_item_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , container_version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , created_on_(nullptr)
-  , last_modified_(nullptr)
-  , error_status_(nullptr)
-  , training_started_(nullptr)
-  , training_ended_(nullptr)
-  , status_(0)
-
-  , model_type_(0)
-
-  , model_framework_(0)
-
-  , is_custom_job_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.tags_)*/{}
+  , /*decltype(_impl_.arguments_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.synced_model_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.dataset_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.organization_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.model_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.model_version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.registry_item_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.registry_item_version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.container_version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.created_on_)*/nullptr
+  , /*decltype(_impl_.last_modified_)*/nullptr
+  , /*decltype(_impl_.error_status_)*/nullptr
+  , /*decltype(_impl_.training_started_)*/nullptr
+  , /*decltype(_impl_.training_ended_)*/nullptr
+  , /*decltype(_impl_.status_)*/0
+  , /*decltype(_impl_.model_type_)*/0
+  , /*decltype(_impl_.model_framework_)*/0
+  , /*decltype(_impl_.is_custom_job_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TrainingJobMetadataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TrainingJobMetadataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -194,8 +197,9 @@ struct TrainingJobMetadataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TrainingJobMetadataDefaultTypeInternal _TrainingJobMetadata_default_instance_;
 PROTOBUF_CONSTEXPR CancelTrainingJobRequest::CancelTrainingJobRequest(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CancelTrainingJobRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CancelTrainingJobRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -206,7 +210,7 @@ struct CancelTrainingJobRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CancelTrainingJobRequestDefaultTypeInternal _CancelTrainingJobRequest_default_instance_;
 PROTOBUF_CONSTEXPR CancelTrainingJobResponse::CancelTrainingJobResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct CancelTrainingJobResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CancelTrainingJobResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -217,8 +221,9 @@ struct CancelTrainingJobResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CancelTrainingJobResponseDefaultTypeInternal _CancelTrainingJobResponse_default_instance_;
 PROTOBUF_CONSTEXPR DeleteCompletedTrainingJobRequest::DeleteCompletedTrainingJobRequest(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DeleteCompletedTrainingJobRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DeleteCompletedTrainingJobRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -229,7 +234,7 @@ struct DeleteCompletedTrainingJobRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteCompletedTrainingJobRequestDefaultTypeInternal _DeleteCompletedTrainingJobRequest_default_instance_;
 PROTOBUF_CONSTEXPR DeleteCompletedTrainingJobResponse::DeleteCompletedTrainingJobResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct DeleteCompletedTrainingJobResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DeleteCompletedTrainingJobResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -240,10 +245,11 @@ struct DeleteCompletedTrainingJobResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteCompletedTrainingJobResponseDefaultTypeInternal _DeleteCompletedTrainingJobResponse_default_instance_;
 PROTOBUF_CONSTEXPR TrainingJobLogEntry::TrainingJobLogEntry(
-    ::_pbi::ConstantInitialized)
-  : level_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , time_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.level_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.message_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.time_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TrainingJobLogEntryDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TrainingJobLogEntryDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -254,9 +260,11 @@ struct TrainingJobLogEntryDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TrainingJobLogEntryDefaultTypeInternal _TrainingJobLogEntry_default_instance_;
 PROTOBUF_CONSTEXPR GetTrainingJobLogsRequest::GetTrainingJobLogsRequest(
-    ::_pbi::ConstantInitialized)
-  : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , page_token_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.page_token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
 struct GetTrainingJobLogsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetTrainingJobLogsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -267,9 +275,10 @@ struct GetTrainingJobLogsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTrainingJobLogsRequestDefaultTypeInternal _GetTrainingJobLogsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetTrainingJobLogsResponse::GetTrainingJobLogsResponse(
-    ::_pbi::ConstantInitialized)
-  : logs_()
-  , next_page_token_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.logs_)*/{}
+  , /*decltype(_impl_.next_page_token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetTrainingJobLogsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetTrainingJobLogsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -280,7 +289,7 @@ struct GetTrainingJobLogsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTrainingJobLogsResponseDefaultTypeInternal _GetTrainingJobLogsResponse_default_instance_;
 PROTOBUF_CONSTEXPR ListSupportedContainersRequest::ListSupportedContainersRequest(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct ListSupportedContainersRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ListSupportedContainersRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -291,7 +300,7 @@ struct ListSupportedContainersRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListSupportedContainersRequestDefaultTypeInternal _ListSupportedContainersRequest_default_instance_;
 PROTOBUF_CONSTEXPR ListSupportedContainersResponse_ContainerMapEntry_DoNotUse::ListSupportedContainersResponse_ContainerMapEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct ListSupportedContainersResponse_ContainerMapEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ListSupportedContainersResponse_ContainerMapEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -302,8 +311,9 @@ struct ListSupportedContainersResponse_ContainerMapEntry_DoNotUseDefaultTypeInte
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListSupportedContainersResponse_ContainerMapEntry_DoNotUseDefaultTypeInternal _ListSupportedContainersResponse_ContainerMapEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR ListSupportedContainersResponse::ListSupportedContainersResponse(
-    ::_pbi::ConstantInitialized)
-  : container_map_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.container_map_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ListSupportedContainersResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ListSupportedContainersResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -314,12 +324,13 @@ struct ListSupportedContainersResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListSupportedContainersResponseDefaultTypeInternal _ListSupportedContainersResponse_default_instance_;
 PROTOBUF_CONSTEXPR Container::Container(
-    ::_pbi::ConstantInitialized)
-  : key_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , uri_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , framework_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , eol_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.key_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.uri_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.framework_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.description_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.eol_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ContainerDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ContainerDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -344,20 +355,20 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, dataset_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, organization_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, model_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, model_version_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, model_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, model_framework_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, tags_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, _impl_.dataset_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, _impl_.organization_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, _impl_.model_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, _impl_.model_version_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, _impl_.model_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, _impl_.model_framework_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobRequest, _impl_.tags_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobResponse, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitTrainingJobResponse, _impl_.id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest_ArgumentsEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -374,50 +385,50 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, dataset_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, registry_item_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, registry_item_version_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, organization_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, model_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, model_version_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, arguments_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, container_version_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.dataset_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.registry_item_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.registry_item_version_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.organization_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.model_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.model_version_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.arguments_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobRequest, _impl_.container_version_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::SubmitCustomTrainingJobResponse, _impl_.id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobRequest, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobRequest, _impl_.id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobResponse, metadata_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobResponse, _impl_.metadata_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListTrainingJobsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListTrainingJobsRequest, organization_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListTrainingJobsRequest, status_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListTrainingJobsRequest, _impl_.organization_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListTrainingJobsRequest, _impl_.status_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListTrainingJobsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListTrainingJobsResponse, jobs_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListTrainingJobsResponse, _impl_.jobs_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata_ArgumentsEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata_ArgumentsEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -434,33 +445,33 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, dataset_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, organization_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, model_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, model_version_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, model_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, model_framework_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, is_custom_job_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, registry_item_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, registry_item_version_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, status_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, error_status_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, created_on_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, last_modified_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, training_started_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, training_ended_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, synced_model_id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, tags_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, arguments_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, container_version_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.dataset_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.organization_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.model_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.model_version_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.model_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.model_framework_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.is_custom_job_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.registry_item_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.registry_item_version_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.status_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.error_status_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.created_on_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.last_modified_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.training_started_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.training_ended_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.synced_model_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.tags_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.arguments_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobMetadata, _impl_.container_version_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::CancelTrainingJobRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::CancelTrainingJobRequest, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::CancelTrainingJobRequest, _impl_.id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::CancelTrainingJobResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -473,7 +484,7 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::DeleteCompletedTrainingJobRequest, _impl_.id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::DeleteCompletedTrainingJobResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -486,17 +497,17 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, level_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, time_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, message_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, _impl_.level_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, _impl_.time_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::TrainingJobLogEntry, _impl_.message_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, id_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, page_token_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsRequest, _impl_.page_token_),
   ~0u,
   0,
   ~0u,  // no _has_bits_
@@ -505,8 +516,8 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsResponse, logs_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsResponse, next_page_token_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsResponse, _impl_.logs_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::GetTrainingJobLogsResponse, _impl_.next_page_token_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListSupportedContainersRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -529,18 +540,18 @@ const uint32_t TableStruct_app_2fmltraining_2fv1_2fml_5ftraining_2eproto::offset
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListSupportedContainersResponse, container_map_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::ListSupportedContainersResponse, _impl_.container_map_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, key_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, uri_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, framework_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, description_),
-  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, eol_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, _impl_.key_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, _impl_.uri_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, _impl_.framework_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, _impl_.description_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::mltraining::v1::Container, _impl_.eol_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::mltraining::v1::SubmitTrainingJobRequest)},
@@ -848,74 +859,92 @@ class SubmitTrainingJobRequest::_Internal {
 
 SubmitTrainingJobRequest::SubmitTrainingJobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  tags_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.SubmitTrainingJobRequest)
 }
 SubmitTrainingJobRequest::SubmitTrainingJobRequest(const SubmitTrainingJobRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      tags_(from.tags_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SubmitTrainingJobRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tags_){from._impl_.tags_}
+    , decltype(_impl_.organization_id_){}
+    , decltype(_impl_.model_name_){}
+    , decltype(_impl_.model_version_){}
+    , decltype(_impl_.dataset_id_){}
+    , decltype(_impl_.model_type_){}
+    , decltype(_impl_.model_framework_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  organization_id_.InitDefault();
+  _impl_.organization_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    organization_id_.Set("", GetArenaForAllocation());
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_organization_id().empty()) {
-    organization_id_.Set(from._internal_organization_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.organization_id_.Set(from._internal_organization_id(), 
+      _this->GetArenaForAllocation());
   }
-  model_name_.InitDefault();
+  _impl_.model_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    model_name_.Set("", GetArenaForAllocation());
+    _impl_.model_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_model_name().empty()) {
-    model_name_.Set(from._internal_model_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.model_name_.Set(from._internal_model_name(), 
+      _this->GetArenaForAllocation());
   }
-  model_version_.InitDefault();
+  _impl_.model_version_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    model_version_.Set("", GetArenaForAllocation());
+    _impl_.model_version_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_model_version().empty()) {
-    model_version_.Set(from._internal_model_version(), 
-      GetArenaForAllocation());
+    _this->_impl_.model_version_.Set(from._internal_model_version(), 
+      _this->GetArenaForAllocation());
   }
-  dataset_id_.InitDefault();
+  _impl_.dataset_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    dataset_id_.Set("", GetArenaForAllocation());
+    _impl_.dataset_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_dataset_id().empty()) {
-    dataset_id_.Set(from._internal_dataset_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.dataset_id_.Set(from._internal_dataset_id(), 
+      _this->GetArenaForAllocation());
   }
-  ::memcpy(&model_type_, &from.model_type_,
-    static_cast<size_t>(reinterpret_cast<char*>(&model_framework_) -
-    reinterpret_cast<char*>(&model_type_)) + sizeof(model_framework_));
+  ::memcpy(&_impl_.model_type_, &from._impl_.model_type_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.model_framework_) -
+    reinterpret_cast<char*>(&_impl_.model_type_)) + sizeof(_impl_.model_framework_));
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.SubmitTrainingJobRequest)
 }
 
-inline void SubmitTrainingJobRequest::SharedCtor() {
-organization_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  organization_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-model_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  model_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-model_version_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  model_version_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-dataset_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  dataset_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&model_type_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&model_framework_) -
-    reinterpret_cast<char*>(&model_type_)) + sizeof(model_framework_));
+inline void SubmitTrainingJobRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tags_){arena}
+    , decltype(_impl_.organization_id_){}
+    , decltype(_impl_.model_name_){}
+    , decltype(_impl_.model_version_){}
+    , decltype(_impl_.dataset_id_){}
+    , decltype(_impl_.model_type_){0}
+    , decltype(_impl_.model_framework_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.model_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.model_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.model_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.model_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.dataset_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.dataset_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SubmitTrainingJobRequest::~SubmitTrainingJobRequest() {
@@ -929,14 +958,15 @@ SubmitTrainingJobRequest::~SubmitTrainingJobRequest() {
 
 inline void SubmitTrainingJobRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  organization_id_.Destroy();
-  model_name_.Destroy();
-  model_version_.Destroy();
-  dataset_id_.Destroy();
+  _impl_.tags_.~RepeatedPtrField();
+  _impl_.organization_id_.Destroy();
+  _impl_.model_name_.Destroy();
+  _impl_.model_version_.Destroy();
+  _impl_.dataset_id_.Destroy();
 }
 
 void SubmitTrainingJobRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SubmitTrainingJobRequest::Clear() {
@@ -945,14 +975,14 @@ void SubmitTrainingJobRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  tags_.Clear();
-  organization_id_.ClearToEmpty();
-  model_name_.ClearToEmpty();
-  model_version_.ClearToEmpty();
-  dataset_id_.ClearToEmpty();
-  ::memset(&model_type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&model_framework_) -
-      reinterpret_cast<char*>(&model_type_)) + sizeof(model_framework_));
+  _impl_.tags_.Clear();
+  _impl_.organization_id_.ClearToEmpty();
+  _impl_.model_name_.ClearToEmpty();
+  _impl_.model_version_.ClearToEmpty();
+  _impl_.dataset_id_.ClearToEmpty();
+  ::memset(&_impl_.model_type_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.model_framework_) -
+      reinterpret_cast<char*>(&_impl_.model_type_)) + sizeof(_impl_.model_framework_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1146,10 +1176,10 @@ size_t SubmitTrainingJobRequest::ByteSizeLong() const {
 
   // repeated string tags = 6 [json_name = "tags", (.tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
-  for (int i = 0, n = tags_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.tags_.size());
+  for (int i = 0, n = _impl_.tags_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      tags_.Get(i));
+      _impl_.tags_.Get(i));
   }
 
   // string organization_id = 2 [json_name = "organizationId", (.tagger.v1.tags) = "bson:\"organization_id\" json:\"organization_id\""];
@@ -1192,48 +1222,44 @@ size_t SubmitTrainingJobRequest::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_model_framework());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SubmitTrainingJobRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SubmitTrainingJobRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubmitTrainingJobRequest::GetClassData() const { return &_class_data_; }
 
-void SubmitTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SubmitTrainingJobRequest *>(to)->MergeFrom(
-      static_cast<const SubmitTrainingJobRequest &>(from));
-}
 
-
-void SubmitTrainingJobRequest::MergeFrom(const SubmitTrainingJobRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.SubmitTrainingJobRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void SubmitTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SubmitTrainingJobRequest*>(&to_msg);
+  auto& from = static_cast<const SubmitTrainingJobRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.SubmitTrainingJobRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  tags_.MergeFrom(from.tags_);
+  _this->_impl_.tags_.MergeFrom(from._impl_.tags_);
   if (!from._internal_organization_id().empty()) {
-    _internal_set_organization_id(from._internal_organization_id());
+    _this->_internal_set_organization_id(from._internal_organization_id());
   }
   if (!from._internal_model_name().empty()) {
-    _internal_set_model_name(from._internal_model_name());
+    _this->_internal_set_model_name(from._internal_model_name());
   }
   if (!from._internal_model_version().empty()) {
-    _internal_set_model_version(from._internal_model_version());
+    _this->_internal_set_model_version(from._internal_model_version());
   }
   if (!from._internal_dataset_id().empty()) {
-    _internal_set_dataset_id(from._internal_dataset_id());
+    _this->_internal_set_dataset_id(from._internal_dataset_id());
   }
   if (from._internal_model_type() != 0) {
-    _internal_set_model_type(from._internal_model_type());
+    _this->_internal_set_model_type(from._internal_model_type());
   }
   if (from._internal_model_framework() != 0) {
-    _internal_set_model_framework(from._internal_model_framework());
+    _this->_internal_set_model_framework(from._internal_model_framework());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SubmitTrainingJobRequest::CopyFrom(const SubmitTrainingJobRequest& from) {
@@ -1252,29 +1278,29 @@ void SubmitTrainingJobRequest::InternalSwap(SubmitTrainingJobRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  tags_.InternalSwap(&other->tags_);
+  _impl_.tags_.InternalSwap(&other->_impl_.tags_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &organization_id_, lhs_arena,
-      &other->organization_id_, rhs_arena
+      &_impl_.organization_id_, lhs_arena,
+      &other->_impl_.organization_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &model_name_, lhs_arena,
-      &other->model_name_, rhs_arena
+      &_impl_.model_name_, lhs_arena,
+      &other->_impl_.model_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &model_version_, lhs_arena,
-      &other->model_version_, rhs_arena
+      &_impl_.model_version_, lhs_arena,
+      &other->_impl_.model_version_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &dataset_id_, lhs_arena,
-      &other->dataset_id_, rhs_arena
+      &_impl_.dataset_id_, lhs_arena,
+      &other->_impl_.dataset_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SubmitTrainingJobRequest, model_framework_)
-      + sizeof(SubmitTrainingJobRequest::model_framework_)
-      - PROTOBUF_FIELD_OFFSET(SubmitTrainingJobRequest, model_type_)>(
-          reinterpret_cast<char*>(&model_type_),
-          reinterpret_cast<char*>(&other->model_type_));
+      PROTOBUF_FIELD_OFFSET(SubmitTrainingJobRequest, _impl_.model_framework_)
+      + sizeof(SubmitTrainingJobRequest::_impl_.model_framework_)
+      - PROTOBUF_FIELD_OFFSET(SubmitTrainingJobRequest, _impl_.model_type_)>(
+          reinterpret_cast<char*>(&_impl_.model_type_),
+          reinterpret_cast<char*>(&other->_impl_.model_type_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SubmitTrainingJobRequest::GetMetadata() const {
@@ -1292,28 +1318,40 @@ class SubmitTrainingJobResponse::_Internal {
 SubmitTrainingJobResponse::SubmitTrainingJobResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.SubmitTrainingJobResponse)
 }
 SubmitTrainingJobResponse::SubmitTrainingJobResponse(const SubmitTrainingJobResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SubmitTrainingJobResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.SubmitTrainingJobResponse)
 }
 
-inline void SubmitTrainingJobResponse::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void SubmitTrainingJobResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SubmitTrainingJobResponse::~SubmitTrainingJobResponse() {
@@ -1327,11 +1365,11 @@ SubmitTrainingJobResponse::~SubmitTrainingJobResponse() {
 
 inline void SubmitTrainingJobResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
+  _impl_.id_.Destroy();
 }
 
 void SubmitTrainingJobResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SubmitTrainingJobResponse::Clear() {
@@ -1340,7 +1378,7 @@ void SubmitTrainingJobResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1422,32 +1460,28 @@ size_t SubmitTrainingJobResponse::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SubmitTrainingJobResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SubmitTrainingJobResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubmitTrainingJobResponse::GetClassData() const { return &_class_data_; }
 
-void SubmitTrainingJobResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SubmitTrainingJobResponse *>(to)->MergeFrom(
-      static_cast<const SubmitTrainingJobResponse &>(from));
-}
 
-
-void SubmitTrainingJobResponse::MergeFrom(const SubmitTrainingJobResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.SubmitTrainingJobResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void SubmitTrainingJobResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SubmitTrainingJobResponse*>(&to_msg);
+  auto& from = static_cast<const SubmitTrainingJobResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.SubmitTrainingJobResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SubmitTrainingJobResponse::CopyFrom(const SubmitTrainingJobResponse& from) {
@@ -1467,8 +1501,8 @@ void SubmitTrainingJobResponse::InternalSwap(SubmitTrainingJobResponse* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
 }
 
@@ -1500,9 +1534,8 @@ class SubmitCustomTrainingJobRequest::_Internal {
 
 SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  arguments_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &SubmitCustomTrainingJobRequest::ArenaDtor);
   }
@@ -1510,96 +1543,122 @@ SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobRequest(::PROTOBUF_NAMESP
 }
 SubmitCustomTrainingJobRequest::SubmitCustomTrainingJobRequest(const SubmitCustomTrainingJobRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SubmitCustomTrainingJobRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.arguments_)*/{}
+    , decltype(_impl_.dataset_id_){}
+    , decltype(_impl_.registry_item_id_){}
+    , decltype(_impl_.organization_id_){}
+    , decltype(_impl_.model_name_){}
+    , decltype(_impl_.model_version_){}
+    , decltype(_impl_.registry_item_version_){}
+    , decltype(_impl_.container_version_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  arguments_.MergeFrom(from.arguments_);
-  dataset_id_.InitDefault();
+  _this->_impl_.arguments_.MergeFrom(from._impl_.arguments_);
+  _impl_.dataset_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    dataset_id_.Set("", GetArenaForAllocation());
+    _impl_.dataset_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_dataset_id().empty()) {
-    dataset_id_.Set(from._internal_dataset_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.dataset_id_.Set(from._internal_dataset_id(), 
+      _this->GetArenaForAllocation());
   }
-  registry_item_id_.InitDefault();
+  _impl_.registry_item_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    registry_item_id_.Set("", GetArenaForAllocation());
+    _impl_.registry_item_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_registry_item_id().empty()) {
-    registry_item_id_.Set(from._internal_registry_item_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.registry_item_id_.Set(from._internal_registry_item_id(), 
+      _this->GetArenaForAllocation());
   }
-  organization_id_.InitDefault();
+  _impl_.organization_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    organization_id_.Set("", GetArenaForAllocation());
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_organization_id().empty()) {
-    organization_id_.Set(from._internal_organization_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.organization_id_.Set(from._internal_organization_id(), 
+      _this->GetArenaForAllocation());
   }
-  model_name_.InitDefault();
+  _impl_.model_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    model_name_.Set("", GetArenaForAllocation());
+    _impl_.model_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_model_name().empty()) {
-    model_name_.Set(from._internal_model_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.model_name_.Set(from._internal_model_name(), 
+      _this->GetArenaForAllocation());
   }
-  model_version_.InitDefault();
+  _impl_.model_version_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    model_version_.Set("", GetArenaForAllocation());
+    _impl_.model_version_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_model_version().empty()) {
-    model_version_.Set(from._internal_model_version(), 
-      GetArenaForAllocation());
+    _this->_impl_.model_version_.Set(from._internal_model_version(), 
+      _this->GetArenaForAllocation());
   }
-  registry_item_version_.InitDefault();
+  _impl_.registry_item_version_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    registry_item_version_.Set("", GetArenaForAllocation());
+    _impl_.registry_item_version_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_registry_item_version().empty()) {
-    registry_item_version_.Set(from._internal_registry_item_version(), 
-      GetArenaForAllocation());
+    _this->_impl_.registry_item_version_.Set(from._internal_registry_item_version(), 
+      _this->GetArenaForAllocation());
   }
-  container_version_.InitDefault();
+  _impl_.container_version_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    container_version_.Set("", GetArenaForAllocation());
+    _impl_.container_version_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_container_version().empty()) {
-    container_version_.Set(from._internal_container_version(), 
-      GetArenaForAllocation());
+    _this->_impl_.container_version_.Set(from._internal_container_version(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest)
 }
 
-inline void SubmitCustomTrainingJobRequest::SharedCtor() {
-dataset_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  dataset_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-registry_item_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  registry_item_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-organization_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  organization_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-model_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  model_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-model_version_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  model_version_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-registry_item_version_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  registry_item_version_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-container_version_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  container_version_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void SubmitCustomTrainingJobRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.arguments_)*/{::_pbi::ArenaInitialized(), arena}
+    , decltype(_impl_.dataset_id_){}
+    , decltype(_impl_.registry_item_id_){}
+    , decltype(_impl_.organization_id_){}
+    , decltype(_impl_.model_name_){}
+    , decltype(_impl_.model_version_){}
+    , decltype(_impl_.registry_item_version_){}
+    , decltype(_impl_.container_version_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.dataset_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.dataset_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.registry_item_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.registry_item_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.model_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.model_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.model_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.model_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.registry_item_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.registry_item_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.container_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.container_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SubmitCustomTrainingJobRequest::~SubmitCustomTrainingJobRequest() {
@@ -1614,22 +1673,23 @@ SubmitCustomTrainingJobRequest::~SubmitCustomTrainingJobRequest() {
 
 inline void SubmitCustomTrainingJobRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  arguments_.Destruct();
-  dataset_id_.Destroy();
-  registry_item_id_.Destroy();
-  organization_id_.Destroy();
-  model_name_.Destroy();
-  model_version_.Destroy();
-  registry_item_version_.Destroy();
-  container_version_.Destroy();
+  _impl_.arguments_.Destruct();
+  _impl_.arguments_.~MapField();
+  _impl_.dataset_id_.Destroy();
+  _impl_.registry_item_id_.Destroy();
+  _impl_.organization_id_.Destroy();
+  _impl_.model_name_.Destroy();
+  _impl_.model_version_.Destroy();
+  _impl_.registry_item_version_.Destroy();
+  _impl_.container_version_.Destroy();
 }
 
 void SubmitCustomTrainingJobRequest::ArenaDtor(void* object) {
   SubmitCustomTrainingJobRequest* _this = reinterpret_cast< SubmitCustomTrainingJobRequest* >(object);
-  _this->arguments_.Destruct();
+  _this->_impl_.arguments_.Destruct();
 }
 void SubmitCustomTrainingJobRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SubmitCustomTrainingJobRequest::Clear() {
@@ -1638,14 +1698,14 @@ void SubmitCustomTrainingJobRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  arguments_.Clear();
-  dataset_id_.ClearToEmpty();
-  registry_item_id_.ClearToEmpty();
-  organization_id_.ClearToEmpty();
-  model_name_.ClearToEmpty();
-  model_version_.ClearToEmpty();
-  registry_item_version_.ClearToEmpty();
-  container_version_.ClearToEmpty();
+  _impl_.arguments_.Clear();
+  _impl_.dataset_id_.ClearToEmpty();
+  _impl_.registry_item_id_.ClearToEmpty();
+  _impl_.organization_id_.ClearToEmpty();
+  _impl_.model_name_.ClearToEmpty();
+  _impl_.model_version_.ClearToEmpty();
+  _impl_.registry_item_version_.ClearToEmpty();
+  _impl_.container_version_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1721,7 +1781,7 @@ const char* SubmitCustomTrainingJobRequest::_InternalParse(const char* ptr, ::_p
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&arguments_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.arguments_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<58>(ptr));
@@ -1941,51 +2001,47 @@ size_t SubmitCustomTrainingJobRequest::ByteSizeLong() const {
         this->_internal_container_version());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SubmitCustomTrainingJobRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SubmitCustomTrainingJobRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubmitCustomTrainingJobRequest::GetClassData() const { return &_class_data_; }
 
-void SubmitCustomTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SubmitCustomTrainingJobRequest *>(to)->MergeFrom(
-      static_cast<const SubmitCustomTrainingJobRequest &>(from));
-}
 
-
-void SubmitCustomTrainingJobRequest::MergeFrom(const SubmitCustomTrainingJobRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void SubmitCustomTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SubmitCustomTrainingJobRequest*>(&to_msg);
+  auto& from = static_cast<const SubmitCustomTrainingJobRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.SubmitCustomTrainingJobRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  arguments_.MergeFrom(from.arguments_);
+  _this->_impl_.arguments_.MergeFrom(from._impl_.arguments_);
   if (!from._internal_dataset_id().empty()) {
-    _internal_set_dataset_id(from._internal_dataset_id());
+    _this->_internal_set_dataset_id(from._internal_dataset_id());
   }
   if (!from._internal_registry_item_id().empty()) {
-    _internal_set_registry_item_id(from._internal_registry_item_id());
+    _this->_internal_set_registry_item_id(from._internal_registry_item_id());
   }
   if (!from._internal_organization_id().empty()) {
-    _internal_set_organization_id(from._internal_organization_id());
+    _this->_internal_set_organization_id(from._internal_organization_id());
   }
   if (!from._internal_model_name().empty()) {
-    _internal_set_model_name(from._internal_model_name());
+    _this->_internal_set_model_name(from._internal_model_name());
   }
   if (!from._internal_model_version().empty()) {
-    _internal_set_model_version(from._internal_model_version());
+    _this->_internal_set_model_version(from._internal_model_version());
   }
   if (!from._internal_registry_item_version().empty()) {
-    _internal_set_registry_item_version(from._internal_registry_item_version());
+    _this->_internal_set_registry_item_version(from._internal_registry_item_version());
   }
   if (!from._internal_container_version().empty()) {
-    _internal_set_container_version(from._internal_container_version());
+    _this->_internal_set_container_version(from._internal_container_version());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SubmitCustomTrainingJobRequest::CopyFrom(const SubmitCustomTrainingJobRequest& from) {
@@ -2004,34 +2060,34 @@ void SubmitCustomTrainingJobRequest::InternalSwap(SubmitCustomTrainingJobRequest
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  arguments_.InternalSwap(&other->arguments_);
+  _impl_.arguments_.InternalSwap(&other->_impl_.arguments_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &dataset_id_, lhs_arena,
-      &other->dataset_id_, rhs_arena
+      &_impl_.dataset_id_, lhs_arena,
+      &other->_impl_.dataset_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &registry_item_id_, lhs_arena,
-      &other->registry_item_id_, rhs_arena
+      &_impl_.registry_item_id_, lhs_arena,
+      &other->_impl_.registry_item_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &organization_id_, lhs_arena,
-      &other->organization_id_, rhs_arena
+      &_impl_.organization_id_, lhs_arena,
+      &other->_impl_.organization_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &model_name_, lhs_arena,
-      &other->model_name_, rhs_arena
+      &_impl_.model_name_, lhs_arena,
+      &other->_impl_.model_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &model_version_, lhs_arena,
-      &other->model_version_, rhs_arena
+      &_impl_.model_version_, lhs_arena,
+      &other->_impl_.model_version_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &registry_item_version_, lhs_arena,
-      &other->registry_item_version_, rhs_arena
+      &_impl_.registry_item_version_, lhs_arena,
+      &other->_impl_.registry_item_version_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &container_version_, lhs_arena,
-      &other->container_version_, rhs_arena
+      &_impl_.container_version_, lhs_arena,
+      &other->_impl_.container_version_, rhs_arena
   );
 }
 
@@ -2050,28 +2106,40 @@ class SubmitCustomTrainingJobResponse::_Internal {
 SubmitCustomTrainingJobResponse::SubmitCustomTrainingJobResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.SubmitCustomTrainingJobResponse)
 }
 SubmitCustomTrainingJobResponse::SubmitCustomTrainingJobResponse(const SubmitCustomTrainingJobResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SubmitCustomTrainingJobResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.SubmitCustomTrainingJobResponse)
 }
 
-inline void SubmitCustomTrainingJobResponse::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void SubmitCustomTrainingJobResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SubmitCustomTrainingJobResponse::~SubmitCustomTrainingJobResponse() {
@@ -2085,11 +2153,11 @@ SubmitCustomTrainingJobResponse::~SubmitCustomTrainingJobResponse() {
 
 inline void SubmitCustomTrainingJobResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
+  _impl_.id_.Destroy();
 }
 
 void SubmitCustomTrainingJobResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SubmitCustomTrainingJobResponse::Clear() {
@@ -2098,7 +2166,7 @@ void SubmitCustomTrainingJobResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2180,32 +2248,28 @@ size_t SubmitCustomTrainingJobResponse::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SubmitCustomTrainingJobResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SubmitCustomTrainingJobResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubmitCustomTrainingJobResponse::GetClassData() const { return &_class_data_; }
 
-void SubmitCustomTrainingJobResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SubmitCustomTrainingJobResponse *>(to)->MergeFrom(
-      static_cast<const SubmitCustomTrainingJobResponse &>(from));
-}
 
-
-void SubmitCustomTrainingJobResponse::MergeFrom(const SubmitCustomTrainingJobResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.SubmitCustomTrainingJobResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void SubmitCustomTrainingJobResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SubmitCustomTrainingJobResponse*>(&to_msg);
+  auto& from = static_cast<const SubmitCustomTrainingJobResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.SubmitCustomTrainingJobResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SubmitCustomTrainingJobResponse::CopyFrom(const SubmitCustomTrainingJobResponse& from) {
@@ -2225,8 +2289,8 @@ void SubmitCustomTrainingJobResponse::InternalSwap(SubmitCustomTrainingJobRespon
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
 }
 
@@ -2245,28 +2309,40 @@ class GetTrainingJobRequest::_Internal {
 GetTrainingJobRequest::GetTrainingJobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.GetTrainingJobRequest)
 }
 GetTrainingJobRequest::GetTrainingJobRequest(const GetTrainingJobRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetTrainingJobRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.GetTrainingJobRequest)
 }
 
-inline void GetTrainingJobRequest::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void GetTrainingJobRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetTrainingJobRequest::~GetTrainingJobRequest() {
@@ -2280,11 +2356,11 @@ GetTrainingJobRequest::~GetTrainingJobRequest() {
 
 inline void GetTrainingJobRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
+  _impl_.id_.Destroy();
 }
 
 void GetTrainingJobRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetTrainingJobRequest::Clear() {
@@ -2293,7 +2369,7 @@ void GetTrainingJobRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2375,32 +2451,28 @@ size_t GetTrainingJobRequest::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetTrainingJobRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetTrainingJobRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetTrainingJobRequest::GetClassData() const { return &_class_data_; }
 
-void GetTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetTrainingJobRequest *>(to)->MergeFrom(
-      static_cast<const GetTrainingJobRequest &>(from));
-}
 
-
-void GetTrainingJobRequest::MergeFrom(const GetTrainingJobRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetTrainingJobRequest*>(&to_msg);
+  auto& from = static_cast<const GetTrainingJobRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetTrainingJobRequest::CopyFrom(const GetTrainingJobRequest& from) {
@@ -2420,8 +2492,8 @@ void GetTrainingJobRequest::InternalSwap(GetTrainingJobRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
 }
 
@@ -2440,27 +2512,36 @@ class GetTrainingJobResponse::_Internal {
 
 const ::viam::app::mltraining::v1::TrainingJobMetadata&
 GetTrainingJobResponse::_Internal::metadata(const GetTrainingJobResponse* msg) {
-  return *msg->metadata_;
+  return *msg->_impl_.metadata_;
 }
 GetTrainingJobResponse::GetTrainingJobResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.GetTrainingJobResponse)
 }
 GetTrainingJobResponse::GetTrainingJobResponse(const GetTrainingJobResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetTrainingJobResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.metadata_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_metadata()) {
-    metadata_ = new ::viam::app::mltraining::v1::TrainingJobMetadata(*from.metadata_);
-  } else {
-    metadata_ = nullptr;
+    _this->_impl_.metadata_ = new ::viam::app::mltraining::v1::TrainingJobMetadata(*from._impl_.metadata_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.GetTrainingJobResponse)
 }
 
-inline void GetTrainingJobResponse::SharedCtor() {
-metadata_ = nullptr;
+inline void GetTrainingJobResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.metadata_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetTrainingJobResponse::~GetTrainingJobResponse() {
@@ -2474,11 +2555,11 @@ GetTrainingJobResponse::~GetTrainingJobResponse() {
 
 inline void GetTrainingJobResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete metadata_;
+  if (this != internal_default_instance()) delete _impl_.metadata_;
 }
 
 void GetTrainingJobResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetTrainingJobResponse::Clear() {
@@ -2487,10 +2568,10 @@ void GetTrainingJobResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && metadata_ != nullptr) {
-    delete metadata_;
+  if (GetArenaForAllocation() == nullptr && _impl_.metadata_ != nullptr) {
+    delete _impl_.metadata_;
   }
-  metadata_ = nullptr;
+  _impl_.metadata_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2564,35 +2645,32 @@ size_t GetTrainingJobResponse::ByteSizeLong() const {
   if (this->_internal_has_metadata()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *metadata_);
+        *_impl_.metadata_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetTrainingJobResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetTrainingJobResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetTrainingJobResponse::GetClassData() const { return &_class_data_; }
 
-void GetTrainingJobResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetTrainingJobResponse *>(to)->MergeFrom(
-      static_cast<const GetTrainingJobResponse &>(from));
-}
 
-
-void GetTrainingJobResponse::MergeFrom(const GetTrainingJobResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetTrainingJobResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetTrainingJobResponse*>(&to_msg);
+  auto& from = static_cast<const GetTrainingJobResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_metadata()) {
-    _internal_mutable_metadata()->::viam::app::mltraining::v1::TrainingJobMetadata::MergeFrom(from._internal_metadata());
+    _this->_internal_mutable_metadata()->::viam::app::mltraining::v1::TrainingJobMetadata::MergeFrom(
+        from._internal_metadata());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetTrainingJobResponse::CopyFrom(const GetTrainingJobResponse& from) {
@@ -2609,7 +2687,7 @@ bool GetTrainingJobResponse::IsInitialized() const {
 void GetTrainingJobResponse::InternalSwap(GetTrainingJobResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(metadata_, other->metadata_);
+  swap(_impl_.metadata_, other->_impl_.metadata_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetTrainingJobResponse::GetMetadata() const {
@@ -2627,30 +2705,43 @@ class ListTrainingJobsRequest::_Internal {
 ListTrainingJobsRequest::ListTrainingJobsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.ListTrainingJobsRequest)
 }
 ListTrainingJobsRequest::ListTrainingJobsRequest(const ListTrainingJobsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ListTrainingJobsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.organization_id_){}
+    , decltype(_impl_.status_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  organization_id_.InitDefault();
+  _impl_.organization_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    organization_id_.Set("", GetArenaForAllocation());
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_organization_id().empty()) {
-    organization_id_.Set(from._internal_organization_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.organization_id_.Set(from._internal_organization_id(), 
+      _this->GetArenaForAllocation());
   }
-  status_ = from.status_;
+  _this->_impl_.status_ = from._impl_.status_;
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.ListTrainingJobsRequest)
 }
 
-inline void ListTrainingJobsRequest::SharedCtor() {
-organization_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  organization_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-status_ = 0;
+inline void ListTrainingJobsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.organization_id_){}
+    , decltype(_impl_.status_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ListTrainingJobsRequest::~ListTrainingJobsRequest() {
@@ -2664,11 +2755,11 @@ ListTrainingJobsRequest::~ListTrainingJobsRequest() {
 
 inline void ListTrainingJobsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  organization_id_.Destroy();
+  _impl_.organization_id_.Destroy();
 }
 
 void ListTrainingJobsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ListTrainingJobsRequest::Clear() {
@@ -2677,8 +2768,8 @@ void ListTrainingJobsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  organization_id_.ClearToEmpty();
-  status_ = 0;
+  _impl_.organization_id_.ClearToEmpty();
+  _impl_.status_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2782,35 +2873,31 @@ size_t ListTrainingJobsRequest::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_status());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ListTrainingJobsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ListTrainingJobsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ListTrainingJobsRequest::GetClassData() const { return &_class_data_; }
 
-void ListTrainingJobsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ListTrainingJobsRequest *>(to)->MergeFrom(
-      static_cast<const ListTrainingJobsRequest &>(from));
-}
 
-
-void ListTrainingJobsRequest::MergeFrom(const ListTrainingJobsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.ListTrainingJobsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void ListTrainingJobsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ListTrainingJobsRequest*>(&to_msg);
+  auto& from = static_cast<const ListTrainingJobsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.ListTrainingJobsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_organization_id().empty()) {
-    _internal_set_organization_id(from._internal_organization_id());
+    _this->_internal_set_organization_id(from._internal_organization_id());
   }
   if (from._internal_status() != 0) {
-    _internal_set_status(from._internal_status());
+    _this->_internal_set_status(from._internal_status());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ListTrainingJobsRequest::CopyFrom(const ListTrainingJobsRequest& from) {
@@ -2830,10 +2917,10 @@ void ListTrainingJobsRequest::InternalSwap(ListTrainingJobsRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &organization_id_, lhs_arena,
-      &other->organization_id_, rhs_arena
+      &_impl_.organization_id_, lhs_arena,
+      &other->_impl_.organization_id_, rhs_arena
   );
-  swap(status_, other->status_);
+  swap(_impl_.status_, other->_impl_.status_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ListTrainingJobsRequest::GetMetadata() const {
@@ -2850,19 +2937,29 @@ class ListTrainingJobsResponse::_Internal {
 
 ListTrainingJobsResponse::ListTrainingJobsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  jobs_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.ListTrainingJobsResponse)
 }
 ListTrainingJobsResponse::ListTrainingJobsResponse(const ListTrainingJobsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      jobs_(from.jobs_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ListTrainingJobsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.jobs_){from._impl_.jobs_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.ListTrainingJobsResponse)
 }
 
-inline void ListTrainingJobsResponse::SharedCtor() {
+inline void ListTrainingJobsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.jobs_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 ListTrainingJobsResponse::~ListTrainingJobsResponse() {
@@ -2876,10 +2973,11 @@ ListTrainingJobsResponse::~ListTrainingJobsResponse() {
 
 inline void ListTrainingJobsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.jobs_.~RepeatedPtrField();
 }
 
 void ListTrainingJobsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ListTrainingJobsResponse::Clear() {
@@ -2888,7 +2986,7 @@ void ListTrainingJobsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  jobs_.Clear();
+  _impl_.jobs_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2966,35 +3064,31 @@ size_t ListTrainingJobsResponse::ByteSizeLong() const {
 
   // repeated .viam.app.mltraining.v1.TrainingJobMetadata jobs = 1 [json_name = "jobs"];
   total_size += 1UL * this->_internal_jobs_size();
-  for (const auto& msg : this->jobs_) {
+  for (const auto& msg : this->_impl_.jobs_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ListTrainingJobsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ListTrainingJobsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ListTrainingJobsResponse::GetClassData() const { return &_class_data_; }
 
-void ListTrainingJobsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ListTrainingJobsResponse *>(to)->MergeFrom(
-      static_cast<const ListTrainingJobsResponse &>(from));
-}
 
-
-void ListTrainingJobsResponse::MergeFrom(const ListTrainingJobsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.ListTrainingJobsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void ListTrainingJobsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ListTrainingJobsResponse*>(&to_msg);
+  auto& from = static_cast<const ListTrainingJobsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.ListTrainingJobsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  jobs_.MergeFrom(from.jobs_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.jobs_.MergeFrom(from._impl_.jobs_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ListTrainingJobsResponse::CopyFrom(const ListTrainingJobsResponse& from) {
@@ -3011,7 +3105,7 @@ bool ListTrainingJobsResponse::IsInitialized() const {
 void ListTrainingJobsResponse::InternalSwap(ListTrainingJobsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  jobs_.InternalSwap(&other->jobs_);
+  _impl_.jobs_.InternalSwap(&other->_impl_.jobs_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ListTrainingJobsResponse::GetMetadata() const {
@@ -3047,214 +3141,247 @@ class TrainingJobMetadata::_Internal {
 
 const ::google::rpc::Status&
 TrainingJobMetadata::_Internal::error_status(const TrainingJobMetadata* msg) {
-  return *msg->error_status_;
+  return *msg->_impl_.error_status_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 TrainingJobMetadata::_Internal::created_on(const TrainingJobMetadata* msg) {
-  return *msg->created_on_;
+  return *msg->_impl_.created_on_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 TrainingJobMetadata::_Internal::last_modified(const TrainingJobMetadata* msg) {
-  return *msg->last_modified_;
+  return *msg->_impl_.last_modified_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 TrainingJobMetadata::_Internal::training_started(const TrainingJobMetadata* msg) {
-  return *msg->training_started_;
+  return *msg->_impl_.training_started_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 TrainingJobMetadata::_Internal::training_ended(const TrainingJobMetadata* msg) {
-  return *msg->training_ended_;
+  return *msg->_impl_.training_ended_;
 }
 void TrainingJobMetadata::clear_error_status() {
-  if (GetArenaForAllocation() == nullptr && error_status_ != nullptr) {
-    delete error_status_;
+  if (GetArenaForAllocation() == nullptr && _impl_.error_status_ != nullptr) {
+    delete _impl_.error_status_;
   }
-  error_status_ = nullptr;
+  _impl_.error_status_ = nullptr;
 }
 void TrainingJobMetadata::clear_created_on() {
-  if (GetArenaForAllocation() == nullptr && created_on_ != nullptr) {
-    delete created_on_;
+  if (GetArenaForAllocation() == nullptr && _impl_.created_on_ != nullptr) {
+    delete _impl_.created_on_;
   }
-  created_on_ = nullptr;
+  _impl_.created_on_ = nullptr;
 }
 void TrainingJobMetadata::clear_last_modified() {
-  if (GetArenaForAllocation() == nullptr && last_modified_ != nullptr) {
-    delete last_modified_;
+  if (GetArenaForAllocation() == nullptr && _impl_.last_modified_ != nullptr) {
+    delete _impl_.last_modified_;
   }
-  last_modified_ = nullptr;
+  _impl_.last_modified_ = nullptr;
 }
 void TrainingJobMetadata::clear_training_started() {
-  if (GetArenaForAllocation() == nullptr && training_started_ != nullptr) {
-    delete training_started_;
+  if (GetArenaForAllocation() == nullptr && _impl_.training_started_ != nullptr) {
+    delete _impl_.training_started_;
   }
-  training_started_ = nullptr;
+  _impl_.training_started_ = nullptr;
 }
 void TrainingJobMetadata::clear_training_ended() {
-  if (GetArenaForAllocation() == nullptr && training_ended_ != nullptr) {
-    delete training_ended_;
+  if (GetArenaForAllocation() == nullptr && _impl_.training_ended_ != nullptr) {
+    delete _impl_.training_ended_;
   }
-  training_ended_ = nullptr;
+  _impl_.training_ended_ = nullptr;
 }
 TrainingJobMetadata::TrainingJobMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  tags_(arena),
-  arguments_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &TrainingJobMetadata::ArenaDtor);
   }
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.TrainingJobMetadata)
 }
 TrainingJobMetadata::TrainingJobMetadata(const TrainingJobMetadata& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      tags_(from.tags_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  TrainingJobMetadata* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tags_){from._impl_.tags_}
+    , /*decltype(_impl_.arguments_)*/{}
+    , decltype(_impl_.synced_model_id_){}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.dataset_id_){}
+    , decltype(_impl_.organization_id_){}
+    , decltype(_impl_.model_name_){}
+    , decltype(_impl_.model_version_){}
+    , decltype(_impl_.registry_item_id_){}
+    , decltype(_impl_.registry_item_version_){}
+    , decltype(_impl_.container_version_){}
+    , decltype(_impl_.created_on_){nullptr}
+    , decltype(_impl_.last_modified_){nullptr}
+    , decltype(_impl_.error_status_){nullptr}
+    , decltype(_impl_.training_started_){nullptr}
+    , decltype(_impl_.training_ended_){nullptr}
+    , decltype(_impl_.status_){}
+    , decltype(_impl_.model_type_){}
+    , decltype(_impl_.model_framework_){}
+    , decltype(_impl_.is_custom_job_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  arguments_.MergeFrom(from.arguments_);
-  synced_model_id_.InitDefault();
+  _this->_impl_.arguments_.MergeFrom(from._impl_.arguments_);
+  _impl_.synced_model_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    synced_model_id_.Set("", GetArenaForAllocation());
+    _impl_.synced_model_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_synced_model_id().empty()) {
-    synced_model_id_.Set(from._internal_synced_model_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.synced_model_id_.Set(from._internal_synced_model_id(), 
+      _this->GetArenaForAllocation());
   }
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
-  dataset_id_.InitDefault();
+  _impl_.dataset_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    dataset_id_.Set("", GetArenaForAllocation());
+    _impl_.dataset_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_dataset_id().empty()) {
-    dataset_id_.Set(from._internal_dataset_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.dataset_id_.Set(from._internal_dataset_id(), 
+      _this->GetArenaForAllocation());
   }
-  organization_id_.InitDefault();
+  _impl_.organization_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    organization_id_.Set("", GetArenaForAllocation());
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_organization_id().empty()) {
-    organization_id_.Set(from._internal_organization_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.organization_id_.Set(from._internal_organization_id(), 
+      _this->GetArenaForAllocation());
   }
-  model_name_.InitDefault();
+  _impl_.model_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    model_name_.Set("", GetArenaForAllocation());
+    _impl_.model_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_model_name().empty()) {
-    model_name_.Set(from._internal_model_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.model_name_.Set(from._internal_model_name(), 
+      _this->GetArenaForAllocation());
   }
-  model_version_.InitDefault();
+  _impl_.model_version_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    model_version_.Set("", GetArenaForAllocation());
+    _impl_.model_version_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_model_version().empty()) {
-    model_version_.Set(from._internal_model_version(), 
-      GetArenaForAllocation());
+    _this->_impl_.model_version_.Set(from._internal_model_version(), 
+      _this->GetArenaForAllocation());
   }
-  registry_item_id_.InitDefault();
+  _impl_.registry_item_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    registry_item_id_.Set("", GetArenaForAllocation());
+    _impl_.registry_item_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_registry_item_id().empty()) {
-    registry_item_id_.Set(from._internal_registry_item_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.registry_item_id_.Set(from._internal_registry_item_id(), 
+      _this->GetArenaForAllocation());
   }
-  registry_item_version_.InitDefault();
+  _impl_.registry_item_version_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    registry_item_version_.Set("", GetArenaForAllocation());
+    _impl_.registry_item_version_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_registry_item_version().empty()) {
-    registry_item_version_.Set(from._internal_registry_item_version(), 
-      GetArenaForAllocation());
+    _this->_impl_.registry_item_version_.Set(from._internal_registry_item_version(), 
+      _this->GetArenaForAllocation());
   }
-  container_version_.InitDefault();
+  _impl_.container_version_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    container_version_.Set("", GetArenaForAllocation());
+    _impl_.container_version_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_container_version().empty()) {
-    container_version_.Set(from._internal_container_version(), 
-      GetArenaForAllocation());
+    _this->_impl_.container_version_.Set(from._internal_container_version(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_created_on()) {
-    created_on_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.created_on_);
-  } else {
-    created_on_ = nullptr;
+    _this->_impl_.created_on_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.created_on_);
   }
   if (from._internal_has_last_modified()) {
-    last_modified_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.last_modified_);
-  } else {
-    last_modified_ = nullptr;
+    _this->_impl_.last_modified_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.last_modified_);
   }
   if (from._internal_has_error_status()) {
-    error_status_ = new ::google::rpc::Status(*from.error_status_);
-  } else {
-    error_status_ = nullptr;
+    _this->_impl_.error_status_ = new ::google::rpc::Status(*from._impl_.error_status_);
   }
   if (from._internal_has_training_started()) {
-    training_started_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.training_started_);
-  } else {
-    training_started_ = nullptr;
+    _this->_impl_.training_started_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.training_started_);
   }
   if (from._internal_has_training_ended()) {
-    training_ended_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.training_ended_);
-  } else {
-    training_ended_ = nullptr;
+    _this->_impl_.training_ended_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.training_ended_);
   }
-  ::memcpy(&status_, &from.status_,
-    static_cast<size_t>(reinterpret_cast<char*>(&is_custom_job_) -
-    reinterpret_cast<char*>(&status_)) + sizeof(is_custom_job_));
+  ::memcpy(&_impl_.status_, &from._impl_.status_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.is_custom_job_) -
+    reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.is_custom_job_));
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.TrainingJobMetadata)
 }
 
-inline void TrainingJobMetadata::SharedCtor() {
-synced_model_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  synced_model_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-dataset_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  dataset_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-organization_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  organization_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-model_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  model_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-model_version_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  model_version_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-registry_item_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  registry_item_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-registry_item_version_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  registry_item_version_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-container_version_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  container_version_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&created_on_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&is_custom_job_) -
-    reinterpret_cast<char*>(&created_on_)) + sizeof(is_custom_job_));
+inline void TrainingJobMetadata::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tags_){arena}
+    , /*decltype(_impl_.arguments_)*/{::_pbi::ArenaInitialized(), arena}
+    , decltype(_impl_.synced_model_id_){}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.dataset_id_){}
+    , decltype(_impl_.organization_id_){}
+    , decltype(_impl_.model_name_){}
+    , decltype(_impl_.model_version_){}
+    , decltype(_impl_.registry_item_id_){}
+    , decltype(_impl_.registry_item_version_){}
+    , decltype(_impl_.container_version_){}
+    , decltype(_impl_.created_on_){nullptr}
+    , decltype(_impl_.last_modified_){nullptr}
+    , decltype(_impl_.error_status_){nullptr}
+    , decltype(_impl_.training_started_){nullptr}
+    , decltype(_impl_.training_ended_){nullptr}
+    , decltype(_impl_.status_){0}
+    , decltype(_impl_.model_type_){0}
+    , decltype(_impl_.model_framework_){0}
+    , decltype(_impl_.is_custom_job_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.synced_model_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.synced_model_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.dataset_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.dataset_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.model_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.model_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.model_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.model_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.registry_item_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.registry_item_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.registry_item_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.registry_item_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.container_version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.container_version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TrainingJobMetadata::~TrainingJobMetadata() {
@@ -3269,29 +3396,31 @@ TrainingJobMetadata::~TrainingJobMetadata() {
 
 inline void TrainingJobMetadata::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  arguments_.Destruct();
-  synced_model_id_.Destroy();
-  id_.Destroy();
-  dataset_id_.Destroy();
-  organization_id_.Destroy();
-  model_name_.Destroy();
-  model_version_.Destroy();
-  registry_item_id_.Destroy();
-  registry_item_version_.Destroy();
-  container_version_.Destroy();
-  if (this != internal_default_instance()) delete created_on_;
-  if (this != internal_default_instance()) delete last_modified_;
-  if (this != internal_default_instance()) delete error_status_;
-  if (this != internal_default_instance()) delete training_started_;
-  if (this != internal_default_instance()) delete training_ended_;
+  _impl_.tags_.~RepeatedPtrField();
+  _impl_.arguments_.Destruct();
+  _impl_.arguments_.~MapField();
+  _impl_.synced_model_id_.Destroy();
+  _impl_.id_.Destroy();
+  _impl_.dataset_id_.Destroy();
+  _impl_.organization_id_.Destroy();
+  _impl_.model_name_.Destroy();
+  _impl_.model_version_.Destroy();
+  _impl_.registry_item_id_.Destroy();
+  _impl_.registry_item_version_.Destroy();
+  _impl_.container_version_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.created_on_;
+  if (this != internal_default_instance()) delete _impl_.last_modified_;
+  if (this != internal_default_instance()) delete _impl_.error_status_;
+  if (this != internal_default_instance()) delete _impl_.training_started_;
+  if (this != internal_default_instance()) delete _impl_.training_ended_;
 }
 
 void TrainingJobMetadata::ArenaDtor(void* object) {
   TrainingJobMetadata* _this = reinterpret_cast< TrainingJobMetadata* >(object);
-  _this->arguments_.Destruct();
+  _this->_impl_.arguments_.Destruct();
 }
 void TrainingJobMetadata::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TrainingJobMetadata::Clear() {
@@ -3300,40 +3429,40 @@ void TrainingJobMetadata::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  tags_.Clear();
-  arguments_.Clear();
-  synced_model_id_.ClearToEmpty();
-  id_.ClearToEmpty();
-  dataset_id_.ClearToEmpty();
-  organization_id_.ClearToEmpty();
-  model_name_.ClearToEmpty();
-  model_version_.ClearToEmpty();
-  registry_item_id_.ClearToEmpty();
-  registry_item_version_.ClearToEmpty();
-  container_version_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && created_on_ != nullptr) {
-    delete created_on_;
+  _impl_.tags_.Clear();
+  _impl_.arguments_.Clear();
+  _impl_.synced_model_id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
+  _impl_.dataset_id_.ClearToEmpty();
+  _impl_.organization_id_.ClearToEmpty();
+  _impl_.model_name_.ClearToEmpty();
+  _impl_.model_version_.ClearToEmpty();
+  _impl_.registry_item_id_.ClearToEmpty();
+  _impl_.registry_item_version_.ClearToEmpty();
+  _impl_.container_version_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.created_on_ != nullptr) {
+    delete _impl_.created_on_;
   }
-  created_on_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && last_modified_ != nullptr) {
-    delete last_modified_;
+  _impl_.created_on_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.last_modified_ != nullptr) {
+    delete _impl_.last_modified_;
   }
-  last_modified_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && error_status_ != nullptr) {
-    delete error_status_;
+  _impl_.last_modified_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.error_status_ != nullptr) {
+    delete _impl_.error_status_;
   }
-  error_status_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && training_started_ != nullptr) {
-    delete training_started_;
+  _impl_.error_status_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.training_started_ != nullptr) {
+    delete _impl_.training_started_;
   }
-  training_started_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && training_ended_ != nullptr) {
-    delete training_ended_;
+  _impl_.training_started_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.training_ended_ != nullptr) {
+    delete _impl_.training_ended_;
   }
-  training_ended_ = nullptr;
-  ::memset(&status_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&is_custom_job_) -
-      reinterpret_cast<char*>(&status_)) + sizeof(is_custom_job_));
+  _impl_.training_ended_ = nullptr;
+  ::memset(&_impl_.status_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.is_custom_job_) -
+      reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.is_custom_job_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3488,7 +3617,7 @@ const char* TrainingJobMetadata::_InternalParse(const char* ptr, ::_pbi::ParseCo
       // bool is_custom_job = 18 [json_name = "isCustomJob", (.tagger.v1.tags) = "bson:\"is_custom_job\" json:\"is_custom_job\""];
       case 18:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 144)) {
-          is_custom_job_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.is_custom_job_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3519,7 +3648,7 @@ const char* TrainingJobMetadata::_InternalParse(const char* ptr, ::_pbi::ParseCo
           ptr -= 2;
           do {
             ptr += 2;
-            ptr = ctx->ParseMessage(&arguments_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.arguments_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<170>(ptr));
@@ -3775,10 +3904,10 @@ size_t TrainingJobMetadata::ByteSizeLong() const {
 
   // repeated string tags = 16 [json_name = "tags", (.tagger.v1.tags) = "bson:\"tags\" json:\"tags\""];
   total_size += 2 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
-  for (int i = 0, n = tags_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.tags_.size());
+  for (int i = 0, n = _impl_.tags_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      tags_.Get(i));
+      _impl_.tags_.Get(i));
   }
 
   // map<string, string> arguments = 21 [json_name = "arguments", (.tagger.v1.tags) = "bson:\"arguments\" json:\"arguments\""];
@@ -3857,35 +3986,35 @@ size_t TrainingJobMetadata::ByteSizeLong() const {
   if (this->_internal_has_created_on()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *created_on_);
+        *_impl_.created_on_);
   }
 
   // .google.protobuf.Timestamp last_modified = 4 [json_name = "lastModified", (.tagger.v1.tags) = "bson:\"last_modified\" json:\"last_modified\""];
   if (this->_internal_has_last_modified()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *last_modified_);
+        *_impl_.last_modified_);
   }
 
   // .google.rpc.Status error_status = 8 [json_name = "errorStatus", (.tagger.v1.tags) = "bson:\"error_status\" json:\"error_status\""];
   if (this->_internal_has_error_status()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *error_status_);
+        *_impl_.error_status_);
   }
 
   // .google.protobuf.Timestamp training_started = 9 [json_name = "trainingStarted", (.tagger.v1.tags) = "bson:\"training_started\" json:\"training_started\""];
   if (this->_internal_has_training_started()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *training_started_);
+        *_impl_.training_started_);
   }
 
   // .google.protobuf.Timestamp training_ended = 10 [json_name = "trainingEnded", (.tagger.v1.tags) = "bson:\"training_ended\" json:\"training_ended\""];
   if (this->_internal_has_training_ended()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *training_ended_);
+        *_impl_.training_ended_);
   }
 
   // .viam.app.mltraining.v1.TrainingStatus status = 2 [json_name = "status", (.tagger.v1.tags) = "bson:\"status\" json:\"status\""];
@@ -3911,85 +4040,86 @@ size_t TrainingJobMetadata::ByteSizeLong() const {
     total_size += 2 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TrainingJobMetadata::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     TrainingJobMetadata::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TrainingJobMetadata::GetClassData() const { return &_class_data_; }
 
-void TrainingJobMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<TrainingJobMetadata *>(to)->MergeFrom(
-      static_cast<const TrainingJobMetadata &>(from));
-}
 
-
-void TrainingJobMetadata::MergeFrom(const TrainingJobMetadata& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.TrainingJobMetadata)
-  GOOGLE_DCHECK_NE(&from, this);
+void TrainingJobMetadata::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TrainingJobMetadata*>(&to_msg);
+  auto& from = static_cast<const TrainingJobMetadata&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.TrainingJobMetadata)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  tags_.MergeFrom(from.tags_);
-  arguments_.MergeFrom(from.arguments_);
+  _this->_impl_.tags_.MergeFrom(from._impl_.tags_);
+  _this->_impl_.arguments_.MergeFrom(from._impl_.arguments_);
   if (!from._internal_synced_model_id().empty()) {
-    _internal_set_synced_model_id(from._internal_synced_model_id());
+    _this->_internal_set_synced_model_id(from._internal_synced_model_id());
   }
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
   if (!from._internal_dataset_id().empty()) {
-    _internal_set_dataset_id(from._internal_dataset_id());
+    _this->_internal_set_dataset_id(from._internal_dataset_id());
   }
   if (!from._internal_organization_id().empty()) {
-    _internal_set_organization_id(from._internal_organization_id());
+    _this->_internal_set_organization_id(from._internal_organization_id());
   }
   if (!from._internal_model_name().empty()) {
-    _internal_set_model_name(from._internal_model_name());
+    _this->_internal_set_model_name(from._internal_model_name());
   }
   if (!from._internal_model_version().empty()) {
-    _internal_set_model_version(from._internal_model_version());
+    _this->_internal_set_model_version(from._internal_model_version());
   }
   if (!from._internal_registry_item_id().empty()) {
-    _internal_set_registry_item_id(from._internal_registry_item_id());
+    _this->_internal_set_registry_item_id(from._internal_registry_item_id());
   }
   if (!from._internal_registry_item_version().empty()) {
-    _internal_set_registry_item_version(from._internal_registry_item_version());
+    _this->_internal_set_registry_item_version(from._internal_registry_item_version());
   }
   if (!from._internal_container_version().empty()) {
-    _internal_set_container_version(from._internal_container_version());
+    _this->_internal_set_container_version(from._internal_container_version());
   }
   if (from._internal_has_created_on()) {
-    _internal_mutable_created_on()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_created_on());
+    _this->_internal_mutable_created_on()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_created_on());
   }
   if (from._internal_has_last_modified()) {
-    _internal_mutable_last_modified()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_last_modified());
+    _this->_internal_mutable_last_modified()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_last_modified());
   }
   if (from._internal_has_error_status()) {
-    _internal_mutable_error_status()->::google::rpc::Status::MergeFrom(from._internal_error_status());
+    _this->_internal_mutable_error_status()->::google::rpc::Status::MergeFrom(
+        from._internal_error_status());
   }
   if (from._internal_has_training_started()) {
-    _internal_mutable_training_started()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_training_started());
+    _this->_internal_mutable_training_started()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_training_started());
   }
   if (from._internal_has_training_ended()) {
-    _internal_mutable_training_ended()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_training_ended());
+    _this->_internal_mutable_training_ended()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_training_ended());
   }
   if (from._internal_status() != 0) {
-    _internal_set_status(from._internal_status());
+    _this->_internal_set_status(from._internal_status());
   }
   if (from._internal_model_type() != 0) {
-    _internal_set_model_type(from._internal_model_type());
+    _this->_internal_set_model_type(from._internal_model_type());
   }
   if (from._internal_model_framework() != 0) {
-    _internal_set_model_framework(from._internal_model_framework());
+    _this->_internal_set_model_framework(from._internal_model_framework());
   }
   if (from._internal_is_custom_job() != 0) {
-    _internal_set_is_custom_job(from._internal_is_custom_job());
+    _this->_internal_set_is_custom_job(from._internal_is_custom_job());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void TrainingJobMetadata::CopyFrom(const TrainingJobMetadata& from) {
@@ -4008,50 +4138,50 @@ void TrainingJobMetadata::InternalSwap(TrainingJobMetadata* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  tags_.InternalSwap(&other->tags_);
-  arguments_.InternalSwap(&other->arguments_);
+  _impl_.tags_.InternalSwap(&other->_impl_.tags_);
+  _impl_.arguments_.InternalSwap(&other->_impl_.arguments_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &synced_model_id_, lhs_arena,
-      &other->synced_model_id_, rhs_arena
+      &_impl_.synced_model_id_, lhs_arena,
+      &other->_impl_.synced_model_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &dataset_id_, lhs_arena,
-      &other->dataset_id_, rhs_arena
+      &_impl_.dataset_id_, lhs_arena,
+      &other->_impl_.dataset_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &organization_id_, lhs_arena,
-      &other->organization_id_, rhs_arena
+      &_impl_.organization_id_, lhs_arena,
+      &other->_impl_.organization_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &model_name_, lhs_arena,
-      &other->model_name_, rhs_arena
+      &_impl_.model_name_, lhs_arena,
+      &other->_impl_.model_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &model_version_, lhs_arena,
-      &other->model_version_, rhs_arena
+      &_impl_.model_version_, lhs_arena,
+      &other->_impl_.model_version_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &registry_item_id_, lhs_arena,
-      &other->registry_item_id_, rhs_arena
+      &_impl_.registry_item_id_, lhs_arena,
+      &other->_impl_.registry_item_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &registry_item_version_, lhs_arena,
-      &other->registry_item_version_, rhs_arena
+      &_impl_.registry_item_version_, lhs_arena,
+      &other->_impl_.registry_item_version_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &container_version_, lhs_arena,
-      &other->container_version_, rhs_arena
+      &_impl_.container_version_, lhs_arena,
+      &other->_impl_.container_version_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, is_custom_job_)
-      + sizeof(TrainingJobMetadata::is_custom_job_)
-      - PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, created_on_)>(
-          reinterpret_cast<char*>(&created_on_),
-          reinterpret_cast<char*>(&other->created_on_));
+      PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.is_custom_job_)
+      + sizeof(TrainingJobMetadata::_impl_.is_custom_job_)
+      - PROTOBUF_FIELD_OFFSET(TrainingJobMetadata, _impl_.created_on_)>(
+          reinterpret_cast<char*>(&_impl_.created_on_),
+          reinterpret_cast<char*>(&other->_impl_.created_on_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TrainingJobMetadata::GetMetadata() const {
@@ -4069,28 +4199,40 @@ class CancelTrainingJobRequest::_Internal {
 CancelTrainingJobRequest::CancelTrainingJobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.CancelTrainingJobRequest)
 }
 CancelTrainingJobRequest::CancelTrainingJobRequest(const CancelTrainingJobRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CancelTrainingJobRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.CancelTrainingJobRequest)
 }
 
-inline void CancelTrainingJobRequest::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void CancelTrainingJobRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 CancelTrainingJobRequest::~CancelTrainingJobRequest() {
@@ -4104,11 +4246,11 @@ CancelTrainingJobRequest::~CancelTrainingJobRequest() {
 
 inline void CancelTrainingJobRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
+  _impl_.id_.Destroy();
 }
 
 void CancelTrainingJobRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void CancelTrainingJobRequest::Clear() {
@@ -4117,7 +4259,7 @@ void CancelTrainingJobRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4199,32 +4341,28 @@ size_t CancelTrainingJobRequest::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CancelTrainingJobRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     CancelTrainingJobRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CancelTrainingJobRequest::GetClassData() const { return &_class_data_; }
 
-void CancelTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<CancelTrainingJobRequest *>(to)->MergeFrom(
-      static_cast<const CancelTrainingJobRequest &>(from));
-}
 
-
-void CancelTrainingJobRequest::MergeFrom(const CancelTrainingJobRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.CancelTrainingJobRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void CancelTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CancelTrainingJobRequest*>(&to_msg);
+  auto& from = static_cast<const CancelTrainingJobRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.CancelTrainingJobRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CancelTrainingJobRequest::CopyFrom(const CancelTrainingJobRequest& from) {
@@ -4244,8 +4382,8 @@ void CancelTrainingJobRequest::InternalSwap(CancelTrainingJobRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
 }
 
@@ -4268,6 +4406,7 @@ CancelTrainingJobResponse::CancelTrainingJobResponse(::PROTOBUF_NAMESPACE_ID::Ar
 }
 CancelTrainingJobResponse::CancelTrainingJobResponse(const CancelTrainingJobResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  CancelTrainingJobResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.CancelTrainingJobResponse)
 }
@@ -4303,28 +4442,40 @@ class DeleteCompletedTrainingJobRequest::_Internal {
 DeleteCompletedTrainingJobRequest::DeleteCompletedTrainingJobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest)
 }
 DeleteCompletedTrainingJobRequest::DeleteCompletedTrainingJobRequest(const DeleteCompletedTrainingJobRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  DeleteCompletedTrainingJobRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest)
 }
 
-inline void DeleteCompletedTrainingJobRequest::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void DeleteCompletedTrainingJobRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 DeleteCompletedTrainingJobRequest::~DeleteCompletedTrainingJobRequest() {
@@ -4338,11 +4489,11 @@ DeleteCompletedTrainingJobRequest::~DeleteCompletedTrainingJobRequest() {
 
 inline void DeleteCompletedTrainingJobRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
+  _impl_.id_.Destroy();
 }
 
 void DeleteCompletedTrainingJobRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void DeleteCompletedTrainingJobRequest::Clear() {
@@ -4351,7 +4502,7 @@ void DeleteCompletedTrainingJobRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4433,32 +4584,28 @@ size_t DeleteCompletedTrainingJobRequest::ByteSizeLong() const {
         this->_internal_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DeleteCompletedTrainingJobRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     DeleteCompletedTrainingJobRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteCompletedTrainingJobRequest::GetClassData() const { return &_class_data_; }
 
-void DeleteCompletedTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DeleteCompletedTrainingJobRequest *>(to)->MergeFrom(
-      static_cast<const DeleteCompletedTrainingJobRequest &>(from));
-}
 
-
-void DeleteCompletedTrainingJobRequest::MergeFrom(const DeleteCompletedTrainingJobRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void DeleteCompletedTrainingJobRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<DeleteCompletedTrainingJobRequest*>(&to_msg);
+  auto& from = static_cast<const DeleteCompletedTrainingJobRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.DeleteCompletedTrainingJobRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DeleteCompletedTrainingJobRequest::CopyFrom(const DeleteCompletedTrainingJobRequest& from) {
@@ -4478,8 +4625,8 @@ void DeleteCompletedTrainingJobRequest::InternalSwap(DeleteCompletedTrainingJobR
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
 }
 
@@ -4502,6 +4649,7 @@ DeleteCompletedTrainingJobResponse::DeleteCompletedTrainingJobResponse(::PROTOBU
 }
 DeleteCompletedTrainingJobResponse::DeleteCompletedTrainingJobResponse(const DeleteCompletedTrainingJobResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  DeleteCompletedTrainingJobResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.DeleteCompletedTrainingJobResponse)
 }
@@ -4537,57 +4685,70 @@ class TrainingJobLogEntry::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 TrainingJobLogEntry::_Internal::time(const TrainingJobLogEntry* msg) {
-  return *msg->time_;
+  return *msg->_impl_.time_;
 }
 void TrainingJobLogEntry::clear_time() {
-  if (GetArenaForAllocation() == nullptr && time_ != nullptr) {
-    delete time_;
+  if (GetArenaForAllocation() == nullptr && _impl_.time_ != nullptr) {
+    delete _impl_.time_;
   }
-  time_ = nullptr;
+  _impl_.time_ = nullptr;
 }
 TrainingJobLogEntry::TrainingJobLogEntry(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.TrainingJobLogEntry)
 }
 TrainingJobLogEntry::TrainingJobLogEntry(const TrainingJobLogEntry& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  TrainingJobLogEntry* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.level_){}
+    , decltype(_impl_.message_){}
+    , decltype(_impl_.time_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  level_.InitDefault();
+  _impl_.level_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    level_.Set("", GetArenaForAllocation());
+    _impl_.level_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_level().empty()) {
-    level_.Set(from._internal_level(), 
-      GetArenaForAllocation());
+    _this->_impl_.level_.Set(from._internal_level(), 
+      _this->GetArenaForAllocation());
   }
-  message_.InitDefault();
+  _impl_.message_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    message_.Set("", GetArenaForAllocation());
+    _impl_.message_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_message().empty()) {
-    message_.Set(from._internal_message(), 
-      GetArenaForAllocation());
+    _this->_impl_.message_.Set(from._internal_message(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_time()) {
-    time_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.time_);
-  } else {
-    time_ = nullptr;
+    _this->_impl_.time_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.time_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.TrainingJobLogEntry)
 }
 
-inline void TrainingJobLogEntry::SharedCtor() {
-level_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  level_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-message_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  message_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-time_ = nullptr;
+inline void TrainingJobLogEntry::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.level_){}
+    , decltype(_impl_.message_){}
+    , decltype(_impl_.time_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.level_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.level_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TrainingJobLogEntry::~TrainingJobLogEntry() {
@@ -4601,13 +4762,13 @@ TrainingJobLogEntry::~TrainingJobLogEntry() {
 
 inline void TrainingJobLogEntry::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  level_.Destroy();
-  message_.Destroy();
-  if (this != internal_default_instance()) delete time_;
+  _impl_.level_.Destroy();
+  _impl_.message_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.time_;
 }
 
 void TrainingJobLogEntry::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TrainingJobLogEntry::Clear() {
@@ -4616,12 +4777,12 @@ void TrainingJobLogEntry::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  level_.ClearToEmpty();
-  message_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && time_ != nullptr) {
-    delete time_;
+  _impl_.level_.ClearToEmpty();
+  _impl_.message_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.time_ != nullptr) {
+    delete _impl_.time_;
   }
-  time_ = nullptr;
+  _impl_.time_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4749,41 +4910,38 @@ size_t TrainingJobLogEntry::ByteSizeLong() const {
   if (this->_internal_has_time()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *time_);
+        *_impl_.time_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TrainingJobLogEntry::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     TrainingJobLogEntry::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TrainingJobLogEntry::GetClassData() const { return &_class_data_; }
 
-void TrainingJobLogEntry::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<TrainingJobLogEntry *>(to)->MergeFrom(
-      static_cast<const TrainingJobLogEntry &>(from));
-}
 
-
-void TrainingJobLogEntry::MergeFrom(const TrainingJobLogEntry& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.TrainingJobLogEntry)
-  GOOGLE_DCHECK_NE(&from, this);
+void TrainingJobLogEntry::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TrainingJobLogEntry*>(&to_msg);
+  auto& from = static_cast<const TrainingJobLogEntry&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.TrainingJobLogEntry)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_level().empty()) {
-    _internal_set_level(from._internal_level());
+    _this->_internal_set_level(from._internal_level());
   }
   if (!from._internal_message().empty()) {
-    _internal_set_message(from._internal_message());
+    _this->_internal_set_message(from._internal_message());
   }
   if (from._internal_has_time()) {
-    _internal_mutable_time()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_time());
+    _this->_internal_mutable_time()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_time());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void TrainingJobLogEntry::CopyFrom(const TrainingJobLogEntry& from) {
@@ -4803,14 +4961,14 @@ void TrainingJobLogEntry::InternalSwap(TrainingJobLogEntry* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &level_, lhs_arena,
-      &other->level_, rhs_arena
+      &_impl_.level_, lhs_arena,
+      &other->_impl_.level_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &message_, lhs_arena,
-      &other->message_, rhs_arena
+      &_impl_.message_, lhs_arena,
+      &other->_impl_.message_, rhs_arena
   );
-  swap(time_, other->time_);
+  swap(_impl_.time_, other->_impl_.time_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TrainingJobLogEntry::GetMetadata() const {
@@ -4823,7 +4981,7 @@ void TrainingJobLogEntry::InternalSwap(TrainingJobLogEntry* other) {
 
 class GetTrainingJobLogsRequest::_Internal {
  public:
-  using HasBits = decltype(std::declval<GetTrainingJobLogsRequest>()._has_bits_);
+  using HasBits = decltype(std::declval<GetTrainingJobLogsRequest>()._impl_._has_bits_);
   static void set_has_page_token(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -4832,41 +4990,56 @@ class GetTrainingJobLogsRequest::_Internal {
 GetTrainingJobLogsRequest::GetTrainingJobLogsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
 }
 GetTrainingJobLogsRequest::GetTrainingJobLogsRequest(const GetTrainingJobLogsRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetTrainingJobLogsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.page_token_){}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.InitDefault();
+  _impl_.id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    id_.Set("", GetArenaForAllocation());
+    _impl_.id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(from._internal_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.id_.Set(from._internal_id(), 
+      _this->GetArenaForAllocation());
   }
-  page_token_.InitDefault();
+  _impl_.page_token_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    page_token_.Set("", GetArenaForAllocation());
+    _impl_.page_token_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (from._internal_has_page_token()) {
-    page_token_.Set(from._internal_page_token(), 
-      GetArenaForAllocation());
+    _this->_impl_.page_token_.Set(from._internal_page_token(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
 }
 
-inline void GetTrainingJobLogsRequest::SharedCtor() {
-id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-page_token_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  page_token_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void GetTrainingJobLogsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.page_token_){}
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.page_token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.page_token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetTrainingJobLogsRequest::~GetTrainingJobLogsRequest() {
@@ -4880,12 +5053,12 @@ GetTrainingJobLogsRequest::~GetTrainingJobLogsRequest() {
 
 inline void GetTrainingJobLogsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  id_.Destroy();
-  page_token_.Destroy();
+  _impl_.id_.Destroy();
+  _impl_.page_token_.Destroy();
 }
 
 void GetTrainingJobLogsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetTrainingJobLogsRequest::Clear() {
@@ -4894,12 +5067,12 @@ void GetTrainingJobLogsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty();
-  cached_has_bits = _has_bits_[0];
+  _impl_.id_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    page_token_.ClearNonDefaultToEmpty();
+    _impl_.page_token_.ClearNonDefaultToEmpty();
   }
-  _has_bits_.Clear();
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4946,7 +5119,7 @@ const char* GetTrainingJobLogsRequest::_InternalParse(const char* ptr, ::_pbi::P
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -5004,42 +5177,38 @@ size_t GetTrainingJobLogsRequest::ByteSizeLong() const {
   }
 
   // optional string page_token = 2 [json_name = "pageToken"];
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_page_token());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetTrainingJobLogsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetTrainingJobLogsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetTrainingJobLogsRequest::GetClassData() const { return &_class_data_; }
 
-void GetTrainingJobLogsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetTrainingJobLogsRequest *>(to)->MergeFrom(
-      static_cast<const GetTrainingJobLogsRequest &>(from));
-}
 
-
-void GetTrainingJobLogsRequest::MergeFrom(const GetTrainingJobLogsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetTrainingJobLogsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetTrainingJobLogsRequest*>(&to_msg);
+  auto& from = static_cast<const GetTrainingJobLogsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobLogsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_id().empty()) {
-    _internal_set_id(from._internal_id());
+    _this->_internal_set_id(from._internal_id());
   }
   if (from._internal_has_page_token()) {
-    _internal_set_page_token(from._internal_page_token());
+    _this->_internal_set_page_token(from._internal_page_token());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetTrainingJobLogsRequest::CopyFrom(const GetTrainingJobLogsRequest& from) {
@@ -5058,14 +5227,14 @@ void GetTrainingJobLogsRequest::InternalSwap(GetTrainingJobLogsRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &id_, lhs_arena,
-      &other->id_, rhs_arena
+      &_impl_.id_, lhs_arena,
+      &other->_impl_.id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &page_token_, lhs_arena,
-      &other->page_token_, rhs_arena
+      &_impl_.page_token_, lhs_arena,
+      &other->_impl_.page_token_, rhs_arena
   );
 }
 
@@ -5083,31 +5252,43 @@ class GetTrainingJobLogsResponse::_Internal {
 
 GetTrainingJobLogsResponse::GetTrainingJobLogsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  logs_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
 }
 GetTrainingJobLogsResponse::GetTrainingJobLogsResponse(const GetTrainingJobLogsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      logs_(from.logs_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetTrainingJobLogsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.logs_){from._impl_.logs_}
+    , decltype(_impl_.next_page_token_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  next_page_token_.InitDefault();
+  _impl_.next_page_token_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    next_page_token_.Set("", GetArenaForAllocation());
+    _impl_.next_page_token_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_next_page_token().empty()) {
-    next_page_token_.Set(from._internal_next_page_token(), 
-      GetArenaForAllocation());
+    _this->_impl_.next_page_token_.Set(from._internal_next_page_token(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
 }
 
-inline void GetTrainingJobLogsResponse::SharedCtor() {
-next_page_token_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  next_page_token_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void GetTrainingJobLogsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.logs_){arena}
+    , decltype(_impl_.next_page_token_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.next_page_token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.next_page_token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetTrainingJobLogsResponse::~GetTrainingJobLogsResponse() {
@@ -5121,11 +5302,12 @@ GetTrainingJobLogsResponse::~GetTrainingJobLogsResponse() {
 
 inline void GetTrainingJobLogsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  next_page_token_.Destroy();
+  _impl_.logs_.~RepeatedPtrField();
+  _impl_.next_page_token_.Destroy();
 }
 
 void GetTrainingJobLogsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetTrainingJobLogsResponse::Clear() {
@@ -5134,8 +5316,8 @@ void GetTrainingJobLogsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  logs_.Clear();
-  next_page_token_.ClearToEmpty();
+  _impl_.logs_.Clear();
+  _impl_.next_page_token_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5233,7 +5415,7 @@ size_t GetTrainingJobLogsResponse::ByteSizeLong() const {
 
   // repeated .viam.app.mltraining.v1.TrainingJobLogEntry logs = 1 [json_name = "logs"];
   total_size += 1UL * this->_internal_logs_size();
-  for (const auto& msg : this->logs_) {
+  for (const auto& msg : this->_impl_.logs_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -5245,33 +5427,29 @@ size_t GetTrainingJobLogsResponse::ByteSizeLong() const {
         this->_internal_next_page_token());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetTrainingJobLogsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetTrainingJobLogsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetTrainingJobLogsResponse::GetClassData() const { return &_class_data_; }
 
-void GetTrainingJobLogsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetTrainingJobLogsResponse *>(to)->MergeFrom(
-      static_cast<const GetTrainingJobLogsResponse &>(from));
-}
 
-
-void GetTrainingJobLogsResponse::MergeFrom(const GetTrainingJobLogsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetTrainingJobLogsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetTrainingJobLogsResponse*>(&to_msg);
+  auto& from = static_cast<const GetTrainingJobLogsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.GetTrainingJobLogsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  logs_.MergeFrom(from.logs_);
+  _this->_impl_.logs_.MergeFrom(from._impl_.logs_);
   if (!from._internal_next_page_token().empty()) {
-    _internal_set_next_page_token(from._internal_next_page_token());
+    _this->_internal_set_next_page_token(from._internal_next_page_token());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetTrainingJobLogsResponse::CopyFrom(const GetTrainingJobLogsResponse& from) {
@@ -5290,10 +5468,10 @@ void GetTrainingJobLogsResponse::InternalSwap(GetTrainingJobLogsResponse* other)
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  logs_.InternalSwap(&other->logs_);
+  _impl_.logs_.InternalSwap(&other->_impl_.logs_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &next_page_token_, lhs_arena,
-      &other->next_page_token_, rhs_arena
+      &_impl_.next_page_token_, lhs_arena,
+      &other->_impl_.next_page_token_, rhs_arena
   );
 }
 
@@ -5316,6 +5494,7 @@ ListSupportedContainersRequest::ListSupportedContainersRequest(::PROTOBUF_NAMESP
 }
 ListSupportedContainersRequest::ListSupportedContainersRequest(const ListSupportedContainersRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  ListSupportedContainersRequest* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.ListSupportedContainersRequest)
 }
@@ -5364,9 +5543,8 @@ class ListSupportedContainersResponse::_Internal {
 
 ListSupportedContainersResponse::ListSupportedContainersResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  container_map_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &ListSupportedContainersResponse::ArenaDtor);
   }
@@ -5374,12 +5552,24 @@ ListSupportedContainersResponse::ListSupportedContainersResponse(::PROTOBUF_NAME
 }
 ListSupportedContainersResponse::ListSupportedContainersResponse(const ListSupportedContainersResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ListSupportedContainersResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.container_map_)*/{}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  container_map_.MergeFrom(from.container_map_);
+  _this->_impl_.container_map_.MergeFrom(from._impl_.container_map_);
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.ListSupportedContainersResponse)
 }
 
-inline void ListSupportedContainersResponse::SharedCtor() {
+inline void ListSupportedContainersResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.container_map_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 ListSupportedContainersResponse::~ListSupportedContainersResponse() {
@@ -5394,15 +5584,16 @@ ListSupportedContainersResponse::~ListSupportedContainersResponse() {
 
 inline void ListSupportedContainersResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  container_map_.Destruct();
+  _impl_.container_map_.Destruct();
+  _impl_.container_map_.~MapField();
 }
 
 void ListSupportedContainersResponse::ArenaDtor(void* object) {
   ListSupportedContainersResponse* _this = reinterpret_cast< ListSupportedContainersResponse* >(object);
-  _this->container_map_.Destruct();
+  _this->_impl_.container_map_.Destruct();
 }
 void ListSupportedContainersResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ListSupportedContainersResponse::Clear() {
@@ -5411,7 +5602,7 @@ void ListSupportedContainersResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  container_map_.Clear();
+  _impl_.container_map_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5427,7 +5618,7 @@ const char* ListSupportedContainersResponse::_InternalParse(const char* ptr, ::_
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&container_map_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.container_map_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
@@ -5514,30 +5705,26 @@ size_t ListSupportedContainersResponse::ByteSizeLong() const {
     total_size += ListSupportedContainersResponse_ContainerMapEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ListSupportedContainersResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ListSupportedContainersResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ListSupportedContainersResponse::GetClassData() const { return &_class_data_; }
 
-void ListSupportedContainersResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ListSupportedContainersResponse *>(to)->MergeFrom(
-      static_cast<const ListSupportedContainersResponse &>(from));
-}
 
-
-void ListSupportedContainersResponse::MergeFrom(const ListSupportedContainersResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.ListSupportedContainersResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void ListSupportedContainersResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ListSupportedContainersResponse*>(&to_msg);
+  auto& from = static_cast<const ListSupportedContainersResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.ListSupportedContainersResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  container_map_.MergeFrom(from.container_map_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.container_map_.MergeFrom(from._impl_.container_map_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ListSupportedContainersResponse::CopyFrom(const ListSupportedContainersResponse& from) {
@@ -5554,7 +5741,7 @@ bool ListSupportedContainersResponse::IsInitialized() const {
 void ListSupportedContainersResponse::InternalSwap(ListSupportedContainersResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  container_map_.InternalSwap(&other->container_map_);
+  _impl_.container_map_.InternalSwap(&other->_impl_.container_map_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ListSupportedContainersResponse::GetMetadata() const {
@@ -5572,81 +5759,98 @@ class Container::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 Container::_Internal::eol(const Container* msg) {
-  return *msg->eol_;
+  return *msg->_impl_.eol_;
 }
 void Container::clear_eol() {
-  if (GetArenaForAllocation() == nullptr && eol_ != nullptr) {
-    delete eol_;
+  if (GetArenaForAllocation() == nullptr && _impl_.eol_ != nullptr) {
+    delete _impl_.eol_;
   }
-  eol_ = nullptr;
+  _impl_.eol_ = nullptr;
 }
 Container::Container(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.app.mltraining.v1.Container)
 }
 Container::Container(const Container& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Container* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.key_){}
+    , decltype(_impl_.uri_){}
+    , decltype(_impl_.framework_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.eol_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  key_.InitDefault();
+  _impl_.key_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    key_.Set("", GetArenaForAllocation());
+    _impl_.key_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_key().empty()) {
-    key_.Set(from._internal_key(), 
-      GetArenaForAllocation());
+    _this->_impl_.key_.Set(from._internal_key(), 
+      _this->GetArenaForAllocation());
   }
-  uri_.InitDefault();
+  _impl_.uri_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    uri_.Set("", GetArenaForAllocation());
+    _impl_.uri_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_uri().empty()) {
-    uri_.Set(from._internal_uri(), 
-      GetArenaForAllocation());
+    _this->_impl_.uri_.Set(from._internal_uri(), 
+      _this->GetArenaForAllocation());
   }
-  framework_.InitDefault();
+  _impl_.framework_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    framework_.Set("", GetArenaForAllocation());
+    _impl_.framework_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_framework().empty()) {
-    framework_.Set(from._internal_framework(), 
-      GetArenaForAllocation());
+    _this->_impl_.framework_.Set(from._internal_framework(), 
+      _this->GetArenaForAllocation());
   }
-  description_.InitDefault();
+  _impl_.description_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    description_.Set("", GetArenaForAllocation());
+    _impl_.description_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_description().empty()) {
-    description_.Set(from._internal_description(), 
-      GetArenaForAllocation());
+    _this->_impl_.description_.Set(from._internal_description(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_eol()) {
-    eol_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.eol_);
-  } else {
-    eol_ = nullptr;
+    _this->_impl_.eol_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.eol_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.app.mltraining.v1.Container)
 }
 
-inline void Container::SharedCtor() {
-key_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  key_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-uri_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  uri_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-framework_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  framework_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-description_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  description_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-eol_ = nullptr;
+inline void Container::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.key_){}
+    , decltype(_impl_.uri_){}
+    , decltype(_impl_.framework_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.eol_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.key_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.key_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.uri_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.uri_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.framework_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.framework_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Container::~Container() {
@@ -5660,15 +5864,15 @@ Container::~Container() {
 
 inline void Container::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  key_.Destroy();
-  uri_.Destroy();
-  framework_.Destroy();
-  description_.Destroy();
-  if (this != internal_default_instance()) delete eol_;
+  _impl_.key_.Destroy();
+  _impl_.uri_.Destroy();
+  _impl_.framework_.Destroy();
+  _impl_.description_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.eol_;
 }
 
 void Container::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Container::Clear() {
@@ -5677,14 +5881,14 @@ void Container::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  key_.ClearToEmpty();
-  uri_.ClearToEmpty();
-  framework_.ClearToEmpty();
-  description_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && eol_ != nullptr) {
-    delete eol_;
+  _impl_.key_.ClearToEmpty();
+  _impl_.uri_.ClearToEmpty();
+  _impl_.framework_.ClearToEmpty();
+  _impl_.description_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.eol_ != nullptr) {
+    delete _impl_.eol_;
   }
-  eol_ = nullptr;
+  _impl_.eol_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5866,47 +6070,44 @@ size_t Container::ByteSizeLong() const {
   if (this->_internal_has_eol()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *eol_);
+        *_impl_.eol_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Container::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Container::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Container::GetClassData() const { return &_class_data_; }
 
-void Container::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Container *>(to)->MergeFrom(
-      static_cast<const Container &>(from));
-}
 
-
-void Container::MergeFrom(const Container& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.Container)
-  GOOGLE_DCHECK_NE(&from, this);
+void Container::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Container*>(&to_msg);
+  auto& from = static_cast<const Container&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.app.mltraining.v1.Container)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_key().empty()) {
-    _internal_set_key(from._internal_key());
+    _this->_internal_set_key(from._internal_key());
   }
   if (!from._internal_uri().empty()) {
-    _internal_set_uri(from._internal_uri());
+    _this->_internal_set_uri(from._internal_uri());
   }
   if (!from._internal_framework().empty()) {
-    _internal_set_framework(from._internal_framework());
+    _this->_internal_set_framework(from._internal_framework());
   }
   if (!from._internal_description().empty()) {
-    _internal_set_description(from._internal_description());
+    _this->_internal_set_description(from._internal_description());
   }
   if (from._internal_has_eol()) {
-    _internal_mutable_eol()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_eol());
+    _this->_internal_mutable_eol()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_eol());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Container::CopyFrom(const Container& from) {
@@ -5926,22 +6127,22 @@ void Container::InternalSwap(Container* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &key_, lhs_arena,
-      &other->key_, rhs_arena
+      &_impl_.key_, lhs_arena,
+      &other->_impl_.key_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &uri_, lhs_arena,
-      &other->uri_, rhs_arena
+      &_impl_.uri_, lhs_arena,
+      &other->_impl_.uri_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &framework_, lhs_arena,
-      &other->framework_, rhs_arena
+      &_impl_.framework_, lhs_arena,
+      &other->_impl_.framework_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &description_, lhs_arena,
-      &other->description_, rhs_arena
+      &_impl_.description_, lhs_arena,
+      &other->_impl_.description_, rhs_arena
   );
-  swap(eol_, other->eol_);
+  swap(_impl_.eol_, other->_impl_.eol_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Container::GetMetadata() const {

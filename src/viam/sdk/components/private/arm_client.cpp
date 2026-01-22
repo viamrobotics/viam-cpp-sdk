@@ -93,10 +93,10 @@ ProtoStruct ArmClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
-::viam::sdk::KinematicsData ArmClient::get_kinematics(const ProtoStruct& extra) {
+::viam::sdk::KinematicsResponse ArmClient::get_kinematics(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
-        .invoke([](auto& response) -> ::viam::sdk::KinematicsData { return from_proto(response); });
+        .invoke([](auto& response) -> ::viam::sdk::KinematicsResponse { return from_proto(response); });
 }
 
 std::map<std::string, mesh> ArmClient::get_3d_models(const ProtoStruct& extra) {

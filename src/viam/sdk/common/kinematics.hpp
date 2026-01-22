@@ -1,8 +1,11 @@
 #pragma once
 
 #include <boost/variant/variant.hpp>
+#include <map>
+#include <string>
 #include <vector>
 
+#include <viam/sdk/common/mesh.hpp>
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 
@@ -56,16 +59,29 @@ struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF>, EqCompare<KinematicsD
 using KinematicsData =
     boost::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
 
+/// @brief Response from get_kinematics containing kinematics data and optional meshes.
+struct KinematicsResponse {
+    /// The kinematics data in SVA or URDF format.
+    KinematicsData kinematics_data;
+    /// Map of URDF filepaths to their associated meshes. Only populated for URDF format.
+    std::map<std::string, mesh> meshes_by_urdf_filepath;
+};
+
+inline bool operator==(const KinematicsResponse& lhs, const KinematicsResponse& rhs) {
+    return lhs.kinematics_data == rhs.kinematics_data &&
+           lhs.meshes_by_urdf_filepath == rhs.meshes_by_urdf_filepath;
+}
+
 namespace proto_convert_details {
 
 template <>
-struct to_proto_impl<KinematicsData> {
-    void operator()(const KinematicsData&, common::v1::GetKinematicsResponse*) const;
+struct to_proto_impl<KinematicsResponse> {
+    void operator()(const KinematicsResponse&, common::v1::GetKinematicsResponse*) const;
 };
 
 template <>
 struct from_proto_impl<common::v1::GetKinematicsResponse> {
-    KinematicsData operator()(const common::v1::GetKinematicsResponse*) const;
+    KinematicsResponse operator()(const common::v1::GetKinematicsResponse*) const;
 };
 
 }  // namespace proto_convert_details
