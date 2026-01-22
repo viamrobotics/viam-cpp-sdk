@@ -65,8 +65,7 @@ using KinematicsData =
     boost::variant<KinematicsDataUnspecified, KinematicsDataSVA, KinematicsDataURDF>;
 
 /// @brief Response from get_kinematics containing kinematics data and optional meshes.
-struct [[deprecated(
-    "Use ::viam::sdk::KinematicsData; URDF variants include meshes")]] KinematicsResponse {
+struct KinematicsResponse {
     /// The kinematics data in SVA or URDF format.
     KinematicsData kinematics_data;
     /// Map of URDF filepaths to their associated meshes. Only populated for URDF format.
