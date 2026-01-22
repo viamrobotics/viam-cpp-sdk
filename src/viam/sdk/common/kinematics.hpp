@@ -3,7 +3,6 @@
 #include <boost/variant/variant.hpp>
 #include <map>
 #include <string>
-#include <tuple>
 #include <vector>
 
 #include <viam/sdk/common/mesh.hpp>
@@ -73,8 +72,8 @@ bool operator==(const KinematicsResponse& lhs, const KinematicsResponse& rhs);
 namespace proto_convert_details {
 
 template <>
-struct to_proto_impl<KinematicsData> {
-    void operator()(const KinematicsData&, common::v1::GetKinematicsResponse*) const;
+struct to_proto_impl<KinematicsResponse> {
+    void operator()(const KinematicsResponse&, common::v1::GetKinematicsResponse*) const;
 };
 
 template <>
@@ -82,16 +81,6 @@ struct from_proto_impl<common::v1::GetKinematicsResponse> {
     KinematicsData operator()(const common::v1::GetKinematicsResponse*) const;
 };
 
-template <>
-struct to_proto_impl<KinematicsResponse> {
-    void operator()(const KinematicsResponse&, common::v1::GetKinematicsResponse*) const;
-};
-
 }  // namespace proto_convert_details
-
-/// @brief Convert a GetKinematicsResponse proto to a KinematicsResponse.
-/// @param proto The proto to convert.
-/// @return The converted KinematicsResponse.
-KinematicsResponse kinematics_response_from_proto(const common::v1::GetKinematicsResponse& proto);
 }  // namespace sdk
 }  // namespace viam

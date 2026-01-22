@@ -84,7 +84,14 @@ ProtoStruct GantryClient::do_command(const ProtoStruct& command) {
 ::viam::sdk::KinematicsResponse GantryClient::get_kinematics_response(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetKinematics)
         .with(extra)
-        .invoke([](auto& response) { return kinematics_response_from_proto(response); });
+        .invoke([](auto& response) {
+            KinematicsResponse result;
+            result.kinematics_data = from_proto(response);
+            for (const auto& entry : response.meshes_by_urdf_filepath()) {
+                result.meshes_by_urdf_filepath[entry.first] = from_proto(entry.second);
+            }
+            return result;
+        });
 }
 
 std::vector<GeometryConfig> GantryClient::get_geometries(const ProtoStruct& extra) {
