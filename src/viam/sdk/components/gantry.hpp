@@ -112,8 +112,9 @@ class Gantry : public Component, public Stoppable {
     /// @brief Get the full kinematics response associated with the gantry.
     /// @param extra Any additional arguments to the method.
     /// @return Kinematics response containing the kinematics data and optional meshes.
-    [[deprecated("Use get_kinematics; URDF variants include meshes")]]
-    virtual ::viam::sdk::KinematicsResponse get_kinematics_response(const ProtoStruct& extra) {
+    [[deprecated("Use get_kinematics; URDF variants include meshes")]] virtual ::viam::sdk::
+        KinematicsResponse
+        get_kinematics_response(const ProtoStruct& extra) {
         ::viam::sdk::KinematicsResponse response;
         response.kinematics_data = get_kinematics(extra);
         if (const auto* urdf =
@@ -125,8 +126,9 @@ class Gantry : public Component, public Stoppable {
 
     /// @brief Get the full kinematics response associated with the gantry.
     /// @return Kinematics response containing the kinematics data and optional meshes.
-    [[deprecated("Use get_kinematics; URDF variants include meshes")]]
-    inline ::viam::sdk::KinematicsResponse get_kinematics_response() {
+    [[deprecated(
+        "Use get_kinematics; URDF variants include meshes")]] inline ::viam::sdk::KinematicsResponse
+    get_kinematics_response() {
         return get_kinematics_response({});
     }
 

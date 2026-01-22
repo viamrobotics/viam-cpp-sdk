@@ -236,8 +236,8 @@ Dependencies ModuleService::get_dependencies_(
         const std::shared_ptr<Resource> dep_resource = get_parent_resource_(dep_name);
         if (!dep_resource) {
             std::ostringstream buffer;
-            buffer << resource_name << ": Dependency " << "`" << dep_name
-                   << "` was not found during (re)configuration";
+            buffer << resource_name << ": Dependency "
+                   << "`" << dep_name << "` was not found during (re)configuration";
             throw Exception(ErrorCondition::k_resource_not_found, buffer.str());
         }
         deps.emplace(dep_name, dep_resource);
