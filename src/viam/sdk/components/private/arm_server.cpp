@@ -111,7 +111,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     ::viam::common::v1::GetKinematicsResponse* response) noexcept {
     return make_service_helper<Arm>(
         "ArmServer::GetKinematics", this, context, request)([&](auto& helper, auto& arm) {
-        *response = to_proto(arm->get_kinematics_response(helper.getExtra()));
+        *response = to_proto(arm->get_kinematics(helper.getExtra()));
     });
 }
 

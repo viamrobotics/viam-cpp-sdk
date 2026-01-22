@@ -36,7 +36,6 @@ class ArmClient : public Arm {
     void stop(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
     ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) override;
-    ::viam::sdk::KinematicsResponse get_kinematics_response(const ProtoStruct& extra) override;
     std::map<std::string, mesh> get_3d_models(const ProtoStruct& extra) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
@@ -47,7 +46,6 @@ class ArmClient : public Arm {
     using Arm::get_geometries;
     using Arm::get_joint_positions;
     using Arm::get_kinematics;
-    using Arm::get_kinematics_response;
     using Arm::move_through_joint_positions;
     using Arm::move_to_joint_positions;
     using Arm::move_to_position;

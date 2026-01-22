@@ -17,10 +17,6 @@ sdk::KinematicsData fake_kinematics() {
     return sdk::KinematicsDataSVA{{std::vector<unsigned char>{1, 2, 3, 4}}};
 }
 
-sdk::KinematicsResponse fake_kinematics_response() {
-    return sdk::KinematicsResponse{fake_kinematics(), {}};
-}
-
 sdk::pose MockArm::get_end_position(const sdk::ProtoStruct& extra) {
     return current_location;
 }
@@ -67,10 +63,6 @@ sdk::ProtoStruct MockArm::do_command(const sdk::ProtoStruct& command) {
 
 sdk::KinematicsData MockArm::get_kinematics(const sdk::ProtoStruct&) {
     return fake_kinematics();
-}
-
-sdk::KinematicsResponse MockArm::get_kinematics_response(const sdk::ProtoStruct&) {
-    return fake_kinematics_response();
 }
 
 std::vector<sdk::GeometryConfig> MockArm::get_geometries(const sdk::ProtoStruct&) {

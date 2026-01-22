@@ -7,7 +7,6 @@ namespace sdktests {
 namespace arm {
 
 sdk::KinematicsData fake_kinematics();
-sdk::KinematicsResponse fake_kinematics_response();
 std::map<std::string, sdk::mesh> fake_3d_models();
 
 class MockArm : public sdk::Arm {
@@ -30,7 +29,6 @@ class MockArm : public sdk::Arm {
     bool is_moving() override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     sdk::KinematicsData get_kinematics(const sdk::ProtoStruct&) override;
-    sdk::KinematicsResponse get_kinematics_response(const sdk::ProtoStruct&) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct&) override;
     std::map<std::string, sdk::mesh> get_3d_models(const sdk::ProtoStruct&) override;
     sdk::pose current_location;

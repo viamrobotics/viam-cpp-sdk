@@ -3,6 +3,8 @@
 /// @brief Defines a `Gantry` component
 #pragma once
 
+#include <boost/variant/get.hpp>
+
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 
@@ -98,7 +100,7 @@ class Gantry : public Component, public Stoppable {
 
     /// @brief Get the kinematics data associated with the gantry.
     /// @param extra Any additional arguments to the method.
-    /// @return A variant of kinematics data, with the type indicating the format of the data.
+    /// @return A variant of kinematics data; URDF variants may include meshes by filepath.
     virtual ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
 
     /// @brief Get the kinematics data associated with the gantry.
@@ -110,10 +112,20 @@ class Gantry : public Component, public Stoppable {
     /// @brief Get the full kinematics response associated with the gantry.
     /// @param extra Any additional arguments to the method.
     /// @return Kinematics response containing the kinematics data and optional meshes.
-    virtual ::viam::sdk::KinematicsResponse get_kinematics_response(const ProtoStruct& extra) = 0;
+    [[deprecated("Use get_kinematics; URDF variants include meshes")]]
+    virtual ::viam::sdk::KinematicsResponse get_kinematics_response(const ProtoStruct& extra) {
+        ::viam::sdk::KinematicsResponse response;
+        response.kinematics_data = get_kinematics(extra);
+        if (const auto* urdf =
+                boost::get<::viam::sdk::KinematicsDataURDF>(&response.kinematics_data)) {
+            response.meshes_by_urdf_filepath = urdf->meshes_by_urdf_filepath;
+        }
+        return response;
+    }
 
     /// @brief Get the full kinematics response associated with the gantry.
     /// @return Kinematics response containing the kinematics data and optional meshes.
+    [[deprecated("Use get_kinematics; URDF variants include meshes")]]
     inline ::viam::sdk::KinematicsResponse get_kinematics_response() {
         return get_kinematics_response({});
     }
