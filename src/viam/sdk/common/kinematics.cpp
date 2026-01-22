@@ -46,8 +46,8 @@ void to_proto_impl<KinematicsData>::operator()(const KinematicsData& self,
     boost::apply_visitor(visitor, self);
 }
 
-void to_proto_impl<KinematicsResponse>::operator()(
-    const KinematicsResponse& self, common::v1::GetKinematicsResponse* proto) const {
+void to_proto_impl<KinematicsResponse>::operator()(const KinematicsResponse& self,
+                                                   common::v1::GetKinematicsResponse* proto) const {
     to_proto_impl<KinematicsData>{}(self.kinematics_data, proto);
     for (const auto& entry : self.meshes_by_urdf_filepath) {
         (*proto->mutable_meshes_by_urdf_filepath())[entry.first] = to_proto(entry.second);
