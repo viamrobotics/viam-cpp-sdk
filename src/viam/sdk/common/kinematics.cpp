@@ -8,9 +8,9 @@
 namespace viam {
 namespace sdk {
 
-bool operator==(const KinematicsResponse& lhs, const KinematicsResponse& rhs) {
-    return std::tie(lhs.kinematics_data, lhs.meshes_by_urdf_filepath) ==
-           std::tie(rhs.kinematics_data, rhs.meshes_by_urdf_filepath);
+bool operator==(const KinematicsDataURDF& lhs, const KinematicsDataURDF& rhs) {
+    return std::tie(lhs.bytes, lhs.meshes_by_urdf_filepath) ==
+           std::tie(rhs.bytes, rhs.meshes_by_urdf_filepath);
 }
 
 namespace proto_convert_details {
@@ -44,14 +44,6 @@ void to_proto_impl<KinematicsData>::operator()(const KinematicsData& self,
     } visitor{proto};
 
     boost::apply_visitor(visitor, self);
-}
-
-void to_proto_impl<KinematicsResponse>::operator()(const KinematicsResponse& self,
-                                                   common::v1::GetKinematicsResponse* proto) const {
-    to_proto_impl<KinematicsData>{}(self.kinematics_data, proto);
-    for (const auto& entry : self.meshes_by_urdf_filepath) {
-        (*proto->mutable_meshes_by_urdf_filepath())[entry.first] = to_proto(entry.second);
-    }
 }
 
 KinematicsData from_proto_impl<common::v1::GetKinematicsResponse>::operator()(
