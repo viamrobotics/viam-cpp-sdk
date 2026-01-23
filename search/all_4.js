@@ -11,11 +11,10 @@ var searchData=
   ['eqcompare_8',['EqCompare',['../structviam_1_1sdk_1_1EqCompare.html',1,'viam::sdk']]],
   ['eqcompare_3c_20kinematicsdatasva_20_3e_9',['EqCompare&lt; KinematicsDataSVA &gt;',['../structviam_1_1sdk_1_1EqCompare.html',1,'viam::sdk']]],
   ['eqcompare_3c_20kinematicsdataunspecified_20_3e_10',['EqCompare&lt; KinematicsDataUnspecified &gt;',['../structviam_1_1sdk_1_1EqCompare.html',1,'viam::sdk']]],
-  ['eqcompare_3c_20kinematicsdataurdf_20_3e_11',['EqCompare&lt; KinematicsDataURDF &gt;',['../structviam_1_1sdk_1_1EqCompare.html',1,'viam::sdk']]],
-  ['errorcondition_12',['ErrorCondition',['../classErrorCondition.html',1,'']]],
-  ['euler_5fangles_13',['euler_angles',['../structviam_1_1sdk_1_1euler__angles.html',1,'viam::sdk']]],
-  ['exception_14',['Exception',['../classviam_1_1sdk_1_1Exception.html',1,'viam::sdk']]],
-  ['exception_2ehpp_15',['exception.hpp',['../exception_8hpp.html',1,'']]],
-  ['exceptions_16',['Classes related to SDK exceptions.',['../group__Exception.html',1,'']]],
-  ['execution_5fid_17',['execution_id',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#a667bfdfe25de5ac95a8ddb277e9f754b',1,'viam::sdk::Motion::plan_status_with_id::execution_id'],['../structviam_1_1sdk_1_1Motion_1_1plan.html#a9193a7e37c626019ac9abc4dc7a50ecc',1,'viam::sdk::Motion::plan::execution_id']]]
+  ['errorcondition_11',['ErrorCondition',['../classErrorCondition.html',1,'']]],
+  ['euler_5fangles_12',['euler_angles',['../structviam_1_1sdk_1_1euler__angles.html',1,'viam::sdk']]],
+  ['exception_13',['Exception',['../classviam_1_1sdk_1_1Exception.html',1,'viam::sdk']]],
+  ['exception_2ehpp_14',['exception.hpp',['../exception_8hpp.html',1,'']]],
+  ['exceptions_15',['Classes related to SDK exceptions.',['../group__Exception.html',1,'']]],
+  ['execution_5fid_16',['execution_id',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html#a667bfdfe25de5ac95a8ddb277e9f754b',1,'viam::sdk::Motion::plan_status_with_id::execution_id'],['../structviam_1_1sdk_1_1Motion_1_1plan.html#a9193a7e37c626019ac9abc4dc7a50ecc',1,'viam::sdk::Motion::plan::execution_id']]]
 ];
