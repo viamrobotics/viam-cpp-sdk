@@ -23,10 +23,10 @@ namespace _pbi = _pb::internal;
 namespace google {
 namespace api {
 PROTOBUF_CONSTEXPR FieldInfo::FieldInfo(
-    ::_pbi::ConstantInitialized)
-  : referenced_types_()
-  , format_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.referenced_types_)*/{}
+  , /*decltype(_impl_.format_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct FieldInfoDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FieldInfoDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -37,8 +37,9 @@ struct FieldInfoDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FieldInfoDefaultTypeInternal _FieldInfo_default_instance_;
 PROTOBUF_CONSTEXPR TypeReference::TypeReference(
-    ::_pbi::ConstantInitialized)
-  : type_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.type_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TypeReferenceDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TypeReferenceDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -61,15 +62,15 @@ const uint32_t TableStruct_google_2fapi_2ffield_5finfo_2eproto::offsets[] PROTOB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::FieldInfo, format_),
-  PROTOBUF_FIELD_OFFSET(::google::api::FieldInfo, referenced_types_),
+  PROTOBUF_FIELD_OFFSET(::google::api::FieldInfo, _impl_.format_),
+  PROTOBUF_FIELD_OFFSET(::google::api::FieldInfo, _impl_.referenced_types_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::TypeReference, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::TypeReference, type_name_),
+  PROTOBUF_FIELD_OFFSET(::google::api::TypeReference, _impl_.type_name_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::FieldInfo)},
@@ -153,21 +154,32 @@ class FieldInfo::_Internal {
 
 FieldInfo::FieldInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  referenced_types_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.FieldInfo)
 }
 FieldInfo::FieldInfo(const FieldInfo& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      referenced_types_(from.referenced_types_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  FieldInfo* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.referenced_types_){from._impl_.referenced_types_}
+    , decltype(_impl_.format_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  format_ = from.format_;
+  _this->_impl_.format_ = from._impl_.format_;
   // @@protoc_insertion_point(copy_constructor:google.api.FieldInfo)
 }
 
-inline void FieldInfo::SharedCtor() {
-format_ = 0;
+inline void FieldInfo::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.referenced_types_){arena}
+    , decltype(_impl_.format_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 FieldInfo::~FieldInfo() {
@@ -181,10 +193,11 @@ FieldInfo::~FieldInfo() {
 
 inline void FieldInfo::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.referenced_types_.~RepeatedPtrField();
 }
 
 void FieldInfo::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void FieldInfo::Clear() {
@@ -193,8 +206,8 @@ void FieldInfo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  referenced_types_.Clear();
-  format_ = 0;
+  _impl_.referenced_types_.Clear();
+  _impl_.format_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -288,7 +301,7 @@ size_t FieldInfo::ByteSizeLong() const {
 
   // repeated .google.api.TypeReference referenced_types = 2 [json_name = "referencedTypes"];
   total_size += 1UL * this->_internal_referenced_types_size();
-  for (const auto& msg : this->referenced_types_) {
+  for (const auto& msg : this->_impl_.referenced_types_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -299,33 +312,29 @@ size_t FieldInfo::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_format());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FieldInfo::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     FieldInfo::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FieldInfo::GetClassData() const { return &_class_data_; }
 
-void FieldInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<FieldInfo *>(to)->MergeFrom(
-      static_cast<const FieldInfo &>(from));
-}
 
-
-void FieldInfo::MergeFrom(const FieldInfo& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.FieldInfo)
-  GOOGLE_DCHECK_NE(&from, this);
+void FieldInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<FieldInfo*>(&to_msg);
+  auto& from = static_cast<const FieldInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.FieldInfo)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  referenced_types_.MergeFrom(from.referenced_types_);
+  _this->_impl_.referenced_types_.MergeFrom(from._impl_.referenced_types_);
   if (from._internal_format() != 0) {
-    _internal_set_format(from._internal_format());
+    _this->_internal_set_format(from._internal_format());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void FieldInfo::CopyFrom(const FieldInfo& from) {
@@ -342,8 +351,8 @@ bool FieldInfo::IsInitialized() const {
 void FieldInfo::InternalSwap(FieldInfo* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  referenced_types_.InternalSwap(&other->referenced_types_);
-  swap(format_, other->format_);
+  _impl_.referenced_types_.InternalSwap(&other->_impl_.referenced_types_);
+  swap(_impl_.format_, other->_impl_.format_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata FieldInfo::GetMetadata() const {
@@ -361,28 +370,40 @@ class TypeReference::_Internal {
 TypeReference::TypeReference(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.TypeReference)
 }
 TypeReference::TypeReference(const TypeReference& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  TypeReference* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.type_name_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  type_name_.InitDefault();
+  _impl_.type_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    type_name_.Set("", GetArenaForAllocation());
+    _impl_.type_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_type_name().empty()) {
-    type_name_.Set(from._internal_type_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.type_name_.Set(from._internal_type_name(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:google.api.TypeReference)
 }
 
-inline void TypeReference::SharedCtor() {
-type_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  type_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void TypeReference::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.type_name_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.type_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.type_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TypeReference::~TypeReference() {
@@ -396,11 +417,11 @@ TypeReference::~TypeReference() {
 
 inline void TypeReference::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  type_name_.Destroy();
+  _impl_.type_name_.Destroy();
 }
 
 void TypeReference::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TypeReference::Clear() {
@@ -409,7 +430,7 @@ void TypeReference::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  type_name_.ClearToEmpty();
+  _impl_.type_name_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -491,32 +512,28 @@ size_t TypeReference::ByteSizeLong() const {
         this->_internal_type_name());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TypeReference::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     TypeReference::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TypeReference::GetClassData() const { return &_class_data_; }
 
-void TypeReference::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<TypeReference *>(to)->MergeFrom(
-      static_cast<const TypeReference &>(from));
-}
 
-
-void TypeReference::MergeFrom(const TypeReference& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.TypeReference)
-  GOOGLE_DCHECK_NE(&from, this);
+void TypeReference::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TypeReference*>(&to_msg);
+  auto& from = static_cast<const TypeReference&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.TypeReference)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_type_name().empty()) {
-    _internal_set_type_name(from._internal_type_name());
+    _this->_internal_set_type_name(from._internal_type_name());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void TypeReference::CopyFrom(const TypeReference& from) {
@@ -536,8 +553,8 @@ void TypeReference::InternalSwap(TypeReference* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &type_name_, lhs_arena,
-      &other->type_name_, rhs_arena
+      &_impl_.type_name_, lhs_arena,
+      &other->_impl_.type_name_, rhs_arena
   );
 }
 

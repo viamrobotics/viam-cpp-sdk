@@ -1,8 +1,11 @@
 #pragma once
 
 #include <boost/variant/variant.hpp>
+#include <map>
+#include <string>
 #include <vector>
 
+#include <viam/sdk/common/mesh.hpp>
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 
@@ -46,9 +49,12 @@ struct KinematicsDataSVA : raw_bytes<KinematicsDataSVA>, EqCompare<KinematicsDat
     using raw_bytes<KinematicsDataSVA>::raw_bytes;
 };
 
-/// @brief Kinematics data in URDF format
-struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF>, EqCompare<KinematicsDataURDF> {
+/// @brief Kinematics data in URDF format with optional meshes by URDF filepath
+struct KinematicsDataURDF : raw_bytes<KinematicsDataURDF> {
     using raw_bytes<KinematicsDataURDF>::raw_bytes;
+    std::map<std::string, mesh> meshes_by_urdf_filepath;
+
+    friend bool operator==(const KinematicsDataURDF& lhs, const KinematicsDataURDF& rhs);
 };
 
 /// @brief The kinematics of a component.

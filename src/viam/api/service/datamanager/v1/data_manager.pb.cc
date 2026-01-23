@@ -25,9 +25,10 @@ namespace service {
 namespace datamanager {
 namespace v1 {
 PROTOBUF_CONSTEXPR SyncRequest::SyncRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SyncRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SyncRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,7 +39,7 @@ struct SyncRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SyncRequestDefaultTypeInternal _SyncRequest_default_instance_;
 PROTOBUF_CONSTEXPR SyncResponse::SyncResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct SyncResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SyncResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -49,14 +50,14 @@ struct SyncResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SyncResponseDefaultTypeInternal _SyncResponse_default_instance_;
 PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsRequest::UploadBinaryDataToDatasetsRequest(
-    ::_pbi::ConstantInitialized)
-  : tags_()
-  , dataset_ids_()
-  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , binary_data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , mime_type_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.tags_)*/{}
+  , /*decltype(_impl_.dataset_ids_)*/{}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.binary_data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.mime_type_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct UploadBinaryDataToDatasetsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -67,7 +68,7 @@ struct UploadBinaryDataToDatasetsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadBinaryDataToDatasetsRequestDefaultTypeInternal _UploadBinaryDataToDatasetsRequest_default_instance_;
 PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsResponse::UploadBinaryDataToDatasetsResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct UploadBinaryDataToDatasetsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UploadBinaryDataToDatasetsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -92,8 +93,8 @@ const uint32_t TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto::
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::SyncResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -106,12 +107,12 @@ const uint32_t TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto::
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, binary_data_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, tags_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, dataset_ids_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, mime_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, _impl_.binary_data_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, _impl_.tags_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, _impl_.dataset_ids_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, _impl_.mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::datamanager::v1::UploadBinaryDataToDatasetsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -201,45 +202,56 @@ class SyncRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 SyncRequest::_Internal::extra(const SyncRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void SyncRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 SyncRequest::SyncRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.datamanager.v1.SyncRequest)
 }
 SyncRequest::SyncRequest(const SyncRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SyncRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.datamanager.v1.SyncRequest)
 }
 
-inline void SyncRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void SyncRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SyncRequest::~SyncRequest() {
@@ -253,12 +265,12 @@ SyncRequest::~SyncRequest() {
 
 inline void SyncRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void SyncRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SyncRequest::Clear() {
@@ -267,11 +279,11 @@ void SyncRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -372,38 +384,35 @@ size_t SyncRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SyncRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SyncRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SyncRequest::GetClassData() const { return &_class_data_; }
 
-void SyncRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SyncRequest *>(to)->MergeFrom(
-      static_cast<const SyncRequest &>(from));
-}
 
-
-void SyncRequest::MergeFrom(const SyncRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.datamanager.v1.SyncRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void SyncRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SyncRequest*>(&to_msg);
+  auto& from = static_cast<const SyncRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.datamanager.v1.SyncRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SyncRequest::CopyFrom(const SyncRequest& from) {
@@ -423,10 +432,10 @@ void SyncRequest::InternalSwap(SyncRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SyncRequest::GetMetadata() const {
@@ -448,6 +457,7 @@ SyncResponse::SyncResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 SyncResponse::SyncResponse(const SyncResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  SyncResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.datamanager.v1.SyncResponse)
 }
@@ -483,65 +493,77 @@ class UploadBinaryDataToDatasetsRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 UploadBinaryDataToDatasetsRequest::_Internal::extra(const UploadBinaryDataToDatasetsRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void UploadBinaryDataToDatasetsRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 UploadBinaryDataToDatasetsRequest::UploadBinaryDataToDatasetsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  tags_(arena),
-  dataset_ids_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
 }
 UploadBinaryDataToDatasetsRequest::UploadBinaryDataToDatasetsRequest(const UploadBinaryDataToDatasetsRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      tags_(from.tags_),
-      dataset_ids_(from.dataset_ids_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UploadBinaryDataToDatasetsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tags_){from._impl_.tags_}
+    , decltype(_impl_.dataset_ids_){from._impl_.dataset_ids_}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.binary_data_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.mime_type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  binary_data_.InitDefault();
+  _impl_.binary_data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    binary_data_.Set("", GetArenaForAllocation());
+    _impl_.binary_data_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_binary_data().empty()) {
-    binary_data_.Set(from._internal_binary_data(), 
-      GetArenaForAllocation());
+    _this->_impl_.binary_data_.Set(from._internal_binary_data(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  mime_type_ = from.mime_type_;
+  _this->_impl_.mime_type_ = from._impl_.mime_type_;
   // @@protoc_insertion_point(copy_constructor:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
 }
 
-inline void UploadBinaryDataToDatasetsRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-binary_data_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  binary_data_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&mime_type_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(mime_type_));
+inline void UploadBinaryDataToDatasetsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.tags_){arena}
+    , decltype(_impl_.dataset_ids_){arena}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.binary_data_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.mime_type_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.binary_data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.binary_data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 UploadBinaryDataToDatasetsRequest::~UploadBinaryDataToDatasetsRequest() {
@@ -555,13 +577,15 @@ UploadBinaryDataToDatasetsRequest::~UploadBinaryDataToDatasetsRequest() {
 
 inline void UploadBinaryDataToDatasetsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  binary_data_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.tags_.~RepeatedPtrField();
+  _impl_.dataset_ids_.~RepeatedPtrField();
+  _impl_.name_.Destroy();
+  _impl_.binary_data_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void UploadBinaryDataToDatasetsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void UploadBinaryDataToDatasetsRequest::Clear() {
@@ -570,15 +594,15 @@ void UploadBinaryDataToDatasetsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  tags_.Clear();
-  dataset_ids_.Clear();
-  name_.ClearToEmpty();
-  binary_data_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.tags_.Clear();
+  _impl_.dataset_ids_.Clear();
+  _impl_.name_.ClearToEmpty();
+  _impl_.binary_data_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  mime_type_ = 0;
+  _impl_.extra_ = nullptr;
+  _impl_.mime_type_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -751,18 +775,18 @@ size_t UploadBinaryDataToDatasetsRequest::ByteSizeLong() const {
 
   // repeated string tags = 3 [json_name = "tags"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
-  for (int i = 0, n = tags_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.tags_.size());
+  for (int i = 0, n = _impl_.tags_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      tags_.Get(i));
+      _impl_.tags_.Get(i));
   }
 
   // repeated string dataset_ids = 4 [json_name = "datasetIds"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(dataset_ids_.size());
-  for (int i = 0, n = dataset_ids_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.dataset_ids_.size());
+  for (int i = 0, n = _impl_.dataset_ids_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      dataset_ids_.Get(i));
+      _impl_.dataset_ids_.Get(i));
   }
 
   // string name = 1 [json_name = "name"];
@@ -783,7 +807,7 @@ size_t UploadBinaryDataToDatasetsRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // .viam.app.datasync.v1.MimeType mime_type = 5 [json_name = "mimeType"];
@@ -792,43 +816,40 @@ size_t UploadBinaryDataToDatasetsRequest::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_mime_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadBinaryDataToDatasetsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     UploadBinaryDataToDatasetsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadBinaryDataToDatasetsRequest::GetClassData() const { return &_class_data_; }
 
-void UploadBinaryDataToDatasetsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<UploadBinaryDataToDatasetsRequest *>(to)->MergeFrom(
-      static_cast<const UploadBinaryDataToDatasetsRequest &>(from));
-}
 
-
-void UploadBinaryDataToDatasetsRequest::MergeFrom(const UploadBinaryDataToDatasetsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void UploadBinaryDataToDatasetsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UploadBinaryDataToDatasetsRequest*>(&to_msg);
+  auto& from = static_cast<const UploadBinaryDataToDatasetsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.datamanager.v1.UploadBinaryDataToDatasetsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  tags_.MergeFrom(from.tags_);
-  dataset_ids_.MergeFrom(from.dataset_ids_);
+  _this->_impl_.tags_.MergeFrom(from._impl_.tags_);
+  _this->_impl_.dataset_ids_.MergeFrom(from._impl_.dataset_ids_);
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_binary_data().empty()) {
-    _internal_set_binary_data(from._internal_binary_data());
+    _this->_internal_set_binary_data(from._internal_binary_data());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   if (from._internal_mime_type() != 0) {
-    _internal_set_mime_type(from._internal_mime_type());
+    _this->_internal_set_mime_type(from._internal_mime_type());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void UploadBinaryDataToDatasetsRequest::CopyFrom(const UploadBinaryDataToDatasetsRequest& from) {
@@ -847,22 +868,22 @@ void UploadBinaryDataToDatasetsRequest::InternalSwap(UploadBinaryDataToDatasetsR
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  tags_.InternalSwap(&other->tags_);
-  dataset_ids_.InternalSwap(&other->dataset_ids_);
+  _impl_.tags_.InternalSwap(&other->_impl_.tags_);
+  _impl_.dataset_ids_.InternalSwap(&other->_impl_.dataset_ids_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &binary_data_, lhs_arena,
-      &other->binary_data_, rhs_arena
+      &_impl_.binary_data_, lhs_arena,
+      &other->_impl_.binary_data_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(UploadBinaryDataToDatasetsRequest, mime_type_)
-      + sizeof(UploadBinaryDataToDatasetsRequest::mime_type_)
-      - PROTOBUF_FIELD_OFFSET(UploadBinaryDataToDatasetsRequest, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+      PROTOBUF_FIELD_OFFSET(UploadBinaryDataToDatasetsRequest, _impl_.mime_type_)
+      + sizeof(UploadBinaryDataToDatasetsRequest::_impl_.mime_type_)
+      - PROTOBUF_FIELD_OFFSET(UploadBinaryDataToDatasetsRequest, _impl_.extra_)>(
+          reinterpret_cast<char*>(&_impl_.extra_),
+          reinterpret_cast<char*>(&other->_impl_.extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata UploadBinaryDataToDatasetsRequest::GetMetadata() const {
@@ -884,6 +905,7 @@ UploadBinaryDataToDatasetsResponse::UploadBinaryDataToDatasetsResponse(::PROTOBU
 }
 UploadBinaryDataToDatasetsResponse::UploadBinaryDataToDatasetsResponse(const UploadBinaryDataToDatasetsResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  UploadBinaryDataToDatasetsResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.datamanager.v1.UploadBinaryDataToDatasetsResponse)
 }

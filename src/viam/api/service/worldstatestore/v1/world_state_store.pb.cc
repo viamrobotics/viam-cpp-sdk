@@ -25,9 +25,10 @@ namespace service {
 namespace worldstatestore {
 namespace v1 {
 PROTOBUF_CONSTEXPR ListUUIDsRequest::ListUUIDsRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ListUUIDsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ListUUIDsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,8 +39,9 @@ struct ListUUIDsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListUUIDsRequestDefaultTypeInternal _ListUUIDsRequest_default_instance_;
 PROTOBUF_CONSTEXPR ListUUIDsResponse::ListUUIDsResponse(
-    ::_pbi::ConstantInitialized)
-  : uuids_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.uuids_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ListUUIDsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ListUUIDsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -50,10 +52,11 @@ struct ListUUIDsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListUUIDsResponseDefaultTypeInternal _ListUUIDsResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetTransformRequest::GetTransformRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , uuid_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.uuid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetTransformRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetTransformRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -64,8 +67,9 @@ struct GetTransformRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTransformRequestDefaultTypeInternal _GetTransformRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetTransformResponse::GetTransformResponse(
-    ::_pbi::ConstantInitialized)
-  : transform_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.transform_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetTransformResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetTransformResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -76,9 +80,10 @@ struct GetTransformResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTransformResponseDefaultTypeInternal _GetTransformResponse_default_instance_;
 PROTOBUF_CONSTEXPR StreamTransformChangesRequest::StreamTransformChangesRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamTransformChangesRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StreamTransformChangesRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -89,11 +94,11 @@ struct StreamTransformChangesRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamTransformChangesRequestDefaultTypeInternal _StreamTransformChangesRequest_default_instance_;
 PROTOBUF_CONSTEXPR StreamTransformChangesResponse::StreamTransformChangesResponse(
-    ::_pbi::ConstantInitialized)
-  : transform_(nullptr)
-  , updated_fields_(nullptr)
-  , change_type_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.transform_)*/nullptr
+  , /*decltype(_impl_.updated_fields_)*/nullptr
+  , /*decltype(_impl_.change_type_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamTransformChangesResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StreamTransformChangesResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -118,48 +123,48 @@ const uint32_t TableStruct_service_2fworldstatestore_2fv1_2fworld_5fstate_5fstor
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::ListUUIDsRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::ListUUIDsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::ListUUIDsRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::ListUUIDsRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::ListUUIDsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::ListUUIDsResponse, uuids_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::ListUUIDsResponse, _impl_.uuids_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformRequest, uuid_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformRequest, _impl_.uuid_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformResponse, transform_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::GetTransformResponse, _impl_.transform_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesResponse, change_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesResponse, transform_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesResponse, updated_fields_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesResponse, _impl_.change_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesResponse, _impl_.transform_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::worldstatestore::v1::StreamTransformChangesResponse, _impl_.updated_fields_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::worldstatestore::v1::ListUUIDsRequest)},
@@ -277,45 +282,56 @@ class ListUUIDsRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 ListUUIDsRequest::_Internal::extra(const ListUUIDsRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void ListUUIDsRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 ListUUIDsRequest::ListUUIDsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.worldstatestore.v1.ListUUIDsRequest)
 }
 ListUUIDsRequest::ListUUIDsRequest(const ListUUIDsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ListUUIDsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.worldstatestore.v1.ListUUIDsRequest)
 }
 
-inline void ListUUIDsRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void ListUUIDsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ListUUIDsRequest::~ListUUIDsRequest() {
@@ -329,12 +345,12 @@ ListUUIDsRequest::~ListUUIDsRequest() {
 
 inline void ListUUIDsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void ListUUIDsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ListUUIDsRequest::Clear() {
@@ -343,11 +359,11 @@ void ListUUIDsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -448,38 +464,35 @@ size_t ListUUIDsRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ListUUIDsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ListUUIDsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ListUUIDsRequest::GetClassData() const { return &_class_data_; }
 
-void ListUUIDsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ListUUIDsRequest *>(to)->MergeFrom(
-      static_cast<const ListUUIDsRequest &>(from));
-}
 
-
-void ListUUIDsRequest::MergeFrom(const ListUUIDsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.ListUUIDsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void ListUUIDsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ListUUIDsRequest*>(&to_msg);
+  auto& from = static_cast<const ListUUIDsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.ListUUIDsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ListUUIDsRequest::CopyFrom(const ListUUIDsRequest& from) {
@@ -499,10 +512,10 @@ void ListUUIDsRequest::InternalSwap(ListUUIDsRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ListUUIDsRequest::GetMetadata() const {
@@ -519,19 +532,29 @@ class ListUUIDsResponse::_Internal {
 
 ListUUIDsResponse::ListUUIDsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  uuids_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.worldstatestore.v1.ListUUIDsResponse)
 }
 ListUUIDsResponse::ListUUIDsResponse(const ListUUIDsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      uuids_(from.uuids_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ListUUIDsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.uuids_){from._impl_.uuids_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.worldstatestore.v1.ListUUIDsResponse)
 }
 
-inline void ListUUIDsResponse::SharedCtor() {
+inline void ListUUIDsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.uuids_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 ListUUIDsResponse::~ListUUIDsResponse() {
@@ -545,10 +568,11 @@ ListUUIDsResponse::~ListUUIDsResponse() {
 
 inline void ListUUIDsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.uuids_.~RepeatedPtrField();
 }
 
 void ListUUIDsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ListUUIDsResponse::Clear() {
@@ -557,7 +581,7 @@ void ListUUIDsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  uuids_.Clear();
+  _impl_.uuids_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -634,36 +658,32 @@ size_t ListUUIDsResponse::ByteSizeLong() const {
 
   // repeated bytes uuids = 1 [json_name = "uuids"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(uuids_.size());
-  for (int i = 0, n = uuids_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.uuids_.size());
+  for (int i = 0, n = _impl_.uuids_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
-      uuids_.Get(i));
+      _impl_.uuids_.Get(i));
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ListUUIDsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ListUUIDsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ListUUIDsResponse::GetClassData() const { return &_class_data_; }
 
-void ListUUIDsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ListUUIDsResponse *>(to)->MergeFrom(
-      static_cast<const ListUUIDsResponse &>(from));
-}
 
-
-void ListUUIDsResponse::MergeFrom(const ListUUIDsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.ListUUIDsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void ListUUIDsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ListUUIDsResponse*>(&to_msg);
+  auto& from = static_cast<const ListUUIDsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.ListUUIDsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  uuids_.MergeFrom(from.uuids_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.uuids_.MergeFrom(from._impl_.uuids_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ListUUIDsResponse::CopyFrom(const ListUUIDsResponse& from) {
@@ -680,7 +700,7 @@ bool ListUUIDsResponse::IsInitialized() const {
 void ListUUIDsResponse::InternalSwap(ListUUIDsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  uuids_.InternalSwap(&other->uuids_);
+  _impl_.uuids_.InternalSwap(&other->_impl_.uuids_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ListUUIDsResponse::GetMetadata() const {
@@ -698,57 +718,70 @@ class GetTransformRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetTransformRequest::_Internal::extra(const GetTransformRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetTransformRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetTransformRequest::GetTransformRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.worldstatestore.v1.GetTransformRequest)
 }
 GetTransformRequest::GetTransformRequest(const GetTransformRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetTransformRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.uuid_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  uuid_.InitDefault();
+  _impl_.uuid_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    uuid_.Set("", GetArenaForAllocation());
+    _impl_.uuid_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_uuid().empty()) {
-    uuid_.Set(from._internal_uuid(), 
-      GetArenaForAllocation());
+    _this->_impl_.uuid_.Set(from._internal_uuid(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.worldstatestore.v1.GetTransformRequest)
 }
 
-inline void GetTransformRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-uuid_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  uuid_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetTransformRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.uuid_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.uuid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.uuid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetTransformRequest::~GetTransformRequest() {
@@ -762,13 +795,13 @@ GetTransformRequest::~GetTransformRequest() {
 
 inline void GetTransformRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  uuid_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.uuid_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetTransformRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetTransformRequest::Clear() {
@@ -777,12 +810,12 @@ void GetTransformRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  uuid_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.uuid_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -905,41 +938,38 @@ size_t GetTransformRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetTransformRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetTransformRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetTransformRequest::GetClassData() const { return &_class_data_; }
 
-void GetTransformRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetTransformRequest *>(to)->MergeFrom(
-      static_cast<const GetTransformRequest &>(from));
-}
 
-
-void GetTransformRequest::MergeFrom(const GetTransformRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.GetTransformRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetTransformRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetTransformRequest*>(&to_msg);
+  auto& from = static_cast<const GetTransformRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.GetTransformRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_uuid().empty()) {
-    _internal_set_uuid(from._internal_uuid());
+    _this->_internal_set_uuid(from._internal_uuid());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetTransformRequest::CopyFrom(const GetTransformRequest& from) {
@@ -959,14 +989,14 @@ void GetTransformRequest::InternalSwap(GetTransformRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &uuid_, lhs_arena,
-      &other->uuid_, rhs_arena
+      &_impl_.uuid_, lhs_arena,
+      &other->_impl_.uuid_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetTransformRequest::GetMetadata() const {
@@ -984,33 +1014,42 @@ class GetTransformResponse::_Internal {
 
 const ::viam::common::v1::Transform&
 GetTransformResponse::_Internal::transform(const GetTransformResponse* msg) {
-  return *msg->transform_;
+  return *msg->_impl_.transform_;
 }
 void GetTransformResponse::clear_transform() {
-  if (GetArenaForAllocation() == nullptr && transform_ != nullptr) {
-    delete transform_;
+  if (GetArenaForAllocation() == nullptr && _impl_.transform_ != nullptr) {
+    delete _impl_.transform_;
   }
-  transform_ = nullptr;
+  _impl_.transform_ = nullptr;
 }
 GetTransformResponse::GetTransformResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.worldstatestore.v1.GetTransformResponse)
 }
 GetTransformResponse::GetTransformResponse(const GetTransformResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetTransformResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.transform_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_transform()) {
-    transform_ = new ::viam::common::v1::Transform(*from.transform_);
-  } else {
-    transform_ = nullptr;
+    _this->_impl_.transform_ = new ::viam::common::v1::Transform(*from._impl_.transform_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.worldstatestore.v1.GetTransformResponse)
 }
 
-inline void GetTransformResponse::SharedCtor() {
-transform_ = nullptr;
+inline void GetTransformResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.transform_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetTransformResponse::~GetTransformResponse() {
@@ -1024,11 +1063,11 @@ GetTransformResponse::~GetTransformResponse() {
 
 inline void GetTransformResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete transform_;
+  if (this != internal_default_instance()) delete _impl_.transform_;
 }
 
 void GetTransformResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetTransformResponse::Clear() {
@@ -1037,10 +1076,10 @@ void GetTransformResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && transform_ != nullptr) {
-    delete transform_;
+  if (GetArenaForAllocation() == nullptr && _impl_.transform_ != nullptr) {
+    delete _impl_.transform_;
   }
-  transform_ = nullptr;
+  _impl_.transform_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1114,35 +1153,32 @@ size_t GetTransformResponse::ByteSizeLong() const {
   if (this->_internal_has_transform()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *transform_);
+        *_impl_.transform_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetTransformResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetTransformResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetTransformResponse::GetClassData() const { return &_class_data_; }
 
-void GetTransformResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetTransformResponse *>(to)->MergeFrom(
-      static_cast<const GetTransformResponse &>(from));
-}
 
-
-void GetTransformResponse::MergeFrom(const GetTransformResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.GetTransformResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetTransformResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetTransformResponse*>(&to_msg);
+  auto& from = static_cast<const GetTransformResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.GetTransformResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_transform()) {
-    _internal_mutable_transform()->::viam::common::v1::Transform::MergeFrom(from._internal_transform());
+    _this->_internal_mutable_transform()->::viam::common::v1::Transform::MergeFrom(
+        from._internal_transform());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetTransformResponse::CopyFrom(const GetTransformResponse& from) {
@@ -1159,7 +1195,7 @@ bool GetTransformResponse::IsInitialized() const {
 void GetTransformResponse::InternalSwap(GetTransformResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(transform_, other->transform_);
+  swap(_impl_.transform_, other->_impl_.transform_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetTransformResponse::GetMetadata() const {
@@ -1177,45 +1213,56 @@ class StreamTransformChangesRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 StreamTransformChangesRequest::_Internal::extra(const StreamTransformChangesRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void StreamTransformChangesRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 StreamTransformChangesRequest::StreamTransformChangesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.worldstatestore.v1.StreamTransformChangesRequest)
 }
 StreamTransformChangesRequest::StreamTransformChangesRequest(const StreamTransformChangesRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StreamTransformChangesRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.worldstatestore.v1.StreamTransformChangesRequest)
 }
 
-inline void StreamTransformChangesRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void StreamTransformChangesRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 StreamTransformChangesRequest::~StreamTransformChangesRequest() {
@@ -1229,12 +1276,12 @@ StreamTransformChangesRequest::~StreamTransformChangesRequest() {
 
 inline void StreamTransformChangesRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void StreamTransformChangesRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StreamTransformChangesRequest::Clear() {
@@ -1243,11 +1290,11 @@ void StreamTransformChangesRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1348,38 +1395,35 @@ size_t StreamTransformChangesRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamTransformChangesRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StreamTransformChangesRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamTransformChangesRequest::GetClassData() const { return &_class_data_; }
 
-void StreamTransformChangesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StreamTransformChangesRequest *>(to)->MergeFrom(
-      static_cast<const StreamTransformChangesRequest &>(from));
-}
 
-
-void StreamTransformChangesRequest::MergeFrom(const StreamTransformChangesRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.StreamTransformChangesRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void StreamTransformChangesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StreamTransformChangesRequest*>(&to_msg);
+  auto& from = static_cast<const StreamTransformChangesRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.StreamTransformChangesRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StreamTransformChangesRequest::CopyFrom(const StreamTransformChangesRequest& from) {
@@ -1399,10 +1443,10 @@ void StreamTransformChangesRequest::InternalSwap(StreamTransformChangesRequest* 
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamTransformChangesRequest::GetMetadata() const {
@@ -1421,52 +1465,60 @@ class StreamTransformChangesResponse::_Internal {
 
 const ::viam::common::v1::Transform&
 StreamTransformChangesResponse::_Internal::transform(const StreamTransformChangesResponse* msg) {
-  return *msg->transform_;
+  return *msg->_impl_.transform_;
 }
 const ::PROTOBUF_NAMESPACE_ID::FieldMask&
 StreamTransformChangesResponse::_Internal::updated_fields(const StreamTransformChangesResponse* msg) {
-  return *msg->updated_fields_;
+  return *msg->_impl_.updated_fields_;
 }
 void StreamTransformChangesResponse::clear_transform() {
-  if (GetArenaForAllocation() == nullptr && transform_ != nullptr) {
-    delete transform_;
+  if (GetArenaForAllocation() == nullptr && _impl_.transform_ != nullptr) {
+    delete _impl_.transform_;
   }
-  transform_ = nullptr;
+  _impl_.transform_ = nullptr;
 }
 void StreamTransformChangesResponse::clear_updated_fields() {
-  if (GetArenaForAllocation() == nullptr && updated_fields_ != nullptr) {
-    delete updated_fields_;
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_fields_ != nullptr) {
+    delete _impl_.updated_fields_;
   }
-  updated_fields_ = nullptr;
+  _impl_.updated_fields_ = nullptr;
 }
 StreamTransformChangesResponse::StreamTransformChangesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.worldstatestore.v1.StreamTransformChangesResponse)
 }
 StreamTransformChangesResponse::StreamTransformChangesResponse(const StreamTransformChangesResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StreamTransformChangesResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.transform_){nullptr}
+    , decltype(_impl_.updated_fields_){nullptr}
+    , decltype(_impl_.change_type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_transform()) {
-    transform_ = new ::viam::common::v1::Transform(*from.transform_);
-  } else {
-    transform_ = nullptr;
+    _this->_impl_.transform_ = new ::viam::common::v1::Transform(*from._impl_.transform_);
   }
   if (from._internal_has_updated_fields()) {
-    updated_fields_ = new ::PROTOBUF_NAMESPACE_ID::FieldMask(*from.updated_fields_);
-  } else {
-    updated_fields_ = nullptr;
+    _this->_impl_.updated_fields_ = new ::PROTOBUF_NAMESPACE_ID::FieldMask(*from._impl_.updated_fields_);
   }
-  change_type_ = from.change_type_;
+  _this->_impl_.change_type_ = from._impl_.change_type_;
   // @@protoc_insertion_point(copy_constructor:viam.service.worldstatestore.v1.StreamTransformChangesResponse)
 }
 
-inline void StreamTransformChangesResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&transform_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&change_type_) -
-    reinterpret_cast<char*>(&transform_)) + sizeof(change_type_));
+inline void StreamTransformChangesResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.transform_){nullptr}
+    , decltype(_impl_.updated_fields_){nullptr}
+    , decltype(_impl_.change_type_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 StreamTransformChangesResponse::~StreamTransformChangesResponse() {
@@ -1480,12 +1532,12 @@ StreamTransformChangesResponse::~StreamTransformChangesResponse() {
 
 inline void StreamTransformChangesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete transform_;
-  if (this != internal_default_instance()) delete updated_fields_;
+  if (this != internal_default_instance()) delete _impl_.transform_;
+  if (this != internal_default_instance()) delete _impl_.updated_fields_;
 }
 
 void StreamTransformChangesResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StreamTransformChangesResponse::Clear() {
@@ -1494,15 +1546,15 @@ void StreamTransformChangesResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && transform_ != nullptr) {
-    delete transform_;
+  if (GetArenaForAllocation() == nullptr && _impl_.transform_ != nullptr) {
+    delete _impl_.transform_;
   }
-  transform_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && updated_fields_ != nullptr) {
-    delete updated_fields_;
+  _impl_.transform_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_fields_ != nullptr) {
+    delete _impl_.updated_fields_;
   }
-  updated_fields_ = nullptr;
-  change_type_ = 0;
+  _impl_.updated_fields_ = nullptr;
+  _impl_.change_type_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1607,14 +1659,14 @@ size_t StreamTransformChangesResponse::ByteSizeLong() const {
   if (this->_internal_has_transform()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *transform_);
+        *_impl_.transform_);
   }
 
   // .google.protobuf.FieldMask updated_fields = 3 [json_name = "updatedFields"];
   if (this->_internal_has_updated_fields()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *updated_fields_);
+        *_impl_.updated_fields_);
   }
 
   // .viam.service.worldstatestore.v1.TransformChangeType change_type = 1 [json_name = "changeType"];
@@ -1623,38 +1675,36 @@ size_t StreamTransformChangesResponse::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_change_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamTransformChangesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StreamTransformChangesResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamTransformChangesResponse::GetClassData() const { return &_class_data_; }
 
-void StreamTransformChangesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StreamTransformChangesResponse *>(to)->MergeFrom(
-      static_cast<const StreamTransformChangesResponse &>(from));
-}
 
-
-void StreamTransformChangesResponse::MergeFrom(const StreamTransformChangesResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.StreamTransformChangesResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void StreamTransformChangesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StreamTransformChangesResponse*>(&to_msg);
+  auto& from = static_cast<const StreamTransformChangesResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.worldstatestore.v1.StreamTransformChangesResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_transform()) {
-    _internal_mutable_transform()->::viam::common::v1::Transform::MergeFrom(from._internal_transform());
+    _this->_internal_mutable_transform()->::viam::common::v1::Transform::MergeFrom(
+        from._internal_transform());
   }
   if (from._internal_has_updated_fields()) {
-    _internal_mutable_updated_fields()->::PROTOBUF_NAMESPACE_ID::FieldMask::MergeFrom(from._internal_updated_fields());
+    _this->_internal_mutable_updated_fields()->::PROTOBUF_NAMESPACE_ID::FieldMask::MergeFrom(
+        from._internal_updated_fields());
   }
   if (from._internal_change_type() != 0) {
-    _internal_set_change_type(from._internal_change_type());
+    _this->_internal_set_change_type(from._internal_change_type());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StreamTransformChangesResponse::CopyFrom(const StreamTransformChangesResponse& from) {
@@ -1672,11 +1722,11 @@ void StreamTransformChangesResponse::InternalSwap(StreamTransformChangesResponse
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(StreamTransformChangesResponse, change_type_)
-      + sizeof(StreamTransformChangesResponse::change_type_)
-      - PROTOBUF_FIELD_OFFSET(StreamTransformChangesResponse, transform_)>(
-          reinterpret_cast<char*>(&transform_),
-          reinterpret_cast<char*>(&other->transform_));
+      PROTOBUF_FIELD_OFFSET(StreamTransformChangesResponse, _impl_.change_type_)
+      + sizeof(StreamTransformChangesResponse::_impl_.change_type_)
+      - PROTOBUF_FIELD_OFFSET(StreamTransformChangesResponse, _impl_.transform_)>(
+          reinterpret_cast<char*>(&_impl_.transform_),
+          reinterpret_cast<char*>(&other->_impl_.transform_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamTransformChangesResponse::GetMetadata() const {

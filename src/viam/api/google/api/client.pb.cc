@@ -23,11 +23,12 @@ namespace _pbi = _pb::internal;
 namespace google {
 namespace api {
 PROTOBUF_CONSTEXPR CommonLanguageSettings::CommonLanguageSettings(
-    ::_pbi::ConstantInitialized)
-  : destinations_()
-  , _destinations_cached_byte_size_(0)
-  , reference_docs_uri_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , selective_gapic_generation_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.destinations_)*/{}
+  , /*decltype(_impl_._destinations_cached_byte_size_)*/{0}
+  , /*decltype(_impl_.reference_docs_uri_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.selective_gapic_generation_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CommonLanguageSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CommonLanguageSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,19 +39,19 @@ struct CommonLanguageSettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CommonLanguageSettingsDefaultTypeInternal _CommonLanguageSettings_default_instance_;
 PROTOBUF_CONSTEXPR ClientLibrarySettings::ClientLibrarySettings(
-    ::_pbi::ConstantInitialized)
-  : version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , java_settings_(nullptr)
-  , cpp_settings_(nullptr)
-  , php_settings_(nullptr)
-  , python_settings_(nullptr)
-  , node_settings_(nullptr)
-  , dotnet_settings_(nullptr)
-  , ruby_settings_(nullptr)
-  , go_settings_(nullptr)
-  , launch_stage_(0)
-
-  , rest_numeric_enums_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.java_settings_)*/nullptr
+  , /*decltype(_impl_.cpp_settings_)*/nullptr
+  , /*decltype(_impl_.php_settings_)*/nullptr
+  , /*decltype(_impl_.python_settings_)*/nullptr
+  , /*decltype(_impl_.node_settings_)*/nullptr
+  , /*decltype(_impl_.dotnet_settings_)*/nullptr
+  , /*decltype(_impl_.ruby_settings_)*/nullptr
+  , /*decltype(_impl_.go_settings_)*/nullptr
+  , /*decltype(_impl_.launch_stage_)*/0
+  , /*decltype(_impl_.rest_numeric_enums_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ClientLibrarySettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ClientLibrarySettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -61,19 +62,19 @@ struct ClientLibrarySettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientLibrarySettingsDefaultTypeInternal _ClientLibrarySettings_default_instance_;
 PROTOBUF_CONSTEXPR Publishing::Publishing(
-    ::_pbi::ConstantInitialized)
-  : method_settings_()
-  , codeowner_github_teams_()
-  , library_settings_()
-  , new_issue_uri_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , documentation_uri_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , api_short_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , github_label_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , doc_tag_prefix_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , proto_reference_documentation_uri_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , rest_reference_documentation_uri_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , organization_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.method_settings_)*/{}
+  , /*decltype(_impl_.codeowner_github_teams_)*/{}
+  , /*decltype(_impl_.library_settings_)*/{}
+  , /*decltype(_impl_.new_issue_uri_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.documentation_uri_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.api_short_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.github_label_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.doc_tag_prefix_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.proto_reference_documentation_uri_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.rest_reference_documentation_uri_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.organization_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PublishingDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PublishingDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -84,7 +85,7 @@ struct PublishingDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PublishingDefaultTypeInternal _Publishing_default_instance_;
 PROTOBUF_CONSTEXPR JavaSettings_ServiceClassNamesEntry_DoNotUse::JavaSettings_ServiceClassNamesEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct JavaSettings_ServiceClassNamesEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR JavaSettings_ServiceClassNamesEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -95,10 +96,11 @@ struct JavaSettings_ServiceClassNamesEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JavaSettings_ServiceClassNamesEntry_DoNotUseDefaultTypeInternal _JavaSettings_ServiceClassNamesEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR JavaSettings::JavaSettings(
-    ::_pbi::ConstantInitialized)
-  : service_class_names_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
-  , library_package_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , common_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.service_class_names_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.library_package_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.common_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct JavaSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR JavaSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -109,8 +111,9 @@ struct JavaSettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JavaSettingsDefaultTypeInternal _JavaSettings_default_instance_;
 PROTOBUF_CONSTEXPR CppSettings::CppSettings(
-    ::_pbi::ConstantInitialized)
-  : common_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.common_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CppSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CppSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -121,8 +124,9 @@ struct CppSettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CppSettingsDefaultTypeInternal _CppSettings_default_instance_;
 PROTOBUF_CONSTEXPR PhpSettings::PhpSettings(
-    ::_pbi::ConstantInitialized)
-  : common_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.common_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PhpSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PhpSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -133,10 +137,11 @@ struct PhpSettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PhpSettingsDefaultTypeInternal _PhpSettings_default_instance_;
 PROTOBUF_CONSTEXPR PythonSettings_ExperimentalFeatures::PythonSettings_ExperimentalFeatures(
-    ::_pbi::ConstantInitialized)
-  : rest_async_io_enabled_(false)
-  , protobuf_pythonic_types_enabled_(false)
-  , unversioned_package_disabled_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.rest_async_io_enabled_)*/false
+  , /*decltype(_impl_.protobuf_pythonic_types_enabled_)*/false
+  , /*decltype(_impl_.unversioned_package_disabled_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PythonSettings_ExperimentalFeaturesDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PythonSettings_ExperimentalFeaturesDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -147,9 +152,10 @@ struct PythonSettings_ExperimentalFeaturesDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PythonSettings_ExperimentalFeaturesDefaultTypeInternal _PythonSettings_ExperimentalFeatures_default_instance_;
 PROTOBUF_CONSTEXPR PythonSettings::PythonSettings(
-    ::_pbi::ConstantInitialized)
-  : common_(nullptr)
-  , experimental_features_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.common_)*/nullptr
+  , /*decltype(_impl_.experimental_features_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PythonSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PythonSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -160,8 +166,9 @@ struct PythonSettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PythonSettingsDefaultTypeInternal _PythonSettings_default_instance_;
 PROTOBUF_CONSTEXPR NodeSettings::NodeSettings(
-    ::_pbi::ConstantInitialized)
-  : common_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.common_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct NodeSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR NodeSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -172,7 +179,7 @@ struct NodeSettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NodeSettingsDefaultTypeInternal _NodeSettings_default_instance_;
 PROTOBUF_CONSTEXPR DotnetSettings_RenamedServicesEntry_DoNotUse::DotnetSettings_RenamedServicesEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -183,7 +190,7 @@ struct DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DotnetSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal _DotnetSettings_RenamedServicesEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR DotnetSettings_RenamedResourcesEntry_DoNotUse::DotnetSettings_RenamedResourcesEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -194,13 +201,14 @@ struct DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DotnetSettings_RenamedResourcesEntry_DoNotUseDefaultTypeInternal _DotnetSettings_RenamedResourcesEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR DotnetSettings::DotnetSettings(
-    ::_pbi::ConstantInitialized)
-  : renamed_services_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
-  , renamed_resources_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
-  , ignored_resources_()
-  , forced_namespace_aliases_()
-  , handwritten_signatures_()
-  , common_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.renamed_services_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.renamed_resources_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.ignored_resources_)*/{}
+  , /*decltype(_impl_.forced_namespace_aliases_)*/{}
+  , /*decltype(_impl_.handwritten_signatures_)*/{}
+  , /*decltype(_impl_.common_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct DotnetSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DotnetSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -211,8 +219,9 @@ struct DotnetSettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DotnetSettingsDefaultTypeInternal _DotnetSettings_default_instance_;
 PROTOBUF_CONSTEXPR RubySettings::RubySettings(
-    ::_pbi::ConstantInitialized)
-  : common_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.common_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RubySettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RubySettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -223,7 +232,7 @@ struct RubySettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RubySettingsDefaultTypeInternal _RubySettings_default_instance_;
 PROTOBUF_CONSTEXPR GoSettings_RenamedServicesEntry_DoNotUse::GoSettings_RenamedServicesEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct GoSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GoSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -234,9 +243,10 @@ struct GoSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GoSettings_RenamedServicesEntry_DoNotUseDefaultTypeInternal _GoSettings_RenamedServicesEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR GoSettings::GoSettings(
-    ::_pbi::ConstantInitialized)
-  : renamed_services_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
-  , common_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.renamed_services_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.common_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GoSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GoSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -247,11 +257,12 @@ struct GoSettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GoSettingsDefaultTypeInternal _GoSettings_default_instance_;
 PROTOBUF_CONSTEXPR MethodSettings_LongRunning::MethodSettings_LongRunning(
-    ::_pbi::ConstantInitialized)
-  : initial_poll_delay_(nullptr)
-  , max_poll_delay_(nullptr)
-  , total_poll_timeout_(nullptr)
-  , poll_delay_multiplier_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.initial_poll_delay_)*/nullptr
+  , /*decltype(_impl_.max_poll_delay_)*/nullptr
+  , /*decltype(_impl_.total_poll_timeout_)*/nullptr
+  , /*decltype(_impl_.poll_delay_multiplier_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct MethodSettings_LongRunningDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MethodSettings_LongRunningDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -262,10 +273,11 @@ struct MethodSettings_LongRunningDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MethodSettings_LongRunningDefaultTypeInternal _MethodSettings_LongRunning_default_instance_;
 PROTOBUF_CONSTEXPR MethodSettings::MethodSettings(
-    ::_pbi::ConstantInitialized)
-  : auto_populated_fields_()
-  , selector_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , long_running_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.auto_populated_fields_)*/{}
+  , /*decltype(_impl_.selector_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.long_running_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct MethodSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MethodSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -276,9 +288,10 @@ struct MethodSettingsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MethodSettingsDefaultTypeInternal _MethodSettings_default_instance_;
 PROTOBUF_CONSTEXPR SelectiveGapicGeneration::SelectiveGapicGeneration(
-    ::_pbi::ConstantInitialized)
-  : methods_()
-  , generate_omitted_as_internal_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.methods_)*/{}
+  , /*decltype(_impl_.generate_omitted_as_internal_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SelectiveGapicGenerationDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SelectiveGapicGenerationDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -301,43 +314,43 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, reference_docs_uri_),
-  PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, destinations_),
-  PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, selective_gapic_generation_),
+  PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, _impl_.reference_docs_uri_),
+  PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, _impl_.destinations_),
+  PROTOBUF_FIELD_OFFSET(::google::api::CommonLanguageSettings, _impl_.selective_gapic_generation_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, version_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, launch_stage_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, rest_numeric_enums_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, java_settings_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, cpp_settings_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, php_settings_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, python_settings_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, node_settings_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, dotnet_settings_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, ruby_settings_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, go_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.version_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.launch_stage_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.rest_numeric_enums_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.java_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.cpp_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.php_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.python_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.node_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.dotnet_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.ruby_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ClientLibrarySettings, _impl_.go_settings_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, method_settings_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, new_issue_uri_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, documentation_uri_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, api_short_name_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, github_label_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, codeowner_github_teams_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, doc_tag_prefix_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, organization_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, library_settings_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, proto_reference_documentation_uri_),
-  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, rest_reference_documentation_uri_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.method_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.new_issue_uri_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.documentation_uri_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.api_short_name_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.github_label_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.codeowner_github_teams_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.doc_tag_prefix_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.organization_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.library_settings_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.proto_reference_documentation_uri_),
+  PROTOBUF_FIELD_OFFSET(::google::api::Publishing, _impl_.rest_reference_documentation_uri_),
   PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings_ServiceClassNamesEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -354,47 +367,47 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings, library_package_),
-  PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings, service_class_names_),
-  PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings, common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings, _impl_.library_package_),
+  PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings, _impl_.service_class_names_),
+  PROTOBUF_FIELD_OFFSET(::google::api::JavaSettings, _impl_.common_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::CppSettings, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::CppSettings, common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::CppSettings, _impl_.common_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::PhpSettings, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::PhpSettings, common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::PhpSettings, _impl_.common_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, rest_async_io_enabled_),
-  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, protobuf_pythonic_types_enabled_),
-  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, unversioned_package_disabled_),
+  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, _impl_.rest_async_io_enabled_),
+  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, _impl_.protobuf_pythonic_types_enabled_),
+  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, _impl_.unversioned_package_disabled_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings, common_),
-  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings, experimental_features_),
+  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings, _impl_.common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings, _impl_.experimental_features_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::NodeSettings, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::NodeSettings, common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::NodeSettings, _impl_.common_),
   PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -421,19 +434,19 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, common_),
-  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, renamed_services_),
-  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, renamed_resources_),
-  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, ignored_resources_),
-  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, forced_namespace_aliases_),
-  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, handwritten_signatures_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, _impl_.common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, _impl_.renamed_services_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, _impl_.renamed_resources_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, _impl_.ignored_resources_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, _impl_.forced_namespace_aliases_),
+  PROTOBUF_FIELD_OFFSET(::google::api::DotnetSettings, _impl_.handwritten_signatures_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::RubySettings, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::RubySettings, common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::RubySettings, _impl_.common_),
   PROTOBUF_FIELD_OFFSET(::google::api::GoSettings_RenamedServicesEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::google::api::GoSettings_RenamedServicesEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -450,35 +463,35 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::GoSettings, common_),
-  PROTOBUF_FIELD_OFFSET(::google::api::GoSettings, renamed_services_),
+  PROTOBUF_FIELD_OFFSET(::google::api::GoSettings, _impl_.common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::GoSettings, _impl_.renamed_services_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings_LongRunning, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings_LongRunning, initial_poll_delay_),
-  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings_LongRunning, poll_delay_multiplier_),
-  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings_LongRunning, max_poll_delay_),
-  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings_LongRunning, total_poll_timeout_),
+  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings_LongRunning, _impl_.initial_poll_delay_),
+  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings_LongRunning, _impl_.poll_delay_multiplier_),
+  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings_LongRunning, _impl_.max_poll_delay_),
+  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings_LongRunning, _impl_.total_poll_timeout_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, selector_),
-  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, long_running_),
-  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, auto_populated_fields_),
+  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, _impl_.selector_),
+  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, _impl_.long_running_),
+  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, _impl_.auto_populated_fields_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, methods_),
-  PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, generate_omitted_as_internal_),
+  PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, _impl_.methods_),
+  PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, _impl_.generate_omitted_as_internal_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::CommonLanguageSettings)},
@@ -711,41 +724,54 @@ class CommonLanguageSettings::_Internal {
 
 const ::google::api::SelectiveGapicGeneration&
 CommonLanguageSettings::_Internal::selective_gapic_generation(const CommonLanguageSettings* msg) {
-  return *msg->selective_gapic_generation_;
+  return *msg->_impl_.selective_gapic_generation_;
 }
 CommonLanguageSettings::CommonLanguageSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  destinations_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.CommonLanguageSettings)
 }
 CommonLanguageSettings::CommonLanguageSettings(const CommonLanguageSettings& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      destinations_(from.destinations_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CommonLanguageSettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.destinations_){from._impl_.destinations_}
+    , /*decltype(_impl_._destinations_cached_byte_size_)*/{0}
+    , decltype(_impl_.reference_docs_uri_){}
+    , decltype(_impl_.selective_gapic_generation_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  reference_docs_uri_.InitDefault();
+  _impl_.reference_docs_uri_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    reference_docs_uri_.Set("", GetArenaForAllocation());
+    _impl_.reference_docs_uri_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_reference_docs_uri().empty()) {
-    reference_docs_uri_.Set(from._internal_reference_docs_uri(), 
-      GetArenaForAllocation());
+    _this->_impl_.reference_docs_uri_.Set(from._internal_reference_docs_uri(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_selective_gapic_generation()) {
-    selective_gapic_generation_ = new ::google::api::SelectiveGapicGeneration(*from.selective_gapic_generation_);
-  } else {
-    selective_gapic_generation_ = nullptr;
+    _this->_impl_.selective_gapic_generation_ = new ::google::api::SelectiveGapicGeneration(*from._impl_.selective_gapic_generation_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.CommonLanguageSettings)
 }
 
-inline void CommonLanguageSettings::SharedCtor() {
-reference_docs_uri_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  reference_docs_uri_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-selective_gapic_generation_ = nullptr;
+inline void CommonLanguageSettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.destinations_){arena}
+    , /*decltype(_impl_._destinations_cached_byte_size_)*/{0}
+    , decltype(_impl_.reference_docs_uri_){}
+    , decltype(_impl_.selective_gapic_generation_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.reference_docs_uri_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.reference_docs_uri_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 CommonLanguageSettings::~CommonLanguageSettings() {
@@ -759,12 +785,13 @@ CommonLanguageSettings::~CommonLanguageSettings() {
 
 inline void CommonLanguageSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  reference_docs_uri_.Destroy();
-  if (this != internal_default_instance()) delete selective_gapic_generation_;
+  _impl_.destinations_.~RepeatedField();
+  _impl_.reference_docs_uri_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.selective_gapic_generation_;
 }
 
 void CommonLanguageSettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void CommonLanguageSettings::Clear() {
@@ -773,12 +800,12 @@ void CommonLanguageSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  destinations_.Clear();
-  reference_docs_uri_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && selective_gapic_generation_ != nullptr) {
-    delete selective_gapic_generation_;
+  _impl_.destinations_.Clear();
+  _impl_.reference_docs_uri_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.selective_gapic_generation_ != nullptr) {
+    delete _impl_.selective_gapic_generation_;
   }
-  selective_gapic_generation_ = nullptr;
+  _impl_.selective_gapic_generation_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -859,10 +886,10 @@ uint8_t* CommonLanguageSettings::_InternalSerialize(
 
   // repeated .google.api.ClientLibraryDestination destinations = 2 [json_name = "destinations"];
   {
-    int byte_size = _destinations_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._destinations_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteEnumPacked(
-          2, destinations_, byte_size, target);
+          2, _impl_.destinations_, byte_size, target);
     }
   }
 
@@ -901,7 +928,7 @@ size_t CommonLanguageSettings::ByteSizeLong() const {
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _destinations_cached_byte_size_.store(cached_size,
+    _impl_._destinations_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -917,39 +944,36 @@ size_t CommonLanguageSettings::ByteSizeLong() const {
   if (this->_internal_has_selective_gapic_generation()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *selective_gapic_generation_);
+        *_impl_.selective_gapic_generation_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CommonLanguageSettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     CommonLanguageSettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CommonLanguageSettings::GetClassData() const { return &_class_data_; }
 
-void CommonLanguageSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<CommonLanguageSettings *>(to)->MergeFrom(
-      static_cast<const CommonLanguageSettings &>(from));
-}
 
-
-void CommonLanguageSettings::MergeFrom(const CommonLanguageSettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.CommonLanguageSettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void CommonLanguageSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CommonLanguageSettings*>(&to_msg);
+  auto& from = static_cast<const CommonLanguageSettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.CommonLanguageSettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  destinations_.MergeFrom(from.destinations_);
+  _this->_impl_.destinations_.MergeFrom(from._impl_.destinations_);
   if (!from._internal_reference_docs_uri().empty()) {
-    _internal_set_reference_docs_uri(from._internal_reference_docs_uri());
+    _this->_internal_set_reference_docs_uri(from._internal_reference_docs_uri());
   }
   if (from._internal_has_selective_gapic_generation()) {
-    _internal_mutable_selective_gapic_generation()->::google::api::SelectiveGapicGeneration::MergeFrom(from._internal_selective_gapic_generation());
+    _this->_internal_mutable_selective_gapic_generation()->::google::api::SelectiveGapicGeneration::MergeFrom(
+        from._internal_selective_gapic_generation());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CommonLanguageSettings::CopyFrom(const CommonLanguageSettings& from) {
@@ -968,12 +992,12 @@ void CommonLanguageSettings::InternalSwap(CommonLanguageSettings* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  destinations_.InternalSwap(&other->destinations_);
+  _impl_.destinations_.InternalSwap(&other->_impl_.destinations_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &reference_docs_uri_, lhs_arena,
-      &other->reference_docs_uri_, rhs_arena
+      &_impl_.reference_docs_uri_, lhs_arena,
+      &other->_impl_.reference_docs_uri_, rhs_arena
   );
-  swap(selective_gapic_generation_, other->selective_gapic_generation_);
+  swap(_impl_.selective_gapic_generation_, other->_impl_.selective_gapic_generation_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CommonLanguageSettings::GetMetadata() const {
@@ -998,108 +1022,120 @@ class ClientLibrarySettings::_Internal {
 
 const ::google::api::JavaSettings&
 ClientLibrarySettings::_Internal::java_settings(const ClientLibrarySettings* msg) {
-  return *msg->java_settings_;
+  return *msg->_impl_.java_settings_;
 }
 const ::google::api::CppSettings&
 ClientLibrarySettings::_Internal::cpp_settings(const ClientLibrarySettings* msg) {
-  return *msg->cpp_settings_;
+  return *msg->_impl_.cpp_settings_;
 }
 const ::google::api::PhpSettings&
 ClientLibrarySettings::_Internal::php_settings(const ClientLibrarySettings* msg) {
-  return *msg->php_settings_;
+  return *msg->_impl_.php_settings_;
 }
 const ::google::api::PythonSettings&
 ClientLibrarySettings::_Internal::python_settings(const ClientLibrarySettings* msg) {
-  return *msg->python_settings_;
+  return *msg->_impl_.python_settings_;
 }
 const ::google::api::NodeSettings&
 ClientLibrarySettings::_Internal::node_settings(const ClientLibrarySettings* msg) {
-  return *msg->node_settings_;
+  return *msg->_impl_.node_settings_;
 }
 const ::google::api::DotnetSettings&
 ClientLibrarySettings::_Internal::dotnet_settings(const ClientLibrarySettings* msg) {
-  return *msg->dotnet_settings_;
+  return *msg->_impl_.dotnet_settings_;
 }
 const ::google::api::RubySettings&
 ClientLibrarySettings::_Internal::ruby_settings(const ClientLibrarySettings* msg) {
-  return *msg->ruby_settings_;
+  return *msg->_impl_.ruby_settings_;
 }
 const ::google::api::GoSettings&
 ClientLibrarySettings::_Internal::go_settings(const ClientLibrarySettings* msg) {
-  return *msg->go_settings_;
+  return *msg->_impl_.go_settings_;
 }
 ClientLibrarySettings::ClientLibrarySettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.ClientLibrarySettings)
 }
 ClientLibrarySettings::ClientLibrarySettings(const ClientLibrarySettings& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ClientLibrarySettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.version_){}
+    , decltype(_impl_.java_settings_){nullptr}
+    , decltype(_impl_.cpp_settings_){nullptr}
+    , decltype(_impl_.php_settings_){nullptr}
+    , decltype(_impl_.python_settings_){nullptr}
+    , decltype(_impl_.node_settings_){nullptr}
+    , decltype(_impl_.dotnet_settings_){nullptr}
+    , decltype(_impl_.ruby_settings_){nullptr}
+    , decltype(_impl_.go_settings_){nullptr}
+    , decltype(_impl_.launch_stage_){}
+    , decltype(_impl_.rest_numeric_enums_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  version_.InitDefault();
+  _impl_.version_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    version_.Set("", GetArenaForAllocation());
+    _impl_.version_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_version().empty()) {
-    version_.Set(from._internal_version(), 
-      GetArenaForAllocation());
+    _this->_impl_.version_.Set(from._internal_version(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_java_settings()) {
-    java_settings_ = new ::google::api::JavaSettings(*from.java_settings_);
-  } else {
-    java_settings_ = nullptr;
+    _this->_impl_.java_settings_ = new ::google::api::JavaSettings(*from._impl_.java_settings_);
   }
   if (from._internal_has_cpp_settings()) {
-    cpp_settings_ = new ::google::api::CppSettings(*from.cpp_settings_);
-  } else {
-    cpp_settings_ = nullptr;
+    _this->_impl_.cpp_settings_ = new ::google::api::CppSettings(*from._impl_.cpp_settings_);
   }
   if (from._internal_has_php_settings()) {
-    php_settings_ = new ::google::api::PhpSettings(*from.php_settings_);
-  } else {
-    php_settings_ = nullptr;
+    _this->_impl_.php_settings_ = new ::google::api::PhpSettings(*from._impl_.php_settings_);
   }
   if (from._internal_has_python_settings()) {
-    python_settings_ = new ::google::api::PythonSettings(*from.python_settings_);
-  } else {
-    python_settings_ = nullptr;
+    _this->_impl_.python_settings_ = new ::google::api::PythonSettings(*from._impl_.python_settings_);
   }
   if (from._internal_has_node_settings()) {
-    node_settings_ = new ::google::api::NodeSettings(*from.node_settings_);
-  } else {
-    node_settings_ = nullptr;
+    _this->_impl_.node_settings_ = new ::google::api::NodeSettings(*from._impl_.node_settings_);
   }
   if (from._internal_has_dotnet_settings()) {
-    dotnet_settings_ = new ::google::api::DotnetSettings(*from.dotnet_settings_);
-  } else {
-    dotnet_settings_ = nullptr;
+    _this->_impl_.dotnet_settings_ = new ::google::api::DotnetSettings(*from._impl_.dotnet_settings_);
   }
   if (from._internal_has_ruby_settings()) {
-    ruby_settings_ = new ::google::api::RubySettings(*from.ruby_settings_);
-  } else {
-    ruby_settings_ = nullptr;
+    _this->_impl_.ruby_settings_ = new ::google::api::RubySettings(*from._impl_.ruby_settings_);
   }
   if (from._internal_has_go_settings()) {
-    go_settings_ = new ::google::api::GoSettings(*from.go_settings_);
-  } else {
-    go_settings_ = nullptr;
+    _this->_impl_.go_settings_ = new ::google::api::GoSettings(*from._impl_.go_settings_);
   }
-  ::memcpy(&launch_stage_, &from.launch_stage_,
-    static_cast<size_t>(reinterpret_cast<char*>(&rest_numeric_enums_) -
-    reinterpret_cast<char*>(&launch_stage_)) + sizeof(rest_numeric_enums_));
+  ::memcpy(&_impl_.launch_stage_, &from._impl_.launch_stage_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.rest_numeric_enums_) -
+    reinterpret_cast<char*>(&_impl_.launch_stage_)) + sizeof(_impl_.rest_numeric_enums_));
   // @@protoc_insertion_point(copy_constructor:google.api.ClientLibrarySettings)
 }
 
-inline void ClientLibrarySettings::SharedCtor() {
-version_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  version_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&java_settings_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&rest_numeric_enums_) -
-    reinterpret_cast<char*>(&java_settings_)) + sizeof(rest_numeric_enums_));
+inline void ClientLibrarySettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.version_){}
+    , decltype(_impl_.java_settings_){nullptr}
+    , decltype(_impl_.cpp_settings_){nullptr}
+    , decltype(_impl_.php_settings_){nullptr}
+    , decltype(_impl_.python_settings_){nullptr}
+    , decltype(_impl_.node_settings_){nullptr}
+    , decltype(_impl_.dotnet_settings_){nullptr}
+    , decltype(_impl_.ruby_settings_){nullptr}
+    , decltype(_impl_.go_settings_){nullptr}
+    , decltype(_impl_.launch_stage_){0}
+    , decltype(_impl_.rest_numeric_enums_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ClientLibrarySettings::~ClientLibrarySettings() {
@@ -1113,19 +1149,19 @@ ClientLibrarySettings::~ClientLibrarySettings() {
 
 inline void ClientLibrarySettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  version_.Destroy();
-  if (this != internal_default_instance()) delete java_settings_;
-  if (this != internal_default_instance()) delete cpp_settings_;
-  if (this != internal_default_instance()) delete php_settings_;
-  if (this != internal_default_instance()) delete python_settings_;
-  if (this != internal_default_instance()) delete node_settings_;
-  if (this != internal_default_instance()) delete dotnet_settings_;
-  if (this != internal_default_instance()) delete ruby_settings_;
-  if (this != internal_default_instance()) delete go_settings_;
+  _impl_.version_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.java_settings_;
+  if (this != internal_default_instance()) delete _impl_.cpp_settings_;
+  if (this != internal_default_instance()) delete _impl_.php_settings_;
+  if (this != internal_default_instance()) delete _impl_.python_settings_;
+  if (this != internal_default_instance()) delete _impl_.node_settings_;
+  if (this != internal_default_instance()) delete _impl_.dotnet_settings_;
+  if (this != internal_default_instance()) delete _impl_.ruby_settings_;
+  if (this != internal_default_instance()) delete _impl_.go_settings_;
 }
 
 void ClientLibrarySettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ClientLibrarySettings::Clear() {
@@ -1134,42 +1170,42 @@ void ClientLibrarySettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  version_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && java_settings_ != nullptr) {
-    delete java_settings_;
+  _impl_.version_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.java_settings_ != nullptr) {
+    delete _impl_.java_settings_;
   }
-  java_settings_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && cpp_settings_ != nullptr) {
-    delete cpp_settings_;
+  _impl_.java_settings_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.cpp_settings_ != nullptr) {
+    delete _impl_.cpp_settings_;
   }
-  cpp_settings_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && php_settings_ != nullptr) {
-    delete php_settings_;
+  _impl_.cpp_settings_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.php_settings_ != nullptr) {
+    delete _impl_.php_settings_;
   }
-  php_settings_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && python_settings_ != nullptr) {
-    delete python_settings_;
+  _impl_.php_settings_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.python_settings_ != nullptr) {
+    delete _impl_.python_settings_;
   }
-  python_settings_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && node_settings_ != nullptr) {
-    delete node_settings_;
+  _impl_.python_settings_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.node_settings_ != nullptr) {
+    delete _impl_.node_settings_;
   }
-  node_settings_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && dotnet_settings_ != nullptr) {
-    delete dotnet_settings_;
+  _impl_.node_settings_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.dotnet_settings_ != nullptr) {
+    delete _impl_.dotnet_settings_;
   }
-  dotnet_settings_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && ruby_settings_ != nullptr) {
-    delete ruby_settings_;
+  _impl_.dotnet_settings_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.ruby_settings_ != nullptr) {
+    delete _impl_.ruby_settings_;
   }
-  ruby_settings_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && go_settings_ != nullptr) {
-    delete go_settings_;
+  _impl_.ruby_settings_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.go_settings_ != nullptr) {
+    delete _impl_.go_settings_;
   }
-  go_settings_ = nullptr;
-  ::memset(&launch_stage_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&rest_numeric_enums_) -
-      reinterpret_cast<char*>(&launch_stage_)) + sizeof(rest_numeric_enums_));
+  _impl_.go_settings_ = nullptr;
+  ::memset(&_impl_.launch_stage_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.rest_numeric_enums_) -
+      reinterpret_cast<char*>(&_impl_.launch_stage_)) + sizeof(_impl_.rest_numeric_enums_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1201,7 +1237,7 @@ const char* ClientLibrarySettings::_InternalParse(const char* ptr, ::_pbi::Parse
       // bool rest_numeric_enums = 3 [json_name = "restNumericEnums"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          rest_numeric_enums_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.rest_numeric_enums_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1405,56 +1441,56 @@ size_t ClientLibrarySettings::ByteSizeLong() const {
   if (this->_internal_has_java_settings()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *java_settings_);
+        *_impl_.java_settings_);
   }
 
   // .google.api.CppSettings cpp_settings = 22 [json_name = "cppSettings"];
   if (this->_internal_has_cpp_settings()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *cpp_settings_);
+        *_impl_.cpp_settings_);
   }
 
   // .google.api.PhpSettings php_settings = 23 [json_name = "phpSettings"];
   if (this->_internal_has_php_settings()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *php_settings_);
+        *_impl_.php_settings_);
   }
 
   // .google.api.PythonSettings python_settings = 24 [json_name = "pythonSettings"];
   if (this->_internal_has_python_settings()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *python_settings_);
+        *_impl_.python_settings_);
   }
 
   // .google.api.NodeSettings node_settings = 25 [json_name = "nodeSettings"];
   if (this->_internal_has_node_settings()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *node_settings_);
+        *_impl_.node_settings_);
   }
 
   // .google.api.DotnetSettings dotnet_settings = 26 [json_name = "dotnetSettings"];
   if (this->_internal_has_dotnet_settings()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *dotnet_settings_);
+        *_impl_.dotnet_settings_);
   }
 
   // .google.api.RubySettings ruby_settings = 27 [json_name = "rubySettings"];
   if (this->_internal_has_ruby_settings()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *ruby_settings_);
+        *_impl_.ruby_settings_);
   }
 
   // .google.api.GoSettings go_settings = 28 [json_name = "goSettings"];
   if (this->_internal_has_go_settings()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *go_settings_);
+        *_impl_.go_settings_);
   }
 
   // .google.api.LaunchStage launch_stage = 2 [json_name = "launchStage"];
@@ -1468,62 +1504,66 @@ size_t ClientLibrarySettings::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ClientLibrarySettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ClientLibrarySettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ClientLibrarySettings::GetClassData() const { return &_class_data_; }
 
-void ClientLibrarySettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ClientLibrarySettings *>(to)->MergeFrom(
-      static_cast<const ClientLibrarySettings &>(from));
-}
 
-
-void ClientLibrarySettings::MergeFrom(const ClientLibrarySettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.ClientLibrarySettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void ClientLibrarySettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ClientLibrarySettings*>(&to_msg);
+  auto& from = static_cast<const ClientLibrarySettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.ClientLibrarySettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_version().empty()) {
-    _internal_set_version(from._internal_version());
+    _this->_internal_set_version(from._internal_version());
   }
   if (from._internal_has_java_settings()) {
-    _internal_mutable_java_settings()->::google::api::JavaSettings::MergeFrom(from._internal_java_settings());
+    _this->_internal_mutable_java_settings()->::google::api::JavaSettings::MergeFrom(
+        from._internal_java_settings());
   }
   if (from._internal_has_cpp_settings()) {
-    _internal_mutable_cpp_settings()->::google::api::CppSettings::MergeFrom(from._internal_cpp_settings());
+    _this->_internal_mutable_cpp_settings()->::google::api::CppSettings::MergeFrom(
+        from._internal_cpp_settings());
   }
   if (from._internal_has_php_settings()) {
-    _internal_mutable_php_settings()->::google::api::PhpSettings::MergeFrom(from._internal_php_settings());
+    _this->_internal_mutable_php_settings()->::google::api::PhpSettings::MergeFrom(
+        from._internal_php_settings());
   }
   if (from._internal_has_python_settings()) {
-    _internal_mutable_python_settings()->::google::api::PythonSettings::MergeFrom(from._internal_python_settings());
+    _this->_internal_mutable_python_settings()->::google::api::PythonSettings::MergeFrom(
+        from._internal_python_settings());
   }
   if (from._internal_has_node_settings()) {
-    _internal_mutable_node_settings()->::google::api::NodeSettings::MergeFrom(from._internal_node_settings());
+    _this->_internal_mutable_node_settings()->::google::api::NodeSettings::MergeFrom(
+        from._internal_node_settings());
   }
   if (from._internal_has_dotnet_settings()) {
-    _internal_mutable_dotnet_settings()->::google::api::DotnetSettings::MergeFrom(from._internal_dotnet_settings());
+    _this->_internal_mutable_dotnet_settings()->::google::api::DotnetSettings::MergeFrom(
+        from._internal_dotnet_settings());
   }
   if (from._internal_has_ruby_settings()) {
-    _internal_mutable_ruby_settings()->::google::api::RubySettings::MergeFrom(from._internal_ruby_settings());
+    _this->_internal_mutable_ruby_settings()->::google::api::RubySettings::MergeFrom(
+        from._internal_ruby_settings());
   }
   if (from._internal_has_go_settings()) {
-    _internal_mutable_go_settings()->::google::api::GoSettings::MergeFrom(from._internal_go_settings());
+    _this->_internal_mutable_go_settings()->::google::api::GoSettings::MergeFrom(
+        from._internal_go_settings());
   }
   if (from._internal_launch_stage() != 0) {
-    _internal_set_launch_stage(from._internal_launch_stage());
+    _this->_internal_set_launch_stage(from._internal_launch_stage());
   }
   if (from._internal_rest_numeric_enums() != 0) {
-    _internal_set_rest_numeric_enums(from._internal_rest_numeric_enums());
+    _this->_internal_set_rest_numeric_enums(from._internal_rest_numeric_enums());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ClientLibrarySettings::CopyFrom(const ClientLibrarySettings& from) {
@@ -1543,15 +1583,15 @@ void ClientLibrarySettings::InternalSwap(ClientLibrarySettings* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &version_, lhs_arena,
-      &other->version_, rhs_arena
+      &_impl_.version_, lhs_arena,
+      &other->_impl_.version_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ClientLibrarySettings, rest_numeric_enums_)
-      + sizeof(ClientLibrarySettings::rest_numeric_enums_)
-      - PROTOBUF_FIELD_OFFSET(ClientLibrarySettings, java_settings_)>(
-          reinterpret_cast<char*>(&java_settings_),
-          reinterpret_cast<char*>(&other->java_settings_));
+      PROTOBUF_FIELD_OFFSET(ClientLibrarySettings, _impl_.rest_numeric_enums_)
+      + sizeof(ClientLibrarySettings::_impl_.rest_numeric_enums_)
+      - PROTOBUF_FIELD_OFFSET(ClientLibrarySettings, _impl_.java_settings_)>(
+          reinterpret_cast<char*>(&_impl_.java_settings_),
+          reinterpret_cast<char*>(&other->_impl_.java_settings_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ClientLibrarySettings::GetMetadata() const {
@@ -1568,109 +1608,134 @@ class Publishing::_Internal {
 
 Publishing::Publishing(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  method_settings_(arena),
-  codeowner_github_teams_(arena),
-  library_settings_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.Publishing)
 }
 Publishing::Publishing(const Publishing& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      method_settings_(from.method_settings_),
-      codeowner_github_teams_(from.codeowner_github_teams_),
-      library_settings_(from.library_settings_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Publishing* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.method_settings_){from._impl_.method_settings_}
+    , decltype(_impl_.codeowner_github_teams_){from._impl_.codeowner_github_teams_}
+    , decltype(_impl_.library_settings_){from._impl_.library_settings_}
+    , decltype(_impl_.new_issue_uri_){}
+    , decltype(_impl_.documentation_uri_){}
+    , decltype(_impl_.api_short_name_){}
+    , decltype(_impl_.github_label_){}
+    , decltype(_impl_.doc_tag_prefix_){}
+    , decltype(_impl_.proto_reference_documentation_uri_){}
+    , decltype(_impl_.rest_reference_documentation_uri_){}
+    , decltype(_impl_.organization_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  new_issue_uri_.InitDefault();
+  _impl_.new_issue_uri_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    new_issue_uri_.Set("", GetArenaForAllocation());
+    _impl_.new_issue_uri_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_new_issue_uri().empty()) {
-    new_issue_uri_.Set(from._internal_new_issue_uri(), 
-      GetArenaForAllocation());
+    _this->_impl_.new_issue_uri_.Set(from._internal_new_issue_uri(), 
+      _this->GetArenaForAllocation());
   }
-  documentation_uri_.InitDefault();
+  _impl_.documentation_uri_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    documentation_uri_.Set("", GetArenaForAllocation());
+    _impl_.documentation_uri_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_documentation_uri().empty()) {
-    documentation_uri_.Set(from._internal_documentation_uri(), 
-      GetArenaForAllocation());
+    _this->_impl_.documentation_uri_.Set(from._internal_documentation_uri(), 
+      _this->GetArenaForAllocation());
   }
-  api_short_name_.InitDefault();
+  _impl_.api_short_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    api_short_name_.Set("", GetArenaForAllocation());
+    _impl_.api_short_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_api_short_name().empty()) {
-    api_short_name_.Set(from._internal_api_short_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.api_short_name_.Set(from._internal_api_short_name(), 
+      _this->GetArenaForAllocation());
   }
-  github_label_.InitDefault();
+  _impl_.github_label_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    github_label_.Set("", GetArenaForAllocation());
+    _impl_.github_label_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_github_label().empty()) {
-    github_label_.Set(from._internal_github_label(), 
-      GetArenaForAllocation());
+    _this->_impl_.github_label_.Set(from._internal_github_label(), 
+      _this->GetArenaForAllocation());
   }
-  doc_tag_prefix_.InitDefault();
+  _impl_.doc_tag_prefix_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    doc_tag_prefix_.Set("", GetArenaForAllocation());
+    _impl_.doc_tag_prefix_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_doc_tag_prefix().empty()) {
-    doc_tag_prefix_.Set(from._internal_doc_tag_prefix(), 
-      GetArenaForAllocation());
+    _this->_impl_.doc_tag_prefix_.Set(from._internal_doc_tag_prefix(), 
+      _this->GetArenaForAllocation());
   }
-  proto_reference_documentation_uri_.InitDefault();
+  _impl_.proto_reference_documentation_uri_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    proto_reference_documentation_uri_.Set("", GetArenaForAllocation());
+    _impl_.proto_reference_documentation_uri_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_proto_reference_documentation_uri().empty()) {
-    proto_reference_documentation_uri_.Set(from._internal_proto_reference_documentation_uri(), 
-      GetArenaForAllocation());
+    _this->_impl_.proto_reference_documentation_uri_.Set(from._internal_proto_reference_documentation_uri(), 
+      _this->GetArenaForAllocation());
   }
-  rest_reference_documentation_uri_.InitDefault();
+  _impl_.rest_reference_documentation_uri_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    rest_reference_documentation_uri_.Set("", GetArenaForAllocation());
+    _impl_.rest_reference_documentation_uri_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_rest_reference_documentation_uri().empty()) {
-    rest_reference_documentation_uri_.Set(from._internal_rest_reference_documentation_uri(), 
-      GetArenaForAllocation());
+    _this->_impl_.rest_reference_documentation_uri_.Set(from._internal_rest_reference_documentation_uri(), 
+      _this->GetArenaForAllocation());
   }
-  organization_ = from.organization_;
+  _this->_impl_.organization_ = from._impl_.organization_;
   // @@protoc_insertion_point(copy_constructor:google.api.Publishing)
 }
 
-inline void Publishing::SharedCtor() {
-new_issue_uri_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  new_issue_uri_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-documentation_uri_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  documentation_uri_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-api_short_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  api_short_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-github_label_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  github_label_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-doc_tag_prefix_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  doc_tag_prefix_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-proto_reference_documentation_uri_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  proto_reference_documentation_uri_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-rest_reference_documentation_uri_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  rest_reference_documentation_uri_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-organization_ = 0;
+inline void Publishing::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.method_settings_){arena}
+    , decltype(_impl_.codeowner_github_teams_){arena}
+    , decltype(_impl_.library_settings_){arena}
+    , decltype(_impl_.new_issue_uri_){}
+    , decltype(_impl_.documentation_uri_){}
+    , decltype(_impl_.api_short_name_){}
+    , decltype(_impl_.github_label_){}
+    , decltype(_impl_.doc_tag_prefix_){}
+    , decltype(_impl_.proto_reference_documentation_uri_){}
+    , decltype(_impl_.rest_reference_documentation_uri_){}
+    , decltype(_impl_.organization_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.new_issue_uri_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.new_issue_uri_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.documentation_uri_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.documentation_uri_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.api_short_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.api_short_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.github_label_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.github_label_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.doc_tag_prefix_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.doc_tag_prefix_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.proto_reference_documentation_uri_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.proto_reference_documentation_uri_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.rest_reference_documentation_uri_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.rest_reference_documentation_uri_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Publishing::~Publishing() {
@@ -1684,17 +1749,20 @@ Publishing::~Publishing() {
 
 inline void Publishing::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  new_issue_uri_.Destroy();
-  documentation_uri_.Destroy();
-  api_short_name_.Destroy();
-  github_label_.Destroy();
-  doc_tag_prefix_.Destroy();
-  proto_reference_documentation_uri_.Destroy();
-  rest_reference_documentation_uri_.Destroy();
+  _impl_.method_settings_.~RepeatedPtrField();
+  _impl_.codeowner_github_teams_.~RepeatedPtrField();
+  _impl_.library_settings_.~RepeatedPtrField();
+  _impl_.new_issue_uri_.Destroy();
+  _impl_.documentation_uri_.Destroy();
+  _impl_.api_short_name_.Destroy();
+  _impl_.github_label_.Destroy();
+  _impl_.doc_tag_prefix_.Destroy();
+  _impl_.proto_reference_documentation_uri_.Destroy();
+  _impl_.rest_reference_documentation_uri_.Destroy();
 }
 
 void Publishing::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Publishing::Clear() {
@@ -1703,17 +1771,17 @@ void Publishing::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  method_settings_.Clear();
-  codeowner_github_teams_.Clear();
-  library_settings_.Clear();
-  new_issue_uri_.ClearToEmpty();
-  documentation_uri_.ClearToEmpty();
-  api_short_name_.ClearToEmpty();
-  github_label_.ClearToEmpty();
-  doc_tag_prefix_.ClearToEmpty();
-  proto_reference_documentation_uri_.ClearToEmpty();
-  rest_reference_documentation_uri_.ClearToEmpty();
-  organization_ = 0;
+  _impl_.method_settings_.Clear();
+  _impl_.codeowner_github_teams_.Clear();
+  _impl_.library_settings_.Clear();
+  _impl_.new_issue_uri_.ClearToEmpty();
+  _impl_.documentation_uri_.ClearToEmpty();
+  _impl_.api_short_name_.ClearToEmpty();
+  _impl_.github_label_.ClearToEmpty();
+  _impl_.doc_tag_prefix_.ClearToEmpty();
+  _impl_.proto_reference_documentation_uri_.ClearToEmpty();
+  _impl_.rest_reference_documentation_uri_.ClearToEmpty();
+  _impl_.organization_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1993,22 +2061,22 @@ size_t Publishing::ByteSizeLong() const {
 
   // repeated .google.api.MethodSettings method_settings = 2 [json_name = "methodSettings"];
   total_size += 1UL * this->_internal_method_settings_size();
-  for (const auto& msg : this->method_settings_) {
+  for (const auto& msg : this->_impl_.method_settings_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated string codeowner_github_teams = 105 [json_name = "codeownerGithubTeams"];
   total_size += 2 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(codeowner_github_teams_.size());
-  for (int i = 0, n = codeowner_github_teams_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.codeowner_github_teams_.size());
+  for (int i = 0, n = _impl_.codeowner_github_teams_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      codeowner_github_teams_.Get(i));
+      _impl_.codeowner_github_teams_.Get(i));
   }
 
   // repeated .google.api.ClientLibrarySettings library_settings = 109 [json_name = "librarySettings"];
   total_size += 2UL * this->_internal_library_settings_size();
-  for (const auto& msg : this->library_settings_) {
+  for (const auto& msg : this->_impl_.library_settings_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -2068,56 +2136,52 @@ size_t Publishing::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_organization());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Publishing::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Publishing::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Publishing::GetClassData() const { return &_class_data_; }
 
-void Publishing::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Publishing *>(to)->MergeFrom(
-      static_cast<const Publishing &>(from));
-}
 
-
-void Publishing::MergeFrom(const Publishing& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.Publishing)
-  GOOGLE_DCHECK_NE(&from, this);
+void Publishing::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Publishing*>(&to_msg);
+  auto& from = static_cast<const Publishing&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.Publishing)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  method_settings_.MergeFrom(from.method_settings_);
-  codeowner_github_teams_.MergeFrom(from.codeowner_github_teams_);
-  library_settings_.MergeFrom(from.library_settings_);
+  _this->_impl_.method_settings_.MergeFrom(from._impl_.method_settings_);
+  _this->_impl_.codeowner_github_teams_.MergeFrom(from._impl_.codeowner_github_teams_);
+  _this->_impl_.library_settings_.MergeFrom(from._impl_.library_settings_);
   if (!from._internal_new_issue_uri().empty()) {
-    _internal_set_new_issue_uri(from._internal_new_issue_uri());
+    _this->_internal_set_new_issue_uri(from._internal_new_issue_uri());
   }
   if (!from._internal_documentation_uri().empty()) {
-    _internal_set_documentation_uri(from._internal_documentation_uri());
+    _this->_internal_set_documentation_uri(from._internal_documentation_uri());
   }
   if (!from._internal_api_short_name().empty()) {
-    _internal_set_api_short_name(from._internal_api_short_name());
+    _this->_internal_set_api_short_name(from._internal_api_short_name());
   }
   if (!from._internal_github_label().empty()) {
-    _internal_set_github_label(from._internal_github_label());
+    _this->_internal_set_github_label(from._internal_github_label());
   }
   if (!from._internal_doc_tag_prefix().empty()) {
-    _internal_set_doc_tag_prefix(from._internal_doc_tag_prefix());
+    _this->_internal_set_doc_tag_prefix(from._internal_doc_tag_prefix());
   }
   if (!from._internal_proto_reference_documentation_uri().empty()) {
-    _internal_set_proto_reference_documentation_uri(from._internal_proto_reference_documentation_uri());
+    _this->_internal_set_proto_reference_documentation_uri(from._internal_proto_reference_documentation_uri());
   }
   if (!from._internal_rest_reference_documentation_uri().empty()) {
-    _internal_set_rest_reference_documentation_uri(from._internal_rest_reference_documentation_uri());
+    _this->_internal_set_rest_reference_documentation_uri(from._internal_rest_reference_documentation_uri());
   }
   if (from._internal_organization() != 0) {
-    _internal_set_organization(from._internal_organization());
+    _this->_internal_set_organization(from._internal_organization());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Publishing::CopyFrom(const Publishing& from) {
@@ -2136,38 +2200,38 @@ void Publishing::InternalSwap(Publishing* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  method_settings_.InternalSwap(&other->method_settings_);
-  codeowner_github_teams_.InternalSwap(&other->codeowner_github_teams_);
-  library_settings_.InternalSwap(&other->library_settings_);
+  _impl_.method_settings_.InternalSwap(&other->_impl_.method_settings_);
+  _impl_.codeowner_github_teams_.InternalSwap(&other->_impl_.codeowner_github_teams_);
+  _impl_.library_settings_.InternalSwap(&other->_impl_.library_settings_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &new_issue_uri_, lhs_arena,
-      &other->new_issue_uri_, rhs_arena
+      &_impl_.new_issue_uri_, lhs_arena,
+      &other->_impl_.new_issue_uri_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &documentation_uri_, lhs_arena,
-      &other->documentation_uri_, rhs_arena
+      &_impl_.documentation_uri_, lhs_arena,
+      &other->_impl_.documentation_uri_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &api_short_name_, lhs_arena,
-      &other->api_short_name_, rhs_arena
+      &_impl_.api_short_name_, lhs_arena,
+      &other->_impl_.api_short_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &github_label_, lhs_arena,
-      &other->github_label_, rhs_arena
+      &_impl_.github_label_, lhs_arena,
+      &other->_impl_.github_label_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &doc_tag_prefix_, lhs_arena,
-      &other->doc_tag_prefix_, rhs_arena
+      &_impl_.doc_tag_prefix_, lhs_arena,
+      &other->_impl_.doc_tag_prefix_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &proto_reference_documentation_uri_, lhs_arena,
-      &other->proto_reference_documentation_uri_, rhs_arena
+      &_impl_.proto_reference_documentation_uri_, lhs_arena,
+      &other->_impl_.proto_reference_documentation_uri_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &rest_reference_documentation_uri_, lhs_arena,
-      &other->rest_reference_documentation_uri_, rhs_arena
+      &_impl_.rest_reference_documentation_uri_, lhs_arena,
+      &other->_impl_.rest_reference_documentation_uri_, rhs_arena
   );
-  swap(organization_, other->organization_);
+  swap(_impl_.organization_, other->_impl_.organization_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Publishing::GetMetadata() const {
@@ -2199,13 +2263,12 @@ class JavaSettings::_Internal {
 
 const ::google::api::CommonLanguageSettings&
 JavaSettings::_Internal::common(const JavaSettings* msg) {
-  return *msg->common_;
+  return *msg->_impl_.common_;
 }
 JavaSettings::JavaSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  service_class_names_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &JavaSettings::ArenaDtor);
   }
@@ -2213,30 +2276,43 @@ JavaSettings::JavaSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 JavaSettings::JavaSettings(const JavaSettings& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  JavaSettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.service_class_names_)*/{}
+    , decltype(_impl_.library_package_){}
+    , decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  service_class_names_.MergeFrom(from.service_class_names_);
-  library_package_.InitDefault();
+  _this->_impl_.service_class_names_.MergeFrom(from._impl_.service_class_names_);
+  _impl_.library_package_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    library_package_.Set("", GetArenaForAllocation());
+    _impl_.library_package_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_library_package().empty()) {
-    library_package_.Set(from._internal_library_package(), 
-      GetArenaForAllocation());
+    _this->_impl_.library_package_.Set(from._internal_library_package(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_common()) {
-    common_ = new ::google::api::CommonLanguageSettings(*from.common_);
-  } else {
-    common_ = nullptr;
+    _this->_impl_.common_ = new ::google::api::CommonLanguageSettings(*from._impl_.common_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.JavaSettings)
 }
 
-inline void JavaSettings::SharedCtor() {
-library_package_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  library_package_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-common_ = nullptr;
+inline void JavaSettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.service_class_names_)*/{::_pbi::ArenaInitialized(), arena}
+    , decltype(_impl_.library_package_){}
+    , decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.library_package_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.library_package_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 JavaSettings::~JavaSettings() {
@@ -2251,17 +2327,18 @@ JavaSettings::~JavaSettings() {
 
 inline void JavaSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  service_class_names_.Destruct();
-  library_package_.Destroy();
-  if (this != internal_default_instance()) delete common_;
+  _impl_.service_class_names_.Destruct();
+  _impl_.service_class_names_.~MapField();
+  _impl_.library_package_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.common_;
 }
 
 void JavaSettings::ArenaDtor(void* object) {
   JavaSettings* _this = reinterpret_cast< JavaSettings* >(object);
-  _this->service_class_names_.Destruct();
+  _this->_impl_.service_class_names_.Destruct();
 }
 void JavaSettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void JavaSettings::Clear() {
@@ -2270,12 +2347,12 @@ void JavaSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  service_class_names_.Clear();
-  library_package_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
-    delete common_;
+  _impl_.service_class_names_.Clear();
+  _impl_.library_package_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.common_ != nullptr) {
+    delete _impl_.common_;
   }
-  common_ = nullptr;
+  _impl_.common_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2301,7 +2378,7 @@ const char* JavaSettings::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&service_class_names_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.service_class_names_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
@@ -2428,39 +2505,36 @@ size_t JavaSettings::ByteSizeLong() const {
   if (this->_internal_has_common()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *common_);
+        *_impl_.common_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData JavaSettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     JavaSettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*JavaSettings::GetClassData() const { return &_class_data_; }
 
-void JavaSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<JavaSettings *>(to)->MergeFrom(
-      static_cast<const JavaSettings &>(from));
-}
 
-
-void JavaSettings::MergeFrom(const JavaSettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.JavaSettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void JavaSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<JavaSettings*>(&to_msg);
+  auto& from = static_cast<const JavaSettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.JavaSettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  service_class_names_.MergeFrom(from.service_class_names_);
+  _this->_impl_.service_class_names_.MergeFrom(from._impl_.service_class_names_);
   if (!from._internal_library_package().empty()) {
-    _internal_set_library_package(from._internal_library_package());
+    _this->_internal_set_library_package(from._internal_library_package());
   }
   if (from._internal_has_common()) {
-    _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
+    _this->_internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(
+        from._internal_common());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void JavaSettings::CopyFrom(const JavaSettings& from) {
@@ -2479,12 +2553,12 @@ void JavaSettings::InternalSwap(JavaSettings* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  service_class_names_.InternalSwap(&other->service_class_names_);
+  _impl_.service_class_names_.InternalSwap(&other->_impl_.service_class_names_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &library_package_, lhs_arena,
-      &other->library_package_, rhs_arena
+      &_impl_.library_package_, lhs_arena,
+      &other->_impl_.library_package_, rhs_arena
   );
-  swap(common_, other->common_);
+  swap(_impl_.common_, other->_impl_.common_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata JavaSettings::GetMetadata() const {
@@ -2502,27 +2576,36 @@ class CppSettings::_Internal {
 
 const ::google::api::CommonLanguageSettings&
 CppSettings::_Internal::common(const CppSettings* msg) {
-  return *msg->common_;
+  return *msg->_impl_.common_;
 }
 CppSettings::CppSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.CppSettings)
 }
 CppSettings::CppSettings(const CppSettings& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CppSettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_common()) {
-    common_ = new ::google::api::CommonLanguageSettings(*from.common_);
-  } else {
-    common_ = nullptr;
+    _this->_impl_.common_ = new ::google::api::CommonLanguageSettings(*from._impl_.common_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.CppSettings)
 }
 
-inline void CppSettings::SharedCtor() {
-common_ = nullptr;
+inline void CppSettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 CppSettings::~CppSettings() {
@@ -2536,11 +2619,11 @@ CppSettings::~CppSettings() {
 
 inline void CppSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete common_;
+  if (this != internal_default_instance()) delete _impl_.common_;
 }
 
 void CppSettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void CppSettings::Clear() {
@@ -2549,10 +2632,10 @@ void CppSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
-    delete common_;
+  if (GetArenaForAllocation() == nullptr && _impl_.common_ != nullptr) {
+    delete _impl_.common_;
   }
-  common_ = nullptr;
+  _impl_.common_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2626,35 +2709,32 @@ size_t CppSettings::ByteSizeLong() const {
   if (this->_internal_has_common()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *common_);
+        *_impl_.common_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CppSettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     CppSettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CppSettings::GetClassData() const { return &_class_data_; }
 
-void CppSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<CppSettings *>(to)->MergeFrom(
-      static_cast<const CppSettings &>(from));
-}
 
-
-void CppSettings::MergeFrom(const CppSettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.CppSettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void CppSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CppSettings*>(&to_msg);
+  auto& from = static_cast<const CppSettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.CppSettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_common()) {
-    _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
+    _this->_internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(
+        from._internal_common());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CppSettings::CopyFrom(const CppSettings& from) {
@@ -2671,7 +2751,7 @@ bool CppSettings::IsInitialized() const {
 void CppSettings::InternalSwap(CppSettings* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(common_, other->common_);
+  swap(_impl_.common_, other->_impl_.common_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CppSettings::GetMetadata() const {
@@ -2689,27 +2769,36 @@ class PhpSettings::_Internal {
 
 const ::google::api::CommonLanguageSettings&
 PhpSettings::_Internal::common(const PhpSettings* msg) {
-  return *msg->common_;
+  return *msg->_impl_.common_;
 }
 PhpSettings::PhpSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.PhpSettings)
 }
 PhpSettings::PhpSettings(const PhpSettings& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  PhpSettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_common()) {
-    common_ = new ::google::api::CommonLanguageSettings(*from.common_);
-  } else {
-    common_ = nullptr;
+    _this->_impl_.common_ = new ::google::api::CommonLanguageSettings(*from._impl_.common_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.PhpSettings)
 }
 
-inline void PhpSettings::SharedCtor() {
-common_ = nullptr;
+inline void PhpSettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 PhpSettings::~PhpSettings() {
@@ -2723,11 +2812,11 @@ PhpSettings::~PhpSettings() {
 
 inline void PhpSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete common_;
+  if (this != internal_default_instance()) delete _impl_.common_;
 }
 
 void PhpSettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void PhpSettings::Clear() {
@@ -2736,10 +2825,10 @@ void PhpSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
-    delete common_;
+  if (GetArenaForAllocation() == nullptr && _impl_.common_ != nullptr) {
+    delete _impl_.common_;
   }
-  common_ = nullptr;
+  _impl_.common_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2813,35 +2902,32 @@ size_t PhpSettings::ByteSizeLong() const {
   if (this->_internal_has_common()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *common_);
+        *_impl_.common_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PhpSettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     PhpSettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PhpSettings::GetClassData() const { return &_class_data_; }
 
-void PhpSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PhpSettings *>(to)->MergeFrom(
-      static_cast<const PhpSettings &>(from));
-}
 
-
-void PhpSettings::MergeFrom(const PhpSettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.PhpSettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void PhpSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PhpSettings*>(&to_msg);
+  auto& from = static_cast<const PhpSettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.PhpSettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_common()) {
-    _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
+    _this->_internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(
+        from._internal_common());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PhpSettings::CopyFrom(const PhpSettings& from) {
@@ -2858,7 +2944,7 @@ bool PhpSettings::IsInitialized() const {
 void PhpSettings::InternalSwap(PhpSettings* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(common_, other->common_);
+  swap(_impl_.common_, other->_impl_.common_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PhpSettings::GetMetadata() const {
@@ -2876,23 +2962,35 @@ class PythonSettings_ExperimentalFeatures::_Internal {
 PythonSettings_ExperimentalFeatures::PythonSettings_ExperimentalFeatures(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.PythonSettings.ExperimentalFeatures)
 }
 PythonSettings_ExperimentalFeatures::PythonSettings_ExperimentalFeatures(const PythonSettings_ExperimentalFeatures& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  PythonSettings_ExperimentalFeatures* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.rest_async_io_enabled_){}
+    , decltype(_impl_.protobuf_pythonic_types_enabled_){}
+    , decltype(_impl_.unversioned_package_disabled_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&rest_async_io_enabled_, &from.rest_async_io_enabled_,
-    static_cast<size_t>(reinterpret_cast<char*>(&unversioned_package_disabled_) -
-    reinterpret_cast<char*>(&rest_async_io_enabled_)) + sizeof(unversioned_package_disabled_));
+  ::memcpy(&_impl_.rest_async_io_enabled_, &from._impl_.rest_async_io_enabled_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.unversioned_package_disabled_) -
+    reinterpret_cast<char*>(&_impl_.rest_async_io_enabled_)) + sizeof(_impl_.unversioned_package_disabled_));
   // @@protoc_insertion_point(copy_constructor:google.api.PythonSettings.ExperimentalFeatures)
 }
 
-inline void PythonSettings_ExperimentalFeatures::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&rest_async_io_enabled_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&unversioned_package_disabled_) -
-    reinterpret_cast<char*>(&rest_async_io_enabled_)) + sizeof(unversioned_package_disabled_));
+inline void PythonSettings_ExperimentalFeatures::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.rest_async_io_enabled_){false}
+    , decltype(_impl_.protobuf_pythonic_types_enabled_){false}
+    , decltype(_impl_.unversioned_package_disabled_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 PythonSettings_ExperimentalFeatures::~PythonSettings_ExperimentalFeatures() {
@@ -2909,7 +3007,7 @@ inline void PythonSettings_ExperimentalFeatures::SharedDtor() {
 }
 
 void PythonSettings_ExperimentalFeatures::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void PythonSettings_ExperimentalFeatures::Clear() {
@@ -2918,9 +3016,9 @@ void PythonSettings_ExperimentalFeatures::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&rest_async_io_enabled_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&unversioned_package_disabled_) -
-      reinterpret_cast<char*>(&rest_async_io_enabled_)) + sizeof(unversioned_package_disabled_));
+  ::memset(&_impl_.rest_async_io_enabled_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.unversioned_package_disabled_) -
+      reinterpret_cast<char*>(&_impl_.rest_async_io_enabled_)) + sizeof(_impl_.unversioned_package_disabled_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2933,7 +3031,7 @@ const char* PythonSettings_ExperimentalFeatures::_InternalParse(const char* ptr,
       // bool rest_async_io_enabled = 1 [json_name = "restAsyncIoEnabled"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          rest_async_io_enabled_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.rest_async_io_enabled_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2941,7 +3039,7 @@ const char* PythonSettings_ExperimentalFeatures::_InternalParse(const char* ptr,
       // bool protobuf_pythonic_types_enabled = 2 [json_name = "protobufPythonicTypesEnabled"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          protobuf_pythonic_types_enabled_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.protobuf_pythonic_types_enabled_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2949,7 +3047,7 @@ const char* PythonSettings_ExperimentalFeatures::_InternalParse(const char* ptr,
       // bool unversioned_package_disabled = 3 [json_name = "unversionedPackageDisabled"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          unversioned_package_disabled_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.unversioned_package_disabled_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3032,38 +3130,34 @@ size_t PythonSettings_ExperimentalFeatures::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PythonSettings_ExperimentalFeatures::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     PythonSettings_ExperimentalFeatures::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PythonSettings_ExperimentalFeatures::GetClassData() const { return &_class_data_; }
 
-void PythonSettings_ExperimentalFeatures::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PythonSettings_ExperimentalFeatures *>(to)->MergeFrom(
-      static_cast<const PythonSettings_ExperimentalFeatures &>(from));
-}
 
-
-void PythonSettings_ExperimentalFeatures::MergeFrom(const PythonSettings_ExperimentalFeatures& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.PythonSettings.ExperimentalFeatures)
-  GOOGLE_DCHECK_NE(&from, this);
+void PythonSettings_ExperimentalFeatures::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PythonSettings_ExperimentalFeatures*>(&to_msg);
+  auto& from = static_cast<const PythonSettings_ExperimentalFeatures&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.PythonSettings.ExperimentalFeatures)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_rest_async_io_enabled() != 0) {
-    _internal_set_rest_async_io_enabled(from._internal_rest_async_io_enabled());
+    _this->_internal_set_rest_async_io_enabled(from._internal_rest_async_io_enabled());
   }
   if (from._internal_protobuf_pythonic_types_enabled() != 0) {
-    _internal_set_protobuf_pythonic_types_enabled(from._internal_protobuf_pythonic_types_enabled());
+    _this->_internal_set_protobuf_pythonic_types_enabled(from._internal_protobuf_pythonic_types_enabled());
   }
   if (from._internal_unversioned_package_disabled() != 0) {
-    _internal_set_unversioned_package_disabled(from._internal_unversioned_package_disabled());
+    _this->_internal_set_unversioned_package_disabled(from._internal_unversioned_package_disabled());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PythonSettings_ExperimentalFeatures::CopyFrom(const PythonSettings_ExperimentalFeatures& from) {
@@ -3081,11 +3175,11 @@ void PythonSettings_ExperimentalFeatures::InternalSwap(PythonSettings_Experiment
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PythonSettings_ExperimentalFeatures, unversioned_package_disabled_)
-      + sizeof(PythonSettings_ExperimentalFeatures::unversioned_package_disabled_)
-      - PROTOBUF_FIELD_OFFSET(PythonSettings_ExperimentalFeatures, rest_async_io_enabled_)>(
-          reinterpret_cast<char*>(&rest_async_io_enabled_),
-          reinterpret_cast<char*>(&other->rest_async_io_enabled_));
+      PROTOBUF_FIELD_OFFSET(PythonSettings_ExperimentalFeatures, _impl_.unversioned_package_disabled_)
+      + sizeof(PythonSettings_ExperimentalFeatures::_impl_.unversioned_package_disabled_)
+      - PROTOBUF_FIELD_OFFSET(PythonSettings_ExperimentalFeatures, _impl_.rest_async_io_enabled_)>(
+          reinterpret_cast<char*>(&_impl_.rest_async_io_enabled_),
+          reinterpret_cast<char*>(&other->_impl_.rest_async_io_enabled_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PythonSettings_ExperimentalFeatures::GetMetadata() const {
@@ -3104,39 +3198,45 @@ class PythonSettings::_Internal {
 
 const ::google::api::CommonLanguageSettings&
 PythonSettings::_Internal::common(const PythonSettings* msg) {
-  return *msg->common_;
+  return *msg->_impl_.common_;
 }
 const ::google::api::PythonSettings_ExperimentalFeatures&
 PythonSettings::_Internal::experimental_features(const PythonSettings* msg) {
-  return *msg->experimental_features_;
+  return *msg->_impl_.experimental_features_;
 }
 PythonSettings::PythonSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.PythonSettings)
 }
 PythonSettings::PythonSettings(const PythonSettings& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  PythonSettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , decltype(_impl_.experimental_features_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_common()) {
-    common_ = new ::google::api::CommonLanguageSettings(*from.common_);
-  } else {
-    common_ = nullptr;
+    _this->_impl_.common_ = new ::google::api::CommonLanguageSettings(*from._impl_.common_);
   }
   if (from._internal_has_experimental_features()) {
-    experimental_features_ = new ::google::api::PythonSettings_ExperimentalFeatures(*from.experimental_features_);
-  } else {
-    experimental_features_ = nullptr;
+    _this->_impl_.experimental_features_ = new ::google::api::PythonSettings_ExperimentalFeatures(*from._impl_.experimental_features_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.PythonSettings)
 }
 
-inline void PythonSettings::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&common_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&experimental_features_) -
-    reinterpret_cast<char*>(&common_)) + sizeof(experimental_features_));
+inline void PythonSettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , decltype(_impl_.experimental_features_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 PythonSettings::~PythonSettings() {
@@ -3150,12 +3250,12 @@ PythonSettings::~PythonSettings() {
 
 inline void PythonSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete common_;
-  if (this != internal_default_instance()) delete experimental_features_;
+  if (this != internal_default_instance()) delete _impl_.common_;
+  if (this != internal_default_instance()) delete _impl_.experimental_features_;
 }
 
 void PythonSettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void PythonSettings::Clear() {
@@ -3164,14 +3264,14 @@ void PythonSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
-    delete common_;
+  if (GetArenaForAllocation() == nullptr && _impl_.common_ != nullptr) {
+    delete _impl_.common_;
   }
-  common_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && experimental_features_ != nullptr) {
-    delete experimental_features_;
+  _impl_.common_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.experimental_features_ != nullptr) {
+    delete _impl_.experimental_features_;
   }
-  experimental_features_ = nullptr;
+  _impl_.experimental_features_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3260,45 +3360,43 @@ size_t PythonSettings::ByteSizeLong() const {
   if (this->_internal_has_common()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *common_);
+        *_impl_.common_);
   }
 
   // .google.api.PythonSettings.ExperimentalFeatures experimental_features = 2 [json_name = "experimentalFeatures"];
   if (this->_internal_has_experimental_features()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *experimental_features_);
+        *_impl_.experimental_features_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PythonSettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     PythonSettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PythonSettings::GetClassData() const { return &_class_data_; }
 
-void PythonSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PythonSettings *>(to)->MergeFrom(
-      static_cast<const PythonSettings &>(from));
-}
 
-
-void PythonSettings::MergeFrom(const PythonSettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.PythonSettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void PythonSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PythonSettings*>(&to_msg);
+  auto& from = static_cast<const PythonSettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.PythonSettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_common()) {
-    _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
+    _this->_internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(
+        from._internal_common());
   }
   if (from._internal_has_experimental_features()) {
-    _internal_mutable_experimental_features()->::google::api::PythonSettings_ExperimentalFeatures::MergeFrom(from._internal_experimental_features());
+    _this->_internal_mutable_experimental_features()->::google::api::PythonSettings_ExperimentalFeatures::MergeFrom(
+        from._internal_experimental_features());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PythonSettings::CopyFrom(const PythonSettings& from) {
@@ -3316,11 +3414,11 @@ void PythonSettings::InternalSwap(PythonSettings* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PythonSettings, experimental_features_)
-      + sizeof(PythonSettings::experimental_features_)
-      - PROTOBUF_FIELD_OFFSET(PythonSettings, common_)>(
-          reinterpret_cast<char*>(&common_),
-          reinterpret_cast<char*>(&other->common_));
+      PROTOBUF_FIELD_OFFSET(PythonSettings, _impl_.experimental_features_)
+      + sizeof(PythonSettings::_impl_.experimental_features_)
+      - PROTOBUF_FIELD_OFFSET(PythonSettings, _impl_.common_)>(
+          reinterpret_cast<char*>(&_impl_.common_),
+          reinterpret_cast<char*>(&other->_impl_.common_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PythonSettings::GetMetadata() const {
@@ -3338,27 +3436,36 @@ class NodeSettings::_Internal {
 
 const ::google::api::CommonLanguageSettings&
 NodeSettings::_Internal::common(const NodeSettings* msg) {
-  return *msg->common_;
+  return *msg->_impl_.common_;
 }
 NodeSettings::NodeSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.NodeSettings)
 }
 NodeSettings::NodeSettings(const NodeSettings& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  NodeSettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_common()) {
-    common_ = new ::google::api::CommonLanguageSettings(*from.common_);
-  } else {
-    common_ = nullptr;
+    _this->_impl_.common_ = new ::google::api::CommonLanguageSettings(*from._impl_.common_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.NodeSettings)
 }
 
-inline void NodeSettings::SharedCtor() {
-common_ = nullptr;
+inline void NodeSettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 NodeSettings::~NodeSettings() {
@@ -3372,11 +3479,11 @@ NodeSettings::~NodeSettings() {
 
 inline void NodeSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete common_;
+  if (this != internal_default_instance()) delete _impl_.common_;
 }
 
 void NodeSettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void NodeSettings::Clear() {
@@ -3385,10 +3492,10 @@ void NodeSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
-    delete common_;
+  if (GetArenaForAllocation() == nullptr && _impl_.common_ != nullptr) {
+    delete _impl_.common_;
   }
-  common_ = nullptr;
+  _impl_.common_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3462,35 +3569,32 @@ size_t NodeSettings::ByteSizeLong() const {
   if (this->_internal_has_common()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *common_);
+        *_impl_.common_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NodeSettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     NodeSettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NodeSettings::GetClassData() const { return &_class_data_; }
 
-void NodeSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<NodeSettings *>(to)->MergeFrom(
-      static_cast<const NodeSettings &>(from));
-}
 
-
-void NodeSettings::MergeFrom(const NodeSettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.NodeSettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void NodeSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<NodeSettings*>(&to_msg);
+  auto& from = static_cast<const NodeSettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.NodeSettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_common()) {
-    _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
+    _this->_internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(
+        from._internal_common());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void NodeSettings::CopyFrom(const NodeSettings& from) {
@@ -3507,7 +3611,7 @@ bool NodeSettings::IsInitialized() const {
 void NodeSettings::InternalSwap(NodeSettings* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(common_, other->common_);
+  swap(_impl_.common_, other->_impl_.common_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata NodeSettings::GetMetadata() const {
@@ -3553,40 +3657,51 @@ class DotnetSettings::_Internal {
 
 const ::google::api::CommonLanguageSettings&
 DotnetSettings::_Internal::common(const DotnetSettings* msg) {
-  return *msg->common_;
+  return *msg->_impl_.common_;
 }
 DotnetSettings::DotnetSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  renamed_services_(arena),
-  renamed_resources_(arena),
-  ignored_resources_(arena),
-  forced_namespace_aliases_(arena),
-  handwritten_signatures_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &DotnetSettings::ArenaDtor);
   }
   // @@protoc_insertion_point(arena_constructor:google.api.DotnetSettings)
 }
 DotnetSettings::DotnetSettings(const DotnetSettings& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      ignored_resources_(from.ignored_resources_),
-      forced_namespace_aliases_(from.forced_namespace_aliases_),
-      handwritten_signatures_(from.handwritten_signatures_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  DotnetSettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.renamed_services_)*/{}
+    , /*decltype(_impl_.renamed_resources_)*/{}
+    , decltype(_impl_.ignored_resources_){from._impl_.ignored_resources_}
+    , decltype(_impl_.forced_namespace_aliases_){from._impl_.forced_namespace_aliases_}
+    , decltype(_impl_.handwritten_signatures_){from._impl_.handwritten_signatures_}
+    , decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  renamed_services_.MergeFrom(from.renamed_services_);
-  renamed_resources_.MergeFrom(from.renamed_resources_);
+  _this->_impl_.renamed_services_.MergeFrom(from._impl_.renamed_services_);
+  _this->_impl_.renamed_resources_.MergeFrom(from._impl_.renamed_resources_);
   if (from._internal_has_common()) {
-    common_ = new ::google::api::CommonLanguageSettings(*from.common_);
-  } else {
-    common_ = nullptr;
+    _this->_impl_.common_ = new ::google::api::CommonLanguageSettings(*from._impl_.common_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.DotnetSettings)
 }
 
-inline void DotnetSettings::SharedCtor() {
-common_ = nullptr;
+inline void DotnetSettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.renamed_services_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_.renamed_resources_)*/{::_pbi::ArenaInitialized(), arena}
+    , decltype(_impl_.ignored_resources_){arena}
+    , decltype(_impl_.forced_namespace_aliases_){arena}
+    , decltype(_impl_.handwritten_signatures_){arena}
+    , decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 DotnetSettings::~DotnetSettings() {
@@ -3601,18 +3716,23 @@ DotnetSettings::~DotnetSettings() {
 
 inline void DotnetSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  renamed_services_.Destruct();
-  renamed_resources_.Destruct();
-  if (this != internal_default_instance()) delete common_;
+  _impl_.renamed_services_.Destruct();
+  _impl_.renamed_services_.~MapField();
+  _impl_.renamed_resources_.Destruct();
+  _impl_.renamed_resources_.~MapField();
+  _impl_.ignored_resources_.~RepeatedPtrField();
+  _impl_.forced_namespace_aliases_.~RepeatedPtrField();
+  _impl_.handwritten_signatures_.~RepeatedPtrField();
+  if (this != internal_default_instance()) delete _impl_.common_;
 }
 
 void DotnetSettings::ArenaDtor(void* object) {
   DotnetSettings* _this = reinterpret_cast< DotnetSettings* >(object);
-  _this->renamed_services_.Destruct();
-  _this->renamed_resources_.Destruct();
+  _this->_impl_.renamed_services_.Destruct();
+  _this->_impl_.renamed_resources_.Destruct();
 }
 void DotnetSettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void DotnetSettings::Clear() {
@@ -3621,15 +3741,15 @@ void DotnetSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  renamed_services_.Clear();
-  renamed_resources_.Clear();
-  ignored_resources_.Clear();
-  forced_namespace_aliases_.Clear();
-  handwritten_signatures_.Clear();
-  if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
-    delete common_;
+  _impl_.renamed_services_.Clear();
+  _impl_.renamed_resources_.Clear();
+  _impl_.ignored_resources_.Clear();
+  _impl_.forced_namespace_aliases_.Clear();
+  _impl_.handwritten_signatures_.Clear();
+  if (GetArenaForAllocation() == nullptr && _impl_.common_ != nullptr) {
+    delete _impl_.common_;
   }
-  common_ = nullptr;
+  _impl_.common_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3653,7 +3773,7 @@ const char* DotnetSettings::_InternalParse(const char* ptr, ::_pbi::ParseContext
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&renamed_services_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.renamed_services_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
@@ -3666,7 +3786,7 @@ const char* DotnetSettings::_InternalParse(const char* ptr, ::_pbi::ParseContext
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&renamed_resources_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.renamed_resources_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
@@ -3880,66 +4000,63 @@ size_t DotnetSettings::ByteSizeLong() const {
 
   // repeated string ignored_resources = 4 [json_name = "ignoredResources"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(ignored_resources_.size());
-  for (int i = 0, n = ignored_resources_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.ignored_resources_.size());
+  for (int i = 0, n = _impl_.ignored_resources_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      ignored_resources_.Get(i));
+      _impl_.ignored_resources_.Get(i));
   }
 
   // repeated string forced_namespace_aliases = 5 [json_name = "forcedNamespaceAliases"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(forced_namespace_aliases_.size());
-  for (int i = 0, n = forced_namespace_aliases_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.forced_namespace_aliases_.size());
+  for (int i = 0, n = _impl_.forced_namespace_aliases_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      forced_namespace_aliases_.Get(i));
+      _impl_.forced_namespace_aliases_.Get(i));
   }
 
   // repeated string handwritten_signatures = 6 [json_name = "handwrittenSignatures"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(handwritten_signatures_.size());
-  for (int i = 0, n = handwritten_signatures_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.handwritten_signatures_.size());
+  for (int i = 0, n = _impl_.handwritten_signatures_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      handwritten_signatures_.Get(i));
+      _impl_.handwritten_signatures_.Get(i));
   }
 
   // .google.api.CommonLanguageSettings common = 1 [json_name = "common"];
   if (this->_internal_has_common()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *common_);
+        *_impl_.common_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DotnetSettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     DotnetSettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DotnetSettings::GetClassData() const { return &_class_data_; }
 
-void DotnetSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DotnetSettings *>(to)->MergeFrom(
-      static_cast<const DotnetSettings &>(from));
-}
 
-
-void DotnetSettings::MergeFrom(const DotnetSettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.DotnetSettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void DotnetSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<DotnetSettings*>(&to_msg);
+  auto& from = static_cast<const DotnetSettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.DotnetSettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  renamed_services_.MergeFrom(from.renamed_services_);
-  renamed_resources_.MergeFrom(from.renamed_resources_);
-  ignored_resources_.MergeFrom(from.ignored_resources_);
-  forced_namespace_aliases_.MergeFrom(from.forced_namespace_aliases_);
-  handwritten_signatures_.MergeFrom(from.handwritten_signatures_);
+  _this->_impl_.renamed_services_.MergeFrom(from._impl_.renamed_services_);
+  _this->_impl_.renamed_resources_.MergeFrom(from._impl_.renamed_resources_);
+  _this->_impl_.ignored_resources_.MergeFrom(from._impl_.ignored_resources_);
+  _this->_impl_.forced_namespace_aliases_.MergeFrom(from._impl_.forced_namespace_aliases_);
+  _this->_impl_.handwritten_signatures_.MergeFrom(from._impl_.handwritten_signatures_);
   if (from._internal_has_common()) {
-    _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
+    _this->_internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(
+        from._internal_common());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DotnetSettings::CopyFrom(const DotnetSettings& from) {
@@ -3956,12 +4073,12 @@ bool DotnetSettings::IsInitialized() const {
 void DotnetSettings::InternalSwap(DotnetSettings* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  renamed_services_.InternalSwap(&other->renamed_services_);
-  renamed_resources_.InternalSwap(&other->renamed_resources_);
-  ignored_resources_.InternalSwap(&other->ignored_resources_);
-  forced_namespace_aliases_.InternalSwap(&other->forced_namespace_aliases_);
-  handwritten_signatures_.InternalSwap(&other->handwritten_signatures_);
-  swap(common_, other->common_);
+  _impl_.renamed_services_.InternalSwap(&other->_impl_.renamed_services_);
+  _impl_.renamed_resources_.InternalSwap(&other->_impl_.renamed_resources_);
+  _impl_.ignored_resources_.InternalSwap(&other->_impl_.ignored_resources_);
+  _impl_.forced_namespace_aliases_.InternalSwap(&other->_impl_.forced_namespace_aliases_);
+  _impl_.handwritten_signatures_.InternalSwap(&other->_impl_.handwritten_signatures_);
+  swap(_impl_.common_, other->_impl_.common_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DotnetSettings::GetMetadata() const {
@@ -3979,27 +4096,36 @@ class RubySettings::_Internal {
 
 const ::google::api::CommonLanguageSettings&
 RubySettings::_Internal::common(const RubySettings* msg) {
-  return *msg->common_;
+  return *msg->_impl_.common_;
 }
 RubySettings::RubySettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.RubySettings)
 }
 RubySettings::RubySettings(const RubySettings& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  RubySettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_common()) {
-    common_ = new ::google::api::CommonLanguageSettings(*from.common_);
-  } else {
-    common_ = nullptr;
+    _this->_impl_.common_ = new ::google::api::CommonLanguageSettings(*from._impl_.common_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.RubySettings)
 }
 
-inline void RubySettings::SharedCtor() {
-common_ = nullptr;
+inline void RubySettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 RubySettings::~RubySettings() {
@@ -4013,11 +4139,11 @@ RubySettings::~RubySettings() {
 
 inline void RubySettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete common_;
+  if (this != internal_default_instance()) delete _impl_.common_;
 }
 
 void RubySettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void RubySettings::Clear() {
@@ -4026,10 +4152,10 @@ void RubySettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
-    delete common_;
+  if (GetArenaForAllocation() == nullptr && _impl_.common_ != nullptr) {
+    delete _impl_.common_;
   }
-  common_ = nullptr;
+  _impl_.common_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4103,35 +4229,32 @@ size_t RubySettings::ByteSizeLong() const {
   if (this->_internal_has_common()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *common_);
+        *_impl_.common_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RubySettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     RubySettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RubySettings::GetClassData() const { return &_class_data_; }
 
-void RubySettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RubySettings *>(to)->MergeFrom(
-      static_cast<const RubySettings &>(from));
-}
 
-
-void RubySettings::MergeFrom(const RubySettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.RubySettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void RubySettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<RubySettings*>(&to_msg);
+  auto& from = static_cast<const RubySettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.RubySettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_common()) {
-    _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
+    _this->_internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(
+        from._internal_common());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void RubySettings::CopyFrom(const RubySettings& from) {
@@ -4148,7 +4271,7 @@ bool RubySettings::IsInitialized() const {
 void RubySettings::InternalSwap(RubySettings* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(common_, other->common_);
+  swap(_impl_.common_, other->_impl_.common_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RubySettings::GetMetadata() const {
@@ -4180,13 +4303,12 @@ class GoSettings::_Internal {
 
 const ::google::api::CommonLanguageSettings&
 GoSettings::_Internal::common(const GoSettings* msg) {
-  return *msg->common_;
+  return *msg->_impl_.common_;
 }
 GoSettings::GoSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  renamed_services_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &GoSettings::ArenaDtor);
   }
@@ -4194,18 +4316,29 @@ GoSettings::GoSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 GoSettings::GoSettings(const GoSettings& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GoSettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.renamed_services_)*/{}
+    , decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  renamed_services_.MergeFrom(from.renamed_services_);
+  _this->_impl_.renamed_services_.MergeFrom(from._impl_.renamed_services_);
   if (from._internal_has_common()) {
-    common_ = new ::google::api::CommonLanguageSettings(*from.common_);
-  } else {
-    common_ = nullptr;
+    _this->_impl_.common_ = new ::google::api::CommonLanguageSettings(*from._impl_.common_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.GoSettings)
 }
 
-inline void GoSettings::SharedCtor() {
-common_ = nullptr;
+inline void GoSettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.renamed_services_)*/{::_pbi::ArenaInitialized(), arena}
+    , decltype(_impl_.common_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GoSettings::~GoSettings() {
@@ -4220,16 +4353,17 @@ GoSettings::~GoSettings() {
 
 inline void GoSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  renamed_services_.Destruct();
-  if (this != internal_default_instance()) delete common_;
+  _impl_.renamed_services_.Destruct();
+  _impl_.renamed_services_.~MapField();
+  if (this != internal_default_instance()) delete _impl_.common_;
 }
 
 void GoSettings::ArenaDtor(void* object) {
   GoSettings* _this = reinterpret_cast< GoSettings* >(object);
-  _this->renamed_services_.Destruct();
+  _this->_impl_.renamed_services_.Destruct();
 }
 void GoSettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GoSettings::Clear() {
@@ -4238,11 +4372,11 @@ void GoSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  renamed_services_.Clear();
-  if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
-    delete common_;
+  _impl_.renamed_services_.Clear();
+  if (GetArenaForAllocation() == nullptr && _impl_.common_ != nullptr) {
+    delete _impl_.common_;
   }
-  common_ = nullptr;
+  _impl_.common_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4266,7 +4400,7 @@ const char* GoSettings::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&renamed_services_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.renamed_services_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
@@ -4368,36 +4502,33 @@ size_t GoSettings::ByteSizeLong() const {
   if (this->_internal_has_common()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *common_);
+        *_impl_.common_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GoSettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GoSettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GoSettings::GetClassData() const { return &_class_data_; }
 
-void GoSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GoSettings *>(to)->MergeFrom(
-      static_cast<const GoSettings &>(from));
-}
 
-
-void GoSettings::MergeFrom(const GoSettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.GoSettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void GoSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GoSettings*>(&to_msg);
+  auto& from = static_cast<const GoSettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.GoSettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  renamed_services_.MergeFrom(from.renamed_services_);
+  _this->_impl_.renamed_services_.MergeFrom(from._impl_.renamed_services_);
   if (from._internal_has_common()) {
-    _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
+    _this->_internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(
+        from._internal_common());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GoSettings::CopyFrom(const GoSettings& from) {
@@ -4414,8 +4545,8 @@ bool GoSettings::IsInitialized() const {
 void GoSettings::InternalSwap(GoSettings* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  renamed_services_.InternalSwap(&other->renamed_services_);
-  swap(common_, other->common_);
+  _impl_.renamed_services_.InternalSwap(&other->_impl_.renamed_services_);
+  swap(_impl_.common_, other->_impl_.common_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GoSettings::GetMetadata() const {
@@ -4435,67 +4566,75 @@ class MethodSettings_LongRunning::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Duration&
 MethodSettings_LongRunning::_Internal::initial_poll_delay(const MethodSettings_LongRunning* msg) {
-  return *msg->initial_poll_delay_;
+  return *msg->_impl_.initial_poll_delay_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Duration&
 MethodSettings_LongRunning::_Internal::max_poll_delay(const MethodSettings_LongRunning* msg) {
-  return *msg->max_poll_delay_;
+  return *msg->_impl_.max_poll_delay_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Duration&
 MethodSettings_LongRunning::_Internal::total_poll_timeout(const MethodSettings_LongRunning* msg) {
-  return *msg->total_poll_timeout_;
+  return *msg->_impl_.total_poll_timeout_;
 }
 void MethodSettings_LongRunning::clear_initial_poll_delay() {
-  if (GetArenaForAllocation() == nullptr && initial_poll_delay_ != nullptr) {
-    delete initial_poll_delay_;
+  if (GetArenaForAllocation() == nullptr && _impl_.initial_poll_delay_ != nullptr) {
+    delete _impl_.initial_poll_delay_;
   }
-  initial_poll_delay_ = nullptr;
+  _impl_.initial_poll_delay_ = nullptr;
 }
 void MethodSettings_LongRunning::clear_max_poll_delay() {
-  if (GetArenaForAllocation() == nullptr && max_poll_delay_ != nullptr) {
-    delete max_poll_delay_;
+  if (GetArenaForAllocation() == nullptr && _impl_.max_poll_delay_ != nullptr) {
+    delete _impl_.max_poll_delay_;
   }
-  max_poll_delay_ = nullptr;
+  _impl_.max_poll_delay_ = nullptr;
 }
 void MethodSettings_LongRunning::clear_total_poll_timeout() {
-  if (GetArenaForAllocation() == nullptr && total_poll_timeout_ != nullptr) {
-    delete total_poll_timeout_;
+  if (GetArenaForAllocation() == nullptr && _impl_.total_poll_timeout_ != nullptr) {
+    delete _impl_.total_poll_timeout_;
   }
-  total_poll_timeout_ = nullptr;
+  _impl_.total_poll_timeout_ = nullptr;
 }
 MethodSettings_LongRunning::MethodSettings_LongRunning(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.MethodSettings.LongRunning)
 }
 MethodSettings_LongRunning::MethodSettings_LongRunning(const MethodSettings_LongRunning& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  MethodSettings_LongRunning* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.initial_poll_delay_){nullptr}
+    , decltype(_impl_.max_poll_delay_){nullptr}
+    , decltype(_impl_.total_poll_timeout_){nullptr}
+    , decltype(_impl_.poll_delay_multiplier_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_initial_poll_delay()) {
-    initial_poll_delay_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.initial_poll_delay_);
-  } else {
-    initial_poll_delay_ = nullptr;
+    _this->_impl_.initial_poll_delay_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.initial_poll_delay_);
   }
   if (from._internal_has_max_poll_delay()) {
-    max_poll_delay_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.max_poll_delay_);
-  } else {
-    max_poll_delay_ = nullptr;
+    _this->_impl_.max_poll_delay_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.max_poll_delay_);
   }
   if (from._internal_has_total_poll_timeout()) {
-    total_poll_timeout_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.total_poll_timeout_);
-  } else {
-    total_poll_timeout_ = nullptr;
+    _this->_impl_.total_poll_timeout_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.total_poll_timeout_);
   }
-  poll_delay_multiplier_ = from.poll_delay_multiplier_;
+  _this->_impl_.poll_delay_multiplier_ = from._impl_.poll_delay_multiplier_;
   // @@protoc_insertion_point(copy_constructor:google.api.MethodSettings.LongRunning)
 }
 
-inline void MethodSettings_LongRunning::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&initial_poll_delay_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&poll_delay_multiplier_) -
-    reinterpret_cast<char*>(&initial_poll_delay_)) + sizeof(poll_delay_multiplier_));
+inline void MethodSettings_LongRunning::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.initial_poll_delay_){nullptr}
+    , decltype(_impl_.max_poll_delay_){nullptr}
+    , decltype(_impl_.total_poll_timeout_){nullptr}
+    , decltype(_impl_.poll_delay_multiplier_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 MethodSettings_LongRunning::~MethodSettings_LongRunning() {
@@ -4509,13 +4648,13 @@ MethodSettings_LongRunning::~MethodSettings_LongRunning() {
 
 inline void MethodSettings_LongRunning::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete initial_poll_delay_;
-  if (this != internal_default_instance()) delete max_poll_delay_;
-  if (this != internal_default_instance()) delete total_poll_timeout_;
+  if (this != internal_default_instance()) delete _impl_.initial_poll_delay_;
+  if (this != internal_default_instance()) delete _impl_.max_poll_delay_;
+  if (this != internal_default_instance()) delete _impl_.total_poll_timeout_;
 }
 
 void MethodSettings_LongRunning::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void MethodSettings_LongRunning::Clear() {
@@ -4524,19 +4663,19 @@ void MethodSettings_LongRunning::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && initial_poll_delay_ != nullptr) {
-    delete initial_poll_delay_;
+  if (GetArenaForAllocation() == nullptr && _impl_.initial_poll_delay_ != nullptr) {
+    delete _impl_.initial_poll_delay_;
   }
-  initial_poll_delay_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && max_poll_delay_ != nullptr) {
-    delete max_poll_delay_;
+  _impl_.initial_poll_delay_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.max_poll_delay_ != nullptr) {
+    delete _impl_.max_poll_delay_;
   }
-  max_poll_delay_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && total_poll_timeout_ != nullptr) {
-    delete total_poll_timeout_;
+  _impl_.max_poll_delay_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.total_poll_timeout_ != nullptr) {
+    delete _impl_.total_poll_timeout_;
   }
-  total_poll_timeout_ = nullptr;
-  poll_delay_multiplier_ = 0;
+  _impl_.total_poll_timeout_ = nullptr;
+  _impl_.poll_delay_multiplier_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4557,7 +4696,7 @@ const char* MethodSettings_LongRunning::_InternalParse(const char* ptr, ::_pbi::
       // float poll_delay_multiplier = 2 [json_name = "pollDelayMultiplier"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          poll_delay_multiplier_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          _impl_.poll_delay_multiplier_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -4658,21 +4797,21 @@ size_t MethodSettings_LongRunning::ByteSizeLong() const {
   if (this->_internal_has_initial_poll_delay()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *initial_poll_delay_);
+        *_impl_.initial_poll_delay_);
   }
 
   // .google.protobuf.Duration max_poll_delay = 3 [json_name = "maxPollDelay"];
   if (this->_internal_has_max_poll_delay()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *max_poll_delay_);
+        *_impl_.max_poll_delay_);
   }
 
   // .google.protobuf.Duration total_poll_timeout = 4 [json_name = "totalPollTimeout"];
   if (this->_internal_has_total_poll_timeout()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *total_poll_timeout_);
+        *_impl_.total_poll_timeout_);
   }
 
   // float poll_delay_multiplier = 2 [json_name = "pollDelayMultiplier"];
@@ -4684,45 +4823,44 @@ size_t MethodSettings_LongRunning::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MethodSettings_LongRunning::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     MethodSettings_LongRunning::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MethodSettings_LongRunning::GetClassData() const { return &_class_data_; }
 
-void MethodSettings_LongRunning::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<MethodSettings_LongRunning *>(to)->MergeFrom(
-      static_cast<const MethodSettings_LongRunning &>(from));
-}
 
-
-void MethodSettings_LongRunning::MergeFrom(const MethodSettings_LongRunning& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.MethodSettings.LongRunning)
-  GOOGLE_DCHECK_NE(&from, this);
+void MethodSettings_LongRunning::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<MethodSettings_LongRunning*>(&to_msg);
+  auto& from = static_cast<const MethodSettings_LongRunning&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.MethodSettings.LongRunning)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_initial_poll_delay()) {
-    _internal_mutable_initial_poll_delay()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_initial_poll_delay());
+    _this->_internal_mutable_initial_poll_delay()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
+        from._internal_initial_poll_delay());
   }
   if (from._internal_has_max_poll_delay()) {
-    _internal_mutable_max_poll_delay()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_max_poll_delay());
+    _this->_internal_mutable_max_poll_delay()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
+        from._internal_max_poll_delay());
   }
   if (from._internal_has_total_poll_timeout()) {
-    _internal_mutable_total_poll_timeout()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_total_poll_timeout());
+    _this->_internal_mutable_total_poll_timeout()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
+        from._internal_total_poll_timeout());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_poll_delay_multiplier = from._internal_poll_delay_multiplier();
   uint32_t raw_poll_delay_multiplier;
   memcpy(&raw_poll_delay_multiplier, &tmp_poll_delay_multiplier, sizeof(tmp_poll_delay_multiplier));
   if (raw_poll_delay_multiplier != 0) {
-    _internal_set_poll_delay_multiplier(from._internal_poll_delay_multiplier());
+    _this->_internal_set_poll_delay_multiplier(from._internal_poll_delay_multiplier());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void MethodSettings_LongRunning::CopyFrom(const MethodSettings_LongRunning& from) {
@@ -4740,11 +4878,11 @@ void MethodSettings_LongRunning::InternalSwap(MethodSettings_LongRunning* other)
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MethodSettings_LongRunning, poll_delay_multiplier_)
-      + sizeof(MethodSettings_LongRunning::poll_delay_multiplier_)
-      - PROTOBUF_FIELD_OFFSET(MethodSettings_LongRunning, initial_poll_delay_)>(
-          reinterpret_cast<char*>(&initial_poll_delay_),
-          reinterpret_cast<char*>(&other->initial_poll_delay_));
+      PROTOBUF_FIELD_OFFSET(MethodSettings_LongRunning, _impl_.poll_delay_multiplier_)
+      + sizeof(MethodSettings_LongRunning::_impl_.poll_delay_multiplier_)
+      - PROTOBUF_FIELD_OFFSET(MethodSettings_LongRunning, _impl_.initial_poll_delay_)>(
+          reinterpret_cast<char*>(&_impl_.initial_poll_delay_),
+          reinterpret_cast<char*>(&other->_impl_.initial_poll_delay_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MethodSettings_LongRunning::GetMetadata() const {
@@ -4762,41 +4900,52 @@ class MethodSettings::_Internal {
 
 const ::google::api::MethodSettings_LongRunning&
 MethodSettings::_Internal::long_running(const MethodSettings* msg) {
-  return *msg->long_running_;
+  return *msg->_impl_.long_running_;
 }
 MethodSettings::MethodSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  auto_populated_fields_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.MethodSettings)
 }
 MethodSettings::MethodSettings(const MethodSettings& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      auto_populated_fields_(from.auto_populated_fields_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  MethodSettings* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.auto_populated_fields_){from._impl_.auto_populated_fields_}
+    , decltype(_impl_.selector_){}
+    , decltype(_impl_.long_running_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  selector_.InitDefault();
+  _impl_.selector_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    selector_.Set("", GetArenaForAllocation());
+    _impl_.selector_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_selector().empty()) {
-    selector_.Set(from._internal_selector(), 
-      GetArenaForAllocation());
+    _this->_impl_.selector_.Set(from._internal_selector(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_long_running()) {
-    long_running_ = new ::google::api::MethodSettings_LongRunning(*from.long_running_);
-  } else {
-    long_running_ = nullptr;
+    _this->_impl_.long_running_ = new ::google::api::MethodSettings_LongRunning(*from._impl_.long_running_);
   }
   // @@protoc_insertion_point(copy_constructor:google.api.MethodSettings)
 }
 
-inline void MethodSettings::SharedCtor() {
-selector_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  selector_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-long_running_ = nullptr;
+inline void MethodSettings::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.auto_populated_fields_){arena}
+    , decltype(_impl_.selector_){}
+    , decltype(_impl_.long_running_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.selector_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.selector_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 MethodSettings::~MethodSettings() {
@@ -4810,12 +4959,13 @@ MethodSettings::~MethodSettings() {
 
 inline void MethodSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  selector_.Destroy();
-  if (this != internal_default_instance()) delete long_running_;
+  _impl_.auto_populated_fields_.~RepeatedPtrField();
+  _impl_.selector_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.long_running_;
 }
 
 void MethodSettings::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void MethodSettings::Clear() {
@@ -4824,12 +4974,12 @@ void MethodSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  auto_populated_fields_.Clear();
-  selector_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && long_running_ != nullptr) {
-    delete long_running_;
+  _impl_.auto_populated_fields_.Clear();
+  _impl_.selector_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.long_running_ != nullptr) {
+    delete _impl_.long_running_;
   }
-  long_running_ = nullptr;
+  _impl_.long_running_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4946,10 +5096,10 @@ size_t MethodSettings::ByteSizeLong() const {
 
   // repeated string auto_populated_fields = 3 [json_name = "autoPopulatedFields"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(auto_populated_fields_.size());
-  for (int i = 0, n = auto_populated_fields_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.auto_populated_fields_.size());
+  for (int i = 0, n = _impl_.auto_populated_fields_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      auto_populated_fields_.Get(i));
+      _impl_.auto_populated_fields_.Get(i));
   }
 
   // string selector = 1 [json_name = "selector"];
@@ -4963,39 +5113,36 @@ size_t MethodSettings::ByteSizeLong() const {
   if (this->_internal_has_long_running()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *long_running_);
+        *_impl_.long_running_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MethodSettings::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     MethodSettings::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MethodSettings::GetClassData() const { return &_class_data_; }
 
-void MethodSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<MethodSettings *>(to)->MergeFrom(
-      static_cast<const MethodSettings &>(from));
-}
 
-
-void MethodSettings::MergeFrom(const MethodSettings& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.MethodSettings)
-  GOOGLE_DCHECK_NE(&from, this);
+void MethodSettings::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<MethodSettings*>(&to_msg);
+  auto& from = static_cast<const MethodSettings&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.MethodSettings)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  auto_populated_fields_.MergeFrom(from.auto_populated_fields_);
+  _this->_impl_.auto_populated_fields_.MergeFrom(from._impl_.auto_populated_fields_);
   if (!from._internal_selector().empty()) {
-    _internal_set_selector(from._internal_selector());
+    _this->_internal_set_selector(from._internal_selector());
   }
   if (from._internal_has_long_running()) {
-    _internal_mutable_long_running()->::google::api::MethodSettings_LongRunning::MergeFrom(from._internal_long_running());
+    _this->_internal_mutable_long_running()->::google::api::MethodSettings_LongRunning::MergeFrom(
+        from._internal_long_running());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void MethodSettings::CopyFrom(const MethodSettings& from) {
@@ -5014,12 +5161,12 @@ void MethodSettings::InternalSwap(MethodSettings* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  auto_populated_fields_.InternalSwap(&other->auto_populated_fields_);
+  _impl_.auto_populated_fields_.InternalSwap(&other->_impl_.auto_populated_fields_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &selector_, lhs_arena,
-      &other->selector_, rhs_arena
+      &_impl_.selector_, lhs_arena,
+      &other->_impl_.selector_, rhs_arena
   );
-  swap(long_running_, other->long_running_);
+  swap(_impl_.long_running_, other->_impl_.long_running_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MethodSettings::GetMetadata() const {
@@ -5036,21 +5183,32 @@ class SelectiveGapicGeneration::_Internal {
 
 SelectiveGapicGeneration::SelectiveGapicGeneration(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  methods_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.SelectiveGapicGeneration)
 }
 SelectiveGapicGeneration::SelectiveGapicGeneration(const SelectiveGapicGeneration& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      methods_(from.methods_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SelectiveGapicGeneration* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.methods_){from._impl_.methods_}
+    , decltype(_impl_.generate_omitted_as_internal_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  generate_omitted_as_internal_ = from.generate_omitted_as_internal_;
+  _this->_impl_.generate_omitted_as_internal_ = from._impl_.generate_omitted_as_internal_;
   // @@protoc_insertion_point(copy_constructor:google.api.SelectiveGapicGeneration)
 }
 
-inline void SelectiveGapicGeneration::SharedCtor() {
-generate_omitted_as_internal_ = false;
+inline void SelectiveGapicGeneration::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.methods_){arena}
+    , decltype(_impl_.generate_omitted_as_internal_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 SelectiveGapicGeneration::~SelectiveGapicGeneration() {
@@ -5064,10 +5222,11 @@ SelectiveGapicGeneration::~SelectiveGapicGeneration() {
 
 inline void SelectiveGapicGeneration::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.methods_.~RepeatedPtrField();
 }
 
 void SelectiveGapicGeneration::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SelectiveGapicGeneration::Clear() {
@@ -5076,8 +5235,8 @@ void SelectiveGapicGeneration::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  methods_.Clear();
-  generate_omitted_as_internal_ = false;
+  _impl_.methods_.Clear();
+  _impl_.generate_omitted_as_internal_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5105,7 +5264,7 @@ const char* SelectiveGapicGeneration::_InternalParse(const char* ptr, ::_pbi::Pa
       // bool generate_omitted_as_internal = 2 [json_name = "generateOmittedAsInternal"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          generate_omitted_as_internal_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.generate_omitted_as_internal_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -5173,10 +5332,10 @@ size_t SelectiveGapicGeneration::ByteSizeLong() const {
 
   // repeated string methods = 1 [json_name = "methods"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(methods_.size());
-  for (int i = 0, n = methods_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.methods_.size());
+  for (int i = 0, n = _impl_.methods_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      methods_.Get(i));
+      _impl_.methods_.Get(i));
   }
 
   // bool generate_omitted_as_internal = 2 [json_name = "generateOmittedAsInternal"];
@@ -5184,33 +5343,29 @@ size_t SelectiveGapicGeneration::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SelectiveGapicGeneration::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SelectiveGapicGeneration::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SelectiveGapicGeneration::GetClassData() const { return &_class_data_; }
 
-void SelectiveGapicGeneration::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SelectiveGapicGeneration *>(to)->MergeFrom(
-      static_cast<const SelectiveGapicGeneration &>(from));
-}
 
-
-void SelectiveGapicGeneration::MergeFrom(const SelectiveGapicGeneration& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.SelectiveGapicGeneration)
-  GOOGLE_DCHECK_NE(&from, this);
+void SelectiveGapicGeneration::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SelectiveGapicGeneration*>(&to_msg);
+  auto& from = static_cast<const SelectiveGapicGeneration&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.SelectiveGapicGeneration)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  methods_.MergeFrom(from.methods_);
+  _this->_impl_.methods_.MergeFrom(from._impl_.methods_);
   if (from._internal_generate_omitted_as_internal() != 0) {
-    _internal_set_generate_omitted_as_internal(from._internal_generate_omitted_as_internal());
+    _this->_internal_set_generate_omitted_as_internal(from._internal_generate_omitted_as_internal());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SelectiveGapicGeneration::CopyFrom(const SelectiveGapicGeneration& from) {
@@ -5227,8 +5382,8 @@ bool SelectiveGapicGeneration::IsInitialized() const {
 void SelectiveGapicGeneration::InternalSwap(SelectiveGapicGeneration* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  methods_.InternalSwap(&other->methods_);
-  swap(generate_omitted_as_internal_, other->generate_omitted_as_internal_);
+  _impl_.methods_.InternalSwap(&other->_impl_.methods_);
+  swap(_impl_.generate_omitted_as_internal_, other->_impl_.generate_omitted_as_internal_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SelectiveGapicGeneration::GetMetadata() const {

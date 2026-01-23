@@ -25,9 +25,10 @@ namespace component {
 namespace inputcontroller {
 namespace v1 {
 PROTOBUF_CONSTEXPR GetControlsRequest::GetControlsRequest(
-    ::_pbi::ConstantInitialized)
-  : controller_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.controller_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetControlsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetControlsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,8 +39,9 @@ struct GetControlsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetControlsRequestDefaultTypeInternal _GetControlsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetControlsResponse::GetControlsResponse(
-    ::_pbi::ConstantInitialized)
-  : controls_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.controls_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetControlsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetControlsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -50,9 +52,10 @@ struct GetControlsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetControlsResponseDefaultTypeInternal _GetControlsResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetEventsRequest::GetEventsRequest(
-    ::_pbi::ConstantInitialized)
-  : controller_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.controller_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetEventsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetEventsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -63,8 +66,9 @@ struct GetEventsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetEventsRequestDefaultTypeInternal _GetEventsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetEventsResponse::GetEventsResponse(
-    ::_pbi::ConstantInitialized)
-  : events_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.events_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetEventsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetEventsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -75,10 +79,11 @@ struct GetEventsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetEventsResponseDefaultTypeInternal _GetEventsResponse_default_instance_;
 PROTOBUF_CONSTEXPR TriggerEventRequest::TriggerEventRequest(
-    ::_pbi::ConstantInitialized)
-  : controller_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , event_(nullptr)
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.controller_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.event_)*/nullptr
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TriggerEventRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TriggerEventRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -89,7 +94,7 @@ struct TriggerEventRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TriggerEventRequestDefaultTypeInternal _TriggerEventRequest_default_instance_;
 PROTOBUF_CONSTEXPR TriggerEventResponse::TriggerEventResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct TriggerEventResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TriggerEventResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -100,11 +105,12 @@ struct TriggerEventResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TriggerEventResponseDefaultTypeInternal _TriggerEventResponse_default_instance_;
 PROTOBUF_CONSTEXPR Event::Event(
-    ::_pbi::ConstantInitialized)
-  : event_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , control_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , time_(nullptr)
-  , value_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.event_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.control_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.time_)*/nullptr
+  , /*decltype(_impl_.value_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct EventDefaultTypeInternal {
   PROTOBUF_CONSTEXPR EventDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -115,10 +121,11 @@ struct EventDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EventDefaultTypeInternal _Event_default_instance_;
 PROTOBUF_CONSTEXPR StreamEventsRequest_Events::StreamEventsRequest_Events(
-    ::_pbi::ConstantInitialized)
-  : events_()
-  , cancelled_events_()
-  , control_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.events_)*/{}
+  , /*decltype(_impl_.cancelled_events_)*/{}
+  , /*decltype(_impl_.control_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamEventsRequest_EventsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StreamEventsRequest_EventsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -129,10 +136,11 @@ struct StreamEventsRequest_EventsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamEventsRequest_EventsDefaultTypeInternal _StreamEventsRequest_Events_default_instance_;
 PROTOBUF_CONSTEXPR StreamEventsRequest::StreamEventsRequest(
-    ::_pbi::ConstantInitialized)
-  : events_()
-  , controller_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.events_)*/{}
+  , /*decltype(_impl_.controller_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamEventsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StreamEventsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -143,8 +151,9 @@ struct StreamEventsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamEventsRequestDefaultTypeInternal _StreamEventsRequest_default_instance_;
 PROTOBUF_CONSTEXPR StreamEventsResponse::StreamEventsResponse(
-    ::_pbi::ConstantInitialized)
-  : event_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.event_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamEventsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StreamEventsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -155,8 +164,9 @@ struct StreamEventsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamEventsResponseDefaultTypeInternal _StreamEventsResponse_default_instance_;
 PROTOBUF_CONSTEXPR Status::Status(
-    ::_pbi::ConstantInitialized)
-  : events_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.events_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StatusDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StatusDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -181,39 +191,39 @@ const uint32_t TableStruct_component_2finputcontroller_2fv1_2finput_5fcontroller
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetControlsRequest, controller_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetControlsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetControlsRequest, _impl_.controller_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetControlsRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetControlsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetControlsResponse, controls_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetControlsResponse, _impl_.controls_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetEventsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetEventsRequest, controller_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetEventsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetEventsRequest, _impl_.controller_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetEventsRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetEventsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetEventsResponse, events_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::GetEventsResponse, _impl_.events_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::TriggerEventRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::TriggerEventRequest, controller_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::TriggerEventRequest, event_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::TriggerEventRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::TriggerEventRequest, _impl_.controller_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::TriggerEventRequest, _impl_.event_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::TriggerEventRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::TriggerEventResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -226,42 +236,42 @@ const uint32_t TableStruct_component_2finputcontroller_2fv1_2finput_5fcontroller
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Event, time_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Event, event_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Event, control_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Event, value_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Event, _impl_.time_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Event, _impl_.event_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Event, _impl_.control_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Event, _impl_.value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest_Events, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest_Events, control_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest_Events, events_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest_Events, cancelled_events_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest_Events, _impl_.control_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest_Events, _impl_.events_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest_Events, _impl_.cancelled_events_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest, controller_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest, events_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest, _impl_.controller_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest, _impl_.events_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsResponse, event_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::StreamEventsResponse, _impl_.event_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Status, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Status, events_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::inputcontroller::v1::Status, _impl_.events_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::inputcontroller::v1::GetControlsRequest)},
@@ -390,45 +400,56 @@ class GetControlsRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetControlsRequest::_Internal::extra(const GetControlsRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetControlsRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetControlsRequest::GetControlsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.GetControlsRequest)
 }
 GetControlsRequest::GetControlsRequest(const GetControlsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetControlsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.controller_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  controller_.InitDefault();
+  _impl_.controller_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    controller_.Set("", GetArenaForAllocation());
+    _impl_.controller_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_controller().empty()) {
-    controller_.Set(from._internal_controller(), 
-      GetArenaForAllocation());
+    _this->_impl_.controller_.Set(from._internal_controller(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.GetControlsRequest)
 }
 
-inline void GetControlsRequest::SharedCtor() {
-controller_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  controller_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetControlsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.controller_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.controller_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.controller_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetControlsRequest::~GetControlsRequest() {
@@ -442,12 +463,12 @@ GetControlsRequest::~GetControlsRequest() {
 
 inline void GetControlsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  controller_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.controller_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetControlsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetControlsRequest::Clear() {
@@ -456,11 +477,11 @@ void GetControlsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  controller_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.controller_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -561,38 +582,35 @@ size_t GetControlsRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetControlsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetControlsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetControlsRequest::GetClassData() const { return &_class_data_; }
 
-void GetControlsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetControlsRequest *>(to)->MergeFrom(
-      static_cast<const GetControlsRequest &>(from));
-}
 
-
-void GetControlsRequest::MergeFrom(const GetControlsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.GetControlsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetControlsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetControlsRequest*>(&to_msg);
+  auto& from = static_cast<const GetControlsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.GetControlsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_controller().empty()) {
-    _internal_set_controller(from._internal_controller());
+    _this->_internal_set_controller(from._internal_controller());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetControlsRequest::CopyFrom(const GetControlsRequest& from) {
@@ -612,10 +630,10 @@ void GetControlsRequest::InternalSwap(GetControlsRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &controller_, lhs_arena,
-      &other->controller_, rhs_arena
+      &_impl_.controller_, lhs_arena,
+      &other->_impl_.controller_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetControlsRequest::GetMetadata() const {
@@ -632,19 +650,29 @@ class GetControlsResponse::_Internal {
 
 GetControlsResponse::GetControlsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  controls_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.GetControlsResponse)
 }
 GetControlsResponse::GetControlsResponse(const GetControlsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      controls_(from.controls_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetControlsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.controls_){from._impl_.controls_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.GetControlsResponse)
 }
 
-inline void GetControlsResponse::SharedCtor() {
+inline void GetControlsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.controls_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetControlsResponse::~GetControlsResponse() {
@@ -658,10 +686,11 @@ GetControlsResponse::~GetControlsResponse() {
 
 inline void GetControlsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.controls_.~RepeatedPtrField();
 }
 
 void GetControlsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetControlsResponse::Clear() {
@@ -670,7 +699,7 @@ void GetControlsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  controls_.Clear();
+  _impl_.controls_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -752,36 +781,32 @@ size_t GetControlsResponse::ByteSizeLong() const {
 
   // repeated string controls = 1 [json_name = "controls"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(controls_.size());
-  for (int i = 0, n = controls_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.controls_.size());
+  for (int i = 0, n = _impl_.controls_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      controls_.Get(i));
+      _impl_.controls_.Get(i));
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetControlsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetControlsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetControlsResponse::GetClassData() const { return &_class_data_; }
 
-void GetControlsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetControlsResponse *>(to)->MergeFrom(
-      static_cast<const GetControlsResponse &>(from));
-}
 
-
-void GetControlsResponse::MergeFrom(const GetControlsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.GetControlsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetControlsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetControlsResponse*>(&to_msg);
+  auto& from = static_cast<const GetControlsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.GetControlsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  controls_.MergeFrom(from.controls_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.controls_.MergeFrom(from._impl_.controls_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetControlsResponse::CopyFrom(const GetControlsResponse& from) {
@@ -798,7 +823,7 @@ bool GetControlsResponse::IsInitialized() const {
 void GetControlsResponse::InternalSwap(GetControlsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  controls_.InternalSwap(&other->controls_);
+  _impl_.controls_.InternalSwap(&other->_impl_.controls_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetControlsResponse::GetMetadata() const {
@@ -816,45 +841,56 @@ class GetEventsRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetEventsRequest::_Internal::extra(const GetEventsRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetEventsRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetEventsRequest::GetEventsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.GetEventsRequest)
 }
 GetEventsRequest::GetEventsRequest(const GetEventsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetEventsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.controller_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  controller_.InitDefault();
+  _impl_.controller_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    controller_.Set("", GetArenaForAllocation());
+    _impl_.controller_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_controller().empty()) {
-    controller_.Set(from._internal_controller(), 
-      GetArenaForAllocation());
+    _this->_impl_.controller_.Set(from._internal_controller(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.GetEventsRequest)
 }
 
-inline void GetEventsRequest::SharedCtor() {
-controller_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  controller_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetEventsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.controller_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.controller_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.controller_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetEventsRequest::~GetEventsRequest() {
@@ -868,12 +904,12 @@ GetEventsRequest::~GetEventsRequest() {
 
 inline void GetEventsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  controller_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.controller_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetEventsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetEventsRequest::Clear() {
@@ -882,11 +918,11 @@ void GetEventsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  controller_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.controller_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -987,38 +1023,35 @@ size_t GetEventsRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetEventsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetEventsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetEventsRequest::GetClassData() const { return &_class_data_; }
 
-void GetEventsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetEventsRequest *>(to)->MergeFrom(
-      static_cast<const GetEventsRequest &>(from));
-}
 
-
-void GetEventsRequest::MergeFrom(const GetEventsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.GetEventsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetEventsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetEventsRequest*>(&to_msg);
+  auto& from = static_cast<const GetEventsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.GetEventsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_controller().empty()) {
-    _internal_set_controller(from._internal_controller());
+    _this->_internal_set_controller(from._internal_controller());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetEventsRequest::CopyFrom(const GetEventsRequest& from) {
@@ -1038,10 +1071,10 @@ void GetEventsRequest::InternalSwap(GetEventsRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &controller_, lhs_arena,
-      &other->controller_, rhs_arena
+      &_impl_.controller_, lhs_arena,
+      &other->_impl_.controller_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetEventsRequest::GetMetadata() const {
@@ -1058,19 +1091,29 @@ class GetEventsResponse::_Internal {
 
 GetEventsResponse::GetEventsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  events_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.GetEventsResponse)
 }
 GetEventsResponse::GetEventsResponse(const GetEventsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      events_(from.events_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetEventsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.events_){from._impl_.events_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.GetEventsResponse)
 }
 
-inline void GetEventsResponse::SharedCtor() {
+inline void GetEventsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.events_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetEventsResponse::~GetEventsResponse() {
@@ -1084,10 +1127,11 @@ GetEventsResponse::~GetEventsResponse() {
 
 inline void GetEventsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.events_.~RepeatedPtrField();
 }
 
 void GetEventsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetEventsResponse::Clear() {
@@ -1096,7 +1140,7 @@ void GetEventsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  events_.Clear();
+  _impl_.events_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1174,35 +1218,31 @@ size_t GetEventsResponse::ByteSizeLong() const {
 
   // repeated .viam.component.inputcontroller.v1.Event events = 1 [json_name = "events"];
   total_size += 1UL * this->_internal_events_size();
-  for (const auto& msg : this->events_) {
+  for (const auto& msg : this->_impl_.events_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetEventsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetEventsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetEventsResponse::GetClassData() const { return &_class_data_; }
 
-void GetEventsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetEventsResponse *>(to)->MergeFrom(
-      static_cast<const GetEventsResponse &>(from));
-}
 
-
-void GetEventsResponse::MergeFrom(const GetEventsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.GetEventsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetEventsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetEventsResponse*>(&to_msg);
+  auto& from = static_cast<const GetEventsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.GetEventsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  events_.MergeFrom(from.events_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.events_.MergeFrom(from._impl_.events_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetEventsResponse::CopyFrom(const GetEventsResponse& from) {
@@ -1219,7 +1259,7 @@ bool GetEventsResponse::IsInitialized() const {
 void GetEventsResponse::InternalSwap(GetEventsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  events_.InternalSwap(&other->events_);
+  _impl_.events_.InternalSwap(&other->_impl_.events_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetEventsResponse::GetMetadata() const {
@@ -1238,57 +1278,65 @@ class TriggerEventRequest::_Internal {
 
 const ::viam::component::inputcontroller::v1::Event&
 TriggerEventRequest::_Internal::event(const TriggerEventRequest* msg) {
-  return *msg->event_;
+  return *msg->_impl_.event_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 TriggerEventRequest::_Internal::extra(const TriggerEventRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void TriggerEventRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 TriggerEventRequest::TriggerEventRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.TriggerEventRequest)
 }
 TriggerEventRequest::TriggerEventRequest(const TriggerEventRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  TriggerEventRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.controller_){}
+    , decltype(_impl_.event_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  controller_.InitDefault();
+  _impl_.controller_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    controller_.Set("", GetArenaForAllocation());
+    _impl_.controller_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_controller().empty()) {
-    controller_.Set(from._internal_controller(), 
-      GetArenaForAllocation());
+    _this->_impl_.controller_.Set(from._internal_controller(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_event()) {
-    event_ = new ::viam::component::inputcontroller::v1::Event(*from.event_);
-  } else {
-    event_ = nullptr;
+    _this->_impl_.event_ = new ::viam::component::inputcontroller::v1::Event(*from._impl_.event_);
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.TriggerEventRequest)
 }
 
-inline void TriggerEventRequest::SharedCtor() {
-controller_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  controller_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&event_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&event_)) + sizeof(extra_));
+inline void TriggerEventRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.controller_){}
+    , decltype(_impl_.event_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.controller_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.controller_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 TriggerEventRequest::~TriggerEventRequest() {
@@ -1302,13 +1350,13 @@ TriggerEventRequest::~TriggerEventRequest() {
 
 inline void TriggerEventRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  controller_.Destroy();
-  if (this != internal_default_instance()) delete event_;
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.controller_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.event_;
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void TriggerEventRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TriggerEventRequest::Clear() {
@@ -1317,15 +1365,15 @@ void TriggerEventRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  controller_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && event_ != nullptr) {
-    delete event_;
+  _impl_.controller_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.event_ != nullptr) {
+    delete _impl_.event_;
   }
-  event_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.event_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1441,48 +1489,46 @@ size_t TriggerEventRequest::ByteSizeLong() const {
   if (this->_internal_has_event()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *event_);
+        *_impl_.event_);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TriggerEventRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     TriggerEventRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TriggerEventRequest::GetClassData() const { return &_class_data_; }
 
-void TriggerEventRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<TriggerEventRequest *>(to)->MergeFrom(
-      static_cast<const TriggerEventRequest &>(from));
-}
 
-
-void TriggerEventRequest::MergeFrom(const TriggerEventRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.TriggerEventRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void TriggerEventRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TriggerEventRequest*>(&to_msg);
+  auto& from = static_cast<const TriggerEventRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.TriggerEventRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_controller().empty()) {
-    _internal_set_controller(from._internal_controller());
+    _this->_internal_set_controller(from._internal_controller());
   }
   if (from._internal_has_event()) {
-    _internal_mutable_event()->::viam::component::inputcontroller::v1::Event::MergeFrom(from._internal_event());
+    _this->_internal_mutable_event()->::viam::component::inputcontroller::v1::Event::MergeFrom(
+        from._internal_event());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void TriggerEventRequest::CopyFrom(const TriggerEventRequest& from) {
@@ -1502,15 +1548,15 @@ void TriggerEventRequest::InternalSwap(TriggerEventRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &controller_, lhs_arena,
-      &other->controller_, rhs_arena
+      &_impl_.controller_, lhs_arena,
+      &other->_impl_.controller_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(TriggerEventRequest, extra_)
-      + sizeof(TriggerEventRequest::extra_)
-      - PROTOBUF_FIELD_OFFSET(TriggerEventRequest, event_)>(
-          reinterpret_cast<char*>(&event_),
-          reinterpret_cast<char*>(&other->event_));
+      PROTOBUF_FIELD_OFFSET(TriggerEventRequest, _impl_.extra_)
+      + sizeof(TriggerEventRequest::_impl_.extra_)
+      - PROTOBUF_FIELD_OFFSET(TriggerEventRequest, _impl_.event_)>(
+          reinterpret_cast<char*>(&_impl_.event_),
+          reinterpret_cast<char*>(&other->_impl_.event_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TriggerEventRequest::GetMetadata() const {
@@ -1532,6 +1578,7 @@ TriggerEventResponse::TriggerEventResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena
 }
 TriggerEventResponse::TriggerEventResponse(const TriggerEventResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  TriggerEventResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.TriggerEventResponse)
 }
@@ -1567,61 +1614,73 @@ class Event::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 Event::_Internal::time(const Event* msg) {
-  return *msg->time_;
+  return *msg->_impl_.time_;
 }
 void Event::clear_time() {
-  if (GetArenaForAllocation() == nullptr && time_ != nullptr) {
-    delete time_;
+  if (GetArenaForAllocation() == nullptr && _impl_.time_ != nullptr) {
+    delete _impl_.time_;
   }
-  time_ = nullptr;
+  _impl_.time_ = nullptr;
 }
 Event::Event(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.Event)
 }
 Event::Event(const Event& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Event* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.event_){}
+    , decltype(_impl_.control_){}
+    , decltype(_impl_.time_){nullptr}
+    , decltype(_impl_.value_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  event_.InitDefault();
+  _impl_.event_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    event_.Set("", GetArenaForAllocation());
+    _impl_.event_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_event().empty()) {
-    event_.Set(from._internal_event(), 
-      GetArenaForAllocation());
+    _this->_impl_.event_.Set(from._internal_event(), 
+      _this->GetArenaForAllocation());
   }
-  control_.InitDefault();
+  _impl_.control_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    control_.Set("", GetArenaForAllocation());
+    _impl_.control_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_control().empty()) {
-    control_.Set(from._internal_control(), 
-      GetArenaForAllocation());
+    _this->_impl_.control_.Set(from._internal_control(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_time()) {
-    time_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.time_);
-  } else {
-    time_ = nullptr;
+    _this->_impl_.time_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.time_);
   }
-  value_ = from.value_;
+  _this->_impl_.value_ = from._impl_.value_;
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.Event)
 }
 
-inline void Event::SharedCtor() {
-event_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  event_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-control_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  control_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&time_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&value_) -
-    reinterpret_cast<char*>(&time_)) + sizeof(value_));
+inline void Event::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.event_){}
+    , decltype(_impl_.control_){}
+    , decltype(_impl_.time_){nullptr}
+    , decltype(_impl_.value_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.event_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.event_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.control_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.control_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Event::~Event() {
@@ -1635,13 +1694,13 @@ Event::~Event() {
 
 inline void Event::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  event_.Destroy();
-  control_.Destroy();
-  if (this != internal_default_instance()) delete time_;
+  _impl_.event_.Destroy();
+  _impl_.control_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.time_;
 }
 
 void Event::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Event::Clear() {
@@ -1650,13 +1709,13 @@ void Event::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  event_.ClearToEmpty();
-  control_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && time_ != nullptr) {
-    delete time_;
+  _impl_.event_.ClearToEmpty();
+  _impl_.control_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.time_ != nullptr) {
+    delete _impl_.time_;
   }
-  time_ = nullptr;
-  value_ = 0;
+  _impl_.time_ = nullptr;
+  _impl_.value_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1697,7 +1756,7 @@ const char* Event::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // double value = 4 [json_name = "value"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 33)) {
-          value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -1802,7 +1861,7 @@ size_t Event::ByteSizeLong() const {
   if (this->_internal_has_time()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *time_);
+        *_impl_.time_);
   }
 
   // double value = 4 [json_name = "value"];
@@ -1814,45 +1873,42 @@ size_t Event::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Event::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Event::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Event::GetClassData() const { return &_class_data_; }
 
-void Event::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Event *>(to)->MergeFrom(
-      static_cast<const Event &>(from));
-}
 
-
-void Event::MergeFrom(const Event& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.Event)
-  GOOGLE_DCHECK_NE(&from, this);
+void Event::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Event*>(&to_msg);
+  auto& from = static_cast<const Event&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.Event)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_event().empty()) {
-    _internal_set_event(from._internal_event());
+    _this->_internal_set_event(from._internal_event());
   }
   if (!from._internal_control().empty()) {
-    _internal_set_control(from._internal_control());
+    _this->_internal_set_control(from._internal_control());
   }
   if (from._internal_has_time()) {
-    _internal_mutable_time()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_time());
+    _this->_internal_mutable_time()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_time());
   }
   static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
   double tmp_value = from._internal_value();
   uint64_t raw_value;
   memcpy(&raw_value, &tmp_value, sizeof(tmp_value));
   if (raw_value != 0) {
-    _internal_set_value(from._internal_value());
+    _this->_internal_set_value(from._internal_value());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Event::CopyFrom(const Event& from) {
@@ -1872,19 +1928,19 @@ void Event::InternalSwap(Event* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &event_, lhs_arena,
-      &other->event_, rhs_arena
+      &_impl_.event_, lhs_arena,
+      &other->_impl_.event_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &control_, lhs_arena,
-      &other->control_, rhs_arena
+      &_impl_.control_, lhs_arena,
+      &other->_impl_.control_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Event, value_)
-      + sizeof(Event::value_)
-      - PROTOBUF_FIELD_OFFSET(Event, time_)>(
-          reinterpret_cast<char*>(&time_),
-          reinterpret_cast<char*>(&other->time_));
+      PROTOBUF_FIELD_OFFSET(Event, _impl_.value_)
+      + sizeof(Event::_impl_.value_)
+      - PROTOBUF_FIELD_OFFSET(Event, _impl_.time_)>(
+          reinterpret_cast<char*>(&_impl_.time_),
+          reinterpret_cast<char*>(&other->_impl_.time_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Event::GetMetadata() const {
@@ -1901,33 +1957,45 @@ class StreamEventsRequest_Events::_Internal {
 
 StreamEventsRequest_Events::StreamEventsRequest_Events(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  events_(arena),
-  cancelled_events_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.StreamEventsRequest.Events)
 }
 StreamEventsRequest_Events::StreamEventsRequest_Events(const StreamEventsRequest_Events& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      events_(from.events_),
-      cancelled_events_(from.cancelled_events_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StreamEventsRequest_Events* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.events_){from._impl_.events_}
+    , decltype(_impl_.cancelled_events_){from._impl_.cancelled_events_}
+    , decltype(_impl_.control_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  control_.InitDefault();
+  _impl_.control_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    control_.Set("", GetArenaForAllocation());
+    _impl_.control_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_control().empty()) {
-    control_.Set(from._internal_control(), 
-      GetArenaForAllocation());
+    _this->_impl_.control_.Set(from._internal_control(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.StreamEventsRequest.Events)
 }
 
-inline void StreamEventsRequest_Events::SharedCtor() {
-control_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  control_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void StreamEventsRequest_Events::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.events_){arena}
+    , decltype(_impl_.cancelled_events_){arena}
+    , decltype(_impl_.control_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.control_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.control_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 StreamEventsRequest_Events::~StreamEventsRequest_Events() {
@@ -1941,11 +2009,13 @@ StreamEventsRequest_Events::~StreamEventsRequest_Events() {
 
 inline void StreamEventsRequest_Events::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  control_.Destroy();
+  _impl_.events_.~RepeatedPtrField();
+  _impl_.cancelled_events_.~RepeatedPtrField();
+  _impl_.control_.Destroy();
 }
 
 void StreamEventsRequest_Events::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StreamEventsRequest_Events::Clear() {
@@ -1954,9 +2024,9 @@ void StreamEventsRequest_Events::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  events_.Clear();
-  cancelled_events_.Clear();
-  control_.ClearToEmpty();
+  _impl_.events_.Clear();
+  _impl_.cancelled_events_.Clear();
+  _impl_.control_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2083,18 +2153,18 @@ size_t StreamEventsRequest_Events::ByteSizeLong() const {
 
   // repeated string events = 2 [json_name = "events"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(events_.size());
-  for (int i = 0, n = events_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.events_.size());
+  for (int i = 0, n = _impl_.events_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      events_.Get(i));
+      _impl_.events_.Get(i));
   }
 
   // repeated string cancelled_events = 3 [json_name = "cancelledEvents"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(cancelled_events_.size());
-  for (int i = 0, n = cancelled_events_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.cancelled_events_.size());
+  for (int i = 0, n = _impl_.cancelled_events_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      cancelled_events_.Get(i));
+      _impl_.cancelled_events_.Get(i));
   }
 
   // string control = 1 [json_name = "control"];
@@ -2104,34 +2174,30 @@ size_t StreamEventsRequest_Events::ByteSizeLong() const {
         this->_internal_control());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamEventsRequest_Events::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StreamEventsRequest_Events::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamEventsRequest_Events::GetClassData() const { return &_class_data_; }
 
-void StreamEventsRequest_Events::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StreamEventsRequest_Events *>(to)->MergeFrom(
-      static_cast<const StreamEventsRequest_Events &>(from));
-}
 
-
-void StreamEventsRequest_Events::MergeFrom(const StreamEventsRequest_Events& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.StreamEventsRequest.Events)
-  GOOGLE_DCHECK_NE(&from, this);
+void StreamEventsRequest_Events::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StreamEventsRequest_Events*>(&to_msg);
+  auto& from = static_cast<const StreamEventsRequest_Events&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.StreamEventsRequest.Events)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  events_.MergeFrom(from.events_);
-  cancelled_events_.MergeFrom(from.cancelled_events_);
+  _this->_impl_.events_.MergeFrom(from._impl_.events_);
+  _this->_impl_.cancelled_events_.MergeFrom(from._impl_.cancelled_events_);
   if (!from._internal_control().empty()) {
-    _internal_set_control(from._internal_control());
+    _this->_internal_set_control(from._internal_control());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StreamEventsRequest_Events::CopyFrom(const StreamEventsRequest_Events& from) {
@@ -2150,11 +2216,11 @@ void StreamEventsRequest_Events::InternalSwap(StreamEventsRequest_Events* other)
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  events_.InternalSwap(&other->events_);
-  cancelled_events_.InternalSwap(&other->cancelled_events_);
+  _impl_.events_.InternalSwap(&other->_impl_.events_);
+  _impl_.cancelled_events_.InternalSwap(&other->_impl_.cancelled_events_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &control_, lhs_arena,
-      &other->control_, rhs_arena
+      &_impl_.control_, lhs_arena,
+      &other->_impl_.control_, rhs_arena
   );
 }
 
@@ -2173,47 +2239,58 @@ class StreamEventsRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 StreamEventsRequest::_Internal::extra(const StreamEventsRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void StreamEventsRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 StreamEventsRequest::StreamEventsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  events_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.StreamEventsRequest)
 }
 StreamEventsRequest::StreamEventsRequest(const StreamEventsRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      events_(from.events_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StreamEventsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.events_){from._impl_.events_}
+    , decltype(_impl_.controller_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  controller_.InitDefault();
+  _impl_.controller_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    controller_.Set("", GetArenaForAllocation());
+    _impl_.controller_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_controller().empty()) {
-    controller_.Set(from._internal_controller(), 
-      GetArenaForAllocation());
+    _this->_impl_.controller_.Set(from._internal_controller(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.StreamEventsRequest)
 }
 
-inline void StreamEventsRequest::SharedCtor() {
-controller_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  controller_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void StreamEventsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.events_){arena}
+    , decltype(_impl_.controller_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.controller_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.controller_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 StreamEventsRequest::~StreamEventsRequest() {
@@ -2227,12 +2304,13 @@ StreamEventsRequest::~StreamEventsRequest() {
 
 inline void StreamEventsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  controller_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.events_.~RepeatedPtrField();
+  _impl_.controller_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void StreamEventsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StreamEventsRequest::Clear() {
@@ -2241,12 +2319,12 @@ void StreamEventsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  events_.Clear();
-  controller_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.events_.Clear();
+  _impl_.controller_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2359,7 +2437,7 @@ size_t StreamEventsRequest::ByteSizeLong() const {
 
   // repeated .viam.component.inputcontroller.v1.StreamEventsRequest.Events events = 2 [json_name = "events"];
   total_size += 1UL * this->_internal_events_size();
-  for (const auto& msg : this->events_) {
+  for (const auto& msg : this->_impl_.events_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -2375,39 +2453,36 @@ size_t StreamEventsRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamEventsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StreamEventsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamEventsRequest::GetClassData() const { return &_class_data_; }
 
-void StreamEventsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StreamEventsRequest *>(to)->MergeFrom(
-      static_cast<const StreamEventsRequest &>(from));
-}
 
-
-void StreamEventsRequest::MergeFrom(const StreamEventsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.StreamEventsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void StreamEventsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StreamEventsRequest*>(&to_msg);
+  auto& from = static_cast<const StreamEventsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.StreamEventsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  events_.MergeFrom(from.events_);
+  _this->_impl_.events_.MergeFrom(from._impl_.events_);
   if (!from._internal_controller().empty()) {
-    _internal_set_controller(from._internal_controller());
+    _this->_internal_set_controller(from._internal_controller());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StreamEventsRequest::CopyFrom(const StreamEventsRequest& from) {
@@ -2426,12 +2501,12 @@ void StreamEventsRequest::InternalSwap(StreamEventsRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  events_.InternalSwap(&other->events_);
+  _impl_.events_.InternalSwap(&other->_impl_.events_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &controller_, lhs_arena,
-      &other->controller_, rhs_arena
+      &_impl_.controller_, lhs_arena,
+      &other->_impl_.controller_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamEventsRequest::GetMetadata() const {
@@ -2449,27 +2524,36 @@ class StreamEventsResponse::_Internal {
 
 const ::viam::component::inputcontroller::v1::Event&
 StreamEventsResponse::_Internal::event(const StreamEventsResponse* msg) {
-  return *msg->event_;
+  return *msg->_impl_.event_;
 }
 StreamEventsResponse::StreamEventsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.StreamEventsResponse)
 }
 StreamEventsResponse::StreamEventsResponse(const StreamEventsResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StreamEventsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.event_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_event()) {
-    event_ = new ::viam::component::inputcontroller::v1::Event(*from.event_);
-  } else {
-    event_ = nullptr;
+    _this->_impl_.event_ = new ::viam::component::inputcontroller::v1::Event(*from._impl_.event_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.StreamEventsResponse)
 }
 
-inline void StreamEventsResponse::SharedCtor() {
-event_ = nullptr;
+inline void StreamEventsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.event_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 StreamEventsResponse::~StreamEventsResponse() {
@@ -2483,11 +2567,11 @@ StreamEventsResponse::~StreamEventsResponse() {
 
 inline void StreamEventsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete event_;
+  if (this != internal_default_instance()) delete _impl_.event_;
 }
 
 void StreamEventsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StreamEventsResponse::Clear() {
@@ -2496,10 +2580,10 @@ void StreamEventsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && event_ != nullptr) {
-    delete event_;
+  if (GetArenaForAllocation() == nullptr && _impl_.event_ != nullptr) {
+    delete _impl_.event_;
   }
-  event_ = nullptr;
+  _impl_.event_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2573,35 +2657,32 @@ size_t StreamEventsResponse::ByteSizeLong() const {
   if (this->_internal_has_event()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *event_);
+        *_impl_.event_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamEventsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StreamEventsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamEventsResponse::GetClassData() const { return &_class_data_; }
 
-void StreamEventsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StreamEventsResponse *>(to)->MergeFrom(
-      static_cast<const StreamEventsResponse &>(from));
-}
 
-
-void StreamEventsResponse::MergeFrom(const StreamEventsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.StreamEventsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void StreamEventsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StreamEventsResponse*>(&to_msg);
+  auto& from = static_cast<const StreamEventsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.StreamEventsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_event()) {
-    _internal_mutable_event()->::viam::component::inputcontroller::v1::Event::MergeFrom(from._internal_event());
+    _this->_internal_mutable_event()->::viam::component::inputcontroller::v1::Event::MergeFrom(
+        from._internal_event());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StreamEventsResponse::CopyFrom(const StreamEventsResponse& from) {
@@ -2618,7 +2699,7 @@ bool StreamEventsResponse::IsInitialized() const {
 void StreamEventsResponse::InternalSwap(StreamEventsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(event_, other->event_);
+  swap(_impl_.event_, other->_impl_.event_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamEventsResponse::GetMetadata() const {
@@ -2635,19 +2716,29 @@ class Status::_Internal {
 
 Status::Status(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  events_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.inputcontroller.v1.Status)
 }
 Status::Status(const Status& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      events_(from.events_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Status* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.events_){from._impl_.events_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.inputcontroller.v1.Status)
 }
 
-inline void Status::SharedCtor() {
+inline void Status::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.events_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 Status::~Status() {
@@ -2661,10 +2752,11 @@ Status::~Status() {
 
 inline void Status::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.events_.~RepeatedPtrField();
 }
 
 void Status::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Status::Clear() {
@@ -2673,7 +2765,7 @@ void Status::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  events_.Clear();
+  _impl_.events_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2751,35 +2843,31 @@ size_t Status::ByteSizeLong() const {
 
   // repeated .viam.component.inputcontroller.v1.Event events = 1 [json_name = "events"];
   total_size += 1UL * this->_internal_events_size();
-  for (const auto& msg : this->events_) {
+  for (const auto& msg : this->_impl_.events_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Status::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Status::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Status::GetClassData() const { return &_class_data_; }
 
-void Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Status *>(to)->MergeFrom(
-      static_cast<const Status &>(from));
-}
 
-
-void Status::MergeFrom(const Status& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.Status)
-  GOOGLE_DCHECK_NE(&from, this);
+void Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Status*>(&to_msg);
+  auto& from = static_cast<const Status&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.inputcontroller.v1.Status)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  events_.MergeFrom(from.events_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.events_.MergeFrom(from._impl_.events_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Status::CopyFrom(const Status& from) {
@@ -2796,7 +2884,7 @@ bool Status::IsInitialized() const {
 void Status::InternalSwap(Status* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  events_.InternalSwap(&other->events_);
+  _impl_.events_.InternalSwap(&other->_impl_.events_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Status::GetMetadata() const {

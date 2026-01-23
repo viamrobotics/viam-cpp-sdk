@@ -25,7 +25,7 @@ namespace component {
 namespace board {
 namespace v1 {
 PROTOBUF_CONSTEXPR Status_AnalogsEntry_DoNotUse::Status_AnalogsEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct Status_AnalogsEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Status_AnalogsEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -36,7 +36,7 @@ struct Status_AnalogsEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Status_AnalogsEntry_DoNotUseDefaultTypeInternal _Status_AnalogsEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR Status_DigitalInterruptsEntry_DoNotUse::Status_DigitalInterruptsEntry_DoNotUse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct Status_DigitalInterruptsEntry_DoNotUseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Status_DigitalInterruptsEntry_DoNotUseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -47,9 +47,10 @@ struct Status_DigitalInterruptsEntry_DoNotUseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Status_DigitalInterruptsEntry_DoNotUseDefaultTypeInternal _Status_DigitalInterruptsEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR Status::Status(
-    ::_pbi::ConstantInitialized)
-  : analogs_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{})
-  , digital_interrupts_(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.analogs_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.digital_interrupts_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StatusDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StatusDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -60,11 +61,12 @@ struct StatusDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StatusDefaultTypeInternal _Status_default_instance_;
 PROTOBUF_CONSTEXPR SetGPIORequest::SetGPIORequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , pin_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , high_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.pin_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.high_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SetGPIORequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetGPIORequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -75,7 +77,7 @@ struct SetGPIORequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetGPIORequestDefaultTypeInternal _SetGPIORequest_default_instance_;
 PROTOBUF_CONSTEXPR SetGPIOResponse::SetGPIOResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct SetGPIOResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetGPIOResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -86,10 +88,11 @@ struct SetGPIOResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetGPIOResponseDefaultTypeInternal _SetGPIOResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetGPIORequest::GetGPIORequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , pin_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.pin_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetGPIORequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetGPIORequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -100,8 +103,9 @@ struct GetGPIORequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetGPIORequestDefaultTypeInternal _GetGPIORequest_default_instance_;
 PROTOBUF_CONSTEXPR GetGPIOResponse::GetGPIOResponse(
-    ::_pbi::ConstantInitialized)
-  : high_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.high_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetGPIOResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetGPIOResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -112,10 +116,11 @@ struct GetGPIOResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetGPIOResponseDefaultTypeInternal _GetGPIOResponse_default_instance_;
 PROTOBUF_CONSTEXPR PWMRequest::PWMRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , pin_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.pin_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PWMRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PWMRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -126,8 +131,9 @@ struct PWMRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PWMRequestDefaultTypeInternal _PWMRequest_default_instance_;
 PROTOBUF_CONSTEXPR PWMResponse::PWMResponse(
-    ::_pbi::ConstantInitialized)
-  : duty_cycle_pct_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.duty_cycle_pct_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PWMResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PWMResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -138,11 +144,12 @@ struct PWMResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PWMResponseDefaultTypeInternal _PWMResponse_default_instance_;
 PROTOBUF_CONSTEXPR SetPWMRequest::SetPWMRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , pin_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , duty_cycle_pct_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.pin_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.duty_cycle_pct_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SetPWMRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetPWMRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -153,7 +160,7 @@ struct SetPWMRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetPWMRequestDefaultTypeInternal _SetPWMRequest_default_instance_;
 PROTOBUF_CONSTEXPR SetPWMResponse::SetPWMResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct SetPWMResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetPWMResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -164,10 +171,11 @@ struct SetPWMResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetPWMResponseDefaultTypeInternal _SetPWMResponse_default_instance_;
 PROTOBUF_CONSTEXPR PWMFrequencyRequest::PWMFrequencyRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , pin_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.pin_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PWMFrequencyRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PWMFrequencyRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -178,8 +186,9 @@ struct PWMFrequencyRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PWMFrequencyRequestDefaultTypeInternal _PWMFrequencyRequest_default_instance_;
 PROTOBUF_CONSTEXPR PWMFrequencyResponse::PWMFrequencyResponse(
-    ::_pbi::ConstantInitialized)
-  : frequency_hz_(uint64_t{0u}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.frequency_hz_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PWMFrequencyResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PWMFrequencyResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -190,11 +199,12 @@ struct PWMFrequencyResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PWMFrequencyResponseDefaultTypeInternal _PWMFrequencyResponse_default_instance_;
 PROTOBUF_CONSTEXPR SetPWMFrequencyRequest::SetPWMFrequencyRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , pin_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , frequency_hz_(uint64_t{0u}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.pin_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.frequency_hz_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SetPWMFrequencyRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetPWMFrequencyRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -205,7 +215,7 @@ struct SetPWMFrequencyRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetPWMFrequencyRequestDefaultTypeInternal _SetPWMFrequencyRequest_default_instance_;
 PROTOBUF_CONSTEXPR SetPWMFrequencyResponse::SetPWMFrequencyResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct SetPWMFrequencyResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetPWMFrequencyResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -216,10 +226,11 @@ struct SetPWMFrequencyResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetPWMFrequencyResponseDefaultTypeInternal _SetPWMFrequencyResponse_default_instance_;
 PROTOBUF_CONSTEXPR ReadAnalogReaderRequest::ReadAnalogReaderRequest(
-    ::_pbi::ConstantInitialized)
-  : board_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , analog_reader_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.board_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.analog_reader_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ReadAnalogReaderRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ReadAnalogReaderRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -230,11 +241,12 @@ struct ReadAnalogReaderRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadAnalogReaderRequestDefaultTypeInternal _ReadAnalogReaderRequest_default_instance_;
 PROTOBUF_CONSTEXPR ReadAnalogReaderResponse::ReadAnalogReaderResponse(
-    ::_pbi::ConstantInitialized)
-  : value_(0)
-  , min_range_(0)
-  , max_range_(0)
-  , step_size_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.value_)*/0
+  , /*decltype(_impl_.min_range_)*/0
+  , /*decltype(_impl_.max_range_)*/0
+  , /*decltype(_impl_.step_size_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ReadAnalogReaderResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ReadAnalogReaderResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -245,11 +257,12 @@ struct ReadAnalogReaderResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadAnalogReaderResponseDefaultTypeInternal _ReadAnalogReaderResponse_default_instance_;
 PROTOBUF_CONSTEXPR WriteAnalogRequest::WriteAnalogRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , pin_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , value_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.pin_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.value_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct WriteAnalogRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR WriteAnalogRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -260,7 +273,7 @@ struct WriteAnalogRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WriteAnalogRequestDefaultTypeInternal _WriteAnalogRequest_default_instance_;
 PROTOBUF_CONSTEXPR WriteAnalogResponse::WriteAnalogResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct WriteAnalogResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR WriteAnalogResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -271,10 +284,11 @@ struct WriteAnalogResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WriteAnalogResponseDefaultTypeInternal _WriteAnalogResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetDigitalInterruptValueRequest::GetDigitalInterruptValueRequest(
-    ::_pbi::ConstantInitialized)
-  : board_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , digital_interrupt_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.board_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.digital_interrupt_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetDigitalInterruptValueRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetDigitalInterruptValueRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -285,8 +299,9 @@ struct GetDigitalInterruptValueRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDigitalInterruptValueRequestDefaultTypeInternal _GetDigitalInterruptValueRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetDigitalInterruptValueResponse::GetDigitalInterruptValueResponse(
-    ::_pbi::ConstantInitialized)
-  : value_(int64_t{0}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.value_)*/int64_t{0}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetDigitalInterruptValueResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetDigitalInterruptValueResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -297,10 +312,11 @@ struct GetDigitalInterruptValueResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDigitalInterruptValueResponseDefaultTypeInternal _GetDigitalInterruptValueResponse_default_instance_;
 PROTOBUF_CONSTEXPR StreamTicksRequest::StreamTicksRequest(
-    ::_pbi::ConstantInitialized)
-  : pin_names_()
-  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.pin_names_)*/{}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamTicksRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StreamTicksRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -311,10 +327,11 @@ struct StreamTicksRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamTicksRequestDefaultTypeInternal _StreamTicksRequest_default_instance_;
 PROTOBUF_CONSTEXPR StreamTicksResponse::StreamTicksResponse(
-    ::_pbi::ConstantInitialized)
-  : pin_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , time_(uint64_t{0u})
-  , high_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.pin_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.time_)*/uint64_t{0u}
+  , /*decltype(_impl_.high_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StreamTicksResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StreamTicksResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -325,12 +342,13 @@ struct StreamTicksResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StreamTicksResponseDefaultTypeInternal _StreamTicksResponse_default_instance_;
 PROTOBUF_CONSTEXPR SetPowerModeRequest::SetPowerModeRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , duration_(nullptr)
-  , extra_(nullptr)
-  , power_mode_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.duration_)*/nullptr
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.power_mode_)*/0} {}
 struct SetPowerModeRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetPowerModeRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -341,7 +359,7 @@ struct SetPowerModeRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetPowerModeRequestDefaultTypeInternal _SetPowerModeRequest_default_instance_;
 PROTOBUF_CONSTEXPR SetPowerModeResponse::SetPowerModeResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct SetPowerModeResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetPowerModeResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -386,18 +404,18 @@ const uint32_t TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets[] PRO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::Status, analogs_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::Status, digital_interrupts_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::Status, _impl_.analogs_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::Status, _impl_.digital_interrupts_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIORequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIORequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIORequest, pin_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIORequest, high_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIORequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIORequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIORequest, _impl_.pin_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIORequest, _impl_.high_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIORequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetGPIOResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -410,42 +428,42 @@ const uint32_t TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets[] PRO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetGPIORequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetGPIORequest, pin_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetGPIORequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetGPIORequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetGPIORequest, _impl_.pin_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetGPIORequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetGPIOResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetGPIOResponse, high_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetGPIOResponse, _impl_.high_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMRequest, pin_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMRequest, _impl_.pin_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMResponse, duty_cycle_pct_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMResponse, _impl_.duty_cycle_pct_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMRequest, pin_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMRequest, duty_cycle_pct_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMRequest, _impl_.pin_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMRequest, _impl_.duty_cycle_pct_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -458,26 +476,26 @@ const uint32_t TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets[] PRO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMFrequencyRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMFrequencyRequest, pin_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMFrequencyRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMFrequencyRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMFrequencyRequest, _impl_.pin_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMFrequencyRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMFrequencyResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMFrequencyResponse, frequency_hz_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::PWMFrequencyResponse, _impl_.frequency_hz_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyRequest, pin_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyRequest, frequency_hz_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyRequest, _impl_.pin_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyRequest, _impl_.frequency_hz_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPWMFrequencyResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -490,29 +508,29 @@ const uint32_t TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets[] PRO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderRequest, board_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderRequest, analog_reader_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderRequest, _impl_.board_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderRequest, _impl_.analog_reader_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderResponse, value_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderResponse, min_range_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderResponse, max_range_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderResponse, step_size_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderResponse, _impl_.value_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderResponse, _impl_.min_range_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderResponse, _impl_.max_range_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::ReadAnalogReaderResponse, _impl_.step_size_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogRequest, pin_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogRequest, value_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogRequest, _impl_.pin_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogRequest, _impl_.value_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::WriteAnalogResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -525,44 +543,44 @@ const uint32_t TableStruct_component_2fboard_2fv1_2fboard_2eproto::offsets[] PRO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueRequest, board_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueRequest, digital_interrupt_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueRequest, _impl_.board_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueRequest, _impl_.digital_interrupt_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueResponse, value_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::GetDigitalInterruptValueResponse, _impl_.value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, pin_names_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, _impl_.pin_names_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, pin_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, time_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, high_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, _impl_.pin_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, _impl_.time_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::StreamTicksResponse, _impl_.high_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, power_mode_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, duration_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _impl_.power_mode_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _impl_.duration_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::board::v1::SetPowerModeRequest, _impl_.extra_),
   ~0u,
   ~0u,
   0,
@@ -832,10 +850,8 @@ class Status::_Internal {
 
 Status::Status(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  analogs_(arena),
-  digital_interrupts_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   if (arena != nullptr && !is_message_owned) {
     arena->OwnCustomDestructor(this, &Status::ArenaDtor);
   }
@@ -843,13 +859,27 @@ Status::Status(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 Status::Status(const Status& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Status* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.analogs_)*/{}
+    , /*decltype(_impl_.digital_interrupts_)*/{}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  analogs_.MergeFrom(from.analogs_);
-  digital_interrupts_.MergeFrom(from.digital_interrupts_);
+  _this->_impl_.analogs_.MergeFrom(from._impl_.analogs_);
+  _this->_impl_.digital_interrupts_.MergeFrom(from._impl_.digital_interrupts_);
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.Status)
 }
 
-inline void Status::SharedCtor() {
+inline void Status::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.analogs_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_.digital_interrupts_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 Status::~Status() {
@@ -864,17 +894,19 @@ Status::~Status() {
 
 inline void Status::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  analogs_.Destruct();
-  digital_interrupts_.Destruct();
+  _impl_.analogs_.Destruct();
+  _impl_.analogs_.~MapField();
+  _impl_.digital_interrupts_.Destruct();
+  _impl_.digital_interrupts_.~MapField();
 }
 
 void Status::ArenaDtor(void* object) {
   Status* _this = reinterpret_cast< Status* >(object);
-  _this->analogs_.Destruct();
-  _this->digital_interrupts_.Destruct();
+  _this->_impl_.analogs_.Destruct();
+  _this->_impl_.digital_interrupts_.Destruct();
 }
 void Status::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Status::Clear() {
@@ -883,8 +915,8 @@ void Status::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  analogs_.Clear();
-  digital_interrupts_.Clear();
+  _impl_.analogs_.Clear();
+  _impl_.digital_interrupts_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -900,7 +932,7 @@ const char* Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&analogs_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.analogs_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
@@ -913,7 +945,7 @@ const char* Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(&digital_interrupts_, ptr);
+            ptr = ctx->ParseMessage(&_impl_.digital_interrupts_, ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
@@ -1035,31 +1067,27 @@ size_t Status::ByteSizeLong() const {
     total_size += Status_DigitalInterruptsEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Status::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Status::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Status::GetClassData() const { return &_class_data_; }
 
-void Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Status *>(to)->MergeFrom(
-      static_cast<const Status &>(from));
-}
 
-
-void Status::MergeFrom(const Status& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.Status)
-  GOOGLE_DCHECK_NE(&from, this);
+void Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Status*>(&to_msg);
+  auto& from = static_cast<const Status&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.Status)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  analogs_.MergeFrom(from.analogs_);
-  digital_interrupts_.MergeFrom(from.digital_interrupts_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.analogs_.MergeFrom(from._impl_.analogs_);
+  _this->_impl_.digital_interrupts_.MergeFrom(from._impl_.digital_interrupts_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Status::CopyFrom(const Status& from) {
@@ -1076,8 +1104,8 @@ bool Status::IsInitialized() const {
 void Status::InternalSwap(Status* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  analogs_.InternalSwap(&other->analogs_);
-  digital_interrupts_.InternalSwap(&other->digital_interrupts_);
+  _impl_.analogs_.InternalSwap(&other->_impl_.analogs_);
+  _impl_.digital_interrupts_.InternalSwap(&other->_impl_.digital_interrupts_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Status::GetMetadata() const {
@@ -1095,61 +1123,73 @@ class SetGPIORequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 SetGPIORequest::_Internal::extra(const SetGPIORequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void SetGPIORequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 SetGPIORequest::SetGPIORequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.SetGPIORequest)
 }
 SetGPIORequest::SetGPIORequest(const SetGPIORequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SetGPIORequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.high_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  pin_.InitDefault();
+  _impl_.pin_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    pin_.Set("", GetArenaForAllocation());
+    _impl_.pin_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_pin().empty()) {
-    pin_.Set(from._internal_pin(), 
-      GetArenaForAllocation());
+    _this->_impl_.pin_.Set(from._internal_pin(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  high_ = from.high_;
+  _this->_impl_.high_ = from._impl_.high_;
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetGPIORequest)
 }
 
-inline void SetGPIORequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-pin_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  pin_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&high_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(high_));
+inline void SetGPIORequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.high_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.pin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.pin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SetGPIORequest::~SetGPIORequest() {
@@ -1163,13 +1203,13 @@ SetGPIORequest::~SetGPIORequest() {
 
 inline void SetGPIORequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  pin_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.pin_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void SetGPIORequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SetGPIORequest::Clear() {
@@ -1178,13 +1218,13 @@ void SetGPIORequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  pin_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.pin_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  high_ = false;
+  _impl_.extra_ = nullptr;
+  _impl_.high_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1217,7 +1257,7 @@ const char* SetGPIORequest::_InternalParse(const char* ptr, ::_pbi::ParseContext
       // bool high = 3 [json_name = "high"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          high_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.high_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1326,7 +1366,7 @@ size_t SetGPIORequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // bool high = 3 [json_name = "high"];
@@ -1334,41 +1374,38 @@ size_t SetGPIORequest::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetGPIORequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SetGPIORequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetGPIORequest::GetClassData() const { return &_class_data_; }
 
-void SetGPIORequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SetGPIORequest *>(to)->MergeFrom(
-      static_cast<const SetGPIORequest &>(from));
-}
 
-
-void SetGPIORequest::MergeFrom(const SetGPIORequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.SetGPIORequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void SetGPIORequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SetGPIORequest*>(&to_msg);
+  auto& from = static_cast<const SetGPIORequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.SetGPIORequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_pin().empty()) {
-    _internal_set_pin(from._internal_pin());
+    _this->_internal_set_pin(from._internal_pin());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   if (from._internal_high() != 0) {
-    _internal_set_high(from._internal_high());
+    _this->_internal_set_high(from._internal_high());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SetGPIORequest::CopyFrom(const SetGPIORequest& from) {
@@ -1388,19 +1425,19 @@ void SetGPIORequest::InternalSwap(SetGPIORequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &pin_, lhs_arena,
-      &other->pin_, rhs_arena
+      &_impl_.pin_, lhs_arena,
+      &other->_impl_.pin_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SetGPIORequest, high_)
-      + sizeof(SetGPIORequest::high_)
-      - PROTOBUF_FIELD_OFFSET(SetGPIORequest, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+      PROTOBUF_FIELD_OFFSET(SetGPIORequest, _impl_.high_)
+      + sizeof(SetGPIORequest::_impl_.high_)
+      - PROTOBUF_FIELD_OFFSET(SetGPIORequest, _impl_.extra_)>(
+          reinterpret_cast<char*>(&_impl_.extra_),
+          reinterpret_cast<char*>(&other->_impl_.extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SetGPIORequest::GetMetadata() const {
@@ -1422,6 +1459,7 @@ SetGPIOResponse::SetGPIOResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 SetGPIOResponse::SetGPIOResponse(const SetGPIOResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  SetGPIOResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetGPIOResponse)
 }
@@ -1457,57 +1495,70 @@ class GetGPIORequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetGPIORequest::_Internal::extra(const GetGPIORequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetGPIORequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetGPIORequest::GetGPIORequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.GetGPIORequest)
 }
 GetGPIORequest::GetGPIORequest(const GetGPIORequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetGPIORequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  pin_.InitDefault();
+  _impl_.pin_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    pin_.Set("", GetArenaForAllocation());
+    _impl_.pin_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_pin().empty()) {
-    pin_.Set(from._internal_pin(), 
-      GetArenaForAllocation());
+    _this->_impl_.pin_.Set(from._internal_pin(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.GetGPIORequest)
 }
 
-inline void GetGPIORequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-pin_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  pin_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetGPIORequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.pin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.pin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetGPIORequest::~GetGPIORequest() {
@@ -1521,13 +1572,13 @@ GetGPIORequest::~GetGPIORequest() {
 
 inline void GetGPIORequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  pin_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.pin_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetGPIORequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetGPIORequest::Clear() {
@@ -1536,12 +1587,12 @@ void GetGPIORequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  pin_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.pin_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1669,41 +1720,38 @@ size_t GetGPIORequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetGPIORequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetGPIORequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetGPIORequest::GetClassData() const { return &_class_data_; }
 
-void GetGPIORequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetGPIORequest *>(to)->MergeFrom(
-      static_cast<const GetGPIORequest &>(from));
-}
 
-
-void GetGPIORequest::MergeFrom(const GetGPIORequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.GetGPIORequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetGPIORequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetGPIORequest*>(&to_msg);
+  auto& from = static_cast<const GetGPIORequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.GetGPIORequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_pin().empty()) {
-    _internal_set_pin(from._internal_pin());
+    _this->_internal_set_pin(from._internal_pin());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetGPIORequest::CopyFrom(const GetGPIORequest& from) {
@@ -1723,14 +1771,14 @@ void GetGPIORequest::InternalSwap(GetGPIORequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &pin_, lhs_arena,
-      &other->pin_, rhs_arena
+      &_impl_.pin_, lhs_arena,
+      &other->_impl_.pin_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetGPIORequest::GetMetadata() const {
@@ -1748,18 +1796,29 @@ class GetGPIOResponse::_Internal {
 GetGPIOResponse::GetGPIOResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.GetGPIOResponse)
 }
 GetGPIOResponse::GetGPIOResponse(const GetGPIOResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetGPIOResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.high_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  high_ = from.high_;
+  _this->_impl_.high_ = from._impl_.high_;
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.GetGPIOResponse)
 }
 
-inline void GetGPIOResponse::SharedCtor() {
-high_ = false;
+inline void GetGPIOResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.high_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetGPIOResponse::~GetGPIOResponse() {
@@ -1776,7 +1835,7 @@ inline void GetGPIOResponse::SharedDtor() {
 }
 
 void GetGPIOResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetGPIOResponse::Clear() {
@@ -1785,7 +1844,7 @@ void GetGPIOResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  high_ = false;
+  _impl_.high_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1798,7 +1857,7 @@ const char* GetGPIOResponse::_InternalParse(const char* ptr, ::_pbi::ParseContex
       // bool high = 1 [json_name = "high"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          high_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.high_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1859,32 +1918,28 @@ size_t GetGPIOResponse::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetGPIOResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetGPIOResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetGPIOResponse::GetClassData() const { return &_class_data_; }
 
-void GetGPIOResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetGPIOResponse *>(to)->MergeFrom(
-      static_cast<const GetGPIOResponse &>(from));
-}
 
-
-void GetGPIOResponse::MergeFrom(const GetGPIOResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.GetGPIOResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetGPIOResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetGPIOResponse*>(&to_msg);
+  auto& from = static_cast<const GetGPIOResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.GetGPIOResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_high() != 0) {
-    _internal_set_high(from._internal_high());
+    _this->_internal_set_high(from._internal_high());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetGPIOResponse::CopyFrom(const GetGPIOResponse& from) {
@@ -1901,7 +1956,7 @@ bool GetGPIOResponse::IsInitialized() const {
 void GetGPIOResponse::InternalSwap(GetGPIOResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(high_, other->high_);
+  swap(_impl_.high_, other->_impl_.high_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetGPIOResponse::GetMetadata() const {
@@ -1919,57 +1974,70 @@ class PWMRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 PWMRequest::_Internal::extra(const PWMRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void PWMRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 PWMRequest::PWMRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.PWMRequest)
 }
 PWMRequest::PWMRequest(const PWMRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  PWMRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  pin_.InitDefault();
+  _impl_.pin_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    pin_.Set("", GetArenaForAllocation());
+    _impl_.pin_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_pin().empty()) {
-    pin_.Set(from._internal_pin(), 
-      GetArenaForAllocation());
+    _this->_impl_.pin_.Set(from._internal_pin(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.PWMRequest)
 }
 
-inline void PWMRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-pin_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  pin_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void PWMRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.pin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.pin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 PWMRequest::~PWMRequest() {
@@ -1983,13 +2051,13 @@ PWMRequest::~PWMRequest() {
 
 inline void PWMRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  pin_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.pin_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void PWMRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void PWMRequest::Clear() {
@@ -1998,12 +2066,12 @@ void PWMRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  pin_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.pin_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2131,41 +2199,38 @@ size_t PWMRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PWMRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     PWMRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PWMRequest::GetClassData() const { return &_class_data_; }
 
-void PWMRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PWMRequest *>(to)->MergeFrom(
-      static_cast<const PWMRequest &>(from));
-}
 
-
-void PWMRequest::MergeFrom(const PWMRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.PWMRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void PWMRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PWMRequest*>(&to_msg);
+  auto& from = static_cast<const PWMRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.PWMRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_pin().empty()) {
-    _internal_set_pin(from._internal_pin());
+    _this->_internal_set_pin(from._internal_pin());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PWMRequest::CopyFrom(const PWMRequest& from) {
@@ -2185,14 +2250,14 @@ void PWMRequest::InternalSwap(PWMRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &pin_, lhs_arena,
-      &other->pin_, rhs_arena
+      &_impl_.pin_, lhs_arena,
+      &other->_impl_.pin_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PWMRequest::GetMetadata() const {
@@ -2210,18 +2275,29 @@ class PWMResponse::_Internal {
 PWMResponse::PWMResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.PWMResponse)
 }
 PWMResponse::PWMResponse(const PWMResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  PWMResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.duty_cycle_pct_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  duty_cycle_pct_ = from.duty_cycle_pct_;
+  _this->_impl_.duty_cycle_pct_ = from._impl_.duty_cycle_pct_;
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.PWMResponse)
 }
 
-inline void PWMResponse::SharedCtor() {
-duty_cycle_pct_ = 0;
+inline void PWMResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.duty_cycle_pct_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 PWMResponse::~PWMResponse() {
@@ -2238,7 +2314,7 @@ inline void PWMResponse::SharedDtor() {
 }
 
 void PWMResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void PWMResponse::Clear() {
@@ -2247,7 +2323,7 @@ void PWMResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  duty_cycle_pct_ = 0;
+  _impl_.duty_cycle_pct_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2260,7 +2336,7 @@ const char* PWMResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
       // double duty_cycle_pct = 1 [json_name = "dutyCyclePct"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
-          duty_cycle_pct_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.duty_cycle_pct_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -2329,25 +2405,21 @@ size_t PWMResponse::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PWMResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     PWMResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PWMResponse::GetClassData() const { return &_class_data_; }
 
-void PWMResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PWMResponse *>(to)->MergeFrom(
-      static_cast<const PWMResponse &>(from));
-}
 
-
-void PWMResponse::MergeFrom(const PWMResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.PWMResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void PWMResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PWMResponse*>(&to_msg);
+  auto& from = static_cast<const PWMResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.PWMResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2356,9 +2428,9 @@ void PWMResponse::MergeFrom(const PWMResponse& from) {
   uint64_t raw_duty_cycle_pct;
   memcpy(&raw_duty_cycle_pct, &tmp_duty_cycle_pct, sizeof(tmp_duty_cycle_pct));
   if (raw_duty_cycle_pct != 0) {
-    _internal_set_duty_cycle_pct(from._internal_duty_cycle_pct());
+    _this->_internal_set_duty_cycle_pct(from._internal_duty_cycle_pct());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PWMResponse::CopyFrom(const PWMResponse& from) {
@@ -2375,7 +2447,7 @@ bool PWMResponse::IsInitialized() const {
 void PWMResponse::InternalSwap(PWMResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(duty_cycle_pct_, other->duty_cycle_pct_);
+  swap(_impl_.duty_cycle_pct_, other->_impl_.duty_cycle_pct_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PWMResponse::GetMetadata() const {
@@ -2393,61 +2465,73 @@ class SetPWMRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 SetPWMRequest::_Internal::extra(const SetPWMRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void SetPWMRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 SetPWMRequest::SetPWMRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.SetPWMRequest)
 }
 SetPWMRequest::SetPWMRequest(const SetPWMRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SetPWMRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.duty_cycle_pct_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  pin_.InitDefault();
+  _impl_.pin_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    pin_.Set("", GetArenaForAllocation());
+    _impl_.pin_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_pin().empty()) {
-    pin_.Set(from._internal_pin(), 
-      GetArenaForAllocation());
+    _this->_impl_.pin_.Set(from._internal_pin(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  duty_cycle_pct_ = from.duty_cycle_pct_;
+  _this->_impl_.duty_cycle_pct_ = from._impl_.duty_cycle_pct_;
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetPWMRequest)
 }
 
-inline void SetPWMRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-pin_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  pin_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&duty_cycle_pct_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(duty_cycle_pct_));
+inline void SetPWMRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.duty_cycle_pct_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.pin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.pin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SetPWMRequest::~SetPWMRequest() {
@@ -2461,13 +2545,13 @@ SetPWMRequest::~SetPWMRequest() {
 
 inline void SetPWMRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  pin_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.pin_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void SetPWMRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SetPWMRequest::Clear() {
@@ -2476,13 +2560,13 @@ void SetPWMRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  pin_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.pin_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  duty_cycle_pct_ = 0;
+  _impl_.extra_ = nullptr;
+  _impl_.duty_cycle_pct_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2515,7 +2599,7 @@ const char* SetPWMRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // double duty_cycle_pct = 3 [json_name = "dutyCyclePct"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
-          duty_cycle_pct_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.duty_cycle_pct_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -2628,7 +2712,7 @@ size_t SetPWMRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // double duty_cycle_pct = 3 [json_name = "dutyCyclePct"];
@@ -2640,45 +2724,42 @@ size_t SetPWMRequest::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetPWMRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SetPWMRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetPWMRequest::GetClassData() const { return &_class_data_; }
 
-void SetPWMRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SetPWMRequest *>(to)->MergeFrom(
-      static_cast<const SetPWMRequest &>(from));
-}
 
-
-void SetPWMRequest::MergeFrom(const SetPWMRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.SetPWMRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void SetPWMRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SetPWMRequest*>(&to_msg);
+  auto& from = static_cast<const SetPWMRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.SetPWMRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_pin().empty()) {
-    _internal_set_pin(from._internal_pin());
+    _this->_internal_set_pin(from._internal_pin());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
   double tmp_duty_cycle_pct = from._internal_duty_cycle_pct();
   uint64_t raw_duty_cycle_pct;
   memcpy(&raw_duty_cycle_pct, &tmp_duty_cycle_pct, sizeof(tmp_duty_cycle_pct));
   if (raw_duty_cycle_pct != 0) {
-    _internal_set_duty_cycle_pct(from._internal_duty_cycle_pct());
+    _this->_internal_set_duty_cycle_pct(from._internal_duty_cycle_pct());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SetPWMRequest::CopyFrom(const SetPWMRequest& from) {
@@ -2698,19 +2779,19 @@ void SetPWMRequest::InternalSwap(SetPWMRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &pin_, lhs_arena,
-      &other->pin_, rhs_arena
+      &_impl_.pin_, lhs_arena,
+      &other->_impl_.pin_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SetPWMRequest, duty_cycle_pct_)
-      + sizeof(SetPWMRequest::duty_cycle_pct_)
-      - PROTOBUF_FIELD_OFFSET(SetPWMRequest, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+      PROTOBUF_FIELD_OFFSET(SetPWMRequest, _impl_.duty_cycle_pct_)
+      + sizeof(SetPWMRequest::_impl_.duty_cycle_pct_)
+      - PROTOBUF_FIELD_OFFSET(SetPWMRequest, _impl_.extra_)>(
+          reinterpret_cast<char*>(&_impl_.extra_),
+          reinterpret_cast<char*>(&other->_impl_.extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SetPWMRequest::GetMetadata() const {
@@ -2732,6 +2813,7 @@ SetPWMResponse::SetPWMResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 SetPWMResponse::SetPWMResponse(const SetPWMResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  SetPWMResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetPWMResponse)
 }
@@ -2767,57 +2849,70 @@ class PWMFrequencyRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 PWMFrequencyRequest::_Internal::extra(const PWMFrequencyRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void PWMFrequencyRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 PWMFrequencyRequest::PWMFrequencyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.PWMFrequencyRequest)
 }
 PWMFrequencyRequest::PWMFrequencyRequest(const PWMFrequencyRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  PWMFrequencyRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  pin_.InitDefault();
+  _impl_.pin_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    pin_.Set("", GetArenaForAllocation());
+    _impl_.pin_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_pin().empty()) {
-    pin_.Set(from._internal_pin(), 
-      GetArenaForAllocation());
+    _this->_impl_.pin_.Set(from._internal_pin(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.PWMFrequencyRequest)
 }
 
-inline void PWMFrequencyRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-pin_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  pin_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void PWMFrequencyRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.pin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.pin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 PWMFrequencyRequest::~PWMFrequencyRequest() {
@@ -2831,13 +2926,13 @@ PWMFrequencyRequest::~PWMFrequencyRequest() {
 
 inline void PWMFrequencyRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  pin_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.pin_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void PWMFrequencyRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void PWMFrequencyRequest::Clear() {
@@ -2846,12 +2941,12 @@ void PWMFrequencyRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  pin_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.pin_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2979,41 +3074,38 @@ size_t PWMFrequencyRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PWMFrequencyRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     PWMFrequencyRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PWMFrequencyRequest::GetClassData() const { return &_class_data_; }
 
-void PWMFrequencyRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PWMFrequencyRequest *>(to)->MergeFrom(
-      static_cast<const PWMFrequencyRequest &>(from));
-}
 
-
-void PWMFrequencyRequest::MergeFrom(const PWMFrequencyRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.PWMFrequencyRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void PWMFrequencyRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PWMFrequencyRequest*>(&to_msg);
+  auto& from = static_cast<const PWMFrequencyRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.PWMFrequencyRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_pin().empty()) {
-    _internal_set_pin(from._internal_pin());
+    _this->_internal_set_pin(from._internal_pin());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PWMFrequencyRequest::CopyFrom(const PWMFrequencyRequest& from) {
@@ -3033,14 +3125,14 @@ void PWMFrequencyRequest::InternalSwap(PWMFrequencyRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &pin_, lhs_arena,
-      &other->pin_, rhs_arena
+      &_impl_.pin_, lhs_arena,
+      &other->_impl_.pin_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PWMFrequencyRequest::GetMetadata() const {
@@ -3058,18 +3150,29 @@ class PWMFrequencyResponse::_Internal {
 PWMFrequencyResponse::PWMFrequencyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.PWMFrequencyResponse)
 }
 PWMFrequencyResponse::PWMFrequencyResponse(const PWMFrequencyResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  PWMFrequencyResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.frequency_hz_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  frequency_hz_ = from.frequency_hz_;
+  _this->_impl_.frequency_hz_ = from._impl_.frequency_hz_;
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.PWMFrequencyResponse)
 }
 
-inline void PWMFrequencyResponse::SharedCtor() {
-frequency_hz_ = uint64_t{0u};
+inline void PWMFrequencyResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.frequency_hz_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 PWMFrequencyResponse::~PWMFrequencyResponse() {
@@ -3086,7 +3189,7 @@ inline void PWMFrequencyResponse::SharedDtor() {
 }
 
 void PWMFrequencyResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void PWMFrequencyResponse::Clear() {
@@ -3095,7 +3198,7 @@ void PWMFrequencyResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  frequency_hz_ = uint64_t{0u};
+  _impl_.frequency_hz_ = uint64_t{0u};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3108,7 +3211,7 @@ const char* PWMFrequencyResponse::_InternalParse(const char* ptr, ::_pbi::ParseC
       // uint64 frequency_hz = 1 [json_name = "frequencyHz"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          frequency_hz_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.frequency_hz_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3169,32 +3272,28 @@ size_t PWMFrequencyResponse::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_frequency_hz());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PWMFrequencyResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     PWMFrequencyResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PWMFrequencyResponse::GetClassData() const { return &_class_data_; }
 
-void PWMFrequencyResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PWMFrequencyResponse *>(to)->MergeFrom(
-      static_cast<const PWMFrequencyResponse &>(from));
-}
 
-
-void PWMFrequencyResponse::MergeFrom(const PWMFrequencyResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.PWMFrequencyResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void PWMFrequencyResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PWMFrequencyResponse*>(&to_msg);
+  auto& from = static_cast<const PWMFrequencyResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.PWMFrequencyResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_frequency_hz() != 0) {
-    _internal_set_frequency_hz(from._internal_frequency_hz());
+    _this->_internal_set_frequency_hz(from._internal_frequency_hz());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PWMFrequencyResponse::CopyFrom(const PWMFrequencyResponse& from) {
@@ -3211,7 +3310,7 @@ bool PWMFrequencyResponse::IsInitialized() const {
 void PWMFrequencyResponse::InternalSwap(PWMFrequencyResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(frequency_hz_, other->frequency_hz_);
+  swap(_impl_.frequency_hz_, other->_impl_.frequency_hz_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PWMFrequencyResponse::GetMetadata() const {
@@ -3229,61 +3328,73 @@ class SetPWMFrequencyRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 SetPWMFrequencyRequest::_Internal::extra(const SetPWMFrequencyRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void SetPWMFrequencyRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 SetPWMFrequencyRequest::SetPWMFrequencyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.SetPWMFrequencyRequest)
 }
 SetPWMFrequencyRequest::SetPWMFrequencyRequest(const SetPWMFrequencyRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SetPWMFrequencyRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.frequency_hz_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  pin_.InitDefault();
+  _impl_.pin_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    pin_.Set("", GetArenaForAllocation());
+    _impl_.pin_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_pin().empty()) {
-    pin_.Set(from._internal_pin(), 
-      GetArenaForAllocation());
+    _this->_impl_.pin_.Set(from._internal_pin(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  frequency_hz_ = from.frequency_hz_;
+  _this->_impl_.frequency_hz_ = from._impl_.frequency_hz_;
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetPWMFrequencyRequest)
 }
 
-inline void SetPWMFrequencyRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-pin_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  pin_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&frequency_hz_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(frequency_hz_));
+inline void SetPWMFrequencyRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.frequency_hz_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.pin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.pin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SetPWMFrequencyRequest::~SetPWMFrequencyRequest() {
@@ -3297,13 +3408,13 @@ SetPWMFrequencyRequest::~SetPWMFrequencyRequest() {
 
 inline void SetPWMFrequencyRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  pin_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.pin_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void SetPWMFrequencyRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SetPWMFrequencyRequest::Clear() {
@@ -3312,13 +3423,13 @@ void SetPWMFrequencyRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  pin_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.pin_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  frequency_hz_ = uint64_t{0u};
+  _impl_.extra_ = nullptr;
+  _impl_.frequency_hz_ = uint64_t{0u};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3351,7 +3462,7 @@ const char* SetPWMFrequencyRequest::_InternalParse(const char* ptr, ::_pbi::Pars
       // uint64 frequency_hz = 3 [json_name = "frequencyHz"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          frequency_hz_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.frequency_hz_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3460,7 +3571,7 @@ size_t SetPWMFrequencyRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // uint64 frequency_hz = 3 [json_name = "frequencyHz"];
@@ -3468,41 +3579,38 @@ size_t SetPWMFrequencyRequest::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_frequency_hz());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetPWMFrequencyRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SetPWMFrequencyRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetPWMFrequencyRequest::GetClassData() const { return &_class_data_; }
 
-void SetPWMFrequencyRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SetPWMFrequencyRequest *>(to)->MergeFrom(
-      static_cast<const SetPWMFrequencyRequest &>(from));
-}
 
-
-void SetPWMFrequencyRequest::MergeFrom(const SetPWMFrequencyRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.SetPWMFrequencyRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void SetPWMFrequencyRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SetPWMFrequencyRequest*>(&to_msg);
+  auto& from = static_cast<const SetPWMFrequencyRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.SetPWMFrequencyRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_pin().empty()) {
-    _internal_set_pin(from._internal_pin());
+    _this->_internal_set_pin(from._internal_pin());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   if (from._internal_frequency_hz() != 0) {
-    _internal_set_frequency_hz(from._internal_frequency_hz());
+    _this->_internal_set_frequency_hz(from._internal_frequency_hz());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SetPWMFrequencyRequest::CopyFrom(const SetPWMFrequencyRequest& from) {
@@ -3522,19 +3630,19 @@ void SetPWMFrequencyRequest::InternalSwap(SetPWMFrequencyRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &pin_, lhs_arena,
-      &other->pin_, rhs_arena
+      &_impl_.pin_, lhs_arena,
+      &other->_impl_.pin_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SetPWMFrequencyRequest, frequency_hz_)
-      + sizeof(SetPWMFrequencyRequest::frequency_hz_)
-      - PROTOBUF_FIELD_OFFSET(SetPWMFrequencyRequest, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+      PROTOBUF_FIELD_OFFSET(SetPWMFrequencyRequest, _impl_.frequency_hz_)
+      + sizeof(SetPWMFrequencyRequest::_impl_.frequency_hz_)
+      - PROTOBUF_FIELD_OFFSET(SetPWMFrequencyRequest, _impl_.extra_)>(
+          reinterpret_cast<char*>(&_impl_.extra_),
+          reinterpret_cast<char*>(&other->_impl_.extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SetPWMFrequencyRequest::GetMetadata() const {
@@ -3556,6 +3664,7 @@ SetPWMFrequencyResponse::SetPWMFrequencyResponse(::PROTOBUF_NAMESPACE_ID::Arena*
 }
 SetPWMFrequencyResponse::SetPWMFrequencyResponse(const SetPWMFrequencyResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  SetPWMFrequencyResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetPWMFrequencyResponse)
 }
@@ -3591,57 +3700,70 @@ class ReadAnalogReaderRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 ReadAnalogReaderRequest::_Internal::extra(const ReadAnalogReaderRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void ReadAnalogReaderRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 ReadAnalogReaderRequest::ReadAnalogReaderRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.ReadAnalogReaderRequest)
 }
 ReadAnalogReaderRequest::ReadAnalogReaderRequest(const ReadAnalogReaderRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ReadAnalogReaderRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.board_name_){}
+    , decltype(_impl_.analog_reader_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  board_name_.InitDefault();
+  _impl_.board_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    board_name_.Set("", GetArenaForAllocation());
+    _impl_.board_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_board_name().empty()) {
-    board_name_.Set(from._internal_board_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.board_name_.Set(from._internal_board_name(), 
+      _this->GetArenaForAllocation());
   }
-  analog_reader_name_.InitDefault();
+  _impl_.analog_reader_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    analog_reader_name_.Set("", GetArenaForAllocation());
+    _impl_.analog_reader_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_analog_reader_name().empty()) {
-    analog_reader_name_.Set(from._internal_analog_reader_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.analog_reader_name_.Set(from._internal_analog_reader_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.ReadAnalogReaderRequest)
 }
 
-inline void ReadAnalogReaderRequest::SharedCtor() {
-board_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  board_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-analog_reader_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  analog_reader_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void ReadAnalogReaderRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.board_name_){}
+    , decltype(_impl_.analog_reader_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.board_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.board_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.analog_reader_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.analog_reader_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ReadAnalogReaderRequest::~ReadAnalogReaderRequest() {
@@ -3655,13 +3777,13 @@ ReadAnalogReaderRequest::~ReadAnalogReaderRequest() {
 
 inline void ReadAnalogReaderRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  board_name_.Destroy();
-  analog_reader_name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.board_name_.Destroy();
+  _impl_.analog_reader_name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void ReadAnalogReaderRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ReadAnalogReaderRequest::Clear() {
@@ -3670,12 +3792,12 @@ void ReadAnalogReaderRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  board_name_.ClearToEmpty();
-  analog_reader_name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.board_name_.ClearToEmpty();
+  _impl_.analog_reader_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3803,41 +3925,38 @@ size_t ReadAnalogReaderRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReadAnalogReaderRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ReadAnalogReaderRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReadAnalogReaderRequest::GetClassData() const { return &_class_data_; }
 
-void ReadAnalogReaderRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ReadAnalogReaderRequest *>(to)->MergeFrom(
-      static_cast<const ReadAnalogReaderRequest &>(from));
-}
 
-
-void ReadAnalogReaderRequest::MergeFrom(const ReadAnalogReaderRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.ReadAnalogReaderRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void ReadAnalogReaderRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ReadAnalogReaderRequest*>(&to_msg);
+  auto& from = static_cast<const ReadAnalogReaderRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.ReadAnalogReaderRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_board_name().empty()) {
-    _internal_set_board_name(from._internal_board_name());
+    _this->_internal_set_board_name(from._internal_board_name());
   }
   if (!from._internal_analog_reader_name().empty()) {
-    _internal_set_analog_reader_name(from._internal_analog_reader_name());
+    _this->_internal_set_analog_reader_name(from._internal_analog_reader_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ReadAnalogReaderRequest::CopyFrom(const ReadAnalogReaderRequest& from) {
@@ -3857,14 +3976,14 @@ void ReadAnalogReaderRequest::InternalSwap(ReadAnalogReaderRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &board_name_, lhs_arena,
-      &other->board_name_, rhs_arena
+      &_impl_.board_name_, lhs_arena,
+      &other->_impl_.board_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &analog_reader_name_, lhs_arena,
-      &other->analog_reader_name_, rhs_arena
+      &_impl_.analog_reader_name_, lhs_arena,
+      &other->_impl_.analog_reader_name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ReadAnalogReaderRequest::GetMetadata() const {
@@ -3882,23 +4001,37 @@ class ReadAnalogReaderResponse::_Internal {
 ReadAnalogReaderResponse::ReadAnalogReaderResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.ReadAnalogReaderResponse)
 }
 ReadAnalogReaderResponse::ReadAnalogReaderResponse(const ReadAnalogReaderResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ReadAnalogReaderResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.value_){}
+    , decltype(_impl_.min_range_){}
+    , decltype(_impl_.max_range_){}
+    , decltype(_impl_.step_size_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&value_, &from.value_,
-    static_cast<size_t>(reinterpret_cast<char*>(&step_size_) -
-    reinterpret_cast<char*>(&value_)) + sizeof(step_size_));
+  ::memcpy(&_impl_.value_, &from._impl_.value_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.step_size_) -
+    reinterpret_cast<char*>(&_impl_.value_)) + sizeof(_impl_.step_size_));
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.ReadAnalogReaderResponse)
 }
 
-inline void ReadAnalogReaderResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&value_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&step_size_) -
-    reinterpret_cast<char*>(&value_)) + sizeof(step_size_));
+inline void ReadAnalogReaderResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.value_){0}
+    , decltype(_impl_.min_range_){0}
+    , decltype(_impl_.max_range_){0}
+    , decltype(_impl_.step_size_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 ReadAnalogReaderResponse::~ReadAnalogReaderResponse() {
@@ -3915,7 +4048,7 @@ inline void ReadAnalogReaderResponse::SharedDtor() {
 }
 
 void ReadAnalogReaderResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ReadAnalogReaderResponse::Clear() {
@@ -3924,9 +4057,9 @@ void ReadAnalogReaderResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&value_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&step_size_) -
-      reinterpret_cast<char*>(&value_)) + sizeof(step_size_));
+  ::memset(&_impl_.value_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.step_size_) -
+      reinterpret_cast<char*>(&_impl_.value_)) + sizeof(_impl_.step_size_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3939,7 +4072,7 @@ const char* ReadAnalogReaderResponse::_InternalParse(const char* ptr, ::_pbi::Pa
       // int32 value = 1 [json_name = "value"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3947,7 +4080,7 @@ const char* ReadAnalogReaderResponse::_InternalParse(const char* ptr, ::_pbi::Pa
       // float min_range = 2 [json_name = "minRange"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          min_range_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          _impl_.min_range_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -3955,7 +4088,7 @@ const char* ReadAnalogReaderResponse::_InternalParse(const char* ptr, ::_pbi::Pa
       // float max_range = 3 [json_name = "maxRange"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          max_range_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          _impl_.max_range_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -3963,7 +4096,7 @@ const char* ReadAnalogReaderResponse::_InternalParse(const char* ptr, ::_pbi::Pa
       // float step_size = 4 [json_name = "stepSize"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
-          step_size_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          _impl_.step_size_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -4081,53 +4214,49 @@ size_t ReadAnalogReaderResponse::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReadAnalogReaderResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ReadAnalogReaderResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReadAnalogReaderResponse::GetClassData() const { return &_class_data_; }
 
-void ReadAnalogReaderResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ReadAnalogReaderResponse *>(to)->MergeFrom(
-      static_cast<const ReadAnalogReaderResponse &>(from));
-}
 
-
-void ReadAnalogReaderResponse::MergeFrom(const ReadAnalogReaderResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.ReadAnalogReaderResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void ReadAnalogReaderResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ReadAnalogReaderResponse*>(&to_msg);
+  auto& from = static_cast<const ReadAnalogReaderResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.ReadAnalogReaderResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_value() != 0) {
-    _internal_set_value(from._internal_value());
+    _this->_internal_set_value(from._internal_value());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_min_range = from._internal_min_range();
   uint32_t raw_min_range;
   memcpy(&raw_min_range, &tmp_min_range, sizeof(tmp_min_range));
   if (raw_min_range != 0) {
-    _internal_set_min_range(from._internal_min_range());
+    _this->_internal_set_min_range(from._internal_min_range());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_max_range = from._internal_max_range();
   uint32_t raw_max_range;
   memcpy(&raw_max_range, &tmp_max_range, sizeof(tmp_max_range));
   if (raw_max_range != 0) {
-    _internal_set_max_range(from._internal_max_range());
+    _this->_internal_set_max_range(from._internal_max_range());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_step_size = from._internal_step_size();
   uint32_t raw_step_size;
   memcpy(&raw_step_size, &tmp_step_size, sizeof(tmp_step_size));
   if (raw_step_size != 0) {
-    _internal_set_step_size(from._internal_step_size());
+    _this->_internal_set_step_size(from._internal_step_size());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ReadAnalogReaderResponse::CopyFrom(const ReadAnalogReaderResponse& from) {
@@ -4145,11 +4274,11 @@ void ReadAnalogReaderResponse::InternalSwap(ReadAnalogReaderResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ReadAnalogReaderResponse, step_size_)
-      + sizeof(ReadAnalogReaderResponse::step_size_)
-      - PROTOBUF_FIELD_OFFSET(ReadAnalogReaderResponse, value_)>(
-          reinterpret_cast<char*>(&value_),
-          reinterpret_cast<char*>(&other->value_));
+      PROTOBUF_FIELD_OFFSET(ReadAnalogReaderResponse, _impl_.step_size_)
+      + sizeof(ReadAnalogReaderResponse::_impl_.step_size_)
+      - PROTOBUF_FIELD_OFFSET(ReadAnalogReaderResponse, _impl_.value_)>(
+          reinterpret_cast<char*>(&_impl_.value_),
+          reinterpret_cast<char*>(&other->_impl_.value_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ReadAnalogReaderResponse::GetMetadata() const {
@@ -4167,61 +4296,73 @@ class WriteAnalogRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 WriteAnalogRequest::_Internal::extra(const WriteAnalogRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void WriteAnalogRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 WriteAnalogRequest::WriteAnalogRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.WriteAnalogRequest)
 }
 WriteAnalogRequest::WriteAnalogRequest(const WriteAnalogRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  WriteAnalogRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.value_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  pin_.InitDefault();
+  _impl_.pin_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    pin_.Set("", GetArenaForAllocation());
+    _impl_.pin_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_pin().empty()) {
-    pin_.Set(from._internal_pin(), 
-      GetArenaForAllocation());
+    _this->_impl_.pin_.Set(from._internal_pin(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  value_ = from.value_;
+  _this->_impl_.value_ = from._impl_.value_;
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.WriteAnalogRequest)
 }
 
-inline void WriteAnalogRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-pin_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  pin_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&value_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(value_));
+inline void WriteAnalogRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.pin_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.value_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.pin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.pin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 WriteAnalogRequest::~WriteAnalogRequest() {
@@ -4235,13 +4376,13 @@ WriteAnalogRequest::~WriteAnalogRequest() {
 
 inline void WriteAnalogRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  pin_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.pin_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void WriteAnalogRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void WriteAnalogRequest::Clear() {
@@ -4250,13 +4391,13 @@ void WriteAnalogRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  pin_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.pin_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  value_ = 0;
+  _impl_.extra_ = nullptr;
+  _impl_.value_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4289,7 +4430,7 @@ const char* WriteAnalogRequest::_InternalParse(const char* ptr, ::_pbi::ParseCon
       // int32 value = 3 [json_name = "value"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4398,7 +4539,7 @@ size_t WriteAnalogRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // int32 value = 3 [json_name = "value"];
@@ -4406,41 +4547,38 @@ size_t WriteAnalogRequest::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_value());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData WriteAnalogRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     WriteAnalogRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*WriteAnalogRequest::GetClassData() const { return &_class_data_; }
 
-void WriteAnalogRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<WriteAnalogRequest *>(to)->MergeFrom(
-      static_cast<const WriteAnalogRequest &>(from));
-}
 
-
-void WriteAnalogRequest::MergeFrom(const WriteAnalogRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.WriteAnalogRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void WriteAnalogRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<WriteAnalogRequest*>(&to_msg);
+  auto& from = static_cast<const WriteAnalogRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.WriteAnalogRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_pin().empty()) {
-    _internal_set_pin(from._internal_pin());
+    _this->_internal_set_pin(from._internal_pin());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   if (from._internal_value() != 0) {
-    _internal_set_value(from._internal_value());
+    _this->_internal_set_value(from._internal_value());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void WriteAnalogRequest::CopyFrom(const WriteAnalogRequest& from) {
@@ -4460,19 +4598,19 @@ void WriteAnalogRequest::InternalSwap(WriteAnalogRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &pin_, lhs_arena,
-      &other->pin_, rhs_arena
+      &_impl_.pin_, lhs_arena,
+      &other->_impl_.pin_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(WriteAnalogRequest, value_)
-      + sizeof(WriteAnalogRequest::value_)
-      - PROTOBUF_FIELD_OFFSET(WriteAnalogRequest, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+      PROTOBUF_FIELD_OFFSET(WriteAnalogRequest, _impl_.value_)
+      + sizeof(WriteAnalogRequest::_impl_.value_)
+      - PROTOBUF_FIELD_OFFSET(WriteAnalogRequest, _impl_.extra_)>(
+          reinterpret_cast<char*>(&_impl_.extra_),
+          reinterpret_cast<char*>(&other->_impl_.extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata WriteAnalogRequest::GetMetadata() const {
@@ -4494,6 +4632,7 @@ WriteAnalogResponse::WriteAnalogResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 WriteAnalogResponse::WriteAnalogResponse(const WriteAnalogResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  WriteAnalogResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.WriteAnalogResponse)
 }
@@ -4529,57 +4668,70 @@ class GetDigitalInterruptValueRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetDigitalInterruptValueRequest::_Internal::extra(const GetDigitalInterruptValueRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetDigitalInterruptValueRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetDigitalInterruptValueRequest::GetDigitalInterruptValueRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.GetDigitalInterruptValueRequest)
 }
 GetDigitalInterruptValueRequest::GetDigitalInterruptValueRequest(const GetDigitalInterruptValueRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetDigitalInterruptValueRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.board_name_){}
+    , decltype(_impl_.digital_interrupt_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  board_name_.InitDefault();
+  _impl_.board_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    board_name_.Set("", GetArenaForAllocation());
+    _impl_.board_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_board_name().empty()) {
-    board_name_.Set(from._internal_board_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.board_name_.Set(from._internal_board_name(), 
+      _this->GetArenaForAllocation());
   }
-  digital_interrupt_name_.InitDefault();
+  _impl_.digital_interrupt_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    digital_interrupt_name_.Set("", GetArenaForAllocation());
+    _impl_.digital_interrupt_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_digital_interrupt_name().empty()) {
-    digital_interrupt_name_.Set(from._internal_digital_interrupt_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.digital_interrupt_name_.Set(from._internal_digital_interrupt_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.GetDigitalInterruptValueRequest)
 }
 
-inline void GetDigitalInterruptValueRequest::SharedCtor() {
-board_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  board_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-digital_interrupt_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  digital_interrupt_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetDigitalInterruptValueRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.board_name_){}
+    , decltype(_impl_.digital_interrupt_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.board_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.board_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.digital_interrupt_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.digital_interrupt_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetDigitalInterruptValueRequest::~GetDigitalInterruptValueRequest() {
@@ -4593,13 +4745,13 @@ GetDigitalInterruptValueRequest::~GetDigitalInterruptValueRequest() {
 
 inline void GetDigitalInterruptValueRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  board_name_.Destroy();
-  digital_interrupt_name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.board_name_.Destroy();
+  _impl_.digital_interrupt_name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetDigitalInterruptValueRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetDigitalInterruptValueRequest::Clear() {
@@ -4608,12 +4760,12 @@ void GetDigitalInterruptValueRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  board_name_.ClearToEmpty();
-  digital_interrupt_name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.board_name_.ClearToEmpty();
+  _impl_.digital_interrupt_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4741,41 +4893,38 @@ size_t GetDigitalInterruptValueRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetDigitalInterruptValueRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetDigitalInterruptValueRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetDigitalInterruptValueRequest::GetClassData() const { return &_class_data_; }
 
-void GetDigitalInterruptValueRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetDigitalInterruptValueRequest *>(to)->MergeFrom(
-      static_cast<const GetDigitalInterruptValueRequest &>(from));
-}
 
-
-void GetDigitalInterruptValueRequest::MergeFrom(const GetDigitalInterruptValueRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.GetDigitalInterruptValueRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetDigitalInterruptValueRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetDigitalInterruptValueRequest*>(&to_msg);
+  auto& from = static_cast<const GetDigitalInterruptValueRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.GetDigitalInterruptValueRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_board_name().empty()) {
-    _internal_set_board_name(from._internal_board_name());
+    _this->_internal_set_board_name(from._internal_board_name());
   }
   if (!from._internal_digital_interrupt_name().empty()) {
-    _internal_set_digital_interrupt_name(from._internal_digital_interrupt_name());
+    _this->_internal_set_digital_interrupt_name(from._internal_digital_interrupt_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetDigitalInterruptValueRequest::CopyFrom(const GetDigitalInterruptValueRequest& from) {
@@ -4795,14 +4944,14 @@ void GetDigitalInterruptValueRequest::InternalSwap(GetDigitalInterruptValueReque
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &board_name_, lhs_arena,
-      &other->board_name_, rhs_arena
+      &_impl_.board_name_, lhs_arena,
+      &other->_impl_.board_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &digital_interrupt_name_, lhs_arena,
-      &other->digital_interrupt_name_, rhs_arena
+      &_impl_.digital_interrupt_name_, lhs_arena,
+      &other->_impl_.digital_interrupt_name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetDigitalInterruptValueRequest::GetMetadata() const {
@@ -4820,18 +4969,29 @@ class GetDigitalInterruptValueResponse::_Internal {
 GetDigitalInterruptValueResponse::GetDigitalInterruptValueResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.GetDigitalInterruptValueResponse)
 }
 GetDigitalInterruptValueResponse::GetDigitalInterruptValueResponse(const GetDigitalInterruptValueResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetDigitalInterruptValueResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.value_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  value_ = from.value_;
+  _this->_impl_.value_ = from._impl_.value_;
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.GetDigitalInterruptValueResponse)
 }
 
-inline void GetDigitalInterruptValueResponse::SharedCtor() {
-value_ = int64_t{0};
+inline void GetDigitalInterruptValueResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.value_){int64_t{0}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetDigitalInterruptValueResponse::~GetDigitalInterruptValueResponse() {
@@ -4848,7 +5008,7 @@ inline void GetDigitalInterruptValueResponse::SharedDtor() {
 }
 
 void GetDigitalInterruptValueResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetDigitalInterruptValueResponse::Clear() {
@@ -4857,7 +5017,7 @@ void GetDigitalInterruptValueResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  value_ = int64_t{0};
+  _impl_.value_ = int64_t{0};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4870,7 +5030,7 @@ const char* GetDigitalInterruptValueResponse::_InternalParse(const char* ptr, ::
       // int64 value = 1 [json_name = "value"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4931,32 +5091,28 @@ size_t GetDigitalInterruptValueResponse::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_value());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetDigitalInterruptValueResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetDigitalInterruptValueResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetDigitalInterruptValueResponse::GetClassData() const { return &_class_data_; }
 
-void GetDigitalInterruptValueResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetDigitalInterruptValueResponse *>(to)->MergeFrom(
-      static_cast<const GetDigitalInterruptValueResponse &>(from));
-}
 
-
-void GetDigitalInterruptValueResponse::MergeFrom(const GetDigitalInterruptValueResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.GetDigitalInterruptValueResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetDigitalInterruptValueResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetDigitalInterruptValueResponse*>(&to_msg);
+  auto& from = static_cast<const GetDigitalInterruptValueResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.GetDigitalInterruptValueResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_value() != 0) {
-    _internal_set_value(from._internal_value());
+    _this->_internal_set_value(from._internal_value());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetDigitalInterruptValueResponse::CopyFrom(const GetDigitalInterruptValueResponse& from) {
@@ -4973,7 +5129,7 @@ bool GetDigitalInterruptValueResponse::IsInitialized() const {
 void GetDigitalInterruptValueResponse::InternalSwap(GetDigitalInterruptValueResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(value_, other->value_);
+  swap(_impl_.value_, other->_impl_.value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetDigitalInterruptValueResponse::GetMetadata() const {
@@ -4991,47 +5147,58 @@ class StreamTicksRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 StreamTicksRequest::_Internal::extra(const StreamTicksRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void StreamTicksRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 StreamTicksRequest::StreamTicksRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  pin_names_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.StreamTicksRequest)
 }
 StreamTicksRequest::StreamTicksRequest(const StreamTicksRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      pin_names_(from.pin_names_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StreamTicksRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.pin_names_){from._impl_.pin_names_}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.StreamTicksRequest)
 }
 
-inline void StreamTicksRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void StreamTicksRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.pin_names_){arena}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 StreamTicksRequest::~StreamTicksRequest() {
@@ -5045,12 +5212,13 @@ StreamTicksRequest::~StreamTicksRequest() {
 
 inline void StreamTicksRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.pin_names_.~RepeatedPtrField();
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void StreamTicksRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StreamTicksRequest::Clear() {
@@ -5059,12 +5227,12 @@ void StreamTicksRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  pin_names_.Clear();
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.pin_names_.Clear();
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5181,10 +5349,10 @@ size_t StreamTicksRequest::ByteSizeLong() const {
 
   // repeated string pin_names = 2 [json_name = "pinNames"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(pin_names_.size());
-  for (int i = 0, n = pin_names_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.pin_names_.size());
+  for (int i = 0, n = _impl_.pin_names_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      pin_names_.Get(i));
+      _impl_.pin_names_.Get(i));
   }
 
   // string name = 1 [json_name = "name"];
@@ -5198,39 +5366,36 @@ size_t StreamTicksRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamTicksRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StreamTicksRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamTicksRequest::GetClassData() const { return &_class_data_; }
 
-void StreamTicksRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StreamTicksRequest *>(to)->MergeFrom(
-      static_cast<const StreamTicksRequest &>(from));
-}
 
-
-void StreamTicksRequest::MergeFrom(const StreamTicksRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.StreamTicksRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void StreamTicksRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StreamTicksRequest*>(&to_msg);
+  auto& from = static_cast<const StreamTicksRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.StreamTicksRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  pin_names_.MergeFrom(from.pin_names_);
+  _this->_impl_.pin_names_.MergeFrom(from._impl_.pin_names_);
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StreamTicksRequest::CopyFrom(const StreamTicksRequest& from) {
@@ -5249,12 +5414,12 @@ void StreamTicksRequest::InternalSwap(StreamTicksRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  pin_names_.InternalSwap(&other->pin_names_);
+  _impl_.pin_names_.InternalSwap(&other->_impl_.pin_names_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamTicksRequest::GetMetadata() const {
@@ -5272,35 +5437,47 @@ class StreamTicksResponse::_Internal {
 StreamTicksResponse::StreamTicksResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.StreamTicksResponse)
 }
 StreamTicksResponse::StreamTicksResponse(const StreamTicksResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  StreamTicksResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.pin_name_){}
+    , decltype(_impl_.time_){}
+    , decltype(_impl_.high_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  pin_name_.InitDefault();
+  _impl_.pin_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    pin_name_.Set("", GetArenaForAllocation());
+    _impl_.pin_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_pin_name().empty()) {
-    pin_name_.Set(from._internal_pin_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.pin_name_.Set(from._internal_pin_name(), 
+      _this->GetArenaForAllocation());
   }
-  ::memcpy(&time_, &from.time_,
-    static_cast<size_t>(reinterpret_cast<char*>(&high_) -
-    reinterpret_cast<char*>(&time_)) + sizeof(high_));
+  ::memcpy(&_impl_.time_, &from._impl_.time_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.high_) -
+    reinterpret_cast<char*>(&_impl_.time_)) + sizeof(_impl_.high_));
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.StreamTicksResponse)
 }
 
-inline void StreamTicksResponse::SharedCtor() {
-pin_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  pin_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&time_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&high_) -
-    reinterpret_cast<char*>(&time_)) + sizeof(high_));
+inline void StreamTicksResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.pin_name_){}
+    , decltype(_impl_.time_){uint64_t{0u}}
+    , decltype(_impl_.high_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.pin_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.pin_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 StreamTicksResponse::~StreamTicksResponse() {
@@ -5314,11 +5491,11 @@ StreamTicksResponse::~StreamTicksResponse() {
 
 inline void StreamTicksResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  pin_name_.Destroy();
+  _impl_.pin_name_.Destroy();
 }
 
 void StreamTicksResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void StreamTicksResponse::Clear() {
@@ -5327,10 +5504,10 @@ void StreamTicksResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  pin_name_.ClearToEmpty();
-  ::memset(&time_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&high_) -
-      reinterpret_cast<char*>(&time_)) + sizeof(high_));
+  _impl_.pin_name_.ClearToEmpty();
+  ::memset(&_impl_.time_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.high_) -
+      reinterpret_cast<char*>(&_impl_.time_)) + sizeof(_impl_.high_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5353,7 +5530,7 @@ const char* StreamTicksResponse::_InternalParse(const char* ptr, ::_pbi::ParseCo
       // uint64 time = 2 [json_name = "time"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -5361,7 +5538,7 @@ const char* StreamTicksResponse::_InternalParse(const char* ptr, ::_pbi::ParseCo
       // bool high = 3 [json_name = "high"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          high_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.high_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -5450,38 +5627,34 @@ size_t StreamTicksResponse::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData StreamTicksResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     StreamTicksResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*StreamTicksResponse::GetClassData() const { return &_class_data_; }
 
-void StreamTicksResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<StreamTicksResponse *>(to)->MergeFrom(
-      static_cast<const StreamTicksResponse &>(from));
-}
 
-
-void StreamTicksResponse::MergeFrom(const StreamTicksResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.StreamTicksResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void StreamTicksResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<StreamTicksResponse*>(&to_msg);
+  auto& from = static_cast<const StreamTicksResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.StreamTicksResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_pin_name().empty()) {
-    _internal_set_pin_name(from._internal_pin_name());
+    _this->_internal_set_pin_name(from._internal_pin_name());
   }
   if (from._internal_time() != 0) {
-    _internal_set_time(from._internal_time());
+    _this->_internal_set_time(from._internal_time());
   }
   if (from._internal_high() != 0) {
-    _internal_set_high(from._internal_high());
+    _this->_internal_set_high(from._internal_high());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void StreamTicksResponse::CopyFrom(const StreamTicksResponse& from) {
@@ -5501,15 +5674,15 @@ void StreamTicksResponse::InternalSwap(StreamTicksResponse* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &pin_name_, lhs_arena,
-      &other->pin_name_, rhs_arena
+      &_impl_.pin_name_, lhs_arena,
+      &other->_impl_.pin_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(StreamTicksResponse, high_)
-      + sizeof(StreamTicksResponse::high_)
-      - PROTOBUF_FIELD_OFFSET(StreamTicksResponse, time_)>(
-          reinterpret_cast<char*>(&time_),
-          reinterpret_cast<char*>(&other->time_));
+      PROTOBUF_FIELD_OFFSET(StreamTicksResponse, _impl_.high_)
+      + sizeof(StreamTicksResponse::_impl_.high_)
+      - PROTOBUF_FIELD_OFFSET(StreamTicksResponse, _impl_.time_)>(
+          reinterpret_cast<char*>(&_impl_.time_),
+          reinterpret_cast<char*>(&other->_impl_.time_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StreamTicksResponse::GetMetadata() const {
@@ -5522,7 +5695,7 @@ void StreamTicksResponse::InternalSwap(StreamTicksResponse* other) {
 
 class SetPowerModeRequest::_Internal {
  public:
-  using HasBits = decltype(std::declval<SetPowerModeRequest>()._has_bits_);
+  using HasBits = decltype(std::declval<SetPowerModeRequest>()._impl_._has_bits_);
   static const ::PROTOBUF_NAMESPACE_ID::Duration& duration(const SetPowerModeRequest* msg);
   static void set_has_duration(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
@@ -5532,63 +5705,74 @@ class SetPowerModeRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Duration&
 SetPowerModeRequest::_Internal::duration(const SetPowerModeRequest* msg) {
-  return *msg->duration_;
+  return *msg->_impl_.duration_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 SetPowerModeRequest::_Internal::extra(const SetPowerModeRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void SetPowerModeRequest::clear_duration() {
-  if (duration_ != nullptr) duration_->Clear();
-  _has_bits_[0] &= ~0x00000001u;
+  if (_impl_.duration_ != nullptr) _impl_.duration_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 void SetPowerModeRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 SetPowerModeRequest::SetPowerModeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.board.v1.SetPowerModeRequest)
 }
 SetPowerModeRequest::SetPowerModeRequest(const SetPowerModeRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SetPowerModeRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.duration_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.power_mode_){}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_duration()) {
-    duration_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.duration_);
-  } else {
-    duration_ = nullptr;
+    _this->_impl_.duration_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.duration_);
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  power_mode_ = from.power_mode_;
+  _this->_impl_.power_mode_ = from._impl_.power_mode_;
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetPowerModeRequest)
 }
 
-inline void SetPowerModeRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&duration_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&power_mode_) -
-    reinterpret_cast<char*>(&duration_)) + sizeof(power_mode_));
+inline void SetPowerModeRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.duration_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.power_mode_){0}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 SetPowerModeRequest::~SetPowerModeRequest() {
@@ -5602,13 +5786,13 @@ SetPowerModeRequest::~SetPowerModeRequest() {
 
 inline void SetPowerModeRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete duration_;
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.duration_;
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void SetPowerModeRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void SetPowerModeRequest::Clear() {
@@ -5617,18 +5801,18 @@ void SetPowerModeRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  cached_has_bits = _has_bits_[0];
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(duration_ != nullptr);
-    duration_->Clear();
+    GOOGLE_DCHECK(_impl_.duration_ != nullptr);
+    _impl_.duration_->Clear();
   }
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  power_mode_ = 0;
-  _has_bits_.Clear();
+  _impl_.extra_ = nullptr;
+  _impl_.power_mode_ = 0;
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5690,7 +5874,7 @@ const char* SetPowerModeRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -5759,18 +5943,18 @@ size_t SetPowerModeRequest::ByteSizeLong() const {
   }
 
   // optional .google.protobuf.Duration duration = 3 [json_name = "duration"];
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *duration_);
+        *_impl_.duration_);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // .viam.component.board.v1.PowerMode power_mode = 2 [json_name = "powerMode"];
@@ -5779,41 +5963,39 @@ size_t SetPowerModeRequest::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_power_mode());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetPowerModeRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     SetPowerModeRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetPowerModeRequest::GetClassData() const { return &_class_data_; }
 
-void SetPowerModeRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SetPowerModeRequest *>(to)->MergeFrom(
-      static_cast<const SetPowerModeRequest &>(from));
-}
 
-
-void SetPowerModeRequest::MergeFrom(const SetPowerModeRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.SetPowerModeRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void SetPowerModeRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SetPowerModeRequest*>(&to_msg);
+  auto& from = static_cast<const SetPowerModeRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.board.v1.SetPowerModeRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_duration()) {
-    _internal_mutable_duration()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_duration());
+    _this->_internal_mutable_duration()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
+        from._internal_duration());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   if (from._internal_power_mode() != 0) {
-    _internal_set_power_mode(from._internal_power_mode());
+    _this->_internal_set_power_mode(from._internal_power_mode());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SetPowerModeRequest::CopyFrom(const SetPowerModeRequest& from) {
@@ -5832,17 +6014,17 @@ void SetPowerModeRequest::InternalSwap(SetPowerModeRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SetPowerModeRequest, power_mode_)
-      + sizeof(SetPowerModeRequest::power_mode_)
-      - PROTOBUF_FIELD_OFFSET(SetPowerModeRequest, duration_)>(
-          reinterpret_cast<char*>(&duration_),
-          reinterpret_cast<char*>(&other->duration_));
+      PROTOBUF_FIELD_OFFSET(SetPowerModeRequest, _impl_.power_mode_)
+      + sizeof(SetPowerModeRequest::_impl_.power_mode_)
+      - PROTOBUF_FIELD_OFFSET(SetPowerModeRequest, _impl_.duration_)>(
+          reinterpret_cast<char*>(&_impl_.duration_),
+          reinterpret_cast<char*>(&other->_impl_.duration_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SetPowerModeRequest::GetMetadata() const {
@@ -5864,6 +6046,7 @@ SetPowerModeResponse::SetPowerModeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena
 }
 SetPowerModeResponse::SetPowerModeResponse(const SetPowerModeResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  SetPowerModeResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.board.v1.SetPowerModeResponse)
 }

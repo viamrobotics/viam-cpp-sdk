@@ -25,13 +25,14 @@ namespace service {
 namespace vision {
 namespace v1 {
 PROTOBUF_CONSTEXPR GetDetectionsRequest::GetDetectionsRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , image_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , width_(int64_t{0})
-  , height_(int64_t{0}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.image_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.mime_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.width_)*/int64_t{0}
+  , /*decltype(_impl_.height_)*/int64_t{0}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetDetectionsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetDetectionsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -42,8 +43,9 @@ struct GetDetectionsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDetectionsRequestDefaultTypeInternal _GetDetectionsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetDetectionsResponse::GetDetectionsResponse(
-    ::_pbi::ConstantInitialized)
-  : detections_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.detections_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetDetectionsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetDetectionsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -54,10 +56,11 @@ struct GetDetectionsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDetectionsResponseDefaultTypeInternal _GetDetectionsResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetDetectionsFromCameraRequest::GetDetectionsFromCameraRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , camera_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.camera_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetDetectionsFromCameraRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetDetectionsFromCameraRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -68,8 +71,9 @@ struct GetDetectionsFromCameraRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDetectionsFromCameraRequestDefaultTypeInternal _GetDetectionsFromCameraRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetDetectionsFromCameraResponse::GetDetectionsFromCameraResponse(
-    ::_pbi::ConstantInitialized)
-  : detections_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.detections_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetDetectionsFromCameraResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetDetectionsFromCameraResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -80,17 +84,19 @@ struct GetDetectionsFromCameraResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDetectionsFromCameraResponseDefaultTypeInternal _GetDetectionsFromCameraResponse_default_instance_;
 PROTOBUF_CONSTEXPR Detection::Detection(
-    ::_pbi::ConstantInitialized)
-  : class_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , x_min_(int64_t{0})
-  , y_min_(int64_t{0})
-  , x_max_(int64_t{0})
-  , y_max_(int64_t{0})
-  , confidence_(0)
-  , x_min_normalized_(0)
-  , y_min_normalized_(0)
-  , x_max_normalized_(0)
-  , y_max_normalized_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.class_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.x_min_)*/int64_t{0}
+  , /*decltype(_impl_.y_min_)*/int64_t{0}
+  , /*decltype(_impl_.x_max_)*/int64_t{0}
+  , /*decltype(_impl_.y_max_)*/int64_t{0}
+  , /*decltype(_impl_.confidence_)*/0
+  , /*decltype(_impl_.x_min_normalized_)*/0
+  , /*decltype(_impl_.y_min_normalized_)*/0
+  , /*decltype(_impl_.x_max_normalized_)*/0
+  , /*decltype(_impl_.y_max_normalized_)*/0} {}
 struct DetectionDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DetectionDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -101,14 +107,15 @@ struct DetectionDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DetectionDefaultTypeInternal _Detection_default_instance_;
 PROTOBUF_CONSTEXPR GetClassificationsRequest::GetClassificationsRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , image_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , width_(0)
-  , height_(0)
-  , n_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.image_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.mime_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.width_)*/0
+  , /*decltype(_impl_.height_)*/0
+  , /*decltype(_impl_.n_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetClassificationsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetClassificationsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -119,8 +126,9 @@ struct GetClassificationsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetClassificationsRequestDefaultTypeInternal _GetClassificationsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetClassificationsResponse::GetClassificationsResponse(
-    ::_pbi::ConstantInitialized)
-  : classifications_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.classifications_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetClassificationsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetClassificationsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -131,11 +139,12 @@ struct GetClassificationsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetClassificationsResponseDefaultTypeInternal _GetClassificationsResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetClassificationsFromCameraRequest::GetClassificationsFromCameraRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , camera_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , n_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.camera_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.n_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetClassificationsFromCameraRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetClassificationsFromCameraRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -146,8 +155,9 @@ struct GetClassificationsFromCameraRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetClassificationsFromCameraRequestDefaultTypeInternal _GetClassificationsFromCameraRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetClassificationsFromCameraResponse::GetClassificationsFromCameraResponse(
-    ::_pbi::ConstantInitialized)
-  : classifications_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.classifications_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetClassificationsFromCameraResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetClassificationsFromCameraResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -158,9 +168,10 @@ struct GetClassificationsFromCameraResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetClassificationsFromCameraResponseDefaultTypeInternal _GetClassificationsFromCameraResponse_default_instance_;
 PROTOBUF_CONSTEXPR Classification::Classification(
-    ::_pbi::ConstantInitialized)
-  : class_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , confidence_(0){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.class_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.confidence_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ClassificationDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ClassificationDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -171,11 +182,12 @@ struct ClassificationDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClassificationDefaultTypeInternal _Classification_default_instance_;
 PROTOBUF_CONSTEXPR GetObjectPointCloudsRequest::GetObjectPointCloudsRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , camera_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.camera_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.mime_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetObjectPointCloudsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetObjectPointCloudsRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -186,9 +198,10 @@ struct GetObjectPointCloudsRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetObjectPointCloudsRequestDefaultTypeInternal _GetObjectPointCloudsRequest_default_instance_;
 PROTOBUF_CONSTEXPR GetObjectPointCloudsResponse::GetObjectPointCloudsResponse(
-    ::_pbi::ConstantInitialized)
-  : objects_()
-  , mime_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.objects_)*/{}
+  , /*decltype(_impl_.mime_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetObjectPointCloudsResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetObjectPointCloudsResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -199,9 +212,10 @@ struct GetObjectPointCloudsResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetObjectPointCloudsResponseDefaultTypeInternal _GetObjectPointCloudsResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetPropertiesRequest::GetPropertiesRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetPropertiesRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPropertiesRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -212,14 +226,15 @@ struct GetPropertiesRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPropertiesRequestDefaultTypeInternal _GetPropertiesRequest_default_instance_;
 PROTOBUF_CONSTEXPR CaptureAllFromCameraRequest::CaptureAllFromCameraRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , camera_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , extra_(nullptr)
-  , return_image_(false)
-  , return_classifications_(false)
-  , return_detections_(false)
-  , return_object_point_clouds_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.camera_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_.return_image_)*/false
+  , /*decltype(_impl_.return_classifications_)*/false
+  , /*decltype(_impl_.return_detections_)*/false
+  , /*decltype(_impl_.return_object_point_clouds_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CaptureAllFromCameraRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CaptureAllFromCameraRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -230,12 +245,13 @@ struct CaptureAllFromCameraRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CaptureAllFromCameraRequestDefaultTypeInternal _CaptureAllFromCameraRequest_default_instance_;
 PROTOBUF_CONSTEXPR CaptureAllFromCameraResponse::CaptureAllFromCameraResponse(
-    ::_pbi::ConstantInitialized)
-  : detections_()
-  , classifications_()
-  , objects_()
-  , image_(nullptr)
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.detections_)*/{}
+  , /*decltype(_impl_.classifications_)*/{}
+  , /*decltype(_impl_.objects_)*/{}
+  , /*decltype(_impl_.image_)*/nullptr
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CaptureAllFromCameraResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CaptureAllFromCameraResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -246,10 +262,11 @@ struct CaptureAllFromCameraResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CaptureAllFromCameraResponseDefaultTypeInternal _CaptureAllFromCameraResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
-    ::_pbi::ConstantInitialized)
-  : classifications_supported_(false)
-  , detections_supported_(false)
-  , object_point_clouds_supported_(false){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.classifications_supported_)*/false
+  , /*decltype(_impl_.detections_supported_)*/false
+  , /*decltype(_impl_.object_point_clouds_supported_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct GetPropertiesResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPropertiesResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -274,51 +291,51 @@ const uint32_t TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets[] PRO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, image_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, width_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, height_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, mime_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, _impl_.image_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, _impl_.width_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, _impl_.height_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, _impl_.mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsResponse, detections_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsResponse, _impl_.detections_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraRequest, camera_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraRequest, _impl_.camera_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraResponse, detections_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetDetectionsFromCameraResponse, _impl_.detections_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, x_min_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, y_min_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, x_max_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, y_max_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, confidence_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, class_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, x_min_normalized_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, y_min_normalized_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, x_max_normalized_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, y_max_normalized_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.x_min_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.y_min_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.x_max_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.y_max_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.confidence_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.class_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.x_min_normalized_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.y_min_normalized_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.x_max_normalized_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Detection, _impl_.y_max_normalized_),
   0,
   1,
   2,
@@ -335,104 +352,104 @@ const uint32_t TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets[] PRO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, image_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, width_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, height_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, mime_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, n_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, _impl_.image_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, _impl_.width_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, _impl_.height_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, _impl_.mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, _impl_.n_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsResponse, classifications_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsResponse, _impl_.classifications_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraRequest, camera_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraRequest, n_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraRequest, _impl_.camera_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraRequest, _impl_.n_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraResponse, classifications_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetClassificationsFromCameraResponse, _impl_.classifications_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Classification, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Classification, class_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Classification, confidence_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Classification, _impl_.class_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::Classification, _impl_.confidence_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsRequest, camera_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsRequest, mime_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsRequest, _impl_.camera_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsRequest, _impl_.mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsResponse, mime_type_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsResponse, objects_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsResponse, _impl_.mime_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetObjectPointCloudsResponse, _impl_.objects_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, camera_name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, return_image_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, return_classifications_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, return_detections_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, return_object_point_clouds_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, _impl_.camera_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, _impl_.return_image_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, _impl_.return_classifications_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, _impl_.return_detections_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, _impl_.return_object_point_clouds_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, image_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, detections_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, classifications_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, objects_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, _impl_.image_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, _impl_.detections_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, _impl_.classifications_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, _impl_.objects_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, classifications_supported_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, detections_supported_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, object_point_clouds_supported_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, _impl_.classifications_supported_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, _impl_.detections_supported_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, _impl_.object_point_clouds_supported_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::vision::v1::GetDetectionsRequest)},
@@ -626,75 +643,91 @@ class GetDetectionsRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetDetectionsRequest::_Internal::extra(const GetDetectionsRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetDetectionsRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetDetectionsRequest::GetDetectionsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetDetectionsRequest)
 }
 GetDetectionsRequest::GetDetectionsRequest(const GetDetectionsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetDetectionsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.image_){}
+    , decltype(_impl_.mime_type_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.width_){}
+    , decltype(_impl_.height_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  image_.InitDefault();
+  _impl_.image_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    image_.Set("", GetArenaForAllocation());
+    _impl_.image_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_image().empty()) {
-    image_.Set(from._internal_image(), 
-      GetArenaForAllocation());
+    _this->_impl_.image_.Set(from._internal_image(), 
+      _this->GetArenaForAllocation());
   }
-  mime_type_.InitDefault();
+  _impl_.mime_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    mime_type_.Set("", GetArenaForAllocation());
+    _impl_.mime_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_mime_type().empty()) {
-    mime_type_.Set(from._internal_mime_type(), 
-      GetArenaForAllocation());
+    _this->_impl_.mime_type_.Set(from._internal_mime_type(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  ::memcpy(&width_, &from.width_,
-    static_cast<size_t>(reinterpret_cast<char*>(&height_) -
-    reinterpret_cast<char*>(&width_)) + sizeof(height_));
+  ::memcpy(&_impl_.width_, &from._impl_.width_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.height_) -
+    reinterpret_cast<char*>(&_impl_.width_)) + sizeof(_impl_.height_));
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetDetectionsRequest)
 }
 
-inline void GetDetectionsRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-image_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  image_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-mime_type_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  mime_type_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&height_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(height_));
+inline void GetDetectionsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.image_){}
+    , decltype(_impl_.mime_type_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.width_){int64_t{0}}
+    , decltype(_impl_.height_){int64_t{0}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.image_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.image_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.mime_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.mime_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetDetectionsRequest::~GetDetectionsRequest() {
@@ -708,14 +741,14 @@ GetDetectionsRequest::~GetDetectionsRequest() {
 
 inline void GetDetectionsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  image_.Destroy();
-  mime_type_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.image_.Destroy();
+  _impl_.mime_type_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetDetectionsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetDetectionsRequest::Clear() {
@@ -724,16 +757,16 @@ void GetDetectionsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  image_.ClearToEmpty();
-  mime_type_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.image_.ClearToEmpty();
+  _impl_.mime_type_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  ::memset(&width_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&height_) -
-      reinterpret_cast<char*>(&width_)) + sizeof(height_));
+  _impl_.extra_ = nullptr;
+  ::memset(&_impl_.width_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.height_) -
+      reinterpret_cast<char*>(&_impl_.width_)) + sizeof(_impl_.height_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -765,7 +798,7 @@ const char* GetDetectionsRequest::_InternalParse(const char* ptr, ::_pbi::ParseC
       // int64 width = 3 [json_name = "width"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -773,7 +806,7 @@ const char* GetDetectionsRequest::_InternalParse(const char* ptr, ::_pbi::ParseC
       // int64 height = 4 [json_name = "height"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -911,7 +944,7 @@ size_t GetDetectionsRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // int64 width = 3 [json_name = "width"];
@@ -924,47 +957,44 @@ size_t GetDetectionsRequest::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_height());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetDetectionsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetDetectionsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetDetectionsRequest::GetClassData() const { return &_class_data_; }
 
-void GetDetectionsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetDetectionsRequest *>(to)->MergeFrom(
-      static_cast<const GetDetectionsRequest &>(from));
-}
 
-
-void GetDetectionsRequest::MergeFrom(const GetDetectionsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetDetectionsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetDetectionsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetDetectionsRequest*>(&to_msg);
+  auto& from = static_cast<const GetDetectionsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetDetectionsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_image().empty()) {
-    _internal_set_image(from._internal_image());
+    _this->_internal_set_image(from._internal_image());
   }
   if (!from._internal_mime_type().empty()) {
-    _internal_set_mime_type(from._internal_mime_type());
+    _this->_internal_set_mime_type(from._internal_mime_type());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   if (from._internal_width() != 0) {
-    _internal_set_width(from._internal_width());
+    _this->_internal_set_width(from._internal_width());
   }
   if (from._internal_height() != 0) {
-    _internal_set_height(from._internal_height());
+    _this->_internal_set_height(from._internal_height());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetDetectionsRequest::CopyFrom(const GetDetectionsRequest& from) {
@@ -984,23 +1014,23 @@ void GetDetectionsRequest::InternalSwap(GetDetectionsRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &image_, lhs_arena,
-      &other->image_, rhs_arena
+      &_impl_.image_, lhs_arena,
+      &other->_impl_.image_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &mime_type_, lhs_arena,
-      &other->mime_type_, rhs_arena
+      &_impl_.mime_type_, lhs_arena,
+      &other->_impl_.mime_type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetDetectionsRequest, height_)
-      + sizeof(GetDetectionsRequest::height_)
-      - PROTOBUF_FIELD_OFFSET(GetDetectionsRequest, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+      PROTOBUF_FIELD_OFFSET(GetDetectionsRequest, _impl_.height_)
+      + sizeof(GetDetectionsRequest::_impl_.height_)
+      - PROTOBUF_FIELD_OFFSET(GetDetectionsRequest, _impl_.extra_)>(
+          reinterpret_cast<char*>(&_impl_.extra_),
+          reinterpret_cast<char*>(&other->_impl_.extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetDetectionsRequest::GetMetadata() const {
@@ -1017,19 +1047,29 @@ class GetDetectionsResponse::_Internal {
 
 GetDetectionsResponse::GetDetectionsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  detections_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetDetectionsResponse)
 }
 GetDetectionsResponse::GetDetectionsResponse(const GetDetectionsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      detections_(from.detections_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetDetectionsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.detections_){from._impl_.detections_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetDetectionsResponse)
 }
 
-inline void GetDetectionsResponse::SharedCtor() {
+inline void GetDetectionsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.detections_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetDetectionsResponse::~GetDetectionsResponse() {
@@ -1043,10 +1083,11 @@ GetDetectionsResponse::~GetDetectionsResponse() {
 
 inline void GetDetectionsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.detections_.~RepeatedPtrField();
 }
 
 void GetDetectionsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetDetectionsResponse::Clear() {
@@ -1055,7 +1096,7 @@ void GetDetectionsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  detections_.Clear();
+  _impl_.detections_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1133,35 +1174,31 @@ size_t GetDetectionsResponse::ByteSizeLong() const {
 
   // repeated .viam.service.vision.v1.Detection detections = 1 [json_name = "detections"];
   total_size += 1UL * this->_internal_detections_size();
-  for (const auto& msg : this->detections_) {
+  for (const auto& msg : this->_impl_.detections_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetDetectionsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetDetectionsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetDetectionsResponse::GetClassData() const { return &_class_data_; }
 
-void GetDetectionsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetDetectionsResponse *>(to)->MergeFrom(
-      static_cast<const GetDetectionsResponse &>(from));
-}
 
-
-void GetDetectionsResponse::MergeFrom(const GetDetectionsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetDetectionsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetDetectionsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetDetectionsResponse*>(&to_msg);
+  auto& from = static_cast<const GetDetectionsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetDetectionsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  detections_.MergeFrom(from.detections_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.detections_.MergeFrom(from._impl_.detections_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetDetectionsResponse::CopyFrom(const GetDetectionsResponse& from) {
@@ -1178,7 +1215,7 @@ bool GetDetectionsResponse::IsInitialized() const {
 void GetDetectionsResponse::InternalSwap(GetDetectionsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  detections_.InternalSwap(&other->detections_);
+  _impl_.detections_.InternalSwap(&other->_impl_.detections_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetDetectionsResponse::GetMetadata() const {
@@ -1196,57 +1233,70 @@ class GetDetectionsFromCameraRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetDetectionsFromCameraRequest::_Internal::extra(const GetDetectionsFromCameraRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetDetectionsFromCameraRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetDetectionsFromCameraRequest::GetDetectionsFromCameraRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetDetectionsFromCameraRequest)
 }
 GetDetectionsFromCameraRequest::GetDetectionsFromCameraRequest(const GetDetectionsFromCameraRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetDetectionsFromCameraRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.camera_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  camera_name_.InitDefault();
+  _impl_.camera_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    camera_name_.Set("", GetArenaForAllocation());
+    _impl_.camera_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_camera_name().empty()) {
-    camera_name_.Set(from._internal_camera_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.camera_name_.Set(from._internal_camera_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetDetectionsFromCameraRequest)
 }
 
-inline void GetDetectionsFromCameraRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-camera_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  camera_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetDetectionsFromCameraRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.camera_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.camera_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.camera_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetDetectionsFromCameraRequest::~GetDetectionsFromCameraRequest() {
@@ -1260,13 +1310,13 @@ GetDetectionsFromCameraRequest::~GetDetectionsFromCameraRequest() {
 
 inline void GetDetectionsFromCameraRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  camera_name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.camera_name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetDetectionsFromCameraRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetDetectionsFromCameraRequest::Clear() {
@@ -1275,12 +1325,12 @@ void GetDetectionsFromCameraRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  camera_name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.camera_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1408,41 +1458,38 @@ size_t GetDetectionsFromCameraRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetDetectionsFromCameraRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetDetectionsFromCameraRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetDetectionsFromCameraRequest::GetClassData() const { return &_class_data_; }
 
-void GetDetectionsFromCameraRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetDetectionsFromCameraRequest *>(to)->MergeFrom(
-      static_cast<const GetDetectionsFromCameraRequest &>(from));
-}
 
-
-void GetDetectionsFromCameraRequest::MergeFrom(const GetDetectionsFromCameraRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetDetectionsFromCameraRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetDetectionsFromCameraRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetDetectionsFromCameraRequest*>(&to_msg);
+  auto& from = static_cast<const GetDetectionsFromCameraRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetDetectionsFromCameraRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_camera_name().empty()) {
-    _internal_set_camera_name(from._internal_camera_name());
+    _this->_internal_set_camera_name(from._internal_camera_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetDetectionsFromCameraRequest::CopyFrom(const GetDetectionsFromCameraRequest& from) {
@@ -1462,14 +1509,14 @@ void GetDetectionsFromCameraRequest::InternalSwap(GetDetectionsFromCameraRequest
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &camera_name_, lhs_arena,
-      &other->camera_name_, rhs_arena
+      &_impl_.camera_name_, lhs_arena,
+      &other->_impl_.camera_name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetDetectionsFromCameraRequest::GetMetadata() const {
@@ -1486,19 +1533,29 @@ class GetDetectionsFromCameraResponse::_Internal {
 
 GetDetectionsFromCameraResponse::GetDetectionsFromCameraResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  detections_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetDetectionsFromCameraResponse)
 }
 GetDetectionsFromCameraResponse::GetDetectionsFromCameraResponse(const GetDetectionsFromCameraResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      detections_(from.detections_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetDetectionsFromCameraResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.detections_){from._impl_.detections_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetDetectionsFromCameraResponse)
 }
 
-inline void GetDetectionsFromCameraResponse::SharedCtor() {
+inline void GetDetectionsFromCameraResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.detections_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetDetectionsFromCameraResponse::~GetDetectionsFromCameraResponse() {
@@ -1512,10 +1569,11 @@ GetDetectionsFromCameraResponse::~GetDetectionsFromCameraResponse() {
 
 inline void GetDetectionsFromCameraResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.detections_.~RepeatedPtrField();
 }
 
 void GetDetectionsFromCameraResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetDetectionsFromCameraResponse::Clear() {
@@ -1524,7 +1582,7 @@ void GetDetectionsFromCameraResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  detections_.Clear();
+  _impl_.detections_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1602,35 +1660,31 @@ size_t GetDetectionsFromCameraResponse::ByteSizeLong() const {
 
   // repeated .viam.service.vision.v1.Detection detections = 1 [json_name = "detections"];
   total_size += 1UL * this->_internal_detections_size();
-  for (const auto& msg : this->detections_) {
+  for (const auto& msg : this->_impl_.detections_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetDetectionsFromCameraResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetDetectionsFromCameraResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetDetectionsFromCameraResponse::GetClassData() const { return &_class_data_; }
 
-void GetDetectionsFromCameraResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetDetectionsFromCameraResponse *>(to)->MergeFrom(
-      static_cast<const GetDetectionsFromCameraResponse &>(from));
-}
 
-
-void GetDetectionsFromCameraResponse::MergeFrom(const GetDetectionsFromCameraResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetDetectionsFromCameraResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetDetectionsFromCameraResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetDetectionsFromCameraResponse*>(&to_msg);
+  auto& from = static_cast<const GetDetectionsFromCameraResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetDetectionsFromCameraResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  detections_.MergeFrom(from.detections_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.detections_.MergeFrom(from._impl_.detections_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetDetectionsFromCameraResponse::CopyFrom(const GetDetectionsFromCameraResponse& from) {
@@ -1647,7 +1701,7 @@ bool GetDetectionsFromCameraResponse::IsInitialized() const {
 void GetDetectionsFromCameraResponse::InternalSwap(GetDetectionsFromCameraResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  detections_.InternalSwap(&other->detections_);
+  _impl_.detections_.InternalSwap(&other->_impl_.detections_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetDetectionsFromCameraResponse::GetMetadata() const {
@@ -1660,7 +1714,7 @@ void GetDetectionsFromCameraResponse::InternalSwap(GetDetectionsFromCameraRespon
 
 class Detection::_Internal {
  public:
-  using HasBits = decltype(std::declval<Detection>()._has_bits_);
+  using HasBits = decltype(std::declval<Detection>()._impl_._has_bits_);
   static void set_has_x_min(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -1690,36 +1744,63 @@ class Detection::_Internal {
 Detection::Detection(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.Detection)
 }
 Detection::Detection(const Detection& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Detection* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.class_name_){}
+    , decltype(_impl_.x_min_){}
+    , decltype(_impl_.y_min_){}
+    , decltype(_impl_.x_max_){}
+    , decltype(_impl_.y_max_){}
+    , decltype(_impl_.confidence_){}
+    , decltype(_impl_.x_min_normalized_){}
+    , decltype(_impl_.y_min_normalized_){}
+    , decltype(_impl_.x_max_normalized_){}
+    , decltype(_impl_.y_max_normalized_){}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  class_name_.InitDefault();
+  _impl_.class_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    class_name_.Set("", GetArenaForAllocation());
+    _impl_.class_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_class_name().empty()) {
-    class_name_.Set(from._internal_class_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.class_name_.Set(from._internal_class_name(), 
+      _this->GetArenaForAllocation());
   }
-  ::memcpy(&x_min_, &from.x_min_,
-    static_cast<size_t>(reinterpret_cast<char*>(&y_max_normalized_) -
-    reinterpret_cast<char*>(&x_min_)) + sizeof(y_max_normalized_));
+  ::memcpy(&_impl_.x_min_, &from._impl_.x_min_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.y_max_normalized_) -
+    reinterpret_cast<char*>(&_impl_.x_min_)) + sizeof(_impl_.y_max_normalized_));
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.Detection)
 }
 
-inline void Detection::SharedCtor() {
-class_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  class_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&x_min_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&y_max_normalized_) -
-    reinterpret_cast<char*>(&x_min_)) + sizeof(y_max_normalized_));
+inline void Detection::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.class_name_){}
+    , decltype(_impl_.x_min_){int64_t{0}}
+    , decltype(_impl_.y_min_){int64_t{0}}
+    , decltype(_impl_.x_max_){int64_t{0}}
+    , decltype(_impl_.y_max_){int64_t{0}}
+    , decltype(_impl_.confidence_){0}
+    , decltype(_impl_.x_min_normalized_){0}
+    , decltype(_impl_.y_min_normalized_){0}
+    , decltype(_impl_.x_max_normalized_){0}
+    , decltype(_impl_.y_max_normalized_){0}
+  };
+  _impl_.class_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.class_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Detection::~Detection() {
@@ -1733,11 +1814,11 @@ Detection::~Detection() {
 
 inline void Detection::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  class_name_.Destroy();
+  _impl_.class_name_.Destroy();
 }
 
 void Detection::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Detection::Clear() {
@@ -1746,20 +1827,20 @@ void Detection::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  class_name_.ClearToEmpty();
-  cached_has_bits = _has_bits_[0];
+  _impl_.class_name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
-    ::memset(&x_min_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&y_max_) -
-        reinterpret_cast<char*>(&x_min_)) + sizeof(y_max_));
+    ::memset(&_impl_.x_min_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&_impl_.y_max_) -
+        reinterpret_cast<char*>(&_impl_.x_min_)) + sizeof(_impl_.y_max_));
   }
-  confidence_ = 0;
+  _impl_.confidence_ = 0;
   if (cached_has_bits & 0x000000f0u) {
-    ::memset(&x_min_normalized_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&y_max_normalized_) -
-        reinterpret_cast<char*>(&x_min_normalized_)) + sizeof(y_max_normalized_));
+    ::memset(&_impl_.x_min_normalized_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&_impl_.y_max_normalized_) -
+        reinterpret_cast<char*>(&_impl_.x_min_normalized_)) + sizeof(_impl_.y_max_normalized_));
   }
-  _has_bits_.Clear();
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1774,7 +1855,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _Internal::set_has_x_min(&has_bits);
-          x_min_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.x_min_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1783,7 +1864,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _Internal::set_has_y_min(&has_bits);
-          y_min_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.y_min_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1792,7 +1873,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _Internal::set_has_x_max(&has_bits);
-          x_max_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.x_max_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1801,7 +1882,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
           _Internal::set_has_y_max(&has_bits);
-          y_max_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.y_max_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1809,7 +1890,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       // double confidence = 5 [json_name = "confidence"];
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 41)) {
-          confidence_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.confidence_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -1828,7 +1909,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 57)) {
           _Internal::set_has_x_min_normalized(&has_bits);
-          x_min_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.x_min_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -1837,7 +1918,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 65)) {
           _Internal::set_has_y_min_normalized(&has_bits);
-          y_min_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.y_min_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -1846,7 +1927,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 73)) {
           _Internal::set_has_x_max_normalized(&has_bits);
-          x_max_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.x_max_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -1855,7 +1936,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 81)) {
           _Internal::set_has_y_max_normalized(&has_bits);
-          y_max_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.y_max_normalized_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -1876,7 +1957,7 @@ const char* Detection::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _has_bits_.Or(has_bits);
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -1981,7 +2062,7 @@ size_t Detection::ByteSizeLong() const {
         this->_internal_class_name());
   }
 
-  cached_has_bits = _has_bits_[0];
+  cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
     // optional int64 x_min = 1 [json_name = "xMin"];
     if (cached_has_bits & 0x00000001u) {
@@ -2035,70 +2116,66 @@ size_t Detection::ByteSizeLong() const {
     }
 
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Detection::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Detection::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Detection::GetClassData() const { return &_class_data_; }
 
-void Detection::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Detection *>(to)->MergeFrom(
-      static_cast<const Detection &>(from));
-}
 
-
-void Detection::MergeFrom(const Detection& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.Detection)
-  GOOGLE_DCHECK_NE(&from, this);
+void Detection::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Detection*>(&to_msg);
+  auto& from = static_cast<const Detection&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.Detection)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_class_name().empty()) {
-    _internal_set_class_name(from._internal_class_name());
+    _this->_internal_set_class_name(from._internal_class_name());
   }
-  cached_has_bits = from._has_bits_[0];
+  cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
     if (cached_has_bits & 0x00000001u) {
-      x_min_ = from.x_min_;
+      _this->_impl_.x_min_ = from._impl_.x_min_;
     }
     if (cached_has_bits & 0x00000002u) {
-      y_min_ = from.y_min_;
+      _this->_impl_.y_min_ = from._impl_.y_min_;
     }
     if (cached_has_bits & 0x00000004u) {
-      x_max_ = from.x_max_;
+      _this->_impl_.x_max_ = from._impl_.x_max_;
     }
     if (cached_has_bits & 0x00000008u) {
-      y_max_ = from.y_max_;
+      _this->_impl_.y_max_ = from._impl_.y_max_;
     }
-    _has_bits_[0] |= cached_has_bits;
+    _this->_impl_._has_bits_[0] |= cached_has_bits;
   }
   static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
   double tmp_confidence = from._internal_confidence();
   uint64_t raw_confidence;
   memcpy(&raw_confidence, &tmp_confidence, sizeof(tmp_confidence));
   if (raw_confidence != 0) {
-    _internal_set_confidence(from._internal_confidence());
+    _this->_internal_set_confidence(from._internal_confidence());
   }
   if (cached_has_bits & 0x000000f0u) {
     if (cached_has_bits & 0x00000010u) {
-      x_min_normalized_ = from.x_min_normalized_;
+      _this->_impl_.x_min_normalized_ = from._impl_.x_min_normalized_;
     }
     if (cached_has_bits & 0x00000020u) {
-      y_min_normalized_ = from.y_min_normalized_;
+      _this->_impl_.y_min_normalized_ = from._impl_.y_min_normalized_;
     }
     if (cached_has_bits & 0x00000040u) {
-      x_max_normalized_ = from.x_max_normalized_;
+      _this->_impl_.x_max_normalized_ = from._impl_.x_max_normalized_;
     }
     if (cached_has_bits & 0x00000080u) {
-      y_max_normalized_ = from.y_max_normalized_;
+      _this->_impl_.y_max_normalized_ = from._impl_.y_max_normalized_;
     }
-    _has_bits_[0] |= cached_has_bits;
+    _this->_impl_._has_bits_[0] |= cached_has_bits;
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Detection::CopyFrom(const Detection& from) {
@@ -2117,17 +2194,17 @@ void Detection::InternalSwap(Detection* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &class_name_, lhs_arena,
-      &other->class_name_, rhs_arena
+      &_impl_.class_name_, lhs_arena,
+      &other->_impl_.class_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Detection, y_max_normalized_)
-      + sizeof(Detection::y_max_normalized_)
-      - PROTOBUF_FIELD_OFFSET(Detection, x_min_)>(
-          reinterpret_cast<char*>(&x_min_),
-          reinterpret_cast<char*>(&other->x_min_));
+      PROTOBUF_FIELD_OFFSET(Detection, _impl_.y_max_normalized_)
+      + sizeof(Detection::_impl_.y_max_normalized_)
+      - PROTOBUF_FIELD_OFFSET(Detection, _impl_.x_min_)>(
+          reinterpret_cast<char*>(&_impl_.x_min_),
+          reinterpret_cast<char*>(&other->_impl_.x_min_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Detection::GetMetadata() const {
@@ -2145,75 +2222,93 @@ class GetClassificationsRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetClassificationsRequest::_Internal::extra(const GetClassificationsRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetClassificationsRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetClassificationsRequest::GetClassificationsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetClassificationsRequest)
 }
 GetClassificationsRequest::GetClassificationsRequest(const GetClassificationsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetClassificationsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.image_){}
+    , decltype(_impl_.mime_type_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.width_){}
+    , decltype(_impl_.height_){}
+    , decltype(_impl_.n_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  image_.InitDefault();
+  _impl_.image_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    image_.Set("", GetArenaForAllocation());
+    _impl_.image_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_image().empty()) {
-    image_.Set(from._internal_image(), 
-      GetArenaForAllocation());
+    _this->_impl_.image_.Set(from._internal_image(), 
+      _this->GetArenaForAllocation());
   }
-  mime_type_.InitDefault();
+  _impl_.mime_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    mime_type_.Set("", GetArenaForAllocation());
+    _impl_.mime_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_mime_type().empty()) {
-    mime_type_.Set(from._internal_mime_type(), 
-      GetArenaForAllocation());
+    _this->_impl_.mime_type_.Set(from._internal_mime_type(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  ::memcpy(&width_, &from.width_,
-    static_cast<size_t>(reinterpret_cast<char*>(&n_) -
-    reinterpret_cast<char*>(&width_)) + sizeof(n_));
+  ::memcpy(&_impl_.width_, &from._impl_.width_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.n_) -
+    reinterpret_cast<char*>(&_impl_.width_)) + sizeof(_impl_.n_));
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetClassificationsRequest)
 }
 
-inline void GetClassificationsRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-image_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  image_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-mime_type_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  mime_type_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&n_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(n_));
+inline void GetClassificationsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.image_){}
+    , decltype(_impl_.mime_type_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.width_){0}
+    , decltype(_impl_.height_){0}
+    , decltype(_impl_.n_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.image_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.image_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.mime_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.mime_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetClassificationsRequest::~GetClassificationsRequest() {
@@ -2227,14 +2322,14 @@ GetClassificationsRequest::~GetClassificationsRequest() {
 
 inline void GetClassificationsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  image_.Destroy();
-  mime_type_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.image_.Destroy();
+  _impl_.mime_type_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetClassificationsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetClassificationsRequest::Clear() {
@@ -2243,16 +2338,16 @@ void GetClassificationsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  image_.ClearToEmpty();
-  mime_type_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.image_.ClearToEmpty();
+  _impl_.mime_type_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  ::memset(&width_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&n_) -
-      reinterpret_cast<char*>(&width_)) + sizeof(n_));
+  _impl_.extra_ = nullptr;
+  ::memset(&_impl_.width_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.n_) -
+      reinterpret_cast<char*>(&_impl_.width_)) + sizeof(_impl_.n_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2284,7 +2379,7 @@ const char* GetClassificationsRequest::_InternalParse(const char* ptr, ::_pbi::P
       // int32 width = 3 [json_name = "width"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2292,7 +2387,7 @@ const char* GetClassificationsRequest::_InternalParse(const char* ptr, ::_pbi::P
       // int32 height = 4 [json_name = "height"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2310,7 +2405,7 @@ const char* GetClassificationsRequest::_InternalParse(const char* ptr, ::_pbi::P
       // int32 n = 6 [json_name = "n"];
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          n_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.n_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2444,7 +2539,7 @@ size_t GetClassificationsRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // int32 width = 3 [json_name = "width"];
@@ -2462,50 +2557,47 @@ size_t GetClassificationsRequest::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_n());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetClassificationsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetClassificationsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassificationsRequest::GetClassData() const { return &_class_data_; }
 
-void GetClassificationsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetClassificationsRequest *>(to)->MergeFrom(
-      static_cast<const GetClassificationsRequest &>(from));
-}
 
-
-void GetClassificationsRequest::MergeFrom(const GetClassificationsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetClassificationsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetClassificationsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetClassificationsRequest*>(&to_msg);
+  auto& from = static_cast<const GetClassificationsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetClassificationsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_image().empty()) {
-    _internal_set_image(from._internal_image());
+    _this->_internal_set_image(from._internal_image());
   }
   if (!from._internal_mime_type().empty()) {
-    _internal_set_mime_type(from._internal_mime_type());
+    _this->_internal_set_mime_type(from._internal_mime_type());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   if (from._internal_width() != 0) {
-    _internal_set_width(from._internal_width());
+    _this->_internal_set_width(from._internal_width());
   }
   if (from._internal_height() != 0) {
-    _internal_set_height(from._internal_height());
+    _this->_internal_set_height(from._internal_height());
   }
   if (from._internal_n() != 0) {
-    _internal_set_n(from._internal_n());
+    _this->_internal_set_n(from._internal_n());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetClassificationsRequest::CopyFrom(const GetClassificationsRequest& from) {
@@ -2525,23 +2617,23 @@ void GetClassificationsRequest::InternalSwap(GetClassificationsRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &image_, lhs_arena,
-      &other->image_, rhs_arena
+      &_impl_.image_, lhs_arena,
+      &other->_impl_.image_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &mime_type_, lhs_arena,
-      &other->mime_type_, rhs_arena
+      &_impl_.mime_type_, lhs_arena,
+      &other->_impl_.mime_type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetClassificationsRequest, n_)
-      + sizeof(GetClassificationsRequest::n_)
-      - PROTOBUF_FIELD_OFFSET(GetClassificationsRequest, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+      PROTOBUF_FIELD_OFFSET(GetClassificationsRequest, _impl_.n_)
+      + sizeof(GetClassificationsRequest::_impl_.n_)
+      - PROTOBUF_FIELD_OFFSET(GetClassificationsRequest, _impl_.extra_)>(
+          reinterpret_cast<char*>(&_impl_.extra_),
+          reinterpret_cast<char*>(&other->_impl_.extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetClassificationsRequest::GetMetadata() const {
@@ -2558,19 +2650,29 @@ class GetClassificationsResponse::_Internal {
 
 GetClassificationsResponse::GetClassificationsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  classifications_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetClassificationsResponse)
 }
 GetClassificationsResponse::GetClassificationsResponse(const GetClassificationsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      classifications_(from.classifications_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetClassificationsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.classifications_){from._impl_.classifications_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetClassificationsResponse)
 }
 
-inline void GetClassificationsResponse::SharedCtor() {
+inline void GetClassificationsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.classifications_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetClassificationsResponse::~GetClassificationsResponse() {
@@ -2584,10 +2686,11 @@ GetClassificationsResponse::~GetClassificationsResponse() {
 
 inline void GetClassificationsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.classifications_.~RepeatedPtrField();
 }
 
 void GetClassificationsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetClassificationsResponse::Clear() {
@@ -2596,7 +2699,7 @@ void GetClassificationsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  classifications_.Clear();
+  _impl_.classifications_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2674,35 +2777,31 @@ size_t GetClassificationsResponse::ByteSizeLong() const {
 
   // repeated .viam.service.vision.v1.Classification classifications = 1 [json_name = "classifications"];
   total_size += 1UL * this->_internal_classifications_size();
-  for (const auto& msg : this->classifications_) {
+  for (const auto& msg : this->_impl_.classifications_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetClassificationsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetClassificationsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassificationsResponse::GetClassData() const { return &_class_data_; }
 
-void GetClassificationsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetClassificationsResponse *>(to)->MergeFrom(
-      static_cast<const GetClassificationsResponse &>(from));
-}
 
-
-void GetClassificationsResponse::MergeFrom(const GetClassificationsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetClassificationsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetClassificationsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetClassificationsResponse*>(&to_msg);
+  auto& from = static_cast<const GetClassificationsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetClassificationsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  classifications_.MergeFrom(from.classifications_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.classifications_.MergeFrom(from._impl_.classifications_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetClassificationsResponse::CopyFrom(const GetClassificationsResponse& from) {
@@ -2719,7 +2818,7 @@ bool GetClassificationsResponse::IsInitialized() const {
 void GetClassificationsResponse::InternalSwap(GetClassificationsResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  classifications_.InternalSwap(&other->classifications_);
+  _impl_.classifications_.InternalSwap(&other->_impl_.classifications_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetClassificationsResponse::GetMetadata() const {
@@ -2737,61 +2836,73 @@ class GetClassificationsFromCameraRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetClassificationsFromCameraRequest::_Internal::extra(const GetClassificationsFromCameraRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetClassificationsFromCameraRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetClassificationsFromCameraRequest::GetClassificationsFromCameraRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetClassificationsFromCameraRequest)
 }
 GetClassificationsFromCameraRequest::GetClassificationsFromCameraRequest(const GetClassificationsFromCameraRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetClassificationsFromCameraRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.camera_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.n_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  camera_name_.InitDefault();
+  _impl_.camera_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    camera_name_.Set("", GetArenaForAllocation());
+    _impl_.camera_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_camera_name().empty()) {
-    camera_name_.Set(from._internal_camera_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.camera_name_.Set(from._internal_camera_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  n_ = from.n_;
+  _this->_impl_.n_ = from._impl_.n_;
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetClassificationsFromCameraRequest)
 }
 
-inline void GetClassificationsFromCameraRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-camera_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  camera_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&n_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(n_));
+inline void GetClassificationsFromCameraRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.camera_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.n_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.camera_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.camera_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetClassificationsFromCameraRequest::~GetClassificationsFromCameraRequest() {
@@ -2805,13 +2916,13 @@ GetClassificationsFromCameraRequest::~GetClassificationsFromCameraRequest() {
 
 inline void GetClassificationsFromCameraRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  camera_name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.camera_name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetClassificationsFromCameraRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetClassificationsFromCameraRequest::Clear() {
@@ -2820,13 +2931,13 @@ void GetClassificationsFromCameraRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  camera_name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.camera_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  n_ = 0;
+  _impl_.extra_ = nullptr;
+  _impl_.n_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2859,7 +2970,7 @@ const char* GetClassificationsFromCameraRequest::_InternalParse(const char* ptr,
       // int32 n = 3 [json_name = "n"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          n_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.n_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2968,7 +3079,7 @@ size_t GetClassificationsFromCameraRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // int32 n = 3 [json_name = "n"];
@@ -2976,41 +3087,38 @@ size_t GetClassificationsFromCameraRequest::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_n());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetClassificationsFromCameraRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetClassificationsFromCameraRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassificationsFromCameraRequest::GetClassData() const { return &_class_data_; }
 
-void GetClassificationsFromCameraRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetClassificationsFromCameraRequest *>(to)->MergeFrom(
-      static_cast<const GetClassificationsFromCameraRequest &>(from));
-}
 
-
-void GetClassificationsFromCameraRequest::MergeFrom(const GetClassificationsFromCameraRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetClassificationsFromCameraRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetClassificationsFromCameraRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetClassificationsFromCameraRequest*>(&to_msg);
+  auto& from = static_cast<const GetClassificationsFromCameraRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetClassificationsFromCameraRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_camera_name().empty()) {
-    _internal_set_camera_name(from._internal_camera_name());
+    _this->_internal_set_camera_name(from._internal_camera_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   if (from._internal_n() != 0) {
-    _internal_set_n(from._internal_n());
+    _this->_internal_set_n(from._internal_n());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetClassificationsFromCameraRequest::CopyFrom(const GetClassificationsFromCameraRequest& from) {
@@ -3030,19 +3138,19 @@ void GetClassificationsFromCameraRequest::InternalSwap(GetClassificationsFromCam
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &camera_name_, lhs_arena,
-      &other->camera_name_, rhs_arena
+      &_impl_.camera_name_, lhs_arena,
+      &other->_impl_.camera_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetClassificationsFromCameraRequest, n_)
-      + sizeof(GetClassificationsFromCameraRequest::n_)
-      - PROTOBUF_FIELD_OFFSET(GetClassificationsFromCameraRequest, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+      PROTOBUF_FIELD_OFFSET(GetClassificationsFromCameraRequest, _impl_.n_)
+      + sizeof(GetClassificationsFromCameraRequest::_impl_.n_)
+      - PROTOBUF_FIELD_OFFSET(GetClassificationsFromCameraRequest, _impl_.extra_)>(
+          reinterpret_cast<char*>(&_impl_.extra_),
+          reinterpret_cast<char*>(&other->_impl_.extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetClassificationsFromCameraRequest::GetMetadata() const {
@@ -3059,19 +3167,29 @@ class GetClassificationsFromCameraResponse::_Internal {
 
 GetClassificationsFromCameraResponse::GetClassificationsFromCameraResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  classifications_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetClassificationsFromCameraResponse)
 }
 GetClassificationsFromCameraResponse::GetClassificationsFromCameraResponse(const GetClassificationsFromCameraResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      classifications_(from.classifications_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetClassificationsFromCameraResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.classifications_){from._impl_.classifications_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetClassificationsFromCameraResponse)
 }
 
-inline void GetClassificationsFromCameraResponse::SharedCtor() {
+inline void GetClassificationsFromCameraResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.classifications_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetClassificationsFromCameraResponse::~GetClassificationsFromCameraResponse() {
@@ -3085,10 +3203,11 @@ GetClassificationsFromCameraResponse::~GetClassificationsFromCameraResponse() {
 
 inline void GetClassificationsFromCameraResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.classifications_.~RepeatedPtrField();
 }
 
 void GetClassificationsFromCameraResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetClassificationsFromCameraResponse::Clear() {
@@ -3097,7 +3216,7 @@ void GetClassificationsFromCameraResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  classifications_.Clear();
+  _impl_.classifications_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3175,35 +3294,31 @@ size_t GetClassificationsFromCameraResponse::ByteSizeLong() const {
 
   // repeated .viam.service.vision.v1.Classification classifications = 1 [json_name = "classifications"];
   total_size += 1UL * this->_internal_classifications_size();
-  for (const auto& msg : this->classifications_) {
+  for (const auto& msg : this->_impl_.classifications_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetClassificationsFromCameraResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetClassificationsFromCameraResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassificationsFromCameraResponse::GetClassData() const { return &_class_data_; }
 
-void GetClassificationsFromCameraResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetClassificationsFromCameraResponse *>(to)->MergeFrom(
-      static_cast<const GetClassificationsFromCameraResponse &>(from));
-}
 
-
-void GetClassificationsFromCameraResponse::MergeFrom(const GetClassificationsFromCameraResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetClassificationsFromCameraResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetClassificationsFromCameraResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetClassificationsFromCameraResponse*>(&to_msg);
+  auto& from = static_cast<const GetClassificationsFromCameraResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetClassificationsFromCameraResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  classifications_.MergeFrom(from.classifications_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.classifications_.MergeFrom(from._impl_.classifications_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetClassificationsFromCameraResponse::CopyFrom(const GetClassificationsFromCameraResponse& from) {
@@ -3220,7 +3335,7 @@ bool GetClassificationsFromCameraResponse::IsInitialized() const {
 void GetClassificationsFromCameraResponse::InternalSwap(GetClassificationsFromCameraResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  classifications_.InternalSwap(&other->classifications_);
+  _impl_.classifications_.InternalSwap(&other->_impl_.classifications_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetClassificationsFromCameraResponse::GetMetadata() const {
@@ -3238,30 +3353,43 @@ class Classification::_Internal {
 Classification::Classification(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.Classification)
 }
 Classification::Classification(const Classification& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Classification* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.class_name_){}
+    , decltype(_impl_.confidence_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  class_name_.InitDefault();
+  _impl_.class_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    class_name_.Set("", GetArenaForAllocation());
+    _impl_.class_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_class_name().empty()) {
-    class_name_.Set(from._internal_class_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.class_name_.Set(from._internal_class_name(), 
+      _this->GetArenaForAllocation());
   }
-  confidence_ = from.confidence_;
+  _this->_impl_.confidence_ = from._impl_.confidence_;
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.Classification)
 }
 
-inline void Classification::SharedCtor() {
-class_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  class_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-confidence_ = 0;
+inline void Classification::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.class_name_){}
+    , decltype(_impl_.confidence_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.class_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.class_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Classification::~Classification() {
@@ -3275,11 +3403,11 @@ Classification::~Classification() {
 
 inline void Classification::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  class_name_.Destroy();
+  _impl_.class_name_.Destroy();
 }
 
 void Classification::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Classification::Clear() {
@@ -3288,8 +3416,8 @@ void Classification::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  class_name_.ClearToEmpty();
-  confidence_ = 0;
+  _impl_.class_name_.ClearToEmpty();
+  _impl_.confidence_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3312,7 +3440,7 @@ const char* Classification::_InternalParse(const char* ptr, ::_pbi::ParseContext
       // double confidence = 2 [json_name = "confidence"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
-          confidence_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          _impl_.confidence_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -3398,39 +3526,35 @@ size_t Classification::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Classification::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Classification::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Classification::GetClassData() const { return &_class_data_; }
 
-void Classification::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Classification *>(to)->MergeFrom(
-      static_cast<const Classification &>(from));
-}
 
-
-void Classification::MergeFrom(const Classification& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.Classification)
-  GOOGLE_DCHECK_NE(&from, this);
+void Classification::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Classification*>(&to_msg);
+  auto& from = static_cast<const Classification&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.Classification)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_class_name().empty()) {
-    _internal_set_class_name(from._internal_class_name());
+    _this->_internal_set_class_name(from._internal_class_name());
   }
   static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
   double tmp_confidence = from._internal_confidence();
   uint64_t raw_confidence;
   memcpy(&raw_confidence, &tmp_confidence, sizeof(tmp_confidence));
   if (raw_confidence != 0) {
-    _internal_set_confidence(from._internal_confidence());
+    _this->_internal_set_confidence(from._internal_confidence());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Classification::CopyFrom(const Classification& from) {
@@ -3450,10 +3574,10 @@ void Classification::InternalSwap(Classification* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &class_name_, lhs_arena,
-      &other->class_name_, rhs_arena
+      &_impl_.class_name_, lhs_arena,
+      &other->_impl_.class_name_, rhs_arena
   );
-  swap(confidence_, other->confidence_);
+  swap(_impl_.confidence_, other->_impl_.confidence_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Classification::GetMetadata() const {
@@ -3471,69 +3595,84 @@ class GetObjectPointCloudsRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetObjectPointCloudsRequest::_Internal::extra(const GetObjectPointCloudsRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetObjectPointCloudsRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetObjectPointCloudsRequest::GetObjectPointCloudsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetObjectPointCloudsRequest)
 }
 GetObjectPointCloudsRequest::GetObjectPointCloudsRequest(const GetObjectPointCloudsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetObjectPointCloudsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.camera_name_){}
+    , decltype(_impl_.mime_type_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  camera_name_.InitDefault();
+  _impl_.camera_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    camera_name_.Set("", GetArenaForAllocation());
+    _impl_.camera_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_camera_name().empty()) {
-    camera_name_.Set(from._internal_camera_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.camera_name_.Set(from._internal_camera_name(), 
+      _this->GetArenaForAllocation());
   }
-  mime_type_.InitDefault();
+  _impl_.mime_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    mime_type_.Set("", GetArenaForAllocation());
+    _impl_.mime_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_mime_type().empty()) {
-    mime_type_.Set(from._internal_mime_type(), 
-      GetArenaForAllocation());
+    _this->_impl_.mime_type_.Set(from._internal_mime_type(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetObjectPointCloudsRequest)
 }
 
-inline void GetObjectPointCloudsRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-camera_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  camera_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-mime_type_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  mime_type_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetObjectPointCloudsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.camera_name_){}
+    , decltype(_impl_.mime_type_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.camera_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.camera_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.mime_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.mime_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetObjectPointCloudsRequest::~GetObjectPointCloudsRequest() {
@@ -3547,14 +3686,14 @@ GetObjectPointCloudsRequest::~GetObjectPointCloudsRequest() {
 
 inline void GetObjectPointCloudsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  camera_name_.Destroy();
-  mime_type_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.camera_name_.Destroy();
+  _impl_.mime_type_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetObjectPointCloudsRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetObjectPointCloudsRequest::Clear() {
@@ -3563,13 +3702,13 @@ void GetObjectPointCloudsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  camera_name_.ClearToEmpty();
-  mime_type_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.camera_name_.ClearToEmpty();
+  _impl_.mime_type_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3724,44 +3863,41 @@ size_t GetObjectPointCloudsRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetObjectPointCloudsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetObjectPointCloudsRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetObjectPointCloudsRequest::GetClassData() const { return &_class_data_; }
 
-void GetObjectPointCloudsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetObjectPointCloudsRequest *>(to)->MergeFrom(
-      static_cast<const GetObjectPointCloudsRequest &>(from));
-}
 
-
-void GetObjectPointCloudsRequest::MergeFrom(const GetObjectPointCloudsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetObjectPointCloudsRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetObjectPointCloudsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetObjectPointCloudsRequest*>(&to_msg);
+  auto& from = static_cast<const GetObjectPointCloudsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetObjectPointCloudsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_camera_name().empty()) {
-    _internal_set_camera_name(from._internal_camera_name());
+    _this->_internal_set_camera_name(from._internal_camera_name());
   }
   if (!from._internal_mime_type().empty()) {
-    _internal_set_mime_type(from._internal_mime_type());
+    _this->_internal_set_mime_type(from._internal_mime_type());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetObjectPointCloudsRequest::CopyFrom(const GetObjectPointCloudsRequest& from) {
@@ -3781,18 +3917,18 @@ void GetObjectPointCloudsRequest::InternalSwap(GetObjectPointCloudsRequest* othe
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &camera_name_, lhs_arena,
-      &other->camera_name_, rhs_arena
+      &_impl_.camera_name_, lhs_arena,
+      &other->_impl_.camera_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &mime_type_, lhs_arena,
-      &other->mime_type_, rhs_arena
+      &_impl_.mime_type_, lhs_arena,
+      &other->_impl_.mime_type_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetObjectPointCloudsRequest::GetMetadata() const {
@@ -3808,35 +3944,47 @@ class GetObjectPointCloudsResponse::_Internal {
 };
 
 void GetObjectPointCloudsResponse::clear_objects() {
-  objects_.Clear();
+  _impl_.objects_.Clear();
 }
 GetObjectPointCloudsResponse::GetObjectPointCloudsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  objects_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetObjectPointCloudsResponse)
 }
 GetObjectPointCloudsResponse::GetObjectPointCloudsResponse(const GetObjectPointCloudsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      objects_(from.objects_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetObjectPointCloudsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.objects_){from._impl_.objects_}
+    , decltype(_impl_.mime_type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  mime_type_.InitDefault();
+  _impl_.mime_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    mime_type_.Set("", GetArenaForAllocation());
+    _impl_.mime_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_mime_type().empty()) {
-    mime_type_.Set(from._internal_mime_type(), 
-      GetArenaForAllocation());
+    _this->_impl_.mime_type_.Set(from._internal_mime_type(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetObjectPointCloudsResponse)
 }
 
-inline void GetObjectPointCloudsResponse::SharedCtor() {
-mime_type_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  mime_type_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void GetObjectPointCloudsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.objects_){arena}
+    , decltype(_impl_.mime_type_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.mime_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.mime_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetObjectPointCloudsResponse::~GetObjectPointCloudsResponse() {
@@ -3850,11 +3998,12 @@ GetObjectPointCloudsResponse::~GetObjectPointCloudsResponse() {
 
 inline void GetObjectPointCloudsResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  mime_type_.Destroy();
+  _impl_.objects_.~RepeatedPtrField();
+  _impl_.mime_type_.Destroy();
 }
 
 void GetObjectPointCloudsResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetObjectPointCloudsResponse::Clear() {
@@ -3863,8 +4012,8 @@ void GetObjectPointCloudsResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  objects_.Clear();
-  mime_type_.ClearToEmpty();
+  _impl_.objects_.Clear();
+  _impl_.mime_type_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3962,7 +4111,7 @@ size_t GetObjectPointCloudsResponse::ByteSizeLong() const {
 
   // repeated .viam.common.v1.PointCloudObject objects = 2 [json_name = "objects"];
   total_size += 1UL * this->_internal_objects_size();
-  for (const auto& msg : this->objects_) {
+  for (const auto& msg : this->_impl_.objects_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -3974,33 +4123,29 @@ size_t GetObjectPointCloudsResponse::ByteSizeLong() const {
         this->_internal_mime_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetObjectPointCloudsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetObjectPointCloudsResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetObjectPointCloudsResponse::GetClassData() const { return &_class_data_; }
 
-void GetObjectPointCloudsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetObjectPointCloudsResponse *>(to)->MergeFrom(
-      static_cast<const GetObjectPointCloudsResponse &>(from));
-}
 
-
-void GetObjectPointCloudsResponse::MergeFrom(const GetObjectPointCloudsResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetObjectPointCloudsResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetObjectPointCloudsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetObjectPointCloudsResponse*>(&to_msg);
+  auto& from = static_cast<const GetObjectPointCloudsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetObjectPointCloudsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  objects_.MergeFrom(from.objects_);
+  _this->_impl_.objects_.MergeFrom(from._impl_.objects_);
   if (!from._internal_mime_type().empty()) {
-    _internal_set_mime_type(from._internal_mime_type());
+    _this->_internal_set_mime_type(from._internal_mime_type());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetObjectPointCloudsResponse::CopyFrom(const GetObjectPointCloudsResponse& from) {
@@ -4019,10 +4164,10 @@ void GetObjectPointCloudsResponse::InternalSwap(GetObjectPointCloudsResponse* ot
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  objects_.InternalSwap(&other->objects_);
+  _impl_.objects_.InternalSwap(&other->_impl_.objects_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &mime_type_, lhs_arena,
-      &other->mime_type_, rhs_arena
+      &_impl_.mime_type_, lhs_arena,
+      &other->_impl_.mime_type_, rhs_arena
   );
 }
 
@@ -4041,45 +4186,56 @@ class GetPropertiesRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 GetPropertiesRequest::_Internal::extra(const GetPropertiesRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void GetPropertiesRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 GetPropertiesRequest::GetPropertiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetPropertiesRequest)
 }
 GetPropertiesRequest::GetPropertiesRequest(const GetPropertiesRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetPropertiesRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetPropertiesRequest)
 }
 
-inline void GetPropertiesRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-extra_ = nullptr;
+inline void GetPropertiesRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 GetPropertiesRequest::~GetPropertiesRequest() {
@@ -4093,12 +4249,12 @@ GetPropertiesRequest::~GetPropertiesRequest() {
 
 inline void GetPropertiesRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void GetPropertiesRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetPropertiesRequest::Clear() {
@@ -4107,11 +4263,11 @@ void GetPropertiesRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4212,38 +4368,35 @@ size_t GetPropertiesRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetPropertiesRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesRequest::GetClassData() const { return &_class_data_; }
 
-void GetPropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPropertiesRequest *>(to)->MergeFrom(
-      static_cast<const GetPropertiesRequest &>(from));
-}
 
-
-void GetPropertiesRequest::MergeFrom(const GetPropertiesRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetPropertiesRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetPropertiesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetPropertiesRequest*>(&to_msg);
+  auto& from = static_cast<const GetPropertiesRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetPropertiesRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPropertiesRequest::CopyFrom(const GetPropertiesRequest& from) {
@@ -4263,10 +4416,10 @@ void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
-  swap(extra_, other->extra_);
+  swap(_impl_.extra_, other->_impl_.extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
@@ -4284,63 +4437,81 @@ class CaptureAllFromCameraRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 CaptureAllFromCameraRequest::_Internal::extra(const CaptureAllFromCameraRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void CaptureAllFromCameraRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 CaptureAllFromCameraRequest::CaptureAllFromCameraRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.CaptureAllFromCameraRequest)
 }
 CaptureAllFromCameraRequest::CaptureAllFromCameraRequest(const CaptureAllFromCameraRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CaptureAllFromCameraRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.camera_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.return_image_){}
+    , decltype(_impl_.return_classifications_){}
+    , decltype(_impl_.return_detections_){}
+    , decltype(_impl_.return_object_point_clouds_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  camera_name_.InitDefault();
+  _impl_.camera_name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    camera_name_.Set("", GetArenaForAllocation());
+    _impl_.camera_name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_camera_name().empty()) {
-    camera_name_.Set(from._internal_camera_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.camera_name_.Set(from._internal_camera_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
-  ::memcpy(&return_image_, &from.return_image_,
-    static_cast<size_t>(reinterpret_cast<char*>(&return_object_point_clouds_) -
-    reinterpret_cast<char*>(&return_image_)) + sizeof(return_object_point_clouds_));
+  ::memcpy(&_impl_.return_image_, &from._impl_.return_image_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.return_object_point_clouds_) -
+    reinterpret_cast<char*>(&_impl_.return_image_)) + sizeof(_impl_.return_object_point_clouds_));
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.CaptureAllFromCameraRequest)
 }
 
-inline void CaptureAllFromCameraRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-camera_name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  camera_name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&extra_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&return_object_point_clouds_) -
-    reinterpret_cast<char*>(&extra_)) + sizeof(return_object_point_clouds_));
+inline void CaptureAllFromCameraRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.camera_name_){}
+    , decltype(_impl_.extra_){nullptr}
+    , decltype(_impl_.return_image_){false}
+    , decltype(_impl_.return_classifications_){false}
+    , decltype(_impl_.return_detections_){false}
+    , decltype(_impl_.return_object_point_clouds_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.camera_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.camera_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 CaptureAllFromCameraRequest::~CaptureAllFromCameraRequest() {
@@ -4354,13 +4525,13 @@ CaptureAllFromCameraRequest::~CaptureAllFromCameraRequest() {
 
 inline void CaptureAllFromCameraRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  camera_name_.Destroy();
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.camera_name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void CaptureAllFromCameraRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void CaptureAllFromCameraRequest::Clear() {
@@ -4369,15 +4540,15 @@ void CaptureAllFromCameraRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  camera_name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.camera_name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
-  ::memset(&return_image_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&return_object_point_clouds_) -
-      reinterpret_cast<char*>(&return_image_)) + sizeof(return_object_point_clouds_));
+  _impl_.extra_ = nullptr;
+  ::memset(&_impl_.return_image_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.return_object_point_clouds_) -
+      reinterpret_cast<char*>(&_impl_.return_image_)) + sizeof(_impl_.return_object_point_clouds_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4410,7 +4581,7 @@ const char* CaptureAllFromCameraRequest::_InternalParse(const char* ptr, ::_pbi:
       // bool return_image = 3 [json_name = "returnImage"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          return_image_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.return_image_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4418,7 +4589,7 @@ const char* CaptureAllFromCameraRequest::_InternalParse(const char* ptr, ::_pbi:
       // bool return_classifications = 4 [json_name = "returnClassifications"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          return_classifications_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.return_classifications_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4426,7 +4597,7 @@ const char* CaptureAllFromCameraRequest::_InternalParse(const char* ptr, ::_pbi:
       // bool return_detections = 5 [json_name = "returnDetections"];
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          return_detections_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.return_detections_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4434,7 +4605,7 @@ const char* CaptureAllFromCameraRequest::_InternalParse(const char* ptr, ::_pbi:
       // bool return_object_point_clouds = 6 [json_name = "returnObjectPointClouds"];
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          return_object_point_clouds_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.return_object_point_clouds_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4561,7 +4732,7 @@ size_t CaptureAllFromCameraRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
   // bool return_image = 3 [json_name = "returnImage"];
@@ -4584,50 +4755,47 @@ size_t CaptureAllFromCameraRequest::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CaptureAllFromCameraRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     CaptureAllFromCameraRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CaptureAllFromCameraRequest::GetClassData() const { return &_class_data_; }
 
-void CaptureAllFromCameraRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<CaptureAllFromCameraRequest *>(to)->MergeFrom(
-      static_cast<const CaptureAllFromCameraRequest &>(from));
-}
 
-
-void CaptureAllFromCameraRequest::MergeFrom(const CaptureAllFromCameraRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.CaptureAllFromCameraRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void CaptureAllFromCameraRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CaptureAllFromCameraRequest*>(&to_msg);
+  auto& from = static_cast<const CaptureAllFromCameraRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.CaptureAllFromCameraRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_camera_name().empty()) {
-    _internal_set_camera_name(from._internal_camera_name());
+    _this->_internal_set_camera_name(from._internal_camera_name());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
   if (from._internal_return_image() != 0) {
-    _internal_set_return_image(from._internal_return_image());
+    _this->_internal_set_return_image(from._internal_return_image());
   }
   if (from._internal_return_classifications() != 0) {
-    _internal_set_return_classifications(from._internal_return_classifications());
+    _this->_internal_set_return_classifications(from._internal_return_classifications());
   }
   if (from._internal_return_detections() != 0) {
-    _internal_set_return_detections(from._internal_return_detections());
+    _this->_internal_set_return_detections(from._internal_return_detections());
   }
   if (from._internal_return_object_point_clouds() != 0) {
-    _internal_set_return_object_point_clouds(from._internal_return_object_point_clouds());
+    _this->_internal_set_return_object_point_clouds(from._internal_return_object_point_clouds());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CaptureAllFromCameraRequest::CopyFrom(const CaptureAllFromCameraRequest& from) {
@@ -4647,19 +4815,19 @@ void CaptureAllFromCameraRequest::InternalSwap(CaptureAllFromCameraRequest* othe
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &camera_name_, lhs_arena,
-      &other->camera_name_, rhs_arena
+      &_impl_.camera_name_, lhs_arena,
+      &other->_impl_.camera_name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CaptureAllFromCameraRequest, return_object_point_clouds_)
-      + sizeof(CaptureAllFromCameraRequest::return_object_point_clouds_)
-      - PROTOBUF_FIELD_OFFSET(CaptureAllFromCameraRequest, extra_)>(
-          reinterpret_cast<char*>(&extra_),
-          reinterpret_cast<char*>(&other->extra_));
+      PROTOBUF_FIELD_OFFSET(CaptureAllFromCameraRequest, _impl_.return_object_point_clouds_)
+      + sizeof(CaptureAllFromCameraRequest::_impl_.return_object_point_clouds_)
+      - PROTOBUF_FIELD_OFFSET(CaptureAllFromCameraRequest, _impl_.extra_)>(
+          reinterpret_cast<char*>(&_impl_.extra_),
+          reinterpret_cast<char*>(&other->_impl_.extra_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CaptureAllFromCameraRequest::GetMetadata() const {
@@ -4678,60 +4846,66 @@ class CaptureAllFromCameraResponse::_Internal {
 
 const ::viam::component::camera::v1::Image&
 CaptureAllFromCameraResponse::_Internal::image(const CaptureAllFromCameraResponse* msg) {
-  return *msg->image_;
+  return *msg->_impl_.image_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 CaptureAllFromCameraResponse::_Internal::extra(const CaptureAllFromCameraResponse* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void CaptureAllFromCameraResponse::clear_image() {
-  if (GetArenaForAllocation() == nullptr && image_ != nullptr) {
-    delete image_;
+  if (GetArenaForAllocation() == nullptr && _impl_.image_ != nullptr) {
+    delete _impl_.image_;
   }
-  image_ = nullptr;
+  _impl_.image_ = nullptr;
 }
 void CaptureAllFromCameraResponse::clear_objects() {
-  objects_.Clear();
+  _impl_.objects_.Clear();
 }
 void CaptureAllFromCameraResponse::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 CaptureAllFromCameraResponse::CaptureAllFromCameraResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  detections_(arena),
-  classifications_(arena),
-  objects_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.CaptureAllFromCameraResponse)
 }
 CaptureAllFromCameraResponse::CaptureAllFromCameraResponse(const CaptureAllFromCameraResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      detections_(from.detections_),
-      classifications_(from.classifications_),
-      objects_(from.objects_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CaptureAllFromCameraResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.detections_){from._impl_.detections_}
+    , decltype(_impl_.classifications_){from._impl_.classifications_}
+    , decltype(_impl_.objects_){from._impl_.objects_}
+    , decltype(_impl_.image_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_image()) {
-    image_ = new ::viam::component::camera::v1::Image(*from.image_);
-  } else {
-    image_ = nullptr;
+    _this->_impl_.image_ = new ::viam::component::camera::v1::Image(*from._impl_.image_);
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.CaptureAllFromCameraResponse)
 }
 
-inline void CaptureAllFromCameraResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&image_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&image_)) + sizeof(extra_));
+inline void CaptureAllFromCameraResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.detections_){arena}
+    , decltype(_impl_.classifications_){arena}
+    , decltype(_impl_.objects_){arena}
+    , decltype(_impl_.image_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 CaptureAllFromCameraResponse::~CaptureAllFromCameraResponse() {
@@ -4745,12 +4919,15 @@ CaptureAllFromCameraResponse::~CaptureAllFromCameraResponse() {
 
 inline void CaptureAllFromCameraResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete image_;
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.detections_.~RepeatedPtrField();
+  _impl_.classifications_.~RepeatedPtrField();
+  _impl_.objects_.~RepeatedPtrField();
+  if (this != internal_default_instance()) delete _impl_.image_;
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void CaptureAllFromCameraResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void CaptureAllFromCameraResponse::Clear() {
@@ -4759,17 +4936,17 @@ void CaptureAllFromCameraResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  detections_.Clear();
-  classifications_.Clear();
-  objects_.Clear();
-  if (GetArenaForAllocation() == nullptr && image_ != nullptr) {
-    delete image_;
+  _impl_.detections_.Clear();
+  _impl_.classifications_.Clear();
+  _impl_.objects_.Clear();
+  if (GetArenaForAllocation() == nullptr && _impl_.image_ != nullptr) {
+    delete _impl_.image_;
   }
-  image_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.image_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4919,21 +5096,21 @@ size_t CaptureAllFromCameraResponse::ByteSizeLong() const {
 
   // repeated .viam.service.vision.v1.Detection detections = 2 [json_name = "detections"];
   total_size += 1UL * this->_internal_detections_size();
-  for (const auto& msg : this->detections_) {
+  for (const auto& msg : this->_impl_.detections_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .viam.service.vision.v1.Classification classifications = 3 [json_name = "classifications"];
   total_size += 1UL * this->_internal_classifications_size();
-  for (const auto& msg : this->classifications_) {
+  for (const auto& msg : this->_impl_.classifications_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .viam.common.v1.PointCloudObject objects = 4 [json_name = "objects"];
   total_size += 1UL * this->_internal_objects_size();
-  for (const auto& msg : this->objects_) {
+  for (const auto& msg : this->_impl_.objects_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -4942,48 +5119,46 @@ size_t CaptureAllFromCameraResponse::ByteSizeLong() const {
   if (this->_internal_has_image()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *image_);
+        *_impl_.image_);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CaptureAllFromCameraResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     CaptureAllFromCameraResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CaptureAllFromCameraResponse::GetClassData() const { return &_class_data_; }
 
-void CaptureAllFromCameraResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<CaptureAllFromCameraResponse *>(to)->MergeFrom(
-      static_cast<const CaptureAllFromCameraResponse &>(from));
-}
 
-
-void CaptureAllFromCameraResponse::MergeFrom(const CaptureAllFromCameraResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.CaptureAllFromCameraResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void CaptureAllFromCameraResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CaptureAllFromCameraResponse*>(&to_msg);
+  auto& from = static_cast<const CaptureAllFromCameraResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.CaptureAllFromCameraResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  detections_.MergeFrom(from.detections_);
-  classifications_.MergeFrom(from.classifications_);
-  objects_.MergeFrom(from.objects_);
+  _this->_impl_.detections_.MergeFrom(from._impl_.detections_);
+  _this->_impl_.classifications_.MergeFrom(from._impl_.classifications_);
+  _this->_impl_.objects_.MergeFrom(from._impl_.objects_);
   if (from._internal_has_image()) {
-    _internal_mutable_image()->::viam::component::camera::v1::Image::MergeFrom(from._internal_image());
+    _this->_internal_mutable_image()->::viam::component::camera::v1::Image::MergeFrom(
+        from._internal_image());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CaptureAllFromCameraResponse::CopyFrom(const CaptureAllFromCameraResponse& from) {
@@ -5000,15 +5175,15 @@ bool CaptureAllFromCameraResponse::IsInitialized() const {
 void CaptureAllFromCameraResponse::InternalSwap(CaptureAllFromCameraResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  detections_.InternalSwap(&other->detections_);
-  classifications_.InternalSwap(&other->classifications_);
-  objects_.InternalSwap(&other->objects_);
+  _impl_.detections_.InternalSwap(&other->_impl_.detections_);
+  _impl_.classifications_.InternalSwap(&other->_impl_.classifications_);
+  _impl_.objects_.InternalSwap(&other->_impl_.objects_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CaptureAllFromCameraResponse, extra_)
-      + sizeof(CaptureAllFromCameraResponse::extra_)
-      - PROTOBUF_FIELD_OFFSET(CaptureAllFromCameraResponse, image_)>(
-          reinterpret_cast<char*>(&image_),
-          reinterpret_cast<char*>(&other->image_));
+      PROTOBUF_FIELD_OFFSET(CaptureAllFromCameraResponse, _impl_.extra_)
+      + sizeof(CaptureAllFromCameraResponse::_impl_.extra_)
+      - PROTOBUF_FIELD_OFFSET(CaptureAllFromCameraResponse, _impl_.image_)>(
+          reinterpret_cast<char*>(&_impl_.image_),
+          reinterpret_cast<char*>(&other->_impl_.image_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CaptureAllFromCameraResponse::GetMetadata() const {
@@ -5026,23 +5201,35 @@ class GetPropertiesResponse::_Internal {
 GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetPropertiesResponse)
 }
 GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GetPropertiesResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.classifications_supported_){}
+    , decltype(_impl_.detections_supported_){}
+    , decltype(_impl_.object_point_clouds_supported_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&classifications_supported_, &from.classifications_supported_,
-    static_cast<size_t>(reinterpret_cast<char*>(&object_point_clouds_supported_) -
-    reinterpret_cast<char*>(&classifications_supported_)) + sizeof(object_point_clouds_supported_));
+  ::memcpy(&_impl_.classifications_supported_, &from._impl_.classifications_supported_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.object_point_clouds_supported_) -
+    reinterpret_cast<char*>(&_impl_.classifications_supported_)) + sizeof(_impl_.object_point_clouds_supported_));
   // @@protoc_insertion_point(copy_constructor:viam.service.vision.v1.GetPropertiesResponse)
 }
 
-inline void GetPropertiesResponse::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&classifications_supported_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&object_point_clouds_supported_) -
-    reinterpret_cast<char*>(&classifications_supported_)) + sizeof(object_point_clouds_supported_));
+inline void GetPropertiesResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.classifications_supported_){false}
+    , decltype(_impl_.detections_supported_){false}
+    , decltype(_impl_.object_point_clouds_supported_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 GetPropertiesResponse::~GetPropertiesResponse() {
@@ -5059,7 +5246,7 @@ inline void GetPropertiesResponse::SharedDtor() {
 }
 
 void GetPropertiesResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void GetPropertiesResponse::Clear() {
@@ -5068,9 +5255,9 @@ void GetPropertiesResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&classifications_supported_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&object_point_clouds_supported_) -
-      reinterpret_cast<char*>(&classifications_supported_)) + sizeof(object_point_clouds_supported_));
+  ::memset(&_impl_.classifications_supported_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.object_point_clouds_supported_) -
+      reinterpret_cast<char*>(&_impl_.classifications_supported_)) + sizeof(_impl_.object_point_clouds_supported_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5083,7 +5270,7 @@ const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::Parse
       // bool classifications_supported = 1 [json_name = "classificationsSupported"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          classifications_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.classifications_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -5091,7 +5278,7 @@ const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::Parse
       // bool detections_supported = 2 [json_name = "detectionsSupported"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          detections_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.detections_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -5099,7 +5286,7 @@ const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::Parse
       // bool object_point_clouds_supported = 3 [json_name = "objectPointCloudsSupported"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          object_point_clouds_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          _impl_.object_point_clouds_supported_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -5182,38 +5369,34 @@ size_t GetPropertiesResponse::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetPropertiesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     GetPropertiesResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetPropertiesResponse::GetClassData() const { return &_class_data_; }
 
-void GetPropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<GetPropertiesResponse *>(to)->MergeFrom(
-      static_cast<const GetPropertiesResponse &>(from));
-}
 
-
-void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetPropertiesResponse)
-  GOOGLE_DCHECK_NE(&from, this);
+void GetPropertiesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GetPropertiesResponse*>(&to_msg);
+  auto& from = static_cast<const GetPropertiesResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.vision.v1.GetPropertiesResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_classifications_supported() != 0) {
-    _internal_set_classifications_supported(from._internal_classifications_supported());
+    _this->_internal_set_classifications_supported(from._internal_classifications_supported());
   }
   if (from._internal_detections_supported() != 0) {
-    _internal_set_detections_supported(from._internal_detections_supported());
+    _this->_internal_set_detections_supported(from._internal_detections_supported());
   }
   if (from._internal_object_point_clouds_supported() != 0) {
-    _internal_set_object_point_clouds_supported(from._internal_object_point_clouds_supported());
+    _this->_internal_set_object_point_clouds_supported(from._internal_object_point_clouds_supported());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GetPropertiesResponse::CopyFrom(const GetPropertiesResponse& from) {
@@ -5231,11 +5414,11 @@ void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, object_point_clouds_supported_)
-      + sizeof(GetPropertiesResponse::object_point_clouds_supported_)
-      - PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, classifications_supported_)>(
-          reinterpret_cast<char*>(&classifications_supported_),
-          reinterpret_cast<char*>(&other->classifications_supported_));
+      PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.object_point_clouds_supported_)
+      + sizeof(GetPropertiesResponse::_impl_.object_point_clouds_supported_)
+      - PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, _impl_.classifications_supported_)>(
+          reinterpret_cast<char*>(&_impl_.classifications_supported_),
+          reinterpret_cast<char*>(&other->_impl_.classifications_supported_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {

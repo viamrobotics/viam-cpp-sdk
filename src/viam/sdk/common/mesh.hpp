@@ -23,6 +23,8 @@ struct mesh {
     std::vector<unsigned char> data;
 };
 
+bool operator==(const mesh& lhs, const mesh& rhs);
+
 namespace proto_convert_details {
 
 template <>

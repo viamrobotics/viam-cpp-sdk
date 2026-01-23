@@ -109,13 +109,11 @@ class Arm : public Component, public Stoppable {
 
     /// @brief Get the kinematics data associated with the arm.
     /// @param extra Any additional arguments to the method.
-    /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
-    /// and the object's type indicating the file format.
+    /// @return A variant of kinematics data; URDF variants may include meshes by filepath.
     virtual ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) = 0;
 
     /// @brief Get the kinematics data associated with the arm.
-    /// @return A variant of kinematics data, with bytes field containing the raw bytes of the file
-    /// and the object's type indicating the file format.
+    /// @return A variant of kinematics data, with the type indicating the format of the data.
     inline ::viam::sdk::KinematicsData get_kinematics() {
         return get_kinematics({});
     }

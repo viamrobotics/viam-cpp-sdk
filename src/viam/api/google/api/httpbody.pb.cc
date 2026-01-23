@@ -23,10 +23,11 @@ namespace _pbi = _pb::internal;
 namespace google {
 namespace api {
 PROTOBUF_CONSTEXPR HttpBody::HttpBody(
-    ::_pbi::ConstantInitialized)
-  : extensions_()
-  , content_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.extensions_)*/{}
+  , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct HttpBodyDefaultTypeInternal {
   PROTOBUF_CONSTEXPR HttpBodyDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -49,9 +50,9 @@ const uint32_t TableStruct_google_2fapi_2fhttpbody_2eproto::offsets[] PROTOBUF_S
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::HttpBody, content_type_),
-  PROTOBUF_FIELD_OFFSET(::google::api::HttpBody, data_),
-  PROTOBUF_FIELD_OFFSET(::google::api::HttpBody, extensions_),
+  PROTOBUF_FIELD_OFFSET(::google::api::HttpBody, _impl_.content_type_),
+  PROTOBUF_FIELD_OFFSET(::google::api::HttpBody, _impl_.data_),
+  PROTOBUF_FIELD_OFFSET(::google::api::HttpBody, _impl_.extensions_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::HttpBody)},
@@ -99,47 +100,61 @@ class HttpBody::_Internal {
 };
 
 void HttpBody::clear_extensions() {
-  extensions_.Clear();
+  _impl_.extensions_.Clear();
 }
 HttpBody::HttpBody(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  extensions_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:google.api.HttpBody)
 }
 HttpBody::HttpBody(const HttpBody& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      extensions_(from.extensions_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  HttpBody* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.extensions_){from._impl_.extensions_}
+    , decltype(_impl_.content_type_){}
+    , decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  content_type_.InitDefault();
+  _impl_.content_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    content_type_.Set("", GetArenaForAllocation());
+    _impl_.content_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_content_type().empty()) {
-    content_type_.Set(from._internal_content_type(), 
-      GetArenaForAllocation());
+    _this->_impl_.content_type_.Set(from._internal_content_type(), 
+      _this->GetArenaForAllocation());
   }
-  data_.InitDefault();
+  _impl_.data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    data_.Set("", GetArenaForAllocation());
+    _impl_.data_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_data().empty()) {
-    data_.Set(from._internal_data(), 
-      GetArenaForAllocation());
+    _this->_impl_.data_.Set(from._internal_data(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:google.api.HttpBody)
 }
 
-inline void HttpBody::SharedCtor() {
-content_type_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  content_type_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-data_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  data_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void HttpBody::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.extensions_){arena}
+    , decltype(_impl_.content_type_){}
+    , decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.content_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.content_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 HttpBody::~HttpBody() {
@@ -153,12 +168,13 @@ HttpBody::~HttpBody() {
 
 inline void HttpBody::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  content_type_.Destroy();
-  data_.Destroy();
+  _impl_.extensions_.~RepeatedPtrField();
+  _impl_.content_type_.Destroy();
+  _impl_.data_.Destroy();
 }
 
 void HttpBody::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void HttpBody::Clear() {
@@ -167,9 +183,9 @@ void HttpBody::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  extensions_.Clear();
-  content_type_.ClearToEmpty();
-  data_.ClearToEmpty();
+  _impl_.extensions_.Clear();
+  _impl_.content_type_.ClearToEmpty();
+  _impl_.data_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -282,7 +298,7 @@ size_t HttpBody::ByteSizeLong() const {
 
   // repeated .google.protobuf.Any extensions = 3 [json_name = "extensions"];
   total_size += 1UL * this->_internal_extensions_size();
-  for (const auto& msg : this->extensions_) {
+  for (const auto& msg : this->_impl_.extensions_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -301,36 +317,32 @@ size_t HttpBody::ByteSizeLong() const {
         this->_internal_data());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData HttpBody::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     HttpBody::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*HttpBody::GetClassData() const { return &_class_data_; }
 
-void HttpBody::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<HttpBody *>(to)->MergeFrom(
-      static_cast<const HttpBody &>(from));
-}
 
-
-void HttpBody::MergeFrom(const HttpBody& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:google.api.HttpBody)
-  GOOGLE_DCHECK_NE(&from, this);
+void HttpBody::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<HttpBody*>(&to_msg);
+  auto& from = static_cast<const HttpBody&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.HttpBody)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  extensions_.MergeFrom(from.extensions_);
+  _this->_impl_.extensions_.MergeFrom(from._impl_.extensions_);
   if (!from._internal_content_type().empty()) {
-    _internal_set_content_type(from._internal_content_type());
+    _this->_internal_set_content_type(from._internal_content_type());
   }
   if (!from._internal_data().empty()) {
-    _internal_set_data(from._internal_data());
+    _this->_internal_set_data(from._internal_data());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void HttpBody::CopyFrom(const HttpBody& from) {
@@ -349,14 +361,14 @@ void HttpBody::InternalSwap(HttpBody* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  extensions_.InternalSwap(&other->extensions_);
+  _impl_.extensions_.InternalSwap(&other->_impl_.extensions_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &content_type_, lhs_arena,
-      &other->content_type_, rhs_arena
+      &_impl_.content_type_, lhs_arena,
+      &other->_impl_.content_type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &data_, lhs_arena,
-      &other->data_, rhs_arena
+      &_impl_.data_, lhs_arena,
+      &other->_impl_.data_, rhs_arena
   );
 }
 

@@ -25,8 +25,10 @@ namespace proto {
 namespace common {
 namespace v1 {
 PROTOBUF_CONSTEXPR AnyValue::AnyValue(
-    ::_pbi::ConstantInitialized)
-  : _oneof_case_{}{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.value_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_._oneof_case_)*/{}} {}
 struct AnyValueDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AnyValueDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -37,8 +39,9 @@ struct AnyValueDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AnyValueDefaultTypeInternal _AnyValue_default_instance_;
 PROTOBUF_CONSTEXPR ArrayValue::ArrayValue(
-    ::_pbi::ConstantInitialized)
-  : values_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.values_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ArrayValueDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ArrayValueDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -49,8 +52,9 @@ struct ArrayValueDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ArrayValueDefaultTypeInternal _ArrayValue_default_instance_;
 PROTOBUF_CONSTEXPR KeyValueList::KeyValueList(
-    ::_pbi::ConstantInitialized)
-  : values_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.values_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct KeyValueListDefaultTypeInternal {
   PROTOBUF_CONSTEXPR KeyValueListDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -61,9 +65,10 @@ struct KeyValueListDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 KeyValueListDefaultTypeInternal _KeyValueList_default_instance_;
 PROTOBUF_CONSTEXPR KeyValue::KeyValue(
-    ::_pbi::ConstantInitialized)
-  : key_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , value_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.key_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.value_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct KeyValueDefaultTypeInternal {
   PROTOBUF_CONSTEXPR KeyValueDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -74,11 +79,12 @@ struct KeyValueDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 KeyValueDefaultTypeInternal _KeyValue_default_instance_;
 PROTOBUF_CONSTEXPR InstrumentationScope::InstrumentationScope(
-    ::_pbi::ConstantInitialized)
-  : attributes_()
-  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , version_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , dropped_attributes_count_(0u){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.attributes_)*/{}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.dropped_attributes_count_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct InstrumentationScopeDefaultTypeInternal {
   PROTOBUF_CONSTEXPR InstrumentationScopeDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -89,11 +95,12 @@ struct InstrumentationScopeDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InstrumentationScopeDefaultTypeInternal _InstrumentationScope_default_instance_;
 PROTOBUF_CONSTEXPR EntityRef::EntityRef(
-    ::_pbi::ConstantInitialized)
-  : id_keys_()
-  , description_keys_()
-  , schema_url_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_keys_)*/{}
+  , /*decltype(_impl_.description_keys_)*/{}
+  , /*decltype(_impl_.schema_url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct EntityRefDefaultTypeInternal {
   PROTOBUF_CONSTEXPR EntityRefDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -115,7 +122,7 @@ const uint32_t TableStruct_opentelemetry_2fproto_2fcommon_2fv1_2fcommon_2eproto:
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::AnyValue, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::AnyValue, _oneof_case_[0]),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::AnyValue, _impl_._oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   ::_pbi::kInvalidFieldOffsetTag,
@@ -125,49 +132,49 @@ const uint32_t TableStruct_opentelemetry_2fproto_2fcommon_2fv1_2fcommon_2eproto:
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::AnyValue, value_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::AnyValue, _impl_.value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::ArrayValue, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::ArrayValue, values_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::ArrayValue, _impl_.values_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::KeyValueList, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::KeyValueList, values_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::KeyValueList, _impl_.values_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::KeyValue, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::KeyValue, key_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::KeyValue, value_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::KeyValue, _impl_.key_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::KeyValue, _impl_.value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::InstrumentationScope, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::InstrumentationScope, name_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::InstrumentationScope, version_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::InstrumentationScope, attributes_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::InstrumentationScope, dropped_attributes_count_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::InstrumentationScope, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::InstrumentationScope, _impl_.version_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::InstrumentationScope, _impl_.attributes_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::InstrumentationScope, _impl_.dropped_attributes_count_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::EntityRef, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::EntityRef, schema_url_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::EntityRef, type_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::EntityRef, id_keys_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::EntityRef, description_keys_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::EntityRef, _impl_.schema_url_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::EntityRef, _impl_.type_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::EntityRef, _impl_.id_keys_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::common::v1::EntityRef, _impl_.description_keys_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::opentelemetry::proto::common::v1::AnyValue)},
@@ -248,11 +255,11 @@ class AnyValue::_Internal {
 
 const ::opentelemetry::proto::common::v1::ArrayValue&
 AnyValue::_Internal::array_value(const AnyValue* msg) {
-  return *msg->value_.array_value_;
+  return *msg->_impl_.value_.array_value_;
 }
 const ::opentelemetry::proto::common::v1::KeyValueList&
 AnyValue::_Internal::kvlist_value(const AnyValue* msg) {
-  return *msg->value_.kvlist_value_;
+  return *msg->_impl_.value_.kvlist_value_;
 }
 void AnyValue::set_allocated_array_value(::opentelemetry::proto::common::v1::ArrayValue* array_value) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -265,7 +272,7 @@ void AnyValue::set_allocated_array_value(::opentelemetry::proto::common::v1::Arr
           message_arena, array_value, submessage_arena);
     }
     set_has_array_value();
-    value_.array_value_ = array_value;
+    _impl_.value_.array_value_ = array_value;
   }
   // @@protoc_insertion_point(field_set_allocated:opentelemetry.proto.common.v1.AnyValue.array_value)
 }
@@ -280,47 +287,55 @@ void AnyValue::set_allocated_kvlist_value(::opentelemetry::proto::common::v1::Ke
           message_arena, kvlist_value, submessage_arena);
     }
     set_has_kvlist_value();
-    value_.kvlist_value_ = kvlist_value;
+    _impl_.value_.kvlist_value_ = kvlist_value;
   }
   // @@protoc_insertion_point(field_set_allocated:opentelemetry.proto.common.v1.AnyValue.kvlist_value)
 }
 AnyValue::AnyValue(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.common.v1.AnyValue)
 }
 AnyValue::AnyValue(const AnyValue& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  AnyValue* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.value_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   clear_has_value();
   switch (from.value_case()) {
     case kStringValue: {
-      _internal_set_string_value(from._internal_string_value());
+      _this->_internal_set_string_value(from._internal_string_value());
       break;
     }
     case kBoolValue: {
-      _internal_set_bool_value(from._internal_bool_value());
+      _this->_internal_set_bool_value(from._internal_bool_value());
       break;
     }
     case kIntValue: {
-      _internal_set_int_value(from._internal_int_value());
+      _this->_internal_set_int_value(from._internal_int_value());
       break;
     }
     case kDoubleValue: {
-      _internal_set_double_value(from._internal_double_value());
+      _this->_internal_set_double_value(from._internal_double_value());
       break;
     }
     case kArrayValue: {
-      _internal_mutable_array_value()->::opentelemetry::proto::common::v1::ArrayValue::MergeFrom(from._internal_array_value());
+      _this->_internal_mutable_array_value()->::opentelemetry::proto::common::v1::ArrayValue::MergeFrom(
+          from._internal_array_value());
       break;
     }
     case kKvlistValue: {
-      _internal_mutable_kvlist_value()->::opentelemetry::proto::common::v1::KeyValueList::MergeFrom(from._internal_kvlist_value());
+      _this->_internal_mutable_kvlist_value()->::opentelemetry::proto::common::v1::KeyValueList::MergeFrom(
+          from._internal_kvlist_value());
       break;
     }
     case kBytesValue: {
-      _internal_set_bytes_value(from._internal_bytes_value());
+      _this->_internal_set_bytes_value(from._internal_bytes_value());
       break;
     }
     case VALUE_NOT_SET: {
@@ -330,8 +345,16 @@ AnyValue::AnyValue(const AnyValue& from)
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.common.v1.AnyValue)
 }
 
-inline void AnyValue::SharedCtor() {
-clear_has_value();
+inline void AnyValue::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.value_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}
+  };
+  clear_has_value();
 }
 
 AnyValue::~AnyValue() {
@@ -351,14 +374,14 @@ inline void AnyValue::SharedDtor() {
 }
 
 void AnyValue::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void AnyValue::clear_value() {
 // @@protoc_insertion_point(one_of_clear_start:opentelemetry.proto.common.v1.AnyValue)
   switch (value_case()) {
     case kStringValue: {
-      value_.string_value_.Destroy();
+      _impl_.value_.string_value_.Destroy();
       break;
     }
     case kBoolValue: {
@@ -375,25 +398,25 @@ void AnyValue::clear_value() {
     }
     case kArrayValue: {
       if (GetArenaForAllocation() == nullptr) {
-        delete value_.array_value_;
+        delete _impl_.value_.array_value_;
       }
       break;
     }
     case kKvlistValue: {
       if (GetArenaForAllocation() == nullptr) {
-        delete value_.kvlist_value_;
+        delete _impl_.value_.kvlist_value_;
       }
       break;
     }
     case kBytesValue: {
-      value_.bytes_value_.Destroy();
+      _impl_.value_.bytes_value_.Destroy();
       break;
     }
     case VALUE_NOT_SET: {
       break;
     }
   }
-  _oneof_case_[0] = VALUE_NOT_SET;
+  _impl_._oneof_case_[0] = VALUE_NOT_SET;
 }
 
 
@@ -592,14 +615,14 @@ size_t AnyValue::ByteSizeLong() const {
     case kArrayValue: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *value_.array_value_);
+          *_impl_.value_.array_value_);
       break;
     }
     // .opentelemetry.proto.common.v1.KeyValueList kvlist_value = 6 [json_name = "kvlistValue"];
     case kKvlistValue: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *value_.kvlist_value_);
+          *_impl_.value_.kvlist_value_);
       break;
     }
     // bytes bytes_value = 7 [json_name = "bytesValue"];
@@ -613,62 +636,60 @@ size_t AnyValue::ByteSizeLong() const {
       break;
     }
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AnyValue::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     AnyValue::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AnyValue::GetClassData() const { return &_class_data_; }
 
-void AnyValue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<AnyValue *>(to)->MergeFrom(
-      static_cast<const AnyValue &>(from));
-}
 
-
-void AnyValue::MergeFrom(const AnyValue& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.AnyValue)
-  GOOGLE_DCHECK_NE(&from, this);
+void AnyValue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<AnyValue*>(&to_msg);
+  auto& from = static_cast<const AnyValue&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.AnyValue)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.value_case()) {
     case kStringValue: {
-      _internal_set_string_value(from._internal_string_value());
+      _this->_internal_set_string_value(from._internal_string_value());
       break;
     }
     case kBoolValue: {
-      _internal_set_bool_value(from._internal_bool_value());
+      _this->_internal_set_bool_value(from._internal_bool_value());
       break;
     }
     case kIntValue: {
-      _internal_set_int_value(from._internal_int_value());
+      _this->_internal_set_int_value(from._internal_int_value());
       break;
     }
     case kDoubleValue: {
-      _internal_set_double_value(from._internal_double_value());
+      _this->_internal_set_double_value(from._internal_double_value());
       break;
     }
     case kArrayValue: {
-      _internal_mutable_array_value()->::opentelemetry::proto::common::v1::ArrayValue::MergeFrom(from._internal_array_value());
+      _this->_internal_mutable_array_value()->::opentelemetry::proto::common::v1::ArrayValue::MergeFrom(
+          from._internal_array_value());
       break;
     }
     case kKvlistValue: {
-      _internal_mutable_kvlist_value()->::opentelemetry::proto::common::v1::KeyValueList::MergeFrom(from._internal_kvlist_value());
+      _this->_internal_mutable_kvlist_value()->::opentelemetry::proto::common::v1::KeyValueList::MergeFrom(
+          from._internal_kvlist_value());
       break;
     }
     case kBytesValue: {
-      _internal_set_bytes_value(from._internal_bytes_value());
+      _this->_internal_set_bytes_value(from._internal_bytes_value());
       break;
     }
     case VALUE_NOT_SET: {
       break;
     }
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void AnyValue::CopyFrom(const AnyValue& from) {
@@ -685,8 +706,8 @@ bool AnyValue::IsInitialized() const {
 void AnyValue::InternalSwap(AnyValue* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(value_, other->value_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
+  swap(_impl_.value_, other->_impl_.value_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AnyValue::GetMetadata() const {
@@ -703,19 +724,29 @@ class ArrayValue::_Internal {
 
 ArrayValue::ArrayValue(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  values_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.common.v1.ArrayValue)
 }
 ArrayValue::ArrayValue(const ArrayValue& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      values_(from.values_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ArrayValue* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.values_){from._impl_.values_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.common.v1.ArrayValue)
 }
 
-inline void ArrayValue::SharedCtor() {
+inline void ArrayValue::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.values_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 ArrayValue::~ArrayValue() {
@@ -729,10 +760,11 @@ ArrayValue::~ArrayValue() {
 
 inline void ArrayValue::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.values_.~RepeatedPtrField();
 }
 
 void ArrayValue::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ArrayValue::Clear() {
@@ -741,7 +773,7 @@ void ArrayValue::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  values_.Clear();
+  _impl_.values_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -819,35 +851,31 @@ size_t ArrayValue::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.common.v1.AnyValue values = 1 [json_name = "values"];
   total_size += 1UL * this->_internal_values_size();
-  for (const auto& msg : this->values_) {
+  for (const auto& msg : this->_impl_.values_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ArrayValue::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ArrayValue::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ArrayValue::GetClassData() const { return &_class_data_; }
 
-void ArrayValue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ArrayValue *>(to)->MergeFrom(
-      static_cast<const ArrayValue &>(from));
-}
 
-
-void ArrayValue::MergeFrom(const ArrayValue& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.ArrayValue)
-  GOOGLE_DCHECK_NE(&from, this);
+void ArrayValue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ArrayValue*>(&to_msg);
+  auto& from = static_cast<const ArrayValue&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.ArrayValue)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  values_.MergeFrom(from.values_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.values_.MergeFrom(from._impl_.values_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ArrayValue::CopyFrom(const ArrayValue& from) {
@@ -864,7 +892,7 @@ bool ArrayValue::IsInitialized() const {
 void ArrayValue::InternalSwap(ArrayValue* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  values_.InternalSwap(&other->values_);
+  _impl_.values_.InternalSwap(&other->_impl_.values_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ArrayValue::GetMetadata() const {
@@ -881,19 +909,29 @@ class KeyValueList::_Internal {
 
 KeyValueList::KeyValueList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  values_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.common.v1.KeyValueList)
 }
 KeyValueList::KeyValueList(const KeyValueList& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      values_(from.values_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  KeyValueList* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.values_){from._impl_.values_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.common.v1.KeyValueList)
 }
 
-inline void KeyValueList::SharedCtor() {
+inline void KeyValueList::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.values_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 KeyValueList::~KeyValueList() {
@@ -907,10 +945,11 @@ KeyValueList::~KeyValueList() {
 
 inline void KeyValueList::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.values_.~RepeatedPtrField();
 }
 
 void KeyValueList::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void KeyValueList::Clear() {
@@ -919,7 +958,7 @@ void KeyValueList::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  values_.Clear();
+  _impl_.values_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -997,35 +1036,31 @@ size_t KeyValueList::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.common.v1.KeyValue values = 1 [json_name = "values"];
   total_size += 1UL * this->_internal_values_size();
-  for (const auto& msg : this->values_) {
+  for (const auto& msg : this->_impl_.values_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData KeyValueList::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     KeyValueList::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*KeyValueList::GetClassData() const { return &_class_data_; }
 
-void KeyValueList::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<KeyValueList *>(to)->MergeFrom(
-      static_cast<const KeyValueList &>(from));
-}
 
-
-void KeyValueList::MergeFrom(const KeyValueList& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.KeyValueList)
-  GOOGLE_DCHECK_NE(&from, this);
+void KeyValueList::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<KeyValueList*>(&to_msg);
+  auto& from = static_cast<const KeyValueList&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.KeyValueList)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  values_.MergeFrom(from.values_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.values_.MergeFrom(from._impl_.values_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void KeyValueList::CopyFrom(const KeyValueList& from) {
@@ -1042,7 +1077,7 @@ bool KeyValueList::IsInitialized() const {
 void KeyValueList::InternalSwap(KeyValueList* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  values_.InternalSwap(&other->values_);
+  _impl_.values_.InternalSwap(&other->_impl_.values_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata KeyValueList::GetMetadata() const {
@@ -1060,39 +1095,50 @@ class KeyValue::_Internal {
 
 const ::opentelemetry::proto::common::v1::AnyValue&
 KeyValue::_Internal::value(const KeyValue* msg) {
-  return *msg->value_;
+  return *msg->_impl_.value_;
 }
 KeyValue::KeyValue(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.common.v1.KeyValue)
 }
 KeyValue::KeyValue(const KeyValue& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  KeyValue* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.key_){}
+    , decltype(_impl_.value_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  key_.InitDefault();
+  _impl_.key_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    key_.Set("", GetArenaForAllocation());
+    _impl_.key_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_key().empty()) {
-    key_.Set(from._internal_key(), 
-      GetArenaForAllocation());
+    _this->_impl_.key_.Set(from._internal_key(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_value()) {
-    value_ = new ::opentelemetry::proto::common::v1::AnyValue(*from.value_);
-  } else {
-    value_ = nullptr;
+    _this->_impl_.value_ = new ::opentelemetry::proto::common::v1::AnyValue(*from._impl_.value_);
   }
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.common.v1.KeyValue)
 }
 
-inline void KeyValue::SharedCtor() {
-key_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  key_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-value_ = nullptr;
+inline void KeyValue::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.key_){}
+    , decltype(_impl_.value_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.key_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.key_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 KeyValue::~KeyValue() {
@@ -1106,12 +1152,12 @@ KeyValue::~KeyValue() {
 
 inline void KeyValue::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  key_.Destroy();
-  if (this != internal_default_instance()) delete value_;
+  _impl_.key_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.value_;
 }
 
 void KeyValue::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void KeyValue::Clear() {
@@ -1120,11 +1166,11 @@ void KeyValue::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  key_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && value_ != nullptr) {
-    delete value_;
+  _impl_.key_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.value_ != nullptr) {
+    delete _impl_.value_;
   }
-  value_ = nullptr;
+  _impl_.value_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1225,38 +1271,35 @@ size_t KeyValue::ByteSizeLong() const {
   if (this->_internal_has_value()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *value_);
+        *_impl_.value_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData KeyValue::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     KeyValue::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*KeyValue::GetClassData() const { return &_class_data_; }
 
-void KeyValue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<KeyValue *>(to)->MergeFrom(
-      static_cast<const KeyValue &>(from));
-}
 
-
-void KeyValue::MergeFrom(const KeyValue& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.KeyValue)
-  GOOGLE_DCHECK_NE(&from, this);
+void KeyValue::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<KeyValue*>(&to_msg);
+  auto& from = static_cast<const KeyValue&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.KeyValue)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_key().empty()) {
-    _internal_set_key(from._internal_key());
+    _this->_internal_set_key(from._internal_key());
   }
   if (from._internal_has_value()) {
-    _internal_mutable_value()->::opentelemetry::proto::common::v1::AnyValue::MergeFrom(from._internal_value());
+    _this->_internal_mutable_value()->::opentelemetry::proto::common::v1::AnyValue::MergeFrom(
+        from._internal_value());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void KeyValue::CopyFrom(const KeyValue& from) {
@@ -1276,10 +1319,10 @@ void KeyValue::InternalSwap(KeyValue* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &key_, lhs_arena,
-      &other->key_, rhs_arena
+      &_impl_.key_, lhs_arena,
+      &other->_impl_.key_, rhs_arena
   );
-  swap(value_, other->value_);
+  swap(_impl_.value_, other->_impl_.value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata KeyValue::GetMetadata() const {
@@ -1296,45 +1339,60 @@ class InstrumentationScope::_Internal {
 
 InstrumentationScope::InstrumentationScope(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  attributes_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.common.v1.InstrumentationScope)
 }
 InstrumentationScope::InstrumentationScope(const InstrumentationScope& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      attributes_(from.attributes_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  InstrumentationScope* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.attributes_){from._impl_.attributes_}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.version_){}
+    , decltype(_impl_.dropped_attributes_count_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  version_.InitDefault();
+  _impl_.version_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    version_.Set("", GetArenaForAllocation());
+    _impl_.version_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_version().empty()) {
-    version_.Set(from._internal_version(), 
-      GetArenaForAllocation());
+    _this->_impl_.version_.Set(from._internal_version(), 
+      _this->GetArenaForAllocation());
   }
-  dropped_attributes_count_ = from.dropped_attributes_count_;
+  _this->_impl_.dropped_attributes_count_ = from._impl_.dropped_attributes_count_;
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.common.v1.InstrumentationScope)
 }
 
-inline void InstrumentationScope::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-version_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  version_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-dropped_attributes_count_ = 0u;
+inline void InstrumentationScope::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.attributes_){arena}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.version_){}
+    , decltype(_impl_.dropped_attributes_count_){0u}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 InstrumentationScope::~InstrumentationScope() {
@@ -1348,12 +1406,13 @@ InstrumentationScope::~InstrumentationScope() {
 
 inline void InstrumentationScope::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  version_.Destroy();
+  _impl_.attributes_.~RepeatedPtrField();
+  _impl_.name_.Destroy();
+  _impl_.version_.Destroy();
 }
 
 void InstrumentationScope::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void InstrumentationScope::Clear() {
@@ -1362,10 +1421,10 @@ void InstrumentationScope::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  attributes_.Clear();
-  name_.ClearToEmpty();
-  version_.ClearToEmpty();
-  dropped_attributes_count_ = 0u;
+  _impl_.attributes_.Clear();
+  _impl_.name_.ClearToEmpty();
+  _impl_.version_.ClearToEmpty();
+  _impl_.dropped_attributes_count_ = 0u;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1411,7 +1470,7 @@ const char* InstrumentationScope::_InternalParse(const char* ptr, ::_pbi::ParseC
       // uint32 dropped_attributes_count = 4 [json_name = "droppedAttributesCount"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1497,7 +1556,7 @@ size_t InstrumentationScope::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.common.v1.KeyValue attributes = 3 [json_name = "attributes"];
   total_size += 1UL * this->_internal_attributes_size();
-  for (const auto& msg : this->attributes_) {
+  for (const auto& msg : this->_impl_.attributes_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1521,39 +1580,35 @@ size_t InstrumentationScope::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_dropped_attributes_count());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData InstrumentationScope::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     InstrumentationScope::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*InstrumentationScope::GetClassData() const { return &_class_data_; }
 
-void InstrumentationScope::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<InstrumentationScope *>(to)->MergeFrom(
-      static_cast<const InstrumentationScope &>(from));
-}
 
-
-void InstrumentationScope::MergeFrom(const InstrumentationScope& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.InstrumentationScope)
-  GOOGLE_DCHECK_NE(&from, this);
+void InstrumentationScope::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<InstrumentationScope*>(&to_msg);
+  auto& from = static_cast<const InstrumentationScope&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.InstrumentationScope)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  attributes_.MergeFrom(from.attributes_);
+  _this->_impl_.attributes_.MergeFrom(from._impl_.attributes_);
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_version().empty()) {
-    _internal_set_version(from._internal_version());
+    _this->_internal_set_version(from._internal_version());
   }
   if (from._internal_dropped_attributes_count() != 0) {
-    _internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
+    _this->_internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void InstrumentationScope::CopyFrom(const InstrumentationScope& from) {
@@ -1572,16 +1627,16 @@ void InstrumentationScope::InternalSwap(InstrumentationScope* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  attributes_.InternalSwap(&other->attributes_);
+  _impl_.attributes_.InternalSwap(&other->_impl_.attributes_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &version_, lhs_arena,
-      &other->version_, rhs_arena
+      &_impl_.version_, lhs_arena,
+      &other->_impl_.version_, rhs_arena
   );
-  swap(dropped_attributes_count_, other->dropped_attributes_count_);
+  swap(_impl_.dropped_attributes_count_, other->_impl_.dropped_attributes_count_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata InstrumentationScope::GetMetadata() const {
@@ -1598,45 +1653,59 @@ class EntityRef::_Internal {
 
 EntityRef::EntityRef(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  id_keys_(arena),
-  description_keys_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.common.v1.EntityRef)
 }
 EntityRef::EntityRef(const EntityRef& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      id_keys_(from.id_keys_),
-      description_keys_(from.description_keys_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  EntityRef* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_keys_){from._impl_.id_keys_}
+    , decltype(_impl_.description_keys_){from._impl_.description_keys_}
+    , decltype(_impl_.schema_url_){}
+    , decltype(_impl_.type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  schema_url_.InitDefault();
+  _impl_.schema_url_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    schema_url_.Set("", GetArenaForAllocation());
+    _impl_.schema_url_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_schema_url().empty()) {
-    schema_url_.Set(from._internal_schema_url(), 
-      GetArenaForAllocation());
+    _this->_impl_.schema_url_.Set(from._internal_schema_url(), 
+      _this->GetArenaForAllocation());
   }
-  type_.InitDefault();
+  _impl_.type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    type_.Set("", GetArenaForAllocation());
+    _impl_.type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_type().empty()) {
-    type_.Set(from._internal_type(), 
-      GetArenaForAllocation());
+    _this->_impl_.type_.Set(from._internal_type(), 
+      _this->GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.common.v1.EntityRef)
 }
 
-inline void EntityRef::SharedCtor() {
-schema_url_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  schema_url_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-type_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  type_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void EntityRef::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_keys_){arena}
+    , decltype(_impl_.description_keys_){arena}
+    , decltype(_impl_.schema_url_){}
+    , decltype(_impl_.type_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.schema_url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.schema_url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 EntityRef::~EntityRef() {
@@ -1650,12 +1719,14 @@ EntityRef::~EntityRef() {
 
 inline void EntityRef::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  schema_url_.Destroy();
-  type_.Destroy();
+  _impl_.id_keys_.~RepeatedPtrField();
+  _impl_.description_keys_.~RepeatedPtrField();
+  _impl_.schema_url_.Destroy();
+  _impl_.type_.Destroy();
 }
 
 void EntityRef::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void EntityRef::Clear() {
@@ -1664,10 +1735,10 @@ void EntityRef::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_keys_.Clear();
-  description_keys_.Clear();
-  schema_url_.ClearToEmpty();
-  type_.ClearToEmpty();
+  _impl_.id_keys_.Clear();
+  _impl_.description_keys_.Clear();
+  _impl_.schema_url_.ClearToEmpty();
+  _impl_.type_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1814,18 +1885,18 @@ size_t EntityRef::ByteSizeLong() const {
 
   // repeated string id_keys = 3 [json_name = "idKeys"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(id_keys_.size());
-  for (int i = 0, n = id_keys_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.id_keys_.size());
+  for (int i = 0, n = _impl_.id_keys_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      id_keys_.Get(i));
+      _impl_.id_keys_.Get(i));
   }
 
   // repeated string description_keys = 4 [json_name = "descriptionKeys"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(description_keys_.size());
-  for (int i = 0, n = description_keys_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.description_keys_.size());
+  for (int i = 0, n = _impl_.description_keys_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      description_keys_.Get(i));
+      _impl_.description_keys_.Get(i));
   }
 
   // string schema_url = 1 [json_name = "schemaUrl"];
@@ -1842,37 +1913,33 @@ size_t EntityRef::ByteSizeLong() const {
         this->_internal_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EntityRef::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     EntityRef::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EntityRef::GetClassData() const { return &_class_data_; }
 
-void EntityRef::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<EntityRef *>(to)->MergeFrom(
-      static_cast<const EntityRef &>(from));
-}
 
-
-void EntityRef::MergeFrom(const EntityRef& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.EntityRef)
-  GOOGLE_DCHECK_NE(&from, this);
+void EntityRef::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<EntityRef*>(&to_msg);
+  auto& from = static_cast<const EntityRef&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.common.v1.EntityRef)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  id_keys_.MergeFrom(from.id_keys_);
-  description_keys_.MergeFrom(from.description_keys_);
+  _this->_impl_.id_keys_.MergeFrom(from._impl_.id_keys_);
+  _this->_impl_.description_keys_.MergeFrom(from._impl_.description_keys_);
   if (!from._internal_schema_url().empty()) {
-    _internal_set_schema_url(from._internal_schema_url());
+    _this->_internal_set_schema_url(from._internal_schema_url());
   }
   if (!from._internal_type().empty()) {
-    _internal_set_type(from._internal_type());
+    _this->_internal_set_type(from._internal_type());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EntityRef::CopyFrom(const EntityRef& from) {
@@ -1891,15 +1958,15 @@ void EntityRef::InternalSwap(EntityRef* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  id_keys_.InternalSwap(&other->id_keys_);
-  description_keys_.InternalSwap(&other->description_keys_);
+  _impl_.id_keys_.InternalSwap(&other->_impl_.id_keys_);
+  _impl_.description_keys_.InternalSwap(&other->_impl_.description_keys_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &schema_url_, lhs_arena,
-      &other->schema_url_, rhs_arena
+      &_impl_.schema_url_, lhs_arena,
+      &other->_impl_.schema_url_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &type_, lhs_arena,
-      &other->type_, rhs_arena
+      &_impl_.type_, lhs_arena,
+      &other->_impl_.type_, rhs_arena
   );
 }
 

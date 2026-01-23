@@ -25,8 +25,9 @@ namespace proto {
 namespace trace {
 namespace v1 {
 PROTOBUF_CONSTEXPR TracesData::TracesData(
-    ::_pbi::ConstantInitialized)
-  : resource_spans_(){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.resource_spans_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TracesDataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TracesDataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -37,10 +38,11 @@ struct TracesDataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TracesDataDefaultTypeInternal _TracesData_default_instance_;
 PROTOBUF_CONSTEXPR ResourceSpans::ResourceSpans(
-    ::_pbi::ConstantInitialized)
-  : scope_spans_()
-  , schema_url_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , resource_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.scope_spans_)*/{}
+  , /*decltype(_impl_.schema_url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.resource_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ResourceSpansDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceSpansDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -51,10 +53,11 @@ struct ResourceSpansDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceSpansDefaultTypeInternal _ResourceSpans_default_instance_;
 PROTOBUF_CONSTEXPR ScopeSpans::ScopeSpans(
-    ::_pbi::ConstantInitialized)
-  : spans_()
-  , schema_url_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , scope_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.spans_)*/{}
+  , /*decltype(_impl_.schema_url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.scope_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ScopeSpansDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ScopeSpansDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -65,11 +68,12 @@ struct ScopeSpansDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ScopeSpansDefaultTypeInternal _ScopeSpans_default_instance_;
 PROTOBUF_CONSTEXPR Span_Event::Span_Event(
-    ::_pbi::ConstantInitialized)
-  : attributes_()
-  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , time_unix_nano_(uint64_t{0u})
-  , dropped_attributes_count_(0u){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.attributes_)*/{}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.time_unix_nano_)*/uint64_t{0u}
+  , /*decltype(_impl_.dropped_attributes_count_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct Span_EventDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Span_EventDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -80,13 +84,14 @@ struct Span_EventDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Span_EventDefaultTypeInternal _Span_Event_default_instance_;
 PROTOBUF_CONSTEXPR Span_Link::Span_Link(
-    ::_pbi::ConstantInitialized)
-  : attributes_()
-  , trace_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , span_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , trace_state_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , dropped_attributes_count_(0u)
-  , flags_(0u){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.attributes_)*/{}
+  , /*decltype(_impl_.trace_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.span_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.trace_state_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.dropped_attributes_count_)*/0u
+  , /*decltype(_impl_.flags_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct Span_LinkDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Span_LinkDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -97,24 +102,24 @@ struct Span_LinkDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Span_LinkDefaultTypeInternal _Span_Link_default_instance_;
 PROTOBUF_CONSTEXPR Span::Span(
-    ::_pbi::ConstantInitialized)
-  : attributes_()
-  , events_()
-  , links_()
-  , trace_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , span_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , trace_state_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , parent_span_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , status_(nullptr)
-  , start_time_unix_nano_(uint64_t{0u})
-  , end_time_unix_nano_(uint64_t{0u})
-  , kind_(0)
-
-  , dropped_attributes_count_(0u)
-  , dropped_events_count_(0u)
-  , dropped_links_count_(0u)
-  , flags_(0u){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.attributes_)*/{}
+  , /*decltype(_impl_.events_)*/{}
+  , /*decltype(_impl_.links_)*/{}
+  , /*decltype(_impl_.trace_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.span_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.trace_state_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.parent_span_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.status_)*/nullptr
+  , /*decltype(_impl_.start_time_unix_nano_)*/uint64_t{0u}
+  , /*decltype(_impl_.end_time_unix_nano_)*/uint64_t{0u}
+  , /*decltype(_impl_.kind_)*/0
+  , /*decltype(_impl_.dropped_attributes_count_)*/0u
+  , /*decltype(_impl_.dropped_events_count_)*/0u
+  , /*decltype(_impl_.dropped_links_count_)*/0u
+  , /*decltype(_impl_.flags_)*/0u
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SpanDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SpanDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -125,10 +130,10 @@ struct SpanDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SpanDefaultTypeInternal _Span_default_instance_;
 PROTOBUF_CONSTEXPR Status::Status(
-    ::_pbi::ConstantInitialized)
-  : message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , code_(0)
-{}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.message_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.code_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StatusDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StatusDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -153,77 +158,77 @@ const uint32_t TableStruct_opentelemetry_2fproto_2ftrace_2fv1_2ftrace_2eproto::o
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::TracesData, resource_spans_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::TracesData, _impl_.resource_spans_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ResourceSpans, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ResourceSpans, resource_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ResourceSpans, scope_spans_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ResourceSpans, schema_url_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ResourceSpans, _impl_.resource_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ResourceSpans, _impl_.scope_spans_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ResourceSpans, _impl_.schema_url_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ScopeSpans, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ScopeSpans, scope_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ScopeSpans, spans_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ScopeSpans, schema_url_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ScopeSpans, _impl_.scope_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ScopeSpans, _impl_.spans_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::ScopeSpans, _impl_.schema_url_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Event, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Event, time_unix_nano_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Event, name_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Event, attributes_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Event, dropped_attributes_count_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Event, _impl_.time_unix_nano_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Event, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Event, _impl_.attributes_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Event, _impl_.dropped_attributes_count_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, trace_id_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, span_id_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, trace_state_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, attributes_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, dropped_attributes_count_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, flags_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, _impl_.trace_id_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, _impl_.span_id_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, _impl_.trace_state_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, _impl_.attributes_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, _impl_.dropped_attributes_count_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span_Link, _impl_.flags_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, trace_id_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, span_id_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, trace_state_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, parent_span_id_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, flags_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, name_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, kind_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, start_time_unix_nano_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, end_time_unix_nano_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, attributes_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, dropped_attributes_count_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, events_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, dropped_events_count_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, links_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, dropped_links_count_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, status_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.trace_id_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.span_id_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.trace_state_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.parent_span_id_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.flags_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.kind_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.start_time_unix_nano_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.end_time_unix_nano_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.attributes_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.dropped_attributes_count_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.events_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.dropped_events_count_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.links_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.dropped_links_count_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Span, _impl_.status_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Status, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Status, message_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Status, code_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Status, _impl_.message_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::trace::v1::Status, _impl_.code_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::opentelemetry::proto::trace::v1::TracesData)},
@@ -409,19 +414,29 @@ class TracesData::_Internal {
 
 TracesData::TracesData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  resource_spans_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.trace.v1.TracesData)
 }
 TracesData::TracesData(const TracesData& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      resource_spans_(from.resource_spans_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  TracesData* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_spans_){from._impl_.resource_spans_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.trace.v1.TracesData)
 }
 
-inline void TracesData::SharedCtor() {
+inline void TracesData::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_spans_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
 }
 
 TracesData::~TracesData() {
@@ -435,10 +450,11 @@ TracesData::~TracesData() {
 
 inline void TracesData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.resource_spans_.~RepeatedPtrField();
 }
 
 void TracesData::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void TracesData::Clear() {
@@ -447,7 +463,7 @@ void TracesData::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  resource_spans_.Clear();
+  _impl_.resource_spans_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -525,35 +541,31 @@ size_t TracesData::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.trace.v1.ResourceSpans resource_spans = 1 [json_name = "resourceSpans"];
   total_size += 1UL * this->_internal_resource_spans_size();
-  for (const auto& msg : this->resource_spans_) {
+  for (const auto& msg : this->_impl_.resource_spans_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TracesData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     TracesData::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TracesData::GetClassData() const { return &_class_data_; }
 
-void TracesData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<TracesData *>(to)->MergeFrom(
-      static_cast<const TracesData &>(from));
-}
 
-
-void TracesData::MergeFrom(const TracesData& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.TracesData)
-  GOOGLE_DCHECK_NE(&from, this);
+void TracesData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TracesData*>(&to_msg);
+  auto& from = static_cast<const TracesData&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.TracesData)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  resource_spans_.MergeFrom(from.resource_spans_);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.resource_spans_.MergeFrom(from._impl_.resource_spans_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void TracesData::CopyFrom(const TracesData& from) {
@@ -570,7 +582,7 @@ bool TracesData::IsInitialized() const {
 void TracesData::InternalSwap(TracesData* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  resource_spans_.InternalSwap(&other->resource_spans_);
+  _impl_.resource_spans_.InternalSwap(&other->_impl_.resource_spans_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TracesData::GetMetadata() const {
@@ -588,47 +600,58 @@ class ResourceSpans::_Internal {
 
 const ::opentelemetry::proto::resource::v1::Resource&
 ResourceSpans::_Internal::resource(const ResourceSpans* msg) {
-  return *msg->resource_;
+  return *msg->_impl_.resource_;
 }
 void ResourceSpans::clear_resource() {
-  if (GetArenaForAllocation() == nullptr && resource_ != nullptr) {
-    delete resource_;
+  if (GetArenaForAllocation() == nullptr && _impl_.resource_ != nullptr) {
+    delete _impl_.resource_;
   }
-  resource_ = nullptr;
+  _impl_.resource_ = nullptr;
 }
 ResourceSpans::ResourceSpans(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  scope_spans_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.trace.v1.ResourceSpans)
 }
 ResourceSpans::ResourceSpans(const ResourceSpans& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      scope_spans_(from.scope_spans_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ResourceSpans* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.scope_spans_){from._impl_.scope_spans_}
+    , decltype(_impl_.schema_url_){}
+    , decltype(_impl_.resource_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  schema_url_.InitDefault();
+  _impl_.schema_url_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    schema_url_.Set("", GetArenaForAllocation());
+    _impl_.schema_url_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_schema_url().empty()) {
-    schema_url_.Set(from._internal_schema_url(), 
-      GetArenaForAllocation());
+    _this->_impl_.schema_url_.Set(from._internal_schema_url(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_resource()) {
-    resource_ = new ::opentelemetry::proto::resource::v1::Resource(*from.resource_);
-  } else {
-    resource_ = nullptr;
+    _this->_impl_.resource_ = new ::opentelemetry::proto::resource::v1::Resource(*from._impl_.resource_);
   }
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.trace.v1.ResourceSpans)
 }
 
-inline void ResourceSpans::SharedCtor() {
-schema_url_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  schema_url_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-resource_ = nullptr;
+inline void ResourceSpans::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.scope_spans_){arena}
+    , decltype(_impl_.schema_url_){}
+    , decltype(_impl_.resource_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.schema_url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.schema_url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ResourceSpans::~ResourceSpans() {
@@ -642,12 +665,13 @@ ResourceSpans::~ResourceSpans() {
 
 inline void ResourceSpans::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  schema_url_.Destroy();
-  if (this != internal_default_instance()) delete resource_;
+  _impl_.scope_spans_.~RepeatedPtrField();
+  _impl_.schema_url_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.resource_;
 }
 
 void ResourceSpans::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ResourceSpans::Clear() {
@@ -656,12 +680,12 @@ void ResourceSpans::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  scope_spans_.Clear();
-  schema_url_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && resource_ != nullptr) {
-    delete resource_;
+  _impl_.scope_spans_.Clear();
+  _impl_.schema_url_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.resource_ != nullptr) {
+    delete _impl_.resource_;
   }
-  resource_ = nullptr;
+  _impl_.resource_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -774,7 +798,7 @@ size_t ResourceSpans::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.trace.v1.ScopeSpans scope_spans = 2 [json_name = "scopeSpans"];
   total_size += 1UL * this->_internal_scope_spans_size();
-  for (const auto& msg : this->scope_spans_) {
+  for (const auto& msg : this->_impl_.scope_spans_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -790,39 +814,36 @@ size_t ResourceSpans::ByteSizeLong() const {
   if (this->_internal_has_resource()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *resource_);
+        *_impl_.resource_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResourceSpans::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ResourceSpans::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResourceSpans::GetClassData() const { return &_class_data_; }
 
-void ResourceSpans::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ResourceSpans *>(to)->MergeFrom(
-      static_cast<const ResourceSpans &>(from));
-}
 
-
-void ResourceSpans::MergeFrom(const ResourceSpans& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.ResourceSpans)
-  GOOGLE_DCHECK_NE(&from, this);
+void ResourceSpans::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ResourceSpans*>(&to_msg);
+  auto& from = static_cast<const ResourceSpans&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.ResourceSpans)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  scope_spans_.MergeFrom(from.scope_spans_);
+  _this->_impl_.scope_spans_.MergeFrom(from._impl_.scope_spans_);
   if (!from._internal_schema_url().empty()) {
-    _internal_set_schema_url(from._internal_schema_url());
+    _this->_internal_set_schema_url(from._internal_schema_url());
   }
   if (from._internal_has_resource()) {
-    _internal_mutable_resource()->::opentelemetry::proto::resource::v1::Resource::MergeFrom(from._internal_resource());
+    _this->_internal_mutable_resource()->::opentelemetry::proto::resource::v1::Resource::MergeFrom(
+        from._internal_resource());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ResourceSpans::CopyFrom(const ResourceSpans& from) {
@@ -841,12 +862,12 @@ void ResourceSpans::InternalSwap(ResourceSpans* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  scope_spans_.InternalSwap(&other->scope_spans_);
+  _impl_.scope_spans_.InternalSwap(&other->_impl_.scope_spans_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &schema_url_, lhs_arena,
-      &other->schema_url_, rhs_arena
+      &_impl_.schema_url_, lhs_arena,
+      &other->_impl_.schema_url_, rhs_arena
   );
-  swap(resource_, other->resource_);
+  swap(_impl_.resource_, other->_impl_.resource_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceSpans::GetMetadata() const {
@@ -864,47 +885,58 @@ class ScopeSpans::_Internal {
 
 const ::opentelemetry::proto::common::v1::InstrumentationScope&
 ScopeSpans::_Internal::scope(const ScopeSpans* msg) {
-  return *msg->scope_;
+  return *msg->_impl_.scope_;
 }
 void ScopeSpans::clear_scope() {
-  if (GetArenaForAllocation() == nullptr && scope_ != nullptr) {
-    delete scope_;
+  if (GetArenaForAllocation() == nullptr && _impl_.scope_ != nullptr) {
+    delete _impl_.scope_;
   }
-  scope_ = nullptr;
+  _impl_.scope_ = nullptr;
 }
 ScopeSpans::ScopeSpans(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  spans_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.trace.v1.ScopeSpans)
 }
 ScopeSpans::ScopeSpans(const ScopeSpans& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      spans_(from.spans_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ScopeSpans* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.spans_){from._impl_.spans_}
+    , decltype(_impl_.schema_url_){}
+    , decltype(_impl_.scope_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  schema_url_.InitDefault();
+  _impl_.schema_url_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    schema_url_.Set("", GetArenaForAllocation());
+    _impl_.schema_url_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_schema_url().empty()) {
-    schema_url_.Set(from._internal_schema_url(), 
-      GetArenaForAllocation());
+    _this->_impl_.schema_url_.Set(from._internal_schema_url(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_scope()) {
-    scope_ = new ::opentelemetry::proto::common::v1::InstrumentationScope(*from.scope_);
-  } else {
-    scope_ = nullptr;
+    _this->_impl_.scope_ = new ::opentelemetry::proto::common::v1::InstrumentationScope(*from._impl_.scope_);
   }
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.trace.v1.ScopeSpans)
 }
 
-inline void ScopeSpans::SharedCtor() {
-schema_url_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  schema_url_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-scope_ = nullptr;
+inline void ScopeSpans::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.spans_){arena}
+    , decltype(_impl_.schema_url_){}
+    , decltype(_impl_.scope_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.schema_url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.schema_url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ScopeSpans::~ScopeSpans() {
@@ -918,12 +950,13 @@ ScopeSpans::~ScopeSpans() {
 
 inline void ScopeSpans::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  schema_url_.Destroy();
-  if (this != internal_default_instance()) delete scope_;
+  _impl_.spans_.~RepeatedPtrField();
+  _impl_.schema_url_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.scope_;
 }
 
 void ScopeSpans::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void ScopeSpans::Clear() {
@@ -932,12 +965,12 @@ void ScopeSpans::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  spans_.Clear();
-  schema_url_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && scope_ != nullptr) {
-    delete scope_;
+  _impl_.spans_.Clear();
+  _impl_.schema_url_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.scope_ != nullptr) {
+    delete _impl_.scope_;
   }
-  scope_ = nullptr;
+  _impl_.scope_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1050,7 +1083,7 @@ size_t ScopeSpans::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.trace.v1.Span spans = 2 [json_name = "spans"];
   total_size += 1UL * this->_internal_spans_size();
-  for (const auto& msg : this->spans_) {
+  for (const auto& msg : this->_impl_.spans_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1066,39 +1099,36 @@ size_t ScopeSpans::ByteSizeLong() const {
   if (this->_internal_has_scope()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *scope_);
+        *_impl_.scope_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ScopeSpans::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     ScopeSpans::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ScopeSpans::GetClassData() const { return &_class_data_; }
 
-void ScopeSpans::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ScopeSpans *>(to)->MergeFrom(
-      static_cast<const ScopeSpans &>(from));
-}
 
-
-void ScopeSpans::MergeFrom(const ScopeSpans& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.ScopeSpans)
-  GOOGLE_DCHECK_NE(&from, this);
+void ScopeSpans::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ScopeSpans*>(&to_msg);
+  auto& from = static_cast<const ScopeSpans&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.ScopeSpans)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  spans_.MergeFrom(from.spans_);
+  _this->_impl_.spans_.MergeFrom(from._impl_.spans_);
   if (!from._internal_schema_url().empty()) {
-    _internal_set_schema_url(from._internal_schema_url());
+    _this->_internal_set_schema_url(from._internal_schema_url());
   }
   if (from._internal_has_scope()) {
-    _internal_mutable_scope()->::opentelemetry::proto::common::v1::InstrumentationScope::MergeFrom(from._internal_scope());
+    _this->_internal_mutable_scope()->::opentelemetry::proto::common::v1::InstrumentationScope::MergeFrom(
+        from._internal_scope());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ScopeSpans::CopyFrom(const ScopeSpans& from) {
@@ -1117,12 +1147,12 @@ void ScopeSpans::InternalSwap(ScopeSpans* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  spans_.InternalSwap(&other->spans_);
+  _impl_.spans_.InternalSwap(&other->_impl_.spans_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &schema_url_, lhs_arena,
-      &other->schema_url_, rhs_arena
+      &_impl_.schema_url_, lhs_arena,
+      &other->_impl_.schema_url_, rhs_arena
   );
-  swap(scope_, other->scope_);
+  swap(_impl_.scope_, other->_impl_.scope_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ScopeSpans::GetMetadata() const {
@@ -1138,42 +1168,54 @@ class Span_Event::_Internal {
 };
 
 void Span_Event::clear_attributes() {
-  attributes_.Clear();
+  _impl_.attributes_.Clear();
 }
 Span_Event::Span_Event(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  attributes_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.trace.v1.Span.Event)
 }
 Span_Event::Span_Event(const Span_Event& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      attributes_(from.attributes_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Span_Event* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.attributes_){from._impl_.attributes_}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.time_unix_nano_){}
+    , decltype(_impl_.dropped_attributes_count_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  ::memcpy(&time_unix_nano_, &from.time_unix_nano_,
-    static_cast<size_t>(reinterpret_cast<char*>(&dropped_attributes_count_) -
-    reinterpret_cast<char*>(&time_unix_nano_)) + sizeof(dropped_attributes_count_));
+  ::memcpy(&_impl_.time_unix_nano_, &from._impl_.time_unix_nano_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.dropped_attributes_count_) -
+    reinterpret_cast<char*>(&_impl_.time_unix_nano_)) + sizeof(_impl_.dropped_attributes_count_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.trace.v1.Span.Event)
 }
 
-inline void Span_Event::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&time_unix_nano_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&dropped_attributes_count_) -
-    reinterpret_cast<char*>(&time_unix_nano_)) + sizeof(dropped_attributes_count_));
+inline void Span_Event::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.attributes_){arena}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.time_unix_nano_){uint64_t{0u}}
+    , decltype(_impl_.dropped_attributes_count_){0u}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Span_Event::~Span_Event() {
@@ -1187,11 +1229,12 @@ Span_Event::~Span_Event() {
 
 inline void Span_Event::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
+  _impl_.attributes_.~RepeatedPtrField();
+  _impl_.name_.Destroy();
 }
 
 void Span_Event::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Span_Event::Clear() {
@@ -1200,11 +1243,11 @@ void Span_Event::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  attributes_.Clear();
-  name_.ClearToEmpty();
-  ::memset(&time_unix_nano_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&dropped_attributes_count_) -
-      reinterpret_cast<char*>(&time_unix_nano_)) + sizeof(dropped_attributes_count_));
+  _impl_.attributes_.Clear();
+  _impl_.name_.ClearToEmpty();
+  ::memset(&_impl_.time_unix_nano_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.dropped_attributes_count_) -
+      reinterpret_cast<char*>(&_impl_.time_unix_nano_)) + sizeof(_impl_.dropped_attributes_count_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1217,7 +1260,7 @@ const char* Span_Event::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
       // fixed64 time_unix_nano = 1 [json_name = "timeUnixNano"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
-          time_unix_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint64_t>(ptr);
+          _impl_.time_unix_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint64_t>(ptr);
           ptr += sizeof(uint64_t);
         } else
           goto handle_unusual;
@@ -1248,7 +1291,7 @@ const char* Span_Event::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
       // uint32 dropped_attributes_count = 4 [json_name = "droppedAttributesCount"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1330,7 +1373,7 @@ size_t Span_Event::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.common.v1.KeyValue attributes = 3 [json_name = "attributes"];
   total_size += 1UL * this->_internal_attributes_size();
-  for (const auto& msg : this->attributes_) {
+  for (const auto& msg : this->_impl_.attributes_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1352,39 +1395,35 @@ size_t Span_Event::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_dropped_attributes_count());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Span_Event::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Span_Event::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Span_Event::GetClassData() const { return &_class_data_; }
 
-void Span_Event::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Span_Event *>(to)->MergeFrom(
-      static_cast<const Span_Event &>(from));
-}
 
-
-void Span_Event::MergeFrom(const Span_Event& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.Span.Event)
-  GOOGLE_DCHECK_NE(&from, this);
+void Span_Event::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Span_Event*>(&to_msg);
+  auto& from = static_cast<const Span_Event&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.Span.Event)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  attributes_.MergeFrom(from.attributes_);
+  _this->_impl_.attributes_.MergeFrom(from._impl_.attributes_);
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_time_unix_nano() != 0) {
-    _internal_set_time_unix_nano(from._internal_time_unix_nano());
+    _this->_internal_set_time_unix_nano(from._internal_time_unix_nano());
   }
   if (from._internal_dropped_attributes_count() != 0) {
-    _internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
+    _this->_internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Span_Event::CopyFrom(const Span_Event& from) {
@@ -1403,17 +1442,17 @@ void Span_Event::InternalSwap(Span_Event* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  attributes_.InternalSwap(&other->attributes_);
+  _impl_.attributes_.InternalSwap(&other->_impl_.attributes_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Span_Event, dropped_attributes_count_)
-      + sizeof(Span_Event::dropped_attributes_count_)
-      - PROTOBUF_FIELD_OFFSET(Span_Event, time_unix_nano_)>(
-          reinterpret_cast<char*>(&time_unix_nano_),
-          reinterpret_cast<char*>(&other->time_unix_nano_));
+      PROTOBUF_FIELD_OFFSET(Span_Event, _impl_.dropped_attributes_count_)
+      + sizeof(Span_Event::_impl_.dropped_attributes_count_)
+      - PROTOBUF_FIELD_OFFSET(Span_Event, _impl_.time_unix_nano_)>(
+          reinterpret_cast<char*>(&_impl_.time_unix_nano_),
+          reinterpret_cast<char*>(&other->_impl_.time_unix_nano_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Span_Event::GetMetadata() const {
@@ -1429,66 +1468,82 @@ class Span_Link::_Internal {
 };
 
 void Span_Link::clear_attributes() {
-  attributes_.Clear();
+  _impl_.attributes_.Clear();
 }
 Span_Link::Span_Link(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  attributes_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.trace.v1.Span.Link)
 }
 Span_Link::Span_Link(const Span_Link& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      attributes_(from.attributes_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Span_Link* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.attributes_){from._impl_.attributes_}
+    , decltype(_impl_.trace_id_){}
+    , decltype(_impl_.span_id_){}
+    , decltype(_impl_.trace_state_){}
+    , decltype(_impl_.dropped_attributes_count_){}
+    , decltype(_impl_.flags_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  trace_id_.InitDefault();
+  _impl_.trace_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    trace_id_.Set("", GetArenaForAllocation());
+    _impl_.trace_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_trace_id().empty()) {
-    trace_id_.Set(from._internal_trace_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.trace_id_.Set(from._internal_trace_id(), 
+      _this->GetArenaForAllocation());
   }
-  span_id_.InitDefault();
+  _impl_.span_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    span_id_.Set("", GetArenaForAllocation());
+    _impl_.span_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_span_id().empty()) {
-    span_id_.Set(from._internal_span_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.span_id_.Set(from._internal_span_id(), 
+      _this->GetArenaForAllocation());
   }
-  trace_state_.InitDefault();
+  _impl_.trace_state_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    trace_state_.Set("", GetArenaForAllocation());
+    _impl_.trace_state_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_trace_state().empty()) {
-    trace_state_.Set(from._internal_trace_state(), 
-      GetArenaForAllocation());
+    _this->_impl_.trace_state_.Set(from._internal_trace_state(), 
+      _this->GetArenaForAllocation());
   }
-  ::memcpy(&dropped_attributes_count_, &from.dropped_attributes_count_,
-    static_cast<size_t>(reinterpret_cast<char*>(&flags_) -
-    reinterpret_cast<char*>(&dropped_attributes_count_)) + sizeof(flags_));
+  ::memcpy(&_impl_.dropped_attributes_count_, &from._impl_.dropped_attributes_count_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.flags_) -
+    reinterpret_cast<char*>(&_impl_.dropped_attributes_count_)) + sizeof(_impl_.flags_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.trace.v1.Span.Link)
 }
 
-inline void Span_Link::SharedCtor() {
-trace_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  trace_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-span_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  span_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-trace_state_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  trace_state_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&dropped_attributes_count_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&flags_) -
-    reinterpret_cast<char*>(&dropped_attributes_count_)) + sizeof(flags_));
+inline void Span_Link::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.attributes_){arena}
+    , decltype(_impl_.trace_id_){}
+    , decltype(_impl_.span_id_){}
+    , decltype(_impl_.trace_state_){}
+    , decltype(_impl_.dropped_attributes_count_){0u}
+    , decltype(_impl_.flags_){0u}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.trace_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.trace_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.span_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.span_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.trace_state_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.trace_state_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Span_Link::~Span_Link() {
@@ -1502,13 +1557,14 @@ Span_Link::~Span_Link() {
 
 inline void Span_Link::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  trace_id_.Destroy();
-  span_id_.Destroy();
-  trace_state_.Destroy();
+  _impl_.attributes_.~RepeatedPtrField();
+  _impl_.trace_id_.Destroy();
+  _impl_.span_id_.Destroy();
+  _impl_.trace_state_.Destroy();
 }
 
 void Span_Link::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Span_Link::Clear() {
@@ -1517,13 +1573,13 @@ void Span_Link::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  attributes_.Clear();
-  trace_id_.ClearToEmpty();
-  span_id_.ClearToEmpty();
-  trace_state_.ClearToEmpty();
-  ::memset(&dropped_attributes_count_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&flags_) -
-      reinterpret_cast<char*>(&dropped_attributes_count_)) + sizeof(flags_));
+  _impl_.attributes_.Clear();
+  _impl_.trace_id_.ClearToEmpty();
+  _impl_.span_id_.ClearToEmpty();
+  _impl_.trace_state_.ClearToEmpty();
+  ::memset(&_impl_.dropped_attributes_count_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.flags_) -
+      reinterpret_cast<char*>(&_impl_.dropped_attributes_count_)) + sizeof(_impl_.flags_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1577,7 +1633,7 @@ const char* Span_Link::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       // uint32 dropped_attributes_count = 5 [json_name = "droppedAttributesCount"];
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1585,7 +1641,7 @@ const char* Span_Link::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       // fixed32 flags = 6 [json_name = "flags"];
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 53)) {
-          flags_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint32_t>(ptr);
+          _impl_.flags_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint32_t>(ptr);
           ptr += sizeof(uint32_t);
         } else
           goto handle_unusual;
@@ -1679,7 +1735,7 @@ size_t Span_Link::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.common.v1.KeyValue attributes = 4 [json_name = "attributes"];
   total_size += 1UL * this->_internal_attributes_size();
-  for (const auto& msg : this->attributes_) {
+  for (const auto& msg : this->_impl_.attributes_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1715,45 +1771,41 @@ size_t Span_Link::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Span_Link::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Span_Link::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Span_Link::GetClassData() const { return &_class_data_; }
 
-void Span_Link::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Span_Link *>(to)->MergeFrom(
-      static_cast<const Span_Link &>(from));
-}
 
-
-void Span_Link::MergeFrom(const Span_Link& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.Span.Link)
-  GOOGLE_DCHECK_NE(&from, this);
+void Span_Link::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Span_Link*>(&to_msg);
+  auto& from = static_cast<const Span_Link&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.Span.Link)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  attributes_.MergeFrom(from.attributes_);
+  _this->_impl_.attributes_.MergeFrom(from._impl_.attributes_);
   if (!from._internal_trace_id().empty()) {
-    _internal_set_trace_id(from._internal_trace_id());
+    _this->_internal_set_trace_id(from._internal_trace_id());
   }
   if (!from._internal_span_id().empty()) {
-    _internal_set_span_id(from._internal_span_id());
+    _this->_internal_set_span_id(from._internal_span_id());
   }
   if (!from._internal_trace_state().empty()) {
-    _internal_set_trace_state(from._internal_trace_state());
+    _this->_internal_set_trace_state(from._internal_trace_state());
   }
   if (from._internal_dropped_attributes_count() != 0) {
-    _internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
+    _this->_internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
   }
   if (from._internal_flags() != 0) {
-    _internal_set_flags(from._internal_flags());
+    _this->_internal_set_flags(from._internal_flags());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Span_Link::CopyFrom(const Span_Link& from) {
@@ -1772,25 +1824,25 @@ void Span_Link::InternalSwap(Span_Link* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  attributes_.InternalSwap(&other->attributes_);
+  _impl_.attributes_.InternalSwap(&other->_impl_.attributes_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &trace_id_, lhs_arena,
-      &other->trace_id_, rhs_arena
+      &_impl_.trace_id_, lhs_arena,
+      &other->_impl_.trace_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &span_id_, lhs_arena,
-      &other->span_id_, rhs_arena
+      &_impl_.span_id_, lhs_arena,
+      &other->_impl_.span_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &trace_state_, lhs_arena,
-      &other->trace_state_, rhs_arena
+      &_impl_.trace_state_, lhs_arena,
+      &other->_impl_.trace_state_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Span_Link, flags_)
-      + sizeof(Span_Link::flags_)
-      - PROTOBUF_FIELD_OFFSET(Span_Link, dropped_attributes_count_)>(
-          reinterpret_cast<char*>(&dropped_attributes_count_),
-          reinterpret_cast<char*>(&other->dropped_attributes_count_));
+      PROTOBUF_FIELD_OFFSET(Span_Link, _impl_.flags_)
+      + sizeof(Span_Link::_impl_.flags_)
+      - PROTOBUF_FIELD_OFFSET(Span_Link, _impl_.dropped_attributes_count_)>(
+          reinterpret_cast<char*>(&_impl_.dropped_attributes_count_),
+          reinterpret_cast<char*>(&other->_impl_.dropped_attributes_count_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Span_Link::GetMetadata() const {
@@ -1808,102 +1860,132 @@ class Span::_Internal {
 
 const ::opentelemetry::proto::trace::v1::Status&
 Span::_Internal::status(const Span* msg) {
-  return *msg->status_;
+  return *msg->_impl_.status_;
 }
 void Span::clear_attributes() {
-  attributes_.Clear();
+  _impl_.attributes_.Clear();
 }
 Span::Span(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  attributes_(arena),
-  events_(arena),
-  links_(arena) {
-  SharedCtor();
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.trace.v1.Span)
 }
 Span::Span(const Span& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      attributes_(from.attributes_),
-      events_(from.events_),
-      links_(from.links_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Span* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.attributes_){from._impl_.attributes_}
+    , decltype(_impl_.events_){from._impl_.events_}
+    , decltype(_impl_.links_){from._impl_.links_}
+    , decltype(_impl_.trace_id_){}
+    , decltype(_impl_.span_id_){}
+    , decltype(_impl_.trace_state_){}
+    , decltype(_impl_.parent_span_id_){}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.status_){nullptr}
+    , decltype(_impl_.start_time_unix_nano_){}
+    , decltype(_impl_.end_time_unix_nano_){}
+    , decltype(_impl_.kind_){}
+    , decltype(_impl_.dropped_attributes_count_){}
+    , decltype(_impl_.dropped_events_count_){}
+    , decltype(_impl_.dropped_links_count_){}
+    , decltype(_impl_.flags_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  trace_id_.InitDefault();
+  _impl_.trace_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    trace_id_.Set("", GetArenaForAllocation());
+    _impl_.trace_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_trace_id().empty()) {
-    trace_id_.Set(from._internal_trace_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.trace_id_.Set(from._internal_trace_id(), 
+      _this->GetArenaForAllocation());
   }
-  span_id_.InitDefault();
+  _impl_.span_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    span_id_.Set("", GetArenaForAllocation());
+    _impl_.span_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_span_id().empty()) {
-    span_id_.Set(from._internal_span_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.span_id_.Set(from._internal_span_id(), 
+      _this->GetArenaForAllocation());
   }
-  trace_state_.InitDefault();
+  _impl_.trace_state_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    trace_state_.Set("", GetArenaForAllocation());
+    _impl_.trace_state_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_trace_state().empty()) {
-    trace_state_.Set(from._internal_trace_state(), 
-      GetArenaForAllocation());
+    _this->_impl_.trace_state_.Set(from._internal_trace_state(), 
+      _this->GetArenaForAllocation());
   }
-  parent_span_id_.InitDefault();
+  _impl_.parent_span_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    parent_span_id_.Set("", GetArenaForAllocation());
+    _impl_.parent_span_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_parent_span_id().empty()) {
-    parent_span_id_.Set(from._internal_parent_span_id(), 
-      GetArenaForAllocation());
+    _this->_impl_.parent_span_id_.Set(from._internal_parent_span_id(), 
+      _this->GetArenaForAllocation());
   }
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_status()) {
-    status_ = new ::opentelemetry::proto::trace::v1::Status(*from.status_);
-  } else {
-    status_ = nullptr;
+    _this->_impl_.status_ = new ::opentelemetry::proto::trace::v1::Status(*from._impl_.status_);
   }
-  ::memcpy(&start_time_unix_nano_, &from.start_time_unix_nano_,
-    static_cast<size_t>(reinterpret_cast<char*>(&flags_) -
-    reinterpret_cast<char*>(&start_time_unix_nano_)) + sizeof(flags_));
+  ::memcpy(&_impl_.start_time_unix_nano_, &from._impl_.start_time_unix_nano_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.flags_) -
+    reinterpret_cast<char*>(&_impl_.start_time_unix_nano_)) + sizeof(_impl_.flags_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.trace.v1.Span)
 }
 
-inline void Span::SharedCtor() {
-trace_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  trace_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-span_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  span_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-trace_state_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  trace_state_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-parent_span_id_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  parent_span_id_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&status_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&flags_) -
-    reinterpret_cast<char*>(&status_)) + sizeof(flags_));
+inline void Span::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.attributes_){arena}
+    , decltype(_impl_.events_){arena}
+    , decltype(_impl_.links_){arena}
+    , decltype(_impl_.trace_id_){}
+    , decltype(_impl_.span_id_){}
+    , decltype(_impl_.trace_state_){}
+    , decltype(_impl_.parent_span_id_){}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.status_){nullptr}
+    , decltype(_impl_.start_time_unix_nano_){uint64_t{0u}}
+    , decltype(_impl_.end_time_unix_nano_){uint64_t{0u}}
+    , decltype(_impl_.kind_){0}
+    , decltype(_impl_.dropped_attributes_count_){0u}
+    , decltype(_impl_.dropped_events_count_){0u}
+    , decltype(_impl_.dropped_links_count_){0u}
+    , decltype(_impl_.flags_){0u}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.trace_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.trace_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.span_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.span_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.trace_state_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.trace_state_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.parent_span_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.parent_span_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Span::~Span() {
@@ -1917,16 +1999,19 @@ Span::~Span() {
 
 inline void Span::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  trace_id_.Destroy();
-  span_id_.Destroy();
-  trace_state_.Destroy();
-  parent_span_id_.Destroy();
-  name_.Destroy();
-  if (this != internal_default_instance()) delete status_;
+  _impl_.attributes_.~RepeatedPtrField();
+  _impl_.events_.~RepeatedPtrField();
+  _impl_.links_.~RepeatedPtrField();
+  _impl_.trace_id_.Destroy();
+  _impl_.span_id_.Destroy();
+  _impl_.trace_state_.Destroy();
+  _impl_.parent_span_id_.Destroy();
+  _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.status_;
 }
 
 void Span::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Span::Clear() {
@@ -1935,21 +2020,21 @@ void Span::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  attributes_.Clear();
-  events_.Clear();
-  links_.Clear();
-  trace_id_.ClearToEmpty();
-  span_id_.ClearToEmpty();
-  trace_state_.ClearToEmpty();
-  parent_span_id_.ClearToEmpty();
-  name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && status_ != nullptr) {
-    delete status_;
+  _impl_.attributes_.Clear();
+  _impl_.events_.Clear();
+  _impl_.links_.Clear();
+  _impl_.trace_id_.ClearToEmpty();
+  _impl_.span_id_.ClearToEmpty();
+  _impl_.trace_state_.ClearToEmpty();
+  _impl_.parent_span_id_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.status_ != nullptr) {
+    delete _impl_.status_;
   }
-  status_ = nullptr;
-  ::memset(&start_time_unix_nano_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&flags_) -
-      reinterpret_cast<char*>(&start_time_unix_nano_)) + sizeof(flags_));
+  _impl_.status_ = nullptr;
+  ::memset(&_impl_.start_time_unix_nano_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.flags_) -
+      reinterpret_cast<char*>(&_impl_.start_time_unix_nano_)) + sizeof(_impl_.flags_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2018,7 +2103,7 @@ const char* Span::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // fixed64 start_time_unix_nano = 7 [json_name = "startTimeUnixNano"];
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 57)) {
-          start_time_unix_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint64_t>(ptr);
+          _impl_.start_time_unix_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint64_t>(ptr);
           ptr += sizeof(uint64_t);
         } else
           goto handle_unusual;
@@ -2026,7 +2111,7 @@ const char* Span::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // fixed64 end_time_unix_nano = 8 [json_name = "endTimeUnixNano"];
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 65)) {
-          end_time_unix_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint64_t>(ptr);
+          _impl_.end_time_unix_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint64_t>(ptr);
           ptr += sizeof(uint64_t);
         } else
           goto handle_unusual;
@@ -2047,7 +2132,7 @@ const char* Span::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // uint32 dropped_attributes_count = 10 [json_name = "droppedAttributesCount"];
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
-          dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2068,7 +2153,7 @@ const char* Span::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // uint32 dropped_events_count = 12 [json_name = "droppedEventsCount"];
       case 12:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
-          dropped_events_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.dropped_events_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2089,7 +2174,7 @@ const char* Span::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // uint32 dropped_links_count = 14 [json_name = "droppedLinksCount"];
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
-          dropped_links_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          _impl_.dropped_links_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2105,7 +2190,7 @@ const char* Span::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // fixed32 flags = 16 [json_name = "flags"];
       case 16:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 133)) {
-          flags_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint32_t>(ptr);
+          _impl_.flags_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint32_t>(ptr);
           ptr += sizeof(uint32_t);
         } else
           goto handle_unusual;
@@ -2269,21 +2354,21 @@ size_t Span::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.common.v1.KeyValue attributes = 9 [json_name = "attributes"];
   total_size += 1UL * this->_internal_attributes_size();
-  for (const auto& msg : this->attributes_) {
+  for (const auto& msg : this->_impl_.attributes_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .opentelemetry.proto.trace.v1.Span.Event events = 11 [json_name = "events"];
   total_size += 1UL * this->_internal_events_size();
-  for (const auto& msg : this->events_) {
+  for (const auto& msg : this->_impl_.events_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .opentelemetry.proto.trace.v1.Span.Link links = 13 [json_name = "links"];
   total_size += 1UL * this->_internal_links_size();
-  for (const auto& msg : this->links_) {
+  for (const auto& msg : this->_impl_.links_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -2327,7 +2412,7 @@ size_t Span::ByteSizeLong() const {
   if (this->_internal_has_status()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *status_);
+        *_impl_.status_);
   }
 
   // fixed64 start_time_unix_nano = 7 [json_name = "startTimeUnixNano"];
@@ -2366,71 +2451,68 @@ size_t Span::ByteSizeLong() const {
     total_size += 2 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Span::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Span::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Span::GetClassData() const { return &_class_data_; }
 
-void Span::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Span *>(to)->MergeFrom(
-      static_cast<const Span &>(from));
-}
 
-
-void Span::MergeFrom(const Span& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.Span)
-  GOOGLE_DCHECK_NE(&from, this);
+void Span::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Span*>(&to_msg);
+  auto& from = static_cast<const Span&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.Span)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  attributes_.MergeFrom(from.attributes_);
-  events_.MergeFrom(from.events_);
-  links_.MergeFrom(from.links_);
+  _this->_impl_.attributes_.MergeFrom(from._impl_.attributes_);
+  _this->_impl_.events_.MergeFrom(from._impl_.events_);
+  _this->_impl_.links_.MergeFrom(from._impl_.links_);
   if (!from._internal_trace_id().empty()) {
-    _internal_set_trace_id(from._internal_trace_id());
+    _this->_internal_set_trace_id(from._internal_trace_id());
   }
   if (!from._internal_span_id().empty()) {
-    _internal_set_span_id(from._internal_span_id());
+    _this->_internal_set_span_id(from._internal_span_id());
   }
   if (!from._internal_trace_state().empty()) {
-    _internal_set_trace_state(from._internal_trace_state());
+    _this->_internal_set_trace_state(from._internal_trace_state());
   }
   if (!from._internal_parent_span_id().empty()) {
-    _internal_set_parent_span_id(from._internal_parent_span_id());
+    _this->_internal_set_parent_span_id(from._internal_parent_span_id());
   }
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (from._internal_has_status()) {
-    _internal_mutable_status()->::opentelemetry::proto::trace::v1::Status::MergeFrom(from._internal_status());
+    _this->_internal_mutable_status()->::opentelemetry::proto::trace::v1::Status::MergeFrom(
+        from._internal_status());
   }
   if (from._internal_start_time_unix_nano() != 0) {
-    _internal_set_start_time_unix_nano(from._internal_start_time_unix_nano());
+    _this->_internal_set_start_time_unix_nano(from._internal_start_time_unix_nano());
   }
   if (from._internal_end_time_unix_nano() != 0) {
-    _internal_set_end_time_unix_nano(from._internal_end_time_unix_nano());
+    _this->_internal_set_end_time_unix_nano(from._internal_end_time_unix_nano());
   }
   if (from._internal_kind() != 0) {
-    _internal_set_kind(from._internal_kind());
+    _this->_internal_set_kind(from._internal_kind());
   }
   if (from._internal_dropped_attributes_count() != 0) {
-    _internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
+    _this->_internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
   }
   if (from._internal_dropped_events_count() != 0) {
-    _internal_set_dropped_events_count(from._internal_dropped_events_count());
+    _this->_internal_set_dropped_events_count(from._internal_dropped_events_count());
   }
   if (from._internal_dropped_links_count() != 0) {
-    _internal_set_dropped_links_count(from._internal_dropped_links_count());
+    _this->_internal_set_dropped_links_count(from._internal_dropped_links_count());
   }
   if (from._internal_flags() != 0) {
-    _internal_set_flags(from._internal_flags());
+    _this->_internal_set_flags(from._internal_flags());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Span::CopyFrom(const Span& from) {
@@ -2449,35 +2531,35 @@ void Span::InternalSwap(Span* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  attributes_.InternalSwap(&other->attributes_);
-  events_.InternalSwap(&other->events_);
-  links_.InternalSwap(&other->links_);
+  _impl_.attributes_.InternalSwap(&other->_impl_.attributes_);
+  _impl_.events_.InternalSwap(&other->_impl_.events_);
+  _impl_.links_.InternalSwap(&other->_impl_.links_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &trace_id_, lhs_arena,
-      &other->trace_id_, rhs_arena
+      &_impl_.trace_id_, lhs_arena,
+      &other->_impl_.trace_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &span_id_, lhs_arena,
-      &other->span_id_, rhs_arena
+      &_impl_.span_id_, lhs_arena,
+      &other->_impl_.span_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &trace_state_, lhs_arena,
-      &other->trace_state_, rhs_arena
+      &_impl_.trace_state_, lhs_arena,
+      &other->_impl_.trace_state_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &parent_span_id_, lhs_arena,
-      &other->parent_span_id_, rhs_arena
+      &_impl_.parent_span_id_, lhs_arena,
+      &other->_impl_.parent_span_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Span, flags_)
-      + sizeof(Span::flags_)
-      - PROTOBUF_FIELD_OFFSET(Span, status_)>(
-          reinterpret_cast<char*>(&status_),
-          reinterpret_cast<char*>(&other->status_));
+      PROTOBUF_FIELD_OFFSET(Span, _impl_.flags_)
+      + sizeof(Span::_impl_.flags_)
+      - PROTOBUF_FIELD_OFFSET(Span, _impl_.status_)>(
+          reinterpret_cast<char*>(&_impl_.status_),
+          reinterpret_cast<char*>(&other->_impl_.status_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Span::GetMetadata() const {
@@ -2495,30 +2577,43 @@ class Status::_Internal {
 Status::Status(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.trace.v1.Status)
 }
 Status::Status(const Status& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Status* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.message_){}
+    , decltype(_impl_.code_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  message_.InitDefault();
+  _impl_.message_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    message_.Set("", GetArenaForAllocation());
+    _impl_.message_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_message().empty()) {
-    message_.Set(from._internal_message(), 
-      GetArenaForAllocation());
+    _this->_impl_.message_.Set(from._internal_message(), 
+      _this->GetArenaForAllocation());
   }
-  code_ = from.code_;
+  _this->_impl_.code_ = from._impl_.code_;
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.trace.v1.Status)
 }
 
-inline void Status::SharedCtor() {
-message_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  message_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-code_ = 0;
+inline void Status::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.message_){}
+    , decltype(_impl_.code_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Status::~Status() {
@@ -2532,11 +2627,11 @@ Status::~Status() {
 
 inline void Status::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  message_.Destroy();
+  _impl_.message_.Destroy();
 }
 
 void Status::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void Status::Clear() {
@@ -2545,8 +2640,8 @@ void Status::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  message_.ClearToEmpty();
-  code_ = 0;
+  _impl_.message_.ClearToEmpty();
+  _impl_.code_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2650,35 +2745,31 @@ size_t Status::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_code());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Status::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     Status::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Status::GetClassData() const { return &_class_data_; }
 
-void Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<Status *>(to)->MergeFrom(
-      static_cast<const Status &>(from));
-}
 
-
-void Status::MergeFrom(const Status& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.Status)
-  GOOGLE_DCHECK_NE(&from, this);
+void Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Status*>(&to_msg);
+  auto& from = static_cast<const Status&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.trace.v1.Status)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_message().empty()) {
-    _internal_set_message(from._internal_message());
+    _this->_internal_set_message(from._internal_message());
   }
   if (from._internal_code() != 0) {
-    _internal_set_code(from._internal_code());
+    _this->_internal_set_code(from._internal_code());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Status::CopyFrom(const Status& from) {
@@ -2698,10 +2789,10 @@ void Status::InternalSwap(Status* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &message_, lhs_arena,
-      &other->message_, rhs_arena
+      &_impl_.message_, lhs_arena,
+      &other->_impl_.message_, rhs_arena
   );
-  swap(code_, other->code_);
+  swap(_impl_.code_, other->_impl_.code_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Status::GetMetadata() const {

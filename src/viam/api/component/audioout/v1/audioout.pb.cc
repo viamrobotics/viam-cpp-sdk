@@ -25,11 +25,12 @@ namespace component {
 namespace audioout {
 namespace v1 {
 PROTOBUF_CONSTEXPR PlayRequest::PlayRequest(
-    ::_pbi::ConstantInitialized)
-  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , audio_data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , audio_info_(nullptr)
-  , extra_(nullptr){}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.audio_data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.audio_info_)*/nullptr
+  , /*decltype(_impl_.extra_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PlayRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PlayRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -40,7 +41,7 @@ struct PlayRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayRequestDefaultTypeInternal _PlayRequest_default_instance_;
 PROTOBUF_CONSTEXPR PlayResponse::PlayResponse(
-    ::_pbi::ConstantInitialized){}
+    ::_pbi::ConstantInitialized) {}
 struct PlayResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PlayResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -65,10 +66,10 @@ const uint32_t TableStruct_component_2faudioout_2fv1_2faudioout_2eproto::offsets
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, audio_data_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, audio_info_),
-  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, _impl_.audio_data_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, _impl_.audio_info_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -149,75 +150,85 @@ class PlayRequest::_Internal {
 
 const ::viam::common::v1::AudioInfo&
 PlayRequest::_Internal::audio_info(const PlayRequest* msg) {
-  return *msg->audio_info_;
+  return *msg->_impl_.audio_info_;
 }
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 PlayRequest::_Internal::extra(const PlayRequest* msg) {
-  return *msg->extra_;
+  return *msg->_impl_.extra_;
 }
 void PlayRequest::clear_audio_info() {
-  if (GetArenaForAllocation() == nullptr && audio_info_ != nullptr) {
-    delete audio_info_;
+  if (GetArenaForAllocation() == nullptr && _impl_.audio_info_ != nullptr) {
+    delete _impl_.audio_info_;
   }
-  audio_info_ = nullptr;
+  _impl_.audio_info_ = nullptr;
 }
 void PlayRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
 }
 PlayRequest::PlayRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:viam.component.audioout.v1.PlayRequest)
 }
 PlayRequest::PlayRequest(const PlayRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  PlayRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.audio_data_){}
+    , decltype(_impl_.audio_info_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.InitDefault();
+  _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    name_.Set("", GetArenaForAllocation());
+    _impl_.name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(from._internal_name(), 
-      GetArenaForAllocation());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  audio_data_.InitDefault();
+  _impl_.audio_data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    audio_data_.Set("", GetArenaForAllocation());
+    _impl_.audio_data_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_audio_data().empty()) {
-    audio_data_.Set(from._internal_audio_data(), 
-      GetArenaForAllocation());
+    _this->_impl_.audio_data_.Set(from._internal_audio_data(), 
+      _this->GetArenaForAllocation());
   }
   if (from._internal_has_audio_info()) {
-    audio_info_ = new ::viam::common::v1::AudioInfo(*from.audio_info_);
-  } else {
-    audio_info_ = nullptr;
+    _this->_impl_.audio_info_ = new ::viam::common::v1::AudioInfo(*from._impl_.audio_info_);
   }
   if (from._internal_has_extra()) {
-    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
-  } else {
-    extra_ = nullptr;
+    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
   }
   // @@protoc_insertion_point(copy_constructor:viam.component.audioout.v1.PlayRequest)
 }
 
-inline void PlayRequest::SharedCtor() {
-name_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  name_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-audio_data_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  audio_data_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&audio_info_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
-    reinterpret_cast<char*>(&audio_info_)) + sizeof(extra_));
+inline void PlayRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.audio_data_){}
+    , decltype(_impl_.audio_info_){nullptr}
+    , decltype(_impl_.extra_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.audio_data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.audio_data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 PlayRequest::~PlayRequest() {
@@ -231,14 +242,14 @@ PlayRequest::~PlayRequest() {
 
 inline void PlayRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  name_.Destroy();
-  audio_data_.Destroy();
-  if (this != internal_default_instance()) delete audio_info_;
-  if (this != internal_default_instance()) delete extra_;
+  _impl_.name_.Destroy();
+  _impl_.audio_data_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.audio_info_;
+  if (this != internal_default_instance()) delete _impl_.extra_;
 }
 
 void PlayRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
 
 void PlayRequest::Clear() {
@@ -247,16 +258,16 @@ void PlayRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty();
-  audio_data_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && audio_info_ != nullptr) {
-    delete audio_info_;
+  _impl_.name_.ClearToEmpty();
+  _impl_.audio_data_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.audio_info_ != nullptr) {
+    delete _impl_.audio_info_;
   }
-  audio_info_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
-    delete extra_;
+  _impl_.audio_info_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
+    delete _impl_.extra_;
   }
-  extra_ = nullptr;
+  _impl_.extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -394,51 +405,49 @@ size_t PlayRequest::ByteSizeLong() const {
   if (this->_internal_has_audio_info()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *audio_info_);
+        *_impl_.audio_info_);
   }
 
   // .google.protobuf.Struct extra = 99 [json_name = "extra"];
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *extra_);
+        *_impl_.extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PlayRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
     PlayRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PlayRequest::GetClassData() const { return &_class_data_; }
 
-void PlayRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<PlayRequest *>(to)->MergeFrom(
-      static_cast<const PlayRequest &>(from));
-}
 
-
-void PlayRequest::MergeFrom(const PlayRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioout.v1.PlayRequest)
-  GOOGLE_DCHECK_NE(&from, this);
+void PlayRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PlayRequest*>(&to_msg);
+  auto& from = static_cast<const PlayRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioout.v1.PlayRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _internal_set_name(from._internal_name());
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_audio_data().empty()) {
-    _internal_set_audio_data(from._internal_audio_data());
+    _this->_internal_set_audio_data(from._internal_audio_data());
   }
   if (from._internal_has_audio_info()) {
-    _internal_mutable_audio_info()->::viam::common::v1::AudioInfo::MergeFrom(from._internal_audio_info());
+    _this->_internal_mutable_audio_info()->::viam::common::v1::AudioInfo::MergeFrom(
+        from._internal_audio_info());
   }
   if (from._internal_has_extra()) {
-    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
+        from._internal_extra());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PlayRequest::CopyFrom(const PlayRequest& from) {
@@ -458,19 +467,19 @@ void PlayRequest::InternalSwap(PlayRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &name_, lhs_arena,
-      &other->name_, rhs_arena
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &audio_data_, lhs_arena,
-      &other->audio_data_, rhs_arena
+      &_impl_.audio_data_, lhs_arena,
+      &other->_impl_.audio_data_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PlayRequest, extra_)
-      + sizeof(PlayRequest::extra_)
-      - PROTOBUF_FIELD_OFFSET(PlayRequest, audio_info_)>(
-          reinterpret_cast<char*>(&audio_info_),
-          reinterpret_cast<char*>(&other->audio_info_));
+      PROTOBUF_FIELD_OFFSET(PlayRequest, _impl_.extra_)
+      + sizeof(PlayRequest::_impl_.extra_)
+      - PROTOBUF_FIELD_OFFSET(PlayRequest, _impl_.audio_info_)>(
+          reinterpret_cast<char*>(&_impl_.audio_info_),
+          reinterpret_cast<char*>(&other->_impl_.audio_info_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PlayRequest::GetMetadata() const {
@@ -492,6 +501,7 @@ PlayResponse::PlayResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 }
 PlayResponse::PlayResponse(const PlayResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  PlayResponse* const _this = this; (void)_this;
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.component.audioout.v1.PlayResponse)
 }
