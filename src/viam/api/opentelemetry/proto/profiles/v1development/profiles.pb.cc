@@ -25,15 +25,14 @@ namespace proto {
 namespace profiles {
 namespace v1development {
 PROTOBUF_CONSTEXPR ProfilesDictionary::ProfilesDictionary(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.mapping_table_)*/{}
-  , /*decltype(_impl_.location_table_)*/{}
-  , /*decltype(_impl_.function_table_)*/{}
-  , /*decltype(_impl_.link_table_)*/{}
-  , /*decltype(_impl_.string_table_)*/{}
-  , /*decltype(_impl_.attribute_table_)*/{}
-  , /*decltype(_impl_.stack_table_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : mapping_table_()
+  , location_table_()
+  , function_table_()
+  , link_table_()
+  , string_table_()
+  , attribute_table_()
+  , stack_table_(){}
 struct ProfilesDictionaryDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ProfilesDictionaryDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -44,10 +43,9 @@ struct ProfilesDictionaryDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ProfilesDictionaryDefaultTypeInternal _ProfilesDictionary_default_instance_;
 PROTOBUF_CONSTEXPR ProfilesData::ProfilesData(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.resource_profiles_)*/{}
-  , /*decltype(_impl_.dictionary_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : resource_profiles_()
+  , dictionary_(nullptr){}
 struct ProfilesDataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ProfilesDataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -58,11 +56,10 @@ struct ProfilesDataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ProfilesDataDefaultTypeInternal _ProfilesData_default_instance_;
 PROTOBUF_CONSTEXPR ResourceProfiles::ResourceProfiles(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.scope_profiles_)*/{}
-  , /*decltype(_impl_.schema_url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.resource_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : scope_profiles_()
+  , schema_url_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , resource_(nullptr){}
 struct ResourceProfilesDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceProfilesDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -73,11 +70,10 @@ struct ResourceProfilesDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceProfilesDefaultTypeInternal _ResourceProfiles_default_instance_;
 PROTOBUF_CONSTEXPR ScopeProfiles::ScopeProfiles(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.profiles_)*/{}
-  , /*decltype(_impl_.schema_url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.scope_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : profiles_()
+  , schema_url_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , scope_(nullptr){}
 struct ScopeProfilesDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ScopeProfilesDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -88,20 +84,19 @@ struct ScopeProfilesDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ScopeProfilesDefaultTypeInternal _ScopeProfiles_default_instance_;
 PROTOBUF_CONSTEXPR Profile::Profile(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.samples_)*/{}
-  , /*decltype(_impl_.attribute_indices_)*/{}
-  , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.profile_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.original_payload_format_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.original_payload_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.sample_type_)*/nullptr
-  , /*decltype(_impl_.period_type_)*/nullptr
-  , /*decltype(_impl_.time_unix_nano_)*/uint64_t{0u}
-  , /*decltype(_impl_.duration_nano_)*/uint64_t{0u}
-  , /*decltype(_impl_.period_)*/int64_t{0}
-  , /*decltype(_impl_.dropped_attributes_count_)*/0u
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : samples_()
+  , attribute_indices_()
+  , _attribute_indices_cached_byte_size_(0)
+  , profile_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , original_payload_format_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , original_payload_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , sample_type_(nullptr)
+  , period_type_(nullptr)
+  , time_unix_nano_(uint64_t{0u})
+  , duration_nano_(uint64_t{0u})
+  , period_(int64_t{0})
+  , dropped_attributes_count_(0u){}
 struct ProfileDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ProfileDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -112,10 +107,9 @@ struct ProfileDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ProfileDefaultTypeInternal _Profile_default_instance_;
 PROTOBUF_CONSTEXPR Link::Link(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.trace_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.span_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : trace_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , span_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct LinkDefaultTypeInternal {
   PROTOBUF_CONSTEXPR LinkDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -126,10 +120,9 @@ struct LinkDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LinkDefaultTypeInternal _Link_default_instance_;
 PROTOBUF_CONSTEXPR ValueType::ValueType(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.type_strindex_)*/0
-  , /*decltype(_impl_.unit_strindex_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : type_strindex_(0)
+  , unit_strindex_(0){}
 struct ValueTypeDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ValueTypeDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -140,15 +133,14 @@ struct ValueTypeDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ValueTypeDefaultTypeInternal _ValueType_default_instance_;
 PROTOBUF_CONSTEXPR Sample::Sample(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.values_)*/{}
-  , /*decltype(_impl_._values_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.attribute_indices_)*/{}
-  , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.timestamps_unix_nano_)*/{}
-  , /*decltype(_impl_.stack_index_)*/0
-  , /*decltype(_impl_.link_index_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : values_()
+  , _values_cached_byte_size_(0)
+  , attribute_indices_()
+  , _attribute_indices_cached_byte_size_(0)
+  , timestamps_unix_nano_()
+  , stack_index_(0)
+  , link_index_(0){}
 struct SampleDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SampleDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -159,14 +151,13 @@ struct SampleDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SampleDefaultTypeInternal _Sample_default_instance_;
 PROTOBUF_CONSTEXPR Mapping::Mapping(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.attribute_indices_)*/{}
-  , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.memory_start_)*/uint64_t{0u}
-  , /*decltype(_impl_.memory_limit_)*/uint64_t{0u}
-  , /*decltype(_impl_.file_offset_)*/uint64_t{0u}
-  , /*decltype(_impl_.filename_strindex_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : attribute_indices_()
+  , _attribute_indices_cached_byte_size_(0)
+  , memory_start_(uint64_t{0u})
+  , memory_limit_(uint64_t{0u})
+  , file_offset_(uint64_t{0u})
+  , filename_strindex_(0){}
 struct MappingDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MappingDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -177,10 +168,9 @@ struct MappingDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MappingDefaultTypeInternal _Mapping_default_instance_;
 PROTOBUF_CONSTEXPR Stack::Stack(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.location_indices_)*/{}
-  , /*decltype(_impl_._location_indices_cached_byte_size_)*/{0}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : location_indices_()
+  , _location_indices_cached_byte_size_(0){}
 struct StackDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StackDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -191,13 +181,12 @@ struct StackDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StackDefaultTypeInternal _Stack_default_instance_;
 PROTOBUF_CONSTEXPR Location::Location(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.lines_)*/{}
-  , /*decltype(_impl_.attribute_indices_)*/{}
-  , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.address_)*/uint64_t{0u}
-  , /*decltype(_impl_.mapping_index_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : lines_()
+  , attribute_indices_()
+  , _attribute_indices_cached_byte_size_(0)
+  , address_(uint64_t{0u})
+  , mapping_index_(0){}
 struct LocationDefaultTypeInternal {
   PROTOBUF_CONSTEXPR LocationDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -208,11 +197,10 @@ struct LocationDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocationDefaultTypeInternal _Location_default_instance_;
 PROTOBUF_CONSTEXPR Line::Line(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.line_)*/int64_t{0}
-  , /*decltype(_impl_.column_)*/int64_t{0}
-  , /*decltype(_impl_.function_index_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : line_(int64_t{0})
+  , column_(int64_t{0})
+  , function_index_(0){}
 struct LineDefaultTypeInternal {
   PROTOBUF_CONSTEXPR LineDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -223,12 +211,11 @@ struct LineDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LineDefaultTypeInternal _Line_default_instance_;
 PROTOBUF_CONSTEXPR Function::Function(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_strindex_)*/0
-  , /*decltype(_impl_.system_name_strindex_)*/0
-  , /*decltype(_impl_.start_line_)*/int64_t{0}
-  , /*decltype(_impl_.filename_strindex_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_strindex_(0)
+  , system_name_strindex_(0)
+  , start_line_(int64_t{0})
+  , filename_strindex_(0){}
 struct FunctionDefaultTypeInternal {
   PROTOBUF_CONSTEXPR FunctionDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -239,11 +226,10 @@ struct FunctionDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FunctionDefaultTypeInternal _Function_default_instance_;
 PROTOBUF_CONSTEXPR KeyValueAndUnit::KeyValueAndUnit(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.value_)*/nullptr
-  , /*decltype(_impl_.key_strindex_)*/0
-  , /*decltype(_impl_.unit_strindex_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : value_(nullptr)
+  , key_strindex_(0)
+  , unit_strindex_(0){}
 struct KeyValueAndUnitDefaultTypeInternal {
   PROTOBUF_CONSTEXPR KeyValueAndUnitDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -268,139 +254,139 @@ const uint32_t TableStruct_opentelemetry_2fproto_2fprofiles_2fv1development_2fpr
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, _impl_.mapping_table_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, _impl_.location_table_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, _impl_.function_table_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, _impl_.link_table_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, _impl_.string_table_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, _impl_.attribute_table_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, _impl_.stack_table_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, mapping_table_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, location_table_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, function_table_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, link_table_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, string_table_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, attribute_table_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesDictionary, stack_table_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesData, _impl_.resource_profiles_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesData, _impl_.dictionary_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesData, resource_profiles_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ProfilesData, dictionary_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ResourceProfiles, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ResourceProfiles, _impl_.resource_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ResourceProfiles, _impl_.scope_profiles_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ResourceProfiles, _impl_.schema_url_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ResourceProfiles, resource_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ResourceProfiles, scope_profiles_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ResourceProfiles, schema_url_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ScopeProfiles, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ScopeProfiles, _impl_.scope_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ScopeProfiles, _impl_.profiles_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ScopeProfiles, _impl_.schema_url_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ScopeProfiles, scope_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ScopeProfiles, profiles_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ScopeProfiles, schema_url_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.sample_type_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.samples_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.time_unix_nano_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.duration_nano_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.period_type_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.period_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.profile_id_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.dropped_attributes_count_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.original_payload_format_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.original_payload_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, _impl_.attribute_indices_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, sample_type_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, samples_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, time_unix_nano_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, duration_nano_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, period_type_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, period_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, profile_id_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, dropped_attributes_count_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, original_payload_format_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, original_payload_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Profile, attribute_indices_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Link, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Link, _impl_.trace_id_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Link, _impl_.span_id_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Link, trace_id_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Link, span_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ValueType, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ValueType, _impl_.type_strindex_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ValueType, _impl_.unit_strindex_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ValueType, type_strindex_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::ValueType, unit_strindex_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, _impl_.stack_index_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, _impl_.values_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, _impl_.attribute_indices_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, _impl_.link_index_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, _impl_.timestamps_unix_nano_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, stack_index_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, values_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, attribute_indices_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, link_index_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, timestamps_unix_nano_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, _impl_.memory_start_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, _impl_.memory_limit_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, _impl_.file_offset_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, _impl_.filename_strindex_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, _impl_.attribute_indices_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, memory_start_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, memory_limit_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, file_offset_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, filename_strindex_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, attribute_indices_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Stack, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Stack, _impl_.location_indices_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Stack, location_indices_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Location, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Location, _impl_.mapping_index_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Location, _impl_.address_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Location, _impl_.lines_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Location, _impl_.attribute_indices_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Location, mapping_index_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Location, address_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Location, lines_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Location, attribute_indices_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Line, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Line, _impl_.function_index_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Line, _impl_.line_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Line, _impl_.column_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Line, function_index_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Line, line_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Line, column_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Function, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Function, _impl_.name_strindex_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Function, _impl_.system_name_strindex_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Function, _impl_.filename_strindex_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Function, _impl_.start_line_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Function, name_strindex_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Function, system_name_strindex_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Function, filename_strindex_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Function, start_line_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::KeyValueAndUnit, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::KeyValueAndUnit, _impl_.key_strindex_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::KeyValueAndUnit, _impl_.value_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::KeyValueAndUnit, _impl_.unit_strindex_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::KeyValueAndUnit, key_strindex_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::KeyValueAndUnit, value_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::KeyValueAndUnit, unit_strindex_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::opentelemetry::proto::profiles::v1development::ProfilesDictionary)},
@@ -556,41 +542,31 @@ class ProfilesDictionary::_Internal {
 
 ProfilesDictionary::ProfilesDictionary(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  mapping_table_(arena),
+  location_table_(arena),
+  function_table_(arena),
+  link_table_(arena),
+  string_table_(arena),
+  attribute_table_(arena),
+  stack_table_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.ProfilesDictionary)
 }
 ProfilesDictionary::ProfilesDictionary(const ProfilesDictionary& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ProfilesDictionary* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.mapping_table_){from._impl_.mapping_table_}
-    , decltype(_impl_.location_table_){from._impl_.location_table_}
-    , decltype(_impl_.function_table_){from._impl_.function_table_}
-    , decltype(_impl_.link_table_){from._impl_.link_table_}
-    , decltype(_impl_.string_table_){from._impl_.string_table_}
-    , decltype(_impl_.attribute_table_){from._impl_.attribute_table_}
-    , decltype(_impl_.stack_table_){from._impl_.stack_table_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      mapping_table_(from.mapping_table_),
+      location_table_(from.location_table_),
+      function_table_(from.function_table_),
+      link_table_(from.link_table_),
+      string_table_(from.string_table_),
+      attribute_table_(from.attribute_table_),
+      stack_table_(from.stack_table_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.ProfilesDictionary)
 }
 
-inline void ProfilesDictionary::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.mapping_table_){arena}
-    , decltype(_impl_.location_table_){arena}
-    , decltype(_impl_.function_table_){arena}
-    , decltype(_impl_.link_table_){arena}
-    , decltype(_impl_.string_table_){arena}
-    , decltype(_impl_.attribute_table_){arena}
-    , decltype(_impl_.stack_table_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ProfilesDictionary::SharedCtor() {
 }
 
 ProfilesDictionary::~ProfilesDictionary() {
@@ -604,17 +580,10 @@ ProfilesDictionary::~ProfilesDictionary() {
 
 inline void ProfilesDictionary::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.mapping_table_.~RepeatedPtrField();
-  _impl_.location_table_.~RepeatedPtrField();
-  _impl_.function_table_.~RepeatedPtrField();
-  _impl_.link_table_.~RepeatedPtrField();
-  _impl_.string_table_.~RepeatedPtrField();
-  _impl_.attribute_table_.~RepeatedPtrField();
-  _impl_.stack_table_.~RepeatedPtrField();
 }
 
 void ProfilesDictionary::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ProfilesDictionary::Clear() {
@@ -623,13 +592,13 @@ void ProfilesDictionary::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.mapping_table_.Clear();
-  _impl_.location_table_.Clear();
-  _impl_.function_table_.Clear();
-  _impl_.link_table_.Clear();
-  _impl_.string_table_.Clear();
-  _impl_.attribute_table_.Clear();
-  _impl_.stack_table_.Clear();
+  mapping_table_.Clear();
+  location_table_.Clear();
+  function_table_.Clear();
+  link_table_.Clear();
+  string_table_.Clear();
+  attribute_table_.Clear();
+  stack_table_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -837,80 +806,84 @@ size_t ProfilesDictionary::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.profiles.v1development.Mapping mapping_table = 1 [json_name = "mappingTable"];
   total_size += 1UL * this->_internal_mapping_table_size();
-  for (const auto& msg : this->_impl_.mapping_table_) {
+  for (const auto& msg : this->mapping_table_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .opentelemetry.proto.profiles.v1development.Location location_table = 2 [json_name = "locationTable"];
   total_size += 1UL * this->_internal_location_table_size();
-  for (const auto& msg : this->_impl_.location_table_) {
+  for (const auto& msg : this->location_table_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .opentelemetry.proto.profiles.v1development.Function function_table = 3 [json_name = "functionTable"];
   total_size += 1UL * this->_internal_function_table_size();
-  for (const auto& msg : this->_impl_.function_table_) {
+  for (const auto& msg : this->function_table_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .opentelemetry.proto.profiles.v1development.Link link_table = 4 [json_name = "linkTable"];
   total_size += 1UL * this->_internal_link_table_size();
-  for (const auto& msg : this->_impl_.link_table_) {
+  for (const auto& msg : this->link_table_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated string string_table = 5 [json_name = "stringTable"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.string_table_.size());
-  for (int i = 0, n = _impl_.string_table_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(string_table_.size());
+  for (int i = 0, n = string_table_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.string_table_.Get(i));
+      string_table_.Get(i));
   }
 
   // repeated .opentelemetry.proto.profiles.v1development.KeyValueAndUnit attribute_table = 6 [json_name = "attributeTable"];
   total_size += 1UL * this->_internal_attribute_table_size();
-  for (const auto& msg : this->_impl_.attribute_table_) {
+  for (const auto& msg : this->attribute_table_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .opentelemetry.proto.profiles.v1development.Stack stack_table = 7 [json_name = "stackTable"];
   total_size += 1UL * this->_internal_stack_table_size();
-  for (const auto& msg : this->_impl_.stack_table_) {
+  for (const auto& msg : this->stack_table_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ProfilesDictionary::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ProfilesDictionary::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ProfilesDictionary::GetClassData() const { return &_class_data_; }
 
+void ProfilesDictionary::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ProfilesDictionary *>(to)->MergeFrom(
+      static_cast<const ProfilesDictionary &>(from));
+}
 
-void ProfilesDictionary::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ProfilesDictionary*>(&to_msg);
-  auto& from = static_cast<const ProfilesDictionary&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ProfilesDictionary)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ProfilesDictionary::MergeFrom(const ProfilesDictionary& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ProfilesDictionary)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.mapping_table_.MergeFrom(from._impl_.mapping_table_);
-  _this->_impl_.location_table_.MergeFrom(from._impl_.location_table_);
-  _this->_impl_.function_table_.MergeFrom(from._impl_.function_table_);
-  _this->_impl_.link_table_.MergeFrom(from._impl_.link_table_);
-  _this->_impl_.string_table_.MergeFrom(from._impl_.string_table_);
-  _this->_impl_.attribute_table_.MergeFrom(from._impl_.attribute_table_);
-  _this->_impl_.stack_table_.MergeFrom(from._impl_.stack_table_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  mapping_table_.MergeFrom(from.mapping_table_);
+  location_table_.MergeFrom(from.location_table_);
+  function_table_.MergeFrom(from.function_table_);
+  link_table_.MergeFrom(from.link_table_);
+  string_table_.MergeFrom(from.string_table_);
+  attribute_table_.MergeFrom(from.attribute_table_);
+  stack_table_.MergeFrom(from.stack_table_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ProfilesDictionary::CopyFrom(const ProfilesDictionary& from) {
@@ -927,13 +900,13 @@ bool ProfilesDictionary::IsInitialized() const {
 void ProfilesDictionary::InternalSwap(ProfilesDictionary* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.mapping_table_.InternalSwap(&other->_impl_.mapping_table_);
-  _impl_.location_table_.InternalSwap(&other->_impl_.location_table_);
-  _impl_.function_table_.InternalSwap(&other->_impl_.function_table_);
-  _impl_.link_table_.InternalSwap(&other->_impl_.link_table_);
-  _impl_.string_table_.InternalSwap(&other->_impl_.string_table_);
-  _impl_.attribute_table_.InternalSwap(&other->_impl_.attribute_table_);
-  _impl_.stack_table_.InternalSwap(&other->_impl_.stack_table_);
+  mapping_table_.InternalSwap(&other->mapping_table_);
+  location_table_.InternalSwap(&other->location_table_);
+  function_table_.InternalSwap(&other->function_table_);
+  link_table_.InternalSwap(&other->link_table_);
+  string_table_.InternalSwap(&other->string_table_);
+  attribute_table_.InternalSwap(&other->attribute_table_);
+  stack_table_.InternalSwap(&other->stack_table_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ProfilesDictionary::GetMetadata() const {
@@ -951,38 +924,29 @@ class ProfilesData::_Internal {
 
 const ::opentelemetry::proto::profiles::v1development::ProfilesDictionary&
 ProfilesData::_Internal::dictionary(const ProfilesData* msg) {
-  return *msg->_impl_.dictionary_;
+  return *msg->dictionary_;
 }
 ProfilesData::ProfilesData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  resource_profiles_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.ProfilesData)
 }
 ProfilesData::ProfilesData(const ProfilesData& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ProfilesData* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.resource_profiles_){from._impl_.resource_profiles_}
-    , decltype(_impl_.dictionary_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      resource_profiles_(from.resource_profiles_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_dictionary()) {
-    _this->_impl_.dictionary_ = new ::opentelemetry::proto::profiles::v1development::ProfilesDictionary(*from._impl_.dictionary_);
+    dictionary_ = new ::opentelemetry::proto::profiles::v1development::ProfilesDictionary(*from.dictionary_);
+  } else {
+    dictionary_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.ProfilesData)
 }
 
-inline void ProfilesData::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.resource_profiles_){arena}
-    , decltype(_impl_.dictionary_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ProfilesData::SharedCtor() {
+dictionary_ = nullptr;
 }
 
 ProfilesData::~ProfilesData() {
@@ -996,12 +960,11 @@ ProfilesData::~ProfilesData() {
 
 inline void ProfilesData::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.resource_profiles_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.dictionary_;
+  if (this != internal_default_instance()) delete dictionary_;
 }
 
 void ProfilesData::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ProfilesData::Clear() {
@@ -1010,11 +973,11 @@ void ProfilesData::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.resource_profiles_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.dictionary_ != nullptr) {
-    delete _impl_.dictionary_;
+  resource_profiles_.Clear();
+  if (GetArenaForAllocation() == nullptr && dictionary_ != nullptr) {
+    delete dictionary_;
   }
-  _impl_.dictionary_ = nullptr;
+  dictionary_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1107,7 +1070,7 @@ size_t ProfilesData::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1 [json_name = "resourceProfiles"];
   total_size += 1UL * this->_internal_resource_profiles_size();
-  for (const auto& msg : this->_impl_.resource_profiles_) {
+  for (const auto& msg : this->resource_profiles_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1116,33 +1079,36 @@ size_t ProfilesData::ByteSizeLong() const {
   if (this->_internal_has_dictionary()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.dictionary_);
+        *dictionary_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ProfilesData::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ProfilesData::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ProfilesData::GetClassData() const { return &_class_data_; }
 
+void ProfilesData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ProfilesData *>(to)->MergeFrom(
+      static_cast<const ProfilesData &>(from));
+}
 
-void ProfilesData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ProfilesData*>(&to_msg);
-  auto& from = static_cast<const ProfilesData&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ProfilesData)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ProfilesData::MergeFrom(const ProfilesData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ProfilesData)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.resource_profiles_.MergeFrom(from._impl_.resource_profiles_);
+  resource_profiles_.MergeFrom(from.resource_profiles_);
   if (from._internal_has_dictionary()) {
-    _this->_internal_mutable_dictionary()->::opentelemetry::proto::profiles::v1development::ProfilesDictionary::MergeFrom(
-        from._internal_dictionary());
+    _internal_mutable_dictionary()->::opentelemetry::proto::profiles::v1development::ProfilesDictionary::MergeFrom(from._internal_dictionary());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ProfilesData::CopyFrom(const ProfilesData& from) {
@@ -1159,8 +1125,8 @@ bool ProfilesData::IsInitialized() const {
 void ProfilesData::InternalSwap(ProfilesData* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.resource_profiles_.InternalSwap(&other->_impl_.resource_profiles_);
-  swap(_impl_.dictionary_, other->_impl_.dictionary_);
+  resource_profiles_.InternalSwap(&other->resource_profiles_);
+  swap(dictionary_, other->dictionary_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ProfilesData::GetMetadata() const {
@@ -1178,58 +1144,47 @@ class ResourceProfiles::_Internal {
 
 const ::opentelemetry::proto::resource::v1::Resource&
 ResourceProfiles::_Internal::resource(const ResourceProfiles* msg) {
-  return *msg->_impl_.resource_;
+  return *msg->resource_;
 }
 void ResourceProfiles::clear_resource() {
-  if (GetArenaForAllocation() == nullptr && _impl_.resource_ != nullptr) {
-    delete _impl_.resource_;
+  if (GetArenaForAllocation() == nullptr && resource_ != nullptr) {
+    delete resource_;
   }
-  _impl_.resource_ = nullptr;
+  resource_ = nullptr;
 }
 ResourceProfiles::ResourceProfiles(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  scope_profiles_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.ResourceProfiles)
 }
 ResourceProfiles::ResourceProfiles(const ResourceProfiles& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ResourceProfiles* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.scope_profiles_){from._impl_.scope_profiles_}
-    , decltype(_impl_.schema_url_){}
-    , decltype(_impl_.resource_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      scope_profiles_(from.scope_profiles_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.schema_url_.InitDefault();
+  schema_url_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.schema_url_.Set("", GetArenaForAllocation());
+    schema_url_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_schema_url().empty()) {
-    _this->_impl_.schema_url_.Set(from._internal_schema_url(), 
-      _this->GetArenaForAllocation());
+    schema_url_.Set(from._internal_schema_url(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_resource()) {
-    _this->_impl_.resource_ = new ::opentelemetry::proto::resource::v1::Resource(*from._impl_.resource_);
+    resource_ = new ::opentelemetry::proto::resource::v1::Resource(*from.resource_);
+  } else {
+    resource_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.ResourceProfiles)
 }
 
-inline void ResourceProfiles::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.scope_profiles_){arena}
-    , decltype(_impl_.schema_url_){}
-    , decltype(_impl_.resource_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.schema_url_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.schema_url_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ResourceProfiles::SharedCtor() {
+schema_url_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  schema_url_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+resource_ = nullptr;
 }
 
 ResourceProfiles::~ResourceProfiles() {
@@ -1243,13 +1198,12 @@ ResourceProfiles::~ResourceProfiles() {
 
 inline void ResourceProfiles::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.scope_profiles_.~RepeatedPtrField();
-  _impl_.schema_url_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.resource_;
+  schema_url_.Destroy();
+  if (this != internal_default_instance()) delete resource_;
 }
 
 void ResourceProfiles::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ResourceProfiles::Clear() {
@@ -1258,12 +1212,12 @@ void ResourceProfiles::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.scope_profiles_.Clear();
-  _impl_.schema_url_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.resource_ != nullptr) {
-    delete _impl_.resource_;
+  scope_profiles_.Clear();
+  schema_url_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && resource_ != nullptr) {
+    delete resource_;
   }
-  _impl_.resource_ = nullptr;
+  resource_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1376,7 +1330,7 @@ size_t ResourceProfiles::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.profiles.v1development.ScopeProfiles scope_profiles = 2 [json_name = "scopeProfiles"];
   total_size += 1UL * this->_internal_scope_profiles_size();
-  for (const auto& msg : this->_impl_.scope_profiles_) {
+  for (const auto& msg : this->scope_profiles_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1392,36 +1346,39 @@ size_t ResourceProfiles::ByteSizeLong() const {
   if (this->_internal_has_resource()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.resource_);
+        *resource_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResourceProfiles::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ResourceProfiles::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResourceProfiles::GetClassData() const { return &_class_data_; }
 
+void ResourceProfiles::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ResourceProfiles *>(to)->MergeFrom(
+      static_cast<const ResourceProfiles &>(from));
+}
 
-void ResourceProfiles::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ResourceProfiles*>(&to_msg);
-  auto& from = static_cast<const ResourceProfiles&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ResourceProfiles)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ResourceProfiles::MergeFrom(const ResourceProfiles& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ResourceProfiles)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.scope_profiles_.MergeFrom(from._impl_.scope_profiles_);
+  scope_profiles_.MergeFrom(from.scope_profiles_);
   if (!from._internal_schema_url().empty()) {
-    _this->_internal_set_schema_url(from._internal_schema_url());
+    _internal_set_schema_url(from._internal_schema_url());
   }
   if (from._internal_has_resource()) {
-    _this->_internal_mutable_resource()->::opentelemetry::proto::resource::v1::Resource::MergeFrom(
-        from._internal_resource());
+    _internal_mutable_resource()->::opentelemetry::proto::resource::v1::Resource::MergeFrom(from._internal_resource());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ResourceProfiles::CopyFrom(const ResourceProfiles& from) {
@@ -1440,12 +1397,12 @@ void ResourceProfiles::InternalSwap(ResourceProfiles* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.scope_profiles_.InternalSwap(&other->_impl_.scope_profiles_);
+  scope_profiles_.InternalSwap(&other->scope_profiles_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.schema_url_, lhs_arena,
-      &other->_impl_.schema_url_, rhs_arena
+      &schema_url_, lhs_arena,
+      &other->schema_url_, rhs_arena
   );
-  swap(_impl_.resource_, other->_impl_.resource_);
+  swap(resource_, other->resource_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceProfiles::GetMetadata() const {
@@ -1463,58 +1420,47 @@ class ScopeProfiles::_Internal {
 
 const ::opentelemetry::proto::common::v1::InstrumentationScope&
 ScopeProfiles::_Internal::scope(const ScopeProfiles* msg) {
-  return *msg->_impl_.scope_;
+  return *msg->scope_;
 }
 void ScopeProfiles::clear_scope() {
-  if (GetArenaForAllocation() == nullptr && _impl_.scope_ != nullptr) {
-    delete _impl_.scope_;
+  if (GetArenaForAllocation() == nullptr && scope_ != nullptr) {
+    delete scope_;
   }
-  _impl_.scope_ = nullptr;
+  scope_ = nullptr;
 }
 ScopeProfiles::ScopeProfiles(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  profiles_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.ScopeProfiles)
 }
 ScopeProfiles::ScopeProfiles(const ScopeProfiles& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ScopeProfiles* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.profiles_){from._impl_.profiles_}
-    , decltype(_impl_.schema_url_){}
-    , decltype(_impl_.scope_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      profiles_(from.profiles_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.schema_url_.InitDefault();
+  schema_url_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.schema_url_.Set("", GetArenaForAllocation());
+    schema_url_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_schema_url().empty()) {
-    _this->_impl_.schema_url_.Set(from._internal_schema_url(), 
-      _this->GetArenaForAllocation());
+    schema_url_.Set(from._internal_schema_url(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_scope()) {
-    _this->_impl_.scope_ = new ::opentelemetry::proto::common::v1::InstrumentationScope(*from._impl_.scope_);
+    scope_ = new ::opentelemetry::proto::common::v1::InstrumentationScope(*from.scope_);
+  } else {
+    scope_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.ScopeProfiles)
 }
 
-inline void ScopeProfiles::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.profiles_){arena}
-    , decltype(_impl_.schema_url_){}
-    , decltype(_impl_.scope_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.schema_url_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.schema_url_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ScopeProfiles::SharedCtor() {
+schema_url_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  schema_url_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+scope_ = nullptr;
 }
 
 ScopeProfiles::~ScopeProfiles() {
@@ -1528,13 +1474,12 @@ ScopeProfiles::~ScopeProfiles() {
 
 inline void ScopeProfiles::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.profiles_.~RepeatedPtrField();
-  _impl_.schema_url_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.scope_;
+  schema_url_.Destroy();
+  if (this != internal_default_instance()) delete scope_;
 }
 
 void ScopeProfiles::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ScopeProfiles::Clear() {
@@ -1543,12 +1488,12 @@ void ScopeProfiles::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.profiles_.Clear();
-  _impl_.schema_url_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.scope_ != nullptr) {
-    delete _impl_.scope_;
+  profiles_.Clear();
+  schema_url_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && scope_ != nullptr) {
+    delete scope_;
   }
-  _impl_.scope_ = nullptr;
+  scope_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1661,7 +1606,7 @@ size_t ScopeProfiles::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.profiles.v1development.Profile profiles = 2 [json_name = "profiles"];
   total_size += 1UL * this->_internal_profiles_size();
-  for (const auto& msg : this->_impl_.profiles_) {
+  for (const auto& msg : this->profiles_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1677,36 +1622,39 @@ size_t ScopeProfiles::ByteSizeLong() const {
   if (this->_internal_has_scope()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.scope_);
+        *scope_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ScopeProfiles::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ScopeProfiles::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ScopeProfiles::GetClassData() const { return &_class_data_; }
 
+void ScopeProfiles::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ScopeProfiles *>(to)->MergeFrom(
+      static_cast<const ScopeProfiles &>(from));
+}
 
-void ScopeProfiles::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ScopeProfiles*>(&to_msg);
-  auto& from = static_cast<const ScopeProfiles&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ScopeProfiles)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ScopeProfiles::MergeFrom(const ScopeProfiles& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ScopeProfiles)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.profiles_.MergeFrom(from._impl_.profiles_);
+  profiles_.MergeFrom(from.profiles_);
   if (!from._internal_schema_url().empty()) {
-    _this->_internal_set_schema_url(from._internal_schema_url());
+    _internal_set_schema_url(from._internal_schema_url());
   }
   if (from._internal_has_scope()) {
-    _this->_internal_mutable_scope()->::opentelemetry::proto::common::v1::InstrumentationScope::MergeFrom(
-        from._internal_scope());
+    _internal_mutable_scope()->::opentelemetry::proto::common::v1::InstrumentationScope::MergeFrom(from._internal_scope());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ScopeProfiles::CopyFrom(const ScopeProfiles& from) {
@@ -1725,12 +1673,12 @@ void ScopeProfiles::InternalSwap(ScopeProfiles* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.profiles_.InternalSwap(&other->_impl_.profiles_);
+  profiles_.InternalSwap(&other->profiles_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.schema_url_, lhs_arena,
-      &other->_impl_.schema_url_, rhs_arena
+      &schema_url_, lhs_arena,
+      &other->schema_url_, rhs_arena
   );
-  swap(_impl_.scope_, other->_impl_.scope_);
+  swap(scope_, other->scope_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ScopeProfiles::GetMetadata() const {
@@ -1749,104 +1697,82 @@ class Profile::_Internal {
 
 const ::opentelemetry::proto::profiles::v1development::ValueType&
 Profile::_Internal::sample_type(const Profile* msg) {
-  return *msg->_impl_.sample_type_;
+  return *msg->sample_type_;
 }
 const ::opentelemetry::proto::profiles::v1development::ValueType&
 Profile::_Internal::period_type(const Profile* msg) {
-  return *msg->_impl_.period_type_;
+  return *msg->period_type_;
 }
 Profile::Profile(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  samples_(arena),
+  attribute_indices_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.Profile)
 }
 Profile::Profile(const Profile& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Profile* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.samples_){from._impl_.samples_}
-    , decltype(_impl_.attribute_indices_){from._impl_.attribute_indices_}
-    , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-    , decltype(_impl_.profile_id_){}
-    , decltype(_impl_.original_payload_format_){}
-    , decltype(_impl_.original_payload_){}
-    , decltype(_impl_.sample_type_){nullptr}
-    , decltype(_impl_.period_type_){nullptr}
-    , decltype(_impl_.time_unix_nano_){}
-    , decltype(_impl_.duration_nano_){}
-    , decltype(_impl_.period_){}
-    , decltype(_impl_.dropped_attributes_count_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      samples_(from.samples_),
+      attribute_indices_(from.attribute_indices_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.profile_id_.InitDefault();
+  profile_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.profile_id_.Set("", GetArenaForAllocation());
+    profile_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_profile_id().empty()) {
-    _this->_impl_.profile_id_.Set(from._internal_profile_id(), 
-      _this->GetArenaForAllocation());
+    profile_id_.Set(from._internal_profile_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.original_payload_format_.InitDefault();
+  original_payload_format_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.original_payload_format_.Set("", GetArenaForAllocation());
+    original_payload_format_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_original_payload_format().empty()) {
-    _this->_impl_.original_payload_format_.Set(from._internal_original_payload_format(), 
-      _this->GetArenaForAllocation());
+    original_payload_format_.Set(from._internal_original_payload_format(), 
+      GetArenaForAllocation());
   }
-  _impl_.original_payload_.InitDefault();
+  original_payload_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.original_payload_.Set("", GetArenaForAllocation());
+    original_payload_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_original_payload().empty()) {
-    _this->_impl_.original_payload_.Set(from._internal_original_payload(), 
-      _this->GetArenaForAllocation());
+    original_payload_.Set(from._internal_original_payload(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_sample_type()) {
-    _this->_impl_.sample_type_ = new ::opentelemetry::proto::profiles::v1development::ValueType(*from._impl_.sample_type_);
+    sample_type_ = new ::opentelemetry::proto::profiles::v1development::ValueType(*from.sample_type_);
+  } else {
+    sample_type_ = nullptr;
   }
   if (from._internal_has_period_type()) {
-    _this->_impl_.period_type_ = new ::opentelemetry::proto::profiles::v1development::ValueType(*from._impl_.period_type_);
+    period_type_ = new ::opentelemetry::proto::profiles::v1development::ValueType(*from.period_type_);
+  } else {
+    period_type_ = nullptr;
   }
-  ::memcpy(&_impl_.time_unix_nano_, &from._impl_.time_unix_nano_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.dropped_attributes_count_) -
-    reinterpret_cast<char*>(&_impl_.time_unix_nano_)) + sizeof(_impl_.dropped_attributes_count_));
+  ::memcpy(&time_unix_nano_, &from.time_unix_nano_,
+    static_cast<size_t>(reinterpret_cast<char*>(&dropped_attributes_count_) -
+    reinterpret_cast<char*>(&time_unix_nano_)) + sizeof(dropped_attributes_count_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.Profile)
 }
 
-inline void Profile::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.samples_){arena}
-    , decltype(_impl_.attribute_indices_){arena}
-    , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-    , decltype(_impl_.profile_id_){}
-    , decltype(_impl_.original_payload_format_){}
-    , decltype(_impl_.original_payload_){}
-    , decltype(_impl_.sample_type_){nullptr}
-    , decltype(_impl_.period_type_){nullptr}
-    , decltype(_impl_.time_unix_nano_){uint64_t{0u}}
-    , decltype(_impl_.duration_nano_){uint64_t{0u}}
-    , decltype(_impl_.period_){int64_t{0}}
-    , decltype(_impl_.dropped_attributes_count_){0u}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.profile_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.profile_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.original_payload_format_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.original_payload_format_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.original_payload_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.original_payload_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void Profile::SharedCtor() {
+profile_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  profile_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+original_payload_format_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  original_payload_format_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+original_payload_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  original_payload_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&sample_type_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&dropped_attributes_count_) -
+    reinterpret_cast<char*>(&sample_type_)) + sizeof(dropped_attributes_count_));
 }
 
 Profile::~Profile() {
@@ -1860,17 +1786,15 @@ Profile::~Profile() {
 
 inline void Profile::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.samples_.~RepeatedPtrField();
-  _impl_.attribute_indices_.~RepeatedField();
-  _impl_.profile_id_.Destroy();
-  _impl_.original_payload_format_.Destroy();
-  _impl_.original_payload_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.sample_type_;
-  if (this != internal_default_instance()) delete _impl_.period_type_;
+  profile_id_.Destroy();
+  original_payload_format_.Destroy();
+  original_payload_.Destroy();
+  if (this != internal_default_instance()) delete sample_type_;
+  if (this != internal_default_instance()) delete period_type_;
 }
 
 void Profile::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Profile::Clear() {
@@ -1879,22 +1803,22 @@ void Profile::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.samples_.Clear();
-  _impl_.attribute_indices_.Clear();
-  _impl_.profile_id_.ClearToEmpty();
-  _impl_.original_payload_format_.ClearToEmpty();
-  _impl_.original_payload_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.sample_type_ != nullptr) {
-    delete _impl_.sample_type_;
+  samples_.Clear();
+  attribute_indices_.Clear();
+  profile_id_.ClearToEmpty();
+  original_payload_format_.ClearToEmpty();
+  original_payload_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && sample_type_ != nullptr) {
+    delete sample_type_;
   }
-  _impl_.sample_type_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.period_type_ != nullptr) {
-    delete _impl_.period_type_;
+  sample_type_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && period_type_ != nullptr) {
+    delete period_type_;
   }
-  _impl_.period_type_ = nullptr;
-  ::memset(&_impl_.time_unix_nano_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.dropped_attributes_count_) -
-      reinterpret_cast<char*>(&_impl_.time_unix_nano_)) + sizeof(_impl_.dropped_attributes_count_));
+  period_type_ = nullptr;
+  ::memset(&time_unix_nano_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&dropped_attributes_count_) -
+      reinterpret_cast<char*>(&time_unix_nano_)) + sizeof(dropped_attributes_count_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1928,7 +1852,7 @@ const char* Profile::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // fixed64 time_unix_nano = 3 [json_name = "timeUnixNano"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
-          _impl_.time_unix_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint64_t>(ptr);
+          time_unix_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<uint64_t>(ptr);
           ptr += sizeof(uint64_t);
         } else
           goto handle_unusual;
@@ -1936,7 +1860,7 @@ const char* Profile::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // uint64 duration_nano = 4 [json_name = "durationNano"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.duration_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          duration_nano_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1952,7 +1876,7 @@ const char* Profile::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // int64 period = 6 [json_name = "period"];
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.period_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          period_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1969,7 +1893,7 @@ const char* Profile::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // uint32 dropped_attributes_count = 8 [json_name = "droppedAttributesCount"];
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _impl_.dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2103,7 +2027,7 @@ uint8_t* Profile::_InternalSerialize(
 
   // repeated int32 attribute_indices = 11 [json_name = "attributeIndices"];
   {
-    int byte_size = _impl_._attribute_indices_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _attribute_indices_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt32Packed(
           11, _internal_attribute_indices(), byte_size, target);
@@ -2128,7 +2052,7 @@ size_t Profile::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.profiles.v1development.Sample samples = 2 [json_name = "samples"];
   total_size += 1UL * this->_internal_samples_size();
-  for (const auto& msg : this->_impl_.samples_) {
+  for (const auto& msg : this->samples_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -2136,13 +2060,13 @@ size_t Profile::ByteSizeLong() const {
   // repeated int32 attribute_indices = 11 [json_name = "attributeIndices"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.attribute_indices_);
+      Int32Size(this->attribute_indices_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._attribute_indices_cached_byte_size_.store(cached_size,
+    _attribute_indices_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -2172,14 +2096,14 @@ size_t Profile::ByteSizeLong() const {
   if (this->_internal_has_sample_type()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.sample_type_);
+        *sample_type_);
   }
 
   // .opentelemetry.proto.profiles.v1development.ValueType period_type = 5 [json_name = "periodType"];
   if (this->_internal_has_period_type()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.period_type_);
+        *period_type_);
   }
 
   // fixed64 time_unix_nano = 3 [json_name = "timeUnixNano"];
@@ -2202,56 +2126,58 @@ size_t Profile::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_dropped_attributes_count());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Profile::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Profile::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Profile::GetClassData() const { return &_class_data_; }
 
+void Profile::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Profile *>(to)->MergeFrom(
+      static_cast<const Profile &>(from));
+}
 
-void Profile::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Profile*>(&to_msg);
-  auto& from = static_cast<const Profile&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Profile)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Profile::MergeFrom(const Profile& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Profile)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.samples_.MergeFrom(from._impl_.samples_);
-  _this->_impl_.attribute_indices_.MergeFrom(from._impl_.attribute_indices_);
+  samples_.MergeFrom(from.samples_);
+  attribute_indices_.MergeFrom(from.attribute_indices_);
   if (!from._internal_profile_id().empty()) {
-    _this->_internal_set_profile_id(from._internal_profile_id());
+    _internal_set_profile_id(from._internal_profile_id());
   }
   if (!from._internal_original_payload_format().empty()) {
-    _this->_internal_set_original_payload_format(from._internal_original_payload_format());
+    _internal_set_original_payload_format(from._internal_original_payload_format());
   }
   if (!from._internal_original_payload().empty()) {
-    _this->_internal_set_original_payload(from._internal_original_payload());
+    _internal_set_original_payload(from._internal_original_payload());
   }
   if (from._internal_has_sample_type()) {
-    _this->_internal_mutable_sample_type()->::opentelemetry::proto::profiles::v1development::ValueType::MergeFrom(
-        from._internal_sample_type());
+    _internal_mutable_sample_type()->::opentelemetry::proto::profiles::v1development::ValueType::MergeFrom(from._internal_sample_type());
   }
   if (from._internal_has_period_type()) {
-    _this->_internal_mutable_period_type()->::opentelemetry::proto::profiles::v1development::ValueType::MergeFrom(
-        from._internal_period_type());
+    _internal_mutable_period_type()->::opentelemetry::proto::profiles::v1development::ValueType::MergeFrom(from._internal_period_type());
   }
   if (from._internal_time_unix_nano() != 0) {
-    _this->_internal_set_time_unix_nano(from._internal_time_unix_nano());
+    _internal_set_time_unix_nano(from._internal_time_unix_nano());
   }
   if (from._internal_duration_nano() != 0) {
-    _this->_internal_set_duration_nano(from._internal_duration_nano());
+    _internal_set_duration_nano(from._internal_duration_nano());
   }
   if (from._internal_period() != 0) {
-    _this->_internal_set_period(from._internal_period());
+    _internal_set_period(from._internal_period());
   }
   if (from._internal_dropped_attributes_count() != 0) {
-    _this->_internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
+    _internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Profile::CopyFrom(const Profile& from) {
@@ -2270,26 +2196,26 @@ void Profile::InternalSwap(Profile* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.samples_.InternalSwap(&other->_impl_.samples_);
-  _impl_.attribute_indices_.InternalSwap(&other->_impl_.attribute_indices_);
+  samples_.InternalSwap(&other->samples_);
+  attribute_indices_.InternalSwap(&other->attribute_indices_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.profile_id_, lhs_arena,
-      &other->_impl_.profile_id_, rhs_arena
+      &profile_id_, lhs_arena,
+      &other->profile_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.original_payload_format_, lhs_arena,
-      &other->_impl_.original_payload_format_, rhs_arena
+      &original_payload_format_, lhs_arena,
+      &other->original_payload_format_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.original_payload_, lhs_arena,
-      &other->_impl_.original_payload_, rhs_arena
+      &original_payload_, lhs_arena,
+      &other->original_payload_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Profile, _impl_.dropped_attributes_count_)
-      + sizeof(Profile::_impl_.dropped_attributes_count_)
-      - PROTOBUF_FIELD_OFFSET(Profile, _impl_.sample_type_)>(
-          reinterpret_cast<char*>(&_impl_.sample_type_),
-          reinterpret_cast<char*>(&other->_impl_.sample_type_));
+      PROTOBUF_FIELD_OFFSET(Profile, dropped_attributes_count_)
+      + sizeof(Profile::dropped_attributes_count_)
+      - PROTOBUF_FIELD_OFFSET(Profile, sample_type_)>(
+          reinterpret_cast<char*>(&sample_type_),
+          reinterpret_cast<char*>(&other->sample_type_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Profile::GetMetadata() const {
@@ -2307,54 +2233,40 @@ class Link::_Internal {
 Link::Link(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.Link)
 }
 Link::Link(const Link& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Link* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.trace_id_){}
-    , decltype(_impl_.span_id_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.trace_id_.InitDefault();
+  trace_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.trace_id_.Set("", GetArenaForAllocation());
+    trace_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_trace_id().empty()) {
-    _this->_impl_.trace_id_.Set(from._internal_trace_id(), 
-      _this->GetArenaForAllocation());
+    trace_id_.Set(from._internal_trace_id(), 
+      GetArenaForAllocation());
   }
-  _impl_.span_id_.InitDefault();
+  span_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.span_id_.Set("", GetArenaForAllocation());
+    span_id_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_span_id().empty()) {
-    _this->_impl_.span_id_.Set(from._internal_span_id(), 
-      _this->GetArenaForAllocation());
+    span_id_.Set(from._internal_span_id(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.Link)
 }
 
-inline void Link::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.trace_id_){}
-    , decltype(_impl_.span_id_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.trace_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.trace_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.span_id_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.span_id_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void Link::SharedCtor() {
+trace_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  trace_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+span_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  span_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Link::~Link() {
@@ -2368,12 +2280,12 @@ Link::~Link() {
 
 inline void Link::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.trace_id_.Destroy();
-  _impl_.span_id_.Destroy();
+  trace_id_.Destroy();
+  span_id_.Destroy();
 }
 
 void Link::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Link::Clear() {
@@ -2382,8 +2294,8 @@ void Link::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.trace_id_.ClearToEmpty();
-  _impl_.span_id_.ClearToEmpty();
+  trace_id_.ClearToEmpty();
+  span_id_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2482,31 +2394,35 @@ size_t Link::ByteSizeLong() const {
         this->_internal_span_id());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Link::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Link::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Link::GetClassData() const { return &_class_data_; }
 
+void Link::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Link *>(to)->MergeFrom(
+      static_cast<const Link &>(from));
+}
 
-void Link::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Link*>(&to_msg);
-  auto& from = static_cast<const Link&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Link)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Link::MergeFrom(const Link& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Link)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_trace_id().empty()) {
-    _this->_internal_set_trace_id(from._internal_trace_id());
+    _internal_set_trace_id(from._internal_trace_id());
   }
   if (!from._internal_span_id().empty()) {
-    _this->_internal_set_span_id(from._internal_span_id());
+    _internal_set_span_id(from._internal_span_id());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Link::CopyFrom(const Link& from) {
@@ -2526,12 +2442,12 @@ void Link::InternalSwap(Link* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.trace_id_, lhs_arena,
-      &other->_impl_.trace_id_, rhs_arena
+      &trace_id_, lhs_arena,
+      &other->trace_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.span_id_, lhs_arena,
-      &other->_impl_.span_id_, rhs_arena
+      &span_id_, lhs_arena,
+      &other->span_id_, rhs_arena
   );
 }
 
@@ -2550,33 +2466,23 @@ class ValueType::_Internal {
 ValueType::ValueType(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.ValueType)
 }
 ValueType::ValueType(const ValueType& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ValueType* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_strindex_){}
-    , decltype(_impl_.unit_strindex_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.type_strindex_, &from._impl_.type_strindex_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.unit_strindex_) -
-    reinterpret_cast<char*>(&_impl_.type_strindex_)) + sizeof(_impl_.unit_strindex_));
+  ::memcpy(&type_strindex_, &from.type_strindex_,
+    static_cast<size_t>(reinterpret_cast<char*>(&unit_strindex_) -
+    reinterpret_cast<char*>(&type_strindex_)) + sizeof(unit_strindex_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.ValueType)
 }
 
-inline void ValueType::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_strindex_){0}
-    , decltype(_impl_.unit_strindex_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ValueType::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&type_strindex_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&unit_strindex_) -
+    reinterpret_cast<char*>(&type_strindex_)) + sizeof(unit_strindex_));
 }
 
 ValueType::~ValueType() {
@@ -2593,7 +2499,7 @@ inline void ValueType::SharedDtor() {
 }
 
 void ValueType::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ValueType::Clear() {
@@ -2602,9 +2508,9 @@ void ValueType::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.type_strindex_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.unit_strindex_) -
-      reinterpret_cast<char*>(&_impl_.type_strindex_)) + sizeof(_impl_.unit_strindex_));
+  ::memset(&type_strindex_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&unit_strindex_) -
+      reinterpret_cast<char*>(&type_strindex_)) + sizeof(unit_strindex_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2617,7 +2523,7 @@ const char* ValueType::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       // int32 type_strindex = 1 [json_name = "typeStrindex"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.type_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          type_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2625,7 +2531,7 @@ const char* ValueType::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx
       // int32 unit_strindex = 2 [json_name = "unitStrindex"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.unit_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          unit_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2697,31 +2603,35 @@ size_t ValueType::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_unit_strindex());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ValueType::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ValueType::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ValueType::GetClassData() const { return &_class_data_; }
 
+void ValueType::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ValueType *>(to)->MergeFrom(
+      static_cast<const ValueType &>(from));
+}
 
-void ValueType::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ValueType*>(&to_msg);
-  auto& from = static_cast<const ValueType&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ValueType)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ValueType::MergeFrom(const ValueType& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.ValueType)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_type_strindex() != 0) {
-    _this->_internal_set_type_strindex(from._internal_type_strindex());
+    _internal_set_type_strindex(from._internal_type_strindex());
   }
   if (from._internal_unit_strindex() != 0) {
-    _this->_internal_set_unit_strindex(from._internal_unit_strindex());
+    _internal_set_unit_strindex(from._internal_unit_strindex());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ValueType::CopyFrom(const ValueType& from) {
@@ -2739,11 +2649,11 @@ void ValueType::InternalSwap(ValueType* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ValueType, _impl_.unit_strindex_)
-      + sizeof(ValueType::_impl_.unit_strindex_)
-      - PROTOBUF_FIELD_OFFSET(ValueType, _impl_.type_strindex_)>(
-          reinterpret_cast<char*>(&_impl_.type_strindex_),
-          reinterpret_cast<char*>(&other->_impl_.type_strindex_));
+      PROTOBUF_FIELD_OFFSET(ValueType, unit_strindex_)
+      + sizeof(ValueType::unit_strindex_)
+      - PROTOBUF_FIELD_OFFSET(ValueType, type_strindex_)>(
+          reinterpret_cast<char*>(&type_strindex_),
+          reinterpret_cast<char*>(&other->type_strindex_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ValueType::GetMetadata() const {
@@ -2760,44 +2670,30 @@ class Sample::_Internal {
 
 Sample::Sample(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  values_(arena),
+  attribute_indices_(arena),
+  timestamps_unix_nano_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.Sample)
 }
 Sample::Sample(const Sample& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Sample* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.values_){from._impl_.values_}
-    , /*decltype(_impl_._values_cached_byte_size_)*/{0}
-    , decltype(_impl_.attribute_indices_){from._impl_.attribute_indices_}
-    , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-    , decltype(_impl_.timestamps_unix_nano_){from._impl_.timestamps_unix_nano_}
-    , decltype(_impl_.stack_index_){}
-    , decltype(_impl_.link_index_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      values_(from.values_),
+      attribute_indices_(from.attribute_indices_),
+      timestamps_unix_nano_(from.timestamps_unix_nano_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.stack_index_, &from._impl_.stack_index_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.link_index_) -
-    reinterpret_cast<char*>(&_impl_.stack_index_)) + sizeof(_impl_.link_index_));
+  ::memcpy(&stack_index_, &from.stack_index_,
+    static_cast<size_t>(reinterpret_cast<char*>(&link_index_) -
+    reinterpret_cast<char*>(&stack_index_)) + sizeof(link_index_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.Sample)
 }
 
-inline void Sample::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.values_){arena}
-    , /*decltype(_impl_._values_cached_byte_size_)*/{0}
-    , decltype(_impl_.attribute_indices_){arena}
-    , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-    , decltype(_impl_.timestamps_unix_nano_){arena}
-    , decltype(_impl_.stack_index_){0}
-    , decltype(_impl_.link_index_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Sample::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&stack_index_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&link_index_) -
+    reinterpret_cast<char*>(&stack_index_)) + sizeof(link_index_));
 }
 
 Sample::~Sample() {
@@ -2811,13 +2707,10 @@ Sample::~Sample() {
 
 inline void Sample::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.values_.~RepeatedField();
-  _impl_.attribute_indices_.~RepeatedField();
-  _impl_.timestamps_unix_nano_.~RepeatedField();
 }
 
 void Sample::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Sample::Clear() {
@@ -2826,12 +2719,12 @@ void Sample::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.values_.Clear();
-  _impl_.attribute_indices_.Clear();
-  _impl_.timestamps_unix_nano_.Clear();
-  ::memset(&_impl_.stack_index_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.link_index_) -
-      reinterpret_cast<char*>(&_impl_.stack_index_)) + sizeof(_impl_.link_index_));
+  values_.Clear();
+  attribute_indices_.Clear();
+  timestamps_unix_nano_.Clear();
+  ::memset(&stack_index_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&link_index_) -
+      reinterpret_cast<char*>(&stack_index_)) + sizeof(link_index_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2844,7 +2737,7 @@ const char* Sample::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // int32 stack_index = 1 [json_name = "stackIndex"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.stack_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          stack_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2874,7 +2767,7 @@ const char* Sample::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // int32 link_index = 4 [json_name = "linkIndex"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.link_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          link_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2927,7 +2820,7 @@ uint8_t* Sample::_InternalSerialize(
 
   // repeated int64 values = 2 [json_name = "values"];
   {
-    int byte_size = _impl_._values_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _values_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt64Packed(
           2, _internal_values(), byte_size, target);
@@ -2936,7 +2829,7 @@ uint8_t* Sample::_InternalSerialize(
 
   // repeated int32 attribute_indices = 3 [json_name = "attributeIndices"];
   {
-    int byte_size = _impl_._attribute_indices_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _attribute_indices_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt32Packed(
           3, _internal_attribute_indices(), byte_size, target);
@@ -2973,13 +2866,13 @@ size_t Sample::ByteSizeLong() const {
   // repeated int64 values = 2 [json_name = "values"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int64Size(this->_impl_.values_);
+      Int64Size(this->values_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._values_cached_byte_size_.store(cached_size,
+    _values_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -2987,13 +2880,13 @@ size_t Sample::ByteSizeLong() const {
   // repeated int32 attribute_indices = 3 [json_name = "attributeIndices"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.attribute_indices_);
+      Int32Size(this->attribute_indices_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._attribute_indices_cached_byte_size_.store(cached_size,
+    _attribute_indices_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -3019,34 +2912,38 @@ size_t Sample::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_link_index());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Sample::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Sample::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Sample::GetClassData() const { return &_class_data_; }
 
+void Sample::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Sample *>(to)->MergeFrom(
+      static_cast<const Sample &>(from));
+}
 
-void Sample::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Sample*>(&to_msg);
-  auto& from = static_cast<const Sample&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Sample)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Sample::MergeFrom(const Sample& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Sample)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.values_.MergeFrom(from._impl_.values_);
-  _this->_impl_.attribute_indices_.MergeFrom(from._impl_.attribute_indices_);
-  _this->_impl_.timestamps_unix_nano_.MergeFrom(from._impl_.timestamps_unix_nano_);
+  values_.MergeFrom(from.values_);
+  attribute_indices_.MergeFrom(from.attribute_indices_);
+  timestamps_unix_nano_.MergeFrom(from.timestamps_unix_nano_);
   if (from._internal_stack_index() != 0) {
-    _this->_internal_set_stack_index(from._internal_stack_index());
+    _internal_set_stack_index(from._internal_stack_index());
   }
   if (from._internal_link_index() != 0) {
-    _this->_internal_set_link_index(from._internal_link_index());
+    _internal_set_link_index(from._internal_link_index());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Sample::CopyFrom(const Sample& from) {
@@ -3063,15 +2960,15 @@ bool Sample::IsInitialized() const {
 void Sample::InternalSwap(Sample* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.values_.InternalSwap(&other->_impl_.values_);
-  _impl_.attribute_indices_.InternalSwap(&other->_impl_.attribute_indices_);
-  _impl_.timestamps_unix_nano_.InternalSwap(&other->_impl_.timestamps_unix_nano_);
+  values_.InternalSwap(&other->values_);
+  attribute_indices_.InternalSwap(&other->attribute_indices_);
+  timestamps_unix_nano_.InternalSwap(&other->timestamps_unix_nano_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Sample, _impl_.link_index_)
-      + sizeof(Sample::_impl_.link_index_)
-      - PROTOBUF_FIELD_OFFSET(Sample, _impl_.stack_index_)>(
-          reinterpret_cast<char*>(&_impl_.stack_index_),
-          reinterpret_cast<char*>(&other->_impl_.stack_index_));
+      PROTOBUF_FIELD_OFFSET(Sample, link_index_)
+      + sizeof(Sample::link_index_)
+      - PROTOBUF_FIELD_OFFSET(Sample, stack_index_)>(
+          reinterpret_cast<char*>(&stack_index_),
+          reinterpret_cast<char*>(&other->stack_index_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Sample::GetMetadata() const {
@@ -3088,42 +2985,26 @@ class Mapping::_Internal {
 
 Mapping::Mapping(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  attribute_indices_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.Mapping)
 }
 Mapping::Mapping(const Mapping& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Mapping* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.attribute_indices_){from._impl_.attribute_indices_}
-    , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-    , decltype(_impl_.memory_start_){}
-    , decltype(_impl_.memory_limit_){}
-    , decltype(_impl_.file_offset_){}
-    , decltype(_impl_.filename_strindex_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      attribute_indices_(from.attribute_indices_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.memory_start_, &from._impl_.memory_start_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.filename_strindex_) -
-    reinterpret_cast<char*>(&_impl_.memory_start_)) + sizeof(_impl_.filename_strindex_));
+  ::memcpy(&memory_start_, &from.memory_start_,
+    static_cast<size_t>(reinterpret_cast<char*>(&filename_strindex_) -
+    reinterpret_cast<char*>(&memory_start_)) + sizeof(filename_strindex_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.Mapping)
 }
 
-inline void Mapping::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.attribute_indices_){arena}
-    , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-    , decltype(_impl_.memory_start_){uint64_t{0u}}
-    , decltype(_impl_.memory_limit_){uint64_t{0u}}
-    , decltype(_impl_.file_offset_){uint64_t{0u}}
-    , decltype(_impl_.filename_strindex_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Mapping::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&memory_start_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&filename_strindex_) -
+    reinterpret_cast<char*>(&memory_start_)) + sizeof(filename_strindex_));
 }
 
 Mapping::~Mapping() {
@@ -3137,11 +3018,10 @@ Mapping::~Mapping() {
 
 inline void Mapping::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.attribute_indices_.~RepeatedField();
 }
 
 void Mapping::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Mapping::Clear() {
@@ -3150,10 +3030,10 @@ void Mapping::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.attribute_indices_.Clear();
-  ::memset(&_impl_.memory_start_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.filename_strindex_) -
-      reinterpret_cast<char*>(&_impl_.memory_start_)) + sizeof(_impl_.filename_strindex_));
+  attribute_indices_.Clear();
+  ::memset(&memory_start_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&filename_strindex_) -
+      reinterpret_cast<char*>(&memory_start_)) + sizeof(filename_strindex_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3166,7 +3046,7 @@ const char* Mapping::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // uint64 memory_start = 1 [json_name = "memoryStart"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.memory_start_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          memory_start_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3174,7 +3054,7 @@ const char* Mapping::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // uint64 memory_limit = 2 [json_name = "memoryLimit"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.memory_limit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          memory_limit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3182,7 +3062,7 @@ const char* Mapping::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // uint64 file_offset = 3 [json_name = "fileOffset"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.file_offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          file_offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3190,7 +3070,7 @@ const char* Mapping::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // int32 filename_strindex = 4 [json_name = "filenameStrindex"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.filename_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          filename_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3261,7 +3141,7 @@ uint8_t* Mapping::_InternalSerialize(
 
   // repeated int32 attribute_indices = 5 [json_name = "attributeIndices"];
   {
-    int byte_size = _impl_._attribute_indices_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _attribute_indices_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt32Packed(
           5, _internal_attribute_indices(), byte_size, target);
@@ -3287,13 +3167,13 @@ size_t Mapping::ByteSizeLong() const {
   // repeated int32 attribute_indices = 5 [json_name = "attributeIndices"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.attribute_indices_);
+      Int32Size(this->attribute_indices_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._attribute_indices_cached_byte_size_.store(cached_size,
+    _attribute_indices_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -3318,38 +3198,42 @@ size_t Mapping::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_filename_strindex());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Mapping::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Mapping::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Mapping::GetClassData() const { return &_class_data_; }
 
+void Mapping::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Mapping *>(to)->MergeFrom(
+      static_cast<const Mapping &>(from));
+}
 
-void Mapping::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Mapping*>(&to_msg);
-  auto& from = static_cast<const Mapping&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Mapping)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Mapping::MergeFrom(const Mapping& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Mapping)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.attribute_indices_.MergeFrom(from._impl_.attribute_indices_);
+  attribute_indices_.MergeFrom(from.attribute_indices_);
   if (from._internal_memory_start() != 0) {
-    _this->_internal_set_memory_start(from._internal_memory_start());
+    _internal_set_memory_start(from._internal_memory_start());
   }
   if (from._internal_memory_limit() != 0) {
-    _this->_internal_set_memory_limit(from._internal_memory_limit());
+    _internal_set_memory_limit(from._internal_memory_limit());
   }
   if (from._internal_file_offset() != 0) {
-    _this->_internal_set_file_offset(from._internal_file_offset());
+    _internal_set_file_offset(from._internal_file_offset());
   }
   if (from._internal_filename_strindex() != 0) {
-    _this->_internal_set_filename_strindex(from._internal_filename_strindex());
+    _internal_set_filename_strindex(from._internal_filename_strindex());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Mapping::CopyFrom(const Mapping& from) {
@@ -3366,13 +3250,13 @@ bool Mapping::IsInitialized() const {
 void Mapping::InternalSwap(Mapping* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.attribute_indices_.InternalSwap(&other->_impl_.attribute_indices_);
+  attribute_indices_.InternalSwap(&other->attribute_indices_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Mapping, _impl_.filename_strindex_)
-      + sizeof(Mapping::_impl_.filename_strindex_)
-      - PROTOBUF_FIELD_OFFSET(Mapping, _impl_.memory_start_)>(
-          reinterpret_cast<char*>(&_impl_.memory_start_),
-          reinterpret_cast<char*>(&other->_impl_.memory_start_));
+      PROTOBUF_FIELD_OFFSET(Mapping, filename_strindex_)
+      + sizeof(Mapping::filename_strindex_)
+      - PROTOBUF_FIELD_OFFSET(Mapping, memory_start_)>(
+          reinterpret_cast<char*>(&memory_start_),
+          reinterpret_cast<char*>(&other->memory_start_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Mapping::GetMetadata() const {
@@ -3389,31 +3273,19 @@ class Stack::_Internal {
 
 Stack::Stack(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  location_indices_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.Stack)
 }
 Stack::Stack(const Stack& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Stack* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.location_indices_){from._impl_.location_indices_}
-    , /*decltype(_impl_._location_indices_cached_byte_size_)*/{0}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      location_indices_(from.location_indices_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.Stack)
 }
 
-inline void Stack::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.location_indices_){arena}
-    , /*decltype(_impl_._location_indices_cached_byte_size_)*/{0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Stack::SharedCtor() {
 }
 
 Stack::~Stack() {
@@ -3427,11 +3299,10 @@ Stack::~Stack() {
 
 inline void Stack::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.location_indices_.~RepeatedField();
 }
 
 void Stack::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Stack::Clear() {
@@ -3440,7 +3311,7 @@ void Stack::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.location_indices_.Clear();
+  location_indices_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3492,7 +3363,7 @@ uint8_t* Stack::_InternalSerialize(
 
   // repeated int32 location_indices = 1 [json_name = "locationIndices"];
   {
-    int byte_size = _impl_._location_indices_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _location_indices_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt32Packed(
           1, _internal_location_indices(), byte_size, target);
@@ -3518,37 +3389,41 @@ size_t Stack::ByteSizeLong() const {
   // repeated int32 location_indices = 1 [json_name = "locationIndices"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.location_indices_);
+      Int32Size(this->location_indices_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._location_indices_cached_byte_size_.store(cached_size,
+    _location_indices_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Stack::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Stack::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Stack::GetClassData() const { return &_class_data_; }
 
+void Stack::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Stack *>(to)->MergeFrom(
+      static_cast<const Stack &>(from));
+}
 
-void Stack::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Stack*>(&to_msg);
-  auto& from = static_cast<const Stack&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Stack)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Stack::MergeFrom(const Stack& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Stack)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.location_indices_.MergeFrom(from._impl_.location_indices_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  location_indices_.MergeFrom(from.location_indices_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Stack::CopyFrom(const Stack& from) {
@@ -3565,7 +3440,7 @@ bool Stack::IsInitialized() const {
 void Stack::InternalSwap(Stack* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.location_indices_.InternalSwap(&other->_impl_.location_indices_);
+  location_indices_.InternalSwap(&other->location_indices_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Stack::GetMetadata() const {
@@ -3582,40 +3457,28 @@ class Location::_Internal {
 
 Location::Location(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  lines_(arena),
+  attribute_indices_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.Location)
 }
 Location::Location(const Location& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Location* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.lines_){from._impl_.lines_}
-    , decltype(_impl_.attribute_indices_){from._impl_.attribute_indices_}
-    , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-    , decltype(_impl_.address_){}
-    , decltype(_impl_.mapping_index_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      lines_(from.lines_),
+      attribute_indices_(from.attribute_indices_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.address_, &from._impl_.address_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.mapping_index_) -
-    reinterpret_cast<char*>(&_impl_.address_)) + sizeof(_impl_.mapping_index_));
+  ::memcpy(&address_, &from.address_,
+    static_cast<size_t>(reinterpret_cast<char*>(&mapping_index_) -
+    reinterpret_cast<char*>(&address_)) + sizeof(mapping_index_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.Location)
 }
 
-inline void Location::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.lines_){arena}
-    , decltype(_impl_.attribute_indices_){arena}
-    , /*decltype(_impl_._attribute_indices_cached_byte_size_)*/{0}
-    , decltype(_impl_.address_){uint64_t{0u}}
-    , decltype(_impl_.mapping_index_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Location::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&address_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&mapping_index_) -
+    reinterpret_cast<char*>(&address_)) + sizeof(mapping_index_));
 }
 
 Location::~Location() {
@@ -3629,12 +3492,10 @@ Location::~Location() {
 
 inline void Location::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.lines_.~RepeatedPtrField();
-  _impl_.attribute_indices_.~RepeatedField();
 }
 
 void Location::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Location::Clear() {
@@ -3643,11 +3504,11 @@ void Location::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.lines_.Clear();
-  _impl_.attribute_indices_.Clear();
-  ::memset(&_impl_.address_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.mapping_index_) -
-      reinterpret_cast<char*>(&_impl_.address_)) + sizeof(_impl_.mapping_index_));
+  lines_.Clear();
+  attribute_indices_.Clear();
+  ::memset(&address_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&mapping_index_) -
+      reinterpret_cast<char*>(&address_)) + sizeof(mapping_index_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3660,7 +3521,7 @@ const char* Location::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // int32 mapping_index = 1 [json_name = "mappingIndex"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.mapping_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          mapping_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3668,7 +3529,7 @@ const char* Location::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // uint64 address = 2 [json_name = "address"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.address_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          address_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3748,7 +3609,7 @@ uint8_t* Location::_InternalSerialize(
 
   // repeated int32 attribute_indices = 4 [json_name = "attributeIndices"];
   {
-    int byte_size = _impl_._attribute_indices_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _attribute_indices_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt32Packed(
           4, _internal_attribute_indices(), byte_size, target);
@@ -3773,7 +3634,7 @@ size_t Location::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.profiles.v1development.Line lines = 3 [json_name = "lines"];
   total_size += 1UL * this->_internal_lines_size();
-  for (const auto& msg : this->_impl_.lines_) {
+  for (const auto& msg : this->lines_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -3781,13 +3642,13 @@ size_t Location::ByteSizeLong() const {
   // repeated int32 attribute_indices = 4 [json_name = "attributeIndices"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.attribute_indices_);
+      Int32Size(this->attribute_indices_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._attribute_indices_cached_byte_size_.store(cached_size,
+    _attribute_indices_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -3802,33 +3663,37 @@ size_t Location::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_mapping_index());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Location::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Location::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Location::GetClassData() const { return &_class_data_; }
 
+void Location::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Location *>(to)->MergeFrom(
+      static_cast<const Location &>(from));
+}
 
-void Location::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Location*>(&to_msg);
-  auto& from = static_cast<const Location&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Location)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Location::MergeFrom(const Location& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Location)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.lines_.MergeFrom(from._impl_.lines_);
-  _this->_impl_.attribute_indices_.MergeFrom(from._impl_.attribute_indices_);
+  lines_.MergeFrom(from.lines_);
+  attribute_indices_.MergeFrom(from.attribute_indices_);
   if (from._internal_address() != 0) {
-    _this->_internal_set_address(from._internal_address());
+    _internal_set_address(from._internal_address());
   }
   if (from._internal_mapping_index() != 0) {
-    _this->_internal_set_mapping_index(from._internal_mapping_index());
+    _internal_set_mapping_index(from._internal_mapping_index());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Location::CopyFrom(const Location& from) {
@@ -3845,14 +3710,14 @@ bool Location::IsInitialized() const {
 void Location::InternalSwap(Location* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.lines_.InternalSwap(&other->_impl_.lines_);
-  _impl_.attribute_indices_.InternalSwap(&other->_impl_.attribute_indices_);
+  lines_.InternalSwap(&other->lines_);
+  attribute_indices_.InternalSwap(&other->attribute_indices_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Location, _impl_.mapping_index_)
-      + sizeof(Location::_impl_.mapping_index_)
-      - PROTOBUF_FIELD_OFFSET(Location, _impl_.address_)>(
-          reinterpret_cast<char*>(&_impl_.address_),
-          reinterpret_cast<char*>(&other->_impl_.address_));
+      PROTOBUF_FIELD_OFFSET(Location, mapping_index_)
+      + sizeof(Location::mapping_index_)
+      - PROTOBUF_FIELD_OFFSET(Location, address_)>(
+          reinterpret_cast<char*>(&address_),
+          reinterpret_cast<char*>(&other->address_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Location::GetMetadata() const {
@@ -3870,35 +3735,23 @@ class Line::_Internal {
 Line::Line(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.Line)
 }
 Line::Line(const Line& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Line* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.line_){}
-    , decltype(_impl_.column_){}
-    , decltype(_impl_.function_index_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.line_, &from._impl_.line_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.function_index_) -
-    reinterpret_cast<char*>(&_impl_.line_)) + sizeof(_impl_.function_index_));
+  ::memcpy(&line_, &from.line_,
+    static_cast<size_t>(reinterpret_cast<char*>(&function_index_) -
+    reinterpret_cast<char*>(&line_)) + sizeof(function_index_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.Line)
 }
 
-inline void Line::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.line_){int64_t{0}}
-    , decltype(_impl_.column_){int64_t{0}}
-    , decltype(_impl_.function_index_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Line::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&line_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&function_index_) -
+    reinterpret_cast<char*>(&line_)) + sizeof(function_index_));
 }
 
 Line::~Line() {
@@ -3915,7 +3768,7 @@ inline void Line::SharedDtor() {
 }
 
 void Line::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Line::Clear() {
@@ -3924,9 +3777,9 @@ void Line::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.line_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.function_index_) -
-      reinterpret_cast<char*>(&_impl_.line_)) + sizeof(_impl_.function_index_));
+  ::memset(&line_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&function_index_) -
+      reinterpret_cast<char*>(&line_)) + sizeof(function_index_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3939,7 +3792,7 @@ const char* Line::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // int32 function_index = 1 [json_name = "functionIndex"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.function_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          function_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3947,7 +3800,7 @@ const char* Line::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // int64 line = 2 [json_name = "line"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.line_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          line_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3955,7 +3808,7 @@ const char* Line::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // int64 column = 3 [json_name = "column"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.column_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          column_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4038,34 +3891,38 @@ size_t Line::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_function_index());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Line::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Line::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Line::GetClassData() const { return &_class_data_; }
 
+void Line::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Line *>(to)->MergeFrom(
+      static_cast<const Line &>(from));
+}
 
-void Line::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Line*>(&to_msg);
-  auto& from = static_cast<const Line&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Line)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Line::MergeFrom(const Line& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Line)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_line() != 0) {
-    _this->_internal_set_line(from._internal_line());
+    _internal_set_line(from._internal_line());
   }
   if (from._internal_column() != 0) {
-    _this->_internal_set_column(from._internal_column());
+    _internal_set_column(from._internal_column());
   }
   if (from._internal_function_index() != 0) {
-    _this->_internal_set_function_index(from._internal_function_index());
+    _internal_set_function_index(from._internal_function_index());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Line::CopyFrom(const Line& from) {
@@ -4083,11 +3940,11 @@ void Line::InternalSwap(Line* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Line, _impl_.function_index_)
-      + sizeof(Line::_impl_.function_index_)
-      - PROTOBUF_FIELD_OFFSET(Line, _impl_.line_)>(
-          reinterpret_cast<char*>(&_impl_.line_),
-          reinterpret_cast<char*>(&other->_impl_.line_));
+      PROTOBUF_FIELD_OFFSET(Line, function_index_)
+      + sizeof(Line::function_index_)
+      - PROTOBUF_FIELD_OFFSET(Line, line_)>(
+          reinterpret_cast<char*>(&line_),
+          reinterpret_cast<char*>(&other->line_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Line::GetMetadata() const {
@@ -4105,37 +3962,23 @@ class Function::_Internal {
 Function::Function(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.Function)
 }
 Function::Function(const Function& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Function* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_strindex_){}
-    , decltype(_impl_.system_name_strindex_){}
-    , decltype(_impl_.start_line_){}
-    , decltype(_impl_.filename_strindex_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.name_strindex_, &from._impl_.name_strindex_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.filename_strindex_) -
-    reinterpret_cast<char*>(&_impl_.name_strindex_)) + sizeof(_impl_.filename_strindex_));
+  ::memcpy(&name_strindex_, &from.name_strindex_,
+    static_cast<size_t>(reinterpret_cast<char*>(&filename_strindex_) -
+    reinterpret_cast<char*>(&name_strindex_)) + sizeof(filename_strindex_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.Function)
 }
 
-inline void Function::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_strindex_){0}
-    , decltype(_impl_.system_name_strindex_){0}
-    , decltype(_impl_.start_line_){int64_t{0}}
-    , decltype(_impl_.filename_strindex_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Function::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&name_strindex_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&filename_strindex_) -
+    reinterpret_cast<char*>(&name_strindex_)) + sizeof(filename_strindex_));
 }
 
 Function::~Function() {
@@ -4152,7 +3995,7 @@ inline void Function::SharedDtor() {
 }
 
 void Function::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Function::Clear() {
@@ -4161,9 +4004,9 @@ void Function::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.name_strindex_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.filename_strindex_) -
-      reinterpret_cast<char*>(&_impl_.name_strindex_)) + sizeof(_impl_.filename_strindex_));
+  ::memset(&name_strindex_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&filename_strindex_) -
+      reinterpret_cast<char*>(&name_strindex_)) + sizeof(filename_strindex_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4176,7 +4019,7 @@ const char* Function::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // int32 name_strindex = 1 [json_name = "nameStrindex"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.name_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          name_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4184,7 +4027,7 @@ const char* Function::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // int32 system_name_strindex = 2 [json_name = "systemNameStrindex"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.system_name_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          system_name_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4192,7 +4035,7 @@ const char* Function::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // int32 filename_strindex = 3 [json_name = "filenameStrindex"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.filename_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          filename_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4200,7 +4043,7 @@ const char* Function::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // int64 start_line = 4 [json_name = "startLine"];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.start_line_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          start_line_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4294,37 +4137,41 @@ size_t Function::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_filename_strindex());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Function::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Function::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Function::GetClassData() const { return &_class_data_; }
 
+void Function::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Function *>(to)->MergeFrom(
+      static_cast<const Function &>(from));
+}
 
-void Function::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Function*>(&to_msg);
-  auto& from = static_cast<const Function&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Function)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Function::MergeFrom(const Function& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.Function)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_name_strindex() != 0) {
-    _this->_internal_set_name_strindex(from._internal_name_strindex());
+    _internal_set_name_strindex(from._internal_name_strindex());
   }
   if (from._internal_system_name_strindex() != 0) {
-    _this->_internal_set_system_name_strindex(from._internal_system_name_strindex());
+    _internal_set_system_name_strindex(from._internal_system_name_strindex());
   }
   if (from._internal_start_line() != 0) {
-    _this->_internal_set_start_line(from._internal_start_line());
+    _internal_set_start_line(from._internal_start_line());
   }
   if (from._internal_filename_strindex() != 0) {
-    _this->_internal_set_filename_strindex(from._internal_filename_strindex());
+    _internal_set_filename_strindex(from._internal_filename_strindex());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Function::CopyFrom(const Function& from) {
@@ -4342,11 +4189,11 @@ void Function::InternalSwap(Function* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Function, _impl_.filename_strindex_)
-      + sizeof(Function::_impl_.filename_strindex_)
-      - PROTOBUF_FIELD_OFFSET(Function, _impl_.name_strindex_)>(
-          reinterpret_cast<char*>(&_impl_.name_strindex_),
-          reinterpret_cast<char*>(&other->_impl_.name_strindex_));
+      PROTOBUF_FIELD_OFFSET(Function, filename_strindex_)
+      + sizeof(Function::filename_strindex_)
+      - PROTOBUF_FIELD_OFFSET(Function, name_strindex_)>(
+          reinterpret_cast<char*>(&name_strindex_),
+          reinterpret_cast<char*>(&other->name_strindex_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Function::GetMetadata() const {
@@ -4364,49 +4211,39 @@ class KeyValueAndUnit::_Internal {
 
 const ::opentelemetry::proto::common::v1::AnyValue&
 KeyValueAndUnit::_Internal::value(const KeyValueAndUnit* msg) {
-  return *msg->_impl_.value_;
+  return *msg->value_;
 }
 void KeyValueAndUnit::clear_value() {
-  if (GetArenaForAllocation() == nullptr && _impl_.value_ != nullptr) {
-    delete _impl_.value_;
+  if (GetArenaForAllocation() == nullptr && value_ != nullptr) {
+    delete value_;
   }
-  _impl_.value_ = nullptr;
+  value_ = nullptr;
 }
 KeyValueAndUnit::KeyValueAndUnit(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.KeyValueAndUnit)
 }
 KeyValueAndUnit::KeyValueAndUnit(const KeyValueAndUnit& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  KeyValueAndUnit* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.value_){nullptr}
-    , decltype(_impl_.key_strindex_){}
-    , decltype(_impl_.unit_strindex_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_value()) {
-    _this->_impl_.value_ = new ::opentelemetry::proto::common::v1::AnyValue(*from._impl_.value_);
+    value_ = new ::opentelemetry::proto::common::v1::AnyValue(*from.value_);
+  } else {
+    value_ = nullptr;
   }
-  ::memcpy(&_impl_.key_strindex_, &from._impl_.key_strindex_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.unit_strindex_) -
-    reinterpret_cast<char*>(&_impl_.key_strindex_)) + sizeof(_impl_.unit_strindex_));
+  ::memcpy(&key_strindex_, &from.key_strindex_,
+    static_cast<size_t>(reinterpret_cast<char*>(&unit_strindex_) -
+    reinterpret_cast<char*>(&key_strindex_)) + sizeof(unit_strindex_));
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.profiles.v1development.KeyValueAndUnit)
 }
 
-inline void KeyValueAndUnit::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.value_){nullptr}
-    , decltype(_impl_.key_strindex_){0}
-    , decltype(_impl_.unit_strindex_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void KeyValueAndUnit::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&value_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&unit_strindex_) -
+    reinterpret_cast<char*>(&value_)) + sizeof(unit_strindex_));
 }
 
 KeyValueAndUnit::~KeyValueAndUnit() {
@@ -4420,11 +4257,11 @@ KeyValueAndUnit::~KeyValueAndUnit() {
 
 inline void KeyValueAndUnit::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.value_;
+  if (this != internal_default_instance()) delete value_;
 }
 
 void KeyValueAndUnit::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void KeyValueAndUnit::Clear() {
@@ -4433,13 +4270,13 @@ void KeyValueAndUnit::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.value_ != nullptr) {
-    delete _impl_.value_;
+  if (GetArenaForAllocation() == nullptr && value_ != nullptr) {
+    delete value_;
   }
-  _impl_.value_ = nullptr;
-  ::memset(&_impl_.key_strindex_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.unit_strindex_) -
-      reinterpret_cast<char*>(&_impl_.key_strindex_)) + sizeof(_impl_.unit_strindex_));
+  value_ = nullptr;
+  ::memset(&key_strindex_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&unit_strindex_) -
+      reinterpret_cast<char*>(&key_strindex_)) + sizeof(unit_strindex_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4452,7 +4289,7 @@ const char* KeyValueAndUnit::_InternalParse(const char* ptr, ::_pbi::ParseContex
       // int32 key_strindex = 1 [json_name = "keyStrindex"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.key_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          key_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4468,7 +4305,7 @@ const char* KeyValueAndUnit::_InternalParse(const char* ptr, ::_pbi::ParseContex
       // int32 unit_strindex = 3 [json_name = "unitStrindex"];
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.unit_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          unit_strindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4541,7 +4378,7 @@ size_t KeyValueAndUnit::ByteSizeLong() const {
   if (this->_internal_has_value()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.value_);
+        *value_);
   }
 
   // int32 key_strindex = 1 [json_name = "keyStrindex"];
@@ -4554,35 +4391,38 @@ size_t KeyValueAndUnit::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_unit_strindex());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData KeyValueAndUnit::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     KeyValueAndUnit::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*KeyValueAndUnit::GetClassData() const { return &_class_data_; }
 
+void KeyValueAndUnit::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<KeyValueAndUnit *>(to)->MergeFrom(
+      static_cast<const KeyValueAndUnit &>(from));
+}
 
-void KeyValueAndUnit::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<KeyValueAndUnit*>(&to_msg);
-  auto& from = static_cast<const KeyValueAndUnit&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.KeyValueAndUnit)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void KeyValueAndUnit::MergeFrom(const KeyValueAndUnit& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.profiles.v1development.KeyValueAndUnit)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_value()) {
-    _this->_internal_mutable_value()->::opentelemetry::proto::common::v1::AnyValue::MergeFrom(
-        from._internal_value());
+    _internal_mutable_value()->::opentelemetry::proto::common::v1::AnyValue::MergeFrom(from._internal_value());
   }
   if (from._internal_key_strindex() != 0) {
-    _this->_internal_set_key_strindex(from._internal_key_strindex());
+    _internal_set_key_strindex(from._internal_key_strindex());
   }
   if (from._internal_unit_strindex() != 0) {
-    _this->_internal_set_unit_strindex(from._internal_unit_strindex());
+    _internal_set_unit_strindex(from._internal_unit_strindex());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void KeyValueAndUnit::CopyFrom(const KeyValueAndUnit& from) {
@@ -4600,11 +4440,11 @@ void KeyValueAndUnit::InternalSwap(KeyValueAndUnit* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(KeyValueAndUnit, _impl_.unit_strindex_)
-      + sizeof(KeyValueAndUnit::_impl_.unit_strindex_)
-      - PROTOBUF_FIELD_OFFSET(KeyValueAndUnit, _impl_.value_)>(
-          reinterpret_cast<char*>(&_impl_.value_),
-          reinterpret_cast<char*>(&other->_impl_.value_));
+      PROTOBUF_FIELD_OFFSET(KeyValueAndUnit, unit_strindex_)
+      + sizeof(KeyValueAndUnit::unit_strindex_)
+      - PROTOBUF_FIELD_OFFSET(KeyValueAndUnit, value_)>(
+          reinterpret_cast<char*>(&value_),
+          reinterpret_cast<char*>(&other->value_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata KeyValueAndUnit::GetMetadata() const {

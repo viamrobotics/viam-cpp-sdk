@@ -25,11 +25,10 @@ namespace proto {
 namespace resource {
 namespace v1 {
 PROTOBUF_CONSTEXPR Resource::Resource(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.attributes_)*/{}
-  , /*decltype(_impl_.entity_refs_)*/{}
-  , /*decltype(_impl_.dropped_attributes_count_)*/0u
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : attributes_()
+  , entity_refs_()
+  , dropped_attributes_count_(0u){}
 struct ResourceDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -54,9 +53,9 @@ const uint32_t TableStruct_opentelemetry_2fproto_2fresource_2fv1_2fresource_2epr
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::resource::v1::Resource, _impl_.attributes_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::resource::v1::Resource, _impl_.dropped_attributes_count_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::resource::v1::Resource, _impl_.entity_refs_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::resource::v1::Resource, attributes_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::resource::v1::Resource, dropped_attributes_count_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::resource::v1::Resource, entity_refs_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::opentelemetry::proto::resource::v1::Resource)},
@@ -111,41 +110,30 @@ class Resource::_Internal {
 };
 
 void Resource::clear_attributes() {
-  _impl_.attributes_.Clear();
+  attributes_.Clear();
 }
 void Resource::clear_entity_refs() {
-  _impl_.entity_refs_.Clear();
+  entity_refs_.Clear();
 }
 Resource::Resource(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  attributes_(arena),
+  entity_refs_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.resource.v1.Resource)
 }
 Resource::Resource(const Resource& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Resource* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.attributes_){from._impl_.attributes_}
-    , decltype(_impl_.entity_refs_){from._impl_.entity_refs_}
-    , decltype(_impl_.dropped_attributes_count_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      attributes_(from.attributes_),
+      entity_refs_(from.entity_refs_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.dropped_attributes_count_ = from._impl_.dropped_attributes_count_;
+  dropped_attributes_count_ = from.dropped_attributes_count_;
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.resource.v1.Resource)
 }
 
-inline void Resource::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.attributes_){arena}
-    , decltype(_impl_.entity_refs_){arena}
-    , decltype(_impl_.dropped_attributes_count_){0u}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Resource::SharedCtor() {
+dropped_attributes_count_ = 0u;
 }
 
 Resource::~Resource() {
@@ -159,12 +147,10 @@ Resource::~Resource() {
 
 inline void Resource::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.attributes_.~RepeatedPtrField();
-  _impl_.entity_refs_.~RepeatedPtrField();
 }
 
 void Resource::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Resource::Clear() {
@@ -173,9 +159,9 @@ void Resource::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.attributes_.Clear();
-  _impl_.entity_refs_.Clear();
-  _impl_.dropped_attributes_count_ = 0u;
+  attributes_.Clear();
+  entity_refs_.Clear();
+  dropped_attributes_count_ = 0u;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -201,7 +187,7 @@ const char* Resource::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // uint32 dropped_attributes_count = 2 [json_name = "droppedAttributesCount"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          dropped_attributes_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -288,14 +274,14 @@ size_t Resource::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.common.v1.KeyValue attributes = 1 [json_name = "attributes"];
   total_size += 1UL * this->_internal_attributes_size();
-  for (const auto& msg : this->_impl_.attributes_) {
+  for (const auto& msg : this->attributes_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .opentelemetry.proto.common.v1.EntityRef entity_refs = 3 [json_name = "entityRefs"];
   total_size += 1UL * this->_internal_entity_refs_size();
-  for (const auto& msg : this->_impl_.entity_refs_) {
+  for (const auto& msg : this->entity_refs_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -305,30 +291,34 @@ size_t Resource::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_dropped_attributes_count());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Resource::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Resource::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Resource::GetClassData() const { return &_class_data_; }
 
+void Resource::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Resource *>(to)->MergeFrom(
+      static_cast<const Resource &>(from));
+}
 
-void Resource::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Resource*>(&to_msg);
-  auto& from = static_cast<const Resource&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.resource.v1.Resource)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Resource::MergeFrom(const Resource& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.resource.v1.Resource)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.attributes_.MergeFrom(from._impl_.attributes_);
-  _this->_impl_.entity_refs_.MergeFrom(from._impl_.entity_refs_);
+  attributes_.MergeFrom(from.attributes_);
+  entity_refs_.MergeFrom(from.entity_refs_);
   if (from._internal_dropped_attributes_count() != 0) {
-    _this->_internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
+    _internal_set_dropped_attributes_count(from._internal_dropped_attributes_count());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Resource::CopyFrom(const Resource& from) {
@@ -345,9 +335,9 @@ bool Resource::IsInitialized() const {
 void Resource::InternalSwap(Resource* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.attributes_.InternalSwap(&other->_impl_.attributes_);
-  _impl_.entity_refs_.InternalSwap(&other->_impl_.entity_refs_);
-  swap(_impl_.dropped_attributes_count_, other->_impl_.dropped_attributes_count_);
+  attributes_.InternalSwap(&other->attributes_);
+  entity_refs_.InternalSwap(&other->entity_refs_);
+  swap(dropped_attributes_count_, other->dropped_attributes_count_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Resource::GetMetadata() const {

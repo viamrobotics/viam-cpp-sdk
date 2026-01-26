@@ -23,9 +23,8 @@ namespace _pbi = _pb::internal;
 namespace google {
 namespace api {
 PROTOBUF_CONSTEXPR RoutingRule::RoutingRule(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.routing_parameters_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : routing_parameters_(){}
 struct RoutingRuleDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RoutingRuleDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -36,10 +35,9 @@ struct RoutingRuleDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoutingRuleDefaultTypeInternal _RoutingRule_default_instance_;
 PROTOBUF_CONSTEXPR RoutingParameter::RoutingParameter(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.field_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.path_template_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : field_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , path_template_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct RoutingParameterDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RoutingParameterDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -62,15 +60,15 @@ const uint32_t TableStruct_google_2fapi_2frouting_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::RoutingRule, _impl_.routing_parameters_),
+  PROTOBUF_FIELD_OFFSET(::google::api::RoutingRule, routing_parameters_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::RoutingParameter, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::RoutingParameter, _impl_.field_),
-  PROTOBUF_FIELD_OFFSET(::google::api::RoutingParameter, _impl_.path_template_),
+  PROTOBUF_FIELD_OFFSET(::google::api::RoutingParameter, field_),
+  PROTOBUF_FIELD_OFFSET(::google::api::RoutingParameter, path_template_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::RoutingRule)},
@@ -125,29 +123,19 @@ class RoutingRule::_Internal {
 
 RoutingRule::RoutingRule(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  routing_parameters_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.RoutingRule)
 }
 RoutingRule::RoutingRule(const RoutingRule& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  RoutingRule* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.routing_parameters_){from._impl_.routing_parameters_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      routing_parameters_(from.routing_parameters_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:google.api.RoutingRule)
 }
 
-inline void RoutingRule::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.routing_parameters_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void RoutingRule::SharedCtor() {
 }
 
 RoutingRule::~RoutingRule() {
@@ -161,11 +149,10 @@ RoutingRule::~RoutingRule() {
 
 inline void RoutingRule::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.routing_parameters_.~RepeatedPtrField();
 }
 
 void RoutingRule::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void RoutingRule::Clear() {
@@ -174,7 +161,7 @@ void RoutingRule::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.routing_parameters_.Clear();
+  routing_parameters_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -252,31 +239,35 @@ size_t RoutingRule::ByteSizeLong() const {
 
   // repeated .google.api.RoutingParameter routing_parameters = 2 [json_name = "routingParameters"];
   total_size += 1UL * this->_internal_routing_parameters_size();
-  for (const auto& msg : this->_impl_.routing_parameters_) {
+  for (const auto& msg : this->routing_parameters_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RoutingRule::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     RoutingRule::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RoutingRule::GetClassData() const { return &_class_data_; }
 
+void RoutingRule::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<RoutingRule *>(to)->MergeFrom(
+      static_cast<const RoutingRule &>(from));
+}
 
-void RoutingRule::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<RoutingRule*>(&to_msg);
-  auto& from = static_cast<const RoutingRule&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.RoutingRule)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void RoutingRule::MergeFrom(const RoutingRule& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.RoutingRule)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.routing_parameters_.MergeFrom(from._impl_.routing_parameters_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  routing_parameters_.MergeFrom(from.routing_parameters_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void RoutingRule::CopyFrom(const RoutingRule& from) {
@@ -293,7 +284,7 @@ bool RoutingRule::IsInitialized() const {
 void RoutingRule::InternalSwap(RoutingRule* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.routing_parameters_.InternalSwap(&other->_impl_.routing_parameters_);
+  routing_parameters_.InternalSwap(&other->routing_parameters_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RoutingRule::GetMetadata() const {
@@ -311,54 +302,40 @@ class RoutingParameter::_Internal {
 RoutingParameter::RoutingParameter(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.RoutingParameter)
 }
 RoutingParameter::RoutingParameter(const RoutingParameter& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  RoutingParameter* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.field_){}
-    , decltype(_impl_.path_template_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.field_.InitDefault();
+  field_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.field_.Set("", GetArenaForAllocation());
+    field_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_field().empty()) {
-    _this->_impl_.field_.Set(from._internal_field(), 
-      _this->GetArenaForAllocation());
+    field_.Set(from._internal_field(), 
+      GetArenaForAllocation());
   }
-  _impl_.path_template_.InitDefault();
+  path_template_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.path_template_.Set("", GetArenaForAllocation());
+    path_template_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_path_template().empty()) {
-    _this->_impl_.path_template_.Set(from._internal_path_template(), 
-      _this->GetArenaForAllocation());
+    path_template_.Set(from._internal_path_template(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:google.api.RoutingParameter)
 }
 
-inline void RoutingParameter::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.field_){}
-    , decltype(_impl_.path_template_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.field_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.field_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.path_template_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.path_template_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void RoutingParameter::SharedCtor() {
+field_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  field_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+path_template_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  path_template_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 RoutingParameter::~RoutingParameter() {
@@ -372,12 +349,12 @@ RoutingParameter::~RoutingParameter() {
 
 inline void RoutingParameter::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.field_.Destroy();
-  _impl_.path_template_.Destroy();
+  field_.Destroy();
+  path_template_.Destroy();
 }
 
 void RoutingParameter::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void RoutingParameter::Clear() {
@@ -386,8 +363,8 @@ void RoutingParameter::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.field_.ClearToEmpty();
-  _impl_.path_template_.ClearToEmpty();
+  field_.ClearToEmpty();
+  path_template_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -496,31 +473,35 @@ size_t RoutingParameter::ByteSizeLong() const {
         this->_internal_path_template());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RoutingParameter::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     RoutingParameter::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RoutingParameter::GetClassData() const { return &_class_data_; }
 
+void RoutingParameter::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<RoutingParameter *>(to)->MergeFrom(
+      static_cast<const RoutingParameter &>(from));
+}
 
-void RoutingParameter::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<RoutingParameter*>(&to_msg);
-  auto& from = static_cast<const RoutingParameter&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.RoutingParameter)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void RoutingParameter::MergeFrom(const RoutingParameter& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.RoutingParameter)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_field().empty()) {
-    _this->_internal_set_field(from._internal_field());
+    _internal_set_field(from._internal_field());
   }
   if (!from._internal_path_template().empty()) {
-    _this->_internal_set_path_template(from._internal_path_template());
+    _internal_set_path_template(from._internal_path_template());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void RoutingParameter::CopyFrom(const RoutingParameter& from) {
@@ -540,12 +521,12 @@ void RoutingParameter::InternalSwap(RoutingParameter* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.field_, lhs_arena,
-      &other->_impl_.field_, rhs_arena
+      &field_, lhs_arena,
+      &other->field_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.path_template_, lhs_arena,
-      &other->_impl_.path_template_, rhs_arena
+      &path_template_, lhs_arena,
+      &other->path_template_, rhs_arena
   );
 }
 

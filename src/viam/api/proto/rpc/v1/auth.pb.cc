@@ -24,10 +24,9 @@ namespace proto {
 namespace rpc {
 namespace v1 {
 PROTOBUF_CONSTEXPR Credentials::Credentials(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.payload_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , payload_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct CredentialsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CredentialsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,10 +37,9 @@ struct CredentialsDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CredentialsDefaultTypeInternal _Credentials_default_instance_;
 PROTOBUF_CONSTEXPR AuthenticateRequest::AuthenticateRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.entity_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.credentials_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : entity_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , credentials_(nullptr){}
 struct AuthenticateRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AuthenticateRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -52,9 +50,8 @@ struct AuthenticateRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AuthenticateRequestDefaultTypeInternal _AuthenticateRequest_default_instance_;
 PROTOBUF_CONSTEXPR AuthenticateResponse::AuthenticateResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.access_token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : access_token_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct AuthenticateResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AuthenticateResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -65,9 +62,8 @@ struct AuthenticateResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AuthenticateResponseDefaultTypeInternal _AuthenticateResponse_default_instance_;
 PROTOBUF_CONSTEXPR AuthenticateToRequest::AuthenticateToRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.entity_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : entity_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct AuthenticateToRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AuthenticateToRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -78,9 +74,8 @@ struct AuthenticateToRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AuthenticateToRequestDefaultTypeInternal _AuthenticateToRequest_default_instance_;
 PROTOBUF_CONSTEXPR AuthenticateToResponse::AuthenticateToResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.access_token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : access_token_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct AuthenticateToResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AuthenticateToResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -104,37 +99,37 @@ const uint32_t TableStruct_proto_2frpc_2fv1_2fauth_2eproto::offsets[] PROTOBUF_S
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::Credentials, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::Credentials, _impl_.payload_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::Credentials, type_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::Credentials, payload_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateRequest, _impl_.entity_),
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateRequest, _impl_.credentials_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateRequest, entity_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateRequest, credentials_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateResponse, _impl_.access_token_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateResponse, access_token_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateToRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateToRequest, _impl_.entity_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateToRequest, entity_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateToResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateToResponse, _impl_.access_token_),
+  PROTOBUF_FIELD_OFFSET(::proto::rpc::v1::AuthenticateToResponse, access_token_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::proto::rpc::v1::Credentials)},
@@ -204,54 +199,40 @@ class Credentials::_Internal {
 Credentials::Credentials(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.v1.Credentials)
 }
 Credentials::Credentials(const Credentials& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Credentials* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){}
-    , decltype(_impl_.payload_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.type_.InitDefault();
+  type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
+    type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_type().empty()) {
-    _this->_impl_.type_.Set(from._internal_type(), 
-      _this->GetArenaForAllocation());
+    type_.Set(from._internal_type(), 
+      GetArenaForAllocation());
   }
-  _impl_.payload_.InitDefault();
+  payload_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.payload_.Set("", GetArenaForAllocation());
+    payload_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_payload().empty()) {
-    _this->_impl_.payload_.Set(from._internal_payload(), 
-      _this->GetArenaForAllocation());
+    payload_.Set(from._internal_payload(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.v1.Credentials)
 }
 
-inline void Credentials::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){}
-    , decltype(_impl_.payload_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.payload_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.payload_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void Credentials::SharedCtor() {
+type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+payload_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  payload_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Credentials::~Credentials() {
@@ -265,12 +246,12 @@ Credentials::~Credentials() {
 
 inline void Credentials::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.type_.Destroy();
-  _impl_.payload_.Destroy();
+  type_.Destroy();
+  payload_.Destroy();
 }
 
 void Credentials::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Credentials::Clear() {
@@ -279,8 +260,8 @@ void Credentials::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.type_.ClearToEmpty();
-  _impl_.payload_.ClearToEmpty();
+  type_.ClearToEmpty();
+  payload_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -389,31 +370,35 @@ size_t Credentials::ByteSizeLong() const {
         this->_internal_payload());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Credentials::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Credentials::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Credentials::GetClassData() const { return &_class_data_; }
 
+void Credentials::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Credentials *>(to)->MergeFrom(
+      static_cast<const Credentials &>(from));
+}
 
-void Credentials::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Credentials*>(&to_msg);
-  auto& from = static_cast<const Credentials&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.Credentials)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Credentials::MergeFrom(const Credentials& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.Credentials)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_type().empty()) {
-    _this->_internal_set_type(from._internal_type());
+    _internal_set_type(from._internal_type());
   }
   if (!from._internal_payload().empty()) {
-    _this->_internal_set_payload(from._internal_payload());
+    _internal_set_payload(from._internal_payload());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Credentials::CopyFrom(const Credentials& from) {
@@ -433,12 +418,12 @@ void Credentials::InternalSwap(Credentials* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.type_, lhs_arena,
-      &other->_impl_.type_, rhs_arena
+      &type_, lhs_arena,
+      &other->type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.payload_, lhs_arena,
-      &other->_impl_.payload_, rhs_arena
+      &payload_, lhs_arena,
+      &other->payload_, rhs_arena
   );
 }
 
@@ -457,50 +442,39 @@ class AuthenticateRequest::_Internal {
 
 const ::proto::rpc::v1::Credentials&
 AuthenticateRequest::_Internal::credentials(const AuthenticateRequest* msg) {
-  return *msg->_impl_.credentials_;
+  return *msg->credentials_;
 }
 AuthenticateRequest::AuthenticateRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.v1.AuthenticateRequest)
 }
 AuthenticateRequest::AuthenticateRequest(const AuthenticateRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AuthenticateRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.entity_){}
-    , decltype(_impl_.credentials_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.entity_.InitDefault();
+  entity_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.entity_.Set("", GetArenaForAllocation());
+    entity_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_entity().empty()) {
-    _this->_impl_.entity_.Set(from._internal_entity(), 
-      _this->GetArenaForAllocation());
+    entity_.Set(from._internal_entity(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_credentials()) {
-    _this->_impl_.credentials_ = new ::proto::rpc::v1::Credentials(*from._impl_.credentials_);
+    credentials_ = new ::proto::rpc::v1::Credentials(*from.credentials_);
+  } else {
+    credentials_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.v1.AuthenticateRequest)
 }
 
-inline void AuthenticateRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.entity_){}
-    , decltype(_impl_.credentials_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.entity_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.entity_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void AuthenticateRequest::SharedCtor() {
+entity_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  entity_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+credentials_ = nullptr;
 }
 
 AuthenticateRequest::~AuthenticateRequest() {
@@ -514,12 +488,12 @@ AuthenticateRequest::~AuthenticateRequest() {
 
 inline void AuthenticateRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.entity_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.credentials_;
+  entity_.Destroy();
+  if (this != internal_default_instance()) delete credentials_;
 }
 
 void AuthenticateRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void AuthenticateRequest::Clear() {
@@ -528,11 +502,11 @@ void AuthenticateRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.entity_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.credentials_ != nullptr) {
-    delete _impl_.credentials_;
+  entity_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && credentials_ != nullptr) {
+    delete credentials_;
   }
-  _impl_.credentials_ = nullptr;
+  credentials_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -633,35 +607,38 @@ size_t AuthenticateRequest::ByteSizeLong() const {
   if (this->_internal_has_credentials()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.credentials_);
+        *credentials_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AuthenticateRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     AuthenticateRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AuthenticateRequest::GetClassData() const { return &_class_data_; }
 
+void AuthenticateRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AuthenticateRequest *>(to)->MergeFrom(
+      static_cast<const AuthenticateRequest &>(from));
+}
 
-void AuthenticateRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AuthenticateRequest*>(&to_msg);
-  auto& from = static_cast<const AuthenticateRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.AuthenticateRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void AuthenticateRequest::MergeFrom(const AuthenticateRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.AuthenticateRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_entity().empty()) {
-    _this->_internal_set_entity(from._internal_entity());
+    _internal_set_entity(from._internal_entity());
   }
   if (from._internal_has_credentials()) {
-    _this->_internal_mutable_credentials()->::proto::rpc::v1::Credentials::MergeFrom(
-        from._internal_credentials());
+    _internal_mutable_credentials()->::proto::rpc::v1::Credentials::MergeFrom(from._internal_credentials());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void AuthenticateRequest::CopyFrom(const AuthenticateRequest& from) {
@@ -681,10 +658,10 @@ void AuthenticateRequest::InternalSwap(AuthenticateRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.entity_, lhs_arena,
-      &other->_impl_.entity_, rhs_arena
+      &entity_, lhs_arena,
+      &other->entity_, rhs_arena
   );
-  swap(_impl_.credentials_, other->_impl_.credentials_);
+  swap(credentials_, other->credentials_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AuthenticateRequest::GetMetadata() const {
@@ -702,40 +679,28 @@ class AuthenticateResponse::_Internal {
 AuthenticateResponse::AuthenticateResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.v1.AuthenticateResponse)
 }
 AuthenticateResponse::AuthenticateResponse(const AuthenticateResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AuthenticateResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.access_token_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.access_token_.InitDefault();
+  access_token_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.access_token_.Set("", GetArenaForAllocation());
+    access_token_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_access_token().empty()) {
-    _this->_impl_.access_token_.Set(from._internal_access_token(), 
-      _this->GetArenaForAllocation());
+    access_token_.Set(from._internal_access_token(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.v1.AuthenticateResponse)
 }
 
-inline void AuthenticateResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.access_token_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.access_token_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.access_token_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void AuthenticateResponse::SharedCtor() {
+access_token_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  access_token_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 AuthenticateResponse::~AuthenticateResponse() {
@@ -749,11 +714,11 @@ AuthenticateResponse::~AuthenticateResponse() {
 
 inline void AuthenticateResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.access_token_.Destroy();
+  access_token_.Destroy();
 }
 
 void AuthenticateResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void AuthenticateResponse::Clear() {
@@ -762,7 +727,7 @@ void AuthenticateResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.access_token_.ClearToEmpty();
+  access_token_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -844,28 +809,32 @@ size_t AuthenticateResponse::ByteSizeLong() const {
         this->_internal_access_token());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AuthenticateResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     AuthenticateResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AuthenticateResponse::GetClassData() const { return &_class_data_; }
 
+void AuthenticateResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AuthenticateResponse *>(to)->MergeFrom(
+      static_cast<const AuthenticateResponse &>(from));
+}
 
-void AuthenticateResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AuthenticateResponse*>(&to_msg);
-  auto& from = static_cast<const AuthenticateResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.AuthenticateResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void AuthenticateResponse::MergeFrom(const AuthenticateResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.AuthenticateResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_access_token().empty()) {
-    _this->_internal_set_access_token(from._internal_access_token());
+    _internal_set_access_token(from._internal_access_token());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void AuthenticateResponse::CopyFrom(const AuthenticateResponse& from) {
@@ -885,8 +854,8 @@ void AuthenticateResponse::InternalSwap(AuthenticateResponse* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.access_token_, lhs_arena,
-      &other->_impl_.access_token_, rhs_arena
+      &access_token_, lhs_arena,
+      &other->access_token_, rhs_arena
   );
 }
 
@@ -905,40 +874,28 @@ class AuthenticateToRequest::_Internal {
 AuthenticateToRequest::AuthenticateToRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.v1.AuthenticateToRequest)
 }
 AuthenticateToRequest::AuthenticateToRequest(const AuthenticateToRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AuthenticateToRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.entity_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.entity_.InitDefault();
+  entity_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.entity_.Set("", GetArenaForAllocation());
+    entity_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_entity().empty()) {
-    _this->_impl_.entity_.Set(from._internal_entity(), 
-      _this->GetArenaForAllocation());
+    entity_.Set(from._internal_entity(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.v1.AuthenticateToRequest)
 }
 
-inline void AuthenticateToRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.entity_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.entity_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.entity_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void AuthenticateToRequest::SharedCtor() {
+entity_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  entity_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 AuthenticateToRequest::~AuthenticateToRequest() {
@@ -952,11 +909,11 @@ AuthenticateToRequest::~AuthenticateToRequest() {
 
 inline void AuthenticateToRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.entity_.Destroy();
+  entity_.Destroy();
 }
 
 void AuthenticateToRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void AuthenticateToRequest::Clear() {
@@ -965,7 +922,7 @@ void AuthenticateToRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.entity_.ClearToEmpty();
+  entity_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1047,28 +1004,32 @@ size_t AuthenticateToRequest::ByteSizeLong() const {
         this->_internal_entity());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AuthenticateToRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     AuthenticateToRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AuthenticateToRequest::GetClassData() const { return &_class_data_; }
 
+void AuthenticateToRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AuthenticateToRequest *>(to)->MergeFrom(
+      static_cast<const AuthenticateToRequest &>(from));
+}
 
-void AuthenticateToRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AuthenticateToRequest*>(&to_msg);
-  auto& from = static_cast<const AuthenticateToRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.AuthenticateToRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void AuthenticateToRequest::MergeFrom(const AuthenticateToRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.AuthenticateToRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_entity().empty()) {
-    _this->_internal_set_entity(from._internal_entity());
+    _internal_set_entity(from._internal_entity());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void AuthenticateToRequest::CopyFrom(const AuthenticateToRequest& from) {
@@ -1088,8 +1049,8 @@ void AuthenticateToRequest::InternalSwap(AuthenticateToRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.entity_, lhs_arena,
-      &other->_impl_.entity_, rhs_arena
+      &entity_, lhs_arena,
+      &other->entity_, rhs_arena
   );
 }
 
@@ -1108,40 +1069,28 @@ class AuthenticateToResponse::_Internal {
 AuthenticateToResponse::AuthenticateToResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:proto.rpc.v1.AuthenticateToResponse)
 }
 AuthenticateToResponse::AuthenticateToResponse(const AuthenticateToResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AuthenticateToResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.access_token_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.access_token_.InitDefault();
+  access_token_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.access_token_.Set("", GetArenaForAllocation());
+    access_token_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_access_token().empty()) {
-    _this->_impl_.access_token_.Set(from._internal_access_token(), 
-      _this->GetArenaForAllocation());
+    access_token_.Set(from._internal_access_token(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:proto.rpc.v1.AuthenticateToResponse)
 }
 
-inline void AuthenticateToResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.access_token_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.access_token_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.access_token_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void AuthenticateToResponse::SharedCtor() {
+access_token_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  access_token_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 AuthenticateToResponse::~AuthenticateToResponse() {
@@ -1155,11 +1104,11 @@ AuthenticateToResponse::~AuthenticateToResponse() {
 
 inline void AuthenticateToResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.access_token_.Destroy();
+  access_token_.Destroy();
 }
 
 void AuthenticateToResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void AuthenticateToResponse::Clear() {
@@ -1168,7 +1117,7 @@ void AuthenticateToResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.access_token_.ClearToEmpty();
+  access_token_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1250,28 +1199,32 @@ size_t AuthenticateToResponse::ByteSizeLong() const {
         this->_internal_access_token());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AuthenticateToResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     AuthenticateToResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AuthenticateToResponse::GetClassData() const { return &_class_data_; }
 
+void AuthenticateToResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AuthenticateToResponse *>(to)->MergeFrom(
+      static_cast<const AuthenticateToResponse &>(from));
+}
 
-void AuthenticateToResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AuthenticateToResponse*>(&to_msg);
-  auto& from = static_cast<const AuthenticateToResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.AuthenticateToResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void AuthenticateToResponse::MergeFrom(const AuthenticateToResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:proto.rpc.v1.AuthenticateToResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_access_token().empty()) {
-    _this->_internal_set_access_token(from._internal_access_token());
+    _internal_set_access_token(from._internal_access_token());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void AuthenticateToResponse::CopyFrom(const AuthenticateToResponse& from) {
@@ -1291,8 +1244,8 @@ void AuthenticateToResponse::InternalSwap(AuthenticateToResponse* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.access_token_, lhs_arena,
-      &other->_impl_.access_token_, rhs_arena
+      &access_token_, lhs_arena,
+      &other->access_token_, rhs_arena
   );
 }
 

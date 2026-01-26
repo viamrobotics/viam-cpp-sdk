@@ -26,9 +26,8 @@ namespace collector {
 namespace logs {
 namespace v1 {
 PROTOBUF_CONSTEXPR ExportLogsServiceRequest::ExportLogsServiceRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.resource_logs_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : resource_logs_(){}
 struct ExportLogsServiceRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ExportLogsServiceRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -39,9 +38,8 @@ struct ExportLogsServiceRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExportLogsServiceRequestDefaultTypeInternal _ExportLogsServiceRequest_default_instance_;
 PROTOBUF_CONSTEXPR ExportLogsServiceResponse::ExportLogsServiceResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.partial_success_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : partial_success_(nullptr){}
 struct ExportLogsServiceResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ExportLogsServiceResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -52,10 +50,9 @@ struct ExportLogsServiceResponseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ExportLogsServiceResponseDefaultTypeInternal _ExportLogsServiceResponse_default_instance_;
 PROTOBUF_CONSTEXPR ExportLogsPartialSuccess::ExportLogsPartialSuccess(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.error_message_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.rejected_log_records_)*/int64_t{0}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : error_message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , rejected_log_records_(int64_t{0}){}
 struct ExportLogsPartialSuccessDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ExportLogsPartialSuccessDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -81,22 +78,22 @@ const uint32_t TableStruct_opentelemetry_2fproto_2fcollector_2flogs_2fv1_2flogs_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsServiceRequest, _impl_.resource_logs_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsServiceRequest, resource_logs_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsServiceResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsServiceResponse, _impl_.partial_success_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsServiceResponse, partial_success_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess, _impl_.rejected_log_records_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess, _impl_.error_message_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess, rejected_log_records_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess, error_message_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::opentelemetry::proto::collector::logs::v1::ExportLogsServiceRequest)},
@@ -164,33 +161,23 @@ class ExportLogsServiceRequest::_Internal {
 };
 
 void ExportLogsServiceRequest::clear_resource_logs() {
-  _impl_.resource_logs_.Clear();
+  resource_logs_.Clear();
 }
 ExportLogsServiceRequest::ExportLogsServiceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  resource_logs_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest)
 }
 ExportLogsServiceRequest::ExportLogsServiceRequest(const ExportLogsServiceRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ExportLogsServiceRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.resource_logs_){from._impl_.resource_logs_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      resource_logs_(from.resource_logs_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest)
 }
 
-inline void ExportLogsServiceRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.resource_logs_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ExportLogsServiceRequest::SharedCtor() {
 }
 
 ExportLogsServiceRequest::~ExportLogsServiceRequest() {
@@ -204,11 +191,10 @@ ExportLogsServiceRequest::~ExportLogsServiceRequest() {
 
 inline void ExportLogsServiceRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.resource_logs_.~RepeatedPtrField();
 }
 
 void ExportLogsServiceRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ExportLogsServiceRequest::Clear() {
@@ -217,7 +203,7 @@ void ExportLogsServiceRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.resource_logs_.Clear();
+  resource_logs_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -295,31 +281,35 @@ size_t ExportLogsServiceRequest::ByteSizeLong() const {
 
   // repeated .opentelemetry.proto.logs.v1.ResourceLogs resource_logs = 1 [json_name = "resourceLogs"];
   total_size += 1UL * this->_internal_resource_logs_size();
-  for (const auto& msg : this->_impl_.resource_logs_) {
+  for (const auto& msg : this->resource_logs_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ExportLogsServiceRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ExportLogsServiceRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ExportLogsServiceRequest::GetClassData() const { return &_class_data_; }
 
+void ExportLogsServiceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ExportLogsServiceRequest *>(to)->MergeFrom(
+      static_cast<const ExportLogsServiceRequest &>(from));
+}
 
-void ExportLogsServiceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ExportLogsServiceRequest*>(&to_msg);
-  auto& from = static_cast<const ExportLogsServiceRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ExportLogsServiceRequest::MergeFrom(const ExportLogsServiceRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.collector.logs.v1.ExportLogsServiceRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.resource_logs_.MergeFrom(from._impl_.resource_logs_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  resource_logs_.MergeFrom(from.resource_logs_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ExportLogsServiceRequest::CopyFrom(const ExportLogsServiceRequest& from) {
@@ -336,7 +326,7 @@ bool ExportLogsServiceRequest::IsInitialized() const {
 void ExportLogsServiceRequest::InternalSwap(ExportLogsServiceRequest* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.resource_logs_.InternalSwap(&other->_impl_.resource_logs_);
+  resource_logs_.InternalSwap(&other->resource_logs_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ExportLogsServiceRequest::GetMetadata() const {
@@ -354,36 +344,27 @@ class ExportLogsServiceResponse::_Internal {
 
 const ::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess&
 ExportLogsServiceResponse::_Internal::partial_success(const ExportLogsServiceResponse* msg) {
-  return *msg->_impl_.partial_success_;
+  return *msg->partial_success_;
 }
 ExportLogsServiceResponse::ExportLogsServiceResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.collector.logs.v1.ExportLogsServiceResponse)
 }
 ExportLogsServiceResponse::ExportLogsServiceResponse(const ExportLogsServiceResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ExportLogsServiceResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.partial_success_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_partial_success()) {
-    _this->_impl_.partial_success_ = new ::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess(*from._impl_.partial_success_);
+    partial_success_ = new ::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess(*from.partial_success_);
+  } else {
+    partial_success_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.collector.logs.v1.ExportLogsServiceResponse)
 }
 
-inline void ExportLogsServiceResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.partial_success_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ExportLogsServiceResponse::SharedCtor() {
+partial_success_ = nullptr;
 }
 
 ExportLogsServiceResponse::~ExportLogsServiceResponse() {
@@ -397,11 +378,11 @@ ExportLogsServiceResponse::~ExportLogsServiceResponse() {
 
 inline void ExportLogsServiceResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.partial_success_;
+  if (this != internal_default_instance()) delete partial_success_;
 }
 
 void ExportLogsServiceResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ExportLogsServiceResponse::Clear() {
@@ -410,10 +391,10 @@ void ExportLogsServiceResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.partial_success_ != nullptr) {
-    delete _impl_.partial_success_;
+  if (GetArenaForAllocation() == nullptr && partial_success_ != nullptr) {
+    delete partial_success_;
   }
-  _impl_.partial_success_ = nullptr;
+  partial_success_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -487,32 +468,35 @@ size_t ExportLogsServiceResponse::ByteSizeLong() const {
   if (this->_internal_has_partial_success()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.partial_success_);
+        *partial_success_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ExportLogsServiceResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ExportLogsServiceResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ExportLogsServiceResponse::GetClassData() const { return &_class_data_; }
 
+void ExportLogsServiceResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ExportLogsServiceResponse *>(to)->MergeFrom(
+      static_cast<const ExportLogsServiceResponse &>(from));
+}
 
-void ExportLogsServiceResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ExportLogsServiceResponse*>(&to_msg);
-  auto& from = static_cast<const ExportLogsServiceResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.collector.logs.v1.ExportLogsServiceResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ExportLogsServiceResponse::MergeFrom(const ExportLogsServiceResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.collector.logs.v1.ExportLogsServiceResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_partial_success()) {
-    _this->_internal_mutable_partial_success()->::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess::MergeFrom(
-        from._internal_partial_success());
+    _internal_mutable_partial_success()->::opentelemetry::proto::collector::logs::v1::ExportLogsPartialSuccess::MergeFrom(from._internal_partial_success());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ExportLogsServiceResponse::CopyFrom(const ExportLogsServiceResponse& from) {
@@ -529,7 +513,7 @@ bool ExportLogsServiceResponse::IsInitialized() const {
 void ExportLogsServiceResponse::InternalSwap(ExportLogsServiceResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.partial_success_, other->_impl_.partial_success_);
+  swap(partial_success_, other->partial_success_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ExportLogsServiceResponse::GetMetadata() const {
@@ -547,43 +531,30 @@ class ExportLogsPartialSuccess::_Internal {
 ExportLogsPartialSuccess::ExportLogsPartialSuccess(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess)
 }
 ExportLogsPartialSuccess::ExportLogsPartialSuccess(const ExportLogsPartialSuccess& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ExportLogsPartialSuccess* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.error_message_){}
-    , decltype(_impl_.rejected_log_records_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.error_message_.InitDefault();
+  error_message_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.error_message_.Set("", GetArenaForAllocation());
+    error_message_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_error_message().empty()) {
-    _this->_impl_.error_message_.Set(from._internal_error_message(), 
-      _this->GetArenaForAllocation());
+    error_message_.Set(from._internal_error_message(), 
+      GetArenaForAllocation());
   }
-  _this->_impl_.rejected_log_records_ = from._impl_.rejected_log_records_;
+  rejected_log_records_ = from.rejected_log_records_;
   // @@protoc_insertion_point(copy_constructor:opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess)
 }
 
-inline void ExportLogsPartialSuccess::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.error_message_){}
-    , decltype(_impl_.rejected_log_records_){int64_t{0}}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.error_message_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.error_message_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ExportLogsPartialSuccess::SharedCtor() {
+error_message_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  error_message_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+rejected_log_records_ = int64_t{0};
 }
 
 ExportLogsPartialSuccess::~ExportLogsPartialSuccess() {
@@ -597,11 +568,11 @@ ExportLogsPartialSuccess::~ExportLogsPartialSuccess() {
 
 inline void ExportLogsPartialSuccess::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.error_message_.Destroy();
+  error_message_.Destroy();
 }
 
 void ExportLogsPartialSuccess::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ExportLogsPartialSuccess::Clear() {
@@ -610,8 +581,8 @@ void ExportLogsPartialSuccess::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.error_message_.ClearToEmpty();
-  _impl_.rejected_log_records_ = int64_t{0};
+  error_message_.ClearToEmpty();
+  rejected_log_records_ = int64_t{0};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -624,7 +595,7 @@ const char* ExportLogsPartialSuccess::_InternalParse(const char* ptr, ::_pbi::Pa
       // int64 rejected_log_records = 1 [json_name = "rejectedLogRecords"];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.rejected_log_records_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          rejected_log_records_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -712,31 +683,35 @@ size_t ExportLogsPartialSuccess::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_rejected_log_records());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ExportLogsPartialSuccess::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ExportLogsPartialSuccess::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ExportLogsPartialSuccess::GetClassData() const { return &_class_data_; }
 
+void ExportLogsPartialSuccess::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ExportLogsPartialSuccess *>(to)->MergeFrom(
+      static_cast<const ExportLogsPartialSuccess &>(from));
+}
 
-void ExportLogsPartialSuccess::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ExportLogsPartialSuccess*>(&to_msg);
-  auto& from = static_cast<const ExportLogsPartialSuccess&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ExportLogsPartialSuccess::MergeFrom(const ExportLogsPartialSuccess& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:opentelemetry.proto.collector.logs.v1.ExportLogsPartialSuccess)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_error_message().empty()) {
-    _this->_internal_set_error_message(from._internal_error_message());
+    _internal_set_error_message(from._internal_error_message());
   }
   if (from._internal_rejected_log_records() != 0) {
-    _this->_internal_set_rejected_log_records(from._internal_rejected_log_records());
+    _internal_set_rejected_log_records(from._internal_rejected_log_records());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ExportLogsPartialSuccess::CopyFrom(const ExportLogsPartialSuccess& from) {
@@ -756,10 +731,10 @@ void ExportLogsPartialSuccess::InternalSwap(ExportLogsPartialSuccess* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.error_message_, lhs_arena,
-      &other->_impl_.error_message_, rhs_arena
+      &error_message_, lhs_arena,
+      &other->error_message_, rhs_arena
   );
-  swap(_impl_.rejected_log_records_, other->_impl_.rejected_log_records_);
+  swap(rejected_log_records_, other->rejected_log_records_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ExportLogsPartialSuccess::GetMetadata() const {
