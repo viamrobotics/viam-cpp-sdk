@@ -53,7 +53,7 @@ jobs:
         with:
           cmakeVersion: 3.25.2
           ninjaVersion: 1.11.1
-      - uses: bufbuild/buf-setup-action@v1.9.0
+      - uses: bufbuild/buf-setup-action@v1.50.0
       - uses: arduino/setup-protoc@v1
       - name: Update buf
         run: |
