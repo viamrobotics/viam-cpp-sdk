@@ -23,16 +23,16 @@ namespace _pbi = _pb::internal;
 namespace google {
 namespace api {
 PROTOBUF_CONSTEXPR ResourceDescriptor::ResourceDescriptor(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.pattern_)*/{}
-  , /*decltype(_impl_.style_)*/{}
-  , /*decltype(_impl_._style_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.name_field_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.plural_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.singular_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.history_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : pattern_()
+  , style_()
+  , _style_cached_byte_size_(0)
+  , type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , name_field_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , plural_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , singular_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , history_(0)
+{}
 struct ResourceDescriptorDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceDescriptorDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -43,10 +43,9 @@ struct ResourceDescriptorDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResourceDescriptorDefaultTypeInternal _ResourceDescriptor_default_instance_;
 PROTOBUF_CONSTEXPR ResourceReference::ResourceReference(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.child_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , child_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct ResourceReferenceDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ResourceReferenceDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -69,21 +68,21 @@ const uint32_t TableStruct_google_2fapi_2fresource_2eproto::offsets[] PROTOBUF_S
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, _impl_.pattern_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, _impl_.name_field_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, _impl_.history_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, _impl_.plural_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, _impl_.singular_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, _impl_.style_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, type_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, pattern_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, name_field_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, history_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, plural_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, singular_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ResourceDescriptor, style_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::ResourceReference, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::google::api::ResourceReference, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::google::api::ResourceReference, _impl_.child_type_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ResourceReference, type_),
+  PROTOBUF_FIELD_OFFSET(::google::api::ResourceReference, child_type_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::ResourceDescriptor)},
@@ -196,92 +195,71 @@ class ResourceDescriptor::_Internal {
 
 ResourceDescriptor::ResourceDescriptor(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  pattern_(arena),
+  style_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.ResourceDescriptor)
 }
 ResourceDescriptor::ResourceDescriptor(const ResourceDescriptor& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ResourceDescriptor* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.pattern_){from._impl_.pattern_}
-    , decltype(_impl_.style_){from._impl_.style_}
-    , /*decltype(_impl_._style_cached_byte_size_)*/{0}
-    , decltype(_impl_.type_){}
-    , decltype(_impl_.name_field_){}
-    , decltype(_impl_.plural_){}
-    , decltype(_impl_.singular_){}
-    , decltype(_impl_.history_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      pattern_(from.pattern_),
+      style_(from.style_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.type_.InitDefault();
+  type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
+    type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_type().empty()) {
-    _this->_impl_.type_.Set(from._internal_type(), 
-      _this->GetArenaForAllocation());
+    type_.Set(from._internal_type(), 
+      GetArenaForAllocation());
   }
-  _impl_.name_field_.InitDefault();
+  name_field_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_field_.Set("", GetArenaForAllocation());
+    name_field_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name_field().empty()) {
-    _this->_impl_.name_field_.Set(from._internal_name_field(), 
-      _this->GetArenaForAllocation());
+    name_field_.Set(from._internal_name_field(), 
+      GetArenaForAllocation());
   }
-  _impl_.plural_.InitDefault();
+  plural_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.plural_.Set("", GetArenaForAllocation());
+    plural_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_plural().empty()) {
-    _this->_impl_.plural_.Set(from._internal_plural(), 
-      _this->GetArenaForAllocation());
+    plural_.Set(from._internal_plural(), 
+      GetArenaForAllocation());
   }
-  _impl_.singular_.InitDefault();
+  singular_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.singular_.Set("", GetArenaForAllocation());
+    singular_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_singular().empty()) {
-    _this->_impl_.singular_.Set(from._internal_singular(), 
-      _this->GetArenaForAllocation());
+    singular_.Set(from._internal_singular(), 
+      GetArenaForAllocation());
   }
-  _this->_impl_.history_ = from._impl_.history_;
+  history_ = from.history_;
   // @@protoc_insertion_point(copy_constructor:google.api.ResourceDescriptor)
 }
 
-inline void ResourceDescriptor::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.pattern_){arena}
-    , decltype(_impl_.style_){arena}
-    , /*decltype(_impl_._style_cached_byte_size_)*/{0}
-    , decltype(_impl_.type_){}
-    , decltype(_impl_.name_field_){}
-    , decltype(_impl_.plural_){}
-    , decltype(_impl_.singular_){}
-    , decltype(_impl_.history_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.name_field_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_field_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.plural_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.plural_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.singular_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.singular_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ResourceDescriptor::SharedCtor() {
+type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+name_field_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_field_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+plural_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  plural_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+singular_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  singular_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+history_ = 0;
 }
 
 ResourceDescriptor::~ResourceDescriptor() {
@@ -295,16 +273,14 @@ ResourceDescriptor::~ResourceDescriptor() {
 
 inline void ResourceDescriptor::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.pattern_.~RepeatedPtrField();
-  _impl_.style_.~RepeatedField();
-  _impl_.type_.Destroy();
-  _impl_.name_field_.Destroy();
-  _impl_.plural_.Destroy();
-  _impl_.singular_.Destroy();
+  type_.Destroy();
+  name_field_.Destroy();
+  plural_.Destroy();
+  singular_.Destroy();
 }
 
 void ResourceDescriptor::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ResourceDescriptor::Clear() {
@@ -313,13 +289,13 @@ void ResourceDescriptor::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.pattern_.Clear();
-  _impl_.style_.Clear();
-  _impl_.type_.ClearToEmpty();
-  _impl_.name_field_.ClearToEmpty();
-  _impl_.plural_.ClearToEmpty();
-  _impl_.singular_.ClearToEmpty();
-  _impl_.history_ = 0;
+  pattern_.Clear();
+  style_.Clear();
+  type_.ClearToEmpty();
+  name_field_.ClearToEmpty();
+  plural_.ClearToEmpty();
+  singular_.ClearToEmpty();
+  history_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -493,10 +469,10 @@ uint8_t* ResourceDescriptor::_InternalSerialize(
 
   // repeated .google.api.ResourceDescriptor.Style style = 10 [json_name = "style"];
   {
-    int byte_size = _impl_._style_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _style_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteEnumPacked(
-          10, _impl_.style_, byte_size, target);
+          10, style_, byte_size, target);
     }
   }
 
@@ -518,10 +494,10 @@ size_t ResourceDescriptor::ByteSizeLong() const {
 
   // repeated string pattern = 2 [json_name = "pattern"];
   total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.pattern_.size());
-  for (int i = 0, n = _impl_.pattern_.size(); i < n; i++) {
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(pattern_.size());
+  for (int i = 0, n = pattern_.size(); i < n; i++) {
     total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.pattern_.Get(i));
+      pattern_.Get(i));
   }
 
   // repeated .google.api.ResourceDescriptor.Style style = 10 [json_name = "style"];
@@ -536,7 +512,7 @@ size_t ResourceDescriptor::ByteSizeLong() const {
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._style_cached_byte_size_.store(cached_size,
+    _style_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -575,42 +551,46 @@ size_t ResourceDescriptor::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_history());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResourceDescriptor::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ResourceDescriptor::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResourceDescriptor::GetClassData() const { return &_class_data_; }
 
+void ResourceDescriptor::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ResourceDescriptor *>(to)->MergeFrom(
+      static_cast<const ResourceDescriptor &>(from));
+}
 
-void ResourceDescriptor::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ResourceDescriptor*>(&to_msg);
-  auto& from = static_cast<const ResourceDescriptor&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.ResourceDescriptor)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ResourceDescriptor::MergeFrom(const ResourceDescriptor& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.ResourceDescriptor)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.pattern_.MergeFrom(from._impl_.pattern_);
-  _this->_impl_.style_.MergeFrom(from._impl_.style_);
+  pattern_.MergeFrom(from.pattern_);
+  style_.MergeFrom(from.style_);
   if (!from._internal_type().empty()) {
-    _this->_internal_set_type(from._internal_type());
+    _internal_set_type(from._internal_type());
   }
   if (!from._internal_name_field().empty()) {
-    _this->_internal_set_name_field(from._internal_name_field());
+    _internal_set_name_field(from._internal_name_field());
   }
   if (!from._internal_plural().empty()) {
-    _this->_internal_set_plural(from._internal_plural());
+    _internal_set_plural(from._internal_plural());
   }
   if (!from._internal_singular().empty()) {
-    _this->_internal_set_singular(from._internal_singular());
+    _internal_set_singular(from._internal_singular());
   }
   if (from._internal_history() != 0) {
-    _this->_internal_set_history(from._internal_history());
+    _internal_set_history(from._internal_history());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ResourceDescriptor::CopyFrom(const ResourceDescriptor& from) {
@@ -629,25 +609,25 @@ void ResourceDescriptor::InternalSwap(ResourceDescriptor* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.pattern_.InternalSwap(&other->_impl_.pattern_);
-  _impl_.style_.InternalSwap(&other->_impl_.style_);
+  pattern_.InternalSwap(&other->pattern_);
+  style_.InternalSwap(&other->style_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.type_, lhs_arena,
-      &other->_impl_.type_, rhs_arena
+      &type_, lhs_arena,
+      &other->type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_field_, lhs_arena,
-      &other->_impl_.name_field_, rhs_arena
+      &name_field_, lhs_arena,
+      &other->name_field_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.plural_, lhs_arena,
-      &other->_impl_.plural_, rhs_arena
+      &plural_, lhs_arena,
+      &other->plural_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.singular_, lhs_arena,
-      &other->_impl_.singular_, rhs_arena
+      &singular_, lhs_arena,
+      &other->singular_, rhs_arena
   );
-  swap(_impl_.history_, other->_impl_.history_);
+  swap(history_, other->history_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ResourceDescriptor::GetMetadata() const {
@@ -665,54 +645,40 @@ class ResourceReference::_Internal {
 ResourceReference::ResourceReference(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:google.api.ResourceReference)
 }
 ResourceReference::ResourceReference(const ResourceReference& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ResourceReference* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){}
-    , decltype(_impl_.child_type_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.type_.InitDefault();
+  type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
+    type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_type().empty()) {
-    _this->_impl_.type_.Set(from._internal_type(), 
-      _this->GetArenaForAllocation());
+    type_.Set(from._internal_type(), 
+      GetArenaForAllocation());
   }
-  _impl_.child_type_.InitDefault();
+  child_type_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.child_type_.Set("", GetArenaForAllocation());
+    child_type_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_child_type().empty()) {
-    _this->_impl_.child_type_.Set(from._internal_child_type(), 
-      _this->GetArenaForAllocation());
+    child_type_.Set(from._internal_child_type(), 
+      GetArenaForAllocation());
   }
   // @@protoc_insertion_point(copy_constructor:google.api.ResourceReference)
 }
 
-inline void ResourceReference::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){}
-    , decltype(_impl_.child_type_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.child_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.child_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ResourceReference::SharedCtor() {
+type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+child_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  child_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 ResourceReference::~ResourceReference() {
@@ -726,12 +692,12 @@ ResourceReference::~ResourceReference() {
 
 inline void ResourceReference::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.type_.Destroy();
-  _impl_.child_type_.Destroy();
+  type_.Destroy();
+  child_type_.Destroy();
 }
 
 void ResourceReference::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void ResourceReference::Clear() {
@@ -740,8 +706,8 @@ void ResourceReference::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.type_.ClearToEmpty();
-  _impl_.child_type_.ClearToEmpty();
+  type_.ClearToEmpty();
+  child_type_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -850,31 +816,35 @@ size_t ResourceReference::ByteSizeLong() const {
         this->_internal_child_type());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ResourceReference::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     ResourceReference::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ResourceReference::GetClassData() const { return &_class_data_; }
 
+void ResourceReference::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ResourceReference *>(to)->MergeFrom(
+      static_cast<const ResourceReference &>(from));
+}
 
-void ResourceReference::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<ResourceReference*>(&to_msg);
-  auto& from = static_cast<const ResourceReference&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:google.api.ResourceReference)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void ResourceReference::MergeFrom(const ResourceReference& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.ResourceReference)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_type().empty()) {
-    _this->_internal_set_type(from._internal_type());
+    _internal_set_type(from._internal_type());
   }
   if (!from._internal_child_type().empty()) {
-    _this->_internal_set_child_type(from._internal_child_type());
+    _internal_set_child_type(from._internal_child_type());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ResourceReference::CopyFrom(const ResourceReference& from) {
@@ -894,12 +864,12 @@ void ResourceReference::InternalSwap(ResourceReference* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.type_, lhs_arena,
-      &other->_impl_.type_, rhs_arena
+      &type_, lhs_arena,
+      &other->type_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.child_type_, lhs_arena,
-      &other->_impl_.child_type_, rhs_arena
+      &child_type_, lhs_arena,
+      &other->child_type_, rhs_arena
   );
 }
 

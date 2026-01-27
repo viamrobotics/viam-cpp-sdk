@@ -25,10 +25,9 @@ namespace service {
 namespace discovery {
 namespace v1 {
 PROTOBUF_CONSTEXPR DiscoverResourcesRequest::DiscoverResourcesRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.extra_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , extra_(nullptr){}
 struct DiscoverResourcesRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DiscoverResourcesRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -39,9 +38,8 @@ struct DiscoverResourcesRequestDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DiscoverResourcesRequestDefaultTypeInternal _DiscoverResourcesRequest_default_instance_;
 PROTOBUF_CONSTEXPR DiscoverResourcesResponse::DiscoverResourcesResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.discoveries_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : discoveries_(){}
 struct DiscoverResourcesResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DiscoverResourcesResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -66,15 +64,15 @@ const uint32_t TableStruct_service_2fdiscovery_2fv1_2fdiscovery_2eproto::offsets
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::discovery::v1::DiscoverResourcesRequest, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::viam::service::discovery::v1::DiscoverResourcesRequest, _impl_.extra_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::discovery::v1::DiscoverResourcesRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::discovery::v1::DiscoverResourcesRequest, extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::service::discovery::v1::DiscoverResourcesResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::viam::service::discovery::v1::DiscoverResourcesResponse, _impl_.discoveries_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::discovery::v1::DiscoverResourcesResponse, discoveries_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::discovery::v1::DiscoverResourcesRequest)},
@@ -143,56 +141,45 @@ class DiscoverResourcesRequest::_Internal {
 
 const ::PROTOBUF_NAMESPACE_ID::Struct&
 DiscoverResourcesRequest::_Internal::extra(const DiscoverResourcesRequest* msg) {
-  return *msg->_impl_.extra_;
+  return *msg->extra_;
 }
 void DiscoverResourcesRequest::clear_extra() {
-  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
-    delete _impl_.extra_;
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
   }
-  _impl_.extra_ = nullptr;
+  extra_ = nullptr;
 }
 DiscoverResourcesRequest::DiscoverResourcesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.discovery.v1.DiscoverResourcesRequest)
 }
 DiscoverResourcesRequest::DiscoverResourcesRequest(const DiscoverResourcesRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  DiscoverResourcesRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.extra_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
+  name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
+    name_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
   }
   if (from._internal_has_extra()) {
-    _this->_impl_.extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from._impl_.extra_);
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:viam.service.discovery.v1.DiscoverResourcesRequest)
 }
 
-inline void DiscoverResourcesRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.extra_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void DiscoverResourcesRequest::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+extra_ = nullptr;
 }
 
 DiscoverResourcesRequest::~DiscoverResourcesRequest() {
@@ -206,12 +193,12 @@ DiscoverResourcesRequest::~DiscoverResourcesRequest() {
 
 inline void DiscoverResourcesRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.name_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.extra_;
+  name_.Destroy();
+  if (this != internal_default_instance()) delete extra_;
 }
 
 void DiscoverResourcesRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void DiscoverResourcesRequest::Clear() {
@@ -220,11 +207,11 @@ void DiscoverResourcesRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.name_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.extra_ != nullptr) {
-    delete _impl_.extra_;
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
   }
-  _impl_.extra_ = nullptr;
+  extra_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -325,35 +312,38 @@ size_t DiscoverResourcesRequest::ByteSizeLong() const {
   if (this->_internal_has_extra()) {
     total_size += 2 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.extra_);
+        *extra_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DiscoverResourcesRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     DiscoverResourcesRequest::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DiscoverResourcesRequest::GetClassData() const { return &_class_data_; }
 
+void DiscoverResourcesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DiscoverResourcesRequest *>(to)->MergeFrom(
+      static_cast<const DiscoverResourcesRequest &>(from));
+}
 
-void DiscoverResourcesRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<DiscoverResourcesRequest*>(&to_msg);
-  auto& from = static_cast<const DiscoverResourcesRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.discovery.v1.DiscoverResourcesRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void DiscoverResourcesRequest::MergeFrom(const DiscoverResourcesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.discovery.v1.DiscoverResourcesRequest)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
+    _internal_set_name(from._internal_name());
   }
   if (from._internal_has_extra()) {
-    _this->_internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(
-        from._internal_extra());
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DiscoverResourcesRequest::CopyFrom(const DiscoverResourcesRequest& from) {
@@ -373,10 +363,10 @@ void DiscoverResourcesRequest::InternalSwap(DiscoverResourcesRequest* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
   );
-  swap(_impl_.extra_, other->_impl_.extra_);
+  swap(extra_, other->extra_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DiscoverResourcesRequest::GetMetadata() const {
@@ -392,33 +382,23 @@ class DiscoverResourcesResponse::_Internal {
 };
 
 void DiscoverResourcesResponse::clear_discoveries() {
-  _impl_.discoveries_.Clear();
+  discoveries_.Clear();
 }
 DiscoverResourcesResponse::DiscoverResourcesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  discoveries_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.service.discovery.v1.DiscoverResourcesResponse)
 }
 DiscoverResourcesResponse::DiscoverResourcesResponse(const DiscoverResourcesResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  DiscoverResourcesResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.discoveries_){from._impl_.discoveries_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      discoveries_(from.discoveries_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:viam.service.discovery.v1.DiscoverResourcesResponse)
 }
 
-inline void DiscoverResourcesResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.discoveries_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void DiscoverResourcesResponse::SharedCtor() {
 }
 
 DiscoverResourcesResponse::~DiscoverResourcesResponse() {
@@ -432,11 +412,10 @@ DiscoverResourcesResponse::~DiscoverResourcesResponse() {
 
 inline void DiscoverResourcesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.discoveries_.~RepeatedPtrField();
 }
 
 void DiscoverResourcesResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void DiscoverResourcesResponse::Clear() {
@@ -445,7 +424,7 @@ void DiscoverResourcesResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.discoveries_.Clear();
+  discoveries_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -523,31 +502,35 @@ size_t DiscoverResourcesResponse::ByteSizeLong() const {
 
   // repeated .viam.app.v1.ComponentConfig discoveries = 1 [json_name = "discoveries"];
   total_size += 1UL * this->_internal_discoveries_size();
-  for (const auto& msg : this->_impl_.discoveries_) {
+  for (const auto& msg : this->discoveries_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DiscoverResourcesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     DiscoverResourcesResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DiscoverResourcesResponse::GetClassData() const { return &_class_data_; }
 
+void DiscoverResourcesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DiscoverResourcesResponse *>(to)->MergeFrom(
+      static_cast<const DiscoverResourcesResponse &>(from));
+}
 
-void DiscoverResourcesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<DiscoverResourcesResponse*>(&to_msg);
-  auto& from = static_cast<const DiscoverResourcesResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:viam.service.discovery.v1.DiscoverResourcesResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void DiscoverResourcesResponse::MergeFrom(const DiscoverResourcesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.service.discovery.v1.DiscoverResourcesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.discoveries_.MergeFrom(from._impl_.discoveries_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  discoveries_.MergeFrom(from.discoveries_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void DiscoverResourcesResponse::CopyFrom(const DiscoverResourcesResponse& from) {
@@ -564,7 +547,7 @@ bool DiscoverResourcesResponse::IsInitialized() const {
 void DiscoverResourcesResponse::InternalSwap(DiscoverResourcesResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.discoveries_.InternalSwap(&other->_impl_.discoveries_);
+  discoveries_.InternalSwap(&other->discoveries_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DiscoverResourcesResponse::GetMetadata() const {
