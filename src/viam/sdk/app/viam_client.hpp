@@ -1,4 +1,5 @@
 #include <viam/sdk/rpc/dial.hpp>
+#include <viam/sdk/app/billing.hpp>
 
 namespace viam {
 namespace sdk {
@@ -15,10 +16,13 @@ class ViamClient {
 
     const ViamChannel& channel() const;
 
+    std::shared_ptr<BillingClient> billing_client();
+
    private:
     ViamClient(ViamChannel channel);
 
     ViamChannel channel_;
+    std::shared_ptr<BillingClient> billing_client_;
 };
 
 }  // namespace sdk

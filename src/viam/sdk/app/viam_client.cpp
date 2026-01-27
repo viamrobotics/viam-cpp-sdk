@@ -1,4 +1,5 @@
 #include <viam/sdk/app/viam_client.hpp>
+#include <viam/sdk/app/billing.hpp>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/utils.hpp>
@@ -34,7 +35,13 @@ const ViamChannel& ViamClient::channel() const {
     return channel_;
 }
 
-ViamClient::ViamClient(ViamChannel channel) : channel_(std::move(channel)) {}
+ViamClient::ViamClient(ViamChannel channel) : channel_(std::move(channel)) {
+    billing_client_ = std::make_shared<BillingClient>(channel_);
+}
+
+std::shared_ptr<BillingClient> ViamClient::billing_client() {
+    return billing_client_;
+}
 
 }  // namespace sdk
 }  // namespace viam
