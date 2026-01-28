@@ -95,7 +95,31 @@ class BillingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateOrganizationBillingTierResponse>> PrepareAsyncUpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateOrganizationBillingTierResponse>>(PrepareAsyncUpdateOrganizationBillingTierRaw(context, request, cq));
     }
-    // Directly create a flat fee invoice for an organization and charge on the spot
+    // Get the billing organization for a location
+    virtual ::grpc::Status GetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetLocationBillingOrganizationResponse>> AsyncGetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetLocationBillingOrganizationResponse>>(AsyncGetLocationBillingOrganizationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetLocationBillingOrganizationResponse>> PrepareAsyncGetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetLocationBillingOrganizationResponse>>(PrepareAsyncGetLocationBillingOrganizationRaw(context, request, cq));
+    }
+    // Update the billing organization for a location
+    virtual ::grpc::Status UpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>> AsyncUpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>>(AsyncUpdateLocationBillingOrganizationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>> PrepareAsyncUpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>>(PrepareAsyncUpdateLocationBillingOrganizationRaw(context, request, cq));
+    }
+    // Charge an organization on the spot
+    virtual ::grpc::Status ChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::viam::app::v1::ChargeOrganizationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ChargeOrganizationResponse>> AsyncChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ChargeOrganizationResponse>>(AsyncChargeOrganizationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ChargeOrganizationResponse>> PrepareAsyncChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ChargeOrganizationResponse>>(PrepareAsyncChargeOrganizationRaw(context, request, cq));
+    }
+    // Deprecated: Use ChargeOrganization instead
     virtual ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>> AsyncCreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>>(AsyncCreateInvoiceAndChargeImmediatelyRaw(context, request, cq));
@@ -126,7 +150,16 @@ class BillingService final {
       // Update an organization's billing tier
       virtual void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // Directly create a flat fee invoice for an organization and charge on the spot
+      // Get the billing organization for a location
+      virtual void GetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Update the billing organization for a location
+      virtual void UpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Charge an organization on the spot
+      virtual void ChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest* request, ::viam::app::v1::ChargeOrganizationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest* request, ::viam::app::v1::ChargeOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Deprecated: Use ChargeOrganization instead
       virtual void CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
@@ -149,6 +182,12 @@ class BillingService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetAvailableBillingTiersResponse>* PrepareAsyncGetAvailableBillingTiersRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* AsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* PrepareAsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetLocationBillingOrganizationResponse>* AsyncGetLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetLocationBillingOrganizationResponse>* PrepareAsyncGetLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>* AsyncUpdateLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>* PrepareAsyncUpdateLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ChargeOrganizationResponse>* AsyncChargeOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ChargeOrganizationResponse>* PrepareAsyncChargeOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* AsyncCreateInvoiceAndChargeImmediatelyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* PrepareAsyncCreateInvoiceAndChargeImmediatelyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
@@ -206,6 +245,27 @@ class BillingService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>> PrepareAsyncUpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>>(PrepareAsyncUpdateOrganizationBillingTierRaw(context, request, cq));
     }
+    ::grpc::Status GetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationBillingOrganizationResponse>> AsyncGetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationBillingOrganizationResponse>>(AsyncGetLocationBillingOrganizationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationBillingOrganizationResponse>> PrepareAsyncGetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationBillingOrganizationResponse>>(PrepareAsyncGetLocationBillingOrganizationRaw(context, request, cq));
+    }
+    ::grpc::Status UpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>> AsyncUpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>>(AsyncUpdateLocationBillingOrganizationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>> PrepareAsyncUpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>>(PrepareAsyncUpdateLocationBillingOrganizationRaw(context, request, cq));
+    }
+    ::grpc::Status ChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::viam::app::v1::ChargeOrganizationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChargeOrganizationResponse>> AsyncChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChargeOrganizationResponse>>(AsyncChargeOrganizationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChargeOrganizationResponse>> PrepareAsyncChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChargeOrganizationResponse>>(PrepareAsyncChargeOrganizationRaw(context, request, cq));
+    }
     ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>> AsyncCreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>>(AsyncCreateInvoiceAndChargeImmediatelyRaw(context, request, cq));
@@ -229,6 +289,12 @@ class BillingService final {
       void GetAvailableBillingTiers(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, std::function<void(::grpc::Status)>) override;
       void UpdateOrganizationBillingTier(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest* request, ::viam::app::v1::ChargeOrganizationResponse* response, std::function<void(::grpc::Status)>) override;
+      void ChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest* request, ::viam::app::v1::ChargeOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response, std::function<void(::grpc::Status)>) override;
       void CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
@@ -257,6 +323,12 @@ class BillingService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAvailableBillingTiersResponse>* PrepareAsyncGetAvailableBillingTiersRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* AsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateOrganizationBillingTierResponse>* PrepareAsyncUpdateOrganizationBillingTierRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationBillingOrganizationResponse>* AsyncGetLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationBillingOrganizationResponse>* PrepareAsyncGetLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>* AsyncUpdateLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>* PrepareAsyncUpdateLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChargeOrganizationResponse>* AsyncChargeOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChargeOrganizationResponse>* PrepareAsyncChargeOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* AsyncCreateInvoiceAndChargeImmediatelyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* PrepareAsyncCreateInvoiceAndChargeImmediatelyRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetCurrentMonthUsage_;
@@ -266,6 +338,9 @@ class BillingService final {
     const ::grpc::internal::RpcMethod rpcmethod_SendPaymentRequiredEmail_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAvailableBillingTiers_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateOrganizationBillingTier_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetLocationBillingOrganization_;
+    const ::grpc::internal::RpcMethod rpcmethod_UpdateLocationBillingOrganization_;
+    const ::grpc::internal::RpcMethod rpcmethod_ChargeOrganization_;
     const ::grpc::internal::RpcMethod rpcmethod_CreateInvoiceAndChargeImmediately_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -288,7 +363,13 @@ class BillingService final {
     virtual ::grpc::Status GetAvailableBillingTiers(::grpc::ServerContext* context, const ::viam::app::v1::GetAvailableBillingTiersRequest* request, ::viam::app::v1::GetAvailableBillingTiersResponse* response);
     // Update an organization's billing tier
     virtual ::grpc::Status UpdateOrganizationBillingTier(::grpc::ServerContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response);
-    // Directly create a flat fee invoice for an organization and charge on the spot
+    // Get the billing organization for a location
+    virtual ::grpc::Status GetLocationBillingOrganization(::grpc::ServerContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response);
+    // Update the billing organization for a location
+    virtual ::grpc::Status UpdateLocationBillingOrganization(::grpc::ServerContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response);
+    // Charge an organization on the spot
+    virtual ::grpc::Status ChargeOrganization(::grpc::ServerContext* context, const ::viam::app::v1::ChargeOrganizationRequest* request, ::viam::app::v1::ChargeOrganizationResponse* response);
+    // Deprecated: Use ChargeOrganization instead
     virtual ::grpc::Status CreateInvoiceAndChargeImmediately(::grpc::ServerContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response);
   };
   template <class BaseClass>
@@ -432,12 +513,72 @@ class BillingService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_GetLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::GetLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetLocationBillingOrganization(::grpc::ServerContext* context, ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetLocationBillingOrganizationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_UpdateLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_UpdateLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_UpdateLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateLocationBillingOrganization(::grpc::ServerContext* context, ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ChargeOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ChargeOrganization() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_ChargeOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ChargeOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ChargeOrganizationRequest* /*request*/, ::viam::app::v1::ChargeOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestChargeOrganization(::grpc::ServerContext* context, ::viam::app::v1::ChargeOrganizationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ChargeOrganizationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateInvoiceAndChargeImmediately() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_CreateInvoiceAndChargeImmediately() override {
       BaseClassMustBeDerivedFromService(this);
@@ -448,10 +589,10 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateInvoiceAndChargeImmediately(::grpc::ServerContext* context, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetCurrentMonthUsage<WithAsyncMethod_GetOrgBillingInformation<WithAsyncMethod_GetInvoicesSummary<WithAsyncMethod_GetInvoicePdf<WithAsyncMethod_SendPaymentRequiredEmail<WithAsyncMethod_GetAvailableBillingTiers<WithAsyncMethod_UpdateOrganizationBillingTier<WithAsyncMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetCurrentMonthUsage<WithAsyncMethod_GetOrgBillingInformation<WithAsyncMethod_GetInvoicesSummary<WithAsyncMethod_GetInvoicePdf<WithAsyncMethod_SendPaymentRequiredEmail<WithAsyncMethod_GetAvailableBillingTiers<WithAsyncMethod_UpdateOrganizationBillingTier<WithAsyncMethod_GetLocationBillingOrganization<WithAsyncMethod_UpdateLocationBillingOrganization<WithAsyncMethod_ChargeOrganization<WithAsyncMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetCurrentMonthUsage : public BaseClass {
    private:
@@ -637,18 +778,99 @@ class BillingService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* /*request*/, ::viam::app::v1::UpdateOrganizationBillingTierResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetLocationBillingOrganizationRequest, ::viam::app::v1::GetLocationBillingOrganizationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response) { return this->GetLocationBillingOrganization(context, request, response); }));}
+    void SetMessageAllocatorFor_GetLocationBillingOrganization(
+        ::grpc::MessageAllocator< ::viam::app::v1::GetLocationBillingOrganizationRequest, ::viam::app::v1::GetLocationBillingOrganizationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetLocationBillingOrganizationRequest, ::viam::app::v1::GetLocationBillingOrganizationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::GetLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetLocationBillingOrganization(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::GetLocationBillingOrganizationResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_UpdateLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UpdateLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateLocationBillingOrganizationRequest, ::viam::app::v1::UpdateLocationBillingOrganizationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response) { return this->UpdateLocationBillingOrganization(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateLocationBillingOrganization(
+        ::grpc::MessageAllocator< ::viam::app::v1::UpdateLocationBillingOrganizationRequest, ::viam::app::v1::UpdateLocationBillingOrganizationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateLocationBillingOrganizationRequest, ::viam::app::v1::UpdateLocationBillingOrganizationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_UpdateLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateLocationBillingOrganization(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ChargeOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ChargeOrganization() {
+      ::grpc::Service::MarkMethodCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ChargeOrganizationRequest, ::viam::app::v1::ChargeOrganizationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::ChargeOrganizationRequest* request, ::viam::app::v1::ChargeOrganizationResponse* response) { return this->ChargeOrganization(context, request, response); }));}
+    void SetMessageAllocatorFor_ChargeOrganization(
+        ::grpc::MessageAllocator< ::viam::app::v1::ChargeOrganizationRequest, ::viam::app::v1::ChargeOrganizationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ChargeOrganizationRequest, ::viam::app::v1::ChargeOrganizationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ChargeOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ChargeOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ChargeOrganizationRequest* /*request*/, ::viam::app::v1::ChargeOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ChargeOrganization(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::ChargeOrganizationRequest* /*request*/, ::viam::app::v1::ChargeOrganizationResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateInvoiceAndChargeImmediately() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response) { return this->CreateInvoiceAndChargeImmediately(context, request, response); }));}
     void SetMessageAllocatorFor_CreateInvoiceAndChargeImmediately(
         ::grpc::MessageAllocator< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -663,7 +885,7 @@ class BillingService final {
     virtual ::grpc::ServerUnaryReactor* CreateInvoiceAndChargeImmediately(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest* /*request*/, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetCurrentMonthUsage<WithCallbackMethod_GetOrgBillingInformation<WithCallbackMethod_GetInvoicesSummary<WithCallbackMethod_GetInvoicePdf<WithCallbackMethod_SendPaymentRequiredEmail<WithCallbackMethod_GetAvailableBillingTiers<WithCallbackMethod_UpdateOrganizationBillingTier<WithCallbackMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetCurrentMonthUsage<WithCallbackMethod_GetOrgBillingInformation<WithCallbackMethod_GetInvoicesSummary<WithCallbackMethod_GetInvoicePdf<WithCallbackMethod_SendPaymentRequiredEmail<WithCallbackMethod_GetAvailableBillingTiers<WithCallbackMethod_UpdateOrganizationBillingTier<WithCallbackMethod_GetLocationBillingOrganization<WithCallbackMethod_UpdateLocationBillingOrganization<WithCallbackMethod_ChargeOrganization<WithCallbackMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetCurrentMonthUsage : public BaseClass {
@@ -785,12 +1007,63 @@ class BillingService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_GetLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::GetLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UpdateLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UpdateLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_UpdateLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ChargeOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ChargeOrganization() {
+      ::grpc::Service::MarkMethodGeneric(9);
+    }
+    ~WithGenericMethod_ChargeOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ChargeOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ChargeOrganizationRequest* /*request*/, ::viam::app::v1::ChargeOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateInvoiceAndChargeImmediately() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_CreateInvoiceAndChargeImmediately() override {
       BaseClassMustBeDerivedFromService(this);
@@ -942,12 +1215,72 @@ class BillingService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_GetLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::GetLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetLocationBillingOrganization(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_UpdateLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_UpdateLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_UpdateLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateLocationBillingOrganization(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ChargeOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ChargeOrganization() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_ChargeOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ChargeOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ChargeOrganizationRequest* /*request*/, ::viam::app::v1::ChargeOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestChargeOrganization(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateInvoiceAndChargeImmediately() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_CreateInvoiceAndChargeImmediately() override {
       BaseClassMustBeDerivedFromService(this);
@@ -958,7 +1291,7 @@ class BillingService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateInvoiceAndChargeImmediately(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1116,12 +1449,78 @@ class BillingService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLocationBillingOrganization(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::GetLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetLocationBillingOrganization(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UpdateLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UpdateLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodRawCallback(8,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateLocationBillingOrganization(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_UpdateLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateLocationBillingOrganization(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ChargeOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ChargeOrganization() {
+      ::grpc::Service::MarkMethodRawCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ChargeOrganization(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ChargeOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ChargeOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ChargeOrganizationRequest* /*request*/, ::viam::app::v1::ChargeOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ChargeOrganization(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateInvoiceAndChargeImmediately() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateInvoiceAndChargeImmediately(context, request, response); }));
@@ -1300,12 +1699,93 @@ class BillingService final {
     virtual ::grpc::Status StreamedUpdateOrganizationBillingTier(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::UpdateOrganizationBillingTierRequest,::viam::app::v1::UpdateOrganizationBillingTierResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::GetLocationBillingOrganizationRequest, ::viam::app::v1::GetLocationBillingOrganizationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::GetLocationBillingOrganizationRequest, ::viam::app::v1::GetLocationBillingOrganizationResponse>* streamer) {
+                       return this->StreamedGetLocationBillingOrganization(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::GetLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetLocationBillingOrganization(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetLocationBillingOrganizationRequest,::viam::app::v1::GetLocationBillingOrganizationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UpdateLocationBillingOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UpdateLocationBillingOrganization() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::UpdateLocationBillingOrganizationRequest, ::viam::app::v1::UpdateLocationBillingOrganizationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::UpdateLocationBillingOrganizationRequest, ::viam::app::v1::UpdateLocationBillingOrganizationResponse>* streamer) {
+                       return this->StreamedUpdateLocationBillingOrganization(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_UpdateLocationBillingOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UpdateLocationBillingOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* /*request*/, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdateLocationBillingOrganization(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::UpdateLocationBillingOrganizationRequest,::viam::app::v1::UpdateLocationBillingOrganizationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ChargeOrganization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ChargeOrganization() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::ChargeOrganizationRequest, ::viam::app::v1::ChargeOrganizationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::ChargeOrganizationRequest, ::viam::app::v1::ChargeOrganizationResponse>* streamer) {
+                       return this->StreamedChargeOrganization(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ChargeOrganization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ChargeOrganization(::grpc::ServerContext* /*context*/, const ::viam::app::v1::ChargeOrganizationRequest* /*request*/, ::viam::app::v1::ChargeOrganizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedChargeOrganization(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::ChargeOrganizationRequest,::viam::app::v1::ChargeOrganizationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>(
             [this](::grpc::ServerContext* context,
@@ -1326,7 +1806,7 @@ class BillingService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedCreateInvoiceAndChargeImmediately(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest,::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithStreamedUnaryMethod_SendPaymentRequiredEmail<WithStreamedUnaryMethod_GetAvailableBillingTiers<WithStreamedUnaryMethod_UpdateOrganizationBillingTier<WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithStreamedUnaryMethod_SendPaymentRequiredEmail<WithStreamedUnaryMethod_GetAvailableBillingTiers<WithStreamedUnaryMethod_UpdateOrganizationBillingTier<WithStreamedUnaryMethod_GetLocationBillingOrganization<WithStreamedUnaryMethod_UpdateLocationBillingOrganization<WithStreamedUnaryMethod_ChargeOrganization<WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_GetInvoicePdf : public BaseClass {
    private:
@@ -1355,7 +1835,7 @@ class BillingService final {
     virtual ::grpc::Status StreamedGetInvoicePdf(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::v1::GetInvoicePdfRequest,::viam::app::v1::GetInvoicePdfResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_GetInvoicePdf<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithSplitStreamingMethod_GetInvoicePdf<WithStreamedUnaryMethod_SendPaymentRequiredEmail<WithStreamedUnaryMethod_GetAvailableBillingTiers<WithStreamedUnaryMethod_UpdateOrganizationBillingTier<WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetCurrentMonthUsage<WithStreamedUnaryMethod_GetOrgBillingInformation<WithStreamedUnaryMethod_GetInvoicesSummary<WithSplitStreamingMethod_GetInvoicePdf<WithStreamedUnaryMethod_SendPaymentRequiredEmail<WithStreamedUnaryMethod_GetAvailableBillingTiers<WithStreamedUnaryMethod_UpdateOrganizationBillingTier<WithStreamedUnaryMethod_GetLocationBillingOrganization<WithStreamedUnaryMethod_UpdateLocationBillingOrganization<WithStreamedUnaryMethod_ChargeOrganization<WithStreamedUnaryMethod_CreateInvoiceAndChargeImmediately<Service > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
