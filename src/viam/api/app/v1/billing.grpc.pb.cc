@@ -31,6 +31,9 @@ static const char* BillingService_method_names[] = {
   "/viam.app.v1.BillingService/SendPaymentRequiredEmail",
   "/viam.app.v1.BillingService/GetAvailableBillingTiers",
   "/viam.app.v1.BillingService/UpdateOrganizationBillingTier",
+  "/viam.app.v1.BillingService/GetLocationBillingOrganization",
+  "/viam.app.v1.BillingService/UpdateLocationBillingOrganization",
+  "/viam.app.v1.BillingService/ChargeOrganization",
   "/viam.app.v1.BillingService/CreateInvoiceAndChargeImmediately",
 };
 
@@ -48,7 +51,10 @@ BillingService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_SendPaymentRequiredEmail_(BillingService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetAvailableBillingTiers_(BillingService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_UpdateOrganizationBillingTier_(BillingService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateInvoiceAndChargeImmediately_(BillingService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetLocationBillingOrganization_(BillingService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateLocationBillingOrganization_(BillingService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ChargeOrganization_(BillingService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateInvoiceAndChargeImmediately_(BillingService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BillingService::Stub::GetCurrentMonthUsage(::grpc::ClientContext* context, const ::viam::app::v1::GetCurrentMonthUsageRequest& request, ::viam::app::v1::GetCurrentMonthUsageResponse* response) {
@@ -205,6 +211,75 @@ void BillingService::Stub::async::UpdateOrganizationBillingTier(::grpc::ClientCo
   return result;
 }
 
+::grpc::Status BillingService::Stub::GetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetLocationBillingOrganizationRequest, ::viam::app::v1::GetLocationBillingOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetLocationBillingOrganization_, context, request, response);
+}
+
+void BillingService::Stub::async::GetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetLocationBillingOrganizationRequest, ::viam::app::v1::GetLocationBillingOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLocationBillingOrganization_, context, request, response, std::move(f));
+}
+
+void BillingService::Stub::async::GetLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetLocationBillingOrganization_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationBillingOrganizationResponse>* BillingService::Stub::PrepareAsyncGetLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetLocationBillingOrganizationResponse, ::viam::app::v1::GetLocationBillingOrganizationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetLocationBillingOrganization_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationBillingOrganizationResponse>* BillingService::Stub::AsyncGetLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetLocationBillingOrganizationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status BillingService::Stub::UpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UpdateLocationBillingOrganizationRequest, ::viam::app::v1::UpdateLocationBillingOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateLocationBillingOrganization_, context, request, response);
+}
+
+void BillingService::Stub::async::UpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UpdateLocationBillingOrganizationRequest, ::viam::app::v1::UpdateLocationBillingOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateLocationBillingOrganization_, context, request, response, std::move(f));
+}
+
+void BillingService::Stub::async::UpdateLocationBillingOrganization(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateLocationBillingOrganization_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>* BillingService::Stub::PrepareAsyncUpdateLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UpdateLocationBillingOrganizationResponse, ::viam::app::v1::UpdateLocationBillingOrganizationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateLocationBillingOrganization_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UpdateLocationBillingOrganizationResponse>* BillingService::Stub::AsyncUpdateLocationBillingOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateLocationBillingOrganizationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status BillingService::Stub::ChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::viam::app::v1::ChargeOrganizationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::ChargeOrganizationRequest, ::viam::app::v1::ChargeOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ChargeOrganization_, context, request, response);
+}
+
+void BillingService::Stub::async::ChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest* request, ::viam::app::v1::ChargeOrganizationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::ChargeOrganizationRequest, ::viam::app::v1::ChargeOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ChargeOrganization_, context, request, response, std::move(f));
+}
+
+void BillingService::Stub::async::ChargeOrganization(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest* request, ::viam::app::v1::ChargeOrganizationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ChargeOrganization_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChargeOrganizationResponse>* BillingService::Stub::PrepareAsyncChargeOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::ChargeOrganizationResponse, ::viam::app::v1::ChargeOrganizationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ChargeOrganization_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::ChargeOrganizationResponse>* BillingService::Stub::AsyncChargeOrganizationRaw(::grpc::ClientContext* context, const ::viam::app::v1::ChargeOrganizationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncChargeOrganizationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status BillingService::Stub::CreateInvoiceAndChargeImmediately(::grpc::ClientContext* context, const ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest& request, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateInvoiceAndChargeImmediately_, context, request, response);
 }
@@ -302,6 +377,36 @@ BillingService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BillingService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::GetLocationBillingOrganizationRequest, ::viam::app::v1::GetLocationBillingOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BillingService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::GetLocationBillingOrganizationRequest* req,
+             ::viam::app::v1::GetLocationBillingOrganizationResponse* resp) {
+               return service->GetLocationBillingOrganization(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BillingService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::UpdateLocationBillingOrganizationRequest, ::viam::app::v1::UpdateLocationBillingOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BillingService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* req,
+             ::viam::app::v1::UpdateLocationBillingOrganizationResponse* resp) {
+               return service->UpdateLocationBillingOrganization(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BillingService_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::ChargeOrganizationRequest, ::viam::app::v1::ChargeOrganizationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BillingService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::ChargeOrganizationRequest* req,
+             ::viam::app::v1::ChargeOrganizationResponse* resp) {
+               return service->ChargeOrganization(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BillingService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BillingService::Service, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, ::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BillingService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -357,6 +462,27 @@ BillingService::Service::~Service() {
 }
 
 ::grpc::Status BillingService::Service::UpdateOrganizationBillingTier(::grpc::ServerContext* context, const ::viam::app::v1::UpdateOrganizationBillingTierRequest* request, ::viam::app::v1::UpdateOrganizationBillingTierResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BillingService::Service::GetLocationBillingOrganization(::grpc::ServerContext* context, const ::viam::app::v1::GetLocationBillingOrganizationRequest* request, ::viam::app::v1::GetLocationBillingOrganizationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BillingService::Service::UpdateLocationBillingOrganization(::grpc::ServerContext* context, const ::viam::app::v1::UpdateLocationBillingOrganizationRequest* request, ::viam::app::v1::UpdateLocationBillingOrganizationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BillingService::Service::ChargeOrganization(::grpc::ServerContext* context, const ::viam::app::v1::ChargeOrganizationRequest* request, ::viam::app::v1::ChargeOrganizationResponse* response) {
   (void) context;
   (void) request;
   (void) response;

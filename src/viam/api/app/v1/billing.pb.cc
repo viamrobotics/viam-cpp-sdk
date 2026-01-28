@@ -314,6 +314,83 @@ struct UpdateOrganizationBillingTierResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateOrganizationBillingTierResponseDefaultTypeInternal _UpdateOrganizationBillingTierResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetLocationBillingOrganizationRequest::GetLocationBillingOrganizationRequest(
+    ::_pbi::ConstantInitialized)
+  : location_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetLocationBillingOrganizationRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetLocationBillingOrganizationRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetLocationBillingOrganizationRequestDefaultTypeInternal() {}
+  union {
+    GetLocationBillingOrganizationRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLocationBillingOrganizationRequestDefaultTypeInternal _GetLocationBillingOrganizationRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetLocationBillingOrganizationResponse::GetLocationBillingOrganizationResponse(
+    ::_pbi::ConstantInitialized)
+  : billing_organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetLocationBillingOrganizationResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetLocationBillingOrganizationResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetLocationBillingOrganizationResponseDefaultTypeInternal() {}
+  union {
+    GetLocationBillingOrganizationResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLocationBillingOrganizationResponseDefaultTypeInternal _GetLocationBillingOrganizationResponse_default_instance_;
+PROTOBUF_CONSTEXPR UpdateLocationBillingOrganizationRequest::UpdateLocationBillingOrganizationRequest(
+    ::_pbi::ConstantInitialized)
+  : location_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , billing_organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct UpdateLocationBillingOrganizationRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateLocationBillingOrganizationRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateLocationBillingOrganizationRequestDefaultTypeInternal() {}
+  union {
+    UpdateLocationBillingOrganizationRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateLocationBillingOrganizationRequestDefaultTypeInternal _UpdateLocationBillingOrganizationRequest_default_instance_;
+PROTOBUF_CONSTEXPR UpdateLocationBillingOrganizationResponse::UpdateLocationBillingOrganizationResponse(
+    ::_pbi::ConstantInitialized){}
+struct UpdateLocationBillingOrganizationResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateLocationBillingOrganizationResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateLocationBillingOrganizationResponseDefaultTypeInternal() {}
+  union {
+    UpdateLocationBillingOrganizationResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateLocationBillingOrganizationResponseDefaultTypeInternal _UpdateLocationBillingOrganizationResponse_default_instance_;
+PROTOBUF_CONSTEXPR ChargeOrganizationRequest::ChargeOrganizationRequest(
+    ::_pbi::ConstantInitialized)
+  : org_id_to_charge_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , description_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , org_id_for_branding_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , subtotal_(0)
+  , tax_(0)
+  , disable_confirmation_email_(false){}
+struct ChargeOrganizationRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ChargeOrganizationRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ChargeOrganizationRequestDefaultTypeInternal() {}
+  union {
+    ChargeOrganizationRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ChargeOrganizationRequestDefaultTypeInternal _ChargeOrganizationRequest_default_instance_;
+PROTOBUF_CONSTEXPR ChargeOrganizationResponse::ChargeOrganizationResponse(
+    ::_pbi::ConstantInitialized)
+  : invoice_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct ChargeOrganizationResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ChargeOrganizationResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ChargeOrganizationResponseDefaultTypeInternal() {}
+  union {
+    ChargeOrganizationResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ChargeOrganizationResponseDefaultTypeInternal _ChargeOrganizationResponse_default_instance_;
 PROTOBUF_CONSTEXPR CreateInvoiceAndChargeImmediatelyRequest::CreateInvoiceAndChargeImmediatelyRequest(
     ::_pbi::ConstantInitialized)
   : org_id_to_charge_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -345,7 +422,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2fbilling_2eproto[23];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2fbilling_2eproto[29];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fbilling_2eproto[3];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2fbilling_2eproto = nullptr;
 
@@ -543,6 +620,59 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetLocationBillingOrganizationRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetLocationBillingOrganizationRequest, location_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetLocationBillingOrganizationResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetLocationBillingOrganizationResponse, billing_organization_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateLocationBillingOrganizationRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateLocationBillingOrganizationRequest, location_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateLocationBillingOrganizationRequest, billing_organization_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UpdateLocationBillingOrganizationResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationRequest, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationRequest, org_id_to_charge_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationRequest, description_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationRequest, subtotal_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationRequest, tax_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationRequest, org_id_for_branding_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationRequest, disable_confirmation_email_),
+  ~0u,
+  0,
+  ~0u,
+  ~0u,
+  1,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::ChargeOrganizationResponse, invoice_id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -589,8 +719,14 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 172, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersResponse)},
   { 179, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierRequest)},
   { 187, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierResponse)},
-  { 193, 204, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest)},
-  { 209, -1, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse)},
+  { 193, -1, -1, sizeof(::viam::app::v1::GetLocationBillingOrganizationRequest)},
+  { 200, -1, -1, sizeof(::viam::app::v1::GetLocationBillingOrganizationResponse)},
+  { 207, -1, -1, sizeof(::viam::app::v1::UpdateLocationBillingOrganizationRequest)},
+  { 215, -1, -1, sizeof(::viam::app::v1::UpdateLocationBillingOrganizationResponse)},
+  { 221, 233, -1, sizeof(::viam::app::v1::ChargeOrganizationRequest)},
+  { 239, -1, -1, sizeof(::viam::app::v1::ChargeOrganizationResponse)},
+  { 246, 257, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest)},
+  { 262, -1, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -615,6 +751,12 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_GetAvailableBillingTiersResponse_default_instance_._instance,
   &::viam::app::v1::_UpdateOrganizationBillingTierRequest_default_instance_._instance,
   &::viam::app::v1::_UpdateOrganizationBillingTierResponse_default_instance_._instance,
+  &::viam::app::v1::_GetLocationBillingOrganizationRequest_default_instance_._instance,
+  &::viam::app::v1::_GetLocationBillingOrganizationResponse_default_instance_._instance,
+  &::viam::app::v1::_UpdateLocationBillingOrganizationRequest_default_instance_._instance,
+  &::viam::app::v1::_UpdateLocationBillingOrganizationResponse_default_instance_._instance,
+  &::viam::app::v1::_ChargeOrganizationRequest_default_instance_._instance,
+  &::viam::app::v1::_ChargeOrganizationResponse_default_instance_._instance,
   &::viam::app::v1::_CreateInvoiceAndChargeImmediatelyRequest_default_instance_._instance,
   &::viam::app::v1::_CreateInvoiceAndChargeImmediatelyResponse_default_instance_._instance,
 };
@@ -708,84 +850,112 @@ const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTI
   "ationBillingTierRequest\022\'\n\017organization_"
   "id\030\001 \001(\tR\016organizationId\022!\n\014billing_tier"
   "\030\002 \001(\tR\013billingTier\"\'\n%UpdateOrganizatio"
-  "nBillingTierResponse\"\223\002\n(CreateInvoiceAn"
-  "dChargeImmediatelyRequest\022\'\n\020org_id_to_c"
-  "harge\030\001 \001(\tR\rorgIdToCharge\022\026\n\006amount\030\002 \001"
-  "(\001R\006amount\022%\n\013description\030\003 \001(\tH\000R\013descr"
-  "iption\210\001\001\0222\n\023org_id_for_branding\030\004 \001(\tH\001"
-  "R\020orgIdForBranding\210\001\001\022#\n\rdisable_email\030\005"
-  " \001(\010R\014disableEmailB\016\n\014_descriptionB\026\n\024_o"
-  "rg_id_for_branding\"J\n)CreateInvoiceAndCh"
-  "argeImmediatelyResponse\022\035\n\ninvoice_id\030\001 "
-  "\001(\tR\tinvoiceId*}\n\021PaymentMethodType\022#\n\037P"
-  "AYMENT_METHOD_TYPE_UNSPECIFIED\020\000\022\034\n\030PAYM"
-  "ENT_METHOD_TYPE_CARD\020\001\022%\n!PAYMENT_METHOD"
-  "_TYPE_USBANKACCOUNT\020\002*\204\t\n\rUsageCostType\022"
-  "\037\n\033USAGE_COST_TYPE_UNSPECIFIED\020\000\022#\n\033USAG"
-  "E_COST_TYPE_DATA_UPLOAD\020\001\032\002\010\001\022#\n\033USAGE_C"
-  "OST_TYPE_DATA_EGRESS\020\002\032\002\010\001\022\"\n\036USAGE_COST"
-  "_TYPE_REMOTE_CONTROL\020\003\022$\n USAGE_COST_TYP"
-  "E_STANDARD_COMPUTE\020\004\022%\n\035USAGE_COST_TYPE_"
-  "CLOUD_STORAGE\020\005\032\002\010\001\022-\n)USAGE_COST_TYPE_B"
-  "INARY_DATA_CLOUD_STORAGE\020\006\022+\n#USAGE_COST"
-  "_TYPE_OTHER_CLOUD_STORAGE\020\007\032\002\010\001\022\037\n\033USAGE"
-  "_COST_TYPE_PER_MACHINE\020\010\022(\n$USAGE_COST_T"
-  "YPE_TRIGGER_NOTIFICATION\020\t\022.\n*USAGE_COST"
-  "_TYPE_TABULAR_DATA_CLOUD_STORAGE\020\n\0220\n,US"
-  "AGE_COST_TYPE_CONFIG_HISTORY_CLOUD_STORA"
-  "GE\020\013\022&\n\"USAGE_COST_TYPE_LOGS_CLOUD_STORA"
-  "GE\020\014\022/\n+USAGE_COST_TYPE_TRAINING_LOGS_CL"
-  "OUD_STORAGE\020\r\022*\n&USAGE_COST_TYPE_PACKAGE"
-  "S_CLOUD_STORAGE\020\016\022&\n\"USAGE_COST_TYPE_BIN"
-  "ARY_DATA_UPLOAD\020\017\022\'\n#USAGE_COST_TYPE_TAB"
-  "ULAR_DATA_UPLOAD\020\020\022\037\n\033USAGE_COST_TYPE_LO"
-  "GS_UPLOAD\020\021\022&\n\"USAGE_COST_TYPE_BINARY_DA"
-  "TA_EGRESS\020\022\022\'\n#USAGE_COST_TYPE_TABULAR_D"
-  "ATA_EGRESS\020\023\022\037\n\033USAGE_COST_TYPE_LOGS_EGR"
-  "ESS\020\024\022(\n$USAGE_COST_TYPE_TRAINING_LOGS_E"
-  "GRESS\020\025\0227\n3USAGE_COST_TYPE_TABULAR_DATA_"
-  "DATABASE_CLOUD_STORAGE\020\026\0221\n-USAGE_COST_T"
-  "YPE_TABULAR_DATA_DATABASE_COMPUTE\020\027\0223\n/U"
-  "SAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_"
-  "EGRESS\020\030\022/\n+USAGE_COST_TYPE_PIPELINE_SIN"
-  "K_CLOUD_STORAGE\020\031\022)\n%USAGE_COST_TYPE_PIP"
-  "ELINE_SINK_COMPUTE\020\032*X\n\nSourceType\022\033\n\027SO"
-  "URCE_TYPE_UNSPECIFIED\020\000\022\023\n\017SOURCE_TYPE_O"
-  "RG\020\001\022\030\n\024SOURCE_TYPE_FRAGMENT\020\0022\307\007\n\016Billi"
-  "ngService\022k\n\024GetCurrentMonthUsage\022(.viam"
-  ".app.v1.GetCurrentMonthUsageRequest\032).vi"
-  "am.app.v1.GetCurrentMonthUsageResponse\022w"
-  "\n\030GetOrgBillingInformation\022,.viam.app.v1"
-  ".GetOrgBillingInformationRequest\032-.viam."
-  "app.v1.GetOrgBillingInformationResponse\022"
-  "e\n\022GetInvoicesSummary\022&.viam.app.v1.GetI"
-  "nvoicesSummaryRequest\032\'.viam.app.v1.GetI"
-  "nvoicesSummaryResponse\022X\n\rGetInvoicePdf\022"
-  "!.viam.app.v1.GetInvoicePdfRequest\032\".via"
-  "m.app.v1.GetInvoicePdfResponse0\001\022w\n\030Send"
-  "PaymentRequiredEmail\022,.viam.app.v1.SendP"
-  "aymentRequiredEmailRequest\032-.viam.app.v1"
-  ".SendPaymentRequiredEmailResponse\022w\n\030Get"
-  "AvailableBillingTiers\022,.viam.app.v1.GetA"
-  "vailableBillingTiersRequest\032-.viam.app.v"
-  "1.GetAvailableBillingTiersResponse\022\206\001\n\035U"
-  "pdateOrganizationBillingTier\0221.viam.app."
-  "v1.UpdateOrganizationBillingTierRequest\032"
-  "2.viam.app.v1.UpdateOrganizationBillingT"
-  "ierResponse\022\222\001\n!CreateInvoiceAndChargeIm"
-  "mediately\0225.viam.app.v1.CreateInvoiceAnd"
-  "ChargeImmediatelyRequest\0326.viam.app.v1.C"
-  "reateInvoiceAndChargeImmediatelyResponse"
-  "B\030Z\026go.viam.com/api/app/v1b\006proto3"
+  "nBillingTierResponse\"H\n%GetLocationBilli"
+  "ngOrganizationRequest\022\037\n\013location_id\030\001 \001"
+  "(\tR\nlocationId\"`\n&GetLocationBillingOrga"
+  "nizationResponse\0226\n\027billing_organization"
+  "_id\030\001 \001(\tR\025billingOrganizationId\"\203\001\n(Upd"
+  "ateLocationBillingOrganizationRequest\022\037\n"
+  "\013location_id\030\001 \001(\tR\nlocationId\0226\n\027billin"
+  "g_organization_id\030\002 \001(\tR\025billingOrganiza"
+  "tionId\"+\n)UpdateLocationBillingOrganizat"
+  "ionResponse\"\263\002\n\031ChargeOrganizationReques"
+  "t\022\'\n\020org_id_to_charge\030\001 \001(\tR\rorgIdToChar"
+  "ge\022%\n\013description\030\002 \001(\tH\000R\013description\210\001"
+  "\001\022\032\n\010subtotal\030\003 \001(\001R\010subtotal\022\020\n\003tax\030\004 \001"
+  "(\001R\003tax\0222\n\023org_id_for_branding\030\005 \001(\tH\001R\020"
+  "orgIdForBranding\210\001\001\022<\n\032disable_confirmat"
+  "ion_email\030\006 \001(\010R\030disableConfirmationEmai"
+  "lB\016\n\014_descriptionB\026\n\024_org_id_for_brandin"
+  "g\";\n\032ChargeOrganizationResponse\022\035\n\ninvoi"
+  "ce_id\030\001 \001(\tR\tinvoiceId\"\223\002\n(CreateInvoice"
+  "AndChargeImmediatelyRequest\022\'\n\020org_id_to"
+  "_charge\030\001 \001(\tR\rorgIdToCharge\022\026\n\006amount\030\002"
+  " \001(\001R\006amount\022%\n\013description\030\003 \001(\tH\000R\013des"
+  "cription\210\001\001\0222\n\023org_id_for_branding\030\004 \001(\t"
+  "H\001R\020orgIdForBranding\210\001\001\022#\n\rdisable_email"
+  "\030\005 \001(\010R\014disableEmailB\016\n\014_descriptionB\026\n\024"
+  "_org_id_for_branding\"J\n)CreateInvoiceAnd"
+  "ChargeImmediatelyResponse\022\035\n\ninvoice_id\030"
+  "\001 \001(\tR\tinvoiceId*}\n\021PaymentMethodType\022#\n"
+  "\037PAYMENT_METHOD_TYPE_UNSPECIFIED\020\000\022\034\n\030PA"
+  "YMENT_METHOD_TYPE_CARD\020\001\022%\n!PAYMENT_METH"
+  "OD_TYPE_USBANKACCOUNT\020\002*\204\t\n\rUsageCostTyp"
+  "e\022\037\n\033USAGE_COST_TYPE_UNSPECIFIED\020\000\022#\n\033US"
+  "AGE_COST_TYPE_DATA_UPLOAD\020\001\032\002\010\001\022#\n\033USAGE"
+  "_COST_TYPE_DATA_EGRESS\020\002\032\002\010\001\022\"\n\036USAGE_CO"
+  "ST_TYPE_REMOTE_CONTROL\020\003\022$\n USAGE_COST_T"
+  "YPE_STANDARD_COMPUTE\020\004\022%\n\035USAGE_COST_TYP"
+  "E_CLOUD_STORAGE\020\005\032\002\010\001\022-\n)USAGE_COST_TYPE"
+  "_BINARY_DATA_CLOUD_STORAGE\020\006\022+\n#USAGE_CO"
+  "ST_TYPE_OTHER_CLOUD_STORAGE\020\007\032\002\010\001\022\037\n\033USA"
+  "GE_COST_TYPE_PER_MACHINE\020\010\022(\n$USAGE_COST"
+  "_TYPE_TRIGGER_NOTIFICATION\020\t\022.\n*USAGE_CO"
+  "ST_TYPE_TABULAR_DATA_CLOUD_STORAGE\020\n\0220\n,"
+  "USAGE_COST_TYPE_CONFIG_HISTORY_CLOUD_STO"
+  "RAGE\020\013\022&\n\"USAGE_COST_TYPE_LOGS_CLOUD_STO"
+  "RAGE\020\014\022/\n+USAGE_COST_TYPE_TRAINING_LOGS_"
+  "CLOUD_STORAGE\020\r\022*\n&USAGE_COST_TYPE_PACKA"
+  "GES_CLOUD_STORAGE\020\016\022&\n\"USAGE_COST_TYPE_B"
+  "INARY_DATA_UPLOAD\020\017\022\'\n#USAGE_COST_TYPE_T"
+  "ABULAR_DATA_UPLOAD\020\020\022\037\n\033USAGE_COST_TYPE_"
+  "LOGS_UPLOAD\020\021\022&\n\"USAGE_COST_TYPE_BINARY_"
+  "DATA_EGRESS\020\022\022\'\n#USAGE_COST_TYPE_TABULAR"
+  "_DATA_EGRESS\020\023\022\037\n\033USAGE_COST_TYPE_LOGS_E"
+  "GRESS\020\024\022(\n$USAGE_COST_TYPE_TRAINING_LOGS"
+  "_EGRESS\020\025\0227\n3USAGE_COST_TYPE_TABULAR_DAT"
+  "A_DATABASE_CLOUD_STORAGE\020\026\0221\n-USAGE_COST"
+  "_TYPE_TABULAR_DATA_DATABASE_COMPUTE\020\027\0223\n"
+  "/USAGE_COST_TYPE_BINARY_DATA_CROSS_REGIO"
+  "N_EGRESS\020\030\022/\n+USAGE_COST_TYPE_PIPELINE_S"
+  "INK_CLOUD_STORAGE\020\031\022)\n%USAGE_COST_TYPE_P"
+  "IPELINE_SINK_COMPUTE\020\032*X\n\nSourceType\022\033\n\027"
+  "SOURCE_TYPE_UNSPECIFIED\020\000\022\023\n\017SOURCE_TYPE"
+  "_ORG\020\001\022\030\n\024SOURCE_TYPE_FRAGMENT\020\0022\317\n\n\016Bil"
+  "lingService\022k\n\024GetCurrentMonthUsage\022(.vi"
+  "am.app.v1.GetCurrentMonthUsageRequest\032)."
+  "viam.app.v1.GetCurrentMonthUsageResponse"
+  "\022w\n\030GetOrgBillingInformation\022,.viam.app."
+  "v1.GetOrgBillingInformationRequest\032-.via"
+  "m.app.v1.GetOrgBillingInformationRespons"
+  "e\022e\n\022GetInvoicesSummary\022&.viam.app.v1.Ge"
+  "tInvoicesSummaryRequest\032\'.viam.app.v1.Ge"
+  "tInvoicesSummaryResponse\022X\n\rGetInvoicePd"
+  "f\022!.viam.app.v1.GetInvoicePdfRequest\032\".v"
+  "iam.app.v1.GetInvoicePdfResponse0\001\022w\n\030Se"
+  "ndPaymentRequiredEmail\022,.viam.app.v1.Sen"
+  "dPaymentRequiredEmailRequest\032-.viam.app."
+  "v1.SendPaymentRequiredEmailResponse\022w\n\030G"
+  "etAvailableBillingTiers\022,.viam.app.v1.Ge"
+  "tAvailableBillingTiersRequest\032-.viam.app"
+  ".v1.GetAvailableBillingTiersResponse\022\206\001\n"
+  "\035UpdateOrganizationBillingTier\0221.viam.ap"
+  "p.v1.UpdateOrganizationBillingTierReques"
+  "t\0322.viam.app.v1.UpdateOrganizationBillin"
+  "gTierResponse\022\211\001\n\036GetLocationBillingOrga"
+  "nization\0222.viam.app.v1.GetLocationBillin"
+  "gOrganizationRequest\0323.viam.app.v1.GetLo"
+  "cationBillingOrganizationResponse\022\222\001\n!Up"
+  "dateLocationBillingOrganization\0225.viam.a"
+  "pp.v1.UpdateLocationBillingOrganizationR"
+  "equest\0326.viam.app.v1.UpdateLocationBilli"
+  "ngOrganizationResponse\022e\n\022ChargeOrganiza"
+  "tion\022&.viam.app.v1.ChargeOrganizationReq"
+  "uest\032\'.viam.app.v1.ChargeOrganizationRes"
+  "ponse\022\222\001\n!CreateInvoiceAndChargeImmediat"
+  "ely\0225.viam.app.v1.CreateInvoiceAndCharge"
+  "ImmediatelyRequest\0326.viam.app.v1.CreateI"
+  "nvoiceAndChargeImmediatelyResponseB\030Z\026go"
+  ".viam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 6274, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 7388, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
-    &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 23,
+    &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 29,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
     file_level_metadata_app_2fv1_2fbilling_2eproto, file_level_enum_descriptors_app_2fv1_2fbilling_2eproto,
     file_level_service_descriptors_app_2fv1_2fbilling_2eproto,
@@ -6042,6 +6212,1295 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UpdateOrganizationBillingTierR
 
 // ===================================================================
 
+class GetLocationBillingOrganizationRequest::_Internal {
+ public:
+};
+
+GetLocationBillingOrganizationRequest::GetLocationBillingOrganizationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.GetLocationBillingOrganizationRequest)
+}
+GetLocationBillingOrganizationRequest::GetLocationBillingOrganizationRequest(const GetLocationBillingOrganizationRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  location_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    location_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_location_id().empty()) {
+    location_id_.Set(from._internal_location_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetLocationBillingOrganizationRequest)
+}
+
+inline void GetLocationBillingOrganizationRequest::SharedCtor() {
+location_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  location_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetLocationBillingOrganizationRequest::~GetLocationBillingOrganizationRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.GetLocationBillingOrganizationRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetLocationBillingOrganizationRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  location_id_.Destroy();
+}
+
+void GetLocationBillingOrganizationRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetLocationBillingOrganizationRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.GetLocationBillingOrganizationRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  location_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetLocationBillingOrganizationRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string location_id = 1 [json_name = "locationId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_location_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetLocationBillingOrganizationRequest.location_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetLocationBillingOrganizationRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.GetLocationBillingOrganizationRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string location_id = 1 [json_name = "locationId"];
+  if (!this->_internal_location_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_location_id().data(), static_cast<int>(this->_internal_location_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetLocationBillingOrganizationRequest.location_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_location_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.GetLocationBillingOrganizationRequest)
+  return target;
+}
+
+size_t GetLocationBillingOrganizationRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.GetLocationBillingOrganizationRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string location_id = 1 [json_name = "locationId"];
+  if (!this->_internal_location_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_location_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetLocationBillingOrganizationRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetLocationBillingOrganizationRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetLocationBillingOrganizationRequest::GetClassData() const { return &_class_data_; }
+
+void GetLocationBillingOrganizationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetLocationBillingOrganizationRequest *>(to)->MergeFrom(
+      static_cast<const GetLocationBillingOrganizationRequest &>(from));
+}
+
+
+void GetLocationBillingOrganizationRequest::MergeFrom(const GetLocationBillingOrganizationRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.GetLocationBillingOrganizationRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_location_id().empty()) {
+    _internal_set_location_id(from._internal_location_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetLocationBillingOrganizationRequest::CopyFrom(const GetLocationBillingOrganizationRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.GetLocationBillingOrganizationRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetLocationBillingOrganizationRequest::IsInitialized() const {
+  return true;
+}
+
+void GetLocationBillingOrganizationRequest::InternalSwap(GetLocationBillingOrganizationRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &location_id_, lhs_arena,
+      &other->location_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetLocationBillingOrganizationRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[21]);
+}
+
+// ===================================================================
+
+class GetLocationBillingOrganizationResponse::_Internal {
+ public:
+};
+
+GetLocationBillingOrganizationResponse::GetLocationBillingOrganizationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.GetLocationBillingOrganizationResponse)
+}
+GetLocationBillingOrganizationResponse::GetLocationBillingOrganizationResponse(const GetLocationBillingOrganizationResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  billing_organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    billing_organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_billing_organization_id().empty()) {
+    billing_organization_id_.Set(from._internal_billing_organization_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetLocationBillingOrganizationResponse)
+}
+
+inline void GetLocationBillingOrganizationResponse::SharedCtor() {
+billing_organization_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  billing_organization_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetLocationBillingOrganizationResponse::~GetLocationBillingOrganizationResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.GetLocationBillingOrganizationResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetLocationBillingOrganizationResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  billing_organization_id_.Destroy();
+}
+
+void GetLocationBillingOrganizationResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetLocationBillingOrganizationResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.GetLocationBillingOrganizationResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  billing_organization_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetLocationBillingOrganizationResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string billing_organization_id = 1 [json_name = "billingOrganizationId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_billing_organization_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetLocationBillingOrganizationResponse.billing_organization_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetLocationBillingOrganizationResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.GetLocationBillingOrganizationResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string billing_organization_id = 1 [json_name = "billingOrganizationId"];
+  if (!this->_internal_billing_organization_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_billing_organization_id().data(), static_cast<int>(this->_internal_billing_organization_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetLocationBillingOrganizationResponse.billing_organization_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_billing_organization_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.GetLocationBillingOrganizationResponse)
+  return target;
+}
+
+size_t GetLocationBillingOrganizationResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.GetLocationBillingOrganizationResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string billing_organization_id = 1 [json_name = "billingOrganizationId"];
+  if (!this->_internal_billing_organization_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_billing_organization_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetLocationBillingOrganizationResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetLocationBillingOrganizationResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetLocationBillingOrganizationResponse::GetClassData() const { return &_class_data_; }
+
+void GetLocationBillingOrganizationResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetLocationBillingOrganizationResponse *>(to)->MergeFrom(
+      static_cast<const GetLocationBillingOrganizationResponse &>(from));
+}
+
+
+void GetLocationBillingOrganizationResponse::MergeFrom(const GetLocationBillingOrganizationResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.GetLocationBillingOrganizationResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_billing_organization_id().empty()) {
+    _internal_set_billing_organization_id(from._internal_billing_organization_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetLocationBillingOrganizationResponse::CopyFrom(const GetLocationBillingOrganizationResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.GetLocationBillingOrganizationResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetLocationBillingOrganizationResponse::IsInitialized() const {
+  return true;
+}
+
+void GetLocationBillingOrganizationResponse::InternalSwap(GetLocationBillingOrganizationResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &billing_organization_id_, lhs_arena,
+      &other->billing_organization_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetLocationBillingOrganizationResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[22]);
+}
+
+// ===================================================================
+
+class UpdateLocationBillingOrganizationRequest::_Internal {
+ public:
+};
+
+UpdateLocationBillingOrganizationRequest::UpdateLocationBillingOrganizationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.UpdateLocationBillingOrganizationRequest)
+}
+UpdateLocationBillingOrganizationRequest::UpdateLocationBillingOrganizationRequest(const UpdateLocationBillingOrganizationRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  location_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    location_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_location_id().empty()) {
+    location_id_.Set(from._internal_location_id(), 
+      GetArenaForAllocation());
+  }
+  billing_organization_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    billing_organization_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_billing_organization_id().empty()) {
+    billing_organization_id_.Set(from._internal_billing_organization_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.UpdateLocationBillingOrganizationRequest)
+}
+
+inline void UpdateLocationBillingOrganizationRequest::SharedCtor() {
+location_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  location_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+billing_organization_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  billing_organization_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UpdateLocationBillingOrganizationRequest::~UpdateLocationBillingOrganizationRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.UpdateLocationBillingOrganizationRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UpdateLocationBillingOrganizationRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  location_id_.Destroy();
+  billing_organization_id_.Destroy();
+}
+
+void UpdateLocationBillingOrganizationRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void UpdateLocationBillingOrganizationRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.UpdateLocationBillingOrganizationRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  location_id_.ClearToEmpty();
+  billing_organization_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UpdateLocationBillingOrganizationRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string location_id = 1 [json_name = "locationId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_location_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.UpdateLocationBillingOrganizationRequest.location_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string billing_organization_id = 2 [json_name = "billingOrganizationId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_billing_organization_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.UpdateLocationBillingOrganizationRequest.billing_organization_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UpdateLocationBillingOrganizationRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.UpdateLocationBillingOrganizationRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string location_id = 1 [json_name = "locationId"];
+  if (!this->_internal_location_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_location_id().data(), static_cast<int>(this->_internal_location_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.UpdateLocationBillingOrganizationRequest.location_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_location_id(), target);
+  }
+
+  // string billing_organization_id = 2 [json_name = "billingOrganizationId"];
+  if (!this->_internal_billing_organization_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_billing_organization_id().data(), static_cast<int>(this->_internal_billing_organization_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.UpdateLocationBillingOrganizationRequest.billing_organization_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_billing_organization_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.UpdateLocationBillingOrganizationRequest)
+  return target;
+}
+
+size_t UpdateLocationBillingOrganizationRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.UpdateLocationBillingOrganizationRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string location_id = 1 [json_name = "locationId"];
+  if (!this->_internal_location_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_location_id());
+  }
+
+  // string billing_organization_id = 2 [json_name = "billingOrganizationId"];
+  if (!this->_internal_billing_organization_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_billing_organization_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UpdateLocationBillingOrganizationRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    UpdateLocationBillingOrganizationRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UpdateLocationBillingOrganizationRequest::GetClassData() const { return &_class_data_; }
+
+void UpdateLocationBillingOrganizationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<UpdateLocationBillingOrganizationRequest *>(to)->MergeFrom(
+      static_cast<const UpdateLocationBillingOrganizationRequest &>(from));
+}
+
+
+void UpdateLocationBillingOrganizationRequest::MergeFrom(const UpdateLocationBillingOrganizationRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.UpdateLocationBillingOrganizationRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_location_id().empty()) {
+    _internal_set_location_id(from._internal_location_id());
+  }
+  if (!from._internal_billing_organization_id().empty()) {
+    _internal_set_billing_organization_id(from._internal_billing_organization_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdateLocationBillingOrganizationRequest::CopyFrom(const UpdateLocationBillingOrganizationRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.UpdateLocationBillingOrganizationRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UpdateLocationBillingOrganizationRequest::IsInitialized() const {
+  return true;
+}
+
+void UpdateLocationBillingOrganizationRequest::InternalSwap(UpdateLocationBillingOrganizationRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &location_id_, lhs_arena,
+      &other->location_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &billing_organization_id_, lhs_arena,
+      &other->billing_organization_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UpdateLocationBillingOrganizationRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[23]);
+}
+
+// ===================================================================
+
+class UpdateLocationBillingOrganizationResponse::_Internal {
+ public:
+};
+
+UpdateLocationBillingOrganizationResponse::UpdateLocationBillingOrganizationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.UpdateLocationBillingOrganizationResponse)
+}
+UpdateLocationBillingOrganizationResponse::UpdateLocationBillingOrganizationResponse(const UpdateLocationBillingOrganizationResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.UpdateLocationBillingOrganizationResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UpdateLocationBillingOrganizationResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UpdateLocationBillingOrganizationResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata UpdateLocationBillingOrganizationResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[24]);
+}
+
+// ===================================================================
+
+class ChargeOrganizationRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ChargeOrganizationRequest>()._has_bits_);
+  static void set_has_description(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_org_id_for_branding(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+};
+
+ChargeOrganizationRequest::ChargeOrganizationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.ChargeOrganizationRequest)
+}
+ChargeOrganizationRequest::ChargeOrganizationRequest(const ChargeOrganizationRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  org_id_to_charge_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    org_id_to_charge_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_org_id_to_charge().empty()) {
+    org_id_to_charge_.Set(from._internal_org_id_to_charge(), 
+      GetArenaForAllocation());
+  }
+  description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_description()) {
+    description_.Set(from._internal_description(), 
+      GetArenaForAllocation());
+  }
+  org_id_for_branding_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    org_id_for_branding_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_org_id_for_branding()) {
+    org_id_for_branding_.Set(from._internal_org_id_for_branding(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&subtotal_, &from.subtotal_,
+    static_cast<size_t>(reinterpret_cast<char*>(&disable_confirmation_email_) -
+    reinterpret_cast<char*>(&subtotal_)) + sizeof(disable_confirmation_email_));
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.ChargeOrganizationRequest)
+}
+
+inline void ChargeOrganizationRequest::SharedCtor() {
+org_id_to_charge_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  org_id_to_charge_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+description_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  description_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+org_id_for_branding_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  org_id_for_branding_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&subtotal_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&disable_confirmation_email_) -
+    reinterpret_cast<char*>(&subtotal_)) + sizeof(disable_confirmation_email_));
+}
+
+ChargeOrganizationRequest::~ChargeOrganizationRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.ChargeOrganizationRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ChargeOrganizationRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  org_id_to_charge_.Destroy();
+  description_.Destroy();
+  org_id_for_branding_.Destroy();
+}
+
+void ChargeOrganizationRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ChargeOrganizationRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.ChargeOrganizationRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  org_id_to_charge_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      description_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      org_id_for_branding_.ClearNonDefaultToEmpty();
+    }
+  }
+  ::memset(&subtotal_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&disable_confirmation_email_) -
+      reinterpret_cast<char*>(&subtotal_)) + sizeof(disable_confirmation_email_));
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ChargeOrganizationRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string org_id_to_charge = 1 [json_name = "orgIdToCharge"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_org_id_to_charge();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ChargeOrganizationRequest.org_id_to_charge"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string description = 2 [json_name = "description"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_description();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ChargeOrganizationRequest.description"));
+        } else
+          goto handle_unusual;
+        continue;
+      // double subtotal = 3 [json_name = "subtotal"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          subtotal_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double tax = 4 [json_name = "tax"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 33)) {
+          tax_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string org_id_for_branding = 5 [json_name = "orgIdForBranding"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_org_id_for_branding();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ChargeOrganizationRequest.org_id_for_branding"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool disable_confirmation_email = 6 [json_name = "disableConfirmationEmail"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          disable_confirmation_email_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ChargeOrganizationRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.ChargeOrganizationRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string org_id_to_charge = 1 [json_name = "orgIdToCharge"];
+  if (!this->_internal_org_id_to_charge().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_org_id_to_charge().data(), static_cast<int>(this->_internal_org_id_to_charge().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ChargeOrganizationRequest.org_id_to_charge");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_org_id_to_charge(), target);
+  }
+
+  // optional string description = 2 [json_name = "description"];
+  if (_internal_has_description()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_description().data(), static_cast<int>(this->_internal_description().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ChargeOrganizationRequest.description");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_description(), target);
+  }
+
+  // double subtotal = 3 [json_name = "subtotal"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_subtotal = this->_internal_subtotal();
+  uint64_t raw_subtotal;
+  memcpy(&raw_subtotal, &tmp_subtotal, sizeof(tmp_subtotal));
+  if (raw_subtotal != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_subtotal(), target);
+  }
+
+  // double tax = 4 [json_name = "tax"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_tax = this->_internal_tax();
+  uint64_t raw_tax;
+  memcpy(&raw_tax, &tmp_tax, sizeof(tmp_tax));
+  if (raw_tax != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(4, this->_internal_tax(), target);
+  }
+
+  // optional string org_id_for_branding = 5 [json_name = "orgIdForBranding"];
+  if (_internal_has_org_id_for_branding()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_org_id_for_branding().data(), static_cast<int>(this->_internal_org_id_for_branding().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ChargeOrganizationRequest.org_id_for_branding");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_org_id_for_branding(), target);
+  }
+
+  // bool disable_confirmation_email = 6 [json_name = "disableConfirmationEmail"];
+  if (this->_internal_disable_confirmation_email() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(6, this->_internal_disable_confirmation_email(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.ChargeOrganizationRequest)
+  return target;
+}
+
+size_t ChargeOrganizationRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.ChargeOrganizationRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string org_id_to_charge = 1 [json_name = "orgIdToCharge"];
+  if (!this->_internal_org_id_to_charge().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_org_id_to_charge());
+  }
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional string description = 2 [json_name = "description"];
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_description());
+    }
+
+    // optional string org_id_for_branding = 5 [json_name = "orgIdForBranding"];
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_org_id_for_branding());
+    }
+
+  }
+  // double subtotal = 3 [json_name = "subtotal"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_subtotal = this->_internal_subtotal();
+  uint64_t raw_subtotal;
+  memcpy(&raw_subtotal, &tmp_subtotal, sizeof(tmp_subtotal));
+  if (raw_subtotal != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double tax = 4 [json_name = "tax"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_tax = this->_internal_tax();
+  uint64_t raw_tax;
+  memcpy(&raw_tax, &tmp_tax, sizeof(tmp_tax));
+  if (raw_tax != 0) {
+    total_size += 1 + 8;
+  }
+
+  // bool disable_confirmation_email = 6 [json_name = "disableConfirmationEmail"];
+  if (this->_internal_disable_confirmation_email() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ChargeOrganizationRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ChargeOrganizationRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ChargeOrganizationRequest::GetClassData() const { return &_class_data_; }
+
+void ChargeOrganizationRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ChargeOrganizationRequest *>(to)->MergeFrom(
+      static_cast<const ChargeOrganizationRequest &>(from));
+}
+
+
+void ChargeOrganizationRequest::MergeFrom(const ChargeOrganizationRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.ChargeOrganizationRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_org_id_to_charge().empty()) {
+    _internal_set_org_id_to_charge(from._internal_org_id_to_charge());
+  }
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _internal_set_description(from._internal_description());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _internal_set_org_id_for_branding(from._internal_org_id_for_branding());
+    }
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_subtotal = from._internal_subtotal();
+  uint64_t raw_subtotal;
+  memcpy(&raw_subtotal, &tmp_subtotal, sizeof(tmp_subtotal));
+  if (raw_subtotal != 0) {
+    _internal_set_subtotal(from._internal_subtotal());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_tax = from._internal_tax();
+  uint64_t raw_tax;
+  memcpy(&raw_tax, &tmp_tax, sizeof(tmp_tax));
+  if (raw_tax != 0) {
+    _internal_set_tax(from._internal_tax());
+  }
+  if (from._internal_disable_confirmation_email() != 0) {
+    _internal_set_disable_confirmation_email(from._internal_disable_confirmation_email());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ChargeOrganizationRequest::CopyFrom(const ChargeOrganizationRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.ChargeOrganizationRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ChargeOrganizationRequest::IsInitialized() const {
+  return true;
+}
+
+void ChargeOrganizationRequest::InternalSwap(ChargeOrganizationRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &org_id_to_charge_, lhs_arena,
+      &other->org_id_to_charge_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &description_, lhs_arena,
+      &other->description_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &org_id_for_branding_, lhs_arena,
+      &other->org_id_for_branding_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ChargeOrganizationRequest, disable_confirmation_email_)
+      + sizeof(ChargeOrganizationRequest::disable_confirmation_email_)
+      - PROTOBUF_FIELD_OFFSET(ChargeOrganizationRequest, subtotal_)>(
+          reinterpret_cast<char*>(&subtotal_),
+          reinterpret_cast<char*>(&other->subtotal_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ChargeOrganizationRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[25]);
+}
+
+// ===================================================================
+
+class ChargeOrganizationResponse::_Internal {
+ public:
+};
+
+ChargeOrganizationResponse::ChargeOrganizationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.ChargeOrganizationResponse)
+}
+ChargeOrganizationResponse::ChargeOrganizationResponse(const ChargeOrganizationResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  invoice_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    invoice_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_invoice_id().empty()) {
+    invoice_id_.Set(from._internal_invoice_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.ChargeOrganizationResponse)
+}
+
+inline void ChargeOrganizationResponse::SharedCtor() {
+invoice_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  invoice_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+ChargeOrganizationResponse::~ChargeOrganizationResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.ChargeOrganizationResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ChargeOrganizationResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  invoice_id_.Destroy();
+}
+
+void ChargeOrganizationResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ChargeOrganizationResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.ChargeOrganizationResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  invoice_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ChargeOrganizationResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string invoice_id = 1 [json_name = "invoiceId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_invoice_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.ChargeOrganizationResponse.invoice_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ChargeOrganizationResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.ChargeOrganizationResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string invoice_id = 1 [json_name = "invoiceId"];
+  if (!this->_internal_invoice_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_invoice_id().data(), static_cast<int>(this->_internal_invoice_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.ChargeOrganizationResponse.invoice_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_invoice_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.ChargeOrganizationResponse)
+  return target;
+}
+
+size_t ChargeOrganizationResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.ChargeOrganizationResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string invoice_id = 1 [json_name = "invoiceId"];
+  if (!this->_internal_invoice_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_invoice_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ChargeOrganizationResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    ChargeOrganizationResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ChargeOrganizationResponse::GetClassData() const { return &_class_data_; }
+
+void ChargeOrganizationResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<ChargeOrganizationResponse *>(to)->MergeFrom(
+      static_cast<const ChargeOrganizationResponse &>(from));
+}
+
+
+void ChargeOrganizationResponse::MergeFrom(const ChargeOrganizationResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.ChargeOrganizationResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_invoice_id().empty()) {
+    _internal_set_invoice_id(from._internal_invoice_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ChargeOrganizationResponse::CopyFrom(const ChargeOrganizationResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.ChargeOrganizationResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ChargeOrganizationResponse::IsInitialized() const {
+  return true;
+}
+
+void ChargeOrganizationResponse::InternalSwap(ChargeOrganizationResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &invoice_id_, lhs_arena,
+      &other->invoice_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ChargeOrganizationResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
+      file_level_metadata_app_2fv1_2fbilling_2eproto[26]);
+}
+
+// ===================================================================
+
 class CreateInvoiceAndChargeImmediatelyRequest::_Internal {
  public:
   using HasBits = decltype(std::declval<CreateInvoiceAndChargeImmediatelyRequest>()._has_bits_);
@@ -6425,7 +7884,7 @@ void CreateInvoiceAndChargeImmediatelyRequest::InternalSwap(CreateInvoiceAndChar
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateInvoiceAndChargeImmediatelyRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[21]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[27]);
 }
 
 // ===================================================================
@@ -6620,7 +8079,7 @@ void CreateInvoiceAndChargeImmediatelyResponse::InternalSwap(CreateInvoiceAndCha
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateInvoiceAndChargeImmediatelyResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fv1_2fbilling_2eproto_getter, &descriptor_table_app_2fv1_2fbilling_2eproto_once,
-      file_level_metadata_app_2fv1_2fbilling_2eproto[22]);
+      file_level_metadata_app_2fv1_2fbilling_2eproto[28]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -6711,6 +8170,30 @@ Arena::CreateMaybeMessage< ::viam::app::v1::UpdateOrganizationBillingTierRequest
 template<> PROTOBUF_NOINLINE ::viam::app::v1::UpdateOrganizationBillingTierResponse*
 Arena::CreateMaybeMessage< ::viam::app::v1::UpdateOrganizationBillingTierResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::UpdateOrganizationBillingTierResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::GetLocationBillingOrganizationRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::GetLocationBillingOrganizationRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::GetLocationBillingOrganizationRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::GetLocationBillingOrganizationResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::GetLocationBillingOrganizationResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::GetLocationBillingOrganizationResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::UpdateLocationBillingOrganizationRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::UpdateLocationBillingOrganizationRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::UpdateLocationBillingOrganizationRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::UpdateLocationBillingOrganizationResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::UpdateLocationBillingOrganizationResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::UpdateLocationBillingOrganizationResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::ChargeOrganizationRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::ChargeOrganizationRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::ChargeOrganizationRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::ChargeOrganizationResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::ChargeOrganizationResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::ChargeOrganizationResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest*
 Arena::CreateMaybeMessage< ::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest >(Arena* arena) {
