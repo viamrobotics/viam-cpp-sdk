@@ -21,8 +21,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: releases/${{ inputs.ref }}
+        # with:
+        #   ref: releases/${{ inputs.ref }}
 
 
       - name: Install dependencies
@@ -81,8 +81,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        ref: releases/${{ inputs.ref }}
+      # with:
+      #   ref: releases/${{ inputs.ref }}
 
     - name: Show platform info
       run: |
@@ -163,60 +163,60 @@ jobs:
         conan upload "grpc/*" -r viamconan -c
         conan upload "protobuf/*" -r viamconan -c
 
-  build_windows:
-    runs-on: windows-latest
+  # build_windows:
+  #   runs-on: windows-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        ref: releases/${{ inputs.ref }}
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
+  #     with:
+  #       ref: releases/${{ inputs.ref }}
 
-    - name: Install dependencies
-      run: choco install -y conan git
+  #   - name: Install dependencies
+  #     run: choco install -y conan git
 
-    - name: Set up python/conan
-      shell: powershell
-      run: |
-        $ErrorActionPreference = "Stop"
-        Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-        refreshenv
+  #   - name: Set up python/conan
+  #     shell: powershell
+  #     run: |
+  #       $ErrorActionPreference = "Stop"
+  #       Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+  #       refreshenv
 
-        conan profile detect
+  #       conan profile detect
 
-        conan remote add viamconan $env:CONAN_REMOTE_URL
-        conan remote auth --force -cc core:non_interactive=True viamconan
-      env:
-        CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
-        CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
-        CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
-        CONAN_USER_HOME: c:/cache
-        CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+  #       conan remote add viamconan $env:CONAN_REMOTE_URL
+  #       conan remote auth --force -cc core:non_interactive=True viamconan
+  #     env:
+  #       CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
+  #       CONAN_LOGIN_USERNAME_VIAMCONAN: ${{ secrets.conanUsername}}
+  #       CONAN_PASSWORD_VIAMCONAN: ${{ secrets.conanPassword }}
+  #       CONAN_USER_HOME: c:/cache
+  #       CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
-    - name: Create and upload package
-      shell: powershell
-      run: |
-        $ErrorActionPreference = "Stop"
-        Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-        refreshenv
+  #   - name: Create and upload package
+  #     shell: powershell
+  #     run: |
+  #       $ErrorActionPreference = "Stop"
+  #       Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+  #       refreshenv
 
-        conan create . --build=missing -o "&:shared=False" -s:a compiler.cppstd=17
-        conan upload "viam-cpp-sdk/*" -r viamconan -c
-      env:
-        CONAN_USER_HOME: c:/cache
-        CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+  #       conan create . --build=missing -o "&:shared=False" -s:a compiler.cppstd=17
+  #       conan upload "viam-cpp-sdk/*" -r viamconan -c
+  #     env:
+  #       CONAN_USER_HOME: c:/cache
+  #       CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
 
-    - name: Upload additional deps
-      if: inputs.upload_deps
-      shell: powershell
-      run: |
-        $ErrorActionPreference = "Stop"
-        Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-        refreshenv
+  #   - name: Upload additional deps
+  #     if: inputs.upload_deps
+  #     shell: powershell
+  #     run: |
+  #       $ErrorActionPreference = "Stop"
+  #       Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+  #       refreshenv
 
-        conan upload "boost/*" -r viamconan -c
-        conan upload "grpc/*" -r viamconan -c
-        conan upload "protobuf/*" -r viamconan -c
-      env:
-        CONAN_USER_HOME: c:/cache
-        CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+  #       conan upload "boost/*" -r viamconan -c
+  #       conan upload "grpc/*" -r viamconan -c
+  #       conan upload "protobuf/*" -r viamconan -c
+  #     env:
+  #       CONAN_USER_HOME: c:/cache
+  #       CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
