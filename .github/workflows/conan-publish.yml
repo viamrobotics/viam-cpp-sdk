@@ -52,13 +52,10 @@ jobs:
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
-#          conan upload "viam-cpp-sdk/*" -r viamconan -c
-
-      - name: Generate lockfile
-        run: |
           cd src/viam/examples/project/cmake
           conan lock create . -s:a compiler.cppstd=17 -o:a "viam-cpp-sdk/*:shared=False" -nr
           cat conan.lock
+#          conan upload "viam-cpp-sdk/*" -r viamconan -c
 
       # - name: Upload additional deps
       #   if: inputs.upload_deps
@@ -146,13 +143,10 @@ jobs:
         . ./conan_venv/bin/activate
 
         conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
-#        conan upload "viam-cpp-sdk/*" -r viamconan -c
-
-    - name: Generate lockfile
-      run: |
         cd src/viam/examples/project/cmake
         conan lock create . -s:a compiler.cppstd=17 -o:a "viam-cpp-sdk/*:shared=False" -nr
         cat conan.lock
+#        conan upload "viam-cpp-sdk/*" -r viamconan -c
 
     - name: Upload additional deps
       if: inputs.upload_deps && !(matrix.runner == 'buildjet-8vcpu-ubuntu-2204' && matrix.image == 'ubuntu:22.04')
