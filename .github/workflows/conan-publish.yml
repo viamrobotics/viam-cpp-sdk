@@ -6,7 +6,7 @@ on:
       ref:
         required: true
         type: string
-        description: Version number (eg v0.20.1)
+        description: Version number (eg 0.20.1)
       upload_deps:
         required: true
         type: boolean
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: releases/${{ inputs.ref }}
+          ref: releases/v${{ inputs.ref }}
 
 
       - name: Install dependencies
@@ -79,7 +79,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: releases/${{ inputs.ref }}
+        ref: releases/v${{ inputs.ref }}
 
     - name: Show platform info
       run: |
@@ -168,7 +168,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: releases/${{ inputs.ref }}
+        ref: releases/v${{ inputs.ref }}
 
     - name: Install dependencies
       run: choco install -y conan git
