@@ -52,9 +52,6 @@ jobs:
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
-          cd src/viam/examples/project/cmake
-          conan lock create . -s:a compiler.cppstd=17 -o:a "viam-cpp-sdk/*:shared=False" -nr
-          cat conan.lock
           conan upload "viam-cpp-sdk/*" -r viamconan -c
 
       - name: Upload additional deps
@@ -143,9 +140,6 @@ jobs:
         . ./conan_venv/bin/activate
 
         conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
-        cd src/viam/examples/project/cmake
-        conan lock create . -s:a compiler.cppstd=17 -o:a "viam-cpp-sdk/*:shared=False" -nr
-        cat conan.lock
         conan upload "viam-cpp-sdk/*" -r viamconan -c
 
     - name: Upload additional deps
