@@ -190,27 +190,27 @@ const char descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto[] 
   "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
   "ra\"f\n\034GetNumberOfPositionsResponse\022.\n\023nu"
   "mber_of_positions\030\001 \001(\rR\021numberOfPositio"
-  "ns\022\026\n\006labels\030\002 \003(\tR\006labels2\271\005\n\rSwitchSer"
-  "vice\022\245\001\n\013SetPosition\022,.viam.component.sw"
+  "ns\022\026\n\006labels\030\002 \003(\tR\006labels2\275\005\n\rSwitchSer"
+  "vice\022\251\001\n\013SetPosition\022,.viam.component.sw"
   "itch.v1.SetPositionRequest\032-.viam.compon"
-  "ent.switch.v1.SetPositionResponse\"9\202\323\344\223\002"
-  "3\0321/viam/api/v1/component/switch/{name}/"
-  "set_position\022\245\001\n\013GetPosition\022,.viam.comp"
-  "onent.switch.v1.GetPositionRequest\032-.via"
-  "m.component.switch.v1.GetPositionRespons"
-  "e\"9\202\323\344\223\0023\0321/viam/api/v1/component/switch"
-  "/{name}/get_position\022\313\001\n\024GetNumberOfPosi"
-  "tions\0225.viam.component.switch.v1.GetNumb"
-  "erOfPositionsRequest\0326.viam.component.sw"
-  "itch.v1.GetNumberOfPositionsResponse\"D\202\323"
-  "\344\223\002>\032</viam/api/v1/component/switch/{nam"
-  "e}/get_number_of_positions\022\211\001\n\tDoCommand"
-  "\022 .viam.common.v1.DoCommandRequest\032!.via"
-  "m.common.v1.DoCommandResponse\"7\202\323\344\223\0021\"//"
-  "viam/api/v1/component/switch/{name}/do_c"
-  "ommandBC\n\034com.viam.component.switch.v1Z#"
-  "go.viam.com/api/component/switch/v1b\006pro"
-  "to3"
+  "ent.switch.v1.SetPositionResponse\"=\240\222)\001\202"
+  "\323\344\223\0023\0321/viam/api/v1/component/switch/{na"
+  "me}/set_position\022\245\001\n\013GetPosition\022,.viam."
+  "component.switch.v1.GetPositionRequest\032-"
+  ".viam.component.switch.v1.GetPositionRes"
+  "ponse\"9\202\323\344\223\0023\0321/viam/api/v1/component/sw"
+  "itch/{name}/get_position\022\313\001\n\024GetNumberOf"
+  "Positions\0225.viam.component.switch.v1.Get"
+  "NumberOfPositionsRequest\0326.viam.componen"
+  "t.switch.v1.GetNumberOfPositionsResponse"
+  "\"D\202\323\344\223\002>\032</viam/api/v1/component/switch/"
+  "{name}/get_number_of_positions\022\211\001\n\tDoCom"
+  "mand\022 .viam.common.v1.DoCommandRequest\032!"
+  ".viam.common.v1.DoCommandResponse\"7\202\323\344\223\002"
+  "1\"//viam/api/v1/component/switch/{name}/"
+  "do_commandBC\n\034com.viam.component.switch."
+  "v1Z#go.viam.com/api/component/switch/v1b"
+  "\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -219,7 +219,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fswitch_
 };
 static ::_pbi::once_flag descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto = {
-    false, false, 1403, descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto,
+    false, false, 1407, descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto,
     "component/switch/v1/switch.proto",
     &descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_once, descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_deps, 3, 6,
     schemas, file_default_instances, TableStruct_component_2fswitch_2fv1_2fswitch_2eproto::offsets,

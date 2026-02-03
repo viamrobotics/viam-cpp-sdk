@@ -89,16 +89,16 @@ const char descriptor_table_protodef_component_2fbutton_2fv1_2fbutton_2eproto[] 
   "le/protobuf/struct.proto\"P\n\013PushRequest\022"
   "\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.goo"
   "gle.protobuf.StructR\005extra\"\016\n\014PushRespon"
-  "se2\246\002\n\rButtonService\022\210\001\n\004Push\022%.viam.com"
+  "se2\252\002\n\rButtonService\022\214\001\n\004Push\022%.viam.com"
   "ponent.button.v1.PushRequest\032&.viam.comp"
-  "onent.button.v1.PushResponse\"1\202\323\344\223\002+\032)/v"
-  "iam/api/v1/component/button/{name}/push\022"
-  "\211\001\n\tDoCommand\022 .viam.common.v1.DoCommand"
-  "Request\032!.viam.common.v1.DoCommandRespon"
-  "se\"7\202\323\344\223\0021\"//viam/api/v1/component/butto"
-  "n/{name}/do_commandBC\n\034com.viam.componen"
-  "t.button.v1Z#go.viam.com/api/component/b"
-  "utton/v1b\006proto3"
+  "onent.button.v1.PushResponse\"5\240\222)\001\202\323\344\223\002+"
+  "\032)/viam/api/v1/component/button/{name}/p"
+  "ush\022\211\001\n\tDoCommand\022 .viam.common.v1.DoCom"
+  "mandRequest\032!.viam.common.v1.DoCommandRe"
+  "sponse\"7\202\323\344\223\0021\"//viam/api/v1/component/b"
+  "utton/{name}/do_commandBC\n\034com.viam.comp"
+  "onent.button.v1Z#go.viam.com/api/compone"
+  "nt/button/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbutton_2fv1_2fbutton_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -107,7 +107,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbutton_
 };
 static ::_pbi::once_flag descriptor_table_component_2fbutton_2fv1_2fbutton_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fbutton_2fv1_2fbutton_2eproto = {
-    false, false, 616, descriptor_table_protodef_component_2fbutton_2fv1_2fbutton_2eproto,
+    false, false, 620, descriptor_table_protodef_component_2fbutton_2fv1_2fbutton_2eproto,
     "component/button/v1/button.proto",
     &descriptor_table_component_2fbutton_2fv1_2fbutton_2eproto_once, descriptor_table_component_2fbutton_2fv1_2fbutton_2eproto_deps, 3, 2,
     schemas, file_default_instances, TableStruct_component_2fbutton_2fv1_2fbutton_2eproto::offsets,
