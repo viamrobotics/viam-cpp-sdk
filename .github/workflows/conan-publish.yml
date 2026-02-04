@@ -6,7 +6,7 @@ on:
       ref:
         required: true
         type: string
-        description: Version number (eg v0.20.1)
+        description: Version number (eg 0.20.1)
       upload_deps:
         required: true
         type: boolean
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: releases/${{ inputs.ref }}
+          ref: releases/v${{ inputs.ref }}
 
 
       - name: Install dependencies
@@ -76,7 +76,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: releases/${{ inputs.ref }}
+        ref: releases/v${{ inputs.ref }}
 
     - name: Show platform info
       run: |
@@ -146,10 +146,14 @@ jobs:
       if: inputs.upload_deps && !(matrix.runner == 'buildjet-8vcpu-ubuntu-2204' && matrix.image == 'ubuntu:22.04')
       run: |
         . ./conan_venv/bin/activate
-        
+
         conan upload "boost/*" -r viamconan -c
+        conan upload "abseil/*" -r viamconan -c
         conan upload "grpc/*" -r viamconan -c
         conan upload "protobuf/*" -r viamconan -c
+        conan upload "c-ares/*" -r viamconan -c
+        conan upload "libbacktrace/*" -r viamconan -c
+        conan upload "re2/*" -r viamconan -c
 
   build_windows:
     runs-on: windows-latest
@@ -158,7 +162,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: releases/${{ inputs.ref }}
+        ref: releases/v${{ inputs.ref }}
 
     - name: Install dependencies
       run: choco install -y conan git
