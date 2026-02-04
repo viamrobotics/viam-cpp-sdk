@@ -12,6 +12,12 @@ on:
         type: boolean
         default: false
         description: If true, publish slow-building deps as well
+      lockfile_sdk_update:
+        required: true
+        type: boolean
+        default: true
+        description: If true, update the SDK version in the lockfile
+
 
 jobs:
   build_macos:
@@ -51,8 +57,25 @@ jobs:
           # do have permissions for. See https://github.com/bufbuild/buf/issues/2698 for
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
+
+          # Note that this create a new conan.lock in the current working dir
+          conan lock remove --requires="viam-cpp-sdk/*" --lockfile etc/conan/conan.lock
+          cat conan.lock
+
           conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
           conan upload "viam-cpp-sdk/*" -r viamconan -c
+
+      - name: Update lockfile SDK version
+        if: inputs.lockfile_sdk_update
+        run: |
+          conan lock update --requires="viam-cpp-sdk/${{ inputs.ref }}"
+
+      - name: Upload lockfile artifact
+        if: inputs.lockfile_sdk_update
+        uses: actions/upload-artifact@v4
+        with:
+          name: conan-lockfile-macos-latest
+          path: conan.lock
 
       - name: Upload additional deps
         if: inputs.upload_deps
@@ -139,8 +162,24 @@ jobs:
       run: |
         . ./conan_venv/bin/activate
 
+        # Note that this create a new conan.lock in the current working dir
+        conan lock remove --requires="viam-cpp-sdk/*" --lockfile etc/conan/conan.lock
+        cat conan.lock
         conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
         conan upload "viam-cpp-sdk/*" -r viamconan -c
+
+    - name: Update lockfile SDK version
+      if: inputs.lockfile_sdk_update
+      run: |
+        . ./conan_venv/bin/activate
+        conan lock update --requires="viam-cpp-sdk/${{ inputs.ref }}"
+
+    - name: Upload lockfile artifact
+      if: inputs.lockfile_sdk_update
+      uses: actions/upload-artifact@v4
+      with:
+        name: conan-lockfile-${{ matrix.runner }}-${{ matrix.image }}
+        path: conan.lock
 
     - name: Upload additional deps
       if: inputs.upload_deps && !(matrix.runner == 'buildjet-8vcpu-ubuntu-2204' && matrix.image == 'ubuntu:22.04')
@@ -212,3 +251,52 @@ jobs:
       env:
         CONAN_USER_HOME: c:/cache
         CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
+
+  merge_lockfiles:
+    needs: [build_macos, build_linux]
+    if: inputs.lockfile_sdk_update
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: releases/v${{ inputs.ref }}
+          token: ${{ secrets.GIT_ACCESS_TOKEN }}
+
+      - name: Download lockfile artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: conan-lockfile-*
+          path: lockfiles
+
+      - name: Install Conan
+        run: |
+          python3 -m pip install conan
+
+      - name: Merge lockfiles
+        run: |
+          cd lockfiles
+          # List all downloaded lockfiles
+          ls
+
+          # Merge all lockfiles into a single merged lockfile
+          LOCKFILE_ARGS=$(ls | sed 's/^/--lockfile /')
+          conan lock merge $LOCKFILE_ARGS
+          cat conan.lock
+
+          # Move merged lockfile to repository
+          mv conan.lock ../etc/conan/conan.lock
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: '[WORKFLOW] Update conan lockfile for SDK version ${{ inputs.ref }}'
+          branch: 'workflow/update-lockfile'
+          add-paths: etc/conan/conan.lock
+          delete-branch: true
+          title: Automated Lockfile Update for v${{ inputs.ref }}
+          body: This is an auto-generated PR to update the conan lockfile after publishing SDK version ${{ inputs.ref }}
+          token: ${{ secrets.GIT_ACCESS_TOKEN }}
+
+
