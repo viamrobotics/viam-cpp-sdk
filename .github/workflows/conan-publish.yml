@@ -178,7 +178,7 @@ jobs:
       if: inputs.lockfile_sdk_update
       uses: actions/upload-artifact@v4
       with:
-        name: conan-lockfile-${{ matrix.runner }}-${{ matrix.image }}
+        name: conan-lockfile-${{ matrix.runner }}-${{ replace(matrix.image, ':', '-') }}
         path: conan.lock
 
     - name: Upload additional deps
