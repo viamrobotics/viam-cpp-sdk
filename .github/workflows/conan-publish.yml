@@ -174,11 +174,20 @@ jobs:
         . ./conan_venv/bin/activate
         conan lock update --requires="viam-cpp-sdk/${{ inputs.ref }}"
 
+    - name: Sanitize image name for artifact
+      if: inputs.lockfile_sdk_update
+      env:
+        IMAGE_NAME: "${{ matrix.image }}"
+      run: |
+        IMAGE_NAME=${{ env.IMAGE_NAME }}
+        IMAGE_NAME=${IMAGE_NAME//:/-} # replace colons with hyphens
+        echo IMAGE_NAME=${IMAGE_NAME} >> $GITHUB_ENV
+
     - name: Upload lockfile artifact
       if: inputs.lockfile_sdk_update
       uses: actions/upload-artifact@v4
       with:
-        name: conan-lockfile-${{ matrix.runner }}-${{ replace(matrix.image, ':', '-') }}
+        name: conan-lockfile-${{ matrix.runner }}-${{ env.IMAGE_NAME }}
         path: conan.lock
 
     - name: Upload additional deps
