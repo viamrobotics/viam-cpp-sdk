@@ -176,6 +176,7 @@ jobs:
 
     - name: Sanitize image name for artifact
       if: inputs.lockfile_sdk_update
+      shell: bash
       env:
         IMAGE_NAME: "${{ matrix.image }}"
       run: |
