@@ -288,10 +288,10 @@ jobs:
         run: |
           cd lockfiles
           # List all downloaded lockfiles
-          ls
+          ls -R
 
           # Merge all lockfiles into a single merged lockfile
-          LOCKFILE_ARGS=$(ls | sed 's/^/--lockfile /')
+          LOCKFILE_ARGS=$(find . -name "conan.lock" -type f | sed 's|^|--lockfile |')
           conan lock merge $LOCKFILE_ARGS
           cat conan.lock
 
