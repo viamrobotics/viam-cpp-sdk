@@ -2739,9 +2739,55 @@ class MoveOptions final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kMaxVelDegsPerSecJointsFieldNumber = 3,
+    kMaxAccDegsPerSec2JointsFieldNumber = 4,
     kMaxVelDegsPerSecFieldNumber = 1,
     kMaxAccDegsPerSec2FieldNumber = 2,
   };
+  // repeated double max_vel_degs_per_sec_joints = 3 [json_name = "maxVelDegsPerSecJoints"];
+  int max_vel_degs_per_sec_joints_size() const;
+  private:
+  int _internal_max_vel_degs_per_sec_joints_size() const;
+  public:
+  void clear_max_vel_degs_per_sec_joints();
+  private:
+  double _internal_max_vel_degs_per_sec_joints(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_max_vel_degs_per_sec_joints() const;
+  void _internal_add_max_vel_degs_per_sec_joints(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_max_vel_degs_per_sec_joints();
+  public:
+  double max_vel_degs_per_sec_joints(int index) const;
+  void set_max_vel_degs_per_sec_joints(int index, double value);
+  void add_max_vel_degs_per_sec_joints(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      max_vel_degs_per_sec_joints() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_max_vel_degs_per_sec_joints();
+
+  // repeated double max_acc_degs_per_sec2_joints = 4 [json_name = "maxAccDegsPerSec2Joints"];
+  int max_acc_degs_per_sec2_joints_size() const;
+  private:
+  int _internal_max_acc_degs_per_sec2_joints_size() const;
+  public:
+  void clear_max_acc_degs_per_sec2_joints();
+  private:
+  double _internal_max_acc_degs_per_sec2_joints(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_max_acc_degs_per_sec2_joints() const;
+  void _internal_add_max_acc_degs_per_sec2_joints(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_max_acc_degs_per_sec2_joints();
+  public:
+  double max_acc_degs_per_sec2_joints(int index) const;
+  void set_max_acc_degs_per_sec2_joints(int index, double value);
+  void add_max_acc_degs_per_sec2_joints(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      max_acc_degs_per_sec2_joints() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_max_acc_degs_per_sec2_joints();
+
   // optional double max_vel_degs_per_sec = 1 [json_name = "maxVelDegsPerSec"];
   bool has_max_vel_degs_per_sec() const;
   private:
@@ -2777,6 +2823,8 @@ class MoveOptions final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > max_vel_degs_per_sec_joints_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > max_acc_degs_per_sec2_joints_;
   double max_vel_degs_per_sec_;
   double max_acc_degs_per_sec2_;
   friend struct ::TableStruct_component_2farm_2fv1_2farm_2eproto;
@@ -4512,6 +4560,100 @@ inline void MoveOptions::_internal_set_max_acc_degs_per_sec2(double value) {
 inline void MoveOptions::set_max_acc_degs_per_sec2(double value) {
   _internal_set_max_acc_degs_per_sec2(value);
   // @@protoc_insertion_point(field_set:viam.component.arm.v1.MoveOptions.max_acc_degs_per_sec2)
+}
+
+// repeated double max_vel_degs_per_sec_joints = 3 [json_name = "maxVelDegsPerSecJoints"];
+inline int MoveOptions::_internal_max_vel_degs_per_sec_joints_size() const {
+  return max_vel_degs_per_sec_joints_.size();
+}
+inline int MoveOptions::max_vel_degs_per_sec_joints_size() const {
+  return _internal_max_vel_degs_per_sec_joints_size();
+}
+inline void MoveOptions::clear_max_vel_degs_per_sec_joints() {
+  max_vel_degs_per_sec_joints_.Clear();
+}
+inline double MoveOptions::_internal_max_vel_degs_per_sec_joints(int index) const {
+  return max_vel_degs_per_sec_joints_.Get(index);
+}
+inline double MoveOptions::max_vel_degs_per_sec_joints(int index) const {
+  // @@protoc_insertion_point(field_get:viam.component.arm.v1.MoveOptions.max_vel_degs_per_sec_joints)
+  return _internal_max_vel_degs_per_sec_joints(index);
+}
+inline void MoveOptions::set_max_vel_degs_per_sec_joints(int index, double value) {
+  max_vel_degs_per_sec_joints_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.component.arm.v1.MoveOptions.max_vel_degs_per_sec_joints)
+}
+inline void MoveOptions::_internal_add_max_vel_degs_per_sec_joints(double value) {
+  max_vel_degs_per_sec_joints_.Add(value);
+}
+inline void MoveOptions::add_max_vel_degs_per_sec_joints(double value) {
+  _internal_add_max_vel_degs_per_sec_joints(value);
+  // @@protoc_insertion_point(field_add:viam.component.arm.v1.MoveOptions.max_vel_degs_per_sec_joints)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+MoveOptions::_internal_max_vel_degs_per_sec_joints() const {
+  return max_vel_degs_per_sec_joints_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+MoveOptions::max_vel_degs_per_sec_joints() const {
+  // @@protoc_insertion_point(field_list:viam.component.arm.v1.MoveOptions.max_vel_degs_per_sec_joints)
+  return _internal_max_vel_degs_per_sec_joints();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+MoveOptions::_internal_mutable_max_vel_degs_per_sec_joints() {
+  return &max_vel_degs_per_sec_joints_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+MoveOptions::mutable_max_vel_degs_per_sec_joints() {
+  // @@protoc_insertion_point(field_mutable_list:viam.component.arm.v1.MoveOptions.max_vel_degs_per_sec_joints)
+  return _internal_mutable_max_vel_degs_per_sec_joints();
+}
+
+// repeated double max_acc_degs_per_sec2_joints = 4 [json_name = "maxAccDegsPerSec2Joints"];
+inline int MoveOptions::_internal_max_acc_degs_per_sec2_joints_size() const {
+  return max_acc_degs_per_sec2_joints_.size();
+}
+inline int MoveOptions::max_acc_degs_per_sec2_joints_size() const {
+  return _internal_max_acc_degs_per_sec2_joints_size();
+}
+inline void MoveOptions::clear_max_acc_degs_per_sec2_joints() {
+  max_acc_degs_per_sec2_joints_.Clear();
+}
+inline double MoveOptions::_internal_max_acc_degs_per_sec2_joints(int index) const {
+  return max_acc_degs_per_sec2_joints_.Get(index);
+}
+inline double MoveOptions::max_acc_degs_per_sec2_joints(int index) const {
+  // @@protoc_insertion_point(field_get:viam.component.arm.v1.MoveOptions.max_acc_degs_per_sec2_joints)
+  return _internal_max_acc_degs_per_sec2_joints(index);
+}
+inline void MoveOptions::set_max_acc_degs_per_sec2_joints(int index, double value) {
+  max_acc_degs_per_sec2_joints_.Set(index, value);
+  // @@protoc_insertion_point(field_set:viam.component.arm.v1.MoveOptions.max_acc_degs_per_sec2_joints)
+}
+inline void MoveOptions::_internal_add_max_acc_degs_per_sec2_joints(double value) {
+  max_acc_degs_per_sec2_joints_.Add(value);
+}
+inline void MoveOptions::add_max_acc_degs_per_sec2_joints(double value) {
+  _internal_add_max_acc_degs_per_sec2_joints(value);
+  // @@protoc_insertion_point(field_add:viam.component.arm.v1.MoveOptions.max_acc_degs_per_sec2_joints)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+MoveOptions::_internal_max_acc_degs_per_sec2_joints() const {
+  return max_acc_degs_per_sec2_joints_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+MoveOptions::max_acc_degs_per_sec2_joints() const {
+  // @@protoc_insertion_point(field_list:viam.component.arm.v1.MoveOptions.max_acc_degs_per_sec2_joints)
+  return _internal_max_acc_degs_per_sec2_joints();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+MoveOptions::_internal_mutable_max_acc_degs_per_sec2_joints() {
+  return &max_acc_degs_per_sec2_joints_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+MoveOptions::mutable_max_acc_degs_per_sec2_joints() {
+  // @@protoc_insertion_point(field_mutable_list:viam.component.arm.v1.MoveOptions.max_acc_degs_per_sec2_joints)
+  return _internal_mutable_max_acc_degs_per_sec2_joints();
 }
 
 #ifdef __GNUC__
