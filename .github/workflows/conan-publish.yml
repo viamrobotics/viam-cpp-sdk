@@ -49,6 +49,10 @@ jobs:
           conan remote add viamconan $CONAN_REMOTE_URL
           conan remote auth --force -cc core:non_interactive=True viamconan
 
+      - name: Set lockfile update arguments
+        if: inputs.lockfile_sdk_update
+        run: echo "LOCKFILE_UPDATE_ARGS=--lockfile-out conan.lock --lockfile-clean" >> $GITHUB_ENV
+
       - name: Create and upload package
         run: |
           # `buf` tries to read a CLI config file that we don't actually use located at
@@ -58,17 +62,10 @@ jobs:
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
 
-          # Note that this create a new conan.lock in the current working dir
-          conan lock remove --requires="viam-cpp-sdk/*" --lockfile etc/conan/conan.lock
-          cat conan.lock
+          conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" \
+          --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
-          conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
           conan upload "viam-cpp-sdk/*" -r viamconan -c
-
-      - name: Update lockfile SDK version
-        if: inputs.lockfile_sdk_update
-        run: |
-          conan lock update --requires="viam-cpp-sdk/${{ inputs.ref }}"
 
       - name: Upload lockfile artifact
         if: inputs.lockfile_sdk_update
@@ -158,21 +155,18 @@ jobs:
         conan remote add viamconan $CONAN_REMOTE_URL
         conan remote auth --force -cc core:non_interactive=True viamconan
 
+    - name: Set lockfile update arguments
+      if: inputs.lockfile_sdk_update
+      run: echo "LOCKFILE_UPDATE_ARGS=--lockfile-out conan.lock --lockfile-clean" >> $GITHUB_ENV
+
     - name: Create and upload package
       run: |
         . ./conan_venv/bin/activate
 
-        # Note that this create a new conan.lock in the current working dir
-        conan lock remove --requires="viam-cpp-sdk/*" --lockfile etc/conan/conan.lock
-        cat conan.lock
-        conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False"
-        conan upload "viam-cpp-sdk/*" -r viamconan -c
+        conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" \
+        --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
-    - name: Update lockfile SDK version
-      if: inputs.lockfile_sdk_update
-      run: |
-        . ./conan_venv/bin/activate
-        conan lock update --requires="viam-cpp-sdk/${{ inputs.ref }}"
+        conan upload "viam-cpp-sdk/*" -r viamconan -c
 
     - name: Sanitize image name for artifact
       if: inputs.lockfile_sdk_update
