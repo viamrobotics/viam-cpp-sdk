@@ -303,7 +303,7 @@ jobs:
         with:
           commit-message: '[WORKFLOW] Update conan lockfile for SDK version ${{ inputs.ref }}'
           branch: 'workflow/update-lockfile'
-          base: releases/v${{ inputs.ref }}
+          base: main
           add-paths: etc/conan/conan.lock
           delete-branch: true
           title: Automated Lockfile Update for v${{ inputs.ref }}
