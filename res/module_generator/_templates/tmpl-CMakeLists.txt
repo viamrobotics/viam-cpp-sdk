@@ -1,0 +1,20 @@
+
+cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+
+project({{ .ModuleName }}
+    DESCRIPTION "Viam C++ {{ .ModuleName }} Module"
+    LANGUAGES CXX
+)
+
+# Everything needs threads, and prefer -pthread if available
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+find_package(viam-cpp-sdk CONFIG REQUIRED COMPONENTS viamsdk)
+
+add_executable(${{ .ModuleName }} {{ .ModuleName }}.cpp)
+
+target_link_libraries(${{ .ModuleName }}
+    viam-cpp-sdk::viamsdk
+)
+
