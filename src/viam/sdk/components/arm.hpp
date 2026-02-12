@@ -41,6 +41,8 @@ class Arm : public Component, public Stoppable {
     struct MoveOptions {
         boost::optional<double> max_vel_degs_per_sec;
         boost::optional<double> max_acc_degs_per_sec2;
+        boost::optional<std::vector<double>> max_vel_degs_per_sec_joints;
+        boost::optional<std::vector<double>> max_acc_degs_per_sec2_joints;
     };
 
     /// @brief Get the current position of the end of the arm.
