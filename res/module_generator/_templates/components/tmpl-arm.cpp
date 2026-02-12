@@ -1,0 +1,92 @@
+
+#include <iostream>
+#include <memory>
+#include <vector>
+
+#include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/instance.hpp>
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/arm.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/log/logging.hpp>
+#include <viam/sdk/module/service.hpp>
+#include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/resource/reconfigurable.hpp>
+
+    
+class {{ .ModelPascal }} : public viam::sdk::Arm, public viam::sdk::Reconfigurable {
+public:
+    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) : Arm(cfg.name()) {
+        this->reconfigure(deps, cfg);
+    }
+
+
+    static std::vector<std::string> validate(const viam::sdk::ResourceConfig&)
+    {
+        throw std::runtime_error("\"validate\" not implemented");
+    }
+
+    void reconfigure(const viam::sdk::Dependencies&, const viam::sdk::ResourceConfig&) override
+    {
+        throw std::runtime_error("\"reconfigure\" not implemented");
+    }
+
+    viam::sdk::pose get_end_position(const viam::sdk::ProtoStruct & extra) override
+    {
+        throw std::logic_error("\"get_end_position\" not implemented");
+    }
+
+    void move_to_position(
+        const viam::sdk::pose & pose,
+        const viam::sdk::ProtoStruct & extra) override
+    {
+        throw std::logic_error("\"move_to_position\" not implemented");
+    }
+
+    std::vector<double> get_joint_positions(const viam::sdk::ProtoStruct & extra) override
+    {
+        throw std::logic_error("\"get_joint_positions\" not implemented");
+    }
+
+    void move_to_joint_positions(
+        const std::vector<double> & positions,
+        const viam::sdk::ProtoStruct & extra) override
+    {
+        throw std::logic_error("\"move_to_joint_positions\" not implemented");
+    }
+
+    void move_through_joint_positions(
+        const std::vector<std::vector<double>> & positions,
+        const viam::sdk::Arm::MoveOptions & options,
+        const viam::sdk::ProtoStruct & extra) override
+    {
+        throw std::logic_error("\"move_through_joint_positions\" not implemented");
+    }
+
+    bool is_moving() override
+    {
+        throw std::logic_error("\"is_moving\" not implemented");
+    }
+
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override
+    {
+        throw std::logic_error("\"do_command\" not implemented");
+    }
+
+    viam::sdk::KinematicsData get_kinematics(const viam::sdk::ProtoStruct & extra) override
+    {
+        throw std::logic_error("\"get_kinematics\" not implemented");
+    }
+
+    std::map<std::string, viam::sdk::mesh> get_3d_models(const viam::sdk::ProtoStruct & extra) override
+    {
+        throw std::logic_error("\"get_3d_models\" not implemented");
+    }
+
+    std::vector<viam::sdk::GeometryConfig> get_geometries(const viam::sdk::ProtoStruct & extra) override
+    {
+        throw std::logic_error("\"get_geometries\" not implemented");
+    }
+
+};
+
