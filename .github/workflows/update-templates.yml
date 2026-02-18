@@ -106,12 +106,12 @@ jobs:
           ninja install
           cl_gen -h
 
+      # On push events we only operate on cpp files for which the service or component hpp file had a diff
       - name: Operate on changed files
         if: github.event_name == 'push'
         run: |
           # ${{ github.event.before }} ${{ github.event.after }} once testing is done
 
-          # Get list of changed components or services and convert to the relevant cpp file
           changed_files=$(git diff --name-only  HEAD^1 HEAD | \
             grep -E '^src/viam/sdk/(components|services)/[a-z_]+\.hpp' | \
             sed 's@\.hpp@cpp@g' | \
@@ -127,6 +127,7 @@ jobs:
               sed 's@^@res/module_generator/templates_/@')
           done
 
+      # On a workflow_dispatch we just try to regenerate all the templates and see if there is a diff
       - name: Operate on changed files
         if: github.event_name == 'workflow_dispatch'
         run: |
@@ -158,6 +159,8 @@ jobs:
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "Changes detected in templates"
           fi
+
+          git diff res/module_generator/templates_
 
       - name: Create PR
         if: steps.check_changes.outputs.has_changes == 'true'
