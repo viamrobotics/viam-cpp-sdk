@@ -7,9 +7,6 @@ on:
     paths:
       - 'src/viam/sdk/components/*.hpp'
       - 'src/viam/sdk/services/*.hpp'
-    paths-ignore:
-      - 'src/viam/sdk/components/private/*'
-      - 'src/viam/sdk/services/private/*'
   workflow_dispatch:
     inputs:
       branch:
