@@ -1,0 +1,173 @@
+name: Update module generator templates
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/viam/sdk/components/*.hpp'
+      - 'src/viam/sdk/services/*.hpp'
+    paths-ignore:
+      - 'src/viam/sdk/components/private/*'
+      - 'src/viam/sdk/services/private/*'
+  workflow_dispatch:
+    inputs:
+      branch:
+        required: true
+        type: string
+
+jobs:
+  update_templates:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:bookworm
+
+    steps:
+      - name: Clone SDK
+        if: github.event_name == 'push'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clone SDK
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0
+
+      - name: Checkout generator repository
+        uses: actions/checkout@v4
+        with:
+          repository: lia-viam/rdk
+          ref: cpp-module-gen
+          path: rdk
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get -y dist-upgrade
+
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+              build-essential \
+              ca-certificates \
+              cmake \
+              curl \
+              doxygen \
+              g++ \
+              gettext \
+              gdb \
+              git \
+              gnupg \
+              gpg \
+              less \
+              libboost-all-dev \
+              libc-ares-dev \
+              libgrpc++-dev \
+              libprotobuf-dev \
+              libre2-dev \
+              libssl-dev \
+              lsof \
+              ninja-build \
+              pkg-config \
+              protobuf-compiler-grpc \
+              software-properties-common \
+              sudo \
+              wget \
+              zlib1g-dev
+
+          bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/llvm.asc'
+          apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
+          apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
+          apt-get update
+
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install -t llvm-toolchain-bookworm-15 \
+            clang-15 \
+            llvm-15-dev \
+            libclang-15-dev
+
+      - name: Generate SDK build tree
+        run: |
+          mkdir build
+          cd build
+          cmake .. -G Ninja \
+            -DVIAMCPPSDK_BUILD_TESTS=OFF \
+            -DVIAMCPPSDK_BUILD_EXAMPLES=OFF \
+            -DCMAKE_CXX_COMPILER=clang++-15
+
+      - name: Build and install generator
+        run: |
+          cd rdk/cli/module_generate/cpp-gen
+          mkdir build
+          cd build
+          cmake .. -G Ninja \
+            -DCMAKE_CXX_COMPILER=clang++-15 \
+            -DLLVM_DIR=/usr/lib/llvm-15
+          ninja install
+          cl_gen -h
+
+      - name: Operate on changed files
+        if: github.event_name == 'push'
+        run: |
+          # ${{ github.event.before }} ${{ github.event.after }} once testing is done
+
+          # Get list of changed components or services and convert to the relevant cpp file
+          changed_files=$(git diff --name-only  HEAD^1 HEAD | \
+            grep -E '^src/viam/sdk/(components|services)/[a-z_]+\.hpp' | \
+            sed 's@\.hpp@cpp@g' | \
+            sort -u )
+          echo "Changed files:"
+          echo "$changed_files"
+
+          for changed in $changed_files; do
+            cl_gen -p ./build $changed -o \
+              $(echo $changed | \
+              cut -d '/' -f 4-5 | \
+              sed 's@/@/tmpl-@' | \
+              sed 's@^@res/module_generator/templates_/@')
+          done
+
+      - name: Operate on changed files
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          # Regenerate all component and service templates
+          all_files=$(find src/viam/sdk/components src/viam/sdk/services \
+            -name '*.cpp' \
+            -not -path '*/private/*' \
+            -not -name 'component.cpp' \
+            -not -name 'service.cpp')
+          echo "All files to regenerate:"
+          echo "$all_files"
+
+          for file in $all_files; do
+            cl_gen -p ./build $file -o \
+              $(echo $file | \
+              cut -d '/' -f 4-5 | \
+              sed 's@/@/tmpl-@' | \
+              sed 's@^@res/module_generator/templates_/@')
+          done
+
+      - name: Check for changes
+        id: check_changes
+        shell: bash
+        run: |
+          if git diff --quiet res/module_generator/templates_; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in templates"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in templates"
+          fi
+
+      - name: Create PR
+        if: steps.check_changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: '[WORKFLOW] Update component/services templates'
+          branch: 'workflow/update-templates'
+          base: main
+          add-paths: res/module_generator/templates_'
+          delete-branch: true
+          title: Automated template update
+          body: This is an auto-generated PR to update module generator templates for components/services
+          token: ${{ secrets.GIT_ACCESS_TOKEN }}
