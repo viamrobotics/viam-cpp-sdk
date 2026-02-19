@@ -150,10 +150,10 @@ jobs:
       - name: Create PR
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: '[WORKFLOW] Update component/services templates'
-          branch: 'workflow/update-templates'
-          add-paths: 'res/module_generator/_templates'
-          delete-branch: true
-          title: Automated template update
-          body: This is an auto-generated PR to update module generator templates for components/services
+          branch: workflow/update-templates
+          add-paths: |
+            res/module_generator/_templates/components/*
+            res/module_generator/_templates/services/*
+          title: Automated update to module generator templates
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
+          delete-branch: true
