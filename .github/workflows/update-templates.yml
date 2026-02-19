@@ -147,22 +147,7 @@ jobs:
               sed 's@^@res/module_generator/_templates/@')
           done
 
-      - name: Check for changes
-        id: check_changes
-        shell: bash
-        run: |
-          if git diff --quiet res/module_generator/_templates; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "No changes detected in templates"
-          else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "Changes detected in templates"
-          fi
-
-          git diff res/module_generator/_templates
-
       - name: Create PR
-        if: steps.check_changes.outputs.has_changes == 'true'
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: '[WORKFLOW] Update component/services templates'
