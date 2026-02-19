@@ -148,11 +148,10 @@ jobs:
           done
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: '[WORKFLOW] Update component/services templates'
           branch: 'workflow/update-templates'
-          base: main
           add-paths: 'res/module_generator/_templates'
           delete-branch: true
           title: Automated template update
