@@ -122,7 +122,7 @@ jobs:
               $(echo $changed | \
               cut -d '/' -f 4-5 | \
               sed 's@$@.in@' | \
-              sed 's@^@res/module_generator/templates_/@')
+              sed 's@^@res/module_generator/_templates/@')
           done
 
       # On a workflow_dispatch we just try to regenerate all the templates and see if there is a diff
@@ -144,14 +144,14 @@ jobs:
               $(echo $file | \
               cut -d '/' -f 4-5 | \
               sed 's@$@.in@' | \
-              sed 's@^@res/module_generator/templates_/@')
+              sed 's@^@res/module_generator/_templates/@')
           done
 
       - name: Check for changes
         id: check_changes
         shell: bash
         run: |
-          if git diff --quiet res/module_generator/templates_; then
+          if git diff --quiet res/module_generator/_templates; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "No changes detected in templates"
           else
@@ -159,7 +159,7 @@ jobs:
             echo "Changes detected in templates"
           fi
 
-          git diff res/module_generator/templates_
+          git diff res/module_generator/_templates
 
       - name: Create PR
         if: steps.check_changes.outputs.has_changes == 'true'
@@ -168,7 +168,7 @@ jobs:
           commit-message: '[WORKFLOW] Update component/services templates'
           branch: 'workflow/update-templates'
           base: main
-          add-paths: res/module_generator/templates_'
+          add-paths: res/module_generator/_templates'
           delete-branch: true
           title: Automated template update
           body: This is an auto-generated PR to update module generator templates for components/services
