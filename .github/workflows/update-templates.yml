@@ -70,6 +70,7 @@ jobs:
               protobuf-compiler-grpc \
               software-properties-common \
               sudo \
+              tree \
               wget \
               zlib1g-dev
 
@@ -128,7 +129,8 @@ jobs:
       - name: Operate on changed files
         if: github.event_name == 'workflow_dispatch'
         run: |
-          # Regenerate all component and service templates
+          tree res
+
           all_files=$(find src/viam/sdk/components src/viam/sdk/services \
             -name '*.cpp' \
             -not -path '*/private/*' \
