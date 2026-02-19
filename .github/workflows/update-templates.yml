@@ -120,7 +120,7 @@ jobs:
             cl_gen -p ./build $changed -o \
               $(echo $changed | \
               cut -d '/' -f 4-5 | \
-              sed 's@/@/tmpl-@' | \
+              sed 's@$@.in@' | \
               sed 's@^@res/module_generator/templates_/@')
           done
 
@@ -141,7 +141,7 @@ jobs:
             cl_gen -p ./build $file -o \
               $(echo $file | \
               cut -d '/' -f 4-5 | \
-              sed 's@/@/tmpl-@' | \
+              sed 's@$@.in@' | \
               sed 's@^@res/module_generator/templates_/@')
           done
 
