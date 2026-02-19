@@ -36,7 +36,8 @@ jobs:
       - name: Checkout generator repository
         uses: actions/checkout@v4
         with:
-          repository: viamrobotics/rdk
+          repository: lia-viam/rdk
+          ref: cpp-fixes
           path: rdk
 
       - name: Install dependencies
