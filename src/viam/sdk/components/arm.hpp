@@ -1,7 +1,6 @@
 /// @file components/arm.hpp
 ///
 /// @brief Defines an `Arm` component
-
 #pragma once
 
 #include <string>
