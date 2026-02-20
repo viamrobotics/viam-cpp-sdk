@@ -15,18 +15,6 @@ jobs:
       image: debian:bookworm
 
     steps:
-      - name: Checkout generator repository
-        uses: actions/checkout@v6
-        with:
-          repository: lia-viam/rdk
-          ref: cpp-fixes
-          path: rdk
-
-      - name: Clone SDK
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
       - name: Install dependencies
         run: |
           apt-get update
@@ -71,14 +59,12 @@ jobs:
             llvm-15-dev \
             libclang-15-dev
 
-      - name: Generate SDK build tree
-        run: |
-          mkdir build
-          cd build
-          cmake .. -G Ninja \
-            -DVIAMCPPSDK_BUILD_TESTS=OFF \
-            -DVIAMCPPSDK_BUILD_EXAMPLES=OFF \
-            -DCMAKE_CXX_COMPILER=clang++-15
+      - name: Checkout generator repository
+        uses: actions/checkout@v6
+        with:
+          repository: lia-viam/rdk
+          ref: cpp-fixes
+          path: rdk
 
       - name: Build and install generator
         run: |
@@ -90,6 +76,20 @@ jobs:
             -DLLVM_DIR=/usr/lib/llvm-15
           ninja install
           cl_gen -h
+
+      - name: Clone SDK
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Generate SDK build tree
+        run: |
+          mkdir build
+          cd build
+          cmake .. -G Ninja \
+            -DVIAMCPPSDK_BUILD_TESTS=OFF \
+            -DVIAMCPPSDK_BUILD_EXAMPLES=OFF \
+            -DCMAKE_CXX_COMPILER=clang++-15
 
       - name: Operate on changed files
         run: |
