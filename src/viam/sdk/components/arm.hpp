@@ -59,6 +59,8 @@ class Arm : public Component, public Stoppable {
         move_to_position(pose, {});
     }
 
+    virtual void test3() = 0;
+
     /// @brief Move the end of the arm to @param pose.
     /// @param pose The destination pose for the arm.
     /// @param extra Any additional arguments to the method.
