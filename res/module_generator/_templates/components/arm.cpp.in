@@ -36,6 +36,11 @@ public:
         throw std::logic_error("\"get_end_position\" not implemented");
     }
 
+    void test3() override
+    {
+        throw std::logic_error("\"test3\" not implemented");
+    }
+
     void move_to_position(
         const viam::sdk::pose & pose,
         const viam::sdk::ProtoStruct & extra) override
