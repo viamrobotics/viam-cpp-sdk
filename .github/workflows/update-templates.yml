@@ -156,6 +156,6 @@ jobs:
             res/module_generator/_templates/services/*
           title: Automated update to module generator templates
           commit-message: '[WORKFLOW] Updating module generator templates'
-          body: This is an auto-generated PR to update module generator templates.
+          body: 'This is an auto-generated PR from a ${{ github.event_name }} event to update module generator templates.'
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
           delete-branch: true
