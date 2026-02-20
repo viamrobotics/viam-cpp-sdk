@@ -15,7 +15,6 @@
 
 namespace viam {
 namespace sdk {
-
 // test
 
 /// @defgroup Arm Classes related to the Arm component.
