@@ -3,7 +3,7 @@ name: Update module generator templates
 on:
   push:
     branches:
-      - update-job
+      - main
     paths:
       - 'src/viam/sdk/components/*.hpp'
       - 'src/viam/sdk/services/*.hpp'
