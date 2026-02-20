@@ -1,6 +1,6 @@
 /// @file components/arm.hpp
 ///
-/// @brief Defines an `Arm` component`
+/// @brief Defines an `Arm` component
 #pragma once
 
 #include <string>
@@ -58,8 +58,6 @@ class Arm : public Component, public Stoppable {
     inline void move_to_position(const pose& pose) {
         move_to_position(pose, {});
     }
-
-    virtual void test3() = 0;
 
     /// @brief Move the end of the arm to @param pose.
     /// @param pose The destination pose for the arm.
@@ -153,4 +151,3 @@ struct API::traits<Arm> {
 
 }  // namespace sdk
 }  // namespace viam
-// test
