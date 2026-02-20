@@ -126,7 +126,7 @@ jobs:
           done
 
       # On a workflow_dispatch we just try to regenerate all the templates and see if there is a diff
-      - name: Operate on changed files
+      - name: Operate on all files
         if: github.event_name == 'workflow_dispatch'
         working-directory: sdk
         run: |
