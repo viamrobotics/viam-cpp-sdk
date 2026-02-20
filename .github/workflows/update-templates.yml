@@ -105,7 +105,7 @@ jobs:
 
           changed_files=$(git diff --name-only  HEAD^1 HEAD | \
             grep -E '^src/viam/sdk/(components|services)/[a-z_]+\.hpp' | \
-            sed 's@\.hpp@cpp@g' | \
+            sed 's@\.hpp@.cpp@g' | \
             sort -u )
           echo "Changed files:"
           echo "$changed_files"
