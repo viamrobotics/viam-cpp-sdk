@@ -96,14 +96,7 @@ jobs:
       - name: Operate on changed files
         working-directory: sdk
         run: |
-          # ${{ github.event.before }} ${{ github.event.after }} once testing is done
-
-          git status
-          git log -n 3
-
-          git diff --name-only HEAD^1 HEAD
-
-          changed_files=$(git diff --name-only  HEAD^1 HEAD | \
+          changed_files=$(git diff --name-only  ${{ github.event.before }} ${{ github.event.after }} | \
             grep -E '^src/viam/sdk/(components|services)/[a-z_]+\.hpp' | \
             sed 's@\.hpp@.cpp@g' | \
             sort -u )
