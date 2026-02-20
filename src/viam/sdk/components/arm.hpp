@@ -1,6 +1,6 @@
 /// @file components/arm.hpp
 ///
-/// @brief Defines an `Arm` component
+/// @brief Defines an `Arm` component`
 #pragma once
 
 #include <string>
@@ -54,6 +54,8 @@ class Arm : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method.
     /// @return The `pose` representing the end position of the arm.
     virtual pose get_end_position(const ProtoStruct& extra) = 0;
+
+    virtual void new_method() = 0;
 
     /// @brief Move the end of the arm to @param pose.
     inline void move_to_position(const pose& pose) {
