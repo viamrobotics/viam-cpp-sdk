@@ -7,9 +7,6 @@ on:
     paths:
       - 'src/viam/sdk/components/*.hpp'
       - 'src/viam/sdk/services/*.hpp'
-    paths-ignore:
-      - 'src/viam/sdk/components/private/*'
-      - 'src/viam/sdk/services/private/*'
   workflow_dispatch:
     inputs:
       branch:
@@ -23,26 +20,6 @@ jobs:
       image: debian:bookworm
 
     steps:
-      - name: Clone SDK
-        if: github.event_name == 'push'
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Clone SDK
-        if: github.event_name == 'workflow_dispatch'
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.branch }}
-          fetch-depth: 0
-
-      - name: Checkout generator repository
-        uses: actions/checkout@v4
-        with:
-          repository: lia-viam/rdk
-          ref: cpp-module-gen
-          path: rdk
-
       - name: Install dependencies
         run: |
           apt-get update
@@ -86,14 +63,11 @@ jobs:
             llvm-15-dev \
             libclang-15-dev
 
-      - name: Generate SDK build tree
-        run: |
-          mkdir build
-          cd build
-          cmake .. -G Ninja \
-            -DVIAMCPPSDK_BUILD_TESTS=OFF \
-            -DVIAMCPPSDK_BUILD_EXAMPLES=OFF \
-            -DCMAKE_CXX_COMPILER=clang++-15
+      - name: Checkout generator repository
+        uses: actions/checkout@v6
+        with:
+          repository: viamrobotics/rdk
+          path: rdk
 
       - name: Build and install generator
         run: |
@@ -106,15 +80,38 @@ jobs:
           ninja install
           cl_gen -h
 
+      - name: Checkout SDK
+        if: github.event_name == 'push'
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          path: sdk
+
+      - name: Checkout SDK
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.branch }}
+          path: sdk
+
+      - name: Generate SDK build tree
+        working-directory: sdk
+        run: |
+          mkdir build
+          cd build
+          cmake .. -G Ninja \
+            -DVIAMCPPSDK_BUILD_TESTS=OFF \
+            -DVIAMCPPSDK_BUILD_EXAMPLES=OFF \
+            -DCMAKE_CXX_COMPILER=clang++-15
+
       # On push events we only operate on cpp files for which the service or component hpp file had a diff
       - name: Operate on changed files
         if: github.event_name == 'push'
+        working-directory: sdk
         run: |
-          # ${{ github.event.before }} ${{ github.event.after }} once testing is done
-
-          changed_files=$(git diff --name-only  HEAD^1 HEAD | \
+          changed_files=$(git diff --name-only  ${{ github.event.before }} ${{ github.event.after }} | \
             grep -E '^src/viam/sdk/(components|services)/[a-z_]+\.hpp' | \
-            sed 's@\.hpp@cpp@g' | \
+            sed 's@\.hpp@.cpp@g' | \
             sort -u )
           echo "Changed files:"
           echo "$changed_files"
@@ -123,15 +120,15 @@ jobs:
             cl_gen -p ./build $changed -o \
               $(echo $changed | \
               cut -d '/' -f 4-5 | \
-              sed 's@/@/tmpl-@' | \
-              sed 's@^@res/module_generator/templates_/@')
+              sed 's@$@.in@' | \
+              sed 's@^@res/module_generator/_templates/@')
           done
 
       # On a workflow_dispatch we just try to regenerate all the templates and see if there is a diff
-      - name: Operate on changed files
+      - name: Operate on all files
         if: github.event_name == 'workflow_dispatch'
+        working-directory: sdk
         run: |
-          # Regenerate all component and service templates
           all_files=$(find src/viam/sdk/components src/viam/sdk/services \
             -name '*.cpp' \
             -not -path '*/private/*' \
@@ -144,33 +141,20 @@ jobs:
             cl_gen -p ./build $file -o \
               $(echo $file | \
               cut -d '/' -f 4-5 | \
-              sed 's@/@/tmpl-@' | \
-              sed 's@^@res/module_generator/templates_/@')
+              sed 's@$@.in@' | \
+              sed 's@^@res/module_generator/_templates/@')
           done
 
-      - name: Check for changes
-        id: check_changes
-        shell: bash
-        run: |
-          if git diff --quiet res/module_generator/templates_; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-            echo "No changes detected in templates"
-          else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "Changes detected in templates"
-          fi
-
-          git diff res/module_generator/templates_
-
       - name: Create PR
-        if: steps.check_changes.outputs.has_changes == 'true'
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: '[WORKFLOW] Update component/services templates'
-          branch: 'workflow/update-templates'
-          base: main
-          add-paths: res/module_generator/templates_'
-          delete-branch: true
-          title: Automated template update
-          body: This is an auto-generated PR to update module generator templates for components/services
+          path: sdk
+          branch: workflow/update-templates
+          add-paths: |
+            res/module_generator/_templates/components/*
+            res/module_generator/_templates/services/*
+          title: Automated update to module generator templates
+          commit-message: '[WORKFLOW] Updating module generator templates'
+          body: 'This is an auto-generated PR from a ${{ github.event_name }} event to update module generator templates.'
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
+          delete-branch: true
