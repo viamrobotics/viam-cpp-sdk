@@ -20,6 +20,7 @@
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
+#include <viam/sdk/spatialmath/orientation_types.hpp>
 
 namespace viam {
 namespace sdk {
@@ -43,6 +44,13 @@ class Camera : public Component {
         double center_y_px;
     };
 
+    /// @brief ExtrinsicParameters define the position of the camera relative to a reference frame
+    /// (the world or another sensor).
+    struct extrinsic_parameters {
+        struct translation translation;
+        orientation_vector_degrees orientation;
+    };
+
     /// @struct distortion_parameters
     /// @brief The distortion parameters of the camera.
     struct distortion_parameters {
@@ -60,7 +68,11 @@ class Camera : public Component {
         bool supports_pcd;
 
         /// @brief Contains the camera's intrinsic parameters.
+        // TODO: per the API proto definitions this should probably be optional
         struct intrinsic_parameters intrinsic_parameters;
+
+        /// @brief Parameters for the camera's position relative to a reference frame.
+        // boost::optional<struct extrinsic_parameters> extrinsic_parameters;
 
         /// @brief Contains the camera's distortion parameters.
         struct distortion_parameters distortion_parameters;

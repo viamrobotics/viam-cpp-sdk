@@ -26,6 +26,17 @@ viam::component::camera::v1::IntrinsicParameters to_proto(
     return proto;
 }
 
+viam::component::camera::v1::ExtrinsicParameters to_proto(
+    const Camera::extrinsic_parameters& params) {
+    viam::component::camera::v1::ExtrinsicParameters proto;
+    *proto.mutable_translation() = to_proto(params.translation);
+    proto.mutable_orientation()->set_o_x(params.orientation.x);
+    proto.mutable_orientation()->set_o_y(params.orientation.y);
+    proto.mutable_orientation()->set_o_z(params.orientation.z);
+    proto.mutable_orientation()->set_theta(params.orientation.theta);
+    return proto;
+}
+
 viam::component::camera::v1::DistortionParameters to_proto(
     const Camera::distortion_parameters& params) {
     viam::component::camera::v1::DistortionParameters proto;
@@ -118,6 +129,9 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
 
         *response->mutable_distortion_parameters() = to_proto(properties.distortion_parameters);
         *response->mutable_intrinsic_parameters() = to_proto(properties.intrinsic_parameters);
+        if (properties.extrinsic_parameters) {
+            *response->mutable_extrinsic_parameters() = to_proto(*properties.extrinsic_parameters);
+        }
         response->set_supports_pcd(properties.supports_pcd);
         response->set_frame_rate(properties.frame_rate);
     });

@@ -31,6 +31,7 @@ class MovementSensor : public Component {
 
     /// @struct orientation
     /// @brief Struct version of viam::common::v1::Orientation.
+    /// TODO: we already have this in orientation_types.hpp
     struct orientation {
         double o_x, o_y, o_z, theta;
     };
