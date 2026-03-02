@@ -9,5 +9,6 @@ var searchData=
   ['eqcompare_3c_20kinematicsdataunspecified_20_3e_6',['EqCompare&lt; KinematicsDataUnspecified &gt;',['../structviam_1_1sdk_1_1EqCompare.html',1,'viam::sdk']]],
   ['errorcondition_7',['ErrorCondition',['../classErrorCondition.html',1,'']]],
   ['euler_5fangles_8',['euler_angles',['../structviam_1_1sdk_1_1euler__angles.html',1,'viam::sdk']]],
-  ['exception_9',['Exception',['../classviam_1_1sdk_1_1Exception.html',1,'viam::sdk']]]
+  ['exception_9',['Exception',['../classviam_1_1sdk_1_1Exception.html',1,'viam::sdk']]],
+  ['extrinsic_5fparameters_10',['extrinsic_parameters',['../structviam_1_1sdk_1_1Camera_1_1extrinsic__parameters.html',1,'viam::sdk::Camera']]]
 ];

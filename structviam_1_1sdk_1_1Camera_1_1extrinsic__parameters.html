@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Viam C++ SDK: viam::sdk::MovementSensor::orientation Struct Reference</title>
+<title>Viam C++ SDK: viam::sdk::Camera::extrinsic_parameters Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,41 +71,35 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1MovementSensor.html">MovementSensor</a></li><li class="navelem"><a class="el" href="structviam_1_1sdk_1_1MovementSensor_1_1orientation.html">orientation</a></li>  </ul>
+<li class="navelem"><b>viam</b></li><li class="navelem"><b>sdk</b></li><li class="navelem"><a class="el" href="classviam_1_1sdk_1_1Camera.html">Camera</a></li><li class="navelem"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1extrinsic__parameters.html">extrinsic_parameters</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structviam_1_1sdk_1_1MovementSensor_1_1orientation-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">viam::sdk::MovementSensor::orientation Struct Reference</div></div>
+<a href="structviam_1_1sdk_1_1Camera_1_1extrinsic__parameters-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">viam::sdk::Camera::extrinsic_parameters Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Struct version of viam::common::v1::Orientation. TODO: we already have this in <a class="el" href="orientation__types_8hpp_source.html">orientation_types.hpp</a>.  
+<p>ExtrinsicParameters define the position of the camera relative to a reference frame (the world or another sensor).  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="movement__sensor_8hpp_source.html">movement_sensor.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="camera_8hpp_source.html">camera.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:adeb53ec4ba886e69eccf0e3fbbe76f20" id="r_adeb53ec4ba886e69eccf0e3fbbe76f20"><td class="memItemLeft" align="right" valign="top"><a id="adeb53ec4ba886e69eccf0e3fbbe76f20" name="adeb53ec4ba886e69eccf0e3fbbe76f20"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>o_x</b></td></tr>
-<tr class="separator:adeb53ec4ba886e69eccf0e3fbbe76f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a194b63a7fff5fd434ca850d16ac807e4" id="r_a194b63a7fff5fd434ca850d16ac807e4"><td class="memItemLeft" align="right" valign="top"><a id="a194b63a7fff5fd434ca850d16ac807e4" name="a194b63a7fff5fd434ca850d16ac807e4"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>o_y</b></td></tr>
-<tr class="separator:a194b63a7fff5fd434ca850d16ac807e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af64f3c8126dd0d14e4a84f6f7ec21572" id="r_af64f3c8126dd0d14e4a84f6f7ec21572"><td class="memItemLeft" align="right" valign="top"><a id="af64f3c8126dd0d14e4a84f6f7ec21572" name="af64f3c8126dd0d14e4a84f6f7ec21572"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>o_z</b></td></tr>
-<tr class="separator:af64f3c8126dd0d14e4a84f6f7ec21572"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abae3719e8302bda598523c62564d4831" id="r_abae3719e8302bda598523c62564d4831"><td class="memItemLeft" align="right" valign="top"><a id="abae3719e8302bda598523c62564d4831" name="abae3719e8302bda598523c62564d4831"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>theta</b></td></tr>
-<tr class="separator:abae3719e8302bda598523c62564d4831"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a062904261db22504d754c931d9db6513" id="r_a062904261db22504d754c931d9db6513"><td class="memItemLeft" align="right" valign="top"><a id="a062904261db22504d754c931d9db6513" name="a062904261db22504d754c931d9db6513"></a>
+<a class="el" href="structviam_1_1sdk_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>translation</b></td></tr>
+<tr class="separator:a062904261db22504d754c931d9db6513"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a030e15559a30ba9cfd047ea23c972348" id="r_a030e15559a30ba9cfd047ea23c972348"><td class="memItemLeft" align="right" valign="top"><a id="a030e15559a30ba9cfd047ea23c972348" name="a030e15559a30ba9cfd047ea23c972348"></a>
+<a class="el" href="structviam_1_1sdk_1_1orientation__vector__degrees.html">orientation_vector_degrees</a>&#160;</td><td class="memItemRight" valign="bottom"><b>orientation</b></td></tr>
+<tr class="separator:a030e15559a30ba9cfd047ea23c972348"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Struct version of viam::common::v1::Orientation. TODO: we already have this in <a class="el" href="orientation__types_8hpp_source.html">orientation_types.hpp</a>. </p>
+<div class="textblock"><p>ExtrinsicParameters define the position of the camera relative to a reference frame (the world or another sensor). </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/viam/sdk/components/<a class="el" href="movement__sensor_8hpp_source.html">movement_sensor.hpp</a></li>
+<li>src/viam/sdk/components/<a class="el" href="camera_8hpp_source.html">camera.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
