@@ -1,11 +1,10 @@
+#include <boost/variant/apply_visitor.hpp>
 #include <viam/sdk/components/private/arm_client.hpp>
 
 #include <grpcpp/channel.h>
 
 #include <viam/api/component/arm/v1/arm.grpc.pb.h>
 #include <viam/api/component/arm/v1/arm.pb.h>
-
-#include <boost/variant/apply_visitor.hpp>
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/kinematics.hpp>
