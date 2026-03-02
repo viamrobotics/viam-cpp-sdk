@@ -68,11 +68,10 @@ class Camera : public Component {
         bool supports_pcd;
 
         /// @brief Contains the camera's intrinsic parameters.
-        // TODO: per the API proto definitions this should probably be optional
         struct intrinsic_parameters intrinsic_parameters;
 
         /// @brief Parameters for the camera's position relative to a reference frame.
-        boost::optional<struct extrinsic_parameters> extrinsic_parameters;
+        struct extrinsic_parameters extrinsic_parameters;
 
         /// @brief Contains the camera's distortion parameters.
         struct distortion_parameters distortion_parameters;

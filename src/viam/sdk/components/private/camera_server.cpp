@@ -131,9 +131,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
 
         *response->mutable_distortion_parameters() = to_proto(properties.distortion_parameters);
         *response->mutable_intrinsic_parameters() = to_proto(properties.intrinsic_parameters);
-        if (properties.extrinsic_parameters) {
-            *response->mutable_extrinsic_parameters() = to_proto(*properties.extrinsic_parameters);
-        }
+        *response->mutable_extrinsic_parameters() = to_proto(properties.extrinsic_parameters);
         response->set_supports_pcd(properties.supports_pcd);
         response->set_frame_rate(properties.frame_rate);
     });

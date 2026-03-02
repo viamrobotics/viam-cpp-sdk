@@ -86,15 +86,9 @@ Camera::distortion_parameters from_proto(
 }
 
 Camera::properties from_proto(const viam::component::camera::v1::GetPropertiesResponse& proto) {
-    boost::optional<Camera::extrinsic_parameters> extrinsics;
-
-    if (proto.has_extrinsic_parameters()) {
-        extrinsics = from_proto(proto.extrinsic_parameters());
-    }
-
     return {proto.supports_pcd(),
             from_proto(proto.intrinsic_parameters()),
-            std::move(extrinsics),
+            from_proto(proto.extrinsic_parameters()),
             from_proto(proto.distortion_parameters()),
             {proto.mime_types().begin(), proto.mime_types().end()},
             (proto.frame_rate())};
