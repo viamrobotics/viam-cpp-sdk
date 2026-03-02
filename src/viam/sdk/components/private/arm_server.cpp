@@ -68,11 +68,19 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
             }
 
             Arm::MoveOptions opts;
-            if (request->options().has_max_vel_degs_per_sec()) {
+            if (request->options().max_vel_degs_per_sec_joints_size() > 0) {
+                opts.max_vel_degs_per_sec = std::vector<double>(
+                    request->options().max_vel_degs_per_sec_joints().begin(),
+                    request->options().max_vel_degs_per_sec_joints().end());
+            } else if (request->options().has_max_vel_degs_per_sec()) {
                 opts.max_vel_degs_per_sec = request->options().max_vel_degs_per_sec();
             }
 
-            if (request->options().has_max_acc_degs_per_sec2()) {
+            if (request->options().max_acc_degs_per_sec2_joints_size() > 0) {
+                opts.max_acc_degs_per_sec2 = std::vector<double>(
+                    request->options().max_acc_degs_per_sec2_joints().begin(),
+                    request->options().max_acc_degs_per_sec2_joints().end());
+            } else if (request->options().has_max_acc_degs_per_sec2()) {
                 opts.max_acc_degs_per_sec2 = request->options().max_acc_degs_per_sec2();
             }
 
