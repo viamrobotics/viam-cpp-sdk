@@ -73,7 +73,7 @@ class CameraService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetPointCloudResponse>> PrepareAsyncGetPointCloud(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPointCloudRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetPointCloudResponse>>(PrepareAsyncGetPointCloudRaw(context, request, cq));
     }
-    // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+    // GetProperties returns the camera intrinsic parameters, camera distortion parameters, and extrinsic parameters from a camera of the underlying robot, if available.
     virtual ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPropertiesRequest& request, ::viam::component::camera::v1::GetPropertiesResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::camera::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
@@ -114,7 +114,7 @@ class CameraService final {
       // can be requested but may not necessarily be the same one returned.
       virtual void GetPointCloud(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPointCloudRequest* request, ::viam::component::camera::v1::GetPointCloudResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetPointCloud(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPointCloudRequest* request, ::viam::component::camera::v1::GetPointCloudResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+      // GetProperties returns the camera intrinsic parameters, camera distortion parameters, and extrinsic parameters from a camera of the underlying robot, if available.
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPropertiesRequest* request, ::viam::component::camera::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetPropertiesRequest* request, ::viam::component::camera::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // DoCommand sends/receives arbitrary commands
@@ -261,7 +261,7 @@ class CameraService final {
     // GetPointCloud returns a point cloud from a camera of the underlying robot. A specific MIME type
     // can be requested but may not necessarily be the same one returned.
     virtual ::grpc::Status GetPointCloud(::grpc::ServerContext* context, const ::viam::component::camera::v1::GetPointCloudRequest* request, ::viam::component::camera::v1::GetPointCloudResponse* response);
-    // GetProperties returns the camera intrinsic parameters and camera distortion parameters from a camera of the underlying robot, if available.
+    // GetProperties returns the camera intrinsic parameters, camera distortion parameters, and extrinsic parameters from a camera of the underlying robot, if available.
     virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::component::camera::v1::GetPropertiesRequest* request, ::viam::component::camera::v1::GetPropertiesResponse* response);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);

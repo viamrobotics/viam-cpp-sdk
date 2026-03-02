@@ -57,6 +57,9 @@ namespace v1 {
 class DistortionParameters;
 struct DistortionParametersDefaultTypeInternal;
 extern DistortionParametersDefaultTypeInternal _DistortionParameters_default_instance_;
+class ExtrinsicParameters;
+struct ExtrinsicParametersDefaultTypeInternal;
+extern ExtrinsicParametersDefaultTypeInternal _ExtrinsicParameters_default_instance_;
 class GetImageRequest;
 struct GetImageRequestDefaultTypeInternal;
 extern GetImageRequestDefaultTypeInternal _GetImageRequest_default_instance_;
@@ -105,6 +108,7 @@ extern WebcamsDefaultTypeInternal _Webcams_default_instance_;
 }  // namespace viam
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::component::camera::v1::DistortionParameters* Arena::CreateMaybeMessage<::viam::component::camera::v1::DistortionParameters>(Arena*);
+template<> ::viam::component::camera::v1::ExtrinsicParameters* Arena::CreateMaybeMessage<::viam::component::camera::v1::ExtrinsicParameters>(Arena*);
 template<> ::viam::component::camera::v1::GetImageRequest* Arena::CreateMaybeMessage<::viam::component::camera::v1::GetImageRequest>(Arena*);
 template<> ::viam::component::camera::v1::GetImageResponse* Arena::CreateMaybeMessage<::viam::component::camera::v1::GetImageResponse>(Arena*);
 template<> ::viam::component::camera::v1::GetImagesRequest* Arena::CreateMaybeMessage<::viam::component::camera::v1::GetImagesRequest>(Arena*);
@@ -1882,6 +1886,7 @@ class GetPropertiesResponse final :
     kMimeTypesFieldNumber = 4,
     kIntrinsicParametersFieldNumber = 2,
     kDistortionParametersFieldNumber = 3,
+    kExtrinsicParametersFieldNumber = 6,
     kSupportsPcdFieldNumber = 1,
     kFrameRateFieldNumber = 5,
   };
@@ -1945,6 +1950,24 @@ class GetPropertiesResponse final :
       ::viam::component::camera::v1::DistortionParameters* distortion_parameters);
   ::viam::component::camera::v1::DistortionParameters* unsafe_arena_release_distortion_parameters();
 
+  // .viam.component.camera.v1.ExtrinsicParameters extrinsic_parameters = 6 [json_name = "extrinsicParameters"];
+  bool has_extrinsic_parameters() const;
+  private:
+  bool _internal_has_extrinsic_parameters() const;
+  public:
+  void clear_extrinsic_parameters();
+  const ::viam::component::camera::v1::ExtrinsicParameters& extrinsic_parameters() const;
+  PROTOBUF_NODISCARD ::viam::component::camera::v1::ExtrinsicParameters* release_extrinsic_parameters();
+  ::viam::component::camera::v1::ExtrinsicParameters* mutable_extrinsic_parameters();
+  void set_allocated_extrinsic_parameters(::viam::component::camera::v1::ExtrinsicParameters* extrinsic_parameters);
+  private:
+  const ::viam::component::camera::v1::ExtrinsicParameters& _internal_extrinsic_parameters() const;
+  ::viam::component::camera::v1::ExtrinsicParameters* _internal_mutable_extrinsic_parameters();
+  public:
+  void unsafe_arena_set_allocated_extrinsic_parameters(
+      ::viam::component::camera::v1::ExtrinsicParameters* extrinsic_parameters);
+  ::viam::component::camera::v1::ExtrinsicParameters* unsafe_arena_release_extrinsic_parameters();
+
   // bool supports_pcd = 1 [json_name = "supportsPcd"];
   void clear_supports_pcd();
   bool supports_pcd() const;
@@ -1979,6 +2002,7 @@ class GetPropertiesResponse final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> mime_types_;
   ::viam::component::camera::v1::IntrinsicParameters* intrinsic_parameters_;
   ::viam::component::camera::v1::DistortionParameters* distortion_parameters_;
+  ::viam::component::camera::v1::ExtrinsicParameters* extrinsic_parameters_;
   bool supports_pcd_;
   float frame_rate_;
   friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
@@ -2899,6 +2923,178 @@ class DistortionParameters final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > parameters_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ExtrinsicParameters final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.camera.v1.ExtrinsicParameters) */ {
+ public:
+  inline ExtrinsicParameters() : ExtrinsicParameters(nullptr) {}
+  ~ExtrinsicParameters() override;
+  explicit PROTOBUF_CONSTEXPR ExtrinsicParameters(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ExtrinsicParameters(const ExtrinsicParameters& from);
+  ExtrinsicParameters(ExtrinsicParameters&& from) noexcept
+    : ExtrinsicParameters() {
+    *this = ::std::move(from);
+  }
+
+  inline ExtrinsicParameters& operator=(const ExtrinsicParameters& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ExtrinsicParameters& operator=(ExtrinsicParameters&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ExtrinsicParameters& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ExtrinsicParameters* internal_default_instance() {
+    return reinterpret_cast<const ExtrinsicParameters*>(
+               &_ExtrinsicParameters_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(ExtrinsicParameters& a, ExtrinsicParameters& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ExtrinsicParameters* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ExtrinsicParameters* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ExtrinsicParameters* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ExtrinsicParameters>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ExtrinsicParameters& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ExtrinsicParameters& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ExtrinsicParameters* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.component.camera.v1.ExtrinsicParameters";
+  }
+  protected:
+  explicit ExtrinsicParameters(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTranslationFieldNumber = 1,
+    kOrientationFieldNumber = 2,
+  };
+  // .viam.common.v1.Vector3 translation = 1 [json_name = "translation"];
+  bool has_translation() const;
+  private:
+  bool _internal_has_translation() const;
+  public:
+  void clear_translation();
+  const ::viam::common::v1::Vector3& translation() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Vector3* release_translation();
+  ::viam::common::v1::Vector3* mutable_translation();
+  void set_allocated_translation(::viam::common::v1::Vector3* translation);
+  private:
+  const ::viam::common::v1::Vector3& _internal_translation() const;
+  ::viam::common::v1::Vector3* _internal_mutable_translation();
+  public:
+  void unsafe_arena_set_allocated_translation(
+      ::viam::common::v1::Vector3* translation);
+  ::viam::common::v1::Vector3* unsafe_arena_release_translation();
+
+  // .viam.common.v1.Orientation orientation = 2 [json_name = "orientation"];
+  bool has_orientation() const;
+  private:
+  bool _internal_has_orientation() const;
+  public:
+  void clear_orientation();
+  const ::viam::common::v1::Orientation& orientation() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Orientation* release_orientation();
+  ::viam::common::v1::Orientation* mutable_orientation();
+  void set_allocated_orientation(::viam::common::v1::Orientation* orientation);
+  private:
+  const ::viam::common::v1::Orientation& _internal_orientation() const;
+  ::viam::common::v1::Orientation* _internal_mutable_orientation();
+  public:
+  void unsafe_arena_set_allocated_orientation(
+      ::viam::common::v1::Orientation* orientation);
+  ::viam::common::v1::Orientation* unsafe_arena_release_orientation();
+
+  // @@protoc_insertion_point(class_scope:viam.component.camera.v1.ExtrinsicParameters)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::common::v1::Vector3* translation_;
+  ::viam::common::v1::Orientation* orientation_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
 };
@@ -4647,6 +4843,96 @@ inline void GetPropertiesResponse::set_frame_rate(float value) {
   // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetPropertiesResponse.frame_rate)
 }
 
+// .viam.component.camera.v1.ExtrinsicParameters extrinsic_parameters = 6 [json_name = "extrinsicParameters"];
+inline bool GetPropertiesResponse::_internal_has_extrinsic_parameters() const {
+  return this != internal_default_instance() && extrinsic_parameters_ != nullptr;
+}
+inline bool GetPropertiesResponse::has_extrinsic_parameters() const {
+  return _internal_has_extrinsic_parameters();
+}
+inline void GetPropertiesResponse::clear_extrinsic_parameters() {
+  if (GetArenaForAllocation() == nullptr && extrinsic_parameters_ != nullptr) {
+    delete extrinsic_parameters_;
+  }
+  extrinsic_parameters_ = nullptr;
+}
+inline const ::viam::component::camera::v1::ExtrinsicParameters& GetPropertiesResponse::_internal_extrinsic_parameters() const {
+  const ::viam::component::camera::v1::ExtrinsicParameters* p = extrinsic_parameters_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::component::camera::v1::ExtrinsicParameters&>(
+      ::viam::component::camera::v1::_ExtrinsicParameters_default_instance_);
+}
+inline const ::viam::component::camera::v1::ExtrinsicParameters& GetPropertiesResponse::extrinsic_parameters() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetPropertiesResponse.extrinsic_parameters)
+  return _internal_extrinsic_parameters();
+}
+inline void GetPropertiesResponse::unsafe_arena_set_allocated_extrinsic_parameters(
+    ::viam::component::camera::v1::ExtrinsicParameters* extrinsic_parameters) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extrinsic_parameters_);
+  }
+  extrinsic_parameters_ = extrinsic_parameters;
+  if (extrinsic_parameters) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.camera.v1.GetPropertiesResponse.extrinsic_parameters)
+}
+inline ::viam::component::camera::v1::ExtrinsicParameters* GetPropertiesResponse::release_extrinsic_parameters() {
+  
+  ::viam::component::camera::v1::ExtrinsicParameters* temp = extrinsic_parameters_;
+  extrinsic_parameters_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::component::camera::v1::ExtrinsicParameters* GetPropertiesResponse::unsafe_arena_release_extrinsic_parameters() {
+  // @@protoc_insertion_point(field_release:viam.component.camera.v1.GetPropertiesResponse.extrinsic_parameters)
+  
+  ::viam::component::camera::v1::ExtrinsicParameters* temp = extrinsic_parameters_;
+  extrinsic_parameters_ = nullptr;
+  return temp;
+}
+inline ::viam::component::camera::v1::ExtrinsicParameters* GetPropertiesResponse::_internal_mutable_extrinsic_parameters() {
+  
+  if (extrinsic_parameters_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::component::camera::v1::ExtrinsicParameters>(GetArenaForAllocation());
+    extrinsic_parameters_ = p;
+  }
+  return extrinsic_parameters_;
+}
+inline ::viam::component::camera::v1::ExtrinsicParameters* GetPropertiesResponse::mutable_extrinsic_parameters() {
+  ::viam::component::camera::v1::ExtrinsicParameters* _msg = _internal_mutable_extrinsic_parameters();
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetPropertiesResponse.extrinsic_parameters)
+  return _msg;
+}
+inline void GetPropertiesResponse::set_allocated_extrinsic_parameters(::viam::component::camera::v1::ExtrinsicParameters* extrinsic_parameters) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete extrinsic_parameters_;
+  }
+  if (extrinsic_parameters) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(extrinsic_parameters);
+    if (message_arena != submessage_arena) {
+      extrinsic_parameters = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extrinsic_parameters, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extrinsic_parameters_ = extrinsic_parameters;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetPropertiesResponse.extrinsic_parameters)
+}
+
 // -------------------------------------------------------------------
 
 // Webcams
@@ -5274,9 +5560,185 @@ DistortionParameters::mutable_parameters() {
   return _internal_mutable_parameters();
 }
 
+// -------------------------------------------------------------------
+
+// ExtrinsicParameters
+
+// .viam.common.v1.Vector3 translation = 1 [json_name = "translation"];
+inline bool ExtrinsicParameters::_internal_has_translation() const {
+  return this != internal_default_instance() && translation_ != nullptr;
+}
+inline bool ExtrinsicParameters::has_translation() const {
+  return _internal_has_translation();
+}
+inline const ::viam::common::v1::Vector3& ExtrinsicParameters::_internal_translation() const {
+  const ::viam::common::v1::Vector3* p = translation_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Vector3&>(
+      ::viam::common::v1::_Vector3_default_instance_);
+}
+inline const ::viam::common::v1::Vector3& ExtrinsicParameters::translation() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.ExtrinsicParameters.translation)
+  return _internal_translation();
+}
+inline void ExtrinsicParameters::unsafe_arena_set_allocated_translation(
+    ::viam::common::v1::Vector3* translation) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(translation_);
+  }
+  translation_ = translation;
+  if (translation) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.camera.v1.ExtrinsicParameters.translation)
+}
+inline ::viam::common::v1::Vector3* ExtrinsicParameters::release_translation() {
+  
+  ::viam::common::v1::Vector3* temp = translation_;
+  translation_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Vector3* ExtrinsicParameters::unsafe_arena_release_translation() {
+  // @@protoc_insertion_point(field_release:viam.component.camera.v1.ExtrinsicParameters.translation)
+  
+  ::viam::common::v1::Vector3* temp = translation_;
+  translation_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Vector3* ExtrinsicParameters::_internal_mutable_translation() {
+  
+  if (translation_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Vector3>(GetArenaForAllocation());
+    translation_ = p;
+  }
+  return translation_;
+}
+inline ::viam::common::v1::Vector3* ExtrinsicParameters::mutable_translation() {
+  ::viam::common::v1::Vector3* _msg = _internal_mutable_translation();
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.ExtrinsicParameters.translation)
+  return _msg;
+}
+inline void ExtrinsicParameters::set_allocated_translation(::viam::common::v1::Vector3* translation) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(translation_);
+  }
+  if (translation) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(translation));
+    if (message_arena != submessage_arena) {
+      translation = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, translation, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  translation_ = translation;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.ExtrinsicParameters.translation)
+}
+
+// .viam.common.v1.Orientation orientation = 2 [json_name = "orientation"];
+inline bool ExtrinsicParameters::_internal_has_orientation() const {
+  return this != internal_default_instance() && orientation_ != nullptr;
+}
+inline bool ExtrinsicParameters::has_orientation() const {
+  return _internal_has_orientation();
+}
+inline const ::viam::common::v1::Orientation& ExtrinsicParameters::_internal_orientation() const {
+  const ::viam::common::v1::Orientation* p = orientation_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Orientation&>(
+      ::viam::common::v1::_Orientation_default_instance_);
+}
+inline const ::viam::common::v1::Orientation& ExtrinsicParameters::orientation() const {
+  // @@protoc_insertion_point(field_get:viam.component.camera.v1.ExtrinsicParameters.orientation)
+  return _internal_orientation();
+}
+inline void ExtrinsicParameters::unsafe_arena_set_allocated_orientation(
+    ::viam::common::v1::Orientation* orientation) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(orientation_);
+  }
+  orientation_ = orientation;
+  if (orientation) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.camera.v1.ExtrinsicParameters.orientation)
+}
+inline ::viam::common::v1::Orientation* ExtrinsicParameters::release_orientation() {
+  
+  ::viam::common::v1::Orientation* temp = orientation_;
+  orientation_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Orientation* ExtrinsicParameters::unsafe_arena_release_orientation() {
+  // @@protoc_insertion_point(field_release:viam.component.camera.v1.ExtrinsicParameters.orientation)
+  
+  ::viam::common::v1::Orientation* temp = orientation_;
+  orientation_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Orientation* ExtrinsicParameters::_internal_mutable_orientation() {
+  
+  if (orientation_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Orientation>(GetArenaForAllocation());
+    orientation_ = p;
+  }
+  return orientation_;
+}
+inline ::viam::common::v1::Orientation* ExtrinsicParameters::mutable_orientation() {
+  ::viam::common::v1::Orientation* _msg = _internal_mutable_orientation();
+  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.ExtrinsicParameters.orientation)
+  return _msg;
+}
+inline void ExtrinsicParameters::set_allocated_orientation(::viam::common::v1::Orientation* orientation) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(orientation_);
+  }
+  if (orientation) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(orientation));
+    if (message_arena != submessage_arena) {
+      orientation = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, orientation, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  orientation_ = orientation;
+  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.ExtrinsicParameters.orientation)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
