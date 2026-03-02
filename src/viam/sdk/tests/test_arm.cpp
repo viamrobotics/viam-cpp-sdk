@@ -4,7 +4,8 @@
 #include <boost/optional/optional_io.hpp>
 #include <boost/qvm/all.hpp>
 #include <boost/test/included/unit_test.hpp>
-#include <boost/variant/get.hpp>
+#include <boost/variant/apply_visitor.hpp>
+#include <boost/variant/static_visitor.hpp>
 
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
@@ -12,7 +13,6 @@
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<viam::sdk::GeometryConfig>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<double>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<std::vector<double>>)
-BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<std::string>)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::KinematicsData)
 
 namespace viam {
@@ -21,6 +21,28 @@ namespace sdktests {
 using namespace arm;
 
 using namespace viam::sdk;
+
+struct CheckScalar : boost::static_visitor<> {
+    double expected;
+    explicit CheckScalar(double e) : expected(e) {}
+    void operator()(double d) const {
+        BOOST_CHECK_EQUAL(d, expected);
+    }
+    void operator()(const std::vector<double>&) const {
+        BOOST_FAIL("Expected scalar, got vector");
+    }
+};
+
+struct CheckVector : boost::static_visitor<> {
+    std::vector<double> expected;
+    explicit CheckVector(std::vector<double> e) : expected(std::move(e)) {}
+    void operator()(double) const {
+        BOOST_FAIL("Expected vector, got scalar");
+    }
+    void operator()(const std::vector<double>& v) const {
+        BOOST_CHECK_EQUAL(v, expected);
+    }
+};
 
 BOOST_AUTO_TEST_SUITE(test_arm)
 
@@ -60,11 +82,63 @@ BOOST_AUTO_TEST_CASE(thru_joint_positions) {
         client.move_through_joint_positions(
             positions, {Arm::MoveLimit(1.0), Arm::MoveLimit(2.0)}, {});
         BOOST_CHECK_EQUAL(mock->move_thru_positions, positions);
-        BOOST_CHECK_EQUAL(
-            boost::get<double>(*mock->move_opts.max_vel_degs_per_sec), 1.0);
-        BOOST_CHECK_EQUAL(
-            boost::get<double>(*mock->move_opts.max_acc_degs_per_sec2), 2.0);
+
+        BOOST_REQUIRE(mock->move_opts.max_vel_degs_per_sec);
+        BOOST_REQUIRE(mock->move_opts.max_acc_degs_per_sec2);
+        boost::apply_visitor(CheckScalar(1.0), *mock->move_opts.max_vel_degs_per_sec);
+        boost::apply_visitor(CheckScalar(2.0), *mock->move_opts.max_acc_degs_per_sec2);
         BOOST_CHECK_GT(mock->viam_client_metadata.size(), 0);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(thru_joint_positions_both_vector) {
+    std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        std::vector<std::vector<double>> positions{{1.0, 2.0}, {3.0}};
+        std::vector<double> vel_joints{10.0, 20.0, 30.0};
+        std::vector<double> acc_joints{100.0, 200.0, 300.0};
+        client.move_through_joint_positions(
+            positions, {Arm::MoveLimit(vel_joints), Arm::MoveLimit(acc_joints)}, {});
+        BOOST_CHECK_EQUAL(mock->move_thru_positions, positions);
+
+        BOOST_REQUIRE(mock->move_opts.max_vel_degs_per_sec);
+        BOOST_REQUIRE(mock->move_opts.max_acc_degs_per_sec2);
+        boost::apply_visitor(CheckVector(vel_joints), *mock->move_opts.max_vel_degs_per_sec);
+        boost::apply_visitor(CheckVector(acc_joints), *mock->move_opts.max_acc_degs_per_sec2);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(thru_joint_positions_acc_scalar_vel_vector) {
+    std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        std::vector<std::vector<double>> positions{{1.0, 2.0}, {3.0}};
+        std::vector<double> vel_joints{10.0, 20.0, 30.0};
+        double acc_scalar = 5.0;
+        client.move_through_joint_positions(
+            positions, {Arm::MoveLimit(vel_joints), Arm::MoveLimit(acc_scalar)}, {});
+        BOOST_CHECK_EQUAL(mock->move_thru_positions, positions);
+
+        BOOST_REQUIRE(mock->move_opts.max_vel_degs_per_sec);
+        BOOST_REQUIRE(mock->move_opts.max_acc_degs_per_sec2);
+        boost::apply_visitor(CheckVector(vel_joints), *mock->move_opts.max_vel_degs_per_sec);
+        boost::apply_visitor(CheckScalar(acc_scalar), *mock->move_opts.max_acc_degs_per_sec2);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(thru_joint_positions_vel_scalar_acc_vector) {
+    std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        std::vector<std::vector<double>> positions{{1.0, 2.0}, {3.0}};
+        double vel_scalar = 7.0;
+        std::vector<double> acc_joints{100.0, 200.0, 300.0};
+        client.move_through_joint_positions(
+            positions, {Arm::MoveLimit(vel_scalar), Arm::MoveLimit(acc_joints)}, {});
+        BOOST_CHECK_EQUAL(mock->move_thru_positions, positions);
+
+        BOOST_REQUIRE(mock->move_opts.max_vel_degs_per_sec);
+        BOOST_REQUIRE(mock->move_opts.max_acc_degs_per_sec2);
+        boost::apply_visitor(CheckScalar(vel_scalar), *mock->move_opts.max_vel_degs_per_sec);
+        boost::apply_visitor(CheckVector(acc_joints), *mock->move_opts.max_acc_degs_per_sec2);
     });
 }
 
