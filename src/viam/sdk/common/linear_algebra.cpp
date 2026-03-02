@@ -34,6 +34,10 @@ Vector3& Vector3::set_z(double z) {
     return *this;
 }
 
+bool operator==(const Vector3& lhs, const Vector3& rhs) {
+    return lhs.x() == rhs.x() && lhs.y() == rhs.y() && lhs.z() == rhs.z();
+}
+
 namespace proto_convert_details {
 
 void to_proto_impl<Vector3>::operator()(const Vector3& self, common::v1::Vector3* proto) const {

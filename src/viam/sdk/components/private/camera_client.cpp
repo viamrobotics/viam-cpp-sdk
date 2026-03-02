@@ -71,12 +71,32 @@ Camera::distortion_parameters from_proto(
     return params;
 }
 
+namespace {
+Orientation orientation_from_proto(const viam::common::v1::Orientation& proto) {
+    orientation_vector_degrees ovd;
+    ovd.x = proto.o_x();
+    ovd.y = proto.o_y();
+    ovd.z = proto.o_z();
+    ovd.theta = proto.theta();
+    return ovd;
+}
+}  // namespace
+
+Camera::extrinsic_parameters from_proto(
+    const viam::component::camera::v1::ExtrinsicParameters& proto) {
+    Camera::extrinsic_parameters params;
+    params.translation = from_proto(proto.translation());
+    params.orientation = orientation_from_proto(proto.orientation());
+    return params;
+}
+
 Camera::properties from_proto(const viam::component::camera::v1::GetPropertiesResponse& proto) {
     return {proto.supports_pcd(),
             from_proto(proto.intrinsic_parameters()),
             from_proto(proto.distortion_parameters()),
             {proto.mime_types().begin(), proto.mime_types().end()},
-            (proto.frame_rate())};
+            (proto.frame_rate()),
+            from_proto(proto.extrinsic_parameters())};
 }
 
 CameraClient::CameraClient(std::string name, const ViamChannel& channel)

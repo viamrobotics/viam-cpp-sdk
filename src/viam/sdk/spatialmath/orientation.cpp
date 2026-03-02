@@ -13,6 +13,30 @@
 namespace viam {
 namespace sdk {
 
+bool operator==(const axis_angles& lhs, const axis_angles& rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.theta == rhs.theta;
+}
+
+bool operator==(const euler_angles& lhs, const euler_angles& rhs) {
+    return lhs.yaw == rhs.yaw && lhs.roll == rhs.roll && lhs.pitch == rhs.pitch;
+}
+
+bool operator==(const orientation_vector& lhs, const orientation_vector& rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.theta == rhs.theta;
+}
+
+bool operator==(const orientation_vector_degrees& lhs, const orientation_vector_degrees& rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.theta == rhs.theta;
+}
+
+bool operator==(const quaternion& lhs, const quaternion& rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w;
+}
+
+bool operator==(const translation& lhs, const translation& rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
+}
+
 OrientationType get_type(const Orientation& o) {
     struct Visitor {
         auto operator()(const quaternion&) const {

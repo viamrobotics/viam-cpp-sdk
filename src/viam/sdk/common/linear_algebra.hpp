@@ -38,6 +38,8 @@ struct Vector3 {
     std::array<scalar_type, 3> data;
 };
 
+bool operator==(const Vector3& lhs, const Vector3& rhs);
+
 namespace proto_convert_details {
 
 template <>

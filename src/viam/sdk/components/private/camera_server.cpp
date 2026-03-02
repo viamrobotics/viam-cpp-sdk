@@ -1,5 +1,8 @@
 #include <viam/sdk/components/private/camera_server.hpp>
 
+#include <cmath>
+
+#include <boost/variant/apply_visitor.hpp>
 #include <google/protobuf/util/time_util.h>
 #include <grpcpp/support/status.h>
 
@@ -9,6 +12,7 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
+#include <viam/sdk/spatialmath/orientation.hpp>
 
 namespace viam {
 namespace sdk {
@@ -31,6 +35,69 @@ viam::component::camera::v1::DistortionParameters to_proto(
     viam::component::camera::v1::DistortionParameters proto;
     *proto.mutable_model() = params.model;
     *proto.mutable_parameters() = {params.parameters.begin(), params.parameters.end()};
+    return proto;
+}
+
+namespace {
+viam::common::v1::Orientation orientation_to_proto(const Orientation& orientation) {
+    viam::common::v1::Orientation proto;
+    // Convert SDK Orientation (which is a variant) to orientation_vector_degrees representation
+    struct Visitor {
+        viam::common::v1::Orientation proto;
+
+        void operator()(const orientation_vector_degrees& ovd) {
+            proto.set_o_x(ovd.x);
+            proto.set_o_y(ovd.y);
+            proto.set_o_z(ovd.z);
+            proto.set_theta(ovd.theta);
+        }
+
+        void operator()(const orientation_vector& ov) {
+            // Convert radians to degrees
+            proto.set_o_x(ov.x);
+            proto.set_o_y(ov.y);
+            proto.set_o_z(ov.z);
+            proto.set_theta(ov.theta * 180.0 / M_PI);
+        }
+
+        void operator()(const axis_angles& aa) {
+            // axis_angles uses radians, convert to degrees
+            proto.set_o_x(aa.x);
+            proto.set_o_y(aa.y);
+            proto.set_o_z(aa.z);
+            proto.set_theta(aa.theta * 180.0 / M_PI);
+        }
+
+        void operator()(const quaternion&) {
+            // Default case for quaternion - set to identity/zero orientation
+            // A full conversion would require quaternion to axis-angle conversion
+            proto.set_o_x(0);
+            proto.set_o_y(0);
+            proto.set_o_z(1);
+            proto.set_theta(0);
+        }
+
+        void operator()(const euler_angles&) {
+            // Default case for euler_angles - set to identity/zero orientation
+            // A full conversion would require euler to axis-angle conversion
+            proto.set_o_x(0);
+            proto.set_o_y(0);
+            proto.set_o_z(1);
+            proto.set_theta(0);
+        }
+    };
+
+    Visitor visitor;
+    boost::apply_visitor(visitor, orientation);
+    return visitor.proto;
+}
+}  // namespace
+
+viam::component::camera::v1::ExtrinsicParameters to_proto(
+    const Camera::extrinsic_parameters& params) {
+    viam::component::camera::v1::ExtrinsicParameters proto;
+    *proto.mutable_translation() = to_proto(params.translation);
+    *proto.mutable_orientation() = orientation_to_proto(params.orientation);
     return proto;
 }
 
@@ -118,6 +185,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
 
         *response->mutable_distortion_parameters() = to_proto(properties.distortion_parameters);
         *response->mutable_intrinsic_parameters() = to_proto(properties.intrinsic_parameters);
+        *response->mutable_extrinsic_parameters() = to_proto(properties.extrinsic_parameters);
         response->set_supports_pcd(properties.supports_pcd);
         response->set_frame_rate(properties.frame_rate);
     });

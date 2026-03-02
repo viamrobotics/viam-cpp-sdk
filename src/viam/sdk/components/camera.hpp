@@ -16,10 +16,12 @@
 #include <xtensor/xarray.hpp>
 #endif
 
+#include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
+#include <viam/sdk/spatialmath/orientation.hpp>
 
 namespace viam {
 namespace sdk {
@@ -50,6 +52,16 @@ class Camera : public Component {
         std::vector<double> parameters;
     };
 
+    /// @struct extrinsic_parameters
+    /// @brief The extrinsic parameters of the camera (position and orientation relative to a
+    /// reference frame).
+    struct extrinsic_parameters {
+        /// @brief Translation vector from the reference frame to the camera.
+        Vector3 translation;
+        /// @brief Orientation from the reference frame to the camera.
+        Orientation orientation;
+    };
+
     /// @brief The supported mime types of the camera— a type alias.
     using mime_types = std::vector<std::string>;
 
@@ -70,6 +82,9 @@ class Camera : public Component {
 
         /// @brief Contains the camera's frame rate.
         float frame_rate;
+
+        /// @brief Contains the camera's extrinsic parameters (position and orientation).
+        struct extrinsic_parameters extrinsic_parameters;
     };
 
     /// @struct point_cloud
@@ -213,6 +228,7 @@ bool operator==(const Camera::image_collection& lhs, const Camera::image_collect
 bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs);
 bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic_parameters& rhs);
 bool operator==(const Camera::distortion_parameters& lhs, const Camera::distortion_parameters& rhs);
+bool operator==(const Camera::extrinsic_parameters& lhs, const Camera::extrinsic_parameters& rhs);
 bool operator==(const Camera::properties& lhs, const Camera::properties& rhs);
 
 }  // namespace sdk

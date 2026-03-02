@@ -46,6 +46,13 @@ struct translation {
     double x, y, z;
 };
 
+bool operator==(const axis_angles& lhs, const axis_angles& rhs);
+bool operator==(const euler_angles& lhs, const euler_angles& rhs);
+bool operator==(const orientation_vector& lhs, const orientation_vector& rhs);
+bool operator==(const orientation_vector_degrees& lhs, const orientation_vector_degrees& rhs);
+bool operator==(const quaternion& lhs, const quaternion& rhs);
+bool operator==(const translation& lhs, const translation& rhs);
+
 namespace proto_convert_details {
 
 template <>
