@@ -89,6 +89,12 @@ BOOST_AUTO_TEST_CASE(test_get_properties) {
         Camera::properties expected = fake_properties();
 
         BOOST_CHECK(expected == props);
+        // Add specific checks for extrinsic parameters
+        BOOST_CHECK_EQUAL(props.extrinsic_parameters.translation.x, expected.extrinsic_parameters.translation.x);
+        BOOST_CHECK_EQUAL(props.extrinsic_parameters.translation.y, expected.extrinsic_parameters.translation.y);
+        BOOST_CHECK_EQUAL(props.extrinsic_parameters.translation.z, expected.extrinsic_parameters.translation.z);
+        // For orientation, comparing boost::variant directly might be tricky, rely on operator== for now.
+        // If operator== for Orientation is robust, then BOOST_CHECK(expected == props) covers it.
     });
 }
 

@@ -18,6 +18,15 @@ class Orientation;
 }  // namespace viam
 
 namespace viam {
+namespace common {
+namespace v1 {
+
+class Orientation;
+}
+}  // namespace common
+}  // namespace viam
+
+namespace viam {
 namespace sdk {
 
 // Note that quaternion must be the first type because this is what is default constructed.
@@ -35,6 +44,15 @@ struct to_proto_impl<Orientation> {
 template <>
 struct from_proto_impl<app::v1::Orientation> {
     Orientation operator()(const app::v1::Orientation*) const;
+};
+
+template <>
+struct to_proto_impl<viam::common::v1::Orientation> {
+    void operator()(const viam::common::v1::Orientation&, app::v1::Orientation*) const;
+};
+template <>
+struct from_proto_impl<app::v1::Orientation> {
+    viam::common::v1::Orientation operator()(const app::v1::Orientation*) const;
 };
 
 }  // namespace proto_convert_details

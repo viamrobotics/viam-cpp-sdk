@@ -1,6 +1,7 @@
 #include <viam/sdk/common/pose.hpp>
 
 #include <common/v1/common.pb.h>
+#include <viam/api/common/v1/common.pb.h>
 
 namespace viam {
 namespace sdk {
@@ -54,6 +55,20 @@ pose_in_frame from_proto_impl<common::v1::PoseInFrame>::operator()(
     pif.pose = from_proto_impl<common::v1::Pose>{}(&(proto->pose()));
 
     return pif;
+}
+
+void to_proto_impl<coordinates>::operator()(const coordinates& self, common::v1::Vector3* proto) const {
+    proto->set_x(self.x);
+    proto->set_y(self.y);
+    proto->set_z(self.z);
+}
+
+coordinates from_proto_impl<common::v1::Vector3>::operator()(const common::v1::Vector3* proto) const {
+    coordinates coords;
+    coords.x = proto->x();
+    coords.y = proto->y();
+    coords.z = proto->z();
+    return coords;
 }
 
 }  // namespace proto_convert_details

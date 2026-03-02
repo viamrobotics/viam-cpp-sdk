@@ -10,6 +10,7 @@ namespace v1 {
 
 class Pose;
 class PoseInFrame;
+class Vector3;
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
@@ -67,6 +68,16 @@ struct to_proto_impl<pose_in_frame> {
 template <>
 struct from_proto_impl<common::v1::PoseInFrame> {
     pose_in_frame operator()(const common::v1::PoseInFrame*) const;
+};
+
+template <>
+struct to_proto_impl<coordinates> {
+    void operator()(const coordinates&, common::v1::Vector3*) const;
+};
+
+template <>
+struct from_proto_impl<common::v1::Vector3> {
+    coordinates operator()(const common::v1::Vector3*) const;
 };
 
 }  // namespace proto_convert_details

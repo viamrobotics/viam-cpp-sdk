@@ -29,6 +29,7 @@ class MockCamera : public Camera {
    private:
     Camera::intrinsic_parameters intrinsic_parameters_;
     Camera::distortion_parameters distortion_parameters_;
+    Camera::extrinsic_parameters extrinsic_parameters_;
     Camera::properties camera_properties_;
     Camera::image_collection images_;
     Camera::point_cloud pc_;
@@ -42,6 +43,7 @@ Camera::image_collection fake_raw_images();
 Camera::point_cloud fake_point_cloud();
 Camera::intrinsic_parameters fake_intrinsic_parameters();
 Camera::distortion_parameters fake_distortion_parameters();
+Camera::extrinsic_parameters fake_extrinsic_parameters();
 Camera::properties fake_properties();
 
 }  // namespace camera

@@ -6,6 +6,7 @@
 #include <boost/variant/apply_visitor.hpp>
 
 #include <viam/api/app/v1/robot.pb.h>
+#include <viam/api/common/v1/common.pb.h>
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/spatialmath/orientation_types.hpp>
@@ -147,6 +148,118 @@ Orientation from_proto_impl<app::v1::Orientation>::operator()(
             return quat;
         }
         case app::v1::Orientation::TypeCase::TYPE_NOT_SET:
+        default: {
+            throw Exception(ErrorCondition::k_not_supported, "orientation type not known");
+        }
+    }
+}
+
+void to_proto_impl<Orientation>::operator()(const Orientation& self,
+                                            common::v1::Orientation* o) const {
+    struct Visitor {
+        void operator()(const axis_angles& a) {
+            common::v1::Orientation_AxisAngles aa;
+            aa.set_x(a.x);
+            aa.set_y(a.y);
+            aa.set_z(a.z);
+            aa.set_theta(a.theta);
+            *orientation.mutable_axis_angles() = std::move(aa);
+        }
+
+        void operator()(const orientation_vector& ov) {
+            common::v1::Orientation_OrientationVectorRadians ovec;
+            ovec.set_x(ov.x);
+            ovec.set_y(ov.y);
+            ovec.set_z(ov.z);
+            ovec.set_theta(ov.theta);
+            *orientation.mutable_vector_radians() = std::move(ovec);
+        }
+
+        void operator()(const orientation_vector_degrees& ovd) {
+            common::v1::Orientation_OrientationVectorDegrees ovec;
+            ovec.set_x(ovd.x);
+            ovec.set_y(ovd.y);
+            ovec.set_z(ovd.z);
+            ovec.set_theta(ovd.theta);
+            *orientation.mutable_vector_degrees() = std::move(ovec);
+        }
+
+        void operator()(const euler_angles& ea) {
+            common::v1::Orientation_EulerAngles euler;
+            euler.set_pitch(ea.pitch);
+            euler.set_roll(ea.roll);
+            euler.set_yaw(ea.yaw);
+            *orientation.mutable_euler_angles() = std::move(euler);
+        }
+
+        void operator()(const quaternion& q) {
+            common::v1::Orientation_Quaternion quat;
+            quat.set_w(q.w);
+            quat.set_x(q.x);
+            quat.set_y(q.y);
+            quat.set_z(q.z);
+            *orientation.mutable_quaternion() = std::move(quat);
+        }
+
+        common::v1::Orientation& orientation;
+    };
+
+    boost::apply_visitor(Visitor{*o}, self);
+}
+
+Orientation from_proto_impl<common::v1::Orientation>::operator()(
+    const common::v1::Orientation* proto) const {
+    switch (proto->type_case()) {
+        case common::v1::Orientation::TypeCase::kAxisAngles: {
+            axis_angles aa;
+            aa.x = proto->axis_angles().x();
+            aa.y = proto->axis_angles().y();
+            aa.z = proto->axis_angles().z();
+            aa.theta = proto->axis_angles().theta();
+            return aa;
+        }
+        case common::v1::Orientation::TypeCase::kEulerAngles: {
+            euler_angles ea;
+            ea.yaw = proto->euler_angles().yaw();
+            ea.pitch = proto->euler_angles().pitch();
+            ea.roll = proto->euler_angles().roll();
+            return ea;
+        }
+        case common::v1::Orientation::TypeCase::kQuaternion: {
+            quaternion quat;
+            quat.w = proto->quaternion().w();
+            quat.x = proto->quaternion().x();
+            quat.y = proto->quaternion().y();
+            quat.z = proto->quaternion().z();
+            return quat;
+        }
+        case common::v1::Orientation::TypeCase::kVectorDegrees: {
+            orientation_vector_degrees ovd;
+            ovd.x = proto->vector_degrees().x();
+            ovd.y = proto->vector_degrees().y();
+            ovd.z = proto->vector_degrees().z();
+            ovd.theta = proto->vector_degrees().theta();
+            return ovd;
+        }
+        case common::v1::Orientation::TypeCase::kVectorRadians: {
+            orientation_vector ov;
+            ov.x = proto->vector_radians().x();
+            ov.y = proto->vector_radians().y();
+            ov.z = proto->vector_radians().z();
+            ov.theta = proto->vector_radians().theta();
+            return ov;
+        }
+        case common::v1::Orientation::TypeCase::kNoOrientation: {
+            // if type is NoOrientation, we put a sentinel
+            // orientation that indicates no rotation
+            quaternion quat;
+            quat.w = 1;
+            quat.x = 0;
+            quat.y = 0;
+            quat.z = 0;
+            return quat;
+        }
+        case common::v1::Orientation::TypeCase::TYPE_NOT_SET:
         default: {
             throw Exception(ErrorCondition::k_not_supported, "orientation type not known");
         }

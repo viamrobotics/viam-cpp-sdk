@@ -155,10 +155,15 @@ bool operator==(const Camera::distortion_parameters& lhs,
     return lhs.model == rhs.model && lhs.parameters == rhs.parameters;
 }
 
+bool operator==(const Camera::extrinsic_parameters& lhs, const Camera::extrinsic_parameters& rhs) {
+    return lhs.translation == rhs.translation && lhs.orientation == rhs.orientation;
+}
+
 bool operator==(const Camera::properties& lhs, const Camera::properties& rhs) {
     return lhs.supports_pcd == rhs.supports_pcd &&
            lhs.intrinsic_parameters == rhs.intrinsic_parameters &&
            lhs.distortion_parameters == rhs.distortion_parameters &&
+           lhs.extrinsic_parameters == rhs.extrinsic_parameters &&
            lhs.frame_rate == rhs.frame_rate;
 }
 

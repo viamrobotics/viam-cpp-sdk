@@ -90,6 +90,13 @@ Camera::distortion_parameters fake_distortion_parameters() {
     return distortion_parameters;
 }
 
+Camera::extrinsic_parameters fake_extrinsic_parameters() {
+    Camera::extrinsic_parameters extrinsic_parameters;
+    extrinsic_parameters.translation = {1.0, 2.0, 3.0};
+    extrinsic_parameters.orientation = quaternion(1.0, 0.0, 0.0, 0.0); // Default quaternion
+    return extrinsic_parameters;
+}
+
 Camera::mime_types fake_mime_types() {
     return {"JPEG"};
 }
@@ -99,6 +106,7 @@ Camera::properties fake_properties() {
     properties.supports_pcd = true;
     properties.intrinsic_parameters = fake_intrinsic_parameters();
     properties.distortion_parameters = fake_distortion_parameters();
+    properties.extrinsic_parameters = fake_extrinsic_parameters();
     properties.mime_types = fake_mime_types();
     properties.frame_rate = 10.0;
     return properties;
@@ -112,6 +120,7 @@ std::shared_ptr<MockCamera> MockCamera::get_mock_camera() {
     camera->camera_properties_ = fake_properties();
     camera->intrinsic_parameters_ = fake_intrinsic_parameters();
     camera->distortion_parameters_ = fake_distortion_parameters();
+    camera->extrinsic_parameters_ = fake_extrinsic_parameters();
     camera->map_ = fake_map();
     camera->geometries_ = fake_geometries();
     return camera;

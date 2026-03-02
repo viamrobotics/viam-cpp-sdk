@@ -50,6 +50,13 @@ class Camera : public Component {
         std::vector<double> parameters;
     };
 
+    /// @struct extrinsic_parameters
+    /// @brief The extrinsic parameters of the camera.
+    struct extrinsic_parameters {
+        coordinates translation;
+        Orientation orientation;
+    };
+
     /// @brief The supported mime types of the camera— a type alias.
     using mime_types = std::vector<std::string>;
 
@@ -64,6 +71,9 @@ class Camera : public Component {
 
         /// @brief Contains the camera's distortion parameters.
         struct distortion_parameters distortion_parameters;
+
+        /// @brief Contains the camera's extrinsic parameters.
+        struct extrinsic_parameters extrinsic_parameters;
 
         /// @brief Contains the mime types the camera supports.
         Camera::mime_types mime_types;
@@ -184,7 +194,7 @@ class Camera : public Component {
 
     /// @brief Returns `GeometryConfig`s associated with the calling camera.
     /// @return The requested `GeometryConfig`s associated with the component.
-    inline std::vector<GeometryConfig> get_geometries() {
+    inline GeometryConfig get_geometries() {
         return get_geometries({});
     }
 
@@ -193,7 +203,7 @@ class Camera : public Component {
     /// @return The requested `GeometryConfig`s associated with the component.
     virtual std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) = 0;
 
-    /// @brief Get the camera's properties.
+    /// @brief Get the camera's intrinsic parameters, camera distortion parameters, and extrinsic parameters.
     /// @return The camera properties.
     virtual properties get_properties() = 0;
 
@@ -213,6 +223,7 @@ bool operator==(const Camera::image_collection& lhs, const Camera::image_collect
 bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs);
 bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic_parameters& rhs);
 bool operator==(const Camera::distortion_parameters& lhs, const Camera::distortion_parameters& rhs);
+bool operator==(const Camera::extrinsic_parameters& lhs, const Camera::extrinsic_parameters& rhs);
 bool operator==(const Camera::properties& lhs, const Camera::properties& rhs);
 
 }  // namespace sdk
