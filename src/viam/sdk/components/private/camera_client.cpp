@@ -63,6 +63,20 @@ Camera::intrinsic_parameters from_proto(
     return params;
 }
 
+Camera::extrinsic_parameters from_proto(
+    const viam::component::camera::v1::ExtrinsicParameters& proto) {
+    Camera::extrinsic_parameters params;
+
+    params.translation = from_proto(proto.translation());
+
+    params.orientation.x = proto.orientation().o_x();
+    params.orientation.y = proto.orientation().o_y();
+    params.orientation.z = proto.orientation().o_z();
+    params.orientation.theta = proto.orientation().theta();
+
+    return params;
+}
+
 Camera::distortion_parameters from_proto(
     const viam::component::camera::v1::DistortionParameters& proto) {
     Camera::distortion_parameters params;
@@ -74,6 +88,7 @@ Camera::distortion_parameters from_proto(
 Camera::properties from_proto(const viam::component::camera::v1::GetPropertiesResponse& proto) {
     return {proto.supports_pcd(),
             from_proto(proto.intrinsic_parameters()),
+            from_proto(proto.extrinsic_parameters()),
             from_proto(proto.distortion_parameters()),
             {proto.mime_types().begin(), proto.mime_types().end()},
             (proto.frame_rate())};

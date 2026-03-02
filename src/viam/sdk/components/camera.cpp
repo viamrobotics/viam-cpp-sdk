@@ -150,6 +150,19 @@ bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic
            lhs.focal_x_px == rhs.focal_x_px && lhs.focal_y_px == rhs.focal_y_px &&
            lhs.center_x_px == rhs.center_x_px && lhs.center_y_px == rhs.center_y_px;
 }
+
+bool operator==(const Camera::extrinsic_parameters& lhs, const Camera::extrinsic_parameters& rhs) {
+    return std::tie(lhs.translation.data,
+                    lhs.orientation.x,
+                    lhs.orientation.y,
+                    lhs.orientation.z,
+                    lhs.orientation.theta) == std::tie(rhs.translation.data,
+                                                       rhs.orientation.x,
+                                                       rhs.orientation.y,
+                                                       rhs.orientation.z,
+                                                       rhs.orientation.theta);
+}
+
 bool operator==(const Camera::distortion_parameters& lhs,
                 const Camera::distortion_parameters& rhs) {
     return lhs.model == rhs.model && lhs.parameters == rhs.parameters;

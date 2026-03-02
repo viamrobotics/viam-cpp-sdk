@@ -16,6 +16,7 @@
 #include <xtensor/xarray.hpp>
 #endif
 
+#include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -43,6 +44,13 @@ class Camera : public Component {
         double center_y_px;
     };
 
+    /// @brief ExtrinsicParameters define the position of the camera relative to a reference frame
+    /// (the world or another sensor).
+    struct extrinsic_parameters {
+        Vector3 translation;
+        orientation_vector_degrees orientation;
+    };
+
     /// @struct distortion_parameters
     /// @brief The distortion parameters of the camera.
     struct distortion_parameters {
@@ -61,6 +69,9 @@ class Camera : public Component {
 
         /// @brief Contains the camera's intrinsic parameters.
         struct intrinsic_parameters intrinsic_parameters;
+
+        /// @brief Parameters for the camera's position relative to a reference frame.
+        struct extrinsic_parameters extrinsic_parameters;
 
         /// @brief Contains the camera's distortion parameters.
         struct distortion_parameters distortion_parameters;
@@ -212,6 +223,7 @@ bool operator==(const Camera::raw_image& lhs, const Camera::raw_image& rhs);
 bool operator==(const Camera::image_collection& lhs, const Camera::image_collection& rhs);
 bool operator==(const Camera::point_cloud& lhs, const Camera::point_cloud& rhs);
 bool operator==(const Camera::intrinsic_parameters& lhs, const Camera::intrinsic_parameters& rhs);
+bool operator==(const Camera::extrinsic_parameters& lhs, const Camera::extrinsic_parameters& rhs);
 bool operator==(const Camera::distortion_parameters& lhs, const Camera::distortion_parameters& rhs);
 bool operator==(const Camera::properties& lhs, const Camera::properties& rhs);
 

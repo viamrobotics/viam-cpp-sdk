@@ -41,6 +41,7 @@ class MockCamera : public Camera {
 Camera::image_collection fake_raw_images();
 Camera::point_cloud fake_point_cloud();
 Camera::intrinsic_parameters fake_intrinsic_parameters();
+Camera::extrinsic_parameters fake_extrinsic_parameters();
 Camera::distortion_parameters fake_distortion_parameters();
 Camera::properties fake_properties();
 
