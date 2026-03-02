@@ -84,6 +84,18 @@ Camera::intrinsic_parameters fake_intrinsic_parameters() {
     return intrinsic_parameters;
 }
 
+Camera::extrinsic_parameters fake_extrinsic_parameters() {
+    Camera::extrinsic_parameters result;
+
+    result.orientation.x = 1;
+    result.orientation.y = 2;
+    result.orientation.z = 3;
+
+    result.translation.set_x(1).set_y(2).set_z(3);
+
+    return result;
+}
+
 Camera::distortion_parameters fake_distortion_parameters() {
     Camera::distortion_parameters distortion_parameters;
     distortion_parameters.model = "no distortion";
@@ -98,6 +110,7 @@ Camera::properties fake_properties() {
     Camera::properties properties;
     properties.supports_pcd = true;
     properties.intrinsic_parameters = fake_intrinsic_parameters();
+    properties.extrinsic_parameters = fake_extrinsic_parameters();
     properties.distortion_parameters = fake_distortion_parameters();
     properties.mime_types = fake_mime_types();
     properties.frame_rate = 10.0;
