@@ -1,3 +1,4 @@
+#include <boost/variant/apply_visitor.hpp>
 #include <viam/sdk/components/private/arm_client.hpp>
 
 #include <grpcpp/channel.h>
@@ -59,13 +60,35 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
         .with(extra,
               [&](viam::component::arm::v1::MoveThroughJointPositionsRequest& request) {
                   if (options.max_vel_degs_per_sec) {
-                      request.mutable_options()->set_max_vel_degs_per_sec(
-                          *options.max_vel_degs_per_sec);
+                      struct Visitor {
+                          viam::component::arm::v1::MoveOptions* opts;
+                          void operator()(double s) const {
+                              opts->set_max_vel_degs_per_sec(s);
+                          }
+                          void operator()(const std::vector<double>& v) const {
+                              for (auto d : v) {
+                                  opts->add_max_vel_degs_per_sec_joints(d);
+                              }
+                          }
+                      };
+                      boost::apply_visitor(Visitor{request.mutable_options()},
+                                           *options.max_vel_degs_per_sec);
                   }
 
                   if (options.max_acc_degs_per_sec2) {
-                      request.mutable_options()->set_max_acc_degs_per_sec2(
-                          *options.max_acc_degs_per_sec2);
+                      struct Visitor {
+                          viam::component::arm::v1::MoveOptions* opts;
+                          void operator()(double s) const {
+                              opts->set_max_acc_degs_per_sec2(s);
+                          }
+                          void operator()(const std::vector<double>& v) const {
+                              for (auto d : v) {
+                                  opts->add_max_acc_degs_per_sec2_joints(d);
+                              }
+                          }
+                      };
+                      boost::apply_visitor(Visitor{request.mutable_options()},
+                                           *options.max_acc_degs_per_sec2);
                   }
 
                   for (const auto& pos : positions) {
