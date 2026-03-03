@@ -35,19 +35,18 @@ SwitchServer::SwitchServer(std::shared_ptr<ResourceManager> manager)
     const ::viam::component::switch_::v1::GetNumberOfPositionsRequest* request,
     ::viam::component::switch_::v1::GetNumberOfPositionsResponse* response) noexcept {
     return make_service_helper<Switch>(
-        "SwitchServer::GetNumberOfPositions", this, context, request)(
-        [&](auto& helper, auto& switch_) {
-            const auto info = switch_->get_number_of_positions(helper.getExtra());
-            if (!info.position_labels.empty() &&
-                static_cast<uint32_t>(info.position_labels.size()) != info.num_positions) {
-                throw Exception(
-                    "get_number_of_positions: labels size does not match num_positions");
-            }
-            response->set_number_of_positions(info.num_positions);
-            for (const auto& label : info.position_labels) {
-                response->add_labels(label);
-            }
-        });
+        "SwitchServer::GetNumberOfPositions", this, context, request)([&](auto& helper,
+                                                                          auto& switch_) {
+        const auto info = switch_->get_number_of_positions(helper.getExtra());
+        if (!info.position_labels.empty() &&
+            static_cast<uint32_t>(info.position_labels.size()) != info.num_positions) {
+            throw Exception("get_number_of_positions: labels size does not match num_positions");
+        }
+        response->set_number_of_positions(info.num_positions);
+        for (const auto& label : info.position_labels) {
+            response->add_labels(label);
+        }
+    });
 }
 
 ::grpc::Status SwitchServer::DoCommand(::grpc::ServerContext* context,

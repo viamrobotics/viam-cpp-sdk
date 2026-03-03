@@ -34,12 +34,13 @@ Switch::position_info SwitchClient::get_number_of_positions(const ProtoStruct& e
         .with(extra)
         .invoke([](auto& response) {
             const auto& labels = response.labels();
-            if (!labels.empty() && static_cast<uint32_t>(labels.size()) != response.number_of_positions()) {
-                throw Exception("get_number_of_positions: labels size does not match number_of_positions");
+            if (!labels.empty() &&
+                static_cast<uint32_t>(labels.size()) != response.number_of_positions()) {
+                throw Exception(
+                    "get_number_of_positions: labels size does not match number_of_positions");
             }
-            return Switch::position_info{
-                response.number_of_positions(),
-                {labels.begin(), labels.end()}};
+            return Switch::position_info{response.number_of_positions(),
+                                         {labels.begin(), labels.end()}};
         });
 }
 
