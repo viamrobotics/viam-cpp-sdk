@@ -1,5 +1,6 @@
 #include <viam/sdk/components/private/switch_server.hpp>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 
 namespace viam {
@@ -36,7 +37,16 @@ SwitchServer::SwitchServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Switch>(
         "SwitchServer::GetNumberOfPositions", this, context, request)(
         [&](auto& helper, auto& switch_) {
-            response->set_number_of_positions(switch_->get_number_of_positions(helper.getExtra()));
+            const auto info = switch_->get_number_of_positions(helper.getExtra());
+            if (!info.position_labels.empty() &&
+                static_cast<uint32_t>(info.position_labels.size()) != info.num_positions) {
+                throw Exception(
+                    "get_number_of_positions: labels size does not match num_positions");
+            }
+            response->set_number_of_positions(info.num_positions);
+            for (const auto& label : info.position_labels) {
+                response->add_labels(label);
+            }
         });
 }
 
