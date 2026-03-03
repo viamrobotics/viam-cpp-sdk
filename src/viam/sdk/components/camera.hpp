@@ -17,6 +17,7 @@
 #endif
 
 #include <viam/sdk/common/linear_algebra.hpp>
+#include <viam/sdk/common/mime_types.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/config/resource.hpp>
