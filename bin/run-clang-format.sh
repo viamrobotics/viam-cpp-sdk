@@ -14,11 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set +x
+
 # Check if clang-format is installed
 if ! command -v clang-format >/dev/null 2>&1; then
     echo "Error: clang-format is not installed"
     echo "Please install it using: brew install clang-format"
     exit 1
 fi
+
+clang-format --version
 
 find ./src -not -path "./src/viam/api" -type f \( -name \*.cpp -o -name \*.hpp \) | xargs clang-format -style=file -i -fallback-style=none "$@"
