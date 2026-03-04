@@ -14,14 +14,10 @@
 
 
 # TODO: [required] fixup libviam_rust_utils install name after download
-# TODO: Sanitizer build configs
-# TODO: All warnings and warnings as errors
 # TODO: Runtime dependency sets?
-# TODO: Finding external projects vs building in (e.g grpc)
 # TODO: Better clang-format integration (versions, dependencies, only changed, etc.)
-# TODO: Version from git describe?
 # TODO: Export macros and visibilty annotations
-# TODO: CPack? CTest?
+# TODO: CPack?
 
 
 # This is a tricky decision. If we set this too old, we lose access to
