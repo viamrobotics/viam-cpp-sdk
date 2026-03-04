@@ -124,7 +124,7 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:a2f703b9778d8d5d629e9d4fea0d71337" id="r_a2f703b9778d8d5d629e9d4fea0d71337"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f703b9778d8d5d629e9d4fea0d71337">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="separator:a2f703b9778d8d5d629e9d4fea0d71337"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad916b7a64bd40edf0db80af40eb10fa2" id="r_ad916b7a64bd40edf0db80af40eb10fa2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad916b7a64bd40edf0db80af40eb10fa2">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
-<tr class="memdesc:ad916b7a64bd40edf0db80af40eb10fa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>.  <br /></td></tr>
+<tr class="memdesc:ad916b7a64bd40edf0db80af40eb10fa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>.  <br /></td></tr>
 <tr class="separator:ad916b7a64bd40edf0db80af40eb10fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f6f36aac8f850e05d1cab1823ef8621" id="r_a6f6f36aac8f850e05d1cab1823ef8621"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f6f36aac8f850e05d1cab1823ef8621">get_audio</a> (std::string const &amp;codec, std::function&lt; bool(<a class="el" href="structviam_1_1sdk_1_1AudioIn_1_1audio__chunk.html">audio_chunk</a> &amp;&amp;chunk)&gt; const &amp;chunk_handler, double const &amp;duration_seconds, int64_t const &amp;previous_timestamp)</td></tr>
 <tr class="memdesc:a6f6f36aac8f850e05d1cab1823ef8621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a stream of audio from the device until completed or cancelled.  <br /></td></tr>
@@ -133,10 +133,10 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memdesc:a01607e88e0733a85f560c6bf8938c9f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a stream of audio from the device until completed or cancelled.  <br /></td></tr>
 <tr class="separator:a01607e88e0733a85f560c6bf8938c9f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61fffd6e4e58d28770ab0f52900e2ceb" id="r_a61fffd6e4e58d28770ab0f52900e2ceb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61fffd6e4e58d28770ab0f52900e2ceb">get_geometries</a> ()</td></tr>
-<tr class="memdesc:a61fffd6e4e58d28770ab0f52900e2ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>.  <br /></td></tr>
+<tr class="memdesc:a61fffd6e4e58d28770ab0f52900e2ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>.  <br /></td></tr>
 <tr class="separator:a61fffd6e4e58d28770ab0f52900e2ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2343254db83b2736933f6c2095867fa" id="r_ab2343254db83b2736933f6c2095867fa"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2343254db83b2736933f6c2095867fa">get_geometries</a> (const ProtoStruct &amp;extra)=0</td></tr>
-<tr class="memdesc:ab2343254db83b2736933f6c2095867fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>.  <br /></td></tr>
+<tr class="memdesc:ab2343254db83b2736933f6c2095867fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>.  <br /></td></tr>
 <tr class="separator:ab2343254db83b2736933f6c2095867fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a608afb4e5e7d1e6f056fda423d24c246" id="r_a608afb4e5e7d1e6f056fda423d24c246"><td class="memItemLeft" align="right" valign="top"><a id="a608afb4e5e7d1e6f056fda423d24c246" name="a608afb4e5e7d1e6f056fda423d24c246"></a>
 <a class="el" href="structviam_1_1sdk_1_1audio__properties.html">audio_properties</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_properties</b> ()</td></tr>
@@ -154,7 +154,7 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memdesc:a608afb4e5e7d1e6f056fda423d24c246 inherit pub_methods_classviam_1_1sdk_1_1AudioIn"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns properties of the audio in device (supported codecs, sample rate, number of channels) <br /></td></tr>
 <tr class="separator:a608afb4e5e7d1e6f056fda423d24c246 inherit pub_methods_classviam_1_1sdk_1_1AudioIn"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61fffd6e4e58d28770ab0f52900e2ceb inherit pub_methods_classviam_1_1sdk_1_1AudioIn" id="r_a61fffd6e4e58d28770ab0f52900e2ceb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1AudioIn.html#a61fffd6e4e58d28770ab0f52900e2ceb">get_geometries</a> ()</td></tr>
-<tr class="memdesc:a61fffd6e4e58d28770ab0f52900e2ceb inherit pub_methods_classviam_1_1sdk_1_1AudioIn"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>.  <br /></td></tr>
+<tr class="memdesc:a61fffd6e4e58d28770ab0f52900e2ceb inherit pub_methods_classviam_1_1sdk_1_1AudioIn"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>.  <br /></td></tr>
 <tr class="separator:a61fffd6e4e58d28770ab0f52900e2ceb inherit pub_methods_classviam_1_1sdk_1_1AudioIn"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b97d31ac04a529d68a94ecd631c1cfe inherit pub_methods_classviam_1_1sdk_1_1AudioIn" id="r_a1b97d31ac04a529d68a94ecd631c1cfe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1AudioIn.html#a1b97d31ac04a529d68a94ecd631c1cfe">api</a> () const override</td></tr>
 <tr class="memdesc:a1b97d31ac04a529d68a94ecd631c1cfe inherit pub_methods_classviam_1_1sdk_1_1AudioIn"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html">API</a></code> associated with a particular resource.  <br /></td></tr>
@@ -421,8 +421,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the component. </dd></dl>
+<p>Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the component. </dd></dl>
 
 </div>
 </div>
@@ -449,14 +449,14 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>. </p>
+<p>Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the component. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the component. </dd></dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1AudioIn.html#ab2343254db83b2736933f6c2095867fa">viam::sdk::AudioIn</a>.</p>
 
@@ -485,14 +485,14 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>. </p>
+<p>Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">extra</td><td>Any additional arguments to the method. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a></code>s associated with the component. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the component. </dd></dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1AudioIn.html#ab2343254db83b2736933f6c2095867fa">viam::sdk::AudioIn</a>.</p>
 

@@ -83,24 +83,33 @@ $(function() {
   <div class="headertitle"><div class="title">viam::sdk::WorldState Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Describes the physical environment around a robot.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &quot;<a class="el" href="world__state_8hpp_source.html">common/world_state.hpp</a>&quot;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">geometries_in_frame</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds a set of geometries observed from a particular reference frame.  <a href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a pose and two reference frames.  <a href="structviam_1_1sdk_1_1WorldState_1_1transform.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4e4aca4eb02601b0432b39cdced89173" id="r_a4e4aca4eb02601b0432b39cdced89173"><td class="memItemLeft" align="right" valign="top"><a id="a4e4aca4eb02601b0432b39cdced89173" name="a4e4aca4eb02601b0432b39cdced89173"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>WorldState</b> (std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">geometries_in_frame</a> &gt; obstacles, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a> &gt; transforms)</td></tr>
+<tr class="memitem:a4e4aca4eb02601b0432b39cdced89173" id="r_a4e4aca4eb02601b0432b39cdced89173"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e4aca4eb02601b0432b39cdced89173">WorldState</a> (std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">geometries_in_frame</a> &gt; <a class="el" href="#a93948b77b6719b857d722636461467c8">obstacles</a>, std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a> &gt; <a class="el" href="#afe75703ea69657353f125d91debfd4ab">transforms</a>)</td></tr>
+<tr class="memdesc:a4e4aca4eb02601b0432b39cdced89173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <code><a class="el" href="classviam_1_1sdk_1_1WorldState.html" title="Describes the physical environment around a robot.">WorldState</a></code> with the given obstacles and transforms.  <br /></td></tr>
 <tr class="separator:a4e4aca4eb02601b0432b39cdced89173"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93948b77b6719b857d722636461467c8" id="r_a93948b77b6719b857d722636461467c8"><td class="memItemLeft" align="right" valign="top"><a id="a93948b77b6719b857d722636461467c8" name="a93948b77b6719b857d722636461467c8"></a>
 const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">geometries_in_frame</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>obstacles</b> () const</td></tr>
+<tr class="memdesc:a93948b77b6719b857d722636461467c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of obstacles expressed as a geometry and the reference frame in which it was observed. <br /></td></tr>
 <tr class="separator:a93948b77b6719b857d722636461467c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe75703ea69657353f125d91debfd4ab" id="r_afe75703ea69657353f125d91debfd4ab"><td class="memItemLeft" align="right" valign="top"><a id="afe75703ea69657353f125d91debfd4ab" name="afe75703ea69657353f125d91debfd4ab"></a>
 const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>transforms</b> () const</td></tr>
+<tr class="memdesc:afe75703ea69657353f125d91debfd4ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to. <br /></td></tr>
 <tr class="separator:afe75703ea69657353f125d91debfd4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
@@ -115,6 +124,40 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a> &amp;lhs, const <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a> &amp;rhs)</td></tr>
 <tr class="separator:af2013d7c72f781754b2c1d308c8be053"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Describes the physical environment around a robot. </p>
+<p>Contains information about obstacles in the robot's environment and any additional transforms needed to describe the positions of objects relative to the robot's frame. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4e4aca4eb02601b0432b39cdced89173" name="a4e4aca4eb02601b0432b39cdced89173"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e4aca4eb02601b0432b39cdced89173">&#9670;&#160;</a></span>WorldState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">viam::sdk::WorldState::WorldState </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1geometries__in__frame.html">geometries_in_frame</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>obstacles</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">transform</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>transforms</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a <code><a class="el" href="classviam_1_1sdk_1_1WorldState.html" title="Describes the physical environment around a robot.">WorldState</a></code> with the given obstacles and transforms. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obstacles</td><td>Geometries that the motion planner should treat as obstacles. </td></tr>
+    <tr><td class="paramname">transforms</td><td>Additional coordinate frame transforms for the planner. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/viam/sdk/common/<a class="el" href="world__state_8hpp_source.html">world_state.hpp</a></li>
 </ul>

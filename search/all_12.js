@@ -96,5 +96,6 @@ var searchData=
   ['traits_3c_20switch_20_3e_93',['traits&lt; Switch &gt;',['../structviam_1_1sdk_1_1API_1_1traits_3_01Switch_01_4.html',1,'viam::sdk::API']]],
   ['transform_94',['transform',['../structviam_1_1sdk_1_1WorldState_1_1transform.html',1,'viam::sdk::WorldState']]],
   ['transform_5fpose_95',['transform_pose',['../classviam_1_1sdk_1_1RobotClient.html#a224a707fe7e12d6ab139c8d123d06ec2',1,'viam::sdk::RobotClient']]],
-  ['translation_96',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
+  ['transforms_96',['transforms',['../classviam_1_1sdk_1_1WorldState.html#afe75703ea69657353f125d91debfd4ab',1,'viam::sdk::WorldState']]],
+  ['translation_97',['translation',['../structviam_1_1sdk_1_1translation.html',1,'viam::sdk']]]
 ];

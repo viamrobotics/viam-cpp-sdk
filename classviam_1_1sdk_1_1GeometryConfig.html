@@ -82,6 +82,11 @@ $(function() {
   <div class="headertitle"><div class="title">viam::sdk::GeometryConfig Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The dimensions of a given geometry and the pose of its center.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="geometry_8hpp_source.html">geometry.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -99,9 +104,10 @@ const <a class="el" href="structviam_1_1sdk_1_1pose.html">pose</a> &amp;&#160;</
 <tr class="separator:ab1bcde925096f30197dbf761e368bcaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a082155ecfbf13ca0b18067450e975a1a" id="r_a082155ecfbf13ca0b18067450e975a1a"><td class="memItemLeft" align="right" valign="top"><a id="a082155ecfbf13ca0b18067450e975a1a" name="a082155ecfbf13ca0b18067450e975a1a"></a>
 const geometry_specifics &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get_geometry_specifics</b> () const</td></tr>
+<tr class="memdesc:a082155ecfbf13ca0b18067450e975a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The concrete geometry type stored in this object. <br /></td></tr>
 <tr class="separator:a082155ecfbf13ca0b18067450e975a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ffa63bafbfbaa011649d6293826578b" id="r_a9ffa63bafbfbaa011649d6293826578b"><td class="memItemLeft" align="right" valign="top"><a id="a9ffa63bafbfbaa011649d6293826578b" name="a9ffa63bafbfbaa011649d6293826578b"></a>
-GeometryType&#160;</td><td class="memItemRight" valign="bottom"><b>get_geometry_type</b> () const</td></tr>
+<tr class="memitem:a9ffa63bafbfbaa011649d6293826578b" id="r_a9ffa63bafbfbaa011649d6293826578b"><td class="memItemLeft" align="right" valign="top">GeometryType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ffa63bafbfbaa011649d6293826578b">get_geometry_type</a> () const</td></tr>
+<tr class="memdesc:a9ffa63bafbfbaa011649d6293826578b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type enumerator for the return value of get_geometry_specifics.  <br /></td></tr>
 <tr class="separator:a9ffa63bafbfbaa011649d6293826578b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46767bd31a39628011f84228d74c0e0e" id="r_a46767bd31a39628011f84228d74c0e0e"><td class="memItemLeft" align="right" valign="top"><a id="a46767bd31a39628011f84228d74c0e0e" name="a46767bd31a39628011f84228d74c0e0e"></a>
 const Orientation &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get_orientation</b> () const</td></tr>
@@ -116,6 +122,29 @@ Friends</h2></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &amp;lhs, const <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &amp;rhs)</td></tr>
 <tr class="separator:ab3dbd9730bdcd0e32600a51c1729d98d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The dimensions of a given geometry and the pose of its center. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9ffa63bafbfbaa011649d6293826578b" name="a9ffa63bafbfbaa011649d6293826578b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ffa63bafbfbaa011649d6293826578b">&#9670;&#160;</a></span>get_geometry_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GeometryType viam::sdk::GeometryConfig::get_geometry_type </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Type enumerator for the return value of get_geometry_specifics. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>A GeometryType::point is a sphere of radius zero. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/viam/sdk/spatialmath/<a class="el" href="geometry_8hpp_source.html">geometry.hpp</a></li>
 </ul>
