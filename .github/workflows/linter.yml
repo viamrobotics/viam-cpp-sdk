@@ -17,6 +17,7 @@ jobs:
 
       - name: verify no uncommitted changes
         run: |
+          apt-get -y --no-install-recommends install -t llvm-toolchain-bullseye-15 clang-format-15
           update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-15 100
           clang-format --version
 
