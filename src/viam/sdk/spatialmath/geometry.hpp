@@ -29,8 +29,6 @@ class GeoGeometry;
 namespace viam {
 namespace sdk {
 
-// TODO(RSDK-4553): add thorough documentation to this whole file.
-
 enum class GeometryType { box, sphere, capsule, point };
 
 struct box {
@@ -51,6 +49,7 @@ struct capsule {
 
 typedef boost::variant<struct box, struct sphere, struct capsule> geometry_specifics;
 
+/// @brief The dimensions of a given geometry and the pose of its center.
 class GeometryConfig {
    public:
     GeometryConfig() = default;
@@ -59,10 +58,18 @@ class GeometryConfig {
     GeometryConfig(pose, geometry_specifics, std::string label);
 
     double get_theta() const;
+
     const pose& get_pose() const;
+
+    /// @brief The concrete geometry type stored in this object.
     const geometry_specifics& get_geometry_specifics() const;
+
+    /// @brief Type enumerator for the return value of get_geometry_specifics.
+    /// @remark A GeometryType::point is a sphere of radius zero.
     GeometryType get_geometry_type() const;
+
     const Orientation& get_orientation() const;
+
     const std::string& get_label() const;
 
     friend bool operator==(const GeometryConfig& lhs, const GeometryConfig& rhs);
@@ -85,6 +92,7 @@ struct geo_point {
     friend std::ostream& operator<<(std::ostream& os, const geo_point& v);
 };
 
+/// @brief Information describing geometries located at a geo_point.
 struct geo_geometry {
     geo_point location;
     std::vector<GeometryConfig> geometries;
