@@ -11,7 +11,7 @@ API API::traits<Arm>::api() {
     return {kRDK, kComponent, "arm"};
 }
 
-Arm::Arm(std::string name) : Component(std::move(name)) {}
+Arm::Arm(std::string name) : Component(std::move(name)) {};
 
 }  // namespace sdk
 }  // namespace viam
