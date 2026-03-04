@@ -304,12 +304,6 @@ add_custom_target(
 # headers for installation
 add_library(viamapi)
 
-# TODO: This is analogized from
-# https://gitlab.kitware.com/cmake/cmake/-/tree/master/Help/guide/importing-exporting/MathFunctionsComponents
-# but it doesn't really seem to do anything. Everything works fine if
-# it is removed, and naming the alias something other than `viamcpp`
-# doesn't make it available under that alias anyway, as one might
-# hope. What is it supposed to do?
 add_library(viam-cpp-sdk::viamapi ALIAS viamapi)
 
 target_sources(viamapi
