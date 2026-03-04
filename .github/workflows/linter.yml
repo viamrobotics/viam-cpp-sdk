@@ -17,6 +17,7 @@ jobs:
 
       - name: verify no uncommitted changes
         run: |
+          update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-15 100
           chown $(whoami) .
           git init
           git add .
