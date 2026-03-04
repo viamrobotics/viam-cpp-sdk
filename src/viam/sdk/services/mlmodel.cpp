@@ -29,8 +29,6 @@ API API::traits<MLModelService>::api() {
 
 boost::optional<MLModelService::tensor_info::data_types>
 MLModelService::tensor_info::string_to_data_type(const std::string& str) {
-    // TODO: I'm guessing at the string names here, because the scope
-    // doesn't actually specify them.
     if (str == "int8") {
         return data_types::k_int8;
     }
@@ -65,8 +63,6 @@ MLModelService::tensor_info::string_to_data_type(const std::string& str) {
 }
 
 const char* MLModelService::tensor_info::data_type_to_string(const data_types data_type) {
-    // TODO: I'm guessing at the string names here, because the scope
-    // doesn't actually specify them.
     if (data_type == data_types::k_int8) {
         return "int8";
     }
