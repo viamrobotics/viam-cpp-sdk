@@ -14,8 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set +x
-
 # Check if clang-format is installed
 if ! command -v clang-format >/dev/null 2>&1; then
     echo "Error: clang-format is not installed"
