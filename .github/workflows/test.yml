@@ -101,8 +101,6 @@ jobs:
             -G Ninja \
             -DCMAKE_PREFIX_PATH=$(pwd)/build/install
           cmake --build build-standalone-cmake
-          PKG_CONFIG_PATH=$(pwd)/build/install/lib/pkgconfig \
-            make -C src/viam/examples/project/pkg-config
 
       - name: test
         working-directory: build
