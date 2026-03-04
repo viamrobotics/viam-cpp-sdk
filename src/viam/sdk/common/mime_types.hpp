@@ -13,10 +13,10 @@ namespace sdk {
  * @{
  */
 
-constexpr const char* kMimeTypeJPEG = "image/jpeg";
-constexpr const char* kMimeTypePNG = "image/png";
-constexpr const char* kMimeTypeViamDep = "image/vnd.viam.dep";
-constexpr const char* kMimeTypePCD = "pointcloud/pcd";
+constexpr const char kMimeTypeJPEG[] = "image/jpeg";
+constexpr const char kMimeTypePNG[] = "image/png";
+constexpr const char kMimeTypeViamDep[] = "image/vnd.viam.dep";
+constexpr const char kMimeTypePCD[] = "pointcloud/pcd";
 
 /**@} */
 
