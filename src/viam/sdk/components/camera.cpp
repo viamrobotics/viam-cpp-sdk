@@ -4,6 +4,7 @@
 #include <google/protobuf/util/time_util.h>
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/mime_types.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
