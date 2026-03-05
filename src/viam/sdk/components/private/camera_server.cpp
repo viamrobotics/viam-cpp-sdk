@@ -103,7 +103,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         "CameraServer::GetPointCloud", this, context, request)([&](auto& helper, auto& camera) {
         const Camera::point_cloud point_cloud =
             camera->get_point_cloud(request->mime_type(), helper.getExtra());
-        *response->mutable_mime_type() = "pointcloud/pcd";
+        *response->mutable_mime_type() = kMimeTypePCD;
         *response->mutable_point_cloud() = bytes_to_string(point_cloud.pc);
     });
 }

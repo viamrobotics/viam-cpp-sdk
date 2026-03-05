@@ -46,13 +46,13 @@ Camera::image_collection fake_raw_images() {
     Camera::image_collection collection;
     std::vector<Camera::raw_image> images;
     Camera::raw_image image1;
-    image1.mime_type = "image/jpeg";
+    image1.mime_type = kMimeTypeJPEG;
     image1.source_name = "color";
     std::vector<unsigned char> bytes1 = {'a', 'b', 'c'};
     image1.bytes = bytes1;
     images.push_back(image1);
     Camera::raw_image image2;
-    image2.mime_type = "image/vnd.viam.dep";
+    image2.mime_type = kMimeTypeViamDep;
     image2.source_name = "depth";
     std::vector<unsigned char> bytes2 = {'d', 'e', 'f'};
     image2.bytes = bytes2;
@@ -67,7 +67,7 @@ Camera::image_collection fake_raw_images() {
 
 Camera::point_cloud fake_point_cloud() {
     Camera::point_cloud point_cloud;
-    point_cloud.mime_type = "pointcloud/pcd";
+    point_cloud.mime_type = kMimeTypePCD;
     std::vector<unsigned char> bytes(1 << 24, 'a');
     point_cloud.pc = bytes;
     return point_cloud;

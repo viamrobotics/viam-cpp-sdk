@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(test_get_images_with_extra) {
 BOOST_AUTO_TEST_CASE(test_get_point_cloud) {
     std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
     client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
-        Camera::point_cloud pc = client.get_point_cloud("pointcloud/pcd");
+        Camera::point_cloud pc = client.get_point_cloud(kMimeTypePCD);
         Camera::point_cloud expected = fake_point_cloud();
 
         BOOST_CHECK(expected == pc);

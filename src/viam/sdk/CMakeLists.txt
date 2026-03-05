@@ -182,6 +182,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/instance.hpp
       ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/mesh.hpp
+      ../../viam/sdk/common/mime_types.hpp
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_convert.hpp
       ../../viam/sdk/common/proto_value.hpp
