@@ -95,6 +95,13 @@ jobs:
       - name: Module test
         run: etc/module_test/entrypoint.sh
 
+      - name: Check standalone examples compile
+        run: |
+          cmake -B build-standalone-cmake -S src/viam/examples/project/cmake \
+            -G Ninja \
+            -DCMAKE_PREFIX_PATH=$(pwd)/build/install
+          cmake --build build-standalone-cmake
+
       - name: test
         working-directory: build
         run: ../etc/docker/tests/run_test.sh

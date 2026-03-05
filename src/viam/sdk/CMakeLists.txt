@@ -2,12 +2,6 @@
 # headers for installation
 add_library(viamsdk)
 
-# TODO: This is analogized from
-# https://gitlab.kitware.com/cmake/cmake/-/tree/master/Help/guide/importing-exporting/MathFunctionsComponents
-# but it doesn't really seem to do anything. Everything works fine if
-# it is removed, and naming the alias something other than `viamcpp`
-# doesn't make it available under that alias anyway, as one might
-# hope. What is it supposed to do?
 add_library(viam-cpp-sdk::viamsdk ALIAS viamsdk)
 
 # This bit of magic is required so that we get the public build-time
@@ -188,6 +182,7 @@ target_sources(viamsdk
       ../../viam/sdk/common/instance.hpp
       ../../viam/sdk/common/linear_algebra.hpp
       ../../viam/sdk/common/mesh.hpp
+      ../../viam/sdk/common/mime_types.hpp
       ../../viam/sdk/common/pose.hpp
       ../../viam/sdk/common/proto_convert.hpp
       ../../viam/sdk/common/proto_value.hpp
