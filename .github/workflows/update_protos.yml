@@ -76,13 +76,30 @@ jobs:
       - name: cleanup
         run: rm -rf boost/
 
+      - name: Set event-specific variables (repository_dispatch)
+        if: github.event_name == 'repository_dispatch'
+        id: set_tag_repository_dispatch
+        run: |
+          echo "API_PROTO_TAG_VERSION=${{ github.event.client_payload.tag }}" >> $GITHUB_ENV
+          echo "PROTO_REPO_NAME=${{ github.event.client_payload.repo_name }}" >> $GITHUB_ENV
+          echo "PROTO_SHA=${{ github.event.client_payload.sha }}" >> $GITHUB_ENV
+
+      - name: Set event-specific variables (workflow_dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        id: set_tag_workflow_dispatch
+        run: |
+          TAG=$(curl --silent https://api.github.com/repos/viamrobotics/api/tags | jq -r '.[0].name')
+          echo "API_PROTO_TAG_VERSION=${TAG}" >> $GITHUB_ENV
+          echo "PROTO_REPO_NAME=viamrobotics/api" >> $GITHUB_ENV
+          echo "PROTO_SHA=${TAG}" >> $GITHUB_ENV
+
       - name: Update proto tag
-        run: echo "${{ github.event.client_payload.tag }}" > src/viam/api/api_proto_tag.lock
+        run: echo "${{ env.API_PROTO_TAG_VERSION }}" > src/viam/api/api_proto_tag.lock
 
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: '[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}'
+          commit-message: '[WORKFLOW] Updating protos from ${{ env.PROTO_REPO_NAME }}, commit: ${{ env.PROTO_SHA }}'
           branch: 'workflow/update-protos'
           add-paths: src/viam/api/*
           delete-branch: true
