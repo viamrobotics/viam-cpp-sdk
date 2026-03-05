@@ -29,5 +29,6 @@ var searchData=
   ['to_20the_20powersensor_20component_26',['Classes related to the PowerSensor component.',['../group__PowerSensor.html',1,'']]],
   ['to_20the_20sensor_20component_27',['Classes related to the Sensor component.',['../group__Sensor.html',1,'']]],
   ['to_20the_20servo_20component_28',['Classes related to the Servo component.',['../group__Servo.html',1,'']]],
-  ['to_20the_20switch_20component_29',['Classes related to the Switch component.',['../group__Switch.html',1,'']]]
+  ['to_20the_20switch_20component_29',['Classes related to the Switch component.',['../group__Switch.html',1,'']]],
+  ['type_20constants_30',['MIME type constants.',['../group__MimeTypes.html',1,'']]]
 ];
