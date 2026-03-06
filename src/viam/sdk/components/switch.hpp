@@ -24,6 +24,13 @@ namespace sdk {
 /// specific switch implementations. This class cannot be used on its own.
 class Switch : public Component {
    public:
+    /// @brief Information on the positions supported by this switch and their labels.
+    /// @remark position_labels, if not empty, will have size num_positions.
+    struct position_info {
+        uint32_t num_positions;
+        std::vector<std::string> position_labels;
+    };
+
     /// @brief Set the position of the switch.
     /// @param position The position to set the switch to.
     inline void set_position(uint32_t position) {
@@ -46,16 +53,16 @@ class Switch : public Component {
     /// @return The current position of the switch.
     virtual uint32_t get_position(const ProtoStruct& extra) = 0;
 
-    /// @brief Get the number of positions that the switch supports.
-    /// @return The number of positions that the switch supports.
-    inline uint32_t get_number_of_positions() {
+    /// @brief Get the position_info supported by this switch.
+    /// @return The number of positions that the switch supports, and their labels.
+    inline position_info get_number_of_positions() {
         return get_number_of_positions({});
     }
 
-    /// @brief Get the number of positions that the switch supports.
+    /// @brief Get the position_info supported by this switch.
     /// @param extra Any additional arguments to the method.
-    /// @return The number of positions that the switch supports.
-    virtual uint32_t get_number_of_positions(const ProtoStruct& extra) = 0;
+    /// @return The number of positions that the switch supports, and their labels.
+    virtual position_info get_number_of_positions(const ProtoStruct& extra) = 0;
 
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param command The command to execute.

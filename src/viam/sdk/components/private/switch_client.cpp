@@ -6,6 +6,7 @@
 #include <viam/api/component/switch/v1/switch.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/exception.hpp>
 
 namespace viam {
 namespace sdk {
@@ -28,10 +29,19 @@ uint32_t SwitchClient::get_position(const ProtoStruct& extra) {
         .invoke([](auto& response) { return response.position(); });
 }
 
-uint32_t SwitchClient::get_number_of_positions(const ProtoStruct& extra) {
+Switch::position_info SwitchClient::get_number_of_positions(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetNumberOfPositions)
         .with(extra)
-        .invoke([](auto& response) { return response.number_of_positions(); });
+        .invoke([](auto& response) {
+            const auto& labels = response.labels();
+            if (!labels.empty() &&
+                static_cast<uint32_t>(labels.size()) != response.number_of_positions()) {
+                throw Exception(
+                    "get_number_of_positions: labels size does not match number_of_positions");
+            }
+            return Switch::position_info{response.number_of_positions(),
+                                         {labels.begin(), labels.end()}};
+        });
 }
 
 ProtoStruct SwitchClient::do_command(const ProtoStruct& command) {

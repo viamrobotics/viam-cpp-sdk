@@ -7,6 +7,8 @@
 #include <viam/sdk/tests/test_utils.hpp>
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::ProtoStruct)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::Switch::position_info)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(std::vector<std::string>)
 
 namespace viam {
 namespace sdktests {
@@ -39,8 +41,11 @@ BOOST_AUTO_TEST_CASE(test_positions) {
 BOOST_AUTO_TEST_CASE(test_number_of_positions) {
     std::shared_ptr<MockSwitch> mock = MockSwitch::get_mock_switch();
     client_to_mock_pipeline<Switch>(mock, [&](Switch& client) {
-        mock->number_of_positions = 5;
-        BOOST_CHECK_EQUAL(client.get_number_of_positions(), 5);
+        mock->position_info = {2, {"off", "on"}};
+        const auto result = client.get_number_of_positions();
+
+        BOOST_CHECK_EQUAL(result.num_positions, 2);
+        BOOST_CHECK_EQUAL(result.position_labels, std::vector<std::string>({"off", "on"}));
     });
 }
 

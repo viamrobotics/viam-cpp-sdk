@@ -18,8 +18,8 @@ uint32_t MockSwitch::get_position(const sdk::ProtoStruct&) {
     return current_position;
 }
 
-uint32_t MockSwitch::get_number_of_positions(const sdk::ProtoStruct&) {
-    return number_of_positions;
+sdk::Switch::position_info MockSwitch::get_number_of_positions(const sdk::ProtoStruct&) {
+    return position_info;
 }
 
 sdk::ProtoStruct MockSwitch::do_command(const sdk::ProtoStruct& command) {

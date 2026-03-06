@@ -14,11 +14,11 @@ class MockSwitch : public sdk::Switch {
 
     void set_position(uint32_t position, const sdk::ProtoStruct&) override;
     uint32_t get_position(const sdk::ProtoStruct&) override;
-    uint32_t get_number_of_positions(const sdk::ProtoStruct&) override;
+    sdk::Switch::position_info get_number_of_positions(const sdk::ProtoStruct&) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
 
     uint32_t current_position;
-    uint32_t number_of_positions;
+    sdk::Switch::position_info position_info;
     sdk::ProtoStruct peek_command;
 };
 

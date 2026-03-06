@@ -26,7 +26,7 @@ class SwitchClient : public Switch {
 
     void set_position(uint32_t position, const ProtoStruct& extra) override;
     uint32_t get_position(const ProtoStruct& extra) override;
-    uint32_t get_number_of_positions(const ProtoStruct& extra) override;
+    Switch::position_info get_number_of_positions(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
 
     // Using declarations to introduce convenience overloads of interface which do not need to be
