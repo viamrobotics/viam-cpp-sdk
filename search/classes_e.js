@@ -13,11 +13,12 @@ var searchData=
   ['posetrackerclient_10',['PoseTrackerClient',['../classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html',1,'viam::sdk::impl']]],
   ['posetrackerserver_11',['PoseTrackerServer',['../classviam_1_1sdk_1_1impl_1_1PoseTrackerServer.html',1,'viam::sdk::impl']]],
   ['position_12',['position',['../structposition.html',1,'position'],['../structviam_1_1sdk_1_1Encoder_1_1position.html',1,'viam::sdk::Encoder::position'],['../structviam_1_1sdk_1_1MovementSensor_1_1position.html',1,'viam::sdk::MovementSensor::position']]],
-  ['power_5fstatus_13',['power_status',['../structviam_1_1sdk_1_1Motor_1_1power__status.html',1,'viam::sdk::Motor']]],
-  ['powersensor_14',['PowerSensor',['../classviam_1_1sdk_1_1PowerSensor.html',1,'viam::sdk']]],
-  ['powersensorclient_15',['PowerSensorClient',['../classviam_1_1sdk_1_1impl_1_1PowerSensorClient.html',1,'viam::sdk::impl']]],
-  ['powersensorserver_16',['PowerSensorServer',['../classviam_1_1sdk_1_1impl_1_1PowerSensorServer.html',1,'viam::sdk::impl']]],
-  ['properties_17',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1MovementSensor_1_1properties.html',1,'viam::sdk::MovementSensor::properties']]],
-  ['properties_18',['Properties',['../structviam_1_1sdk_1_1Navigation_1_1Properties.html',1,'viam::sdk::Navigation']]],
-  ['protovalue_19',['ProtoValue',['../classviam_1_1sdk_1_1ProtoValue.html',1,'viam::sdk']]]
+  ['position_5finfo_13',['position_info',['../structviam_1_1sdk_1_1Switch_1_1position__info.html',1,'viam::sdk::Switch']]],
+  ['power_5fstatus_14',['power_status',['../structviam_1_1sdk_1_1Motor_1_1power__status.html',1,'viam::sdk::Motor']]],
+  ['powersensor_15',['PowerSensor',['../classviam_1_1sdk_1_1PowerSensor.html',1,'viam::sdk']]],
+  ['powersensorclient_16',['PowerSensorClient',['../classviam_1_1sdk_1_1impl_1_1PowerSensorClient.html',1,'viam::sdk::impl']]],
+  ['powersensorserver_17',['PowerSensorServer',['../classviam_1_1sdk_1_1impl_1_1PowerSensorServer.html',1,'viam::sdk::impl']]],
+  ['properties_18',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1MovementSensor_1_1properties.html',1,'viam::sdk::MovementSensor::properties']]],
+  ['properties_19',['Properties',['../structviam_1_1sdk_1_1Navigation_1_1Properties.html',1,'viam::sdk::Navigation']]],
+  ['protovalue_20',['ProtoValue',['../classviam_1_1sdk_1_1ProtoValue.html',1,'viam::sdk']]]
 ];
