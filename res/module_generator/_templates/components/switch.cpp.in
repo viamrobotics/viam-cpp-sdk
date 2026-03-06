@@ -43,7 +43,7 @@ public:
         throw std::logic_error("\"get_position\" not implemented");
     }
 
-    uint32_t get_number_of_positions(const viam::sdk::ProtoStruct & extra) override
+    viam::sdk::Switch::position_info get_number_of_positions(const viam::sdk::ProtoStruct & extra) override
     {
         throw std::logic_error("\"get_number_of_positions\" not implemented");
     }
