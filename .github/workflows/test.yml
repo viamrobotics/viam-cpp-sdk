@@ -3,8 +3,8 @@ name: Test
 on:
   pull_request:
     paths-ignore:
-      - conanfile.py
       - '**.md'
+      - 'res/**'
   workflow_dispatch:
     inputs:
       no-tidy:
