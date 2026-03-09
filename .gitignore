@@ -17,3 +17,6 @@
 
 # Conan user presets should be ignored
 CMakeUserPresets.json
+
+# Claude Code
+.claude/worktrees
