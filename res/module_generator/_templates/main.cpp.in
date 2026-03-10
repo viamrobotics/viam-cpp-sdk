@@ -11,7 +11,7 @@ int main(int argc, char** argv) try {
 
 
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
-        API::get<>,
+        API::get<viam::sdk::{{ .ResourceSubtypePascal }}>(),
         model,
         [](viam::sdk::Dependencies deps, viam::sdk::ResourceConfig cfg) {
             return std::make_unique<{{ .ModelPascal }}>(deps, cfg);
