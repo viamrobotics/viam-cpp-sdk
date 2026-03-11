@@ -8,6 +8,7 @@
 #include <viam/api/app/data/v1/data.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/utils.hpp>
 
 namespace viam {
@@ -98,5 +99,23 @@ std::vector<DataClient::BSONBytes> DataClient::tabular_data_by_mql(
     const std::string& org_id, const std::vector<DataClient::BSONBytes>& mql_binary) {
     return tabular_data_by_mql(org_id, mql_binary, tabular_data_by_mql_opts{});
 }
+
+void DataClient::delete_tabular_data(const std::string& organization_id,
+                                     uint32_t delete_older_than_days,
+                                     const std::optional<DeleteTabularFilter>& filter) {
+    return pimpl_->client_helper(&DataService::Stub::DeleteTabularData)
+        .with([&](app::data::v1::DeleteTabularDataRequest& req) {
+            req.set_organization_id(organization_id);
+            req.set_delete_older_than_days(delete_older_than_days);
+            if (filter) {
+                *req.mutable_filter() = to_proto(*filter);
+            }
+        })
+        .invoke([](const app::data::v1::DeleteTabularDataResponse& resp) {
+            // The response is empty, so nothing to return.
+            (void)resp; // Suppress unused variable warning
+        });
+}
+
 }  // namespace sdk
 }  // namespace viam

@@ -8,6 +8,11 @@
 
 #include <boost/optional.hpp>
 
+// Add this include for std::optional
+#include <optional>
+// Add this include for TagsFilter and DeleteTabularFilter
+#include <viam/sdk/app/data.hpp>
+
 #include <viam/sdk/app/viam_client.hpp>
 
 namespace viam {
@@ -54,6 +59,14 @@ class DataClient {
     /// @brief Convenience overload with default options.
     std::vector<BSONBytes> tabular_data_by_mql(const std::string& org_id,
                                                const std::vector<BSONBytes>& mql_binary);
+
+    /// @brief Delete tabular data from the Viam app.
+    /// @param organization_id The ID of the organization.
+    /// @param delete_older_than_days Delete data older than this many days.
+    /// @param filter Optional filter to apply for deletion.
+    void delete_tabular_data(const std::string& organization_id,
+                             uint32_t delete_older_than_days,
+                             const std::optional<DeleteTabularFilter>& filter = std::nullopt);
 
    private:
     DataClient(const ViamChannel& channel);

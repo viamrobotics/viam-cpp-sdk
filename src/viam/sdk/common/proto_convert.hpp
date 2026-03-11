@@ -6,6 +6,12 @@
 #include <boost/callable_traits/return_type.hpp>
 #include <boost/mp11/algorithm.hpp>
 
+#include <viam/app/data/v1/data.pb.h>
+#include <viam/sdk/common/exceptions.hpp>
+#include <viam/sdk/common/uuid.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/services/data.hpp>
+
 namespace viam {
 namespace sdk {
 
@@ -29,6 +35,43 @@ struct from_proto_impl;
 template <typename Callable>
 using ProtoArgType = std::remove_pointer_t<
     boost::mp11::mp_back<boost::callable_traits::args_t<Callable, boost::mp11::mp_list>>>;
+
+template <>
+struct to_proto_impl<viam::sdk::TagsFilter> {
+    void operator()(const viam::sdk::TagsFilter& sdk_type, viam::app::data::v1::TagsFilter* proto_type) const {
+        for (const auto& tag : sdk_type.tags) {
+            proto_type->add_tags(tag);
+        }
+        proto_type->set_exclude(sdk_type.exclude);
+    }
+};
+
+template <>
+struct to_proto_impl<viam::sdk::DeleteTabularFilter> {
+    void operator()(const viam::sdk::DeleteTabularFilter& sdk_type, viam::app::data::v1::DeleteTabularFilter* proto_type) const {
+        for (const auto& id : sdk_type.location_ids) {
+            proto_type->add_location_ids(id);
+        }
+        if (sdk_type.robot_id) {
+            proto_type->set_robot_id(*sdk_type.robot_id);
+        }
+        if (sdk_type.part_id) {
+            proto_type->set_part_id(*sdk_type.part_id);
+        }
+        if (sdk_type.component_type) {
+            proto_type->set_component_type(*sdk_type.component_type);
+        }
+        if (sdk_type.component_name) {
+            proto_type->set_component_name(*sdk_type.component_name);
+        }
+        if (sdk_type.method) {
+            proto_type->set_method(*sdk_type.method);
+        }
+        if (sdk_type.tags_filter) {
+            *proto_type->mutable_tags_filter() = to_proto(*sdk_type.tags_filter);
+        }
+    }
+};
 
 }  // namespace proto_convert_details
 
