@@ -1691,35 +1691,13 @@ class Sample final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kValuesFieldNumber = 2,
-    kAttributeIndicesFieldNumber = 3,
+    kAttributeIndicesFieldNumber = 2,
+    kValuesFieldNumber = 4,
     kTimestampsUnixNanoFieldNumber = 5,
     kStackIndexFieldNumber = 1,
-    kLinkIndexFieldNumber = 4,
+    kLinkIndexFieldNumber = 3,
   };
-  // repeated int64 values = 2 [json_name = "values"];
-  int values_size() const;
-  private:
-  int _internal_values_size() const;
-  public:
-  void clear_values();
-  private:
-  int64_t _internal_values(int index) const;
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
-      _internal_values() const;
-  void _internal_add_values(int64_t value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
-      _internal_mutable_values();
-  public:
-  int64_t values(int index) const;
-  void set_values(int index, int64_t value);
-  void add_values(int64_t value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
-      values() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
-      mutable_values();
-
-  // repeated int32 attribute_indices = 3 [json_name = "attributeIndices"];
+  // repeated int32 attribute_indices = 2 [json_name = "attributeIndices"];
   int attribute_indices_size() const;
   private:
   int _internal_attribute_indices_size() const;
@@ -1740,6 +1718,28 @@ class Sample final :
       attribute_indices() const;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
       mutable_attribute_indices();
+
+  // repeated int64 values = 4 [json_name = "values"];
+  int values_size() const;
+  private:
+  int _internal_values_size() const;
+  public:
+  void clear_values();
+  private:
+  int64_t _internal_values(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+      _internal_values() const;
+  void _internal_add_values(int64_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+      _internal_mutable_values();
+  public:
+  int64_t values(int index) const;
+  void set_values(int index, int64_t value);
+  void add_values(int64_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+      values() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+      mutable_values();
 
   // repeated fixed64 timestamps_unix_nano = 5 [json_name = "timestampsUnixNano"];
   int timestamps_unix_nano_size() const;
@@ -1772,7 +1772,7 @@ class Sample final :
   void _internal_set_stack_index(int32_t value);
   public:
 
-  // int32 link_index = 4 [json_name = "linkIndex"];
+  // int32 link_index = 3 [json_name = "linkIndex"];
   void clear_link_index();
   int32_t link_index() const;
   void set_link_index(int32_t value);
@@ -1788,10 +1788,10 @@ class Sample final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t > values_;
-  mutable std::atomic<int> _values_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > attribute_indices_;
   mutable std::atomic<int> _attribute_indices_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t > values_;
+  mutable std::atomic<int> _values_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t > timestamps_unix_nano_;
   int32_t stack_index_;
   int32_t link_index_;
@@ -4361,54 +4361,7 @@ inline void Sample::set_stack_index(int32_t value) {
   // @@protoc_insertion_point(field_set:opentelemetry.proto.profiles.v1development.Sample.stack_index)
 }
 
-// repeated int64 values = 2 [json_name = "values"];
-inline int Sample::_internal_values_size() const {
-  return values_.size();
-}
-inline int Sample::values_size() const {
-  return _internal_values_size();
-}
-inline void Sample::clear_values() {
-  values_.Clear();
-}
-inline int64_t Sample::_internal_values(int index) const {
-  return values_.Get(index);
-}
-inline int64_t Sample::values(int index) const {
-  // @@protoc_insertion_point(field_get:opentelemetry.proto.profiles.v1development.Sample.values)
-  return _internal_values(index);
-}
-inline void Sample::set_values(int index, int64_t value) {
-  values_.Set(index, value);
-  // @@protoc_insertion_point(field_set:opentelemetry.proto.profiles.v1development.Sample.values)
-}
-inline void Sample::_internal_add_values(int64_t value) {
-  values_.Add(value);
-}
-inline void Sample::add_values(int64_t value) {
-  _internal_add_values(value);
-  // @@protoc_insertion_point(field_add:opentelemetry.proto.profiles.v1development.Sample.values)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
-Sample::_internal_values() const {
-  return values_;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
-Sample::values() const {
-  // @@protoc_insertion_point(field_list:opentelemetry.proto.profiles.v1development.Sample.values)
-  return _internal_values();
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
-Sample::_internal_mutable_values() {
-  return &values_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
-Sample::mutable_values() {
-  // @@protoc_insertion_point(field_mutable_list:opentelemetry.proto.profiles.v1development.Sample.values)
-  return _internal_mutable_values();
-}
-
-// repeated int32 attribute_indices = 3 [json_name = "attributeIndices"];
+// repeated int32 attribute_indices = 2 [json_name = "attributeIndices"];
 inline int Sample::_internal_attribute_indices_size() const {
   return attribute_indices_.size();
 }
@@ -4455,7 +4408,7 @@ Sample::mutable_attribute_indices() {
   return _internal_mutable_attribute_indices();
 }
 
-// int32 link_index = 4 [json_name = "linkIndex"];
+// int32 link_index = 3 [json_name = "linkIndex"];
 inline void Sample::clear_link_index() {
   link_index_ = 0;
 }
@@ -4473,6 +4426,53 @@ inline void Sample::_internal_set_link_index(int32_t value) {
 inline void Sample::set_link_index(int32_t value) {
   _internal_set_link_index(value);
   // @@protoc_insertion_point(field_set:opentelemetry.proto.profiles.v1development.Sample.link_index)
+}
+
+// repeated int64 values = 4 [json_name = "values"];
+inline int Sample::_internal_values_size() const {
+  return values_.size();
+}
+inline int Sample::values_size() const {
+  return _internal_values_size();
+}
+inline void Sample::clear_values() {
+  values_.Clear();
+}
+inline int64_t Sample::_internal_values(int index) const {
+  return values_.Get(index);
+}
+inline int64_t Sample::values(int index) const {
+  // @@protoc_insertion_point(field_get:opentelemetry.proto.profiles.v1development.Sample.values)
+  return _internal_values(index);
+}
+inline void Sample::set_values(int index, int64_t value) {
+  values_.Set(index, value);
+  // @@protoc_insertion_point(field_set:opentelemetry.proto.profiles.v1development.Sample.values)
+}
+inline void Sample::_internal_add_values(int64_t value) {
+  values_.Add(value);
+}
+inline void Sample::add_values(int64_t value) {
+  _internal_add_values(value);
+  // @@protoc_insertion_point(field_add:opentelemetry.proto.profiles.v1development.Sample.values)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+Sample::_internal_values() const {
+  return values_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >&
+Sample::values() const {
+  // @@protoc_insertion_point(field_list:opentelemetry.proto.profiles.v1development.Sample.values)
+  return _internal_values();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+Sample::_internal_mutable_values() {
+  return &values_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int64_t >*
+Sample::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_list:opentelemetry.proto.profiles.v1development.Sample.values)
+  return _internal_mutable_values();
 }
 
 // repeated fixed64 timestamps_unix_nano = 5 [json_name = "timestampsUnixNano"];

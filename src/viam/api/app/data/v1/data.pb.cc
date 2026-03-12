@@ -459,9 +459,28 @@ struct BinaryMetadataDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BinaryMetadataDefaultTypeInternal _BinaryMetadata_default_instance_;
+PROTOBUF_CONSTEXPR DeleteTabularFilter::DeleteTabularFilter(
+    ::_pbi::ConstantInitialized)
+  : location_ids_()
+  , robot_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , part_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_type_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , component_name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , method_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , tags_filter_(nullptr){}
+struct DeleteTabularFilterDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteTabularFilterDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteTabularFilterDefaultTypeInternal() {}
+  union {
+    DeleteTabularFilter _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteTabularFilterDefaultTypeInternal _DeleteTabularFilter_default_instance_;
 PROTOBUF_CONSTEXPR DeleteTabularDataRequest::DeleteTabularDataRequest(
     ::_pbi::ConstantInitialized)
   : organization_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , filter_(nullptr)
   , delete_older_than_days_(0u){}
 struct DeleteTabularDataRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR DeleteTabularDataRequestDefaultTypeInternal()
@@ -1138,7 +1157,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace data
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[80];
+static ::_pb::Metadata file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[81];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto[5];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fdata_2fv1_2fdata_2eproto = nullptr;
 
@@ -1468,6 +1487,19 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryMetadata, dataset_ids_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryMetadata, binary_data_id_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularFilter, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularFilter, location_ids_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularFilter, robot_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularFilter, part_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularFilter, component_type_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularFilter, component_name_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularFilter, method_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularFilter, tags_filter_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularDataRequest, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularDataRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -1475,6 +1507,10 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularDataRequest, organization_id_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularDataRequest, delete_older_than_days_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularDataRequest, filter_),
+  ~0u,
+  ~0u,
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularDataResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1942,58 +1978,59 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 288, 297, -1, sizeof(::viam::app::data::v1::Classification)},
   { 300, -1, -1, sizeof(::viam::app::data::v1::Annotations)},
   { 308, -1, -1, sizeof(::viam::app::data::v1::BinaryMetadata)},
-  { 324, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularDataRequest)},
-  { 332, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularDataResponse)},
-  { 339, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterRequest)},
-  { 347, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterResponse)},
-  { 354, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsRequest)},
-  { 362, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsResponse)},
-  { 369, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByIDsRequest)},
-  { 378, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByIDsResponse)},
-  { 384, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest)},
-  { 392, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse)},
-  { 398, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsRequest)},
-  { 407, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsResponse)},
-  { 414, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest)},
-  { 422, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse)},
-  { 429, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterRequest)},
-  { 436, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterResponse)},
-  { 443, 457, -1, sizeof(::viam::app::data::v1::AddBoundingBoxToImageByIDRequest)},
-  { 465, -1, -1, sizeof(::viam::app::data::v1::AddBoundingBoxToImageByIDResponse)},
-  { 472, -1, -1, sizeof(::viam::app::data::v1::RemoveBoundingBoxFromImageByIDRequest)},
-  { 481, -1, -1, sizeof(::viam::app::data::v1::RemoveBoundingBoxFromImageByIDResponse)},
-  { 487, 502, -1, sizeof(::viam::app::data::v1::UpdateBoundingBoxRequest)},
-  { 511, -1, -1, sizeof(::viam::app::data::v1::UpdateBoundingBoxResponse)},
-  { 517, -1, -1, sizeof(::viam::app::data::v1::BoundingBoxLabelsByFilterRequest)},
-  { 524, -1, -1, sizeof(::viam::app::data::v1::BoundingBoxLabelsByFilterResponse)},
-  { 531, -1, -1, sizeof(::viam::app::data::v1::ConfigureDatabaseUserRequest)},
-  { 539, -1, -1, sizeof(::viam::app::data::v1::ConfigureDatabaseUserResponse)},
-  { 545, -1, -1, sizeof(::viam::app::data::v1::GetDatabaseConnectionRequest)},
-  { 552, -1, -1, sizeof(::viam::app::data::v1::GetDatabaseConnectionResponse)},
-  { 561, -1, -1, sizeof(::viam::app::data::v1::AddBinaryDataToDatasetByIDsRequest)},
-  { 570, -1, -1, sizeof(::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse)},
-  { 576, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest)},
-  { 585, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse)},
-  { 591, 601, -1, sizeof(::viam::app::data::v1::CreateIndexRequest)},
-  { 605, -1, -1, sizeof(::viam::app::data::v1::CreateIndexResponse)},
-  { 611, 621, -1, sizeof(::viam::app::data::v1::DeleteIndexRequest)},
-  { 625, -1, -1, sizeof(::viam::app::data::v1::DeleteIndexResponse)},
-  { 631, 640, -1, sizeof(::viam::app::data::v1::ListIndexesRequest)},
-  { 643, -1, -1, sizeof(::viam::app::data::v1::ListIndexesResponse)},
-  { 650, 661, -1, sizeof(::viam::app::data::v1::Index)},
-  { 666, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryRequest)},
-  { 675, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryResponse)},
-  { 682, -1, -1, sizeof(::viam::app::data::v1::Query)},
-  { 694, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryRequest)},
-  { 701, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryResponse)},
-  { 707, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryRequest)},
-  { 714, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryResponse)},
-  { 721, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryRequest)},
-  { 730, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryResponse)},
-  { 736, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesRequest)},
-  { 744, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesResponse)},
-  { 751, 759, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLRequest)},
-  { 761, -1, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLResponse)},
+  { 324, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularFilter)},
+  { 337, 346, -1, sizeof(::viam::app::data::v1::DeleteTabularDataRequest)},
+  { 349, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularDataResponse)},
+  { 356, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterRequest)},
+  { 364, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterResponse)},
+  { 371, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsRequest)},
+  { 379, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsResponse)},
+  { 386, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByIDsRequest)},
+  { 395, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByIDsResponse)},
+  { 401, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest)},
+  { 409, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse)},
+  { 415, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsRequest)},
+  { 424, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsResponse)},
+  { 431, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest)},
+  { 439, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse)},
+  { 446, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterRequest)},
+  { 453, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterResponse)},
+  { 460, 474, -1, sizeof(::viam::app::data::v1::AddBoundingBoxToImageByIDRequest)},
+  { 482, -1, -1, sizeof(::viam::app::data::v1::AddBoundingBoxToImageByIDResponse)},
+  { 489, -1, -1, sizeof(::viam::app::data::v1::RemoveBoundingBoxFromImageByIDRequest)},
+  { 498, -1, -1, sizeof(::viam::app::data::v1::RemoveBoundingBoxFromImageByIDResponse)},
+  { 504, 519, -1, sizeof(::viam::app::data::v1::UpdateBoundingBoxRequest)},
+  { 528, -1, -1, sizeof(::viam::app::data::v1::UpdateBoundingBoxResponse)},
+  { 534, -1, -1, sizeof(::viam::app::data::v1::BoundingBoxLabelsByFilterRequest)},
+  { 541, -1, -1, sizeof(::viam::app::data::v1::BoundingBoxLabelsByFilterResponse)},
+  { 548, -1, -1, sizeof(::viam::app::data::v1::ConfigureDatabaseUserRequest)},
+  { 556, -1, -1, sizeof(::viam::app::data::v1::ConfigureDatabaseUserResponse)},
+  { 562, -1, -1, sizeof(::viam::app::data::v1::GetDatabaseConnectionRequest)},
+  { 569, -1, -1, sizeof(::viam::app::data::v1::GetDatabaseConnectionResponse)},
+  { 578, -1, -1, sizeof(::viam::app::data::v1::AddBinaryDataToDatasetByIDsRequest)},
+  { 587, -1, -1, sizeof(::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse)},
+  { 593, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest)},
+  { 602, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse)},
+  { 608, 618, -1, sizeof(::viam::app::data::v1::CreateIndexRequest)},
+  { 622, -1, -1, sizeof(::viam::app::data::v1::CreateIndexResponse)},
+  { 628, 638, -1, sizeof(::viam::app::data::v1::DeleteIndexRequest)},
+  { 642, -1, -1, sizeof(::viam::app::data::v1::DeleteIndexResponse)},
+  { 648, 657, -1, sizeof(::viam::app::data::v1::ListIndexesRequest)},
+  { 660, -1, -1, sizeof(::viam::app::data::v1::ListIndexesResponse)},
+  { 667, 678, -1, sizeof(::viam::app::data::v1::Index)},
+  { 683, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryRequest)},
+  { 692, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryResponse)},
+  { 699, -1, -1, sizeof(::viam::app::data::v1::Query)},
+  { 711, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryRequest)},
+  { 718, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryResponse)},
+  { 724, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryRequest)},
+  { 731, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryResponse)},
+  { 738, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryRequest)},
+  { 747, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryResponse)},
+  { 753, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesRequest)},
+  { 761, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesResponse)},
+  { 768, 776, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLRequest)},
+  { 778, -1, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2025,6 +2062,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::data::v1::_Classification_default_instance_._instance,
   &::viam::app::data::v1::_Annotations_default_instance_._instance,
   &::viam::app::data::v1::_BinaryMetadata_default_instance_._instance,
+  &::viam::app::data::v1::_DeleteTabularFilter_default_instance_._instance,
   &::viam::app::data::v1::_DeleteTabularDataRequest_default_instance_._instance,
   &::viam::app::data::v1::_DeleteTabularDataResponse_default_instance_._instance,
   &::viam::app::data::v1::_DeleteBinaryDataByFilterRequest_default_instance_._instance,
@@ -2236,271 +2274,279 @@ const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_S
   "\tR\003uri\022\?\n\013annotations\030\010 \001(\0132\035.viam.app.d"
   "ata.v1.AnnotationsR\013annotations\022\037\n\013datas"
   "et_ids\030\t \003(\tR\ndatasetIds\022$\n\016binary_data_"
-  "id\030\n \001(\tR\014binaryDataId\"x\n\030DeleteTabularD"
-  "ataRequest\022\'\n\017organization_id\030\001 \001(\tR\016org"
-  "anizationId\0223\n\026delete_older_than_days\030\002 "
-  "\001(\rR\023deleteOlderThanDays\"@\n\031DeleteTabula"
-  "rDataResponse\022#\n\rdeleted_count\030\001 \001(\004R\014de"
-  "letedCount\"\207\001\n\037DeleteBinaryDataByFilterR"
-  "equest\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v"
-  "1.FilterR\006filter\0222\n\025include_internal_dat"
-  "a\030\002 \001(\010R\023includeInternalData\"U\n DeleteBi"
-  "naryDataByFilterResponse\022#\n\rdeleted_coun"
-  "t\030\001 \001(\004R\014deletedCountJ\004\010\002\020\003R\006result\"\225\001\n\034"
-  "DeleteBinaryDataByIDsRequest\022=\n\nbinary_i"
-  "ds\030\002 \003(\0132\032.viam.app.data.v1.BinaryIDB\002\030\001"
-  "R\tbinaryIds\022&\n\017binary_data_ids\030\003 \003(\tR\rbi"
-  "naryDataIdsJ\004\010\001\020\002R\010file_ids\"R\n\035DeleteBin"
-  "aryDataByIDsResponse\022#\n\rdeleted_count\030\001 "
-  "\001(\004R\014deletedCountJ\004\010\002\020\003R\006result\"\254\001\n\037AddT"
-  "agsToBinaryDataByIDsRequest\022=\n\nbinary_id"
-  "s\030\003 \003(\0132\032.viam.app.data.v1.BinaryIDB\002\030\001R"
-  "\tbinaryIds\022&\n\017binary_data_ids\030\004 \003(\tR\rbin"
-  "aryDataIds\022\022\n\004tags\030\002 \003(\tR\004tagsJ\004\010\001\020\002R\010fi"
-  "le_ids\"\"\n AddTagsToBinaryDataByIDsRespon"
-  "se\"n\n\"AddTagsToBinaryDataByFilterRequest"
-  "\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v1.Filt"
-  "erR\006filter\022\022\n\004tags\030\002 \003(\tR\004tags:\002\030\001\")\n#Ad"
-  "dTagsToBinaryDataByFilterResponse:\002\030\001\"\261\001"
-  "\n$RemoveTagsFromBinaryDataByIDsRequest\022="
-  "\n\nbinary_ids\030\003 \003(\0132\032.viam.app.data.v1.Bi"
-  "naryIDB\002\030\001R\tbinaryIds\022&\n\017binary_data_ids"
-  "\030\004 \003(\tR\rbinaryDataIds\022\022\n\004tags\030\002 \003(\tR\004tag"
-  "sJ\004\010\001\020\002R\010file_ids\"L\n%RemoveTagsFromBinar"
-  "yDataByIDsResponse\022#\n\rdeleted_count\030\001 \001("
-  "\004R\014deletedCount\"s\n\'RemoveTagsFromBinaryD"
-  "ataByFilterRequest\0220\n\006filter\030\001 \001(\0132\030.via"
-  "m.app.data.v1.FilterR\006filter\022\022\n\004tags\030\002 \003"
-  "(\tR\004tags:\002\030\001\"S\n(RemoveTagsFromBinaryData"
-  "ByFilterResponse\022#\n\rdeleted_count\030\001 \001(\004R"
-  "\014deletedCount:\002\030\001\"K\n\023TagsByFilterRequest"
-  "\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v1.Filt"
-  "erR\006filter:\002\030\001\".\n\024TagsByFilterResponse\022\022"
-  "\n\004tags\030\001 \003(\tR\004tags:\002\030\001\"\206\003\n AddBoundingBo"
-  "xToImageByIDRequest\022;\n\tbinary_id\030\007 \001(\0132\032"
-  ".viam.app.data.v1.BinaryIDB\002\030\001R\010binaryId"
-  "\022$\n\016binary_data_id\030\010 \001(\tR\014binaryDataId\022\024"
-  "\n\005label\030\002 \001(\tR\005label\022(\n\020x_min_normalized"
-  "\030\003 \001(\001R\016xMinNormalized\022(\n\020y_min_normaliz"
-  "ed\030\004 \001(\001R\016yMinNormalized\022(\n\020x_max_normal"
-  "ized\030\005 \001(\001R\016xMaxNormalized\022(\n\020y_max_norm"
-  "alized\030\006 \001(\001R\016yMaxNormalized\022#\n\nconfiden"
-  "ce\030\t \001(\001H\000R\nconfidence\210\001\001B\r\n\013_confidence"
-  "J\004\010\001\020\002R\007file_id\"<\n!AddBoundingBoxToImage"
-  "ByIDResponse\022\027\n\007bbox_id\030\001 \001(\tR\006bboxId\"\262\001"
-  "\n%RemoveBoundingBoxFromImageByIDRequest\022"
-  ";\n\tbinary_id\030\003 \001(\0132\032.viam.app.data.v1.Bi"
-  "naryIDB\002\030\001R\010binaryId\022$\n\016binary_data_id\030\004"
-  " \001(\tR\014binaryDataId\022\027\n\007bbox_id\030\002 \001(\tR\006bbo"
-  "xIdJ\004\010\001\020\002R\007file_id\"(\n&RemoveBoundingBoxF"
-  "romImageByIDResponse\"\377\003\n\030UpdateBoundingB"
-  "oxRequest\022;\n\tbinary_id\030\001 \001(\0132\032.viam.app."
-  "data.v1.BinaryIDB\002\030\001R\010binaryId\022$\n\016binary"
-  "_data_id\030\010 \001(\tR\014binaryDataId\022\027\n\007bbox_id\030"
-  "\002 \001(\tR\006bboxId\022\031\n\005label\030\003 \001(\tH\000R\005label\210\001\001"
-  "\022-\n\020x_min_normalized\030\004 \001(\001H\001R\016xMinNormal"
-  "ized\210\001\001\022-\n\020y_min_normalized\030\005 \001(\001H\002R\016yMi"
-  "nNormalized\210\001\001\022-\n\020x_max_normalized\030\006 \001(\001"
-  "H\003R\016xMaxNormalized\210\001\001\022-\n\020y_max_normalize"
-  "d\030\007 \001(\001H\004R\016yMaxNormalized\210\001\001\022#\n\nconfiden"
-  "ce\030\t \001(\001H\005R\nconfidence\210\001\001B\010\n\006_labelB\023\n\021_"
-  "x_min_normalizedB\023\n\021_y_min_normalizedB\023\n"
-  "\021_x_max_normalizedB\023\n\021_y_max_normalizedB"
-  "\r\n\013_confidence\"\033\n\031UpdateBoundingBoxRespo"
-  "nse\"X\n BoundingBoxLabelsByFilterRequest\022"
-  "0\n\006filter\030\001 \001(\0132\030.viam.app.data.v1.Filte"
-  "rR\006filter:\002\030\001\"\?\n!BoundingBoxLabelsByFilt"
-  "erResponse\022\026\n\006labels\030\001 \003(\tR\006labels:\002\030\001\"c"
-  "\n\034ConfigureDatabaseUserRequest\022\'\n\017organi"
-  "zation_id\030\001 \001(\tR\016organizationId\022\032\n\010passw"
-  "ord\030\002 \001(\tR\010password\"\037\n\035ConfigureDatabase"
-  "UserResponse\"G\n\034GetDatabaseConnectionReq"
-  "uest\022\'\n\017organization_id\030\001 \001(\tR\016organizat"
-  "ionId\"\210\001\n\035GetDatabaseConnectionResponse\022"
-  "\032\n\010hostname\030\001 \001(\tR\010hostname\022\037\n\013mongodb_u"
-  "ri\030\002 \001(\tR\nmongodbUri\022*\n\021has_database_use"
-  "r\030\003 \001(\010R\017hasDatabaseUser\"\252\001\n\"AddBinaryDa"
-  "taToDatasetByIDsRequest\022=\n\nbinary_ids\030\001 "
+  "id\030\n \001(\tR\014binaryDataId\"\221\002\n\023DeleteTabular"
+  "Filter\022!\n\014location_ids\030\001 \003(\tR\013locationId"
+  "s\022\031\n\010robot_id\030\002 \001(\tR\007robotId\022\027\n\007part_id\030"
+  "\003 \001(\tR\006partId\022%\n\016component_type\030\004 \001(\tR\rc"
+  "omponentType\022%\n\016component_name\030\005 \001(\tR\rco"
+  "mponentName\022\026\n\006method\030\006 \001(\tR\006method\022=\n\013t"
+  "ags_filter\030\007 \001(\0132\034.viam.app.data.v1.Tags"
+  "FilterR\ntagsFilter\"\307\001\n\030DeleteTabularData"
+  "Request\022\'\n\017organization_id\030\001 \001(\tR\016organi"
+  "zationId\0223\n\026delete_older_than_days\030\002 \001(\r"
+  "R\023deleteOlderThanDays\022B\n\006filter\030\003 \001(\0132%."
+  "viam.app.data.v1.DeleteTabularFilterH\000R\006"
+  "filter\210\001\001B\t\n\007_filter\"@\n\031DeleteTabularDat"
+  "aResponse\022#\n\rdeleted_count\030\001 \001(\004R\014delete"
+  "dCount\"\207\001\n\037DeleteBinaryDataByFilterReque"
+  "st\0220\n\006filter\030\001 \001(\0132\030.viam.app.data.v1.Fi"
+  "lterR\006filter\0222\n\025include_internal_data\030\002 "
+  "\001(\010R\023includeInternalData\"U\n DeleteBinary"
+  "DataByFilterResponse\022#\n\rdeleted_count\030\001 "
+  "\001(\004R\014deletedCountJ\004\010\002\020\003R\006result\"\225\001\n\034Dele"
+  "teBinaryDataByIDsRequest\022=\n\nbinary_ids\030\002"
+  " \003(\0132\032.viam.app.data.v1.BinaryIDB\002\030\001R\tbi"
+  "naryIds\022&\n\017binary_data_ids\030\003 \003(\tR\rbinary"
+  "DataIdsJ\004\010\001\020\002R\010file_ids\"R\n\035DeleteBinaryD"
+  "ataByIDsResponse\022#\n\rdeleted_count\030\001 \001(\004R"
+  "\014deletedCountJ\004\010\002\020\003R\006result\"\254\001\n\037AddTagsT"
+  "oBinaryDataByIDsRequest\022=\n\nbinary_ids\030\003 "
   "\003(\0132\032.viam.app.data.v1.BinaryIDB\002\030\001R\tbin"
-  "aryIds\022&\n\017binary_data_ids\030\003 \003(\tR\rbinaryD"
-  "ataIds\022\035\n\ndataset_id\030\002 \001(\tR\tdatasetId\"%\n"
-  "#AddBinaryDataToDatasetByIDsResponse\"\257\001\n"
-  "\'RemoveBinaryDataFromDatasetByIDsRequest"
-  "\022=\n\nbinary_ids\030\001 \003(\0132\032.viam.app.data.v1."
-  "BinaryIDB\002\030\001R\tbinaryIds\022&\n\017binary_data_i"
-  "ds\030\003 \003(\tR\rbinaryDataIds\022\035\n\ndataset_id\030\002 "
-  "\001(\tR\tdatasetId\"*\n(RemoveBinaryDataFromDa"
-  "tasetByIDsResponse\"\350\001\n\022CreateIndexReques"
-  "t\022\'\n\017organization_id\030\001 \001(\tR\016organization"
-  "Id\022N\n\017collection_type\030\002 \001(\0162%.viam.app.d"
-  "ata.v1.IndexableCollectionR\016collectionTy"
-  "pe\022(\n\rpipeline_name\030\003 \001(\tH\000R\014pipelineNam"
-  "e\210\001\001\022\035\n\nindex_spec\030\004 \003(\014R\tindexSpecB\020\n\016_"
-  "pipeline_name\"\025\n\023CreateIndexResponse\"\350\001\n"
-  "\022DeleteIndexRequest\022\'\n\017organization_id\030\001"
-  " \001(\tR\016organizationId\022N\n\017collection_type\030"
-  "\002 \001(\0162%.viam.app.data.v1.IndexableCollec"
-  "tionR\016collectionType\022(\n\rpipeline_name\030\003 "
-  "\001(\tH\000R\014pipelineName\210\001\001\022\035\n\nindex_name\030\004 \001"
-  "(\tR\tindexNameB\020\n\016_pipeline_name\"\025\n\023Delet"
-  "eIndexResponse\"\311\001\n\022ListIndexesRequest\022\'\n"
+  "aryIds\022&\n\017binary_data_ids\030\004 \003(\tR\rbinaryD"
+  "ataIds\022\022\n\004tags\030\002 \003(\tR\004tagsJ\004\010\001\020\002R\010file_i"
+  "ds\"\"\n AddTagsToBinaryDataByIDsResponse\"n"
+  "\n\"AddTagsToBinaryDataByFilterRequest\0220\n\006"
+  "filter\030\001 \001(\0132\030.viam.app.data.v1.FilterR\006"
+  "filter\022\022\n\004tags\030\002 \003(\tR\004tags:\002\030\001\")\n#AddTag"
+  "sToBinaryDataByFilterResponse:\002\030\001\"\261\001\n$Re"
+  "moveTagsFromBinaryDataByIDsRequest\022=\n\nbi"
+  "nary_ids\030\003 \003(\0132\032.viam.app.data.v1.Binary"
+  "IDB\002\030\001R\tbinaryIds\022&\n\017binary_data_ids\030\004 \003"
+  "(\tR\rbinaryDataIds\022\022\n\004tags\030\002 \003(\tR\004tagsJ\004\010"
+  "\001\020\002R\010file_ids\"L\n%RemoveTagsFromBinaryDat"
+  "aByIDsResponse\022#\n\rdeleted_count\030\001 \001(\004R\014d"
+  "eletedCount\"s\n\'RemoveTagsFromBinaryDataB"
+  "yFilterRequest\0220\n\006filter\030\001 \001(\0132\030.viam.ap"
+  "p.data.v1.FilterR\006filter\022\022\n\004tags\030\002 \003(\tR\004"
+  "tags:\002\030\001\"S\n(RemoveTagsFromBinaryDataByFi"
+  "lterResponse\022#\n\rdeleted_count\030\001 \001(\004R\014del"
+  "etedCount:\002\030\001\"K\n\023TagsByFilterRequest\0220\n\006"
+  "filter\030\001 \001(\0132\030.viam.app.data.v1.FilterR\006"
+  "filter:\002\030\001\".\n\024TagsByFilterResponse\022\022\n\004ta"
+  "gs\030\001 \003(\tR\004tags:\002\030\001\"\206\003\n AddBoundingBoxToI"
+  "mageByIDRequest\022;\n\tbinary_id\030\007 \001(\0132\032.via"
+  "m.app.data.v1.BinaryIDB\002\030\001R\010binaryId\022$\n\016"
+  "binary_data_id\030\010 \001(\tR\014binaryDataId\022\024\n\005la"
+  "bel\030\002 \001(\tR\005label\022(\n\020x_min_normalized\030\003 \001"
+  "(\001R\016xMinNormalized\022(\n\020y_min_normalized\030\004"
+  " \001(\001R\016yMinNormalized\022(\n\020x_max_normalized"
+  "\030\005 \001(\001R\016xMaxNormalized\022(\n\020y_max_normaliz"
+  "ed\030\006 \001(\001R\016yMaxNormalized\022#\n\nconfidence\030\t"
+  " \001(\001H\000R\nconfidence\210\001\001B\r\n\013_confidenceJ\004\010\001"
+  "\020\002R\007file_id\"<\n!AddBoundingBoxToImageByID"
+  "Response\022\027\n\007bbox_id\030\001 \001(\tR\006bboxId\"\262\001\n%Re"
+  "moveBoundingBoxFromImageByIDRequest\022;\n\tb"
+  "inary_id\030\003 \001(\0132\032.viam.app.data.v1.Binary"
+  "IDB\002\030\001R\010binaryId\022$\n\016binary_data_id\030\004 \001(\t"
+  "R\014binaryDataId\022\027\n\007bbox_id\030\002 \001(\tR\006bboxIdJ"
+  "\004\010\001\020\002R\007file_id\"(\n&RemoveBoundingBoxFromI"
+  "mageByIDResponse\"\377\003\n\030UpdateBoundingBoxRe"
+  "quest\022;\n\tbinary_id\030\001 \001(\0132\032.viam.app.data"
+  ".v1.BinaryIDB\002\030\001R\010binaryId\022$\n\016binary_dat"
+  "a_id\030\010 \001(\tR\014binaryDataId\022\027\n\007bbox_id\030\002 \001("
+  "\tR\006bboxId\022\031\n\005label\030\003 \001(\tH\000R\005label\210\001\001\022-\n\020"
+  "x_min_normalized\030\004 \001(\001H\001R\016xMinNormalized"
+  "\210\001\001\022-\n\020y_min_normalized\030\005 \001(\001H\002R\016yMinNor"
+  "malized\210\001\001\022-\n\020x_max_normalized\030\006 \001(\001H\003R\016"
+  "xMaxNormalized\210\001\001\022-\n\020y_max_normalized\030\007 "
+  "\001(\001H\004R\016yMaxNormalized\210\001\001\022#\n\nconfidence\030\t"
+  " \001(\001H\005R\nconfidence\210\001\001B\010\n\006_labelB\023\n\021_x_mi"
+  "n_normalizedB\023\n\021_y_min_normalizedB\023\n\021_x_"
+  "max_normalizedB\023\n\021_y_max_normalizedB\r\n\013_"
+  "confidence\"\033\n\031UpdateBoundingBoxResponse\""
+  "X\n BoundingBoxLabelsByFilterRequest\0220\n\006f"
+  "ilter\030\001 \001(\0132\030.viam.app.data.v1.FilterR\006f"
+  "ilter:\002\030\001\"\?\n!BoundingBoxLabelsByFilterRe"
+  "sponse\022\026\n\006labels\030\001 \003(\tR\006labels:\002\030\001\"c\n\034Co"
+  "nfigureDatabaseUserRequest\022\'\n\017organizati"
+  "on_id\030\001 \001(\tR\016organizationId\022\032\n\010password\030"
+  "\002 \001(\tR\010password\"\037\n\035ConfigureDatabaseUser"
+  "Response\"G\n\034GetDatabaseConnectionRequest"
+  "\022\'\n\017organization_id\030\001 \001(\tR\016organizationI"
+  "d\"\210\001\n\035GetDatabaseConnectionResponse\022\032\n\010h"
+  "ostname\030\001 \001(\tR\010hostname\022\037\n\013mongodb_uri\030\002"
+  " \001(\tR\nmongodbUri\022*\n\021has_database_user\030\003 "
+  "\001(\010R\017hasDatabaseUser\"\252\001\n\"AddBinaryDataTo"
+  "DatasetByIDsRequest\022=\n\nbinary_ids\030\001 \003(\0132"
+  "\032.viam.app.data.v1.BinaryIDB\002\030\001R\tbinaryI"
+  "ds\022&\n\017binary_data_ids\030\003 \003(\tR\rbinaryDataI"
+  "ds\022\035\n\ndataset_id\030\002 \001(\tR\tdatasetId\"%\n#Add"
+  "BinaryDataToDatasetByIDsResponse\"\257\001\n\'Rem"
+  "oveBinaryDataFromDatasetByIDsRequest\022=\n\n"
+  "binary_ids\030\001 \003(\0132\032.viam.app.data.v1.Bina"
+  "ryIDB\002\030\001R\tbinaryIds\022&\n\017binary_data_ids\030\003"
+  " \003(\tR\rbinaryDataIds\022\035\n\ndataset_id\030\002 \001(\tR"
+  "\tdatasetId\"*\n(RemoveBinaryDataFromDatase"
+  "tByIDsResponse\"\350\001\n\022CreateIndexRequest\022\'\n"
   "\017organization_id\030\001 \001(\tR\016organizationId\022N"
   "\n\017collection_type\030\002 \001(\0162%.viam.app.data."
   "v1.IndexableCollectionR\016collectionType\022("
   "\n\rpipeline_name\030\003 \001(\tH\000R\014pipelineName\210\001\001"
-  "B\020\n\016_pipeline_name\"H\n\023ListIndexesRespons"
-  "e\0221\n\007indexes\030\001 \003(\0132\027.viam.app.data.v1.In"
-  "dexR\007indexes\"\220\002\n\005Index\022N\n\017collection_typ"
-  "e\030\001 \001(\0162%.viam.app.data.v1.IndexableColl"
-  "ectionR\016collectionType\022(\n\rpipeline_name\030"
-  "\002 \001(\tH\000R\014pipelineName\210\001\001\022\035\n\nindex_name\030\003"
-  " \001(\tR\tindexName\022\035\n\nindex_spec\030\004 \003(\014R\tind"
-  "exSpec\022=\n\ncreated_by\030\005 \001(\0162\036.viam.app.da"
-  "ta.v1.IndexCreatorR\tcreatedByB\020\n\016_pipeli"
-  "ne_name\"u\n\027CreateSavedQueryRequest\022\'\n\017or"
-  "ganization_id\030\001 \001(\tR\016organizationId\022\022\n\004n"
-  "ame\030\002 \001(\tR\004name\022\035\n\nmql_binary\030\003 \003(\014R\tmql"
-  "Binary\"*\n\030CreateSavedQueryResponse\022\016\n\002id"
-  "\030\001 \001(\tR\002id\"\351\001\n\005Query\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017"
-  "organization_id\030\002 \001(\tR\016organizationId\022\022\n"
-  "\004name\030\003 \001(\tR\004name\022\035\n\nmql_binary\030\004 \003(\014R\tm"
-  "qlBinary\0229\n\ncreated_on\030\005 \001(\0132\032.google.pr"
-  "otobuf.TimestampR\tcreatedOn\0229\n\nupdated_a"
-  "t\030\006 \001(\0132\032.google.protobuf.TimestampR\tupd"
-  "atedAt\")\n\027DeleteSavedQueryRequest\022\016\n\002id\030"
-  "\001 \001(\tR\002id\"\032\n\030DeleteSavedQueryResponse\"&\n"
-  "\024GetSavedQueryRequest\022\016\n\002id\030\001 \001(\tR\002id\"Q\n"
-  "\025GetSavedQueryResponse\0228\n\013saved_query\030\001 "
-  "\001(\0132\027.viam.app.data.v1.QueryR\nsavedQuery"
-  "\"\\\n\027UpdateSavedQueryRequest\022\016\n\002id\030\001 \001(\tR"
-  "\002id\022\022\n\004name\030\002 \001(\tR\004name\022\035\n\nmql_binary\030\003 "
-  "\003(\014R\tmqlBinary\"\032\n\030UpdateSavedQueryRespon"
-  "se\"X\n\027ListSavedQueriesRequest\022\'\n\017organiz"
-  "ation_id\030\001 \001(\tR\016organizationId\022\024\n\005limit\030"
-  "\002 \001(\003R\005limit\"M\n\030ListSavedQueriesResponse"
-  "\0221\n\007queries\030\001 \003(\0132\027.viam.app.data.v1.Que"
-  "ryR\007queries\"\223\001\n CreateBinaryDataSignedUR"
-  "LRequest\022$\n\016binary_data_id\030\001 \001(\tR\014binary"
-  "DataId\0222\n\022expiration_minutes\030\002 \001(\rH\000R\021ex"
-  "pirationMinutes\210\001\001B\025\n\023_expiration_minute"
-  "s\"}\n!CreateBinaryDataSignedURLResponse\022\035"
-  "\n\nsigned_url\030\001 \001(\tR\tsignedUrl\0229\n\nexpires"
-  "_at\030\002 \001(\0132\032.google.protobuf.TimestampR\te"
-  "xpiresAt*I\n\005Order\022\025\n\021ORDER_UNSPECIFIED\020\000"
-  "\022\024\n\020ORDER_DESCENDING\020\001\022\023\n\017ORDER_ASCENDIN"
-  "G\020\002*\220\001\n\016TagsFilterType\022 \n\034TAGS_FILTER_TY"
-  "PE_UNSPECIFIED\020\000\022 \n\034TAGS_FILTER_TYPE_MAT"
-  "CH_BY_OR\020\001\022\033\n\027TAGS_FILTER_TYPE_TAGGED\020\002\022"
-  "\035\n\031TAGS_FILTER_TYPE_UNTAGGED\020\003*\276\001\n\025Tabul"
-  "arDataSourceType\022(\n$TABULAR_DATA_SOURCE_"
-  "TYPE_UNSPECIFIED\020\000\022%\n!TABULAR_DATA_SOURC"
-  "E_TYPE_STANDARD\020\001\022(\n$TABULAR_DATA_SOURCE"
-  "_TYPE_HOT_STORAGE\020\002\022*\n&TABULAR_DATA_SOUR"
-  "CE_TYPE_PIPELINE_SINK\020\003*\207\001\n\023IndexableCol"
-  "lection\022$\n INDEXABLE_COLLECTION_UNSPECIF"
-  "IED\020\000\022\"\n\036INDEXABLE_COLLECTION_HOT_STORE\020"
-  "\001\022&\n\"INDEXABLE_COLLECTION_PIPELINE_SINK\020"
-  "\002*a\n\014IndexCreator\022\035\n\031INDEX_CREATOR_UNSPE"
-  "CIFIED\020\000\022\026\n\022INDEX_CREATOR_VIAM\020\001\022\032\n\026INDE"
-  "X_CREATOR_CUSTOMER\020\0022\223\036\n\013DataService\022w\n\023"
-  "TabularDataByFilter\022,.viam.app.data.v1.T"
-  "abularDataByFilterRequest\032-.viam.app.dat"
-  "a.v1.TabularDataByFilterResponse\"\003\210\002\001\022i\n"
-  "\020TabularDataBySQL\022).viam.app.data.v1.Tab"
-  "ularDataBySQLRequest\032*.viam.app.data.v1."
-  "TabularDataBySQLResponse\022i\n\020TabularDataB"
-  "yMQL\022).viam.app.data.v1.TabularDataByMQL"
-  "Request\032*.viam.app.data.v1.TabularDataBy"
-  "MQLResponse\022n\n\021ExportTabularData\022*.viam."
-  "app.data.v1.ExportTabularDataRequest\032+.v"
-  "iam.app.data.v1.ExportTabularDataRespons"
-  "e0\001\022u\n\024GetLatestTabularData\022-.viam.app.d"
-  "ata.v1.GetLatestTabularDataRequest\032..via"
-  "m.app.data.v1.GetLatestTabularDataRespon"
-  "se\022o\n\022BinaryDataByFilter\022+.viam.app.data"
-  ".v1.BinaryDataByFilterRequest\032,.viam.app"
-  ".data.v1.BinaryDataByFilterResponse\022f\n\017B"
-  "inaryDataByIDs\022(.viam.app.data.v1.Binary"
-  "DataByIDsRequest\032).viam.app.data.v1.Bina"
-  "ryDataByIDsResponse\022l\n\021DeleteTabularData"
-  "\022*.viam.app.data.v1.DeleteTabularDataReq"
-  "uest\032+.viam.app.data.v1.DeleteTabularDat"
-  "aResponse\022\201\001\n\030DeleteBinaryDataByFilter\0221"
-  ".viam.app.data.v1.DeleteBinaryDataByFilt"
-  "erRequest\0322.viam.app.data.v1.DeleteBinar"
-  "yDataByFilterResponse\022x\n\025DeleteBinaryDat"
-  "aByIDs\022..viam.app.data.v1.DeleteBinaryDa"
-  "taByIDsRequest\032/.viam.app.data.v1.Delete"
-  "BinaryDataByIDsResponse\022\201\001\n\030AddTagsToBin"
-  "aryDataByIDs\0221.viam.app.data.v1.AddTagsT"
-  "oBinaryDataByIDsRequest\0322.viam.app.data."
-  "v1.AddTagsToBinaryDataByIDsResponse\022\217\001\n\033"
-  "AddTagsToBinaryDataByFilter\0224.viam.app.d"
-  "ata.v1.AddTagsToBinaryDataByFilterReques"
-  "t\0325.viam.app.data.v1.AddTagsToBinaryData"
-  "ByFilterResponse\"\003\210\002\001\022\220\001\n\035RemoveTagsFrom"
-  "BinaryDataByIDs\0226.viam.app.data.v1.Remov"
-  "eTagsFromBinaryDataByIDsRequest\0327.viam.a"
-  "pp.data.v1.RemoveTagsFromBinaryDataByIDs"
-  "Response\022\236\001\n RemoveTagsFromBinaryDataByF"
-  "ilter\0229.viam.app.data.v1.RemoveTagsFromB"
-  "inaryDataByFilterRequest\032:.viam.app.data"
-  ".v1.RemoveTagsFromBinaryDataByFilterResp"
-  "onse\"\003\210\002\001\022b\n\014TagsByFilter\022%.viam.app.dat"
-  "a.v1.TagsByFilterRequest\032&.viam.app.data"
-  ".v1.TagsByFilterResponse\"\003\210\002\001\022\204\001\n\031AddBou"
-  "ndingBoxToImageByID\0222.viam.app.data.v1.A"
-  "ddBoundingBoxToImageByIDRequest\0323.viam.a"
-  "pp.data.v1.AddBoundingBoxToImageByIDResp"
-  "onse\022\223\001\n\036RemoveBoundingBoxFromImageByID\022"
-  "7.viam.app.data.v1.RemoveBoundingBoxFrom"
-  "ImageByIDRequest\0328.viam.app.data.v1.Remo"
-  "veBoundingBoxFromImageByIDResponse\022\211\001\n\031B"
-  "oundingBoxLabelsByFilter\0222.viam.app.data"
-  ".v1.BoundingBoxLabelsByFilterRequest\0323.v"
-  "iam.app.data.v1.BoundingBoxLabelsByFilte"
-  "rResponse\"\003\210\002\001\022l\n\021UpdateBoundingBox\022*.vi"
-  "am.app.data.v1.UpdateBoundingBoxRequest\032"
-  "+.viam.app.data.v1.UpdateBoundingBoxResp"
-  "onse\022x\n\025GetDatabaseConnection\022..viam.app"
-  ".data.v1.GetDatabaseConnectionRequest\032/."
-  "viam.app.data.v1.GetDatabaseConnectionRe"
-  "sponse\022x\n\025ConfigureDatabaseUser\022..viam.a"
-  "pp.data.v1.ConfigureDatabaseUserRequest\032"
-  "/.viam.app.data.v1.ConfigureDatabaseUser"
-  "Response\022\212\001\n\033AddBinaryDataToDatasetByIDs"
-  "\0224.viam.app.data.v1.AddBinaryDataToDatas"
-  "etByIDsRequest\0325.viam.app.data.v1.AddBin"
-  "aryDataToDatasetByIDsResponse\022\231\001\n Remove"
-  "BinaryDataFromDatasetByIDs\0229.viam.app.da"
-  "ta.v1.RemoveBinaryDataFromDatasetByIDsRe"
-  "quest\032:.viam.app.data.v1.RemoveBinaryDat"
-  "aFromDatasetByIDsResponse\022Z\n\013CreateIndex"
-  "\022$.viam.app.data.v1.CreateIndexRequest\032%"
-  ".viam.app.data.v1.CreateIndexResponse\022Z\n"
-  "\013ListIndexes\022$.viam.app.data.v1.ListInde"
-  "xesRequest\032%.viam.app.data.v1.ListIndexe"
-  "sResponse\022Z\n\013DeleteIndex\022$.viam.app.data"
-  ".v1.DeleteIndexRequest\032%.viam.app.data.v"
-  "1.DeleteIndexResponse\022i\n\020CreateSavedQuer"
-  "y\022).viam.app.data.v1.CreateSavedQueryReq"
-  "uest\032*.viam.app.data.v1.CreateSavedQuery"
-  "Response\022i\n\020UpdateSavedQuery\022).viam.app."
-  "data.v1.UpdateSavedQueryRequest\032*.viam.a"
-  "pp.data.v1.UpdateSavedQueryResponse\022`\n\rG"
-  "etSavedQuery\022&.viam.app.data.v1.GetSaved"
-  "QueryRequest\032\'.viam.app.data.v1.GetSaved"
-  "QueryResponse\022i\n\020DeleteSavedQuery\022).viam"
-  ".app.data.v1.DeleteSavedQueryRequest\032*.v"
-  "iam.app.data.v1.DeleteSavedQueryResponse"
-  "\022i\n\020ListSavedQueries\022).viam.app.data.v1."
-  "ListSavedQueriesRequest\032*.viam.app.data."
-  "v1.ListSavedQueriesResponse\022\204\001\n\031CreateBi"
-  "naryDataSignedURL\0222.viam.app.data.v1.Cre"
-  "ateBinaryDataSignedURLRequest\0323.viam.app"
-  ".data.v1.CreateBinaryDataSignedURLRespon"
-  "seB\035Z\033go.viam.com/api/app/data/v1b\006proto"
-  "3"
+  "\022\035\n\nindex_spec\030\004 \003(\014R\tindexSpecB\020\n\016_pipe"
+  "line_name\"\025\n\023CreateIndexResponse\"\350\001\n\022Del"
+  "eteIndexRequest\022\'\n\017organization_id\030\001 \001(\t"
+  "R\016organizationId\022N\n\017collection_type\030\002 \001("
+  "\0162%.viam.app.data.v1.IndexableCollection"
+  "R\016collectionType\022(\n\rpipeline_name\030\003 \001(\tH"
+  "\000R\014pipelineName\210\001\001\022\035\n\nindex_name\030\004 \001(\tR\t"
+  "indexNameB\020\n\016_pipeline_name\"\025\n\023DeleteInd"
+  "exResponse\"\311\001\n\022ListIndexesRequest\022\'\n\017org"
+  "anization_id\030\001 \001(\tR\016organizationId\022N\n\017co"
+  "llection_type\030\002 \001(\0162%.viam.app.data.v1.I"
+  "ndexableCollectionR\016collectionType\022(\n\rpi"
+  "peline_name\030\003 \001(\tH\000R\014pipelineName\210\001\001B\020\n\016"
+  "_pipeline_name\"H\n\023ListIndexesResponse\0221\n"
+  "\007indexes\030\001 \003(\0132\027.viam.app.data.v1.IndexR"
+  "\007indexes\"\220\002\n\005Index\022N\n\017collection_type\030\001 "
+  "\001(\0162%.viam.app.data.v1.IndexableCollecti"
+  "onR\016collectionType\022(\n\rpipeline_name\030\002 \001("
+  "\tH\000R\014pipelineName\210\001\001\022\035\n\nindex_name\030\003 \001(\t"
+  "R\tindexName\022\035\n\nindex_spec\030\004 \003(\014R\tindexSp"
+  "ec\022=\n\ncreated_by\030\005 \001(\0162\036.viam.app.data.v"
+  "1.IndexCreatorR\tcreatedByB\020\n\016_pipeline_n"
+  "ame\"u\n\027CreateSavedQueryRequest\022\'\n\017organi"
+  "zation_id\030\001 \001(\tR\016organizationId\022\022\n\004name\030"
+  "\002 \001(\tR\004name\022\035\n\nmql_binary\030\003 \003(\014R\tmqlBina"
+  "ry\"*\n\030CreateSavedQueryResponse\022\016\n\002id\030\001 \001"
+  "(\tR\002id\"\351\001\n\005Query\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017orga"
+  "nization_id\030\002 \001(\tR\016organizationId\022\022\n\004nam"
+  "e\030\003 \001(\tR\004name\022\035\n\nmql_binary\030\004 \003(\014R\tmqlBi"
+  "nary\0229\n\ncreated_on\030\005 \001(\0132\032.google.protob"
+  "uf.TimestampR\tcreatedOn\0229\n\nupdated_at\030\006 "
+  "\001(\0132\032.google.protobuf.TimestampR\tupdated"
+  "At\")\n\027DeleteSavedQueryRequest\022\016\n\002id\030\001 \001("
+  "\tR\002id\"\032\n\030DeleteSavedQueryResponse\"&\n\024Get"
+  "SavedQueryRequest\022\016\n\002id\030\001 \001(\tR\002id\"Q\n\025Get"
+  "SavedQueryResponse\0228\n\013saved_query\030\001 \001(\0132"
+  "\027.viam.app.data.v1.QueryR\nsavedQuery\"\\\n\027"
+  "UpdateSavedQueryRequest\022\016\n\002id\030\001 \001(\tR\002id\022"
+  "\022\n\004name\030\002 \001(\tR\004name\022\035\n\nmql_binary\030\003 \003(\014R"
+  "\tmqlBinary\"\032\n\030UpdateSavedQueryResponse\"X"
+  "\n\027ListSavedQueriesRequest\022\'\n\017organizatio"
+  "n_id\030\001 \001(\tR\016organizationId\022\024\n\005limit\030\002 \001("
+  "\003R\005limit\"M\n\030ListSavedQueriesResponse\0221\n\007"
+  "queries\030\001 \003(\0132\027.viam.app.data.v1.QueryR\007"
+  "queries\"\223\001\n CreateBinaryDataSignedURLReq"
+  "uest\022$\n\016binary_data_id\030\001 \001(\tR\014binaryData"
+  "Id\0222\n\022expiration_minutes\030\002 \001(\rH\000R\021expira"
+  "tionMinutes\210\001\001B\025\n\023_expiration_minutes\"}\n"
+  "!CreateBinaryDataSignedURLResponse\022\035\n\nsi"
+  "gned_url\030\001 \001(\tR\tsignedUrl\0229\n\nexpires_at\030"
+  "\002 \001(\0132\032.google.protobuf.TimestampR\texpir"
+  "esAt*I\n\005Order\022\025\n\021ORDER_UNSPECIFIED\020\000\022\024\n\020"
+  "ORDER_DESCENDING\020\001\022\023\n\017ORDER_ASCENDING\020\002*"
+  "\220\001\n\016TagsFilterType\022 \n\034TAGS_FILTER_TYPE_U"
+  "NSPECIFIED\020\000\022 \n\034TAGS_FILTER_TYPE_MATCH_B"
+  "Y_OR\020\001\022\033\n\027TAGS_FILTER_TYPE_TAGGED\020\002\022\035\n\031T"
+  "AGS_FILTER_TYPE_UNTAGGED\020\003*\276\001\n\025TabularDa"
+  "taSourceType\022(\n$TABULAR_DATA_SOURCE_TYPE"
+  "_UNSPECIFIED\020\000\022%\n!TABULAR_DATA_SOURCE_TY"
+  "PE_STANDARD\020\001\022(\n$TABULAR_DATA_SOURCE_TYP"
+  "E_HOT_STORAGE\020\002\022*\n&TABULAR_DATA_SOURCE_T"
+  "YPE_PIPELINE_SINK\020\003*\207\001\n\023IndexableCollect"
+  "ion\022$\n INDEXABLE_COLLECTION_UNSPECIFIED\020"
+  "\000\022\"\n\036INDEXABLE_COLLECTION_HOT_STORE\020\001\022&\n"
+  "\"INDEXABLE_COLLECTION_PIPELINE_SINK\020\002*a\n"
+  "\014IndexCreator\022\035\n\031INDEX_CREATOR_UNSPECIFI"
+  "ED\020\000\022\026\n\022INDEX_CREATOR_VIAM\020\001\022\032\n\026INDEX_CR"
+  "EATOR_CUSTOMER\020\0022\223\036\n\013DataService\022w\n\023Tabu"
+  "larDataByFilter\022,.viam.app.data.v1.Tabul"
+  "arDataByFilterRequest\032-.viam.app.data.v1"
+  ".TabularDataByFilterResponse\"\003\210\002\001\022i\n\020Tab"
+  "ularDataBySQL\022).viam.app.data.v1.Tabular"
+  "DataBySQLRequest\032*.viam.app.data.v1.Tabu"
+  "larDataBySQLResponse\022i\n\020TabularDataByMQL"
+  "\022).viam.app.data.v1.TabularDataByMQLRequ"
+  "est\032*.viam.app.data.v1.TabularDataByMQLR"
+  "esponse\022n\n\021ExportTabularData\022*.viam.app."
+  "data.v1.ExportTabularDataRequest\032+.viam."
+  "app.data.v1.ExportTabularDataResponse0\001\022"
+  "u\n\024GetLatestTabularData\022-.viam.app.data."
+  "v1.GetLatestTabularDataRequest\032..viam.ap"
+  "p.data.v1.GetLatestTabularDataResponse\022o"
+  "\n\022BinaryDataByFilter\022+.viam.app.data.v1."
+  "BinaryDataByFilterRequest\032,.viam.app.dat"
+  "a.v1.BinaryDataByFilterResponse\022f\n\017Binar"
+  "yDataByIDs\022(.viam.app.data.v1.BinaryData"
+  "ByIDsRequest\032).viam.app.data.v1.BinaryDa"
+  "taByIDsResponse\022l\n\021DeleteTabularData\022*.v"
+  "iam.app.data.v1.DeleteTabularDataRequest"
+  "\032+.viam.app.data.v1.DeleteTabularDataRes"
+  "ponse\022\201\001\n\030DeleteBinaryDataByFilter\0221.via"
+  "m.app.data.v1.DeleteBinaryDataByFilterRe"
+  "quest\0322.viam.app.data.v1.DeleteBinaryDat"
+  "aByFilterResponse\022x\n\025DeleteBinaryDataByI"
+  "Ds\022..viam.app.data.v1.DeleteBinaryDataBy"
+  "IDsRequest\032/.viam.app.data.v1.DeleteBina"
+  "ryDataByIDsResponse\022\201\001\n\030AddTagsToBinaryD"
+  "ataByIDs\0221.viam.app.data.v1.AddTagsToBin"
+  "aryDataByIDsRequest\0322.viam.app.data.v1.A"
+  "ddTagsToBinaryDataByIDsResponse\022\217\001\n\033AddT"
+  "agsToBinaryDataByFilter\0224.viam.app.data."
+  "v1.AddTagsToBinaryDataByFilterRequest\0325."
+  "viam.app.data.v1.AddTagsToBinaryDataByFi"
+  "lterResponse\"\003\210\002\001\022\220\001\n\035RemoveTagsFromBina"
+  "ryDataByIDs\0226.viam.app.data.v1.RemoveTag"
+  "sFromBinaryDataByIDsRequest\0327.viam.app.d"
+  "ata.v1.RemoveTagsFromBinaryDataByIDsResp"
+  "onse\022\236\001\n RemoveTagsFromBinaryDataByFilte"
+  "r\0229.viam.app.data.v1.RemoveTagsFromBinar"
+  "yDataByFilterRequest\032:.viam.app.data.v1."
+  "RemoveTagsFromBinaryDataByFilterResponse"
+  "\"\003\210\002\001\022b\n\014TagsByFilter\022%.viam.app.data.v1"
+  ".TagsByFilterRequest\032&.viam.app.data.v1."
+  "TagsByFilterResponse\"\003\210\002\001\022\204\001\n\031AddBoundin"
+  "gBoxToImageByID\0222.viam.app.data.v1.AddBo"
+  "undingBoxToImageByIDRequest\0323.viam.app.d"
+  "ata.v1.AddBoundingBoxToImageByIDResponse"
+  "\022\223\001\n\036RemoveBoundingBoxFromImageByID\0227.vi"
+  "am.app.data.v1.RemoveBoundingBoxFromImag"
+  "eByIDRequest\0328.viam.app.data.v1.RemoveBo"
+  "undingBoxFromImageByIDResponse\022\211\001\n\031Bound"
+  "ingBoxLabelsByFilter\0222.viam.app.data.v1."
+  "BoundingBoxLabelsByFilterRequest\0323.viam."
+  "app.data.v1.BoundingBoxLabelsByFilterRes"
+  "ponse\"\003\210\002\001\022l\n\021UpdateBoundingBox\022*.viam.a"
+  "pp.data.v1.UpdateBoundingBoxRequest\032+.vi"
+  "am.app.data.v1.UpdateBoundingBoxResponse"
+  "\022x\n\025GetDatabaseConnection\022..viam.app.dat"
+  "a.v1.GetDatabaseConnectionRequest\032/.viam"
+  ".app.data.v1.GetDatabaseConnectionRespon"
+  "se\022x\n\025ConfigureDatabaseUser\022..viam.app.d"
+  "ata.v1.ConfigureDatabaseUserRequest\032/.vi"
+  "am.app.data.v1.ConfigureDatabaseUserResp"
+  "onse\022\212\001\n\033AddBinaryDataToDatasetByIDs\0224.v"
+  "iam.app.data.v1.AddBinaryDataToDatasetBy"
+  "IDsRequest\0325.viam.app.data.v1.AddBinaryD"
+  "ataToDatasetByIDsResponse\022\231\001\n RemoveBina"
+  "ryDataFromDatasetByIDs\0229.viam.app.data.v"
+  "1.RemoveBinaryDataFromDatasetByIDsReques"
+  "t\032:.viam.app.data.v1.RemoveBinaryDataFro"
+  "mDatasetByIDsResponse\022Z\n\013CreateIndex\022$.v"
+  "iam.app.data.v1.CreateIndexRequest\032%.via"
+  "m.app.data.v1.CreateIndexResponse\022Z\n\013Lis"
+  "tIndexes\022$.viam.app.data.v1.ListIndexesR"
+  "equest\032%.viam.app.data.v1.ListIndexesRes"
+  "ponse\022Z\n\013DeleteIndex\022$.viam.app.data.v1."
+  "DeleteIndexRequest\032%.viam.app.data.v1.De"
+  "leteIndexResponse\022i\n\020CreateSavedQuery\022)."
+  "viam.app.data.v1.CreateSavedQueryRequest"
+  "\032*.viam.app.data.v1.CreateSavedQueryResp"
+  "onse\022i\n\020UpdateSavedQuery\022).viam.app.data"
+  ".v1.UpdateSavedQueryRequest\032*.viam.app.d"
+  "ata.v1.UpdateSavedQueryResponse\022`\n\rGetSa"
+  "vedQuery\022&.viam.app.data.v1.GetSavedQuer"
+  "yRequest\032\'.viam.app.data.v1.GetSavedQuer"
+  "yResponse\022i\n\020DeleteSavedQuery\022).viam.app"
+  ".data.v1.DeleteSavedQueryRequest\032*.viam."
+  "app.data.v1.DeleteSavedQueryResponse\022i\n\020"
+  "ListSavedQueries\022).viam.app.data.v1.List"
+  "SavedQueriesRequest\032*.viam.app.data.v1.L"
+  "istSavedQueriesResponse\022\204\001\n\031CreateBinary"
+  "DataSignedURL\0222.viam.app.data.v1.CreateB"
+  "inaryDataSignedURLRequest\0323.viam.app.dat"
+  "a.v1.CreateBinaryDataSignedURLResponseB\035"
+  "Z\033go.viam.com/api/app/data/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -2509,9 +2555,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fd
 };
 static ::_pbi::once_flag descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fdata_2fv1_2fdata_2eproto = {
-    false, false, 16801, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
+    false, false, 17157, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
     "app/data/v1/data.proto",
-    &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 3, 80,
+    &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 3, 81,
     schemas, file_default_instances, TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets,
     file_level_metadata_app_2fdata_2fv1_2fdata_2eproto, file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto,
     file_level_service_descriptors_app_2fdata_2fv1_2fdata_2eproto,
@@ -11926,10 +11972,486 @@ void BinaryMetadata::InternalSwap(BinaryMetadata* other) {
 
 // ===================================================================
 
-class DeleteTabularDataRequest::_Internal {
+class DeleteTabularFilter::_Internal {
  public:
+  static const ::viam::app::data::v1::TagsFilter& tags_filter(const DeleteTabularFilter* msg);
 };
 
+const ::viam::app::data::v1::TagsFilter&
+DeleteTabularFilter::_Internal::tags_filter(const DeleteTabularFilter* msg) {
+  return *msg->tags_filter_;
+}
+DeleteTabularFilter::DeleteTabularFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  location_ids_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.DeleteTabularFilter)
+}
+DeleteTabularFilter::DeleteTabularFilter(const DeleteTabularFilter& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      location_ids_(from.location_ids_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  robot_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    robot_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_robot_id().empty()) {
+    robot_id_.Set(from._internal_robot_id(), 
+      GetArenaForAllocation());
+  }
+  part_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    part_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_part_id().empty()) {
+    part_id_.Set(from._internal_part_id(), 
+      GetArenaForAllocation());
+  }
+  component_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_type().empty()) {
+    component_type_.Set(from._internal_component_type(), 
+      GetArenaForAllocation());
+  }
+  component_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    component_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_component_name().empty()) {
+    component_name_.Set(from._internal_component_name(), 
+      GetArenaForAllocation());
+  }
+  method_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    method_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_method().empty()) {
+    method_.Set(from._internal_method(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_tags_filter()) {
+    tags_filter_ = new ::viam::app::data::v1::TagsFilter(*from.tags_filter_);
+  } else {
+    tags_filter_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.DeleteTabularFilter)
+}
+
+inline void DeleteTabularFilter::SharedCtor() {
+robot_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  robot_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+part_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  part_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_type_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_type_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+component_name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  component_name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+method_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  method_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+tags_filter_ = nullptr;
+}
+
+DeleteTabularFilter::~DeleteTabularFilter() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.DeleteTabularFilter)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void DeleteTabularFilter::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  robot_id_.Destroy();
+  part_id_.Destroy();
+  component_type_.Destroy();
+  component_name_.Destroy();
+  method_.Destroy();
+  if (this != internal_default_instance()) delete tags_filter_;
+}
+
+void DeleteTabularFilter::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DeleteTabularFilter::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.DeleteTabularFilter)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  location_ids_.Clear();
+  robot_id_.ClearToEmpty();
+  part_id_.ClearToEmpty();
+  component_type_.ClearToEmpty();
+  component_name_.ClearToEmpty();
+  method_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && tags_filter_ != nullptr) {
+    delete tags_filter_;
+  }
+  tags_filter_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DeleteTabularFilter::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated string location_ids = 1 [json_name = "locationIds"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_location_ids();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.DeleteTabularFilter.location_ids"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string robot_id = 2 [json_name = "robotId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_robot_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.DeleteTabularFilter.robot_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string part_id = 3 [json_name = "partId"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_part_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.DeleteTabularFilter.part_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_type = 4 [json_name = "componentType"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_component_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.DeleteTabularFilter.component_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string component_name = 5 [json_name = "componentName"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_component_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.DeleteTabularFilter.component_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string method = 6 [json_name = "method"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_method();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.DeleteTabularFilter.method"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.app.data.v1.TagsFilter tags_filter = 7 [json_name = "tagsFilter"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_tags_filter(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* DeleteTabularFilter::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.DeleteTabularFilter)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated string location_ids = 1 [json_name = "locationIds"];
+  for (int i = 0, n = this->_internal_location_ids_size(); i < n; i++) {
+    const auto& s = this->_internal_location_ids(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.DeleteTabularFilter.location_ids");
+    target = stream->WriteString(1, s, target);
+  }
+
+  // string robot_id = 2 [json_name = "robotId"];
+  if (!this->_internal_robot_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_robot_id().data(), static_cast<int>(this->_internal_robot_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.DeleteTabularFilter.robot_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_robot_id(), target);
+  }
+
+  // string part_id = 3 [json_name = "partId"];
+  if (!this->_internal_part_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_part_id().data(), static_cast<int>(this->_internal_part_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.DeleteTabularFilter.part_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_part_id(), target);
+  }
+
+  // string component_type = 4 [json_name = "componentType"];
+  if (!this->_internal_component_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_type().data(), static_cast<int>(this->_internal_component_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.DeleteTabularFilter.component_type");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_component_type(), target);
+  }
+
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_component_name().data(), static_cast<int>(this->_internal_component_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.DeleteTabularFilter.component_name");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_component_name(), target);
+  }
+
+  // string method = 6 [json_name = "method"];
+  if (!this->_internal_method().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_method().data(), static_cast<int>(this->_internal_method().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.DeleteTabularFilter.method");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_method(), target);
+  }
+
+  // .viam.app.data.v1.TagsFilter tags_filter = 7 [json_name = "tagsFilter"];
+  if (this->_internal_has_tags_filter()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::tags_filter(this),
+        _Internal::tags_filter(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.DeleteTabularFilter)
+  return target;
+}
+
+size_t DeleteTabularFilter::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.DeleteTabularFilter)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string location_ids = 1 [json_name = "locationIds"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(location_ids_.size());
+  for (int i = 0, n = location_ids_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      location_ids_.Get(i));
+  }
+
+  // string robot_id = 2 [json_name = "robotId"];
+  if (!this->_internal_robot_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_robot_id());
+  }
+
+  // string part_id = 3 [json_name = "partId"];
+  if (!this->_internal_part_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_part_id());
+  }
+
+  // string component_type = 4 [json_name = "componentType"];
+  if (!this->_internal_component_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_type());
+  }
+
+  // string component_name = 5 [json_name = "componentName"];
+  if (!this->_internal_component_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_component_name());
+  }
+
+  // string method = 6 [json_name = "method"];
+  if (!this->_internal_method().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_method());
+  }
+
+  // .viam.app.data.v1.TagsFilter tags_filter = 7 [json_name = "tagsFilter"];
+  if (this->_internal_has_tags_filter()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *tags_filter_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DeleteTabularFilter::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    DeleteTabularFilter::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteTabularFilter::GetClassData() const { return &_class_data_; }
+
+void DeleteTabularFilter::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DeleteTabularFilter *>(to)->MergeFrom(
+      static_cast<const DeleteTabularFilter &>(from));
+}
+
+
+void DeleteTabularFilter::MergeFrom(const DeleteTabularFilter& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.DeleteTabularFilter)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  location_ids_.MergeFrom(from.location_ids_);
+  if (!from._internal_robot_id().empty()) {
+    _internal_set_robot_id(from._internal_robot_id());
+  }
+  if (!from._internal_part_id().empty()) {
+    _internal_set_part_id(from._internal_part_id());
+  }
+  if (!from._internal_component_type().empty()) {
+    _internal_set_component_type(from._internal_component_type());
+  }
+  if (!from._internal_component_name().empty()) {
+    _internal_set_component_name(from._internal_component_name());
+  }
+  if (!from._internal_method().empty()) {
+    _internal_set_method(from._internal_method());
+  }
+  if (from._internal_has_tags_filter()) {
+    _internal_mutable_tags_filter()->::viam::app::data::v1::TagsFilter::MergeFrom(from._internal_tags_filter());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DeleteTabularFilter::CopyFrom(const DeleteTabularFilter& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.DeleteTabularFilter)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DeleteTabularFilter::IsInitialized() const {
+  return true;
+}
+
+void DeleteTabularFilter::InternalSwap(DeleteTabularFilter* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  location_ids_.InternalSwap(&other->location_ids_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &robot_id_, lhs_arena,
+      &other->robot_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &part_id_, lhs_arena,
+      &other->part_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_type_, lhs_arena,
+      &other->component_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &component_name_, lhs_arena,
+      &other->component_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &method_, lhs_arena,
+      &other->method_, rhs_arena
+  );
+  swap(tags_filter_, other->tags_filter_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DeleteTabularFilter::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[28]);
+}
+
+// ===================================================================
+
+class DeleteTabularDataRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<DeleteTabularDataRequest>()._has_bits_);
+  static const ::viam::app::data::v1::DeleteTabularFilter& filter(const DeleteTabularDataRequest* msg);
+  static void set_has_filter(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::viam::app::data::v1::DeleteTabularFilter&
+DeleteTabularDataRequest::_Internal::filter(const DeleteTabularDataRequest* msg) {
+  return *msg->filter_;
+}
 DeleteTabularDataRequest::DeleteTabularDataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -11937,7 +12459,8 @@ DeleteTabularDataRequest::DeleteTabularDataRequest(::PROTOBUF_NAMESPACE_ID::Aren
   // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.DeleteTabularDataRequest)
 }
 DeleteTabularDataRequest::DeleteTabularDataRequest(const DeleteTabularDataRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   organization_id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -11946,6 +12469,11 @@ DeleteTabularDataRequest::DeleteTabularDataRequest(const DeleteTabularDataReques
   if (!from._internal_organization_id().empty()) {
     organization_id_.Set(from._internal_organization_id(), 
       GetArenaForAllocation());
+  }
+  if (from._internal_has_filter()) {
+    filter_ = new ::viam::app::data::v1::DeleteTabularFilter(*from.filter_);
+  } else {
+    filter_ = nullptr;
   }
   delete_older_than_days_ = from.delete_older_than_days_;
   // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.DeleteTabularDataRequest)
@@ -11956,7 +12484,10 @@ organization_id_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   organization_id_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-delete_older_than_days_ = 0u;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&filter_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&delete_older_than_days_) -
+    reinterpret_cast<char*>(&filter_)) + sizeof(delete_older_than_days_));
 }
 
 DeleteTabularDataRequest::~DeleteTabularDataRequest() {
@@ -11971,6 +12502,7 @@ DeleteTabularDataRequest::~DeleteTabularDataRequest() {
 inline void DeleteTabularDataRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   organization_id_.Destroy();
+  if (this != internal_default_instance()) delete filter_;
 }
 
 void DeleteTabularDataRequest::SetCachedSize(int size) const {
@@ -11984,12 +12516,19 @@ void DeleteTabularDataRequest::Clear() {
   (void) cached_has_bits;
 
   organization_id_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(filter_ != nullptr);
+    filter_->Clear();
+  }
   delete_older_than_days_ = 0u;
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* DeleteTabularDataRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -12012,6 +12551,14 @@ const char* DeleteTabularDataRequest::_InternalParse(const char* ptr, ::_pbi::Pa
         } else
           goto handle_unusual;
         continue;
+      // optional .viam.app.data.v1.DeleteTabularFilter filter = 3 [json_name = "filter"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_filter(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -12028,6 +12575,7 @@ const char* DeleteTabularDataRequest::_InternalParse(const char* ptr, ::_pbi::Pa
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -12057,6 +12605,13 @@ uint8_t* DeleteTabularDataRequest::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_delete_older_than_days(), target);
   }
 
+  // optional .viam.app.data.v1.DeleteTabularFilter filter = 3 [json_name = "filter"];
+  if (_internal_has_filter()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::filter(this),
+        _Internal::filter(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -12078,6 +12633,14 @@ size_t DeleteTabularDataRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_organization_id());
+  }
+
+  // optional .viam.app.data.v1.DeleteTabularFilter filter = 3 [json_name = "filter"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *filter_);
   }
 
   // uint32 delete_older_than_days = 2 [json_name = "deleteOlderThanDays"];
@@ -12110,6 +12673,9 @@ void DeleteTabularDataRequest::MergeFrom(const DeleteTabularDataRequest& from) {
   if (!from._internal_organization_id().empty()) {
     _internal_set_organization_id(from._internal_organization_id());
   }
+  if (from._internal_has_filter()) {
+    _internal_mutable_filter()->::viam::app::data::v1::DeleteTabularFilter::MergeFrom(from._internal_filter());
+  }
   if (from._internal_delete_older_than_days() != 0) {
     _internal_set_delete_older_than_days(from._internal_delete_older_than_days());
   }
@@ -12132,17 +12698,23 @@ void DeleteTabularDataRequest::InternalSwap(DeleteTabularDataRequest* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &organization_id_, lhs_arena,
       &other->organization_id_, rhs_arena
   );
-  swap(delete_older_than_days_, other->delete_older_than_days_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DeleteTabularDataRequest, delete_older_than_days_)
+      + sizeof(DeleteTabularDataRequest::delete_older_than_days_)
+      - PROTOBUF_FIELD_OFFSET(DeleteTabularDataRequest, filter_)>(
+          reinterpret_cast<char*>(&filter_),
+          reinterpret_cast<char*>(&other->filter_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteTabularDataRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[28]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[29]);
 }
 
 // ===================================================================
@@ -12313,7 +12885,7 @@ void DeleteTabularDataResponse::InternalSwap(DeleteTabularDataResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteTabularDataResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[29]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[30]);
 }
 
 // ===================================================================
@@ -12532,7 +13104,7 @@ void DeleteBinaryDataByFilterRequest::InternalSwap(DeleteBinaryDataByFilterReque
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteBinaryDataByFilterRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[30]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[31]);
 }
 
 // ===================================================================
@@ -12703,7 +13275,7 @@ void DeleteBinaryDataByFilterResponse::InternalSwap(DeleteBinaryDataByFilterResp
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteBinaryDataByFilterResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[31]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[32]);
 }
 
 // ===================================================================
@@ -12919,7 +13491,7 @@ void DeleteBinaryDataByIDsRequest::InternalSwap(DeleteBinaryDataByIDsRequest* ot
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteBinaryDataByIDsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[32]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[33]);
 }
 
 // ===================================================================
@@ -13090,7 +13662,7 @@ void DeleteBinaryDataByIDsResponse::InternalSwap(DeleteBinaryDataByIDsResponse* 
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteBinaryDataByIDsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[33]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[34]);
 }
 
 // ===================================================================
@@ -13344,7 +13916,7 @@ void AddTagsToBinaryDataByIDsRequest::InternalSwap(AddTagsToBinaryDataByIDsReque
 ::PROTOBUF_NAMESPACE_ID::Metadata AddTagsToBinaryDataByIDsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[34]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[35]);
 }
 
 // ===================================================================
@@ -13383,7 +13955,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AddTagsToBinaryDataByIDsRespon
 ::PROTOBUF_NAMESPACE_ID::Metadata AddTagsToBinaryDataByIDsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[35]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[36]);
 }
 
 // ===================================================================
@@ -13608,7 +14180,7 @@ void AddTagsToBinaryDataByFilterRequest::InternalSwap(AddTagsToBinaryDataByFilte
 ::PROTOBUF_NAMESPACE_ID::Metadata AddTagsToBinaryDataByFilterRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[36]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[37]);
 }
 
 // ===================================================================
@@ -13647,7 +14219,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AddTagsToBinaryDataByFilterRes
 ::PROTOBUF_NAMESPACE_ID::Metadata AddTagsToBinaryDataByFilterResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[37]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[38]);
 }
 
 // ===================================================================
@@ -13901,7 +14473,7 @@ void RemoveTagsFromBinaryDataByIDsRequest::InternalSwap(RemoveTagsFromBinaryData
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoveTagsFromBinaryDataByIDsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[38]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[39]);
 }
 
 // ===================================================================
@@ -14072,7 +14644,7 @@ void RemoveTagsFromBinaryDataByIDsResponse::InternalSwap(RemoveTagsFromBinaryDat
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoveTagsFromBinaryDataByIDsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[39]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[40]);
 }
 
 // ===================================================================
@@ -14297,7 +14869,7 @@ void RemoveTagsFromBinaryDataByFilterRequest::InternalSwap(RemoveTagsFromBinaryD
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoveTagsFromBinaryDataByFilterRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[40]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[41]);
 }
 
 // ===================================================================
@@ -14468,7 +15040,7 @@ void RemoveTagsFromBinaryDataByFilterResponse::InternalSwap(RemoveTagsFromBinary
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoveTagsFromBinaryDataByFilterResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[41]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[42]);
 }
 
 // ===================================================================
@@ -14655,7 +15227,7 @@ void TagsByFilterRequest::InternalSwap(TagsByFilterRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TagsByFilterRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[42]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[43]);
 }
 
 // ===================================================================
@@ -14838,7 +15410,7 @@ void TagsByFilterResponse::InternalSwap(TagsByFilterResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TagsByFilterResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[43]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[44]);
 }
 
 // ===================================================================
@@ -15307,7 +15879,7 @@ void AddBoundingBoxToImageByIDRequest::InternalSwap(AddBoundingBoxToImageByIDReq
 ::PROTOBUF_NAMESPACE_ID::Metadata AddBoundingBoxToImageByIDRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[44]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[45]);
 }
 
 // ===================================================================
@@ -15502,7 +16074,7 @@ void AddBoundingBoxToImageByIDResponse::InternalSwap(AddBoundingBoxToImageByIDRe
 ::PROTOBUF_NAMESPACE_ID::Metadata AddBoundingBoxToImageByIDResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[45]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[46]);
 }
 
 // ===================================================================
@@ -15787,7 +16359,7 @@ void RemoveBoundingBoxFromImageByIDRequest::InternalSwap(RemoveBoundingBoxFromIm
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoveBoundingBoxFromImageByIDRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[46]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[47]);
 }
 
 // ===================================================================
@@ -15826,7 +16398,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveBoundingBoxFromImageByID
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoveBoundingBoxFromImageByIDResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[47]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[48]);
 }
 
 // ===================================================================
@@ -16324,7 +16896,7 @@ void UpdateBoundingBoxRequest::InternalSwap(UpdateBoundingBoxRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateBoundingBoxRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[48]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[49]);
 }
 
 // ===================================================================
@@ -16363,7 +16935,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UpdateBoundingBoxResponse::Get
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateBoundingBoxResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[49]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[50]);
 }
 
 // ===================================================================
@@ -16550,7 +17122,7 @@ void BoundingBoxLabelsByFilterRequest::InternalSwap(BoundingBoxLabelsByFilterReq
 ::PROTOBUF_NAMESPACE_ID::Metadata BoundingBoxLabelsByFilterRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[50]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[51]);
 }
 
 // ===================================================================
@@ -16733,7 +17305,7 @@ void BoundingBoxLabelsByFilterResponse::InternalSwap(BoundingBoxLabelsByFilterRe
 ::PROTOBUF_NAMESPACE_ID::Metadata BoundingBoxLabelsByFilterResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[51]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[52]);
 }
 
 // ===================================================================
@@ -16976,7 +17548,7 @@ void ConfigureDatabaseUserRequest::InternalSwap(ConfigureDatabaseUserRequest* ot
 ::PROTOBUF_NAMESPACE_ID::Metadata ConfigureDatabaseUserRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[52]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[53]);
 }
 
 // ===================================================================
@@ -17015,7 +17587,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ConfigureDatabaseUserResponse:
 ::PROTOBUF_NAMESPACE_ID::Metadata ConfigureDatabaseUserResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[53]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[54]);
 }
 
 // ===================================================================
@@ -17210,7 +17782,7 @@ void GetDatabaseConnectionRequest::InternalSwap(GetDatabaseConnectionRequest* ot
 ::PROTOBUF_NAMESPACE_ID::Metadata GetDatabaseConnectionRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[54]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[55]);
 }
 
 // ===================================================================
@@ -17479,7 +18051,7 @@ void GetDatabaseConnectionResponse::InternalSwap(GetDatabaseConnectionResponse* 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetDatabaseConnectionResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[55]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[56]);
 }
 
 // ===================================================================
@@ -17745,7 +18317,7 @@ void AddBinaryDataToDatasetByIDsRequest::InternalSwap(AddBinaryDataToDatasetByID
 ::PROTOBUF_NAMESPACE_ID::Metadata AddBinaryDataToDatasetByIDsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[56]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[57]);
 }
 
 // ===================================================================
@@ -17784,7 +18356,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AddBinaryDataToDatasetByIDsRes
 ::PROTOBUF_NAMESPACE_ID::Metadata AddBinaryDataToDatasetByIDsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[57]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[58]);
 }
 
 // ===================================================================
@@ -18050,7 +18622,7 @@ void RemoveBinaryDataFromDatasetByIDsRequest::InternalSwap(RemoveBinaryDataFromD
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoveBinaryDataFromDatasetByIDsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[58]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[59]);
 }
 
 // ===================================================================
@@ -18089,7 +18661,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveBinaryDataFromDatasetByI
 ::PROTOBUF_NAMESPACE_ID::Metadata RemoveBinaryDataFromDatasetByIDsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[59]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[60]);
 }
 
 // ===================================================================
@@ -18407,7 +18979,7 @@ void CreateIndexRequest::InternalSwap(CreateIndexRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateIndexRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[60]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[61]);
 }
 
 // ===================================================================
@@ -18446,7 +19018,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CreateIndexResponse::GetClassD
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateIndexResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[61]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[62]);
 }
 
 // ===================================================================
@@ -18779,7 +19351,7 @@ void DeleteIndexRequest::InternalSwap(DeleteIndexRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteIndexRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[62]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[63]);
 }
 
 // ===================================================================
@@ -18818,7 +19390,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteIndexResponse::GetClassD
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteIndexResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[63]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[64]);
 }
 
 // ===================================================================
@@ -19103,7 +19675,7 @@ void ListIndexesRequest::InternalSwap(ListIndexesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListIndexesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[64]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[65]);
 }
 
 // ===================================================================
@@ -19281,7 +19853,7 @@ void ListIndexesResponse::InternalSwap(ListIndexesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListIndexesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[65]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[66]);
 }
 
 // ===================================================================
@@ -19636,7 +20208,7 @@ void Index::InternalSwap(Index* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Index::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[66]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[67]);
 }
 
 // ===================================================================
@@ -19912,7 +20484,7 @@ void CreateSavedQueryRequest::InternalSwap(CreateSavedQueryRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateSavedQueryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[67]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[68]);
 }
 
 // ===================================================================
@@ -20107,7 +20679,7 @@ void CreateSavedQueryResponse::InternalSwap(CreateSavedQueryResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateSavedQueryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[68]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[69]);
 }
 
 // ===================================================================
@@ -20533,7 +21105,7 @@ void Query::InternalSwap(Query* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Query::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[69]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[70]);
 }
 
 // ===================================================================
@@ -20728,7 +21300,7 @@ void DeleteSavedQueryRequest::InternalSwap(DeleteSavedQueryRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteSavedQueryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[70]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[71]);
 }
 
 // ===================================================================
@@ -20767,7 +21339,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteSavedQueryResponse::GetC
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteSavedQueryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[71]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[72]);
 }
 
 // ===================================================================
@@ -20962,7 +21534,7 @@ void GetSavedQueryRequest::InternalSwap(GetSavedQueryRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetSavedQueryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[72]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[73]);
 }
 
 // ===================================================================
@@ -21149,7 +21721,7 @@ void GetSavedQueryResponse::InternalSwap(GetSavedQueryResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetSavedQueryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[73]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[74]);
 }
 
 // ===================================================================
@@ -21425,7 +21997,7 @@ void UpdateSavedQueryRequest::InternalSwap(UpdateSavedQueryRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateSavedQueryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[74]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[75]);
 }
 
 // ===================================================================
@@ -21464,7 +22036,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UpdateSavedQueryResponse::GetC
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateSavedQueryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[75]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[76]);
 }
 
 // ===================================================================
@@ -21685,7 +22257,7 @@ void ListSavedQueriesRequest::InternalSwap(ListSavedQueriesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListSavedQueriesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[76]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[77]);
 }
 
 // ===================================================================
@@ -21863,7 +22435,7 @@ void ListSavedQueriesResponse::InternalSwap(ListSavedQueriesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListSavedQueriesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[77]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[78]);
 }
 
 // ===================================================================
@@ -22095,7 +22667,7 @@ void CreateBinaryDataSignedURLRequest::InternalSwap(CreateBinaryDataSignedURLReq
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateBinaryDataSignedURLRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[78]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[79]);
 }
 
 // ===================================================================
@@ -22338,7 +22910,7 @@ void CreateBinaryDataSignedURLResponse::InternalSwap(CreateBinaryDataSignedURLRe
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateBinaryDataSignedURLResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[79]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[80]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -22458,6 +23030,10 @@ Arena::CreateMaybeMessage< ::viam::app::data::v1::Annotations >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::viam::app::data::v1::BinaryMetadata*
 Arena::CreateMaybeMessage< ::viam::app::data::v1::BinaryMetadata >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::data::v1::BinaryMetadata >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::DeleteTabularFilter*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::DeleteTabularFilter >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::DeleteTabularFilter >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::app::data::v1::DeleteTabularDataRequest*
 Arena::CreateMaybeMessage< ::viam::app::data::v1::DeleteTabularDataRequest >(Arena* arena) {

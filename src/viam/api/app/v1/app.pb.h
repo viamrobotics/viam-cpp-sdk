@@ -47201,6 +47201,7 @@ class OAuthConfig final :
     kRedirectUrisFieldNumber = 5,
     kEnabledGrantsFieldNumber = 7,
     kLogoutUriFieldNumber = 6,
+    kInviteRedirectUriFieldNumber = 8,
     kClientAuthenticationFieldNumber = 1,
     kPkceFieldNumber = 2,
     kUrlValidationFieldNumber = 3,
@@ -47284,6 +47285,20 @@ class OAuthConfig final :
   std::string* _internal_mutable_logout_uri();
   public:
 
+  // string invite_redirect_uri = 8 [json_name = "inviteRedirectUri"];
+  void clear_invite_redirect_uri();
+  const std::string& invite_redirect_uri() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_invite_redirect_uri(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_invite_redirect_uri();
+  PROTOBUF_NODISCARD std::string* release_invite_redirect_uri();
+  void set_allocated_invite_redirect_uri(std::string* invite_redirect_uri);
+  private:
+  const std::string& _internal_invite_redirect_uri() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_invite_redirect_uri(const std::string& value);
+  std::string* _internal_mutable_invite_redirect_uri();
+  public:
+
   // .viam.app.v1.ClientAuthentication client_authentication = 1 [json_name = "clientAuthentication"];
   void clear_client_authentication();
   ::viam::app::v1::ClientAuthentication client_authentication() const;
@@ -47323,6 +47338,7 @@ class OAuthConfig final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField<int> enabled_grants_;
   mutable std::atomic<int> _enabled_grants_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr logout_uri_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr invite_redirect_uri_;
   int client_authentication_;
   int pkce_;
   int url_validation_;
@@ -82046,6 +82062,56 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedField<int>*
 OAuthConfig::mutable_enabled_grants() {
   // @@protoc_insertion_point(field_mutable_list:viam.app.v1.OAuthConfig.enabled_grants)
   return _internal_mutable_enabled_grants();
+}
+
+// string invite_redirect_uri = 8 [json_name = "inviteRedirectUri"];
+inline void OAuthConfig::clear_invite_redirect_uri() {
+  invite_redirect_uri_.ClearToEmpty();
+}
+inline const std::string& OAuthConfig::invite_redirect_uri() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.OAuthConfig.invite_redirect_uri)
+  return _internal_invite_redirect_uri();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void OAuthConfig::set_invite_redirect_uri(ArgT0&& arg0, ArgT... args) {
+ 
+ invite_redirect_uri_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.OAuthConfig.invite_redirect_uri)
+}
+inline std::string* OAuthConfig::mutable_invite_redirect_uri() {
+  std::string* _s = _internal_mutable_invite_redirect_uri();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.OAuthConfig.invite_redirect_uri)
+  return _s;
+}
+inline const std::string& OAuthConfig::_internal_invite_redirect_uri() const {
+  return invite_redirect_uri_.Get();
+}
+inline void OAuthConfig::_internal_set_invite_redirect_uri(const std::string& value) {
+  
+  invite_redirect_uri_.Set(value, GetArenaForAllocation());
+}
+inline std::string* OAuthConfig::_internal_mutable_invite_redirect_uri() {
+  
+  return invite_redirect_uri_.Mutable(GetArenaForAllocation());
+}
+inline std::string* OAuthConfig::release_invite_redirect_uri() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.OAuthConfig.invite_redirect_uri)
+  return invite_redirect_uri_.Release();
+}
+inline void OAuthConfig::set_allocated_invite_redirect_uri(std::string* invite_redirect_uri) {
+  if (invite_redirect_uri != nullptr) {
+    
+  } else {
+    
+  }
+  invite_redirect_uri_.SetAllocated(invite_redirect_uri, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (invite_redirect_uri_.IsDefault()) {
+    invite_redirect_uri_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.OAuthConfig.invite_redirect_uri)
 }
 
 // -------------------------------------------------------------------

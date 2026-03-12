@@ -182,6 +182,9 @@ extern DeleteTabularDataRequestDefaultTypeInternal _DeleteTabularDataRequest_def
 class DeleteTabularDataResponse;
 struct DeleteTabularDataResponseDefaultTypeInternal;
 extern DeleteTabularDataResponseDefaultTypeInternal _DeleteTabularDataResponse_default_instance_;
+class DeleteTabularFilter;
+struct DeleteTabularFilterDefaultTypeInternal;
+extern DeleteTabularFilterDefaultTypeInternal _DeleteTabularFilter_default_instance_;
 class ExportTabularDataRequest;
 struct ExportTabularDataRequestDefaultTypeInternal;
 extern ExportTabularDataRequestDefaultTypeInternal _ExportTabularDataRequest_default_instance_;
@@ -343,6 +346,7 @@ template<> ::viam::app::data::v1::DeleteSavedQueryRequest* Arena::CreateMaybeMes
 template<> ::viam::app::data::v1::DeleteSavedQueryResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteSavedQueryResponse>(Arena*);
 template<> ::viam::app::data::v1::DeleteTabularDataRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteTabularDataRequest>(Arena*);
 template<> ::viam::app::data::v1::DeleteTabularDataResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteTabularDataResponse>(Arena*);
+template<> ::viam::app::data::v1::DeleteTabularFilter* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteTabularFilter>(Arena*);
 template<> ::viam::app::data::v1::ExportTabularDataRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::ExportTabularDataRequest>(Arena*);
 template<> ::viam::app::data::v1::ExportTabularDataResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::ExportTabularDataResponse>(Arena*);
 template<> ::viam::app::data::v1::Filter* Arena::CreateMaybeMessage<::viam::app::data::v1::Filter>(Arena*);
@@ -6264,6 +6268,264 @@ class BinaryMetadata final :
 };
 // -------------------------------------------------------------------
 
+class DeleteTabularFilter final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.DeleteTabularFilter) */ {
+ public:
+  inline DeleteTabularFilter() : DeleteTabularFilter(nullptr) {}
+  ~DeleteTabularFilter() override;
+  explicit PROTOBUF_CONSTEXPR DeleteTabularFilter(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteTabularFilter(const DeleteTabularFilter& from);
+  DeleteTabularFilter(DeleteTabularFilter&& from) noexcept
+    : DeleteTabularFilter() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteTabularFilter& operator=(const DeleteTabularFilter& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteTabularFilter& operator=(DeleteTabularFilter&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteTabularFilter& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteTabularFilter* internal_default_instance() {
+    return reinterpret_cast<const DeleteTabularFilter*>(
+               &_DeleteTabularFilter_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    28;
+
+  friend void swap(DeleteTabularFilter& a, DeleteTabularFilter& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteTabularFilter* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteTabularFilter* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteTabularFilter* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteTabularFilter>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteTabularFilter& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeleteTabularFilter& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteTabularFilter* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.DeleteTabularFilter";
+  }
+  protected:
+  explicit DeleteTabularFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationIdsFieldNumber = 1,
+    kRobotIdFieldNumber = 2,
+    kPartIdFieldNumber = 3,
+    kComponentTypeFieldNumber = 4,
+    kComponentNameFieldNumber = 5,
+    kMethodFieldNumber = 6,
+    kTagsFilterFieldNumber = 7,
+  };
+  // repeated string location_ids = 1 [json_name = "locationIds"];
+  int location_ids_size() const;
+  private:
+  int _internal_location_ids_size() const;
+  public:
+  void clear_location_ids();
+  const std::string& location_ids(int index) const;
+  std::string* mutable_location_ids(int index);
+  void set_location_ids(int index, const std::string& value);
+  void set_location_ids(int index, std::string&& value);
+  void set_location_ids(int index, const char* value);
+  void set_location_ids(int index, const char* value, size_t size);
+  std::string* add_location_ids();
+  void add_location_ids(const std::string& value);
+  void add_location_ids(std::string&& value);
+  void add_location_ids(const char* value);
+  void add_location_ids(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& location_ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_location_ids();
+  private:
+  const std::string& _internal_location_ids(int index) const;
+  std::string* _internal_add_location_ids();
+  public:
+
+  // string robot_id = 2 [json_name = "robotId"];
+  void clear_robot_id();
+  const std::string& robot_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_robot_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_robot_id();
+  PROTOBUF_NODISCARD std::string* release_robot_id();
+  void set_allocated_robot_id(std::string* robot_id);
+  private:
+  const std::string& _internal_robot_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_robot_id(const std::string& value);
+  std::string* _internal_mutable_robot_id();
+  public:
+
+  // string part_id = 3 [json_name = "partId"];
+  void clear_part_id();
+  const std::string& part_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_part_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_part_id();
+  PROTOBUF_NODISCARD std::string* release_part_id();
+  void set_allocated_part_id(std::string* part_id);
+  private:
+  const std::string& _internal_part_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_part_id(const std::string& value);
+  std::string* _internal_mutable_part_id();
+  public:
+
+  // string component_type = 4 [json_name = "componentType"];
+  void clear_component_type();
+  const std::string& component_type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_type();
+  PROTOBUF_NODISCARD std::string* release_component_type();
+  void set_allocated_component_type(std::string* component_type);
+  private:
+  const std::string& _internal_component_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_type(const std::string& value);
+  std::string* _internal_mutable_component_type();
+  public:
+
+  // string component_name = 5 [json_name = "componentName"];
+  void clear_component_name();
+  const std::string& component_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_component_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_component_name();
+  PROTOBUF_NODISCARD std::string* release_component_name();
+  void set_allocated_component_name(std::string* component_name);
+  private:
+  const std::string& _internal_component_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_component_name(const std::string& value);
+  std::string* _internal_mutable_component_name();
+  public:
+
+  // string method = 6 [json_name = "method"];
+  void clear_method();
+  const std::string& method() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_method(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_method();
+  PROTOBUF_NODISCARD std::string* release_method();
+  void set_allocated_method(std::string* method);
+  private:
+  const std::string& _internal_method() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_method(const std::string& value);
+  std::string* _internal_mutable_method();
+  public:
+
+  // .viam.app.data.v1.TagsFilter tags_filter = 7 [json_name = "tagsFilter"];
+  bool has_tags_filter() const;
+  private:
+  bool _internal_has_tags_filter() const;
+  public:
+  void clear_tags_filter();
+  const ::viam::app::data::v1::TagsFilter& tags_filter() const;
+  PROTOBUF_NODISCARD ::viam::app::data::v1::TagsFilter* release_tags_filter();
+  ::viam::app::data::v1::TagsFilter* mutable_tags_filter();
+  void set_allocated_tags_filter(::viam::app::data::v1::TagsFilter* tags_filter);
+  private:
+  const ::viam::app::data::v1::TagsFilter& _internal_tags_filter() const;
+  ::viam::app::data::v1::TagsFilter* _internal_mutable_tags_filter();
+  public:
+  void unsafe_arena_set_allocated_tags_filter(
+      ::viam::app::data::v1::TagsFilter* tags_filter);
+  ::viam::app::data::v1::TagsFilter* unsafe_arena_release_tags_filter();
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.DeleteTabularFilter)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> location_ids_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr robot_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr part_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_type_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr component_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr method_;
+  ::viam::app::data::v1::TagsFilter* tags_filter_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
 class DeleteTabularDataRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.DeleteTabularDataRequest) */ {
  public:
@@ -6312,7 +6574,7 @@ class DeleteTabularDataRequest final :
                &_DeleteTabularDataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(DeleteTabularDataRequest& a, DeleteTabularDataRequest& b) {
     a.Swap(&b);
@@ -6384,6 +6646,7 @@ class DeleteTabularDataRequest final :
 
   enum : int {
     kOrganizationIdFieldNumber = 1,
+    kFilterFieldNumber = 3,
     kDeleteOlderThanDaysFieldNumber = 2,
   };
   // string organization_id = 1 [json_name = "organizationId"];
@@ -6399,6 +6662,24 @@ class DeleteTabularDataRequest final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
   std::string* _internal_mutable_organization_id();
   public:
+
+  // optional .viam.app.data.v1.DeleteTabularFilter filter = 3 [json_name = "filter"];
+  bool has_filter() const;
+  private:
+  bool _internal_has_filter() const;
+  public:
+  void clear_filter();
+  const ::viam::app::data::v1::DeleteTabularFilter& filter() const;
+  PROTOBUF_NODISCARD ::viam::app::data::v1::DeleteTabularFilter* release_filter();
+  ::viam::app::data::v1::DeleteTabularFilter* mutable_filter();
+  void set_allocated_filter(::viam::app::data::v1::DeleteTabularFilter* filter);
+  private:
+  const ::viam::app::data::v1::DeleteTabularFilter& _internal_filter() const;
+  ::viam::app::data::v1::DeleteTabularFilter* _internal_mutable_filter();
+  public:
+  void unsafe_arena_set_allocated_filter(
+      ::viam::app::data::v1::DeleteTabularFilter* filter);
+  ::viam::app::data::v1::DeleteTabularFilter* unsafe_arena_release_filter();
 
   // uint32 delete_older_than_days = 2 [json_name = "deleteOlderThanDays"];
   void clear_delete_older_than_days();
@@ -6416,9 +6697,11 @@ class DeleteTabularDataRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
-  uint32_t delete_older_than_days_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  ::viam::app::data::v1::DeleteTabularFilter* filter_;
+  uint32_t delete_older_than_days_;
   friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
 };
 // -------------------------------------------------------------------
@@ -6471,7 +6754,7 @@ class DeleteTabularDataResponse final :
                &_DeleteTabularDataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(DeleteTabularDataResponse& a, DeleteTabularDataResponse& b) {
     a.Swap(&b);
@@ -6614,7 +6897,7 @@ class DeleteBinaryDataByFilterRequest final :
                &_DeleteBinaryDataByFilterRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(DeleteBinaryDataByFilterRequest& a, DeleteBinaryDataByFilterRequest& b) {
     a.Swap(&b);
@@ -6777,7 +7060,7 @@ class DeleteBinaryDataByFilterResponse final :
                &_DeleteBinaryDataByFilterResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(DeleteBinaryDataByFilterResponse& a, DeleteBinaryDataByFilterResponse& b) {
     a.Swap(&b);
@@ -6920,7 +7203,7 @@ class DeleteBinaryDataByIDsRequest final :
                &_DeleteBinaryDataByIDsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(DeleteBinaryDataByIDsRequest& a, DeleteBinaryDataByIDsRequest& b) {
     a.Swap(&b);
@@ -7098,7 +7381,7 @@ class DeleteBinaryDataByIDsResponse final :
                &_DeleteBinaryDataByIDsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(DeleteBinaryDataByIDsResponse& a, DeleteBinaryDataByIDsResponse& b) {
     a.Swap(&b);
@@ -7241,7 +7524,7 @@ class AddTagsToBinaryDataByIDsRequest final :
                &_AddTagsToBinaryDataByIDsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(AddTagsToBinaryDataByIDsRequest& a, AddTagsToBinaryDataByIDsRequest& b) {
     a.Swap(&b);
@@ -7444,7 +7727,7 @@ class AddTagsToBinaryDataByIDsResponse final :
                &_AddTagsToBinaryDataByIDsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(AddTagsToBinaryDataByIDsResponse& a, AddTagsToBinaryDataByIDsResponse& b) {
     a.Swap(&b);
@@ -7561,7 +7844,7 @@ class AddTagsToBinaryDataByFilterRequest final :
                &_AddTagsToBinaryDataByFilterRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(AddTagsToBinaryDataByFilterRequest& a, AddTagsToBinaryDataByFilterRequest& b) {
     a.Swap(&b);
@@ -7738,7 +8021,7 @@ class AddTagsToBinaryDataByFilterResponse final :
                &_AddTagsToBinaryDataByFilterResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(AddTagsToBinaryDataByFilterResponse& a, AddTagsToBinaryDataByFilterResponse& b) {
     a.Swap(&b);
@@ -7855,7 +8138,7 @@ class RemoveTagsFromBinaryDataByIDsRequest final :
                &_RemoveTagsFromBinaryDataByIDsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(RemoveTagsFromBinaryDataByIDsRequest& a, RemoveTagsFromBinaryDataByIDsRequest& b) {
     a.Swap(&b);
@@ -8059,7 +8342,7 @@ class RemoveTagsFromBinaryDataByIDsResponse final :
                &_RemoveTagsFromBinaryDataByIDsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    40;
 
   friend void swap(RemoveTagsFromBinaryDataByIDsResponse& a, RemoveTagsFromBinaryDataByIDsResponse& b) {
     a.Swap(&b);
@@ -8202,7 +8485,7 @@ class RemoveTagsFromBinaryDataByFilterRequest final :
                &_RemoveTagsFromBinaryDataByFilterRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    41;
 
   friend void swap(RemoveTagsFromBinaryDataByFilterRequest& a, RemoveTagsFromBinaryDataByFilterRequest& b) {
     a.Swap(&b);
@@ -8380,7 +8663,7 @@ class RemoveTagsFromBinaryDataByFilterResponse final :
                &_RemoveTagsFromBinaryDataByFilterResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    42;
 
   friend void swap(RemoveTagsFromBinaryDataByFilterResponse& a, RemoveTagsFromBinaryDataByFilterResponse& b) {
     a.Swap(&b);
@@ -8523,7 +8806,7 @@ class TagsByFilterRequest final :
                &_TagsByFilterRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   friend void swap(TagsByFilterRequest& a, TagsByFilterRequest& b) {
     a.Swap(&b);
@@ -8675,7 +8958,7 @@ class TagsByFilterResponse final :
                &_TagsByFilterResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    44;
 
   friend void swap(TagsByFilterResponse& a, TagsByFilterResponse& b) {
     a.Swap(&b);
@@ -8833,7 +9116,7 @@ class AddBoundingBoxToImageByIDRequest final :
                &_AddBoundingBoxToImageByIDRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    45;
 
   friend void swap(AddBoundingBoxToImageByIDRequest& a, AddBoundingBoxToImageByIDRequest& b) {
     a.Swap(&b);
@@ -9077,7 +9360,7 @@ class AddBoundingBoxToImageByIDResponse final :
                &_AddBoundingBoxToImageByIDResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    46;
 
   friend void swap(AddBoundingBoxToImageByIDResponse& a, AddBoundingBoxToImageByIDResponse& b) {
     a.Swap(&b);
@@ -9225,7 +9508,7 @@ class RemoveBoundingBoxFromImageByIDRequest final :
                &_RemoveBoundingBoxFromImageByIDRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    47;
 
   friend void swap(RemoveBoundingBoxFromImageByIDRequest& a, RemoveBoundingBoxFromImageByIDRequest& b) {
     a.Swap(&b);
@@ -9408,7 +9691,7 @@ class RemoveBoundingBoxFromImageByIDResponse final :
                &_RemoveBoundingBoxFromImageByIDResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    48;
 
   friend void swap(RemoveBoundingBoxFromImageByIDResponse& a, RemoveBoundingBoxFromImageByIDResponse& b) {
     a.Swap(&b);
@@ -9525,7 +9808,7 @@ class UpdateBoundingBoxRequest final :
                &_UpdateBoundingBoxRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    49;
 
   friend void swap(UpdateBoundingBoxRequest& a, UpdateBoundingBoxRequest& b) {
     a.Swap(&b);
@@ -9804,7 +10087,7 @@ class UpdateBoundingBoxResponse final :
                &_UpdateBoundingBoxResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    50;
 
   friend void swap(UpdateBoundingBoxResponse& a, UpdateBoundingBoxResponse& b) {
     a.Swap(&b);
@@ -9921,7 +10204,7 @@ class BoundingBoxLabelsByFilterRequest final :
                &_BoundingBoxLabelsByFilterRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    51;
 
   friend void swap(BoundingBoxLabelsByFilterRequest& a, BoundingBoxLabelsByFilterRequest& b) {
     a.Swap(&b);
@@ -10073,7 +10356,7 @@ class BoundingBoxLabelsByFilterResponse final :
                &_BoundingBoxLabelsByFilterResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    52;
 
   friend void swap(BoundingBoxLabelsByFilterResponse& a, BoundingBoxLabelsByFilterResponse& b) {
     a.Swap(&b);
@@ -10231,7 +10514,7 @@ class ConfigureDatabaseUserRequest final :
                &_ConfigureDatabaseUserRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    53;
 
   friend void swap(ConfigureDatabaseUserRequest& a, ConfigureDatabaseUserRequest& b) {
     a.Swap(&b);
@@ -10394,7 +10677,7 @@ class ConfigureDatabaseUserResponse final :
                &_ConfigureDatabaseUserResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    54;
 
   friend void swap(ConfigureDatabaseUserResponse& a, ConfigureDatabaseUserResponse& b) {
     a.Swap(&b);
@@ -10511,7 +10794,7 @@ class GetDatabaseConnectionRequest final :
                &_GetDatabaseConnectionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    55;
 
   friend void swap(GetDatabaseConnectionRequest& a, GetDatabaseConnectionRequest& b) {
     a.Swap(&b);
@@ -10659,7 +10942,7 @@ class GetDatabaseConnectionResponse final :
                &_GetDatabaseConnectionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    56;
 
   friend void swap(GetDatabaseConnectionResponse& a, GetDatabaseConnectionResponse& b) {
     a.Swap(&b);
@@ -10834,7 +11117,7 @@ class AddBinaryDataToDatasetByIDsRequest final :
                &_AddBinaryDataToDatasetByIDsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    57;
 
   friend void swap(AddBinaryDataToDatasetByIDsRequest& a, AddBinaryDataToDatasetByIDsRequest& b) {
     a.Swap(&b);
@@ -11027,7 +11310,7 @@ class AddBinaryDataToDatasetByIDsResponse final :
                &_AddBinaryDataToDatasetByIDsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    58;
 
   friend void swap(AddBinaryDataToDatasetByIDsResponse& a, AddBinaryDataToDatasetByIDsResponse& b) {
     a.Swap(&b);
@@ -11144,7 +11427,7 @@ class RemoveBinaryDataFromDatasetByIDsRequest final :
                &_RemoveBinaryDataFromDatasetByIDsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    59;
 
   friend void swap(RemoveBinaryDataFromDatasetByIDsRequest& a, RemoveBinaryDataFromDatasetByIDsRequest& b) {
     a.Swap(&b);
@@ -11337,7 +11620,7 @@ class RemoveBinaryDataFromDatasetByIDsResponse final :
                &_RemoveBinaryDataFromDatasetByIDsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    60;
 
   friend void swap(RemoveBinaryDataFromDatasetByIDsResponse& a, RemoveBinaryDataFromDatasetByIDsResponse& b) {
     a.Swap(&b);
@@ -11454,7 +11737,7 @@ class CreateIndexRequest final :
                &_CreateIndexRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    61;
 
   friend void swap(CreateIndexRequest& a, CreateIndexRequest& b) {
     a.Swap(&b);
@@ -11659,7 +11942,7 @@ class CreateIndexResponse final :
                &_CreateIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    62;
 
   friend void swap(CreateIndexResponse& a, CreateIndexResponse& b) {
     a.Swap(&b);
@@ -11776,7 +12059,7 @@ class DeleteIndexRequest final :
                &_DeleteIndexRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    63;
 
   friend void swap(DeleteIndexRequest& a, DeleteIndexRequest& b) {
     a.Swap(&b);
@@ -11971,7 +12254,7 @@ class DeleteIndexResponse final :
                &_DeleteIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    64;
 
   friend void swap(DeleteIndexResponse& a, DeleteIndexResponse& b) {
     a.Swap(&b);
@@ -12088,7 +12371,7 @@ class ListIndexesRequest final :
                &_ListIndexesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    65;
 
   friend void swap(ListIndexesRequest& a, ListIndexesRequest& b) {
     a.Swap(&b);
@@ -12268,7 +12551,7 @@ class ListIndexesResponse final :
                &_ListIndexesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    66;
 
   friend void swap(ListIndexesResponse& a, ListIndexesResponse& b) {
     a.Swap(&b);
@@ -12420,7 +12703,7 @@ class Index final :
                &_Index_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    67;
 
   friend void swap(Index& a, Index& b) {
     a.Swap(&b);
@@ -12637,7 +12920,7 @@ class CreateSavedQueryRequest final :
                &_CreateSavedQueryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    68;
 
   friend void swap(CreateSavedQueryRequest& a, CreateSavedQueryRequest& b) {
     a.Swap(&b);
@@ -12827,7 +13110,7 @@ class CreateSavedQueryResponse final :
                &_CreateSavedQueryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    69;
 
   friend void swap(CreateSavedQueryResponse& a, CreateSavedQueryResponse& b) {
     a.Swap(&b);
@@ -12975,7 +13258,7 @@ class Query final :
                &_Query_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    70;
 
   friend void swap(Query& a, Query& b) {
     a.Swap(&b);
@@ -13221,7 +13504,7 @@ class DeleteSavedQueryRequest final :
                &_DeleteSavedQueryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    71;
 
   friend void swap(DeleteSavedQueryRequest& a, DeleteSavedQueryRequest& b) {
     a.Swap(&b);
@@ -13368,7 +13651,7 @@ class DeleteSavedQueryResponse final :
                &_DeleteSavedQueryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    72;
 
   friend void swap(DeleteSavedQueryResponse& a, DeleteSavedQueryResponse& b) {
     a.Swap(&b);
@@ -13485,7 +13768,7 @@ class GetSavedQueryRequest final :
                &_GetSavedQueryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    73;
 
   friend void swap(GetSavedQueryRequest& a, GetSavedQueryRequest& b) {
     a.Swap(&b);
@@ -13633,7 +13916,7 @@ class GetSavedQueryResponse final :
                &_GetSavedQueryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    74;
 
   friend void swap(GetSavedQueryResponse& a, GetSavedQueryResponse& b) {
     a.Swap(&b);
@@ -13785,7 +14068,7 @@ class UpdateSavedQueryRequest final :
                &_UpdateSavedQueryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    75;
 
   friend void swap(UpdateSavedQueryRequest& a, UpdateSavedQueryRequest& b) {
     a.Swap(&b);
@@ -13974,7 +14257,7 @@ class UpdateSavedQueryResponse final :
                &_UpdateSavedQueryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    76;
 
   friend void swap(UpdateSavedQueryResponse& a, UpdateSavedQueryResponse& b) {
     a.Swap(&b);
@@ -14091,7 +14374,7 @@ class ListSavedQueriesRequest final :
                &_ListSavedQueriesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    77;
 
   friend void swap(ListSavedQueriesRequest& a, ListSavedQueriesRequest& b) {
     a.Swap(&b);
@@ -14250,7 +14533,7 @@ class ListSavedQueriesResponse final :
                &_ListSavedQueriesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    78;
 
   friend void swap(ListSavedQueriesResponse& a, ListSavedQueriesResponse& b) {
     a.Swap(&b);
@@ -14402,7 +14685,7 @@ class CreateBinaryDataSignedURLRequest final :
                &_CreateBinaryDataSignedURLRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    78;
+    79;
 
   friend void swap(CreateBinaryDataSignedURLRequest& a, CreateBinaryDataSignedURLRequest& b) {
     a.Swap(&b);
@@ -14566,7 +14849,7 @@ class CreateBinaryDataSignedURLResponse final :
                &_CreateBinaryDataSignedURLResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    79;
+    80;
 
   friend void swap(CreateBinaryDataSignedURLResponse& a, CreateBinaryDataSignedURLResponse& b) {
     a.Swap(&b);
@@ -21508,6 +21791,425 @@ inline void BinaryMetadata::set_allocated_binary_data_id(std::string* binary_dat
 
 // -------------------------------------------------------------------
 
+// DeleteTabularFilter
+
+// repeated string location_ids = 1 [json_name = "locationIds"];
+inline int DeleteTabularFilter::_internal_location_ids_size() const {
+  return location_ids_.size();
+}
+inline int DeleteTabularFilter::location_ids_size() const {
+  return _internal_location_ids_size();
+}
+inline void DeleteTabularFilter::clear_location_ids() {
+  location_ids_.Clear();
+}
+inline std::string* DeleteTabularFilter::add_location_ids() {
+  std::string* _s = _internal_add_location_ids();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.data.v1.DeleteTabularFilter.location_ids)
+  return _s;
+}
+inline const std::string& DeleteTabularFilter::_internal_location_ids(int index) const {
+  return location_ids_.Get(index);
+}
+inline const std::string& DeleteTabularFilter::location_ids(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.DeleteTabularFilter.location_ids)
+  return _internal_location_ids(index);
+}
+inline std::string* DeleteTabularFilter::mutable_location_ids(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.DeleteTabularFilter.location_ids)
+  return location_ids_.Mutable(index);
+}
+inline void DeleteTabularFilter::set_location_ids(int index, const std::string& value) {
+  location_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.DeleteTabularFilter.location_ids)
+}
+inline void DeleteTabularFilter::set_location_ids(int index, std::string&& value) {
+  location_ids_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.DeleteTabularFilter.location_ids)
+}
+inline void DeleteTabularFilter::set_location_ids(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  location_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.data.v1.DeleteTabularFilter.location_ids)
+}
+inline void DeleteTabularFilter::set_location_ids(int index, const char* value, size_t size) {
+  location_ids_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.data.v1.DeleteTabularFilter.location_ids)
+}
+inline std::string* DeleteTabularFilter::_internal_add_location_ids() {
+  return location_ids_.Add();
+}
+inline void DeleteTabularFilter::add_location_ids(const std::string& value) {
+  location_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.DeleteTabularFilter.location_ids)
+}
+inline void DeleteTabularFilter::add_location_ids(std::string&& value) {
+  location_ids_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.DeleteTabularFilter.location_ids)
+}
+inline void DeleteTabularFilter::add_location_ids(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  location_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.data.v1.DeleteTabularFilter.location_ids)
+}
+inline void DeleteTabularFilter::add_location_ids(const char* value, size_t size) {
+  location_ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.data.v1.DeleteTabularFilter.location_ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+DeleteTabularFilter::location_ids() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.DeleteTabularFilter.location_ids)
+  return location_ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+DeleteTabularFilter::mutable_location_ids() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.DeleteTabularFilter.location_ids)
+  return &location_ids_;
+}
+
+// string robot_id = 2 [json_name = "robotId"];
+inline void DeleteTabularFilter::clear_robot_id() {
+  robot_id_.ClearToEmpty();
+}
+inline const std::string& DeleteTabularFilter::robot_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.DeleteTabularFilter.robot_id)
+  return _internal_robot_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteTabularFilter::set_robot_id(ArgT0&& arg0, ArgT... args) {
+ 
+ robot_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.DeleteTabularFilter.robot_id)
+}
+inline std::string* DeleteTabularFilter::mutable_robot_id() {
+  std::string* _s = _internal_mutable_robot_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.DeleteTabularFilter.robot_id)
+  return _s;
+}
+inline const std::string& DeleteTabularFilter::_internal_robot_id() const {
+  return robot_id_.Get();
+}
+inline void DeleteTabularFilter::_internal_set_robot_id(const std::string& value) {
+  
+  robot_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::_internal_mutable_robot_id() {
+  
+  return robot_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::release_robot_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.DeleteTabularFilter.robot_id)
+  return robot_id_.Release();
+}
+inline void DeleteTabularFilter::set_allocated_robot_id(std::string* robot_id) {
+  if (robot_id != nullptr) {
+    
+  } else {
+    
+  }
+  robot_id_.SetAllocated(robot_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (robot_id_.IsDefault()) {
+    robot_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.DeleteTabularFilter.robot_id)
+}
+
+// string part_id = 3 [json_name = "partId"];
+inline void DeleteTabularFilter::clear_part_id() {
+  part_id_.ClearToEmpty();
+}
+inline const std::string& DeleteTabularFilter::part_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.DeleteTabularFilter.part_id)
+  return _internal_part_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteTabularFilter::set_part_id(ArgT0&& arg0, ArgT... args) {
+ 
+ part_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.DeleteTabularFilter.part_id)
+}
+inline std::string* DeleteTabularFilter::mutable_part_id() {
+  std::string* _s = _internal_mutable_part_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.DeleteTabularFilter.part_id)
+  return _s;
+}
+inline const std::string& DeleteTabularFilter::_internal_part_id() const {
+  return part_id_.Get();
+}
+inline void DeleteTabularFilter::_internal_set_part_id(const std::string& value) {
+  
+  part_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::_internal_mutable_part_id() {
+  
+  return part_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::release_part_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.DeleteTabularFilter.part_id)
+  return part_id_.Release();
+}
+inline void DeleteTabularFilter::set_allocated_part_id(std::string* part_id) {
+  if (part_id != nullptr) {
+    
+  } else {
+    
+  }
+  part_id_.SetAllocated(part_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (part_id_.IsDefault()) {
+    part_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.DeleteTabularFilter.part_id)
+}
+
+// string component_type = 4 [json_name = "componentType"];
+inline void DeleteTabularFilter::clear_component_type() {
+  component_type_.ClearToEmpty();
+}
+inline const std::string& DeleteTabularFilter::component_type() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.DeleteTabularFilter.component_type)
+  return _internal_component_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteTabularFilter::set_component_type(ArgT0&& arg0, ArgT... args) {
+ 
+ component_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.DeleteTabularFilter.component_type)
+}
+inline std::string* DeleteTabularFilter::mutable_component_type() {
+  std::string* _s = _internal_mutable_component_type();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.DeleteTabularFilter.component_type)
+  return _s;
+}
+inline const std::string& DeleteTabularFilter::_internal_component_type() const {
+  return component_type_.Get();
+}
+inline void DeleteTabularFilter::_internal_set_component_type(const std::string& value) {
+  
+  component_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::_internal_mutable_component_type() {
+  
+  return component_type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::release_component_type() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.DeleteTabularFilter.component_type)
+  return component_type_.Release();
+}
+inline void DeleteTabularFilter::set_allocated_component_type(std::string* component_type) {
+  if (component_type != nullptr) {
+    
+  } else {
+    
+  }
+  component_type_.SetAllocated(component_type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_type_.IsDefault()) {
+    component_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.DeleteTabularFilter.component_type)
+}
+
+// string component_name = 5 [json_name = "componentName"];
+inline void DeleteTabularFilter::clear_component_name() {
+  component_name_.ClearToEmpty();
+}
+inline const std::string& DeleteTabularFilter::component_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.DeleteTabularFilter.component_name)
+  return _internal_component_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteTabularFilter::set_component_name(ArgT0&& arg0, ArgT... args) {
+ 
+ component_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.DeleteTabularFilter.component_name)
+}
+inline std::string* DeleteTabularFilter::mutable_component_name() {
+  std::string* _s = _internal_mutable_component_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.DeleteTabularFilter.component_name)
+  return _s;
+}
+inline const std::string& DeleteTabularFilter::_internal_component_name() const {
+  return component_name_.Get();
+}
+inline void DeleteTabularFilter::_internal_set_component_name(const std::string& value) {
+  
+  component_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::_internal_mutable_component_name() {
+  
+  return component_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::release_component_name() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.DeleteTabularFilter.component_name)
+  return component_name_.Release();
+}
+inline void DeleteTabularFilter::set_allocated_component_name(std::string* component_name) {
+  if (component_name != nullptr) {
+    
+  } else {
+    
+  }
+  component_name_.SetAllocated(component_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (component_name_.IsDefault()) {
+    component_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.DeleteTabularFilter.component_name)
+}
+
+// string method = 6 [json_name = "method"];
+inline void DeleteTabularFilter::clear_method() {
+  method_.ClearToEmpty();
+}
+inline const std::string& DeleteTabularFilter::method() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.DeleteTabularFilter.method)
+  return _internal_method();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteTabularFilter::set_method(ArgT0&& arg0, ArgT... args) {
+ 
+ method_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.DeleteTabularFilter.method)
+}
+inline std::string* DeleteTabularFilter::mutable_method() {
+  std::string* _s = _internal_mutable_method();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.DeleteTabularFilter.method)
+  return _s;
+}
+inline const std::string& DeleteTabularFilter::_internal_method() const {
+  return method_.Get();
+}
+inline void DeleteTabularFilter::_internal_set_method(const std::string& value) {
+  
+  method_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::_internal_mutable_method() {
+  
+  return method_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteTabularFilter::release_method() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.DeleteTabularFilter.method)
+  return method_.Release();
+}
+inline void DeleteTabularFilter::set_allocated_method(std::string* method) {
+  if (method != nullptr) {
+    
+  } else {
+    
+  }
+  method_.SetAllocated(method, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (method_.IsDefault()) {
+    method_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.DeleteTabularFilter.method)
+}
+
+// .viam.app.data.v1.TagsFilter tags_filter = 7 [json_name = "tagsFilter"];
+inline bool DeleteTabularFilter::_internal_has_tags_filter() const {
+  return this != internal_default_instance() && tags_filter_ != nullptr;
+}
+inline bool DeleteTabularFilter::has_tags_filter() const {
+  return _internal_has_tags_filter();
+}
+inline void DeleteTabularFilter::clear_tags_filter() {
+  if (GetArenaForAllocation() == nullptr && tags_filter_ != nullptr) {
+    delete tags_filter_;
+  }
+  tags_filter_ = nullptr;
+}
+inline const ::viam::app::data::v1::TagsFilter& DeleteTabularFilter::_internal_tags_filter() const {
+  const ::viam::app::data::v1::TagsFilter* p = tags_filter_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::data::v1::TagsFilter&>(
+      ::viam::app::data::v1::_TagsFilter_default_instance_);
+}
+inline const ::viam::app::data::v1::TagsFilter& DeleteTabularFilter::tags_filter() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.DeleteTabularFilter.tags_filter)
+  return _internal_tags_filter();
+}
+inline void DeleteTabularFilter::unsafe_arena_set_allocated_tags_filter(
+    ::viam::app::data::v1::TagsFilter* tags_filter) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(tags_filter_);
+  }
+  tags_filter_ = tags_filter;
+  if (tags_filter) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.DeleteTabularFilter.tags_filter)
+}
+inline ::viam::app::data::v1::TagsFilter* DeleteTabularFilter::release_tags_filter() {
+  
+  ::viam::app::data::v1::TagsFilter* temp = tags_filter_;
+  tags_filter_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::data::v1::TagsFilter* DeleteTabularFilter::unsafe_arena_release_tags_filter() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.DeleteTabularFilter.tags_filter)
+  
+  ::viam::app::data::v1::TagsFilter* temp = tags_filter_;
+  tags_filter_ = nullptr;
+  return temp;
+}
+inline ::viam::app::data::v1::TagsFilter* DeleteTabularFilter::_internal_mutable_tags_filter() {
+  
+  if (tags_filter_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::data::v1::TagsFilter>(GetArenaForAllocation());
+    tags_filter_ = p;
+  }
+  return tags_filter_;
+}
+inline ::viam::app::data::v1::TagsFilter* DeleteTabularFilter::mutable_tags_filter() {
+  ::viam::app::data::v1::TagsFilter* _msg = _internal_mutable_tags_filter();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.DeleteTabularFilter.tags_filter)
+  return _msg;
+}
+inline void DeleteTabularFilter::set_allocated_tags_filter(::viam::app::data::v1::TagsFilter* tags_filter) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete tags_filter_;
+  }
+  if (tags_filter) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(tags_filter);
+    if (message_arena != submessage_arena) {
+      tags_filter = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, tags_filter, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  tags_filter_ = tags_filter;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.DeleteTabularFilter.tags_filter)
+}
+
+// -------------------------------------------------------------------
+
 // DeleteTabularDataRequest
 
 // string organization_id = 1 [json_name = "organizationId"];
@@ -21578,6 +22280,96 @@ inline void DeleteTabularDataRequest::_internal_set_delete_older_than_days(uint3
 inline void DeleteTabularDataRequest::set_delete_older_than_days(uint32_t value) {
   _internal_set_delete_older_than_days(value);
   // @@protoc_insertion_point(field_set:viam.app.data.v1.DeleteTabularDataRequest.delete_older_than_days)
+}
+
+// optional .viam.app.data.v1.DeleteTabularFilter filter = 3 [json_name = "filter"];
+inline bool DeleteTabularDataRequest::_internal_has_filter() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || filter_ != nullptr);
+  return value;
+}
+inline bool DeleteTabularDataRequest::has_filter() const {
+  return _internal_has_filter();
+}
+inline void DeleteTabularDataRequest::clear_filter() {
+  if (filter_ != nullptr) filter_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::app::data::v1::DeleteTabularFilter& DeleteTabularDataRequest::_internal_filter() const {
+  const ::viam::app::data::v1::DeleteTabularFilter* p = filter_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::data::v1::DeleteTabularFilter&>(
+      ::viam::app::data::v1::_DeleteTabularFilter_default_instance_);
+}
+inline const ::viam::app::data::v1::DeleteTabularFilter& DeleteTabularDataRequest::filter() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.DeleteTabularDataRequest.filter)
+  return _internal_filter();
+}
+inline void DeleteTabularDataRequest::unsafe_arena_set_allocated_filter(
+    ::viam::app::data::v1::DeleteTabularFilter* filter) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(filter_);
+  }
+  filter_ = filter;
+  if (filter) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.DeleteTabularDataRequest.filter)
+}
+inline ::viam::app::data::v1::DeleteTabularFilter* DeleteTabularDataRequest::release_filter() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::data::v1::DeleteTabularFilter* temp = filter_;
+  filter_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::data::v1::DeleteTabularFilter* DeleteTabularDataRequest::unsafe_arena_release_filter() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.DeleteTabularDataRequest.filter)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::data::v1::DeleteTabularFilter* temp = filter_;
+  filter_ = nullptr;
+  return temp;
+}
+inline ::viam::app::data::v1::DeleteTabularFilter* DeleteTabularDataRequest::_internal_mutable_filter() {
+  _has_bits_[0] |= 0x00000001u;
+  if (filter_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::data::v1::DeleteTabularFilter>(GetArenaForAllocation());
+    filter_ = p;
+  }
+  return filter_;
+}
+inline ::viam::app::data::v1::DeleteTabularFilter* DeleteTabularDataRequest::mutable_filter() {
+  ::viam::app::data::v1::DeleteTabularFilter* _msg = _internal_mutable_filter();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.DeleteTabularDataRequest.filter)
+  return _msg;
+}
+inline void DeleteTabularDataRequest::set_allocated_filter(::viam::app::data::v1::DeleteTabularFilter* filter) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete filter_;
+  }
+  if (filter) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(filter);
+    if (message_arena != submessage_arena) {
+      filter = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, filter, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  filter_ = filter;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.DeleteTabularDataRequest.filter)
 }
 
 // -------------------------------------------------------------------
@@ -26808,6 +27600,8 @@ inline void CreateBinaryDataSignedURLResponse::set_allocated_expires_at(::PROTOB
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
