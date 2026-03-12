@@ -12,9 +12,9 @@ find_package(Threads REQUIRED)
 
 find_package(viam-cpp-sdk CONFIG REQUIRED COMPONENTS viamsdk)
 
-add_executable(${{ .ModuleName }} {{ .ModuleName }}.cpp)
+add_executable({{ .ModuleName }} {{ .ModuleName }}.cpp)
 
-target_link_libraries(${{ .ModuleName }}
+target_link_libraries({{ .ModuleName }}
     viam-cpp-sdk::viamsdk
 )
 
