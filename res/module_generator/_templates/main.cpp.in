@@ -7,7 +7,7 @@ int main(int argc, char** argv) try {
     // Write general log statements using the VIAM_SDK_LOG macro.
     VIAM_SDK_LOG(info) << "Starting up {{ .ModuleName }} module";
 
-    Model model("{{ .orgID }}", "{{ .ModuleName }}", "{{ .ModelSnake }}");
+    Model model("{{ .OrgID }}", "{{ .ModuleName }}", "{{ .ModelSnake }}");
 
 
     std::shared_ptr<ModelRegistration> mr = std::make_shared<ModelRegistration>(
