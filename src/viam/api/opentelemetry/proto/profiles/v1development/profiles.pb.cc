@@ -134,10 +134,10 @@ struct ValueTypeDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ValueTypeDefaultTypeInternal _ValueType_default_instance_;
 PROTOBUF_CONSTEXPR Sample::Sample(
     ::_pbi::ConstantInitialized)
-  : values_()
-  , _values_cached_byte_size_(0)
-  , attribute_indices_()
+  : attribute_indices_()
   , _attribute_indices_cached_byte_size_(0)
+  , values_()
+  , _values_cached_byte_size_(0)
   , timestamps_unix_nano_()
   , stack_index_(0)
   , link_index_(0){}
@@ -327,9 +327,9 @@ const uint32_t TableStruct_opentelemetry_2fproto_2fprofiles_2fv1development_2fpr
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, stack_index_),
-  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, values_),
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, attribute_indices_),
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, link_index_),
+  PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, values_),
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Sample, timestamps_unix_nano_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::opentelemetry::proto::profiles::v1development::Mapping, _internal_metadata_),
@@ -479,9 +479,9 @@ const char descriptor_table_protodef_opentelemetry_2fproto_2fprofiles_2fv1develo
   "e\022#\n\rtype_strindex\030\001 \001(\005R\014typeStrindex\022#"
   "\n\runit_strindex\030\002 \001(\005R\014unitStrindex\"\277\001\n\006"
   "Sample\022\037\n\013stack_index\030\001 \001(\005R\nstackIndex\022"
-  "\026\n\006values\030\002 \003(\003R\006values\022+\n\021attribute_ind"
-  "ices\030\003 \003(\005R\020attributeIndices\022\035\n\nlink_ind"
-  "ex\030\004 \001(\005R\tlinkIndex\0220\n\024timestamps_unix_n"
+  "+\n\021attribute_indices\030\002 \003(\005R\020attributeInd"
+  "ices\022\035\n\nlink_index\030\003 \001(\005R\tlinkIndex\022\026\n\006v"
+  "alues\030\004 \003(\003R\006values\0220\n\024timestamps_unix_n"
   "ano\030\005 \003(\006R\022timestampsUnixNano\"\312\001\n\007Mappin"
   "g\022!\n\014memory_start\030\001 \001(\004R\013memoryStart\022!\n\014"
   "memory_limit\030\002 \001(\004R\013memoryLimit\022\037\n\013file_"
@@ -2671,16 +2671,16 @@ class Sample::_Internal {
 Sample::Sample(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  values_(arena),
   attribute_indices_(arena),
+  values_(arena),
   timestamps_unix_nano_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:opentelemetry.proto.profiles.v1development.Sample)
 }
 Sample::Sample(const Sample& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      values_(from.values_),
       attribute_indices_(from.attribute_indices_),
+      values_(from.values_),
       timestamps_unix_nano_(from.timestamps_unix_nano_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&stack_index_, &from.stack_index_,
@@ -2719,8 +2719,8 @@ void Sample::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  values_.Clear();
   attribute_indices_.Clear();
+  values_.Clear();
   timestamps_unix_nano_.Clear();
   ::memset(&stack_index_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&link_index_) -
@@ -2742,32 +2742,32 @@ const char* Sample::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // repeated int64 values = 2 [json_name = "values"];
+      // repeated int32 attribute_indices = 2 [json_name = "attributeIndices"];
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt64Parser(_internal_mutable_values(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 16) {
-          _internal_add_values(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated int32 attribute_indices = 3 [json_name = "attributeIndices"];
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_attribute_indices(), ptr, ctx);
           CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 24) {
+        } else if (static_cast<uint8_t>(tag) == 16) {
           _internal_add_attribute_indices(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // int32 link_index = 4 [json_name = "linkIndex"];
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+      // int32 link_index = 3 [json_name = "linkIndex"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           link_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated int64 values = 4 [json_name = "values"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt64Parser(_internal_mutable_values(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 32) {
+          _internal_add_values(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2818,28 +2818,28 @@ uint8_t* Sample::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_stack_index(), target);
   }
 
-  // repeated int64 values = 2 [json_name = "values"];
-  {
-    int byte_size = _values_cached_byte_size_.load(std::memory_order_relaxed);
-    if (byte_size > 0) {
-      target = stream->WriteInt64Packed(
-          2, _internal_values(), byte_size, target);
-    }
-  }
-
-  // repeated int32 attribute_indices = 3 [json_name = "attributeIndices"];
+  // repeated int32 attribute_indices = 2 [json_name = "attributeIndices"];
   {
     int byte_size = _attribute_indices_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteInt32Packed(
-          3, _internal_attribute_indices(), byte_size, target);
+          2, _internal_attribute_indices(), byte_size, target);
     }
   }
 
-  // int32 link_index = 4 [json_name = "linkIndex"];
+  // int32 link_index = 3 [json_name = "linkIndex"];
   if (this->_internal_link_index() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_link_index(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_link_index(), target);
+  }
+
+  // repeated int64 values = 4 [json_name = "values"];
+  {
+    int byte_size = _values_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteInt64Packed(
+          4, _internal_values(), byte_size, target);
+    }
   }
 
   // repeated fixed64 timestamps_unix_nano = 5 [json_name = "timestampsUnixNano"];
@@ -2863,21 +2863,7 @@ size_t Sample::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated int64 values = 2 [json_name = "values"];
-  {
-    size_t data_size = ::_pbi::WireFormatLite::
-      Int64Size(this->values_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _values_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
-  }
-
-  // repeated int32 attribute_indices = 3 [json_name = "attributeIndices"];
+  // repeated int32 attribute_indices = 2 [json_name = "attributeIndices"];
   {
     size_t data_size = ::_pbi::WireFormatLite::
       Int32Size(this->attribute_indices_);
@@ -2887,6 +2873,20 @@ size_t Sample::ByteSizeLong() const {
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
     _attribute_indices_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // repeated int64 values = 4 [json_name = "values"];
+  {
+    size_t data_size = ::_pbi::WireFormatLite::
+      Int64Size(this->values_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _values_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -2907,7 +2907,7 @@ size_t Sample::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_stack_index());
   }
 
-  // int32 link_index = 4 [json_name = "linkIndex"];
+  // int32 link_index = 3 [json_name = "linkIndex"];
   if (this->_internal_link_index() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_link_index());
   }
@@ -2934,8 +2934,8 @@ void Sample::MergeFrom(const Sample& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  values_.MergeFrom(from.values_);
   attribute_indices_.MergeFrom(from.attribute_indices_);
+  values_.MergeFrom(from.values_);
   timestamps_unix_nano_.MergeFrom(from.timestamps_unix_nano_);
   if (from._internal_stack_index() != 0) {
     _internal_set_stack_index(from._internal_stack_index());
@@ -2960,8 +2960,8 @@ bool Sample::IsInitialized() const {
 void Sample::InternalSwap(Sample* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  values_.InternalSwap(&other->values_);
   attribute_indices_.InternalSwap(&other->attribute_indices_);
+  values_.InternalSwap(&other->values_);
   timestamps_unix_nano_.InternalSwap(&other->timestamps_unix_nano_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Sample, link_index_)

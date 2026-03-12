@@ -136,6 +136,7 @@ class AnyValue final :
     kArrayValue = 5,
     kKvlistValue = 6,
     kBytesValue = 7,
+    kStringValueStrindex = 8,
     VALUE_NOT_SET = 0,
   };
 
@@ -222,6 +223,7 @@ class AnyValue final :
     kArrayValueFieldNumber = 5,
     kKvlistValueFieldNumber = 6,
     kBytesValueFieldNumber = 7,
+    kStringValueStrindexFieldNumber = 8,
   };
   // string string_value = 1 [json_name = "stringValue"];
   bool has_string_value() const;
@@ -334,6 +336,19 @@ class AnyValue final :
   std::string* _internal_mutable_bytes_value();
   public:
 
+  // int32 string_value_strindex = 8 [json_name = "stringValueStrindex"];
+  bool has_string_value_strindex() const;
+  private:
+  bool _internal_has_string_value_strindex() const;
+  public:
+  void clear_string_value_strindex();
+  int32_t string_value_strindex() const;
+  void set_string_value_strindex(int32_t value);
+  private:
+  int32_t _internal_string_value_strindex() const;
+  void _internal_set_string_value_strindex(int32_t value);
+  public:
+
   void clear_value();
   ValueCase value_case() const;
   // @@protoc_insertion_point(class_scope:opentelemetry.proto.common.v1.AnyValue)
@@ -346,6 +361,7 @@ class AnyValue final :
   void set_has_array_value();
   void set_has_kvlist_value();
   void set_has_bytes_value();
+  void set_has_string_value_strindex();
 
   inline bool has_value() const;
   inline void clear_has_value();
@@ -363,6 +379,7 @@ class AnyValue final :
     ::opentelemetry::proto::common::v1::ArrayValue* array_value_;
     ::opentelemetry::proto::common::v1::KeyValueList* kvlist_value_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bytes_value_;
+    int32_t string_value_strindex_;
   } value_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
@@ -796,6 +813,7 @@ class KeyValue final :
   enum : int {
     kKeyFieldNumber = 1,
     kValueFieldNumber = 2,
+    kKeyStrindexFieldNumber = 3,
   };
   // string key = 1 [json_name = "key"];
   void clear_key();
@@ -829,6 +847,15 @@ class KeyValue final :
       ::opentelemetry::proto::common::v1::AnyValue* value);
   ::opentelemetry::proto::common::v1::AnyValue* unsafe_arena_release_value();
 
+  // int32 key_strindex = 3 [json_name = "keyStrindex"];
+  void clear_key_strindex();
+  int32_t key_strindex() const;
+  void set_key_strindex(int32_t value);
+  private:
+  int32_t _internal_key_strindex() const;
+  void _internal_set_key_strindex(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:opentelemetry.proto.common.v1.KeyValue)
  private:
   class _Internal;
@@ -838,6 +865,7 @@ class KeyValue final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
   ::opentelemetry::proto::common::v1::AnyValue* value_;
+  int32_t key_strindex_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_opentelemetry_2fproto_2fcommon_2fv1_2fcommon_2eproto;
 };
@@ -1679,6 +1707,44 @@ inline void AnyValue::set_allocated_bytes_value(std::string* bytes_value) {
   // @@protoc_insertion_point(field_set_allocated:opentelemetry.proto.common.v1.AnyValue.bytes_value)
 }
 
+// int32 string_value_strindex = 8 [json_name = "stringValueStrindex"];
+inline bool AnyValue::_internal_has_string_value_strindex() const {
+  return value_case() == kStringValueStrindex;
+}
+inline bool AnyValue::has_string_value_strindex() const {
+  return _internal_has_string_value_strindex();
+}
+inline void AnyValue::set_has_string_value_strindex() {
+  _oneof_case_[0] = kStringValueStrindex;
+}
+inline void AnyValue::clear_string_value_strindex() {
+  if (_internal_has_string_value_strindex()) {
+    value_.string_value_strindex_ = 0;
+    clear_has_value();
+  }
+}
+inline int32_t AnyValue::_internal_string_value_strindex() const {
+  if (_internal_has_string_value_strindex()) {
+    return value_.string_value_strindex_;
+  }
+  return 0;
+}
+inline void AnyValue::_internal_set_string_value_strindex(int32_t value) {
+  if (!_internal_has_string_value_strindex()) {
+    clear_value();
+    set_has_string_value_strindex();
+  }
+  value_.string_value_strindex_ = value;
+}
+inline int32_t AnyValue::string_value_strindex() const {
+  // @@protoc_insertion_point(field_get:opentelemetry.proto.common.v1.AnyValue.string_value_strindex)
+  return _internal_string_value_strindex();
+}
+inline void AnyValue::set_string_value_strindex(int32_t value) {
+  _internal_set_string_value_strindex(value);
+  // @@protoc_insertion_point(field_set:opentelemetry.proto.common.v1.AnyValue.string_value_strindex)
+}
+
 inline bool AnyValue::has_value() const {
   return value_case() != VALUE_NOT_SET;
 }
@@ -1918,6 +1984,26 @@ inline void KeyValue::set_allocated_value(::opentelemetry::proto::common::v1::An
   }
   value_ = value;
   // @@protoc_insertion_point(field_set_allocated:opentelemetry.proto.common.v1.KeyValue.value)
+}
+
+// int32 key_strindex = 3 [json_name = "keyStrindex"];
+inline void KeyValue::clear_key_strindex() {
+  key_strindex_ = 0;
+}
+inline int32_t KeyValue::_internal_key_strindex() const {
+  return key_strindex_;
+}
+inline int32_t KeyValue::key_strindex() const {
+  // @@protoc_insertion_point(field_get:opentelemetry.proto.common.v1.KeyValue.key_strindex)
+  return _internal_key_strindex();
+}
+inline void KeyValue::_internal_set_key_strindex(int32_t value) {
+  
+  key_strindex_ = value;
+}
+inline void KeyValue::set_key_strindex(int32_t value) {
+  _internal_set_key_strindex(value);
+  // @@protoc_insertion_point(field_set:opentelemetry.proto.common.v1.KeyValue.key_strindex)
 }
 
 // -------------------------------------------------------------------
