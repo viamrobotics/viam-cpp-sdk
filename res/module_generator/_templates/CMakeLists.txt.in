@@ -13,11 +13,11 @@ find_package(Threads REQUIRED)
 find_package(viam-cpp-sdk CONFIG REQUIRED COMPONENTS viamsdk)
 
 add_executable({{ .ModuleName }}
-    src/main.cpp
+    main.cpp
     src/{{ .ModelSnake }}.cpp
 )
 
-target_include_directories({{ .ModuleName }} src)
+target_include_directories({{ .ModuleName }} PUBLIC src)
 
 target_link_libraries({{ .ModuleName }}
     viam-cpp-sdk::viamsdk
