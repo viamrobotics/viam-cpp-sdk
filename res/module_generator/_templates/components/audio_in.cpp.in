@@ -11,6 +11,15 @@ namespace {{ .ModuleName }} {
     this->reconfigure(deps, cfg);
 }
 
+
+std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceConfig& cfg) {
+    throw std::runtime_error("\"validate\" not implemented");
+}
+
+void {{ .ModelPascal }}::reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) {
+    throw std::runtime_error("\"reconfigure\" not implemented");
+}
+
 void {{ .ModelPascal }}::get_audio(
         const std::string & codec,
         const std::function<bool (audio_chunk &&)> & chunk_handler,
