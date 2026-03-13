@@ -18,6 +18,8 @@ public:
 
     void reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) override;
 
+    void stop(const viam::sdk::ProtoStruct & extra) override;
+
     void move(
         uint32_t angle_deg,
         const viam::sdk::ProtoStruct & extra) override;

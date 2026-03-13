@@ -20,6 +20,11 @@ void {{ .ModelPascal }}::reconfigure(const viam::sdk::Dependencies& deps, const 
     throw std::runtime_error("\"reconfigure\" not implemented");
 }
 
+void {{ .ModelPascal }}::stop(const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"stop\" not implemented");
+}
+
 std::vector<double> {{ .ModelPascal }}::get_position(const viam::sdk::ProtoStruct & extra)
 {
     throw std::logic_error("\"get_position\" not implemented");

@@ -20,6 +20,11 @@ void {{ .ModelPascal }}::reconfigure(const viam::sdk::Dependencies& deps, const 
     throw std::runtime_error("\"reconfigure\" not implemented");
 }
 
+void {{ .ModelPascal }}::stop(const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"stop\" not implemented");
+}
+
 void {{ .ModelPascal }}::set_power(
         double power_pct,
         const viam::sdk::ProtoStruct & extra)
