@@ -5,12 +5,29 @@
 namespace viam {
 namespace sdk {
 
-bool operator==(const pose_in_frame& lhs, const pose_in_frame& rhs) {
-    return lhs.pose == rhs.pose && lhs.reference_frame == rhs.reference_frame;
+bool operator==(const pose& lhs, const pose& rhs) {
+    return lhs.coordinates == rhs.coordinates && lhs.orientation == rhs.orientation &&
+           lhs.theta == rhs.theta;
 }
+
+bool operator==(const pose_in_frame& lhs, const pose_in_frame& rhs) {
+    return lhs.pose == rhs.pose && lhs.reference_frame == rhs.reference_frame &&
+           lhs.goal_cloud == rhs.goal_cloud;
+}
+std::ostream& operator<<(std::ostream& os, const pose& v) {
+    os << "{ coordinates: " << v.coordinates << ",\n"
+       << "  orientation: " << v.orientation << ",\n"
+       << "  theta: " << v.theta << "}";
+    return os;
+}
+
 std::ostream& operator<<(std::ostream& os, const pose_in_frame& v) {
     os << "{ pose: " << v.pose << ",\n"
-       << "  reference_frame: " << v.reference_frame << "}";
+       << "  reference_frame: " << v.reference_frame;
+    if (v.goal_cloud) {
+        os << ",\n  goal_cloud: " << *v.goal_cloud;
+    }
+    os << "}";
     return os;
 }
 
@@ -39,12 +56,33 @@ pose from_proto_impl<common::v1::Pose>::operator()(const common::v1::Pose* proto
     return pose;
 }
 
+void to_proto_impl<pose_cloud>::operator()(const pose_cloud& self,
+                                           common::v1::PoseCloud* proto) const {
+    for (const auto& pose : self) {
+        auto* proto_pose = proto->add_poses();
+        to_proto_impl<pose>{}(pose, proto_pose);
+    }
+}
+
+pose_cloud from_proto_impl<common::v1::PoseCloud>::operator()(
+    const common::v1::PoseCloud* proto) const {
+    pose_cloud cloud;
+    for (const auto& proto_pose : proto->poses()) {
+        cloud.push_back(from_proto_impl<common::v1::Pose>{}(&proto_pose));
+    }
+    return cloud;
+}
+
 void to_proto_impl<pose_in_frame>::operator()(const pose_in_frame& self,
                                               common::v1::PoseInFrame* pif) const {
     *(pif->mutable_reference_frame()) = self.reference_frame;
     common::v1::Pose proto_pose;
     to_proto_impl<pose>{}(self.pose, &proto_pose);
     *(pif->mutable_pose()) = std::move(proto_pose);
+    if (self.goal_cloud) {
+        pif->mutable_goal_cloud()->CopyFrom(
+            to_proto_impl<pose_cloud>{}(*self.goal_cloud, nullptr));
+    }
 };
 
 pose_in_frame from_proto_impl<common::v1::PoseInFrame>::operator()(
@@ -52,6 +90,9 @@ pose_in_frame from_proto_impl<common::v1::PoseInFrame>::operator()(
     pose_in_frame pif;
     pif.reference_frame = proto->reference_frame();
     pif.pose = from_proto_impl<common::v1::Pose>{}(&(proto->pose()));
+    if (proto->has_goal_cloud()) {
+        pif.goal_cloud = from_proto_impl<common::v1::PoseCloud>{}(&(proto->goal_cloud()));
+    }
 
     return pif;
 }
