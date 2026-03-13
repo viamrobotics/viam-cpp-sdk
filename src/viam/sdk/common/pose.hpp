@@ -3,6 +3,10 @@
 #include <viam/sdk/common/proto_convert.hpp>
 
 #include <ostream>
+#include <string>
+#include <utility>
+
+#include <boost/optional.hpp>
 
 namespace viam {
 namespace common {
@@ -10,6 +14,7 @@ namespace v1 {
 
 class Pose;
 class PoseInFrame;
+class PoseCloud; // Forward declaration for PoseCloud
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
@@ -36,6 +41,13 @@ struct pose {
     friend std::ostream& operator<<(std::ostream& os, const pose& v);
 };
 
+// Definition for pose_cloud struct
+struct pose_cloud {
+    double x, y, z, o_x, o_y, o_z, theta;
+    friend bool operator==(const pose_cloud& lhs, const pose_cloud& rhs);
+    friend std::ostream& operator<<(std::ostream& os, const pose_cloud& v);
+};
+
 struct pose_in_frame {
     pose_in_frame(std::string reference_frame_, struct pose pose_)
         : reference_frame(std::move(reference_frame_)), pose(std::move(pose_)) {}
@@ -43,6 +55,7 @@ struct pose_in_frame {
 
     std::string reference_frame;
     struct pose pose;
+    boost::optional<struct pose_cloud> goal_cloud; // Added goal_cloud member
     friend bool operator==(const pose_in_frame& lhs, const pose_in_frame& rhs);
     friend std::ostream& operator<<(std::ostream& os, const pose_in_frame& v);
 };
@@ -67,6 +80,17 @@ struct to_proto_impl<pose_in_frame> {
 template <>
 struct from_proto_impl<common::v1::PoseInFrame> {
     pose_in_frame operator()(const common::v1::PoseInFrame*) const;
+};
+
+// Specializations for pose_cloud
+template <>
+struct to_proto_impl<pose_cloud> {
+    void operator()(const pose_cloud&, common::v1::PoseCloud*) const;
+};
+
+template <>
+struct from_proto_impl<common::v1::PoseCloud> {
+    pose_cloud operator()(const common::v1::PoseCloud*) const;
 };
 
 }  // namespace proto_convert_details
