@@ -1,0 +1,37 @@
+#pragma once
+
+
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/audio_in.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/module/service.hpp>
+#include <viam/sdk/resource/reconfigurable.hpp>
+
+namespace {{ .ModuleName }} {
+
+
+class {{ .ModelPascal }} : public viam::sdk::AudioIn, public viam::sdk::Reconfigurable {
+public:
+    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
+
+    static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    void reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) override;
+
+    void get_audio(
+        const std::string & codec,
+        const std::function<bool (audio_chunk &&)> & chunk_handler,
+        const double & duration_seconds,
+        const int64_t & previous_timestamp,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::audio_properties get_properties(const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
+
+    std::vector<viam::sdk::GeometryConfig> get_geometries(const viam::sdk::ProtoStruct & extra) override;
+
+};
+
+} // namespace {{ .ModuleName }}
+

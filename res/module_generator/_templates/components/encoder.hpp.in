@@ -1,0 +1,36 @@
+#pragma once
+
+
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/encoder.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/module/service.hpp>
+#include <viam/sdk/resource/reconfigurable.hpp>
+
+namespace {{ .ModuleName }} {
+
+
+class {{ .ModelPascal }} : public viam::sdk::Encoder, public viam::sdk::Reconfigurable {
+public:
+    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
+
+    static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    void reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) override;
+
+    viam::sdk::Encoder::position get_position(
+        const viam::sdk::ProtoStruct & extra,
+        viam::sdk::Encoder::position_type position_type) override;
+
+    void reset_position(const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::Encoder::properties get_properties(const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
+
+    std::vector<viam::sdk::GeometryConfig> get_geometries(const viam::sdk::ProtoStruct & extra) override;
+
+};
+
+} // namespace {{ .ModuleName }}
+

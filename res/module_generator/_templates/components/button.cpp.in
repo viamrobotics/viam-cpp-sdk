@@ -1,45 +1,34 @@
 
-#include <iostream>
-#include <memory>
-#include <vector>
+#include "{{ .ModelSnake }}.hpp"
 
-#include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/common/instance.hpp>
-#include <viam/sdk/common/proto_value.hpp>
-#include <viam/sdk/components/button.hpp>
-#include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/log/logging.hpp>
-#include <viam/sdk/module/service.hpp>
-#include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
+#include <stdexcept>
 
-    
-class {{ .ModelPascal }} : public viam::sdk::Button, public viam::sdk::Reconfigurable {
-public:
-    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) : Button(cfg.name()) {
-        this->reconfigure(deps, cfg);
-    }
+namespace {{ .ModuleName }} {
 
 
-    static std::vector<std::string> validate(const viam::sdk::ResourceConfig&)
-    {
-        throw std::runtime_error("\"validate\" not implemented");
-    }
+{{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
+    : Button(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
-    void reconfigure(const viam::sdk::Dependencies&, const viam::sdk::ResourceConfig&) override
-    {
-        throw std::runtime_error("\"reconfigure\" not implemented");
-    }
 
-    void push(const viam::sdk::ProtoStruct & extra) override
-    {
-        throw std::logic_error("\"push\" not implemented");
-    }
+std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceConfig& cfg) {
+    throw std::runtime_error("\"validate\" not implemented");
+}
 
-    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override
-    {
-        throw std::logic_error("\"do_command\" not implemented");
-    }
+void {{ .ModelPascal }}::reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) {
+    throw std::runtime_error("\"reconfigure\" not implemented");
+}
 
-};
+void {{ .ModelPascal }}::push(const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"push\" not implemented");
+}
+
+viam::sdk::ProtoStruct {{ .ModelPascal }}::do_command(const viam::sdk::ProtoStruct & command)
+{
+    throw std::logic_error("\"do_command\" not implemented");
+}
+
+} // namespace {{ .ModuleName }}
 

@@ -1,0 +1,24 @@
+#pragma once
+
+
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/generic.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/module/service.hpp>
+#include <viam/sdk/resource/reconfigurable.hpp>
+
+namespace {{ .ModuleName }} {
+
+
+class {{ .ModelPascal }} : public viam::sdk::Generic, public viam::sdk::Reconfigurable {
+public:
+    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
+
+    static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    void reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) override;
+
+};
+
+} // namespace {{ .ModuleName }}
+
