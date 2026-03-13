@@ -1,0 +1,50 @@
+#pragma once
+
+
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/module/service.hpp>
+#include <viam/sdk/resource/reconfigurable.hpp>
+#include <viam/sdk/services/navigation.hpp>
+
+namespace {{ .ModuleName }} {
+
+
+class {{ .ModelPascal }} : public viam::sdk::Navigation, public viam::sdk::Reconfigurable {
+public:
+    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
+
+    static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    void reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) override;
+
+    viam::sdk::Navigation::Mode get_mode(const viam::sdk::ProtoStruct & extra) override;
+
+    void set_mode(
+        const viam::sdk::Navigation::Mode mode,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::Navigation::LocationResponse get_location(const viam::sdk::ProtoStruct & extra) override;
+
+    std::vector<viam::sdk::Navigation::Waypoint> get_waypoints(const viam::sdk::ProtoStruct & extra) override;
+
+    void add_waypoint(
+        const viam::sdk::geo_point & location,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    void remove_waypoint(
+        const std::string id,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    std::vector<viam::sdk::geo_geometry> get_obstacles(const viam::sdk::ProtoStruct & extra) override;
+
+    std::vector<viam::sdk::Navigation::Path> get_paths(const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::Navigation::Properties get_properties() override;
+
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
+
+};
+
+} // namespace {{ .ModuleName }}
+
