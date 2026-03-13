@@ -116,12 +116,8 @@ jobs:
           echo "Changed files:"
           echo "$changed_files"
 
-          for changed in $changed_files; do
-            cl_gen -p ./build $changed -o \
-              $(echo $changed | \
-              cut -d '/' -f 4-5 | \
-              sed 's@$@.in@' | \
-              sed 's@^@res/module_generator/_templates/@')
+          for changed in $(echo $changed_files); do
+            cl_gen -p ./build -d res/module_generator/_templates $changed
           done
 
       # On a workflow_dispatch we just try to regenerate all the templates and see if there is a diff
@@ -137,12 +133,8 @@ jobs:
           echo "All files to regenerate:"
           echo "$all_files"
 
-          for file in $all_files; do
-            cl_gen -p ./build $file -o \
-              $(echo $file | \
-              cut -d '/' -f 4-5 | \
-              sed 's@$@.in@' | \
-              sed 's@^@res/module_generator/_templates/@')
+          for file in $(echo $all_files); do
+            cl_gen -p ./build -d res/module_generator/_templates $file
           done
 
       - name: Create PR
