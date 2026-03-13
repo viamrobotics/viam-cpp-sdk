@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Servo(cfg.name()) 
+    : Servo(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 void {{ .ModelPascal }}::move(
         uint32_t angle_deg,

@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : AudioOut(cfg.name()) 
+    : AudioOut(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 void {{ .ModelPascal }}::play(
         const std::vector<uint8_t> & audio_data,

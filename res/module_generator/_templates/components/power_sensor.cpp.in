@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : PowerSensor(cfg.name()) 
+    : PowerSensor(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 viam::sdk::PowerSensor::voltage {{ .ModelPascal }}::get_voltage(const viam::sdk::ProtoStruct & extra)
 {

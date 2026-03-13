@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Navigation(cfg.name()) 
+    : Navigation(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 viam::sdk::Navigation::Mode {{ .ModelPascal }}::get_mode(const viam::sdk::ProtoStruct & extra)
 {

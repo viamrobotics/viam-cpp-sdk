@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Discovery(cfg.name()) 
+    : Discovery(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 std::vector<viam::sdk::ResourceConfig> {{ .ModelPascal }}::discover_resources(const viam::sdk::ProtoStruct & extra)
 {

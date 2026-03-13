@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : PoseTracker(cfg.name()) 
+    : PoseTracker(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 viam::sdk::PoseTracker::pose_map {{ .ModelPascal }}::get_poses(
         const std::vector<std::string> & body_names,

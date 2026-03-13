@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Button(cfg.name()) 
+    : Button(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 void {{ .ModelPascal }}::push(const viam::sdk::ProtoStruct & extra)
 {

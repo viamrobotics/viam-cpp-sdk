@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Generic(cfg.name()) 
+    : Generic(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 } // namespace {{ .ModuleName }}
 

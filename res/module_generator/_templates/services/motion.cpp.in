@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Motion(cfg.name()) 
+    : Motion(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 bool {{ .ModelPascal }}::move(
         const viam::sdk::pose_in_frame & destination,

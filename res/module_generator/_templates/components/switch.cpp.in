@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Switch(cfg.name()) 
+    : Switch(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 void {{ .ModelPascal }}::set_position(
         uint32_t position,

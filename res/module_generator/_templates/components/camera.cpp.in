@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Camera(cfg.name()) 
+    : Camera(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 viam::sdk::ProtoStruct {{ .ModelPascal }}::do_command(const viam::sdk::ProtoStruct & command)
 {

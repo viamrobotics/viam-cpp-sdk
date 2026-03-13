@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Gantry(cfg.name()) 
+    : Gantry(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 std::vector<double> {{ .ModelPascal }}::get_position(const viam::sdk::ProtoStruct & extra)
 {

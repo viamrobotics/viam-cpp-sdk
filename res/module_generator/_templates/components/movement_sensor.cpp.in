@@ -7,7 +7,9 @@ namespace {{ .ModuleName }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : MovementSensor(cfg.name()) 
+    : MovementSensor(cfg.name()) {
+    this->reconfigure(deps, cfg);
+}
 
 viam::sdk::Vector3 {{ .ModelPascal }}::get_linear_velocity(const viam::sdk::ProtoStruct & extra)
 {
