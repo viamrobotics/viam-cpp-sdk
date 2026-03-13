@@ -20,11 +20,7 @@ int main(int argc, char** argv) try {
     // Write general log statements using the VIAM_SDK_LOG macro.
     VIAM_SDK_LOG(info) << "Starting up {{ .ModuleName }} module";
 
-<<<<<<< Updated upstream
-    Model model("{{ .OrgID }}", "{{ .ModuleName }}", "{{ .ModelSnake }}");
-=======
-    viam::sdk::Model model("{{ .orgID }}", "{{ .ModuleName }}", "{{ .ModelSnake }}");
->>>>>>> Stashed changes
+    viam::sdk::Model model("{{ .OrgID }}", "{{ .ModuleName }}", "{{ .ModelSnake }}");
 
 
     auto mr = std::make_shared<viam::sdk::ModelRegistration>(
