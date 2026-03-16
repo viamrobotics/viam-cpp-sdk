@@ -23,3 +23,16 @@ target_link_libraries({{ .ModuleName }}
     viam-cpp-sdk::viamsdk
 )
 
+install(
+    FILES meta.json
+    DESTINATION .
+)
+
+install(TARGETS {{ .ModuleName }})
+
+set(CPACK_PACKAGE_NAME "{{ .ModuleName }}")
+set(CPACK_PACKAGE_FILE_NAME "module")
+set(CPACK_GENERATOR "TGZ")
+set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY 0)
+include(CPack)
+
