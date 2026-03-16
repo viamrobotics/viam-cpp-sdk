@@ -71,10 +71,29 @@ struct OrientationDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OrientationDefaultTypeInternal _Orientation_default_instance_;
+PROTOBUF_CONSTEXPR PoseCloud::PoseCloud(
+    ::_pbi::ConstantInitialized)
+  : x_(0)
+  , y_(0)
+  , z_(0)
+  , o_x_(0)
+  , o_y_(0)
+  , o_z_(0)
+  , theta_(0){}
+struct PoseCloudDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PoseCloudDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PoseCloudDefaultTypeInternal() {}
+  union {
+    PoseCloud _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PoseCloudDefaultTypeInternal _PoseCloud_default_instance_;
 PROTOBUF_CONSTEXPR PoseInFrame::PoseInFrame(
     ::_pbi::ConstantInitialized)
   : reference_frame_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , pose_(nullptr){}
+  , pose_(nullptr)
+  , goal_cloud_(nullptr){}
 struct PoseInFrameDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PoseInFrameDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -503,7 +522,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v1
 }  // namespace common
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[36];
+static ::_pb::Metadata file_level_metadata_common_2fv1_2fcommon_2eproto[37];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2fv1_2fcommon_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_common_2fv1_2fcommon_2eproto = nullptr;
 
@@ -542,6 +561,19 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Orientation, o_z_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Orientation, theta_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseCloud, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseCloud, x_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseCloud, y_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseCloud, z_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseCloud, o_x_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseCloud, o_y_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseCloud, o_z_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseCloud, theta_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseInFrame, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseInFrame, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -549,6 +581,10 @@ const uint32_t TableStruct_common_2fv1_2fcommon_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseInFrame, reference_frame_),
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseInFrame, pose_),
+  PROTOBUF_FIELD_OFFSET(::viam::common::v1::PoseInFrame, goal_cloud_),
+  ~0u,
+  ~0u,
+  0,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::common::v1::Vector3, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -832,45 +868,47 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 0, -1, -1, sizeof(::viam::common::v1::ResourceName)},
   { 10, -1, -1, sizeof(::viam::common::v1::Pose)},
   { 23, -1, -1, sizeof(::viam::common::v1::Orientation)},
-  { 33, -1, -1, sizeof(::viam::common::v1::PoseInFrame)},
-  { 41, -1, -1, sizeof(::viam::common::v1::Vector3)},
-  { 50, -1, -1, sizeof(::viam::common::v1::Sphere)},
-  { 57, -1, -1, sizeof(::viam::common::v1::Capsule)},
-  { 65, -1, -1, sizeof(::viam::common::v1::RectangularPrism)},
-  { 72, -1, -1, sizeof(::viam::common::v1::Mesh)},
-  { 80, -1, -1, sizeof(::viam::common::v1::PointCloud)},
-  { 87, -1, -1, sizeof(::viam::common::v1::Geometry)},
-  { 101, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
-  { 109, -1, -1, sizeof(::viam::common::v1::PointCloudObject)},
-  { 117, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
-  { 125, -1, -1, sizeof(::viam::common::v1::GeoGeometry)},
-  { 133, 144, -1, sizeof(::viam::common::v1::Transform)},
-  { 149, -1, -1, sizeof(::viam::common::v1::WorldState)},
-  { 157, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
-  { 164, 171, -1, sizeof(::viam::common::v1::ResponseMetadata)},
-  { 172, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
-  { 180, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
-  { 187, -1, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
-  { 195, 203, -1, sizeof(::viam::common::v1::GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse)},
-  { 205, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
-  { 214, -1, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
-  { 222, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
-  { 229, -1, -1, sizeof(::viam::common::v1::Get3DModelsRequest)},
-  { 237, 245, -1, sizeof(::viam::common::v1::Get3DModelsResponse_ModelsEntry_DoNotUse)},
-  { 247, -1, -1, sizeof(::viam::common::v1::Get3DModelsResponse)},
-  { 254, -1, -1, sizeof(::viam::common::v1::GetReadingsRequest)},
-  { 262, 270, -1, sizeof(::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse)},
-  { 272, -1, -1, sizeof(::viam::common::v1::GetReadingsResponse)},
-  { 279, -1, -1, sizeof(::viam::common::v1::LogEntry)},
-  { 293, -1, -1, sizeof(::viam::common::v1::AudioInfo)},
-  { 302, -1, -1, sizeof(::viam::common::v1::GetPropertiesRequest)},
-  { 310, -1, -1, sizeof(::viam::common::v1::GetPropertiesResponse)},
+  { 33, -1, -1, sizeof(::viam::common::v1::PoseCloud)},
+  { 46, 55, -1, sizeof(::viam::common::v1::PoseInFrame)},
+  { 58, -1, -1, sizeof(::viam::common::v1::Vector3)},
+  { 67, -1, -1, sizeof(::viam::common::v1::Sphere)},
+  { 74, -1, -1, sizeof(::viam::common::v1::Capsule)},
+  { 82, -1, -1, sizeof(::viam::common::v1::RectangularPrism)},
+  { 89, -1, -1, sizeof(::viam::common::v1::Mesh)},
+  { 97, -1, -1, sizeof(::viam::common::v1::PointCloud)},
+  { 104, -1, -1, sizeof(::viam::common::v1::Geometry)},
+  { 118, -1, -1, sizeof(::viam::common::v1::GeometriesInFrame)},
+  { 126, -1, -1, sizeof(::viam::common::v1::PointCloudObject)},
+  { 134, -1, -1, sizeof(::viam::common::v1::GeoPoint)},
+  { 142, -1, -1, sizeof(::viam::common::v1::GeoGeometry)},
+  { 150, 161, -1, sizeof(::viam::common::v1::Transform)},
+  { 166, -1, -1, sizeof(::viam::common::v1::WorldState)},
+  { 174, -1, -1, sizeof(::viam::common::v1::ActuatorStatus)},
+  { 181, 188, -1, sizeof(::viam::common::v1::ResponseMetadata)},
+  { 189, -1, -1, sizeof(::viam::common::v1::DoCommandRequest)},
+  { 197, -1, -1, sizeof(::viam::common::v1::DoCommandResponse)},
+  { 204, -1, -1, sizeof(::viam::common::v1::GetKinematicsRequest)},
+  { 212, 220, -1, sizeof(::viam::common::v1::GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse)},
+  { 222, -1, -1, sizeof(::viam::common::v1::GetKinematicsResponse)},
+  { 231, -1, -1, sizeof(::viam::common::v1::GetGeometriesRequest)},
+  { 239, -1, -1, sizeof(::viam::common::v1::GetGeometriesResponse)},
+  { 246, -1, -1, sizeof(::viam::common::v1::Get3DModelsRequest)},
+  { 254, 262, -1, sizeof(::viam::common::v1::Get3DModelsResponse_ModelsEntry_DoNotUse)},
+  { 264, -1, -1, sizeof(::viam::common::v1::Get3DModelsResponse)},
+  { 271, -1, -1, sizeof(::viam::common::v1::GetReadingsRequest)},
+  { 279, 287, -1, sizeof(::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse)},
+  { 289, -1, -1, sizeof(::viam::common::v1::GetReadingsResponse)},
+  { 296, -1, -1, sizeof(::viam::common::v1::LogEntry)},
+  { 310, -1, -1, sizeof(::viam::common::v1::AudioInfo)},
+  { 319, -1, -1, sizeof(::viam::common::v1::GetPropertiesRequest)},
+  { 327, -1, -1, sizeof(::viam::common::v1::GetPropertiesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::viam::common::v1::_ResourceName_default_instance_._instance,
   &::viam::common::v1::_Pose_default_instance_._instance,
   &::viam::common::v1::_Orientation_default_instance_._instance,
+  &::viam::common::v1::_PoseCloud_default_instance_._instance,
   &::viam::common::v1::_PoseInFrame_default_instance_._instance,
   &::viam::common::v1::_Vector3_default_instance_._instance,
   &::viam::common::v1::_Sphere_default_instance_._instance,
@@ -918,109 +956,114 @@ const char descriptor_table_protodef_common_2fv1_2fcommon_2eproto[] PROTOBUF_SEC
   "o_y\030\005 \001(\001R\002oY\022\017\n\003o_z\030\006 \001(\001R\002oZ\022\024\n\005theta\030"
   "\007 \001(\001R\005theta\"V\n\013Orientation\022\017\n\003o_x\030\001 \001(\001"
   "R\002oX\022\017\n\003o_y\030\002 \001(\001R\002oY\022\017\n\003o_z\030\003 \001(\001R\002oZ\022\024"
-  "\n\005theta\030\004 \001(\001R\005theta\"`\n\013PoseInFrame\022\'\n\017r"
-  "eference_frame\030\001 \001(\tR\016referenceFrame\022(\n\004"
-  "pose\030\002 \001(\0132\024.viam.common.v1.PoseR\004pose\"3"
-  "\n\007Vector3\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n"
-  "\001z\030\003 \001(\001R\001z\"%\n\006Sphere\022\033\n\tradius_mm\030\001 \001(\001"
-  "R\010radiusMm\"C\n\007Capsule\022\033\n\tradius_mm\030\001 \001(\001"
-  "R\010radiusMm\022\033\n\tlength_mm\030\002 \001(\001R\010lengthMm\""
-  "D\n\020RectangularPrism\0220\n\007dims_mm\030\001 \001(\0132\027.v"
-  "iam.common.v1.Vector3R\006dimsMm\"=\n\004Mesh\022!\n"
-  "\014content_type\030\001 \001(\tR\013contentType\022\022\n\004mesh"
-  "\030\002 \001(\014R\004mesh\"-\n\nPointCloud\022\037\n\013point_clou"
-  "d\030\001 \001(\014R\npointCloud\"\346\002\n\010Geometry\022,\n\006cent"
-  "er\030\001 \001(\0132\024.viam.common.v1.PoseR\006center\0220"
-  "\n\006sphere\030\002 \001(\0132\026.viam.common.v1.SphereH\000"
-  "R\006sphere\0224\n\003box\030\003 \001(\0132 .viam.common.v1.R"
-  "ectangularPrismH\000R\003box\0223\n\007capsule\030\005 \001(\0132"
-  "\027.viam.common.v1.CapsuleH\000R\007capsule\022*\n\004m"
-  "esh\030\006 \001(\0132\024.viam.common.v1.MeshH\000R\004mesh\022"
-  "<\n\npointcloud\030\007 \001(\0132\032.viam.common.v1.Poi"
-  "ntCloudH\000R\npointcloud\022\024\n\005label\030\004 \001(\tR\005la"
-  "belB\017\n\rgeometry_type\"v\n\021GeometriesInFram"
-  "e\022\'\n\017reference_frame\030\001 \001(\tR\016referenceFra"
-  "me\0228\n\ngeometries\030\002 \003(\0132\030.viam.common.v1."
-  "GeometryR\ngeometries\"v\n\020PointCloudObject"
-  "\022\037\n\013point_cloud\030\001 \001(\014R\npointCloud\022A\n\ngeo"
-  "metries\030\002 \001(\0132!.viam.common.v1.Geometrie"
-  "sInFrameR\ngeometries\"D\n\010GeoPoint\022\032\n\010lati"
-  "tude\030\001 \001(\001R\010latitude\022\034\n\tlongitude\030\002 \001(\001R"
-  "\tlongitude\"}\n\013GeoGeometry\0224\n\010location\030\001 "
-  "\001(\0132\030.viam.common.v1.GeoPointR\010location\022"
-  "8\n\ngeometries\030\002 \003(\0132\030.viam.common.v1.Geo"
-  "metryR\ngeometries\"\275\002\n\tTransform\022\'\n\017refer"
-  "ence_frame\030\001 \001(\tR\016referenceFrame\022P\n\026pose"
-  "_in_observer_frame\030\002 \001(\0132\033.viam.common.v"
-  "1.PoseInFrameR\023poseInObserverFrame\022F\n\017ph"
-  "ysical_object\030\003 \001(\0132\030.viam.common.v1.Geo"
-  "metryH\000R\016physicalObject\210\001\001\022\022\n\004uuid\030\004 \001(\014"
-  "R\004uuid\0228\n\010metadata\030\005 \001(\0132\027.google.protob"
-  "uf.StructH\001R\010metadata\210\001\001B\022\n\020_physical_ob"
-  "jectB\013\n\t_metadata\"\210\001\n\nWorldState\022\?\n\tobst"
-  "acles\030\001 \003(\0132!.viam.common.v1.GeometriesI"
-  "nFrameR\tobstacles\0229\n\ntransforms\030\003 \003(\0132\031."
-  "viam.common.v1.TransformR\ntransforms\"-\n\016"
-  "ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010R\010isMov"
-  "ing\"d\n\020ResponseMetadata\022@\n\013captured_at\030\001"
-  " \001(\0132\032.google.protobuf.TimestampH\000R\ncapt"
-  "uredAt\210\001\001B\016\n\014_captured_at\"Y\n\020DoCommandRe"
-  "quest\022\022\n\004name\030\001 \001(\tR\004name\0221\n\007command\030\002 \001"
-  "(\0132\027.google.protobuf.StructR\007command\"D\n\021"
-  "DoCommandResponse\022/\n\006result\030\001 \001(\0132\027.goog"
-  "le.protobuf.StructR\006result\"Y\n\024GetKinemat"
-  "icsRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030"
-  "c \001(\0132\027.google.protobuf.StructR\005extra\"\325\002"
-  "\n\025GetKinematicsResponse\022<\n\006format\030\001 \001(\0162"
-  "$.viam.common.v1.KinematicsFileFormatR\006f"
-  "ormat\022\'\n\017kinematics_data\030\002 \001(\014R\016kinemati"
-  "csData\022v\n\027meshes_by_urdf_filepath\030\003 \003(\0132"
-  "\?.viam.common.v1.GetKinematicsResponse.M"
-  "eshesByUrdfFilepathEntryR\024meshesByUrdfFi"
-  "lepath\032]\n\031MeshesByUrdfFilepathEntry\022\020\n\003k"
-  "ey\030\001 \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.viam.comm"
-  "on.v1.MeshR\005value:\0028\001\"Y\n\024GetGeometriesRe"
-  "quest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\013"
-  "2\027.google.protobuf.StructR\005extra\"Q\n\025GetG"
-  "eometriesResponse\0228\n\ngeometries\030\001 \003(\0132\030."
-  "viam.common.v1.GeometryR\ngeometries\"W\n\022G"
-  "et3DModelsRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n"
+  "\n\005theta\030\004 \001(\001R\005theta\"~\n\tPoseCloud\022\014\n\001x\030\001"
+  " \001(\001R\001x\022\014\n\001y\030\002 \001(\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\022\017\n\003o"
+  "_x\030\004 \001(\001R\002oX\022\017\n\003o_y\030\005 \001(\001R\002oY\022\017\n\003o_z\030\006 \001"
+  "(\001R\002oZ\022\024\n\005theta\030\007 \001(\001R\005theta\"\256\001\n\013PoseInF"
+  "rame\022\'\n\017reference_frame\030\001 \001(\tR\016reference"
+  "Frame\022(\n\004pose\030\002 \001(\0132\024.viam.common.v1.Pos"
+  "eR\004pose\022=\n\ngoal_cloud\030\003 \001(\0132\031.viam.commo"
+  "n.v1.PoseCloudH\000R\tgoalCloud\210\001\001B\r\n\013_goal_"
+  "cloud\"3\n\007Vector3\022\014\n\001x\030\001 \001(\001R\001x\022\014\n\001y\030\002 \001("
+  "\001R\001y\022\014\n\001z\030\003 \001(\001R\001z\"%\n\006Sphere\022\033\n\tradius_m"
+  "m\030\001 \001(\001R\010radiusMm\"C\n\007Capsule\022\033\n\tradius_m"
+  "m\030\001 \001(\001R\010radiusMm\022\033\n\tlength_mm\030\002 \001(\001R\010le"
+  "ngthMm\"D\n\020RectangularPrism\0220\n\007dims_mm\030\001 "
+  "\001(\0132\027.viam.common.v1.Vector3R\006dimsMm\"=\n\004"
+  "Mesh\022!\n\014content_type\030\001 \001(\tR\013contentType\022"
+  "\022\n\004mesh\030\002 \001(\014R\004mesh\"-\n\nPointCloud\022\037\n\013poi"
+  "nt_cloud\030\001 \001(\014R\npointCloud\"\346\002\n\010Geometry\022"
+  ",\n\006center\030\001 \001(\0132\024.viam.common.v1.PoseR\006c"
+  "enter\0220\n\006sphere\030\002 \001(\0132\026.viam.common.v1.S"
+  "phereH\000R\006sphere\0224\n\003box\030\003 \001(\0132 .viam.comm"
+  "on.v1.RectangularPrismH\000R\003box\0223\n\007capsule"
+  "\030\005 \001(\0132\027.viam.common.v1.CapsuleH\000R\007capsu"
+  "le\022*\n\004mesh\030\006 \001(\0132\024.viam.common.v1.MeshH\000"
+  "R\004mesh\022<\n\npointcloud\030\007 \001(\0132\032.viam.common"
+  ".v1.PointCloudH\000R\npointcloud\022\024\n\005label\030\004 "
+  "\001(\tR\005labelB\017\n\rgeometry_type\"v\n\021Geometrie"
+  "sInFrame\022\'\n\017reference_frame\030\001 \001(\tR\016refer"
+  "enceFrame\0228\n\ngeometries\030\002 \003(\0132\030.viam.com"
+  "mon.v1.GeometryR\ngeometries\"v\n\020PointClou"
+  "dObject\022\037\n\013point_cloud\030\001 \001(\014R\npointCloud"
+  "\022A\n\ngeometries\030\002 \001(\0132!.viam.common.v1.Ge"
+  "ometriesInFrameR\ngeometries\"D\n\010GeoPoint\022"
+  "\032\n\010latitude\030\001 \001(\001R\010latitude\022\034\n\tlongitude"
+  "\030\002 \001(\001R\tlongitude\"}\n\013GeoGeometry\0224\n\010loca"
+  "tion\030\001 \001(\0132\030.viam.common.v1.GeoPointR\010lo"
+  "cation\0228\n\ngeometries\030\002 \003(\0132\030.viam.common"
+  ".v1.GeometryR\ngeometries\"\275\002\n\tTransform\022\'"
+  "\n\017reference_frame\030\001 \001(\tR\016referenceFrame\022"
+  "P\n\026pose_in_observer_frame\030\002 \001(\0132\033.viam.c"
+  "ommon.v1.PoseInFrameR\023poseInObserverFram"
+  "e\022F\n\017physical_object\030\003 \001(\0132\030.viam.common"
+  ".v1.GeometryH\000R\016physicalObject\210\001\001\022\022\n\004uui"
+  "d\030\004 \001(\014R\004uuid\0228\n\010metadata\030\005 \001(\0132\027.google"
+  ".protobuf.StructH\001R\010metadata\210\001\001B\022\n\020_phys"
+  "ical_objectB\013\n\t_metadata\"\210\001\n\nWorldState\022"
+  "\?\n\tobstacles\030\001 \003(\0132!.viam.common.v1.Geom"
+  "etriesInFrameR\tobstacles\0229\n\ntransforms\030\003"
+  " \003(\0132\031.viam.common.v1.TransformR\ntransfo"
+  "rms\"-\n\016ActuatorStatus\022\033\n\tis_moving\030\001 \001(\010"
+  "R\010isMoving\"d\n\020ResponseMetadata\022@\n\013captur"
+  "ed_at\030\001 \001(\0132\032.google.protobuf.TimestampH"
+  "\000R\ncapturedAt\210\001\001B\016\n\014_captured_at\"Y\n\020DoCo"
+  "mmandRequest\022\022\n\004name\030\001 \001(\tR\004name\0221\n\007comm"
+  "and\030\002 \001(\0132\027.google.protobuf.StructR\007comm"
+  "and\"D\n\021DoCommandResponse\022/\n\006result\030\001 \001(\013"
+  "2\027.google.protobuf.StructR\006result\"Y\n\024Get"
+  "KinematicsRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n"
   "\005extra\030c \001(\0132\027.google.protobuf.StructR\005e"
-  "xtra\"\257\001\n\023Get3DModelsResponse\022G\n\006models\030\001"
-  " \003(\0132/.viam.common.v1.Get3DModelsRespons"
-  "e.ModelsEntryR\006models\032O\n\013ModelsEntry\022\020\n\003"
-  "key\030\001 \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.viam.com"
-  "mon.v1.MeshR\005value:\0028\001\"W\n\022GetReadingsReq"
-  "uest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132"
-  "\027.google.protobuf.StructR\005extra\"\271\001\n\023GetR"
-  "eadingsResponse\022M\n\010readings\030\001 \003(\01321.viam"
-  ".common.v1.GetReadingsResponse.ReadingsE"
-  "ntryR\010readings\032S\n\rReadingsEntry\022\020\n\003key\030\001"
-  " \001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.google.protob"
-  "uf.ValueR\005value:\0028\001\"\227\002\n\010LogEntry\022\022\n\004host"
-  "\030\001 \001(\tR\004host\022\024\n\005level\030\002 \001(\tR\005level\022.\n\004ti"
-  "me\030\003 \001(\0132\032.google.protobuf.TimestampR\004ti"
-  "me\022\037\n\013logger_name\030\004 \001(\tR\nloggerName\022\030\n\007m"
-  "essage\030\005 \001(\tR\007message\022/\n\006caller\030\006 \001(\0132\027."
-  "google.protobuf.StructR\006caller\022\024\n\005stack\030"
-  "\007 \001(\tR\005stack\022/\n\006fields\030\010 \003(\0132\027.google.pr"
-  "otobuf.StructR\006fields\"j\n\tAudioInfo\022\024\n\005co"
-  "dec\030\001 \001(\tR\005codec\022$\n\016sample_rate_hz\030\002 \001(\005"
+  "xtra\"\325\002\n\025GetKinematicsResponse\022<\n\006format"
+  "\030\001 \001(\0162$.viam.common.v1.KinematicsFileFo"
+  "rmatR\006format\022\'\n\017kinematics_data\030\002 \001(\014R\016k"
+  "inematicsData\022v\n\027meshes_by_urdf_filepath"
+  "\030\003 \003(\0132\?.viam.common.v1.GetKinematicsRes"
+  "ponse.MeshesByUrdfFilepathEntryR\024meshesB"
+  "yUrdfFilepath\032]\n\031MeshesByUrdfFilepathEnt"
+  "ry\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.vi"
+  "am.common.v1.MeshR\005value:\0028\001\"Y\n\024GetGeome"
+  "triesRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extr"
+  "a\030c \001(\0132\027.google.protobuf.StructR\005extra\""
+  "Q\n\025GetGeometriesResponse\0228\n\ngeometries\030\001"
+  " \003(\0132\030.viam.common.v1.GeometryR\ngeometri"
+  "es\"W\n\022Get3DModelsRequest\022\022\n\004name\030\001 \001(\tR\004"
+  "name\022-\n\005extra\030c \001(\0132\027.google.protobuf.St"
+  "ructR\005extra\"\257\001\n\023Get3DModelsResponse\022G\n\006m"
+  "odels\030\001 \003(\0132/.viam.common.v1.Get3DModels"
+  "Response.ModelsEntryR\006models\032O\n\013ModelsEn"
+  "try\022\020\n\003key\030\001 \001(\tR\003key\022*\n\005value\030\002 \001(\0132\024.v"
+  "iam.common.v1.MeshR\005value:\0028\001\"W\n\022GetRead"
+  "ingsRequest\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra"
+  "\030c \001(\0132\027.google.protobuf.StructR\005extra\"\271"
+  "\001\n\023GetReadingsResponse\022M\n\010readings\030\001 \003(\013"
+  "21.viam.common.v1.GetReadingsResponse.Re"
+  "adingsEntryR\010readings\032S\n\rReadingsEntry\022\020"
+  "\n\003key\030\001 \001(\tR\003key\022,\n\005value\030\002 \001(\0132\026.google"
+  ".protobuf.ValueR\005value:\0028\001\"\227\002\n\010LogEntry\022"
+  "\022\n\004host\030\001 \001(\tR\004host\022\024\n\005level\030\002 \001(\tR\005leve"
+  "l\022.\n\004time\030\003 \001(\0132\032.google.protobuf.Timest"
+  "ampR\004time\022\037\n\013logger_name\030\004 \001(\tR\nloggerNa"
+  "me\022\030\n\007message\030\005 \001(\tR\007message\022/\n\006caller\030\006"
+  " \001(\0132\027.google.protobuf.StructR\006caller\022\024\n"
+  "\005stack\030\007 \001(\tR\005stack\022/\n\006fields\030\010 \003(\0132\027.go"
+  "ogle.protobuf.StructR\006fields\"j\n\tAudioInf"
+  "o\022\024\n\005codec\030\001 \001(\tR\005codec\022$\n\016sample_rate_h"
+  "z\030\002 \001(\005R\014sampleRateHz\022!\n\014num_channels\030\003 "
+  "\001(\005R\013numChannels\"Y\n\024GetPropertiesRequest"
+  "\022\022\n\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.go"
+  "ogle.protobuf.StructR\005extra\"\213\001\n\025GetPrope"
+  "rtiesResponse\022)\n\020supported_codecs\030\001 \003(\tR"
+  "\017supportedCodecs\022$\n\016sample_rate_hz\030\002 \001(\005"
   "R\014sampleRateHz\022!\n\014num_channels\030\003 \001(\005R\013nu"
-  "mChannels\"Y\n\024GetPropertiesRequest\022\022\n\004nam"
-  "e\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.google.pr"
-  "otobuf.StructR\005extra\"\213\001\n\025GetPropertiesRe"
-  "sponse\022)\n\020supported_codecs\030\001 \003(\tR\017suppor"
-  "tedCodecs\022$\n\016sample_rate_hz\030\002 \001(\005R\014sampl"
-  "eRateHz\022!\n\014num_channels\030\003 \001(\005R\013numChanne"
-  "ls*\177\n\024KinematicsFileFormat\022&\n\"KINEMATICS"
-  "_FILE_FORMAT_UNSPECIFIED\020\000\022\036\n\032KINEMATICS"
-  "_FILE_FORMAT_SVA\020\001\022\037\n\033KINEMATICS_FILE_FO"
-  "RMAT_URDF\020\002:a\n\032safety_heartbeat_monitore"
-  "d\022\036.google.protobuf.MethodOptions\030\244\222\005 \001("
-  "\010R\030safetyHeartbeatMonitored\210\001\001B/\n\022com.vi"
-  "am.common.v1Z\031go.viam.com/api/common/v1b"
-  "\006proto3"
+  "mChannels*\177\n\024KinematicsFileFormat\022&\n\"KIN"
+  "EMATICS_FILE_FORMAT_UNSPECIFIED\020\000\022\036\n\032KIN"
+  "EMATICS_FILE_FORMAT_SVA\020\001\022\037\n\033KINEMATICS_"
+  "FILE_FORMAT_URDF\020\002:a\n\032safety_heartbeat_m"
+  "onitored\022\036.google.protobuf.MethodOptions"
+  "\030\244\222\005 \001(\010R\030safetyHeartbeatMonitored\210\001\001B/\n"
+  "\022com.viam.common.v1Z\031go.viam.com/api/com"
+  "mon/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommon_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
@@ -1029,9 +1072,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_common_2fv1_2fcommo
 };
 static ::_pbi::once_flag descriptor_table_common_2fv1_2fcommon_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2fv1_2fcommon_2eproto = {
-    false, false, 4527, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
+    false, false, 4734, descriptor_table_protodef_common_2fv1_2fcommon_2eproto,
     "common/v1/common.proto",
-    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 3, 36,
+    &descriptor_table_common_2fv1_2fcommon_2eproto_once, descriptor_table_common_2fv1_2fcommon_2eproto_deps, 3, 37,
     schemas, file_default_instances, TableStruct_common_2fv1_2fcommon_2eproto::offsets,
     file_level_metadata_common_2fv1_2fcommon_2eproto, file_level_enum_descriptors_common_2fv1_2fcommon_2eproto,
     file_level_service_descriptors_common_2fv1_2fcommon_2eproto,
@@ -2098,14 +2141,422 @@ void Orientation::InternalSwap(Orientation* other) {
 
 // ===================================================================
 
+class PoseCloud::_Internal {
+ public:
+};
+
+PoseCloud::PoseCloud(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.common.v1.PoseCloud)
+}
+PoseCloud::PoseCloud(const PoseCloud& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&x_, &from.x_,
+    static_cast<size_t>(reinterpret_cast<char*>(&theta_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(theta_));
+  // @@protoc_insertion_point(copy_constructor:viam.common.v1.PoseCloud)
+}
+
+inline void PoseCloud::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&x_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&theta_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(theta_));
+}
+
+PoseCloud::~PoseCloud() {
+  // @@protoc_insertion_point(destructor:viam.common.v1.PoseCloud)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void PoseCloud::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void PoseCloud::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void PoseCloud::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.common.v1.PoseCloud)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&theta_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(theta_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* PoseCloud::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // double x = 1 [json_name = "x"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 9)) {
+          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double y = 2 [json_name = "y"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 17)) {
+          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double z = 3 [json_name = "z"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 25)) {
+          z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double o_x = 4 [json_name = "oX"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 33)) {
+          o_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double o_y = 5 [json_name = "oY"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 41)) {
+          o_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double o_z = 6 [json_name = "oZ"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 49)) {
+          o_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // double theta = 7 [json_name = "theta"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 57)) {
+          theta_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* PoseCloud::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.common.v1.PoseCloud)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double x = 1 [json_name = "x"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_x = this->_internal_x();
+  uint64_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(1, this->_internal_x(), target);
+  }
+
+  // double y = 2 [json_name = "y"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_y = this->_internal_y();
+  uint64_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(2, this->_internal_y(), target);
+  }
+
+  // double z = 3 [json_name = "z"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_z = this->_internal_z();
+  uint64_t raw_z;
+  memcpy(&raw_z, &tmp_z, sizeof(tmp_z));
+  if (raw_z != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(3, this->_internal_z(), target);
+  }
+
+  // double o_x = 4 [json_name = "oX"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_o_x = this->_internal_o_x();
+  uint64_t raw_o_x;
+  memcpy(&raw_o_x, &tmp_o_x, sizeof(tmp_o_x));
+  if (raw_o_x != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(4, this->_internal_o_x(), target);
+  }
+
+  // double o_y = 5 [json_name = "oY"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_o_y = this->_internal_o_y();
+  uint64_t raw_o_y;
+  memcpy(&raw_o_y, &tmp_o_y, sizeof(tmp_o_y));
+  if (raw_o_y != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(5, this->_internal_o_y(), target);
+  }
+
+  // double o_z = 6 [json_name = "oZ"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_o_z = this->_internal_o_z();
+  uint64_t raw_o_z;
+  memcpy(&raw_o_z, &tmp_o_z, sizeof(tmp_o_z));
+  if (raw_o_z != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(6, this->_internal_o_z(), target);
+  }
+
+  // double theta = 7 [json_name = "theta"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_theta = this->_internal_theta();
+  uint64_t raw_theta;
+  memcpy(&raw_theta, &tmp_theta, sizeof(tmp_theta));
+  if (raw_theta != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(7, this->_internal_theta(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.common.v1.PoseCloud)
+  return target;
+}
+
+size_t PoseCloud::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.common.v1.PoseCloud)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // double x = 1 [json_name = "x"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_x = this->_internal_x();
+  uint64_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double y = 2 [json_name = "y"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_y = this->_internal_y();
+  uint64_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double z = 3 [json_name = "z"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_z = this->_internal_z();
+  uint64_t raw_z;
+  memcpy(&raw_z, &tmp_z, sizeof(tmp_z));
+  if (raw_z != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double o_x = 4 [json_name = "oX"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_o_x = this->_internal_o_x();
+  uint64_t raw_o_x;
+  memcpy(&raw_o_x, &tmp_o_x, sizeof(tmp_o_x));
+  if (raw_o_x != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double o_y = 5 [json_name = "oY"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_o_y = this->_internal_o_y();
+  uint64_t raw_o_y;
+  memcpy(&raw_o_y, &tmp_o_y, sizeof(tmp_o_y));
+  if (raw_o_y != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double o_z = 6 [json_name = "oZ"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_o_z = this->_internal_o_z();
+  uint64_t raw_o_z;
+  memcpy(&raw_o_z, &tmp_o_z, sizeof(tmp_o_z));
+  if (raw_o_z != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double theta = 7 [json_name = "theta"];
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_theta = this->_internal_theta();
+  uint64_t raw_theta;
+  memcpy(&raw_theta, &tmp_theta, sizeof(tmp_theta));
+  if (raw_theta != 0) {
+    total_size += 1 + 8;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PoseCloud::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    PoseCloud::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PoseCloud::GetClassData() const { return &_class_data_; }
+
+void PoseCloud::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<PoseCloud *>(to)->MergeFrom(
+      static_cast<const PoseCloud &>(from));
+}
+
+
+void PoseCloud::MergeFrom(const PoseCloud& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.common.v1.PoseCloud)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_x = from._internal_x();
+  uint64_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    _internal_set_x(from._internal_x());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_y = from._internal_y();
+  uint64_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    _internal_set_y(from._internal_y());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_z = from._internal_z();
+  uint64_t raw_z;
+  memcpy(&raw_z, &tmp_z, sizeof(tmp_z));
+  if (raw_z != 0) {
+    _internal_set_z(from._internal_z());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_o_x = from._internal_o_x();
+  uint64_t raw_o_x;
+  memcpy(&raw_o_x, &tmp_o_x, sizeof(tmp_o_x));
+  if (raw_o_x != 0) {
+    _internal_set_o_x(from._internal_o_x());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_o_y = from._internal_o_y();
+  uint64_t raw_o_y;
+  memcpy(&raw_o_y, &tmp_o_y, sizeof(tmp_o_y));
+  if (raw_o_y != 0) {
+    _internal_set_o_y(from._internal_o_y());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_o_z = from._internal_o_z();
+  uint64_t raw_o_z;
+  memcpy(&raw_o_z, &tmp_o_z, sizeof(tmp_o_z));
+  if (raw_o_z != 0) {
+    _internal_set_o_z(from._internal_o_z());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_theta = from._internal_theta();
+  uint64_t raw_theta;
+  memcpy(&raw_theta, &tmp_theta, sizeof(tmp_theta));
+  if (raw_theta != 0) {
+    _internal_set_theta(from._internal_theta());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PoseCloud::CopyFrom(const PoseCloud& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.common.v1.PoseCloud)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PoseCloud::IsInitialized() const {
+  return true;
+}
+
+void PoseCloud::InternalSwap(PoseCloud* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PoseCloud, theta_)
+      + sizeof(PoseCloud::theta_)
+      - PROTOBUF_FIELD_OFFSET(PoseCloud, x_)>(
+          reinterpret_cast<char*>(&x_),
+          reinterpret_cast<char*>(&other->x_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PoseCloud::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
+      file_level_metadata_common_2fv1_2fcommon_2eproto[3]);
+}
+
+// ===================================================================
+
 class PoseInFrame::_Internal {
  public:
+  using HasBits = decltype(std::declval<PoseInFrame>()._has_bits_);
   static const ::viam::common::v1::Pose& pose(const PoseInFrame* msg);
+  static const ::viam::common::v1::PoseCloud& goal_cloud(const PoseInFrame* msg);
+  static void set_has_goal_cloud(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 const ::viam::common::v1::Pose&
 PoseInFrame::_Internal::pose(const PoseInFrame* msg) {
   return *msg->pose_;
+}
+const ::viam::common::v1::PoseCloud&
+PoseInFrame::_Internal::goal_cloud(const PoseInFrame* msg) {
+  return *msg->goal_cloud_;
 }
 PoseInFrame::PoseInFrame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -2114,7 +2565,8 @@ PoseInFrame::PoseInFrame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   // @@protoc_insertion_point(arena_constructor:viam.common.v1.PoseInFrame)
 }
 PoseInFrame::PoseInFrame(const PoseInFrame& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   reference_frame_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2129,6 +2581,11 @@ PoseInFrame::PoseInFrame(const PoseInFrame& from)
   } else {
     pose_ = nullptr;
   }
+  if (from._internal_has_goal_cloud()) {
+    goal_cloud_ = new ::viam::common::v1::PoseCloud(*from.goal_cloud_);
+  } else {
+    goal_cloud_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:viam.common.v1.PoseInFrame)
 }
 
@@ -2137,7 +2594,10 @@ reference_frame_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   reference_frame_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-pose_ = nullptr;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&pose_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&goal_cloud_) -
+    reinterpret_cast<char*>(&pose_)) + sizeof(goal_cloud_));
 }
 
 PoseInFrame::~PoseInFrame() {
@@ -2153,6 +2613,7 @@ inline void PoseInFrame::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   reference_frame_.Destroy();
   if (this != internal_default_instance()) delete pose_;
+  if (this != internal_default_instance()) delete goal_cloud_;
 }
 
 void PoseInFrame::SetCachedSize(int size) const {
@@ -2170,11 +2631,18 @@ void PoseInFrame::Clear() {
     delete pose_;
   }
   pose_ = nullptr;
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(goal_cloud_ != nullptr);
+    goal_cloud_->Clear();
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* PoseInFrame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -2197,6 +2665,14 @@ const char* PoseInFrame::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
+      // optional .viam.common.v1.PoseCloud goal_cloud = 3 [json_name = "goalCloud"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_goal_cloud(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -2213,6 +2689,7 @@ const char* PoseInFrame::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -2241,6 +2718,13 @@ uint8_t* PoseInFrame::_InternalSerialize(
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(2, _Internal::pose(this),
         _Internal::pose(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .viam.common.v1.PoseCloud goal_cloud = 3 [json_name = "goalCloud"];
+  if (_internal_has_goal_cloud()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::goal_cloud(this),
+        _Internal::goal_cloud(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2273,6 +2757,14 @@ size_t PoseInFrame::ByteSizeLong() const {
         *pose_);
   }
 
+  // optional .viam.common.v1.PoseCloud goal_cloud = 3 [json_name = "goalCloud"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *goal_cloud_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -2301,6 +2793,9 @@ void PoseInFrame::MergeFrom(const PoseInFrame& from) {
   if (from._internal_has_pose()) {
     _internal_mutable_pose()->::viam::common::v1::Pose::MergeFrom(from._internal_pose());
   }
+  if (from._internal_has_goal_cloud()) {
+    _internal_mutable_goal_cloud()->::viam::common::v1::PoseCloud::MergeFrom(from._internal_goal_cloud());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2320,17 +2815,23 @@ void PoseInFrame::InternalSwap(PoseInFrame* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &reference_frame_, lhs_arena,
       &other->reference_frame_, rhs_arena
   );
-  swap(pose_, other->pose_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PoseInFrame, goal_cloud_)
+      + sizeof(PoseInFrame::goal_cloud_)
+      - PROTOBUF_FIELD_OFFSET(PoseInFrame, pose_)>(
+          reinterpret_cast<char*>(&pose_),
+          reinterpret_cast<char*>(&other->pose_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PoseInFrame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[3]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[4]);
 }
 
 // ===================================================================
@@ -2593,7 +3094,7 @@ void Vector3::InternalSwap(Vector3* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Vector3::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[4]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[5]);
 }
 
 // ===================================================================
@@ -2776,7 +3277,7 @@ void Sphere::InternalSwap(Sphere* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Sphere::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[5]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[6]);
 }
 
 // ===================================================================
@@ -3005,7 +3506,7 @@ void Capsule::InternalSwap(Capsule* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Capsule::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[6]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[7]);
 }
 
 // ===================================================================
@@ -3192,7 +3693,7 @@ void RectangularPrism::InternalSwap(RectangularPrism* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RectangularPrism::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[7]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[8]);
 }
 
 // ===================================================================
@@ -3430,7 +3931,7 @@ void Mesh::InternalSwap(Mesh* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Mesh::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[8]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[9]);
 }
 
 // ===================================================================
@@ -3620,7 +4121,7 @@ void PointCloud::InternalSwap(PointCloud* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PointCloud::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[9]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[10]);
 }
 
 // ===================================================================
@@ -4171,7 +4672,7 @@ void Geometry::InternalSwap(Geometry* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Geometry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[10]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[11]);
 }
 
 // ===================================================================
@@ -4399,7 +4900,7 @@ void GeometriesInFrame::InternalSwap(GeometriesInFrame* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GeometriesInFrame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[11]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[12]);
 }
 
 // ===================================================================
@@ -4631,7 +5132,7 @@ void PointCloudObject::InternalSwap(PointCloudObject* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PointCloudObject::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[12]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[13]);
 }
 
 // ===================================================================
@@ -4860,7 +5361,7 @@ void GeoPoint::InternalSwap(GeoPoint* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GeoPoint::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[13]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[14]);
 }
 
 // ===================================================================
@@ -5080,7 +5581,7 @@ void GeoGeometry::InternalSwap(GeoGeometry* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GeoGeometry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[14]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[15]);
 }
 
 // ===================================================================
@@ -5473,7 +5974,7 @@ void Transform::InternalSwap(Transform* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Transform::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[15]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[16]);
 }
 
 // ===================================================================
@@ -5684,7 +6185,7 @@ void WorldState::InternalSwap(WorldState* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata WorldState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[16]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[17]);
 }
 
 // ===================================================================
@@ -5855,7 +6356,7 @@ void ActuatorStatus::InternalSwap(ActuatorStatus* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ActuatorStatus::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[17]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[18]);
 }
 
 // ===================================================================
@@ -6057,7 +6558,7 @@ void ResponseMetadata::InternalSwap(ResponseMetadata* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResponseMetadata::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[18]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[19]);
 }
 
 // ===================================================================
@@ -6300,7 +6801,7 @@ void DoCommandRequest::InternalSwap(DoCommandRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[19]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[20]);
 }
 
 // ===================================================================
@@ -6493,7 +6994,7 @@ void DoCommandResponse::InternalSwap(DoCommandResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DoCommandResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[20]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
 }
 
 // ===================================================================
@@ -6736,7 +7237,7 @@ void GetKinematicsRequest::InternalSwap(GetKinematicsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[21]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[22]);
 }
 
 // ===================================================================
@@ -6750,7 +7251,7 @@ void GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse::MergeFrom(const G
 ::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsResponse_MeshesByUrdfFilepathEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[22]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[23]);
 }
 
 // ===================================================================
@@ -7031,7 +7532,7 @@ void GetKinematicsResponse::InternalSwap(GetKinematicsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetKinematicsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[23]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[24]);
 }
 
 // ===================================================================
@@ -7274,7 +7775,7 @@ void GetGeometriesRequest::InternalSwap(GetGeometriesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetGeometriesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[24]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[25]);
 }
 
 // ===================================================================
@@ -7452,7 +7953,7 @@ void GetGeometriesResponse::InternalSwap(GetGeometriesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetGeometriesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[25]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[26]);
 }
 
 // ===================================================================
@@ -7695,7 +8196,7 @@ void Get3DModelsRequest::InternalSwap(Get3DModelsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Get3DModelsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[26]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[27]);
 }
 
 // ===================================================================
@@ -7709,7 +8210,7 @@ void Get3DModelsResponse_ModelsEntry_DoNotUse::MergeFrom(const Get3DModelsRespon
 ::PROTOBUF_NAMESPACE_ID::Metadata Get3DModelsResponse_ModelsEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[27]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[28]);
 }
 
 // ===================================================================
@@ -7916,7 +8417,7 @@ void Get3DModelsResponse::InternalSwap(Get3DModelsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Get3DModelsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[28]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[29]);
 }
 
 // ===================================================================
@@ -8159,7 +8660,7 @@ void GetReadingsRequest::InternalSwap(GetReadingsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[29]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[30]);
 }
 
 // ===================================================================
@@ -8173,7 +8674,7 @@ void GetReadingsResponse_ReadingsEntry_DoNotUse::MergeFrom(const GetReadingsResp
 ::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsResponse_ReadingsEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[30]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[31]);
 }
 
 // ===================================================================
@@ -8383,7 +8884,7 @@ void GetReadingsResponse::InternalSwap(GetReadingsResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetReadingsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[31]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[32]);
 }
 
 // ===================================================================
@@ -8908,7 +9409,7 @@ void LogEntry::InternalSwap(LogEntry* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata LogEntry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[32]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[33]);
 }
 
 // ===================================================================
@@ -9163,7 +9664,7 @@ void AudioInfo::InternalSwap(AudioInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AudioInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[33]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[34]);
 }
 
 // ===================================================================
@@ -9406,7 +9907,7 @@ void GetPropertiesRequest::InternalSwap(GetPropertiesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[34]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[35]);
 }
 
 // ===================================================================
@@ -9649,7 +10150,7 @@ void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetPropertiesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_common_2fv1_2fcommon_2eproto_getter, &descriptor_table_common_2fv1_2fcommon_2eproto_once,
-      file_level_metadata_common_2fv1_2fcommon_2eproto[35]);
+      file_level_metadata_common_2fv1_2fcommon_2eproto[36]);
 }
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::PrimitiveTypeTraits< bool >, 8, false>
@@ -9671,6 +10172,10 @@ Arena::CreateMaybeMessage< ::viam::common::v1::Pose >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::viam::common::v1::Orientation*
 Arena::CreateMaybeMessage< ::viam::common::v1::Orientation >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::common::v1::Orientation >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::common::v1::PoseCloud*
+Arena::CreateMaybeMessage< ::viam::common::v1::PoseCloud >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::common::v1::PoseCloud >(arena);
 }
 template<> PROTOBUF_NOINLINE ::viam::common::v1::PoseInFrame*
 Arena::CreateMaybeMessage< ::viam::common::v1::PoseInFrame >(Arena* arena) {

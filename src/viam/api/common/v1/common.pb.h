@@ -138,6 +138,9 @@ extern PointCloudObjectDefaultTypeInternal _PointCloudObject_default_instance_;
 class Pose;
 struct PoseDefaultTypeInternal;
 extern PoseDefaultTypeInternal _Pose_default_instance_;
+class PoseCloud;
+struct PoseCloudDefaultTypeInternal;
+extern PoseCloudDefaultTypeInternal _PoseCloud_default_instance_;
 class PoseInFrame;
 struct PoseInFrameDefaultTypeInternal;
 extern PoseInFrameDefaultTypeInternal _PoseInFrame_default_instance_;
@@ -194,6 +197,7 @@ template<> ::viam::common::v1::Orientation* Arena::CreateMaybeMessage<::viam::co
 template<> ::viam::common::v1::PointCloud* Arena::CreateMaybeMessage<::viam::common::v1::PointCloud>(Arena*);
 template<> ::viam::common::v1::PointCloudObject* Arena::CreateMaybeMessage<::viam::common::v1::PointCloudObject>(Arena*);
 template<> ::viam::common::v1::Pose* Arena::CreateMaybeMessage<::viam::common::v1::Pose>(Arena*);
+template<> ::viam::common::v1::PoseCloud* Arena::CreateMaybeMessage<::viam::common::v1::PoseCloud>(Arena*);
 template<> ::viam::common::v1::PoseInFrame* Arena::CreateMaybeMessage<::viam::common::v1::PoseInFrame>(Arena*);
 template<> ::viam::common::v1::RectangularPrism* Arena::CreateMaybeMessage<::viam::common::v1::RectangularPrism>(Arena*);
 template<> ::viam::common::v1::ResourceName* Arena::CreateMaybeMessage<::viam::common::v1::ResourceName>(Arena*);
@@ -816,6 +820,215 @@ class Orientation final :
 };
 // -------------------------------------------------------------------
 
+class PoseCloud final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.PoseCloud) */ {
+ public:
+  inline PoseCloud() : PoseCloud(nullptr) {}
+  ~PoseCloud() override;
+  explicit PROTOBUF_CONSTEXPR PoseCloud(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PoseCloud(const PoseCloud& from);
+  PoseCloud(PoseCloud&& from) noexcept
+    : PoseCloud() {
+    *this = ::std::move(from);
+  }
+
+  inline PoseCloud& operator=(const PoseCloud& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PoseCloud& operator=(PoseCloud&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PoseCloud& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PoseCloud* internal_default_instance() {
+    return reinterpret_cast<const PoseCloud*>(
+               &_PoseCloud_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(PoseCloud& a, PoseCloud& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PoseCloud* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PoseCloud* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PoseCloud* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PoseCloud>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PoseCloud& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PoseCloud& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PoseCloud* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.PoseCloud";
+  }
+  protected:
+  explicit PoseCloud(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kXFieldNumber = 1,
+    kYFieldNumber = 2,
+    kZFieldNumber = 3,
+    kOXFieldNumber = 4,
+    kOYFieldNumber = 5,
+    kOZFieldNumber = 6,
+    kThetaFieldNumber = 7,
+  };
+  // double x = 1 [json_name = "x"];
+  void clear_x();
+  double x() const;
+  void set_x(double value);
+  private:
+  double _internal_x() const;
+  void _internal_set_x(double value);
+  public:
+
+  // double y = 2 [json_name = "y"];
+  void clear_y();
+  double y() const;
+  void set_y(double value);
+  private:
+  double _internal_y() const;
+  void _internal_set_y(double value);
+  public:
+
+  // double z = 3 [json_name = "z"];
+  void clear_z();
+  double z() const;
+  void set_z(double value);
+  private:
+  double _internal_z() const;
+  void _internal_set_z(double value);
+  public:
+
+  // double o_x = 4 [json_name = "oX"];
+  void clear_o_x();
+  double o_x() const;
+  void set_o_x(double value);
+  private:
+  double _internal_o_x() const;
+  void _internal_set_o_x(double value);
+  public:
+
+  // double o_y = 5 [json_name = "oY"];
+  void clear_o_y();
+  double o_y() const;
+  void set_o_y(double value);
+  private:
+  double _internal_o_y() const;
+  void _internal_set_o_y(double value);
+  public:
+
+  // double o_z = 6 [json_name = "oZ"];
+  void clear_o_z();
+  double o_z() const;
+  void set_o_z(double value);
+  private:
+  double _internal_o_z() const;
+  void _internal_set_o_z(double value);
+  public:
+
+  // double theta = 7 [json_name = "theta"];
+  void clear_theta();
+  double theta() const;
+  void set_theta(double value);
+  private:
+  double _internal_theta() const;
+  void _internal_set_theta(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.PoseCloud)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double x_;
+  double y_;
+  double z_;
+  double o_x_;
+  double o_y_;
+  double o_z_;
+  double theta_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class PoseInFrame final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.PoseInFrame) */ {
  public:
@@ -864,7 +1077,7 @@ class PoseInFrame final :
                &_PoseInFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(PoseInFrame& a, PoseInFrame& b) {
     a.Swap(&b);
@@ -937,6 +1150,7 @@ class PoseInFrame final :
   enum : int {
     kReferenceFrameFieldNumber = 1,
     kPoseFieldNumber = 2,
+    kGoalCloudFieldNumber = 3,
   };
   // string reference_frame = 1 [json_name = "referenceFrame"];
   void clear_reference_frame();
@@ -970,6 +1184,24 @@ class PoseInFrame final :
       ::viam::common::v1::Pose* pose);
   ::viam::common::v1::Pose* unsafe_arena_release_pose();
 
+  // optional .viam.common.v1.PoseCloud goal_cloud = 3 [json_name = "goalCloud"];
+  bool has_goal_cloud() const;
+  private:
+  bool _internal_has_goal_cloud() const;
+  public:
+  void clear_goal_cloud();
+  const ::viam::common::v1::PoseCloud& goal_cloud() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::PoseCloud* release_goal_cloud();
+  ::viam::common::v1::PoseCloud* mutable_goal_cloud();
+  void set_allocated_goal_cloud(::viam::common::v1::PoseCloud* goal_cloud);
+  private:
+  const ::viam::common::v1::PoseCloud& _internal_goal_cloud() const;
+  ::viam::common::v1::PoseCloud* _internal_mutable_goal_cloud();
+  public:
+  void unsafe_arena_set_allocated_goal_cloud(
+      ::viam::common::v1::PoseCloud* goal_cloud);
+  ::viam::common::v1::PoseCloud* unsafe_arena_release_goal_cloud();
+
   // @@protoc_insertion_point(class_scope:viam.common.v1.PoseInFrame)
  private:
   class _Internal;
@@ -977,9 +1209,11 @@ class PoseInFrame final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reference_frame_;
   ::viam::common::v1::Pose* pose_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::viam::common::v1::PoseCloud* goal_cloud_;
   friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1032,7 +1266,7 @@ class Vector3 final :
                &_Vector3_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(Vector3& a, Vector3& b) {
     a.Swap(&b);
@@ -1197,7 +1431,7 @@ class Sphere final :
                &_Sphere_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(Sphere& a, Sphere& b) {
     a.Swap(&b);
@@ -1340,7 +1574,7 @@ class Capsule final :
                &_Capsule_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(Capsule& a, Capsule& b) {
     a.Swap(&b);
@@ -1494,7 +1728,7 @@ class RectangularPrism final :
                &_RectangularPrism_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(RectangularPrism& a, RectangularPrism& b) {
     a.Swap(&b);
@@ -1646,7 +1880,7 @@ class Mesh final :
                &_Mesh_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(Mesh& a, Mesh& b) {
     a.Swap(&b);
@@ -1810,7 +2044,7 @@ class PointCloud final :
                &_PointCloud_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(PointCloud& a, PointCloud& b) {
     a.Swap(&b);
@@ -1967,7 +2201,7 @@ class Geometry final :
                &_Geometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(Geometry& a, Geometry& b) {
     a.Swap(&b);
@@ -2251,7 +2485,7 @@ class GeometriesInFrame final :
                &_GeometriesInFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(GeometriesInFrame& a, GeometriesInFrame& b) {
     a.Swap(&b);
@@ -2419,7 +2653,7 @@ class PointCloudObject final :
                &_PointCloudObject_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(PointCloudObject& a, PointCloudObject& b) {
     a.Swap(&b);
@@ -2587,7 +2821,7 @@ class GeoPoint final :
                &_GeoPoint_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(GeoPoint& a, GeoPoint& b) {
     a.Swap(&b);
@@ -2741,7 +2975,7 @@ class GeoGeometry final :
                &_GeoGeometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(GeoGeometry& a, GeoGeometry& b) {
     a.Swap(&b);
@@ -2913,7 +3147,7 @@ class Transform final :
                &_Transform_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(Transform& a, Transform& b) {
     a.Swap(&b);
@@ -3138,7 +3372,7 @@ class WorldState final :
                &_WorldState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(WorldState& a, WorldState& b) {
     a.Swap(&b);
@@ -3310,7 +3544,7 @@ class ActuatorStatus final :
                &_ActuatorStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(ActuatorStatus& a, ActuatorStatus& b) {
     a.Swap(&b);
@@ -3453,7 +3687,7 @@ class ResponseMetadata final :
                &_ResponseMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(ResponseMetadata& a, ResponseMetadata& b) {
     a.Swap(&b);
@@ -3606,7 +3840,7 @@ class DoCommandRequest final :
                &_DoCommandRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(DoCommandRequest& a, DoCommandRequest& b) {
     a.Swap(&b);
@@ -3774,7 +4008,7 @@ class DoCommandResponse final :
                &_DoCommandResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(DoCommandResponse& a, DoCommandResponse& b) {
     a.Swap(&b);
@@ -3926,7 +4160,7 @@ class GetKinematicsRequest final :
                &_GetKinematicsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(GetKinematicsRequest& a, GetKinematicsRequest& b) {
     a.Swap(&b);
@@ -4120,7 +4354,7 @@ class GetKinematicsResponse final :
                &_GetKinematicsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(GetKinematicsResponse& a, GetKinematicsResponse& b) {
     a.Swap(&b);
@@ -4305,7 +4539,7 @@ class GetGeometriesRequest final :
                &_GetGeometriesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(GetGeometriesRequest& a, GetGeometriesRequest& b) {
     a.Swap(&b);
@@ -4473,7 +4707,7 @@ class GetGeometriesResponse final :
                &_GetGeometriesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(GetGeometriesResponse& a, GetGeometriesResponse& b) {
     a.Swap(&b);
@@ -4625,7 +4859,7 @@ class Get3DModelsRequest final :
                &_Get3DModelsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(Get3DModelsRequest& a, Get3DModelsRequest& b) {
     a.Swap(&b);
@@ -4819,7 +5053,7 @@ class Get3DModelsResponse final :
                &_Get3DModelsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(Get3DModelsResponse& a, Get3DModelsResponse& b) {
     a.Swap(&b);
@@ -4977,7 +5211,7 @@ class GetReadingsRequest final :
                &_GetReadingsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(GetReadingsRequest& a, GetReadingsRequest& b) {
     a.Swap(&b);
@@ -5171,7 +5405,7 @@ class GetReadingsResponse final :
                &_GetReadingsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(GetReadingsResponse& a, GetReadingsResponse& b) {
     a.Swap(&b);
@@ -5329,7 +5563,7 @@ class LogEntry final :
                &_LogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(LogEntry& a, LogEntry& b) {
     a.Swap(&b);
@@ -5601,7 +5835,7 @@ class AudioInfo final :
                &_AudioInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(AudioInfo& a, AudioInfo& b) {
     a.Swap(&b);
@@ -5771,7 +6005,7 @@ class GetPropertiesRequest final :
                &_GetPropertiesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
     a.Swap(&b);
@@ -5939,7 +6173,7 @@ class GetPropertiesResponse final :
                &_GetPropertiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
     a.Swap(&b);
@@ -6514,6 +6748,150 @@ inline void Orientation::set_theta(double value) {
 
 // -------------------------------------------------------------------
 
+// PoseCloud
+
+// double x = 1 [json_name = "x"];
+inline void PoseCloud::clear_x() {
+  x_ = 0;
+}
+inline double PoseCloud::_internal_x() const {
+  return x_;
+}
+inline double PoseCloud::x() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.PoseCloud.x)
+  return _internal_x();
+}
+inline void PoseCloud::_internal_set_x(double value) {
+  
+  x_ = value;
+}
+inline void PoseCloud::set_x(double value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.PoseCloud.x)
+}
+
+// double y = 2 [json_name = "y"];
+inline void PoseCloud::clear_y() {
+  y_ = 0;
+}
+inline double PoseCloud::_internal_y() const {
+  return y_;
+}
+inline double PoseCloud::y() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.PoseCloud.y)
+  return _internal_y();
+}
+inline void PoseCloud::_internal_set_y(double value) {
+  
+  y_ = value;
+}
+inline void PoseCloud::set_y(double value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.PoseCloud.y)
+}
+
+// double z = 3 [json_name = "z"];
+inline void PoseCloud::clear_z() {
+  z_ = 0;
+}
+inline double PoseCloud::_internal_z() const {
+  return z_;
+}
+inline double PoseCloud::z() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.PoseCloud.z)
+  return _internal_z();
+}
+inline void PoseCloud::_internal_set_z(double value) {
+  
+  z_ = value;
+}
+inline void PoseCloud::set_z(double value) {
+  _internal_set_z(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.PoseCloud.z)
+}
+
+// double o_x = 4 [json_name = "oX"];
+inline void PoseCloud::clear_o_x() {
+  o_x_ = 0;
+}
+inline double PoseCloud::_internal_o_x() const {
+  return o_x_;
+}
+inline double PoseCloud::o_x() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.PoseCloud.o_x)
+  return _internal_o_x();
+}
+inline void PoseCloud::_internal_set_o_x(double value) {
+  
+  o_x_ = value;
+}
+inline void PoseCloud::set_o_x(double value) {
+  _internal_set_o_x(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.PoseCloud.o_x)
+}
+
+// double o_y = 5 [json_name = "oY"];
+inline void PoseCloud::clear_o_y() {
+  o_y_ = 0;
+}
+inline double PoseCloud::_internal_o_y() const {
+  return o_y_;
+}
+inline double PoseCloud::o_y() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.PoseCloud.o_y)
+  return _internal_o_y();
+}
+inline void PoseCloud::_internal_set_o_y(double value) {
+  
+  o_y_ = value;
+}
+inline void PoseCloud::set_o_y(double value) {
+  _internal_set_o_y(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.PoseCloud.o_y)
+}
+
+// double o_z = 6 [json_name = "oZ"];
+inline void PoseCloud::clear_o_z() {
+  o_z_ = 0;
+}
+inline double PoseCloud::_internal_o_z() const {
+  return o_z_;
+}
+inline double PoseCloud::o_z() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.PoseCloud.o_z)
+  return _internal_o_z();
+}
+inline void PoseCloud::_internal_set_o_z(double value) {
+  
+  o_z_ = value;
+}
+inline void PoseCloud::set_o_z(double value) {
+  _internal_set_o_z(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.PoseCloud.o_z)
+}
+
+// double theta = 7 [json_name = "theta"];
+inline void PoseCloud::clear_theta() {
+  theta_ = 0;
+}
+inline double PoseCloud::_internal_theta() const {
+  return theta_;
+}
+inline double PoseCloud::theta() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.PoseCloud.theta)
+  return _internal_theta();
+}
+inline void PoseCloud::_internal_set_theta(double value) {
+  
+  theta_ = value;
+}
+inline void PoseCloud::set_theta(double value) {
+  _internal_set_theta(value);
+  // @@protoc_insertion_point(field_set:viam.common.v1.PoseCloud.theta)
+}
+
+// -------------------------------------------------------------------
+
 // PoseInFrame
 
 // string reference_frame = 1 [json_name = "referenceFrame"];
@@ -6654,6 +7032,96 @@ inline void PoseInFrame::set_allocated_pose(::viam::common::v1::Pose* pose) {
   }
   pose_ = pose;
   // @@protoc_insertion_point(field_set_allocated:viam.common.v1.PoseInFrame.pose)
+}
+
+// optional .viam.common.v1.PoseCloud goal_cloud = 3 [json_name = "goalCloud"];
+inline bool PoseInFrame::_internal_has_goal_cloud() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || goal_cloud_ != nullptr);
+  return value;
+}
+inline bool PoseInFrame::has_goal_cloud() const {
+  return _internal_has_goal_cloud();
+}
+inline void PoseInFrame::clear_goal_cloud() {
+  if (goal_cloud_ != nullptr) goal_cloud_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::common::v1::PoseCloud& PoseInFrame::_internal_goal_cloud() const {
+  const ::viam::common::v1::PoseCloud* p = goal_cloud_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::PoseCloud&>(
+      ::viam::common::v1::_PoseCloud_default_instance_);
+}
+inline const ::viam::common::v1::PoseCloud& PoseInFrame::goal_cloud() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.PoseInFrame.goal_cloud)
+  return _internal_goal_cloud();
+}
+inline void PoseInFrame::unsafe_arena_set_allocated_goal_cloud(
+    ::viam::common::v1::PoseCloud* goal_cloud) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(goal_cloud_);
+  }
+  goal_cloud_ = goal_cloud;
+  if (goal_cloud) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.PoseInFrame.goal_cloud)
+}
+inline ::viam::common::v1::PoseCloud* PoseInFrame::release_goal_cloud() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::common::v1::PoseCloud* temp = goal_cloud_;
+  goal_cloud_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::PoseCloud* PoseInFrame::unsafe_arena_release_goal_cloud() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.PoseInFrame.goal_cloud)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::common::v1::PoseCloud* temp = goal_cloud_;
+  goal_cloud_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::PoseCloud* PoseInFrame::_internal_mutable_goal_cloud() {
+  _has_bits_[0] |= 0x00000001u;
+  if (goal_cloud_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::PoseCloud>(GetArenaForAllocation());
+    goal_cloud_ = p;
+  }
+  return goal_cloud_;
+}
+inline ::viam::common::v1::PoseCloud* PoseInFrame::mutable_goal_cloud() {
+  ::viam::common::v1::PoseCloud* _msg = _internal_mutable_goal_cloud();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.PoseInFrame.goal_cloud)
+  return _msg;
+}
+inline void PoseInFrame::set_allocated_goal_cloud(::viam::common::v1::PoseCloud* goal_cloud) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete goal_cloud_;
+  }
+  if (goal_cloud) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(goal_cloud);
+    if (message_arena != submessage_arena) {
+      goal_cloud = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, goal_cloud, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  goal_cloud_ = goal_cloud;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.PoseInFrame.goal_cloud)
 }
 
 // -------------------------------------------------------------------
@@ -10365,6 +10833,8 @@ inline void GetPropertiesResponse::set_num_channels(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -449,7 +449,8 @@ PROTOBUF_CONSTEXPR BinaryMetadata::BinaryMetadata(
   , capture_metadata_(nullptr)
   , time_requested_(nullptr)
   , time_received_(nullptr)
-  , annotations_(nullptr){}
+  , annotations_(nullptr)
+  , file_size_bytes_(uint64_t{0u}){}
 struct BinaryMetadataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR BinaryMetadataDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -1486,6 +1487,7 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryMetadata, annotations_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryMetadata, dataset_ids_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryMetadata, binary_data_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::BinaryMetadata, file_size_bytes_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::DeleteTabularFilter, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1978,59 +1980,59 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 288, 297, -1, sizeof(::viam::app::data::v1::Classification)},
   { 300, -1, -1, sizeof(::viam::app::data::v1::Annotations)},
   { 308, -1, -1, sizeof(::viam::app::data::v1::BinaryMetadata)},
-  { 324, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularFilter)},
-  { 337, 346, -1, sizeof(::viam::app::data::v1::DeleteTabularDataRequest)},
-  { 349, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularDataResponse)},
-  { 356, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterRequest)},
-  { 364, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterResponse)},
-  { 371, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsRequest)},
-  { 379, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsResponse)},
-  { 386, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByIDsRequest)},
-  { 395, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByIDsResponse)},
-  { 401, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest)},
-  { 409, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse)},
-  { 415, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsRequest)},
-  { 424, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsResponse)},
-  { 431, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest)},
-  { 439, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse)},
-  { 446, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterRequest)},
-  { 453, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterResponse)},
-  { 460, 474, -1, sizeof(::viam::app::data::v1::AddBoundingBoxToImageByIDRequest)},
-  { 482, -1, -1, sizeof(::viam::app::data::v1::AddBoundingBoxToImageByIDResponse)},
-  { 489, -1, -1, sizeof(::viam::app::data::v1::RemoveBoundingBoxFromImageByIDRequest)},
-  { 498, -1, -1, sizeof(::viam::app::data::v1::RemoveBoundingBoxFromImageByIDResponse)},
-  { 504, 519, -1, sizeof(::viam::app::data::v1::UpdateBoundingBoxRequest)},
-  { 528, -1, -1, sizeof(::viam::app::data::v1::UpdateBoundingBoxResponse)},
-  { 534, -1, -1, sizeof(::viam::app::data::v1::BoundingBoxLabelsByFilterRequest)},
-  { 541, -1, -1, sizeof(::viam::app::data::v1::BoundingBoxLabelsByFilterResponse)},
-  { 548, -1, -1, sizeof(::viam::app::data::v1::ConfigureDatabaseUserRequest)},
-  { 556, -1, -1, sizeof(::viam::app::data::v1::ConfigureDatabaseUserResponse)},
-  { 562, -1, -1, sizeof(::viam::app::data::v1::GetDatabaseConnectionRequest)},
-  { 569, -1, -1, sizeof(::viam::app::data::v1::GetDatabaseConnectionResponse)},
-  { 578, -1, -1, sizeof(::viam::app::data::v1::AddBinaryDataToDatasetByIDsRequest)},
-  { 587, -1, -1, sizeof(::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse)},
-  { 593, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest)},
-  { 602, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse)},
-  { 608, 618, -1, sizeof(::viam::app::data::v1::CreateIndexRequest)},
-  { 622, -1, -1, sizeof(::viam::app::data::v1::CreateIndexResponse)},
-  { 628, 638, -1, sizeof(::viam::app::data::v1::DeleteIndexRequest)},
-  { 642, -1, -1, sizeof(::viam::app::data::v1::DeleteIndexResponse)},
-  { 648, 657, -1, sizeof(::viam::app::data::v1::ListIndexesRequest)},
-  { 660, -1, -1, sizeof(::viam::app::data::v1::ListIndexesResponse)},
-  { 667, 678, -1, sizeof(::viam::app::data::v1::Index)},
-  { 683, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryRequest)},
-  { 692, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryResponse)},
-  { 699, -1, -1, sizeof(::viam::app::data::v1::Query)},
-  { 711, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryRequest)},
-  { 718, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryResponse)},
-  { 724, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryRequest)},
-  { 731, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryResponse)},
-  { 738, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryRequest)},
-  { 747, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryResponse)},
-  { 753, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesRequest)},
-  { 761, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesResponse)},
-  { 768, 776, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLRequest)},
-  { 778, -1, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLResponse)},
+  { 325, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularFilter)},
+  { 338, 347, -1, sizeof(::viam::app::data::v1::DeleteTabularDataRequest)},
+  { 350, -1, -1, sizeof(::viam::app::data::v1::DeleteTabularDataResponse)},
+  { 357, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterRequest)},
+  { 365, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByFilterResponse)},
+  { 372, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsRequest)},
+  { 380, -1, -1, sizeof(::viam::app::data::v1::DeleteBinaryDataByIDsResponse)},
+  { 387, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByIDsRequest)},
+  { 396, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByIDsResponse)},
+  { 402, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest)},
+  { 410, -1, -1, sizeof(::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse)},
+  { 416, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsRequest)},
+  { 425, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsResponse)},
+  { 432, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest)},
+  { 440, -1, -1, sizeof(::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse)},
+  { 447, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterRequest)},
+  { 454, -1, -1, sizeof(::viam::app::data::v1::TagsByFilterResponse)},
+  { 461, 475, -1, sizeof(::viam::app::data::v1::AddBoundingBoxToImageByIDRequest)},
+  { 483, -1, -1, sizeof(::viam::app::data::v1::AddBoundingBoxToImageByIDResponse)},
+  { 490, -1, -1, sizeof(::viam::app::data::v1::RemoveBoundingBoxFromImageByIDRequest)},
+  { 499, -1, -1, sizeof(::viam::app::data::v1::RemoveBoundingBoxFromImageByIDResponse)},
+  { 505, 520, -1, sizeof(::viam::app::data::v1::UpdateBoundingBoxRequest)},
+  { 529, -1, -1, sizeof(::viam::app::data::v1::UpdateBoundingBoxResponse)},
+  { 535, -1, -1, sizeof(::viam::app::data::v1::BoundingBoxLabelsByFilterRequest)},
+  { 542, -1, -1, sizeof(::viam::app::data::v1::BoundingBoxLabelsByFilterResponse)},
+  { 549, -1, -1, sizeof(::viam::app::data::v1::ConfigureDatabaseUserRequest)},
+  { 557, -1, -1, sizeof(::viam::app::data::v1::ConfigureDatabaseUserResponse)},
+  { 563, -1, -1, sizeof(::viam::app::data::v1::GetDatabaseConnectionRequest)},
+  { 570, -1, -1, sizeof(::viam::app::data::v1::GetDatabaseConnectionResponse)},
+  { 579, -1, -1, sizeof(::viam::app::data::v1::AddBinaryDataToDatasetByIDsRequest)},
+  { 588, -1, -1, sizeof(::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse)},
+  { 594, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest)},
+  { 603, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse)},
+  { 609, 619, -1, sizeof(::viam::app::data::v1::CreateIndexRequest)},
+  { 623, -1, -1, sizeof(::viam::app::data::v1::CreateIndexResponse)},
+  { 629, 639, -1, sizeof(::viam::app::data::v1::DeleteIndexRequest)},
+  { 643, -1, -1, sizeof(::viam::app::data::v1::DeleteIndexResponse)},
+  { 649, 658, -1, sizeof(::viam::app::data::v1::ListIndexesRequest)},
+  { 661, -1, -1, sizeof(::viam::app::data::v1::ListIndexesResponse)},
+  { 668, 679, -1, sizeof(::viam::app::data::v1::Index)},
+  { 684, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryRequest)},
+  { 693, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryResponse)},
+  { 700, -1, -1, sizeof(::viam::app::data::v1::Query)},
+  { 712, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryRequest)},
+  { 719, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryResponse)},
+  { 725, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryRequest)},
+  { 732, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryResponse)},
+  { 739, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryRequest)},
+  { 748, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryResponse)},
+  { 754, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesRequest)},
+  { 762, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesResponse)},
+  { 769, 777, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLRequest)},
+  { 779, -1, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2263,7 +2265,7 @@ const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_S
   "es\030\001 \003(\0132\035.viam.app.data.v1.BoundingBoxR"
   "\006bboxes\022J\n\017classifications\030\002 \003(\0132 .viam."
   "app.data.v1.ClassificationR\017classificati"
-  "ons\"\310\003\n\016BinaryMetadata\022\022\n\002id\030\001 \001(\tB\002\030\001R\002"
+  "ons\"\360\003\n\016BinaryMetadata\022\022\n\002id\030\001 \001(\tB\002\030\001R\002"
   "id\022L\n\020capture_metadata\030\002 \001(\0132!.viam.app."
   "data.v1.CaptureMetadataR\017captureMetadata"
   "\022A\n\016time_requested\030\003 \001(\0132\032.google.protob"
@@ -2274,7 +2276,8 @@ const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_S
   "\tR\003uri\022\?\n\013annotations\030\010 \001(\0132\035.viam.app.d"
   "ata.v1.AnnotationsR\013annotations\022\037\n\013datas"
   "et_ids\030\t \003(\tR\ndatasetIds\022$\n\016binary_data_"
-  "id\030\n \001(\tR\014binaryDataId\"\221\002\n\023DeleteTabular"
+  "id\030\n \001(\tR\014binaryDataId\022&\n\017file_size_byte"
+  "s\030\013 \001(\004R\rfileSizeBytes\"\221\002\n\023DeleteTabular"
   "Filter\022!\n\014location_ids\030\001 \003(\tR\013locationId"
   "s\022\031\n\010robot_id\030\002 \001(\tR\007robotId\022\027\n\007part_id\030"
   "\003 \001(\tR\006partId\022%\n\016component_type\030\004 \001(\tR\rc"
@@ -2555,7 +2558,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fd
 };
 static ::_pbi::once_flag descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fdata_2fv1_2fdata_2eproto = {
-    false, false, 17157, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
+    false, false, 17197, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
     "app/data/v1/data.proto",
     &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 3, 81,
     schemas, file_default_instances, TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets,
@@ -11472,6 +11475,7 @@ BinaryMetadata::BinaryMetadata(const BinaryMetadata& from)
   } else {
     annotations_ = nullptr;
   }
+  file_size_bytes_ = from.file_size_bytes_;
   // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.BinaryMetadata)
 }
 
@@ -11498,8 +11502,8 @@ binary_data_id_.InitDefault();
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&capture_metadata_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&annotations_) -
-    reinterpret_cast<char*>(&capture_metadata_)) + sizeof(annotations_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&file_size_bytes_) -
+    reinterpret_cast<char*>(&capture_metadata_)) + sizeof(file_size_bytes_));
 }
 
 BinaryMetadata::~BinaryMetadata() {
@@ -11556,6 +11560,7 @@ void BinaryMetadata::Clear() {
     delete annotations_;
   }
   annotations_ = nullptr;
+  file_size_bytes_ = uint64_t{0u};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -11659,6 +11664,14 @@ const char* BinaryMetadata::_InternalParse(const char* ptr, ::_pbi::ParseContext
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.BinaryMetadata.binary_data_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 file_size_bytes = 11 [json_name = "fileSizeBytes"];
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
+          file_size_bytes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -11779,6 +11792,12 @@ uint8_t* BinaryMetadata::_InternalSerialize(
         10, this->_internal_binary_data_id(), target);
   }
 
+  // uint64 file_size_bytes = 11 [json_name = "fileSizeBytes"];
+  if (this->_internal_file_size_bytes() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(11, this->_internal_file_size_bytes(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -11866,6 +11885,11 @@ size_t BinaryMetadata::ByteSizeLong() const {
         *annotations_);
   }
 
+  // uint64 file_size_bytes = 11 [json_name = "fileSizeBytes"];
+  if (this->_internal_file_size_bytes() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_file_size_bytes());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -11916,6 +11940,9 @@ void BinaryMetadata::MergeFrom(const BinaryMetadata& from) {
   if (from._internal_has_annotations()) {
     _internal_mutable_annotations()->::viam::app::data::v1::Annotations::MergeFrom(from._internal_annotations());
   }
+  if (from._internal_file_size_bytes() != 0) {
+    _internal_set_file_size_bytes(from._internal_file_size_bytes());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -11957,8 +11984,8 @@ void BinaryMetadata::InternalSwap(BinaryMetadata* other) {
       &other->binary_data_id_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(BinaryMetadata, annotations_)
-      + sizeof(BinaryMetadata::annotations_)
+      PROTOBUF_FIELD_OFFSET(BinaryMetadata, file_size_bytes_)
+      + sizeof(BinaryMetadata::file_size_bytes_)
       - PROTOBUF_FIELD_OFFSET(BinaryMetadata, capture_metadata_)>(
           reinterpret_cast<char*>(&capture_metadata_),
           reinterpret_cast<char*>(&other->capture_metadata_));
