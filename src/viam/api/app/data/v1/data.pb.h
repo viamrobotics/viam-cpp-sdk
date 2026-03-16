@@ -6079,6 +6079,7 @@ class BinaryMetadata final :
     kTimeRequestedFieldNumber = 3,
     kTimeReceivedFieldNumber = 4,
     kAnnotationsFieldNumber = 8,
+    kFileSizeBytesFieldNumber = 11,
   };
   // repeated string dataset_ids = 9 [json_name = "datasetIds"];
   int dataset_ids_size() const;
@@ -6246,6 +6247,15 @@ class BinaryMetadata final :
       ::viam::app::data::v1::Annotations* annotations);
   ::viam::app::data::v1::Annotations* unsafe_arena_release_annotations();
 
+  // uint64 file_size_bytes = 11 [json_name = "fileSizeBytes"];
+  void clear_file_size_bytes();
+  uint64_t file_size_bytes() const;
+  void set_file_size_bytes(uint64_t value);
+  private:
+  uint64_t _internal_file_size_bytes() const;
+  void _internal_set_file_size_bytes(uint64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.data.v1.BinaryMetadata)
  private:
   class _Internal;
@@ -6263,6 +6273,7 @@ class BinaryMetadata final :
   ::PROTOBUF_NAMESPACE_ID::Timestamp* time_requested_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* time_received_;
   ::viam::app::data::v1::Annotations* annotations_;
+  uint64_t file_size_bytes_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
 };
@@ -21787,6 +21798,26 @@ inline void BinaryMetadata::set_allocated_binary_data_id(std::string* binary_dat
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.BinaryMetadata.binary_data_id)
+}
+
+// uint64 file_size_bytes = 11 [json_name = "fileSizeBytes"];
+inline void BinaryMetadata::clear_file_size_bytes() {
+  file_size_bytes_ = uint64_t{0u};
+}
+inline uint64_t BinaryMetadata::_internal_file_size_bytes() const {
+  return file_size_bytes_;
+}
+inline uint64_t BinaryMetadata::file_size_bytes() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.BinaryMetadata.file_size_bytes)
+  return _internal_file_size_bytes();
+}
+inline void BinaryMetadata::_internal_set_file_size_bytes(uint64_t value) {
+  
+  file_size_bytes_ = value;
+}
+inline void BinaryMetadata::set_file_size_bytes(uint64_t value) {
+  _internal_set_file_size_bytes(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.BinaryMetadata.file_size_bytes)
 }
 
 // -------------------------------------------------------------------
