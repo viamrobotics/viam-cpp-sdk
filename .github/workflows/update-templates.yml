@@ -104,6 +104,13 @@ jobs:
             -DVIAMCPPSDK_BUILD_EXAMPLES=OFF \
             -DCMAKE_CXX_COMPILER=clang++-15
 
+      - name: Check for changed simple files
+        working-directory: sdk
+        run: |
+          cl_gen -d res/module_generator/_templates -cmake
+          cl_gen -d res/module_generator/_templates -conan
+          cl_gen -d res/module_generator/_templates -main
+
       # On push events we only operate on cpp files for which the service or component hpp file had a diff
       - name: Operate on changed files
         if: github.event_name == 'push'
