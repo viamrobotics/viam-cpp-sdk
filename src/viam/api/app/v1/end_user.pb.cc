@@ -36,7 +36,8 @@ struct IsLegalAcceptedRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsLegalAcceptedRequestDefaultTypeInternal _IsLegalAcceptedRequest_default_instance_;
 PROTOBUF_CONSTEXPR IsLegalAcceptedResponse::IsLegalAcceptedResponse(
     ::_pbi::ConstantInitialized)
-  : accepted_legal_(false){}
+  : accepted_legal_(false)
+  , ever_accepted_legal_(false){}
 struct IsLegalAcceptedResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR IsLegalAcceptedResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -179,6 +180,7 @@ const uint32_t TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::IsLegalAcceptedResponse, accepted_legal_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::IsLegalAcceptedResponse, ever_accepted_legal_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::AcceptLegalRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -255,14 +257,14 @@ const uint32_t TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets[] PROTOBUF_SEC
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::v1::IsLegalAcceptedRequest)},
   { 6, -1, -1, sizeof(::viam::app::v1::IsLegalAcceptedResponse)},
-  { 13, -1, -1, sizeof(::viam::app::v1::AcceptLegalRequest)},
-  { 19, -1, -1, sizeof(::viam::app::v1::AcceptLegalResponse)},
-  { 25, -1, -1, sizeof(::viam::app::v1::RegisterAuthApplicationRequest)},
-  { 36, -1, -1, sizeof(::viam::app::v1::RegisterAuthApplicationResponse)},
-  { 45, -1, -1, sizeof(::viam::app::v1::UpdateAuthApplicationRequest)},
-  { 57, -1, -1, sizeof(::viam::app::v1::UpdateAuthApplicationResponse)},
-  { 65, -1, -1, sizeof(::viam::app::v1::GetAuthApplicationRequest)},
-  { 73, -1, -1, sizeof(::viam::app::v1::GetAuthApplicationResponse)},
+  { 14, -1, -1, sizeof(::viam::app::v1::AcceptLegalRequest)},
+  { 20, -1, -1, sizeof(::viam::app::v1::AcceptLegalResponse)},
+  { 26, -1, -1, sizeof(::viam::app::v1::RegisterAuthApplicationRequest)},
+  { 37, -1, -1, sizeof(::viam::app::v1::RegisterAuthApplicationResponse)},
+  { 46, -1, -1, sizeof(::viam::app::v1::UpdateAuthApplicationRequest)},
+  { 58, -1, -1, sizeof(::viam::app::v1::UpdateAuthApplicationResponse)},
+  { 66, -1, -1, sizeof(::viam::app::v1::GetAuthApplicationRequest)},
+  { 74, -1, -1, sizeof(::viam::app::v1::GetAuthApplicationResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -280,55 +282,56 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\025app/v1/end_user.proto\022\013viam.app.v1\"\030\n\026"
-  "IsLegalAcceptedRequest\"@\n\027IsLegalAccepte"
+  "IsLegalAcceptedRequest\"p\n\027IsLegalAccepte"
   "dResponse\022%\n\016accepted_legal\030\001 \001(\010R\raccep"
-  "tedLegal\"\024\n\022AcceptLegalRequest\"\025\n\023Accept"
-  "LegalResponse\"\313\001\n\036RegisterAuthApplicatio"
-  "nRequest\022)\n\020application_name\030\001 \001(\tR\017appl"
-  "icationName\022\025\n\006org_id\030\002 \001(\tR\005orgId\022\037\n\013or"
-  "igin_uris\030\003 \003(\tR\noriginUris\022#\n\rredirect_"
-  "uris\030\004 \003(\tR\014redirectUris\022\035\n\nlogout_uri\030\005"
-  " \001(\tR\tlogoutUri:\002\030\001\"\234\001\n\037RegisterAuthAppl"
-  "icationResponse\022%\n\016application_id\030\001 \001(\tR"
-  "\rapplicationId\022)\n\020application_name\030\002 \001(\t"
-  "R\017applicationName\022#\n\rclient_secret\030\003 \001(\t"
-  "R\014clientSecret:\002\030\001\"\360\001\n\034UpdateAuthApplica"
-  "tionRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\022%\n\016ap"
-  "plication_id\030\002 \001(\tR\rapplicationId\022)\n\020app"
-  "lication_name\030\003 \001(\tR\017applicationName\022\037\n\013"
-  "origin_uris\030\004 \003(\tR\noriginUris\022#\n\rredirec"
-  "t_uris\030\005 \003(\tR\014redirectUris\022\035\n\nlogout_uri"
-  "\030\006 \001(\tR\tlogoutUri:\002\030\001\"u\n\035UpdateAuthAppli"
-  "cationResponse\022%\n\016application_id\030\001 \001(\tR\r"
-  "applicationId\022)\n\020application_name\030\002 \001(\tR"
-  "\017applicationName:\002\030\001\"]\n\031GetAuthApplicati"
-  "onRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\022%\n\016appl"
-  "ication_id\030\002 \001(\tR\rapplicationId:\002\030\001\"\374\001\n\032"
-  "GetAuthApplicationResponse\022%\n\016applicatio"
-  "n_id\030\001 \001(\tR\rapplicationId\022)\n\020application"
-  "_name\030\002 \001(\tR\017applicationName\022#\n\rclient_s"
-  "ecret\030\003 \001(\tR\014clientSecret\022\037\n\013origin_uris"
-  "\030\004 \003(\tR\noriginUris\022#\n\rredirect_uris\030\005 \003("
-  "\tR\014redirectUris\022\035\n\nlogout_uri\030\006 \001(\tR\tlog"
-  "outUri:\002\030\0012\234\004\n\016EndUserService\022\\\n\017IsLegal"
-  "Accepted\022#.viam.app.v1.IsLegalAcceptedRe"
-  "quest\032$.viam.app.v1.IsLegalAcceptedRespo"
-  "nse\022P\n\013AcceptLegal\022\037.viam.app.v1.AcceptL"
-  "egalRequest\032 .viam.app.v1.AcceptLegalRes"
-  "ponse\022y\n\027RegisterAuthApplication\022+.viam."
-  "app.v1.RegisterAuthApplicationRequest\032,."
-  "viam.app.v1.RegisterAuthApplicationRespo"
-  "nse\"\003\210\002\001\022s\n\025UpdateAuthApplication\022).viam"
-  ".app.v1.UpdateAuthApplicationRequest\032*.v"
-  "iam.app.v1.UpdateAuthApplicationResponse"
-  "\"\003\210\002\001\022j\n\022GetAuthApplication\022&.viam.app.v"
-  "1.GetAuthApplicationRequest\032\'.viam.app.v"
-  "1.GetAuthApplicationResponse\"\003\210\002\001B\030Z\026go."
-  "viam.com/api/app/v1b\006proto3"
+  "tedLegal\022.\n\023ever_accepted_legal\030\002 \001(\010R\021e"
+  "verAcceptedLegal\"\024\n\022AcceptLegalRequest\"\025"
+  "\n\023AcceptLegalResponse\"\313\001\n\036RegisterAuthAp"
+  "plicationRequest\022)\n\020application_name\030\001 \001"
+  "(\tR\017applicationName\022\025\n\006org_id\030\002 \001(\tR\005org"
+  "Id\022\037\n\013origin_uris\030\003 \003(\tR\noriginUris\022#\n\rr"
+  "edirect_uris\030\004 \003(\tR\014redirectUris\022\035\n\nlogo"
+  "ut_uri\030\005 \001(\tR\tlogoutUri:\002\030\001\"\234\001\n\037Register"
+  "AuthApplicationResponse\022%\n\016application_i"
+  "d\030\001 \001(\tR\rapplicationId\022)\n\020application_na"
+  "me\030\002 \001(\tR\017applicationName\022#\n\rclient_secr"
+  "et\030\003 \001(\tR\014clientSecret:\002\030\001\"\360\001\n\034UpdateAut"
+  "hApplicationRequest\022\025\n\006org_id\030\001 \001(\tR\005org"
+  "Id\022%\n\016application_id\030\002 \001(\tR\rapplicationI"
+  "d\022)\n\020application_name\030\003 \001(\tR\017application"
+  "Name\022\037\n\013origin_uris\030\004 \003(\tR\noriginUris\022#\n"
+  "\rredirect_uris\030\005 \003(\tR\014redirectUris\022\035\n\nlo"
+  "gout_uri\030\006 \001(\tR\tlogoutUri:\002\030\001\"u\n\035UpdateA"
+  "uthApplicationResponse\022%\n\016application_id"
+  "\030\001 \001(\tR\rapplicationId\022)\n\020application_nam"
+  "e\030\002 \001(\tR\017applicationName:\002\030\001\"]\n\031GetAuthA"
+  "pplicationRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId"
+  "\022%\n\016application_id\030\002 \001(\tR\rapplicationId:"
+  "\002\030\001\"\374\001\n\032GetAuthApplicationResponse\022%\n\016ap"
+  "plication_id\030\001 \001(\tR\rapplicationId\022)\n\020app"
+  "lication_name\030\002 \001(\tR\017applicationName\022#\n\r"
+  "client_secret\030\003 \001(\tR\014clientSecret\022\037\n\013ori"
+  "gin_uris\030\004 \003(\tR\noriginUris\022#\n\rredirect_u"
+  "ris\030\005 \003(\tR\014redirectUris\022\035\n\nlogout_uri\030\006 "
+  "\001(\tR\tlogoutUri:\002\030\0012\234\004\n\016EndUserService\022\\\n"
+  "\017IsLegalAccepted\022#.viam.app.v1.IsLegalAc"
+  "ceptedRequest\032$.viam.app.v1.IsLegalAccep"
+  "tedResponse\022P\n\013AcceptLegal\022\037.viam.app.v1"
+  ".AcceptLegalRequest\032 .viam.app.v1.Accept"
+  "LegalResponse\022y\n\027RegisterAuthApplication"
+  "\022+.viam.app.v1.RegisterAuthApplicationRe"
+  "quest\032,.viam.app.v1.RegisterAuthApplicat"
+  "ionResponse\"\003\210\002\001\022s\n\025UpdateAuthApplicatio"
+  "n\022).viam.app.v1.UpdateAuthApplicationReq"
+  "uest\032*.viam.app.v1.UpdateAuthApplication"
+  "Response\"\003\210\002\001\022j\n\022GetAuthApplication\022&.vi"
+  "am.app.v1.GetAuthApplicationRequest\032\'.vi"
+  "am.app.v1.GetAuthApplicationResponse\"\003\210\002"
+  "\001B\030Z\026go.viam.com/api/app/v1b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fend_5fuser_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fend_5fuser_2eproto = {
-    false, false, 1827, descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto,
+    false, false, 1875, descriptor_table_protodef_app_2fv1_2fend_5fuser_2eproto,
     "app/v1/end_user.proto",
     &descriptor_table_app_2fv1_2fend_5fuser_2eproto_once, nullptr, 0, 10,
     schemas, file_default_instances, TableStruct_app_2fv1_2fend_5fuser_2eproto::offsets,
@@ -399,12 +402,17 @@ IsLegalAcceptedResponse::IsLegalAcceptedResponse(::PROTOBUF_NAMESPACE_ID::Arena*
 IsLegalAcceptedResponse::IsLegalAcceptedResponse(const IsLegalAcceptedResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  accepted_legal_ = from.accepted_legal_;
+  ::memcpy(&accepted_legal_, &from.accepted_legal_,
+    static_cast<size_t>(reinterpret_cast<char*>(&ever_accepted_legal_) -
+    reinterpret_cast<char*>(&accepted_legal_)) + sizeof(ever_accepted_legal_));
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.IsLegalAcceptedResponse)
 }
 
 inline void IsLegalAcceptedResponse::SharedCtor() {
-accepted_legal_ = false;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&accepted_legal_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&ever_accepted_legal_) -
+    reinterpret_cast<char*>(&accepted_legal_)) + sizeof(ever_accepted_legal_));
 }
 
 IsLegalAcceptedResponse::~IsLegalAcceptedResponse() {
@@ -430,7 +438,9 @@ void IsLegalAcceptedResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  accepted_legal_ = false;
+  ::memset(&accepted_legal_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&ever_accepted_legal_) -
+      reinterpret_cast<char*>(&accepted_legal_)) + sizeof(ever_accepted_legal_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -444,6 +454,14 @@ const char* IsLegalAcceptedResponse::_InternalParse(const char* ptr, ::_pbi::Par
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           accepted_legal_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool ever_accepted_legal = 2 [json_name = "everAcceptedLegal"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          ever_accepted_legal_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -483,6 +501,12 @@ uint8_t* IsLegalAcceptedResponse::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_accepted_legal(), target);
   }
 
+  // bool ever_accepted_legal = 2 [json_name = "everAcceptedLegal"];
+  if (this->_internal_ever_accepted_legal() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_ever_accepted_legal(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -501,6 +525,11 @@ size_t IsLegalAcceptedResponse::ByteSizeLong() const {
 
   // bool accepted_legal = 1 [json_name = "acceptedLegal"];
   if (this->_internal_accepted_legal() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool ever_accepted_legal = 2 [json_name = "everAcceptedLegal"];
+  if (this->_internal_ever_accepted_legal() != 0) {
     total_size += 1 + 1;
   }
 
@@ -529,6 +558,9 @@ void IsLegalAcceptedResponse::MergeFrom(const IsLegalAcceptedResponse& from) {
   if (from._internal_accepted_legal() != 0) {
     _internal_set_accepted_legal(from._internal_accepted_legal());
   }
+  if (from._internal_ever_accepted_legal() != 0) {
+    _internal_set_ever_accepted_legal(from._internal_ever_accepted_legal());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -546,7 +578,12 @@ bool IsLegalAcceptedResponse::IsInitialized() const {
 void IsLegalAcceptedResponse::InternalSwap(IsLegalAcceptedResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(accepted_legal_, other->accepted_legal_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(IsLegalAcceptedResponse, ever_accepted_legal_)
+      + sizeof(IsLegalAcceptedResponse::ever_accepted_legal_)
+      - PROTOBUF_FIELD_OFFSET(IsLegalAcceptedResponse, accepted_legal_)>(
+          reinterpret_cast<char*>(&accepted_legal_),
+          reinterpret_cast<char*>(&other->accepted_legal_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata IsLegalAcceptedResponse::GetMetadata() const {
