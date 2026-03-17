@@ -44,7 +44,7 @@ class ServiceHelper : public ServiceHelperBase {
         : ServiceHelperBase{method}, rs_{rs}, context_{context}, request_{request} {};
 
     template <typename Callable>
-    ::grpc::Status operator()(Callable&& callable) const noexcept try {
+    BOOST_ATTRIBUTE_NODISCARD ::grpc::Status operator()(Callable&& callable) const noexcept try {
         if (!context_) {
             return failNoContext();
         }
