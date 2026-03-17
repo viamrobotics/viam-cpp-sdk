@@ -123,12 +123,6 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                                         " as it doesn't exist.");
             }
 
-            if (auto reconfigurable = std::dynamic_pointer_cast<Reconfigurable>(res)) {
-                reconfigurable->reconfigure(deps, cfg);
-                res->set_log_level(cfg.get_log_level());
-                return grpc::Status();
-            }
-
             // if the type isn't reconfigurable by default, replace it
             if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
                 stoppable->stop();

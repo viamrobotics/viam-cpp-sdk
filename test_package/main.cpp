@@ -20,7 +20,7 @@ using namespace viam::sdk;
 
 // Implements a trivial sensor component, constructed with a ResourceConfig that specifies a
 // "multiplier" value which is then returned as the only sensor reading.
-class MySensor : public Sensor, public Reconfigurable {
+class MySensor : public Sensor {
    public:
     MySensor(const ResourceConfig& cfg) : Sensor(cfg.name()) {
         this->reconfigure({}, cfg);
@@ -28,7 +28,7 @@ class MySensor : public Sensor, public Reconfigurable {
 
     static std::vector<std::string> validate(const ResourceConfig&);
 
-    void reconfigure(const Dependencies&, const ResourceConfig&) override;
+    void reconfigure(const Dependencies&, const ResourceConfig&);
 
     ProtoStruct do_command(const ProtoStruct&) override;
 

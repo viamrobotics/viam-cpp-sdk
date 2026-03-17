@@ -22,7 +22,7 @@
 using namespace viam::sdk;
 
 // Implements an AudioIn component that generates a sine wave for testing
-class SineWaveAudioIn : public AudioIn, public Reconfigurable {
+class SineWaveAudioIn : public AudioIn {
    public:
     SineWaveAudioIn(const ResourceConfig& cfg) : AudioIn(cfg.name()) {
         this->reconfigure({}, cfg);
@@ -30,7 +30,7 @@ class SineWaveAudioIn : public AudioIn, public Reconfigurable {
 
     static std::vector<std::string> validate(const ResourceConfig&);
 
-    void reconfigure(const Dependencies&, const ResourceConfig&) override;
+    void reconfigure(const Dependencies&, const ResourceConfig&);
 
     ProtoStruct do_command(const ProtoStruct&) override;
 
