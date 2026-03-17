@@ -335,6 +335,7 @@ class IsLegalAcceptedResponse final :
 
   enum : int {
     kAcceptedLegalFieldNumber = 1,
+    kEverAcceptedLegalFieldNumber = 2,
   };
   // bool accepted_legal = 1 [json_name = "acceptedLegal"];
   void clear_accepted_legal();
@@ -345,6 +346,15 @@ class IsLegalAcceptedResponse final :
   void _internal_set_accepted_legal(bool value);
   public:
 
+  // bool ever_accepted_legal = 2 [json_name = "everAcceptedLegal"];
+  void clear_ever_accepted_legal();
+  bool ever_accepted_legal() const;
+  void set_ever_accepted_legal(bool value);
+  private:
+  bool _internal_ever_accepted_legal() const;
+  void _internal_set_ever_accepted_legal(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.IsLegalAcceptedResponse)
  private:
   class _Internal;
@@ -353,6 +363,7 @@ class IsLegalAcceptedResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   bool accepted_legal_;
+  bool ever_accepted_legal_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fend_5fuser_2eproto;
 };
@@ -1857,6 +1868,26 @@ inline void IsLegalAcceptedResponse::_internal_set_accepted_legal(bool value) {
 inline void IsLegalAcceptedResponse::set_accepted_legal(bool value) {
   _internal_set_accepted_legal(value);
   // @@protoc_insertion_point(field_set:viam.app.v1.IsLegalAcceptedResponse.accepted_legal)
+}
+
+// bool ever_accepted_legal = 2 [json_name = "everAcceptedLegal"];
+inline void IsLegalAcceptedResponse::clear_ever_accepted_legal() {
+  ever_accepted_legal_ = false;
+}
+inline bool IsLegalAcceptedResponse::_internal_ever_accepted_legal() const {
+  return ever_accepted_legal_;
+}
+inline bool IsLegalAcceptedResponse::ever_accepted_legal() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.IsLegalAcceptedResponse.ever_accepted_legal)
+  return _internal_ever_accepted_legal();
+}
+inline void IsLegalAcceptedResponse::_internal_set_ever_accepted_legal(bool value) {
+  
+  ever_accepted_legal_ = value;
+}
+inline void IsLegalAcceptedResponse::set_ever_accepted_legal(bool value) {
+  _internal_set_ever_accepted_legal(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.IsLegalAcceptedResponse.ever_accepted_legal)
 }
 
 // -------------------------------------------------------------------
