@@ -204,7 +204,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::StreamTicksRequest* request,
     ::grpc::ServerWriter<::viam::component::board::v1::StreamTicksResponse>* writer) noexcept {
-    make_service_helper<Board>(
+    return make_service_helper<Board>(
         "BoardServer::StreamTicks", this, context, request)([&](auto& helper, auto& board) {
         const std::vector<std::string> digital_interrupt_names(request->pin_names().begin(),
                                                                request->pin_names().end());
@@ -222,8 +222,6 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         };
         board->stream_ticks(digital_interrupt_names, writeTick, helper.getExtra());
     });
-
-    return ::grpc::Status();
 }
 
 ::grpc::Status BoardServer::SetPowerMode(

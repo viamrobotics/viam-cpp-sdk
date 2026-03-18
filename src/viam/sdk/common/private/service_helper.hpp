@@ -2,6 +2,7 @@
 
 #include <type_traits>
 
+#include <boost/config.hpp>
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/grpc_fwd.hpp>
@@ -43,7 +44,7 @@ class ServiceHelper : public ServiceHelperBase {
         : ServiceHelperBase{method}, rs_{rs}, context_{context}, request_{request} {};
 
     template <typename Callable>
-    ::grpc::Status operator()(Callable&& callable) const noexcept try {
+    BOOST_ATTRIBUTE_NODISCARD ::grpc::Status operator()(Callable&& callable) const noexcept try {
         if (!context_) {
             return failNoContext();
         }
@@ -104,10 +105,10 @@ class ServiceHelper : public ServiceHelperBase {
 };
 
 template <typename ServiceType, typename RequestType>
-auto make_service_helper(const char* method,
-                         ResourceServer* rs,
-                         GrpcServerContext* context,
-                         RequestType* request) {
+BOOST_ATTRIBUTE_NODISCARD auto make_service_helper(const char* method,
+                                                   ResourceServer* rs,
+                                                   GrpcServerContext* context,
+                                                   RequestType* request) {
     return ServiceHelper<ServiceType, RequestType>{method, rs, context, request};
 }
 
