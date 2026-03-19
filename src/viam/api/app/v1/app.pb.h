@@ -1928,6 +1928,7 @@ class RobotPart final :
     kDnsNameFieldNumber = 10,
     kLocalFqdnFieldNumber = 11,
     kLocationIdFieldNumber = 12,
+    kRobotConfigJsonFieldNumber = 18,
     kRobotConfigFieldNumber = 5,
     kLastAccessFieldNumber = 6,
     kUserSuppliedInfoFieldNumber = 7,
@@ -2067,6 +2068,24 @@ class RobotPart final :
   std::string* _internal_mutable_location_id();
   public:
 
+  // optional string robot_config_json = 18 [json_name = "robotConfigJson", (.tagger.v1.tags) = "bson:\"config_json,omitempty\" json:\"config_json,omitempty\""];
+  bool has_robot_config_json() const;
+  private:
+  bool _internal_has_robot_config_json() const;
+  public:
+  void clear_robot_config_json();
+  const std::string& robot_config_json() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_robot_config_json(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_robot_config_json();
+  PROTOBUF_NODISCARD std::string* release_robot_config_json();
+  void set_allocated_robot_config_json(std::string* robot_config_json);
+  private:
+  const std::string& _internal_robot_config_json() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_robot_config_json(const std::string& value);
+  std::string* _internal_mutable_robot_config_json();
+  public:
+
   // .google.protobuf.Struct robot_config = 5 [json_name = "robotConfig", (.tagger.v1.tags) = "bson:\"config\" json:\"robot_config\""];
   bool has_robot_config() const;
   private:
@@ -2191,6 +2210,8 @@ class RobotPart final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::SharedSecret > secrets_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
@@ -2200,6 +2221,7 @@ class RobotPart final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dns_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr local_fqdn_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr robot_config_json_;
   ::PROTOBUF_NAMESPACE_ID::Struct* robot_config_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_access_;
   ::PROTOBUF_NAMESPACE_ID::Struct* user_supplied_info_;
@@ -2208,7 +2230,6 @@ class RobotPart final :
   bool main_part_;
   int online_state_;
   int64_t seconds_since_online_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -18145,6 +18166,7 @@ class UpdateRobotPartRequest final :
   enum : int {
     kIdFieldNumber = 1,
     kNameFieldNumber = 2,
+    kRobotConfigJsonFieldNumber = 5,
     kRobotConfigFieldNumber = 3,
     kLastKnownUpdateFieldNumber = 4,
   };
@@ -18174,6 +18196,24 @@ class UpdateRobotPartRequest final :
   const std::string& _internal_name() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
   std::string* _internal_mutable_name();
+  public:
+
+  // optional string robot_config_json = 5 [json_name = "robotConfigJson"];
+  bool has_robot_config_json() const;
+  private:
+  bool _internal_has_robot_config_json() const;
+  public:
+  void clear_robot_config_json();
+  const std::string& robot_config_json() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_robot_config_json(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_robot_config_json();
+  PROTOBUF_NODISCARD std::string* release_robot_config_json();
+  void set_allocated_robot_config_json(std::string* robot_config_json);
+  private:
+  const std::string& _internal_robot_config_json() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_robot_config_json(const std::string& value);
+  std::string* _internal_mutable_robot_config_json();
   public:
 
   // .google.protobuf.Struct robot_config = 3 [json_name = "robotConfig"];
@@ -18223,6 +18263,7 @@ class UpdateRobotPartRequest final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr robot_config_json_;
   ::PROTOBUF_NAMESPACE_ID::Struct* robot_config_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* last_known_update_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
@@ -49551,6 +49592,74 @@ inline void RobotPart::set_seconds_since_online(int64_t value) {
   // @@protoc_insertion_point(field_set:viam.app.v1.RobotPart.seconds_since_online)
 }
 
+// optional string robot_config_json = 18 [json_name = "robotConfigJson", (.tagger.v1.tags) = "bson:\"config_json,omitempty\" json:\"config_json,omitempty\""];
+inline bool RobotPart::_internal_has_robot_config_json() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool RobotPart::has_robot_config_json() const {
+  return _internal_has_robot_config_json();
+}
+inline void RobotPart::clear_robot_config_json() {
+  robot_config_json_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& RobotPart::robot_config_json() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RobotPart.robot_config_json)
+  return _internal_robot_config_json();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RobotPart::set_robot_config_json(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ robot_config_json_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.RobotPart.robot_config_json)
+}
+inline std::string* RobotPart::mutable_robot_config_json() {
+  std::string* _s = _internal_mutable_robot_config_json();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RobotPart.robot_config_json)
+  return _s;
+}
+inline const std::string& RobotPart::_internal_robot_config_json() const {
+  return robot_config_json_.Get();
+}
+inline void RobotPart::_internal_set_robot_config_json(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  robot_config_json_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RobotPart::_internal_mutable_robot_config_json() {
+  _has_bits_[0] |= 0x00000001u;
+  return robot_config_json_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RobotPart::release_robot_config_json() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RobotPart.robot_config_json)
+  if (!_internal_has_robot_config_json()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = robot_config_json_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (robot_config_json_.IsDefault()) {
+    robot_config_json_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void RobotPart::set_allocated_robot_config_json(std::string* robot_config_json) {
+  if (robot_config_json != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  robot_config_json_.SetAllocated(robot_config_json, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (robot_config_json_.IsDefault()) {
+    robot_config_json_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RobotPart.robot_config_json)
+}
+
 // -------------------------------------------------------------------
 
 // RobotPartHistoryEntry
@@ -60180,7 +60289,7 @@ inline void UpdateRobotPartRequest::set_allocated_robot_config(::PROTOBUF_NAMESP
 
 // optional .google.protobuf.Timestamp last_known_update = 4 [json_name = "lastKnownUpdate"];
 inline bool UpdateRobotPartRequest::_internal_has_last_known_update() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || last_known_update_ != nullptr);
   return value;
 }
@@ -60203,14 +60312,14 @@ inline void UpdateRobotPartRequest::unsafe_arena_set_allocated_last_known_update
   }
   last_known_update_ = last_known_update;
   if (last_known_update) {
-    _has_bits_[0] |= 0x00000001u;
+    _has_bits_[0] |= 0x00000002u;
   } else {
-    _has_bits_[0] &= ~0x00000001u;
+    _has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateRobotPartRequest.last_known_update)
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateRobotPartRequest::release_last_known_update() {
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_known_update_;
   last_known_update_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -60226,13 +60335,13 @@ inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateRobotPartRequest::release_last_
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateRobotPartRequest::unsafe_arena_release_last_known_update() {
   // @@protoc_insertion_point(field_release:viam.app.v1.UpdateRobotPartRequest.last_known_update)
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_known_update_;
   last_known_update_ = nullptr;
   return temp;
 }
 inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateRobotPartRequest::_internal_mutable_last_known_update() {
-  _has_bits_[0] |= 0x00000001u;
+  _has_bits_[0] |= 0x00000002u;
   if (last_known_update_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
     last_known_update_ = p;
@@ -60257,12 +60366,80 @@ inline void UpdateRobotPartRequest::set_allocated_last_known_update(::PROTOBUF_N
       last_known_update = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, last_known_update, submessage_arena);
     }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  last_known_update_ = last_known_update;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRobotPartRequest.last_known_update)
+}
+
+// optional string robot_config_json = 5 [json_name = "robotConfigJson"];
+inline bool UpdateRobotPartRequest::_internal_has_robot_config_json() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UpdateRobotPartRequest::has_robot_config_json() const {
+  return _internal_has_robot_config_json();
+}
+inline void UpdateRobotPartRequest::clear_robot_config_json() {
+  robot_config_json_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& UpdateRobotPartRequest::robot_config_json() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateRobotPartRequest.robot_config_json)
+  return _internal_robot_config_json();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateRobotPartRequest::set_robot_config_json(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ robot_config_json_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UpdateRobotPartRequest.robot_config_json)
+}
+inline std::string* UpdateRobotPartRequest::mutable_robot_config_json() {
+  std::string* _s = _internal_mutable_robot_config_json();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateRobotPartRequest.robot_config_json)
+  return _s;
+}
+inline const std::string& UpdateRobotPartRequest::_internal_robot_config_json() const {
+  return robot_config_json_.Get();
+}
+inline void UpdateRobotPartRequest::_internal_set_robot_config_json(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  robot_config_json_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateRobotPartRequest::_internal_mutable_robot_config_json() {
+  _has_bits_[0] |= 0x00000001u;
+  return robot_config_json_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateRobotPartRequest::release_robot_config_json() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateRobotPartRequest.robot_config_json)
+  if (!_internal_has_robot_config_json()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = robot_config_json_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (robot_config_json_.IsDefault()) {
+    robot_config_json_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void UpdateRobotPartRequest::set_allocated_robot_config_json(std::string* robot_config_json) {
+  if (robot_config_json != nullptr) {
     _has_bits_[0] |= 0x00000001u;
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  last_known_update_ = last_known_update;
-  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRobotPartRequest.last_known_update)
+  robot_config_json_.SetAllocated(robot_config_json, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (robot_config_json_.IsDefault()) {
+    robot_config_json_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRobotPartRequest.robot_config_json)
 }
 
 // -------------------------------------------------------------------
