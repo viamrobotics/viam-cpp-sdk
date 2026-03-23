@@ -2,7 +2,7 @@
 from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
-class {{ .ModuleName }}Recipe(ConanFile):
+class {{ .ModulePascal }}Recipe(ConanFile):
     name = "{{ .ModuleName }}"
     version = "0.1"
     package_type = "application"
