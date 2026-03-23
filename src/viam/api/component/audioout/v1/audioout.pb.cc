@@ -95,7 +95,7 @@ const char descriptor_table_protodef_component_2faudioout_2fv1_2faudioout_2eprot
   "\030\002 \001(\014R\taudioData\0228\n\naudio_info\030\003 \001(\0132\031."
   "viam.common.v1.AudioInfoR\taudioInfo\022-\n\005e"
   "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
-  "ra\"\016\n\014PlayResponse2\342\004\n\017AudioOutService\022\216"
+  "ra\"\016\n\014PlayResponse2\356\005\n\017AudioOutService\022\216"
   "\001\n\004Play\022\'.viam.component.audioout.v1.Pla"
   "yRequest\032(.viam.component.audioout.v1.Pl"
   "ayResponse\"3\202\323\344\223\002-\"+/viam/api/v1/compone"
@@ -106,13 +106,17 @@ const char descriptor_table_protodef_component_2faudioout_2fv1_2faudioout_2eprot
   "{name}/properties\022\211\001\n\tDoCommand\022 .viam.c"
   "ommon.v1.DoCommandRequest\032!.viam.common."
   "v1.DoCommandResponse\"7\202\323\344\223\0021\"//viam/api/"
-  "v1/service/audioout/{name}/do_command\022\227\001"
-  "\n\rGetGeometries\022$.viam.common.v1.GetGeom"
-  "etriesRequest\032%.viam.common.v1.GetGeomet"
-  "riesResponse\"9\202\323\344\223\0023\0221/viam/api/v1/compo"
-  "nent/audioout/{name}/geometriesBG\n\036com.v"
-  "iam.component.audioout.v1Z%go.viam.com/a"
-  "pi/component/audioout/v1b\006proto3"
+  "v1/service/audioout/{name}/do_command\022\211\001"
+  "\n\tGetStatus\022 .viam.common.v1.GetStatusRe"
+  "quest\032!.viam.common.v1.GetStatusResponse"
+  "\"7\202\323\344\223\0021\022//viam/api/v1/service/audioout/"
+  "{name}/get_status\022\227\001\n\rGetGeometries\022$.vi"
+  "am.common.v1.GetGeometriesRequest\032%.viam"
+  ".common.v1.GetGeometriesResponse\"9\202\323\344\223\0023"
+  "\0221/viam/api/v1/component/audioout/{name}"
+  "/geometriesBG\n\036com.viam.component.audioo"
+  "ut.v1Z%go.viam.com/api/component/audioou"
+  "t/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -121,7 +125,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2faudioou
 };
 static ::_pbi::once_flag descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto = {
-    false, false, 1032, descriptor_table_protodef_component_2faudioout_2fv1_2faudioout_2eproto,
+    false, false, 1172, descriptor_table_protodef_component_2faudioout_2fv1_2faudioout_2eproto,
     "component/audioout/v1/audioout.proto",
     &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once, descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_deps, 3, 2,
     schemas, file_default_instances, TableStruct_component_2faudioout_2fv1_2faudioout_2eproto::offsets,

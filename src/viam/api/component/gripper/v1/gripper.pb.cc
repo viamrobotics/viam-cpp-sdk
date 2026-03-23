@@ -279,7 +279,7 @@ const char descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto[
   "obuf.StructR\005extra\"{\n\032IsHoldingSomething"
   "Response\0220\n\024is_holding_something\030\001 \001(\010R\022"
   "isHoldingSomething\022+\n\004meta\030c \001(\0132\027.googl"
-  "e.protobuf.StructR\004meta2\350\t\n\016GripperServi"
+  "e.protobuf.StructR\004meta2\365\n\n\016GripperServi"
   "ce\022\217\001\n\004Open\022&.viam.component.gripper.v1."
   "OpenRequest\032\'.viam.component.gripper.v1."
   "OpenResponse\"6\240\222)\001\202\323\344\223\002,\032*/viam/api/v1/c"
@@ -303,17 +303,20 @@ const char descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto[
   "DoCommand\022 .viam.common.v1.DoCommandRequ"
   "est\032!.viam.common.v1.DoCommandResponse\"8"
   "\202\323\344\223\0022\"0/viam/api/v1/component/gripper/{"
-  "name}/do_command\022\226\001\n\rGetGeometries\022$.via"
-  "m.common.v1.GetGeometriesRequest\032%.viam."
-  "common.v1.GetGeometriesResponse\"8\202\323\344\223\0022\022"
-  "0/viam/api/v1/component/gripper/{name}/g"
-  "eometries\022\226\001\n\rGetKinematics\022$.viam.commo"
-  "n.v1.GetKinematicsRequest\032%.viam.common."
-  "v1.GetKinematicsResponse\"8\202\323\344\223\0022\0220/viam/"
-  "api/v1/component/gripper/{name}/kinemati"
-  "csBE\n\035com.viam.component.gripper.v1Z$go."
-  "viam.com/api/component/gripper/v1b\006proto"
-  "3"
+  "name}/do_command\022\212\001\n\tGetStatus\022 .viam.co"
+  "mmon.v1.GetStatusRequest\032!.viam.common.v"
+  "1.GetStatusResponse\"8\202\323\344\223\0022\0220/viam/api/v"
+  "1/component/gripper/{name}/get_status\022\226\001"
+  "\n\rGetGeometries\022$.viam.common.v1.GetGeom"
+  "etriesRequest\032%.viam.common.v1.GetGeomet"
+  "riesResponse\"8\202\323\344\223\0022\0220/viam/api/v1/compo"
+  "nent/gripper/{name}/geometries\022\226\001\n\rGetKi"
+  "nematics\022$.viam.common.v1.GetKinematicsR"
+  "equest\032%.viam.common.v1.GetKinematicsRes"
+  "ponse\"8\202\323\344\223\0022\0220/viam/api/v1/component/gr"
+  "ipper/{name}/kinematicsBE\n\035com.viam.comp"
+  "onent.gripper.v1Z$go.viam.com/api/compon"
+  "ent/gripper/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -322,7 +325,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fgripper
 };
 static ::_pbi::once_flag descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto = {
-    false, false, 2161, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
+    false, false, 2302, descriptor_table_protodef_component_2fgripper_2fv1_2fgripper_2eproto,
     "component/gripper/v1/gripper.proto",
     &descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_once, descriptor_table_component_2fgripper_2fv1_2fgripper_2eproto_deps, 3, 10,
     schemas, file_default_instances, TableStruct_component_2fgripper_2fv1_2fgripper_2eproto::offsets,

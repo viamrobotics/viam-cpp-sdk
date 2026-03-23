@@ -205,7 +205,7 @@ const char descriptor_table_protodef_service_2fworldstatestore_2fv1_2fworld_5fst
   "formChangeType\022%\n!TRANSFORM_CHANGE_TYPE_"
   "UNSPECIFIED\020\000\022\037\n\033TRANSFORM_CHANGE_TYPE_A"
   "DDED\020\001\022!\n\035TRANSFORM_CHANGE_TYPE_REMOVED\020"
-  "\002\022!\n\035TRANSFORM_CHANGE_TYPE_UPDATED\020\0032\214\005\n"
+  "\002\022!\n\035TRANSFORM_CHANGE_TYPE_UPDATED\020\0032\237\006\n"
   "\026WorldStateStoreService\022t\n\tListUUIDs\0221.v"
   "iam.service.worldstatestore.v1.ListUUIDs"
   "Request\0322.viam.service.worldstatestore.v"
@@ -222,9 +222,13 @@ const char descriptor_table_protodef_service_2fworldstatestore_2fv1_2fworld_5fst
   ".viam.common.v1.DoCommandRequest\032!.viam."
   "common.v1.DoCommandResponse\">\202\323\344\223\0028\"6/vi"
   "am/api/v1/service/worldstatestore/{name}"
-  "/do_commandBQ\n#com.viam.service.worldsta"
-  "testore.v1Z*go.viam.com/api/service/worl"
-  "dstatestore/v1b\006proto3"
+  "/do_command\022\220\001\n\tGetStatus\022 .viam.common."
+  "v1.GetStatusRequest\032!.viam.common.v1.Get"
+  "StatusResponse\">\202\323\344\223\0028\0226/viam/api/v1/ser"
+  "vice/worldstatestore/{name}/get_statusBQ"
+  "\n#com.viam.service.worldstatestore.v1Z*g"
+  "o.viam.com/api/service/worldstatestore/v"
+  "1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fworldstatestore_2fv1_2fworld_5fstate_5fstore_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -234,7 +238,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fworldstat
 };
 static ::_pbi::once_flag descriptor_table_service_2fworldstatestore_2fv1_2fworld_5fstate_5fstore_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fworldstatestore_2fv1_2fworld_5fstate_5fstore_2eproto = {
-    false, false, 1782, descriptor_table_protodef_service_2fworldstatestore_2fv1_2fworld_5fstate_5fstore_2eproto,
+    false, false, 1929, descriptor_table_protodef_service_2fworldstatestore_2fv1_2fworld_5fstate_5fstore_2eproto,
     "service/worldstatestore/v1/world_state_store.proto",
     &descriptor_table_service_2fworldstatestore_2fv1_2fworld_5fstate_5fstore_2eproto_once, descriptor_table_service_2fworldstatestore_2fv1_2fworld_5fstate_5fstore_2eproto_deps, 4, 6,
     schemas, file_default_instances, TableStruct_service_2fworldstatestore_2fv1_2fworld_5fstate_5fstore_2eproto::offsets,

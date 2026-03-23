@@ -390,7 +390,7 @@ const char descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto[] PROT
   "e\022!\n\014width_meters\030\001 \001(\001R\013widthMeters\0222\n\025"
   "turning_radius_meters\030\002 \001(\001R\023turningRadi"
   "usMeters\022<\n\032wheel_circumference_meters\030\003"
-  " \001(\001R\030wheelCircumferenceMeters2\341\n\n\013BaseS"
+  " \001(\001R\030wheelCircumferenceMeters2\353\013\n\013BaseS"
   "ervice\022\247\001\n\014MoveStraight\022+.viam.component"
   ".base.v1.MoveStraightRequest\032,.viam.comp"
   "onent.base.v1.MoveStraightResponse\"<\240\222)\001"
@@ -417,17 +417,20 @@ const char descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto[] PROT
   "\tDoCommand\022 .viam.common.v1.DoCommandReq"
   "uest\032!.viam.common.v1.DoCommandResponse\""
   "5\202\323\344\223\002/\"-/viam/api/v1/component/base/{na"
-  "me}/do_command\022\223\001\n\rGetGeometries\022$.viam."
-  "common.v1.GetGeometriesRequest\032%.viam.co"
-  "mmon.v1.GetGeometriesResponse\"5\202\323\344\223\002/\022-/"
-  "viam/api/v1/component/base/{name}/geomet"
-  "ries\022\243\001\n\rGetProperties\022,.viam.component."
-  "base.v1.GetPropertiesRequest\032-.viam.comp"
-  "onent.base.v1.GetPropertiesResponse\"5\202\323\344"
-  "\223\002/\022-/viam/api/v1/component/base/{name}/"
-  "propertiesB\?\n\032com.viam.component.base.v1"
-  "Z!go.viam.com/api/component/base/v1b\006pro"
-  "to3"
+  "me}/do_command\022\207\001\n\tGetStatus\022 .viam.comm"
+  "on.v1.GetStatusRequest\032!.viam.common.v1."
+  "GetStatusResponse\"5\202\323\344\223\002/\022-/viam/api/v1/"
+  "component/base/{name}/get_status\022\223\001\n\rGet"
+  "Geometries\022$.viam.common.v1.GetGeometrie"
+  "sRequest\032%.viam.common.v1.GetGeometriesR"
+  "esponse\"5\202\323\344\223\002/\022-/viam/api/v1/component/"
+  "base/{name}/geometries\022\243\001\n\rGetProperties"
+  "\022,.viam.component.base.v1.GetPropertiesR"
+  "equest\032-.viam.component.base.v1.GetPrope"
+  "rtiesResponse\"5\202\323\344\223\002/\022-/viam/api/v1/comp"
+  "onent/base/{name}/propertiesB\?\n\032com.viam"
+  ".component.base.v1Z!go.viam.com/api/comp"
+  "onent/base/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbase_2fv1_2fbase_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -436,7 +439,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fbase_2f
 };
 static ::_pbi::once_flag descriptor_table_component_2fbase_2fv1_2fbase_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fbase_2fv1_2fbase_2eproto = {
-    false, false, 2803, descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto,
+    false, false, 2941, descriptor_table_protodef_component_2fbase_2fv1_2fbase_2eproto,
     "component/base/v1/base.proto",
     &descriptor_table_component_2fbase_2fv1_2fbase_2eproto_once, descriptor_table_component_2fbase_2fv1_2fbase_2eproto_deps, 3, 14,
     schemas, file_default_instances, TableStruct_component_2fbase_2fv1_2fbase_2eproto::offsets,

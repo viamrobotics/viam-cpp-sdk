@@ -32,6 +32,7 @@ static const char* BoardService_method_names[] = {
   "/viam.component.board.v1.BoardService/PWMFrequency",
   "/viam.component.board.v1.BoardService/SetPWMFrequency",
   "/viam.component.board.v1.BoardService/DoCommand",
+  "/viam.component.board.v1.BoardService/GetStatus",
   "/viam.component.board.v1.BoardService/ReadAnalogReader",
   "/viam.component.board.v1.BoardService/WriteAnalog",
   "/viam.component.board.v1.BoardService/GetDigitalInterruptValue",
@@ -54,12 +55,13 @@ BoardService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_PWMFrequency_(BoardService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetPWMFrequency_(BoardService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DoCommand_(BoardService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ReadAnalogReader_(BoardService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_WriteAnalog_(BoardService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StreamTicks_(BoardService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SetPowerMode_(BoardService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(BoardService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(BoardService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReadAnalogReader_(BoardService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_WriteAnalog_(BoardService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDigitalInterruptValue_(BoardService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamTicks_(BoardService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SetPowerMode_(BoardService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(BoardService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status BoardService::Stub::SetGPIO(::grpc::ClientContext* context, const ::viam::component::board::v1::SetGPIORequest& request, ::viam::component::board::v1::SetGPIOResponse* response) {
@@ -219,6 +221,29 @@ void BoardService::Stub::async::DoCommand(::grpc::ClientContext* context, const 
 ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* BoardService::Stub::AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncDoCommandRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status BoardService::Stub::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::viam::common::v1::GetStatusResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetStatus_, context, request, response);
+}
+
+void BoardService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, std::move(f));
+}
+
+void BoardService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* BoardService::Stub::PrepareAsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetStatusResponse, ::viam::common::v1::GetStatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetStatus_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* BoardService::Stub::AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetStatusRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -428,6 +453,16 @@ BoardService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       BoardService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BoardService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::common::v1::GetStatusRequest* req,
+             ::viam::common::v1::GetStatusResponse* resp) {
+               return service->GetStatus(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      BoardService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::ReadAnalogReaderRequest, ::viam::component::board::v1::ReadAnalogReaderResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -436,7 +471,7 @@ BoardService::Service::Service() {
                return service->ReadAnalogReader(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[8],
+      BoardService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::WriteAnalogRequest, ::viam::component::board::v1::WriteAnalogResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -446,7 +481,7 @@ BoardService::Service::Service() {
                return service->WriteAnalog(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[9],
+      BoardService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::GetDigitalInterruptValueRequest, ::viam::component::board::v1::GetDigitalInterruptValueResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -456,7 +491,7 @@ BoardService::Service::Service() {
                return service->GetDigitalInterruptValue(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[10],
+      BoardService_method_names[11],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< BoardService::Service, ::viam::component::board::v1::StreamTicksRequest, ::viam::component::board::v1::StreamTicksResponse>(
           [](BoardService::Service* service,
@@ -466,7 +501,7 @@ BoardService::Service::Service() {
                return service->StreamTicks(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[11],
+      BoardService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::component::board::v1::SetPowerModeRequest, ::viam::component::board::v1::SetPowerModeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -476,7 +511,7 @@ BoardService::Service::Service() {
                return service->SetPowerMode(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BoardService_method_names[12],
+      BoardService_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< BoardService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](BoardService::Service* service,
@@ -533,6 +568,13 @@ BoardService::Service::~Service() {
 }
 
 ::grpc::Status BoardService::Service::DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status BoardService::Service::GetStatus(::grpc::ServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) {
   (void) context;
   (void) request;
   (void) response;
