@@ -31,6 +31,7 @@ static const char* CameraService_method_names[] = {
   "/viam.component.camera.v1.CameraService/GetPointCloud",
   "/viam.component.camera.v1.CameraService/GetProperties",
   "/viam.component.camera.v1.CameraService/DoCommand",
+  "/viam.component.camera.v1.CameraService/GetStatus",
   "/viam.component.camera.v1.CameraService/GetGeometries",
 };
 
@@ -47,7 +48,8 @@ CameraService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_GetPointCloud_(CameraService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetProperties_(CameraService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DoCommand_(CameraService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(CameraService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(CameraService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(CameraService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status CameraService::Stub::GetImage(::grpc::ClientContext* context, const ::viam::component::camera::v1::GetImageRequest& request, ::viam::component::camera::v1::GetImageResponse* response) {
@@ -188,6 +190,29 @@ void CameraService::Stub::async::DoCommand(::grpc::ClientContext* context, const
   return result;
 }
 
+::grpc::Status CameraService::Stub::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::viam::common::v1::GetStatusResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetStatus_, context, request, response);
+}
+
+void CameraService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, std::move(f));
+}
+
+void CameraService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* CameraService::Stub::PrepareAsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetStatusResponse, ::viam::common::v1::GetStatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetStatus_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* CameraService::Stub::AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetStatusRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status CameraService::Stub::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::viam::common::v1::GetGeometriesResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
 }
@@ -275,6 +300,16 @@ CameraService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CameraService_method_names[6],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< CameraService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](CameraService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::common::v1::GetStatusRequest* req,
+             ::viam::common::v1::GetStatusResponse* resp) {
+               return service->GetStatus(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      CameraService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< CameraService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CameraService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -323,6 +358,13 @@ CameraService::Service::~Service() {
 }
 
 ::grpc::Status CameraService::Service::DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status CameraService::Service::GetStatus(::grpc::ServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -36,6 +36,7 @@ static const char* MotorService_method_names[] = {
   "/viam.component.motor.v1.MotorService/IsPowered",
   "/viam.component.motor.v1.MotorService/IsMoving",
   "/viam.component.motor.v1.MotorService/DoCommand",
+  "/viam.component.motor.v1.MotorService/GetStatus",
   "/viam.component.motor.v1.MotorService/GetGeometries",
 };
 
@@ -57,7 +58,8 @@ MotorService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_IsPowered_(MotorService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_IsMoving_(MotorService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DoCommand_(MotorService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(MotorService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(MotorService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(MotorService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MotorService::Stub::SetPower(::grpc::ClientContext* context, const ::viam::component::motor::v1::SetPowerRequest& request, ::viam::component::motor::v1::SetPowerResponse* response) {
@@ -313,6 +315,29 @@ void MotorService::Stub::async::DoCommand(::grpc::ClientContext* context, const 
   return result;
 }
 
+::grpc::Status MotorService::Stub::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::viam::common::v1::GetStatusResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetStatus_, context, request, response);
+}
+
+void MotorService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, std::move(f));
+}
+
+void MotorService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* MotorService::Stub::PrepareAsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetStatusResponse, ::viam::common::v1::GetStatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetStatus_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* MotorService::Stub::AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetStatusRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status MotorService::Stub::GetGeometries(::grpc::ClientContext* context, const ::viam::common::v1::GetGeometriesRequest& request, ::viam::common::v1::GetGeometriesResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGeometries_, context, request, response);
 }
@@ -450,6 +475,16 @@ MotorService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MotorService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MotorService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::common::v1::GetStatusRequest* req,
+             ::viam::common::v1::GetStatusResponse* resp) {
+               return service->GetStatus(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MotorService_method_names[12],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< MotorService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MotorService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -533,6 +568,13 @@ MotorService::Service::~Service() {
 }
 
 ::grpc::Status MotorService::Service::DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MotorService::Service::GetStatus(::grpc::ServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) {
   (void) context;
   (void) request;
   (void) response;

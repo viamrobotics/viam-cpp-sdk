@@ -517,7 +517,7 @@ const char descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto[] 
   "ationR\013orientation*l\n\006Format\022\026\n\022FORMAT_U"
   "NSPECIFIED\020\000\022\023\n\017FORMAT_RAW_RGBA\020\001\022\024\n\020FOR"
   "MAT_RAW_DEPTH\020\002\022\017\n\013FORMAT_JPEG\020\003\022\016\n\nFORM"
-  "AT_PNG\020\0042\317\010\n\rCameraService\022\225\001\n\010GetImage\022"
+  "AT_PNG\020\0042\333\t\n\rCameraService\022\225\001\n\010GetImage\022"
   ").viam.component.camera.v1.GetImageReque"
   "st\032*.viam.component.camera.v1.GetImageRe"
   "sponse\"2\202\323\344\223\002,\022*/viam/api/v1/component/c"
@@ -541,12 +541,16 @@ const char descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto[] 
   "iam.common.v1.DoCommandRequest\032!.viam.co"
   "mmon.v1.DoCommandResponse\"7\202\323\344\223\0021\"//viam"
   "/api/v1/component/camera/{name}/do_comma"
-  "nd\022\225\001\n\rGetGeometries\022$.viam.common.v1.Ge"
-  "tGeometriesRequest\032%.viam.common.v1.GetG"
-  "eometriesResponse\"7\202\323\344\223\0021\022//viam/api/v1/"
-  "component/camera/{name}/geometriesBC\n\034co"
-  "m.viam.component.camera.v1Z#go.viam.com/"
-  "api/component/camera/v1b\006proto3"
+  "nd\022\211\001\n\tGetStatus\022 .viam.common.v1.GetSta"
+  "tusRequest\032!.viam.common.v1.GetStatusRes"
+  "ponse\"7\202\323\344\223\0021\022//viam/api/v1/component/ca"
+  "mera/{name}/get_status\022\225\001\n\rGetGeometries"
+  "\022$.viam.common.v1.GetGeometriesRequest\032%"
+  ".viam.common.v1.GetGeometriesResponse\"7\202"
+  "\323\344\223\0021\022//viam/api/v1/component/camera/{na"
+  "me}/geometriesBC\n\034com.viam.component.cam"
+  "era.v1Z#go.viam.com/api/component/camera"
+  "/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps[5] = {
   &::descriptor_table_app_2fdata_2fv1_2fdata_2eproto,
@@ -557,7 +561,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fcamera_
 };
 static ::_pbi::once_flag descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto = {
-    false, false, 3791, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
+    false, false, 3931, descriptor_table_protodef_component_2fcamera_2fv1_2fcamera_2eproto,
     "component/camera/v1/camera.proto",
     &descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_once, descriptor_table_component_2fcamera_2fv1_2fcamera_2eproto_deps, 5, 16,
     schemas, file_default_instances, TableStruct_component_2fcamera_2fv1_2fcamera_2eproto::offsets,

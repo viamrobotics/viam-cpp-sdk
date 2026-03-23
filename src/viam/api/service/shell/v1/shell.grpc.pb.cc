@@ -29,6 +29,7 @@ static const char* ShellService_method_names[] = {
   "/viam.service.shell.v1.ShellService/CopyFilesToMachine",
   "/viam.service.shell.v1.ShellService/CopyFilesFromMachine",
   "/viam.service.shell.v1.ShellService/DoCommand",
+  "/viam.service.shell.v1.ShellService/GetStatus",
 };
 
 std::unique_ptr< ShellService::Stub> ShellService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -42,6 +43,7 @@ ShellService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_CopyFilesToMachine_(ShellService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   , rpcmethod_CopyFilesFromMachine_(ShellService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   , rpcmethod_DoCommand_(ShellService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(ShellService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::ClientReaderWriter< ::viam::service::shell::v1::ShellRequest, ::viam::service::shell::v1::ShellResponse>* ShellService::Stub::ShellRaw(::grpc::ClientContext* context) {
@@ -115,6 +117,29 @@ void ShellService::Stub::async::DoCommand(::grpc::ClientContext* context, const 
   return result;
 }
 
+::grpc::Status ShellService::Stub::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::viam::common::v1::GetStatusResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetStatus_, context, request, response);
+}
+
+void ShellService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, std::move(f));
+}
+
+void ShellService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* ShellService::Stub::PrepareAsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetStatusResponse, ::viam::common::v1::GetStatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetStatus_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* ShellService::Stub::AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetStatusRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ShellService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       ShellService_method_names[0],
@@ -156,6 +181,16 @@ ShellService::Service::Service() {
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      ShellService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< ShellService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](ShellService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::common::v1::GetStatusRequest* req,
+             ::viam::common::v1::GetStatusResponse* resp) {
+               return service->GetStatus(ctx, req, resp);
+             }, this)));
 }
 
 ShellService::Service::~Service() {
@@ -180,6 +215,13 @@ ShellService::Service::~Service() {
 }
 
 ::grpc::Status ShellService::Service::DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status ShellService::Service::GetStatus(::grpc::ServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) {
   (void) context;
   (void) request;
   (void) response;
