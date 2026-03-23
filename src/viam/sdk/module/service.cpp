@@ -38,7 +38,6 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/handler_map.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/resource/resource.hpp>
 #include <viam/sdk/resource/resource_api.hpp>
 #include <viam/sdk/resource/resource_manager.hpp>
@@ -115,15 +114,13 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         // `res` below will keep the refcount high until the function exits, fouling up the order of
         // operations for replacing a resource.
         {
-            // see if our resource is reconfigurable. if it is, reconfigure
             const std::shared_ptr<Resource> res = manager->resource(cfg.resource_name().name());
             if (!res) {
                 return grpc::Status(grpc::UNKNOWN,
-                                    "unable to reconfigure resource " + cfg.resource_name().name() +
+                                    "unable to stop resource " + cfg.resource_name().name() +
                                         " as it doesn't exist.");
             }
 
-            // if the type isn't reconfigurable by default, replace it
             if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
                 stoppable->stop();
             }
