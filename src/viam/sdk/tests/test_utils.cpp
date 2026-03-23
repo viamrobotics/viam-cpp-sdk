@@ -17,6 +17,10 @@ ProtoStruct fake_map() {
     return {{"test", "hello"}};
 }
 
+ProtoStruct fake_status() {
+    return {{"is_moving", false}};
+}
+
 std::vector<GeometryConfig> fake_geometries() {
     pose p{1, 2, 3};
     return {GeometryConfig(p, sphere{1}, "sphere"),
