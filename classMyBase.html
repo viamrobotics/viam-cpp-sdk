@@ -86,11 +86,10 @@ $(function() {
  <div class="center">
   <img src="classMyBase.png" usemap="#MyBase_map" alt=""/>
   <map id="MyBase_map" name="MyBase_map">
-<area href="classviam_1_1sdk_1_1Base.html" title="A Base is the platform that the other parts of a mobile robot attach to." alt="viam::sdk::Base" shape="rect" coords="82,112,237,136"/>
-<area href="classviam_1_1sdk_1_1Reconfigurable.html" alt="viam::sdk::Reconfigurable" shape="rect" coords="247,112,402,136"/>
-<area href="classviam_1_1sdk_1_1Component.html" alt="viam::sdk::Component" shape="rect" coords="0,56,155,80"/>
-<area href="classviam_1_1sdk_1_1Stoppable.html" alt="viam::sdk::Stoppable" shape="rect" coords="165,56,320,80"/>
-<area href="classviam_1_1sdk_1_1Resource.html" alt="viam::sdk::Resource" shape="rect" coords="0,0,155,24"/>
+<area href="classviam_1_1sdk_1_1Base.html" title="A Base is the platform that the other parts of a mobile robot attach to." alt="viam::sdk::Base" shape="rect" coords="71,112,203,136"/>
+<area href="classviam_1_1sdk_1_1Component.html" alt="viam::sdk::Component" shape="rect" coords="0,56,132,80"/>
+<area href="classviam_1_1sdk_1_1Stoppable.html" alt="viam::sdk::Stoppable" shape="rect" coords="142,56,274,80"/>
+<area href="classviam_1_1sdk_1_1Resource.html" alt="viam::sdk::Resource" shape="rect" coords="0,0,132,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -99,9 +98,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac957fdc9de5d211ec29f6c1393145e44" id="r_ac957fdc9de5d211ec29f6c1393145e44"><td class="memItemLeft" align="right" valign="top"><a id="ac957fdc9de5d211ec29f6c1393145e44" name="ac957fdc9de5d211ec29f6c1393145e44"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MyBase</b> (const Dependencies &amp;deps, const <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> &amp;cfg)</td></tr>
 <tr class="separator:ac957fdc9de5d211ec29f6c1393145e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19cf917825bfcb6ba87cf270effd6554" id="r_a19cf917825bfcb6ba87cf270effd6554"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19cf917825bfcb6ba87cf270effd6554">reconfigure</a> (const Dependencies &amp;deps, const <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> &amp;cfg) override</td></tr>
-<tr class="memdesc:a19cf917825bfcb6ba87cf270effd6554"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigures a resource.  <br /></td></tr>
-<tr class="separator:a19cf917825bfcb6ba87cf270effd6554"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87169d048da1ca6f0e43ca4be1782fe1" id="r_a87169d048da1ca6f0e43ca4be1782fe1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87169d048da1ca6f0e43ca4be1782fe1">is_moving</a> () override</td></tr>
 <tr class="memdesc:a87169d048da1ca6f0e43ca4be1782fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the base is in motion.  <br /></td></tr>
 <tr class="separator:a87169d048da1ca6f0e43ca4be1782fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -379,46 +375,6 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Base.html#a7467627ee189d17d06b52d54ff2fe1d7">viam::sdk::Base</a>.</p>
-
-</div>
-</div>
-<a id="a19cf917825bfcb6ba87cf270effd6554" name="a19cf917825bfcb6ba87cf270effd6554"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19cf917825bfcb6ba87cf270effd6554">&#9670;&#160;</a></span>reconfigure()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MyBase::reconfigure </td>
-          <td>(</td>
-          <td class="paramtype">const Dependencies &amp;</td>          <td class="paramname"><span class="paramname"><em>deps</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classviam_1_1sdk_1_1ResourceConfig.html">ResourceConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cfg</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Reconfigures a resource. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">deps</td><td>Dependencies of the resource. </td></tr>
-    <tr><td class="paramname">cfg</td><td>The resource's config. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classviam_1_1sdk_1_1Reconfigurable.html#a6a521fc5b45038cb529cbed46d7d3807">viam::sdk::Reconfigurable</a>.</p>
 
 </div>
 </div>
