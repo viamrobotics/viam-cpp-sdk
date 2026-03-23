@@ -14,7 +14,6 @@
 #include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 
 using namespace viam::sdk;
 
@@ -22,13 +21,9 @@ using namespace viam::sdk;
 // "multiplier" value which is then returned as the only sensor reading.
 class MySensor : public Sensor {
    public:
-    MySensor(const ResourceConfig& cfg) : Sensor(cfg.name()) {
-        this->reconfigure({}, cfg);
-    }
+    MySensor(const ResourceConfig& cfg);
 
     static std::vector<std::string> validate(const ResourceConfig&);
-
-    void reconfigure(const Dependencies&, const ResourceConfig&);
 
     ProtoStruct do_command(const ProtoStruct&) override;
 
@@ -41,6 +36,16 @@ class MySensor : public Sensor {
    private:
     double multiplier_{1.0};
 };
+
+MySensor::MySensor(const ResourceConfig& cfg) : Sensor(cfg.name()) {
+    auto itr = cfg.attributes().find("multiplier");
+    if (itr != cfg.attributes().end()) {
+        const double* multiplier = itr->second.get<double>();
+        if (multiplier) {
+            multiplier_ = *multiplier;
+        }
+    }
+}
 
 std::vector<std::string> MySensor::validate(const ResourceConfig& cfg) {
     auto itr = cfg.attributes().find("multiplier");
@@ -56,16 +61,6 @@ std::vector<std::string> MySensor::validate(const ResourceConfig& cfg) {
     }
 
     return {};
-}
-
-void MySensor::reconfigure(const Dependencies&, const ResourceConfig& cfg) {
-    auto itr = cfg.attributes().find("multiplier");
-    if (itr != cfg.attributes().end()) {
-        const double* multiplier = itr->second.get<double>();
-        if (multiplier) {
-            multiplier_ = *multiplier;
-        }
-    }
 }
 
 ProtoStruct MySensor::do_command(const ProtoStruct& command) {

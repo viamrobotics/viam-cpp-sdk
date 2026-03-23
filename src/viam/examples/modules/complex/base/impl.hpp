@@ -4,20 +4,16 @@
 #include <viam/sdk/components/component.hpp>
 #include <viam/sdk/components/motor.hpp>
 #include <viam/sdk/config/resource.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/resource/resource.hpp>
 
 using namespace viam::sdk;
 
 // `MyBase` inherits from the `Base` class defined in the viam C++ SDK and
-// implements some of the relevant methods along with `reconfigure`. It also
-// specifies a static `validate` method that checks config validity.
+// implements some of the relevant methods. It also specifies a static
+// `validate` method that checks config validity.
 class MyBase : public Base {
    public:
-    MyBase(const Dependencies& deps, const ResourceConfig& cfg) : Base(cfg.name()) {
-        this->reconfigure(deps, cfg);
-    };
-    void reconfigure(const Dependencies& deps, const ResourceConfig& cfg);
+    MyBase(const Dependencies& deps, const ResourceConfig& cfg);
     static std::vector<std::string> validate(ResourceConfig cfg);
 
     bool is_moving() override;

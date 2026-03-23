@@ -10,7 +10,6 @@
 #include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 
 using namespace viam::sdk;
 
@@ -19,12 +18,16 @@ using namespace viam::sdk;
 class MySensor : public Sensor {
    public:
     MySensor(const ResourceConfig& cfg) : Sensor(cfg.name()) {
-        this->reconfigure({}, cfg);
+        auto itr = cfg.attributes().find("multiplier");
+        if (itr != cfg.attributes().end()) {
+            const double* multiplier = itr->second.get<double>();
+            if (multiplier) {
+                multiplier_ = *multiplier;
+            }
+        }
     }
 
     static std::vector<std::string> validate(const ResourceConfig&);
-
-    void reconfigure(const Dependencies&, const ResourceConfig&);
 
     ProtoStruct do_command(const ProtoStruct&) override;
 
@@ -52,16 +55,6 @@ std::vector<std::string> MySensor::validate(const ResourceConfig& cfg) {
     }
 
     return {};
-}
-
-void MySensor::reconfigure(const Dependencies&, const ResourceConfig& cfg) {
-    auto itr = cfg.attributes().find("multiplier");
-    if (itr != cfg.attributes().end()) {
-        const double* multiplier = itr->second.get<double>();
-        if (multiplier) {
-            multiplier_ = *multiplier;
-        }
-    }
 }
 
 ProtoStruct MySensor::do_command(const ProtoStruct& command) {
