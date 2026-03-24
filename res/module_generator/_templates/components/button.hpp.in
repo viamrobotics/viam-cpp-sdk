@@ -5,18 +5,15 @@
 #include <viam/sdk/components/button.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 
 namespace {{ .ModuleName }} {
 
 
-class {{ .ModelPascal }} : public viam::sdk::Button, public viam::sdk::Reconfigurable {
+class {{ .ModelPascal }} : public viam::sdk::Button {
 public:
     {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
 
     static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
-
-    void reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) override;
 
     void push(const viam::sdk::ProtoStruct & extra) override;
 

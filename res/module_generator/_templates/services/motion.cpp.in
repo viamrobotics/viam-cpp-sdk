@@ -8,16 +8,12 @@ namespace {{ .ModuleName }} {
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
     : Motion(cfg.name()) {
-    this->reconfigure(deps, cfg);
+    throw std::runtime_error("constructor not implemented");
 }
 
 
 std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceConfig& cfg) {
     throw std::runtime_error("\"validate\" not implemented");
-}
-
-void {{ .ModelPascal }}::reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) {
-    throw std::runtime_error("\"reconfigure\" not implemented");
 }
 
 bool {{ .ModelPascal }}::move(
