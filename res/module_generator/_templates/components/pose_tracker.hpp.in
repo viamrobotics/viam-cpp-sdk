@@ -5,18 +5,15 @@
 #include <viam/sdk/components/pose_tracker.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 
 namespace {{ .ModuleName }} {
 
 
-class {{ .ModelPascal }} : public viam::sdk::PoseTracker, public viam::sdk::Reconfigurable {
+class {{ .ModelPascal }} : public viam::sdk::PoseTracker {
 public:
     {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
 
     static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
-
-    void reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) override;
 
     viam::sdk::PoseTracker::pose_map get_poses(
         const std::vector<std::string> & body_names,
