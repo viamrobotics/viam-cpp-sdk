@@ -27,6 +27,10 @@ class MySensor : public Sensor {
 
     ProtoStruct do_command(const ProtoStruct&) override;
 
+    ProtoStruct get_status() override {
+        return {};
+    }
+
     std::vector<GeometryConfig> get_geometries(const ProtoStruct&) override {
         throw Exception("method not supported");
     }
