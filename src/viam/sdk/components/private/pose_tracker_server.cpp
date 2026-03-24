@@ -41,9 +41,10 @@ PoseTrackerServer::PoseTrackerServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status PoseTrackerServer::GetStatus(::grpc::ServerContext* context,
-                                            const ::viam::common::v1::GetStatusRequest* request,
-                                            ::viam::common::v1::GetStatusResponse* response) noexcept {
+::grpc::Status PoseTrackerServer::GetStatus(
+    ::grpc::ServerContext* context,
+    const ::viam::common::v1::GetStatusRequest* request,
+    ::viam::common::v1::GetStatusResponse* response) noexcept {
     return make_service_helper<PoseTracker>(
         "PoseTrackerServer::GetStatus", this, context, request)([&](auto&, auto& pose_tracker) {
         const ProtoStruct result = pose_tracker->get_status();

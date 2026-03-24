@@ -82,8 +82,9 @@ ProtoStruct EncoderClient::do_command(const ProtoStruct& command) {
 }
 
 ProtoStruct EncoderClient::get_status() {
-    return make_client_helper(this, *stub_, &StubType::GetStatus)
-        .invoke([](auto& response) { return from_proto(response.result()); });
+    return make_client_helper(this, *stub_, &StubType::GetStatus).invoke([](auto& response) {
+        return from_proto(response.result());
+    });
 }
 
 }  // namespace impl
