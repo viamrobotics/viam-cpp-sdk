@@ -34,6 +34,7 @@ class NavigationClient : public Navigation {
     std::vector<Path> get_paths(const ProtoStruct& extra) override;
     Properties get_properties() override;
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
 
    private:
     using StubType = service::navigation::v1::NavigationService::StubInterface;

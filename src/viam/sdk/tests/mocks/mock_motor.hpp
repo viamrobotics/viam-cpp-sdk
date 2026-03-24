@@ -22,6 +22,7 @@ class MockMotor : public Motor {
     void stop(const viam::sdk::ProtoStruct& extra) override;
     Motor::power_status get_power_status(const viam::sdk::ProtoStruct& extra) override;
     bool is_moving() override;
+    viam::sdk::ProtoStruct get_status() override;
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
     static std::shared_ptr<MockMotor> get_mock_motor();
     virtual std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;

@@ -45,6 +45,7 @@ struct cout_redirect {
 using namespace viam::sdk;
 
 ProtoStruct fake_map();
+ProtoStruct fake_status();
 std::vector<GeometryConfig> fake_geometries();
 std::vector<ResourceConfig> fake_discovered_resources();
 

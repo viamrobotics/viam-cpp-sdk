@@ -17,6 +17,7 @@ class MockButton : public sdk::Button {
 
     void push(const sdk::ProtoStruct& extra) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
 
     bool peek_push_called{false};
     sdk::ProtoStruct peek_command;

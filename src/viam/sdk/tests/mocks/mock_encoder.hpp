@@ -15,6 +15,7 @@ class MockEncoder : public viam::sdk::Encoder {
     Encoder::properties get_properties(const sdk::ProtoStruct& extra) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
     static std::shared_ptr<MockEncoder> get_mock_encoder();
 
     MockEncoder(std::string name) : Encoder(std::move(name)) {}

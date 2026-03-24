@@ -24,6 +24,9 @@ ProtoStruct MockPowerSensor::get_readings(const ProtoStruct&) {
 ProtoStruct MockPowerSensor::do_command(const ProtoStruct& command) {
     return command;
 };
+ProtoStruct MockPowerSensor::get_status() {
+    return fake_status();
+};
 
 std::shared_ptr<MockPowerSensor> MockPowerSensor::get_mock_powersensor() {
     return std::make_shared<MockPowerSensor>("mock_powersensor");

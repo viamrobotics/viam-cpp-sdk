@@ -43,6 +43,10 @@ class SwitchServer : public ResourceServer,
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) noexcept override;
+
+    ::grpc::Status GetStatus(::grpc::ServerContext* context,
+                             const ::viam::common::v1::GetStatusRequest* request,
+                             ::viam::common::v1::GetStatusResponse* response) noexcept override;
 };
 
 }  // namespace impl

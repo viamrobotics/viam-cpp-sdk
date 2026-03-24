@@ -32,6 +32,7 @@ class GantryClient : public Gantry {
     bool is_moving() override;
     void stop(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
     ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) override;
 

@@ -37,6 +37,9 @@ void MockBase::stop(const ProtoStruct&) {
 bool MockBase::is_moving() {
     return false;
 }
+sdk::ProtoStruct MockBase::get_status() {
+    return fake_status();
+}
 Base::properties MockBase::get_properties(const sdk::ProtoStruct&) {
     return fake_properties();
 }

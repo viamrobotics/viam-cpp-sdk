@@ -57,6 +57,10 @@ sdk::KinematicsData MockGantry::get_kinematics(const sdk::ProtoStruct&) {
     return fake_kinematics();
 }
 
+sdk::ProtoStruct MockGantry::get_status() {
+    return fake_status();
+}
+
 }  // namespace gantry
 }  // namespace sdktests
 }  // namespace viam

@@ -41,6 +41,10 @@ ProtoStruct MockPoseTracker::do_command(const ProtoStruct& command) {
     return command;
 }
 
+ProtoStruct MockPoseTracker::get_status() {
+    return fake_status();
+}
+
 std::vector<GeometryConfig> MockPoseTracker::get_geometries(const sdk::ProtoStruct&) {
     return fake_geometries();
 }

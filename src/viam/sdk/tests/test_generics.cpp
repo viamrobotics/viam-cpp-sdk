@@ -51,6 +51,15 @@ BOOST_AUTO_TEST_CASE(test_component_get_geometries) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_component_get_status) {
+    std::shared_ptr<MockGenericComponent> mock = MockGenericComponent::get_mock_generic();
+    client_to_mock_pipeline<GenericComponent>(mock, [](GenericComponent& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 BOOST_AUTO_TEST_CASE(mock_get_service_api) {
     const auto generic = MockGenericService::get_mock_generic();
     auto api = generic->api();
@@ -68,6 +77,15 @@ BOOST_AUTO_TEST_CASE(test_service_do_command) {
         ProtoStruct result_map = client.do_command(command);
 
         BOOST_CHECK(expected.at("test") == result_map.at("test"));
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_service_get_status) {
+    std::shared_ptr<MockGenericService> mock = MockGenericService::get_mock_generic();
+    client_to_mock_pipeline<GenericService>(mock, [](GenericService& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
     });
 }
 

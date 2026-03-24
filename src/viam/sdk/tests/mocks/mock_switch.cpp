@@ -26,6 +26,10 @@ sdk::ProtoStruct MockSwitch::do_command(const sdk::ProtoStruct& command) {
     return (peek_command = command);
 }
 
+sdk::ProtoStruct MockSwitch::get_status() {
+    return fake_status();
+}
+
 }  // namespace switch_
 }  // namespace sdktests
 }  // namespace viam

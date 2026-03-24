@@ -184,6 +184,15 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [](Arm& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_get_3d_models) {
     std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
     client_to_mock_pipeline<Arm>(mock, [](Arm& client) {

@@ -11,6 +11,7 @@ using namespace viam::sdk;
 class MockCamera : public Camera {
    public:
     ProtoStruct do_command(const ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
     image_collection get_images(std::vector<std::string> filter_source_names,
                                 const sdk::ProtoStruct& extra) override;
     point_cloud get_point_cloud(std::string mime_type, const sdk::ProtoStruct& extra) override;
