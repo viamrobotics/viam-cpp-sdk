@@ -38,6 +38,11 @@ bool {{ .ModelPascal }}::is_moving()
     throw std::logic_error("\"is_moving\" not implemented");
 }
 
+viam::sdk::ProtoStruct {{ .ModelPascal }}::get_status()
+{
+    throw std::logic_error("\"get_status\" not implemented");
+}
+
 viam::sdk::ProtoStruct {{ .ModelPascal }}::do_command(const viam::sdk::ProtoStruct & command)
 {
     throw std::logic_error("\"do_command\" not implemented");

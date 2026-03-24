@@ -34,6 +34,11 @@ viam::sdk::ProtoStruct {{ .ModelPascal }}::do_command(const viam::sdk::ProtoStru
     throw std::logic_error("\"do_command\" not implemented");
 }
 
+viam::sdk::ProtoStruct {{ .ModelPascal }}::get_status()
+{
+    throw std::logic_error("\"get_status\" not implemented");
+}
+
 std::vector<viam::sdk::GeometryConfig> {{ .ModelPascal }}::get_geometries(const viam::sdk::ProtoStruct & extra)
 {
     throw std::logic_error("\"get_geometries\" not implemented");
