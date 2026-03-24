@@ -163,6 +163,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:a8e816550a52b1f1ea88c80b71d5c1ea8" id="r_a8e816550a52b1f1ea88c80b71d5c1ea8"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e816550a52b1f1ea88c80b71d5c1ea8">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="memdesc:a8e816550a52b1f1ea88c80b71d5c1ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a8e816550a52b1f1ea88c80b71d5c1ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60c2d0cf73f2e07a8d065eafcd143b6b" id="r_a60c2d0cf73f2e07a8d065eafcd143b6b"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60c2d0cf73f2e07a8d065eafcd143b6b">get_status</a> () override</td></tr>
+<tr class="memdesc:a60c2d0cf73f2e07a8d065eafcd143b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the motion service.  <br /></td></tr>
+<tr class="separator:a60c2d0cf73f2e07a8d065eafcd143b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b3e2eee6ae6a88c8b81aec7c2217767" id="r_a7b3e2eee6ae6a88c8b81aec7c2217767"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Motion_1_1plan__with__status.html">plan_with_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b3e2eee6ae6a88c8b81aec7c2217767">get_latest_plan</a> (const std::string &amp;component_name)</td></tr>
 <tr class="memdesc:a7b3e2eee6ae6a88c8b81aec7c2217767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plan and state history of the most recent execution to move a component. Returns a result if the last execution is still executing, or changed state within the last 24 hours without an intervening robot reinitialization.  <br /></td></tr>
 <tr class="separator:a7b3e2eee6ae6a88c8b81aec7c2217767"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -987,6 +990,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The pose of the component. </dd></dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Motion.html#a0642e37425dba3bbcea010c2ef0adea5">viam::sdk::Motion</a>.</p>
+
+</div>
+</div>
+<a id="a60c2d0cf73f2e07a8d065eafcd143b6b" name="a60c2d0cf73f2e07a8d065eafcd143b6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60c2d0cf73f2e07a8d065eafcd143b6b">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::MotionClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the motion service. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the motion service. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Motion.html#ab75da357ec57811370ef92044f69cd34">viam::sdk::Motion</a>.</p>
 
 </div>
 </div>

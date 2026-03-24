@@ -106,6 +106,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae07607b5e6cfaeab99de862b570edc2b" id="r_ae07607b5e6cfaeab99de862b570edc2b"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae07607b5e6cfaeab99de862b570edc2b">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:ae07607b5e6cfaeab99de862b570edc2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:ae07607b5e6cfaeab99de862b570edc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98bb99994b41db5ed7311e78426d63c7" id="r_a98bb99994b41db5ed7311e78426d63c7"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98bb99994b41db5ed7311e78426d63c7">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a98bb99994b41db5ed7311e78426d63c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the generic component.  <br /></td></tr>
+<tr class="separator:a98bb99994b41db5ed7311e78426d63c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc575b7b43ae5a19d5b6f0188a5730a8" id="r_abc575b7b43ae5a19d5b6f0188a5730a8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc575b7b43ae5a19d5b6f0188a5730a8">get_geometries</a> ()</td></tr>
 <tr class="memdesc:abc575b7b43ae5a19d5b6f0188a5730a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling camera.  <br /></td></tr>
 <tr class="separator:abc575b7b43ae5a19d5b6f0188a5730a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,6 +250,36 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling camera. </p>
 <dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the component. </dd></dl>
+
+</div>
+</div>
+<a id="a98bb99994b41db5ed7311e78426d63c7" name="a98bb99994b41db5ed7311e78426d63c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98bb99994b41db5ed7311e78426d63c7">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::GenericComponent::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the generic component. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the generic component. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GenericComponentClient.html#aad893acfc97eded0ad6fa33ea601ca2f">viam::sdk::impl::GenericComponentClient</a>.</p>
 
 </div>
 </div>

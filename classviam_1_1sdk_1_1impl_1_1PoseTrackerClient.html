@@ -125,6 +125,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:aad2e5e7a4ab386c73e8c1eaa6ef00b3d" id="r_aad2e5e7a4ab386c73e8c1eaa6ef00b3d"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad2e5e7a4ab386c73e8c1eaa6ef00b3d">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="memdesc:aad2e5e7a4ab386c73e8c1eaa6ef00b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:aad2e5e7a4ab386c73e8c1eaa6ef00b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb4d1ebce2fc54f50c2d9fde87700da8" id="r_aeb4d1ebce2fc54f50c2d9fde87700da8"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb4d1ebce2fc54f50c2d9fde87700da8">get_status</a> () override</td></tr>
+<tr class="memdesc:aeb4d1ebce2fc54f50c2d9fde87700da8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the pose tracker.  <br /></td></tr>
+<tr class="separator:aeb4d1ebce2fc54f50c2d9fde87700da8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a129461b165702bb6ae8f1cb26680a26f" id="r_a129461b165702bb6ae8f1cb26680a26f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a129461b165702bb6ae8f1cb26680a26f">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:a129461b165702bb6ae8f1cb26680a26f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling pose tracker.  <br /></td></tr>
 <tr class="separator:a129461b165702bb6ae8f1cb26680a26f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -416,6 +419,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>A mapping of each body to its pose. </dd></dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1PoseTracker.html#a0553807b12c181552b2a93ceb5c88306">viam::sdk::PoseTracker</a>.</p>
+
+</div>
+</div>
+<a id="aeb4d1ebce2fc54f50c2d9fde87700da8" name="aeb4d1ebce2fc54f50c2d9fde87700da8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb4d1ebce2fc54f50c2d9fde87700da8">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::PoseTrackerClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the pose tracker. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the pose tracker. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1PoseTracker.html#a04d78108f075cc5ff4ab9e5113b12131">viam::sdk::PoseTracker</a>.</p>
 
 </div>
 </div>

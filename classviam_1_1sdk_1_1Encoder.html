@@ -145,6 +145,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>reset_position</b> ()
 <tr class="memitem:a7b307f346551403dc3ee6ceeb4601b2e" id="r_a7b307f346551403dc3ee6ceeb4601b2e"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b307f346551403dc3ee6ceeb4601b2e">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a7b307f346551403dc3ee6ceeb4601b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a7b307f346551403dc3ee6ceeb4601b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3998f0042cc149e2fb02d5b48f6d051d" id="r_a3998f0042cc149e2fb02d5b48f6d051d"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3998f0042cc149e2fb02d5b48f6d051d">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a3998f0042cc149e2fb02d5b48f6d051d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the encoder.  <br /></td></tr>
+<tr class="separator:a3998f0042cc149e2fb02d5b48f6d051d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2bce43f1fd5975d5583cf44e3a6b6ca" id="r_af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2bce43f1fd5975d5583cf44e3a6b6ca">get_geometries</a> ()</td></tr>
 <tr class="memdesc:af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling encoder.  <br /></td></tr>
 <tr class="separator:af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -430,6 +433,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1EncoderClient.html#a8fc7ef602c5d5c0ef57ead4b3a24c9e3">viam::sdk::impl::EncoderClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1EncoderClient.html#a9bf45933145f62bca9c02d07a0574691">viam::sdk::impl::EncoderClient</a>.</p>
+
+</div>
+</div>
+<a id="a3998f0042cc149e2fb02d5b48f6d051d" name="a3998f0042cc149e2fb02d5b48f6d051d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3998f0042cc149e2fb02d5b48f6d051d">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Encoder::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the encoder. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the encoder. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1EncoderClient.html#a4cf3a9588c8851c5c39673210166c041">viam::sdk::impl::EncoderClient</a>.</p>
 
 </div>
 </div>

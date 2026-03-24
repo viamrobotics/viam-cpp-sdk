@@ -125,6 +125,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aedccb54f42254d75138854774c372b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a921271a072e3010a33511655b26386f0" id="r_a921271a072e3010a33511655b26386f0"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a921271a072e3010a33511655b26386f0">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="separator:a921271a072e3010a33511655b26386f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f2c96bd3f222528aac1cf2a80a51784" id="r_a9f2c96bd3f222528aac1cf2a80a51784"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f2c96bd3f222528aac1cf2a80a51784">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a9f2c96bd3f222528aac1cf2a80a51784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the audio_in.  <br /></td></tr>
+<tr class="separator:a9f2c96bd3f222528aac1cf2a80a51784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61fffd6e4e58d28770ab0f52900e2ceb" id="r_a61fffd6e4e58d28770ab0f52900e2ceb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61fffd6e4e58d28770ab0f52900e2ceb">get_geometries</a> ()</td></tr>
 <tr class="memdesc:a61fffd6e4e58d28770ab0f52900e2ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling <a class="el" href="classviam_1_1sdk_1_1AudioIn.html" title="An AudioIn is a deivce that can take audio input.">AudioIn</a>.  <br /></td></tr>
 <tr class="separator:a61fffd6e4e58d28770ab0f52900e2ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -443,6 +446,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1AudioInClient.html#a7d89ebdabba9ee7ca4f87add89424643">viam::sdk::impl::AudioInClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1AudioInClient.html#aedccb54f42254d75138854774c372b81">viam::sdk::impl::AudioInClient</a>.</p>
+
+</div>
+</div>
+<a id="a9f2c96bd3f222528aac1cf2a80a51784" name="a9f2c96bd3f222528aac1cf2a80a51784"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f2c96bd3f222528aac1cf2a80a51784">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::AudioIn::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the audio_in. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the audio_in. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1AudioInClient.html#ad2a3a09037db62d6bd335a6890804108">viam::sdk::impl::AudioInClient</a>.</p>
 
 </div>
 </div>

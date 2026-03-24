@@ -164,6 +164,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af71f5fd3b962dd3d3ab641f137423dcb" id="r_af71f5fd3b962dd3d3ab641f137423dcb"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af71f5fd3b962dd3d3ab641f137423dcb">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:af71f5fd3b962dd3d3ab641f137423dcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do an arbitrary command.  <br /></td></tr>
 <tr class="separator:af71f5fd3b962dd3d3ab641f137423dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3d614de4633fcd242e7cf0d5e2ad817" id="r_ab3d614de4633fcd242e7cf0d5e2ad817"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3d614de4633fcd242e7cf0d5e2ad817">get_status</a> ()=0</td></tr>
+<tr class="memdesc:ab3d614de4633fcd242e7cf0d5e2ad817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the navigation service.  <br /></td></tr>
+<tr class="separator:ab3d614de4633fcd242e7cf0d5e2ad817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99a5545e5f2335291146ffac5ffd0c6e" id="r_a99a5545e5f2335291146ffac5ffd0c6e"><td class="memItemLeft" align="right" valign="top"><a id="a99a5545e5f2335291146ffac5ffd0c6e" name="a99a5545e5f2335291146ffac5ffd0c6e"></a>
 <a class="el" href="#aeaaf3255a0634aee77c22f9d9b834027">Mode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_mode</b> ()</td></tr>
 <tr class="separator:a99a5545e5f2335291146ffac5ffd0c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -502,6 +505,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structviam_1_1sdk_1_1Navigation_1_1Properties.html" title="A set of attributes for this nav service.">Properties</a>. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1NavigationClient.html#a5f8f798abda0a4c8d89d0e0778ca9b08">viam::sdk::impl::NavigationClient</a>.</p>
+
+</div>
+</div>
+<a id="ab3d614de4633fcd242e7cf0d5e2ad817" name="ab3d614de4633fcd242e7cf0d5e2ad817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3d614de4633fcd242e7cf0d5e2ad817">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Navigation::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the navigation service. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the navigation service. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1NavigationClient.html#a3249d01ad126a00efcf83ff43444f88e">viam::sdk::impl::NavigationClient</a>.</p>
 
 </div>
 </div>

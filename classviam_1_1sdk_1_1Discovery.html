@@ -112,6 +112,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a380e57d4a86e1dcffbe7dd69e94730c8" id="r_a380e57d4a86e1dcffbe7dd69e94730c8"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a380e57d4a86e1dcffbe7dd69e94730c8">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a380e57d4a86e1dcffbe7dd69e94730c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do an arbitrary command.  <br /></td></tr>
 <tr class="separator:a380e57d4a86e1dcffbe7dd69e94730c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acafd238851587d75348c02b5b115f445" id="r_acafd238851587d75348c02b5b115f445"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acafd238851587d75348c02b5b115f445">get_status</a> ()=0</td></tr>
+<tr class="memdesc:acafd238851587d75348c02b5b115f445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the discovery service.  <br /></td></tr>
+<tr class="separator:acafd238851587d75348c02b5b115f445"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09af4d7a734ddbac6177781436d0623f" id="r_a09af4d7a734ddbac6177781436d0623f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09af4d7a734ddbac6177781436d0623f">api</a> () const override</td></tr>
 <tr class="memdesc:a09af4d7a734ddbac6177781436d0623f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:a09af4d7a734ddbac6177781436d0623f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -283,6 +286,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Freeform result of the command. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1DiscoveryClient.html#a29b1507ab7e04bc8c8e43bd0b485297b">viam::sdk::impl::DiscoveryClient</a>.</p>
+
+</div>
+</div>
+<a id="acafd238851587d75348c02b5b115f445" name="acafd238851587d75348c02b5b115f445"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acafd238851587d75348c02b5b115f445">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Discovery::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the discovery service. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the discovery service. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1DiscoveryClient.html#a0c90d399dd5c591f907cb609757ee220">viam::sdk::impl::DiscoveryClient</a>.</p>
 
 </div>
 </div>

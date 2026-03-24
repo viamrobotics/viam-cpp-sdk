@@ -140,6 +140,9 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a4f19cd3799e903092e678cbe0c1788b7" id="r_a4f19cd3799e903092e678cbe0c1788b7"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f19cd3799e903092e678cbe0c1788b7">is_moving</a> ()=0</td></tr>
 <tr class="memdesc:a4f19cd3799e903092e678cbe0c1788b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the gantry is in motion.  <br /></td></tr>
 <tr class="separator:a4f19cd3799e903092e678cbe0c1788b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c6c5665ee9206b5bbf3386e35a9d21" id="r_ab8c6c5665ee9206b5bbf3386e35a9d21"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8c6c5665ee9206b5bbf3386e35a9d21">get_status</a> ()=0</td></tr>
+<tr class="memdesc:ab8c6c5665ee9206b5bbf3386e35a9d21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the gantry.  <br /></td></tr>
+<tr class="separator:ab8c6c5665ee9206b5bbf3386e35a9d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3520fc16096fc2a07502b478cf4b5da6" id="r_a3520fc16096fc2a07502b478cf4b5da6"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3520fc16096fc2a07502b478cf4b5da6">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a3520fc16096fc2a07502b478cf4b5da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a3520fc16096fc2a07502b478cf4b5da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -443,6 +446,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GantryClient.html#af9f3655eb25d6a88cd74af328b786909">viam::sdk::impl::GantryClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1GantryClient.html#a95daebf752b0ee1a8b4e15f56fa245a2">viam::sdk::impl::GantryClient</a>.</p>
+
+</div>
+</div>
+<a id="ab8c6c5665ee9206b5bbf3386e35a9d21" name="ab8c6c5665ee9206b5bbf3386e35a9d21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8c6c5665ee9206b5bbf3386e35a9d21">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Gantry::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the gantry. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the gantry. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GantryClient.html#a2cc0bad0b5517dcaa36c5aca32ba7c6d">viam::sdk::impl::GantryClient</a>.</p>
 
 </div>
 </div>

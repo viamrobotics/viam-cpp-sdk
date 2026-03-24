@@ -167,6 +167,9 @@ virtual <a class="el" href="structviam_1_1sdk_1_1Vector3.html">Vector3</a>&#160;
 <tr class="memitem:a7079b3b083333013bc22c51e5fc21b06" id="r_a7079b3b083333013bc22c51e5fc21b06"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7079b3b083333013bc22c51e5fc21b06">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a7079b3b083333013bc22c51e5fc21b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a7079b3b083333013bc22c51e5fc21b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3280883bbd7bac180a572d59300fea80" id="r_a3280883bbd7bac180a572d59300fea80"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3280883bbd7bac180a572d59300fea80">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a3280883bbd7bac180a572d59300fea80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the movement sensor.  <br /></td></tr>
+<tr class="separator:a3280883bbd7bac180a572d59300fea80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad22b390148487e9372a8d39c6aed32c0" id="r_ad22b390148487e9372a8d39c6aed32c0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad22b390148487e9372a8d39c6aed32c0">get_geometries</a> ()</td></tr>
 <tr class="memdesc:ad22b390148487e9372a8d39c6aed32c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling movementsensor.  <br /></td></tr>
 <tr class="separator:ad22b390148487e9372a8d39c6aed32c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -340,6 +343,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The requested <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the component. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1MovementSensorClient.html#ab73cfa1c6868607653172d821a685ffa">viam::sdk::impl::MovementSensorClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1MovementSensorClient.html#ab2a1adb5eb326c2cd1d45cb8c95cf8c7">viam::sdk::impl::MovementSensorClient</a>.</p>
+
+</div>
+</div>
+<a id="a3280883bbd7bac180a572d59300fea80" name="a3280883bbd7bac180a572d59300fea80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3280883bbd7bac180a572d59300fea80">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::MovementSensor::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the movement sensor. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the movement sensor. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1MovementSensorClient.html#a61ade980400268b9262776b49edb20b9">viam::sdk::impl::MovementSensorClient</a>.</p>
 
 </div>
 </div>

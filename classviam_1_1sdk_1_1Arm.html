@@ -153,6 +153,9 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a03e67125cfd7e762a3ead084aa488b07" id="r_a03e67125cfd7e762a3ead084aa488b07"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03e67125cfd7e762a3ead084aa488b07">is_moving</a> ()=0</td></tr>
 <tr class="memdesc:a03e67125cfd7e762a3ead084aa488b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the arm is in motion.  <br /></td></tr>
 <tr class="separator:a03e67125cfd7e762a3ead084aa488b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d27752eefcffb3bce59e7e18db787ab" id="r_a1d27752eefcffb3bce59e7e18db787ab"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d27752eefcffb3bce59e7e18db787ab">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a1d27752eefcffb3bce59e7e18db787ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the arm.  <br /></td></tr>
+<tr class="separator:a1d27752eefcffb3bce59e7e18db787ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3df792e51781954f58f6a27e2a98b502" id="r_a3df792e51781954f58f6a27e2a98b502"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3df792e51781954f58f6a27e2a98b502">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a3df792e51781954f58f6a27e2a98b502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a3df792e51781954f58f6a27e2a98b502"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -552,6 +555,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>A variant of kinematics data; URDF variants may include meshes by filepath. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a42ca7eb894f18eb740e37f67d079d6cb">viam::sdk::impl::ArmClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#aa085a48c54126411386854680adf7ec3">viam::sdk::impl::ArmClient</a>.</p>
+
+</div>
+</div>
+<a id="a1d27752eefcffb3bce59e7e18db787ab" name="a1d27752eefcffb3bce59e7e18db787ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d27752eefcffb3bce59e7e18db787ab">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Arm::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the arm. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the arm. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ArmClient.html#a2837197b4d4a71ca2276177e235cd2fc">viam::sdk::impl::ArmClient</a>.</p>
 
 </div>
 </div>

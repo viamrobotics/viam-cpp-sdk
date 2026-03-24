@@ -106,6 +106,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0cfa0b71b8a8fe53901297f3669758b6" id="r_a0cfa0b71b8a8fe53901297f3669758b6"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cfa0b71b8a8fe53901297f3669758b6">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a0cfa0b71b8a8fe53901297f3669758b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a0cfa0b71b8a8fe53901297f3669758b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39c6205c78762ee0035cde4579944b74" id="r_a39c6205c78762ee0035cde4579944b74"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39c6205c78762ee0035cde4579944b74">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a39c6205c78762ee0035cde4579944b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the generic service.  <br /></td></tr>
+<tr class="separator:a39c6205c78762ee0035cde4579944b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cb89ff194c7822e736bace4c9908b77" id="r_a7cb89ff194c7822e736bace4c9908b77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cb89ff194c7822e736bace4c9908b77">api</a> () const override</td></tr>
 <tr class="memdesc:a7cb89ff194c7822e736bace4c9908b77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <code><a class="el" href="classviam_1_1sdk_1_1GenericService.html" title="A GenericService represents any service that can execute arbitrary commands.">GenericService</a></code> <code><a class="el" href="classviam_1_1sdk_1_1API.html">API</a></code>.  <br /></td></tr>
 <tr class="separator:a7cb89ff194c7822e736bace4c9908b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,6 +216,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GenericServiceClient.html#a0e04b93611df2c13e15b05a3871efd01">viam::sdk::impl::GenericServiceClient</a>.</p>
+
+</div>
+</div>
+<a id="a39c6205c78762ee0035cde4579944b74" name="a39c6205c78762ee0035cde4579944b74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39c6205c78762ee0035cde4579944b74">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::GenericService::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the generic service. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the generic service. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GenericServiceClient.html#a1f172572705c231ee30ed22a758c20cd">viam::sdk::impl::GenericServiceClient</a>.</p>
 
 </div>
 </div>

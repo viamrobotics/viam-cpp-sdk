@@ -115,15 +115,19 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                             <span class="keyword">const</span> DoCommandRequest* request,</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                             DoCommandResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    ::grpc::Status GetGeometries(::grpc::ServerContext* context,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                                 <span class="keyword">const</span> GetGeometriesRequest* request,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                                 GetGeometriesResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    ::grpc::Status GetStatus(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                             const ::viam::common::v1::GetStatusRequest* request,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                             ::viam::common::v1::GetStatusResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    ::grpc::Status GetGeometries(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                                 <span class="keyword">const</span> GetGeometriesRequest* request,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                                 GetGeometriesResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}  <span class="comment">// namespace impl</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}  <span class="comment">// namespace impl</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition</b> resource_server_base.hpp:8</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Sensor_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Sensor.html">viam::sdk::Sensor</a></div><div class="ttdef"><b>Definition</b> sensor.hpp:22</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1impl_1_1SensorServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1impl_1_1SensorServer.html">viam::sdk::impl::SensorServer</a></div><div class="ttdoc">gRPC server implementation of a Sensor component.</div><div class="ttdef"><b>Definition</b> sensor_server.hpp:23</div></div>

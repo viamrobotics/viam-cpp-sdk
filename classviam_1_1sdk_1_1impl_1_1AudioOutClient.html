@@ -128,6 +128,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:a17b2fec4bf9c543b28977f304b27d990" id="r_a17b2fec4bf9c543b28977f304b27d990"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17b2fec4bf9c543b28977f304b27d990">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="memdesc:a17b2fec4bf9c543b28977f304b27d990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a17b2fec4bf9c543b28977f304b27d990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa658c47c4d57d85e9e5c978bb6efdc0" id="r_afa658c47c4d57d85e9e5c978bb6efdc0"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa658c47c4d57d85e9e5c978bb6efdc0">get_status</a> () override</td></tr>
+<tr class="memdesc:afa658c47c4d57d85e9e5c978bb6efdc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the audio_out.  <br /></td></tr>
+<tr class="separator:afa658c47c4d57d85e9e5c978bb6efdc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0e56504c897e8401d173932d78b90cf" id="r_ad0e56504c897e8401d173932d78b90cf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0e56504c897e8401d173932d78b90cf">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:ad0e56504c897e8401d173932d78b90cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling audioout.  <br /></td></tr>
 <tr class="separator:ad0e56504c897e8401d173932d78b90cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -402,6 +405,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1AudioOut.html#ac46e71975b4edd354cc0b2e997e8d82a">viam::sdk::AudioOut</a>.</p>
+
+</div>
+</div>
+<a id="afa658c47c4d57d85e9e5c978bb6efdc0" name="afa658c47c4d57d85e9e5c978bb6efdc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa658c47c4d57d85e9e5c978bb6efdc0">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::AudioOutClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the audio_out. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the audio_out. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1AudioOut.html#a077283eb6314524854406aed2ebaa2c6">viam::sdk::AudioOut</a>.</p>
 
 </div>
 </div>

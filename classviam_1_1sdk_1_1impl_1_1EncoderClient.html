@@ -136,6 +136,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:a1d51b3655497f0ba8dd31e4c12be9e87" id="r_a1d51b3655497f0ba8dd31e4c12be9e87"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d51b3655497f0ba8dd31e4c12be9e87">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="memdesc:a1d51b3655497f0ba8dd31e4c12be9e87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a1d51b3655497f0ba8dd31e4c12be9e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cf3a9588c8851c5c39673210166c041" id="r_a4cf3a9588c8851c5c39673210166c041"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cf3a9588c8851c5c39673210166c041">get_status</a> () override</td></tr>
+<tr class="memdesc:a4cf3a9588c8851c5c39673210166c041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the encoder.  <br /></td></tr>
+<tr class="separator:a4cf3a9588c8851c5c39673210166c041"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2bce43f1fd5975d5583cf44e3a6b6ca" id="r_af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2bce43f1fd5975d5583cf44e3a6b6ca">get_geometries</a> ()</td></tr>
 <tr class="memdesc:af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling encoder.  <br /></td></tr>
 <tr class="separator:af2bce43f1fd5975d5583cf44e3a6b6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -535,6 +538,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Encoder.html#a9bf45933145f62bca9c02d07a0574691">viam::sdk::Encoder</a>.</p>
+
+</div>
+</div>
+<a id="a4cf3a9588c8851c5c39673210166c041" name="a4cf3a9588c8851c5c39673210166c041"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cf3a9588c8851c5c39673210166c041">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::EncoderClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the encoder. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the encoder. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Encoder.html#a3998f0042cc149e2fb02d5b48f6d051d">viam::sdk::Encoder</a>.</p>
 
 </div>
 </div>

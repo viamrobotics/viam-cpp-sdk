@@ -134,6 +134,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:aa0f497cda3ebcea10178f02ee69e2806" id="r_aa0f497cda3ebcea10178f02ee69e2806"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0f497cda3ebcea10178f02ee69e2806">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="memdesc:aa0f497cda3ebcea10178f02ee69e2806"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:aa0f497cda3ebcea10178f02ee69e2806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61ade980400268b9262776b49edb20b9" id="r_a61ade980400268b9262776b49edb20b9"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61ade980400268b9262776b49edb20b9">get_status</a> () override</td></tr>
+<tr class="memdesc:a61ade980400268b9262776b49edb20b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the movement sensor.  <br /></td></tr>
+<tr class="separator:a61ade980400268b9262776b49edb20b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab73cfa1c6868607653172d821a685ffa" id="r_ab73cfa1c6868607653172d821a685ffa"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab73cfa1c6868607653172d821a685ffa">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:ab73cfa1c6868607653172d821a685ffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling movementsensor.  <br /></td></tr>
 <tr class="separator:ab73cfa1c6868607653172d821a685ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -818,6 +821,36 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1MovementSensor.html">viam::sdk::MovementSensor</a>.</p>
+
+</div>
+</div>
+<a id="a61ade980400268b9262776b49edb20b9" name="a61ade980400268b9262776b49edb20b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61ade980400268b9262776b49edb20b9">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::MovementSensorClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the movement sensor. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the movement sensor. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1MovementSensor.html#a3280883bbd7bac180a572d59300fea80">viam::sdk::MovementSensor</a>.</p>
 
 </div>
 </div>

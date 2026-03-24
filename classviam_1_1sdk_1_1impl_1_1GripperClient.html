@@ -134,6 +134,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:a72a1547f9ac5dcc53aebeb5ab3fb56e0" id="r_a72a1547f9ac5dcc53aebeb5ab3fb56e0"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72a1547f9ac5dcc53aebeb5ab3fb56e0">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="memdesc:a72a1547f9ac5dcc53aebeb5ab3fb56e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a72a1547f9ac5dcc53aebeb5ab3fb56e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8431843f9b51a1bedafd9b6389b8a100" id="r_a8431843f9b51a1bedafd9b6389b8a100"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8431843f9b51a1bedafd9b6389b8a100">get_status</a> () override</td></tr>
+<tr class="memdesc:a8431843f9b51a1bedafd9b6389b8a100"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the gripper.  <br /></td></tr>
+<tr class="separator:a8431843f9b51a1bedafd9b6389b8a100"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d6ce0e89ddecb370dc9513e14aaa835" id="r_a6d6ce0e89ddecb370dc9513e14aaa835"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d6ce0e89ddecb370dc9513e14aaa835">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:a6d6ce0e89ddecb370dc9513e14aaa835"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling arm.  <br /></td></tr>
 <tr class="separator:a6d6ce0e89ddecb370dc9513e14aaa835"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -328,6 +331,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Gripper.html#a34ff092b9cdea93d65ffdc87713272a8">viam::sdk::Gripper</a>.</p>
+
+</div>
+</div>
+<a id="a8431843f9b51a1bedafd9b6389b8a100" name="a8431843f9b51a1bedafd9b6389b8a100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8431843f9b51a1bedafd9b6389b8a100">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::GripperClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the gripper. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the gripper. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Gripper.html#acb01e60547e5984e789ac6b744f71cef">viam::sdk::Gripper</a>.</p>
 
 </div>
 </div>

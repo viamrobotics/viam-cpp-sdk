@@ -132,6 +132,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:a248311959cc2798c7c704fb363204199" id="r_a248311959cc2798c7c704fb363204199"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a248311959cc2798c7c704fb363204199">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="memdesc:a248311959cc2798c7c704fb363204199"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a248311959cc2798c7c704fb363204199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3b0a484414962c065e4925b0e6ebf07" id="r_ae3b0a484414962c065e4925b0e6ebf07"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3b0a484414962c065e4925b0e6ebf07">get_status</a> () override</td></tr>
+<tr class="memdesc:ae3b0a484414962c065e4925b0e6ebf07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the board.  <br /></td></tr>
+<tr class="separator:ae3b0a484414962c065e4925b0e6ebf07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc66fd94a2771738edcf44d93b0479d1" id="r_acc66fd94a2771738edcf44d93b0479d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc66fd94a2771738edcf44d93b0479d1">set_gpio</a> (const std::string &amp;pin, bool high, const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:acc66fd94a2771738edcf44d93b0479d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gpio high/low state of the given pin on a board.  <br /></td></tr>
 <tr class="separator:acc66fd94a2771738edcf44d93b0479d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -797,6 +800,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#a565399b669eec95ffb3dcc225d92f78f">viam::sdk::Board</a>.</p>
+
+</div>
+</div>
+<a id="ae3b0a484414962c065e4925b0e6ebf07" name="ae3b0a484414962c065e4925b0e6ebf07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3b0a484414962c065e4925b0e6ebf07">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::BoardClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the board. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the board. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Board.html#acba98c5d30ef733fcd063790e4a895ed">viam::sdk::Board</a>.</p>
 
 </div>
 </div>

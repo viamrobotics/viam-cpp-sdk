@@ -133,6 +133,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> ()</td></tr>
 <tr class="memitem:aec18dd204bc4ca3d486cd0f988236943" id="r_aec18dd204bc4ca3d486cd0f988236943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec18dd204bc4ca3d486cd0f988236943">is_moving</a> ()=0</td></tr>
 <tr class="memdesc:aec18dd204bc4ca3d486cd0f988236943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the gripper is in motion.  <br /></td></tr>
 <tr class="separator:aec18dd204bc4ca3d486cd0f988236943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb01e60547e5984e789ac6b744f71cef" id="r_acb01e60547e5984e789ac6b744f71cef"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb01e60547e5984e789ac6b744f71cef">get_status</a> ()=0</td></tr>
+<tr class="memdesc:acb01e60547e5984e789ac6b744f71cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the gripper.  <br /></td></tr>
+<tr class="separator:acb01e60547e5984e789ac6b744f71cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b3bdf20a511fec4a6e097cd50e86b17" id="r_a4b3bdf20a511fec4a6e097cd50e86b17"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b3bdf20a511fec4a6e097cd50e86b17">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a4b3bdf20a511fec4a6e097cd50e86b17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a4b3bdf20a511fec4a6e097cd50e86b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -293,6 +296,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GripperClient.html#a6d6ce0e89ddecb370dc9513e14aaa835">viam::sdk::impl::GripperClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1GripperClient.html#a34ff092b9cdea93d65ffdc87713272a8">viam::sdk::impl::GripperClient</a>.</p>
+
+</div>
+</div>
+<a id="acb01e60547e5984e789ac6b744f71cef" name="acb01e60547e5984e789ac6b744f71cef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb01e60547e5984e789ac6b744f71cef">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Gripper::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the gripper. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the gripper. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1GripperClient.html#a8431843f9b51a1bedafd9b6389b8a100">viam::sdk::impl::GripperClient</a>.</p>
 
 </div>
 </div>

@@ -113,6 +113,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> ()</td></tr>
 <tr class="memitem:a758141e4ad52ebd799e929af1585693d" id="r_a758141e4ad52ebd799e929af1585693d"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a758141e4ad52ebd799e929af1585693d">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a758141e4ad52ebd799e929af1585693d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a758141e4ad52ebd799e929af1585693d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ae92bef897df53c36ae9263f49b5548" id="r_a0ae92bef897df53c36ae9263f49b5548"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ae92bef897df53c36ae9263f49b5548">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a0ae92bef897df53c36ae9263f49b5548"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the button.  <br /></td></tr>
+<tr class="separator:a0ae92bef897df53c36ae9263f49b5548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab021db7d4573e64fad92106e171732cd" id="r_ab021db7d4573e64fad92106e171732cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab021db7d4573e64fad92106e171732cd">api</a> () const override</td></tr>
 <tr class="memdesc:ab021db7d4573e64fad92106e171732cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:ab021db7d4573e64fad92106e171732cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,6 +223,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The result of the executed command. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ButtonClient.html#a888c86fabcb9021c8cd112070382a479">viam::sdk::impl::ButtonClient</a>.</p>
+
+</div>
+</div>
+<a id="a0ae92bef897df53c36ae9263f49b5548" name="a0ae92bef897df53c36ae9263f49b5548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ae92bef897df53c36ae9263f49b5548">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Button::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the button. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the button. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ButtonClient.html#a91baea6834948f0ca2657c910dcaf4b1">viam::sdk::impl::ButtonClient</a>.</p>
 
 </div>
 </div>

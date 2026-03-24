@@ -138,6 +138,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af3029714038be5720c9b394060f1e381" id="r_af3029714038be5720c9b394060f1e381"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3029714038be5720c9b394060f1e381">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:af3029714038be5720c9b394060f1e381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:af3029714038be5720c9b394060f1e381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30f0c06100a81e7961c9c08dc74148a0" id="r_a30f0c06100a81e7961c9c08dc74148a0"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30f0c06100a81e7961c9c08dc74148a0">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a30f0c06100a81e7961c9c08dc74148a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the power sensor.  <br /></td></tr>
+<tr class="separator:a30f0c06100a81e7961c9c08dc74148a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classviam_1_1sdk_1_1Component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classviam_1_1sdk_1_1Component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classviam_1_1sdk_1_1Component.html">viam::sdk::Component</a></td></tr>
 <tr class="memitem:ad7224bb892d0b88ad0f2547850380747 inherit pub_methods_classviam_1_1sdk_1_1Component" id="r_ad7224bb892d0b88ad0f2547850380747"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1Name.html">Name</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classviam_1_1sdk_1_1Component.html#ad7224bb892d0b88ad0f2547850380747">get_resource_name</a> () const override</td></tr>
 <tr class="memdesc:ad7224bb892d0b88ad0f2547850380747 inherit pub_methods_classviam_1_1sdk_1_1Component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1Name.html" title="A name for specific instances of resources.">Name</a></code> for a particular resource.  <br /></td></tr>
@@ -433,6 +436,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The requested measurements/data specific to this sensor. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1PowerSensorClient.html#ac860730328cdcd61a50209bb195ff4ed">viam::sdk::impl::PowerSensorClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1PowerSensorClient.html#aca2045190b8fa14dda1aa8c2ea0b0e6a">viam::sdk::impl::PowerSensorClient</a>.</p>
+
+</div>
+</div>
+<a id="a30f0c06100a81e7961c9c08dc74148a0" name="a30f0c06100a81e7961c9c08dc74148a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30f0c06100a81e7961c9c08dc74148a0">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::PowerSensor::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the power sensor. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the power sensor. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1PowerSensorClient.html#a84fb9d153a0d9e745699f074b8995606">viam::sdk::impl::PowerSensorClient</a>.</p>
 
 </div>
 </div>

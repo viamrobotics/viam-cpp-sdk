@@ -131,6 +131,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab5610df210a3c1b5242dcbf745bc81aa" id="r_ab5610df210a3c1b5242dcbf745bc81aa"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5610df210a3c1b5242dcbf745bc81aa">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:ab5610df210a3c1b5242dcbf745bc81aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:ab5610df210a3c1b5242dcbf745bc81aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0be2d4fe1dcb2b575ba032e4ac2ff4b8" id="r_a0be2d4fe1dcb2b575ba032e4ac2ff4b8"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0be2d4fe1dcb2b575ba032e4ac2ff4b8">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a0be2d4fe1dcb2b575ba032e4ac2ff4b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the switch.  <br /></td></tr>
+<tr class="separator:a0be2d4fe1dcb2b575ba032e4ac2ff4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44cccea259d8bd9e70cc35152bae93b6" id="r_a44cccea259d8bd9e70cc35152bae93b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classviam_1_1sdk_1_1API.html">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44cccea259d8bd9e70cc35152bae93b6">api</a> () const override</td></tr>
 <tr class="memdesc:a44cccea259d8bd9e70cc35152bae93b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code><a class="el" href="classviam_1_1sdk_1_1API.html">API</a></code> associated with a particular resource.  <br /></td></tr>
 <tr class="separator:a44cccea259d8bd9e70cc35152bae93b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -366,6 +369,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The current position of the switch. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1SwitchClient.html#ae3ed3c0c3fe455e5539628534321a936">viam::sdk::impl::SwitchClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1SwitchClient.html#ad58d37978fb3e7977e9d7f5757e4b99f">viam::sdk::impl::SwitchClient</a>.</p>
+
+</div>
+</div>
+<a id="a0be2d4fe1dcb2b575ba032e4ac2ff4b8" name="a0be2d4fe1dcb2b575ba032e4ac2ff4b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0be2d4fe1dcb2b575ba032e4ac2ff4b8">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Switch::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the switch. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the switch. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1SwitchClient.html#a67c54e88b18a37421947fe42b53b1a7a">viam::sdk::impl::SwitchClient</a>.</p>
 
 </div>
 </div>

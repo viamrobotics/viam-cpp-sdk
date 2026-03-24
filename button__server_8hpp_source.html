@@ -113,12 +113,16 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    ::grpc::Status DoCommand(::grpc::ServerContext* context,</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                             const ::viam::common::v1::DoCommandRequest* request,</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                             ::viam::common::v1::DoCommandResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    ::grpc::Status GetStatus(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                             const ::viam::common::v1::GetStatusRequest* request,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                             ::viam::common::v1::GetStatusResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
 </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}  <span class="comment">// namespace impl</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}  <span class="comment">// namespace impl</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="abutton_8hpp_html"><div class="ttname"><a href="button_8hpp.html">button.hpp</a></div><div class="ttdoc">Defines a Button component.</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Button_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Button.html">viam::sdk::Button</a></div><div class="ttdoc">A Button represents a physical or virtual button.</div><div class="ttdef"><b>Definition</b> button.hpp:23</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition</b> resource_server_base.hpp:8</div></div>

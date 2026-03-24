@@ -136,6 +136,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:a4d4f04299a4b234149d7c5a75e677b06" id="r_a4d4f04299a4b234149d7c5a75e677b06"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d4f04299a4b234149d7c5a75e677b06">is_moving</a> () override</td></tr>
 <tr class="memdesc:a4d4f04299a4b234149d7c5a75e677b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if a component is in motion.  <br /></td></tr>
 <tr class="separator:a4d4f04299a4b234149d7c5a75e677b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bc57716bccf8ecddec59b5d491f25ba" id="r_a6bc57716bccf8ecddec59b5d491f25ba"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bc57716bccf8ecddec59b5d491f25ba">get_status</a> () override</td></tr>
+<tr class="memdesc:a6bc57716bccf8ecddec59b5d491f25ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the servo.  <br /></td></tr>
+<tr class="separator:a6bc57716bccf8ecddec59b5d491f25ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70993a0dd330b1b5b408479fbcebadd7" id="r_a70993a0dd330b1b5b408479fbcebadd7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70993a0dd330b1b5b408479fbcebadd7">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:a70993a0dd330b1b5b408479fbcebadd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling servo.  <br /></td></tr>
 <tr class="separator:a70993a0dd330b1b5b408479fbcebadd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -474,6 +477,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Servo.html#a7d949abd6b4b77e0564dca4bb7ea1e83">viam::sdk::Servo</a>.</p>
+
+</div>
+</div>
+<a id="a6bc57716bccf8ecddec59b5d491f25ba" name="a6bc57716bccf8ecddec59b5d491f25ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bc57716bccf8ecddec59b5d491f25ba">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::ServoClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the servo. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the servo. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Servo.html#a05a9cdad28057e7829950a7126e5b5d9">viam::sdk::Servo</a>.</p>
 
 </div>
 </div>

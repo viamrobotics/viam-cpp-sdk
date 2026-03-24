@@ -140,6 +140,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2a00ecd60f9aa192ce609d3e552ee24c" id="r_a2a00ecd60f9aa192ce609d3e552ee24c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a00ecd60f9aa192ce609d3e552ee24c">is_moving</a> ()=0</td></tr>
 <tr class="memdesc:a2a00ecd60f9aa192ce609d3e552ee24c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the base is in motion.  <br /></td></tr>
 <tr class="separator:a2a00ecd60f9aa192ce609d3e552ee24c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a839659b66d022bd4729d454e556a2411" id="r_a839659b66d022bd4729d454e556a2411"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a839659b66d022bd4729d454e556a2411">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a839659b66d022bd4729d454e556a2411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the base.  <br /></td></tr>
+<tr class="separator:a839659b66d022bd4729d454e556a2411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c4677b65f8dd412a6495f986940265e" id="r_a8c4677b65f8dd412a6495f986940265e"><td class="memItemLeft" align="right" valign="top"><a id="a8c4677b65f8dd412a6495f986940265e" name="a8c4677b65f8dd412a6495f986940265e"></a>
 <a class="el" href="structviam_1_1sdk_1_1Base_1_1properties.html">properties</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_properties</b> ()</td></tr>
 <tr class="memdesc:a8c4677b65f8dd412a6495f986940265e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns physical properties of the base (width, turning radius, wheel circumference) <br /></td></tr>
@@ -379,6 +382,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classMyBase.html#a6387ff0b9fcacad7b6de3e62aad6ba5d">MyBase</a>, <a class="el" href="classviam_1_1sdk_1_1impl_1_1BaseClient.html#a806be92e308841560dea527b6aad5cca">viam::sdk::impl::BaseClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1BaseClient.html#aa58a41fd6b225487126f26da1bb3fded">viam::sdk::impl::BaseClient</a>.</p>
+
+</div>
+</div>
+<a id="a839659b66d022bd4729d454e556a2411" name="a839659b66d022bd4729d454e556a2411"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a839659b66d022bd4729d454e556a2411">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Base::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the base. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the base. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMyBase.html#a03311f401066348fd05d93379517f4f9">MyBase</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1BaseClient.html#a20ffc6344d1322eec8bdd56d0254ff96">viam::sdk::impl::BaseClient</a>.</p>
 
 </div>
 </div>

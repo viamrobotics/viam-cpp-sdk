@@ -110,6 +110,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac4a3f8e49119096dace7ab68de7c98d7" id="r_ac4a3f8e49119096dace7ab68de7c98d7"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4a3f8e49119096dace7ab68de7c98d7">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="memdesc:ac4a3f8e49119096dace7ab68de7c98d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:ac4a3f8e49119096dace7ab68de7c98d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03311f401066348fd05d93379517f4f9" id="r_a03311f401066348fd05d93379517f4f9"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03311f401066348fd05d93379517f4f9">get_status</a> () override</td></tr>
+<tr class="memdesc:a03311f401066348fd05d93379517f4f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the base.  <br /></td></tr>
+<tr class="separator:a03311f401066348fd05d93379517f4f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a882412a17cfcbe73780344bbbdf17213" id="r_a882412a17cfcbe73780344bbbdf17213"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a882412a17cfcbe73780344bbbdf17213">get_geometries</a> (const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:a882412a17cfcbe73780344bbbdf17213"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code>GeometryConfig</code>s associated with the calling base.  <br /></td></tr>
 <tr class="separator:a882412a17cfcbe73780344bbbdf17213"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -300,6 +303,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Base.html#aa58a41fd6b225487126f26da1bb3fded">viam::sdk::Base</a>.</p>
+
+</div>
+</div>
+<a id="a03311f401066348fd05d93379517f4f9" name="a03311f401066348fd05d93379517f4f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03311f401066348fd05d93379517f4f9">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct MyBase::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the base. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the base. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Base.html#a839659b66d022bd4729d454e556a2411">viam::sdk::Base</a>.</p>
 
 </div>
 </div>

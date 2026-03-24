@@ -126,6 +126,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa45aa15b59c8997b062a07ef3c0ab3f6" id="r_aa45aa15b59c8997b062a07ef3c0ab3f6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa45aa15b59c8997b062a07ef3c0ab3f6">is_moving</a> ()=0</td></tr>
 <tr class="memdesc:aa45aa15b59c8997b062a07ef3c0ab3f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if a component is in motion.  <br /></td></tr>
 <tr class="separator:aa45aa15b59c8997b062a07ef3c0ab3f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05a9cdad28057e7829950a7126e5b5d9" id="r_a05a9cdad28057e7829950a7126e5b5d9"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05a9cdad28057e7829950a7126e5b5d9">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a05a9cdad28057e7829950a7126e5b5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the servo.  <br /></td></tr>
+<tr class="separator:a05a9cdad28057e7829950a7126e5b5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e87028213ad6cbf50e5f24d67c11700" id="r_a0e87028213ad6cbf50e5f24d67c11700"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e87028213ad6cbf50e5f24d67c11700">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a0e87028213ad6cbf50e5f24d67c11700"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a0e87028213ad6cbf50e5f24d67c11700"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -384,6 +387,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a48552bda7786f980fa53a8572a66432e">viam::sdk::impl::ServoClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a7d949abd6b4b77e0564dca4bb7ea1e83">viam::sdk::impl::ServoClient</a>.</p>
+
+</div>
+</div>
+<a id="a05a9cdad28057e7829950a7126e5b5d9" name="a05a9cdad28057e7829950a7126e5b5d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05a9cdad28057e7829950a7126e5b5d9">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Servo::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the servo. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the servo. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServoClient.html#a6bc57716bccf8ecddec59b5d491f25ba">viam::sdk::impl::ServoClient</a>.</p>
 
 </div>
 </div>

@@ -146,6 +146,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:afc874fe6f3a5c91c6032044259cc6b9e" id="r_afc874fe6f3a5c91c6032044259cc6b9e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structviam_1_1sdk_1_1MLModelService_1_1metadata.html">metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc874fe6f3a5c91c6032044259cc6b9e">metadata</a> (const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:afc874fe6f3a5c91c6032044259cc6b9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns metadata describing the inputs and outputs of the model.  <br /></td></tr>
 <tr class="separator:afc874fe6f3a5c91c6032044259cc6b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0778f14b4b80ca1d04f8b6d259b6a127" id="r_a0778f14b4b80ca1d04f8b6d259b6a127"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0778f14b4b80ca1d04f8b6d259b6a127">get_status</a> () override</td></tr>
+<tr class="memdesc:a0778f14b4b80ca1d04f8b6d259b6a127"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the mlmodel service.  <br /></td></tr>
+<tr class="separator:a0778f14b4b80ca1d04f8b6d259b6a127"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c03167453c6064da5a8ff4fce2c0d19" id="r_a1c03167453c6064da5a8ff4fce2c0d19"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; named_tensor_views &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c03167453c6064da5a8ff4fce2c0d19">infer</a> (const named_tensor_views &amp;inputs)</td></tr>
 <tr class="memdesc:a1c03167453c6064da5a8ff4fce2c0d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the model against the input tensors and returns inference results as tensors.  <br /></td></tr>
 <tr class="separator:a1c03167453c6064da5a8ff4fce2c0d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,6 +217,36 @@ template&lt;typename T &gt; </td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An <code><a class="el" href="classviam_1_1sdk_1_1impl_1_1MLModelServiceClient.html">MLModelServiceClient</a></code> provides client-side access to a remotely served ML <a class="el" href="classviam_1_1sdk_1_1Model.html" title="Defines the namespace_, family, and name for a particular resource model.">Model</a> <a class="el" href="classviam_1_1sdk_1_1Service.html">Service</a>. Use this class to communicate with <a class="el" href="classviam_1_1sdk_1_1MLModelService.html" title="Represents a machine trained learning model instance.">MLModelService</a> instances running elsewhere. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0778f14b4b80ca1d04f8b6d259b6a127" name="a0778f14b4b80ca1d04f8b6d259b6a127"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0778f14b4b80ca1d04f8b6d259b6a127">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::MLModelServiceClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the mlmodel service. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the mlmodel service. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1MLModelService.html#ad7f554438eec67b9c283b95461284979">viam::sdk::MLModelService</a>.</p>
+
+</div>
+</div>
 <a id="a1c03167453c6064da5a8ff4fce2c0d19" name="a1c03167453c6064da5a8ff4fce2c0d19"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1c03167453c6064da5a8ff4fce2c0d19">&#9670;&#160;</a></span>infer() <span class="overload">[1/3]</span></h2>
 

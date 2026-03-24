@@ -204,6 +204,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3ccc84a9137e3ddad3157f3ceb6600e9" id="r_a3ccc84a9137e3ddad3157f3ceb6600e9"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ccc84a9137e3ddad3157f3ceb6600e9">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:a3ccc84a9137e3ddad3157f3ceb6600e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a3ccc84a9137e3ddad3157f3ceb6600e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba98c5d30ef733fcd063790e4a895ed" id="r_acba98c5d30ef733fcd063790e4a895ed"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acba98c5d30ef733fcd063790e4a895ed">get_status</a> ()=0</td></tr>
+<tr class="memdesc:acba98c5d30ef733fcd063790e4a895ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the board.  <br /></td></tr>
+<tr class="separator:acba98c5d30ef733fcd063790e4a895ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2458b6edfd5e668cb79c3221b9ec1177" id="r_a2458b6edfd5e668cb79c3221b9ec1177"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2458b6edfd5e668cb79c3221b9ec1177">get_geometries</a> ()</td></tr>
 <tr class="memdesc:a2458b6edfd5e668cb79c3221b9ec1177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling board.  <br /></td></tr>
 <tr class="separator:a2458b6edfd5e668cb79c3221b9ec1177"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -601,6 +604,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#ad85c12d624195f4c3399eeb17b20f937">viam::sdk::impl::BoardClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#a565399b669eec95ffb3dcc225d92f78f">viam::sdk::impl::BoardClient</a>.</p>
+
+</div>
+</div>
+<a id="acba98c5d30ef733fcd063790e4a895ed" name="acba98c5d30ef733fcd063790e4a895ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba98c5d30ef733fcd063790e4a895ed">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Board::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the board. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the board. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1BoardClient.html#ae3b0a484414962c065e4925b0e6ebf07">viam::sdk::impl::BoardClient</a>.</p>
 
 </div>
 </div>

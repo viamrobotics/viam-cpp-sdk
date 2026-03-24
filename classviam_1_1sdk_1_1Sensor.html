@@ -106,6 +106,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab6edd4716f97948b1b6c8028a88fb5a1" id="r_ab6edd4716f97948b1b6c8028a88fb5a1"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6edd4716f97948b1b6c8028a88fb5a1">do_command</a> (const ProtoStruct &amp;command)=0</td></tr>
 <tr class="memdesc:ab6edd4716f97948b1b6c8028a88fb5a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:ab6edd4716f97948b1b6c8028a88fb5a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bf04ec924292124d359269abec14c00" id="r_a0bf04ec924292124d359269abec14c00"><td class="memItemLeft" align="right" valign="top">virtual ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bf04ec924292124d359269abec14c00">get_status</a> ()=0</td></tr>
+<tr class="memdesc:a0bf04ec924292124d359269abec14c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the sensor.  <br /></td></tr>
+<tr class="separator:a0bf04ec924292124d359269abec14c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19e193a7bbf6cdc06919b16d0dffcf38" id="r_a19e193a7bbf6cdc06919b16d0dffcf38"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html">GeometryConfig</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19e193a7bbf6cdc06919b16d0dffcf38">get_geometries</a> ()</td></tr>
 <tr class="memdesc:a19e193a7bbf6cdc06919b16d0dffcf38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="classviam_1_1sdk_1_1GeometryConfig.html" title="The dimensions of a given geometry and the pose of its center.">GeometryConfig</a></code>s associated with the calling sensor.  <br /></td></tr>
 <tr class="separator:a19e193a7bbf6cdc06919b16d0dffcf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -349,6 +352,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The requested measurements/data specific to this sensor. </dd></dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1SensorClient.html#a5635bd98970ccbc0cd2b96d9078e8f31">viam::sdk::impl::SensorClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1SensorClient.html#aa7c2f76c43200f3c01198b2e7197714a">viam::sdk::impl::SensorClient</a>.</p>
+
+</div>
+</div>
+<a id="a0bf04ec924292124d359269abec14c00" name="a0bf04ec924292124d359269abec14c00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bf04ec924292124d359269abec14c00">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ProtoStruct viam::sdk::Sensor::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the sensor. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the sensor. </dd></dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1SensorClient.html#a9377730703617f6f8555fd56b1b6ae0b">viam::sdk::impl::SensorClient</a>.</p>
 
 </div>
 </div>

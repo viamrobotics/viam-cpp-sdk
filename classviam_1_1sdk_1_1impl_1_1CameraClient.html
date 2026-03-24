@@ -127,6 +127,9 @@ const <a class="el" href="classviam_1_1sdk_1_1ViamChannel.html">ViamChannel</a> 
 <tr class="memitem:a2bb1e8288ee50dd05660af4cc0318a30" id="r_a2bb1e8288ee50dd05660af4cc0318a30"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bb1e8288ee50dd05660af4cc0318a30">do_command</a> (const ProtoStruct &amp;command) override</td></tr>
 <tr class="memdesc:a2bb1e8288ee50dd05660af4cc0318a30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send/receive arbitrary commands to the resource.  <br /></td></tr>
 <tr class="separator:a2bb1e8288ee50dd05660af4cc0318a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c347755748709fc369700efbcef0681" id="r_a6c347755748709fc369700efbcef0681"><td class="memItemLeft" align="right" valign="top">ProtoStruct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c347755748709fc369700efbcef0681">get_status</a> () override</td></tr>
+<tr class="memdesc:a6c347755748709fc369700efbcef0681"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the status of the camera.  <br /></td></tr>
+<tr class="separator:a6c347755748709fc369700efbcef0681"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fe07386eef9f5fd4f7c899170805dad" id="r_a5fe07386eef9f5fd4f7c899170805dad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1Camera_1_1image__collection.html">image_collection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fe07386eef9f5fd4f7c899170805dad">get_images</a> (std::vector&lt; std::string &gt; filter_source_names, const ProtoStruct &amp;extra) override</td></tr>
 <tr class="memdesc:a5fe07386eef9f5fd4f7c899170805dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next images from the camera as a vector of raw images with names and metadata.  <br /></td></tr>
 <tr class="separator:a5fe07386eef9f5fd4f7c899170805dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -657,6 +660,36 @@ static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>l
 <dl class="section return"><dt>Returns</dt><dd>The camera properties. </dd></dl>
 
 <p>Implements <a class="el" href="classviam_1_1sdk_1_1Camera.html#a6ea3343a476f71a783ccb5e673e0f6b1">viam::sdk::Camera</a>.</p>
+
+</div>
+</div>
+<a id="a6c347755748709fc369700efbcef0681" name="a6c347755748709fc369700efbcef0681"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c347755748709fc369700efbcef0681">&#9670;&#160;</a></span>get_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProtoStruct viam::sdk::impl::CameraClient::get_status </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the status of the camera. </p>
+<dl class="section return"><dt>Returns</dt><dd>A <code>ProtoStruct</code> containing the status of the camera. </dd></dl>
+
+<p>Implements <a class="el" href="classviam_1_1sdk_1_1Camera.html#ab99aeeda7e78d5673827db55b7b324ff">viam::sdk::Camera</a>.</p>
 
 </div>
 </div>

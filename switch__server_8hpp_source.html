@@ -124,12 +124,16 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    ::grpc::Status DoCommand(::grpc::ServerContext* context,</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                             const ::viam::common::v1::DoCommandRequest* request,</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                             ::viam::common::v1::DoCommandResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    ::grpc::Status GetStatus(::grpc::ServerContext* context,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                             const ::viam::common::v1::GetStatusRequest* request,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                             ::viam::common::v1::GetStatusResponse* response) <span class="keyword">noexcept</span> <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}  <span class="comment">// namespace impl</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}  <span class="comment">// namespace sdk</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}  <span class="comment">// namespace viam</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}  <span class="comment">// namespace impl</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}  <span class="comment">// namespace sdk</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}  <span class="comment">// namespace viam</span></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1ResourceServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1ResourceServer.html">viam::sdk::ResourceServer</a></div><div class="ttdef"><b>Definition</b> resource_server_base.hpp:8</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1Switch_html"><div class="ttname"><a href="classviam_1_1sdk_1_1Switch.html">viam::sdk::Switch</a></div><div class="ttdoc">A Switch represents a physical switch with multiple positions.</div><div class="ttdef"><b>Definition</b> switch.hpp:25</div></div>
 <div class="ttc" id="aclassviam_1_1sdk_1_1impl_1_1SwitchServer_html"><div class="ttname"><a href="classviam_1_1sdk_1_1impl_1_1SwitchServer.html">viam::sdk::impl::SwitchServer</a></div><div class="ttdoc">gRPC server implementation of a Switch component.</div><div class="ttdef"><b>Definition</b> switch_server.hpp:21</div></div>
