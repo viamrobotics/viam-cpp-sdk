@@ -58,6 +58,11 @@ bool {{ .ModelPascal }}::is_moving()
     throw std::logic_error("\"is_moving\" not implemented");
 }
 
+viam::sdk::ProtoStruct {{ .ModelPascal }}::get_status()
+{
+    throw std::logic_error("\"get_status\" not implemented");
+}
+
 viam::sdk::Base::properties {{ .ModelPascal }}::get_properties(const viam::sdk::ProtoStruct & extra)
 {
     throw std::logic_error("\"get_properties\" not implemented");
