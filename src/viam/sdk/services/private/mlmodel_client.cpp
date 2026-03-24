@@ -161,6 +161,11 @@ struct MLModelService::metadata MLModelServiceClient::metadata(const ProtoStruct
     return result;
 }
 
+ProtoStruct MLModelServiceClient::get_status() {
+    return make_client_helper(this, *stub_, &service_type::StubInterface::GetStatus)
+        .invoke([](auto& response) { return from_proto(response.result()); });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

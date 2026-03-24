@@ -42,6 +42,16 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status AudioOutServer::GetStatus(::grpc::ServerContext* context,
+                                         const ::viam::common::v1::GetStatusRequest* request,
+                                         ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<AudioOut>(
+        "AudioOutServer::GetStatus", this, context, request)([&](auto&, auto& audio_out) {
+        const ProtoStruct result = audio_out->get_status();
+        *response->mutable_result() = to_proto(result);
+    });
+}
+
 ::grpc::Status AudioOutServer::GetGeometries(
     ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,

@@ -101,6 +101,10 @@ class Base : public Component, public Stoppable {
     /// @brief Reports if the base is in motion
     virtual bool is_moving() = 0;
 
+    /// @brief Get the status of the base.
+    /// @return A `ProtoStruct` containing the status of the base.
+    virtual ProtoStruct get_status() = 0;
+
     /// @brief Returns physical properties of the base (width, turning radius, wheel circumference)
     inline properties get_properties() {
         return get_properties({});

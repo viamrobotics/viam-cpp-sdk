@@ -27,6 +27,11 @@ ProtoStruct ButtonClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
+ProtoStruct ButtonClient::get_status() {
+    return make_client_helper(this, *stub_, &StubType::GetStatus)
+        .invoke([](auto& response) { return from_proto(response.result()); });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

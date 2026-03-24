@@ -29,6 +29,7 @@ class ServoClient : public Servo {
     position get_position(const ProtoStruct& extra) override;
     void stop(const ProtoStruct& extra) override;
     bool is_moving() override;
+    ProtoStruct get_status() override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
 

@@ -28,6 +28,11 @@ ProtoStruct GenericServiceClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
+ProtoStruct GenericServiceClient::get_status() {
+    return make_client_helper(this, *stub_, &StubType::GetStatus)
+        .invoke([](auto& response) { return from_proto(response.result()); });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

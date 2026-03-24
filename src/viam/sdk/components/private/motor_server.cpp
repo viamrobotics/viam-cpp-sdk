@@ -133,6 +133,16 @@ MotorServer::MotorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status MotorServer::GetStatus(::grpc::ServerContext* context,
+                                      const ::viam::common::v1::GetStatusRequest* request,
+                                      ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<Motor>(
+        "MotorServer::GetStatus", this, context, request)([&](auto&, auto& motor) {
+        const ProtoStruct result = motor->get_status();
+        *response->mutable_result() = to_proto(result);
+    });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

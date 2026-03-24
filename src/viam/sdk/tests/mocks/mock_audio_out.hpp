@@ -19,6 +19,7 @@ class MockAudioOut : public AudioOut {
               const sdk::ProtoStruct& extra) override;
     audio_properties get_properties(const sdk::ProtoStruct& extra) override;
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     static std::shared_ptr<MockAudioOut> get_mock_audio_out();

@@ -62,6 +62,10 @@ ProtoStruct MockNav::do_command(const ProtoStruct& command) {
     return ProtoStruct{};
 }
 
+ProtoStruct MockNav::get_status() {
+    return fake_status();
+}
+
 }  // namespace navigation
 }  // namespace sdktests
 }  // namespace viam

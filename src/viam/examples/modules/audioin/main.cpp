@@ -36,6 +36,9 @@ class SineWaveAudioIn : public AudioIn {
     static std::vector<std::string> validate(const ResourceConfig&);
 
     ProtoStruct do_command(const ProtoStruct&) override;
+    ProtoStruct get_status() override {
+        return {};
+    }
 
     std::vector<GeometryConfig> get_geometries(const ProtoStruct&) override {
         throw Exception("method not supported");

@@ -20,6 +20,10 @@ ProtoStruct MockButton::do_command(const ProtoStruct& command) {
     return (peek_command = command);
 }
 
+ProtoStruct MockButton::get_status() {
+    return fake_status();
+}
+
 }  // namespace button
 }  // namespace sdktests
 }  // namespace viam

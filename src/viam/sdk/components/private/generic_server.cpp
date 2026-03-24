@@ -21,6 +21,17 @@ GenericComponentServer::GenericComponentServer(std::shared_ptr<ResourceManager> 
         *response->mutable_result() = to_proto(result);
     });
 }
+::grpc::Status GenericComponentServer::GetStatus(
+    ::grpc::ServerContext* context,
+    const ::viam::common::v1::GetStatusRequest* request,
+    ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<GenericComponent>(
+        "GenericComponentServer::GetStatus", this, context, request)([&](auto&, auto& generic) {
+        const ProtoStruct result = generic->get_status();
+        *response->mutable_result() = to_proto(result);
+    });
+}
+
 ::grpc::Status GenericComponentServer::GetGeometries(
     ::grpc::ServerContext* context,
     const ::viam::common::v1::GetGeometriesRequest* request,

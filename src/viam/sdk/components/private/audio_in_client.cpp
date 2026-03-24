@@ -82,6 +82,11 @@ ProtoStruct AudioInClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
+ProtoStruct AudioInClient::get_status() {
+    return make_client_helper(this, *stub_, &StubType::GetStatus)
+        .invoke([](auto& response) { return from_proto(response.result()); });
+}
+
 std::vector<GeometryConfig> AudioInClient::get_geometries(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &StubType::GetGeometries)
         .with(extra)

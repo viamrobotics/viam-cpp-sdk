@@ -114,6 +114,11 @@ ProtoStruct BoardClient::do_command(const ProtoStruct& command) {
         .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
+ProtoStruct BoardClient::get_status() {
+    return make_client_helper(this, *stub_, &StubType::GetStatus)
+        .invoke([](auto& response) { return from_proto(response.result()); });
+}
+
 // TODO(RSDK-6048) update `client_wrapper` to allow for requests without a `mutable_name()` method,
 // then wrap here.
 Board::analog_response BoardClient::read_analog(const std::string& analog_reader_name,

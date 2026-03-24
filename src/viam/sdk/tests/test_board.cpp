@@ -179,6 +179,15 @@ BOOST_AUTO_TEST_CASE(test_set_power_mode) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    const auto mock = std::make_shared<MockBoard>("mock_board");
+    client_to_mock_pipeline<Board>(mock, [](Board& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests

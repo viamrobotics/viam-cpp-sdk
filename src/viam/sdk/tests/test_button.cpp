@@ -43,6 +43,15 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    std::shared_ptr<MockButton> mock = MockButton::get_mock_button();
+    client_to_mock_pipeline<Button>(mock, [](Button& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests

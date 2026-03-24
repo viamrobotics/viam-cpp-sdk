@@ -69,6 +69,10 @@ bool MockMotor::is_moving() {
     return false;
 }
 
+ProtoStruct MockMotor::get_status() {
+    return fake_status();
+}
+
 ProtoStruct MockMotor::do_command(const ProtoStruct&) {
     return map_;
 }
