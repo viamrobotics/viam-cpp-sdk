@@ -3730,10 +3730,156 @@ struct MachinePickerCustomizationsDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MachinePickerCustomizationsDefaultTypeInternal _MachinePickerCustomizations_default_instance_;
+PROTOBUF_CONSTEXPR UploadDevicePushTokenRequest::UploadDevicePushTokenRequest(
+    ::_pbi::ConstantInitialized)
+  : app_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , device_token_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , device_uuid_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct UploadDevicePushTokenRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadDevicePushTokenRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UploadDevicePushTokenRequestDefaultTypeInternal() {}
+  union {
+    UploadDevicePushTokenRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadDevicePushTokenRequestDefaultTypeInternal _UploadDevicePushTokenRequest_default_instance_;
+PROTOBUF_CONSTEXPR UploadDevicePushTokenResponse::UploadDevicePushTokenResponse(
+    ::_pbi::ConstantInitialized){}
+struct UploadDevicePushTokenResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadDevicePushTokenResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UploadDevicePushTokenResponseDefaultTypeInternal() {}
+  union {
+    UploadDevicePushTokenResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadDevicePushTokenResponseDefaultTypeInternal _UploadDevicePushTokenResponse_default_instance_;
+PROTOBUF_CONSTEXPR DeleteDevicePushTokenRequest::DeleteDevicePushTokenRequest(
+    ::_pbi::ConstantInitialized)
+  : app_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , device_uuid_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct DeleteDevicePushTokenRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteDevicePushTokenRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteDevicePushTokenRequestDefaultTypeInternal() {}
+  union {
+    DeleteDevicePushTokenRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteDevicePushTokenRequestDefaultTypeInternal _DeleteDevicePushTokenRequest_default_instance_;
+PROTOBUF_CONSTEXPR DeleteDevicePushTokenResponse::DeleteDevicePushTokenResponse(
+    ::_pbi::ConstantInitialized){}
+struct DeleteDevicePushTokenResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteDevicePushTokenResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteDevicePushTokenResponseDefaultTypeInternal() {}
+  union {
+    DeleteDevicePushTokenResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteDevicePushTokenResponseDefaultTypeInternal _DeleteDevicePushTokenResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetDevicePushTokensRequest::GetDevicePushTokensRequest(
+    ::_pbi::ConstantInitialized)
+  : app_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetDevicePushTokensRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetDevicePushTokensRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetDevicePushTokensRequestDefaultTypeInternal() {}
+  union {
+    GetDevicePushTokensRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDevicePushTokensRequestDefaultTypeInternal _GetDevicePushTokensRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetDevicePushTokensResponse::GetDevicePushTokensResponse(
+    ::_pbi::ConstantInitialized)
+  : device_tokens_(){}
+struct GetDevicePushTokensResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetDevicePushTokensResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetDevicePushTokensResponseDefaultTypeInternal() {}
+  union {
+    GetDevicePushTokensResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetDevicePushTokensResponseDefaultTypeInternal _GetDevicePushTokensResponse_default_instance_;
+PROTOBUF_CONSTEXPR SetFirebaseConfigRequest::SetFirebaseConfigRequest(
+    ::_pbi::ConstantInitialized)
+  : org_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , app_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , config_json_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct SetFirebaseConfigRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetFirebaseConfigRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetFirebaseConfigRequestDefaultTypeInternal() {}
+  union {
+    SetFirebaseConfigRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetFirebaseConfigRequestDefaultTypeInternal _SetFirebaseConfigRequest_default_instance_;
+PROTOBUF_CONSTEXPR SetFirebaseConfigResponse::SetFirebaseConfigResponse(
+    ::_pbi::ConstantInitialized){}
+struct SetFirebaseConfigResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetFirebaseConfigResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetFirebaseConfigResponseDefaultTypeInternal() {}
+  union {
+    SetFirebaseConfigResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetFirebaseConfigResponseDefaultTypeInternal _SetFirebaseConfigResponse_default_instance_;
+PROTOBUF_CONSTEXPR GetFirebaseConfigRequest::GetFirebaseConfigRequest(
+    ::_pbi::ConstantInitialized)
+  : org_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetFirebaseConfigRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetFirebaseConfigRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetFirebaseConfigRequestDefaultTypeInternal() {}
+  union {
+    GetFirebaseConfigRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetFirebaseConfigRequestDefaultTypeInternal _GetFirebaseConfigRequest_default_instance_;
+PROTOBUF_CONSTEXPR GetFirebaseConfigResponse::GetFirebaseConfigResponse(
+    ::_pbi::ConstantInitialized)
+  : app_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct GetFirebaseConfigResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetFirebaseConfigResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetFirebaseConfigResponseDefaultTypeInternal() {}
+  union {
+    GetFirebaseConfigResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetFirebaseConfigResponseDefaultTypeInternal _GetFirebaseConfigResponse_default_instance_;
+PROTOBUF_CONSTEXPR DeleteFirebaseConfigRequest::DeleteFirebaseConfigRequest(
+    ::_pbi::ConstantInitialized)
+  : org_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , app_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct DeleteFirebaseConfigRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteFirebaseConfigRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteFirebaseConfigRequestDefaultTypeInternal() {}
+  union {
+    DeleteFirebaseConfigRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteFirebaseConfigRequestDefaultTypeInternal _DeleteFirebaseConfigRequest_default_instance_;
+PROTOBUF_CONSTEXPR DeleteFirebaseConfigResponse::DeleteFirebaseConfigResponse(
+    ::_pbi::ConstantInitialized){}
+struct DeleteFirebaseConfigResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteFirebaseConfigResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteFirebaseConfigResponseDefaultTypeInternal() {}
+  union {
+    DeleteFirebaseConfigResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteFirebaseConfigResponseDefaultTypeInternal _DeleteFirebaseConfigResponse_default_instance_;
 }  // namespace v1
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fv1_2fapp_2eproto[278];
+static ::_pb::Metadata file_level_metadata_app_2fv1_2fapp_2eproto[290];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fv1_2fapp_2eproto[14];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fv1_2fapp_2eproto = nullptr;
 
@@ -6272,6 +6418,92 @@ const uint32_t TableStruct_app_2fv1_2fapp_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::MachinePickerCustomizations, subheading_),
   0,
   1,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UploadDevicePushTokenRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UploadDevicePushTokenRequest, app_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UploadDevicePushTokenRequest, device_token_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UploadDevicePushTokenRequest, device_uuid_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::UploadDevicePushTokenResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::DeleteDevicePushTokenRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::DeleteDevicePushTokenRequest, app_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::DeleteDevicePushTokenRequest, device_uuid_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::DeleteDevicePushTokenResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetDevicePushTokensRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetDevicePushTokensRequest, app_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetDevicePushTokensResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetDevicePushTokensResponse, device_tokens_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::SetFirebaseConfigRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::SetFirebaseConfigRequest, org_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::SetFirebaseConfigRequest, app_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::SetFirebaseConfigRequest, config_json_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::SetFirebaseConfigResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetFirebaseConfigRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetFirebaseConfigRequest, org_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetFirebaseConfigResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::GetFirebaseConfigResponse, app_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::DeleteFirebaseConfigRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::DeleteFirebaseConfigRequest, org_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::DeleteFirebaseConfigRequest, app_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::DeleteFirebaseConfigResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::v1::Robot)},
@@ -6552,6 +6784,18 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 2505, 2514, -1, sizeof(::viam::app::v1::GetAppBrandingResponse)},
   { 2517, -1, -1, sizeof(::viam::app::v1::AppCustomizations)},
   { 2524, 2532, -1, sizeof(::viam::app::v1::MachinePickerCustomizations)},
+  { 2534, -1, -1, sizeof(::viam::app::v1::UploadDevicePushTokenRequest)},
+  { 2543, -1, -1, sizeof(::viam::app::v1::UploadDevicePushTokenResponse)},
+  { 2549, -1, -1, sizeof(::viam::app::v1::DeleteDevicePushTokenRequest)},
+  { 2557, -1, -1, sizeof(::viam::app::v1::DeleteDevicePushTokenResponse)},
+  { 2563, -1, -1, sizeof(::viam::app::v1::GetDevicePushTokensRequest)},
+  { 2570, -1, -1, sizeof(::viam::app::v1::GetDevicePushTokensResponse)},
+  { 2577, -1, -1, sizeof(::viam::app::v1::SetFirebaseConfigRequest)},
+  { 2586, -1, -1, sizeof(::viam::app::v1::SetFirebaseConfigResponse)},
+  { 2592, -1, -1, sizeof(::viam::app::v1::GetFirebaseConfigRequest)},
+  { 2599, -1, -1, sizeof(::viam::app::v1::GetFirebaseConfigResponse)},
+  { 2606, -1, -1, sizeof(::viam::app::v1::DeleteFirebaseConfigRequest)},
+  { 2614, -1, -1, sizeof(::viam::app::v1::DeleteFirebaseConfigResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -6833,6 +7077,18 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::v1::_GetAppBrandingResponse_default_instance_._instance,
   &::viam::app::v1::_AppCustomizations_default_instance_._instance,
   &::viam::app::v1::_MachinePickerCustomizations_default_instance_._instance,
+  &::viam::app::v1::_UploadDevicePushTokenRequest_default_instance_._instance,
+  &::viam::app::v1::_UploadDevicePushTokenResponse_default_instance_._instance,
+  &::viam::app::v1::_DeleteDevicePushTokenRequest_default_instance_._instance,
+  &::viam::app::v1::_DeleteDevicePushTokenResponse_default_instance_._instance,
+  &::viam::app::v1::_GetDevicePushTokensRequest_default_instance_._instance,
+  &::viam::app::v1::_GetDevicePushTokensResponse_default_instance_._instance,
+  &::viam::app::v1::_SetFirebaseConfigRequest_default_instance_._instance,
+  &::viam::app::v1::_SetFirebaseConfigResponse_default_instance_._instance,
+  &::viam::app::v1::_GetFirebaseConfigRequest_default_instance_._instance,
+  &::viam::app::v1::_GetFirebaseConfigResponse_default_instance_._instance,
+  &::viam::app::v1::_DeleteFirebaseConfigRequest_default_instance_._instance,
+  &::viam::app::v1::_DeleteFirebaseConfigResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -7749,333 +8005,367 @@ const char descriptor_table_protodef_app_2fv1_2fapp_2eproto[] PROTOBUF_SECTION_V
   "ePicker\"|\n\033MachinePickerCustomizations\022\035"
   "\n\007heading\030\001 \001(\tH\000R\007heading\210\001\001\022#\n\nsubhead"
   "ing\030\002 \001(\tH\001R\nsubheading\210\001\001B\n\n\010_headingB\r"
-  "\n\013_subheading*\177\n\013OnlineState\022\034\n\030ONLINE_S"
-  "TATE_UNSPECIFIED\020\000\022\027\n\023ONLINE_STATE_ONLIN"
-  "E\020\001\022\030\n\024ONLINE_STATE_OFFLINE\020\002\022\037\n\033ONLINE_"
-  "STATE_AWAITING_SETUP\020\003*\321\001\n\022Authenticatio"
-  "nType\022#\n\037AUTHENTICATION_TYPE_UNSPECIFIED"
-  "\020\000\022!\n\035AUTHENTICATION_TYPE_WEB_OAUTH\020\001\022\037\n"
-  "\033AUTHENTICATION_TYPE_API_KEY\020\002\022)\n%AUTHEN"
-  "TICATION_TYPE_ROBOT_PART_SECRET\020\003\022\'\n#AUT"
-  "HENTICATION_TYPE_LOCATION_SECRET\020\004*\243\001\n\022F"
-  "ragmentVisibility\022#\n\037FRAGMENT_VISIBILITY"
-  "_UNSPECIFIED\020\000\022\037\n\033FRAGMENT_VISIBILITY_PR"
-  "IVATE\020\001\022\036\n\032FRAGMENT_VISIBILITY_PUBLIC\020\002\022"
-  "\'\n#FRAGMENT_VISIBILITY_PUBLIC_UNLISTED\020\003"
-  "*\335\001\n\021FragmentErrorType\022#\n\037FRAGMENT_ERROR"
-  "_TYPE_UNSPECIFIED\020\000\022!\n\035FRAGMENT_ERROR_TY"
-  "PE_NO_ACCESS\020\001\022.\n*FRAGMENT_ERROR_TYPE_NE"
-  "STING_LIMIT_EXCEEDED\020\002\022(\n$FRAGMENT_ERROR"
-  "_TYPE_CHILD_ID_INVALID\020\003\022&\n\"FRAGMENT_ERR"
-  "OR_TYPE_CYCLE_DETECTED\020\004*{\n\020ModuleSource"
-  "Type\022\"\n\036MODULE_SOURCE_TYPE_UNSPECIFIED\020\000"
-  "\022\037\n\033MODULE_SOURCE_TYPE_EXTERNAL\020\001\022\"\n\036MOD"
-  "ULE_SOURCE_TYPE_VIAM_HOSTED\020\002*\202\001\n\016Module"
-  "Language\022\037\n\033MODULE_LANGUAGE_UNSPECIFIED\020"
-  "\000\022\032\n\026MODULE_LANGUAGE_GOLANG\020\001\022\032\n\026MODULE_"
-  "LANGUAGE_PYTHON\020\002\022\027\n\023MODULE_LANGUAGE_CPP"
-  "\020\003*\207\001\n\022RegistryItemStatus\022$\n REGISTRY_IT"
-  "EM_STATUS_UNSPECIFIED\020\000\022\"\n\036REGISTRY_ITEM"
-  "_STATUS_PUBLISHED\020\001\022\'\n#REGISTRY_ITEM_STA"
-  "TUS_IN_DEVELOPMENT\020\002*w\n\nVisibility\022\032\n\026VI"
-  "SIBILITY_UNSPECIFIED\020\000\022\026\n\022VISIBILITY_PRI"
-  "VATE\020\001\022\025\n\021VISIBILITY_PUBLIC\020\002\022\036\n\032VISIBIL"
-  "ITY_PUBLIC_UNLISTED\020\003*\\\n\007AppType\022\030\n\024APP_"
-  "TYPE_UNSPECIFIED\020\000\022\033\n\027APP_TYPE_SINGLE_MA"
-  "CHINE\020\001\022\032\n\026APP_TYPE_MULTI_MACHINE\020\002*\301\001\n\024"
-  "ClientAuthentication\022%\n!CLIENT_AUTHENTIC"
-  "ATION_UNSPECIFIED\020\000\022\"\n\036CLIENT_AUTHENTICA"
-  "TION_REQUIRED\020\001\022&\n\"CLIENT_AUTHENTICATION"
-  "_NOT_REQUIRED\020\002\0226\n2CLIENT_AUTHENTICATION"
-  "_NOT_REQUIRED_WHEN_USING_PKCE\020\003*~\n\004PKCE\022"
-  "\024\n\020PKCE_UNSPECIFIED\020\000\022\021\n\rPKCE_REQUIRED\020\001"
-  "\022\025\n\021PKCE_NOT_REQUIRED\020\002\0226\n2PKCE_NOT_REQU"
-  "IRED_WHEN_USING_CLIENT_AUTHENTICATION\020\003*"
-  "s\n\rURLValidation\022\036\n\032URL_VALIDATION_UNSPE"
-  "CIFIED\020\000\022\036\n\032URL_VALIDATION_EXACT_MATCH\020\001"
-  "\022\"\n\036URL_VALIDATION_ALLOW_WILDCARDS\020\002*\313\001\n"
-  "\014EnabledGrant\022\035\n\031ENABLED_GRANT_UNSPECIFI"
-  "ED\020\000\022$\n ENABLED_GRANT_AUTHORIZATION_CODE"
-  "\020\001\022\032\n\026ENABLED_GRANT_IMPLICIT\020\002\022\032\n\026ENABLE"
-  "D_GRANT_PASSWORD\020\003\022\037\n\033ENABLED_GRANT_REFR"
-  "ESH_TOKEN\020\004\022\035\n\031ENABLED_GRANT_DEVICE_CODE"
-  "\020\0052\372U\n\nAppService\022_\n\020GetUserIDByEmail\022$."
-  "viam.app.v1.GetUserIDByEmailRequest\032%.vi"
-  "am.app.v1.GetUserIDByEmailResponse\022e\n\022Cr"
-  "eateOrganization\022&.viam.app.v1.CreateOrg"
-  "anizationRequest\032\'.viam.app.v1.CreateOrg"
-  "anizationResponse\022b\n\021ListOrganizations\022%"
-  ".viam.app.v1.ListOrganizationsRequest\032&."
-  "viam.app.v1.ListOrganizationsResponse\022\233\001"
-  "\n$GetOrganizationsWithAccessToLocation\0228"
-  ".viam.app.v1.GetOrganizationsWithAccessT"
-  "oLocationRequest\0329.viam.app.v1.GetOrgani"
-  "zationsWithAccessToLocationResponse\022t\n\027L"
-  "istOrganizationsByUser\022+.viam.app.v1.Lis"
-  "tOrganizationsByUserRequest\032,.viam.app.v"
-  "1.ListOrganizationsByUserResponse\022h\n\023Sea"
-  "rchOrganizations\022\'.viam.app.v1.SearchOrg"
-  "anizationsRequest\032(.viam.app.v1.SearchOr"
-  "ganizationsResponse\022\\\n\017GetOrganization\022#"
-  ".viam.app.v1.GetOrganizationRequest\032$.vi"
-  "am.app.v1.GetOrganizationResponse\022\233\001\n$Ge"
-  "tOrganizationNamespaceAvailability\0228.via"
-  "m.app.v1.GetOrganizationNamespaceAvailab"
-  "ilityRequest\0329.viam.app.v1.GetOrganizati"
-  "onNamespaceAvailabilityResponse\022e\n\022Updat"
-  "eOrganization\022&.viam.app.v1.UpdateOrgani"
-  "zationRequest\032\'.viam.app.v1.UpdateOrgani"
-  "zationResponse\022\200\001\n\033UpdateOrganizationNam"
-  "espace\022/.viam.app.v1.UpdateOrganizationN"
-  "amespaceRequest\0320.viam.app.v1.UpdateOrga"
-  "nizationNamespaceResponse\022e\n\022DeleteOrgan"
-  "ization\022&.viam.app.v1.DeleteOrganization"
-  "Request\032\'.viam.app.v1.DeleteOrganization"
-  "Response\022t\n\027GetOrganizationMetadata\022+.vi"
-  "am.app.v1.GetOrganizationMetadataRequest"
-  "\032,.viam.app.v1.GetOrganizationMetadataRe"
-  "sponse\022}\n\032UpdateOrganizationMetadata\022..v"
-  "iam.app.v1.UpdateOrganizationMetadataReq"
-  "uest\032/.viam.app.v1.UpdateOrganizationMet"
-  "adataResponse\022t\n\027ListOrganizationMembers"
-  "\022+.viam.app.v1.ListOrganizationMembersRe"
-  "quest\032,.viam.app.v1.ListOrganizationMemb"
-  "ersResponse\022w\n\030CreateOrganizationInvite\022"
-  ",.viam.app.v1.CreateOrganizationInviteRe"
-  "quest\032-.viam.app.v1.CreateOrganizationIn"
-  "viteResponse\022\241\001\n&UpdateOrganizationInvit"
-  "eAuthorizations\022:.viam.app.v1.UpdateOrga"
-  "nizationInviteAuthorizationsRequest\032;.vi"
-  "am.app.v1.UpdateOrganizationInviteAuthor"
-  "izationsResponse\022w\n\030DeleteOrganizationMe"
-  "mber\022,.viam.app.v1.DeleteOrganizationMem"
-  "berRequest\032-.viam.app.v1.DeleteOrganizat"
-  "ionMemberResponse\022w\n\030DeleteOrganizationI"
-  "nvite\022,.viam.app.v1.DeleteOrganizationIn"
-  "viteRequest\032-.viam.app.v1.DeleteOrganiza"
-  "tionInviteResponse\022w\n\030ResendOrganization"
-  "Invite\022,.viam.app.v1.ResendOrganizationI"
-  "nviteRequest\032-.viam.app.v1.ResendOrganiz"
-  "ationInviteResponse\022k\n\024EnableBillingServ"
-  "ice\022(.viam.app.v1.EnableBillingServiceRe"
-  "quest\032).viam.app.v1.EnableBillingService"
-  "Response\022n\n\025DisableBillingService\022).viam"
-  ".app.v1.DisableBillingServiceRequest\032*.v"
-  "iam.app.v1.DisableBillingServiceResponse"
-  "\022k\n\024UpdateBillingService\022(.viam.app.v1.U"
-  "pdateBillingServiceRequest\032).viam.app.v1"
-  ".UpdateBillingServiceResponse\022t\n\027GetBill"
-  "ingServiceConfig\022+.viam.app.v1.GetBillin"
-  "gServiceConfigRequest\032,.viam.app.v1.GetB"
-  "illingServiceConfigResponse\022\200\001\n\033Organiza"
-  "tionSetSupportEmail\022/.viam.app.v1.Organi"
-  "zationSetSupportEmailRequest\0320.viam.app."
-  "v1.OrganizationSetSupportEmailResponse\022\200"
-  "\001\n\033OrganizationGetSupportEmail\022/.viam.ap"
-  "p.v1.OrganizationGetSupportEmailRequest\032"
-  "0.viam.app.v1.OrganizationGetSupportEmai"
-  "lResponse\022h\n\023OrganizationSetLogo\022\'.viam."
-  "app.v1.OrganizationSetLogoRequest\032(.viam"
-  ".app.v1.OrganizationSetLogoResponse\022h\n\023O"
-  "rganizationGetLogo\022\'.viam.app.v1.Organiz"
-  "ationGetLogoRequest\032(.viam.app.v1.Organi"
-  "zationGetLogoResponse\022b\n\021EnableAuthServi"
-  "ce\022%.viam.app.v1.EnableAuthServiceReques"
-  "t\032&.viam.app.v1.EnableAuthServiceRespons"
-  "e\022e\n\022DisableAuthService\022&.viam.app.v1.Di"
-  "sableAuthServiceRequest\032\'.viam.app.v1.Di"
-  "sableAuthServiceResponse\022Y\n\016CreateOAuthA"
-  "pp\022\".viam.app.v1.CreateOAuthAppRequest\032#"
-  ".viam.app.v1.CreateOAuthAppResponse\022S\n\014R"
-  "eadOAuthApp\022 .viam.app.v1.ReadOAuthAppRe"
-  "quest\032!.viam.app.v1.ReadOAuthAppResponse"
-  "\022Y\n\016UpdateOAuthApp\022\".viam.app.v1.UpdateO"
-  "AuthAppRequest\032#.viam.app.v1.UpdateOAuth"
-  "AppResponse\022Y\n\016DeleteOAuthApp\022\".viam.app"
-  ".v1.DeleteOAuthAppRequest\032#.viam.app.v1."
-  "DeleteOAuthAppResponse\022V\n\rListOAuthApps\022"
-  "!.viam.app.v1.ListOAuthAppsRequest\032\".via"
-  "m.app.v1.ListOAuthAppsResponse\022Y\n\016Create"
-  "Location\022\".viam.app.v1.CreateLocationReq"
-  "uest\032#.viam.app.v1.CreateLocationRespons"
-  "e\022P\n\013GetLocation\022\037.viam.app.v1.GetLocati"
-  "onRequest\032 .viam.app.v1.GetLocationRespo"
-  "nse\022Y\n\016UpdateLocation\022\".viam.app.v1.Upda"
-  "teLocationRequest\032#.viam.app.v1.UpdateLo"
-  "cationResponse\022Y\n\016DeleteLocation\022\".viam."
-  "app.v1.DeleteLocationRequest\032#.viam.app."
-  "v1.DeleteLocationResponse\022h\n\023GetLocation"
-  "Metadata\022\'.viam.app.v1.GetLocationMetada"
-  "taRequest\032(.viam.app.v1.GetLocationMetad"
-  "ataResponse\022q\n\026UpdateLocationMetadata\022*."
-  "viam.app.v1.UpdateLocationMetadataReques"
-  "t\032+.viam.app.v1.UpdateLocationMetadataRe"
-  "sponse\022V\n\rListLocations\022!.viam.app.v1.Li"
-  "stLocationsRequest\032\".viam.app.v1.ListLoc"
-  "ationsResponse\022V\n\rShareLocation\022!.viam.a"
-  "pp.v1.ShareLocationRequest\032\".viam.app.v1"
-  ".ShareLocationResponse\022\\\n\017UnshareLocatio"
-  "n\022#.viam.app.v1.UnshareLocationRequest\032$"
-  ".viam.app.v1.UnshareLocationResponse\022S\n\014"
-  "LocationAuth\022 .viam.app.v1.LocationAuthR"
-  "equest\032!.viam.app.v1.LocationAuthRespons"
-  "e\022k\n\024CreateLocationSecret\022(.viam.app.v1."
-  "CreateLocationSecretRequest\032).viam.app.v"
-  "1.CreateLocationSecretResponse\022k\n\024Delete"
-  "LocationSecret\022(.viam.app.v1.DeleteLocat"
-  "ionSecretRequest\032).viam.app.v1.DeleteLoc"
-  "ationSecretResponse\022G\n\010GetRobot\022\034.viam.a"
-  "pp.v1.GetRobotRequest\032\035.viam.app.v1.GetR"
-  "obotResponse\022_\n\020GetRobotMetadata\022$.viam."
-  "app.v1.GetRobotMetadataRequest\032%.viam.ap"
-  "p.v1.GetRobotMetadataResponse\022h\n\023UpdateR"
-  "obotMetadata\022\'.viam.app.v1.UpdateRobotMe"
-  "tadataRequest\032(.viam.app.v1.UpdateRobotM"
-  "etadataResponse\022k\n\024GetRoverRentalRobots\022"
-  "(.viam.app.v1.GetRoverRentalRobotsReques"
-  "t\032).viam.app.v1.GetRoverRentalRobotsResp"
-  "onse\022V\n\rGetRobotParts\022!.viam.app.v1.GetR"
-  "obotPartsRequest\032\".viam.app.v1.GetRobotP"
-  "artsResponse\022S\n\014GetRobotPart\022 .viam.app."
-  "v1.GetRobotPartRequest\032!.viam.app.v1.Get"
-  "RobotPartResponse\022\206\001\n\035GetRobotPartByName"
-  "AndLocation\0221.viam.app.v1.GetRobotPartBy"
-  "NameAndLocationRequest\0322.viam.app.v1.Get"
-  "RobotPartByNameAndLocationResponse\022_\n\020Ge"
-  "tRobotPartLogs\022$.viam.app.v1.GetRobotPar"
-  "tLogsRequest\032%.viam.app.v1.GetRobotPartL"
-  "ogsResponse\022d\n\021TailRobotPartLogs\022%.viam."
-  "app.v1.TailRobotPartLogsRequest\032&.viam.a"
-  "pp.v1.TailRobotPartLogsResponse0\001\022h\n\023Get"
-  "RobotPartHistory\022\'.viam.app.v1.GetRobotP"
-  "artHistoryRequest\032(.viam.app.v1.GetRobot"
-  "PartHistoryResponse\022\\\n\017UpdateRobotPart\022#"
-  ".viam.app.v1.UpdateRobotPartRequest\032$.vi"
-  "am.app.v1.UpdateRobotPartResponse\022S\n\014New"
-  "RobotPart\022 .viam.app.v1.NewRobotPartRequ"
-  "est\032!.viam.app.v1.NewRobotPartResponse\022\\"
-  "\n\017DeleteRobotPart\022#.viam.app.v1.DeleteRo"
-  "botPartRequest\032$.viam.app.v1.DeleteRobot"
-  "PartResponse\022k\n\024GetRobotPartMetadata\022(.v"
-  "iam.app.v1.GetRobotPartMetadataRequest\032)"
-  ".viam.app.v1.GetRobotPartMetadataRespons"
-  "e\022t\n\027UpdateRobotPartMetadata\022+.viam.app."
-  "v1.UpdateRobotPartMetadataRequest\032,.viam"
-  ".app.v1.UpdateRobotPartMetadataResponse\022"
-  "\\\n\017GetRobotAPIKeys\022#.viam.app.v1.GetRobo"
-  "tAPIKeysRequest\032$.viam.app.v1.GetRobotAP"
-  "IKeysResponse\022Y\n\016MarkPartAsMain\022\".viam.a"
-  "pp.v1.MarkPartAsMainRequest\032#.viam.app.v"
-  "1.MarkPartAsMainResponse\022e\n\022MarkPartForR"
-  "estart\022&.viam.app.v1.MarkPartForRestartR"
-  "equest\032\'.viam.app.v1.MarkPartForRestartR"
-  "esponse\022n\n\025CreateRobotPartSecret\022).viam."
-  "app.v1.CreateRobotPartSecretRequest\032*.vi"
-  "am.app.v1.CreateRobotPartSecretResponse\022"
-  "n\n\025DeleteRobotPartSecret\022).viam.app.v1.D"
-  "eleteRobotPartSecretRequest\032*.viam.app.v"
-  "1.DeleteRobotPartSecretResponse\022M\n\nListR"
-  "obots\022\036.viam.app.v1.ListRobotsRequest\032\037."
-  "viam.app.v1.ListRobotsResponse\022q\n\026ListRo"
-  "botsForLocations\022*.viam.app.v1.ListRobot"
-  "sForLocationsRequest\032+.viam.app.v1.ListR"
-  "obotsForLocationsResponse\022_\n\020ListRobotsF"
-  "orOrg\022$.viam.app.v1.ListRobotsForOrgRequ"
-  "est\032%.viam.app.v1.ListRobotsForOrgRespon"
-  "se\022G\n\010NewRobot\022\034.viam.app.v1.NewRobotReq"
-  "uest\032\035.viam.app.v1.NewRobotResponse\022P\n\013U"
-  "pdateRobot\022\037.viam.app.v1.UpdateRobotRequ"
-  "est\032 .viam.app.v1.UpdateRobotResponse\022P\n"
-  "\013DeleteRobot\022\037.viam.app.v1.DeleteRobotRe"
-  "quest\032 .viam.app.v1.DeleteRobotResponse\022"
-  "V\n\rListFragments\022!.viam.app.v1.ListFragm"
-  "entsRequest\032\".viam.app.v1.ListFragmentsR"
-  "esponse\022P\n\013GetFragment\022\037.viam.app.v1.Get"
-  "FragmentRequest\032 .viam.app.v1.GetFragmen"
-  "tResponse\022Y\n\016CreateFragment\022\".viam.app.v"
-  "1.CreateFragmentRequest\032#.viam.app.v1.Cr"
-  "eateFragmentResponse\022Y\n\016UpdateFragment\022\""
-  ".viam.app.v1.UpdateFragmentRequest\032#.via"
-  "m.app.v1.UpdateFragmentResponse\022Y\n\016Delet"
-  "eFragment\022\".viam.app.v1.DeleteFragmentRe"
-  "quest\032#.viam.app.v1.DeleteFragmentRespon"
-  "se\022h\n\023ListNestedFragments\022\'.viam.app.v1."
-  "ListNestedFragmentsRequest\032(.viam.app.v1"
-  ".ListNestedFragmentsResponse\022k\n\024ListMach"
-  "ineFragments\022(.viam.app.v1.ListMachineFr"
-  "agmentsRequest\032).viam.app.v1.ListMachine"
-  "FragmentsResponse\022k\n\024ListMachineSummarie"
-  "s\022(.viam.app.v1.ListMachineSummariesRequ"
-  "est\032).viam.app.v1.ListMachineSummariesRe"
-  "sponse\022e\n\022GetFragmentHistory\022&.viam.app."
-  "v1.GetFragmentHistoryRequest\032\'.viam.app."
-  "v1.GetFragmentHistoryResponse\022_\n\020GetFrag"
-  "mentUsage\022$.viam.app.v1.GetFragmentUsage"
-  "Request\032%.viam.app.v1.GetFragmentUsageRe"
-  "sponse\022Y\n\016SetFragmentTag\022\".viam.app.v1.S"
-  "etFragmentTagRequest\032#.viam.app.v1.SetFr"
-  "agmentTagResponse\022b\n\021DeleteFragmentTag\022%"
-  ".viam.app.v1.DeleteFragmentTagRequest\032&."
-  "viam.app.v1.DeleteFragmentTagResponse\022D\n"
-  "\007AddRole\022\033.viam.app.v1.AddRoleRequest\032\034."
-  "viam.app.v1.AddRoleResponse\022M\n\nRemoveRol"
-  "e\022\036.viam.app.v1.RemoveRoleRequest\032\037.viam"
-  ".app.v1.RemoveRoleResponse\022M\n\nChangeRole"
-  "\022\036.viam.app.v1.ChangeRoleRequest\032\037.viam."
-  "app.v1.ChangeRoleResponse\022e\n\022ListAuthori"
-  "zations\022&.viam.app.v1.ListAuthorizations"
-  "Request\032\'.viam.app.v1.ListAuthorizations"
-  "Response\022_\n\020CheckPermissions\022$.viam.app."
-  "v1.CheckPermissionsRequest\032%.viam.app.v1"
-  ".CheckPermissionsResponse\022\\\n\017GetRegistry"
-  "Item\022#.viam.app.v1.GetRegistryItemReques"
-  "t\032$.viam.app.v1.GetRegistryItemResponse\022"
-  "e\n\022CreateRegistryItem\022&.viam.app.v1.Crea"
-  "teRegistryItemRequest\032\'.viam.app.v1.Crea"
-  "teRegistryItemResponse\022e\n\022UpdateRegistry"
-  "Item\022&.viam.app.v1.UpdateRegistryItemReq"
-  "uest\032\'.viam.app.v1.UpdateRegistryItemRes"
-  "ponse\022b\n\021ListRegistryItems\022%.viam.app.v1"
-  ".ListRegistryItemsRequest\032&.viam.app.v1."
-  "ListRegistryItemsResponse\022e\n\022DeleteRegis"
-  "tryItem\022&.viam.app.v1.DeleteRegistryItem"
-  "Request\032\'.viam.app.v1.DeleteRegistryItem"
-  "Response\022e\n\022RenameRegistryItem\022&.viam.ap"
-  "p.v1.RenameRegistryItemRequest\032\'.viam.ap"
-  "p.v1.RenameRegistryItemResponse\022k\n\024Trans"
-  "ferRegistryItem\022(.viam.app.v1.TransferRe"
-  "gistryItemRequest\032).viam.app.v1.Transfer"
-  "RegistryItemResponse\022S\n\014CreateModule\022 .v"
-  "iam.app.v1.CreateModuleRequest\032!.viam.ap"
-  "p.v1.CreateModuleResponse\022S\n\014UpdateModul"
-  "e\022 .viam.app.v1.UpdateModuleRequest\032!.vi"
-  "am.app.v1.UpdateModuleResponse\022a\n\020Upload"
-  "ModuleFile\022$.viam.app.v1.UploadModuleFil"
-  "eRequest\032%.viam.app.v1.UploadModuleFileR"
-  "esponse(\001\022J\n\tGetModule\022\035.viam.app.v1.Get"
-  "ModuleRequest\032\036.viam.app.v1.GetModuleRes"
-  "ponse\022P\n\013ListModules\022\037.viam.app.v1.ListM"
-  "odulesRequest\032 .viam.app.v1.ListModulesR"
-  "esponse\022J\n\tCreateKey\022\035.viam.app.v1.Creat"
-  "eKeyRequest\032\036.viam.app.v1.CreateKeyRespo"
-  "nse\022J\n\tDeleteKey\022\035.viam.app.v1.DeleteKey"
-  "Request\032\036.viam.app.v1.DeleteKeyResponse\022"
-  "G\n\010ListKeys\022\034.viam.app.v1.ListKeysReques"
-  "t\032\035.viam.app.v1.ListKeysResponse\022J\n\tRena"
-  "meKey\022\035.viam.app.v1.RenameKeyRequest\032\036.v"
-  "iam.app.v1.RenameKeyResponse\022J\n\tRotateKe"
-  "y\022\035.viam.app.v1.RotateKeyRequest\032\036.viam."
-  "app.v1.RotateKeyResponse\022\241\001\n&CreateKeyFr"
-  "omExistingKeyAuthorizations\022:.viam.app.v"
-  "1.CreateKeyFromExistingKeyAuthorizations"
-  "Request\032;.viam.app.v1.CreateKeyFromExist"
-  "ingKeyAuthorizationsResponse\022V\n\rGetAppCo"
-  "ntent\022!.viam.app.v1.GetAppContentRequest"
-  "\032\".viam.app.v1.GetAppContentResponse\022Y\n\016"
-  "GetAppBranding\022\".viam.app.v1.GetAppBrand"
-  "ingRequest\032#.viam.app.v1.GetAppBrandingR"
-  "esponseB\030Z\026go.viam.com/api/app/v1b\006proto"
-  "3"
+  "\n\013_subheading\"y\n\034UploadDevicePushTokenRe"
+  "quest\022\025\n\006app_id\030\001 \001(\tR\005appId\022!\n\014device_t"
+  "oken\030\002 \001(\tR\013deviceToken\022\037\n\013device_uuid\030\003"
+  " \001(\tR\ndeviceUuid\"\037\n\035UploadDevicePushToke"
+  "nResponse\"V\n\034DeleteDevicePushTokenReques"
+  "t\022\025\n\006app_id\030\001 \001(\tR\005appId\022\037\n\013device_uuid\030"
+  "\002 \001(\tR\ndeviceUuid\"\037\n\035DeleteDevicePushTok"
+  "enResponse\"3\n\032GetDevicePushTokensRequest"
+  "\022\025\n\006app_id\030\001 \001(\tR\005appId\"B\n\033GetDevicePush"
+  "TokensResponse\022#\n\rdevice_tokens\030\001 \003(\tR\014d"
+  "eviceTokens\"i\n\030SetFirebaseConfigRequest\022"
+  "\025\n\006org_id\030\001 \001(\tR\005orgId\022\025\n\006app_id\030\002 \001(\tR\005"
+  "appId\022\037\n\013config_json\030\003 \001(\tR\nconfigJson\"\033"
+  "\n\031SetFirebaseConfigResponse\"1\n\030GetFireba"
+  "seConfigRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"2"
+  "\n\031GetFirebaseConfigResponse\022\025\n\006app_id\030\001 "
+  "\001(\tR\005appId\"K\n\033DeleteFirebaseConfigReques"
+  "t\022\025\n\006org_id\030\001 \001(\tR\005orgId\022\025\n\006app_id\030\002 \001(\t"
+  "R\005appId\"\036\n\034DeleteFirebaseConfigResponse*"
+  "\177\n\013OnlineState\022\034\n\030ONLINE_STATE_UNSPECIFI"
+  "ED\020\000\022\027\n\023ONLINE_STATE_ONLINE\020\001\022\030\n\024ONLINE_"
+  "STATE_OFFLINE\020\002\022\037\n\033ONLINE_STATE_AWAITING"
+  "_SETUP\020\003*\321\001\n\022AuthenticationType\022#\n\037AUTHE"
+  "NTICATION_TYPE_UNSPECIFIED\020\000\022!\n\035AUTHENTI"
+  "CATION_TYPE_WEB_OAUTH\020\001\022\037\n\033AUTHENTICATIO"
+  "N_TYPE_API_KEY\020\002\022)\n%AUTHENTICATION_TYPE_"
+  "ROBOT_PART_SECRET\020\003\022\'\n#AUTHENTICATION_TY"
+  "PE_LOCATION_SECRET\020\004*\243\001\n\022FragmentVisibil"
+  "ity\022#\n\037FRAGMENT_VISIBILITY_UNSPECIFIED\020\000"
+  "\022\037\n\033FRAGMENT_VISIBILITY_PRIVATE\020\001\022\036\n\032FRA"
+  "GMENT_VISIBILITY_PUBLIC\020\002\022\'\n#FRAGMENT_VI"
+  "SIBILITY_PUBLIC_UNLISTED\020\003*\335\001\n\021FragmentE"
+  "rrorType\022#\n\037FRAGMENT_ERROR_TYPE_UNSPECIF"
+  "IED\020\000\022!\n\035FRAGMENT_ERROR_TYPE_NO_ACCESS\020\001"
+  "\022.\n*FRAGMENT_ERROR_TYPE_NESTING_LIMIT_EX"
+  "CEEDED\020\002\022(\n$FRAGMENT_ERROR_TYPE_CHILD_ID"
+  "_INVALID\020\003\022&\n\"FRAGMENT_ERROR_TYPE_CYCLE_"
+  "DETECTED\020\004*{\n\020ModuleSourceType\022\"\n\036MODULE"
+  "_SOURCE_TYPE_UNSPECIFIED\020\000\022\037\n\033MODULE_SOU"
+  "RCE_TYPE_EXTERNAL\020\001\022\"\n\036MODULE_SOURCE_TYP"
+  "E_VIAM_HOSTED\020\002*\202\001\n\016ModuleLanguage\022\037\n\033MO"
+  "DULE_LANGUAGE_UNSPECIFIED\020\000\022\032\n\026MODULE_LA"
+  "NGUAGE_GOLANG\020\001\022\032\n\026MODULE_LANGUAGE_PYTHO"
+  "N\020\002\022\027\n\023MODULE_LANGUAGE_CPP\020\003*\207\001\n\022Registr"
+  "yItemStatus\022$\n REGISTRY_ITEM_STATUS_UNSP"
+  "ECIFIED\020\000\022\"\n\036REGISTRY_ITEM_STATUS_PUBLIS"
+  "HED\020\001\022\'\n#REGISTRY_ITEM_STATUS_IN_DEVELOP"
+  "MENT\020\002*w\n\nVisibility\022\032\n\026VISIBILITY_UNSPE"
+  "CIFIED\020\000\022\026\n\022VISIBILITY_PRIVATE\020\001\022\025\n\021VISI"
+  "BILITY_PUBLIC\020\002\022\036\n\032VISIBILITY_PUBLIC_UNL"
+  "ISTED\020\003*\\\n\007AppType\022\030\n\024APP_TYPE_UNSPECIFI"
+  "ED\020\000\022\033\n\027APP_TYPE_SINGLE_MACHINE\020\001\022\032\n\026APP"
+  "_TYPE_MULTI_MACHINE\020\002*\301\001\n\024ClientAuthenti"
+  "cation\022%\n!CLIENT_AUTHENTICATION_UNSPECIF"
+  "IED\020\000\022\"\n\036CLIENT_AUTHENTICATION_REQUIRED\020"
+  "\001\022&\n\"CLIENT_AUTHENTICATION_NOT_REQUIRED\020"
+  "\002\0226\n2CLIENT_AUTHENTICATION_NOT_REQUIRED_"
+  "WHEN_USING_PKCE\020\003*~\n\004PKCE\022\024\n\020PKCE_UNSPEC"
+  "IFIED\020\000\022\021\n\rPKCE_REQUIRED\020\001\022\025\n\021PKCE_NOT_R"
+  "EQUIRED\020\002\0226\n2PKCE_NOT_REQUIRED_WHEN_USIN"
+  "G_CLIENT_AUTHENTICATION\020\003*s\n\rURLValidati"
+  "on\022\036\n\032URL_VALIDATION_UNSPECIFIED\020\000\022\036\n\032UR"
+  "L_VALIDATION_EXACT_MATCH\020\001\022\"\n\036URL_VALIDA"
+  "TION_ALLOW_WILDCARDS\020\002*\313\001\n\014EnabledGrant\022"
+  "\035\n\031ENABLED_GRANT_UNSPECIFIED\020\000\022$\n ENABLE"
+  "D_GRANT_AUTHORIZATION_CODE\020\001\022\032\n\026ENABLED_"
+  "GRANT_IMPLICIT\020\002\022\032\n\026ENABLED_GRANT_PASSWO"
+  "RD\020\003\022\037\n\033ENABLED_GRANT_REFRESH_TOKEN\020\004\022\035\n"
+  "\031ENABLED_GRANT_DEVICE_CODE\020\0052\371Z\n\nAppServ"
+  "ice\022_\n\020GetUserIDByEmail\022$.viam.app.v1.Ge"
+  "tUserIDByEmailRequest\032%.viam.app.v1.GetU"
+  "serIDByEmailResponse\022e\n\022CreateOrganizati"
+  "on\022&.viam.app.v1.CreateOrganizationReque"
+  "st\032\'.viam.app.v1.CreateOrganizationRespo"
+  "nse\022b\n\021ListOrganizations\022%.viam.app.v1.L"
+  "istOrganizationsRequest\032&.viam.app.v1.Li"
+  "stOrganizationsResponse\022\233\001\n$GetOrganizat"
+  "ionsWithAccessToLocation\0228.viam.app.v1.G"
+  "etOrganizationsWithAccessToLocationReque"
+  "st\0329.viam.app.v1.GetOrganizationsWithAcc"
+  "essToLocationResponse\022t\n\027ListOrganizatio"
+  "nsByUser\022+.viam.app.v1.ListOrganizations"
+  "ByUserRequest\032,.viam.app.v1.ListOrganiza"
+  "tionsByUserResponse\022h\n\023SearchOrganizatio"
+  "ns\022\'.viam.app.v1.SearchOrganizationsRequ"
+  "est\032(.viam.app.v1.SearchOrganizationsRes"
+  "ponse\022\\\n\017GetOrganization\022#.viam.app.v1.G"
+  "etOrganizationRequest\032$.viam.app.v1.GetO"
+  "rganizationResponse\022\233\001\n$GetOrganizationN"
+  "amespaceAvailability\0228.viam.app.v1.GetOr"
+  "ganizationNamespaceAvailabilityRequest\0329"
+  ".viam.app.v1.GetOrganizationNamespaceAva"
+  "ilabilityResponse\022e\n\022UpdateOrganization\022"
+  "&.viam.app.v1.UpdateOrganizationRequest\032"
+  "\'.viam.app.v1.UpdateOrganizationResponse"
+  "\022\200\001\n\033UpdateOrganizationNamespace\022/.viam."
+  "app.v1.UpdateOrganizationNamespaceReques"
+  "t\0320.viam.app.v1.UpdateOrganizationNamesp"
+  "aceResponse\022e\n\022DeleteOrganization\022&.viam"
+  ".app.v1.DeleteOrganizationRequest\032\'.viam"
+  ".app.v1.DeleteOrganizationResponse\022t\n\027Ge"
+  "tOrganizationMetadata\022+.viam.app.v1.GetO"
+  "rganizationMetadataRequest\032,.viam.app.v1"
+  ".GetOrganizationMetadataResponse\022}\n\032Upda"
+  "teOrganizationMetadata\022..viam.app.v1.Upd"
+  "ateOrganizationMetadataRequest\032/.viam.ap"
+  "p.v1.UpdateOrganizationMetadataResponse\022"
+  "t\n\027ListOrganizationMembers\022+.viam.app.v1"
+  ".ListOrganizationMembersRequest\032,.viam.a"
+  "pp.v1.ListOrganizationMembersResponse\022w\n"
+  "\030CreateOrganizationInvite\022,.viam.app.v1."
+  "CreateOrganizationInviteRequest\032-.viam.a"
+  "pp.v1.CreateOrganizationInviteResponse\022\241"
+  "\001\n&UpdateOrganizationInviteAuthorization"
+  "s\022:.viam.app.v1.UpdateOrganizationInvite"
+  "AuthorizationsRequest\032;.viam.app.v1.Upda"
+  "teOrganizationInviteAuthorizationsRespon"
+  "se\022w\n\030DeleteOrganizationMember\022,.viam.ap"
+  "p.v1.DeleteOrganizationMemberRequest\032-.v"
+  "iam.app.v1.DeleteOrganizationMemberRespo"
+  "nse\022w\n\030DeleteOrganizationInvite\022,.viam.a"
+  "pp.v1.DeleteOrganizationInviteRequest\032-."
+  "viam.app.v1.DeleteOrganizationInviteResp"
+  "onse\022w\n\030ResendOrganizationInvite\022,.viam."
+  "app.v1.ResendOrganizationInviteRequest\032-"
+  ".viam.app.v1.ResendOrganizationInviteRes"
+  "ponse\022k\n\024EnableBillingService\022(.viam.app"
+  ".v1.EnableBillingServiceRequest\032).viam.a"
+  "pp.v1.EnableBillingServiceResponse\022n\n\025Di"
+  "sableBillingService\022).viam.app.v1.Disabl"
+  "eBillingServiceRequest\032*.viam.app.v1.Dis"
+  "ableBillingServiceResponse\022k\n\024UpdateBill"
+  "ingService\022(.viam.app.v1.UpdateBillingSe"
+  "rviceRequest\032).viam.app.v1.UpdateBilling"
+  "ServiceResponse\022t\n\027GetBillingServiceConf"
+  "ig\022+.viam.app.v1.GetBillingServiceConfig"
+  "Request\032,.viam.app.v1.GetBillingServiceC"
+  "onfigResponse\022\200\001\n\033OrganizationSetSupport"
+  "Email\022/.viam.app.v1.OrganizationSetSuppo"
+  "rtEmailRequest\0320.viam.app.v1.Organizatio"
+  "nSetSupportEmailResponse\022\200\001\n\033Organizatio"
+  "nGetSupportEmail\022/.viam.app.v1.Organizat"
+  "ionGetSupportEmailRequest\0320.viam.app.v1."
+  "OrganizationGetSupportEmailResponse\022h\n\023O"
+  "rganizationSetLogo\022\'.viam.app.v1.Organiz"
+  "ationSetLogoRequest\032(.viam.app.v1.Organi"
+  "zationSetLogoResponse\022h\n\023OrganizationGet"
+  "Logo\022\'.viam.app.v1.OrganizationGetLogoRe"
+  "quest\032(.viam.app.v1.OrganizationGetLogoR"
+  "esponse\022b\n\021EnableAuthService\022%.viam.app."
+  "v1.EnableAuthServiceRequest\032&.viam.app.v"
+  "1.EnableAuthServiceResponse\022e\n\022DisableAu"
+  "thService\022&.viam.app.v1.DisableAuthServi"
+  "ceRequest\032\'.viam.app.v1.DisableAuthServi"
+  "ceResponse\022Y\n\016CreateOAuthApp\022\".viam.app."
+  "v1.CreateOAuthAppRequest\032#.viam.app.v1.C"
+  "reateOAuthAppResponse\022S\n\014ReadOAuthApp\022 ."
+  "viam.app.v1.ReadOAuthAppRequest\032!.viam.a"
+  "pp.v1.ReadOAuthAppResponse\022Y\n\016UpdateOAut"
+  "hApp\022\".viam.app.v1.UpdateOAuthAppRequest"
+  "\032#.viam.app.v1.UpdateOAuthAppResponse\022Y\n"
+  "\016DeleteOAuthApp\022\".viam.app.v1.DeleteOAut"
+  "hAppRequest\032#.viam.app.v1.DeleteOAuthApp"
+  "Response\022V\n\rListOAuthApps\022!.viam.app.v1."
+  "ListOAuthAppsRequest\032\".viam.app.v1.ListO"
+  "AuthAppsResponse\022Y\n\016CreateLocation\022\".via"
+  "m.app.v1.CreateLocationRequest\032#.viam.ap"
+  "p.v1.CreateLocationResponse\022P\n\013GetLocati"
+  "on\022\037.viam.app.v1.GetLocationRequest\032 .vi"
+  "am.app.v1.GetLocationResponse\022Y\n\016UpdateL"
+  "ocation\022\".viam.app.v1.UpdateLocationRequ"
+  "est\032#.viam.app.v1.UpdateLocationResponse"
+  "\022Y\n\016DeleteLocation\022\".viam.app.v1.DeleteL"
+  "ocationRequest\032#.viam.app.v1.DeleteLocat"
+  "ionResponse\022h\n\023GetLocationMetadata\022\'.via"
+  "m.app.v1.GetLocationMetadataRequest\032(.vi"
+  "am.app.v1.GetLocationMetadataResponse\022q\n"
+  "\026UpdateLocationMetadata\022*.viam.app.v1.Up"
+  "dateLocationMetadataRequest\032+.viam.app.v"
+  "1.UpdateLocationMetadataResponse\022V\n\rList"
+  "Locations\022!.viam.app.v1.ListLocationsReq"
+  "uest\032\".viam.app.v1.ListLocationsResponse"
+  "\022V\n\rShareLocation\022!.viam.app.v1.ShareLoc"
+  "ationRequest\032\".viam.app.v1.ShareLocation"
+  "Response\022\\\n\017UnshareLocation\022#.viam.app.v"
+  "1.UnshareLocationRequest\032$.viam.app.v1.U"
+  "nshareLocationResponse\022S\n\014LocationAuth\022 "
+  ".viam.app.v1.LocationAuthRequest\032!.viam."
+  "app.v1.LocationAuthResponse\022k\n\024CreateLoc"
+  "ationSecret\022(.viam.app.v1.CreateLocation"
+  "SecretRequest\032).viam.app.v1.CreateLocati"
+  "onSecretResponse\022k\n\024DeleteLocationSecret"
+  "\022(.viam.app.v1.DeleteLocationSecretReque"
+  "st\032).viam.app.v1.DeleteLocationSecretRes"
+  "ponse\022G\n\010GetRobot\022\034.viam.app.v1.GetRobot"
+  "Request\032\035.viam.app.v1.GetRobotResponse\022_"
+  "\n\020GetRobotMetadata\022$.viam.app.v1.GetRobo"
+  "tMetadataRequest\032%.viam.app.v1.GetRobotM"
+  "etadataResponse\022h\n\023UpdateRobotMetadata\022\'"
+  ".viam.app.v1.UpdateRobotMetadataRequest\032"
+  "(.viam.app.v1.UpdateRobotMetadataRespons"
+  "e\022k\n\024GetRoverRentalRobots\022(.viam.app.v1."
+  "GetRoverRentalRobotsRequest\032).viam.app.v"
+  "1.GetRoverRentalRobotsResponse\022V\n\rGetRob"
+  "otParts\022!.viam.app.v1.GetRobotPartsReque"
+  "st\032\".viam.app.v1.GetRobotPartsResponse\022S"
+  "\n\014GetRobotPart\022 .viam.app.v1.GetRobotPar"
+  "tRequest\032!.viam.app.v1.GetRobotPartRespo"
+  "nse\022\206\001\n\035GetRobotPartByNameAndLocation\0221."
+  "viam.app.v1.GetRobotPartByNameAndLocatio"
+  "nRequest\0322.viam.app.v1.GetRobotPartByNam"
+  "eAndLocationResponse\022_\n\020GetRobotPartLogs"
+  "\022$.viam.app.v1.GetRobotPartLogsRequest\032%"
+  ".viam.app.v1.GetRobotPartLogsResponse\022d\n"
+  "\021TailRobotPartLogs\022%.viam.app.v1.TailRob"
+  "otPartLogsRequest\032&.viam.app.v1.TailRobo"
+  "tPartLogsResponse0\001\022h\n\023GetRobotPartHisto"
+  "ry\022\'.viam.app.v1.GetRobotPartHistoryRequ"
+  "est\032(.viam.app.v1.GetRobotPartHistoryRes"
+  "ponse\022\\\n\017UpdateRobotPart\022#.viam.app.v1.U"
+  "pdateRobotPartRequest\032$.viam.app.v1.Upda"
+  "teRobotPartResponse\022S\n\014NewRobotPart\022 .vi"
+  "am.app.v1.NewRobotPartRequest\032!.viam.app"
+  ".v1.NewRobotPartResponse\022\\\n\017DeleteRobotP"
+  "art\022#.viam.app.v1.DeleteRobotPartRequest"
+  "\032$.viam.app.v1.DeleteRobotPartResponse\022k"
+  "\n\024GetRobotPartMetadata\022(.viam.app.v1.Get"
+  "RobotPartMetadataRequest\032).viam.app.v1.G"
+  "etRobotPartMetadataResponse\022t\n\027UpdateRob"
+  "otPartMetadata\022+.viam.app.v1.UpdateRobot"
+  "PartMetadataRequest\032,.viam.app.v1.Update"
+  "RobotPartMetadataResponse\022\\\n\017GetRobotAPI"
+  "Keys\022#.viam.app.v1.GetRobotAPIKeysReques"
+  "t\032$.viam.app.v1.GetRobotAPIKeysResponse\022"
+  "Y\n\016MarkPartAsMain\022\".viam.app.v1.MarkPart"
+  "AsMainRequest\032#.viam.app.v1.MarkPartAsMa"
+  "inResponse\022e\n\022MarkPartForRestart\022&.viam."
+  "app.v1.MarkPartForRestartRequest\032\'.viam."
+  "app.v1.MarkPartForRestartResponse\022n\n\025Cre"
+  "ateRobotPartSecret\022).viam.app.v1.CreateR"
+  "obotPartSecretRequest\032*.viam.app.v1.Crea"
+  "teRobotPartSecretResponse\022n\n\025DeleteRobot"
+  "PartSecret\022).viam.app.v1.DeleteRobotPart"
+  "SecretRequest\032*.viam.app.v1.DeleteRobotP"
+  "artSecretResponse\022M\n\nListRobots\022\036.viam.a"
+  "pp.v1.ListRobotsRequest\032\037.viam.app.v1.Li"
+  "stRobotsResponse\022q\n\026ListRobotsForLocatio"
+  "ns\022*.viam.app.v1.ListRobotsForLocationsR"
+  "equest\032+.viam.app.v1.ListRobotsForLocati"
+  "onsResponse\022_\n\020ListRobotsForOrg\022$.viam.a"
+  "pp.v1.ListRobotsForOrgRequest\032%.viam.app"
+  ".v1.ListRobotsForOrgResponse\022G\n\010NewRobot"
+  "\022\034.viam.app.v1.NewRobotRequest\032\035.viam.ap"
+  "p.v1.NewRobotResponse\022P\n\013UpdateRobot\022\037.v"
+  "iam.app.v1.UpdateRobotRequest\032 .viam.app"
+  ".v1.UpdateRobotResponse\022P\n\013DeleteRobot\022\037"
+  ".viam.app.v1.DeleteRobotRequest\032 .viam.a"
+  "pp.v1.DeleteRobotResponse\022V\n\rListFragmen"
+  "ts\022!.viam.app.v1.ListFragmentsRequest\032\"."
+  "viam.app.v1.ListFragmentsResponse\022P\n\013Get"
+  "Fragment\022\037.viam.app.v1.GetFragmentReques"
+  "t\032 .viam.app.v1.GetFragmentResponse\022Y\n\016C"
+  "reateFragment\022\".viam.app.v1.CreateFragme"
+  "ntRequest\032#.viam.app.v1.CreateFragmentRe"
+  "sponse\022Y\n\016UpdateFragment\022\".viam.app.v1.U"
+  "pdateFragmentRequest\032#.viam.app.v1.Updat"
+  "eFragmentResponse\022Y\n\016DeleteFragment\022\".vi"
+  "am.app.v1.DeleteFragmentRequest\032#.viam.a"
+  "pp.v1.DeleteFragmentResponse\022h\n\023ListNest"
+  "edFragments\022\'.viam.app.v1.ListNestedFrag"
+  "mentsRequest\032(.viam.app.v1.ListNestedFra"
+  "gmentsResponse\022k\n\024ListMachineFragments\022("
+  ".viam.app.v1.ListMachineFragmentsRequest"
+  "\032).viam.app.v1.ListMachineFragmentsRespo"
+  "nse\022k\n\024ListMachineSummaries\022(.viam.app.v"
+  "1.ListMachineSummariesRequest\032).viam.app"
+  ".v1.ListMachineSummariesResponse\022e\n\022GetF"
+  "ragmentHistory\022&.viam.app.v1.GetFragment"
+  "HistoryRequest\032\'.viam.app.v1.GetFragment"
+  "HistoryResponse\022_\n\020GetFragmentUsage\022$.vi"
+  "am.app.v1.GetFragmentUsageRequest\032%.viam"
+  ".app.v1.GetFragmentUsageResponse\022Y\n\016SetF"
+  "ragmentTag\022\".viam.app.v1.SetFragmentTagR"
+  "equest\032#.viam.app.v1.SetFragmentTagRespo"
+  "nse\022b\n\021DeleteFragmentTag\022%.viam.app.v1.D"
+  "eleteFragmentTagRequest\032&.viam.app.v1.De"
+  "leteFragmentTagResponse\022D\n\007AddRole\022\033.via"
+  "m.app.v1.AddRoleRequest\032\034.viam.app.v1.Ad"
+  "dRoleResponse\022M\n\nRemoveRole\022\036.viam.app.v"
+  "1.RemoveRoleRequest\032\037.viam.app.v1.Remove"
+  "RoleResponse\022M\n\nChangeRole\022\036.viam.app.v1"
+  ".ChangeRoleRequest\032\037.viam.app.v1.ChangeR"
+  "oleResponse\022e\n\022ListAuthorizations\022&.viam"
+  ".app.v1.ListAuthorizationsRequest\032\'.viam"
+  ".app.v1.ListAuthorizationsResponse\022_\n\020Ch"
+  "eckPermissions\022$.viam.app.v1.CheckPermis"
+  "sionsRequest\032%.viam.app.v1.CheckPermissi"
+  "onsResponse\022\\\n\017GetRegistryItem\022#.viam.ap"
+  "p.v1.GetRegistryItemRequest\032$.viam.app.v"
+  "1.GetRegistryItemResponse\022e\n\022CreateRegis"
+  "tryItem\022&.viam.app.v1.CreateRegistryItem"
+  "Request\032\'.viam.app.v1.CreateRegistryItem"
+  "Response\022e\n\022UpdateRegistryItem\022&.viam.ap"
+  "p.v1.UpdateRegistryItemRequest\032\'.viam.ap"
+  "p.v1.UpdateRegistryItemResponse\022b\n\021ListR"
+  "egistryItems\022%.viam.app.v1.ListRegistryI"
+  "temsRequest\032&.viam.app.v1.ListRegistryIt"
+  "emsResponse\022e\n\022DeleteRegistryItem\022&.viam"
+  ".app.v1.DeleteRegistryItemRequest\032\'.viam"
+  ".app.v1.DeleteRegistryItemResponse\022e\n\022Re"
+  "nameRegistryItem\022&.viam.app.v1.RenameReg"
+  "istryItemRequest\032\'.viam.app.v1.RenameReg"
+  "istryItemResponse\022k\n\024TransferRegistryIte"
+  "m\022(.viam.app.v1.TransferRegistryItemRequ"
+  "est\032).viam.app.v1.TransferRegistryItemRe"
+  "sponse\022S\n\014CreateModule\022 .viam.app.v1.Cre"
+  "ateModuleRequest\032!.viam.app.v1.CreateMod"
+  "uleResponse\022S\n\014UpdateModule\022 .viam.app.v"
+  "1.UpdateModuleRequest\032!.viam.app.v1.Upda"
+  "teModuleResponse\022a\n\020UploadModuleFile\022$.v"
+  "iam.app.v1.UploadModuleFileRequest\032%.via"
+  "m.app.v1.UploadModuleFileResponse(\001\022J\n\tG"
+  "etModule\022\035.viam.app.v1.GetModuleRequest\032"
+  "\036.viam.app.v1.GetModuleResponse\022P\n\013ListM"
+  "odules\022\037.viam.app.v1.ListModulesRequest\032"
+  " .viam.app.v1.ListModulesResponse\022J\n\tCre"
+  "ateKey\022\035.viam.app.v1.CreateKeyRequest\032\036."
+  "viam.app.v1.CreateKeyResponse\022J\n\tDeleteK"
+  "ey\022\035.viam.app.v1.DeleteKeyRequest\032\036.viam"
+  ".app.v1.DeleteKeyResponse\022G\n\010ListKeys\022\034."
+  "viam.app.v1.ListKeysRequest\032\035.viam.app.v"
+  "1.ListKeysResponse\022J\n\tRenameKey\022\035.viam.a"
+  "pp.v1.RenameKeyRequest\032\036.viam.app.v1.Ren"
+  "ameKeyResponse\022J\n\tRotateKey\022\035.viam.app.v"
+  "1.RotateKeyRequest\032\036.viam.app.v1.RotateK"
+  "eyResponse\022\241\001\n&CreateKeyFromExistingKeyA"
+  "uthorizations\022:.viam.app.v1.CreateKeyFro"
+  "mExistingKeyAuthorizationsRequest\032;.viam"
+  ".app.v1.CreateKeyFromExistingKeyAuthoriz"
+  "ationsResponse\022V\n\rGetAppContent\022!.viam.a"
+  "pp.v1.GetAppContentRequest\032\".viam.app.v1"
+  ".GetAppContentResponse\022Y\n\016GetAppBranding"
+  "\022\".viam.app.v1.GetAppBrandingRequest\032#.v"
+  "iam.app.v1.GetAppBrandingResponse\022n\n\025Upl"
+  "oadDevicePushToken\022).viam.app.v1.UploadD"
+  "evicePushTokenRequest\032*.viam.app.v1.Uplo"
+  "adDevicePushTokenResponse\022n\n\025DeleteDevic"
+  "ePushToken\022).viam.app.v1.DeleteDevicePus"
+  "hTokenRequest\032*.viam.app.v1.DeleteDevice"
+  "PushTokenResponse\022h\n\023GetDevicePushTokens"
+  "\022\'.viam.app.v1.GetDevicePushTokensReques"
+  "t\032(.viam.app.v1.GetDevicePushTokensRespo"
+  "nse\022b\n\021SetFirebaseConfig\022%.viam.app.v1.S"
+  "etFirebaseConfigRequest\032&.viam.app.v1.Se"
+  "tFirebaseConfigResponse\022b\n\021GetFirebaseCo"
+  "nfig\022%.viam.app.v1.GetFirebaseConfigRequ"
+  "est\032&.viam.app.v1.GetFirebaseConfigRespo"
+  "nse\022k\n\024DeleteFirebaseConfig\022(.viam.app.v"
+  "1.DeleteFirebaseConfigRequest\032).viam.app"
+  ".v1.DeleteFirebaseConfigResponseB\030Z\026go.v"
+  "iam.com/api/app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2eproto_deps[6] = {
   &::descriptor_table_app_2fmltraining_2fv1_2fml_5ftraining_2eproto,
@@ -8087,9 +8377,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fapp_2epr
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fapp_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fapp_2eproto = {
-    false, false, 49561, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
+    false, false, 50946, descriptor_table_protodef_app_2fv1_2fapp_2eproto,
     "app/v1/app.proto",
-    &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 6, 278,
+    &descriptor_table_app_2fv1_2fapp_2eproto_once, descriptor_table_app_2fv1_2fapp_2eproto_deps, 6, 290,
     schemas, file_default_instances, TableStruct_app_2fv1_2fapp_2eproto::offsets,
     file_level_metadata_app_2fv1_2fapp_2eproto, file_level_enum_descriptors_app_2fv1_2fapp_2eproto,
     file_level_service_descriptors_app_2fv1_2fapp_2eproto,
@@ -72649,6 +72939,1998 @@ void MachinePickerCustomizations::InternalSwap(MachinePickerCustomizations* othe
       file_level_metadata_app_2fv1_2fapp_2eproto[277]);
 }
 
+// ===================================================================
+
+class UploadDevicePushTokenRequest::_Internal {
+ public:
+};
+
+UploadDevicePushTokenRequest::UploadDevicePushTokenRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.UploadDevicePushTokenRequest)
+}
+UploadDevicePushTokenRequest::UploadDevicePushTokenRequest(const UploadDevicePushTokenRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_app_id().empty()) {
+    app_id_.Set(from._internal_app_id(), 
+      GetArenaForAllocation());
+  }
+  device_token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    device_token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_device_token().empty()) {
+    device_token_.Set(from._internal_device_token(), 
+      GetArenaForAllocation());
+  }
+  device_uuid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    device_uuid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_device_uuid().empty()) {
+    device_uuid_.Set(from._internal_device_uuid(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.UploadDevicePushTokenRequest)
+}
+
+inline void UploadDevicePushTokenRequest::SharedCtor() {
+app_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  app_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+device_token_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  device_token_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+device_uuid_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  device_uuid_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UploadDevicePushTokenRequest::~UploadDevicePushTokenRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.UploadDevicePushTokenRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UploadDevicePushTokenRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  app_id_.Destroy();
+  device_token_.Destroy();
+  device_uuid_.Destroy();
+}
+
+void UploadDevicePushTokenRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void UploadDevicePushTokenRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.UploadDevicePushTokenRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  app_id_.ClearToEmpty();
+  device_token_.ClearToEmpty();
+  device_uuid_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UploadDevicePushTokenRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string app_id = 1 [json_name = "appId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_app_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.UploadDevicePushTokenRequest.app_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string device_token = 2 [json_name = "deviceToken"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_device_token();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.UploadDevicePushTokenRequest.device_token"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string device_uuid = 3 [json_name = "deviceUuid"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_device_uuid();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.UploadDevicePushTokenRequest.device_uuid"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UploadDevicePushTokenRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.UploadDevicePushTokenRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string app_id = 1 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_app_id().data(), static_cast<int>(this->_internal_app_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.UploadDevicePushTokenRequest.app_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_app_id(), target);
+  }
+
+  // string device_token = 2 [json_name = "deviceToken"];
+  if (!this->_internal_device_token().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_device_token().data(), static_cast<int>(this->_internal_device_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.UploadDevicePushTokenRequest.device_token");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_device_token(), target);
+  }
+
+  // string device_uuid = 3 [json_name = "deviceUuid"];
+  if (!this->_internal_device_uuid().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_device_uuid().data(), static_cast<int>(this->_internal_device_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.UploadDevicePushTokenRequest.device_uuid");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_device_uuid(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.UploadDevicePushTokenRequest)
+  return target;
+}
+
+size_t UploadDevicePushTokenRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.UploadDevicePushTokenRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string app_id = 1 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_app_id());
+  }
+
+  // string device_token = 2 [json_name = "deviceToken"];
+  if (!this->_internal_device_token().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_device_token());
+  }
+
+  // string device_uuid = 3 [json_name = "deviceUuid"];
+  if (!this->_internal_device_uuid().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_device_uuid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadDevicePushTokenRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    UploadDevicePushTokenRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadDevicePushTokenRequest::GetClassData() const { return &_class_data_; }
+
+void UploadDevicePushTokenRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<UploadDevicePushTokenRequest *>(to)->MergeFrom(
+      static_cast<const UploadDevicePushTokenRequest &>(from));
+}
+
+
+void UploadDevicePushTokenRequest::MergeFrom(const UploadDevicePushTokenRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.UploadDevicePushTokenRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_app_id().empty()) {
+    _internal_set_app_id(from._internal_app_id());
+  }
+  if (!from._internal_device_token().empty()) {
+    _internal_set_device_token(from._internal_device_token());
+  }
+  if (!from._internal_device_uuid().empty()) {
+    _internal_set_device_uuid(from._internal_device_uuid());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UploadDevicePushTokenRequest::CopyFrom(const UploadDevicePushTokenRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.UploadDevicePushTokenRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UploadDevicePushTokenRequest::IsInitialized() const {
+  return true;
+}
+
+void UploadDevicePushTokenRequest::InternalSwap(UploadDevicePushTokenRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &app_id_, lhs_arena,
+      &other->app_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &device_token_, lhs_arena,
+      &other->device_token_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &device_uuid_, lhs_arena,
+      &other->device_uuid_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UploadDevicePushTokenRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[278]);
+}
+
+// ===================================================================
+
+class UploadDevicePushTokenResponse::_Internal {
+ public:
+};
+
+UploadDevicePushTokenResponse::UploadDevicePushTokenResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.UploadDevicePushTokenResponse)
+}
+UploadDevicePushTokenResponse::UploadDevicePushTokenResponse(const UploadDevicePushTokenResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.UploadDevicePushTokenResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadDevicePushTokenResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadDevicePushTokenResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata UploadDevicePushTokenResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[279]);
+}
+
+// ===================================================================
+
+class DeleteDevicePushTokenRequest::_Internal {
+ public:
+};
+
+DeleteDevicePushTokenRequest::DeleteDevicePushTokenRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.DeleteDevicePushTokenRequest)
+}
+DeleteDevicePushTokenRequest::DeleteDevicePushTokenRequest(const DeleteDevicePushTokenRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_app_id().empty()) {
+    app_id_.Set(from._internal_app_id(), 
+      GetArenaForAllocation());
+  }
+  device_uuid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    device_uuid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_device_uuid().empty()) {
+    device_uuid_.Set(from._internal_device_uuid(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.DeleteDevicePushTokenRequest)
+}
+
+inline void DeleteDevicePushTokenRequest::SharedCtor() {
+app_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  app_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+device_uuid_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  device_uuid_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+DeleteDevicePushTokenRequest::~DeleteDevicePushTokenRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.DeleteDevicePushTokenRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void DeleteDevicePushTokenRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  app_id_.Destroy();
+  device_uuid_.Destroy();
+}
+
+void DeleteDevicePushTokenRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DeleteDevicePushTokenRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.DeleteDevicePushTokenRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  app_id_.ClearToEmpty();
+  device_uuid_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DeleteDevicePushTokenRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string app_id = 1 [json_name = "appId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_app_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.DeleteDevicePushTokenRequest.app_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string device_uuid = 2 [json_name = "deviceUuid"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_device_uuid();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.DeleteDevicePushTokenRequest.device_uuid"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* DeleteDevicePushTokenRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.DeleteDevicePushTokenRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string app_id = 1 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_app_id().data(), static_cast<int>(this->_internal_app_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.DeleteDevicePushTokenRequest.app_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_app_id(), target);
+  }
+
+  // string device_uuid = 2 [json_name = "deviceUuid"];
+  if (!this->_internal_device_uuid().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_device_uuid().data(), static_cast<int>(this->_internal_device_uuid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.DeleteDevicePushTokenRequest.device_uuid");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_device_uuid(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.DeleteDevicePushTokenRequest)
+  return target;
+}
+
+size_t DeleteDevicePushTokenRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.DeleteDevicePushTokenRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string app_id = 1 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_app_id());
+  }
+
+  // string device_uuid = 2 [json_name = "deviceUuid"];
+  if (!this->_internal_device_uuid().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_device_uuid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DeleteDevicePushTokenRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    DeleteDevicePushTokenRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteDevicePushTokenRequest::GetClassData() const { return &_class_data_; }
+
+void DeleteDevicePushTokenRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DeleteDevicePushTokenRequest *>(to)->MergeFrom(
+      static_cast<const DeleteDevicePushTokenRequest &>(from));
+}
+
+
+void DeleteDevicePushTokenRequest::MergeFrom(const DeleteDevicePushTokenRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.DeleteDevicePushTokenRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_app_id().empty()) {
+    _internal_set_app_id(from._internal_app_id());
+  }
+  if (!from._internal_device_uuid().empty()) {
+    _internal_set_device_uuid(from._internal_device_uuid());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DeleteDevicePushTokenRequest::CopyFrom(const DeleteDevicePushTokenRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.DeleteDevicePushTokenRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DeleteDevicePushTokenRequest::IsInitialized() const {
+  return true;
+}
+
+void DeleteDevicePushTokenRequest::InternalSwap(DeleteDevicePushTokenRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &app_id_, lhs_arena,
+      &other->app_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &device_uuid_, lhs_arena,
+      &other->device_uuid_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DeleteDevicePushTokenRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[280]);
+}
+
+// ===================================================================
+
+class DeleteDevicePushTokenResponse::_Internal {
+ public:
+};
+
+DeleteDevicePushTokenResponse::DeleteDevicePushTokenResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.DeleteDevicePushTokenResponse)
+}
+DeleteDevicePushTokenResponse::DeleteDevicePushTokenResponse(const DeleteDevicePushTokenResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.DeleteDevicePushTokenResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DeleteDevicePushTokenResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteDevicePushTokenResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata DeleteDevicePushTokenResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[281]);
+}
+
+// ===================================================================
+
+class GetDevicePushTokensRequest::_Internal {
+ public:
+};
+
+GetDevicePushTokensRequest::GetDevicePushTokensRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.GetDevicePushTokensRequest)
+}
+GetDevicePushTokensRequest::GetDevicePushTokensRequest(const GetDevicePushTokensRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_app_id().empty()) {
+    app_id_.Set(from._internal_app_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetDevicePushTokensRequest)
+}
+
+inline void GetDevicePushTokensRequest::SharedCtor() {
+app_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  app_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetDevicePushTokensRequest::~GetDevicePushTokensRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.GetDevicePushTokensRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetDevicePushTokensRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  app_id_.Destroy();
+}
+
+void GetDevicePushTokensRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetDevicePushTokensRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.GetDevicePushTokensRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  app_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetDevicePushTokensRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string app_id = 1 [json_name = "appId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_app_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetDevicePushTokensRequest.app_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetDevicePushTokensRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.GetDevicePushTokensRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string app_id = 1 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_app_id().data(), static_cast<int>(this->_internal_app_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetDevicePushTokensRequest.app_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_app_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.GetDevicePushTokensRequest)
+  return target;
+}
+
+size_t GetDevicePushTokensRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.GetDevicePushTokensRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string app_id = 1 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_app_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetDevicePushTokensRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetDevicePushTokensRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetDevicePushTokensRequest::GetClassData() const { return &_class_data_; }
+
+void GetDevicePushTokensRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetDevicePushTokensRequest *>(to)->MergeFrom(
+      static_cast<const GetDevicePushTokensRequest &>(from));
+}
+
+
+void GetDevicePushTokensRequest::MergeFrom(const GetDevicePushTokensRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.GetDevicePushTokensRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_app_id().empty()) {
+    _internal_set_app_id(from._internal_app_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetDevicePushTokensRequest::CopyFrom(const GetDevicePushTokensRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.GetDevicePushTokensRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetDevicePushTokensRequest::IsInitialized() const {
+  return true;
+}
+
+void GetDevicePushTokensRequest::InternalSwap(GetDevicePushTokensRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &app_id_, lhs_arena,
+      &other->app_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetDevicePushTokensRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[282]);
+}
+
+// ===================================================================
+
+class GetDevicePushTokensResponse::_Internal {
+ public:
+};
+
+GetDevicePushTokensResponse::GetDevicePushTokensResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  device_tokens_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.GetDevicePushTokensResponse)
+}
+GetDevicePushTokensResponse::GetDevicePushTokensResponse(const GetDevicePushTokensResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      device_tokens_(from.device_tokens_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetDevicePushTokensResponse)
+}
+
+inline void GetDevicePushTokensResponse::SharedCtor() {
+}
+
+GetDevicePushTokensResponse::~GetDevicePushTokensResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.GetDevicePushTokensResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetDevicePushTokensResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetDevicePushTokensResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetDevicePushTokensResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.GetDevicePushTokensResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  device_tokens_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetDevicePushTokensResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated string device_tokens = 1 [json_name = "deviceTokens"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_device_tokens();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetDevicePushTokensResponse.device_tokens"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetDevicePushTokensResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.GetDevicePushTokensResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated string device_tokens = 1 [json_name = "deviceTokens"];
+  for (int i = 0, n = this->_internal_device_tokens_size(); i < n; i++) {
+    const auto& s = this->_internal_device_tokens(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetDevicePushTokensResponse.device_tokens");
+    target = stream->WriteString(1, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.GetDevicePushTokensResponse)
+  return target;
+}
+
+size_t GetDevicePushTokensResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.GetDevicePushTokensResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string device_tokens = 1 [json_name = "deviceTokens"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(device_tokens_.size());
+  for (int i = 0, n = device_tokens_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      device_tokens_.Get(i));
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetDevicePushTokensResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetDevicePushTokensResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetDevicePushTokensResponse::GetClassData() const { return &_class_data_; }
+
+void GetDevicePushTokensResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetDevicePushTokensResponse *>(to)->MergeFrom(
+      static_cast<const GetDevicePushTokensResponse &>(from));
+}
+
+
+void GetDevicePushTokensResponse::MergeFrom(const GetDevicePushTokensResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.GetDevicePushTokensResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  device_tokens_.MergeFrom(from.device_tokens_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetDevicePushTokensResponse::CopyFrom(const GetDevicePushTokensResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.GetDevicePushTokensResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetDevicePushTokensResponse::IsInitialized() const {
+  return true;
+}
+
+void GetDevicePushTokensResponse::InternalSwap(GetDevicePushTokensResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  device_tokens_.InternalSwap(&other->device_tokens_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetDevicePushTokensResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[283]);
+}
+
+// ===================================================================
+
+class SetFirebaseConfigRequest::_Internal {
+ public:
+};
+
+SetFirebaseConfigRequest::SetFirebaseConfigRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.SetFirebaseConfigRequest)
+}
+SetFirebaseConfigRequest::SetFirebaseConfigRequest(const SetFirebaseConfigRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  org_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    org_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_org_id().empty()) {
+    org_id_.Set(from._internal_org_id(), 
+      GetArenaForAllocation());
+  }
+  app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_app_id().empty()) {
+    app_id_.Set(from._internal_app_id(), 
+      GetArenaForAllocation());
+  }
+  config_json_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    config_json_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_config_json().empty()) {
+    config_json_.Set(from._internal_config_json(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.SetFirebaseConfigRequest)
+}
+
+inline void SetFirebaseConfigRequest::SharedCtor() {
+org_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  org_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+app_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  app_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+config_json_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  config_json_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SetFirebaseConfigRequest::~SetFirebaseConfigRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.SetFirebaseConfigRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SetFirebaseConfigRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  org_id_.Destroy();
+  app_id_.Destroy();
+  config_json_.Destroy();
+}
+
+void SetFirebaseConfigRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SetFirebaseConfigRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.SetFirebaseConfigRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  org_id_.ClearToEmpty();
+  app_id_.ClearToEmpty();
+  config_json_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SetFirebaseConfigRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string org_id = 1 [json_name = "orgId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_org_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.SetFirebaseConfigRequest.org_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string app_id = 2 [json_name = "appId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_app_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.SetFirebaseConfigRequest.app_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string config_json = 3 [json_name = "configJson"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_config_json();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.SetFirebaseConfigRequest.config_json"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SetFirebaseConfigRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.SetFirebaseConfigRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string org_id = 1 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_org_id().data(), static_cast<int>(this->_internal_org_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.SetFirebaseConfigRequest.org_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_org_id(), target);
+  }
+
+  // string app_id = 2 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_app_id().data(), static_cast<int>(this->_internal_app_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.SetFirebaseConfigRequest.app_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_app_id(), target);
+  }
+
+  // string config_json = 3 [json_name = "configJson"];
+  if (!this->_internal_config_json().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_config_json().data(), static_cast<int>(this->_internal_config_json().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.SetFirebaseConfigRequest.config_json");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_config_json(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.SetFirebaseConfigRequest)
+  return target;
+}
+
+size_t SetFirebaseConfigRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.SetFirebaseConfigRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string org_id = 1 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_org_id());
+  }
+
+  // string app_id = 2 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_app_id());
+  }
+
+  // string config_json = 3 [json_name = "configJson"];
+  if (!this->_internal_config_json().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_config_json());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetFirebaseConfigRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SetFirebaseConfigRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetFirebaseConfigRequest::GetClassData() const { return &_class_data_; }
+
+void SetFirebaseConfigRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SetFirebaseConfigRequest *>(to)->MergeFrom(
+      static_cast<const SetFirebaseConfigRequest &>(from));
+}
+
+
+void SetFirebaseConfigRequest::MergeFrom(const SetFirebaseConfigRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.SetFirebaseConfigRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_org_id().empty()) {
+    _internal_set_org_id(from._internal_org_id());
+  }
+  if (!from._internal_app_id().empty()) {
+    _internal_set_app_id(from._internal_app_id());
+  }
+  if (!from._internal_config_json().empty()) {
+    _internal_set_config_json(from._internal_config_json());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetFirebaseConfigRequest::CopyFrom(const SetFirebaseConfigRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.SetFirebaseConfigRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetFirebaseConfigRequest::IsInitialized() const {
+  return true;
+}
+
+void SetFirebaseConfigRequest::InternalSwap(SetFirebaseConfigRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &org_id_, lhs_arena,
+      &other->org_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &app_id_, lhs_arena,
+      &other->app_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &config_json_, lhs_arena,
+      &other->config_json_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetFirebaseConfigRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[284]);
+}
+
+// ===================================================================
+
+class SetFirebaseConfigResponse::_Internal {
+ public:
+};
+
+SetFirebaseConfigResponse::SetFirebaseConfigResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.SetFirebaseConfigResponse)
+}
+SetFirebaseConfigResponse::SetFirebaseConfigResponse(const SetFirebaseConfigResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.SetFirebaseConfigResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetFirebaseConfigResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetFirebaseConfigResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetFirebaseConfigResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[285]);
+}
+
+// ===================================================================
+
+class GetFirebaseConfigRequest::_Internal {
+ public:
+};
+
+GetFirebaseConfigRequest::GetFirebaseConfigRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.GetFirebaseConfigRequest)
+}
+GetFirebaseConfigRequest::GetFirebaseConfigRequest(const GetFirebaseConfigRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  org_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    org_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_org_id().empty()) {
+    org_id_.Set(from._internal_org_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetFirebaseConfigRequest)
+}
+
+inline void GetFirebaseConfigRequest::SharedCtor() {
+org_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  org_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetFirebaseConfigRequest::~GetFirebaseConfigRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.GetFirebaseConfigRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetFirebaseConfigRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  org_id_.Destroy();
+}
+
+void GetFirebaseConfigRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetFirebaseConfigRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.GetFirebaseConfigRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  org_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetFirebaseConfigRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string org_id = 1 [json_name = "orgId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_org_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetFirebaseConfigRequest.org_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetFirebaseConfigRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.GetFirebaseConfigRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string org_id = 1 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_org_id().data(), static_cast<int>(this->_internal_org_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetFirebaseConfigRequest.org_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_org_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.GetFirebaseConfigRequest)
+  return target;
+}
+
+size_t GetFirebaseConfigRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.GetFirebaseConfigRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string org_id = 1 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_org_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetFirebaseConfigRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetFirebaseConfigRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetFirebaseConfigRequest::GetClassData() const { return &_class_data_; }
+
+void GetFirebaseConfigRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetFirebaseConfigRequest *>(to)->MergeFrom(
+      static_cast<const GetFirebaseConfigRequest &>(from));
+}
+
+
+void GetFirebaseConfigRequest::MergeFrom(const GetFirebaseConfigRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.GetFirebaseConfigRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_org_id().empty()) {
+    _internal_set_org_id(from._internal_org_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetFirebaseConfigRequest::CopyFrom(const GetFirebaseConfigRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.GetFirebaseConfigRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetFirebaseConfigRequest::IsInitialized() const {
+  return true;
+}
+
+void GetFirebaseConfigRequest::InternalSwap(GetFirebaseConfigRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &org_id_, lhs_arena,
+      &other->org_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetFirebaseConfigRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[286]);
+}
+
+// ===================================================================
+
+class GetFirebaseConfigResponse::_Internal {
+ public:
+};
+
+GetFirebaseConfigResponse::GetFirebaseConfigResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.GetFirebaseConfigResponse)
+}
+GetFirebaseConfigResponse::GetFirebaseConfigResponse(const GetFirebaseConfigResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_app_id().empty()) {
+    app_id_.Set(from._internal_app_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.GetFirebaseConfigResponse)
+}
+
+inline void GetFirebaseConfigResponse::SharedCtor() {
+app_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  app_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GetFirebaseConfigResponse::~GetFirebaseConfigResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.GetFirebaseConfigResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetFirebaseConfigResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  app_id_.Destroy();
+}
+
+void GetFirebaseConfigResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetFirebaseConfigResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.GetFirebaseConfigResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  app_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetFirebaseConfigResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string app_id = 1 [json_name = "appId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_app_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.GetFirebaseConfigResponse.app_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetFirebaseConfigResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.GetFirebaseConfigResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string app_id = 1 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_app_id().data(), static_cast<int>(this->_internal_app_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.GetFirebaseConfigResponse.app_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_app_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.GetFirebaseConfigResponse)
+  return target;
+}
+
+size_t GetFirebaseConfigResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.GetFirebaseConfigResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string app_id = 1 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_app_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetFirebaseConfigResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetFirebaseConfigResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetFirebaseConfigResponse::GetClassData() const { return &_class_data_; }
+
+void GetFirebaseConfigResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetFirebaseConfigResponse *>(to)->MergeFrom(
+      static_cast<const GetFirebaseConfigResponse &>(from));
+}
+
+
+void GetFirebaseConfigResponse::MergeFrom(const GetFirebaseConfigResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.GetFirebaseConfigResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_app_id().empty()) {
+    _internal_set_app_id(from._internal_app_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetFirebaseConfigResponse::CopyFrom(const GetFirebaseConfigResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.GetFirebaseConfigResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetFirebaseConfigResponse::IsInitialized() const {
+  return true;
+}
+
+void GetFirebaseConfigResponse::InternalSwap(GetFirebaseConfigResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &app_id_, lhs_arena,
+      &other->app_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetFirebaseConfigResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[287]);
+}
+
+// ===================================================================
+
+class DeleteFirebaseConfigRequest::_Internal {
+ public:
+};
+
+DeleteFirebaseConfigRequest::DeleteFirebaseConfigRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.DeleteFirebaseConfigRequest)
+}
+DeleteFirebaseConfigRequest::DeleteFirebaseConfigRequest(const DeleteFirebaseConfigRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  org_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    org_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_org_id().empty()) {
+    org_id_.Set(from._internal_org_id(), 
+      GetArenaForAllocation());
+  }
+  app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_app_id().empty()) {
+    app_id_.Set(from._internal_app_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.DeleteFirebaseConfigRequest)
+}
+
+inline void DeleteFirebaseConfigRequest::SharedCtor() {
+org_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  org_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+app_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  app_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+DeleteFirebaseConfigRequest::~DeleteFirebaseConfigRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.v1.DeleteFirebaseConfigRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void DeleteFirebaseConfigRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  org_id_.Destroy();
+  app_id_.Destroy();
+}
+
+void DeleteFirebaseConfigRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DeleteFirebaseConfigRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.v1.DeleteFirebaseConfigRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  org_id_.ClearToEmpty();
+  app_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DeleteFirebaseConfigRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string org_id = 1 [json_name = "orgId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_org_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.DeleteFirebaseConfigRequest.org_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string app_id = 2 [json_name = "appId"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_app_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.DeleteFirebaseConfigRequest.app_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* DeleteFirebaseConfigRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.v1.DeleteFirebaseConfigRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string org_id = 1 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_org_id().data(), static_cast<int>(this->_internal_org_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.DeleteFirebaseConfigRequest.org_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_org_id(), target);
+  }
+
+  // string app_id = 2 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_app_id().data(), static_cast<int>(this->_internal_app_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.DeleteFirebaseConfigRequest.app_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_app_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.v1.DeleteFirebaseConfigRequest)
+  return target;
+}
+
+size_t DeleteFirebaseConfigRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.v1.DeleteFirebaseConfigRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string org_id = 1 [json_name = "orgId"];
+  if (!this->_internal_org_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_org_id());
+  }
+
+  // string app_id = 2 [json_name = "appId"];
+  if (!this->_internal_app_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_app_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DeleteFirebaseConfigRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    DeleteFirebaseConfigRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteFirebaseConfigRequest::GetClassData() const { return &_class_data_; }
+
+void DeleteFirebaseConfigRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DeleteFirebaseConfigRequest *>(to)->MergeFrom(
+      static_cast<const DeleteFirebaseConfigRequest &>(from));
+}
+
+
+void DeleteFirebaseConfigRequest::MergeFrom(const DeleteFirebaseConfigRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.v1.DeleteFirebaseConfigRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_org_id().empty()) {
+    _internal_set_org_id(from._internal_org_id());
+  }
+  if (!from._internal_app_id().empty()) {
+    _internal_set_app_id(from._internal_app_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DeleteFirebaseConfigRequest::CopyFrom(const DeleteFirebaseConfigRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.v1.DeleteFirebaseConfigRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DeleteFirebaseConfigRequest::IsInitialized() const {
+  return true;
+}
+
+void DeleteFirebaseConfigRequest::InternalSwap(DeleteFirebaseConfigRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &org_id_, lhs_arena,
+      &other->org_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &app_id_, lhs_arena,
+      &other->app_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DeleteFirebaseConfigRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[288]);
+}
+
+// ===================================================================
+
+class DeleteFirebaseConfigResponse::_Internal {
+ public:
+};
+
+DeleteFirebaseConfigResponse::DeleteFirebaseConfigResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.v1.DeleteFirebaseConfigResponse)
+}
+DeleteFirebaseConfigResponse::DeleteFirebaseConfigResponse(const DeleteFirebaseConfigResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.v1.DeleteFirebaseConfigResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DeleteFirebaseConfigResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteFirebaseConfigResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata DeleteFirebaseConfigResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fv1_2fapp_2eproto_getter, &descriptor_table_app_2fv1_2fapp_2eproto_once,
+      file_level_metadata_app_2fv1_2fapp_2eproto[289]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace app
@@ -73765,6 +76047,54 @@ Arena::CreateMaybeMessage< ::viam::app::v1::AppCustomizations >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::viam::app::v1::MachinePickerCustomizations*
 Arena::CreateMaybeMessage< ::viam::app::v1::MachinePickerCustomizations >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::v1::MachinePickerCustomizations >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::UploadDevicePushTokenRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::UploadDevicePushTokenRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::UploadDevicePushTokenRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::UploadDevicePushTokenResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::UploadDevicePushTokenResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::UploadDevicePushTokenResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::DeleteDevicePushTokenRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::DeleteDevicePushTokenRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::DeleteDevicePushTokenRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::DeleteDevicePushTokenResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::DeleteDevicePushTokenResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::DeleteDevicePushTokenResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::GetDevicePushTokensRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::GetDevicePushTokensRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::GetDevicePushTokensRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::GetDevicePushTokensResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::GetDevicePushTokensResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::GetDevicePushTokensResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::SetFirebaseConfigRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::SetFirebaseConfigRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::SetFirebaseConfigRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::SetFirebaseConfigResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::SetFirebaseConfigResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::SetFirebaseConfigResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::GetFirebaseConfigRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::GetFirebaseConfigRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::GetFirebaseConfigRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::GetFirebaseConfigResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::GetFirebaseConfigResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::GetFirebaseConfigResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::DeleteFirebaseConfigRequest*
+Arena::CreateMaybeMessage< ::viam::app::v1::DeleteFirebaseConfigRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::DeleteFirebaseConfigRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::v1::DeleteFirebaseConfigResponse*
+Arena::CreateMaybeMessage< ::viam::app::v1::DeleteFirebaseConfigResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::v1::DeleteFirebaseConfigResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

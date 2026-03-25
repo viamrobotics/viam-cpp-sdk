@@ -133,6 +133,12 @@ static const char* AppService_method_names[] = {
   "/viam.app.v1.AppService/CreateKeyFromExistingKeyAuthorizations",
   "/viam.app.v1.AppService/GetAppContent",
   "/viam.app.v1.AppService/GetAppBranding",
+  "/viam.app.v1.AppService/UploadDevicePushToken",
+  "/viam.app.v1.AppService/DeleteDevicePushToken",
+  "/viam.app.v1.AppService/GetDevicePushTokens",
+  "/viam.app.v1.AppService/SetFirebaseConfig",
+  "/viam.app.v1.AppService/GetFirebaseConfig",
+  "/viam.app.v1.AppService/DeleteFirebaseConfig",
 };
 
 std::unique_ptr< AppService::Stub> AppService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -251,6 +257,12 @@ AppService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_CreateKeyFromExistingKeyAuthorizations_(AppService_method_names[106], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetAppContent_(AppService_method_names[107], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetAppBranding_(AppService_method_names[108], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UploadDevicePushToken_(AppService_method_names[109], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteDevicePushToken_(AppService_method_names[110], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetDevicePushTokens_(AppService_method_names[111], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetFirebaseConfig_(AppService_method_names[112], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetFirebaseConfig_(AppService_method_names[113], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteFirebaseConfig_(AppService_method_names[114], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AppService::Stub::GetUserIDByEmail(::grpc::ClientContext* context, const ::viam::app::v1::GetUserIDByEmailRequest& request, ::viam::app::v1::GetUserIDByEmailResponse* response) {
@@ -2746,6 +2758,144 @@ void AppService::Stub::async::GetAppBranding(::grpc::ClientContext* context, con
   return result;
 }
 
+::grpc::Status AppService::Stub::UploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::viam::app::v1::UploadDevicePushTokenResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UploadDevicePushToken_, context, request, response);
+}
+
+void AppService::Stub::async::UploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UploadDevicePushToken_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::UploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UploadDevicePushToken_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UploadDevicePushTokenResponse>* AppService::Stub::PrepareAsyncUploadDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::UploadDevicePushTokenResponse, ::viam::app::v1::UploadDevicePushTokenRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UploadDevicePushToken_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::UploadDevicePushTokenResponse>* AppService::Stub::AsyncUploadDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUploadDevicePushTokenRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::DeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::viam::app::v1::DeleteDevicePushTokenResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteDevicePushToken_, context, request, response);
+}
+
+void AppService::Stub::async::DeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDevicePushToken_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::DeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteDevicePushToken_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteDevicePushTokenResponse>* AppService::Stub::PrepareAsyncDeleteDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteDevicePushTokenResponse, ::viam::app::v1::DeleteDevicePushTokenRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteDevicePushToken_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteDevicePushTokenResponse>* AppService::Stub::AsyncDeleteDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteDevicePushTokenRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::GetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::viam::app::v1::GetDevicePushTokensResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetDevicePushTokens_, context, request, response);
+}
+
+void AppService::Stub::async::GetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDevicePushTokens_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::GetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetDevicePushTokens_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetDevicePushTokensResponse>* AppService::Stub::PrepareAsyncGetDevicePushTokensRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetDevicePushTokensResponse, ::viam::app::v1::GetDevicePushTokensRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetDevicePushTokens_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetDevicePushTokensResponse>* AppService::Stub::AsyncGetDevicePushTokensRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetDevicePushTokensRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::SetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::viam::app::v1::SetFirebaseConfigResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetFirebaseConfig_, context, request, response);
+}
+
+void AppService::Stub::async::SetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFirebaseConfig_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::SetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetFirebaseConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFirebaseConfigResponse>* AppService::Stub::PrepareAsyncSetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::SetFirebaseConfigResponse, ::viam::app::v1::SetFirebaseConfigRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetFirebaseConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFirebaseConfigResponse>* AppService::Stub::AsyncSetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetFirebaseConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::GetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::viam::app::v1::GetFirebaseConfigResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetFirebaseConfig_, context, request, response);
+}
+
+void AppService::Stub::async::GetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFirebaseConfig_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::GetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetFirebaseConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFirebaseConfigResponse>* AppService::Stub::PrepareAsyncGetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::GetFirebaseConfigResponse, ::viam::app::v1::GetFirebaseConfigRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetFirebaseConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFirebaseConfigResponse>* AppService::Stub::AsyncGetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetFirebaseConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AppService::Stub::DeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::viam::app::v1::DeleteFirebaseConfigResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DeleteFirebaseConfig_, context, request, response);
+}
+
+void AppService::Stub::async::DeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteFirebaseConfig_, context, request, response, std::move(f));
+}
+
+void AppService::Stub::async::DeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DeleteFirebaseConfig_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFirebaseConfigResponse>* AppService::Stub::PrepareAsyncDeleteFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::v1::DeleteFirebaseConfigResponse, ::viam::app::v1::DeleteFirebaseConfigRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DeleteFirebaseConfig_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFirebaseConfigResponse>* AppService::Stub::AsyncDeleteFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteFirebaseConfigRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 AppService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AppService_method_names[0],
@@ -3837,6 +3987,66 @@ AppService::Service::Service() {
              ::viam::app::v1::GetAppBrandingResponse* resp) {
                return service->GetAppBranding(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[109],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::UploadDevicePushTokenRequest* req,
+             ::viam::app::v1::UploadDevicePushTokenResponse* resp) {
+               return service->UploadDevicePushToken(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[110],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::DeleteDevicePushTokenRequest* req,
+             ::viam::app::v1::DeleteDevicePushTokenResponse* resp) {
+               return service->DeleteDevicePushToken(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[111],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::GetDevicePushTokensRequest* req,
+             ::viam::app::v1::GetDevicePushTokensResponse* resp) {
+               return service->GetDevicePushTokens(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[112],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::SetFirebaseConfigRequest* req,
+             ::viam::app::v1::SetFirebaseConfigResponse* resp) {
+               return service->SetFirebaseConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[113],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::GetFirebaseConfigRequest* req,
+             ::viam::app::v1::GetFirebaseConfigResponse* resp) {
+               return service->GetFirebaseConfig(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AppService_method_names[114],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AppService::Service, ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AppService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::v1::DeleteFirebaseConfigRequest* req,
+             ::viam::app::v1::DeleteFirebaseConfigResponse* resp) {
+               return service->DeleteFirebaseConfig(ctx, req, resp);
+             }, this)));
 }
 
 AppService::Service::~Service() {
@@ -4599,6 +4809,48 @@ AppService::Service::~Service() {
 }
 
 ::grpc::Status AppService::Service::GetAppBranding(::grpc::ServerContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::UploadDevicePushToken(::grpc::ServerContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::DeleteDevicePushToken(::grpc::ServerContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::GetDevicePushTokens(::grpc::ServerContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::SetFirebaseConfig(::grpc::ServerContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::GetFirebaseConfig(::grpc::ServerContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AppService::Service::DeleteFirebaseConfig(::grpc::ServerContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response) {
   (void) context;
   (void) request;
   (void) response;

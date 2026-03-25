@@ -172,6 +172,18 @@ extern CreateRobotPartSecretRequestDefaultTypeInternal _CreateRobotPartSecretReq
 class CreateRobotPartSecretResponse;
 struct CreateRobotPartSecretResponseDefaultTypeInternal;
 extern CreateRobotPartSecretResponseDefaultTypeInternal _CreateRobotPartSecretResponse_default_instance_;
+class DeleteDevicePushTokenRequest;
+struct DeleteDevicePushTokenRequestDefaultTypeInternal;
+extern DeleteDevicePushTokenRequestDefaultTypeInternal _DeleteDevicePushTokenRequest_default_instance_;
+class DeleteDevicePushTokenResponse;
+struct DeleteDevicePushTokenResponseDefaultTypeInternal;
+extern DeleteDevicePushTokenResponseDefaultTypeInternal _DeleteDevicePushTokenResponse_default_instance_;
+class DeleteFirebaseConfigRequest;
+struct DeleteFirebaseConfigRequestDefaultTypeInternal;
+extern DeleteFirebaseConfigRequestDefaultTypeInternal _DeleteFirebaseConfigRequest_default_instance_;
+class DeleteFirebaseConfigResponse;
+struct DeleteFirebaseConfigResponseDefaultTypeInternal;
+extern DeleteFirebaseConfigResponseDefaultTypeInternal _DeleteFirebaseConfigResponse_default_instance_;
 class DeleteFragmentRequest;
 struct DeleteFragmentRequestDefaultTypeInternal;
 extern DeleteFragmentRequestDefaultTypeInternal _DeleteFragmentRequest_default_instance_;
@@ -325,6 +337,18 @@ extern GetBillingServiceConfigRequestDefaultTypeInternal _GetBillingServiceConfi
 class GetBillingServiceConfigResponse;
 struct GetBillingServiceConfigResponseDefaultTypeInternal;
 extern GetBillingServiceConfigResponseDefaultTypeInternal _GetBillingServiceConfigResponse_default_instance_;
+class GetDevicePushTokensRequest;
+struct GetDevicePushTokensRequestDefaultTypeInternal;
+extern GetDevicePushTokensRequestDefaultTypeInternal _GetDevicePushTokensRequest_default_instance_;
+class GetDevicePushTokensResponse;
+struct GetDevicePushTokensResponseDefaultTypeInternal;
+extern GetDevicePushTokensResponseDefaultTypeInternal _GetDevicePushTokensResponse_default_instance_;
+class GetFirebaseConfigRequest;
+struct GetFirebaseConfigRequestDefaultTypeInternal;
+extern GetFirebaseConfigRequestDefaultTypeInternal _GetFirebaseConfigRequest_default_instance_;
+class GetFirebaseConfigResponse;
+struct GetFirebaseConfigResponseDefaultTypeInternal;
+extern GetFirebaseConfigResponseDefaultTypeInternal _GetFirebaseConfigResponse_default_instance_;
 class GetFragmentHistoryRequest;
 struct GetFragmentHistoryRequestDefaultTypeInternal;
 extern GetFragmentHistoryRequestDefaultTypeInternal _GetFragmentHistoryRequest_default_instance_;
@@ -733,6 +757,12 @@ extern SearchOrganizationsRequestDefaultTypeInternal _SearchOrganizationsRequest
 class SearchOrganizationsResponse;
 struct SearchOrganizationsResponseDefaultTypeInternal;
 extern SearchOrganizationsResponseDefaultTypeInternal _SearchOrganizationsResponse_default_instance_;
+class SetFirebaseConfigRequest;
+struct SetFirebaseConfigRequestDefaultTypeInternal;
+extern SetFirebaseConfigRequestDefaultTypeInternal _SetFirebaseConfigRequest_default_instance_;
+class SetFirebaseConfigResponse;
+struct SetFirebaseConfigResponseDefaultTypeInternal;
+extern SetFirebaseConfigResponseDefaultTypeInternal _SetFirebaseConfigResponse_default_instance_;
 class SetFragmentTagRequest;
 struct SetFragmentTagRequestDefaultTypeInternal;
 extern SetFragmentTagRequestDefaultTypeInternal _SetFragmentTagRequest_default_instance_;
@@ -874,6 +904,12 @@ extern UpdateRobotRequestDefaultTypeInternal _UpdateRobotRequest_default_instanc
 class UpdateRobotResponse;
 struct UpdateRobotResponseDefaultTypeInternal;
 extern UpdateRobotResponseDefaultTypeInternal _UpdateRobotResponse_default_instance_;
+class UploadDevicePushTokenRequest;
+struct UploadDevicePushTokenRequestDefaultTypeInternal;
+extern UploadDevicePushTokenRequestDefaultTypeInternal _UploadDevicePushTokenRequest_default_instance_;
+class UploadDevicePushTokenResponse;
+struct UploadDevicePushTokenResponseDefaultTypeInternal;
+extern UploadDevicePushTokenResponseDefaultTypeInternal _UploadDevicePushTokenResponse_default_instance_;
 class UploadModuleFileRequest;
 struct UploadModuleFileRequestDefaultTypeInternal;
 extern UploadModuleFileRequestDefaultTypeInternal _UploadModuleFileRequest_default_instance_;
@@ -934,6 +970,10 @@ template<> ::viam::app::v1::CreateRegistryItemRequest* Arena::CreateMaybeMessage
 template<> ::viam::app::v1::CreateRegistryItemResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateRegistryItemResponse>(Arena*);
 template<> ::viam::app::v1::CreateRobotPartSecretRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateRobotPartSecretRequest>(Arena*);
 template<> ::viam::app::v1::CreateRobotPartSecretResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateRobotPartSecretResponse>(Arena*);
+template<> ::viam::app::v1::DeleteDevicePushTokenRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteDevicePushTokenRequest>(Arena*);
+template<> ::viam::app::v1::DeleteDevicePushTokenResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteDevicePushTokenResponse>(Arena*);
+template<> ::viam::app::v1::DeleteFirebaseConfigRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteFirebaseConfigRequest>(Arena*);
+template<> ::viam::app::v1::DeleteFirebaseConfigResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteFirebaseConfigResponse>(Arena*);
 template<> ::viam::app::v1::DeleteFragmentRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteFragmentRequest>(Arena*);
 template<> ::viam::app::v1::DeleteFragmentResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteFragmentResponse>(Arena*);
 template<> ::viam::app::v1::DeleteFragmentTagRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteFragmentTagRequest>(Arena*);
@@ -985,6 +1025,10 @@ template<> ::viam::app::v1::GetAppContentRequest* Arena::CreateMaybeMessage<::vi
 template<> ::viam::app::v1::GetAppContentResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetAppContentResponse>(Arena*);
 template<> ::viam::app::v1::GetBillingServiceConfigRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetBillingServiceConfigRequest>(Arena*);
 template<> ::viam::app::v1::GetBillingServiceConfigResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetBillingServiceConfigResponse>(Arena*);
+template<> ::viam::app::v1::GetDevicePushTokensRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetDevicePushTokensRequest>(Arena*);
+template<> ::viam::app::v1::GetDevicePushTokensResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetDevicePushTokensResponse>(Arena*);
+template<> ::viam::app::v1::GetFirebaseConfigRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetFirebaseConfigRequest>(Arena*);
+template<> ::viam::app::v1::GetFirebaseConfigResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetFirebaseConfigResponse>(Arena*);
 template<> ::viam::app::v1::GetFragmentHistoryRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetFragmentHistoryRequest>(Arena*);
 template<> ::viam::app::v1::GetFragmentHistoryResponse* Arena::CreateMaybeMessage<::viam::app::v1::GetFragmentHistoryResponse>(Arena*);
 template<> ::viam::app::v1::GetFragmentRequest* Arena::CreateMaybeMessage<::viam::app::v1::GetFragmentRequest>(Arena*);
@@ -1121,6 +1165,8 @@ template<> ::viam::app::v1::RotateKeyResponse* Arena::CreateMaybeMessage<::viam:
 template<> ::viam::app::v1::RoverRentalRobot* Arena::CreateMaybeMessage<::viam::app::v1::RoverRentalRobot>(Arena*);
 template<> ::viam::app::v1::SearchOrganizationsRequest* Arena::CreateMaybeMessage<::viam::app::v1::SearchOrganizationsRequest>(Arena*);
 template<> ::viam::app::v1::SearchOrganizationsResponse* Arena::CreateMaybeMessage<::viam::app::v1::SearchOrganizationsResponse>(Arena*);
+template<> ::viam::app::v1::SetFirebaseConfigRequest* Arena::CreateMaybeMessage<::viam::app::v1::SetFirebaseConfigRequest>(Arena*);
+template<> ::viam::app::v1::SetFirebaseConfigResponse* Arena::CreateMaybeMessage<::viam::app::v1::SetFirebaseConfigResponse>(Arena*);
 template<> ::viam::app::v1::SetFragmentTagRequest* Arena::CreateMaybeMessage<::viam::app::v1::SetFragmentTagRequest>(Arena*);
 template<> ::viam::app::v1::SetFragmentTagResponse* Arena::CreateMaybeMessage<::viam::app::v1::SetFragmentTagResponse>(Arena*);
 template<> ::viam::app::v1::ShareLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::ShareLocationRequest>(Arena*);
@@ -1168,6 +1214,8 @@ template<> ::viam::app::v1::UpdateRobotPartRequest* Arena::CreateMaybeMessage<::
 template<> ::viam::app::v1::UpdateRobotPartResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotPartResponse>(Arena*);
 template<> ::viam::app::v1::UpdateRobotRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotRequest>(Arena*);
 template<> ::viam::app::v1::UpdateRobotResponse* Arena::CreateMaybeMessage<::viam::app::v1::UpdateRobotResponse>(Arena*);
+template<> ::viam::app::v1::UploadDevicePushTokenRequest* Arena::CreateMaybeMessage<::viam::app::v1::UploadDevicePushTokenRequest>(Arena*);
+template<> ::viam::app::v1::UploadDevicePushTokenResponse* Arena::CreateMaybeMessage<::viam::app::v1::UploadDevicePushTokenResponse>(Arena*);
 template<> ::viam::app::v1::UploadModuleFileRequest* Arena::CreateMaybeMessage<::viam::app::v1::UploadModuleFileRequest>(Arena*);
 template<> ::viam::app::v1::UploadModuleFileResponse* Arena::CreateMaybeMessage<::viam::app::v1::UploadModuleFileResponse>(Arena*);
 template<> ::viam::app::v1::Uploads* Arena::CreateMaybeMessage<::viam::app::v1::Uploads>(Arena*);
@@ -48292,6 +48340,1760 @@ class MachinePickerCustomizations final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr subheading_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
+// -------------------------------------------------------------------
+
+class UploadDevicePushTokenRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UploadDevicePushTokenRequest) */ {
+ public:
+  inline UploadDevicePushTokenRequest() : UploadDevicePushTokenRequest(nullptr) {}
+  ~UploadDevicePushTokenRequest() override;
+  explicit PROTOBUF_CONSTEXPR UploadDevicePushTokenRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadDevicePushTokenRequest(const UploadDevicePushTokenRequest& from);
+  UploadDevicePushTokenRequest(UploadDevicePushTokenRequest&& from) noexcept
+    : UploadDevicePushTokenRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadDevicePushTokenRequest& operator=(const UploadDevicePushTokenRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadDevicePushTokenRequest& operator=(UploadDevicePushTokenRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadDevicePushTokenRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadDevicePushTokenRequest* internal_default_instance() {
+    return reinterpret_cast<const UploadDevicePushTokenRequest*>(
+               &_UploadDevicePushTokenRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    278;
+
+  friend void swap(UploadDevicePushTokenRequest& a, UploadDevicePushTokenRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadDevicePushTokenRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadDevicePushTokenRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadDevicePushTokenRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadDevicePushTokenRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UploadDevicePushTokenRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UploadDevicePushTokenRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UploadDevicePushTokenRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UploadDevicePushTokenRequest";
+  }
+  protected:
+  explicit UploadDevicePushTokenRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAppIdFieldNumber = 1,
+    kDeviceTokenFieldNumber = 2,
+    kDeviceUuidFieldNumber = 3,
+  };
+  // string app_id = 1 [json_name = "appId"];
+  void clear_app_id();
+  const std::string& app_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_app_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_app_id();
+  PROTOBUF_NODISCARD std::string* release_app_id();
+  void set_allocated_app_id(std::string* app_id);
+  private:
+  const std::string& _internal_app_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_app_id(const std::string& value);
+  std::string* _internal_mutable_app_id();
+  public:
+
+  // string device_token = 2 [json_name = "deviceToken"];
+  void clear_device_token();
+  const std::string& device_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_device_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_device_token();
+  PROTOBUF_NODISCARD std::string* release_device_token();
+  void set_allocated_device_token(std::string* device_token);
+  private:
+  const std::string& _internal_device_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device_token(const std::string& value);
+  std::string* _internal_mutable_device_token();
+  public:
+
+  // string device_uuid = 3 [json_name = "deviceUuid"];
+  void clear_device_uuid();
+  const std::string& device_uuid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_device_uuid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_device_uuid();
+  PROTOBUF_NODISCARD std::string* release_device_uuid();
+  void set_allocated_device_uuid(std::string* device_uuid);
+  private:
+  const std::string& _internal_device_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device_uuid(const std::string& value);
+  std::string* _internal_mutable_device_uuid();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UploadDevicePushTokenRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr app_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr device_token_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr device_uuid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UploadDevicePushTokenResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.UploadDevicePushTokenResponse) */ {
+ public:
+  inline UploadDevicePushTokenResponse() : UploadDevicePushTokenResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR UploadDevicePushTokenResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadDevicePushTokenResponse(const UploadDevicePushTokenResponse& from);
+  UploadDevicePushTokenResponse(UploadDevicePushTokenResponse&& from) noexcept
+    : UploadDevicePushTokenResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadDevicePushTokenResponse& operator=(const UploadDevicePushTokenResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadDevicePushTokenResponse& operator=(UploadDevicePushTokenResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadDevicePushTokenResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadDevicePushTokenResponse* internal_default_instance() {
+    return reinterpret_cast<const UploadDevicePushTokenResponse*>(
+               &_UploadDevicePushTokenResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    279;
+
+  friend void swap(UploadDevicePushTokenResponse& a, UploadDevicePushTokenResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadDevicePushTokenResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadDevicePushTokenResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadDevicePushTokenResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadDevicePushTokenResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const UploadDevicePushTokenResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const UploadDevicePushTokenResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UploadDevicePushTokenResponse";
+  }
+  protected:
+  explicit UploadDevicePushTokenResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UploadDevicePushTokenResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteDevicePushTokenRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteDevicePushTokenRequest) */ {
+ public:
+  inline DeleteDevicePushTokenRequest() : DeleteDevicePushTokenRequest(nullptr) {}
+  ~DeleteDevicePushTokenRequest() override;
+  explicit PROTOBUF_CONSTEXPR DeleteDevicePushTokenRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteDevicePushTokenRequest(const DeleteDevicePushTokenRequest& from);
+  DeleteDevicePushTokenRequest(DeleteDevicePushTokenRequest&& from) noexcept
+    : DeleteDevicePushTokenRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteDevicePushTokenRequest& operator=(const DeleteDevicePushTokenRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteDevicePushTokenRequest& operator=(DeleteDevicePushTokenRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteDevicePushTokenRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteDevicePushTokenRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteDevicePushTokenRequest*>(
+               &_DeleteDevicePushTokenRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    280;
+
+  friend void swap(DeleteDevicePushTokenRequest& a, DeleteDevicePushTokenRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteDevicePushTokenRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteDevicePushTokenRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteDevicePushTokenRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteDevicePushTokenRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteDevicePushTokenRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeleteDevicePushTokenRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteDevicePushTokenRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteDevicePushTokenRequest";
+  }
+  protected:
+  explicit DeleteDevicePushTokenRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAppIdFieldNumber = 1,
+    kDeviceUuidFieldNumber = 2,
+  };
+  // string app_id = 1 [json_name = "appId"];
+  void clear_app_id();
+  const std::string& app_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_app_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_app_id();
+  PROTOBUF_NODISCARD std::string* release_app_id();
+  void set_allocated_app_id(std::string* app_id);
+  private:
+  const std::string& _internal_app_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_app_id(const std::string& value);
+  std::string* _internal_mutable_app_id();
+  public:
+
+  // string device_uuid = 2 [json_name = "deviceUuid"];
+  void clear_device_uuid();
+  const std::string& device_uuid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_device_uuid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_device_uuid();
+  PROTOBUF_NODISCARD std::string* release_device_uuid();
+  void set_allocated_device_uuid(std::string* device_uuid);
+  private:
+  const std::string& _internal_device_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device_uuid(const std::string& value);
+  std::string* _internal_mutable_device_uuid();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteDevicePushTokenRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr app_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr device_uuid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteDevicePushTokenResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteDevicePushTokenResponse) */ {
+ public:
+  inline DeleteDevicePushTokenResponse() : DeleteDevicePushTokenResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR DeleteDevicePushTokenResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteDevicePushTokenResponse(const DeleteDevicePushTokenResponse& from);
+  DeleteDevicePushTokenResponse(DeleteDevicePushTokenResponse&& from) noexcept
+    : DeleteDevicePushTokenResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteDevicePushTokenResponse& operator=(const DeleteDevicePushTokenResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteDevicePushTokenResponse& operator=(DeleteDevicePushTokenResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteDevicePushTokenResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteDevicePushTokenResponse* internal_default_instance() {
+    return reinterpret_cast<const DeleteDevicePushTokenResponse*>(
+               &_DeleteDevicePushTokenResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    281;
+
+  friend void swap(DeleteDevicePushTokenResponse& a, DeleteDevicePushTokenResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteDevicePushTokenResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteDevicePushTokenResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteDevicePushTokenResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteDevicePushTokenResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const DeleteDevicePushTokenResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const DeleteDevicePushTokenResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteDevicePushTokenResponse";
+  }
+  protected:
+  explicit DeleteDevicePushTokenResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteDevicePushTokenResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetDevicePushTokensRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetDevicePushTokensRequest) */ {
+ public:
+  inline GetDevicePushTokensRequest() : GetDevicePushTokensRequest(nullptr) {}
+  ~GetDevicePushTokensRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetDevicePushTokensRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetDevicePushTokensRequest(const GetDevicePushTokensRequest& from);
+  GetDevicePushTokensRequest(GetDevicePushTokensRequest&& from) noexcept
+    : GetDevicePushTokensRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetDevicePushTokensRequest& operator=(const GetDevicePushTokensRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetDevicePushTokensRequest& operator=(GetDevicePushTokensRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetDevicePushTokensRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetDevicePushTokensRequest* internal_default_instance() {
+    return reinterpret_cast<const GetDevicePushTokensRequest*>(
+               &_GetDevicePushTokensRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    282;
+
+  friend void swap(GetDevicePushTokensRequest& a, GetDevicePushTokensRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetDevicePushTokensRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetDevicePushTokensRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetDevicePushTokensRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetDevicePushTokensRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetDevicePushTokensRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetDevicePushTokensRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetDevicePushTokensRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetDevicePushTokensRequest";
+  }
+  protected:
+  explicit GetDevicePushTokensRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAppIdFieldNumber = 1,
+  };
+  // string app_id = 1 [json_name = "appId"];
+  void clear_app_id();
+  const std::string& app_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_app_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_app_id();
+  PROTOBUF_NODISCARD std::string* release_app_id();
+  void set_allocated_app_id(std::string* app_id);
+  private:
+  const std::string& _internal_app_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_app_id(const std::string& value);
+  std::string* _internal_mutable_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetDevicePushTokensRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetDevicePushTokensResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetDevicePushTokensResponse) */ {
+ public:
+  inline GetDevicePushTokensResponse() : GetDevicePushTokensResponse(nullptr) {}
+  ~GetDevicePushTokensResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetDevicePushTokensResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetDevicePushTokensResponse(const GetDevicePushTokensResponse& from);
+  GetDevicePushTokensResponse(GetDevicePushTokensResponse&& from) noexcept
+    : GetDevicePushTokensResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetDevicePushTokensResponse& operator=(const GetDevicePushTokensResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetDevicePushTokensResponse& operator=(GetDevicePushTokensResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetDevicePushTokensResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetDevicePushTokensResponse* internal_default_instance() {
+    return reinterpret_cast<const GetDevicePushTokensResponse*>(
+               &_GetDevicePushTokensResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    283;
+
+  friend void swap(GetDevicePushTokensResponse& a, GetDevicePushTokensResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetDevicePushTokensResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetDevicePushTokensResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetDevicePushTokensResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetDevicePushTokensResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetDevicePushTokensResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetDevicePushTokensResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetDevicePushTokensResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetDevicePushTokensResponse";
+  }
+  protected:
+  explicit GetDevicePushTokensResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDeviceTokensFieldNumber = 1,
+  };
+  // repeated string device_tokens = 1 [json_name = "deviceTokens"];
+  int device_tokens_size() const;
+  private:
+  int _internal_device_tokens_size() const;
+  public:
+  void clear_device_tokens();
+  const std::string& device_tokens(int index) const;
+  std::string* mutable_device_tokens(int index);
+  void set_device_tokens(int index, const std::string& value);
+  void set_device_tokens(int index, std::string&& value);
+  void set_device_tokens(int index, const char* value);
+  void set_device_tokens(int index, const char* value, size_t size);
+  std::string* add_device_tokens();
+  void add_device_tokens(const std::string& value);
+  void add_device_tokens(std::string&& value);
+  void add_device_tokens(const char* value);
+  void add_device_tokens(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& device_tokens() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_device_tokens();
+  private:
+  const std::string& _internal_device_tokens(int index) const;
+  std::string* _internal_add_device_tokens();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetDevicePushTokensResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> device_tokens_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetFirebaseConfigRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.SetFirebaseConfigRequest) */ {
+ public:
+  inline SetFirebaseConfigRequest() : SetFirebaseConfigRequest(nullptr) {}
+  ~SetFirebaseConfigRequest() override;
+  explicit PROTOBUF_CONSTEXPR SetFirebaseConfigRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SetFirebaseConfigRequest(const SetFirebaseConfigRequest& from);
+  SetFirebaseConfigRequest(SetFirebaseConfigRequest&& from) noexcept
+    : SetFirebaseConfigRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SetFirebaseConfigRequest& operator=(const SetFirebaseConfigRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetFirebaseConfigRequest& operator=(SetFirebaseConfigRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetFirebaseConfigRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetFirebaseConfigRequest* internal_default_instance() {
+    return reinterpret_cast<const SetFirebaseConfigRequest*>(
+               &_SetFirebaseConfigRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    284;
+
+  friend void swap(SetFirebaseConfigRequest& a, SetFirebaseConfigRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetFirebaseConfigRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetFirebaseConfigRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetFirebaseConfigRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetFirebaseConfigRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SetFirebaseConfigRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SetFirebaseConfigRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SetFirebaseConfigRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.SetFirebaseConfigRequest";
+  }
+  protected:
+  explicit SetFirebaseConfigRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdFieldNumber = 1,
+    kAppIdFieldNumber = 2,
+    kConfigJsonFieldNumber = 3,
+  };
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // string app_id = 2 [json_name = "appId"];
+  void clear_app_id();
+  const std::string& app_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_app_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_app_id();
+  PROTOBUF_NODISCARD std::string* release_app_id();
+  void set_allocated_app_id(std::string* app_id);
+  private:
+  const std::string& _internal_app_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_app_id(const std::string& value);
+  std::string* _internal_mutable_app_id();
+  public:
+
+  // string config_json = 3 [json_name = "configJson"];
+  void clear_config_json();
+  const std::string& config_json() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_config_json(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_config_json();
+  PROTOBUF_NODISCARD std::string* release_config_json();
+  void set_allocated_config_json(std::string* config_json);
+  private:
+  const std::string& _internal_config_json() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_config_json(const std::string& value);
+  std::string* _internal_mutable_config_json();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.SetFirebaseConfigRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr app_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr config_json_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetFirebaseConfigResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.SetFirebaseConfigResponse) */ {
+ public:
+  inline SetFirebaseConfigResponse() : SetFirebaseConfigResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR SetFirebaseConfigResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SetFirebaseConfigResponse(const SetFirebaseConfigResponse& from);
+  SetFirebaseConfigResponse(SetFirebaseConfigResponse&& from) noexcept
+    : SetFirebaseConfigResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SetFirebaseConfigResponse& operator=(const SetFirebaseConfigResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetFirebaseConfigResponse& operator=(SetFirebaseConfigResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetFirebaseConfigResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetFirebaseConfigResponse* internal_default_instance() {
+    return reinterpret_cast<const SetFirebaseConfigResponse*>(
+               &_SetFirebaseConfigResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    285;
+
+  friend void swap(SetFirebaseConfigResponse& a, SetFirebaseConfigResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetFirebaseConfigResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetFirebaseConfigResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetFirebaseConfigResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetFirebaseConfigResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const SetFirebaseConfigResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const SetFirebaseConfigResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.SetFirebaseConfigResponse";
+  }
+  protected:
+  explicit SetFirebaseConfigResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.SetFirebaseConfigResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetFirebaseConfigRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetFirebaseConfigRequest) */ {
+ public:
+  inline GetFirebaseConfigRequest() : GetFirebaseConfigRequest(nullptr) {}
+  ~GetFirebaseConfigRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetFirebaseConfigRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetFirebaseConfigRequest(const GetFirebaseConfigRequest& from);
+  GetFirebaseConfigRequest(GetFirebaseConfigRequest&& from) noexcept
+    : GetFirebaseConfigRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetFirebaseConfigRequest& operator=(const GetFirebaseConfigRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetFirebaseConfigRequest& operator=(GetFirebaseConfigRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetFirebaseConfigRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetFirebaseConfigRequest* internal_default_instance() {
+    return reinterpret_cast<const GetFirebaseConfigRequest*>(
+               &_GetFirebaseConfigRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    286;
+
+  friend void swap(GetFirebaseConfigRequest& a, GetFirebaseConfigRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetFirebaseConfigRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetFirebaseConfigRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetFirebaseConfigRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetFirebaseConfigRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetFirebaseConfigRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetFirebaseConfigRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetFirebaseConfigRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetFirebaseConfigRequest";
+  }
+  protected:
+  explicit GetFirebaseConfigRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdFieldNumber = 1,
+  };
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetFirebaseConfigRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetFirebaseConfigResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetFirebaseConfigResponse) */ {
+ public:
+  inline GetFirebaseConfigResponse() : GetFirebaseConfigResponse(nullptr) {}
+  ~GetFirebaseConfigResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetFirebaseConfigResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetFirebaseConfigResponse(const GetFirebaseConfigResponse& from);
+  GetFirebaseConfigResponse(GetFirebaseConfigResponse&& from) noexcept
+    : GetFirebaseConfigResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetFirebaseConfigResponse& operator=(const GetFirebaseConfigResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetFirebaseConfigResponse& operator=(GetFirebaseConfigResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetFirebaseConfigResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetFirebaseConfigResponse* internal_default_instance() {
+    return reinterpret_cast<const GetFirebaseConfigResponse*>(
+               &_GetFirebaseConfigResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    287;
+
+  friend void swap(GetFirebaseConfigResponse& a, GetFirebaseConfigResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetFirebaseConfigResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetFirebaseConfigResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetFirebaseConfigResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetFirebaseConfigResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetFirebaseConfigResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetFirebaseConfigResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetFirebaseConfigResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.GetFirebaseConfigResponse";
+  }
+  protected:
+  explicit GetFirebaseConfigResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAppIdFieldNumber = 1,
+  };
+  // string app_id = 1 [json_name = "appId"];
+  void clear_app_id();
+  const std::string& app_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_app_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_app_id();
+  PROTOBUF_NODISCARD std::string* release_app_id();
+  void set_allocated_app_id(std::string* app_id);
+  private:
+  const std::string& _internal_app_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_app_id(const std::string& value);
+  std::string* _internal_mutable_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.GetFirebaseConfigResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteFirebaseConfigRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteFirebaseConfigRequest) */ {
+ public:
+  inline DeleteFirebaseConfigRequest() : DeleteFirebaseConfigRequest(nullptr) {}
+  ~DeleteFirebaseConfigRequest() override;
+  explicit PROTOBUF_CONSTEXPR DeleteFirebaseConfigRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteFirebaseConfigRequest(const DeleteFirebaseConfigRequest& from);
+  DeleteFirebaseConfigRequest(DeleteFirebaseConfigRequest&& from) noexcept
+    : DeleteFirebaseConfigRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteFirebaseConfigRequest& operator=(const DeleteFirebaseConfigRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteFirebaseConfigRequest& operator=(DeleteFirebaseConfigRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteFirebaseConfigRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteFirebaseConfigRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteFirebaseConfigRequest*>(
+               &_DeleteFirebaseConfigRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    288;
+
+  friend void swap(DeleteFirebaseConfigRequest& a, DeleteFirebaseConfigRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteFirebaseConfigRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteFirebaseConfigRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteFirebaseConfigRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteFirebaseConfigRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteFirebaseConfigRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeleteFirebaseConfigRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteFirebaseConfigRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteFirebaseConfigRequest";
+  }
+  protected:
+  explicit DeleteFirebaseConfigRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdFieldNumber = 1,
+    kAppIdFieldNumber = 2,
+  };
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // string app_id = 2 [json_name = "appId"];
+  void clear_app_id();
+  const std::string& app_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_app_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_app_id();
+  PROTOBUF_NODISCARD std::string* release_app_id();
+  void set_allocated_app_id(std::string* app_id);
+  private:
+  const std::string& _internal_app_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_app_id(const std::string& value);
+  std::string* _internal_mutable_app_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteFirebaseConfigRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr app_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteFirebaseConfigResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.DeleteFirebaseConfigResponse) */ {
+ public:
+  inline DeleteFirebaseConfigResponse() : DeleteFirebaseConfigResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR DeleteFirebaseConfigResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteFirebaseConfigResponse(const DeleteFirebaseConfigResponse& from);
+  DeleteFirebaseConfigResponse(DeleteFirebaseConfigResponse&& from) noexcept
+    : DeleteFirebaseConfigResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteFirebaseConfigResponse& operator=(const DeleteFirebaseConfigResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteFirebaseConfigResponse& operator=(DeleteFirebaseConfigResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteFirebaseConfigResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteFirebaseConfigResponse* internal_default_instance() {
+    return reinterpret_cast<const DeleteFirebaseConfigResponse*>(
+               &_DeleteFirebaseConfigResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    289;
+
+  friend void swap(DeleteFirebaseConfigResponse& a, DeleteFirebaseConfigResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteFirebaseConfigResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteFirebaseConfigResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteFirebaseConfigResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteFirebaseConfigResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const DeleteFirebaseConfigResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const DeleteFirebaseConfigResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeleteFirebaseConfigResponse";
+  }
+  protected:
+  explicit DeleteFirebaseConfigResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeleteFirebaseConfigResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
 // ===================================================================
 
 
@@ -82842,9 +84644,806 @@ inline void MachinePickerCustomizations::set_allocated_subheading(std::string* s
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.MachinePickerCustomizations.subheading)
 }
 
+// -------------------------------------------------------------------
+
+// UploadDevicePushTokenRequest
+
+// string app_id = 1 [json_name = "appId"];
+inline void UploadDevicePushTokenRequest::clear_app_id() {
+  app_id_.ClearToEmpty();
+}
+inline const std::string& UploadDevicePushTokenRequest::app_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UploadDevicePushTokenRequest.app_id)
+  return _internal_app_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UploadDevicePushTokenRequest::set_app_id(ArgT0&& arg0, ArgT... args) {
+ 
+ app_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UploadDevicePushTokenRequest.app_id)
+}
+inline std::string* UploadDevicePushTokenRequest::mutable_app_id() {
+  std::string* _s = _internal_mutable_app_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UploadDevicePushTokenRequest.app_id)
+  return _s;
+}
+inline const std::string& UploadDevicePushTokenRequest::_internal_app_id() const {
+  return app_id_.Get();
+}
+inline void UploadDevicePushTokenRequest::_internal_set_app_id(const std::string& value) {
+  
+  app_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UploadDevicePushTokenRequest::_internal_mutable_app_id() {
+  
+  return app_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UploadDevicePushTokenRequest::release_app_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UploadDevicePushTokenRequest.app_id)
+  return app_id_.Release();
+}
+inline void UploadDevicePushTokenRequest::set_allocated_app_id(std::string* app_id) {
+  if (app_id != nullptr) {
+    
+  } else {
+    
+  }
+  app_id_.SetAllocated(app_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (app_id_.IsDefault()) {
+    app_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UploadDevicePushTokenRequest.app_id)
+}
+
+// string device_token = 2 [json_name = "deviceToken"];
+inline void UploadDevicePushTokenRequest::clear_device_token() {
+  device_token_.ClearToEmpty();
+}
+inline const std::string& UploadDevicePushTokenRequest::device_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UploadDevicePushTokenRequest.device_token)
+  return _internal_device_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UploadDevicePushTokenRequest::set_device_token(ArgT0&& arg0, ArgT... args) {
+ 
+ device_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UploadDevicePushTokenRequest.device_token)
+}
+inline std::string* UploadDevicePushTokenRequest::mutable_device_token() {
+  std::string* _s = _internal_mutable_device_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UploadDevicePushTokenRequest.device_token)
+  return _s;
+}
+inline const std::string& UploadDevicePushTokenRequest::_internal_device_token() const {
+  return device_token_.Get();
+}
+inline void UploadDevicePushTokenRequest::_internal_set_device_token(const std::string& value) {
+  
+  device_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UploadDevicePushTokenRequest::_internal_mutable_device_token() {
+  
+  return device_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UploadDevicePushTokenRequest::release_device_token() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UploadDevicePushTokenRequest.device_token)
+  return device_token_.Release();
+}
+inline void UploadDevicePushTokenRequest::set_allocated_device_token(std::string* device_token) {
+  if (device_token != nullptr) {
+    
+  } else {
+    
+  }
+  device_token_.SetAllocated(device_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (device_token_.IsDefault()) {
+    device_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UploadDevicePushTokenRequest.device_token)
+}
+
+// string device_uuid = 3 [json_name = "deviceUuid"];
+inline void UploadDevicePushTokenRequest::clear_device_uuid() {
+  device_uuid_.ClearToEmpty();
+}
+inline const std::string& UploadDevicePushTokenRequest::device_uuid() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UploadDevicePushTokenRequest.device_uuid)
+  return _internal_device_uuid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UploadDevicePushTokenRequest::set_device_uuid(ArgT0&& arg0, ArgT... args) {
+ 
+ device_uuid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UploadDevicePushTokenRequest.device_uuid)
+}
+inline std::string* UploadDevicePushTokenRequest::mutable_device_uuid() {
+  std::string* _s = _internal_mutable_device_uuid();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UploadDevicePushTokenRequest.device_uuid)
+  return _s;
+}
+inline const std::string& UploadDevicePushTokenRequest::_internal_device_uuid() const {
+  return device_uuid_.Get();
+}
+inline void UploadDevicePushTokenRequest::_internal_set_device_uuid(const std::string& value) {
+  
+  device_uuid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UploadDevicePushTokenRequest::_internal_mutable_device_uuid() {
+  
+  return device_uuid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UploadDevicePushTokenRequest::release_device_uuid() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UploadDevicePushTokenRequest.device_uuid)
+  return device_uuid_.Release();
+}
+inline void UploadDevicePushTokenRequest::set_allocated_device_uuid(std::string* device_uuid) {
+  if (device_uuid != nullptr) {
+    
+  } else {
+    
+  }
+  device_uuid_.SetAllocated(device_uuid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (device_uuid_.IsDefault()) {
+    device_uuid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UploadDevicePushTokenRequest.device_uuid)
+}
+
+// -------------------------------------------------------------------
+
+// UploadDevicePushTokenResponse
+
+// -------------------------------------------------------------------
+
+// DeleteDevicePushTokenRequest
+
+// string app_id = 1 [json_name = "appId"];
+inline void DeleteDevicePushTokenRequest::clear_app_id() {
+  app_id_.ClearToEmpty();
+}
+inline const std::string& DeleteDevicePushTokenRequest::app_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeleteDevicePushTokenRequest.app_id)
+  return _internal_app_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteDevicePushTokenRequest::set_app_id(ArgT0&& arg0, ArgT... args) {
+ 
+ app_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeleteDevicePushTokenRequest.app_id)
+}
+inline std::string* DeleteDevicePushTokenRequest::mutable_app_id() {
+  std::string* _s = _internal_mutable_app_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeleteDevicePushTokenRequest.app_id)
+  return _s;
+}
+inline const std::string& DeleteDevicePushTokenRequest::_internal_app_id() const {
+  return app_id_.Get();
+}
+inline void DeleteDevicePushTokenRequest::_internal_set_app_id(const std::string& value) {
+  
+  app_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteDevicePushTokenRequest::_internal_mutable_app_id() {
+  
+  return app_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteDevicePushTokenRequest::release_app_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeleteDevicePushTokenRequest.app_id)
+  return app_id_.Release();
+}
+inline void DeleteDevicePushTokenRequest::set_allocated_app_id(std::string* app_id) {
+  if (app_id != nullptr) {
+    
+  } else {
+    
+  }
+  app_id_.SetAllocated(app_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (app_id_.IsDefault()) {
+    app_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeleteDevicePushTokenRequest.app_id)
+}
+
+// string device_uuid = 2 [json_name = "deviceUuid"];
+inline void DeleteDevicePushTokenRequest::clear_device_uuid() {
+  device_uuid_.ClearToEmpty();
+}
+inline const std::string& DeleteDevicePushTokenRequest::device_uuid() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeleteDevicePushTokenRequest.device_uuid)
+  return _internal_device_uuid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteDevicePushTokenRequest::set_device_uuid(ArgT0&& arg0, ArgT... args) {
+ 
+ device_uuid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeleteDevicePushTokenRequest.device_uuid)
+}
+inline std::string* DeleteDevicePushTokenRequest::mutable_device_uuid() {
+  std::string* _s = _internal_mutable_device_uuid();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeleteDevicePushTokenRequest.device_uuid)
+  return _s;
+}
+inline const std::string& DeleteDevicePushTokenRequest::_internal_device_uuid() const {
+  return device_uuid_.Get();
+}
+inline void DeleteDevicePushTokenRequest::_internal_set_device_uuid(const std::string& value) {
+  
+  device_uuid_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteDevicePushTokenRequest::_internal_mutable_device_uuid() {
+  
+  return device_uuid_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteDevicePushTokenRequest::release_device_uuid() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeleteDevicePushTokenRequest.device_uuid)
+  return device_uuid_.Release();
+}
+inline void DeleteDevicePushTokenRequest::set_allocated_device_uuid(std::string* device_uuid) {
+  if (device_uuid != nullptr) {
+    
+  } else {
+    
+  }
+  device_uuid_.SetAllocated(device_uuid, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (device_uuid_.IsDefault()) {
+    device_uuid_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeleteDevicePushTokenRequest.device_uuid)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteDevicePushTokenResponse
+
+// -------------------------------------------------------------------
+
+// GetDevicePushTokensRequest
+
+// string app_id = 1 [json_name = "appId"];
+inline void GetDevicePushTokensRequest::clear_app_id() {
+  app_id_.ClearToEmpty();
+}
+inline const std::string& GetDevicePushTokensRequest::app_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetDevicePushTokensRequest.app_id)
+  return _internal_app_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetDevicePushTokensRequest::set_app_id(ArgT0&& arg0, ArgT... args) {
+ 
+ app_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetDevicePushTokensRequest.app_id)
+}
+inline std::string* GetDevicePushTokensRequest::mutable_app_id() {
+  std::string* _s = _internal_mutable_app_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetDevicePushTokensRequest.app_id)
+  return _s;
+}
+inline const std::string& GetDevicePushTokensRequest::_internal_app_id() const {
+  return app_id_.Get();
+}
+inline void GetDevicePushTokensRequest::_internal_set_app_id(const std::string& value) {
+  
+  app_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetDevicePushTokensRequest::_internal_mutable_app_id() {
+  
+  return app_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetDevicePushTokensRequest::release_app_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetDevicePushTokensRequest.app_id)
+  return app_id_.Release();
+}
+inline void GetDevicePushTokensRequest::set_allocated_app_id(std::string* app_id) {
+  if (app_id != nullptr) {
+    
+  } else {
+    
+  }
+  app_id_.SetAllocated(app_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (app_id_.IsDefault()) {
+    app_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetDevicePushTokensRequest.app_id)
+}
+
+// -------------------------------------------------------------------
+
+// GetDevicePushTokensResponse
+
+// repeated string device_tokens = 1 [json_name = "deviceTokens"];
+inline int GetDevicePushTokensResponse::_internal_device_tokens_size() const {
+  return device_tokens_.size();
+}
+inline int GetDevicePushTokensResponse::device_tokens_size() const {
+  return _internal_device_tokens_size();
+}
+inline void GetDevicePushTokensResponse::clear_device_tokens() {
+  device_tokens_.Clear();
+}
+inline std::string* GetDevicePushTokensResponse::add_device_tokens() {
+  std::string* _s = _internal_add_device_tokens();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+  return _s;
+}
+inline const std::string& GetDevicePushTokensResponse::_internal_device_tokens(int index) const {
+  return device_tokens_.Get(index);
+}
+inline const std::string& GetDevicePushTokensResponse::device_tokens(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+  return _internal_device_tokens(index);
+}
+inline std::string* GetDevicePushTokensResponse::mutable_device_tokens(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+  return device_tokens_.Mutable(index);
+}
+inline void GetDevicePushTokensResponse::set_device_tokens(int index, const std::string& value) {
+  device_tokens_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+}
+inline void GetDevicePushTokensResponse::set_device_tokens(int index, std::string&& value) {
+  device_tokens_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+}
+inline void GetDevicePushTokensResponse::set_device_tokens(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  device_tokens_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+}
+inline void GetDevicePushTokensResponse::set_device_tokens(int index, const char* value, size_t size) {
+  device_tokens_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+}
+inline std::string* GetDevicePushTokensResponse::_internal_add_device_tokens() {
+  return device_tokens_.Add();
+}
+inline void GetDevicePushTokensResponse::add_device_tokens(const std::string& value) {
+  device_tokens_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+}
+inline void GetDevicePushTokensResponse::add_device_tokens(std::string&& value) {
+  device_tokens_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+}
+inline void GetDevicePushTokensResponse::add_device_tokens(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  device_tokens_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+}
+inline void GetDevicePushTokensResponse::add_device_tokens(const char* value, size_t size) {
+  device_tokens_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetDevicePushTokensResponse::device_tokens() const {
+  // @@protoc_insertion_point(field_list:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+  return device_tokens_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetDevicePushTokensResponse::mutable_device_tokens() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.v1.GetDevicePushTokensResponse.device_tokens)
+  return &device_tokens_;
+}
+
+// -------------------------------------------------------------------
+
+// SetFirebaseConfigRequest
+
+// string org_id = 1 [json_name = "orgId"];
+inline void SetFirebaseConfigRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& SetFirebaseConfigRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.SetFirebaseConfigRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SetFirebaseConfigRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.SetFirebaseConfigRequest.org_id)
+}
+inline std::string* SetFirebaseConfigRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.SetFirebaseConfigRequest.org_id)
+  return _s;
+}
+inline const std::string& SetFirebaseConfigRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void SetFirebaseConfigRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SetFirebaseConfigRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SetFirebaseConfigRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.SetFirebaseConfigRequest.org_id)
+  return org_id_.Release();
+}
+inline void SetFirebaseConfigRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SetFirebaseConfigRequest.org_id)
+}
+
+// string app_id = 2 [json_name = "appId"];
+inline void SetFirebaseConfigRequest::clear_app_id() {
+  app_id_.ClearToEmpty();
+}
+inline const std::string& SetFirebaseConfigRequest::app_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.SetFirebaseConfigRequest.app_id)
+  return _internal_app_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SetFirebaseConfigRequest::set_app_id(ArgT0&& arg0, ArgT... args) {
+ 
+ app_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.SetFirebaseConfigRequest.app_id)
+}
+inline std::string* SetFirebaseConfigRequest::mutable_app_id() {
+  std::string* _s = _internal_mutable_app_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.SetFirebaseConfigRequest.app_id)
+  return _s;
+}
+inline const std::string& SetFirebaseConfigRequest::_internal_app_id() const {
+  return app_id_.Get();
+}
+inline void SetFirebaseConfigRequest::_internal_set_app_id(const std::string& value) {
+  
+  app_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SetFirebaseConfigRequest::_internal_mutable_app_id() {
+  
+  return app_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SetFirebaseConfigRequest::release_app_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.SetFirebaseConfigRequest.app_id)
+  return app_id_.Release();
+}
+inline void SetFirebaseConfigRequest::set_allocated_app_id(std::string* app_id) {
+  if (app_id != nullptr) {
+    
+  } else {
+    
+  }
+  app_id_.SetAllocated(app_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (app_id_.IsDefault()) {
+    app_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SetFirebaseConfigRequest.app_id)
+}
+
+// string config_json = 3 [json_name = "configJson"];
+inline void SetFirebaseConfigRequest::clear_config_json() {
+  config_json_.ClearToEmpty();
+}
+inline const std::string& SetFirebaseConfigRequest::config_json() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.SetFirebaseConfigRequest.config_json)
+  return _internal_config_json();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SetFirebaseConfigRequest::set_config_json(ArgT0&& arg0, ArgT... args) {
+ 
+ config_json_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.SetFirebaseConfigRequest.config_json)
+}
+inline std::string* SetFirebaseConfigRequest::mutable_config_json() {
+  std::string* _s = _internal_mutable_config_json();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.SetFirebaseConfigRequest.config_json)
+  return _s;
+}
+inline const std::string& SetFirebaseConfigRequest::_internal_config_json() const {
+  return config_json_.Get();
+}
+inline void SetFirebaseConfigRequest::_internal_set_config_json(const std::string& value) {
+  
+  config_json_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SetFirebaseConfigRequest::_internal_mutable_config_json() {
+  
+  return config_json_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SetFirebaseConfigRequest::release_config_json() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.SetFirebaseConfigRequest.config_json)
+  return config_json_.Release();
+}
+inline void SetFirebaseConfigRequest::set_allocated_config_json(std::string* config_json) {
+  if (config_json != nullptr) {
+    
+  } else {
+    
+  }
+  config_json_.SetAllocated(config_json, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (config_json_.IsDefault()) {
+    config_json_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.SetFirebaseConfigRequest.config_json)
+}
+
+// -------------------------------------------------------------------
+
+// SetFirebaseConfigResponse
+
+// -------------------------------------------------------------------
+
+// GetFirebaseConfigRequest
+
+// string org_id = 1 [json_name = "orgId"];
+inline void GetFirebaseConfigRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& GetFirebaseConfigRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetFirebaseConfigRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetFirebaseConfigRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetFirebaseConfigRequest.org_id)
+}
+inline std::string* GetFirebaseConfigRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetFirebaseConfigRequest.org_id)
+  return _s;
+}
+inline const std::string& GetFirebaseConfigRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void GetFirebaseConfigRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetFirebaseConfigRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetFirebaseConfigRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetFirebaseConfigRequest.org_id)
+  return org_id_.Release();
+}
+inline void GetFirebaseConfigRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetFirebaseConfigRequest.org_id)
+}
+
+// -------------------------------------------------------------------
+
+// GetFirebaseConfigResponse
+
+// string app_id = 1 [json_name = "appId"];
+inline void GetFirebaseConfigResponse::clear_app_id() {
+  app_id_.ClearToEmpty();
+}
+inline const std::string& GetFirebaseConfigResponse::app_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetFirebaseConfigResponse.app_id)
+  return _internal_app_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetFirebaseConfigResponse::set_app_id(ArgT0&& arg0, ArgT... args) {
+ 
+ app_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetFirebaseConfigResponse.app_id)
+}
+inline std::string* GetFirebaseConfigResponse::mutable_app_id() {
+  std::string* _s = _internal_mutable_app_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetFirebaseConfigResponse.app_id)
+  return _s;
+}
+inline const std::string& GetFirebaseConfigResponse::_internal_app_id() const {
+  return app_id_.Get();
+}
+inline void GetFirebaseConfigResponse::_internal_set_app_id(const std::string& value) {
+  
+  app_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetFirebaseConfigResponse::_internal_mutable_app_id() {
+  
+  return app_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetFirebaseConfigResponse::release_app_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetFirebaseConfigResponse.app_id)
+  return app_id_.Release();
+}
+inline void GetFirebaseConfigResponse::set_allocated_app_id(std::string* app_id) {
+  if (app_id != nullptr) {
+    
+  } else {
+    
+  }
+  app_id_.SetAllocated(app_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (app_id_.IsDefault()) {
+    app_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetFirebaseConfigResponse.app_id)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteFirebaseConfigRequest
+
+// string org_id = 1 [json_name = "orgId"];
+inline void DeleteFirebaseConfigRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& DeleteFirebaseConfigRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeleteFirebaseConfigRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteFirebaseConfigRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeleteFirebaseConfigRequest.org_id)
+}
+inline std::string* DeleteFirebaseConfigRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeleteFirebaseConfigRequest.org_id)
+  return _s;
+}
+inline const std::string& DeleteFirebaseConfigRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void DeleteFirebaseConfigRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteFirebaseConfigRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteFirebaseConfigRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeleteFirebaseConfigRequest.org_id)
+  return org_id_.Release();
+}
+inline void DeleteFirebaseConfigRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeleteFirebaseConfigRequest.org_id)
+}
+
+// string app_id = 2 [json_name = "appId"];
+inline void DeleteFirebaseConfigRequest::clear_app_id() {
+  app_id_.ClearToEmpty();
+}
+inline const std::string& DeleteFirebaseConfigRequest::app_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeleteFirebaseConfigRequest.app_id)
+  return _internal_app_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteFirebaseConfigRequest::set_app_id(ArgT0&& arg0, ArgT... args) {
+ 
+ app_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeleteFirebaseConfigRequest.app_id)
+}
+inline std::string* DeleteFirebaseConfigRequest::mutable_app_id() {
+  std::string* _s = _internal_mutable_app_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeleteFirebaseConfigRequest.app_id)
+  return _s;
+}
+inline const std::string& DeleteFirebaseConfigRequest::_internal_app_id() const {
+  return app_id_.Get();
+}
+inline void DeleteFirebaseConfigRequest::_internal_set_app_id(const std::string& value) {
+  
+  app_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteFirebaseConfigRequest::_internal_mutable_app_id() {
+  
+  return app_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteFirebaseConfigRequest::release_app_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeleteFirebaseConfigRequest.app_id)
+  return app_id_.Release();
+}
+inline void DeleteFirebaseConfigRequest::set_allocated_app_id(std::string* app_id) {
+  if (app_id != nullptr) {
+    
+  } else {
+    
+  }
+  app_id_.SetAllocated(app_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (app_id_.IsDefault()) {
+    app_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeleteFirebaseConfigRequest.app_id)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteFirebaseConfigResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
