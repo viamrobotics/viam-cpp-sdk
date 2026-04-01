@@ -53,7 +53,10 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
 
       - name: Install dependencies
-        run: choco install -y conan git
+        shell: powershell
+        run: |
+          choco install -y conan git
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Create package
         shell: powershell
@@ -299,7 +302,7 @@ jobs:
           path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   release:
-    needs: [prepare, build_macos, build_linux_debian, build_linux_ubuntu_jammy]
+    needs: [prepare, build_windows, build_macos, build_linux_debian, build_linux_ubuntu_jammy]
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
 
