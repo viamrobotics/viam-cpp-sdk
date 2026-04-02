@@ -2,15 +2,6 @@ name: Build + draft release
 
 on:
   workflow_dispatch:
-    inputs:
-      ref:
-        description: 'Branch or commit ref to build from (defaults to main)'
-        required: false
-        default: 'main'
-      test_suffix:
-        description: 'Optional suffix for test releases (e.g., "-test-1"). Leave empty for production release.'
-        required: false
-        default: ''
 
 # (erodkin) this is needed to create the release, per https://github.com/softprops/action-gh-release/issues/236
 permissions:
@@ -26,16 +17,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.ref }}
 
       - name: Which Version
         id: which_version
         shell: bash
-        run: |
-          BASE_VERSION=$(grep 'set(CMAKE_PROJECT_VERSION' CMakeLists.txt | sed 's/)//' | awk '{print $2}')
-          VERSION="${BASE_VERSION}${{ inputs.test_suffix }}"
-          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+        run: echo "version=$(grep 'set(CMAKE_PROJECT_VERSION' CMakeLists.txt | sed 's/)//' | awk '{print $2}')" >> $GITHUB_OUTPUT
 
       - name: Check if release exists
         uses: cardinalby/git-get-release-action@1.2.4
