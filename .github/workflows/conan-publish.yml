@@ -293,14 +293,10 @@ jobs:
           conan lock merge $LOCKFILE_ARGS
           cat conan.lock
 
-          # Move merged lockfile to repository
-          mv conan.lock ../etc/conan/conan.lock
-
       - name: Upload merged lockfile to release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: releases/v${{ inputs.ref }}
-          files: etc/conan/conan.lock
-          draft: false
+          files: conan.lock
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
