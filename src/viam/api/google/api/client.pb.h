@@ -53,6 +53,15 @@ struct TableStruct_google_2fapi_2fclient_2eproto {
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto;
 namespace google {
 namespace api {
+class BatchingConfigProto;
+struct BatchingConfigProtoDefaultTypeInternal;
+extern BatchingConfigProtoDefaultTypeInternal _BatchingConfigProto_default_instance_;
+class BatchingDescriptorProto;
+struct BatchingDescriptorProtoDefaultTypeInternal;
+extern BatchingDescriptorProtoDefaultTypeInternal _BatchingDescriptorProto_default_instance_;
+class BatchingSettingsProto;
+struct BatchingSettingsProtoDefaultTypeInternal;
+extern BatchingSettingsProtoDefaultTypeInternal _BatchingSettingsProto_default_instance_;
 class ClientLibrarySettings;
 struct ClientLibrarySettingsDefaultTypeInternal;
 extern ClientLibrarySettingsDefaultTypeInternal _ClientLibrarySettings_default_instance_;
@@ -113,6 +122,9 @@ extern SelectiveGapicGenerationDefaultTypeInternal _SelectiveGapicGeneration_def
 }  // namespace api
 }  // namespace google
 PROTOBUF_NAMESPACE_OPEN
+template<> ::google::api::BatchingConfigProto* Arena::CreateMaybeMessage<::google::api::BatchingConfigProto>(Arena*);
+template<> ::google::api::BatchingDescriptorProto* Arena::CreateMaybeMessage<::google::api::BatchingDescriptorProto>(Arena*);
+template<> ::google::api::BatchingSettingsProto* Arena::CreateMaybeMessage<::google::api::BatchingSettingsProto>(Arena*);
 template<> ::google::api::ClientLibrarySettings* Arena::CreateMaybeMessage<::google::api::ClientLibrarySettings>(Arena*);
 template<> ::google::api::CommonLanguageSettings* Arena::CreateMaybeMessage<::google::api::CommonLanguageSettings>(Arena*);
 template<> ::google::api::CppSettings* Arena::CreateMaybeMessage<::google::api::CppSettings>(Arena*);
@@ -192,6 +204,33 @@ inline bool ClientLibraryDestination_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ClientLibraryDestination* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ClientLibraryDestination>(
     ClientLibraryDestination_descriptor(), name, value);
+}
+enum FlowControlLimitExceededBehaviorProto : int {
+  UNSET_BEHAVIOR = 0,
+  THROW_EXCEPTION = 1,
+  BLOCK = 2,
+  IGNORE = 3,
+  FlowControlLimitExceededBehaviorProto_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  FlowControlLimitExceededBehaviorProto_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool FlowControlLimitExceededBehaviorProto_IsValid(int value);
+constexpr FlowControlLimitExceededBehaviorProto FlowControlLimitExceededBehaviorProto_MIN = UNSET_BEHAVIOR;
+constexpr FlowControlLimitExceededBehaviorProto FlowControlLimitExceededBehaviorProto_MAX = IGNORE;
+constexpr int FlowControlLimitExceededBehaviorProto_ARRAYSIZE = FlowControlLimitExceededBehaviorProto_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* FlowControlLimitExceededBehaviorProto_descriptor();
+template<typename T>
+inline const std::string& FlowControlLimitExceededBehaviorProto_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, FlowControlLimitExceededBehaviorProto>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function FlowControlLimitExceededBehaviorProto_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    FlowControlLimitExceededBehaviorProto_descriptor(), enum_t_value);
+}
+inline bool FlowControlLimitExceededBehaviorProto_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, FlowControlLimitExceededBehaviorProto* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<FlowControlLimitExceededBehaviorProto>(
+    FlowControlLimitExceededBehaviorProto_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -1527,8 +1566,23 @@ class PhpSettings final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kLibraryPackageFieldNumber = 2,
     kCommonFieldNumber = 1,
   };
+  // string library_package = 2 [json_name = "libraryPackage"];
+  void clear_library_package();
+  const std::string& library_package() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_library_package(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_library_package();
+  PROTOBUF_NODISCARD std::string* release_library_package();
+  void set_allocated_library_package(std::string* library_package);
+  private:
+  const std::string& _internal_library_package() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_library_package(const std::string& value);
+  std::string* _internal_mutable_library_package();
+  public:
+
   // .google.api.CommonLanguageSettings common = 1 [json_name = "common"];
   bool has_common() const;
   private:
@@ -1554,6 +1608,7 @@ class PhpSettings final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr library_package_;
   ::google::api::CommonLanguageSettings* common_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
@@ -3071,6 +3126,7 @@ class MethodSettings final :
     kAutoPopulatedFieldsFieldNumber = 3,
     kSelectorFieldNumber = 1,
     kLongRunningFieldNumber = 2,
+    kBatchingFieldNumber = 4,
   };
   // repeated string auto_populated_fields = 3 [json_name = "autoPopulatedFields"];
   int auto_populated_fields_size() const;
@@ -3128,6 +3184,24 @@ class MethodSettings final :
       ::google::api::MethodSettings_LongRunning* long_running);
   ::google::api::MethodSettings_LongRunning* unsafe_arena_release_long_running();
 
+  // .google.api.BatchingConfigProto batching = 4 [json_name = "batching"];
+  bool has_batching() const;
+  private:
+  bool _internal_has_batching() const;
+  public:
+  void clear_batching();
+  const ::google::api::BatchingConfigProto& batching() const;
+  PROTOBUF_NODISCARD ::google::api::BatchingConfigProto* release_batching();
+  ::google::api::BatchingConfigProto* mutable_batching();
+  void set_allocated_batching(::google::api::BatchingConfigProto* batching);
+  private:
+  const ::google::api::BatchingConfigProto& _internal_batching() const;
+  ::google::api::BatchingConfigProto* _internal_mutable_batching();
+  public:
+  void unsafe_arena_set_allocated_batching(
+      ::google::api::BatchingConfigProto* batching);
+  ::google::api::BatchingConfigProto* unsafe_arena_release_batching();
+
   // @@protoc_insertion_point(class_scope:google.api.MethodSettings)
  private:
   class _Internal;
@@ -3138,6 +3212,7 @@ class MethodSettings final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> auto_populated_fields_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr selector_;
   ::google::api::MethodSettings_LongRunning* long_running_;
+  ::google::api::BatchingConfigProto* batching_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
 };
@@ -3307,6 +3382,597 @@ class SelectiveGapicGeneration final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> methods_;
   bool generate_omitted_as_internal_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
+};
+// -------------------------------------------------------------------
+
+class BatchingConfigProto final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.api.BatchingConfigProto) */ {
+ public:
+  inline BatchingConfigProto() : BatchingConfigProto(nullptr) {}
+  ~BatchingConfigProto() override;
+  explicit PROTOBUF_CONSTEXPR BatchingConfigProto(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  BatchingConfigProto(const BatchingConfigProto& from);
+  BatchingConfigProto(BatchingConfigProto&& from) noexcept
+    : BatchingConfigProto() {
+    *this = ::std::move(from);
+  }
+
+  inline BatchingConfigProto& operator=(const BatchingConfigProto& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BatchingConfigProto& operator=(BatchingConfigProto&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const BatchingConfigProto& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const BatchingConfigProto* internal_default_instance() {
+    return reinterpret_cast<const BatchingConfigProto*>(
+               &_BatchingConfigProto_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(BatchingConfigProto& a, BatchingConfigProto& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(BatchingConfigProto* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(BatchingConfigProto* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  BatchingConfigProto* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<BatchingConfigProto>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const BatchingConfigProto& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const BatchingConfigProto& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BatchingConfigProto* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "google.api.BatchingConfigProto";
+  }
+  protected:
+  explicit BatchingConfigProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kThresholdsFieldNumber = 1,
+    kBatchDescriptorFieldNumber = 2,
+  };
+  // .google.api.BatchingSettingsProto thresholds = 1 [json_name = "thresholds"];
+  bool has_thresholds() const;
+  private:
+  bool _internal_has_thresholds() const;
+  public:
+  void clear_thresholds();
+  const ::google::api::BatchingSettingsProto& thresholds() const;
+  PROTOBUF_NODISCARD ::google::api::BatchingSettingsProto* release_thresholds();
+  ::google::api::BatchingSettingsProto* mutable_thresholds();
+  void set_allocated_thresholds(::google::api::BatchingSettingsProto* thresholds);
+  private:
+  const ::google::api::BatchingSettingsProto& _internal_thresholds() const;
+  ::google::api::BatchingSettingsProto* _internal_mutable_thresholds();
+  public:
+  void unsafe_arena_set_allocated_thresholds(
+      ::google::api::BatchingSettingsProto* thresholds);
+  ::google::api::BatchingSettingsProto* unsafe_arena_release_thresholds();
+
+  // .google.api.BatchingDescriptorProto batch_descriptor = 2 [json_name = "batchDescriptor"];
+  bool has_batch_descriptor() const;
+  private:
+  bool _internal_has_batch_descriptor() const;
+  public:
+  void clear_batch_descriptor();
+  const ::google::api::BatchingDescriptorProto& batch_descriptor() const;
+  PROTOBUF_NODISCARD ::google::api::BatchingDescriptorProto* release_batch_descriptor();
+  ::google::api::BatchingDescriptorProto* mutable_batch_descriptor();
+  void set_allocated_batch_descriptor(::google::api::BatchingDescriptorProto* batch_descriptor);
+  private:
+  const ::google::api::BatchingDescriptorProto& _internal_batch_descriptor() const;
+  ::google::api::BatchingDescriptorProto* _internal_mutable_batch_descriptor();
+  public:
+  void unsafe_arena_set_allocated_batch_descriptor(
+      ::google::api::BatchingDescriptorProto* batch_descriptor);
+  ::google::api::BatchingDescriptorProto* unsafe_arena_release_batch_descriptor();
+
+  // @@protoc_insertion_point(class_scope:google.api.BatchingConfigProto)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::google::api::BatchingSettingsProto* thresholds_;
+  ::google::api::BatchingDescriptorProto* batch_descriptor_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
+};
+// -------------------------------------------------------------------
+
+class BatchingSettingsProto final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.api.BatchingSettingsProto) */ {
+ public:
+  inline BatchingSettingsProto() : BatchingSettingsProto(nullptr) {}
+  ~BatchingSettingsProto() override;
+  explicit PROTOBUF_CONSTEXPR BatchingSettingsProto(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  BatchingSettingsProto(const BatchingSettingsProto& from);
+  BatchingSettingsProto(BatchingSettingsProto&& from) noexcept
+    : BatchingSettingsProto() {
+    *this = ::std::move(from);
+  }
+
+  inline BatchingSettingsProto& operator=(const BatchingSettingsProto& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BatchingSettingsProto& operator=(BatchingSettingsProto&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const BatchingSettingsProto& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const BatchingSettingsProto* internal_default_instance() {
+    return reinterpret_cast<const BatchingSettingsProto*>(
+               &_BatchingSettingsProto_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(BatchingSettingsProto& a, BatchingSettingsProto& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(BatchingSettingsProto* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(BatchingSettingsProto* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  BatchingSettingsProto* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<BatchingSettingsProto>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const BatchingSettingsProto& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const BatchingSettingsProto& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BatchingSettingsProto* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "google.api.BatchingSettingsProto";
+  }
+  protected:
+  explicit BatchingSettingsProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDelayThresholdFieldNumber = 3,
+    kRequestByteThresholdFieldNumber = 2,
+    kElementCountThresholdFieldNumber = 1,
+    kElementCountLimitFieldNumber = 4,
+    kRequestByteLimitFieldNumber = 5,
+    kFlowControlElementLimitFieldNumber = 6,
+    kFlowControlByteLimitFieldNumber = 7,
+    kFlowControlLimitExceededBehaviorFieldNumber = 8,
+  };
+  // .google.protobuf.Duration delay_threshold = 3 [json_name = "delayThreshold"];
+  bool has_delay_threshold() const;
+  private:
+  bool _internal_has_delay_threshold() const;
+  public:
+  void clear_delay_threshold();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& delay_threshold() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_delay_threshold();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_delay_threshold();
+  void set_allocated_delay_threshold(::PROTOBUF_NAMESPACE_ID::Duration* delay_threshold);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_delay_threshold() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_delay_threshold();
+  public:
+  void unsafe_arena_set_allocated_delay_threshold(
+      ::PROTOBUF_NAMESPACE_ID::Duration* delay_threshold);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_delay_threshold();
+
+  // int64 request_byte_threshold = 2 [json_name = "requestByteThreshold"];
+  void clear_request_byte_threshold();
+  int64_t request_byte_threshold() const;
+  void set_request_byte_threshold(int64_t value);
+  private:
+  int64_t _internal_request_byte_threshold() const;
+  void _internal_set_request_byte_threshold(int64_t value);
+  public:
+
+  // int32 element_count_threshold = 1 [json_name = "elementCountThreshold"];
+  void clear_element_count_threshold();
+  int32_t element_count_threshold() const;
+  void set_element_count_threshold(int32_t value);
+  private:
+  int32_t _internal_element_count_threshold() const;
+  void _internal_set_element_count_threshold(int32_t value);
+  public:
+
+  // int32 element_count_limit = 4 [json_name = "elementCountLimit"];
+  void clear_element_count_limit();
+  int32_t element_count_limit() const;
+  void set_element_count_limit(int32_t value);
+  private:
+  int32_t _internal_element_count_limit() const;
+  void _internal_set_element_count_limit(int32_t value);
+  public:
+
+  // int32 request_byte_limit = 5 [json_name = "requestByteLimit"];
+  void clear_request_byte_limit();
+  int32_t request_byte_limit() const;
+  void set_request_byte_limit(int32_t value);
+  private:
+  int32_t _internal_request_byte_limit() const;
+  void _internal_set_request_byte_limit(int32_t value);
+  public:
+
+  // int32 flow_control_element_limit = 6 [json_name = "flowControlElementLimit"];
+  void clear_flow_control_element_limit();
+  int32_t flow_control_element_limit() const;
+  void set_flow_control_element_limit(int32_t value);
+  private:
+  int32_t _internal_flow_control_element_limit() const;
+  void _internal_set_flow_control_element_limit(int32_t value);
+  public:
+
+  // int32 flow_control_byte_limit = 7 [json_name = "flowControlByteLimit"];
+  void clear_flow_control_byte_limit();
+  int32_t flow_control_byte_limit() const;
+  void set_flow_control_byte_limit(int32_t value);
+  private:
+  int32_t _internal_flow_control_byte_limit() const;
+  void _internal_set_flow_control_byte_limit(int32_t value);
+  public:
+
+  // .google.api.FlowControlLimitExceededBehaviorProto flow_control_limit_exceeded_behavior = 8 [json_name = "flowControlLimitExceededBehavior"];
+  void clear_flow_control_limit_exceeded_behavior();
+  ::google::api::FlowControlLimitExceededBehaviorProto flow_control_limit_exceeded_behavior() const;
+  void set_flow_control_limit_exceeded_behavior(::google::api::FlowControlLimitExceededBehaviorProto value);
+  private:
+  ::google::api::FlowControlLimitExceededBehaviorProto _internal_flow_control_limit_exceeded_behavior() const;
+  void _internal_set_flow_control_limit_exceeded_behavior(::google::api::FlowControlLimitExceededBehaviorProto value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:google.api.BatchingSettingsProto)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* delay_threshold_;
+  int64_t request_byte_threshold_;
+  int32_t element_count_threshold_;
+  int32_t element_count_limit_;
+  int32_t request_byte_limit_;
+  int32_t flow_control_element_limit_;
+  int32_t flow_control_byte_limit_;
+  int flow_control_limit_exceeded_behavior_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
+};
+// -------------------------------------------------------------------
+
+class BatchingDescriptorProto final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:google.api.BatchingDescriptorProto) */ {
+ public:
+  inline BatchingDescriptorProto() : BatchingDescriptorProto(nullptr) {}
+  ~BatchingDescriptorProto() override;
+  explicit PROTOBUF_CONSTEXPR BatchingDescriptorProto(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  BatchingDescriptorProto(const BatchingDescriptorProto& from);
+  BatchingDescriptorProto(BatchingDescriptorProto&& from) noexcept
+    : BatchingDescriptorProto() {
+    *this = ::std::move(from);
+  }
+
+  inline BatchingDescriptorProto& operator=(const BatchingDescriptorProto& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BatchingDescriptorProto& operator=(BatchingDescriptorProto&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const BatchingDescriptorProto& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const BatchingDescriptorProto* internal_default_instance() {
+    return reinterpret_cast<const BatchingDescriptorProto*>(
+               &_BatchingDescriptorProto_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(BatchingDescriptorProto& a, BatchingDescriptorProto& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(BatchingDescriptorProto* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(BatchingDescriptorProto* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  BatchingDescriptorProto* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<BatchingDescriptorProto>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const BatchingDescriptorProto& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const BatchingDescriptorProto& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BatchingDescriptorProto* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "google.api.BatchingDescriptorProto";
+  }
+  protected:
+  explicit BatchingDescriptorProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDiscriminatorFieldsFieldNumber = 2,
+    kBatchedFieldFieldNumber = 1,
+    kSubresponseFieldFieldNumber = 3,
+  };
+  // repeated string discriminator_fields = 2 [json_name = "discriminatorFields"];
+  int discriminator_fields_size() const;
+  private:
+  int _internal_discriminator_fields_size() const;
+  public:
+  void clear_discriminator_fields();
+  const std::string& discriminator_fields(int index) const;
+  std::string* mutable_discriminator_fields(int index);
+  void set_discriminator_fields(int index, const std::string& value);
+  void set_discriminator_fields(int index, std::string&& value);
+  void set_discriminator_fields(int index, const char* value);
+  void set_discriminator_fields(int index, const char* value, size_t size);
+  std::string* add_discriminator_fields();
+  void add_discriminator_fields(const std::string& value);
+  void add_discriminator_fields(std::string&& value);
+  void add_discriminator_fields(const char* value);
+  void add_discriminator_fields(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& discriminator_fields() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_discriminator_fields();
+  private:
+  const std::string& _internal_discriminator_fields(int index) const;
+  std::string* _internal_add_discriminator_fields();
+  public:
+
+  // string batched_field = 1 [json_name = "batchedField"];
+  void clear_batched_field();
+  const std::string& batched_field() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_batched_field(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_batched_field();
+  PROTOBUF_NODISCARD std::string* release_batched_field();
+  void set_allocated_batched_field(std::string* batched_field);
+  private:
+  const std::string& _internal_batched_field() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_batched_field(const std::string& value);
+  std::string* _internal_mutable_batched_field();
+  public:
+
+  // string subresponse_field = 3 [json_name = "subresponseField"];
+  void clear_subresponse_field();
+  const std::string& subresponse_field() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_subresponse_field(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_subresponse_field();
+  PROTOBUF_NODISCARD std::string* release_subresponse_field();
+  void set_allocated_subresponse_field(std::string* subresponse_field);
+  private:
+  const std::string& _internal_subresponse_field() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_subresponse_field(const std::string& value);
+  std::string* _internal_mutable_subresponse_field();
+  public:
+
+  // @@protoc_insertion_point(class_scope:google.api.BatchingDescriptorProto)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> discriminator_fields_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr batched_field_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr subresponse_field_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fclient_2eproto;
 };
@@ -5226,6 +5892,56 @@ inline void PhpSettings::set_allocated_common(::google::api::CommonLanguageSetti
   // @@protoc_insertion_point(field_set_allocated:google.api.PhpSettings.common)
 }
 
+// string library_package = 2 [json_name = "libraryPackage"];
+inline void PhpSettings::clear_library_package() {
+  library_package_.ClearToEmpty();
+}
+inline const std::string& PhpSettings::library_package() const {
+  // @@protoc_insertion_point(field_get:google.api.PhpSettings.library_package)
+  return _internal_library_package();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PhpSettings::set_library_package(ArgT0&& arg0, ArgT... args) {
+ 
+ library_package_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.api.PhpSettings.library_package)
+}
+inline std::string* PhpSettings::mutable_library_package() {
+  std::string* _s = _internal_mutable_library_package();
+  // @@protoc_insertion_point(field_mutable:google.api.PhpSettings.library_package)
+  return _s;
+}
+inline const std::string& PhpSettings::_internal_library_package() const {
+  return library_package_.Get();
+}
+inline void PhpSettings::_internal_set_library_package(const std::string& value) {
+  
+  library_package_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PhpSettings::_internal_mutable_library_package() {
+  
+  return library_package_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PhpSettings::release_library_package() {
+  // @@protoc_insertion_point(field_release:google.api.PhpSettings.library_package)
+  return library_package_.Release();
+}
+inline void PhpSettings::set_allocated_library_package(std::string* library_package) {
+  if (library_package != nullptr) {
+    
+  } else {
+    
+  }
+  library_package_.SetAllocated(library_package, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (library_package_.IsDefault()) {
+    library_package_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.api.PhpSettings.library_package)
+}
+
 // -------------------------------------------------------------------
 
 // PythonSettings_ExperimentalFeatures
@@ -6666,6 +7382,96 @@ MethodSettings::mutable_auto_populated_fields() {
   return &auto_populated_fields_;
 }
 
+// .google.api.BatchingConfigProto batching = 4 [json_name = "batching"];
+inline bool MethodSettings::_internal_has_batching() const {
+  return this != internal_default_instance() && batching_ != nullptr;
+}
+inline bool MethodSettings::has_batching() const {
+  return _internal_has_batching();
+}
+inline void MethodSettings::clear_batching() {
+  if (GetArenaForAllocation() == nullptr && batching_ != nullptr) {
+    delete batching_;
+  }
+  batching_ = nullptr;
+}
+inline const ::google::api::BatchingConfigProto& MethodSettings::_internal_batching() const {
+  const ::google::api::BatchingConfigProto* p = batching_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::api::BatchingConfigProto&>(
+      ::google::api::_BatchingConfigProto_default_instance_);
+}
+inline const ::google::api::BatchingConfigProto& MethodSettings::batching() const {
+  // @@protoc_insertion_point(field_get:google.api.MethodSettings.batching)
+  return _internal_batching();
+}
+inline void MethodSettings::unsafe_arena_set_allocated_batching(
+    ::google::api::BatchingConfigProto* batching) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(batching_);
+  }
+  batching_ = batching;
+  if (batching) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:google.api.MethodSettings.batching)
+}
+inline ::google::api::BatchingConfigProto* MethodSettings::release_batching() {
+  
+  ::google::api::BatchingConfigProto* temp = batching_;
+  batching_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::google::api::BatchingConfigProto* MethodSettings::unsafe_arena_release_batching() {
+  // @@protoc_insertion_point(field_release:google.api.MethodSettings.batching)
+  
+  ::google::api::BatchingConfigProto* temp = batching_;
+  batching_ = nullptr;
+  return temp;
+}
+inline ::google::api::BatchingConfigProto* MethodSettings::_internal_mutable_batching() {
+  
+  if (batching_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::api::BatchingConfigProto>(GetArenaForAllocation());
+    batching_ = p;
+  }
+  return batching_;
+}
+inline ::google::api::BatchingConfigProto* MethodSettings::mutable_batching() {
+  ::google::api::BatchingConfigProto* _msg = _internal_mutable_batching();
+  // @@protoc_insertion_point(field_mutable:google.api.MethodSettings.batching)
+  return _msg;
+}
+inline void MethodSettings::set_allocated_batching(::google::api::BatchingConfigProto* batching) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete batching_;
+  }
+  if (batching) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(batching);
+    if (message_arena != submessage_arena) {
+      batching = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, batching, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  batching_ = batching;
+  // @@protoc_insertion_point(field_set_allocated:google.api.MethodSettings.batching)
+}
+
 // -------------------------------------------------------------------
 
 // SelectiveGapicGeneration
@@ -6765,9 +7571,607 @@ inline void SelectiveGapicGeneration::set_generate_omitted_as_internal(bool valu
   // @@protoc_insertion_point(field_set:google.api.SelectiveGapicGeneration.generate_omitted_as_internal)
 }
 
+// -------------------------------------------------------------------
+
+// BatchingConfigProto
+
+// .google.api.BatchingSettingsProto thresholds = 1 [json_name = "thresholds"];
+inline bool BatchingConfigProto::_internal_has_thresholds() const {
+  return this != internal_default_instance() && thresholds_ != nullptr;
+}
+inline bool BatchingConfigProto::has_thresholds() const {
+  return _internal_has_thresholds();
+}
+inline void BatchingConfigProto::clear_thresholds() {
+  if (GetArenaForAllocation() == nullptr && thresholds_ != nullptr) {
+    delete thresholds_;
+  }
+  thresholds_ = nullptr;
+}
+inline const ::google::api::BatchingSettingsProto& BatchingConfigProto::_internal_thresholds() const {
+  const ::google::api::BatchingSettingsProto* p = thresholds_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::api::BatchingSettingsProto&>(
+      ::google::api::_BatchingSettingsProto_default_instance_);
+}
+inline const ::google::api::BatchingSettingsProto& BatchingConfigProto::thresholds() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingConfigProto.thresholds)
+  return _internal_thresholds();
+}
+inline void BatchingConfigProto::unsafe_arena_set_allocated_thresholds(
+    ::google::api::BatchingSettingsProto* thresholds) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(thresholds_);
+  }
+  thresholds_ = thresholds;
+  if (thresholds) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:google.api.BatchingConfigProto.thresholds)
+}
+inline ::google::api::BatchingSettingsProto* BatchingConfigProto::release_thresholds() {
+  
+  ::google::api::BatchingSettingsProto* temp = thresholds_;
+  thresholds_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::google::api::BatchingSettingsProto* BatchingConfigProto::unsafe_arena_release_thresholds() {
+  // @@protoc_insertion_point(field_release:google.api.BatchingConfigProto.thresholds)
+  
+  ::google::api::BatchingSettingsProto* temp = thresholds_;
+  thresholds_ = nullptr;
+  return temp;
+}
+inline ::google::api::BatchingSettingsProto* BatchingConfigProto::_internal_mutable_thresholds() {
+  
+  if (thresholds_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::api::BatchingSettingsProto>(GetArenaForAllocation());
+    thresholds_ = p;
+  }
+  return thresholds_;
+}
+inline ::google::api::BatchingSettingsProto* BatchingConfigProto::mutable_thresholds() {
+  ::google::api::BatchingSettingsProto* _msg = _internal_mutable_thresholds();
+  // @@protoc_insertion_point(field_mutable:google.api.BatchingConfigProto.thresholds)
+  return _msg;
+}
+inline void BatchingConfigProto::set_allocated_thresholds(::google::api::BatchingSettingsProto* thresholds) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete thresholds_;
+  }
+  if (thresholds) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(thresholds);
+    if (message_arena != submessage_arena) {
+      thresholds = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, thresholds, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  thresholds_ = thresholds;
+  // @@protoc_insertion_point(field_set_allocated:google.api.BatchingConfigProto.thresholds)
+}
+
+// .google.api.BatchingDescriptorProto batch_descriptor = 2 [json_name = "batchDescriptor"];
+inline bool BatchingConfigProto::_internal_has_batch_descriptor() const {
+  return this != internal_default_instance() && batch_descriptor_ != nullptr;
+}
+inline bool BatchingConfigProto::has_batch_descriptor() const {
+  return _internal_has_batch_descriptor();
+}
+inline void BatchingConfigProto::clear_batch_descriptor() {
+  if (GetArenaForAllocation() == nullptr && batch_descriptor_ != nullptr) {
+    delete batch_descriptor_;
+  }
+  batch_descriptor_ = nullptr;
+}
+inline const ::google::api::BatchingDescriptorProto& BatchingConfigProto::_internal_batch_descriptor() const {
+  const ::google::api::BatchingDescriptorProto* p = batch_descriptor_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::api::BatchingDescriptorProto&>(
+      ::google::api::_BatchingDescriptorProto_default_instance_);
+}
+inline const ::google::api::BatchingDescriptorProto& BatchingConfigProto::batch_descriptor() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingConfigProto.batch_descriptor)
+  return _internal_batch_descriptor();
+}
+inline void BatchingConfigProto::unsafe_arena_set_allocated_batch_descriptor(
+    ::google::api::BatchingDescriptorProto* batch_descriptor) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(batch_descriptor_);
+  }
+  batch_descriptor_ = batch_descriptor;
+  if (batch_descriptor) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:google.api.BatchingConfigProto.batch_descriptor)
+}
+inline ::google::api::BatchingDescriptorProto* BatchingConfigProto::release_batch_descriptor() {
+  
+  ::google::api::BatchingDescriptorProto* temp = batch_descriptor_;
+  batch_descriptor_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::google::api::BatchingDescriptorProto* BatchingConfigProto::unsafe_arena_release_batch_descriptor() {
+  // @@protoc_insertion_point(field_release:google.api.BatchingConfigProto.batch_descriptor)
+  
+  ::google::api::BatchingDescriptorProto* temp = batch_descriptor_;
+  batch_descriptor_ = nullptr;
+  return temp;
+}
+inline ::google::api::BatchingDescriptorProto* BatchingConfigProto::_internal_mutable_batch_descriptor() {
+  
+  if (batch_descriptor_ == nullptr) {
+    auto* p = CreateMaybeMessage<::google::api::BatchingDescriptorProto>(GetArenaForAllocation());
+    batch_descriptor_ = p;
+  }
+  return batch_descriptor_;
+}
+inline ::google::api::BatchingDescriptorProto* BatchingConfigProto::mutable_batch_descriptor() {
+  ::google::api::BatchingDescriptorProto* _msg = _internal_mutable_batch_descriptor();
+  // @@protoc_insertion_point(field_mutable:google.api.BatchingConfigProto.batch_descriptor)
+  return _msg;
+}
+inline void BatchingConfigProto::set_allocated_batch_descriptor(::google::api::BatchingDescriptorProto* batch_descriptor) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete batch_descriptor_;
+  }
+  if (batch_descriptor) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(batch_descriptor);
+    if (message_arena != submessage_arena) {
+      batch_descriptor = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, batch_descriptor, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  batch_descriptor_ = batch_descriptor;
+  // @@protoc_insertion_point(field_set_allocated:google.api.BatchingConfigProto.batch_descriptor)
+}
+
+// -------------------------------------------------------------------
+
+// BatchingSettingsProto
+
+// int32 element_count_threshold = 1 [json_name = "elementCountThreshold"];
+inline void BatchingSettingsProto::clear_element_count_threshold() {
+  element_count_threshold_ = 0;
+}
+inline int32_t BatchingSettingsProto::_internal_element_count_threshold() const {
+  return element_count_threshold_;
+}
+inline int32_t BatchingSettingsProto::element_count_threshold() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingSettingsProto.element_count_threshold)
+  return _internal_element_count_threshold();
+}
+inline void BatchingSettingsProto::_internal_set_element_count_threshold(int32_t value) {
+  
+  element_count_threshold_ = value;
+}
+inline void BatchingSettingsProto::set_element_count_threshold(int32_t value) {
+  _internal_set_element_count_threshold(value);
+  // @@protoc_insertion_point(field_set:google.api.BatchingSettingsProto.element_count_threshold)
+}
+
+// int64 request_byte_threshold = 2 [json_name = "requestByteThreshold"];
+inline void BatchingSettingsProto::clear_request_byte_threshold() {
+  request_byte_threshold_ = int64_t{0};
+}
+inline int64_t BatchingSettingsProto::_internal_request_byte_threshold() const {
+  return request_byte_threshold_;
+}
+inline int64_t BatchingSettingsProto::request_byte_threshold() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingSettingsProto.request_byte_threshold)
+  return _internal_request_byte_threshold();
+}
+inline void BatchingSettingsProto::_internal_set_request_byte_threshold(int64_t value) {
+  
+  request_byte_threshold_ = value;
+}
+inline void BatchingSettingsProto::set_request_byte_threshold(int64_t value) {
+  _internal_set_request_byte_threshold(value);
+  // @@protoc_insertion_point(field_set:google.api.BatchingSettingsProto.request_byte_threshold)
+}
+
+// .google.protobuf.Duration delay_threshold = 3 [json_name = "delayThreshold"];
+inline bool BatchingSettingsProto::_internal_has_delay_threshold() const {
+  return this != internal_default_instance() && delay_threshold_ != nullptr;
+}
+inline bool BatchingSettingsProto::has_delay_threshold() const {
+  return _internal_has_delay_threshold();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& BatchingSettingsProto::_internal_delay_threshold() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = delay_threshold_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& BatchingSettingsProto::delay_threshold() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingSettingsProto.delay_threshold)
+  return _internal_delay_threshold();
+}
+inline void BatchingSettingsProto::unsafe_arena_set_allocated_delay_threshold(
+    ::PROTOBUF_NAMESPACE_ID::Duration* delay_threshold) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(delay_threshold_);
+  }
+  delay_threshold_ = delay_threshold;
+  if (delay_threshold) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:google.api.BatchingSettingsProto.delay_threshold)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* BatchingSettingsProto::release_delay_threshold() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = delay_threshold_;
+  delay_threshold_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* BatchingSettingsProto::unsafe_arena_release_delay_threshold() {
+  // @@protoc_insertion_point(field_release:google.api.BatchingSettingsProto.delay_threshold)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = delay_threshold_;
+  delay_threshold_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* BatchingSettingsProto::_internal_mutable_delay_threshold() {
+  
+  if (delay_threshold_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    delay_threshold_ = p;
+  }
+  return delay_threshold_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* BatchingSettingsProto::mutable_delay_threshold() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_delay_threshold();
+  // @@protoc_insertion_point(field_mutable:google.api.BatchingSettingsProto.delay_threshold)
+  return _msg;
+}
+inline void BatchingSettingsProto::set_allocated_delay_threshold(::PROTOBUF_NAMESPACE_ID::Duration* delay_threshold) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(delay_threshold_);
+  }
+  if (delay_threshold) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(delay_threshold));
+    if (message_arena != submessage_arena) {
+      delay_threshold = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, delay_threshold, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  delay_threshold_ = delay_threshold;
+  // @@protoc_insertion_point(field_set_allocated:google.api.BatchingSettingsProto.delay_threshold)
+}
+
+// int32 element_count_limit = 4 [json_name = "elementCountLimit"];
+inline void BatchingSettingsProto::clear_element_count_limit() {
+  element_count_limit_ = 0;
+}
+inline int32_t BatchingSettingsProto::_internal_element_count_limit() const {
+  return element_count_limit_;
+}
+inline int32_t BatchingSettingsProto::element_count_limit() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingSettingsProto.element_count_limit)
+  return _internal_element_count_limit();
+}
+inline void BatchingSettingsProto::_internal_set_element_count_limit(int32_t value) {
+  
+  element_count_limit_ = value;
+}
+inline void BatchingSettingsProto::set_element_count_limit(int32_t value) {
+  _internal_set_element_count_limit(value);
+  // @@protoc_insertion_point(field_set:google.api.BatchingSettingsProto.element_count_limit)
+}
+
+// int32 request_byte_limit = 5 [json_name = "requestByteLimit"];
+inline void BatchingSettingsProto::clear_request_byte_limit() {
+  request_byte_limit_ = 0;
+}
+inline int32_t BatchingSettingsProto::_internal_request_byte_limit() const {
+  return request_byte_limit_;
+}
+inline int32_t BatchingSettingsProto::request_byte_limit() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingSettingsProto.request_byte_limit)
+  return _internal_request_byte_limit();
+}
+inline void BatchingSettingsProto::_internal_set_request_byte_limit(int32_t value) {
+  
+  request_byte_limit_ = value;
+}
+inline void BatchingSettingsProto::set_request_byte_limit(int32_t value) {
+  _internal_set_request_byte_limit(value);
+  // @@protoc_insertion_point(field_set:google.api.BatchingSettingsProto.request_byte_limit)
+}
+
+// int32 flow_control_element_limit = 6 [json_name = "flowControlElementLimit"];
+inline void BatchingSettingsProto::clear_flow_control_element_limit() {
+  flow_control_element_limit_ = 0;
+}
+inline int32_t BatchingSettingsProto::_internal_flow_control_element_limit() const {
+  return flow_control_element_limit_;
+}
+inline int32_t BatchingSettingsProto::flow_control_element_limit() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingSettingsProto.flow_control_element_limit)
+  return _internal_flow_control_element_limit();
+}
+inline void BatchingSettingsProto::_internal_set_flow_control_element_limit(int32_t value) {
+  
+  flow_control_element_limit_ = value;
+}
+inline void BatchingSettingsProto::set_flow_control_element_limit(int32_t value) {
+  _internal_set_flow_control_element_limit(value);
+  // @@protoc_insertion_point(field_set:google.api.BatchingSettingsProto.flow_control_element_limit)
+}
+
+// int32 flow_control_byte_limit = 7 [json_name = "flowControlByteLimit"];
+inline void BatchingSettingsProto::clear_flow_control_byte_limit() {
+  flow_control_byte_limit_ = 0;
+}
+inline int32_t BatchingSettingsProto::_internal_flow_control_byte_limit() const {
+  return flow_control_byte_limit_;
+}
+inline int32_t BatchingSettingsProto::flow_control_byte_limit() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingSettingsProto.flow_control_byte_limit)
+  return _internal_flow_control_byte_limit();
+}
+inline void BatchingSettingsProto::_internal_set_flow_control_byte_limit(int32_t value) {
+  
+  flow_control_byte_limit_ = value;
+}
+inline void BatchingSettingsProto::set_flow_control_byte_limit(int32_t value) {
+  _internal_set_flow_control_byte_limit(value);
+  // @@protoc_insertion_point(field_set:google.api.BatchingSettingsProto.flow_control_byte_limit)
+}
+
+// .google.api.FlowControlLimitExceededBehaviorProto flow_control_limit_exceeded_behavior = 8 [json_name = "flowControlLimitExceededBehavior"];
+inline void BatchingSettingsProto::clear_flow_control_limit_exceeded_behavior() {
+  flow_control_limit_exceeded_behavior_ = 0;
+}
+inline ::google::api::FlowControlLimitExceededBehaviorProto BatchingSettingsProto::_internal_flow_control_limit_exceeded_behavior() const {
+  return static_cast< ::google::api::FlowControlLimitExceededBehaviorProto >(flow_control_limit_exceeded_behavior_);
+}
+inline ::google::api::FlowControlLimitExceededBehaviorProto BatchingSettingsProto::flow_control_limit_exceeded_behavior() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingSettingsProto.flow_control_limit_exceeded_behavior)
+  return _internal_flow_control_limit_exceeded_behavior();
+}
+inline void BatchingSettingsProto::_internal_set_flow_control_limit_exceeded_behavior(::google::api::FlowControlLimitExceededBehaviorProto value) {
+  
+  flow_control_limit_exceeded_behavior_ = value;
+}
+inline void BatchingSettingsProto::set_flow_control_limit_exceeded_behavior(::google::api::FlowControlLimitExceededBehaviorProto value) {
+  _internal_set_flow_control_limit_exceeded_behavior(value);
+  // @@protoc_insertion_point(field_set:google.api.BatchingSettingsProto.flow_control_limit_exceeded_behavior)
+}
+
+// -------------------------------------------------------------------
+
+// BatchingDescriptorProto
+
+// string batched_field = 1 [json_name = "batchedField"];
+inline void BatchingDescriptorProto::clear_batched_field() {
+  batched_field_.ClearToEmpty();
+}
+inline const std::string& BatchingDescriptorProto::batched_field() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingDescriptorProto.batched_field)
+  return _internal_batched_field();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void BatchingDescriptorProto::set_batched_field(ArgT0&& arg0, ArgT... args) {
+ 
+ batched_field_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.api.BatchingDescriptorProto.batched_field)
+}
+inline std::string* BatchingDescriptorProto::mutable_batched_field() {
+  std::string* _s = _internal_mutable_batched_field();
+  // @@protoc_insertion_point(field_mutable:google.api.BatchingDescriptorProto.batched_field)
+  return _s;
+}
+inline const std::string& BatchingDescriptorProto::_internal_batched_field() const {
+  return batched_field_.Get();
+}
+inline void BatchingDescriptorProto::_internal_set_batched_field(const std::string& value) {
+  
+  batched_field_.Set(value, GetArenaForAllocation());
+}
+inline std::string* BatchingDescriptorProto::_internal_mutable_batched_field() {
+  
+  return batched_field_.Mutable(GetArenaForAllocation());
+}
+inline std::string* BatchingDescriptorProto::release_batched_field() {
+  // @@protoc_insertion_point(field_release:google.api.BatchingDescriptorProto.batched_field)
+  return batched_field_.Release();
+}
+inline void BatchingDescriptorProto::set_allocated_batched_field(std::string* batched_field) {
+  if (batched_field != nullptr) {
+    
+  } else {
+    
+  }
+  batched_field_.SetAllocated(batched_field, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (batched_field_.IsDefault()) {
+    batched_field_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.api.BatchingDescriptorProto.batched_field)
+}
+
+// repeated string discriminator_fields = 2 [json_name = "discriminatorFields"];
+inline int BatchingDescriptorProto::_internal_discriminator_fields_size() const {
+  return discriminator_fields_.size();
+}
+inline int BatchingDescriptorProto::discriminator_fields_size() const {
+  return _internal_discriminator_fields_size();
+}
+inline void BatchingDescriptorProto::clear_discriminator_fields() {
+  discriminator_fields_.Clear();
+}
+inline std::string* BatchingDescriptorProto::add_discriminator_fields() {
+  std::string* _s = _internal_add_discriminator_fields();
+  // @@protoc_insertion_point(field_add_mutable:google.api.BatchingDescriptorProto.discriminator_fields)
+  return _s;
+}
+inline const std::string& BatchingDescriptorProto::_internal_discriminator_fields(int index) const {
+  return discriminator_fields_.Get(index);
+}
+inline const std::string& BatchingDescriptorProto::discriminator_fields(int index) const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingDescriptorProto.discriminator_fields)
+  return _internal_discriminator_fields(index);
+}
+inline std::string* BatchingDescriptorProto::mutable_discriminator_fields(int index) {
+  // @@protoc_insertion_point(field_mutable:google.api.BatchingDescriptorProto.discriminator_fields)
+  return discriminator_fields_.Mutable(index);
+}
+inline void BatchingDescriptorProto::set_discriminator_fields(int index, const std::string& value) {
+  discriminator_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:google.api.BatchingDescriptorProto.discriminator_fields)
+}
+inline void BatchingDescriptorProto::set_discriminator_fields(int index, std::string&& value) {
+  discriminator_fields_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:google.api.BatchingDescriptorProto.discriminator_fields)
+}
+inline void BatchingDescriptorProto::set_discriminator_fields(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  discriminator_fields_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:google.api.BatchingDescriptorProto.discriminator_fields)
+}
+inline void BatchingDescriptorProto::set_discriminator_fields(int index, const char* value, size_t size) {
+  discriminator_fields_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:google.api.BatchingDescriptorProto.discriminator_fields)
+}
+inline std::string* BatchingDescriptorProto::_internal_add_discriminator_fields() {
+  return discriminator_fields_.Add();
+}
+inline void BatchingDescriptorProto::add_discriminator_fields(const std::string& value) {
+  discriminator_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:google.api.BatchingDescriptorProto.discriminator_fields)
+}
+inline void BatchingDescriptorProto::add_discriminator_fields(std::string&& value) {
+  discriminator_fields_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:google.api.BatchingDescriptorProto.discriminator_fields)
+}
+inline void BatchingDescriptorProto::add_discriminator_fields(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  discriminator_fields_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:google.api.BatchingDescriptorProto.discriminator_fields)
+}
+inline void BatchingDescriptorProto::add_discriminator_fields(const char* value, size_t size) {
+  discriminator_fields_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:google.api.BatchingDescriptorProto.discriminator_fields)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+BatchingDescriptorProto::discriminator_fields() const {
+  // @@protoc_insertion_point(field_list:google.api.BatchingDescriptorProto.discriminator_fields)
+  return discriminator_fields_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+BatchingDescriptorProto::mutable_discriminator_fields() {
+  // @@protoc_insertion_point(field_mutable_list:google.api.BatchingDescriptorProto.discriminator_fields)
+  return &discriminator_fields_;
+}
+
+// string subresponse_field = 3 [json_name = "subresponseField"];
+inline void BatchingDescriptorProto::clear_subresponse_field() {
+  subresponse_field_.ClearToEmpty();
+}
+inline const std::string& BatchingDescriptorProto::subresponse_field() const {
+  // @@protoc_insertion_point(field_get:google.api.BatchingDescriptorProto.subresponse_field)
+  return _internal_subresponse_field();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void BatchingDescriptorProto::set_subresponse_field(ArgT0&& arg0, ArgT... args) {
+ 
+ subresponse_field_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.api.BatchingDescriptorProto.subresponse_field)
+}
+inline std::string* BatchingDescriptorProto::mutable_subresponse_field() {
+  std::string* _s = _internal_mutable_subresponse_field();
+  // @@protoc_insertion_point(field_mutable:google.api.BatchingDescriptorProto.subresponse_field)
+  return _s;
+}
+inline const std::string& BatchingDescriptorProto::_internal_subresponse_field() const {
+  return subresponse_field_.Get();
+}
+inline void BatchingDescriptorProto::_internal_set_subresponse_field(const std::string& value) {
+  
+  subresponse_field_.Set(value, GetArenaForAllocation());
+}
+inline std::string* BatchingDescriptorProto::_internal_mutable_subresponse_field() {
+  
+  return subresponse_field_.Mutable(GetArenaForAllocation());
+}
+inline std::string* BatchingDescriptorProto::release_subresponse_field() {
+  // @@protoc_insertion_point(field_release:google.api.BatchingDescriptorProto.subresponse_field)
+  return subresponse_field_.Release();
+}
+inline void BatchingDescriptorProto::set_allocated_subresponse_field(std::string* subresponse_field) {
+  if (subresponse_field != nullptr) {
+    
+  } else {
+    
+  }
+  subresponse_field_.SetAllocated(subresponse_field, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (subresponse_field_.IsDefault()) {
+    subresponse_field_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.api.BatchingDescriptorProto.subresponse_field)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -6821,6 +8225,11 @@ template <> struct is_proto_enum< ::google::api::ClientLibraryDestination> : ::s
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::google::api::ClientLibraryDestination>() {
   return ::google::api::ClientLibraryDestination_descriptor();
+}
+template <> struct is_proto_enum< ::google::api::FlowControlLimitExceededBehaviorProto> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::google::api::FlowControlLimitExceededBehaviorProto>() {
+  return ::google::api::FlowControlLimitExceededBehaviorProto_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
