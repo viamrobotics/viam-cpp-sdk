@@ -297,6 +297,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: releases/v${{ inputs.ref }}
-          files: conan.lock
+          files: lockfiles/conan.lock
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
