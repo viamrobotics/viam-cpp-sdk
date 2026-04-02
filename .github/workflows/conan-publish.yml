@@ -51,7 +51,7 @@ jobs:
 
       - name: Set lockfile update arguments
         if: inputs.lockfile_release_update
-        run: echo "LOCKFILE_UPDATE_ARGS=--lockfile-out conan.module.lock --lockfile-clean" >> $GITHUB_ENV
+        run: echo "LOCKFILE_UPDATE_ARGS=--lockfile-out conan.lock --lockfile-clean" >> $GITHUB_ENV
 
       - name: Create and upload package
         run: |
@@ -64,7 +64,8 @@ jobs:
 
           conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
 
-          conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" $LOCKFILE_UPDATE_ARGS
+          conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" \
+          --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
           conan upload "viam-cpp-sdk/*" -r viamconan -c
 
@@ -73,7 +74,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: conan-lockfile-macos-latest
-          path: conan.module.lock
+          path: conan.lock
 
       - name: Upload additional deps
         if: inputs.upload_deps
@@ -158,7 +159,7 @@ jobs:
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
-      run: echo "LOCKFILE_UPDATE_ARGS=--lockfile-out conan.module.lock --lockfile-clean" >> $GITHUB_ENV
+      run: echo "LOCKFILE_UPDATE_ARGS=--lockfile-out conan.lock --lockfile-clean" >> $GITHUB_ENV
 
     - name: Create and upload package
       run: |
@@ -166,7 +167,8 @@ jobs:
 
         conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
 
-        conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" $LOCKFILE_UPDATE_ARGS
+        conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" \
+        --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
         conan upload "viam-cpp-sdk/*" -r viamconan -c
 
@@ -185,7 +187,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: conan-lockfile-${{ matrix.runner }}-${{ env.IMAGE_NAME }}
-        path: conan.module.lock
+        path: conan.lock
 
     - name: Upload additional deps
       if: inputs.upload_deps && !(matrix.runner == 'ubuntu-large' && matrix.image == 'ubuntu:22.04')
