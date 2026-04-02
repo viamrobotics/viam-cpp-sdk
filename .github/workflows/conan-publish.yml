@@ -87,7 +87,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: [buildjet-8vcpu-ubuntu-2204, buildjet-8vcpu-ubuntu-2204-arm]
+        runner: [ubuntu-large, github-linux-arm64-8core]
         image: [ubuntu:22.04, debian:bookworm]
     runs-on: ${{ matrix.runner }}
     container:
@@ -188,7 +188,7 @@ jobs:
         path: conan.module.lock
 
     - name: Upload additional deps
-      if: inputs.upload_deps && !(matrix.runner == 'buildjet-8vcpu-ubuntu-2204' && matrix.image == 'ubuntu:22.04')
+      if: inputs.upload_deps && !(matrix.runner == 'ubuntu-large' && matrix.image == 'ubuntu:22.04')
       run: |
         . ./conan_venv/bin/activate
 
