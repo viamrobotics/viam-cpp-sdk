@@ -17917,6 +17917,10 @@ class GetRobotPartHistoryRequest final :
 
   enum : int {
     kIdFieldNumber = 1,
+    kPageTokenFieldNumber = 2,
+    kStartFieldNumber = 4,
+    kEndFieldNumber = 5,
+    kPageLimitFieldNumber = 3,
   };
   // string id = 1 [json_name = "id"];
   void clear_id();
@@ -17932,6 +17936,73 @@ class GetRobotPartHistoryRequest final :
   std::string* _internal_mutable_id();
   public:
 
+  // optional string page_token = 2 [json_name = "pageToken"];
+  bool has_page_token() const;
+  private:
+  bool _internal_has_page_token() const;
+  public:
+  void clear_page_token();
+  const std::string& page_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_page_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_page_token();
+  PROTOBUF_NODISCARD std::string* release_page_token();
+  void set_allocated_page_token(std::string* page_token);
+  private:
+  const std::string& _internal_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_page_token(const std::string& value);
+  std::string* _internal_mutable_page_token();
+  public:
+
+  // optional .google.protobuf.Timestamp start = 4 [json_name = "start"];
+  bool has_start() const;
+  private:
+  bool _internal_has_start() const;
+  public:
+  void clear_start();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& start() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_start();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_start();
+  void set_allocated_start(::PROTOBUF_NAMESPACE_ID::Timestamp* start);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_start() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_start();
+  public:
+  void unsafe_arena_set_allocated_start(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* start);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_start();
+
+  // optional .google.protobuf.Timestamp end = 5 [json_name = "end"];
+  bool has_end() const;
+  private:
+  bool _internal_has_end() const;
+  public:
+  void clear_end();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& end() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_end();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_end();
+  void set_allocated_end(::PROTOBUF_NAMESPACE_ID::Timestamp* end);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_end() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_end();
+  public:
+  void unsafe_arena_set_allocated_end(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* end);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_end();
+
+  // optional int64 page_limit = 3 [json_name = "pageLimit"];
+  bool has_page_limit() const;
+  private:
+  bool _internal_has_page_limit() const;
+  public:
+  void clear_page_limit();
+  int64_t page_limit() const;
+  void set_page_limit(int64_t value);
+  private:
+  int64_t _internal_page_limit() const;
+  void _internal_set_page_limit(int64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotPartHistoryRequest)
  private:
   class _Internal;
@@ -17939,8 +18010,13 @@ class GetRobotPartHistoryRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr page_token_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* start_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* end_;
+  int64_t page_limit_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -18065,6 +18141,7 @@ class GetRobotPartHistoryResponse final :
 
   enum : int {
     kHistoryFieldNumber = 1,
+    kNextPageTokenFieldNumber = 2,
   };
   // repeated .viam.app.v1.RobotPartHistoryEntry history = 1 [json_name = "history"];
   int history_size() const;
@@ -18084,6 +18161,20 @@ class GetRobotPartHistoryResponse final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::RobotPartHistoryEntry >&
       history() const;
 
+  // string next_page_token = 2 [json_name = "nextPageToken"];
+  void clear_next_page_token();
+  const std::string& next_page_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_next_page_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_next_page_token();
+  PROTOBUF_NODISCARD std::string* release_next_page_token();
+  void set_allocated_next_page_token(std::string* next_page_token);
+  private:
+  const std::string& _internal_next_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_next_page_token(const std::string& value);
+  std::string* _internal_mutable_next_page_token();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotPartHistoryResponse)
  private:
   class _Internal;
@@ -18092,6 +18183,7 @@ class GetRobotPartHistoryResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::RobotPartHistoryEntry > history_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr next_page_token_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -62064,6 +62156,276 @@ inline void GetRobotPartHistoryRequest::set_allocated_id(std::string* id) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.id)
 }
 
+// optional string page_token = 2 [json_name = "pageToken"];
+inline bool GetRobotPartHistoryRequest::_internal_has_page_token() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetRobotPartHistoryRequest::has_page_token() const {
+  return _internal_has_page_token();
+}
+inline void GetRobotPartHistoryRequest::clear_page_token() {
+  page_token_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& GetRobotPartHistoryRequest::page_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+  return _internal_page_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetRobotPartHistoryRequest::set_page_token(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ page_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+}
+inline std::string* GetRobotPartHistoryRequest::mutable_page_token() {
+  std::string* _s = _internal_mutable_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+  return _s;
+}
+inline const std::string& GetRobotPartHistoryRequest::_internal_page_token() const {
+  return page_token_.Get();
+}
+inline void GetRobotPartHistoryRequest::_internal_set_page_token(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  page_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetRobotPartHistoryRequest::_internal_mutable_page_token() {
+  _has_bits_[0] |= 0x00000001u;
+  return page_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetRobotPartHistoryRequest::release_page_token() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+  if (!_internal_has_page_token()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = page_token_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (page_token_.IsDefault()) {
+    page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void GetRobotPartHistoryRequest::set_allocated_page_token(std::string* page_token) {
+  if (page_token != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  page_token_.SetAllocated(page_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (page_token_.IsDefault()) {
+    page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+}
+
+// optional int64 page_limit = 3 [json_name = "pageLimit"];
+inline bool GetRobotPartHistoryRequest::_internal_has_page_limit() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool GetRobotPartHistoryRequest::has_page_limit() const {
+  return _internal_has_page_limit();
+}
+inline void GetRobotPartHistoryRequest::clear_page_limit() {
+  page_limit_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline int64_t GetRobotPartHistoryRequest::_internal_page_limit() const {
+  return page_limit_;
+}
+inline int64_t GetRobotPartHistoryRequest::page_limit() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryRequest.page_limit)
+  return _internal_page_limit();
+}
+inline void GetRobotPartHistoryRequest::_internal_set_page_limit(int64_t value) {
+  _has_bits_[0] |= 0x00000008u;
+  page_limit_ = value;
+}
+inline void GetRobotPartHistoryRequest::set_page_limit(int64_t value) {
+  _internal_set_page_limit(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartHistoryRequest.page_limit)
+}
+
+// optional .google.protobuf.Timestamp start = 4 [json_name = "start"];
+inline bool GetRobotPartHistoryRequest::_internal_has_start() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || start_ != nullptr);
+  return value;
+}
+inline bool GetRobotPartHistoryRequest::has_start() const {
+  return _internal_has_start();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetRobotPartHistoryRequest::_internal_start() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = start_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetRobotPartHistoryRequest::start() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryRequest.start)
+  return _internal_start();
+}
+inline void GetRobotPartHistoryRequest::unsafe_arena_set_allocated_start(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* start) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_);
+  }
+  start_ = start;
+  if (start) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.start)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::release_start() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_;
+  start_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::unsafe_arena_release_start() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartHistoryRequest.start)
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_;
+  start_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::_internal_mutable_start() {
+  _has_bits_[0] |= 0x00000002u;
+  if (start_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    start_ = p;
+  }
+  return start_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::mutable_start() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_start();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartHistoryRequest.start)
+  return _msg;
+}
+inline void GetRobotPartHistoryRequest::set_allocated_start(::PROTOBUF_NAMESPACE_ID::Timestamp* start) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_);
+  }
+  if (start) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start));
+    if (message_arena != submessage_arena) {
+      start = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, start, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  start_ = start;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.start)
+}
+
+// optional .google.protobuf.Timestamp end = 5 [json_name = "end"];
+inline bool GetRobotPartHistoryRequest::_internal_has_end() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || end_ != nullptr);
+  return value;
+}
+inline bool GetRobotPartHistoryRequest::has_end() const {
+  return _internal_has_end();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetRobotPartHistoryRequest::_internal_end() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = end_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetRobotPartHistoryRequest::end() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryRequest.end)
+  return _internal_end();
+}
+inline void GetRobotPartHistoryRequest::unsafe_arena_set_allocated_end(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* end) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_);
+  }
+  end_ = end;
+  if (end) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.end)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::release_end() {
+  _has_bits_[0] &= ~0x00000004u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_;
+  end_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::unsafe_arena_release_end() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartHistoryRequest.end)
+  _has_bits_[0] &= ~0x00000004u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_;
+  end_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::_internal_mutable_end() {
+  _has_bits_[0] |= 0x00000004u;
+  if (end_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    end_ = p;
+  }
+  return end_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::mutable_end() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_end();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartHistoryRequest.end)
+  return _msg;
+}
+inline void GetRobotPartHistoryRequest::set_allocated_end(::PROTOBUF_NAMESPACE_ID::Timestamp* end) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_);
+  }
+  if (end) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end));
+    if (message_arena != submessage_arena) {
+      end = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, end, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  end_ = end;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.end)
+}
+
 // -------------------------------------------------------------------
 
 // GetRobotPartHistoryResponse
@@ -62106,6 +62468,56 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::RobotPa
 GetRobotPartHistoryResponse::history() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.GetRobotPartHistoryResponse.history)
   return history_;
+}
+
+// string next_page_token = 2 [json_name = "nextPageToken"];
+inline void GetRobotPartHistoryResponse::clear_next_page_token() {
+  next_page_token_.ClearToEmpty();
+}
+inline const std::string& GetRobotPartHistoryResponse::next_page_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
+  return _internal_next_page_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetRobotPartHistoryResponse::set_next_page_token(ArgT0&& arg0, ArgT... args) {
+ 
+ next_page_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
+}
+inline std::string* GetRobotPartHistoryResponse::mutable_next_page_token() {
+  std::string* _s = _internal_mutable_next_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
+  return _s;
+}
+inline const std::string& GetRobotPartHistoryResponse::_internal_next_page_token() const {
+  return next_page_token_.Get();
+}
+inline void GetRobotPartHistoryResponse::_internal_set_next_page_token(const std::string& value) {
+  
+  next_page_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetRobotPartHistoryResponse::_internal_mutable_next_page_token() {
+  
+  return next_page_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetRobotPartHistoryResponse::release_next_page_token() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
+  return next_page_token_.Release();
+}
+inline void GetRobotPartHistoryResponse::set_allocated_next_page_token(std::string* next_page_token) {
+  if (next_page_token != nullptr) {
+    
+  } else {
+    
+  }
+  next_page_token_.SetAllocated(next_page_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (next_page_token_.IsDefault()) {
+    next_page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
 }
 
 // -------------------------------------------------------------------
