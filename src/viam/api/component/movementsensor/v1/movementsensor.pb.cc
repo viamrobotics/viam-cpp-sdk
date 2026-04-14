@@ -498,7 +498,7 @@ const char descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovements
   "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
   "ra\"i\n\035GetLinearAccelerationResponse\022H\n\023l"
   "inear_acceleration\030\001 \001(\0132\027.viam.common.v"
-  "1.Vector3R\022linearAcceleration2\317\020\n\025Moveme"
+  "1.Vector3R\022linearAcceleration2\343\021\n\025Moveme"
   "ntSensorService\022\322\001\n\021GetLinearVelocity\022:."
   "viam.component.movementsensor.v1.GetLine"
   "arVelocityRequest\032;.viam.component.movem"
@@ -544,17 +544,20 @@ const char descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovements
   ".common.v1.DoCommandRequest\032!.viam.commo"
   "n.v1.DoCommandResponse\"\?\202\323\344\223\0029\"7/viam/ap"
   "i/v1/component/movementsensor/{name}/do_"
-  "command\022\235\001\n\rGetGeometries\022$.viam.common."
-  "v1.GetGeometriesRequest\032%.viam.common.v1"
-  ".GetGeometriesResponse\"\?\202\323\344\223\0029\0227/viam/ap"
-  "i/v1/component/movementsensor/{name}/geo"
-  "metries\022\225\001\n\013GetReadings\022\".viam.common.v1"
-  ".GetReadingsRequest\032#.viam.common.v1.Get"
-  "ReadingsResponse\"=\202\323\344\223\0027\0225/viam/api/v1/c"
-  "omponent/movementsensor/{name}/readingsB"
-  "S\n$com.viam.component.movementsensor.v1Z"
-  "+go.viam.com/api/component/movementsenso"
-  "r/v1b\006proto3"
+  "command\022\221\001\n\tGetStatus\022 .viam.common.v1.G"
+  "etStatusRequest\032!.viam.common.v1.GetStat"
+  "usResponse\"\?\202\323\344\223\0029\0227/viam/api/v1/compone"
+  "nt/movementsensor/{name}/get_status\022\235\001\n\r"
+  "GetGeometries\022$.viam.common.v1.GetGeomet"
+  "riesRequest\032%.viam.common.v1.GetGeometri"
+  "esResponse\"\?\202\323\344\223\0029\0227/viam/api/v1/compone"
+  "nt/movementsensor/{name}/geometries\022\225\001\n\013"
+  "GetReadings\022\".viam.common.v1.GetReadings"
+  "Request\032#.viam.common.v1.GetReadingsResp"
+  "onse\"=\202\323\344\223\0027\0225/viam/api/v1/component/mov"
+  "ementsensor/{name}/readingsBS\n$com.viam."
+  "component.movementsensor.v1Z+go.viam.com"
+  "/api/component/movementsensor/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -563,7 +566,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fmovemen
 };
 static ::_pbi::once_flag descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto = {
-    false, false, 4532, descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
+    false, false, 4680, descriptor_table_protodef_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto,
     "component/movementsensor/v1/movementsensor.proto",
     &descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_once, descriptor_table_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto_deps, 3, 17,
     schemas, file_default_instances, TableStruct_component_2fmovementsensor_2fv1_2fmovementsensor_2eproto::offsets,

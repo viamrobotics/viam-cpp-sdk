@@ -60,6 +60,10 @@ class AudioOut : public Component {
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the audio_out.
+    /// @return A `ProtoStruct` containing the status of the audio_out.
+    virtual ProtoStruct get_status() = 0;
+
     // @brief Returns `GeometryConfig`s associated with the calling audioout.
     /// @return The requested `GeometryConfig`s associated with the component.
     inline std::vector<GeometryConfig> get_geometries() {

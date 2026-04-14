@@ -30,6 +30,8 @@ class PoseTrackerClient : public PoseTracker {
 
     ProtoStruct do_command(const ProtoStruct& command) override;
 
+    ProtoStruct get_status() override;
+
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     using PoseTracker::get_geometries;

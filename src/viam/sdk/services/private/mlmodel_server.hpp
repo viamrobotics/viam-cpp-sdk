@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include <viam/api/common/v1/common.grpc.pb.h>
 #include <viam/api/service/mlmodel/v1/mlmodel.grpc.pb.h>
 
 #include <viam/sdk/resource/resource_manager.hpp>
@@ -43,6 +44,10 @@ class MLModelServiceServer : public ResourceServer,
         ::grpc::ServerContext* context,
         const ::viam::service::mlmodel::v1::MetadataRequest* request,
         ::viam::service::mlmodel::v1::MetadataResponse* response) noexcept override;
+
+    ::grpc::Status GetStatus(::grpc::ServerContext* context,
+                             const ::viam::common::v1::GetStatusRequest* request,
+                             ::viam::common::v1::GetStatusResponse* response) noexcept override;
 };
 
 }  // namespace impl

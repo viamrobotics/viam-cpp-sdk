@@ -23,6 +23,7 @@ class MockGantry : public sdk::Gantry {
     bool is_moving() override;
     void stop(const sdk::ProtoStruct& extra) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
     sdk::KinematicsData get_kinematics(const sdk::ProtoStruct& extra) override;
 

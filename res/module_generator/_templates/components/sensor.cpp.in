@@ -8,7 +8,7 @@ namespace {{ .ModuleName }} {
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
     : Sensor(cfg.name()) {
-    this->reconfigure(deps, cfg);
+    throw std::runtime_error("constructor not implemented");
 }
 
 
@@ -16,13 +16,14 @@ std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceC
     throw std::runtime_error("\"validate\" not implemented");
 }
 
-void {{ .ModelPascal }}::reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) {
-    throw std::runtime_error("\"reconfigure\" not implemented");
-}
-
 viam::sdk::ProtoStruct {{ .ModelPascal }}::do_command(const viam::sdk::ProtoStruct & command)
 {
     throw std::logic_error("\"do_command\" not implemented");
+}
+
+viam::sdk::ProtoStruct {{ .ModelPascal }}::get_status()
+{
+    throw std::logic_error("\"get_status\" not implemented");
 }
 
 std::vector<viam::sdk::GeometryConfig> {{ .ModelPascal }}::get_geometries(const viam::sdk::ProtoStruct & extra)

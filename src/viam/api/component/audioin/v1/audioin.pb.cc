@@ -143,7 +143,7 @@ const char descriptor_table_protodef_component_2faudioin_2fv1_2faudioin_2eproto[
   "seconds\030\003 \001(\003R\031startTimestampNanoseconds"
   "\022:\n\031end_timestamp_nanoseconds\030\004 \001(\003R\027end"
   "TimestampNanoseconds\022\032\n\010sequence\030\005 \001(\005R\010"
-  "sequence2\356\004\n\016AudioInService\022\236\001\n\010GetAudio"
+  "sequence2\371\005\n\016AudioInService\022\236\001\n\010GetAudio"
   "\022*.viam.component.audioin.v1.GetAudioReq"
   "uest\032+.viam.component.audioin.v1.GetAudi"
   "oResponse\"7\202\323\344\223\0021\022//viam/api/v1/componen"
@@ -155,12 +155,16 @@ const char descriptor_table_protodef_component_2faudioin_2fv1_2faudioin_2eproto[
   "am.common.v1.DoCommandRequest\032!.viam.com"
   "mon.v1.DoCommandResponse\"6\202\323\344\223\0020\"./viam/"
   "api/v1/service/audioin/{name}/do_command"
-  "\022\226\001\n\rGetGeometries\022$.viam.common.v1.GetG"
-  "eometriesRequest\032%.viam.common.v1.GetGeo"
-  "metriesResponse\"8\202\323\344\223\0022\0220/viam/api/v1/co"
-  "mponent/audioin/{name}/geometriesBE\n\035com"
-  ".viam.component.audioin.v1Z$go.viam.com/"
-  "api/component/audioin/v1b\006proto3"
+  "\022\210\001\n\tGetStatus\022 .viam.common.v1.GetStatu"
+  "sRequest\032!.viam.common.v1.GetStatusRespo"
+  "nse\"6\202\323\344\223\0020\022./viam/api/v1/service/audioi"
+  "n/{name}/get_status\022\226\001\n\rGetGeometries\022$."
+  "viam.common.v1.GetGeometriesRequest\032%.vi"
+  "am.common.v1.GetGeometriesResponse\"8\202\323\344\223"
+  "\0022\0220/viam/api/v1/component/audioin/{name"
+  "}/geometriesBE\n\035com.viam.component.audio"
+  "in.v1Z$go.viam.com/api/component/audioin"
+  "/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2faudioin_2fv1_2faudioin_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -169,7 +173,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2faudioin
 };
 static ::_pbi::once_flag descriptor_table_component_2faudioin_2fv1_2faudioin_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2faudioin_2fv1_2faudioin_2eproto = {
-    false, false, 1472, descriptor_table_protodef_component_2faudioin_2fv1_2faudioin_2eproto,
+    false, false, 1611, descriptor_table_protodef_component_2faudioin_2fv1_2faudioin_2eproto,
     "component/audioin/v1/audioin.proto",
     &descriptor_table_component_2faudioin_2fv1_2faudioin_2eproto_once, descriptor_table_component_2faudioin_2fv1_2faudioin_2eproto_deps, 3, 3,
     schemas, file_default_instances, TableStruct_component_2faudioin_2fv1_2faudioin_2eproto::offsets,

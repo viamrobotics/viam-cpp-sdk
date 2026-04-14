@@ -118,6 +118,15 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    std::shared_ptr<MockServo> mock = MockServo::get_mock_servo();
+    client_to_mock_pipeline<Servo>(mock, [](Servo& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace servo

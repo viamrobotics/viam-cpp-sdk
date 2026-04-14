@@ -14,6 +14,7 @@ class MockPowerSensor : public sdk::PowerSensor {
     double get_power(const sdk::ProtoStruct& extra) override;
     sdk::ProtoStruct get_readings(const sdk::ProtoStruct& extra) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
     static std::shared_ptr<MockPowerSensor> get_mock_powersensor();
 
     // These variables allow the testing infra to `peek` into the mock

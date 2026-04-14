@@ -53,7 +53,10 @@ jobs:
           ref: ${{ needs.prepare.outputs.sha }}
 
       - name: Install dependencies
-        run: choco install -y conan git
+        shell: powershell
+        run: |
+          choco install -y conan git
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Create package
         shell: powershell
@@ -149,11 +152,11 @@ jobs:
           - target: aarch64-ubuntu-jammy-gnu
             platform: linux_aarch64-ubuntu-jammy
             image: ubuntu:22.04
-            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+            runs_on: github-linux-arm64-8core
           - target: x86_64-ubuntu-jammy-gnu
             platform: linux_x86_64-ubuntu-jammy
             image: ubuntu:22.04
-            runs_on: buildjet-8vcpu-ubuntu-2204
+            runs_on: ubuntu-large
 
     steps:
       - name: Checkout Code
@@ -232,11 +235,11 @@ jobs:
           - target: aarch64-debian-bookworm
             platform: linux_aarch64-debian-bookworm
             image: debian:bookworm
-            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+            runs_on: github-linux-arm64-8core
           - target: x86_64-debian-bookworm
             platform: linux_x86_64-debian-bookworm
             image: debian:bookworm
-            runs_on: buildjet-8vcpu-ubuntu-2204
+            runs_on: ubuntu-large
 
     steps:
       - name: Checkout Code
@@ -299,7 +302,7 @@ jobs:
           path: builds/viam-cpp-sdk-${{ matrix.platform }}.tar.gz
 
   release:
-    needs: [prepare, build_macos, build_linux_debian, build_linux_ubuntu_jammy]
+    needs: [prepare, build_windows, build_macos, build_linux_debian, build_linux_ubuntu_jammy]
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
 

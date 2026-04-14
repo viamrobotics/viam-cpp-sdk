@@ -76,6 +76,7 @@ class MotionClient : public Motion {
     std::vector<Motion::plan_status_with_id> list_plan_statuses(const ProtoStruct& extra) override;
 
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of

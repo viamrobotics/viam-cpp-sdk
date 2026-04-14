@@ -62,6 +62,10 @@ class Gripper : public Component, public Stoppable {
     /// @brief Reports if the gripper is in motion.
     virtual bool is_moving() = 0;
 
+    /// @brief Get the status of the gripper.
+    /// @return A `ProtoStruct` containing the status of the gripper.
+    virtual ProtoStruct get_status() = 0;
+
     /// @brief Send/receive arbitrary commands to the resource.
     /// @param Command the command to execute.
     /// @return The result of the executed command.

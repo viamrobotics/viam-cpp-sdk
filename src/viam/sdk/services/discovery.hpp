@@ -44,6 +44,10 @@ class Discovery : public Service {
     /// @return Freeform result of the command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the discovery service.
+    /// @return A `ProtoStruct` containing the status of the discovery service.
+    virtual ProtoStruct get_status() = 0;
+
     API api() const override;
 
    protected:

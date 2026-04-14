@@ -50,6 +50,10 @@ ProtoStruct MockBoard::do_command(const ProtoStruct& command) {
     return command;
 }
 
+ProtoStruct MockBoard::get_status() {
+    return fake_status();
+}
+
 Board::analog_response MockBoard::read_analog(const std::string& analog_reader_name,
                                               const ProtoStruct&) {
     this->peek_analog_reader_name = analog_reader_name;

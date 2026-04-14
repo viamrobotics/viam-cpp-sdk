@@ -36,6 +36,7 @@ class MovementSensorClient : public MovementSensor {
     std::unordered_map<std::string, float> get_accuracy(const ProtoStruct& extra) override;
     Vector3 get_linear_acceleration(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     using MovementSensor::get_accuracy;

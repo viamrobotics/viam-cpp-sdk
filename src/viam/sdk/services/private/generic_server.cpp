@@ -22,6 +22,17 @@ GenericServiceServer::GenericServiceServer(std::shared_ptr<ResourceManager> mana
     });
 }
 
+::grpc::Status GenericServiceServer::GetStatus(
+    ::grpc::ServerContext* context,
+    const ::viam::common::v1::GetStatusRequest* request,
+    ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<GenericService>(
+        "GenericServiceServer::GetStatus", this, context, request)([&](auto&, auto& generic) {
+        const ProtoStruct result = generic->get_status();
+        *response->mutable_result() = to_proto(result);
+    });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

@@ -40,6 +40,7 @@ class BaseClient : public Base {
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
     properties get_properties(const ProtoStruct& extra) override;
     bool is_moving() override;
+    ProtoStruct get_status() override;
     ProtoStruct do_command(const ProtoStruct& command) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd

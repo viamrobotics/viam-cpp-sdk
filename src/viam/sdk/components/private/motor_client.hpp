@@ -36,6 +36,7 @@ class MotorClient : public Motor {
     power_status get_power_status(const ProtoStruct& extra) override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
     bool is_moving() override;
+    ProtoStruct get_status() override;
     ProtoStruct do_command(const ProtoStruct& command) override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd

@@ -87,6 +87,15 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    std::shared_ptr<MockGripper> mock = MockGripper::get_mock_gripper();
+    client_to_mock_pipeline<Gripper>(mock, [](Gripper& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 }  // namespace sdktests
 }  // namespace viam

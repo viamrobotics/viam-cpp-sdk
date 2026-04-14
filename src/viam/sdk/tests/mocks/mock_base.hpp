@@ -26,6 +26,7 @@ class MockBase : public sdk::Base {
                       const sdk::ProtoStruct& extra) override;
     void stop(const sdk::ProtoStruct& extra) override;
     bool is_moving() override;
+    sdk::ProtoStruct get_status() override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     static std::shared_ptr<MockBase> get_mock_base();
 

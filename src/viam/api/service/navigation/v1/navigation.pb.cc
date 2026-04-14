@@ -535,7 +535,7 @@ const char descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2epr
   "\022\030\n\024MAP_TYPE_UNSPECIFIED\020\000\022\021\n\rMAP_TYPE_N"
   "ONE\020\001\022\020\n\014MAP_TYPE_GPS\020\002*R\n\004Mode\022\024\n\020MODE_"
   "UNSPECIFIED\020\000\022\017\n\013MODE_MANUAL\020\001\022\021\n\rMODE_W"
-  "AYPOINT\020\002\022\020\n\014MODE_EXPLORE\020\0032\227\r\n\021Navigati"
+  "AYPOINT\020\002\022\020\n\014MODE_EXPLORE\020\0032\245\016\n\021Navigati"
   "onService\022\227\001\n\007GetMode\022*.viam.service.nav"
   "igation.v1.GetModeRequest\032+.viam.service"
   ".navigation.v1.GetModeResponse\"3\202\323\344\223\002-\022+"
@@ -577,9 +577,13 @@ const char descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2epr
   "ame}/properties\022\213\001\n\tDoCommand\022 .viam.com"
   "mon.v1.DoCommandRequest\032!.viam.common.v1"
   ".DoCommandResponse\"9\202\323\344\223\0023\"1/viam/api/v1"
-  "/service/navigation/{name}/do_commandBG\n"
-  "\036com.viam.service.navigation.v1Z%go.viam"
-  ".com/api/service/navigation/v1b\006proto3"
+  "/service/navigation/{name}/do_command\022\213\001"
+  "\n\tGetStatus\022 .viam.common.v1.GetStatusRe"
+  "quest\032!.viam.common.v1.GetStatusResponse"
+  "\"9\202\323\344\223\0023\0221/viam/api/v1/service/navigatio"
+  "n/{name}/get_statusBG\n\036com.viam.service."
+  "navigation.v1Z%go.viam.com/api/service/n"
+  "avigation/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -588,7 +592,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fnavigatio
 };
 static ::_pbi::once_flag descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto = {
-    false, false, 3758, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
+    false, false, 3900, descriptor_table_protodef_service_2fnavigation_2fv1_2fnavigation_2eproto,
     "service/navigation/v1/navigation.proto",
     &descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_once, descriptor_table_service_2fnavigation_2fv1_2fnavigation_2eproto_deps, 3, 20,
     schemas, file_default_instances, TableStruct_service_2fnavigation_2fv1_2fnavigation_2eproto::offsets,

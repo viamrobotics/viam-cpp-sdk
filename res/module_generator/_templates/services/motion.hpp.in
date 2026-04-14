@@ -4,19 +4,16 @@
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/services/motion.hpp>
 
 namespace {{ .ModuleName }} {
 
 
-class {{ .ModelPascal }} : public viam::sdk::Motion, public viam::sdk::Reconfigurable {
+class {{ .ModelPascal }} : public viam::sdk::Motion {
 public:
     {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
 
     static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
-
-    void reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) override;
 
     bool move(
         const viam::sdk::pose_in_frame & destination,
@@ -78,6 +75,8 @@ public:
     std::vector<viam::sdk::Motion::plan_status_with_id> list_active_plan_statuses(const viam::sdk::ProtoStruct & extra) override;
 
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
+
+    viam::sdk::ProtoStruct get_status() override;
 
 };
 

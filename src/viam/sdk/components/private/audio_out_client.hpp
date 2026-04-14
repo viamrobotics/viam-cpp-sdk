@@ -32,6 +32,7 @@ class AudioOutClient : public AudioOut {
     audio_properties get_properties(const ProtoStruct& extra) override;
 
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
 
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 

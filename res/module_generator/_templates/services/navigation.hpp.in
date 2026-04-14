@@ -4,19 +4,16 @@
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/services/navigation.hpp>
 
 namespace {{ .ModuleName }} {
 
 
-class {{ .ModelPascal }} : public viam::sdk::Navigation, public viam::sdk::Reconfigurable {
+class {{ .ModelPascal }} : public viam::sdk::Navigation {
 public:
     {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
 
     static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
-
-    void reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) override;
 
     viam::sdk::Navigation::Mode get_mode(const viam::sdk::ProtoStruct & extra) override;
 
@@ -43,6 +40,8 @@ public:
     viam::sdk::Navigation::Properties get_properties() override;
 
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
+
+    viam::sdk::ProtoStruct get_status() override;
 
 };
 

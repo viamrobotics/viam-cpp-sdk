@@ -29,12 +29,10 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "app/data/v1/data.pb.h"
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
-#include "google/api/httpbody.pb.h"
 #include <google/protobuf/struct.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -60,12 +58,6 @@ extern DistortionParametersDefaultTypeInternal _DistortionParameters_default_ins
 class ExtrinsicParameters;
 struct ExtrinsicParametersDefaultTypeInternal;
 extern ExtrinsicParametersDefaultTypeInternal _ExtrinsicParameters_default_instance_;
-class GetImageRequest;
-struct GetImageRequestDefaultTypeInternal;
-extern GetImageRequestDefaultTypeInternal _GetImageRequest_default_instance_;
-class GetImageResponse;
-struct GetImageResponseDefaultTypeInternal;
-extern GetImageResponseDefaultTypeInternal _GetImageResponse_default_instance_;
 class GetImagesRequest;
 struct GetImagesRequestDefaultTypeInternal;
 extern GetImagesRequestDefaultTypeInternal _GetImagesRequest_default_instance_;
@@ -93,9 +85,6 @@ extern IntrinsicParametersDefaultTypeInternal _IntrinsicParameters_default_insta
 class Property;
 struct PropertyDefaultTypeInternal;
 extern PropertyDefaultTypeInternal _Property_default_instance_;
-class RenderFrameRequest;
-struct RenderFrameRequestDefaultTypeInternal;
-extern RenderFrameRequestDefaultTypeInternal _RenderFrameRequest_default_instance_;
 class Webcam;
 struct WebcamDefaultTypeInternal;
 extern WebcamDefaultTypeInternal _Webcam_default_instance_;
@@ -109,8 +98,6 @@ extern WebcamsDefaultTypeInternal _Webcams_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::viam::component::camera::v1::DistortionParameters* Arena::CreateMaybeMessage<::viam::component::camera::v1::DistortionParameters>(Arena*);
 template<> ::viam::component::camera::v1::ExtrinsicParameters* Arena::CreateMaybeMessage<::viam::component::camera::v1::ExtrinsicParameters>(Arena*);
-template<> ::viam::component::camera::v1::GetImageRequest* Arena::CreateMaybeMessage<::viam::component::camera::v1::GetImageRequest>(Arena*);
-template<> ::viam::component::camera::v1::GetImageResponse* Arena::CreateMaybeMessage<::viam::component::camera::v1::GetImageResponse>(Arena*);
 template<> ::viam::component::camera::v1::GetImagesRequest* Arena::CreateMaybeMessage<::viam::component::camera::v1::GetImagesRequest>(Arena*);
 template<> ::viam::component::camera::v1::GetImagesResponse* Arena::CreateMaybeMessage<::viam::component::camera::v1::GetImagesResponse>(Arena*);
 template<> ::viam::component::camera::v1::GetPointCloudRequest* Arena::CreateMaybeMessage<::viam::component::camera::v1::GetPointCloudRequest>(Arena*);
@@ -120,7 +107,6 @@ template<> ::viam::component::camera::v1::GetPropertiesResponse* Arena::CreateMa
 template<> ::viam::component::camera::v1::Image* Arena::CreateMaybeMessage<::viam::component::camera::v1::Image>(Arena*);
 template<> ::viam::component::camera::v1::IntrinsicParameters* Arena::CreateMaybeMessage<::viam::component::camera::v1::IntrinsicParameters>(Arena*);
 template<> ::viam::component::camera::v1::Property* Arena::CreateMaybeMessage<::viam::component::camera::v1::Property>(Arena*);
-template<> ::viam::component::camera::v1::RenderFrameRequest* Arena::CreateMaybeMessage<::viam::component::camera::v1::RenderFrameRequest>(Arena*);
 template<> ::viam::component::camera::v1::Webcam* Arena::CreateMaybeMessage<::viam::component::camera::v1::Webcam>(Arena*);
 template<> ::viam::component::camera::v1::Webcams* Arena::CreateMaybeMessage<::viam::component::camera::v1::Webcams>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -129,383 +115,7 @@ namespace component {
 namespace camera {
 namespace v1 {
 
-enum Format : int {
-  FORMAT_UNSPECIFIED = 0,
-  FORMAT_RAW_RGBA = 1,
-  FORMAT_RAW_DEPTH = 2,
-  FORMAT_JPEG = 3,
-  FORMAT_PNG = 4,
-  Format_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  Format_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
-};
-bool Format_IsValid(int value);
-constexpr Format Format_MIN = FORMAT_UNSPECIFIED;
-constexpr Format Format_MAX = FORMAT_PNG;
-constexpr int Format_ARRAYSIZE = Format_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Format_descriptor();
-template<typename T>
-inline const std::string& Format_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, Format>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function Format_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    Format_descriptor(), enum_t_value);
-}
-inline bool Format_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Format* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Format>(
-    Format_descriptor(), name, value);
-}
 // ===================================================================
-
-class GetImageRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.camera.v1.GetImageRequest) */ {
- public:
-  inline GetImageRequest() : GetImageRequest(nullptr) {}
-  ~GetImageRequest() override;
-  explicit PROTOBUF_CONSTEXPR GetImageRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  GetImageRequest(const GetImageRequest& from);
-  GetImageRequest(GetImageRequest&& from) noexcept
-    : GetImageRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline GetImageRequest& operator=(const GetImageRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline GetImageRequest& operator=(GetImageRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const GetImageRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const GetImageRequest* internal_default_instance() {
-    return reinterpret_cast<const GetImageRequest*>(
-               &_GetImageRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
-
-  friend void swap(GetImageRequest& a, GetImageRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(GetImageRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(GetImageRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  GetImageRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetImageRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const GetImageRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const GetImageRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(GetImageRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.component.camera.v1.GetImageRequest";
-  }
-  protected:
-  explicit GetImageRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kNameFieldNumber = 1,
-    kMimeTypeFieldNumber = 2,
-    kExtraFieldNumber = 99,
-  };
-  // string name = 1 [json_name = "name"];
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
-  public:
-
-  // string mime_type = 2 [json_name = "mimeType"];
-  void clear_mime_type();
-  const std::string& mime_type() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_mime_type(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_mime_type();
-  PROTOBUF_NODISCARD std::string* release_mime_type();
-  void set_allocated_mime_type(std::string* mime_type);
-  private:
-  const std::string& _internal_mime_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mime_type(const std::string& value);
-  std::string* _internal_mutable_mime_type();
-  public:
-
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  bool has_extra() const;
-  private:
-  bool _internal_has_extra() const;
-  public:
-  void clear_extra();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
-  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
-  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
-  public:
-  void unsafe_arena_set_allocated_extra(
-      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
-
-  // @@protoc_insertion_point(class_scope:viam.component.camera.v1.GetImageRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mime_type_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
-};
-// -------------------------------------------------------------------
-
-class GetImageResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.camera.v1.GetImageResponse) */ {
- public:
-  inline GetImageResponse() : GetImageResponse(nullptr) {}
-  ~GetImageResponse() override;
-  explicit PROTOBUF_CONSTEXPR GetImageResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  GetImageResponse(const GetImageResponse& from);
-  GetImageResponse(GetImageResponse&& from) noexcept
-    : GetImageResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline GetImageResponse& operator=(const GetImageResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline GetImageResponse& operator=(GetImageResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const GetImageResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const GetImageResponse* internal_default_instance() {
-    return reinterpret_cast<const GetImageResponse*>(
-               &_GetImageResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(GetImageResponse& a, GetImageResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(GetImageResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(GetImageResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  GetImageResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetImageResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const GetImageResponse& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const GetImageResponse& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(GetImageResponse* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.component.camera.v1.GetImageResponse";
-  }
-  protected:
-  explicit GetImageResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kMimeTypeFieldNumber = 1,
-    kImageFieldNumber = 2,
-  };
-  // string mime_type = 1 [json_name = "mimeType"];
-  void clear_mime_type();
-  const std::string& mime_type() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_mime_type(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_mime_type();
-  PROTOBUF_NODISCARD std::string* release_mime_type();
-  void set_allocated_mime_type(std::string* mime_type);
-  private:
-  const std::string& _internal_mime_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mime_type(const std::string& value);
-  std::string* _internal_mutable_mime_type();
-  public:
-
-  // bytes image = 2 [json_name = "image"];
-  void clear_image();
-  const std::string& image() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_image(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_image();
-  PROTOBUF_NODISCARD std::string* release_image();
-  void set_allocated_image(std::string* image);
-  private:
-  const std::string& _internal_image() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_image(const std::string& value);
-  std::string* _internal_mutable_image();
-  public:
-
-  // @@protoc_insertion_point(class_scope:viam.component.camera.v1.GetImageResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mime_type_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr image_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
-};
-// -------------------------------------------------------------------
 
 class GetImagesRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.camera.v1.GetImagesRequest) */ {
@@ -555,7 +165,7 @@ class GetImagesRequest final :
                &_GetImagesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    0;
 
   friend void swap(GetImagesRequest& a, GetImagesRequest& b) {
     a.Swap(&b);
@@ -749,7 +359,7 @@ class GetImagesResponse final :
                &_GetImagesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    1;
 
   friend void swap(GetImagesResponse& a, GetImagesResponse& b) {
     a.Swap(&b);
@@ -921,7 +531,7 @@ class Image final :
                &_Image_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    2;
 
   friend void swap(Image& a, Image& b) {
     a.Swap(&b);
@@ -996,7 +606,6 @@ class Image final :
     kImageFieldNumber = 3,
     kMimeTypeFieldNumber = 4,
     kAnnotationsFieldNumber = 5,
-    kFormatFieldNumber = 2,
   };
   // string source_name = 1 [json_name = "sourceName"];
   void clear_source_name();
@@ -1058,15 +667,6 @@ class Image final :
       ::viam::app::data::v1::Annotations* annotations);
   ::viam::app::data::v1::Annotations* unsafe_arena_release_annotations();
 
-  // .viam.component.camera.v1.Format format = 2 [json_name = "format"];
-  void clear_format();
-  ::viam::component::camera::v1::Format format() const;
-  void set_format(::viam::component::camera::v1::Format value);
-  private:
-  ::viam::component::camera::v1::Format _internal_format() const;
-  void _internal_set_format(::viam::component::camera::v1::Format value);
-  public:
-
   // @@protoc_insertion_point(class_scope:viam.component.camera.v1.Image)
  private:
   class _Internal;
@@ -1078,191 +678,6 @@ class Image final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr image_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mime_type_;
   ::viam::app::data::v1::Annotations* annotations_;
-  int format_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
-};
-// -------------------------------------------------------------------
-
-class RenderFrameRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.component.camera.v1.RenderFrameRequest) */ {
- public:
-  inline RenderFrameRequest() : RenderFrameRequest(nullptr) {}
-  ~RenderFrameRequest() override;
-  explicit PROTOBUF_CONSTEXPR RenderFrameRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  RenderFrameRequest(const RenderFrameRequest& from);
-  RenderFrameRequest(RenderFrameRequest&& from) noexcept
-    : RenderFrameRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline RenderFrameRequest& operator=(const RenderFrameRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RenderFrameRequest& operator=(RenderFrameRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RenderFrameRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const RenderFrameRequest* internal_default_instance() {
-    return reinterpret_cast<const RenderFrameRequest*>(
-               &_RenderFrameRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    5;
-
-  friend void swap(RenderFrameRequest& a, RenderFrameRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(RenderFrameRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RenderFrameRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RenderFrameRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<RenderFrameRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const RenderFrameRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const RenderFrameRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(RenderFrameRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "viam.component.camera.v1.RenderFrameRequest";
-  }
-  protected:
-  explicit RenderFrameRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kNameFieldNumber = 1,
-    kMimeTypeFieldNumber = 2,
-    kExtraFieldNumber = 99,
-  };
-  // string name = 1 [json_name = "name"];
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
-  public:
-
-  // string mime_type = 2 [json_name = "mimeType"];
-  void clear_mime_type();
-  const std::string& mime_type() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_mime_type(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_mime_type();
-  PROTOBUF_NODISCARD std::string* release_mime_type();
-  void set_allocated_mime_type(std::string* mime_type);
-  private:
-  const std::string& _internal_mime_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mime_type(const std::string& value);
-  std::string* _internal_mutable_mime_type();
-  public:
-
-  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
-  bool has_extra() const;
-  private:
-  bool _internal_has_extra() const;
-  public:
-  void clear_extra();
-  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
-  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
-  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
-  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
-  public:
-  void unsafe_arena_set_allocated_extra(
-      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
-  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
-
-  // @@protoc_insertion_point(class_scope:viam.component.camera.v1.RenderFrameRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mime_type_;
-  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_component_2fcamera_2fv1_2fcamera_2eproto;
 };
@@ -1316,7 +731,7 @@ class GetPointCloudRequest final :
                &_GetPointCloudRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    3;
 
   friend void swap(GetPointCloudRequest& a, GetPointCloudRequest& b) {
     a.Swap(&b);
@@ -1500,7 +915,7 @@ class GetPointCloudResponse final :
                &_GetPointCloudResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    4;
 
   friend void swap(GetPointCloudResponse& a, GetPointCloudResponse& b) {
     a.Swap(&b);
@@ -1664,7 +1079,7 @@ class GetPropertiesRequest final :
                &_GetPropertiesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    5;
 
   friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
     a.Swap(&b);
@@ -1812,7 +1227,7 @@ class GetPropertiesResponse final :
                &_GetPropertiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    6;
 
   friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
     a.Swap(&b);
@@ -2057,7 +1472,7 @@ class Webcams final :
                &_Webcams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    7;
 
   friend void swap(Webcams& a, Webcams& b) {
     a.Swap(&b);
@@ -2209,7 +1624,7 @@ class Webcam final :
                &_Webcam_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    8;
 
   friend void swap(Webcam& a, Webcam& b) {
     a.Swap(&b);
@@ -2425,7 +1840,7 @@ class Property final :
                &_Property_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    9;
 
   friend void swap(Property& a, Property& b) {
     a.Swap(&b);
@@ -2606,7 +2021,7 @@ class IntrinsicParameters final :
                &_IntrinsicParameters_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    10;
 
   friend void swap(IntrinsicParameters& a, IntrinsicParameters& b) {
     a.Swap(&b);
@@ -2804,7 +2219,7 @@ class DistortionParameters final :
                &_DistortionParameters_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    11;
 
   friend void swap(DistortionParameters& a, DistortionParameters& b) {
     a.Swap(&b);
@@ -2976,7 +2391,7 @@ class ExtrinsicParameters final :
                &_ExtrinsicParameters_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    12;
 
   friend void swap(ExtrinsicParameters& a, ExtrinsicParameters& b) {
     a.Swap(&b);
@@ -3107,299 +2522,6 @@ class ExtrinsicParameters final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// GetImageRequest
-
-// string name = 1 [json_name = "name"];
-inline void GetImageRequest::clear_name() {
-  name_.ClearToEmpty();
-}
-inline const std::string& GetImageRequest::name() const {
-  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetImageRequest.name)
-  return _internal_name();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void GetImageRequest::set_name(ArgT0&& arg0, ArgT... args) {
- 
- name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetImageRequest.name)
-}
-inline std::string* GetImageRequest::mutable_name() {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetImageRequest.name)
-  return _s;
-}
-inline const std::string& GetImageRequest::_internal_name() const {
-  return name_.Get();
-}
-inline void GetImageRequest::_internal_set_name(const std::string& value) {
-  
-  name_.Set(value, GetArenaForAllocation());
-}
-inline std::string* GetImageRequest::_internal_mutable_name() {
-  
-  return name_.Mutable(GetArenaForAllocation());
-}
-inline std::string* GetImageRequest::release_name() {
-  // @@protoc_insertion_point(field_release:viam.component.camera.v1.GetImageRequest.name)
-  return name_.Release();
-}
-inline void GetImageRequest::set_allocated_name(std::string* name) {
-  if (name != nullptr) {
-    
-  } else {
-    
-  }
-  name_.SetAllocated(name, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (name_.IsDefault()) {
-    name_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetImageRequest.name)
-}
-
-// string mime_type = 2 [json_name = "mimeType"];
-inline void GetImageRequest::clear_mime_type() {
-  mime_type_.ClearToEmpty();
-}
-inline const std::string& GetImageRequest::mime_type() const {
-  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetImageRequest.mime_type)
-  return _internal_mime_type();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void GetImageRequest::set_mime_type(ArgT0&& arg0, ArgT... args) {
- 
- mime_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetImageRequest.mime_type)
-}
-inline std::string* GetImageRequest::mutable_mime_type() {
-  std::string* _s = _internal_mutable_mime_type();
-  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetImageRequest.mime_type)
-  return _s;
-}
-inline const std::string& GetImageRequest::_internal_mime_type() const {
-  return mime_type_.Get();
-}
-inline void GetImageRequest::_internal_set_mime_type(const std::string& value) {
-  
-  mime_type_.Set(value, GetArenaForAllocation());
-}
-inline std::string* GetImageRequest::_internal_mutable_mime_type() {
-  
-  return mime_type_.Mutable(GetArenaForAllocation());
-}
-inline std::string* GetImageRequest::release_mime_type() {
-  // @@protoc_insertion_point(field_release:viam.component.camera.v1.GetImageRequest.mime_type)
-  return mime_type_.Release();
-}
-inline void GetImageRequest::set_allocated_mime_type(std::string* mime_type) {
-  if (mime_type != nullptr) {
-    
-  } else {
-    
-  }
-  mime_type_.SetAllocated(mime_type, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (mime_type_.IsDefault()) {
-    mime_type_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetImageRequest.mime_type)
-}
-
-// .google.protobuf.Struct extra = 99 [json_name = "extra"];
-inline bool GetImageRequest::_internal_has_extra() const {
-  return this != internal_default_instance() && extra_ != nullptr;
-}
-inline bool GetImageRequest::has_extra() const {
-  return _internal_has_extra();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetImageRequest::_internal_extra() const {
-  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
-      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetImageRequest::extra() const {
-  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetImageRequest.extra)
-  return _internal_extra();
-}
-inline void GetImageRequest::unsafe_arena_set_allocated_extra(
-    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  extra_ = extra;
-  if (extra) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.camera.v1.GetImageRequest.extra)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* GetImageRequest::release_extra() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* GetImageRequest::unsafe_arena_release_extra() {
-  // @@protoc_insertion_point(field_release:viam.component.camera.v1.GetImageRequest.extra)
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* GetImageRequest::_internal_mutable_extra() {
-  
-  if (extra_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
-    extra_ = p;
-  }
-  return extra_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* GetImageRequest::mutable_extra() {
-  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
-  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetImageRequest.extra)
-  return _msg;
-}
-inline void GetImageRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  if (extra) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
-    if (message_arena != submessage_arena) {
-      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, extra, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  extra_ = extra;
-  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetImageRequest.extra)
-}
-
-// -------------------------------------------------------------------
-
-// GetImageResponse
-
-// string mime_type = 1 [json_name = "mimeType"];
-inline void GetImageResponse::clear_mime_type() {
-  mime_type_.ClearToEmpty();
-}
-inline const std::string& GetImageResponse::mime_type() const {
-  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetImageResponse.mime_type)
-  return _internal_mime_type();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void GetImageResponse::set_mime_type(ArgT0&& arg0, ArgT... args) {
- 
- mime_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetImageResponse.mime_type)
-}
-inline std::string* GetImageResponse::mutable_mime_type() {
-  std::string* _s = _internal_mutable_mime_type();
-  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetImageResponse.mime_type)
-  return _s;
-}
-inline const std::string& GetImageResponse::_internal_mime_type() const {
-  return mime_type_.Get();
-}
-inline void GetImageResponse::_internal_set_mime_type(const std::string& value) {
-  
-  mime_type_.Set(value, GetArenaForAllocation());
-}
-inline std::string* GetImageResponse::_internal_mutable_mime_type() {
-  
-  return mime_type_.Mutable(GetArenaForAllocation());
-}
-inline std::string* GetImageResponse::release_mime_type() {
-  // @@protoc_insertion_point(field_release:viam.component.camera.v1.GetImageResponse.mime_type)
-  return mime_type_.Release();
-}
-inline void GetImageResponse::set_allocated_mime_type(std::string* mime_type) {
-  if (mime_type != nullptr) {
-    
-  } else {
-    
-  }
-  mime_type_.SetAllocated(mime_type, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (mime_type_.IsDefault()) {
-    mime_type_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetImageResponse.mime_type)
-}
-
-// bytes image = 2 [json_name = "image"];
-inline void GetImageResponse::clear_image() {
-  image_.ClearToEmpty();
-}
-inline const std::string& GetImageResponse::image() const {
-  // @@protoc_insertion_point(field_get:viam.component.camera.v1.GetImageResponse.image)
-  return _internal_image();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void GetImageResponse::set_image(ArgT0&& arg0, ArgT... args) {
- 
- image_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.component.camera.v1.GetImageResponse.image)
-}
-inline std::string* GetImageResponse::mutable_image() {
-  std::string* _s = _internal_mutable_image();
-  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.GetImageResponse.image)
-  return _s;
-}
-inline const std::string& GetImageResponse::_internal_image() const {
-  return image_.Get();
-}
-inline void GetImageResponse::_internal_set_image(const std::string& value) {
-  
-  image_.Set(value, GetArenaForAllocation());
-}
-inline std::string* GetImageResponse::_internal_mutable_image() {
-  
-  return image_.Mutable(GetArenaForAllocation());
-}
-inline std::string* GetImageResponse::release_image() {
-  // @@protoc_insertion_point(field_release:viam.component.camera.v1.GetImageResponse.image)
-  return image_.Release();
-}
-inline void GetImageResponse::set_allocated_image(std::string* image) {
-  if (image != nullptr) {
-    
-  } else {
-    
-  }
-  image_.SetAllocated(image, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (image_.IsDefault()) {
-    image_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.GetImageResponse.image)
-}
-
-// -------------------------------------------------------------------
-
 // GetImagesRequest
 
 // string name = 1 [json_name = "name"];
@@ -3795,26 +2917,6 @@ inline void Image::set_allocated_source_name(std::string* source_name) {
   // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.Image.source_name)
 }
 
-// .viam.component.camera.v1.Format format = 2 [json_name = "format"];
-inline void Image::clear_format() {
-  format_ = 0;
-}
-inline ::viam::component::camera::v1::Format Image::_internal_format() const {
-  return static_cast< ::viam::component::camera::v1::Format >(format_);
-}
-inline ::viam::component::camera::v1::Format Image::format() const {
-  // @@protoc_insertion_point(field_get:viam.component.camera.v1.Image.format)
-  return _internal_format();
-}
-inline void Image::_internal_set_format(::viam::component::camera::v1::Format value) {
-  
-  format_ = value;
-}
-inline void Image::set_format(::viam::component::camera::v1::Format value) {
-  _internal_set_format(value);
-  // @@protoc_insertion_point(field_set:viam.component.camera.v1.Image.format)
-}
-
 // bytes image = 3 [json_name = "image"];
 inline void Image::clear_image() {
   image_.ClearToEmpty();
@@ -3998,195 +3100,6 @@ inline void Image::set_allocated_annotations(::viam::app::data::v1::Annotations*
   }
   annotations_ = annotations;
   // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.Image.annotations)
-}
-
-// -------------------------------------------------------------------
-
-// RenderFrameRequest
-
-// string name = 1 [json_name = "name"];
-inline void RenderFrameRequest::clear_name() {
-  name_.ClearToEmpty();
-}
-inline const std::string& RenderFrameRequest::name() const {
-  // @@protoc_insertion_point(field_get:viam.component.camera.v1.RenderFrameRequest.name)
-  return _internal_name();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void RenderFrameRequest::set_name(ArgT0&& arg0, ArgT... args) {
- 
- name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.component.camera.v1.RenderFrameRequest.name)
-}
-inline std::string* RenderFrameRequest::mutable_name() {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.RenderFrameRequest.name)
-  return _s;
-}
-inline const std::string& RenderFrameRequest::_internal_name() const {
-  return name_.Get();
-}
-inline void RenderFrameRequest::_internal_set_name(const std::string& value) {
-  
-  name_.Set(value, GetArenaForAllocation());
-}
-inline std::string* RenderFrameRequest::_internal_mutable_name() {
-  
-  return name_.Mutable(GetArenaForAllocation());
-}
-inline std::string* RenderFrameRequest::release_name() {
-  // @@protoc_insertion_point(field_release:viam.component.camera.v1.RenderFrameRequest.name)
-  return name_.Release();
-}
-inline void RenderFrameRequest::set_allocated_name(std::string* name) {
-  if (name != nullptr) {
-    
-  } else {
-    
-  }
-  name_.SetAllocated(name, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (name_.IsDefault()) {
-    name_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.RenderFrameRequest.name)
-}
-
-// string mime_type = 2 [json_name = "mimeType"];
-inline void RenderFrameRequest::clear_mime_type() {
-  mime_type_.ClearToEmpty();
-}
-inline const std::string& RenderFrameRequest::mime_type() const {
-  // @@protoc_insertion_point(field_get:viam.component.camera.v1.RenderFrameRequest.mime_type)
-  return _internal_mime_type();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void RenderFrameRequest::set_mime_type(ArgT0&& arg0, ArgT... args) {
- 
- mime_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.component.camera.v1.RenderFrameRequest.mime_type)
-}
-inline std::string* RenderFrameRequest::mutable_mime_type() {
-  std::string* _s = _internal_mutable_mime_type();
-  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.RenderFrameRequest.mime_type)
-  return _s;
-}
-inline const std::string& RenderFrameRequest::_internal_mime_type() const {
-  return mime_type_.Get();
-}
-inline void RenderFrameRequest::_internal_set_mime_type(const std::string& value) {
-  
-  mime_type_.Set(value, GetArenaForAllocation());
-}
-inline std::string* RenderFrameRequest::_internal_mutable_mime_type() {
-  
-  return mime_type_.Mutable(GetArenaForAllocation());
-}
-inline std::string* RenderFrameRequest::release_mime_type() {
-  // @@protoc_insertion_point(field_release:viam.component.camera.v1.RenderFrameRequest.mime_type)
-  return mime_type_.Release();
-}
-inline void RenderFrameRequest::set_allocated_mime_type(std::string* mime_type) {
-  if (mime_type != nullptr) {
-    
-  } else {
-    
-  }
-  mime_type_.SetAllocated(mime_type, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (mime_type_.IsDefault()) {
-    mime_type_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.RenderFrameRequest.mime_type)
-}
-
-// .google.protobuf.Struct extra = 99 [json_name = "extra"];
-inline bool RenderFrameRequest::_internal_has_extra() const {
-  return this != internal_default_instance() && extra_ != nullptr;
-}
-inline bool RenderFrameRequest::has_extra() const {
-  return _internal_has_extra();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& RenderFrameRequest::_internal_extra() const {
-  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
-      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Struct& RenderFrameRequest::extra() const {
-  // @@protoc_insertion_point(field_get:viam.component.camera.v1.RenderFrameRequest.extra)
-  return _internal_extra();
-}
-inline void RenderFrameRequest::unsafe_arena_set_allocated_extra(
-    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  extra_ = extra;
-  if (extra) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.component.camera.v1.RenderFrameRequest.extra)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* RenderFrameRequest::release_extra() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* RenderFrameRequest::unsafe_arena_release_extra() {
-  // @@protoc_insertion_point(field_release:viam.component.camera.v1.RenderFrameRequest.extra)
-  
-  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
-  extra_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* RenderFrameRequest::_internal_mutable_extra() {
-  
-  if (extra_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
-    extra_ = p;
-  }
-  return extra_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Struct* RenderFrameRequest::mutable_extra() {
-  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
-  // @@protoc_insertion_point(field_mutable:viam.component.camera.v1.RenderFrameRequest.extra)
-  return _msg;
-}
-inline void RenderFrameRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
-  }
-  if (extra) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
-    if (message_arena != submessage_arena) {
-      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, extra, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  extra_ = extra;
-  // @@protoc_insertion_point(field_set_allocated:viam.component.camera.v1.RenderFrameRequest.extra)
 }
 
 // -------------------------------------------------------------------
@@ -5761,12 +4674,6 @@ inline void ExtrinsicParameters::set_allocated_orientation(::viam::common::v1::O
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -5774,16 +4681,6 @@ inline void ExtrinsicParameters::set_allocated_orientation(::viam::common::v1::O
 }  // namespace camera
 }  // namespace component
 }  // namespace viam
-
-PROTOBUF_NAMESPACE_OPEN
-
-template <> struct is_proto_enum< ::viam::component::camera::v1::Format> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::viam::component::camera::v1::Format>() {
-  return ::viam::component::camera::v1::Format_descriptor();
-}
-
-PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

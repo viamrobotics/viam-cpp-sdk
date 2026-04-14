@@ -27,6 +27,10 @@ ProtoStruct MockAudioOut::do_command(const ProtoStruct& command) {
     return map_;
 }
 
+sdk::ProtoStruct MockAudioOut::get_status() {
+    return fake_status();
+}
+
 std::vector<GeometryConfig> MockAudioOut::get_geometries(const ProtoStruct&) {
     return geometries_;
 }

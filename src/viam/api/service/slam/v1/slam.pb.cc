@@ -278,7 +278,7 @@ const char descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto[] PROTOB
   "DATE_EXISTING_MAP\020\003*b\n\nSensorType\022\033\n\027SEN"
   "SOR_TYPE_UNSPECIFIED\020\000\022\026\n\022SENSOR_TYPE_CA"
   "MERA\020\001\022\037\n\033SENSOR_TYPE_MOVEMENT_SENSOR\020\0022"
-  "\254\006\n\013SLAMService\022\225\001\n\013GetPosition\022(.viam.s"
+  "\264\007\n\013SLAMService\022\225\001\n\013GetPosition\022(.viam.s"
   "ervice.slam.v1.GetPositionRequest\032).viam"
   ".service.slam.v1.GetPositionResponse\"1\202\323"
   "\344\223\002+\022)/viam/api/v1/service/slam/{name}/p"
@@ -298,9 +298,12 @@ const char descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto[] PROTOB
   "\001\n\tDoCommand\022 .viam.common.v1.DoCommandR"
   "equest\032!.viam.common.v1.DoCommandRespons"
   "e\"3\202\323\344\223\002-\"+/viam/api/v1/service/slam/{na"
-  "me}/do_commandB;\n\030com.viam.service.slam."
-  "v1Z\037go.viam.com/api/service/slam/v1b\006pro"
-  "to3"
+  "me}/do_command\022\205\001\n\tGetStatus\022 .viam.comm"
+  "on.v1.GetStatusRequest\032!.viam.common.v1."
+  "GetStatusResponse\"3\202\323\344\223\002-\022+/viam/api/v1/"
+  "service/slam/{name}/get_statusB;\n\030com.vi"
+  "am.service.slam.v1Z\037go.viam.com/api/serv"
+  "ice/slam/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps[2] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -308,7 +311,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fslam_2fv1
 };
 static ::_pbi::once_flag descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fslam_2fv1_2fslam_2eproto = {
-    false, false, 2083, descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto,
+    false, false, 2219, descriptor_table_protodef_service_2fslam_2fv1_2fslam_2eproto,
     "service/slam/v1/slam.proto",
     &descriptor_table_service_2fslam_2fv1_2fslam_2eproto_once, descriptor_table_service_2fslam_2fv1_2fslam_2eproto_deps, 2, 9,
     schemas, file_default_instances, TableStruct_service_2fslam_2fv1_2fslam_2eproto::offsets,

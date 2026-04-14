@@ -473,8 +473,8 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "per_sec_joints\030\003 \003(\001R\026maxVelDegsPerSecJo"
   "ints\022=\n\034max_acc_degs_per_sec2_joints\030\004 \003"
   "(\001R\027maxAccDegsPerSec2JointsB\027\n\025_max_vel_"
-  "degs_per_secB\030\n\026_max_acc_degs_per_sec22\377"
-  "\r\n\nArmService\022\241\001\n\016GetEndPosition\022,.viam."
+  "degs_per_secB\030\n\026_max_acc_degs_per_sec22\210"
+  "\017\n\nArmService\022\241\001\n\016GetEndPosition\022,.viam."
   "component.arm.v1.GetEndPositionRequest\032-"
   ".viam.component.arm.v1.GetEndPositionRes"
   "ponse\"2\202\323\344\223\002,\022*/viam/api/v1/component/ar"
@@ -507,20 +507,23 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "name}/is_moving\022\206\001\n\tDoCommand\022 .viam.com"
   "mon.v1.DoCommandRequest\032!.viam.common.v1"
   ".DoCommandResponse\"4\202\323\344\223\002.\",/viam/api/v1"
-  "/component/arm/{name}/do_command\022\222\001\n\rGet"
-  "Kinematics\022$.viam.common.v1.GetKinematic"
-  "sRequest\032%.viam.common.v1.GetKinematicsR"
-  "esponse\"4\202\323\344\223\002.\022,/viam/api/v1/component/"
-  "arm/{name}/kinematics\022\222\001\n\rGetGeometries\022"
-  "$.viam.common.v1.GetGeometriesRequest\032%."
-  "viam.common.v1.GetGeometriesResponse\"4\202\323"
-  "\344\223\002.\022,/viam/api/v1/component/arm/{name}/"
-  "geometries\022\213\001\n\013Get3DModels\022\".viam.common"
-  ".v1.Get3DModelsRequest\032#.viam.common.v1."
-  "Get3DModelsResponse\"3\202\323\344\223\002-\022+/viam/api/v"
-  "1/component/arm/{name}/3d_modelsB=\n\031com."
-  "viam.component.arm.v1Z go.viam.com/api/c"
-  "omponent/arm/v1b\006proto3"
+  "/component/arm/{name}/do_command\022\206\001\n\tGet"
+  "Status\022 .viam.common.v1.GetStatusRequest"
+  "\032!.viam.common.v1.GetStatusResponse\"4\202\323\344"
+  "\223\002.\022,/viam/api/v1/component/arm/{name}/g"
+  "et_status\022\222\001\n\rGetKinematics\022$.viam.commo"
+  "n.v1.GetKinematicsRequest\032%.viam.common."
+  "v1.GetKinematicsResponse\"4\202\323\344\223\002.\022,/viam/"
+  "api/v1/component/arm/{name}/kinematics\022\222"
+  "\001\n\rGetGeometries\022$.viam.common.v1.GetGeo"
+  "metriesRequest\032%.viam.common.v1.GetGeome"
+  "triesResponse\"4\202\323\344\223\002.\022,/viam/api/v1/comp"
+  "onent/arm/{name}/geometries\022\213\001\n\013Get3DMod"
+  "els\022\".viam.common.v1.Get3DModelsRequest\032"
+  "#.viam.common.v1.Get3DModelsResponse\"3\202\323"
+  "\344\223\002-\022+/viam/api/v1/component/arm/{name}/"
+  "3d_modelsB=\n\031com.viam.component.arm.v1Z "
+  "go.viam.com/api/component/arm/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv1_2farm_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -529,7 +532,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv
 };
 static ::_pbi::once_flag descriptor_table_component_2farm_2fv1_2farm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2farm_2fv1_2farm_2eproto = {
-    false, false, 3703, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
+    false, false, 3840, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
     "component/arm/v1/arm.proto",
     &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 3, 17,
     schemas, file_default_instances, TableStruct_component_2farm_2fv1_2farm_2eproto::offsets,

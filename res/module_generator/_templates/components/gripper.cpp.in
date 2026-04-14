@@ -8,16 +8,12 @@ namespace {{ .ModuleName }} {
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
     : Gripper(cfg.name()) {
-    this->reconfigure(deps, cfg);
+    throw std::runtime_error("constructor not implemented");
 }
 
 
 std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceConfig& cfg) {
     throw std::runtime_error("\"validate\" not implemented");
-}
-
-void {{ .ModelPascal }}::reconfigure(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg) {
-    throw std::runtime_error("\"reconfigure\" not implemented");
 }
 
 void {{ .ModelPascal }}::stop(const viam::sdk::ProtoStruct & extra)
@@ -43,6 +39,11 @@ viam::sdk::Gripper::holding_status {{ .ModelPascal }}::is_holding_something(cons
 bool {{ .ModelPascal }}::is_moving()
 {
     throw std::logic_error("\"is_moving\" not implemented");
+}
+
+viam::sdk::ProtoStruct {{ .ModelPascal }}::get_status()
+{
+    throw std::logic_error("\"get_status\" not implemented");
 }
 
 viam::sdk::ProtoStruct {{ .ModelPascal }}::do_command(const viam::sdk::ProtoStruct & command)

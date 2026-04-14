@@ -114,6 +114,10 @@ ProtoStruct MockMotion::do_command(const ProtoStruct& command) {
     return command;
 };
 
+ProtoStruct MockMotion::get_status() {
+    return fake_status();
+}
+
 std::shared_ptr<MockMotion> MockMotion::get_mock_motion() {
     auto motion = std::make_shared<MockMotion>("mock_motion");
     motion->current_location = init_fake_pose();

@@ -37,7 +37,7 @@ static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n component/sensor/v1/sensor.proto\022\030viam"
   ".component.sensor.v1\032\026common/v1/common.p"
-  "roto\032\034google/api/annotations.proto2\303\003\n\rS"
+  "roto\032\034google/api/annotations.proto2\317\004\n\rS"
   "ensorService\022\215\001\n\013GetReadings\022\".viam.comm"
   "on.v1.GetReadingsRequest\032#.viam.common.v"
   "1.GetReadingsResponse\"5\202\323\344\223\002/\022-/viam/api"
@@ -45,13 +45,16 @@ const char descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto[] 
   "\tDoCommand\022 .viam.common.v1.DoCommandReq"
   "uest\032!.viam.common.v1.DoCommandResponse\""
   "7\202\323\344\223\0021\"//viam/api/v1/component/sensor/{"
-  "name}/do_command\022\225\001\n\rGetGeometries\022$.via"
-  "m.common.v1.GetGeometriesRequest\032%.viam."
-  "common.v1.GetGeometriesResponse\"7\202\323\344\223\0021\022"
-  "//viam/api/v1/component/sensor/{name}/ge"
-  "ometriesBC\n\034com.viam.component.sensor.v1"
-  "Z#go.viam.com/api/component/sensor/v1b\006p"
-  "roto3"
+  "name}/do_command\022\211\001\n\tGetStatus\022 .viam.co"
+  "mmon.v1.GetStatusRequest\032!.viam.common.v"
+  "1.GetStatusResponse\"7\202\323\344\223\0021\022//viam/api/v"
+  "1/component/sensor/{name}/get_status\022\225\001\n"
+  "\rGetGeometries\022$.viam.common.v1.GetGeome"
+  "triesRequest\032%.viam.common.v1.GetGeometr"
+  "iesResponse\"7\202\323\344\223\0021\022//viam/api/v1/compon"
+  "ent/sensor/{name}/geometriesBC\n\034com.viam"
+  ".component.sensor.v1Z#go.viam.com/api/co"
+  "mponent/sensor/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_deps[2] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -59,7 +62,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fsensor_
 };
 static ::_pbi::once_flag descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto = {
-    false, false, 645, descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto,
+    false, false, 785, descriptor_table_protodef_component_2fsensor_2fv1_2fsensor_2eproto,
     "component/sensor/v1/sensor.proto",
     &descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_once, descriptor_table_component_2fsensor_2fv1_2fsensor_2eproto_deps, 2, 0,
     schemas, file_default_instances, TableStruct_component_2fsensor_2fv1_2fsensor_2eproto::offsets,
