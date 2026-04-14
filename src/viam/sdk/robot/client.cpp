@@ -446,6 +446,26 @@ std::ostream& operator<<(std::ostream& os, const RobotClient::status& v) {
     return os;
 }
 
+pose_in_frame RobotClient::get_pose(const std::string& component_name) {
+    return get_pose(component_name, "world", {}, {});
+}
+
+pose_in_frame RobotClient::get_pose(
+    const std::string& component_name,
+    const std::string& destination_frame,
+    const std::vector<WorldState::transform>& additional_transforms,
+    const ProtoStruct& extra) {
+    return impl::client_helper(impl_, &RobotService::Stub::GetPose)
+        .with([&](auto& req) {
+            req.set_component_name(component_name);
+            req.set_destination_frame(destination_frame);
+            *req.mutable_supplemental_transforms() =
+                sdk::impl::to_repeated_field(additional_transforms);
+            *req.mutable_extra() = to_proto(extra);
+        })
+        .invoke([](const auto& resp) { return from_proto(resp.pose()); });
+}
+
 RobotClient::status RobotClient::get_machine_status() const {
     return impl::client_helper(impl_, &RobotService::Stub::GetMachineStatus)
         .invoke([](const auto& resp) {
