@@ -26,14 +26,12 @@ jobs:
     with:
       run_id: ${{ github.event.workflow_run.id || inputs.run_id }}
       branch: ${{ github.event.workflow_run.head_branch || inputs.branch }}
-      install_command: 'pip install uv && make install'
-      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(uv run make format*),Bash(uv run make lint*),Bash(uv run make typecheck*),Bash(uv run make test*),Bash(uv run pytest*),Bash(uv run python -m pytest*),Bash(uv pip *),Bash(curl -s https://pypi.org/pypi/*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh api repos/*/pulls/*/comments*)'
+      container: 'debian:bookworm'
+      install_command: 'apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install build-essential ca-certificates cmake curl g++ git gnupg libboost-all-dev libc-ares-dev libgrpc++-dev libprotobuf-dev libre2-dev libssl-dev ninja-build pkg-config protobuf-compiler-grpc sudo wget zlib1g-dev && mkdir -p build && cd build && cmake .. -G Ninja -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON -DVIAMCPPSDK_BUILD_TESTS=ON -DVIAMCPPSDK_BUILD_EXAMPLES=OFF && cmake --build . --target install'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(cmake *),Bash(cmake --build *),Bash(ninja *),Bash(ctest *),Bash(make *),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh api repos/*/pulls/*/comments*)'
       team_mention: '@viamrobotics/sdk'
       extra_prompt: |
-        - Run `uv run make format` to format code before committing.
-        - Run `uv run make lint` to check for lint issues. Fix any errors.
-      extra_system_prompt: >-
-        Only run make buf to regenerate src/viam/gen/. Do NOT run other make targets unless explicitly needed.
+        - Run `cd build && ctest --output-on-failure` to verify your fix before committing. Fix any errors.
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       GIT_ACCESS_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
