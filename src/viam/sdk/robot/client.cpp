@@ -450,11 +450,10 @@ pose_in_frame RobotClient::get_pose(const std::string& component_name) {
     return get_pose(component_name, "world", {}, {});
 }
 
-pose_in_frame RobotClient::get_pose(
-    const std::string& component_name,
-    const std::string& destination_frame,
-    const std::vector<WorldState::transform>& additional_transforms,
-    const ProtoStruct& extra) {
+pose_in_frame RobotClient::get_pose(const std::string& component_name,
+                                    const std::string& destination_frame,
+                                    const std::vector<WorldState::transform>& additional_transforms,
+                                    const ProtoStruct& extra) {
     return impl::client_helper(impl_, &RobotService::Stub::GetPose)
         .with([&](auto& req) {
             req.set_component_name(component_name);
