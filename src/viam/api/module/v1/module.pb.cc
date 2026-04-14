@@ -122,7 +122,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR ReadyRequest::ReadyRequest(
     ::_pbi::ConstantInitialized)
   : parent_address_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , webrtc_offer_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , webrtc_offer_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , raw_parent_address_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct ReadyRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ReadyRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -242,6 +243,7 @@ const uint32_t TableStruct_module_2fv1_2fmodule_2eproto::offsets[] PROTOBUF_SECT
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyRequest, parent_address_),
+  PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyRequest, raw_parent_address_),
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyRequest, webrtc_offer_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::module::v1::ReadyResponse, _internal_metadata_),
@@ -278,9 +280,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 41, -1, -1, sizeof(::viam::module::v1::HandlerDefinition)},
   { 49, -1, -1, sizeof(::viam::module::v1::HandlerMap)},
   { 56, -1, -1, sizeof(::viam::module::v1::ReadyRequest)},
-  { 64, -1, -1, sizeof(::viam::module::v1::ReadyResponse)},
-  { 73, -1, -1, sizeof(::viam::module::v1::ValidateConfigRequest)},
-  { 80, -1, -1, sizeof(::viam::module::v1::ValidateConfigResponse)},
+  { 65, -1, -1, sizeof(::viam::module::v1::ReadyResponse)},
+  { 74, -1, -1, sizeof(::viam::module::v1::ValidateConfigRequest)},
+  { 81, -1, -1, sizeof(::viam::module::v1::ValidateConfigResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -314,31 +316,32 @@ const char descriptor_table_protodef_module_2fv1_2fmodule_2eproto[] PROTOBUF_SEC
   "viam.robot.v1.ResourceRPCSubtypeR\007subtyp"
   "e\022\026\n\006models\030\002 \003(\tR\006models\"K\n\nHandlerMap\022"
   "=\n\010handlers\030\001 \003(\0132!.viam.module.v1.Handl"
-  "erDefinitionR\010handlers\"X\n\014ReadyRequest\022%"
-  "\n\016parent_address\030\001 \001(\tR\rparentAddress\022!\n"
-  "\014webrtc_offer\030\002 \001(\tR\013webrtcOffer\"\206\001\n\rRea"
-  "dyResponse\022\024\n\005ready\030\001 \001(\010R\005ready\022:\n\nhand"
-  "lermap\030\002 \001(\0132\032.viam.module.v1.HandlerMap"
-  "R\nhandlermap\022#\n\rwebrtc_answer\030\003 \001(\tR\014web"
-  "rtcAnswer\"M\n\025ValidateConfigRequest\0224\n\006co"
-  "nfig\030\001 \001(\0132\034.viam.app.v1.ComponentConfig"
-  "R\006config\"q\n\026ValidateConfigResponse\022\"\n\014de"
-  "pendencies\030\001 \003(\tR\014dependencies\0223\n\025option"
-  "al_dependencies\030\002 \003(\tR\024optionalDependenc"
-  "ies2\337\003\n\rModuleService\022V\n\013AddResource\022\".v"
-  "iam.module.v1.AddResourceRequest\032#.viam."
-  "module.v1.AddResourceResponse\022n\n\023Reconfi"
-  "gureResource\022*.viam.module.v1.Reconfigur"
-  "eResourceRequest\032+.viam.module.v1.Reconf"
-  "igureResourceResponse\022_\n\016RemoveResource\022"
-  "%.viam.module.v1.RemoveResourceRequest\032&"
-  ".viam.module.v1.RemoveResourceResponse\022D"
-  "\n\005Ready\022\034.viam.module.v1.ReadyRequest\032\035."
-  "viam.module.v1.ReadyResponse\022_\n\016Validate"
-  "Config\022%.viam.module.v1.ValidateConfigRe"
-  "quest\032&.viam.module.v1.ValidateConfigRes"
-  "ponseB\033Z\031go.viam.com/api/module/v1b\006prot"
-  "o3"
+  "erDefinitionR\010handlers\"\212\001\n\014ReadyRequest\022"
+  ")\n\016parent_address\030\001 \001(\tB\002\030\001R\rparentAddre"
+  "ss\022,\n\022raw_parent_address\030\003 \001(\tR\020rawParen"
+  "tAddress\022!\n\014webrtc_offer\030\002 \001(\tR\013webrtcOf"
+  "fer\"\206\001\n\rReadyResponse\022\024\n\005ready\030\001 \001(\010R\005re"
+  "ady\022:\n\nhandlermap\030\002 \001(\0132\032.viam.module.v1"
+  ".HandlerMapR\nhandlermap\022#\n\rwebrtc_answer"
+  "\030\003 \001(\tR\014webrtcAnswer\"M\n\025ValidateConfigRe"
+  "quest\0224\n\006config\030\001 \001(\0132\034.viam.app.v1.Comp"
+  "onentConfigR\006config\"q\n\026ValidateConfigRes"
+  "ponse\022\"\n\014dependencies\030\001 \003(\tR\014dependencie"
+  "s\0223\n\025optional_dependencies\030\002 \003(\tR\024option"
+  "alDependencies2\337\003\n\rModuleService\022V\n\013AddR"
+  "esource\022\".viam.module.v1.AddResourceRequ"
+  "est\032#.viam.module.v1.AddResourceResponse"
+  "\022n\n\023ReconfigureResource\022*.viam.module.v1"
+  ".ReconfigureResourceRequest\032+.viam.modul"
+  "e.v1.ReconfigureResourceResponse\022_\n\016Remo"
+  "veResource\022%.viam.module.v1.RemoveResour"
+  "ceRequest\032&.viam.module.v1.RemoveResourc"
+  "eResponse\022D\n\005Ready\022\034.viam.module.v1.Read"
+  "yRequest\032\035.viam.module.v1.ReadyResponse\022"
+  "_\n\016ValidateConfig\022%.viam.module.v1.Valid"
+  "ateConfigRequest\032&.viam.module.v1.Valida"
+  "teConfigResponseB\033Z\031go.viam.com/api/modu"
+  "le/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_module_2fv1_2fmodule_2eproto_deps[2] = {
   &::descriptor_table_app_2fv1_2frobot_2eproto,
@@ -346,7 +349,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_module_2fv1_2fmodul
 };
 static ::_pbi::once_flag descriptor_table_module_2fv1_2fmodule_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_module_2fv1_2fmodule_2eproto = {
-    false, false, 1562, descriptor_table_protodef_module_2fv1_2fmodule_2eproto,
+    false, false, 1613, descriptor_table_protodef_module_2fv1_2fmodule_2eproto,
     "module/v1/module.proto",
     &descriptor_table_module_2fv1_2fmodule_2eproto_once, descriptor_table_module_2fv1_2fmodule_2eproto_deps, 2, 12,
     schemas, file_default_instances, TableStruct_module_2fv1_2fmodule_2eproto::offsets,
@@ -1577,6 +1580,14 @@ ReadyRequest::ReadyRequest(const ReadyRequest& from)
     webrtc_offer_.Set(from._internal_webrtc_offer(), 
       GetArenaForAllocation());
   }
+  raw_parent_address_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    raw_parent_address_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_raw_parent_address().empty()) {
+    raw_parent_address_.Set(from._internal_raw_parent_address(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:viam.module.v1.ReadyRequest)
 }
 
@@ -1588,6 +1599,10 @@ parent_address_.InitDefault();
 webrtc_offer_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   webrtc_offer_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+raw_parent_address_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  raw_parent_address_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -1604,6 +1619,7 @@ inline void ReadyRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   parent_address_.Destroy();
   webrtc_offer_.Destroy();
+  raw_parent_address_.Destroy();
 }
 
 void ReadyRequest::SetCachedSize(int size) const {
@@ -1618,6 +1634,7 @@ void ReadyRequest::Clear() {
 
   parent_address_.ClearToEmpty();
   webrtc_offer_.ClearToEmpty();
+  raw_parent_address_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1627,7 +1644,7 @@ const char* ReadyRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string parent_address = 1 [json_name = "parentAddress"];
+      // string parent_address = 1 [json_name = "parentAddress", deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           auto str = _internal_mutable_parent_address();
@@ -1644,6 +1661,16 @@ const char* ReadyRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "viam.module.v1.ReadyRequest.webrtc_offer"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string raw_parent_address = 3 [json_name = "rawParentAddress"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_raw_parent_address();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.module.v1.ReadyRequest.raw_parent_address"));
         } else
           goto handle_unusual;
         continue;
@@ -1676,7 +1703,7 @@ uint8_t* ReadyRequest::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string parent_address = 1 [json_name = "parentAddress"];
+  // string parent_address = 1 [json_name = "parentAddress", deprecated = true];
   if (!this->_internal_parent_address().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_parent_address().data(), static_cast<int>(this->_internal_parent_address().length()),
@@ -1696,6 +1723,16 @@ uint8_t* ReadyRequest::_InternalSerialize(
         2, this->_internal_webrtc_offer(), target);
   }
 
+  // string raw_parent_address = 3 [json_name = "rawParentAddress"];
+  if (!this->_internal_raw_parent_address().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_raw_parent_address().data(), static_cast<int>(this->_internal_raw_parent_address().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.module.v1.ReadyRequest.raw_parent_address");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_raw_parent_address(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1712,7 +1749,7 @@ size_t ReadyRequest::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string parent_address = 1 [json_name = "parentAddress"];
+  // string parent_address = 1 [json_name = "parentAddress", deprecated = true];
   if (!this->_internal_parent_address().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
@@ -1724,6 +1761,13 @@ size_t ReadyRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_webrtc_offer());
+  }
+
+  // string raw_parent_address = 3 [json_name = "rawParentAddress"];
+  if (!this->_internal_raw_parent_address().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_raw_parent_address());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -1754,6 +1798,9 @@ void ReadyRequest::MergeFrom(const ReadyRequest& from) {
   if (!from._internal_webrtc_offer().empty()) {
     _internal_set_webrtc_offer(from._internal_webrtc_offer());
   }
+  if (!from._internal_raw_parent_address().empty()) {
+    _internal_set_raw_parent_address(from._internal_raw_parent_address());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1780,6 +1827,10 @@ void ReadyRequest::InternalSwap(ReadyRequest* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &webrtc_offer_, lhs_arena,
       &other->webrtc_offer_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &raw_parent_address_, lhs_arena,
+      &other->raw_parent_address_, rhs_arena
   );
 }
 

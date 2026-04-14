@@ -1412,15 +1412,16 @@ class ReadyRequest final :
   enum : int {
     kParentAddressFieldNumber = 1,
     kWebrtcOfferFieldNumber = 2,
+    kRawParentAddressFieldNumber = 3,
   };
-  // string parent_address = 1 [json_name = "parentAddress"];
-  void clear_parent_address();
-  const std::string& parent_address() const;
+  // string parent_address = 1 [json_name = "parentAddress", deprecated = true];
+  PROTOBUF_DEPRECATED void clear_parent_address();
+  PROTOBUF_DEPRECATED const std::string& parent_address() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_parent_address(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_parent_address();
-  PROTOBUF_NODISCARD std::string* release_parent_address();
-  void set_allocated_parent_address(std::string* parent_address);
+  PROTOBUF_DEPRECATED void set_parent_address(ArgT0&& arg0, ArgT... args);
+  PROTOBUF_DEPRECATED std::string* mutable_parent_address();
+  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED std::string* release_parent_address();
+  PROTOBUF_DEPRECATED void set_allocated_parent_address(std::string* parent_address);
   private:
   const std::string& _internal_parent_address() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_parent_address(const std::string& value);
@@ -1441,6 +1442,20 @@ class ReadyRequest final :
   std::string* _internal_mutable_webrtc_offer();
   public:
 
+  // string raw_parent_address = 3 [json_name = "rawParentAddress"];
+  void clear_raw_parent_address();
+  const std::string& raw_parent_address() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_raw_parent_address(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_raw_parent_address();
+  PROTOBUF_NODISCARD std::string* release_raw_parent_address();
+  void set_allocated_raw_parent_address(std::string* raw_parent_address);
+  private:
+  const std::string& _internal_raw_parent_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_raw_parent_address(const std::string& value);
+  std::string* _internal_mutable_raw_parent_address();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.module.v1.ReadyRequest)
  private:
   class _Internal;
@@ -1450,6 +1465,7 @@ class ReadyRequest final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr parent_address_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr webrtc_offer_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr raw_parent_address_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_module_2fv1_2fmodule_2eproto;
 };
@@ -2581,7 +2597,7 @@ HandlerMap::handlers() const {
 
 // ReadyRequest
 
-// string parent_address = 1 [json_name = "parentAddress"];
+// string parent_address = 1 [json_name = "parentAddress", deprecated = true];
 inline void ReadyRequest::clear_parent_address() {
   parent_address_.ClearToEmpty();
 }
@@ -2629,6 +2645,56 @@ inline void ReadyRequest::set_allocated_parent_address(std::string* parent_addre
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.module.v1.ReadyRequest.parent_address)
+}
+
+// string raw_parent_address = 3 [json_name = "rawParentAddress"];
+inline void ReadyRequest::clear_raw_parent_address() {
+  raw_parent_address_.ClearToEmpty();
+}
+inline const std::string& ReadyRequest::raw_parent_address() const {
+  // @@protoc_insertion_point(field_get:viam.module.v1.ReadyRequest.raw_parent_address)
+  return _internal_raw_parent_address();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ReadyRequest::set_raw_parent_address(ArgT0&& arg0, ArgT... args) {
+ 
+ raw_parent_address_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.module.v1.ReadyRequest.raw_parent_address)
+}
+inline std::string* ReadyRequest::mutable_raw_parent_address() {
+  std::string* _s = _internal_mutable_raw_parent_address();
+  // @@protoc_insertion_point(field_mutable:viam.module.v1.ReadyRequest.raw_parent_address)
+  return _s;
+}
+inline const std::string& ReadyRequest::_internal_raw_parent_address() const {
+  return raw_parent_address_.Get();
+}
+inline void ReadyRequest::_internal_set_raw_parent_address(const std::string& value) {
+  
+  raw_parent_address_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ReadyRequest::_internal_mutable_raw_parent_address() {
+  
+  return raw_parent_address_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ReadyRequest::release_raw_parent_address() {
+  // @@protoc_insertion_point(field_release:viam.module.v1.ReadyRequest.raw_parent_address)
+  return raw_parent_address_.Release();
+}
+inline void ReadyRequest::set_allocated_raw_parent_address(std::string* raw_parent_address) {
+  if (raw_parent_address != nullptr) {
+    
+  } else {
+    
+  }
+  raw_parent_address_.SetAllocated(raw_parent_address, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (raw_parent_address_.IsDefault()) {
+    raw_parent_address_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.module.v1.ReadyRequest.raw_parent_address)
 }
 
 // string webrtc_offer = 2 [json_name = "webrtcOffer"];
