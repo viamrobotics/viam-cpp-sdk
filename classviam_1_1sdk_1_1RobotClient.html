@@ -152,6 +152,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_all</b> ()</td><
 <tr class="memitem:a5f95ba72f3142fed2b648c93ad92f3c0" id="r_a5f95ba72f3142fed2b648c93ad92f3c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f95ba72f3142fed2b648c93ad92f3c0">cancel_operation</a> (std::string id)</td></tr>
 <tr class="memdesc:a5f95ba72f3142fed2b648c93ad92f3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel a specified operation on the robot.  <br /></td></tr>
 <tr class="separator:a5f95ba72f3142fed2b648c93ad92f3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a463c98b1ba1b277085f676e0536010" id="r_a0a463c98b1ba1b277085f676e0536010"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a463c98b1ba1b277085f676e0536010">get_pose</a> (const std::string &amp;component_name)</td></tr>
+<tr class="memdesc:a0a463c98b1ba1b277085f676e0536010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of a component in the world reference frame.  <br /></td></tr>
+<tr class="separator:a0a463c98b1ba1b277085f676e0536010"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83ab534d4a209d964d76bc2142e5e0bb" id="r_a83ab534d4a209d964d76bc2142e5e0bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83ab534d4a209d964d76bc2142e5e0bb">get_pose</a> (const std::string &amp;component_name, const std::string &amp;destination_frame, const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;additional_transforms, const ProtoStruct &amp;extra)</td></tr>
+<tr class="memdesc:a83ab534d4a209d964d76bc2142e5e0bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the pose of a component in the desired reference frame.  <br /></td></tr>
+<tr class="separator:a83ab534d4a209d964d76bc2142e5e0bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7bdb85647efed14356556d341a11e3f" id="r_ad7bdb85647efed14356556d341a11e3f"><td class="memItemLeft" align="right" valign="top"><a id="ad7bdb85647efed14356556d341a11e3f" name="ad7bdb85647efed14356556d341a11e3f"></a>
 <a class="el" href="group__Robot.html#ga60fba80ad18422e881355cdc54d98f4a">status</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_machine_status</b> () const</td></tr>
 <tr class="memdesc:ad7bdb85647efed14356556d341a11e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the current status of the machine <br /></td></tr>
@@ -351,6 +357,75 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 
 <p>Get the list of operations currently running on a robot. </p>
 <dl class="section return"><dt>Returns</dt><dd>The list of operations currently running on the calling robot. </dd></dl>
+
+</div>
+</div>
+<a id="a0a463c98b1ba1b277085f676e0536010" name="a0a463c98b1ba1b277085f676e0536010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a463c98b1ba1b277085f676e0536010">&#9670;&#160;</a></span>get_pose() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> viam::sdk::RobotClient::get_pose </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>component_name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the pose of a component in the world reference frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component whose pose is being requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The pose of the component in the world frame. </dd></dl>
+
+</div>
+</div>
+<a id="a83ab534d4a209d964d76bc2142e5e0bb" name="a83ab534d4a209d964d76bc2142e5e0bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83ab534d4a209d964d76bc2142e5e0bb">&#9670;&#160;</a></span>get_pose() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structviam_1_1sdk_1_1pose__in__frame.html">pose_in_frame</a> viam::sdk::RobotClient::get_pose </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>component_name</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>destination_frame</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structviam_1_1sdk_1_1WorldState_1_1transform.html">WorldState::transform</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>additional_transforms</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the pose of a component in the desired reference frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component_name</td><td>The name of the component whose pose is being requested. </td></tr>
+    <tr><td class="paramname">destination_frame</td><td>The reference frame in which the pose should be provided. </td></tr>
+    <tr><td class="paramname">additional_transforms</td><td>Additional reference frames needed to compute the pose. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any extra parameters to pass to the method. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The pose of the component in the destination frame. </dd></dl>
 
 </div>
 </div>
