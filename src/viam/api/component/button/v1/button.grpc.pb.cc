@@ -27,6 +27,7 @@ namespace v1 {
 static const char* ButtonService_method_names[] = {
   "/viam.component.button.v1.ButtonService/Push",
   "/viam.component.button.v1.ButtonService/DoCommand",
+  "/viam.component.button.v1.ButtonService/GetStatus",
 };
 
 std::unique_ptr< ButtonService::Stub> ButtonService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -38,6 +39,7 @@ std::unique_ptr< ButtonService::Stub> ButtonService::NewStub(const std::shared_p
 ButtonService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Push_(ButtonService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DoCommand_(ButtonService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(ButtonService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status ButtonService::Stub::Push(::grpc::ClientContext* context, const ::viam::component::button::v1::PushRequest& request, ::viam::component::button::v1::PushResponse* response) {
@@ -86,6 +88,29 @@ void ButtonService::Stub::async::DoCommand(::grpc::ClientContext* context, const
   return result;
 }
 
+::grpc::Status ButtonService::Stub::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::viam::common::v1::GetStatusResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetStatus_, context, request, response);
+}
+
+void ButtonService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, std::move(f));
+}
+
+void ButtonService::Stub::async::GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetStatus_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* ButtonService::Stub::PrepareAsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::common::v1::GetStatusResponse, ::viam::common::v1::GetStatusRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetStatus_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* ButtonService::Stub::AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetStatusRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ButtonService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       ButtonService_method_names[0],
@@ -107,6 +132,16 @@ ButtonService::Service::Service() {
              ::viam::common::v1::DoCommandResponse* resp) {
                return service->DoCommand(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      ButtonService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< ButtonService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](ButtonService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::common::v1::GetStatusRequest* req,
+             ::viam::common::v1::GetStatusResponse* resp) {
+               return service->GetStatus(ctx, req, resp);
+             }, this)));
 }
 
 ButtonService::Service::~Service() {
@@ -120,6 +155,13 @@ ButtonService::Service::~Service() {
 }
 
 ::grpc::Status ButtonService::Service::DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status ButtonService::Service::GetStatus(::grpc::ServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -104,6 +104,16 @@ GantryServer::GantryServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status GantryServer::GetStatus(::grpc::ServerContext* context,
+                                       const ::viam::common::v1::GetStatusRequest* request,
+                                       ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<Gantry>(
+        "GantryServer::GetStatus", this, context, request)([&](auto&, auto& gantry) {
+        const ProtoStruct result = gantry->get_status();
+        *response->mutable_result() = to_proto(result);
+    });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

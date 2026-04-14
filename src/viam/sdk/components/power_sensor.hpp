@@ -88,6 +88,10 @@ class PowerSensor : public Component {
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the power sensor.
+    /// @return A `ProtoStruct` containing the status of the power sensor.
+    virtual ProtoStruct get_status() = 0;
+
    protected:
     explicit PowerSensor(std::string name) : Component(std::move(name)) {}
 };

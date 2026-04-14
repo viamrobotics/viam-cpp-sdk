@@ -42,6 +42,7 @@ class MLModelServiceClient : public MLModelService {
     std::shared_ptr<named_tensor_views> infer(const named_tensor_views& inputs,
                                               const ProtoStruct& extra) override;
     struct metadata metadata(const ProtoStruct& extra) override;
+    ProtoStruct get_status() override;
 
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of

@@ -7693,26 +7693,11 @@ class GetCloudMetadataResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRobotPartIdFieldNumber = 1,
     kPrimaryOrgIdFieldNumber = 2,
     kLocationIdFieldNumber = 3,
     kMachineIdFieldNumber = 4,
     kMachinePartIdFieldNumber = 5,
   };
-  // string robot_part_id = 1 [json_name = "robotPartId", deprecated = true];
-  PROTOBUF_DEPRECATED void clear_robot_part_id();
-  PROTOBUF_DEPRECATED const std::string& robot_part_id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  PROTOBUF_DEPRECATED void set_robot_part_id(ArgT0&& arg0, ArgT... args);
-  PROTOBUF_DEPRECATED std::string* mutable_robot_part_id();
-  PROTOBUF_NODISCARD PROTOBUF_DEPRECATED std::string* release_robot_part_id();
-  PROTOBUF_DEPRECATED void set_allocated_robot_part_id(std::string* robot_part_id);
-  private:
-  const std::string& _internal_robot_part_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_robot_part_id(const std::string& value);
-  std::string* _internal_mutable_robot_part_id();
-  public:
-
   // string primary_org_id = 2 [json_name = "primaryOrgId"];
   void clear_primary_org_id();
   const std::string& primary_org_id() const;
@@ -7776,7 +7761,6 @@ class GetCloudMetadataResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr robot_part_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr primary_org_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr location_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr machine_id_;
@@ -13376,56 +13360,6 @@ LogRequest::logs() const {
 // -------------------------------------------------------------------
 
 // GetCloudMetadataResponse
-
-// string robot_part_id = 1 [json_name = "robotPartId", deprecated = true];
-inline void GetCloudMetadataResponse::clear_robot_part_id() {
-  robot_part_id_.ClearToEmpty();
-}
-inline const std::string& GetCloudMetadataResponse::robot_part_id() const {
-  // @@protoc_insertion_point(field_get:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
-  return _internal_robot_part_id();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void GetCloudMetadataResponse::set_robot_part_id(ArgT0&& arg0, ArgT... args) {
- 
- robot_part_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
-}
-inline std::string* GetCloudMetadataResponse::mutable_robot_part_id() {
-  std::string* _s = _internal_mutable_robot_part_id();
-  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
-  return _s;
-}
-inline const std::string& GetCloudMetadataResponse::_internal_robot_part_id() const {
-  return robot_part_id_.Get();
-}
-inline void GetCloudMetadataResponse::_internal_set_robot_part_id(const std::string& value) {
-  
-  robot_part_id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* GetCloudMetadataResponse::_internal_mutable_robot_part_id() {
-  
-  return robot_part_id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* GetCloudMetadataResponse::release_robot_part_id() {
-  // @@protoc_insertion_point(field_release:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
-  return robot_part_id_.Release();
-}
-inline void GetCloudMetadataResponse::set_allocated_robot_part_id(std::string* robot_part_id) {
-  if (robot_part_id != nullptr) {
-    
-  } else {
-    
-  }
-  robot_part_id_.SetAllocated(robot_part_id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (robot_part_id_.IsDefault()) {
-    robot_part_id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.GetCloudMetadataResponse.robot_part_id)
-}
 
 // string primary_org_id = 2 [json_name = "primaryOrgId"];
 inline void GetCloudMetadataResponse::clear_primary_org_id() {

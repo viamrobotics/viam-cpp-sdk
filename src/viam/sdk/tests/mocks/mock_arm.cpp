@@ -57,6 +57,10 @@ bool MockArm::is_moving() {
     return false;
 }
 
+sdk::ProtoStruct MockArm::get_status() {
+    return fake_status();
+}
+
 sdk::ProtoStruct MockArm::do_command(const sdk::ProtoStruct& command) {
     return (peek_command = command);
 }

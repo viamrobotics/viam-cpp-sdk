@@ -15,6 +15,7 @@
 #include <viam/sdk/tests/mocks/mlmodel_mocks.hpp>
 
 #include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 namespace viam {
 namespace sdktests {
@@ -36,6 +37,10 @@ MockMLModelService& MockMLModelService::set_metadata(struct metadata metadata) {
 
 struct sdk::MLModelService::metadata MockMLModelService::metadata(const sdk::ProtoStruct&) {
     return metadata_;
+}
+
+sdk::ProtoStruct MockMLModelService::get_status() {
+    return fake_status();
 }
 
 }  // namespace sdktests

@@ -137,6 +137,15 @@ BOOST_AUTO_TEST_CASE(test_depth_map_encode_decode) {
         result_values.begin(), result_values.end(), expected_values.begin(), expected_values.end());
 }
 
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    std::shared_ptr<MockCamera> mock = MockCamera::get_mock_camera();
+    client_to_mock_pipeline<Camera>(mock, [](Camera& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests

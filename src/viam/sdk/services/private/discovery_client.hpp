@@ -26,6 +26,7 @@ class DiscoveryClient : public Discovery {
 
     std::vector<ResourceConfig> discover_resources(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
 
    private:
     using StubType = viam::service::discovery::v1::DiscoveryService::StubInterface;

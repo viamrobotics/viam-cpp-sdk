@@ -25,6 +25,7 @@ class GenericComponentClient : public GenericComponent {
         return *channel_;
     }
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
    protected:

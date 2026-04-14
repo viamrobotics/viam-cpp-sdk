@@ -57,9 +57,7 @@ constexpr char service_name[] = "example_mlmodelservice_tflite";
 //      with the model.
 //
 // Any additional configuration fields are ignored.
-class MLModelServiceTFLite : public vsdk::MLModelService,
-                             public vsdk::Stoppable,
-                             public vsdk::Reconfigurable {
+class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable {
     class write_to_tflite_tensor_visitor_;
 
    public:

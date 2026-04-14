@@ -120,6 +120,12 @@ extern GetReadingsResponseDefaultTypeInternal _GetReadingsResponse_default_insta
 class GetReadingsResponse_ReadingsEntry_DoNotUse;
 struct GetReadingsResponse_ReadingsEntry_DoNotUseDefaultTypeInternal;
 extern GetReadingsResponse_ReadingsEntry_DoNotUseDefaultTypeInternal _GetReadingsResponse_ReadingsEntry_DoNotUse_default_instance_;
+class GetStatusRequest;
+struct GetStatusRequestDefaultTypeInternal;
+extern GetStatusRequestDefaultTypeInternal _GetStatusRequest_default_instance_;
+class GetStatusResponse;
+struct GetStatusResponseDefaultTypeInternal;
+extern GetStatusResponseDefaultTypeInternal _GetStatusResponse_default_instance_;
 class LogEntry;
 struct LogEntryDefaultTypeInternal;
 extern LogEntryDefaultTypeInternal _LogEntry_default_instance_;
@@ -191,6 +197,8 @@ template<> ::viam::common::v1::GetPropertiesResponse* Arena::CreateMaybeMessage<
 template<> ::viam::common::v1::GetReadingsRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetReadingsRequest>(Arena*);
 template<> ::viam::common::v1::GetReadingsResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetReadingsResponse>(Arena*);
 template<> ::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse>(Arena*);
+template<> ::viam::common::v1::GetStatusRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetStatusRequest>(Arena*);
+template<> ::viam::common::v1::GetStatusResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetStatusResponse>(Arena*);
 template<> ::viam::common::v1::LogEntry* Arena::CreateMaybeMessage<::viam::common::v1::LogEntry>(Arena*);
 template<> ::viam::common::v1::Mesh* Arena::CreateMaybeMessage<::viam::common::v1::Mesh>(Arena*);
 template<> ::viam::common::v1::Orientation* Arena::CreateMaybeMessage<::viam::common::v1::Orientation>(Arena*);
@@ -4112,6 +4120,306 @@ class DoCommandResponse final :
 };
 // -------------------------------------------------------------------
 
+class GetStatusRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetStatusRequest) */ {
+ public:
+  inline GetStatusRequest() : GetStatusRequest(nullptr) {}
+  ~GetStatusRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetStatusRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetStatusRequest(const GetStatusRequest& from);
+  GetStatusRequest(GetStatusRequest&& from) noexcept
+    : GetStatusRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetStatusRequest& operator=(const GetStatusRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetStatusRequest& operator=(GetStatusRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetStatusRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetStatusRequest* internal_default_instance() {
+    return reinterpret_cast<const GetStatusRequest*>(
+               &_GetStatusRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(GetStatusRequest& a, GetStatusRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetStatusRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetStatusRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetStatusRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetStatusRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetStatusRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetStatusRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetStatusRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GetStatusRequest";
+  }
+  protected:
+  explicit GetStatusRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+  };
+  // string name = 1 [json_name = "name"];
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GetStatusRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetStatusResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetStatusResponse) */ {
+ public:
+  inline GetStatusResponse() : GetStatusResponse(nullptr) {}
+  ~GetStatusResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetStatusResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetStatusResponse(const GetStatusResponse& from);
+  GetStatusResponse(GetStatusResponse&& from) noexcept
+    : GetStatusResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetStatusResponse& operator=(const GetStatusResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetStatusResponse& operator=(GetStatusResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetStatusResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetStatusResponse* internal_default_instance() {
+    return reinterpret_cast<const GetStatusResponse*>(
+               &_GetStatusResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    23;
+
+  friend void swap(GetStatusResponse& a, GetStatusResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetStatusResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetStatusResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetStatusResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetStatusResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetStatusResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetStatusResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetStatusResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GetStatusResponse";
+  }
+  protected:
+  explicit GetStatusResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResultFieldNumber = 1,
+  };
+  // .google.protobuf.Struct result = 1 [json_name = "result"];
+  bool has_result() const;
+  private:
+  bool _internal_has_result() const;
+  public:
+  void clear_result();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& result() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_result();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_result();
+  void set_allocated_result(::PROTOBUF_NAMESPACE_ID::Struct* result);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_result() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_result();
+  public:
+  void unsafe_arena_set_allocated_result(
+      ::PROTOBUF_NAMESPACE_ID::Struct* result);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_result();
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GetStatusResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* result_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetKinematicsRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetKinematicsRequest) */ {
  public:
@@ -4160,7 +4468,7 @@ class GetKinematicsRequest final :
                &_GetKinematicsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    24;
 
   friend void swap(GetKinematicsRequest& a, GetKinematicsRequest& b) {
     a.Swap(&b);
@@ -4354,7 +4662,7 @@ class GetKinematicsResponse final :
                &_GetKinematicsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    26;
 
   friend void swap(GetKinematicsResponse& a, GetKinematicsResponse& b) {
     a.Swap(&b);
@@ -4539,7 +4847,7 @@ class GetGeometriesRequest final :
                &_GetGeometriesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    27;
 
   friend void swap(GetGeometriesRequest& a, GetGeometriesRequest& b) {
     a.Swap(&b);
@@ -4707,7 +5015,7 @@ class GetGeometriesResponse final :
                &_GetGeometriesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    28;
 
   friend void swap(GetGeometriesResponse& a, GetGeometriesResponse& b) {
     a.Swap(&b);
@@ -4859,7 +5167,7 @@ class Get3DModelsRequest final :
                &_Get3DModelsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    29;
 
   friend void swap(Get3DModelsRequest& a, Get3DModelsRequest& b) {
     a.Swap(&b);
@@ -5053,7 +5361,7 @@ class Get3DModelsResponse final :
                &_Get3DModelsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    31;
 
   friend void swap(Get3DModelsResponse& a, Get3DModelsResponse& b) {
     a.Swap(&b);
@@ -5211,7 +5519,7 @@ class GetReadingsRequest final :
                &_GetReadingsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    32;
 
   friend void swap(GetReadingsRequest& a, GetReadingsRequest& b) {
     a.Swap(&b);
@@ -5405,7 +5713,7 @@ class GetReadingsResponse final :
                &_GetReadingsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    34;
 
   friend void swap(GetReadingsResponse& a, GetReadingsResponse& b) {
     a.Swap(&b);
@@ -5563,7 +5871,7 @@ class LogEntry final :
                &_LogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    35;
 
   friend void swap(LogEntry& a, LogEntry& b) {
     a.Swap(&b);
@@ -5835,7 +6143,7 @@ class AudioInfo final :
                &_AudioInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    36;
 
   friend void swap(AudioInfo& a, AudioInfo& b) {
     a.Swap(&b);
@@ -6005,7 +6313,7 @@ class GetPropertiesRequest final :
                &_GetPropertiesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    37;
 
   friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
     a.Swap(&b);
@@ -6173,7 +6481,7 @@ class GetPropertiesResponse final :
                &_GetPropertiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    38;
 
   friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
     a.Swap(&b);
@@ -9247,6 +9555,149 @@ inline void DoCommandResponse::set_allocated_result(::PROTOBUF_NAMESPACE_ID::Str
 
 // -------------------------------------------------------------------
 
+// GetStatusRequest
+
+// string name = 1 [json_name = "name"];
+inline void GetStatusRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& GetStatusRequest::name() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetStatusRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetStatusRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.common.v1.GetStatusRequest.name)
+}
+inline std::string* GetStatusRequest::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetStatusRequest.name)
+  return _s;
+}
+inline const std::string& GetStatusRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void GetStatusRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetStatusRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetStatusRequest::release_name() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetStatusRequest.name)
+  return name_.Release();
+}
+inline void GetStatusRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (name_.IsDefault()) {
+    name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetStatusRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// GetStatusResponse
+
+// .google.protobuf.Struct result = 1 [json_name = "result"];
+inline bool GetStatusResponse::_internal_has_result() const {
+  return this != internal_default_instance() && result_ != nullptr;
+}
+inline bool GetStatusResponse::has_result() const {
+  return _internal_has_result();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetStatusResponse::_internal_result() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& GetStatusResponse::result() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetStatusResponse.result)
+  return _internal_result();
+}
+inline void GetStatusResponse::unsafe_arena_set_allocated_result(
+    ::PROTOBUF_NAMESPACE_ID::Struct* result) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(result_);
+  }
+  result_ = result;
+  if (result) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GetStatusResponse.result)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetStatusResponse::release_result() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = result_;
+  result_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetStatusResponse::unsafe_arena_release_result() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetStatusResponse.result)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = result_;
+  result_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetStatusResponse::_internal_mutable_result() {
+  
+  if (result_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    result_ = p;
+  }
+  return result_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* GetStatusResponse::mutable_result() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_result();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetStatusResponse.result)
+  return _msg;
+}
+inline void GetStatusResponse::set_allocated_result(::PROTOBUF_NAMESPACE_ID::Struct* result) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(result_);
+  }
+  if (result) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(result));
+    if (message_arena != submessage_arena) {
+      result = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, result, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  result_ = result;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetStatusResponse.result)
+}
+
+// -------------------------------------------------------------------
+
 // GetKinematicsRequest
 
 // string name = 1 [json_name = "name"];
@@ -10833,6 +11284,10 @@ inline void GetPropertiesResponse::set_num_channels(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

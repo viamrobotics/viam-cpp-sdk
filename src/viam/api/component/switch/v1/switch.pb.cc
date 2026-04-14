@@ -190,7 +190,7 @@ const char descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto[] 
   "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
   "ra\"f\n\034GetNumberOfPositionsResponse\022.\n\023nu"
   "mber_of_positions\030\001 \001(\rR\021numberOfPositio"
-  "ns\022\026\n\006labels\030\002 \003(\tR\006labels2\275\005\n\rSwitchSer"
+  "ns\022\026\n\006labels\030\002 \003(\tR\006labels2\311\006\n\rSwitchSer"
   "vice\022\251\001\n\013SetPosition\022,.viam.component.sw"
   "itch.v1.SetPositionRequest\032-.viam.compon"
   "ent.switch.v1.SetPositionResponse\"=\240\222)\001\202"
@@ -208,9 +208,12 @@ const char descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto[] 
   "mand\022 .viam.common.v1.DoCommandRequest\032!"
   ".viam.common.v1.DoCommandResponse\"7\202\323\344\223\002"
   "1\"//viam/api/v1/component/switch/{name}/"
-  "do_commandBC\n\034com.viam.component.switch."
-  "v1Z#go.viam.com/api/component/switch/v1b"
-  "\006proto3"
+  "do_command\022\211\001\n\tGetStatus\022 .viam.common.v"
+  "1.GetStatusRequest\032!.viam.common.v1.GetS"
+  "tatusResponse\"7\202\323\344\223\0021\022//viam/api/v1/comp"
+  "onent/switch/{name}/get_statusBC\n\034com.vi"
+  "am.component.switch.v1Z#go.viam.com/api/"
+  "component/switch/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -219,7 +222,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fswitch_
 };
 static ::_pbi::once_flag descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto = {
-    false, false, 1407, descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto,
+    false, false, 1547, descriptor_table_protodef_component_2fswitch_2fv1_2fswitch_2eproto,
     "component/switch/v1/switch.proto",
     &descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_once, descriptor_table_component_2fswitch_2fv1_2fswitch_2eproto_deps, 3, 6,
     schemas, file_default_instances, TableStruct_component_2fswitch_2fv1_2fswitch_2eproto::offsets,

@@ -114,7 +114,7 @@ const char descriptor_table_protodef_service_2fvideo_2fv1_2fvideo_2eproto[] PROT
   "uf.StructR\005extra\"y\n\020GetVideoResponse\022\035\n\n"
   "video_data\030\001 \001(\014R\tvideoData\022\'\n\017video_con"
   "tainer\030\002 \001(\tR\016videoContainer\022\035\n\nrequest_"
-  "id\030\003 \001(\tR\trequestId2\263\002\n\014VideoService\022\231\001\n"
+  "id\030\003 \001(\tR\trequestId2\274\003\n\014VideoService\022\231\001\n"
   "\010GetVideo\022&.viam.service.video.v1.GetVid"
   "eoRequest\032\'.viam.service.video.v1.GetVid"
   "eoResponse\":\202\323\344\223\0024\"2/viam/api/v1/service"
@@ -122,8 +122,12 @@ const char descriptor_table_protodef_service_2fvideo_2fv1_2fvideo_2eproto[] PROT
   "ommand\022 .viam.common.v1.DoCommandRequest"
   "\032!.viam.common.v1.DoCommandResponse\"4\202\323\344"
   "\223\002.\",/viam/api/v1/service/video/{name}/d"
-  "o_commandB=\n\031com.viam.service.video.v1Z "
-  "go.viam.com/api/service/video/v1b\006proto3"
+  "o_command\022\206\001\n\tGetStatus\022 .viam.common.v1"
+  ".GetStatusRequest\032!.viam.common.v1.GetSt"
+  "atusResponse\"4\202\323\344\223\002.\022,/viam/api/v1/servi"
+  "ce/video/{name}/get_statusB=\n\031com.viam.s"
+  "ervice.video.v1Z go.viam.com/api/service"
+  "/video/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvideo_2fv1_2fvideo_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -133,7 +137,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvideo_2fv
 };
 static ::_pbi::once_flag descriptor_table_service_2fvideo_2fv1_2fvideo_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fvideo_2fv1_2fvideo_2eproto = {
-    false, false, 1000, descriptor_table_protodef_service_2fvideo_2fv1_2fvideo_2eproto,
+    false, false, 1137, descriptor_table_protodef_service_2fvideo_2fv1_2fvideo_2eproto,
     "service/video/v1/video.proto",
     &descriptor_table_service_2fvideo_2fv1_2fvideo_2eproto_once, descriptor_table_service_2fvideo_2fv1_2fvideo_2eproto_deps, 4, 2,
     schemas, file_default_instances, TableStruct_service_2fvideo_2fv1_2fvideo_2eproto::offsets,

@@ -17,6 +17,10 @@ ProtoStruct MockDiscovery::do_command(const sdk::ProtoStruct& command) {
     return fake_map();
 }
 
+sdk::ProtoStruct MockDiscovery::get_status() {
+    return fake_status();
+}
+
 }  // namespace discovery
 }  // namespace sdktests
 }  // namespace viam

@@ -113,6 +113,16 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status ArmServer::GetStatus(::grpc::ServerContext* context,
+                                    const ::viam::common::v1::GetStatusRequest* request,
+                                    ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<Arm>(
+        "ArmServer::GetStatus", this, context, request)([&](auto&, auto& arm) {
+        const ProtoStruct result = arm->get_status();
+        *response->mutable_result() = to_proto(result);
+    });
+}
+
 ::grpc::Status ArmServer::GetKinematics(
     ::grpc::ServerContext* context,
     const ::viam::common::v1::GetKinematicsRequest* request,

@@ -69,6 +69,10 @@ class Switch : public Component {
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the switch.
+    /// @return A `ProtoStruct` containing the status of the switch.
+    virtual ProtoStruct get_status() = 0;
+
     API api() const override;
 
    protected:

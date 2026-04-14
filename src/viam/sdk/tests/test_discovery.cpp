@@ -36,6 +36,15 @@ BOOST_AUTO_TEST_CASE(test_do_command) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    auto mock = std::make_shared<MockDiscovery>("mock_discovery");
+    client_to_mock_pipeline<Discovery>(mock, [](Discovery& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 }  // namespace discovery
 }  // namespace sdktests
 }  // namespace viam

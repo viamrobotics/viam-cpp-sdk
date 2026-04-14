@@ -31,6 +31,10 @@ ProtoStruct MockEncoder::do_command(const ProtoStruct& command) {
     return command;
 };
 
+sdk::ProtoStruct MockEncoder::get_status() {
+    return fake_status();
+}
+
 std::shared_ptr<MockEncoder> MockEncoder::get_mock_encoder() {
     return std::make_shared<MockEncoder>("mock_encoder");
 }

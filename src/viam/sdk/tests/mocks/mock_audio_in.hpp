@@ -23,6 +23,7 @@ class MockAudioIn : public AudioIn {
     audio_properties get_properties(const sdk::ProtoStruct& extra) override;
 
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
 
     std::vector<GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 

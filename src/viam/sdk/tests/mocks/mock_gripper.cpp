@@ -43,6 +43,10 @@ std::vector<GeometryConfig> MockGripper::get_geometries(const ProtoStruct&) {
     return fake_geometries();
 }
 
+sdk::ProtoStruct MockGripper::get_status() {
+    return fake_status();
+}
+
 }  // namespace gripper
 }  // namespace sdktests
 }  // namespace viam

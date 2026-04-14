@@ -90,11 +90,11 @@ jobs:
           - target: aarch64-ubuntu-jammy-gnu
             platform: linux_aarch64-ubuntu-jammy
             image: ubuntu:22.04
-            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+            runs_on: github-linux-arm64-8core
           - target: x86_64-ubuntu-jammy-gnu
             platform: linux_x86_64-ubuntu-jammy
             image: ubuntu:22.04
-            runs_on: buildjet-8vcpu-ubuntu-2204
+            runs_on: ubuntu-large
 
     steps:
       - name: Checkout Code
@@ -150,19 +150,19 @@ jobs:
           - target: aarch64-debian-bullseye
             platform: linux_aarch64-debian-bullseye
             image: debian:bullseye
-            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+            runs_on: github-linux-arm64-8core
           - target: x86_64-debian-bullseye
             platform: linux_x86_64-debian-bullseye
             image: debian:bullseye
-            runs_on: buildjet-8vcpu-ubuntu-2204
+            runs_on: ubuntu-large
           - target: aarch64-debian-bookworm
             platform: linux_aarch64-debian-bookworm
             image: debian:bookworm
-            runs_on: buildjet-8vcpu-ubuntu-2204-arm
+            runs_on: github-linux-arm64-8core
           - target: x86_64-debian-bookworm
             platform: linux_x86_64-debian-bookworm
             image: debian:bookworm
-            runs_on: buildjet-8vcpu-ubuntu-2204
+            runs_on: ubuntu-large
 
     steps:
       - name: Checkout Code

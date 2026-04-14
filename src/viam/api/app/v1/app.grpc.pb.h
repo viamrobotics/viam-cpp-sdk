@@ -889,6 +889,55 @@ class AppService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetAppBrandingResponse>> PrepareAsyncGetAppBranding(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetAppBrandingResponse>>(PrepareAsyncGetAppBrandingRaw(context, request, cq));
     }
+    // Upload a device push token for the user.
+    virtual ::grpc::Status UploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::viam::app::v1::UploadDevicePushTokenResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UploadDevicePushTokenResponse>> AsyncUploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UploadDevicePushTokenResponse>>(AsyncUploadDevicePushTokenRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UploadDevicePushTokenResponse>> PrepareAsyncUploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UploadDevicePushTokenResponse>>(PrepareAsyncUploadDevicePushTokenRaw(context, request, cq));
+    }
+    // Delete a device push token for the user.
+    virtual ::grpc::Status DeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::viam::app::v1::DeleteDevicePushTokenResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteDevicePushTokenResponse>> AsyncDeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteDevicePushTokenResponse>>(AsyncDeleteDevicePushTokenRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteDevicePushTokenResponse>> PrepareAsyncDeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteDevicePushTokenResponse>>(PrepareAsyncDeleteDevicePushTokenRaw(context, request, cq));
+    }
+    // Gets all device push tokens for the user for the given app ID.
+    virtual ::grpc::Status GetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::viam::app::v1::GetDevicePushTokensResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetDevicePushTokensResponse>> AsyncGetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetDevicePushTokensResponse>>(AsyncGetDevicePushTokensRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetDevicePushTokensResponse>> PrepareAsyncGetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetDevicePushTokensResponse>>(PrepareAsyncGetDevicePushTokensRaw(context, request, cq));
+    }
+    // Set the Firebase config JSON for a specific app id.
+    virtual ::grpc::Status SetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::viam::app::v1::SetFirebaseConfigResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SetFirebaseConfigResponse>> AsyncSetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SetFirebaseConfigResponse>>(AsyncSetFirebaseConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SetFirebaseConfigResponse>> PrepareAsyncSetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SetFirebaseConfigResponse>>(PrepareAsyncSetFirebaseConfigRaw(context, request, cq));
+    }
+    // Read the app ID for an organization.
+    // This returns only the app_id configured for the org, not the Firebase config JSON.
+    virtual ::grpc::Status GetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::viam::app::v1::GetFirebaseConfigResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetFirebaseConfigResponse>> AsyncGetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetFirebaseConfigResponse>>(AsyncGetFirebaseConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetFirebaseConfigResponse>> PrepareAsyncGetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetFirebaseConfigResponse>>(PrepareAsyncGetFirebaseConfigRaw(context, request, cq));
+    }
+    // Deletes a Firebase config JSON for a specific app id.
+    virtual ::grpc::Status DeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::viam::app::v1::DeleteFirebaseConfigResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFirebaseConfigResponse>> AsyncDeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFirebaseConfigResponse>>(AsyncDeleteFirebaseConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFirebaseConfigResponse>> PrepareAsyncDeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFirebaseConfigResponse>>(PrepareAsyncDeleteFirebaseConfigRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -1193,6 +1242,25 @@ class AppService final {
       virtual void GetAppContent(::grpc::ClientContext* context, const ::viam::app::v1::GetAppContentRequest* request, ::viam::app::v1::GetAppContentResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetAppBranding(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetAppBranding(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Upload a device push token for the user.
+      virtual void UploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Delete a device push token for the user.
+      virtual void DeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Gets all device push tokens for the user for the given app ID.
+      virtual void GetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Set the Firebase config JSON for a specific app id.
+      virtual void SetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Read the app ID for an organization.
+      // This returns only the app_id configured for the org, not the Firebase config JSON.
+      virtual void GetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Deletes a Firebase config JSON for a specific app id.
+      virtual void DeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -1418,6 +1486,18 @@ class AppService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetAppContentResponse>* PrepareAsyncGetAppContentRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAppContentRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetAppBrandingResponse>* AsyncGetAppBrandingRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetAppBrandingResponse>* PrepareAsyncGetAppBrandingRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UploadDevicePushTokenResponse>* AsyncUploadDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::UploadDevicePushTokenResponse>* PrepareAsyncUploadDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteDevicePushTokenResponse>* AsyncDeleteDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteDevicePushTokenResponse>* PrepareAsyncDeleteDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetDevicePushTokensResponse>* AsyncGetDevicePushTokensRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetDevicePushTokensResponse>* PrepareAsyncGetDevicePushTokensRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SetFirebaseConfigResponse>* AsyncSetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::SetFirebaseConfigResponse>* PrepareAsyncSetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetFirebaseConfigResponse>* AsyncGetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetFirebaseConfigResponse>* PrepareAsyncGetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFirebaseConfigResponse>* AsyncDeleteFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteFirebaseConfigResponse>* PrepareAsyncDeleteFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -2189,6 +2269,48 @@ class AppService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAppBrandingResponse>> PrepareAsyncGetAppBranding(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAppBrandingResponse>>(PrepareAsyncGetAppBrandingRaw(context, request, cq));
     }
+    ::grpc::Status UploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::viam::app::v1::UploadDevicePushTokenResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UploadDevicePushTokenResponse>> AsyncUploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UploadDevicePushTokenResponse>>(AsyncUploadDevicePushTokenRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UploadDevicePushTokenResponse>> PrepareAsyncUploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UploadDevicePushTokenResponse>>(PrepareAsyncUploadDevicePushTokenRaw(context, request, cq));
+    }
+    ::grpc::Status DeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::viam::app::v1::DeleteDevicePushTokenResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteDevicePushTokenResponse>> AsyncDeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteDevicePushTokenResponse>>(AsyncDeleteDevicePushTokenRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteDevicePushTokenResponse>> PrepareAsyncDeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteDevicePushTokenResponse>>(PrepareAsyncDeleteDevicePushTokenRaw(context, request, cq));
+    }
+    ::grpc::Status GetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::viam::app::v1::GetDevicePushTokensResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetDevicePushTokensResponse>> AsyncGetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetDevicePushTokensResponse>>(AsyncGetDevicePushTokensRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetDevicePushTokensResponse>> PrepareAsyncGetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetDevicePushTokensResponse>>(PrepareAsyncGetDevicePushTokensRaw(context, request, cq));
+    }
+    ::grpc::Status SetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::viam::app::v1::SetFirebaseConfigResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFirebaseConfigResponse>> AsyncSetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFirebaseConfigResponse>>(AsyncSetFirebaseConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFirebaseConfigResponse>> PrepareAsyncSetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFirebaseConfigResponse>>(PrepareAsyncSetFirebaseConfigRaw(context, request, cq));
+    }
+    ::grpc::Status GetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::viam::app::v1::GetFirebaseConfigResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFirebaseConfigResponse>> AsyncGetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFirebaseConfigResponse>>(AsyncGetFirebaseConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFirebaseConfigResponse>> PrepareAsyncGetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFirebaseConfigResponse>>(PrepareAsyncGetFirebaseConfigRaw(context, request, cq));
+    }
+    ::grpc::Status DeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::viam::app::v1::DeleteFirebaseConfigResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFirebaseConfigResponse>> AsyncDeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFirebaseConfigResponse>>(AsyncDeleteFirebaseConfigRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFirebaseConfigResponse>> PrepareAsyncDeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFirebaseConfigResponse>>(PrepareAsyncDeleteFirebaseConfigRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -2408,6 +2530,18 @@ class AppService final {
       void GetAppContent(::grpc::ClientContext* context, const ::viam::app::v1::GetAppContentRequest* request, ::viam::app::v1::GetAppContentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetAppBranding(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response, std::function<void(::grpc::Status)>) override;
       void GetAppBranding(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response, std::function<void(::grpc::Status)>) override;
+      void UploadDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeleteDevicePushToken(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetDevicePushTokens(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeleteFirebaseConfig(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -2639,6 +2773,18 @@ class AppService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAppContentResponse>* PrepareAsyncGetAppContentRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAppContentRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAppBrandingResponse>* AsyncGetAppBrandingRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetAppBrandingResponse>* PrepareAsyncGetAppBrandingRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetAppBrandingRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UploadDevicePushTokenResponse>* AsyncUploadDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::UploadDevicePushTokenResponse>* PrepareAsyncUploadDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteDevicePushTokenResponse>* AsyncDeleteDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteDevicePushTokenResponse>* PrepareAsyncDeleteDevicePushTokenRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetDevicePushTokensResponse>* AsyncGetDevicePushTokensRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetDevicePushTokensResponse>* PrepareAsyncGetDevicePushTokensRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetDevicePushTokensRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFirebaseConfigResponse>* AsyncSetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::SetFirebaseConfigResponse>* PrepareAsyncSetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::SetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFirebaseConfigResponse>* AsyncGetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetFirebaseConfigResponse>* PrepareAsyncGetFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFirebaseConfigResponse>* AsyncDeleteFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteFirebaseConfigResponse>* PrepareAsyncDeleteFirebaseConfigRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetUserIDByEmail_;
     const ::grpc::internal::RpcMethod rpcmethod_CreateOrganization_;
     const ::grpc::internal::RpcMethod rpcmethod_ListOrganizations_;
@@ -2748,6 +2894,12 @@ class AppService final {
     const ::grpc::internal::RpcMethod rpcmethod_CreateKeyFromExistingKeyAuthorizations_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAppContent_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAppBranding_;
+    const ::grpc::internal::RpcMethod rpcmethod_UploadDevicePushToken_;
+    const ::grpc::internal::RpcMethod rpcmethod_DeleteDevicePushToken_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetDevicePushTokens_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetFirebaseConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetFirebaseConfig_;
+    const ::grpc::internal::RpcMethod rpcmethod_DeleteFirebaseConfig_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -2949,6 +3101,19 @@ class AppService final {
     virtual ::grpc::Status CreateKeyFromExistingKeyAuthorizations(::grpc::ServerContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response);
     virtual ::grpc::Status GetAppContent(::grpc::ServerContext* context, const ::viam::app::v1::GetAppContentRequest* request, ::viam::app::v1::GetAppContentResponse* response);
     virtual ::grpc::Status GetAppBranding(::grpc::ServerContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response);
+    // Upload a device push token for the user.
+    virtual ::grpc::Status UploadDevicePushToken(::grpc::ServerContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response);
+    // Delete a device push token for the user.
+    virtual ::grpc::Status DeleteDevicePushToken(::grpc::ServerContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response);
+    // Gets all device push tokens for the user for the given app ID.
+    virtual ::grpc::Status GetDevicePushTokens(::grpc::ServerContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response);
+    // Set the Firebase config JSON for a specific app id.
+    virtual ::grpc::Status SetFirebaseConfig(::grpc::ServerContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response);
+    // Read the app ID for an organization.
+    // This returns only the app_id configured for the org, not the Firebase config JSON.
+    virtual ::grpc::Status GetFirebaseConfig(::grpc::ServerContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response);
+    // Deletes a Firebase config JSON for a specific app id.
+    virtual ::grpc::Status DeleteFirebaseConfig(::grpc::ServerContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetUserIDByEmail : public BaseClass {
@@ -5130,7 +5295,127 @@ class AppService final {
       ::grpc::Service::RequestAsyncUnary(108, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetUserIDByEmail<WithAsyncMethod_CreateOrganization<WithAsyncMethod_ListOrganizations<WithAsyncMethod_GetOrganizationsWithAccessToLocation<WithAsyncMethod_ListOrganizationsByUser<WithAsyncMethod_SearchOrganizations<WithAsyncMethod_GetOrganization<WithAsyncMethod_GetOrganizationNamespaceAvailability<WithAsyncMethod_UpdateOrganization<WithAsyncMethod_UpdateOrganizationNamespace<WithAsyncMethod_DeleteOrganization<WithAsyncMethod_GetOrganizationMetadata<WithAsyncMethod_UpdateOrganizationMetadata<WithAsyncMethod_ListOrganizationMembers<WithAsyncMethod_CreateOrganizationInvite<WithAsyncMethod_UpdateOrganizationInviteAuthorizations<WithAsyncMethod_DeleteOrganizationMember<WithAsyncMethod_DeleteOrganizationInvite<WithAsyncMethod_ResendOrganizationInvite<WithAsyncMethod_EnableBillingService<WithAsyncMethod_DisableBillingService<WithAsyncMethod_UpdateBillingService<WithAsyncMethod_GetBillingServiceConfig<WithAsyncMethod_OrganizationSetSupportEmail<WithAsyncMethod_OrganizationGetSupportEmail<WithAsyncMethod_OrganizationSetLogo<WithAsyncMethod_OrganizationGetLogo<WithAsyncMethod_EnableAuthService<WithAsyncMethod_DisableAuthService<WithAsyncMethod_CreateOAuthApp<WithAsyncMethod_ReadOAuthApp<WithAsyncMethod_UpdateOAuthApp<WithAsyncMethod_DeleteOAuthApp<WithAsyncMethod_ListOAuthApps<WithAsyncMethod_CreateLocation<WithAsyncMethod_GetLocation<WithAsyncMethod_UpdateLocation<WithAsyncMethod_DeleteLocation<WithAsyncMethod_GetLocationMetadata<WithAsyncMethod_UpdateLocationMetadata<WithAsyncMethod_ListLocations<WithAsyncMethod_ShareLocation<WithAsyncMethod_UnshareLocation<WithAsyncMethod_LocationAuth<WithAsyncMethod_CreateLocationSecret<WithAsyncMethod_DeleteLocationSecret<WithAsyncMethod_GetRobot<WithAsyncMethod_GetRobotMetadata<WithAsyncMethod_UpdateRobotMetadata<WithAsyncMethod_GetRoverRentalRobots<WithAsyncMethod_GetRobotParts<WithAsyncMethod_GetRobotPart<WithAsyncMethod_GetRobotPartByNameAndLocation<WithAsyncMethod_GetRobotPartLogs<WithAsyncMethod_TailRobotPartLogs<WithAsyncMethod_GetRobotPartHistory<WithAsyncMethod_UpdateRobotPart<WithAsyncMethod_NewRobotPart<WithAsyncMethod_DeleteRobotPart<WithAsyncMethod_GetRobotPartMetadata<WithAsyncMethod_UpdateRobotPartMetadata<WithAsyncMethod_GetRobotAPIKeys<WithAsyncMethod_MarkPartAsMain<WithAsyncMethod_MarkPartForRestart<WithAsyncMethod_CreateRobotPartSecret<WithAsyncMethod_DeleteRobotPartSecret<WithAsyncMethod_ListRobots<WithAsyncMethod_ListRobotsForLocations<WithAsyncMethod_ListRobotsForOrg<WithAsyncMethod_NewRobot<WithAsyncMethod_UpdateRobot<WithAsyncMethod_DeleteRobot<WithAsyncMethod_ListFragments<WithAsyncMethod_GetFragment<WithAsyncMethod_CreateFragment<WithAsyncMethod_UpdateFragment<WithAsyncMethod_DeleteFragment<WithAsyncMethod_ListNestedFragments<WithAsyncMethod_ListMachineFragments<WithAsyncMethod_ListMachineSummaries<WithAsyncMethod_GetFragmentHistory<WithAsyncMethod_GetFragmentUsage<WithAsyncMethod_SetFragmentTag<WithAsyncMethod_DeleteFragmentTag<WithAsyncMethod_AddRole<WithAsyncMethod_RemoveRole<WithAsyncMethod_ChangeRole<WithAsyncMethod_ListAuthorizations<WithAsyncMethod_CheckPermissions<WithAsyncMethod_GetRegistryItem<WithAsyncMethod_CreateRegistryItem<WithAsyncMethod_UpdateRegistryItem<WithAsyncMethod_ListRegistryItems<WithAsyncMethod_DeleteRegistryItem<WithAsyncMethod_RenameRegistryItem<WithAsyncMethod_TransferRegistryItem<WithAsyncMethod_CreateModule<WithAsyncMethod_UpdateModule<WithAsyncMethod_UploadModuleFile<WithAsyncMethod_GetModule<WithAsyncMethod_ListModules<WithAsyncMethod_CreateKey<WithAsyncMethod_DeleteKey<WithAsyncMethod_ListKeys<WithAsyncMethod_RenameKey<WithAsyncMethod_RotateKey<WithAsyncMethod_CreateKeyFromExistingKeyAuthorizations<WithAsyncMethod_GetAppContent<WithAsyncMethod_GetAppBranding<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_UploadDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_UploadDevicePushToken() {
+      ::grpc::Service::MarkMethodAsync(109);
+    }
+    ~WithAsyncMethod_UploadDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UploadDevicePushTokenRequest* /*request*/, ::viam::app::v1::UploadDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUploadDevicePushToken(::grpc::ServerContext* context, ::viam::app::v1::UploadDevicePushTokenRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UploadDevicePushTokenResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(109, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DeleteDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DeleteDevicePushToken() {
+      ::grpc::Service::MarkMethodAsync(110);
+    }
+    ~WithAsyncMethod_DeleteDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteDevicePushTokenRequest* /*request*/, ::viam::app::v1::DeleteDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteDevicePushToken(::grpc::ServerContext* context, ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteDevicePushTokenResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(110, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetDevicePushTokens : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetDevicePushTokens() {
+      ::grpc::Service::MarkMethodAsync(111);
+    }
+    ~WithAsyncMethod_GetDevicePushTokens() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetDevicePushTokens(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetDevicePushTokensRequest* /*request*/, ::viam::app::v1::GetDevicePushTokensResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetDevicePushTokens(::grpc::ServerContext* context, ::viam::app::v1::GetDevicePushTokensRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetDevicePushTokensResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(111, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetFirebaseConfig() {
+      ::grpc::Service::MarkMethodAsync(112);
+    }
+    ~WithAsyncMethod_SetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SetFirebaseConfigRequest* /*request*/, ::viam::app::v1::SetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetFirebaseConfig(::grpc::ServerContext* context, ::viam::app::v1::SetFirebaseConfigRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::SetFirebaseConfigResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(112, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetFirebaseConfig() {
+      ::grpc::Service::MarkMethodAsync(113);
+    }
+    ~WithAsyncMethod_GetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetFirebaseConfigRequest* /*request*/, ::viam::app::v1::GetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetFirebaseConfig(::grpc::ServerContext* context, ::viam::app::v1::GetFirebaseConfigRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetFirebaseConfigResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(113, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DeleteFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DeleteFirebaseConfig() {
+      ::grpc::Service::MarkMethodAsync(114);
+    }
+    ~WithAsyncMethod_DeleteFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteFirebaseConfigRequest* /*request*/, ::viam::app::v1::DeleteFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteFirebaseConfig(::grpc::ServerContext* context, ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteFirebaseConfigResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(114, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetUserIDByEmail<WithAsyncMethod_CreateOrganization<WithAsyncMethod_ListOrganizations<WithAsyncMethod_GetOrganizationsWithAccessToLocation<WithAsyncMethod_ListOrganizationsByUser<WithAsyncMethod_SearchOrganizations<WithAsyncMethod_GetOrganization<WithAsyncMethod_GetOrganizationNamespaceAvailability<WithAsyncMethod_UpdateOrganization<WithAsyncMethod_UpdateOrganizationNamespace<WithAsyncMethod_DeleteOrganization<WithAsyncMethod_GetOrganizationMetadata<WithAsyncMethod_UpdateOrganizationMetadata<WithAsyncMethod_ListOrganizationMembers<WithAsyncMethod_CreateOrganizationInvite<WithAsyncMethod_UpdateOrganizationInviteAuthorizations<WithAsyncMethod_DeleteOrganizationMember<WithAsyncMethod_DeleteOrganizationInvite<WithAsyncMethod_ResendOrganizationInvite<WithAsyncMethod_EnableBillingService<WithAsyncMethod_DisableBillingService<WithAsyncMethod_UpdateBillingService<WithAsyncMethod_GetBillingServiceConfig<WithAsyncMethod_OrganizationSetSupportEmail<WithAsyncMethod_OrganizationGetSupportEmail<WithAsyncMethod_OrganizationSetLogo<WithAsyncMethod_OrganizationGetLogo<WithAsyncMethod_EnableAuthService<WithAsyncMethod_DisableAuthService<WithAsyncMethod_CreateOAuthApp<WithAsyncMethod_ReadOAuthApp<WithAsyncMethod_UpdateOAuthApp<WithAsyncMethod_DeleteOAuthApp<WithAsyncMethod_ListOAuthApps<WithAsyncMethod_CreateLocation<WithAsyncMethod_GetLocation<WithAsyncMethod_UpdateLocation<WithAsyncMethod_DeleteLocation<WithAsyncMethod_GetLocationMetadata<WithAsyncMethod_UpdateLocationMetadata<WithAsyncMethod_ListLocations<WithAsyncMethod_ShareLocation<WithAsyncMethod_UnshareLocation<WithAsyncMethod_LocationAuth<WithAsyncMethod_CreateLocationSecret<WithAsyncMethod_DeleteLocationSecret<WithAsyncMethod_GetRobot<WithAsyncMethod_GetRobotMetadata<WithAsyncMethod_UpdateRobotMetadata<WithAsyncMethod_GetRoverRentalRobots<WithAsyncMethod_GetRobotParts<WithAsyncMethod_GetRobotPart<WithAsyncMethod_GetRobotPartByNameAndLocation<WithAsyncMethod_GetRobotPartLogs<WithAsyncMethod_TailRobotPartLogs<WithAsyncMethod_GetRobotPartHistory<WithAsyncMethod_UpdateRobotPart<WithAsyncMethod_NewRobotPart<WithAsyncMethod_DeleteRobotPart<WithAsyncMethod_GetRobotPartMetadata<WithAsyncMethod_UpdateRobotPartMetadata<WithAsyncMethod_GetRobotAPIKeys<WithAsyncMethod_MarkPartAsMain<WithAsyncMethod_MarkPartForRestart<WithAsyncMethod_CreateRobotPartSecret<WithAsyncMethod_DeleteRobotPartSecret<WithAsyncMethod_ListRobots<WithAsyncMethod_ListRobotsForLocations<WithAsyncMethod_ListRobotsForOrg<WithAsyncMethod_NewRobot<WithAsyncMethod_UpdateRobot<WithAsyncMethod_DeleteRobot<WithAsyncMethod_ListFragments<WithAsyncMethod_GetFragment<WithAsyncMethod_CreateFragment<WithAsyncMethod_UpdateFragment<WithAsyncMethod_DeleteFragment<WithAsyncMethod_ListNestedFragments<WithAsyncMethod_ListMachineFragments<WithAsyncMethod_ListMachineSummaries<WithAsyncMethod_GetFragmentHistory<WithAsyncMethod_GetFragmentUsage<WithAsyncMethod_SetFragmentTag<WithAsyncMethod_DeleteFragmentTag<WithAsyncMethod_AddRole<WithAsyncMethod_RemoveRole<WithAsyncMethod_ChangeRole<WithAsyncMethod_ListAuthorizations<WithAsyncMethod_CheckPermissions<WithAsyncMethod_GetRegistryItem<WithAsyncMethod_CreateRegistryItem<WithAsyncMethod_UpdateRegistryItem<WithAsyncMethod_ListRegistryItems<WithAsyncMethod_DeleteRegistryItem<WithAsyncMethod_RenameRegistryItem<WithAsyncMethod_TransferRegistryItem<WithAsyncMethod_CreateModule<WithAsyncMethod_UpdateModule<WithAsyncMethod_UploadModuleFile<WithAsyncMethod_GetModule<WithAsyncMethod_ListModules<WithAsyncMethod_CreateKey<WithAsyncMethod_DeleteKey<WithAsyncMethod_ListKeys<WithAsyncMethod_RenameKey<WithAsyncMethod_RotateKey<WithAsyncMethod_CreateKeyFromExistingKeyAuthorizations<WithAsyncMethod_GetAppContent<WithAsyncMethod_GetAppBranding<WithAsyncMethod_UploadDevicePushToken<WithAsyncMethod_DeleteDevicePushToken<WithAsyncMethod_GetDevicePushTokens<WithAsyncMethod_SetFirebaseConfig<WithAsyncMethod_GetFirebaseConfig<WithAsyncMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetUserIDByEmail : public BaseClass {
    private:
@@ -8064,7 +8349,169 @@ class AppService final {
     virtual ::grpc::ServerUnaryReactor* GetAppBranding(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetAppBrandingRequest* /*request*/, ::viam::app::v1::GetAppBrandingResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetUserIDByEmail<WithCallbackMethod_CreateOrganization<WithCallbackMethod_ListOrganizations<WithCallbackMethod_GetOrganizationsWithAccessToLocation<WithCallbackMethod_ListOrganizationsByUser<WithCallbackMethod_SearchOrganizations<WithCallbackMethod_GetOrganization<WithCallbackMethod_GetOrganizationNamespaceAvailability<WithCallbackMethod_UpdateOrganization<WithCallbackMethod_UpdateOrganizationNamespace<WithCallbackMethod_DeleteOrganization<WithCallbackMethod_GetOrganizationMetadata<WithCallbackMethod_UpdateOrganizationMetadata<WithCallbackMethod_ListOrganizationMembers<WithCallbackMethod_CreateOrganizationInvite<WithCallbackMethod_UpdateOrganizationInviteAuthorizations<WithCallbackMethod_DeleteOrganizationMember<WithCallbackMethod_DeleteOrganizationInvite<WithCallbackMethod_ResendOrganizationInvite<WithCallbackMethod_EnableBillingService<WithCallbackMethod_DisableBillingService<WithCallbackMethod_UpdateBillingService<WithCallbackMethod_GetBillingServiceConfig<WithCallbackMethod_OrganizationSetSupportEmail<WithCallbackMethod_OrganizationGetSupportEmail<WithCallbackMethod_OrganizationSetLogo<WithCallbackMethod_OrganizationGetLogo<WithCallbackMethod_EnableAuthService<WithCallbackMethod_DisableAuthService<WithCallbackMethod_CreateOAuthApp<WithCallbackMethod_ReadOAuthApp<WithCallbackMethod_UpdateOAuthApp<WithCallbackMethod_DeleteOAuthApp<WithCallbackMethod_ListOAuthApps<WithCallbackMethod_CreateLocation<WithCallbackMethod_GetLocation<WithCallbackMethod_UpdateLocation<WithCallbackMethod_DeleteLocation<WithCallbackMethod_GetLocationMetadata<WithCallbackMethod_UpdateLocationMetadata<WithCallbackMethod_ListLocations<WithCallbackMethod_ShareLocation<WithCallbackMethod_UnshareLocation<WithCallbackMethod_LocationAuth<WithCallbackMethod_CreateLocationSecret<WithCallbackMethod_DeleteLocationSecret<WithCallbackMethod_GetRobot<WithCallbackMethod_GetRobotMetadata<WithCallbackMethod_UpdateRobotMetadata<WithCallbackMethod_GetRoverRentalRobots<WithCallbackMethod_GetRobotParts<WithCallbackMethod_GetRobotPart<WithCallbackMethod_GetRobotPartByNameAndLocation<WithCallbackMethod_GetRobotPartLogs<WithCallbackMethod_TailRobotPartLogs<WithCallbackMethod_GetRobotPartHistory<WithCallbackMethod_UpdateRobotPart<WithCallbackMethod_NewRobotPart<WithCallbackMethod_DeleteRobotPart<WithCallbackMethod_GetRobotPartMetadata<WithCallbackMethod_UpdateRobotPartMetadata<WithCallbackMethod_GetRobotAPIKeys<WithCallbackMethod_MarkPartAsMain<WithCallbackMethod_MarkPartForRestart<WithCallbackMethod_CreateRobotPartSecret<WithCallbackMethod_DeleteRobotPartSecret<WithCallbackMethod_ListRobots<WithCallbackMethod_ListRobotsForLocations<WithCallbackMethod_ListRobotsForOrg<WithCallbackMethod_NewRobot<WithCallbackMethod_UpdateRobot<WithCallbackMethod_DeleteRobot<WithCallbackMethod_ListFragments<WithCallbackMethod_GetFragment<WithCallbackMethod_CreateFragment<WithCallbackMethod_UpdateFragment<WithCallbackMethod_DeleteFragment<WithCallbackMethod_ListNestedFragments<WithCallbackMethod_ListMachineFragments<WithCallbackMethod_ListMachineSummaries<WithCallbackMethod_GetFragmentHistory<WithCallbackMethod_GetFragmentUsage<WithCallbackMethod_SetFragmentTag<WithCallbackMethod_DeleteFragmentTag<WithCallbackMethod_AddRole<WithCallbackMethod_RemoveRole<WithCallbackMethod_ChangeRole<WithCallbackMethod_ListAuthorizations<WithCallbackMethod_CheckPermissions<WithCallbackMethod_GetRegistryItem<WithCallbackMethod_CreateRegistryItem<WithCallbackMethod_UpdateRegistryItem<WithCallbackMethod_ListRegistryItems<WithCallbackMethod_DeleteRegistryItem<WithCallbackMethod_RenameRegistryItem<WithCallbackMethod_TransferRegistryItem<WithCallbackMethod_CreateModule<WithCallbackMethod_UpdateModule<WithCallbackMethod_UploadModuleFile<WithCallbackMethod_GetModule<WithCallbackMethod_ListModules<WithCallbackMethod_CreateKey<WithCallbackMethod_DeleteKey<WithCallbackMethod_ListKeys<WithCallbackMethod_RenameKey<WithCallbackMethod_RotateKey<WithCallbackMethod_CreateKeyFromExistingKeyAuthorizations<WithCallbackMethod_GetAppContent<WithCallbackMethod_GetAppBranding<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_UploadDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UploadDevicePushToken() {
+      ::grpc::Service::MarkMethodCallback(109,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response) { return this->UploadDevicePushToken(context, request, response); }));}
+    void SetMessageAllocatorFor_UploadDevicePushToken(
+        ::grpc::MessageAllocator< ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(109);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_UploadDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UploadDevicePushTokenRequest* /*request*/, ::viam::app::v1::UploadDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UploadDevicePushToken(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::UploadDevicePushTokenRequest* /*request*/, ::viam::app::v1::UploadDevicePushTokenResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DeleteDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DeleteDevicePushToken() {
+      ::grpc::Service::MarkMethodCallback(110,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response) { return this->DeleteDevicePushToken(context, request, response); }));}
+    void SetMessageAllocatorFor_DeleteDevicePushToken(
+        ::grpc::MessageAllocator< ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(110);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DeleteDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteDevicePushTokenRequest* /*request*/, ::viam::app::v1::DeleteDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteDevicePushToken(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::DeleteDevicePushTokenRequest* /*request*/, ::viam::app::v1::DeleteDevicePushTokenResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetDevicePushTokens : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetDevicePushTokens() {
+      ::grpc::Service::MarkMethodCallback(111,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response) { return this->GetDevicePushTokens(context, request, response); }));}
+    void SetMessageAllocatorFor_GetDevicePushTokens(
+        ::grpc::MessageAllocator< ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(111);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetDevicePushTokens() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetDevicePushTokens(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetDevicePushTokensRequest* /*request*/, ::viam::app::v1::GetDevicePushTokensResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetDevicePushTokens(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetDevicePushTokensRequest* /*request*/, ::viam::app::v1::GetDevicePushTokensResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetFirebaseConfig() {
+      ::grpc::Service::MarkMethodCallback(112,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response) { return this->SetFirebaseConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_SetFirebaseConfig(
+        ::grpc::MessageAllocator< ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(112);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SetFirebaseConfigRequest* /*request*/, ::viam::app::v1::SetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetFirebaseConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::SetFirebaseConfigRequest* /*request*/, ::viam::app::v1::SetFirebaseConfigResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetFirebaseConfig() {
+      ::grpc::Service::MarkMethodCallback(113,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response) { return this->GetFirebaseConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_GetFirebaseConfig(
+        ::grpc::MessageAllocator< ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(113);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetFirebaseConfigRequest* /*request*/, ::viam::app::v1::GetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetFirebaseConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::GetFirebaseConfigRequest* /*request*/, ::viam::app::v1::GetFirebaseConfigResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DeleteFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DeleteFirebaseConfig() {
+      ::grpc::Service::MarkMethodCallback(114,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response) { return this->DeleteFirebaseConfig(context, request, response); }));}
+    void SetMessageAllocatorFor_DeleteFirebaseConfig(
+        ::grpc::MessageAllocator< ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(114);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DeleteFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteFirebaseConfigRequest* /*request*/, ::viam::app::v1::DeleteFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteFirebaseConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::DeleteFirebaseConfigRequest* /*request*/, ::viam::app::v1::DeleteFirebaseConfigResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_GetUserIDByEmail<WithCallbackMethod_CreateOrganization<WithCallbackMethod_ListOrganizations<WithCallbackMethod_GetOrganizationsWithAccessToLocation<WithCallbackMethod_ListOrganizationsByUser<WithCallbackMethod_SearchOrganizations<WithCallbackMethod_GetOrganization<WithCallbackMethod_GetOrganizationNamespaceAvailability<WithCallbackMethod_UpdateOrganization<WithCallbackMethod_UpdateOrganizationNamespace<WithCallbackMethod_DeleteOrganization<WithCallbackMethod_GetOrganizationMetadata<WithCallbackMethod_UpdateOrganizationMetadata<WithCallbackMethod_ListOrganizationMembers<WithCallbackMethod_CreateOrganizationInvite<WithCallbackMethod_UpdateOrganizationInviteAuthorizations<WithCallbackMethod_DeleteOrganizationMember<WithCallbackMethod_DeleteOrganizationInvite<WithCallbackMethod_ResendOrganizationInvite<WithCallbackMethod_EnableBillingService<WithCallbackMethod_DisableBillingService<WithCallbackMethod_UpdateBillingService<WithCallbackMethod_GetBillingServiceConfig<WithCallbackMethod_OrganizationSetSupportEmail<WithCallbackMethod_OrganizationGetSupportEmail<WithCallbackMethod_OrganizationSetLogo<WithCallbackMethod_OrganizationGetLogo<WithCallbackMethod_EnableAuthService<WithCallbackMethod_DisableAuthService<WithCallbackMethod_CreateOAuthApp<WithCallbackMethod_ReadOAuthApp<WithCallbackMethod_UpdateOAuthApp<WithCallbackMethod_DeleteOAuthApp<WithCallbackMethod_ListOAuthApps<WithCallbackMethod_CreateLocation<WithCallbackMethod_GetLocation<WithCallbackMethod_UpdateLocation<WithCallbackMethod_DeleteLocation<WithCallbackMethod_GetLocationMetadata<WithCallbackMethod_UpdateLocationMetadata<WithCallbackMethod_ListLocations<WithCallbackMethod_ShareLocation<WithCallbackMethod_UnshareLocation<WithCallbackMethod_LocationAuth<WithCallbackMethod_CreateLocationSecret<WithCallbackMethod_DeleteLocationSecret<WithCallbackMethod_GetRobot<WithCallbackMethod_GetRobotMetadata<WithCallbackMethod_UpdateRobotMetadata<WithCallbackMethod_GetRoverRentalRobots<WithCallbackMethod_GetRobotParts<WithCallbackMethod_GetRobotPart<WithCallbackMethod_GetRobotPartByNameAndLocation<WithCallbackMethod_GetRobotPartLogs<WithCallbackMethod_TailRobotPartLogs<WithCallbackMethod_GetRobotPartHistory<WithCallbackMethod_UpdateRobotPart<WithCallbackMethod_NewRobotPart<WithCallbackMethod_DeleteRobotPart<WithCallbackMethod_GetRobotPartMetadata<WithCallbackMethod_UpdateRobotPartMetadata<WithCallbackMethod_GetRobotAPIKeys<WithCallbackMethod_MarkPartAsMain<WithCallbackMethod_MarkPartForRestart<WithCallbackMethod_CreateRobotPartSecret<WithCallbackMethod_DeleteRobotPartSecret<WithCallbackMethod_ListRobots<WithCallbackMethod_ListRobotsForLocations<WithCallbackMethod_ListRobotsForOrg<WithCallbackMethod_NewRobot<WithCallbackMethod_UpdateRobot<WithCallbackMethod_DeleteRobot<WithCallbackMethod_ListFragments<WithCallbackMethod_GetFragment<WithCallbackMethod_CreateFragment<WithCallbackMethod_UpdateFragment<WithCallbackMethod_DeleteFragment<WithCallbackMethod_ListNestedFragments<WithCallbackMethod_ListMachineFragments<WithCallbackMethod_ListMachineSummaries<WithCallbackMethod_GetFragmentHistory<WithCallbackMethod_GetFragmentUsage<WithCallbackMethod_SetFragmentTag<WithCallbackMethod_DeleteFragmentTag<WithCallbackMethod_AddRole<WithCallbackMethod_RemoveRole<WithCallbackMethod_ChangeRole<WithCallbackMethod_ListAuthorizations<WithCallbackMethod_CheckPermissions<WithCallbackMethod_GetRegistryItem<WithCallbackMethod_CreateRegistryItem<WithCallbackMethod_UpdateRegistryItem<WithCallbackMethod_ListRegistryItems<WithCallbackMethod_DeleteRegistryItem<WithCallbackMethod_RenameRegistryItem<WithCallbackMethod_TransferRegistryItem<WithCallbackMethod_CreateModule<WithCallbackMethod_UpdateModule<WithCallbackMethod_UploadModuleFile<WithCallbackMethod_GetModule<WithCallbackMethod_ListModules<WithCallbackMethod_CreateKey<WithCallbackMethod_DeleteKey<WithCallbackMethod_ListKeys<WithCallbackMethod_RenameKey<WithCallbackMethod_RotateKey<WithCallbackMethod_CreateKeyFromExistingKeyAuthorizations<WithCallbackMethod_GetAppContent<WithCallbackMethod_GetAppBranding<WithCallbackMethod_UploadDevicePushToken<WithCallbackMethod_DeleteDevicePushToken<WithCallbackMethod_GetDevicePushTokens<WithCallbackMethod_SetFirebaseConfig<WithCallbackMethod_GetFirebaseConfig<WithCallbackMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetUserIDByEmail : public BaseClass {
@@ -9915,6 +10362,108 @@ class AppService final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetAppBranding(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetAppBrandingRequest* /*request*/, ::viam::app::v1::GetAppBrandingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UploadDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UploadDevicePushToken() {
+      ::grpc::Service::MarkMethodGeneric(109);
+    }
+    ~WithGenericMethod_UploadDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UploadDevicePushTokenRequest* /*request*/, ::viam::app::v1::UploadDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DeleteDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DeleteDevicePushToken() {
+      ::grpc::Service::MarkMethodGeneric(110);
+    }
+    ~WithGenericMethod_DeleteDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteDevicePushTokenRequest* /*request*/, ::viam::app::v1::DeleteDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetDevicePushTokens : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetDevicePushTokens() {
+      ::grpc::Service::MarkMethodGeneric(111);
+    }
+    ~WithGenericMethod_GetDevicePushTokens() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetDevicePushTokens(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetDevicePushTokensRequest* /*request*/, ::viam::app::v1::GetDevicePushTokensResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetFirebaseConfig() {
+      ::grpc::Service::MarkMethodGeneric(112);
+    }
+    ~WithGenericMethod_SetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SetFirebaseConfigRequest* /*request*/, ::viam::app::v1::SetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetFirebaseConfig() {
+      ::grpc::Service::MarkMethodGeneric(113);
+    }
+    ~WithGenericMethod_GetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetFirebaseConfigRequest* /*request*/, ::viam::app::v1::GetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DeleteFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DeleteFirebaseConfig() {
+      ::grpc::Service::MarkMethodGeneric(114);
+    }
+    ~WithGenericMethod_DeleteFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteFirebaseConfigRequest* /*request*/, ::viam::app::v1::DeleteFirebaseConfigResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -12097,6 +12646,126 @@ class AppService final {
     }
     void RequestGetAppBranding(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(108, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_UploadDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_UploadDevicePushToken() {
+      ::grpc::Service::MarkMethodRaw(109);
+    }
+    ~WithRawMethod_UploadDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UploadDevicePushTokenRequest* /*request*/, ::viam::app::v1::UploadDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUploadDevicePushToken(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(109, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DeleteDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DeleteDevicePushToken() {
+      ::grpc::Service::MarkMethodRaw(110);
+    }
+    ~WithRawMethod_DeleteDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteDevicePushTokenRequest* /*request*/, ::viam::app::v1::DeleteDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteDevicePushToken(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(110, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetDevicePushTokens : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetDevicePushTokens() {
+      ::grpc::Service::MarkMethodRaw(111);
+    }
+    ~WithRawMethod_GetDevicePushTokens() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetDevicePushTokens(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetDevicePushTokensRequest* /*request*/, ::viam::app::v1::GetDevicePushTokensResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetDevicePushTokens(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(111, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetFirebaseConfig() {
+      ::grpc::Service::MarkMethodRaw(112);
+    }
+    ~WithRawMethod_SetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SetFirebaseConfigRequest* /*request*/, ::viam::app::v1::SetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetFirebaseConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(112, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetFirebaseConfig() {
+      ::grpc::Service::MarkMethodRaw(113);
+    }
+    ~WithRawMethod_GetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetFirebaseConfigRequest* /*request*/, ::viam::app::v1::GetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetFirebaseConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(113, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DeleteFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DeleteFirebaseConfig() {
+      ::grpc::Service::MarkMethodRaw(114);
+    }
+    ~WithRawMethod_DeleteFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteFirebaseConfigRequest* /*request*/, ::viam::app::v1::DeleteFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteFirebaseConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(114, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -14495,6 +15164,138 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetAppBranding(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UploadDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UploadDevicePushToken() {
+      ::grpc::Service::MarkMethodRawCallback(109,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UploadDevicePushToken(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_UploadDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UploadDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UploadDevicePushTokenRequest* /*request*/, ::viam::app::v1::UploadDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UploadDevicePushToken(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DeleteDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DeleteDevicePushToken() {
+      ::grpc::Service::MarkMethodRawCallback(110,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteDevicePushToken(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DeleteDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteDevicePushTokenRequest* /*request*/, ::viam::app::v1::DeleteDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteDevicePushToken(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetDevicePushTokens : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetDevicePushTokens() {
+      ::grpc::Service::MarkMethodRawCallback(111,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDevicePushTokens(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetDevicePushTokens() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetDevicePushTokens(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetDevicePushTokensRequest* /*request*/, ::viam::app::v1::GetDevicePushTokensResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetDevicePushTokens(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetFirebaseConfig() {
+      ::grpc::Service::MarkMethodRawCallback(112,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetFirebaseConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SetFirebaseConfigRequest* /*request*/, ::viam::app::v1::SetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetFirebaseConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetFirebaseConfig() {
+      ::grpc::Service::MarkMethodRawCallback(113,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetFirebaseConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetFirebaseConfigRequest* /*request*/, ::viam::app::v1::GetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetFirebaseConfig(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DeleteFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DeleteFirebaseConfig() {
+      ::grpc::Service::MarkMethodRawCallback(114,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteFirebaseConfig(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DeleteFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteFirebaseConfigRequest* /*request*/, ::viam::app::v1::DeleteFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteFirebaseConfig(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -17386,7 +18187,169 @@ class AppService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetAppBranding(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetAppBrandingRequest,::viam::app::v1::GetAppBrandingResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetUserIDByEmail<WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganizationsWithAccessToLocation<WithStreamedUnaryMethod_ListOrganizationsByUser<WithStreamedUnaryMethod_SearchOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_GetOrganizationNamespaceAvailability<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_UpdateOrganizationNamespace<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_GetOrganizationMetadata<WithStreamedUnaryMethod_UpdateOrganizationMetadata<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_UpdateOrganizationInviteAuthorizations<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_EnableBillingService<WithStreamedUnaryMethod_DisableBillingService<WithStreamedUnaryMethod_UpdateBillingService<WithStreamedUnaryMethod_GetBillingServiceConfig<WithStreamedUnaryMethod_OrganizationSetSupportEmail<WithStreamedUnaryMethod_OrganizationGetSupportEmail<WithStreamedUnaryMethod_OrganizationSetLogo<WithStreamedUnaryMethod_OrganizationGetLogo<WithStreamedUnaryMethod_EnableAuthService<WithStreamedUnaryMethod_DisableAuthService<WithStreamedUnaryMethod_CreateOAuthApp<WithStreamedUnaryMethod_ReadOAuthApp<WithStreamedUnaryMethod_UpdateOAuthApp<WithStreamedUnaryMethod_DeleteOAuthApp<WithStreamedUnaryMethod_ListOAuthApps<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_GetLocationMetadata<WithStreamedUnaryMethod_UpdateLocationMetadata<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRobotMetadata<WithStreamedUnaryMethod_UpdateRobotMetadata<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartByNameAndLocation<WithStreamedUnaryMethod_GetRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_GetRobotPartMetadata<WithStreamedUnaryMethod_UpdateRobotPartMetadata<WithStreamedUnaryMethod_GetRobotAPIKeys<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_ListRobotsForLocations<WithStreamedUnaryMethod_ListRobotsForOrg<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_ListNestedFragments<WithStreamedUnaryMethod_ListMachineFragments<WithStreamedUnaryMethod_ListMachineSummaries<WithStreamedUnaryMethod_GetFragmentHistory<WithStreamedUnaryMethod_GetFragmentUsage<WithStreamedUnaryMethod_SetFragmentTag<WithStreamedUnaryMethod_DeleteFragmentTag<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ChangeRole<WithStreamedUnaryMethod_ListAuthorizations<WithStreamedUnaryMethod_CheckPermissions<WithStreamedUnaryMethod_GetRegistryItem<WithStreamedUnaryMethod_CreateRegistryItem<WithStreamedUnaryMethod_UpdateRegistryItem<WithStreamedUnaryMethod_ListRegistryItems<WithStreamedUnaryMethod_DeleteRegistryItem<WithStreamedUnaryMethod_RenameRegistryItem<WithStreamedUnaryMethod_TransferRegistryItem<WithStreamedUnaryMethod_CreateModule<WithStreamedUnaryMethod_UpdateModule<WithStreamedUnaryMethod_GetModule<WithStreamedUnaryMethod_ListModules<WithStreamedUnaryMethod_CreateKey<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_RenameKey<WithStreamedUnaryMethod_RotateKey<WithStreamedUnaryMethod_CreateKeyFromExistingKeyAuthorizations<WithStreamedUnaryMethod_GetAppContent<WithStreamedUnaryMethod_GetAppBranding<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UploadDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UploadDevicePushToken() {
+      ::grpc::Service::MarkMethodStreamed(109,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse>* streamer) {
+                       return this->StreamedUploadDevicePushToken(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_UploadDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UploadDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::UploadDevicePushTokenRequest* /*request*/, ::viam::app::v1::UploadDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUploadDevicePushToken(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::UploadDevicePushTokenRequest,::viam::app::v1::UploadDevicePushTokenResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DeleteDevicePushToken : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DeleteDevicePushToken() {
+      ::grpc::Service::MarkMethodStreamed(110,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse>* streamer) {
+                       return this->StreamedDeleteDevicePushToken(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DeleteDevicePushToken() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DeleteDevicePushToken(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteDevicePushTokenRequest* /*request*/, ::viam::app::v1::DeleteDevicePushTokenResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDeleteDevicePushToken(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::DeleteDevicePushTokenRequest,::viam::app::v1::DeleteDevicePushTokenResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetDevicePushTokens : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetDevicePushTokens() {
+      ::grpc::Service::MarkMethodStreamed(111,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse>* streamer) {
+                       return this->StreamedGetDevicePushTokens(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetDevicePushTokens() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetDevicePushTokens(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetDevicePushTokensRequest* /*request*/, ::viam::app::v1::GetDevicePushTokensResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetDevicePushTokens(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetDevicePushTokensRequest,::viam::app::v1::GetDevicePushTokensResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetFirebaseConfig() {
+      ::grpc::Service::MarkMethodStreamed(112,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse>* streamer) {
+                       return this->StreamedSetFirebaseConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::SetFirebaseConfigRequest* /*request*/, ::viam::app::v1::SetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetFirebaseConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::SetFirebaseConfigRequest,::viam::app::v1::SetFirebaseConfigResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetFirebaseConfig() {
+      ::grpc::Service::MarkMethodStreamed(113,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse>* streamer) {
+                       return this->StreamedGetFirebaseConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::GetFirebaseConfigRequest* /*request*/, ::viam::app::v1::GetFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetFirebaseConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::GetFirebaseConfigRequest,::viam::app::v1::GetFirebaseConfigResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DeleteFirebaseConfig : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DeleteFirebaseConfig() {
+      ::grpc::Service::MarkMethodStreamed(114,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse>* streamer) {
+                       return this->StreamedDeleteFirebaseConfig(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DeleteFirebaseConfig() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DeleteFirebaseConfig(::grpc::ServerContext* /*context*/, const ::viam::app::v1::DeleteFirebaseConfigRequest* /*request*/, ::viam::app::v1::DeleteFirebaseConfigResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDeleteFirebaseConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::DeleteFirebaseConfigRequest,::viam::app::v1::DeleteFirebaseConfigResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetUserIDByEmail<WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganizationsWithAccessToLocation<WithStreamedUnaryMethod_ListOrganizationsByUser<WithStreamedUnaryMethod_SearchOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_GetOrganizationNamespaceAvailability<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_UpdateOrganizationNamespace<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_GetOrganizationMetadata<WithStreamedUnaryMethod_UpdateOrganizationMetadata<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_UpdateOrganizationInviteAuthorizations<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_EnableBillingService<WithStreamedUnaryMethod_DisableBillingService<WithStreamedUnaryMethod_UpdateBillingService<WithStreamedUnaryMethod_GetBillingServiceConfig<WithStreamedUnaryMethod_OrganizationSetSupportEmail<WithStreamedUnaryMethod_OrganizationGetSupportEmail<WithStreamedUnaryMethod_OrganizationSetLogo<WithStreamedUnaryMethod_OrganizationGetLogo<WithStreamedUnaryMethod_EnableAuthService<WithStreamedUnaryMethod_DisableAuthService<WithStreamedUnaryMethod_CreateOAuthApp<WithStreamedUnaryMethod_ReadOAuthApp<WithStreamedUnaryMethod_UpdateOAuthApp<WithStreamedUnaryMethod_DeleteOAuthApp<WithStreamedUnaryMethod_ListOAuthApps<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_GetLocationMetadata<WithStreamedUnaryMethod_UpdateLocationMetadata<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRobotMetadata<WithStreamedUnaryMethod_UpdateRobotMetadata<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartByNameAndLocation<WithStreamedUnaryMethod_GetRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_GetRobotPartMetadata<WithStreamedUnaryMethod_UpdateRobotPartMetadata<WithStreamedUnaryMethod_GetRobotAPIKeys<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_ListRobotsForLocations<WithStreamedUnaryMethod_ListRobotsForOrg<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_ListNestedFragments<WithStreamedUnaryMethod_ListMachineFragments<WithStreamedUnaryMethod_ListMachineSummaries<WithStreamedUnaryMethod_GetFragmentHistory<WithStreamedUnaryMethod_GetFragmentUsage<WithStreamedUnaryMethod_SetFragmentTag<WithStreamedUnaryMethod_DeleteFragmentTag<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ChangeRole<WithStreamedUnaryMethod_ListAuthorizations<WithStreamedUnaryMethod_CheckPermissions<WithStreamedUnaryMethod_GetRegistryItem<WithStreamedUnaryMethod_CreateRegistryItem<WithStreamedUnaryMethod_UpdateRegistryItem<WithStreamedUnaryMethod_ListRegistryItems<WithStreamedUnaryMethod_DeleteRegistryItem<WithStreamedUnaryMethod_RenameRegistryItem<WithStreamedUnaryMethod_TransferRegistryItem<WithStreamedUnaryMethod_CreateModule<WithStreamedUnaryMethod_UpdateModule<WithStreamedUnaryMethod_GetModule<WithStreamedUnaryMethod_ListModules<WithStreamedUnaryMethod_CreateKey<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_RenameKey<WithStreamedUnaryMethod_RotateKey<WithStreamedUnaryMethod_CreateKeyFromExistingKeyAuthorizations<WithStreamedUnaryMethod_GetAppContent<WithStreamedUnaryMethod_GetAppBranding<WithStreamedUnaryMethod_UploadDevicePushToken<WithStreamedUnaryMethod_DeleteDevicePushToken<WithStreamedUnaryMethod_GetDevicePushTokens<WithStreamedUnaryMethod_SetFirebaseConfig<WithStreamedUnaryMethod_GetFirebaseConfig<WithStreamedUnaryMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_TailRobotPartLogs : public BaseClass {
    private:
@@ -17415,7 +18378,7 @@ class AppService final {
     virtual ::grpc::Status StreamedTailRobotPartLogs(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::v1::TailRobotPartLogsRequest,::viam::app::v1::TailRobotPartLogsResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_TailRobotPartLogs<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetUserIDByEmail<WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganizationsWithAccessToLocation<WithStreamedUnaryMethod_ListOrganizationsByUser<WithStreamedUnaryMethod_SearchOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_GetOrganizationNamespaceAvailability<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_UpdateOrganizationNamespace<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_GetOrganizationMetadata<WithStreamedUnaryMethod_UpdateOrganizationMetadata<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_UpdateOrganizationInviteAuthorizations<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_EnableBillingService<WithStreamedUnaryMethod_DisableBillingService<WithStreamedUnaryMethod_UpdateBillingService<WithStreamedUnaryMethod_GetBillingServiceConfig<WithStreamedUnaryMethod_OrganizationSetSupportEmail<WithStreamedUnaryMethod_OrganizationGetSupportEmail<WithStreamedUnaryMethod_OrganizationSetLogo<WithStreamedUnaryMethod_OrganizationGetLogo<WithStreamedUnaryMethod_EnableAuthService<WithStreamedUnaryMethod_DisableAuthService<WithStreamedUnaryMethod_CreateOAuthApp<WithStreamedUnaryMethod_ReadOAuthApp<WithStreamedUnaryMethod_UpdateOAuthApp<WithStreamedUnaryMethod_DeleteOAuthApp<WithStreamedUnaryMethod_ListOAuthApps<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_GetLocationMetadata<WithStreamedUnaryMethod_UpdateLocationMetadata<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRobotMetadata<WithStreamedUnaryMethod_UpdateRobotMetadata<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartByNameAndLocation<WithStreamedUnaryMethod_GetRobotPartLogs<WithSplitStreamingMethod_TailRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_GetRobotPartMetadata<WithStreamedUnaryMethod_UpdateRobotPartMetadata<WithStreamedUnaryMethod_GetRobotAPIKeys<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_ListRobotsForLocations<WithStreamedUnaryMethod_ListRobotsForOrg<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_ListNestedFragments<WithStreamedUnaryMethod_ListMachineFragments<WithStreamedUnaryMethod_ListMachineSummaries<WithStreamedUnaryMethod_GetFragmentHistory<WithStreamedUnaryMethod_GetFragmentUsage<WithStreamedUnaryMethod_SetFragmentTag<WithStreamedUnaryMethod_DeleteFragmentTag<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ChangeRole<WithStreamedUnaryMethod_ListAuthorizations<WithStreamedUnaryMethod_CheckPermissions<WithStreamedUnaryMethod_GetRegistryItem<WithStreamedUnaryMethod_CreateRegistryItem<WithStreamedUnaryMethod_UpdateRegistryItem<WithStreamedUnaryMethod_ListRegistryItems<WithStreamedUnaryMethod_DeleteRegistryItem<WithStreamedUnaryMethod_RenameRegistryItem<WithStreamedUnaryMethod_TransferRegistryItem<WithStreamedUnaryMethod_CreateModule<WithStreamedUnaryMethod_UpdateModule<WithStreamedUnaryMethod_GetModule<WithStreamedUnaryMethod_ListModules<WithStreamedUnaryMethod_CreateKey<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_RenameKey<WithStreamedUnaryMethod_RotateKey<WithStreamedUnaryMethod_CreateKeyFromExistingKeyAuthorizations<WithStreamedUnaryMethod_GetAppContent<WithStreamedUnaryMethod_GetAppBranding<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetUserIDByEmail<WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganizationsWithAccessToLocation<WithStreamedUnaryMethod_ListOrganizationsByUser<WithStreamedUnaryMethod_SearchOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_GetOrganizationNamespaceAvailability<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_UpdateOrganizationNamespace<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_GetOrganizationMetadata<WithStreamedUnaryMethod_UpdateOrganizationMetadata<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_UpdateOrganizationInviteAuthorizations<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_EnableBillingService<WithStreamedUnaryMethod_DisableBillingService<WithStreamedUnaryMethod_UpdateBillingService<WithStreamedUnaryMethod_GetBillingServiceConfig<WithStreamedUnaryMethod_OrganizationSetSupportEmail<WithStreamedUnaryMethod_OrganizationGetSupportEmail<WithStreamedUnaryMethod_OrganizationSetLogo<WithStreamedUnaryMethod_OrganizationGetLogo<WithStreamedUnaryMethod_EnableAuthService<WithStreamedUnaryMethod_DisableAuthService<WithStreamedUnaryMethod_CreateOAuthApp<WithStreamedUnaryMethod_ReadOAuthApp<WithStreamedUnaryMethod_UpdateOAuthApp<WithStreamedUnaryMethod_DeleteOAuthApp<WithStreamedUnaryMethod_ListOAuthApps<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_GetLocationMetadata<WithStreamedUnaryMethod_UpdateLocationMetadata<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRobotMetadata<WithStreamedUnaryMethod_UpdateRobotMetadata<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartByNameAndLocation<WithStreamedUnaryMethod_GetRobotPartLogs<WithSplitStreamingMethod_TailRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_GetRobotPartMetadata<WithStreamedUnaryMethod_UpdateRobotPartMetadata<WithStreamedUnaryMethod_GetRobotAPIKeys<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_ListRobotsForLocations<WithStreamedUnaryMethod_ListRobotsForOrg<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_ListNestedFragments<WithStreamedUnaryMethod_ListMachineFragments<WithStreamedUnaryMethod_ListMachineSummaries<WithStreamedUnaryMethod_GetFragmentHistory<WithStreamedUnaryMethod_GetFragmentUsage<WithStreamedUnaryMethod_SetFragmentTag<WithStreamedUnaryMethod_DeleteFragmentTag<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ChangeRole<WithStreamedUnaryMethod_ListAuthorizations<WithStreamedUnaryMethod_CheckPermissions<WithStreamedUnaryMethod_GetRegistryItem<WithStreamedUnaryMethod_CreateRegistryItem<WithStreamedUnaryMethod_UpdateRegistryItem<WithStreamedUnaryMethod_ListRegistryItems<WithStreamedUnaryMethod_DeleteRegistryItem<WithStreamedUnaryMethod_RenameRegistryItem<WithStreamedUnaryMethod_TransferRegistryItem<WithStreamedUnaryMethod_CreateModule<WithStreamedUnaryMethod_UpdateModule<WithStreamedUnaryMethod_GetModule<WithStreamedUnaryMethod_ListModules<WithStreamedUnaryMethod_CreateKey<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_RenameKey<WithStreamedUnaryMethod_RotateKey<WithStreamedUnaryMethod_CreateKeyFromExistingKeyAuthorizations<WithStreamedUnaryMethod_GetAppContent<WithStreamedUnaryMethod_GetAppBranding<WithStreamedUnaryMethod_UploadDevicePushToken<WithStreamedUnaryMethod_DeleteDevicePushToken<WithStreamedUnaryMethod_GetDevicePushTokens<WithStreamedUnaryMethod_SetFirebaseConfig<WithStreamedUnaryMethod_GetFirebaseConfig<WithStreamedUnaryMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 // Users
 

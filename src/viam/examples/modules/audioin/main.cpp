@@ -17,22 +17,28 @@
 #include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 
 using namespace viam::sdk;
 
 // Implements an AudioIn component that generates a sine wave for testing
-class SineWaveAudioIn : public AudioIn, public Reconfigurable {
+class SineWaveAudioIn : public AudioIn {
    public:
     SineWaveAudioIn(const ResourceConfig& cfg) : AudioIn(cfg.name()) {
-        this->reconfigure({}, cfg);
+        auto itr = cfg.attributes().find("frequency");
+        if (itr != cfg.attributes().end()) {
+            const double* freq = itr->second.get<double>();
+            if (freq) {
+                frequency_ = *freq;
+            }
+        }
     }
 
     static std::vector<std::string> validate(const ResourceConfig&);
 
-    void reconfigure(const Dependencies&, const ResourceConfig&) override;
-
     ProtoStruct do_command(const ProtoStruct&) override;
+    ProtoStruct get_status() override {
+        return {};
+    }
 
     std::vector<GeometryConfig> get_geometries(const ProtoStruct&) override {
         throw Exception("method not supported");
@@ -71,16 +77,6 @@ std::vector<std::string> SineWaveAudioIn::validate(const ResourceConfig& cfg) {
         }
     }
     return {};
-}
-
-void SineWaveAudioIn::reconfigure(const Dependencies&, const ResourceConfig& cfg) {
-    auto itr = cfg.attributes().find("frequency");
-    if (itr != cfg.attributes().end()) {
-        const double* freq = itr->second.get<double>();
-        if (freq) {
-            frequency_ = *freq;
-        }
-    }
 }
 
 ProtoStruct SineWaveAudioIn::do_command(const ProtoStruct& command) {
