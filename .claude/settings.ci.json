@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(file_path=.github/**)",
+      "Write(file_path=.github/**)",
+      "Edit(file_path=src/viam/api/**)",
+      "Write(file_path=src/viam/api/**)",
+      "Edit(file_path=Makefile)",
+      "Write(file_path=Makefile)"
+    ]
+  }
+}

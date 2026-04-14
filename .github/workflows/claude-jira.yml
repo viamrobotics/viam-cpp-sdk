@@ -1,0 +1,76 @@
+name: Claude Jira Implementation
+
+# Triggered by Jira webhook via middleware that calls GitHub repository_dispatch API.
+# Expected payload:
+#   curl -X POST -H "Authorization: token $GITHUB_PAT" \
+#     https://api.github.com/repos/viamrobotics/viam-cpp-sdk/dispatches \
+#     -d '{
+#       "event_type": "jira-ticket",
+#       "client_payload": {
+#         "ticket_id": "SDK-123",
+#         "summary": "...",
+#         "description": "...",
+#         "task_complexity": "medium",
+#         "assignee": "John Doe",
+#         "assignee_email": "jdoe@viam.com"
+#       }
+#     }'
+
+on:
+  repository_dispatch:
+    types: [jira-ticket]
+  workflow_dispatch:
+    inputs:
+      ticket_id:
+        description: 'Jira ticket ID (e.g., SDK-123)'
+        required: true
+      summary:
+        description: 'Ticket summary'
+        required: true
+      description:
+        description: 'Ticket description'
+        required: true
+      task_complexity:
+        description: 'Task complexity: small (100 turns), medium (150), large (200)'
+        required: false
+        default: 'small'
+        type: choice
+        options:
+          - small
+          - medium
+          - large
+      assignee:
+        description: 'Atlassian display name of the responsible engineer (e.g., "John Doe")'
+        required: false
+        default: ''
+      assignee_email:
+        description: 'Atlassian email of the responsible engineer'
+        required: false
+        default: ''
+
+jobs:
+  call-jira:
+    # viamrobotics/claude-ci-workflows@v1.17.3
+    uses: viamrobotics/claude-ci-workflows/.github/workflows/claude-jira.yml@3ad96b0ccbb5ee0d7e2cde98653fae0c453e68bb
+    with:
+      ticket_id: ${{ github.event.client_payload.ticket_id || inputs.ticket_id }}
+      summary: ${{ github.event.client_payload.summary || inputs.summary }}
+      description: ${{ github.event.client_payload.description || inputs.description }}
+      container: 'debian:bookworm'
+      install_command: 'apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install build-essential ca-certificates cmake curl g++ git gnupg libboost-all-dev libc-ares-dev libgrpc++-dev libprotobuf-dev libre2-dev libssl-dev ninja-build pkg-config protobuf-compiler-grpc software-properties-common sudo wget zlib1g-dev && bash -c "wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -" && apt-add-repository -y "deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main" && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install -t llvm-toolchain-bookworm-15 clang-15 clang-tidy-15 clang-format && mkdir -p build && cd build && cmake .. -G Ninja -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON -DVIAMCPPSDK_BUILD_TESTS=ON -DVIAMCPPSDK_BUILD_EXAMPLES=OFF -DVIAMCPPSDK_CLANG_TIDY=ON && cmake --build . --target install'
+      allowed_tools: 'Edit,Read,Write,Glob,Grep,Bash(cmake *),Bash(cmake --build *),Bash(ninja *),Bash(ctest *),Bash(make *),Bash(./bin/run-clang-format*),Bash(git config *),Bash(git add *),Bash(git commit *),Bash(git push *),Bash(git status*),Bash(git diff*),Bash(git -C * diff*),Bash(git log*),Bash(git checkout *),Bash(git branch *),Bash(git rev-parse *),Bash(git fetch *),Bash(gh pr create*),Bash(gh pr view*),Bash(gh pr diff*),Bash(gh api repos/*/pulls/*/comments*)'
+      task_complexity: ${{ github.event.client_payload.task_complexity || inputs.task_complexity || 'small' }}
+      assignee: ${{ github.event.client_payload.assignee || inputs.assignee || '' }}
+      assignee_email: ${{ github.event.client_payload.assignee_email || inputs.assignee_email || '' }}
+      jira_base_url: 'https://viam.atlassian.net'
+      jira_user_email: 'ale.paredes@viam.com'
+      extra_prompt: |
+        - Run `./bin/run-clang-format.sh` to format code before committing.
+        - Run `cd build && ctest --output-on-failure` to verify your changes before committing. Fix any errors.
+      show_full_output: true
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      CI_GITHUB_APP_ID: ${{ secrets.CI_GITHUB_APP_ID }}
+      CI_GITHUB_APP_PRIVATE_KEY: ${{ secrets.CI_GITHUB_APP_PRIVATE_KEY }}
+      SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL: ${{ secrets.SLACK_AI_WORKFLOW_ALERT_WEBHOOK_URL }}
+      JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
