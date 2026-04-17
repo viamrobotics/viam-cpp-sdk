@@ -152,7 +152,7 @@ void LogManager::init_logging() {
                                  boost::log::attributes::make_constant(module_tag{}));
 
     boost::log::core::get()->add_global_attribute("TimeStamp",
-                                                  boost::log::attributes::local_clock());
+                                                  boost::log::attributes::utc_clock());
 
     const boost::log::formatter fmt =
         boost::log::expressions::stream
