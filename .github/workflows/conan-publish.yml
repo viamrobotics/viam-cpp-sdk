@@ -89,7 +89,7 @@ jobs:
       fail-fast: false
       matrix:
         runner: [ubuntu-large, github-linux-arm64-8core]
-        image: [ubuntu:22.04, debian:bookworm]
+        image: [ubuntu:22.04, debian:bookworm, debian:bullseye]
     runs-on: ${{ matrix.runner }}
     container:
       image: ${{ matrix.image }}
@@ -142,6 +142,14 @@ jobs:
       if: matrix.image == 'debian:bookworm'
       run: DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install cmake
 
+    - name: Install cmake (bullseye)
+      if: matrix.image == 'debian:bullseye'
+      run: |
+        apt-get install -y software-properties-common
+        apt-add-repository -y 'deb https://archive.debian.org/debian bullseye-backports main'
+        apt-get update
+        apt-get -y --no-install-recommends install -t bullseye-backports cmake
+
     - name: Set up python/conan
       env:
         CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
@@ -156,6 +164,13 @@ jobs:
         conan profile detect
         conan remote add viamconan $CONAN_REMOTE_URL
         conan remote auth --force -cc core:non_interactive=True viamconan
+
+    - name: Pre-install b2 (bullseye)
+      if: matrix.image == 'debian:bullseye'
+      run: |
+        . ./conan_venv/bin/activate
+        conan install -r conancenter --update \
+        --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s:a compiler.cppstd=17
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
