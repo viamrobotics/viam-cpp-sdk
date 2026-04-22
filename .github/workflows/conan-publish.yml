@@ -180,7 +180,7 @@ jobs:
       run: |
         cat > ~/.conan2/profiles/default << 'EOF'
         [settings]
-        arch=armv8
+        arch={{detect_api.detect_arch()}}
         build_type=Release
         compiler=clang
         compiler.cppstd=20
