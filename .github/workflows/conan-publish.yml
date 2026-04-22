@@ -88,7 +88,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: [ubuntu-large]
+        runner: [ubuntu-large, github-linux-arm64-8core]
         image: [debian:bullseye]
     runs-on: ${{ matrix.runner }}
     container:
