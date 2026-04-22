@@ -195,12 +195,12 @@ jobs:
         boost/*:without_cobalt=True
         EOF
 
-    # - name: Pre-install b2 (bullseye)
-    #   if: matrix.image == 'debian:bullseye'
-    #   run: |
-    #     . ./conan_venv/bin/activate
-    #     conan install -r conancenter --update \
-    #     --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s:a compiler.cppstd=17
+    - name: Pre-install b2 (bullseye)
+      if: matrix.image == 'debian:bullseye'
+      run: |
+        . ./conan_venv/bin/activate
+        conan install -r conancenter --update \
+        --tool-requires=b2/5.4.2 --build=b2/5.4.2 -s:a compiler.cppstd=20 --lockfile etc/conan/conan.lock
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
