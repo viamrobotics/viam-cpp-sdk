@@ -1,4 +1,5 @@
 #include <viam/sdk/rpc/dial.hpp>
+#include <viam/sdk/app/app_client.hpp>
 
 namespace viam {
 namespace sdk {
@@ -15,10 +16,15 @@ class ViamClient {
 
     const ViamChannel& channel() const;
 
+    /// @brief Get the AppClient for interacting with the Viam App API.
+    /// @return A reference to the AppClient.
+    AppClient& app_client() const;
+
    private:
     ViamClient(ViamChannel channel);
 
     ViamChannel channel_;
+    std::shared_ptr<AppClient> app_client_;
 };
 
 }  // namespace sdk
