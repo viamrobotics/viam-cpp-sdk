@@ -150,6 +150,16 @@ jobs:
         apt-get update
         apt-get -y --no-install-recommends install -t bullseye-backports cmake
 
+    - name: Install clang-19 (bullseye)
+      if: matrix.image == 'debian:bullseye'
+      run: |
+        bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
+        apt-add-repository -y 'deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-19 main'
+        apt-add-repository -y 'deb https://archive.debian.org/debian bullseye-backports main'
+        apt-get update
+        apt-get -y install -t llvm-toolchain-bullseye-19 \
+            clang-19 libc++-19-dev libc++abi-19-dev
+
     - name: Set up python/conan
       env:
         CONAN_REMOTE_URL: ${{ secrets.conanRemote }}
@@ -165,12 +175,32 @@ jobs:
         conan remote add viamconan $CONAN_REMOTE_URL
         conan remote auth --force -cc core:non_interactive=True viamconan
 
-    - name: Pre-install b2 (bullseye)
+    - name: Set conan profile (bullseye)
       if: matrix.image == 'debian:bullseye'
       run: |
-        . ./conan_venv/bin/activate
-        conan install -r conancenter --update \
-        --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s:a compiler.cppstd=17
+        cat > ~/.conan2/profiles/default << 'EOF'
+        [settings]
+        arch=armv8
+        build_type=Release
+        compiler=clang
+        compiler.cppstd=20
+        compiler.libcxx=libstdc++11
+        compiler.version=19
+        os=Linux
+
+        [conf]
+        tools.build:compiler_executables={"c": "clang-19", "cpp": "clang++-19"}
+
+        [options]
+        boost/*:without_cobalt=True
+        EOF
+
+    # - name: Pre-install b2 (bullseye)
+    #   if: matrix.image == 'debian:bullseye'
+    #   run: |
+    #     . ./conan_venv/bin/activate
+    #     conan install -r conancenter --update \
+    #     --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s:a compiler.cppstd=17
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
@@ -182,7 +212,7 @@ jobs:
 
         conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
 
-        conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" \
+        conan create . --build=missing -s:a compiler.cppstd=20 -o:a "&:shared=False" \
         --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
         conan upload "viam-cpp-sdk/*" -r viamconan -c
