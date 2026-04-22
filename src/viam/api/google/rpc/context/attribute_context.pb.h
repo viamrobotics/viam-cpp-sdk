@@ -949,6 +949,7 @@ class AttributeContext_Request final :
     kQueryFieldNumber = 7,
     kProtocolFieldNumber = 11,
     kReasonFieldNumber = 12,
+    kOriginFieldNumber = 14,
     kTimeFieldNumber = 9,
     kAuthFieldNumber = 13,
     kSizeFieldNumber = 10,
@@ -1082,6 +1083,20 @@ class AttributeContext_Request final :
   std::string* _internal_mutable_reason();
   public:
 
+  // string origin = 14 [json_name = "origin"];
+  void clear_origin();
+  const std::string& origin() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_origin(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_origin();
+  PROTOBUF_NODISCARD std::string* release_origin();
+  void set_allocated_origin(std::string* origin);
+  private:
+  const std::string& _internal_origin() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_origin(const std::string& value);
+  std::string* _internal_mutable_origin();
+  public:
+
   // .google.protobuf.Timestamp time = 9 [json_name = "time"];
   bool has_time() const;
   private:
@@ -1147,6 +1162,7 @@ class AttributeContext_Request final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr query_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr protocol_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reason_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr origin_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* time_;
   ::google::rpc::context::AttributeContext_Auth* auth_;
   int64_t size_;
@@ -3492,6 +3508,56 @@ inline void AttributeContext_Request::set_allocated_auth(::google::rpc::context:
   }
   auth_ = auth;
   // @@protoc_insertion_point(field_set_allocated:google.rpc.context.AttributeContext.Request.auth)
+}
+
+// string origin = 14 [json_name = "origin"];
+inline void AttributeContext_Request::clear_origin() {
+  origin_.ClearToEmpty();
+}
+inline const std::string& AttributeContext_Request::origin() const {
+  // @@protoc_insertion_point(field_get:google.rpc.context.AttributeContext.Request.origin)
+  return _internal_origin();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AttributeContext_Request::set_origin(ArgT0&& arg0, ArgT... args) {
+ 
+ origin_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.rpc.context.AttributeContext.Request.origin)
+}
+inline std::string* AttributeContext_Request::mutable_origin() {
+  std::string* _s = _internal_mutable_origin();
+  // @@protoc_insertion_point(field_mutable:google.rpc.context.AttributeContext.Request.origin)
+  return _s;
+}
+inline const std::string& AttributeContext_Request::_internal_origin() const {
+  return origin_.Get();
+}
+inline void AttributeContext_Request::_internal_set_origin(const std::string& value) {
+  
+  origin_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AttributeContext_Request::_internal_mutable_origin() {
+  
+  return origin_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AttributeContext_Request::release_origin() {
+  // @@protoc_insertion_point(field_release:google.rpc.context.AttributeContext.Request.origin)
+  return origin_.Release();
+}
+inline void AttributeContext_Request::set_allocated_origin(std::string* origin) {
+  if (origin != nullptr) {
+    
+  } else {
+    
+  }
+  origin_.SetAllocated(origin, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (origin_.IsDefault()) {
+    origin_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.rpc.context.AttributeContext.Request.origin)
 }
 
 // -------------------------------------------------------------------
