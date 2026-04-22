@@ -188,8 +188,13 @@ jobs:
         compiler.version=19
         os=Linux
 
+        [buildenv]
+        LD_LIBRARY_PATH+=/usr/lib/llvm-19/lib
+
         [conf]
         tools.build:compiler_executables={"c": "clang-19", "cpp": "clang++-19"}
+        tools.build:exelinkflags+=["-static-libstdc++"]
+        tools.build:sharedlinkflags+=["-static-libstdc++"]
 
         [options]
         boost/*:without_cobalt=True
