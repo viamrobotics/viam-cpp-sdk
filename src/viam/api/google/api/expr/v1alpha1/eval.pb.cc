@@ -169,10 +169,10 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2feval_2epro
   ".api.expr.v1alpha1.UnknownSetH\000R\007unknown"
   "B\006\n\004kind\"6\n\010ErrorSet\022*\n\006errors\030\001 \003(\0132\022.g"
   "oogle.rpc.StatusR\006errors\"\"\n\nUnknownSet\022\024"
-  "\n\005exprs\030\001 \003(\003R\005exprsBl\n\034com.google.api.e"
+  "\n\005exprs\030\001 \003(\003R\005exprsBi\n\034com.google.api.e"
   "xpr.v1alpha1B\tEvalProtoP\001Z<google.golang"
   ".org/genproto/googleapis/api/expr/v1alph"
-  "a1;expr\370\001\001b\006proto3"
+  "a1;exprb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2feval_2eproto_deps[2] = {
   &::descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2eproto,
@@ -180,7 +180,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2feval_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2feval_2eproto = {
-    false, false, 738, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2feval_2eproto,
+    false, false, 735, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2feval_2eproto,
     "google/api/expr/v1alpha1/eval.proto",
     &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2feval_2eproto_once, descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2feval_2eproto_deps, 2, 5,
     schemas, file_default_instances, TableStruct_google_2fapi_2fexpr_2fv1alpha1_2feval_2eproto::offsets,

@@ -158,7 +158,8 @@ struct Decl_FunctionDecl_OverloadDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Decl_FunctionDecl_OverloadDefaultTypeInternal _Decl_FunctionDecl_Overload_default_instance_;
 PROTOBUF_CONSTEXPR Decl_FunctionDecl::Decl_FunctionDecl(
     ::_pbi::ConstantInitialized)
-  : overloads_(){}
+  : overloads_()
+  , doc_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
 struct Decl_FunctionDeclDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Decl_FunctionDeclDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -314,6 +315,7 @@ const uint32_t TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto::off
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Decl_FunctionDecl, overloads_),
+  PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Decl_FunctionDecl, doc_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::expr::v1alpha1::Decl, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -346,8 +348,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 82, -1, -1, sizeof(::google::api::expr::v1alpha1::Decl_IdentDecl)},
   { 91, -1, -1, sizeof(::google::api::expr::v1alpha1::Decl_FunctionDecl_Overload)},
   { 103, -1, -1, sizeof(::google::api::expr::v1alpha1::Decl_FunctionDecl)},
-  { 110, -1, -1, sizeof(::google::api::expr::v1alpha1::Decl)},
-  { 120, -1, -1, sizeof(::google::api::expr::v1alpha1::Reference)},
+  { 111, -1, -1, sizeof(::google::api::expr::v1alpha1::Decl)},
+  { 121, -1, -1, sizeof(::google::api::expr::v1alpha1::Reference)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -421,7 +423,7 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2e
   "\022\n\n\006UINT64\020\003\022\n\n\006DOUBLE\020\004\022\n\n\006STRING\020\005\022\t\n\005"
   "BYTES\020\006\"V\n\rWellKnownType\022\037\n\033WELL_KNOWN_T"
   "YPE_UNSPECIFIED\020\000\022\007\n\003ANY\020\001\022\r\n\tTIMESTAMP\020"
-  "\002\022\014\n\010DURATION\020\003B\013\n\ttype_kind\"\263\005\n\004Decl\022\022\n"
+  "\002\022\014\n\010DURATION\020\003B\013\n\ttype_kind\"\305\005\n\004Decl\022\022\n"
   "\004name\030\001 \001(\tR\004name\022@\n\005ident\030\002 \001(\0132(.googl"
   "e.api.expr.v1alpha1.Decl.IdentDeclH\000R\005id"
   "ent\022I\n\010function\030\003 \001(\0132+.google.api.expr."
@@ -429,23 +431,23 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2e
   "\001\n\tIdentDecl\0222\n\004type\030\001 \001(\0132\036.google.api."
   "expr.v1alpha1.TypeR\004type\0228\n\005value\030\002 \001(\0132"
   "\".google.api.expr.v1alpha1.ConstantR\005val"
-  "ue\022\020\n\003doc\030\003 \001(\tR\003doc\032\356\002\n\014FunctionDecl\022R\n"
+  "ue\022\020\n\003doc\030\003 \001(\tR\003doc\032\200\003\n\014FunctionDecl\022R\n"
   "\toverloads\030\001 \003(\01324.google.api.expr.v1alp"
   "ha1.Decl.FunctionDecl.OverloadR\toverload"
-  "s\032\211\002\n\010Overload\022\037\n\013overload_id\030\001 \001(\tR\nove"
-  "rloadId\0226\n\006params\030\002 \003(\0132\036.google.api.exp"
-  "r.v1alpha1.TypeR\006params\022\037\n\013type_params\030\003"
-  " \003(\tR\ntypeParams\022\?\n\013result_type\030\004 \001(\0132\036."
-  "google.api.expr.v1alpha1.TypeR\nresultTyp"
-  "e\0220\n\024is_instance_function\030\005 \001(\010R\022isInsta"
-  "nceFunction\022\020\n\003doc\030\006 \001(\tR\003docB\013\n\tdecl_ki"
-  "nd\"z\n\tReference\022\022\n\004name\030\001 \001(\tR\004name\022\037\n\013o"
-  "verload_id\030\003 \003(\tR\noverloadId\0228\n\005value\030\004 "
-  "\001(\0132\".google.api.expr.v1alpha1.ConstantR"
-  "\005valueBl\n\034com.google.api.expr.v1alpha1B\t"
-  "DeclProtoP\001Z<google.golang.org/genproto/"
-  "googleapis/api/expr/v1alpha1;expr\370\001\001b\006pr"
-  "oto3"
+  "s\022\020\n\003doc\030\002 \001(\tR\003doc\032\211\002\n\010Overload\022\037\n\013over"
+  "load_id\030\001 \001(\tR\noverloadId\0226\n\006params\030\002 \003("
+  "\0132\036.google.api.expr.v1alpha1.TypeR\006param"
+  "s\022\037\n\013type_params\030\003 \003(\tR\ntypeParams\022\?\n\013re"
+  "sult_type\030\004 \001(\0132\036.google.api.expr.v1alph"
+  "a1.TypeR\nresultType\0220\n\024is_instance_funct"
+  "ion\030\005 \001(\010R\022isInstanceFunction\022\020\n\003doc\030\006 \001"
+  "(\tR\003docB\013\n\tdecl_kind\"z\n\tReference\022\022\n\004nam"
+  "e\030\001 \001(\tR\004name\022\037\n\013overload_id\030\003 \003(\tR\nover"
+  "loadId\0228\n\005value\030\004 \001(\0132\".google.api.expr."
+  "v1alpha1.ConstantR\005valueBi\n\034com.google.a"
+  "pi.expr.v1alpha1B\tDeclProtoP\001Z<google.go"
+  "lang.org/genproto/googleapis/api/expr/v1"
+  "alpha1;exprb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
@@ -454,7 +456,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto = {
-    false, false, 3124, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto,
+    false, false, 3139, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto,
     "google/api/expr/v1alpha1/checked.proto",
     &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto_once, descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto_deps, 3, 13,
     schemas, file_default_instances, TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto::offsets,
@@ -3321,10 +3323,22 @@ Decl_FunctionDecl::Decl_FunctionDecl(const Decl_FunctionDecl& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       overloads_(from.overloads_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  doc_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    doc_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_doc().empty()) {
+    doc_.Set(from._internal_doc(), 
+      GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:google.api.expr.v1alpha1.Decl.FunctionDecl)
 }
 
 inline void Decl_FunctionDecl::SharedCtor() {
+doc_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  doc_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Decl_FunctionDecl::~Decl_FunctionDecl() {
@@ -3338,6 +3352,7 @@ Decl_FunctionDecl::~Decl_FunctionDecl() {
 
 inline void Decl_FunctionDecl::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  doc_.Destroy();
 }
 
 void Decl_FunctionDecl::SetCachedSize(int size) const {
@@ -3351,6 +3366,7 @@ void Decl_FunctionDecl::Clear() {
   (void) cached_has_bits;
 
   overloads_.Clear();
+  doc_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3370,6 +3386,16 @@ const char* Decl_FunctionDecl::_InternalParse(const char* ptr, ::_pbi::ParseCont
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string doc = 2 [json_name = "doc"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_doc();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.api.expr.v1alpha1.Decl.FunctionDecl.doc"));
         } else
           goto handle_unusual;
         continue;
@@ -3410,6 +3436,16 @@ uint8_t* Decl_FunctionDecl::_InternalSerialize(
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // string doc = 2 [json_name = "doc"];
+  if (!this->_internal_doc().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_doc().data(), static_cast<int>(this->_internal_doc().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.expr.v1alpha1.Decl.FunctionDecl.doc");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_doc(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3431,6 +3467,13 @@ size_t Decl_FunctionDecl::ByteSizeLong() const {
   for (const auto& msg : this->overloads_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string doc = 2 [json_name = "doc"];
+  if (!this->_internal_doc().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_doc());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -3456,6 +3499,9 @@ void Decl_FunctionDecl::MergeFrom(const Decl_FunctionDecl& from) {
   (void) cached_has_bits;
 
   overloads_.MergeFrom(from.overloads_);
+  if (!from._internal_doc().empty()) {
+    _internal_set_doc(from._internal_doc());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3472,8 +3518,14 @@ bool Decl_FunctionDecl::IsInitialized() const {
 
 void Decl_FunctionDecl::InternalSwap(Decl_FunctionDecl* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   overloads_.InternalSwap(&other->overloads_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &doc_, lhs_arena,
+      &other->doc_, rhs_arena
+  );
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Decl_FunctionDecl::GetMetadata() const {
