@@ -361,6 +361,7 @@ set(VIAMCPPSDK_GRPC_VERSION_MINIMUM 1.30.2)
 set(VIAMCPPSDK_PROTOBUF_VERSION_MINIMUM 3.12.4)
 set(VIAMCPPSDK_XTL_VERSION_MINIMUM 0.7.2)
 set(VIAMCPPSDK_XTENSOR_VERSION_MINIMUM 0.24.3)
+set(VIAMCPPSDK_EIGEN_VERSION_MINIMUM 3.3)
 
 # Time to find `BOOST`.
 if (VIAMCPPSDK_BUILD_TESTS)
@@ -502,6 +503,8 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(xtl xtensor)
+
+find_package(Eigen3 ${VIAMCPPSDK_EIGEN_VERSION_MINIMUM} CONFIG REQUIRED)
 
 # Pull in our subdirectories
 add_subdirectory(src/viam)

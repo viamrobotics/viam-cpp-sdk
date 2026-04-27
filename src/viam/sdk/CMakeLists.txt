@@ -136,6 +136,7 @@ target_sources(viamsdk
     module/service.cpp
     module/private/data_consumer_query.cpp
     referenceframe/frame.cpp
+    referenceframe/urdf_to_dh_params.cpp
     registry/registry.cpp
     resource/reconfigurable.cpp
     resource/resource.cpp
@@ -217,6 +218,7 @@ target_sources(viamsdk
       ../../viam/sdk/module/service.hpp
       ../../viam/sdk/module/signal_manager.hpp
       ../../viam/sdk/referenceframe/frame.hpp
+      ../../viam/sdk/referenceframe/urdf_to_dh_params.hpp
       ../../viam/sdk/registry/registry.hpp
       ../../viam/sdk/resource/reconfigurable.hpp
       ../../viam/sdk/resource/resource.hpp
@@ -306,6 +308,7 @@ target_link_libraries(viamsdk
   PRIVATE ${VIAMCPPSDK_GRPC_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
   PRIVATE Threads::Threads
+  PRIVATE Eigen3::Eigen
 )
 
 # if the `viam_rust_utils` target exists then we should use it. If not then

@@ -56,6 +56,9 @@ target_link_libraries(viamsdk_test
 
 viamcppsdk_link_viam_api(viamsdk_test PUBLIC)
 
+# Path to the urdf fixtures used by test_urdf_to_dh_params
+set(VIAMCPPSDK_TEST_TESTFILES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/testfiles")
+
 viamcppsdk_add_boost_test(test_arm.cpp)
 viamcppsdk_add_boost_test(test_audio_in.cpp)
 viamcppsdk_add_boost_test(test_audio_out.cpp)
@@ -84,4 +87,10 @@ viamcppsdk_add_boost_test(test_resource.cpp)
 viamcppsdk_add_boost_test(test_sensor.cpp)
 viamcppsdk_add_boost_test(test_servo.cpp)
 viamcppsdk_add_boost_test(test_switch.cpp)
+viamcppsdk_add_boost_test(test_urdf_to_dh_params.cpp)
 viamcppsdk_add_boost_test(test_robot.cpp)
+
+target_compile_definitions(test_urdf_to_dh_params
+  PRIVATE VIAMCPPSDK_TEST_TESTFILES_DIR="${VIAMCPPSDK_TEST_TESTFILES_DIR}")
+
+target_link_libraries(test_urdf_to_dh_params Eigen3::Eigen)

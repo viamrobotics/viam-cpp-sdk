@@ -67,6 +67,7 @@ class ViamCppSdkRecipe(ConanFile):
         self.requires(self._grpc_requires())
         self.requires('protobuf/[>=3.17.1 <6.30.0]')
         self.requires(self._xtensor_requires(), transitive_headers=True)
+        self.requires('eigen/[>=3.3.0]')
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
