@@ -151,6 +151,12 @@ extern CreateOAuthAppRequestDefaultTypeInternal _CreateOAuthAppRequest_default_i
 class CreateOAuthAppResponse;
 struct CreateOAuthAppResponseDefaultTypeInternal;
 extern CreateOAuthAppResponseDefaultTypeInternal _CreateOAuthAppResponse_default_instance_;
+class CreateOAuthAppUserRequest;
+struct CreateOAuthAppUserRequestDefaultTypeInternal;
+extern CreateOAuthAppUserRequestDefaultTypeInternal _CreateOAuthAppUserRequest_default_instance_;
+class CreateOAuthAppUserResponse;
+struct CreateOAuthAppUserResponseDefaultTypeInternal;
+extern CreateOAuthAppUserResponseDefaultTypeInternal _CreateOAuthAppUserResponse_default_instance_;
 class CreateOrganizationInviteRequest;
 struct CreateOrganizationInviteRequestDefaultTypeInternal;
 extern CreateOrganizationInviteRequestDefaultTypeInternal _CreateOrganizationInviteRequest_default_instance_;
@@ -966,6 +972,8 @@ template<> ::viam::app::v1::CreateModuleRequest* Arena::CreateMaybeMessage<::via
 template<> ::viam::app::v1::CreateModuleResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateModuleResponse>(Arena*);
 template<> ::viam::app::v1::CreateOAuthAppRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateOAuthAppRequest>(Arena*);
 template<> ::viam::app::v1::CreateOAuthAppResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateOAuthAppResponse>(Arena*);
+template<> ::viam::app::v1::CreateOAuthAppUserRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateOAuthAppUserRequest>(Arena*);
+template<> ::viam::app::v1::CreateOAuthAppUserResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateOAuthAppUserResponse>(Arena*);
 template<> ::viam::app::v1::CreateOrganizationInviteRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateOrganizationInviteRequest>(Arena*);
 template<> ::viam::app::v1::CreateOrganizationInviteResponse* Arena::CreateMaybeMessage<::viam::app::v1::CreateOrganizationInviteResponse>(Arena*);
 template<> ::viam::app::v1::CreateOrganizationRequest* Arena::CreateMaybeMessage<::viam::app::v1::CreateOrganizationRequest>(Arena*);
@@ -17917,6 +17925,10 @@ class GetRobotPartHistoryRequest final :
 
   enum : int {
     kIdFieldNumber = 1,
+    kPageTokenFieldNumber = 2,
+    kStartFieldNumber = 4,
+    kEndFieldNumber = 5,
+    kPageLimitFieldNumber = 3,
   };
   // string id = 1 [json_name = "id"];
   void clear_id();
@@ -17932,6 +17944,73 @@ class GetRobotPartHistoryRequest final :
   std::string* _internal_mutable_id();
   public:
 
+  // optional string page_token = 2 [json_name = "pageToken"];
+  bool has_page_token() const;
+  private:
+  bool _internal_has_page_token() const;
+  public:
+  void clear_page_token();
+  const std::string& page_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_page_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_page_token();
+  PROTOBUF_NODISCARD std::string* release_page_token();
+  void set_allocated_page_token(std::string* page_token);
+  private:
+  const std::string& _internal_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_page_token(const std::string& value);
+  std::string* _internal_mutable_page_token();
+  public:
+
+  // optional .google.protobuf.Timestamp start = 4 [json_name = "start"];
+  bool has_start() const;
+  private:
+  bool _internal_has_start() const;
+  public:
+  void clear_start();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& start() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_start();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_start();
+  void set_allocated_start(::PROTOBUF_NAMESPACE_ID::Timestamp* start);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_start() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_start();
+  public:
+  void unsafe_arena_set_allocated_start(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* start);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_start();
+
+  // optional .google.protobuf.Timestamp end = 5 [json_name = "end"];
+  bool has_end() const;
+  private:
+  bool _internal_has_end() const;
+  public:
+  void clear_end();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& end() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_end();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_end();
+  void set_allocated_end(::PROTOBUF_NAMESPACE_ID::Timestamp* end);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_end() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_end();
+  public:
+  void unsafe_arena_set_allocated_end(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* end);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_end();
+
+  // optional int64 page_limit = 3 [json_name = "pageLimit"];
+  bool has_page_limit() const;
+  private:
+  bool _internal_has_page_limit() const;
+  public:
+  void clear_page_limit();
+  int64_t page_limit() const;
+  void set_page_limit(int64_t value);
+  private:
+  int64_t _internal_page_limit() const;
+  void _internal_set_page_limit(int64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotPartHistoryRequest)
  private:
   class _Internal;
@@ -17939,8 +18018,13 @@ class GetRobotPartHistoryRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr page_token_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* start_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* end_;
+  int64_t page_limit_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -18065,6 +18149,7 @@ class GetRobotPartHistoryResponse final :
 
   enum : int {
     kHistoryFieldNumber = 1,
+    kNextPageTokenFieldNumber = 2,
   };
   // repeated .viam.app.v1.RobotPartHistoryEntry history = 1 [json_name = "history"];
   int history_size() const;
@@ -18084,6 +18169,20 @@ class GetRobotPartHistoryResponse final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::RobotPartHistoryEntry >&
       history() const;
 
+  // string next_page_token = 2 [json_name = "nextPageToken"];
+  void clear_next_page_token();
+  const std::string& next_page_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_next_page_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_next_page_token();
+  PROTOBUF_NODISCARD std::string* release_next_page_token();
+  void set_allocated_next_page_token(std::string* next_page_token);
+  private:
+  const std::string& _internal_next_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_next_page_token(const std::string& value);
+  std::string* _internal_mutable_next_page_token();
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.GetRobotPartHistoryResponse)
  private:
   class _Internal;
@@ -18092,6 +18191,7 @@ class GetRobotPartHistoryResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::RobotPartHistoryEntry > history_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr next_page_token_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
@@ -47349,6 +47449,430 @@ class ListOAuthAppsResponse final :
 };
 // -------------------------------------------------------------------
 
+class CreateOAuthAppUserRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateOAuthAppUserRequest) */ {
+ public:
+  inline CreateOAuthAppUserRequest() : CreateOAuthAppUserRequest(nullptr) {}
+  ~CreateOAuthAppUserRequest() override;
+  explicit PROTOBUF_CONSTEXPR CreateOAuthAppUserRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateOAuthAppUserRequest(const CreateOAuthAppUserRequest& from);
+  CreateOAuthAppUserRequest(CreateOAuthAppUserRequest&& from) noexcept
+    : CreateOAuthAppUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateOAuthAppUserRequest& operator=(const CreateOAuthAppUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateOAuthAppUserRequest& operator=(CreateOAuthAppUserRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateOAuthAppUserRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateOAuthAppUserRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateOAuthAppUserRequest*>(
+               &_CreateOAuthAppUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    271;
+
+  friend void swap(CreateOAuthAppUserRequest& a, CreateOAuthAppUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateOAuthAppUserRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateOAuthAppUserRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateOAuthAppUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateOAuthAppUserRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateOAuthAppUserRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateOAuthAppUserRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateOAuthAppUserRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateOAuthAppUserRequest";
+  }
+  protected:
+  explicit CreateOAuthAppUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrgIdFieldNumber = 1,
+    kApplicationIdFieldNumber = 2,
+    kEmailFieldNumber = 3,
+    kFirstNameFieldNumber = 4,
+    kLastNameFieldNumber = 5,
+    kPasswordFieldNumber = 6,
+  };
+  // string org_id = 1 [json_name = "orgId"];
+  void clear_org_id();
+  const std::string& org_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_org_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_org_id();
+  PROTOBUF_NODISCARD std::string* release_org_id();
+  void set_allocated_org_id(std::string* org_id);
+  private:
+  const std::string& _internal_org_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_org_id(const std::string& value);
+  std::string* _internal_mutable_org_id();
+  public:
+
+  // string application_id = 2 [json_name = "applicationId"];
+  void clear_application_id();
+  const std::string& application_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_application_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_application_id();
+  PROTOBUF_NODISCARD std::string* release_application_id();
+  void set_allocated_application_id(std::string* application_id);
+  private:
+  const std::string& _internal_application_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_application_id(const std::string& value);
+  std::string* _internal_mutable_application_id();
+  public:
+
+  // string email = 3 [json_name = "email"];
+  void clear_email();
+  const std::string& email() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_email(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_email();
+  PROTOBUF_NODISCARD std::string* release_email();
+  void set_allocated_email(std::string* email);
+  private:
+  const std::string& _internal_email() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_email(const std::string& value);
+  std::string* _internal_mutable_email();
+  public:
+
+  // string first_name = 4 [json_name = "firstName"];
+  void clear_first_name();
+  const std::string& first_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_first_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_first_name();
+  PROTOBUF_NODISCARD std::string* release_first_name();
+  void set_allocated_first_name(std::string* first_name);
+  private:
+  const std::string& _internal_first_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_first_name(const std::string& value);
+  std::string* _internal_mutable_first_name();
+  public:
+
+  // string last_name = 5 [json_name = "lastName"];
+  void clear_last_name();
+  const std::string& last_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_last_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_last_name();
+  PROTOBUF_NODISCARD std::string* release_last_name();
+  void set_allocated_last_name(std::string* last_name);
+  private:
+  const std::string& _internal_last_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_last_name(const std::string& value);
+  std::string* _internal_mutable_last_name();
+  public:
+
+  // string password = 6 [json_name = "password"];
+  void clear_password();
+  const std::string& password() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_password(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_password();
+  PROTOBUF_NODISCARD std::string* release_password();
+  void set_allocated_password(std::string* password);
+  private:
+  const std::string& _internal_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(const std::string& value);
+  std::string* _internal_mutable_password();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateOAuthAppUserRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr org_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr application_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr last_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateOAuthAppUserResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateOAuthAppUserResponse) */ {
+ public:
+  inline CreateOAuthAppUserResponse() : CreateOAuthAppUserResponse(nullptr) {}
+  ~CreateOAuthAppUserResponse() override;
+  explicit PROTOBUF_CONSTEXPR CreateOAuthAppUserResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateOAuthAppUserResponse(const CreateOAuthAppUserResponse& from);
+  CreateOAuthAppUserResponse(CreateOAuthAppUserResponse&& from) noexcept
+    : CreateOAuthAppUserResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateOAuthAppUserResponse& operator=(const CreateOAuthAppUserResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateOAuthAppUserResponse& operator=(CreateOAuthAppUserResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateOAuthAppUserResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateOAuthAppUserResponse* internal_default_instance() {
+    return reinterpret_cast<const CreateOAuthAppUserResponse*>(
+               &_CreateOAuthAppUserResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    272;
+
+  friend void swap(CreateOAuthAppUserResponse& a, CreateOAuthAppUserResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateOAuthAppUserResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateOAuthAppUserResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateOAuthAppUserResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateOAuthAppUserResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateOAuthAppUserResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateOAuthAppUserResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateOAuthAppUserResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.CreateOAuthAppUserResponse";
+  }
+  protected:
+  explicit CreateOAuthAppUserResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAuthTokenFieldNumber = 1,
+    kRegistrationIdFieldNumber = 2,
+    kUserIdFieldNumber = 3,
+    kRefreshTokenFieldNumber = 4,
+  };
+  // string auth_token = 1 [json_name = "authToken"];
+  void clear_auth_token();
+  const std::string& auth_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_auth_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_auth_token();
+  PROTOBUF_NODISCARD std::string* release_auth_token();
+  void set_allocated_auth_token(std::string* auth_token);
+  private:
+  const std::string& _internal_auth_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_auth_token(const std::string& value);
+  std::string* _internal_mutable_auth_token();
+  public:
+
+  // string registration_id = 2 [json_name = "registrationId"];
+  void clear_registration_id();
+  const std::string& registration_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_registration_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_registration_id();
+  PROTOBUF_NODISCARD std::string* release_registration_id();
+  void set_allocated_registration_id(std::string* registration_id);
+  private:
+  const std::string& _internal_registration_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_registration_id(const std::string& value);
+  std::string* _internal_mutable_registration_id();
+  public:
+
+  // string user_id = 3 [json_name = "userId"];
+  void clear_user_id();
+  const std::string& user_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_user_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_user_id();
+  PROTOBUF_NODISCARD std::string* release_user_id();
+  void set_allocated_user_id(std::string* user_id);
+  private:
+  const std::string& _internal_user_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user_id(const std::string& value);
+  std::string* _internal_mutable_user_id();
+  public:
+
+  // string refresh_token = 4 [json_name = "refreshToken"];
+  void clear_refresh_token();
+  const std::string& refresh_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_refresh_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_refresh_token();
+  PROTOBUF_NODISCARD std::string* release_refresh_token();
+  void set_allocated_refresh_token(std::string* refresh_token);
+  private:
+  const std::string& _internal_refresh_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_refresh_token(const std::string& value);
+  std::string* _internal_mutable_refresh_token();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.CreateOAuthAppUserResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr auth_token_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr registration_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr refresh_token_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class OAuthConfig final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.OAuthConfig) */ {
  public:
@@ -47397,7 +47921,7 @@ class OAuthConfig final :
                &_OAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    271;
+    273;
 
   friend void swap(OAuthConfig& a, OAuthConfig& b) {
     a.Swap(&b);
@@ -47666,7 +48190,7 @@ class GetAppBrandingRequest final :
                &_GetAppBrandingRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    272;
+    274;
 
   friend void swap(GetAppBrandingRequest& a, GetAppBrandingRequest& b) {
     a.Swap(&b);
@@ -47858,7 +48382,7 @@ class TextOverrides final :
                &_TextOverrides_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    274;
+    276;
 
   friend void swap(TextOverrides& a, TextOverrides& b) {
     a.Swap(&b);
@@ -48042,7 +48566,7 @@ class GetAppBrandingResponse final :
                &_GetAppBrandingResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    276;
+    278;
 
   friend void swap(GetAppBrandingResponse& a, GetAppBrandingResponse& b) {
     a.Swap(&b);
@@ -48273,7 +48797,7 @@ class AppCustomizations final :
                &_AppCustomizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    277;
+    279;
 
   friend void swap(AppCustomizations& a, AppCustomizations& b) {
     a.Swap(&b);
@@ -48425,7 +48949,7 @@ class MachinePickerCustomizations final :
                &_MachinePickerCustomizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    278;
+    280;
 
   friend void swap(MachinePickerCustomizations& a, MachinePickerCustomizations& b) {
     a.Swap(&b);
@@ -48598,7 +49122,7 @@ class UploadDevicePushTokenRequest final :
                &_UploadDevicePushTokenRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    279;
+    281;
 
   friend void swap(UploadDevicePushTokenRequest& a, UploadDevicePushTokenRequest& b) {
     a.Swap(&b);
@@ -48777,7 +49301,7 @@ class UploadDevicePushTokenResponse final :
                &_UploadDevicePushTokenResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    280;
+    282;
 
   friend void swap(UploadDevicePushTokenResponse& a, UploadDevicePushTokenResponse& b) {
     a.Swap(&b);
@@ -48894,7 +49418,7 @@ class DeleteDevicePushTokenRequest final :
                &_DeleteDevicePushTokenRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    281;
+    283;
 
   friend void swap(DeleteDevicePushTokenRequest& a, DeleteDevicePushTokenRequest& b) {
     a.Swap(&b);
@@ -49057,7 +49581,7 @@ class DeleteDevicePushTokenResponse final :
                &_DeleteDevicePushTokenResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    282;
+    284;
 
   friend void swap(DeleteDevicePushTokenResponse& a, DeleteDevicePushTokenResponse& b) {
     a.Swap(&b);
@@ -49174,7 +49698,7 @@ class GetDevicePushTokensRequest final :
                &_GetDevicePushTokensRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    283;
+    285;
 
   friend void swap(GetDevicePushTokensRequest& a, GetDevicePushTokensRequest& b) {
     a.Swap(&b);
@@ -49322,7 +49846,7 @@ class GetDevicePushTokensResponse final :
                &_GetDevicePushTokensResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    284;
+    286;
 
   friend void swap(GetDevicePushTokensResponse& a, GetDevicePushTokensResponse& b) {
     a.Swap(&b);
@@ -49480,7 +50004,7 @@ class SetFirebaseConfigRequest final :
                &_SetFirebaseConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    285;
+    287;
 
   friend void swap(SetFirebaseConfigRequest& a, SetFirebaseConfigRequest& b) {
     a.Swap(&b);
@@ -49659,7 +50183,7 @@ class SetFirebaseConfigResponse final :
                &_SetFirebaseConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    286;
+    288;
 
   friend void swap(SetFirebaseConfigResponse& a, SetFirebaseConfigResponse& b) {
     a.Swap(&b);
@@ -49776,7 +50300,7 @@ class GetFirebaseConfigRequest final :
                &_GetFirebaseConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    287;
+    289;
 
   friend void swap(GetFirebaseConfigRequest& a, GetFirebaseConfigRequest& b) {
     a.Swap(&b);
@@ -49924,7 +50448,7 @@ class GetFirebaseConfigResponse final :
                &_GetFirebaseConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    288;
+    290;
 
   friend void swap(GetFirebaseConfigResponse& a, GetFirebaseConfigResponse& b) {
     a.Swap(&b);
@@ -50072,7 +50596,7 @@ class DeleteFirebaseConfigRequest final :
                &_DeleteFirebaseConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    289;
+    291;
 
   friend void swap(DeleteFirebaseConfigRequest& a, DeleteFirebaseConfigRequest& b) {
     a.Swap(&b);
@@ -50235,7 +50759,7 @@ class DeleteFirebaseConfigResponse final :
                &_DeleteFirebaseConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    290;
+    292;
 
   friend void swap(DeleteFirebaseConfigResponse& a, DeleteFirebaseConfigResponse& b) {
     a.Swap(&b);
@@ -62064,6 +62588,276 @@ inline void GetRobotPartHistoryRequest::set_allocated_id(std::string* id) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.id)
 }
 
+// optional string page_token = 2 [json_name = "pageToken"];
+inline bool GetRobotPartHistoryRequest::_internal_has_page_token() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetRobotPartHistoryRequest::has_page_token() const {
+  return _internal_has_page_token();
+}
+inline void GetRobotPartHistoryRequest::clear_page_token() {
+  page_token_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& GetRobotPartHistoryRequest::page_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+  return _internal_page_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetRobotPartHistoryRequest::set_page_token(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ page_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+}
+inline std::string* GetRobotPartHistoryRequest::mutable_page_token() {
+  std::string* _s = _internal_mutable_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+  return _s;
+}
+inline const std::string& GetRobotPartHistoryRequest::_internal_page_token() const {
+  return page_token_.Get();
+}
+inline void GetRobotPartHistoryRequest::_internal_set_page_token(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  page_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetRobotPartHistoryRequest::_internal_mutable_page_token() {
+  _has_bits_[0] |= 0x00000001u;
+  return page_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetRobotPartHistoryRequest::release_page_token() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+  if (!_internal_has_page_token()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = page_token_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (page_token_.IsDefault()) {
+    page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void GetRobotPartHistoryRequest::set_allocated_page_token(std::string* page_token) {
+  if (page_token != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  page_token_.SetAllocated(page_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (page_token_.IsDefault()) {
+    page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.page_token)
+}
+
+// optional int64 page_limit = 3 [json_name = "pageLimit"];
+inline bool GetRobotPartHistoryRequest::_internal_has_page_limit() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool GetRobotPartHistoryRequest::has_page_limit() const {
+  return _internal_has_page_limit();
+}
+inline void GetRobotPartHistoryRequest::clear_page_limit() {
+  page_limit_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline int64_t GetRobotPartHistoryRequest::_internal_page_limit() const {
+  return page_limit_;
+}
+inline int64_t GetRobotPartHistoryRequest::page_limit() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryRequest.page_limit)
+  return _internal_page_limit();
+}
+inline void GetRobotPartHistoryRequest::_internal_set_page_limit(int64_t value) {
+  _has_bits_[0] |= 0x00000008u;
+  page_limit_ = value;
+}
+inline void GetRobotPartHistoryRequest::set_page_limit(int64_t value) {
+  _internal_set_page_limit(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartHistoryRequest.page_limit)
+}
+
+// optional .google.protobuf.Timestamp start = 4 [json_name = "start"];
+inline bool GetRobotPartHistoryRequest::_internal_has_start() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || start_ != nullptr);
+  return value;
+}
+inline bool GetRobotPartHistoryRequest::has_start() const {
+  return _internal_has_start();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetRobotPartHistoryRequest::_internal_start() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = start_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetRobotPartHistoryRequest::start() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryRequest.start)
+  return _internal_start();
+}
+inline void GetRobotPartHistoryRequest::unsafe_arena_set_allocated_start(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* start) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_);
+  }
+  start_ = start;
+  if (start) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.start)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::release_start() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_;
+  start_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::unsafe_arena_release_start() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartHistoryRequest.start)
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_;
+  start_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::_internal_mutable_start() {
+  _has_bits_[0] |= 0x00000002u;
+  if (start_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    start_ = p;
+  }
+  return start_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::mutable_start() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_start();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartHistoryRequest.start)
+  return _msg;
+}
+inline void GetRobotPartHistoryRequest::set_allocated_start(::PROTOBUF_NAMESPACE_ID::Timestamp* start) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_);
+  }
+  if (start) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start));
+    if (message_arena != submessage_arena) {
+      start = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, start, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  start_ = start;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.start)
+}
+
+// optional .google.protobuf.Timestamp end = 5 [json_name = "end"];
+inline bool GetRobotPartHistoryRequest::_internal_has_end() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || end_ != nullptr);
+  return value;
+}
+inline bool GetRobotPartHistoryRequest::has_end() const {
+  return _internal_has_end();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetRobotPartHistoryRequest::_internal_end() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = end_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& GetRobotPartHistoryRequest::end() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryRequest.end)
+  return _internal_end();
+}
+inline void GetRobotPartHistoryRequest::unsafe_arena_set_allocated_end(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* end) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_);
+  }
+  end_ = end;
+  if (end) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.end)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::release_end() {
+  _has_bits_[0] &= ~0x00000004u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_;
+  end_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::unsafe_arena_release_end() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartHistoryRequest.end)
+  _has_bits_[0] &= ~0x00000004u;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_;
+  end_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::_internal_mutable_end() {
+  _has_bits_[0] |= 0x00000004u;
+  if (end_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    end_ = p;
+  }
+  return end_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* GetRobotPartHistoryRequest::mutable_end() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_end();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartHistoryRequest.end)
+  return _msg;
+}
+inline void GetRobotPartHistoryRequest::set_allocated_end(::PROTOBUF_NAMESPACE_ID::Timestamp* end) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_);
+  }
+  if (end) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end));
+    if (message_arena != submessage_arena) {
+      end = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, end, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  end_ = end;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryRequest.end)
+}
+
 // -------------------------------------------------------------------
 
 // GetRobotPartHistoryResponse
@@ -62106,6 +62900,56 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::v1::RobotPa
 GetRobotPartHistoryResponse::history() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.GetRobotPartHistoryResponse.history)
   return history_;
+}
+
+// string next_page_token = 2 [json_name = "nextPageToken"];
+inline void GetRobotPartHistoryResponse::clear_next_page_token() {
+  next_page_token_.ClearToEmpty();
+}
+inline const std::string& GetRobotPartHistoryResponse::next_page_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
+  return _internal_next_page_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetRobotPartHistoryResponse::set_next_page_token(ArgT0&& arg0, ArgT... args) {
+ 
+ next_page_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
+}
+inline std::string* GetRobotPartHistoryResponse::mutable_next_page_token() {
+  std::string* _s = _internal_mutable_next_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
+  return _s;
+}
+inline const std::string& GetRobotPartHistoryResponse::_internal_next_page_token() const {
+  return next_page_token_.Get();
+}
+inline void GetRobotPartHistoryResponse::_internal_set_next_page_token(const std::string& value) {
+  
+  next_page_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetRobotPartHistoryResponse::_internal_mutable_next_page_token() {
+  
+  return next_page_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetRobotPartHistoryResponse::release_next_page_token() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
+  return next_page_token_.Release();
+}
+inline void GetRobotPartHistoryResponse::set_allocated_next_page_token(std::string* next_page_token) {
+  if (next_page_token != nullptr) {
+    
+  } else {
+    
+  }
+  next_page_token_.SetAllocated(next_page_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (next_page_token_.IsDefault()) {
+    next_page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.GetRobotPartHistoryResponse.next_page_token)
 }
 
 // -------------------------------------------------------------------
@@ -84115,6 +84959,514 @@ ListOAuthAppsResponse::mutable_client_ids() {
 
 // -------------------------------------------------------------------
 
+// CreateOAuthAppUserRequest
+
+// string org_id = 1 [json_name = "orgId"];
+inline void CreateOAuthAppUserRequest::clear_org_id() {
+  org_id_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserRequest::org_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserRequest.org_id)
+  return _internal_org_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserRequest::set_org_id(ArgT0&& arg0, ArgT... args) {
+ 
+ org_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserRequest.org_id)
+}
+inline std::string* CreateOAuthAppUserRequest::mutable_org_id() {
+  std::string* _s = _internal_mutable_org_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserRequest.org_id)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserRequest::_internal_org_id() const {
+  return org_id_.Get();
+}
+inline void CreateOAuthAppUserRequest::_internal_set_org_id(const std::string& value) {
+  
+  org_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::_internal_mutable_org_id() {
+  
+  return org_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::release_org_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserRequest.org_id)
+  return org_id_.Release();
+}
+inline void CreateOAuthAppUserRequest::set_allocated_org_id(std::string* org_id) {
+  if (org_id != nullptr) {
+    
+  } else {
+    
+  }
+  org_id_.SetAllocated(org_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (org_id_.IsDefault()) {
+    org_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserRequest.org_id)
+}
+
+// string application_id = 2 [json_name = "applicationId"];
+inline void CreateOAuthAppUserRequest::clear_application_id() {
+  application_id_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserRequest::application_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserRequest.application_id)
+  return _internal_application_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserRequest::set_application_id(ArgT0&& arg0, ArgT... args) {
+ 
+ application_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserRequest.application_id)
+}
+inline std::string* CreateOAuthAppUserRequest::mutable_application_id() {
+  std::string* _s = _internal_mutable_application_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserRequest.application_id)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserRequest::_internal_application_id() const {
+  return application_id_.Get();
+}
+inline void CreateOAuthAppUserRequest::_internal_set_application_id(const std::string& value) {
+  
+  application_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::_internal_mutable_application_id() {
+  
+  return application_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::release_application_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserRequest.application_id)
+  return application_id_.Release();
+}
+inline void CreateOAuthAppUserRequest::set_allocated_application_id(std::string* application_id) {
+  if (application_id != nullptr) {
+    
+  } else {
+    
+  }
+  application_id_.SetAllocated(application_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (application_id_.IsDefault()) {
+    application_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserRequest.application_id)
+}
+
+// string email = 3 [json_name = "email"];
+inline void CreateOAuthAppUserRequest::clear_email() {
+  email_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserRequest::email() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserRequest.email)
+  return _internal_email();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserRequest::set_email(ArgT0&& arg0, ArgT... args) {
+ 
+ email_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserRequest.email)
+}
+inline std::string* CreateOAuthAppUserRequest::mutable_email() {
+  std::string* _s = _internal_mutable_email();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserRequest.email)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserRequest::_internal_email() const {
+  return email_.Get();
+}
+inline void CreateOAuthAppUserRequest::_internal_set_email(const std::string& value) {
+  
+  email_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::_internal_mutable_email() {
+  
+  return email_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::release_email() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserRequest.email)
+  return email_.Release();
+}
+inline void CreateOAuthAppUserRequest::set_allocated_email(std::string* email) {
+  if (email != nullptr) {
+    
+  } else {
+    
+  }
+  email_.SetAllocated(email, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (email_.IsDefault()) {
+    email_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserRequest.email)
+}
+
+// string first_name = 4 [json_name = "firstName"];
+inline void CreateOAuthAppUserRequest::clear_first_name() {
+  first_name_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserRequest::first_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserRequest.first_name)
+  return _internal_first_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserRequest::set_first_name(ArgT0&& arg0, ArgT... args) {
+ 
+ first_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserRequest.first_name)
+}
+inline std::string* CreateOAuthAppUserRequest::mutable_first_name() {
+  std::string* _s = _internal_mutable_first_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserRequest.first_name)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserRequest::_internal_first_name() const {
+  return first_name_.Get();
+}
+inline void CreateOAuthAppUserRequest::_internal_set_first_name(const std::string& value) {
+  
+  first_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::_internal_mutable_first_name() {
+  
+  return first_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::release_first_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserRequest.first_name)
+  return first_name_.Release();
+}
+inline void CreateOAuthAppUserRequest::set_allocated_first_name(std::string* first_name) {
+  if (first_name != nullptr) {
+    
+  } else {
+    
+  }
+  first_name_.SetAllocated(first_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (first_name_.IsDefault()) {
+    first_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserRequest.first_name)
+}
+
+// string last_name = 5 [json_name = "lastName"];
+inline void CreateOAuthAppUserRequest::clear_last_name() {
+  last_name_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserRequest::last_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserRequest.last_name)
+  return _internal_last_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserRequest::set_last_name(ArgT0&& arg0, ArgT... args) {
+ 
+ last_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserRequest.last_name)
+}
+inline std::string* CreateOAuthAppUserRequest::mutable_last_name() {
+  std::string* _s = _internal_mutable_last_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserRequest.last_name)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserRequest::_internal_last_name() const {
+  return last_name_.Get();
+}
+inline void CreateOAuthAppUserRequest::_internal_set_last_name(const std::string& value) {
+  
+  last_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::_internal_mutable_last_name() {
+  
+  return last_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::release_last_name() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserRequest.last_name)
+  return last_name_.Release();
+}
+inline void CreateOAuthAppUserRequest::set_allocated_last_name(std::string* last_name) {
+  if (last_name != nullptr) {
+    
+  } else {
+    
+  }
+  last_name_.SetAllocated(last_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (last_name_.IsDefault()) {
+    last_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserRequest.last_name)
+}
+
+// string password = 6 [json_name = "password"];
+inline void CreateOAuthAppUserRequest::clear_password() {
+  password_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserRequest::password() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserRequest.password)
+  return _internal_password();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserRequest::set_password(ArgT0&& arg0, ArgT... args) {
+ 
+ password_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserRequest.password)
+}
+inline std::string* CreateOAuthAppUserRequest::mutable_password() {
+  std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserRequest.password)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserRequest::_internal_password() const {
+  return password_.Get();
+}
+inline void CreateOAuthAppUserRequest::_internal_set_password(const std::string& value) {
+  
+  password_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::_internal_mutable_password() {
+  
+  return password_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserRequest::release_password() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserRequest.password)
+  return password_.Release();
+}
+inline void CreateOAuthAppUserRequest::set_allocated_password(std::string* password) {
+  if (password != nullptr) {
+    
+  } else {
+    
+  }
+  password_.SetAllocated(password, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (password_.IsDefault()) {
+    password_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserRequest.password)
+}
+
+// -------------------------------------------------------------------
+
+// CreateOAuthAppUserResponse
+
+// string auth_token = 1 [json_name = "authToken"];
+inline void CreateOAuthAppUserResponse::clear_auth_token() {
+  auth_token_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserResponse::auth_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserResponse.auth_token)
+  return _internal_auth_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserResponse::set_auth_token(ArgT0&& arg0, ArgT... args) {
+ 
+ auth_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserResponse.auth_token)
+}
+inline std::string* CreateOAuthAppUserResponse::mutable_auth_token() {
+  std::string* _s = _internal_mutable_auth_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserResponse.auth_token)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserResponse::_internal_auth_token() const {
+  return auth_token_.Get();
+}
+inline void CreateOAuthAppUserResponse::_internal_set_auth_token(const std::string& value) {
+  
+  auth_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserResponse::_internal_mutable_auth_token() {
+  
+  return auth_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserResponse::release_auth_token() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserResponse.auth_token)
+  return auth_token_.Release();
+}
+inline void CreateOAuthAppUserResponse::set_allocated_auth_token(std::string* auth_token) {
+  if (auth_token != nullptr) {
+    
+  } else {
+    
+  }
+  auth_token_.SetAllocated(auth_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (auth_token_.IsDefault()) {
+    auth_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserResponse.auth_token)
+}
+
+// string registration_id = 2 [json_name = "registrationId"];
+inline void CreateOAuthAppUserResponse::clear_registration_id() {
+  registration_id_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserResponse::registration_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserResponse.registration_id)
+  return _internal_registration_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserResponse::set_registration_id(ArgT0&& arg0, ArgT... args) {
+ 
+ registration_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserResponse.registration_id)
+}
+inline std::string* CreateOAuthAppUserResponse::mutable_registration_id() {
+  std::string* _s = _internal_mutable_registration_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserResponse.registration_id)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserResponse::_internal_registration_id() const {
+  return registration_id_.Get();
+}
+inline void CreateOAuthAppUserResponse::_internal_set_registration_id(const std::string& value) {
+  
+  registration_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserResponse::_internal_mutable_registration_id() {
+  
+  return registration_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserResponse::release_registration_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserResponse.registration_id)
+  return registration_id_.Release();
+}
+inline void CreateOAuthAppUserResponse::set_allocated_registration_id(std::string* registration_id) {
+  if (registration_id != nullptr) {
+    
+  } else {
+    
+  }
+  registration_id_.SetAllocated(registration_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (registration_id_.IsDefault()) {
+    registration_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserResponse.registration_id)
+}
+
+// string user_id = 3 [json_name = "userId"];
+inline void CreateOAuthAppUserResponse::clear_user_id() {
+  user_id_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserResponse::user_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserResponse.user_id)
+  return _internal_user_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserResponse::set_user_id(ArgT0&& arg0, ArgT... args) {
+ 
+ user_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserResponse.user_id)
+}
+inline std::string* CreateOAuthAppUserResponse::mutable_user_id() {
+  std::string* _s = _internal_mutable_user_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserResponse.user_id)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserResponse::_internal_user_id() const {
+  return user_id_.Get();
+}
+inline void CreateOAuthAppUserResponse::_internal_set_user_id(const std::string& value) {
+  
+  user_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserResponse::_internal_mutable_user_id() {
+  
+  return user_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserResponse::release_user_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserResponse.user_id)
+  return user_id_.Release();
+}
+inline void CreateOAuthAppUserResponse::set_allocated_user_id(std::string* user_id) {
+  if (user_id != nullptr) {
+    
+  } else {
+    
+  }
+  user_id_.SetAllocated(user_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (user_id_.IsDefault()) {
+    user_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserResponse.user_id)
+}
+
+// string refresh_token = 4 [json_name = "refreshToken"];
+inline void CreateOAuthAppUserResponse::clear_refresh_token() {
+  refresh_token_.ClearToEmpty();
+}
+inline const std::string& CreateOAuthAppUserResponse::refresh_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.CreateOAuthAppUserResponse.refresh_token)
+  return _internal_refresh_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOAuthAppUserResponse::set_refresh_token(ArgT0&& arg0, ArgT... args) {
+ 
+ refresh_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.CreateOAuthAppUserResponse.refresh_token)
+}
+inline std::string* CreateOAuthAppUserResponse::mutable_refresh_token() {
+  std::string* _s = _internal_mutable_refresh_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.CreateOAuthAppUserResponse.refresh_token)
+  return _s;
+}
+inline const std::string& CreateOAuthAppUserResponse::_internal_refresh_token() const {
+  return refresh_token_.Get();
+}
+inline void CreateOAuthAppUserResponse::_internal_set_refresh_token(const std::string& value) {
+  
+  refresh_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserResponse::_internal_mutable_refresh_token() {
+  
+  return refresh_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateOAuthAppUserResponse::release_refresh_token() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.CreateOAuthAppUserResponse.refresh_token)
+  return refresh_token_.Release();
+}
+inline void CreateOAuthAppUserResponse::set_allocated_refresh_token(std::string* refresh_token) {
+  if (refresh_token != nullptr) {
+    
+  } else {
+    
+  }
+  refresh_token_.SetAllocated(refresh_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (refresh_token_.IsDefault()) {
+    refresh_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.CreateOAuthAppUserResponse.refresh_token)
+}
+
+// -------------------------------------------------------------------
+
 // OAuthConfig
 
 // .viam.app.v1.ClientAuthentication client_authentication = 1 [json_name = "clientAuthentication"];
@@ -85872,6 +87224,10 @@ inline void DeleteFirebaseConfigRequest::set_allocated_app_id(std::string* app_i
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

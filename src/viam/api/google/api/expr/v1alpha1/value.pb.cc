@@ -187,10 +187,10 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2epr
   "i.expr.v1alpha1.MapValue.EntryR\007entries\032"
   "q\n\005Entry\0221\n\003key\030\001 \001(\0132\037.google.api.expr."
   "v1alpha1.ValueR\003key\0225\n\005value\030\002 \001(\0132\037.goo"
-  "gle.api.expr.v1alpha1.ValueR\005valueBm\n\034co"
+  "gle.api.expr.v1alpha1.ValueR\005valueBj\n\034co"
   "m.google.api.expr.v1alpha1B\nValueProtoP\001"
   "Z<google.golang.org/genproto/googleapis/"
-  "api/expr/v1alpha1;expr\370\001\001b\006proto3"
+  "api/expr/v1alpha1;exprb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2eproto_deps[2] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -198,7 +198,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2eproto = {
-    false, false, 1153, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2eproto,
+    false, false, 1150, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2eproto,
     "google/api/expr/v1alpha1/value.proto",
     &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2eproto_once, descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2eproto_deps, 2, 5,
     schemas, file_default_instances, TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fvalue_2eproto::offsets,

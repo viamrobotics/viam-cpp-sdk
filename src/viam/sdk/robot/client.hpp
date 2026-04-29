@@ -164,6 +164,22 @@ class RobotClient {
     /// @param id The ID of the operation to cancel.
     void cancel_operation(std::string id);
 
+    /// @brief Get the pose of a component in the world reference frame.
+    /// @param component_name The name of the component whose pose is being requested.
+    /// @return The pose of the component in the world frame.
+    pose_in_frame get_pose(const std::string& component_name);
+
+    /// @brief Get the pose of a component in the desired reference frame.
+    /// @param component_name The name of the component whose pose is being requested.
+    /// @param destination_frame The reference frame in which the pose should be provided.
+    /// @param additional_transforms Additional reference frames needed to compute the pose.
+    /// @param extra Any extra parameters to pass to the method.
+    /// @return The pose of the component in the destination frame.
+    pose_in_frame get_pose(const std::string& component_name,
+                           const std::string& destination_frame,
+                           const std::vector<WorldState::transform>& additional_transforms,
+                           const ProtoStruct& extra);
+
     /// @brief gets the current status of the machine
     status get_machine_status() const;
 
