@@ -400,9 +400,11 @@ class InvoiceSummary final :
   enum : int {
     kIdFieldNumber = 1,
     kStatusFieldNumber = 4,
+    kLastPaymentFailureReasonFieldNumber = 7,
     kInvoiceDateFieldNumber = 2,
     kDueDateFieldNumber = 5,
     kPaidDateFieldNumber = 6,
+    kLastPaymentFailureAtFieldNumber = 8,
     kInvoiceAmountFieldNumber = 3,
   };
   // string id = 1 [json_name = "id"];
@@ -431,6 +433,20 @@ class InvoiceSummary final :
   const std::string& _internal_status() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_status(const std::string& value);
   std::string* _internal_mutable_status();
+  public:
+
+  // string last_payment_failure_reason = 7 [json_name = "lastPaymentFailureReason"];
+  void clear_last_payment_failure_reason();
+  const std::string& last_payment_failure_reason() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_last_payment_failure_reason(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_last_payment_failure_reason();
+  PROTOBUF_NODISCARD std::string* release_last_payment_failure_reason();
+  void set_allocated_last_payment_failure_reason(std::string* last_payment_failure_reason);
+  private:
+  const std::string& _internal_last_payment_failure_reason() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_last_payment_failure_reason(const std::string& value);
+  std::string* _internal_mutable_last_payment_failure_reason();
   public:
 
   // .google.protobuf.Timestamp invoice_date = 2 [json_name = "invoiceDate"];
@@ -487,6 +503,24 @@ class InvoiceSummary final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* paid_date);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_paid_date();
 
+  // .google.protobuf.Timestamp last_payment_failure_at = 8 [json_name = "lastPaymentFailureAt"];
+  bool has_last_payment_failure_at() const;
+  private:
+  bool _internal_has_last_payment_failure_at() const;
+  public:
+  void clear_last_payment_failure_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_payment_failure_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_payment_failure_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_payment_failure_at();
+  void set_allocated_last_payment_failure_at(::PROTOBUF_NAMESPACE_ID::Timestamp* last_payment_failure_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_payment_failure_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_payment_failure_at();
+  public:
+  void unsafe_arena_set_allocated_last_payment_failure_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_payment_failure_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_payment_failure_at();
+
   // double invoice_amount = 3 [json_name = "invoiceAmount"];
   void clear_invoice_amount();
   double invoice_amount() const;
@@ -505,9 +539,11 @@ class InvoiceSummary final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr status_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr last_payment_failure_reason_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* invoice_date_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* due_date_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* paid_date_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* last_payment_failure_at_;
   double invoice_amount_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fv1_2fbilling_2eproto;
@@ -5556,6 +5592,141 @@ inline void InvoiceSummary::set_allocated_paid_date(::PROTOBUF_NAMESPACE_ID::Tim
   }
   paid_date_ = paid_date;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.InvoiceSummary.paid_date)
+}
+
+// string last_payment_failure_reason = 7 [json_name = "lastPaymentFailureReason"];
+inline void InvoiceSummary::clear_last_payment_failure_reason() {
+  last_payment_failure_reason_.ClearToEmpty();
+}
+inline const std::string& InvoiceSummary::last_payment_failure_reason() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.InvoiceSummary.last_payment_failure_reason)
+  return _internal_last_payment_failure_reason();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void InvoiceSummary::set_last_payment_failure_reason(ArgT0&& arg0, ArgT... args) {
+ 
+ last_payment_failure_reason_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.InvoiceSummary.last_payment_failure_reason)
+}
+inline std::string* InvoiceSummary::mutable_last_payment_failure_reason() {
+  std::string* _s = _internal_mutable_last_payment_failure_reason();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.InvoiceSummary.last_payment_failure_reason)
+  return _s;
+}
+inline const std::string& InvoiceSummary::_internal_last_payment_failure_reason() const {
+  return last_payment_failure_reason_.Get();
+}
+inline void InvoiceSummary::_internal_set_last_payment_failure_reason(const std::string& value) {
+  
+  last_payment_failure_reason_.Set(value, GetArenaForAllocation());
+}
+inline std::string* InvoiceSummary::_internal_mutable_last_payment_failure_reason() {
+  
+  return last_payment_failure_reason_.Mutable(GetArenaForAllocation());
+}
+inline std::string* InvoiceSummary::release_last_payment_failure_reason() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.InvoiceSummary.last_payment_failure_reason)
+  return last_payment_failure_reason_.Release();
+}
+inline void InvoiceSummary::set_allocated_last_payment_failure_reason(std::string* last_payment_failure_reason) {
+  if (last_payment_failure_reason != nullptr) {
+    
+  } else {
+    
+  }
+  last_payment_failure_reason_.SetAllocated(last_payment_failure_reason, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (last_payment_failure_reason_.IsDefault()) {
+    last_payment_failure_reason_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.InvoiceSummary.last_payment_failure_reason)
+}
+
+// .google.protobuf.Timestamp last_payment_failure_at = 8 [json_name = "lastPaymentFailureAt"];
+inline bool InvoiceSummary::_internal_has_last_payment_failure_at() const {
+  return this != internal_default_instance() && last_payment_failure_at_ != nullptr;
+}
+inline bool InvoiceSummary::has_last_payment_failure_at() const {
+  return _internal_has_last_payment_failure_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& InvoiceSummary::_internal_last_payment_failure_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = last_payment_failure_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& InvoiceSummary::last_payment_failure_at() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.InvoiceSummary.last_payment_failure_at)
+  return _internal_last_payment_failure_at();
+}
+inline void InvoiceSummary::unsafe_arena_set_allocated_last_payment_failure_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_payment_failure_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_payment_failure_at_);
+  }
+  last_payment_failure_at_ = last_payment_failure_at;
+  if (last_payment_failure_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.InvoiceSummary.last_payment_failure_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* InvoiceSummary::release_last_payment_failure_at() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_payment_failure_at_;
+  last_payment_failure_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* InvoiceSummary::unsafe_arena_release_last_payment_failure_at() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.InvoiceSummary.last_payment_failure_at)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_payment_failure_at_;
+  last_payment_failure_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* InvoiceSummary::_internal_mutable_last_payment_failure_at() {
+  
+  if (last_payment_failure_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_payment_failure_at_ = p;
+  }
+  return last_payment_failure_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* InvoiceSummary::mutable_last_payment_failure_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_payment_failure_at();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.InvoiceSummary.last_payment_failure_at)
+  return _msg;
+}
+inline void InvoiceSummary::set_allocated_last_payment_failure_at(::PROTOBUF_NAMESPACE_ID::Timestamp* last_payment_failure_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_payment_failure_at_);
+  }
+  if (last_payment_failure_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_payment_failure_at));
+    if (message_arena != submessage_arena) {
+      last_payment_failure_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_payment_failure_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  last_payment_failure_at_ = last_payment_failure_at;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.InvoiceSummary.last_payment_failure_at)
 }
 
 // -------------------------------------------------------------------
