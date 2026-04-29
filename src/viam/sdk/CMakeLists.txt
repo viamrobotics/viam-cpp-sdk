@@ -62,7 +62,6 @@ target_sources(viamsdk
     common/client_helper.cpp
     common/exception.cpp
     common/instance.cpp
-    common/tracing.cpp
     common/kinematics.cpp
     common/linear_algebra.cpp
     common/mesh.cpp
@@ -72,6 +71,7 @@ target_sources(viamsdk
     common/version_metadata.cpp
     common/world_state.cpp
     common/private/service_helper.cpp
+    common/private/tracing.cpp
     components/arm.cpp
     components/audio_in.cpp
     components/audio_out.cpp
@@ -311,7 +311,7 @@ target_link_libraries(viamsdk
 
 if (VIAMCPPSDK_OPENTELEMETRY_TRACING)
   target_compile_definitions(viamsdk PRIVATE VIAMCPPSDK_OPENTELEMETRY_TRACING)
-  target_link_libraries(viamsdk PRIVATE opentelemetry-cpp::trace)
+  target_link_libraries(viamsdk PRIVATE opentelemetry-cpp::sdk)
 endif()
 
 # if the `viam_rust_utils` target exists then we should use it. If not then
