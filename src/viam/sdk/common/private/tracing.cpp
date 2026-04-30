@@ -69,14 +69,14 @@ class GrpcClientCarrier : public otel_prop::TextMapCarrier {
 };
 
 // Heap-allocated pair of (span, scope) so that otel_trace::Scope — which is neither
-// copyable nor moveable — can be managed via a raw pointer stored in ServerSpanGuard::Impl.
-// Constructing SpanAndScope makes the span active on the current thread (via Scope); deleting
+// copyable nor moveable — can be owned by ServerSpanGuard::Impl via unique_ptr.
+// Constructing SpanAndScope makes the span active on the current thread (via Scope); destroying
 // it deactivates the span and then releases the shared_ptr.
 // The span member must be declared before scope so that it is fully initialised before the
 // Scope constructor runs (Scope holds a reference to it).
 struct SpanAndScope {
     opentelemetry::nostd::shared_ptr<otel_trace::Span> span;
-    otel_trace::Scope scope;  // Must follow span in declaration order
+    otel_trace::Scope scope;
 
     explicit SpanAndScope(opentelemetry::nostd::shared_ptr<otel_trace::Span> s) noexcept
         : span(std::move(s)), scope(span) {}
@@ -87,14 +87,13 @@ struct SpanAndScope {
 // ----- ServerSpanGuard -------------------------------------------------------
 
 struct ServerSpanGuard::Impl {
-    SpanAndScope* span_scope = nullptr;
+    std::unique_ptr<SpanAndScope> span_scope;
     bool committed = false;
 };
 
 ServerSpanGuard::ServerSpanGuard(const GrpcServerContext* ctx, const char* method) noexcept {
     try {
-        auto tracer =
-            otel_trace::Provider::GetTracerProvider()->GetTracer(k_instrumentation_scope);
+        auto tracer = otel_trace::Provider::GetTracerProvider()->GetTracer(k_instrumentation_scope);
 
         otel_trace::StartSpanOptions opts;
         opts.kind = otel_trace::SpanKind::kServer;
@@ -103,8 +102,8 @@ ServerSpanGuard::ServerSpanGuard(const GrpcServerContext* ctx, const char* metho
             GrpcServerCarrier carrier{*ctx};
             auto current_ctx = otel_ctx::RuntimeContext::GetCurrent();
             const auto extracted =
-                otel_prop::GlobalTextMapPropagator::GetGlobalPropagator()->Extract(
-                    carrier, current_ctx);
+                otel_prop::GlobalTextMapPropagator::GetGlobalPropagator()->Extract(carrier,
+                                                                                   current_ctx);
             opts.parent = otel_trace::GetSpan(extracted)->GetContext();
         }
 
@@ -112,7 +111,7 @@ ServerSpanGuard::ServerSpanGuard(const GrpcServerContext* ctx, const char* metho
         span->SetAttribute("rpc.system", "grpc");
 
         impl_ = std::make_unique<Impl>();
-        impl_->span_scope = new SpanAndScope(std::move(span));
+        impl_->span_scope = std::make_unique<SpanAndScope>(std::move(span));
     } catch (...) {
         // Tracing is best-effort; never let failures here affect the gRPC call.
         impl_.reset();
@@ -128,8 +127,6 @@ ServerSpanGuard::~ServerSpanGuard() noexcept {
                                            "handler threw an exception");
     }
     impl_->span_scope->span->End();
-    delete impl_->span_scope;
-    impl_->span_scope = nullptr;
 }
 
 void ServerSpanGuard::commit(int grpc_status_code) noexcept {
@@ -178,8 +175,7 @@ namespace impl {
 // Provide a minimal Impl so that the unique_ptr destructor is well-defined.
 struct ServerSpanGuard::Impl {};
 
-ServerSpanGuard::ServerSpanGuard(const GrpcServerContext*, const char*) noexcept
-    : impl_(nullptr) {}
+ServerSpanGuard::ServerSpanGuard(const GrpcServerContext*, const char*) noexcept : impl_(nullptr) {}
 
 ServerSpanGuard::~ServerSpanGuard() noexcept = default;
 
