@@ -79,6 +79,22 @@ class GripperService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::IsHoldingSomethingResponse>> PrepareAsyncIsHoldingSomething(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::IsHoldingSomethingResponse>>(PrepareAsyncIsHoldingSomethingRaw(context, request, cq));
     }
+    // GetCurrentInputs returns the current input values of a gripper
+    virtual ::grpc::Status GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetCurrentInputsResponse>> AsyncGetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetCurrentInputsResponse>>(AsyncGetCurrentInputsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetCurrentInputsResponse>> PrepareAsyncGetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetCurrentInputsResponse>>(PrepareAsyncGetCurrentInputsRaw(context, request, cq));
+    }
+    // GoToInputs moves the gripper to the given input values.
+    virtual ::grpc::Status GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::viam::component::gripper::v1::GoToInputsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>> AsyncGoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>>(AsyncGoToInputsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>> PrepareAsyncGoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>>(PrepareAsyncGoToInputsRaw(context, request, cq));
+    }
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
@@ -129,6 +145,12 @@ class GripperService final {
       // IsHoldingSomething returns whether the gripper is currently holding onto an object
       virtual void IsHoldingSomething(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void IsHoldingSomething(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetCurrentInputs returns the current input values of a gripper
+      virtual void GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GoToInputs moves the gripper to the given input values.
+      virtual void GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // DoCommand sends/receives arbitrary commands
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -156,6 +178,10 @@ class GripperService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::IsMovingResponse>* PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::IsHoldingSomethingResponse>* AsyncIsHoldingSomethingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::IsHoldingSomethingResponse>* PrepareAsyncIsHoldingSomethingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetCurrentInputsResponse>* AsyncGetCurrentInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GetCurrentInputsResponse>* PrepareAsyncGetCurrentInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>* AsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::component::gripper::v1::GoToInputsResponse>* PrepareAsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::common::v1::GetStatusResponse>* AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -203,6 +229,20 @@ class GripperService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsHoldingSomethingResponse>> PrepareAsyncIsHoldingSomething(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsHoldingSomethingResponse>>(PrepareAsyncIsHoldingSomethingRaw(context, request, cq));
     }
+    ::grpc::Status GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetCurrentInputsResponse>> AsyncGetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetCurrentInputsResponse>>(AsyncGetCurrentInputsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetCurrentInputsResponse>> PrepareAsyncGetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetCurrentInputsResponse>>(PrepareAsyncGetCurrentInputsRaw(context, request, cq));
+    }
+    ::grpc::Status GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::viam::component::gripper::v1::GoToInputsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>> AsyncGoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>>(AsyncGoToInputsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>> PrepareAsyncGoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>>(PrepareAsyncGoToInputsRaw(context, request, cq));
+    }
     ::grpc::Status DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::viam::common::v1::DoCommandResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>> AsyncDoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>>(AsyncDoCommandRaw(context, request, cq));
@@ -244,6 +284,10 @@ class GripperService final {
       void IsMoving(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsMovingRequest* request, ::viam::component::gripper::v1::IsMovingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void IsHoldingSomething(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response, std::function<void(::grpc::Status)>) override;
       void IsHoldingSomething(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, std::function<void(::grpc::Status)>) override;
       void DoCommand(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetStatus(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response, std::function<void(::grpc::Status)>) override;
@@ -273,6 +317,10 @@ class GripperService final {
     ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsMovingResponse>* PrepareAsyncIsMovingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsMovingRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsHoldingSomethingResponse>* AsyncIsHoldingSomethingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsHoldingSomethingResponse>* PrepareAsyncIsHoldingSomethingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetCurrentInputsResponse>* AsyncGetCurrentInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetCurrentInputsResponse>* PrepareAsyncGetCurrentInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>* AsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>* PrepareAsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* AsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::DoCommandResponse>* PrepareAsyncDoCommandRaw(::grpc::ClientContext* context, const ::viam::common::v1::DoCommandRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::common::v1::GetStatusResponse>* AsyncGetStatusRaw(::grpc::ClientContext* context, const ::viam::common::v1::GetStatusRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -286,6 +334,8 @@ class GripperService final {
     const ::grpc::internal::RpcMethod rpcmethod_Stop_;
     const ::grpc::internal::RpcMethod rpcmethod_IsMoving_;
     const ::grpc::internal::RpcMethod rpcmethod_IsHoldingSomething_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetCurrentInputs_;
+    const ::grpc::internal::RpcMethod rpcmethod_GoToInputs_;
     const ::grpc::internal::RpcMethod rpcmethod_DoCommand_;
     const ::grpc::internal::RpcMethod rpcmethod_GetStatus_;
     const ::grpc::internal::RpcMethod rpcmethod_GetGeometries_;
@@ -307,6 +357,10 @@ class GripperService final {
     virtual ::grpc::Status IsMoving(::grpc::ServerContext* context, const ::viam::component::gripper::v1::IsMovingRequest* request, ::viam::component::gripper::v1::IsMovingResponse* response);
     // IsHoldingSomething returns whether the gripper is currently holding onto an object
     virtual ::grpc::Status IsHoldingSomething(::grpc::ServerContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response);
+    // GetCurrentInputs returns the current input values of a gripper
+    virtual ::grpc::Status GetCurrentInputs(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response);
+    // GoToInputs moves the gripper to the given input values.
+    virtual ::grpc::Status GoToInputs(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response);
     // DoCommand sends/receives arbitrary commands
     virtual ::grpc::Status DoCommand(::grpc::ServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response);
     // GetStatus returns the status of the resource
@@ -417,12 +471,52 @@ class GripperService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_GetCurrentInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetCurrentInputs() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_GetCurrentInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCurrentInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetCurrentInputsRequest* /*request*/, ::viam::component::gripper::v1::GetCurrentInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetCurrentInputs(::grpc::ServerContext* context, ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gripper::v1::GetCurrentInputsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GoToInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GoToInputs() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_GoToInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GoToInputsRequest* /*request*/, ::viam::component::gripper::v1::GoToInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGoToInputs(::grpc::ServerContext* context, ::viam::component::gripper::v1::GoToInputsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::component::gripper::v1::GoToInputsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DoCommand() {
-      ::grpc::Service::MarkMethodAsync(5);
+      ::grpc::Service::MarkMethodAsync(7);
     }
     ~WithAsyncMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -433,7 +527,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::viam::common::v1::DoCommandRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::DoCommandResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -442,7 +536,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetStatus() {
-      ::grpc::Service::MarkMethodAsync(6);
+      ::grpc::Service::MarkMethodAsync(8);
     }
     ~WithAsyncMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -453,7 +547,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::viam::common::v1::GetStatusRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetStatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -462,7 +556,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodAsync(7);
+      ::grpc::Service::MarkMethodAsync(9);
     }
     ~WithAsyncMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -473,7 +567,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::viam::common::v1::GetGeometriesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetGeometriesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -482,7 +576,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodAsync(8);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -493,10 +587,10 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematics(::grpc::ServerContext* context, ::viam::common::v1::GetKinematicsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::common::v1::GetKinematicsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Open<WithAsyncMethod_Grab<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_IsHoldingSomething<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<WithAsyncMethod_GetGeometries<WithAsyncMethod_GetKinematics<Service > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_Open<WithAsyncMethod_Grab<WithAsyncMethod_Stop<WithAsyncMethod_IsMoving<WithAsyncMethod_IsHoldingSomething<WithAsyncMethod_GetCurrentInputs<WithAsyncMethod_GoToInputs<WithAsyncMethod_DoCommand<WithAsyncMethod_GetStatus<WithAsyncMethod_GetGeometries<WithAsyncMethod_GetKinematics<Service > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Open : public BaseClass {
    private:
@@ -633,18 +727,72 @@ class GripperService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* /*request*/, ::viam::component::gripper::v1::IsHoldingSomethingResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_GetCurrentInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetCurrentInputs() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::GetCurrentInputsRequest, ::viam::component::gripper::v1::GetCurrentInputsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response) { return this->GetCurrentInputs(context, request, response); }));}
+    void SetMessageAllocatorFor_GetCurrentInputs(
+        ::grpc::MessageAllocator< ::viam::component::gripper::v1::GetCurrentInputsRequest, ::viam::component::gripper::v1::GetCurrentInputsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::GetCurrentInputsRequest, ::viam::component::gripper::v1::GetCurrentInputsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetCurrentInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCurrentInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetCurrentInputsRequest* /*request*/, ::viam::component::gripper::v1::GetCurrentInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetCurrentInputs(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gripper::v1::GetCurrentInputsRequest* /*request*/, ::viam::component::gripper::v1::GetCurrentInputsResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GoToInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GoToInputs() {
+      ::grpc::Service::MarkMethodCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::GoToInputsRequest, ::viam::component::gripper::v1::GoToInputsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response) { return this->GoToInputs(context, request, response); }));}
+    void SetMessageAllocatorFor_GoToInputs(
+        ::grpc::MessageAllocator< ::viam::component::gripper::v1::GoToInputsRequest, ::viam::component::gripper::v1::GoToInputsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::component::gripper::v1::GoToInputsRequest, ::viam::component::gripper::v1::GoToInputsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GoToInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GoToInputsRequest* /*request*/, ::viam::component::gripper::v1::GoToInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GoToInputs(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::component::gripper::v1::GoToInputsRequest* /*request*/, ::viam::component::gripper::v1::GoToInputsResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodCallback(5,
+      ::grpc::Service::MarkMethodCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::DoCommandRequest* request, ::viam::common::v1::DoCommandResponse* response) { return this->DoCommand(context, request, response); }));}
     void SetMessageAllocatorFor_DoCommand(
         ::grpc::MessageAllocator< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -665,13 +813,13 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodCallback(6,
+      ::grpc::Service::MarkMethodCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetStatusRequest* request, ::viam::common::v1::GetStatusResponse* response) { return this->GetStatus(context, request, response); }));}
     void SetMessageAllocatorFor_GetStatus(
         ::grpc::MessageAllocator< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -692,13 +840,13 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodCallback(7,
+      ::grpc::Service::MarkMethodCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetGeometriesRequest* request, ::viam::common::v1::GetGeometriesResponse* response) { return this->GetGeometries(context, request, response); }));}
     void SetMessageAllocatorFor_GetGeometries(
         ::grpc::MessageAllocator< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -719,13 +867,13 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodCallback(8,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::common::v1::GetKinematicsRequest* request, ::viam::common::v1::GetKinematicsResponse* response) { return this->GetKinematics(context, request, response); }));}
     void SetMessageAllocatorFor_GetKinematics(
         ::grpc::MessageAllocator< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -740,7 +888,7 @@ class GripperService final {
     virtual ::grpc::ServerUnaryReactor* GetKinematics(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::common::v1::GetKinematicsRequest* /*request*/, ::viam::common::v1::GetKinematicsResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Open<WithCallbackMethod_Grab<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_IsHoldingSomething<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<WithCallbackMethod_GetGeometries<WithCallbackMethod_GetKinematics<Service > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_Open<WithCallbackMethod_Grab<WithCallbackMethod_Stop<WithCallbackMethod_IsMoving<WithCallbackMethod_IsHoldingSomething<WithCallbackMethod_GetCurrentInputs<WithCallbackMethod_GoToInputs<WithCallbackMethod_DoCommand<WithCallbackMethod_GetStatus<WithCallbackMethod_GetGeometries<WithCallbackMethod_GetKinematics<Service > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Open : public BaseClass {
@@ -828,12 +976,46 @@ class GripperService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_GetCurrentInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetCurrentInputs() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_GetCurrentInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCurrentInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetCurrentInputsRequest* /*request*/, ::viam::component::gripper::v1::GetCurrentInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GoToInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GoToInputs() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_GoToInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GoToInputsRequest* /*request*/, ::viam::component::gripper::v1::GoToInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DoCommand() {
-      ::grpc::Service::MarkMethodGeneric(5);
+      ::grpc::Service::MarkMethodGeneric(7);
     }
     ~WithGenericMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -850,7 +1032,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetStatus() {
-      ::grpc::Service::MarkMethodGeneric(6);
+      ::grpc::Service::MarkMethodGeneric(8);
     }
     ~WithGenericMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -867,7 +1049,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodGeneric(7);
+      ::grpc::Service::MarkMethodGeneric(9);
     }
     ~WithGenericMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -884,7 +1066,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodGeneric(8);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -996,12 +1178,52 @@ class GripperService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetCurrentInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetCurrentInputs() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_GetCurrentInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCurrentInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetCurrentInputsRequest* /*request*/, ::viam::component::gripper::v1::GetCurrentInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetCurrentInputs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GoToInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GoToInputs() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_GoToInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GoToInputsRequest* /*request*/, ::viam::component::gripper::v1::GoToInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGoToInputs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRaw(5);
+      ::grpc::Service::MarkMethodRaw(7);
     }
     ~WithRawMethod_DoCommand() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1012,7 +1234,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDoCommand(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1021,7 +1243,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRaw(6);
+      ::grpc::Service::MarkMethodRaw(8);
     }
     ~WithRawMethod_GetStatus() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1032,7 +1254,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1041,7 +1263,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRaw(7);
+      ::grpc::Service::MarkMethodRaw(9);
     }
     ~WithRawMethod_GetGeometries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1052,7 +1274,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetGeometries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1061,7 +1283,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodRaw(8);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_GetKinematics() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1072,7 +1294,7 @@ class GripperService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKinematics(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1186,12 +1408,56 @@ class GripperService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_GetCurrentInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetCurrentInputs() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetCurrentInputs(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetCurrentInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetCurrentInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetCurrentInputsRequest* /*request*/, ::viam::component::gripper::v1::GetCurrentInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetCurrentInputs(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GoToInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GoToInputs() {
+      ::grpc::Service::MarkMethodRawCallback(6,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GoToInputs(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GoToInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GoToInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GoToInputsRequest* /*request*/, ::viam::component::gripper::v1::GoToInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GoToInputs(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DoCommand() {
-      ::grpc::Service::MarkMethodRawCallback(5,
+      ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DoCommand(context, request, response); }));
@@ -1213,7 +1479,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetStatus() {
-      ::grpc::Service::MarkMethodRawCallback(6,
+      ::grpc::Service::MarkMethodRawCallback(8,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetStatus(context, request, response); }));
@@ -1235,7 +1501,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodRawCallback(7,
+      ::grpc::Service::MarkMethodRawCallback(9,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGeometries(context, request, response); }));
@@ -1257,7 +1523,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodRawCallback(8,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetKinematics(context, request, response); }));
@@ -1409,12 +1675,66 @@ class GripperService final {
     virtual ::grpc::Status StreamedIsHoldingSomething(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gripper::v1::IsHoldingSomethingRequest,::viam::component::gripper::v1::IsHoldingSomethingResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_GetCurrentInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetCurrentInputs() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::gripper::v1::GetCurrentInputsRequest, ::viam::component::gripper::v1::GetCurrentInputsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::gripper::v1::GetCurrentInputsRequest, ::viam::component::gripper::v1::GetCurrentInputsResponse>* streamer) {
+                       return this->StreamedGetCurrentInputs(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetCurrentInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetCurrentInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GetCurrentInputsRequest* /*request*/, ::viam::component::gripper::v1::GetCurrentInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetCurrentInputs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gripper::v1::GetCurrentInputsRequest,::viam::component::gripper::v1::GetCurrentInputsResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GoToInputs : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GoToInputs() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::component::gripper::v1::GoToInputsRequest, ::viam::component::gripper::v1::GoToInputsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::component::gripper::v1::GoToInputsRequest, ::viam::component::gripper::v1::GoToInputsResponse>* streamer) {
+                       return this->StreamedGoToInputs(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GoToInputs() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GoToInputs(::grpc::ServerContext* /*context*/, const ::viam::component::gripper::v1::GoToInputsRequest* /*request*/, ::viam::component::gripper::v1::GoToInputsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGoToInputs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::component::gripper::v1::GoToInputsRequest,::viam::component::gripper::v1::GoToInputsResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_DoCommand : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DoCommand() {
-      ::grpc::Service::MarkMethodStreamed(5,
+      ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse>(
             [this](::grpc::ServerContext* context,
@@ -1441,7 +1761,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetStatus() {
-      ::grpc::Service::MarkMethodStreamed(6,
+      ::grpc::Service::MarkMethodStreamed(8,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse>(
             [this](::grpc::ServerContext* context,
@@ -1468,7 +1788,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetGeometries() {
-      ::grpc::Service::MarkMethodStreamed(7,
+      ::grpc::Service::MarkMethodStreamed(9,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse>(
             [this](::grpc::ServerContext* context,
@@ -1495,7 +1815,7 @@ class GripperService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetKinematics() {
-      ::grpc::Service::MarkMethodStreamed(8,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse>(
             [this](::grpc::ServerContext* context,
@@ -1516,9 +1836,9 @@ class GripperService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetKinematics(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::common::v1::GetKinematicsRequest,::viam::common::v1::GetKinematicsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Grab<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_IsHoldingSomething<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetKinematics<Service > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Grab<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_IsHoldingSomething<WithStreamedUnaryMethod_GetCurrentInputs<WithStreamedUnaryMethod_GoToInputs<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetKinematics<Service > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Grab<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_IsHoldingSomething<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetKinematics<Service > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Open<WithStreamedUnaryMethod_Grab<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_IsMoving<WithStreamedUnaryMethod_IsHoldingSomething<WithStreamedUnaryMethod_GetCurrentInputs<WithStreamedUnaryMethod_GoToInputs<WithStreamedUnaryMethod_DoCommand<WithStreamedUnaryMethod_GetStatus<WithStreamedUnaryMethod_GetGeometries<WithStreamedUnaryMethod_GetKinematics<Service > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
