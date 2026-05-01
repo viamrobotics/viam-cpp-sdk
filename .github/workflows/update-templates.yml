@@ -150,8 +150,7 @@ jobs:
           path: sdk
           branch: workflow/update-templates
           add-paths: |
-            res/module_generator/_templates/components/*
-            res/module_generator/_templates/services/*
+            res/module_generator/_templates/
           title: Automated update to module generator templates
           commit-message: '[WORKFLOW] Updating module generator templates'
           body: 'This is an auto-generated PR from a ${{ github.event_name }} event to update module generator templates.'
