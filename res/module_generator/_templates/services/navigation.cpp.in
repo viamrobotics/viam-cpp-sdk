@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 
-namespace {{ .ModuleName }} {
+namespace {{ .ModuleSnake }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
@@ -77,5 +77,5 @@ viam::sdk::ProtoStruct {{ .ModelPascal }}::get_status()
     throw std::logic_error("\"get_status\" not implemented");
 }
 
-} // namespace {{ .ModuleName }}
+} // namespace {{ .ModuleSnake }}
 

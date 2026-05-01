@@ -6,7 +6,7 @@
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/services/generic.hpp>
 
-namespace {{ .ModuleName }} {
+namespace {{ .ModuleSnake }} {
 
 
 class {{ .ModelPascal }} : public viam::sdk::Generic {
@@ -17,5 +17,5 @@ public:
 
 };
 
-} // namespace {{ .ModuleName }}
+} // namespace {{ .ModuleSnake }}
 
