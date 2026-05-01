@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 
-namespace {{ .ModuleName }} {
+namespace {{ .ModuleSnake }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
@@ -71,5 +71,5 @@ std::vector<viam::sdk::GeometryConfig> {{ .ModelPascal }}::get_geometries(const 
     throw std::logic_error("\"get_geometries\" not implemented");
 }
 
-} // namespace {{ .ModuleName }}
+} // namespace {{ .ModuleSnake }}
 
