@@ -136,10 +136,7 @@ option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 # - `VIAMCPPSDK_OPENTELEMETRY_TRACING`
 #
 # When enabled (default), links against opentelemetry-cpp and compiles in
-# W3C Trace Context propagation for all gRPC client and server calls. Spans
-# are exported via whatever TracerProvider the application configures at
-# runtime; the SDK defaults to the OTel noop provider (no export overhead).
-# Disable this if you need to build without an opentelemetry-cpp installation.
+# W3C Trace Context propagation for all gRPC client and server calls.
 #
 option(VIAMCPPSDK_OPENTELEMETRY_TRACING "Compile OpenTelemetry tracing into all gRPC calls" ON)
 

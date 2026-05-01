@@ -70,8 +70,7 @@ class GrpcClientCarrier : public otel_prop::TextMapCarrier {
 
 }  // namespace
 
-// Constructing Impl makes the span active on the current thread (via Scope); destroying it
-// deactivates the span and then releases the shared_ptr.
+// Constructing Impl makes the span active on the current thread
 struct ServerSpanGuard::Impl {
     opentelemetry::nostd::shared_ptr<otel_trace::Span> span;
     otel_trace::Scope scope;
@@ -111,17 +110,18 @@ ServerSpanGuard::~ServerSpanGuard() noexcept {
     impl_->span->End();
 }
 
-void ServerSpanGuard::commit(int grpc_status_code) noexcept {
+::grpc::Status ServerSpanGuard::commit(::grpc::Status status) noexcept {
     if (!impl_) {
-        return;
+        return status;
     }
     impl_->committed = true;
-    if (grpc_status_code == 0 /* grpc::StatusCode::OK */) {
+    if (status.error_code() == ::grpc::StatusCode::OK) {
         impl_->span->SetStatus(otel_trace::StatusCode::kOk);
     } else {
         impl_->span->SetStatus(otel_trace::StatusCode::kError);
-        impl_->span->SetAttribute("rpc.grpc.status_code", grpc_status_code);
+        impl_->span->SetAttribute("rpc.grpc.status_code", static_cast<int>(status.error_code()));
     }
+    return status;
 }
 
 void inject_trace_context(GrpcClientContext* ctx) noexcept {
@@ -152,7 +152,9 @@ ServerSpanGuard::ServerSpanGuard(const GrpcServerContext*, const char*) noexcept
 
 ServerSpanGuard::~ServerSpanGuard() noexcept = default;
 
-void ServerSpanGuard::commit(int) noexcept {}
+::grpc::Status ServerSpanGuard::commit(::grpc::Status status) noexcept {
+    return status;
+}
 
 void inject_trace_context(GrpcClientContext*) noexcept {}
 

@@ -60,9 +60,7 @@ class ServiceHelper : public ServiceHelperBase {
         }
         const GrpcContextObserver::Enable enable{*context_};
         impl::ServerSpanGuard span_guard{context_, method_name()};
-        const auto status = invoke_(std::forward<Callable>(callable), std::move(resource));
-        span_guard.commit(static_cast<int>(status.error_code()));
-        return status;
+        return span_guard.commit(invoke_(std::forward<Callable>(callable), std::move(resource)));
     } catch (const std::exception& xcp) {
         return failStdException(xcp);
     } catch (...) {

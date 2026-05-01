@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include <grpcpp/support/status.h>
+
 #include <viam/sdk/common/grpc_fwd.hpp>
 
 namespace viam {
@@ -14,7 +16,7 @@ namespace impl {
 /// destroyed, ends the span and records the final gRPC status.
 ///
 /// If OpenTelemetry tracing is not compiled in, or no tracer provider has been configured,
-/// this is a complete no-op with no runtime overhead beyond a null pointer check.
+/// uses a no-op implementation.
 ///
 /// @note Instances must be created and destroyed on the same thread (the gRPC handler thread).
 class ServerSpanGuard {
@@ -22,13 +24,8 @@ class ServerSpanGuard {
     explicit ServerSpanGuard(const GrpcServerContext* ctx, const char* method) noexcept;
     ~ServerSpanGuard() noexcept;
 
-    /// @brief Record the final gRPC status code before destruction.
-    ///
-    /// Call this when the handler returns normally (without throwing). The @p grpc_status_code
-    /// should be the integer value of the @c grpc::StatusCode (0 = OK). If @c commit() is not
-    /// called before destruction (e.g., because the handler threw an exception), the span status
-    /// defaults to @c StatusCode::kError.
-    void commit(int grpc_status_code) noexcept;
+    /// @brief Record the final gRPC status before destruction and return it unchanged.
+    ::grpc::Status commit(::grpc::Status status) noexcept;
 
     ServerSpanGuard(const ServerSpanGuard&) = delete;
     ServerSpanGuard& operator=(const ServerSpanGuard&) = delete;
