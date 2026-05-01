@@ -5,9 +5,9 @@
 #include <grpcpp/client_context.h>
 #include <grpcpp/support/status.h>
 
-#include <viam/sdk/common/private/tracing.hpp>
 #include <viam/sdk/common/private/version_metadata.hpp>
 #include <viam/sdk/log/logging.hpp>
+#include <viam/sdk/tracing/private/span_guard.hpp>
 
 namespace viam {
 namespace sdk {

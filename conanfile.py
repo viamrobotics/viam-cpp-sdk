@@ -161,9 +161,10 @@ class ViamCppSdkRecipe(ConanFile):
         ])
 
         if self.options.opentelemetry_tracing:
-            self.cpp_info.components["viamsdk"].requires.append(
-                "opentelemetry-cpp::opentelemetry_trace"
-            )
+            self.cpp_info.components["viamsdk"].requires.extend([
+                "opentelemetry-cpp::opentelemetry_trace",
+                "opentelemetry-cpp::opentelemetry_exporter_otlp_grpc",
+            ])
 
         self.cpp_info.components["viamsdk"].requires.extend([
             "viam_rust_utils"

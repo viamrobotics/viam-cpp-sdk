@@ -1,9 +1,11 @@
-#include <viam/sdk/common/private/tracing.hpp>
+#include <viam/sdk/tracing/private/span_guard.hpp>
 
 #include <grpcpp/client_context.h>
 #include <grpcpp/server_context.h>
 
 #ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
+
+#include <memory>
 
 #include <opentelemetry/context/propagation/global_propagator.h>
 #include <opentelemetry/context/runtime_context.h>
@@ -130,12 +132,6 @@ void inject_trace_context(GrpcClientContext* ctx) noexcept {
         carrier, otel_ctx::RuntimeContext::GetCurrent());
 }
 
-void initialize_trace_propagator() noexcept {
-    otel_prop::GlobalTextMapPropagator::SetGlobalPropagator(
-        opentelemetry::nostd::shared_ptr<otel_prop::TextMapPropagator>(
-            new opentelemetry::trace::propagation::HttpTraceContext()));
-}
-
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam
@@ -157,8 +153,6 @@ ServerSpanGuard::~ServerSpanGuard() noexcept = default;
 }
 
 void inject_trace_context(GrpcClientContext*) noexcept {}
-
-void initialize_trace_propagator() noexcept {}
 
 }  // namespace impl
 }  // namespace sdk

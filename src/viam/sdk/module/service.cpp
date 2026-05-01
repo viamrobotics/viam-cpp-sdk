@@ -44,6 +44,7 @@
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <viam/sdk/tracing/private/tracer.hpp>
 
 namespace viam {
 namespace sdk {
@@ -210,6 +211,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                     .set_reconnect_every_interval(std::chrono::seconds{1});
                 parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
                 parent.parent_->connect_logging();
+                impl::Tracer::get().initialize_provider(parent.parent_addr_);
             }
         }
 
@@ -279,6 +281,8 @@ ModuleService::~ModuleService() {
     // TODO(RSDK-5509): Run registered cleanup functions here.
     VIAM_SDK_LOG(info) << "Shutting down gracefully.";
     server_->shutdown();
+
+    impl::Tracer::get().shutdown_provider();
 
     if (parent_) {
         try {

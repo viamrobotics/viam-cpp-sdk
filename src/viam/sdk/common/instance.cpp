@@ -4,8 +4,8 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/private/instance.hpp>
-#include <viam/sdk/common/private/tracing.hpp>
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/tracing/private/tracer.hpp>
 
 namespace viam {
 namespace sdk {

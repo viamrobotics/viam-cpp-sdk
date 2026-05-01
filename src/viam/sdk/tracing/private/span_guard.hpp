@@ -43,10 +43,6 @@ class ServerSpanGuard {
 /// when no span is active or when OpenTelemetry tracing is not compiled in.
 void inject_trace_context(GrpcClientContext* ctx) noexcept;
 
-/// @brief Install the W3C Trace Context propagator as the global OpenTelemetry text-map
-/// propagator. Called once during @c Instance construction.
-void initialize_trace_propagator() noexcept;
-
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

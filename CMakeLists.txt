@@ -494,7 +494,7 @@ if(VIAMCPPSDK_GRPCXX_VERSION VERSION_LESS 1.43.0)
 endif()
 
 if (VIAMCPPSDK_OPENTELEMETRY_TRACING)
-  find_package(opentelemetry-cpp CONFIG REQUIRED COMPONENTS sdk)
+  find_package(opentelemetry-cpp CONFIG REQUIRED COMPONENTS sdk exporters_otlp_grpc)
 endif()
 
 include(FetchContent)

@@ -6,10 +6,9 @@
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/grpc_fwd.hpp>
-#include <viam/sdk/common/private/tracing.hpp>
-
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/rpc/private/grpc_context_observer.hpp>
+#include <viam/sdk/tracing/private/span_guard.hpp>
 
 namespace viam {
 namespace sdk {
