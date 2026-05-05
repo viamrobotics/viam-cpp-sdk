@@ -14,6 +14,15 @@ void viam_free_string(char*) {
     abort();
 }
 
-char* viam_dial(const char*, const char*, const char*, const char*, bool, float, viam_dial_ffi*) {
+char* viam_dial(const char*,
+                const char*,
+                const char*,
+                const char*,
+                bool,
+                float,
+                viam_dial_ffi*,
+                bool,
+                bool,
+                const char*) {
     abort();
 }
