@@ -30,6 +30,8 @@ static const char* GripperService_method_names[] = {
   "/viam.component.gripper.v1.GripperService/Stop",
   "/viam.component.gripper.v1.GripperService/IsMoving",
   "/viam.component.gripper.v1.GripperService/IsHoldingSomething",
+  "/viam.component.gripper.v1.GripperService/GetCurrentInputs",
+  "/viam.component.gripper.v1.GripperService/GoToInputs",
   "/viam.component.gripper.v1.GripperService/DoCommand",
   "/viam.component.gripper.v1.GripperService/GetStatus",
   "/viam.component.gripper.v1.GripperService/GetGeometries",
@@ -48,10 +50,12 @@ GripperService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_Stop_(GripperService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_IsMoving_(GripperService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_IsHoldingSomething_(GripperService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(GripperService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatus_(GripperService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(GripperService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetKinematics_(GripperService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetCurrentInputs_(GripperService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GoToInputs_(GripperService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(GripperService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(GripperService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(GripperService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetKinematics_(GripperService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status GripperService::Stub::Open(::grpc::ClientContext* context, const ::viam::component::gripper::v1::OpenRequest& request, ::viam::component::gripper::v1::OpenResponse* response) {
@@ -165,6 +169,52 @@ void GripperService::Stub::async::IsHoldingSomething(::grpc::ClientContext* cont
 ::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::IsHoldingSomethingResponse>* GripperService::Stub::AsyncIsHoldingSomethingRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncIsHoldingSomethingRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GripperService::Stub::GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gripper::v1::GetCurrentInputsRequest, ::viam::component::gripper::v1::GetCurrentInputsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetCurrentInputs_, context, request, response);
+}
+
+void GripperService::Stub::async::GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::gripper::v1::GetCurrentInputsRequest, ::viam::component::gripper::v1::GetCurrentInputsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCurrentInputs_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::async::GetCurrentInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetCurrentInputs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetCurrentInputsResponse>* GripperService::Stub::PrepareAsyncGetCurrentInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gripper::v1::GetCurrentInputsResponse, ::viam::component::gripper::v1::GetCurrentInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetCurrentInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GetCurrentInputsResponse>* GripperService::Stub::AsyncGetCurrentInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetCurrentInputsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GripperService::Stub::GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::viam::component::gripper::v1::GoToInputsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::component::gripper::v1::GoToInputsRequest, ::viam::component::gripper::v1::GoToInputsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GoToInputs_, context, request, response);
+}
+
+void GripperService::Stub::async::GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::component::gripper::v1::GoToInputsRequest, ::viam::component::gripper::v1::GoToInputsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoToInputs_, context, request, response, std::move(f));
+}
+
+void GripperService::Stub::async::GoToInputs(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GoToInputs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>* GripperService::Stub::PrepareAsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::component::gripper::v1::GoToInputsResponse, ::viam::component::gripper::v1::GoToInputsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GoToInputs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::component::gripper::v1::GoToInputsResponse>* GripperService::Stub::AsyncGoToInputsRaw(::grpc::ClientContext* context, const ::viam::component::gripper::v1::GoToInputsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGoToInputsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -315,6 +365,26 @@ GripperService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GripperService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::component::gripper::v1::GetCurrentInputsRequest, ::viam::component::gripper::v1::GetCurrentInputsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GripperService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::gripper::v1::GetCurrentInputsRequest* req,
+             ::viam::component::gripper::v1::GetCurrentInputsResponse* resp) {
+               return service->GetCurrentInputs(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GripperService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::component::gripper::v1::GoToInputsRequest, ::viam::component::gripper::v1::GoToInputsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GripperService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::component::gripper::v1::GoToInputsRequest* req,
+             ::viam::component::gripper::v1::GoToInputsResponse* resp) {
+               return service->GoToInputs(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GripperService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GripperService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -323,7 +393,7 @@ GripperService::Service::Service() {
                return service->DoCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      GripperService_method_names[6],
+      GripperService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GripperService::Service* service,
@@ -333,7 +403,7 @@ GripperService::Service::Service() {
                return service->GetStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      GripperService_method_names[7],
+      GripperService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GripperService::Service* service,
@@ -343,7 +413,7 @@ GripperService::Service::Service() {
                return service->GetGeometries(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      GripperService_method_names[8],
+      GripperService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< GripperService::Service, ::viam::common::v1::GetKinematicsRequest, ::viam::common::v1::GetKinematicsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GripperService::Service* service,
@@ -386,6 +456,20 @@ GripperService::Service::~Service() {
 }
 
 ::grpc::Status GripperService::Service::IsHoldingSomething(::grpc::ServerContext* context, const ::viam::component::gripper::v1::IsHoldingSomethingRequest* request, ::viam::component::gripper::v1::IsHoldingSomethingResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GripperService::Service::GetCurrentInputs(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GetCurrentInputsRequest* request, ::viam::component::gripper::v1::GetCurrentInputsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GripperService::Service::GoToInputs(::grpc::ServerContext* context, const ::viam::component::gripper::v1::GoToInputsRequest* request, ::viam::component::gripper::v1::GoToInputsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
