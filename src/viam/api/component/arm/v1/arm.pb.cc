@@ -229,7 +229,8 @@ PROTOBUF_CONSTEXPR MoveOptions::MoveOptions(
   : max_vel_degs_per_sec_joints_()
   , max_acc_degs_per_sec2_joints_()
   , max_vel_degs_per_sec_(0)
-  , max_acc_degs_per_sec2_(0){}
+  , max_acc_degs_per_sec2_(0)
+  , max_tcp_speed_(0){}
 struct MoveOptionsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MoveOptionsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -382,10 +383,12 @@ const uint32_t TableStruct_component_2farm_2fv1_2farm_2eproto::offsets[] PROTOBU
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveOptions, max_acc_degs_per_sec2_),
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveOptions, max_vel_degs_per_sec_joints_),
   PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveOptions, max_acc_degs_per_sec2_joints_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::arm::v1::MoveOptions, max_tcp_speed_),
   0,
   1,
   ~0u,
   ~0u,
+  2,
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::arm::v1::GetEndPositionRequest)},
@@ -404,7 +407,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 101, -1, -1, sizeof(::viam::component::arm::v1::Status)},
   { 110, -1, -1, sizeof(::viam::component::arm::v1::IsMovingRequest)},
   { 117, -1, -1, sizeof(::viam::component::arm::v1::IsMovingResponse)},
-  { 124, 134, -1, sizeof(::viam::component::arm::v1::MoveOptions)},
+  { 124, 135, -1, sizeof(::viam::component::arm::v1::MoveOptions)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -466,64 +469,66 @@ const char descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto[] PROTOB
   "itionsR\016jointPositions\022\033\n\tis_moving\030\003 \001("
   "\010R\010isMoving\"%\n\017IsMovingRequest\022\022\n\004name\030\001"
   " \001(\tR\004name\"/\n\020IsMovingResponse\022\033\n\tis_mov"
-  "ing\030\001 \001(\010R\010isMoving\"\250\002\n\013MoveOptions\0223\n\024m"
+  "ing\030\001 \001(\010R\010isMoving\"\343\002\n\013MoveOptions\0223\n\024m"
   "ax_vel_degs_per_sec\030\001 \001(\001H\000R\020maxVelDegsP"
   "erSec\210\001\001\0225\n\025max_acc_degs_per_sec2\030\002 \001(\001H"
   "\001R\021maxAccDegsPerSec2\210\001\001\022;\n\033max_vel_degs_"
   "per_sec_joints\030\003 \003(\001R\026maxVelDegsPerSecJo"
   "ints\022=\n\034max_acc_degs_per_sec2_joints\030\004 \003"
-  "(\001R\027maxAccDegsPerSec2JointsB\027\n\025_max_vel_"
-  "degs_per_secB\030\n\026_max_acc_degs_per_sec22\210"
-  "\017\n\nArmService\022\241\001\n\016GetEndPosition\022,.viam."
-  "component.arm.v1.GetEndPositionRequest\032-"
-  ".viam.component.arm.v1.GetEndPositionRes"
-  "ponse\"2\202\323\344\223\002,\022*/viam/api/v1/component/ar"
-  "m/{name}/position\022\245\001\n\016MoveToPosition\022,.v"
-  "iam.component.arm.v1.MoveToPositionReque"
-  "st\032-.viam.component.arm.v1.MoveToPositio"
-  "nResponse\"6\240\222)\001\202\323\344\223\002,\032*/viam/api/v1/comp"
-  "onent/arm/{name}/position\022\261\001\n\021GetJointPo"
-  "sitions\022/.viam.component.arm.v1.GetJoint"
-  "PositionsRequest\0320.viam.component.arm.v1"
-  ".GetJointPositionsResponse\"9\202\323\344\223\0023\0221/via"
-  "m/api/v1/component/arm/{name}/joint_posi"
-  "tions\022\276\001\n\024MoveToJointPositions\0222.viam.co"
-  "mponent.arm.v1.MoveToJointPositionsReque"
-  "st\0323.viam.component.arm.v1.MoveToJointPo"
-  "sitionsResponse\"=\240\222)\001\202\323\344\223\0023\0321/viam/api/v"
-  "1/component/arm/{name}/joint_positions\022\332"
-  "\001\n\031MoveThroughJointPositions\0227.viam.comp"
-  "onent.arm.v1.MoveThroughJointPositionsRe"
-  "quest\0328.viam.component.arm.v1.MoveThroug"
-  "hJointPositionsResponse\"J\240\222)\001\202\323\344\223\002@\">/vi"
-  "am/api/v1/component/arm/{name}/move_thro"
-  "ugh_joint_positions\022\177\n\004Stop\022\".viam.compo"
-  "nent.arm.v1.StopRequest\032#.viam.component"
-  ".arm.v1.StopResponse\".\202\323\344\223\002(\"&/viam/api/"
-  "v1/component/arm/{name}/stop\022\220\001\n\010IsMovin"
-  "g\022&.viam.component.arm.v1.IsMovingReques"
-  "t\032\'.viam.component.arm.v1.IsMovingRespon"
-  "se\"3\202\323\344\223\002-\022+/viam/api/v1/component/arm/{"
-  "name}/is_moving\022\206\001\n\tDoCommand\022 .viam.com"
-  "mon.v1.DoCommandRequest\032!.viam.common.v1"
-  ".DoCommandResponse\"4\202\323\344\223\002.\",/viam/api/v1"
-  "/component/arm/{name}/do_command\022\206\001\n\tGet"
-  "Status\022 .viam.common.v1.GetStatusRequest"
-  "\032!.viam.common.v1.GetStatusResponse\"4\202\323\344"
-  "\223\002.\022,/viam/api/v1/component/arm/{name}/g"
-  "et_status\022\222\001\n\rGetKinematics\022$.viam.commo"
-  "n.v1.GetKinematicsRequest\032%.viam.common."
-  "v1.GetKinematicsResponse\"4\202\323\344\223\002.\022,/viam/"
-  "api/v1/component/arm/{name}/kinematics\022\222"
-  "\001\n\rGetGeometries\022$.viam.common.v1.GetGeo"
-  "metriesRequest\032%.viam.common.v1.GetGeome"
-  "triesResponse\"4\202\323\344\223\002.\022,/viam/api/v1/comp"
-  "onent/arm/{name}/geometries\022\213\001\n\013Get3DMod"
-  "els\022\".viam.common.v1.Get3DModelsRequest\032"
-  "#.viam.common.v1.Get3DModelsResponse\"3\202\323"
-  "\344\223\002-\022+/viam/api/v1/component/arm/{name}/"
-  "3d_modelsB=\n\031com.viam.component.arm.v1Z "
-  "go.viam.com/api/component/arm/v1b\006proto3"
+  "(\001R\027maxAccDegsPerSec2Joints\022\'\n\rmax_tcp_s"
+  "peed\030\005 \001(\001H\002R\013maxTcpSpeed\210\001\001B\027\n\025_max_vel"
+  "_degs_per_secB\030\n\026_max_acc_degs_per_sec2B"
+  "\020\n\016_max_tcp_speed2\210\017\n\nArmService\022\241\001\n\016Get"
+  "EndPosition\022,.viam.component.arm.v1.GetE"
+  "ndPositionRequest\032-.viam.component.arm.v"
+  "1.GetEndPositionResponse\"2\202\323\344\223\002,\022*/viam/"
+  "api/v1/component/arm/{name}/position\022\245\001\n"
+  "\016MoveToPosition\022,.viam.component.arm.v1."
+  "MoveToPositionRequest\032-.viam.component.a"
+  "rm.v1.MoveToPositionResponse\"6\240\222)\001\202\323\344\223\002,"
+  "\032*/viam/api/v1/component/arm/{name}/posi"
+  "tion\022\261\001\n\021GetJointPositions\022/.viam.compon"
+  "ent.arm.v1.GetJointPositionsRequest\0320.vi"
+  "am.component.arm.v1.GetJointPositionsRes"
+  "ponse\"9\202\323\344\223\0023\0221/viam/api/v1/component/ar"
+  "m/{name}/joint_positions\022\276\001\n\024MoveToJoint"
+  "Positions\0222.viam.component.arm.v1.MoveTo"
+  "JointPositionsRequest\0323.viam.component.a"
+  "rm.v1.MoveToJointPositionsResponse\"=\240\222)\001"
+  "\202\323\344\223\0023\0321/viam/api/v1/component/arm/{name"
+  "}/joint_positions\022\332\001\n\031MoveThroughJointPo"
+  "sitions\0227.viam.component.arm.v1.MoveThro"
+  "ughJointPositionsRequest\0328.viam.componen"
+  "t.arm.v1.MoveThroughJointPositionsRespon"
+  "se\"J\240\222)\001\202\323\344\223\002@\">/viam/api/v1/component/a"
+  "rm/{name}/move_through_joint_positions\022\177"
+  "\n\004Stop\022\".viam.component.arm.v1.StopReque"
+  "st\032#.viam.component.arm.v1.StopResponse\""
+  ".\202\323\344\223\002(\"&/viam/api/v1/component/arm/{nam"
+  "e}/stop\022\220\001\n\010IsMoving\022&.viam.component.ar"
+  "m.v1.IsMovingRequest\032\'.viam.component.ar"
+  "m.v1.IsMovingResponse\"3\202\323\344\223\002-\022+/viam/api"
+  "/v1/component/arm/{name}/is_moving\022\206\001\n\tD"
+  "oCommand\022 .viam.common.v1.DoCommandReque"
+  "st\032!.viam.common.v1.DoCommandResponse\"4\202"
+  "\323\344\223\002.\",/viam/api/v1/component/arm/{name}"
+  "/do_command\022\206\001\n\tGetStatus\022 .viam.common."
+  "v1.GetStatusRequest\032!.viam.common.v1.Get"
+  "StatusResponse\"4\202\323\344\223\002.\022,/viam/api/v1/com"
+  "ponent/arm/{name}/get_status\022\222\001\n\rGetKine"
+  "matics\022$.viam.common.v1.GetKinematicsReq"
+  "uest\032%.viam.common.v1.GetKinematicsRespo"
+  "nse\"4\202\323\344\223\002.\022,/viam/api/v1/component/arm/"
+  "{name}/kinematics\022\222\001\n\rGetGeometries\022$.vi"
+  "am.common.v1.GetGeometriesRequest\032%.viam"
+  ".common.v1.GetGeometriesResponse\"4\202\323\344\223\002."
+  "\022,/viam/api/v1/component/arm/{name}/geom"
+  "etries\022\213\001\n\013Get3DModels\022\".viam.common.v1."
+  "Get3DModelsRequest\032#.viam.common.v1.Get3"
+  "DModelsResponse\"3\202\323\344\223\002-\022+/viam/api/v1/co"
+  "mponent/arm/{name}/3d_modelsB=\n\031com.viam"
+  ".component.arm.v1Z go.viam.com/api/compo"
+  "nent/arm/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv1_2farm_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -532,7 +537,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2farm_2fv
 };
 static ::_pbi::once_flag descriptor_table_component_2farm_2fv1_2farm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2farm_2fv1_2farm_2eproto = {
-    false, false, 3840, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
+    false, false, 3899, descriptor_table_protodef_component_2farm_2fv1_2farm_2eproto,
     "component/arm/v1/arm.proto",
     &descriptor_table_component_2farm_2fv1_2farm_2eproto_once, descriptor_table_component_2farm_2fv1_2farm_2eproto_deps, 3, 17,
     schemas, file_default_instances, TableStruct_component_2farm_2fv1_2farm_2eproto::offsets,
@@ -3557,6 +3562,9 @@ class MoveOptions::_Internal {
   static void set_has_max_acc_degs_per_sec2(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }
+  static void set_has_max_tcp_speed(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
 };
 
 MoveOptions::MoveOptions(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -3574,16 +3582,16 @@ MoveOptions::MoveOptions(const MoveOptions& from)
       max_acc_degs_per_sec2_joints_(from.max_acc_degs_per_sec2_joints_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&max_vel_degs_per_sec_, &from.max_vel_degs_per_sec_,
-    static_cast<size_t>(reinterpret_cast<char*>(&max_acc_degs_per_sec2_) -
-    reinterpret_cast<char*>(&max_vel_degs_per_sec_)) + sizeof(max_acc_degs_per_sec2_));
+    static_cast<size_t>(reinterpret_cast<char*>(&max_tcp_speed_) -
+    reinterpret_cast<char*>(&max_vel_degs_per_sec_)) + sizeof(max_tcp_speed_));
   // @@protoc_insertion_point(copy_constructor:viam.component.arm.v1.MoveOptions)
 }
 
 inline void MoveOptions::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&max_vel_degs_per_sec_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&max_acc_degs_per_sec2_) -
-    reinterpret_cast<char*>(&max_vel_degs_per_sec_)) + sizeof(max_acc_degs_per_sec2_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&max_tcp_speed_) -
+    reinterpret_cast<char*>(&max_vel_degs_per_sec_)) + sizeof(max_tcp_speed_));
 }
 
 MoveOptions::~MoveOptions() {
@@ -3612,10 +3620,10 @@ void MoveOptions::Clear() {
   max_vel_degs_per_sec_joints_.Clear();
   max_acc_degs_per_sec2_joints_.Clear();
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x00000007u) {
     ::memset(&max_vel_degs_per_sec_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&max_acc_degs_per_sec2_) -
-        reinterpret_cast<char*>(&max_vel_degs_per_sec_)) + sizeof(max_acc_degs_per_sec2_));
+        reinterpret_cast<char*>(&max_tcp_speed_) -
+        reinterpret_cast<char*>(&max_vel_degs_per_sec_)) + sizeof(max_tcp_speed_));
   }
   _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -3664,6 +3672,15 @@ const char* MoveOptions::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
           CHK_(ptr);
         } else if (static_cast<uint8_t>(tag) == 33) {
           _internal_add_max_acc_degs_per_sec2_joints(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double max_tcp_speed = 5 [json_name = "maxTcpSpeed"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 41)) {
+          _Internal::set_has_max_tcp_speed(&has_bits);
+          max_tcp_speed_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
         } else
           goto handle_unusual;
@@ -3720,6 +3737,12 @@ uint8_t* MoveOptions::_InternalSerialize(
     target = stream->WriteFixedPacked(4, _internal_max_acc_degs_per_sec2_joints(), target);
   }
 
+  // optional double max_tcp_speed = 5 [json_name = "maxTcpSpeed"];
+  if (_internal_has_max_tcp_speed()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(5, this->_internal_max_tcp_speed(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3759,7 +3782,7 @@ size_t MoveOptions::ByteSizeLong() const {
   }
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x00000007u) {
     // optional double max_vel_degs_per_sec = 1 [json_name = "maxVelDegsPerSec"];
     if (cached_has_bits & 0x00000001u) {
       total_size += 1 + 8;
@@ -3767,6 +3790,11 @@ size_t MoveOptions::ByteSizeLong() const {
 
     // optional double max_acc_degs_per_sec2 = 2 [json_name = "maxAccDegsPerSec2"];
     if (cached_has_bits & 0x00000002u) {
+      total_size += 1 + 8;
+    }
+
+    // optional double max_tcp_speed = 5 [json_name = "maxTcpSpeed"];
+    if (cached_has_bits & 0x00000004u) {
       total_size += 1 + 8;
     }
 
@@ -3796,12 +3824,15 @@ void MoveOptions::MergeFrom(const MoveOptions& from) {
   max_vel_degs_per_sec_joints_.MergeFrom(from.max_vel_degs_per_sec_joints_);
   max_acc_degs_per_sec2_joints_.MergeFrom(from.max_acc_degs_per_sec2_joints_);
   cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
       max_vel_degs_per_sec_ = from.max_vel_degs_per_sec_;
     }
     if (cached_has_bits & 0x00000002u) {
       max_acc_degs_per_sec2_ = from.max_acc_degs_per_sec2_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      max_tcp_speed_ = from.max_tcp_speed_;
     }
     _has_bits_[0] |= cached_has_bits;
   }
@@ -3826,8 +3857,8 @@ void MoveOptions::InternalSwap(MoveOptions* other) {
   max_vel_degs_per_sec_joints_.InternalSwap(&other->max_vel_degs_per_sec_joints_);
   max_acc_degs_per_sec2_joints_.InternalSwap(&other->max_acc_degs_per_sec2_joints_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MoveOptions, max_acc_degs_per_sec2_)
-      + sizeof(MoveOptions::max_acc_degs_per_sec2_)
+      PROTOBUF_FIELD_OFFSET(MoveOptions, max_tcp_speed_)
+      + sizeof(MoveOptions::max_tcp_speed_)
       - PROTOBUF_FIELD_OFFSET(MoveOptions, max_vel_degs_per_sec_)>(
           reinterpret_cast<char*>(&max_vel_degs_per_sec_),
           reinterpret_cast<char*>(&other->max_vel_degs_per_sec_));
