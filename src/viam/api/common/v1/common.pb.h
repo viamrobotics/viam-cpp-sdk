@@ -126,6 +126,9 @@ extern GetStatusRequestDefaultTypeInternal _GetStatusRequest_default_instance_;
 class GetStatusResponse;
 struct GetStatusResponseDefaultTypeInternal;
 extern GetStatusResponseDefaultTypeInternal _GetStatusResponse_default_instance_;
+class GetWorldPoseResponse;
+struct GetWorldPoseResponseDefaultTypeInternal;
+extern GetWorldPoseResponseDefaultTypeInternal _GetWorldPoseResponse_default_instance_;
 class LogEntry;
 struct LogEntryDefaultTypeInternal;
 extern LogEntryDefaultTypeInternal _LogEntry_default_instance_;
@@ -199,6 +202,7 @@ template<> ::viam::common::v1::GetReadingsResponse* Arena::CreateMaybeMessage<::
 template<> ::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::common::v1::GetReadingsResponse_ReadingsEntry_DoNotUse>(Arena*);
 template<> ::viam::common::v1::GetStatusRequest* Arena::CreateMaybeMessage<::viam::common::v1::GetStatusRequest>(Arena*);
 template<> ::viam::common::v1::GetStatusResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetStatusResponse>(Arena*);
+template<> ::viam::common::v1::GetWorldPoseResponse* Arena::CreateMaybeMessage<::viam::common::v1::GetWorldPoseResponse>(Arena*);
 template<> ::viam::common::v1::LogEntry* Arena::CreateMaybeMessage<::viam::common::v1::LogEntry>(Arena*);
 template<> ::viam::common::v1::Mesh* Arena::CreateMaybeMessage<::viam::common::v1::Mesh>(Arena*);
 template<> ::viam::common::v1::Orientation* Arena::CreateMaybeMessage<::viam::common::v1::Orientation>(Arena*);
@@ -5471,6 +5475,158 @@ class Get3DModelsResponse final :
 };
 // -------------------------------------------------------------------
 
+class GetWorldPoseResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetWorldPoseResponse) */ {
+ public:
+  inline GetWorldPoseResponse() : GetWorldPoseResponse(nullptr) {}
+  ~GetWorldPoseResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetWorldPoseResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetWorldPoseResponse(const GetWorldPoseResponse& from);
+  GetWorldPoseResponse(GetWorldPoseResponse&& from) noexcept
+    : GetWorldPoseResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetWorldPoseResponse& operator=(const GetWorldPoseResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetWorldPoseResponse& operator=(GetWorldPoseResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetWorldPoseResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetWorldPoseResponse* internal_default_instance() {
+    return reinterpret_cast<const GetWorldPoseResponse*>(
+               &_GetWorldPoseResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    32;
+
+  friend void swap(GetWorldPoseResponse& a, GetWorldPoseResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetWorldPoseResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetWorldPoseResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetWorldPoseResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetWorldPoseResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetWorldPoseResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetWorldPoseResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetWorldPoseResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.common.v1.GetWorldPoseResponse";
+  }
+  protected:
+  explicit GetWorldPoseResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPoseFieldNumber = 1,
+  };
+  // .viam.common.v1.Pose pose = 1 [json_name = "pose"];
+  bool has_pose() const;
+  private:
+  bool _internal_has_pose() const;
+  public:
+  void clear_pose();
+  const ::viam::common::v1::Pose& pose() const;
+  PROTOBUF_NODISCARD ::viam::common::v1::Pose* release_pose();
+  ::viam::common::v1::Pose* mutable_pose();
+  void set_allocated_pose(::viam::common::v1::Pose* pose);
+  private:
+  const ::viam::common::v1::Pose& _internal_pose() const;
+  ::viam::common::v1::Pose* _internal_mutable_pose();
+  public:
+  void unsafe_arena_set_allocated_pose(
+      ::viam::common::v1::Pose* pose);
+  ::viam::common::v1::Pose* unsafe_arena_release_pose();
+
+  // @@protoc_insertion_point(class_scope:viam.common.v1.GetWorldPoseResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::common::v1::Pose* pose_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_common_2fv1_2fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetReadingsRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.common.v1.GetReadingsRequest) */ {
  public:
@@ -5519,7 +5675,7 @@ class GetReadingsRequest final :
                &_GetReadingsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(GetReadingsRequest& a, GetReadingsRequest& b) {
     a.Swap(&b);
@@ -5713,7 +5869,7 @@ class GetReadingsResponse final :
                &_GetReadingsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(GetReadingsResponse& a, GetReadingsResponse& b) {
     a.Swap(&b);
@@ -5871,7 +6027,7 @@ class LogEntry final :
                &_LogEntry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(LogEntry& a, LogEntry& b) {
     a.Swap(&b);
@@ -6143,7 +6299,7 @@ class AudioInfo final :
                &_AudioInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(AudioInfo& a, AudioInfo& b) {
     a.Swap(&b);
@@ -6313,7 +6469,7 @@ class GetPropertiesRequest final :
                &_GetPropertiesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(GetPropertiesRequest& a, GetPropertiesRequest& b) {
     a.Swap(&b);
@@ -6481,7 +6637,7 @@ class GetPropertiesResponse final :
                &_GetPropertiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(GetPropertiesResponse& a, GetPropertiesResponse& b) {
     a.Swap(&b);
@@ -10299,6 +10455,100 @@ Get3DModelsResponse::mutable_models() {
 
 // -------------------------------------------------------------------
 
+// GetWorldPoseResponse
+
+// .viam.common.v1.Pose pose = 1 [json_name = "pose"];
+inline bool GetWorldPoseResponse::_internal_has_pose() const {
+  return this != internal_default_instance() && pose_ != nullptr;
+}
+inline bool GetWorldPoseResponse::has_pose() const {
+  return _internal_has_pose();
+}
+inline void GetWorldPoseResponse::clear_pose() {
+  if (GetArenaForAllocation() == nullptr && pose_ != nullptr) {
+    delete pose_;
+  }
+  pose_ = nullptr;
+}
+inline const ::viam::common::v1::Pose& GetWorldPoseResponse::_internal_pose() const {
+  const ::viam::common::v1::Pose* p = pose_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::common::v1::Pose&>(
+      ::viam::common::v1::_Pose_default_instance_);
+}
+inline const ::viam::common::v1::Pose& GetWorldPoseResponse::pose() const {
+  // @@protoc_insertion_point(field_get:viam.common.v1.GetWorldPoseResponse.pose)
+  return _internal_pose();
+}
+inline void GetWorldPoseResponse::unsafe_arena_set_allocated_pose(
+    ::viam::common::v1::Pose* pose) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pose_);
+  }
+  pose_ = pose;
+  if (pose) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.common.v1.GetWorldPoseResponse.pose)
+}
+inline ::viam::common::v1::Pose* GetWorldPoseResponse::release_pose() {
+  
+  ::viam::common::v1::Pose* temp = pose_;
+  pose_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::common::v1::Pose* GetWorldPoseResponse::unsafe_arena_release_pose() {
+  // @@protoc_insertion_point(field_release:viam.common.v1.GetWorldPoseResponse.pose)
+  
+  ::viam::common::v1::Pose* temp = pose_;
+  pose_ = nullptr;
+  return temp;
+}
+inline ::viam::common::v1::Pose* GetWorldPoseResponse::_internal_mutable_pose() {
+  
+  if (pose_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::common::v1::Pose>(GetArenaForAllocation());
+    pose_ = p;
+  }
+  return pose_;
+}
+inline ::viam::common::v1::Pose* GetWorldPoseResponse::mutable_pose() {
+  ::viam::common::v1::Pose* _msg = _internal_mutable_pose();
+  // @@protoc_insertion_point(field_mutable:viam.common.v1.GetWorldPoseResponse.pose)
+  return _msg;
+}
+inline void GetWorldPoseResponse::set_allocated_pose(::viam::common::v1::Pose* pose) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete pose_;
+  }
+  if (pose) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(pose);
+    if (message_arena != submessage_arena) {
+      pose = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pose, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pose_ = pose;
+  // @@protoc_insertion_point(field_set_allocated:viam.common.v1.GetWorldPoseResponse.pose)
+}
+
+// -------------------------------------------------------------------
+
 // GetReadingsRequest
 
 // string name = 1 [json_name = "name"];
@@ -11284,6 +11534,8 @@ inline void GetPropertiesResponse::set_num_channels(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
