@@ -59,8 +59,12 @@ Tracer& Tracer::get() {
 void Tracer::initialize_provider(const std::string& endpoint) noexcept {
     shutdown_provider();
 
+    // the incoming endpoint is unix:/path/to/socket but opentel's url parser expects
+    // a :// for protocol
+    std::string ep = "unix://" + endpoint.substr(endpoint.find('/'));
+
     otel_otlp::OtlpGrpcExporterOptions exporter_opts;
-    exporter_opts.endpoint = endpoint;
+    exporter_opts.endpoint = ep;
     auto exporter = otel_otlp::OtlpGrpcExporterFactory::Create(exporter_opts);
 
     auto processor = otel_sdk_trace::BatchSpanProcessorFactory::Create(
