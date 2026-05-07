@@ -1,19 +1,19 @@
 #pragma once
 
 #include <memory>
-#include <string>
 
 namespace viam {
 namespace sdk {
+
+class RobotClient;
+
 namespace impl {
 
-/// @brief Install the W3C Trace Context propagator as the global OpenTelemetry text-map
-/// propagator. Called once during @c Instance construction.
+/// @brief Install the W3C Trace Context propagator. Called once during @c Instance construction.
 void initialize_trace_propagator() noexcept;
 
-/// @brief Holds the SDK-side OpenTelemetry tracer provider, owned by @c Instance.
-/// Spans created by @c ServerSpanGuard go nowhere until @c initialize_provider has
-/// installed an exporter.
+/// @brief Holds the SDK-side OpenTelemetry tracer provider. Spans go nowhere until
+/// @c initialize_provider installs an exporter that ships them to the parent.
 class Tracer {
    public:
     Tracer();
@@ -25,12 +25,9 @@ class Tracer {
     /// @brief Returns the @c Tracer owned by the current @c Instance.
     static Tracer& get();
 
-    /// @brief Install a tracer provider that exports spans via OTLP/gRPC to @p endpoint.
-    /// Replaces any previously-installed provider. No-op when tracing is not compiled in.
-    void initialize_provider(const std::string& endpoint) noexcept;
-
-    /// @brief Flush and shut down the installed tracer provider. No-op when tracing is
-    /// not compiled in.
+    /// @brief Install an exporter sourced from @p client. The caller must keep @p client alive
+    /// until @c shutdown_provider returns.
+    void initialize_provider(RobotClient* client) noexcept;
     void shutdown_provider() noexcept;
 
    private:

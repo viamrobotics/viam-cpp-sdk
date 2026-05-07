@@ -30,6 +30,7 @@
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/private/viam_grpc_channel.hpp>
 #include <viam/sdk/services/service.hpp>
+#include <viam/sdk/tracing/private/tracer.hpp>
 
 namespace viam {
 namespace sdk {
@@ -97,6 +98,7 @@ struct RobotClient::impl {
             boost::log::core::get()->remove_sink(log_sink);
             LogManager::get().enable_console_logging();
         }
+        sdk::impl::Tracer::get().shutdown_provider();
     }
 
     template <typename Method>
@@ -334,6 +336,19 @@ void RobotClient::log(const std::string& name,
                             << "Error sending log message over grpc: " << response.error_message()
                             << response.error_details();
     }
+}
+
+bool RobotClient::send_traces(const robot::v1::SendTracesRequest* req) {
+    if (!impl_) {
+        return false;
+    }
+    robot::v1::SendTracesResponse resp;
+    ClientContext ctx;
+    return impl_->stub->SendTraces(ctx, *req, &resp).ok();
+}
+
+void RobotClient::connect_tracing() {
+    sdk::impl::Tracer::get().initialize_provider(this);
 }
 
 std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel,

@@ -211,7 +211,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                     .set_reconnect_every_interval(std::chrono::seconds{1});
                 parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
                 parent.parent_->connect_logging();
-                impl::Tracer::get().initialize_provider(parent.parent_addr_);
+                parent.parent_->connect_tracing();
             }
         }
 
