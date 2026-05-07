@@ -247,14 +247,12 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
     // (refresh_every_interval=0 disables periodic refresh). Resources
     // registered with viam-server after that point — including built-in
     // components configured alongside a module that depends on them —
-    // won't appear unless we refresh on demand. Two-strike: try the cache
-    // first, refresh on miss.
-    auto resource = parent_->resource_by_name(name);
-    if (!resource) {
-        parent_->refresh();
-        resource = parent_->resource_by_name(name);
-    }
-    return resource;
+    // won't appear unless we refresh on demand. This function is called from
+    // AddResource/ReconfigureResource (per-resource-construction frequency,
+    // not data-plane), so the cost of an extra ResourceNames round-trip is
+    // negligible and worth the predictable semantics.
+    parent_->refresh();
+    return parent_->resource_by_name(name);
 }
 
 ModuleService::ModuleService(std::string addr) : ModuleService(std::move(addr), "unix:") {}
