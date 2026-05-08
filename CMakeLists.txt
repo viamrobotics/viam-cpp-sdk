@@ -137,6 +137,7 @@ option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 #
 # When enabled, links against opentelemetry-cpp and compiles in
 # W3C Trace Context propagation for all gRPC client and server calls.
+# This is off by default and effectively conan-only, because apt packages are not generally available.
 #
 option(VIAMCPPSDK_OPENTELEMETRY_TRACING "Compile OpenTelemetry tracing into all gRPC calls" OFF)
 
