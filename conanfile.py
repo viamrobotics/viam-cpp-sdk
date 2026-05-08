@@ -24,7 +24,7 @@ class ViamCppSdkRecipe(ConanFile):
 
     default_options = {
         "offline_proto_generation": True,
-        "opentelemetry_tracing": True,
+        "opentelemetry_tracing": False,
         "shared": True
     }
 
@@ -71,7 +71,8 @@ class ViamCppSdkRecipe(ConanFile):
         self.requires(self._xtensor_requires(), transitive_headers=True)
 
         if self.options.opentelemetry_tracing:
-            self.requires('opentelemetry-cpp/[>=1.9.0]')
+            # Oldest maintained conan package and first version with proper CMake support
+            self.requires('opentelemetry-cpp/[>=1.21.0]')
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
@@ -162,7 +163,7 @@ class ViamCppSdkRecipe(ConanFile):
 
         if self.options.opentelemetry_tracing:
             self.cpp_info.components["viamsdk"].requires.extend([
-                "opentelemetry-cpp::opentelemetry_trace",
+                "opentelemetry-cpp::opentelemetry_sdk",
                 "opentelemetry-cpp::opentelemetry_exporter_otlp_grpc",
             ])
 

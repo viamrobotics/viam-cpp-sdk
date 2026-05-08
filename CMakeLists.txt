@@ -135,10 +135,10 @@ option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
 # - `VIAMCPPSDK_OPENTELEMETRY_TRACING`
 #
-# When enabled (default), links against opentelemetry-cpp and compiles in
+# When enabled, links against opentelemetry-cpp and compiles in
 # W3C Trace Context propagation for all gRPC client and server calls.
 #
-option(VIAMCPPSDK_OPENTELEMETRY_TRACING "Compile OpenTelemetry tracing into all gRPC calls" ON)
+option(VIAMCPPSDK_OPENTELEMETRY_TRACING "Compile OpenTelemetry tracing into all gRPC calls" OFF)
 
 # The following options are only defined if this project is not being included as a subproject
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
