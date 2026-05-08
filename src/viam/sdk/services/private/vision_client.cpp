@@ -87,7 +87,6 @@ std::vector<Vision::classification> VisionClient::get_classifications(
     return make_client_helper(this, *stub_, &service_type::StubInterface::GetClassifications)
         .with(extra,
               [&](auto& req) {
-                  // raw_image has no width/height; pass 0 for the proto's width/height fields.
                   req.set_image(std::string(image.bytes.begin(), image.bytes.end()));
                   req.set_mime_type(image.mime_type);
                   req.set_n(count);

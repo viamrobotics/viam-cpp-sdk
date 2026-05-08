@@ -39,6 +39,8 @@ namespace vision {
 // VisionClient connected to it over an InProcessChannel.  Per-RPC test suites
 // (tasks 8-14) declare this as their fixture so they can reach both the canned
 // mock state and the client interface under test.
+// Custom struct (rather than test_utils.hpp's client_to_mock_pipeline<>)
+// so per-RPC tests can introspect the mock between calls.
 struct vision_fixture {
     std::shared_ptr<MockVision> mock;
 
