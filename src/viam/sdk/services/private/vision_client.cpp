@@ -42,12 +42,41 @@ std::vector<Vision::detection> VisionClient::get_detections(const Vision::raw_im
 
 std::vector<Vision::classification> VisionClient::get_classifications_from_camera(
     const std::string& camera_name, int count, const ProtoStruct& extra) {
-    throw std::runtime_error("not implemented");
+    return make_client_helper(
+               this, *stub_, &service_type::StubInterface::GetClassificationsFromCamera)
+        .with(extra,
+              [&](auto& req) {
+                  req.set_camera_name(camera_name);
+                  req.set_n(count);
+              })
+        .invoke([](auto& response) {
+            std::vector<Vision::classification> out;
+            out.reserve(response.classifications_size());
+            for (const auto& c : response.classifications()) {
+                out.push_back(impl::vision::from_proto(c));
+            }
+            return out;
+        });
 }
 
 std::vector<Vision::classification> VisionClient::get_classifications(
     const Vision::raw_image& image, int count, const ProtoStruct& extra) {
-    throw std::runtime_error("not implemented");
+    return make_client_helper(this, *stub_, &service_type::StubInterface::GetClassifications)
+        .with(extra,
+              [&](auto& req) {
+                  // raw_image has no width/height; pass 0 for the proto's width/height fields.
+                  req.set_image(std::string(image.bytes.begin(), image.bytes.end()));
+                  req.set_mime_type(image.mime_type);
+                  req.set_n(count);
+              })
+        .invoke([](auto& response) {
+            std::vector<Vision::classification> out;
+            out.reserve(response.classifications_size());
+            for (const auto& c : response.classifications()) {
+                out.push_back(impl::vision::from_proto(c));
+            }
+            return out;
+        });
 }
 
 std::vector<Vision::point_cloud_object> VisionClient::get_object_point_clouds(

@@ -39,17 +39,34 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status VisionServer::GetClassificationsFromCamera(
-    ::grpc::ServerContext*,
-    const ::viam::service::vision::v1::GetClassificationsFromCameraRequest*,
-    ::viam::service::vision::v1::GetClassificationsFromCameraResponse*) noexcept {
-    return {::grpc::UNIMPLEMENTED, "not yet"};
+    ::grpc::ServerContext* context,
+    const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request,
+    ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response) noexcept {
+    return make_service_helper<Vision>(
+        "VisionServer::GetClassificationsFromCamera", this, context, request)(
+        [&](auto& helper, auto& vs) {
+            const auto results = vs->get_classifications_from_camera(
+                request->camera_name(), request->n(), helper.getExtra());
+            for (const auto& c : results) {
+                *response->add_classifications() = impl::vision::to_proto(c);
+            }
+        });
 }
 
 ::grpc::Status VisionServer::GetClassifications(
-    ::grpc::ServerContext*,
-    const ::viam::service::vision::v1::GetClassificationsRequest*,
-    ::viam::service::vision::v1::GetClassificationsResponse*) noexcept {
-    return {::grpc::UNIMPLEMENTED, "not yet"};
+    ::grpc::ServerContext* context,
+    const ::viam::service::vision::v1::GetClassificationsRequest* request,
+    ::viam::service::vision::v1::GetClassificationsResponse* response) noexcept {
+    return make_service_helper<Vision>(
+        "VisionServer::GetClassifications", this, context, request)([&](auto& helper, auto& vs) {
+        Vision::raw_image image;
+        image.bytes.assign(request->image().begin(), request->image().end());
+        image.mime_type = request->mime_type();
+        const auto results = vs->get_classifications(image, request->n(), helper.getExtra());
+        for (const auto& c : results) {
+            *response->add_classifications() = impl::vision::to_proto(c);
+        }
+    });
 }
 
 ::grpc::Status VisionServer::GetObjectPointClouds(

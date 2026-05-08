@@ -220,6 +220,35 @@ BOOST_AUTO_TEST_CASE(do_command_round_trip_nested) {
     BOOST_TEST(f.mock->last_command == cmd);
 }
 
+BOOST_AUTO_TEST_CASE(get_classifications_from_camera_round_trip) {
+    vision_fixture f;
+    f.mock->canned_classifications = {{"cat", 0.9}, {"dog", 0.1}};
+
+    auto got = f.client->get_classifications_from_camera("cam0", 5);
+
+    BOOST_TEST_REQUIRE(got.size() == 2u);
+    BOOST_TEST(got[0] == f.mock->canned_classifications[0]);
+    BOOST_TEST(got[1] == f.mock->canned_classifications[1]);
+    BOOST_TEST(f.mock->last_camera_name == "cam0");
+    BOOST_TEST(f.mock->last_count == 5);
+}
+
+BOOST_AUTO_TEST_CASE(get_classifications_round_trip) {
+    vision_fixture f;
+    f.mock->canned_classifications = {{"box", 0.7}};
+    sdk::Vision::raw_image img;
+    img.mime_type = "image/jpeg";
+    img.bytes = {1, 2, 3, 4};
+
+    auto got = f.client->get_classifications(img, 3);
+
+    BOOST_TEST_REQUIRE(got.size() == 1u);
+    BOOST_TEST(got[0] == f.mock->canned_classifications[0]);
+    BOOST_TEST(f.mock->last_image.bytes == img.bytes);
+    BOOST_TEST(f.mock->last_image.mime_type == img.mime_type);
+    BOOST_TEST(f.mock->last_count == 3);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace vision
