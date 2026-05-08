@@ -71,7 +71,8 @@ ProtoStruct VisionClient::do_command(const ProtoStruct& command) {
 }
 
 ProtoStruct VisionClient::get_status() {
-    throw std::runtime_error("not implemented");
+    return make_client_helper(this, *stub_, &service_type::StubInterface::GetStatus)
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 }  // namespace impl

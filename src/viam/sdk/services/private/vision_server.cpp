@@ -83,10 +83,14 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
     return {::grpc::UNIMPLEMENTED, "not yet"};
 }
 
-::grpc::Status VisionServer::GetStatus(::grpc::ServerContext*,
-                                       const ::viam::common::v1::GetStatusRequest*,
-                                       ::viam::common::v1::GetStatusResponse*) noexcept {
-    return {::grpc::UNIMPLEMENTED, "not yet"};
+::grpc::Status VisionServer::GetStatus(::grpc::ServerContext* context,
+                                       const ::viam::common::v1::GetStatusRequest* request,
+                                       ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<Vision>(
+        "VisionServer::GetStatus", this, context, request)([&](auto&, auto& vs) {
+        const ProtoStruct result = vs->get_status();
+        *response->mutable_result() = to_proto(result);
+    });
 }
 
 }  // namespace impl

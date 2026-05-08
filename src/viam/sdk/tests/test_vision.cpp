@@ -180,6 +180,17 @@ BOOST_AUTO_TEST_CASE(get_properties_passes_extra) {
     BOOST_TEST(got == f.mock->canned_properties);
 }
 
+BOOST_AUTO_TEST_CASE(get_status_round_trip) {
+    vision_fixture f;
+    sdk::ProtoStruct status;
+    status["ready"] = sdk::ProtoValue(true);
+    status["model"] = sdk::ProtoValue(std::string("yolov8"));
+    f.mock->canned_status = status;
+
+    auto got = f.client->get_status();
+    BOOST_TEST(got == f.mock->canned_status);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace vision
