@@ -191,6 +191,35 @@ BOOST_AUTO_TEST_CASE(get_status_round_trip) {
     BOOST_TEST(got == f.mock->canned_status);
 }
 
+BOOST_AUTO_TEST_CASE(do_command_round_trip_simple) {
+    vision_fixture f;
+    sdk::ProtoStruct cmd;
+    cmd["op"] = sdk::ProtoValue(std::string("inspect"));
+    cmd["limit"] = sdk::ProtoValue(static_cast<double>(42));
+
+    auto echoed = f.client->do_command(cmd);
+
+    // MockVision::do_command echoes its input back; verify echo round-trips.
+    BOOST_TEST(echoed == cmd);
+    // Also verify the mock recorded what came in.
+    BOOST_TEST(f.mock->last_command == cmd);
+}
+
+BOOST_AUTO_TEST_CASE(do_command_round_trip_nested) {
+    vision_fixture f;
+    sdk::ProtoStruct nested;
+    nested["enabled"] = sdk::ProtoValue(true);
+    nested["weight"] = sdk::ProtoValue(0.75);
+
+    sdk::ProtoStruct cmd;
+    cmd["mode"] = sdk::ProtoValue(std::string("calibrate"));
+    cmd["params"] = sdk::ProtoValue(nested);
+
+    auto echoed = f.client->do_command(cmd);
+    BOOST_TEST(echoed == cmd);
+    BOOST_TEST(f.mock->last_command == cmd);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace vision

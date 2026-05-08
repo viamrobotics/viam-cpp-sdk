@@ -67,7 +67,9 @@ Vision::capture_all_result VisionClient::capture_all_from_camera(
 }
 
 ProtoStruct VisionClient::do_command(const ProtoStruct& command) {
-    throw std::runtime_error("not implemented");
+    return make_client_helper(this, *stub_, &service_type::StubInterface::DoCommand)
+        .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
+        .invoke([](auto& response) { return from_proto(response.result()); });
 }
 
 ProtoStruct VisionClient::get_status() {
