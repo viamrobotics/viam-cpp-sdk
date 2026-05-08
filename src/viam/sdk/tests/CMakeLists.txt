@@ -40,6 +40,7 @@ target_sources(viamsdk_test
     mocks/mock_sensor.cpp
     mocks/mock_servo.cpp
     mocks/mock_switch.cpp
+    mocks/mock_vision.cpp
     mocks/mock_robot.cpp
     test_utils.cpp
 )
