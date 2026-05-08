@@ -31,7 +31,8 @@
 
 **Modified files:**
 - `src/viam/sdk/components/private/camera_client.cpp` — call new shared `raw_image` helper
-- `src/viam/sdk/components/private/camera_server.cpp` — call new shared `raw_image` helper (only if it currently has inline conversion; verify)
+- `src/viam/sdk/components/private/camera_server.cpp` — call new shared `raw_image` helper (it has parallel inline conversion in `GetImages` around lines 72–79; verify exact lines and migrate)
+- `src/viam/sdk/registry/registry.cpp` — add `register_resource<impl::VisionClient, impl::VisionServer>();` inside `Registry::register_resources()` (alphabetically near `MLModelServiceClient` at line ~229)
 - `src/viam/sdk/CMakeLists.txt` — add new sources + install new public header `vision.hpp`
 - `src/viam/sdk/tests/CMakeLists.txt` — add `mocks/mock_vision.cpp` to `viamsdk_test` `target_sources`; append `viamcppsdk_add_boost_test(test_vision.cpp)`
 
@@ -230,19 +231,19 @@ class Vision : public Service {
     API api() const override;
 
     /// Result of a single detection.
-    /// Pixel and normalized bbox fields are presence-tracked separately so that
-    /// implementations can return either (or both, or neither).
+    /// Pixel bbox is `optional int64` per the proto; normalized bbox is `optional double`.
+    /// `class_name` and `confidence` are non-optional in the proto.
     struct detection {
-        boost::optional<double> x_min;
-        boost::optional<double> y_min;
-        boost::optional<double> x_max;
-        boost::optional<double> y_max;
-        boost::optional<std::string> class_name;
-        boost::optional<double> confidence;
-        boost::optional<std::int64_t> x_min_normalized;
-        boost::optional<std::int64_t> y_min_normalized;
-        boost::optional<std::int64_t> x_max_normalized;
-        boost::optional<std::int64_t> y_max_normalized;
+        boost::optional<std::int64_t> x_min;
+        boost::optional<std::int64_t> y_min;
+        boost::optional<std::int64_t> x_max;
+        boost::optional<std::int64_t> y_max;
+        boost::optional<double> x_min_normalized;
+        boost::optional<double> y_min_normalized;
+        boost::optional<double> x_max_normalized;
+        boost::optional<double> y_max_normalized;
+        std::string class_name;
+        double confidence;
     };
 
     struct classification {
@@ -399,7 +400,7 @@ bool operator==(const Vision::properties& a, const Vision::properties& b) {
 }  // namespace viam
 ```
 
-NOTE: if `GeometryConfig::operator==` is not yet defined, either define it (matching the other types in `geometry.hpp`) or replace the geometries comparison with a manual elementwise check. Verify with `grep "operator==.*GeometryConfig" src/viam/sdk/spatialmath/geometry.{hpp,cpp}`.
+`GeometryConfig::operator==` is already defined in `src/viam/sdk/spatialmath/geometry.cpp` — use it directly via `std::vector`'s elementwise comparison.
 
 - [ ] **Step 4: Verify `kRDK`, `kService`, `Service`, `API`, `API::traits` are reachable through the existing includes**
 
@@ -503,8 +504,8 @@ BOOST_AUTO_TEST_SUITE(vision_proto_conv)
 
 BOOST_AUTO_TEST_CASE(detection_round_trip_pixel_only) {
     Vision::detection d;
-    d.x_min = 1.0; d.y_min = 2.0; d.x_max = 3.0; d.y_max = 4.0;
-    d.class_name = std::string("cat");
+    d.x_min = 1; d.y_min = 2; d.x_max = 3; d.y_max = 4;     // pixel bbox is int64
+    d.class_name = "cat";
     d.confidence = 0.9;
 
     const vpb::Detection proto = vimpl::to_proto(d);
@@ -516,9 +517,9 @@ BOOST_AUTO_TEST_CASE(detection_round_trip_pixel_only) {
 
 BOOST_AUTO_TEST_CASE(detection_round_trip_normalized_only) {
     Vision::detection d;
-    d.x_min_normalized = 10; d.y_min_normalized = 20;
-    d.x_max_normalized = 30; d.y_max_normalized = 40;
-    d.class_name = std::string("dog");
+    d.x_min_normalized = 0.1; d.y_min_normalized = 0.2;       // normalized bbox is double
+    d.x_max_normalized = 0.3; d.y_max_normalized = 0.4;
+    d.class_name = "dog";
     d.confidence = 0.7;
 
     const vpb::Detection proto = vimpl::to_proto(d);
@@ -530,7 +531,7 @@ BOOST_AUTO_TEST_CASE(detection_round_trip_normalized_only) {
 
 BOOST_AUTO_TEST_CASE(detection_round_trip_no_bbox) {
     Vision::detection d;
-    d.class_name = std::string("unknown");
+    d.class_name = "unknown";
     d.confidence = 0.1;
 
     const vpb::Detection proto = vimpl::to_proto(d);
@@ -556,14 +557,10 @@ Expected: link/compile error referencing `vimpl::to_proto(detection)` etc. — t
 
 - [ ] **Step 4: Implement `to_proto` / `from_proto` for `Detection` in `services/private/vision.cpp`**
 
-Inspect the proto fields with:
-
-```bash
-grep -nE "set_x_min|x_min\(\)|has_x_min|x_min_normalized" \
-  src/viam/api/service/vision/v1/vision.pb.h | head -40
-```
-
-Check whether the optional fields use `optional double x_min = N` (proto3 with `optional`, generates `has_x_min()` + `_internal_x_min()`) or proto3 default semantics. Implement `to_proto` to only call setters for engaged optionals; implement `from_proto` to read with `has_*` guards.
+Proto field types are already verified:
+- Pixel bbox `x_min, y_min, x_max, y_max` → `optional int64` (use `set_x_min(int64_t)`, guarded by `has_x_min()`).
+- Normalized bbox `*_normalized` → `optional double` (use `set_x_min_normalized(double)`, guarded by `has_x_min_normalized()`).
+- `class_name` → plain `string`. `confidence` → plain `double`. Both are always set/read.
 
 ```cpp
 // services/private/vision.cpp (skeleton)
@@ -586,8 +583,8 @@ vpb::Detection to_proto(const Vision::detection& d) {
     if (d.y_min_normalized) out.set_y_min_normalized(*d.y_min_normalized);
     if (d.x_max_normalized) out.set_x_max_normalized(*d.x_max_normalized);
     if (d.y_max_normalized) out.set_y_max_normalized(*d.y_max_normalized);
-    if (d.class_name) out.set_class_name(*d.class_name);
-    if (d.confidence) out.set_confidence(*d.confidence);
+    out.set_class_name(d.class_name);
+    out.set_confidence(d.confidence);
     return out;
 }
 
@@ -601,8 +598,8 @@ Vision::detection from_proto(const vpb::Detection& p) {
     if (p.has_y_min_normalized()) out.y_min_normalized = p.y_min_normalized();
     if (p.has_x_max_normalized()) out.x_max_normalized = p.x_max_normalized();
     if (p.has_y_max_normalized()) out.y_max_normalized = p.y_max_normalized();
-    if (p.has_class_name()) out.class_name = p.class_name();
-    if (p.has_confidence()) out.confidence = p.confidence();
+    out.class_name = p.class_name();
+    out.confidence = p.confidence();
     return out;
 }
 
@@ -665,13 +662,11 @@ grep -nE "(set_point_cloud|point_cloud\(\)|geometries|add_geometries)" \
 
 The proto stores point cloud bytes in a `bytes point_cloud` field (no mime type at the proto level — Vision passes `mime_type` separately as the `mime_type` request field; the response `PointCloudObject` only carries bytes + geometries). Set `point_cloud_object::point_cloud.mime_type` to the request mime_type when converting (responsibility lives in the client/server layer, not the helper). The helper only converts the proto's bytes into `point_cloud_object::point_cloud.pc` and the proto's geometries into `std::vector<GeometryConfig>`.
 
-For converting `repeated Geometry geometries` ↔ `std::vector<GeometryConfig>`, look for an existing helper:
+For converting `repeated Geometry geometries` ↔ `std::vector<GeometryConfig>`, use the existing helpers in `src/viam/sdk/spatialmath/geometry.{hpp,cpp}`:
+- `to_proto_impl<GeometryConfig>{}(config, *out)` — populates a `common::v1::Geometry*` from a `GeometryConfig`.
+- `from_proto_impl<common::v1::Geometry>{}(&proto)` — returns a `GeometryConfig` from a proto.
 
-```bash
-grep -rn "to_repeated_field\|from_repeated_field\|GeometryConfig.*from_proto" src/viam/sdk/spatialmath/ src/viam/sdk/components/ 2>/dev/null | head
-```
-
-Use whatever exists. If nothing fits, do a manual loop.
+For repeated-field round-trips, also check `src/viam/sdk/common/private/repeated_ptr_convert.hpp` which provides generic helpers over `RepeatedPtrField`.
 
 Test cases to add:
 
@@ -726,20 +721,15 @@ point_cloud_object bytes."
 - Create: `src/viam/sdk/services/private/vision_client.hpp`, `src/viam/sdk/services/private/vision_client.cpp`
 - Modify: `src/viam/sdk/CMakeLists.txt`
 
-- [ ] **Step 1: Read `mlmodel_client.hpp` + `mlmodel_client.cpp` to understand the registration pattern**
+- [ ] **Step 1: Read `mlmodel_client.hpp` + `mlmodel_client.cpp` to understand the patterns**
 
 In particular note:
 - `using interface_type = MLModelService;` and `using service_type = ...;` typedefs at the top of the class
 - `using MLModelService::infer;` lines that pull the no-extra overload into the client's namespace
 - The constructor signature `(std::string name, const ViamChannel& channel)`
-- The `make_client_helper(this, *stub_, &service_type::StubInterface::Method).invoke(...)` pattern for simple RPCs (used in `get_status` at the bottom of `mlmodel_client.cpp`)
-- The static registration block at the bottom of `mlmodel_client.cpp` (look for any `Registry` calls). If none exists in `mlmodel_client.cpp` directly, search for where `MLModelService` is registered:
+- The `make_client_helper(this, *stub_, &service_type::StubInterface::Method).with(extra).invoke(handler)` pattern for simple RPCs (used in `get_status` at the bottom of `mlmodel_client.cpp`). Note: the helper method is `.with(extra)`, NOT `.with_extra(extra)`.
 
-```bash
-grep -rn "MLModelService\|MLModelServiceClient" src/viam/sdk/registry/ src/viam/sdk/robot/ 2>/dev/null | head
-```
-
-Replicate that registration shape for `Vision` / `VisionClient`.
+Registration is centralized — there is no per-file static registration block. Both client and server are wired by adding a single line `register_resource<impl::VisionClient, impl::VisionServer>();` to `Registry::register_resources()` in `src/viam/sdk/registry/registry.cpp`, alphabetically near the existing `MLModelServiceClient` line (~line 229). Do this in Task 5 once the server class also exists.
 
 - [ ] **Step 2: Create `vision_client.hpp`**
 
@@ -814,13 +804,11 @@ VisionClient::VisionClient(std::string name, const ViamChannel& channel)
 
 Each override: `throw std::runtime_error("not implemented");`. We fill these in Phase 2.
 
-- [ ] **Step 4: Add the static registration block matching mlmodel's**
+- [ ] **Step 4: Add `services/private/vision_client.cpp` to `viamsdk` target in CMakeLists.txt**
 
-Copy whatever pattern Step 1 surfaced. Likely a `static auto _registered = ...;` line near the bottom of `vision_client.cpp` registering `Vision::api()` → factory producing `VisionClient`.
+Registration is added in Task 5 (one line in `registry/registry.cpp` covers both client and server).
 
-- [ ] **Step 5: Add `services/private/vision_client.cpp` to `viamsdk` target in CMakeLists.txt**
-
-- [ ] **Step 6: Build**
+- [ ] **Step 5: Build**
 
 ```bash
 cmake --build build --target viamsdk
@@ -828,15 +816,14 @@ cmake --build build --target viamsdk
 
 Expected: success.
 
-- [ ] **Step 7: Commit**
+- [ ] **Step 6: Commit**
 
 ```bash
 git add src/viam/sdk/services/private/vision_client.{hpp,cpp} src/viam/sdk/CMakeLists.txt
 git commit -m "feat(sdk): add VisionClient skeleton (all methods throw)
 
 Adds the Vision gRPC client class with all 9 RPC overrides as
-not-implemented stubs and the channel-side registration. RPC bodies
-are filled in subsequent commits."
+not-implemented stubs. Registration follows in the next commit."
 ```
 
 ---
@@ -910,20 +897,33 @@ class VisionServer : public ResourceServer,
 
 Keep the constructor body simple: `: ResourceServer(std::move(manager)) {}`.
 
-- [ ] **Step 4: Add registration matching `MLModelServiceServer`**
+- [ ] **Step 4: Add the registration line in `src/viam/sdk/registry/registry.cpp`**
 
-```bash
-grep -rn "MLModelServiceServer" src/viam/sdk/registry/ src/viam/sdk/rpc/ src/viam/sdk/robot/ 2>/dev/null | head
+Open `registry.cpp` and find `Registry::register_resources()` (near line 205). Insert alphabetically next to MLModel (around line 229):
+
+```cpp
+register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
+register_resource<impl::MotionClient, impl::MotionServer>();
+register_resource<impl::NavigationClient, impl::NavigationServer>();
+register_resource<impl::VisionClient, impl::VisionServer>();   // <-- new line
 ```
 
-Replicate for Vision.
+(Alphabetical placement may differ slightly depending on how the existing list orders services — match what's there.)
+
+You will also need `#include`s for `vision_client.hpp` and `vision_server.hpp` at the top of `registry.cpp`. Add them next to the existing mlmodel/motion/navigation include block.
 
 - [ ] **Step 5: Add to CMakeLists, build, commit**
 
 ```bash
 cmake --build build --target viamsdk
-git add src/viam/sdk/services/private/vision_server.{hpp,cpp} src/viam/sdk/CMakeLists.txt
-git commit -m "feat(sdk): add VisionServer skeleton (all RPCs UNIMPLEMENTED)"
+git add src/viam/sdk/services/private/vision_server.{hpp,cpp} \
+        src/viam/sdk/registry/registry.cpp \
+        src/viam/sdk/CMakeLists.txt
+git commit -m "feat(sdk): add VisionServer skeleton + registry wiring
+
+All 9 RPCs return UNIMPLEMENTED. Registration in
+Registry::register_resources() now wires VisionClient/VisionServer
+together, alphabetically with peer services."
 ```
 
 ---
@@ -1123,12 +1123,12 @@ Run: expect failure (client throws "not implemented").
 ```cpp
 Vision::properties VisionClient::get_properties(const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &service_type::StubInterface::GetProperties)
-        .with_extra(extra)
+        .with(extra)
         .invoke([](auto& response) { return vision::from_proto(response); });
 }
 ```
 
-(Verify `with_extra` is the right helper name by reading `client_helper.hpp` and how `mlmodel_client.cpp:get_status` uses it. Adjust if the API is different.)
+The helper API is `.with(extra)` (verified in `src/viam/sdk/common/client_helper.hpp:86-105`), and you can also pass a request-setup callable for RPCs that need to populate the request beyond `extra` (e.g. `.with(extra, [&](auto& req){ req.set_name(...); })`).
 
 - [ ] **Step 3: Implement `VisionServer::GetProperties`**
 

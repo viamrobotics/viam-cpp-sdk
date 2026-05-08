@@ -52,6 +52,7 @@ src/viam/sdk/tests/test_vision.cpp                    # unit tests
 ```
 src/viam/sdk/components/private/camera_client.cpp     # call new raw_image helper
 src/viam/sdk/components/private/camera_server.cpp     # call new raw_image helper
+src/viam/sdk/registry/registry.cpp                    # register_resource<VisionClient, VisionServer>()
 src/viam/sdk/CMakeLists.txt                           # source list + public-header install
 src/viam/sdk/tests/CMakeLists.txt                     # register test_vision + mock
 ```
@@ -77,11 +78,11 @@ Use `viam::sdk::Vision` (bare name, matching `Motion` / `Navigation` / `Discover
 
 ```cpp
 struct detection {
-    boost::optional<double> x_min, y_min, x_max, y_max;     // pixel bbox
-    boost::optional<std::string> class_name;
-    boost::optional<double> confidence;
-    boost::optional<std::int64_t> x_min_normalized, y_min_normalized,
-                                  x_max_normalized, y_max_normalized;
+    boost::optional<std::int64_t> x_min, y_min, x_max, y_max;       // pixel bbox (proto: optional int64)
+    boost::optional<double> x_min_normalized, y_min_normalized,
+                            x_max_normalized, y_max_normalized;      // normalized bbox (proto: optional double)
+    std::string class_name;                                          // proto: plain string
+    double confidence;                                               // proto: plain double
 };
 
 struct classification {
@@ -164,7 +165,7 @@ Vision::capture_all_result                              from_proto(const viam::s
 ### Conversion details
 
 - **`raw_image`:** Camera's existing client/server inline the field-by-field conversion rather than calling shared `to_proto`/`from_proto` helpers — there is no helper to "reuse" today. We will introduce one as part of this work by lifting Camera's inline conversion into a new shared private header `src/viam/sdk/common/private/raw_image.hpp` (paired with `raw_image.cpp`), consumed by both camera and vision. Lives under `common/private/` rather than `components/private/` because it's not Camera-specific anymore once Vision uses it. The lift is mechanical (~30 LoC).
-- **Optional bbox fields on `detection`:** the proto presence-tracks pixel coords and normalized coords separately (8 optional fields in two groups of 4). `from_proto` uses `has_*` checks per field; `to_proto` only sets fields whose `boost::optional` is engaged. No silent zero-fill.
+- **Optional bbox fields on `detection`:** the proto presence-tracks pixel coords (`optional int64 x_min ...`) and normalized coords (`optional double x_min_normalized ...`) separately (8 optional fields in two groups of 4). `from_proto` uses `has_*` checks per field; `to_proto` only sets fields whose `boost::optional` is engaged. No silent zero-fill. `class_name` and `confidence` are plain (non-optional) fields on the proto, so they map to plain `std::string` / `double` on the POD.
 - **`extra`:** every request/response that carries a `google.protobuf.Struct extra` round-trips through the existing `ProtoStruct ↔ google::protobuf::Struct` helpers in `viam::sdk::common`, the same way `mlmodel_client.cpp` handles `infer`'s `extra`.
 
 ## Client / Server plumbing
@@ -189,7 +190,7 @@ private:
 };
 ```
 
-Static registration block at the bottom of the file registers `Vision::api()` → `ResourceClientRegistration` producing a `VisionClient`. Same hook point `mlmodel_client.cpp` uses.
+Registration is added to `Registry::register_resources()` in `src/viam/sdk/registry/registry.cpp` as a single line `register_resource<impl::VisionClient, impl::VisionServer>();`, alphabetically placed near the existing `MLModelServiceClient` / `MotionClient` registrations (around line 229).
 
 ### `private/vision_server.{hpp,cpp}`
 
