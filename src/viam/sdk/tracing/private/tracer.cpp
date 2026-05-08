@@ -2,6 +2,7 @@
 
 #include <viam/sdk/common/instance.hpp>
 #include <viam/sdk/common/private/instance.hpp>
+#include <viam/sdk/common/utils.hpp>
 
 #ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
 
@@ -110,6 +111,10 @@ Tracer& Tracer::get() {
 
 void Tracer::initialize_provider(RobotClient* client) noexcept {
     shutdown_provider();
+
+    if (is_env_var_false("VIAM_MODULE_TRACING")) {
+        return;
+    }
 
     auto exporter =
         std::unique_ptr<otel_sdk_trace::SpanExporter>(new ParentSendTracesExporter(client));
