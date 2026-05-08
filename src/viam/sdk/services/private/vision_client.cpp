@@ -19,6 +19,7 @@
 #include <grpcpp/channel.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/private/raw_image.hpp>
 #include <viam/sdk/services/private/vision.hpp>
 
 namespace viam {
@@ -129,18 +130,45 @@ Vision::properties VisionClient::get_properties(const ProtoStruct& extra) {
 
 Vision::capture_all_result VisionClient::capture_all_from_camera(
     const std::string& camera_name, const Vision::capture_options& opts, const ProtoStruct& extra) {
-    throw std::runtime_error("not implemented");
+    return make_client_helper(this, *stub_, &service_type::StubInterface::CaptureAllFromCamera)
+        .with(extra,
+              [&](auto& req) {
+                  req.set_camera_name(camera_name);
+                  req.set_return_image(opts.return_image);
+                  req.set_return_detections(opts.return_detections);
+                  req.set_return_classifications(opts.return_classifications);
+                  req.set_return_object_point_clouds(opts.return_object_point_clouds);
+              })
+        .invoke([](auto& response) {
+            Vision::capture_all_result out;
+            if (response.has_image()) {
+                out.image = impl::from_proto(response.image());
+            }
+            for (const auto& d : response.detections()) {
+                out.detections.push_back(impl::vision::from_proto(d));
+            }
+            for (const auto& c : response.classifications()) {
+                out.classifications.push_back(impl::vision::from_proto(c));
+            }
+            for (const auto& o : response.objects()) {
+                out.objects.push_back(impl::vision::from_proto(o));
+            }
+            if (response.has_extra()) {
+                out.extra = sdk::from_proto(response.extra());
+            }
+            return out;
+        });
 }
 
 ProtoStruct VisionClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &service_type::StubInterface::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = to_proto(command); })
-        .invoke([](auto& response) { return from_proto(response.result()); });
+        .invoke([](auto& response) { return sdk::from_proto(response.result()); });
 }
 
 ProtoStruct VisionClient::get_status() {
     return make_client_helper(this, *stub_, &service_type::StubInterface::GetStatus)
-        .invoke([](auto& response) { return from_proto(response.result()); });
+        .invoke([](auto& response) { return sdk::from_proto(response.result()); });
 }
 
 }  // namespace impl

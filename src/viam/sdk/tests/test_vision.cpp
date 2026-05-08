@@ -335,6 +335,84 @@ BOOST_AUTO_TEST_CASE(get_object_point_clouds_round_trip_no_geometries) {
     BOOST_TEST(f.mock->last_mime_type == "application/pcd");
 }
 
+BOOST_AUTO_TEST_CASE(capture_all_only_image) {
+    vision_fixture f;
+    sdk::Vision::raw_image img;
+    img.mime_type = "image/jpeg";
+    img.bytes = {0xFF, 0xD8, 0xFF, 0xE0};
+    img.source_name = "front_cam";
+    f.mock->canned_capture_all.image = img;
+
+    sdk::Vision::capture_options opts;
+    opts.return_image = true;
+
+    auto got = f.client->capture_all_from_camera("cam", opts);
+
+    BOOST_TEST_REQUIRE(got.image.has_value());
+    BOOST_TEST(got.image->mime_type == "image/jpeg");
+    BOOST_TEST(got.image->bytes == img.bytes);
+    BOOST_TEST(got.detections.empty());
+    BOOST_TEST(got.classifications.empty());
+    BOOST_TEST(got.objects.empty());
+    BOOST_TEST(f.mock->last_camera_name == "cam");
+    BOOST_TEST(f.mock->last_capture_options.return_image == true);
+}
+
+BOOST_AUTO_TEST_CASE(capture_all_only_detections) {
+    vision_fixture f;
+    sdk::Vision::detection d;
+    d.x_min = 1;
+    d.y_min = 2;
+    d.x_max = 3;
+    d.y_max = 4;
+    d.class_name = "person";
+    d.confidence = 0.99;
+    f.mock->canned_capture_all.detections = {d};
+
+    sdk::Vision::capture_options opts;
+    opts.return_detections = true;
+
+    auto got = f.client->capture_all_from_camera("cam", opts);
+
+    BOOST_TEST(!got.image.has_value());
+    BOOST_TEST_REQUIRE(got.detections.size() == 1u);
+    BOOST_TEST(got.detections[0] == d);
+    BOOST_TEST(got.classifications.empty());
+    BOOST_TEST(got.objects.empty());
+    BOOST_TEST(f.mock->last_capture_options.return_detections == true);
+}
+
+BOOST_AUTO_TEST_CASE(capture_all_full_payload) {
+    vision_fixture f;
+    sdk::Vision::raw_image img;
+    img.mime_type = "image/png";
+    img.bytes = {1, 2, 3};
+    f.mock->canned_capture_all.image = img;
+    f.mock->canned_capture_all.classifications = {{"thing", 0.5}};
+    sdk::Vision::detection d;
+    d.x_min = 0;
+    d.y_min = 0;
+    d.x_max = 100;
+    d.y_max = 100;
+    d.class_name = "obj";
+    d.confidence = 0.8;
+    f.mock->canned_capture_all.detections = {d};
+
+    sdk::Vision::capture_options opts;
+    opts.return_image = true;
+    opts.return_detections = true;
+    opts.return_classifications = true;
+
+    auto got = f.client->capture_all_from_camera("cam", opts);
+
+    BOOST_TEST_REQUIRE(got.image.has_value());
+    BOOST_TEST(got.image->bytes == img.bytes);
+    BOOST_TEST(got.detections.size() == 1u);
+    BOOST_TEST(got.detections[0] == d);
+    BOOST_TEST(got.classifications.size() == 1u);
+    BOOST_TEST(got.classifications[0].class_name == "thing");
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace vision

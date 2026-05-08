@@ -14,6 +14,7 @@
 
 #include <viam/sdk/services/private/vision_server.hpp>
 
+#include <viam/sdk/common/private/raw_image.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/services/private/vision.hpp>
 
@@ -113,10 +114,36 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status VisionServer::CaptureAllFromCamera(
-    ::grpc::ServerContext*,
-    const ::viam::service::vision::v1::CaptureAllFromCameraRequest*,
-    ::viam::service::vision::v1::CaptureAllFromCameraResponse*) noexcept {
-    return {::grpc::UNIMPLEMENTED, "not yet"};
+    ::grpc::ServerContext* context,
+    const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request,
+    ::viam::service::vision::v1::CaptureAllFromCameraResponse* response) noexcept {
+    return make_service_helper<Vision>(
+        "VisionServer::CaptureAllFromCamera", this, context, request)([&](auto& helper, auto& vs) {
+        Vision::capture_options opts;
+        opts.return_image = request->return_image();
+        opts.return_detections = request->return_detections();
+        opts.return_classifications = request->return_classifications();
+        opts.return_object_point_clouds = request->return_object_point_clouds();
+
+        const auto result =
+            vs->capture_all_from_camera(request->camera_name(), opts, helper.getExtra());
+
+        if (result.image) {
+            impl::to_proto(*result.image, response->mutable_image());
+        }
+        for (const auto& d : result.detections) {
+            *response->add_detections() = impl::vision::to_proto(d);
+        }
+        for (const auto& c : result.classifications) {
+            *response->add_classifications() = impl::vision::to_proto(c);
+        }
+        for (const auto& o : result.objects) {
+            impl::vision::to_proto(o, response->add_objects());
+        }
+        if (!result.extra.empty()) {
+            *response->mutable_extra() = to_proto(result.extra);
+        }
+    });
 }
 
 ::grpc::Status VisionServer::DoCommand(::grpc::ServerContext* context,
@@ -124,7 +151,7 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Vision>(
         "VisionServer::DoCommand", this, context, request)([&](auto&, auto& vs) {
-        const ProtoStruct result = vs->do_command(from_proto(request->command()));
+        const ProtoStruct result = vs->do_command(sdk::from_proto(request->command()));
         *response->mutable_result() = to_proto(result);
     });
 }
