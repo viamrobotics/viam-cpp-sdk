@@ -309,7 +309,9 @@ std::vector<Name> RobotClient::resource_names() const {
 void RobotClient::log(const std::string& name,
                       const std::string& level,
                       const std::string& message,
-                      time_pt time) {
+                      time_pt time,
+                      const std::string& file,
+                      unsigned int line) {
     if (!impl_) {
         throw std::runtime_error("Tried to send logs to robot when it was not connected");
     }
@@ -322,6 +324,12 @@ void RobotClient::log(const std::string& name,
     log.set_level(level);
     *log.mutable_message() = message;
     *log.mutable_time() = to_proto(time);
+
+    auto& fields = *log.mutable_caller()->mutable_fields();
+    fields["Defined"].set_bool_value(true);
+    fields["File"].set_string_value(file);
+    fields["Line"].set_number_value(line);
+
     req.mutable_logs()->Add(std::move(log));
 
     robot::v1::LogResponse resp;

@@ -190,7 +190,9 @@ class RobotClient {
     void log(const std::string& name,
              const std::string& level,
              const std::string& message,
-             time_pt time);
+             time_pt time,
+             const std::string& file,
+             unsigned int line);
 
     // Makes this RobotClient manage logging by sending logs over grpc to viam-server.
     // This is private and only ever called by ModuleService; in other words it is only called when
