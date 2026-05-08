@@ -14,14 +14,62 @@
 
 #define BOOST_TEST_MODULE vision
 
+#include <memory>
+
 #include <boost/test/included/unit_test.hpp>
 
+#include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/rpc/dial.hpp>
+#include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/private/vision.hpp>
 #include <viam/sdk/services/vision.hpp>
+#include <viam/sdk/tests/mocks/mock_vision.hpp>
+#include <viam/sdk/tests/test_utils.hpp>
 
 namespace vimpl = viam::sdk::impl::vision;
 namespace vpb = viam::service::vision::v1;
 using viam::sdk::Vision;
+
+namespace viam {
+namespace sdktests {
+namespace vision {
+
+// vision_fixture stands up an in-process gRPC server backed by MockVision and a
+// VisionClient connected to it over an InProcessChannel.  Per-RPC test suites
+// (tasks 8-14) declare this as their fixture so they can reach both the canned
+// mock state and the client interface under test.
+struct vision_fixture {
+    std::shared_ptr<MockVision> mock;
+    std::shared_ptr<sdk::Vision> client;
+
+    vision_fixture()
+        : mock(std::make_shared<MockVision>("mock-vision")),
+          server_(std::make_shared<sdk::Server>()),
+          test_server_(server_) {
+        server_->add_resource(mock);
+        server_->start();
+
+        channel_ = std::make_unique<sdk::ViamChannel>(test_server_.grpc_in_process_channel());
+
+        client = std::dynamic_pointer_cast<sdk::Vision>(
+            sdk::Registry::get()
+                .lookup_resource_client(sdk::API::get<sdk::Vision>())
+                ->create_rpc_client(mock->name(), *channel_));
+    }
+
+    ~vision_fixture() {
+        server_->shutdown();
+    }
+
+   private:
+    std::shared_ptr<sdk::Server> server_;
+    TestServer test_server_;
+    std::unique_ptr<sdk::ViamChannel> channel_;
+};
+
+}  // namespace vision
+}  // namespace sdktests
+}  // namespace viam
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(Vision::detection)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(Vision::classification)
