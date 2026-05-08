@@ -190,5 +190,19 @@ bool is_env_var_true(const char* var) {
     return false;
 }
 
+bool is_env_var_false(const char* var) {
+    if (const auto& val = get_env(var)) {
+        for (const char* untruth : {"false", "no", "0", "FALSE", "NO"}) {
+            if (*val == untruth) {
+                return true;
+            }
+        }
+
+        return false;
+    } else {
+        return true;
+    }
+}
+
 }  // namespace sdk
 }  // namespace viam
