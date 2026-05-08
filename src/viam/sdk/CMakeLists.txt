@@ -168,6 +168,7 @@ target_sources(viamsdk
     services/private/navigation_client.cpp
     services/private/navigation_server.cpp
     services/private/vision.cpp
+    services/private/vision_client.cpp
     services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation.cpp
