@@ -24,7 +24,7 @@ class ViamCppSdkRecipe(ConanFile):
 
     default_options = {
         "offline_proto_generation": True,
-        "opentelemetry_tracing": False,
+        "opentelemetry_tracing": True,
         "shared": True
     }
 
