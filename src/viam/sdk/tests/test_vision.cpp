@@ -249,6 +249,75 @@ BOOST_AUTO_TEST_CASE(get_classifications_round_trip) {
     BOOST_TEST(f.mock->last_count == 3);
 }
 
+BOOST_AUTO_TEST_CASE(get_detections_from_camera_round_trip) {
+    vision_fixture f;
+    sdk::Vision::detection d1;
+    d1.x_min = 10;
+    d1.y_min = 20;
+    d1.x_max = 30;
+    d1.y_max = 40;
+    d1.class_name = "car";
+    d1.confidence = 0.95;
+    sdk::Vision::detection d2;
+    d2.x_min_normalized = 0.1;
+    d2.y_min_normalized = 0.2;
+    d2.x_max_normalized = 0.3;
+    d2.y_max_normalized = 0.4;
+    d2.class_name = "tree";
+    d2.confidence = 0.4;
+    f.mock->canned_detections = {d1, d2};
+
+    auto got = f.client->get_detections_from_camera("front");
+
+    BOOST_TEST_REQUIRE(got.size() == 2u);
+    BOOST_TEST(got[0] == d1);
+    BOOST_TEST(got[1] == d2);
+    BOOST_TEST(f.mock->last_camera_name == "front");
+}
+
+BOOST_AUTO_TEST_CASE(get_detections_round_trip) {
+    vision_fixture f;
+    sdk::Vision::detection d;
+    d.x_min = 5;
+    d.y_min = 6;
+    d.x_max = 7;
+    d.y_max = 8;
+    d.class_name = "ball";
+    d.confidence = 0.5;
+    f.mock->canned_detections = {d};
+
+    sdk::Vision::raw_image img;
+    img.mime_type = "image/png";
+    img.bytes = {9, 8, 7, 6, 5};
+
+    auto got = f.client->get_detections(img);
+
+    BOOST_TEST_REQUIRE(got.size() == 1u);
+    BOOST_TEST(got[0] == d);
+    BOOST_TEST(f.mock->last_image.bytes == img.bytes);
+    BOOST_TEST(f.mock->last_image.mime_type == img.mime_type);
+}
+
+BOOST_AUTO_TEST_CASE(get_detections_no_bbox_round_trip_over_wire) {
+    // Edge case: a Detection with neither pixel nor normalized bbox engaged
+    // must round-trip with both groups remaining unset on the response side.
+    vision_fixture f;
+    sdk::Vision::detection d;
+    d.class_name = "unknown";
+    d.confidence = 0.1;
+    // Intentionally no bbox fields engaged.
+    f.mock->canned_detections = {d};
+
+    auto got = f.client->get_detections_from_camera("any");
+
+    BOOST_TEST_REQUIRE(got.size() == 1u);
+    BOOST_TEST(got[0] == d);
+    BOOST_TEST(!got[0].x_min.has_value());
+    BOOST_TEST(!got[0].x_min_normalized.has_value());
+    BOOST_TEST(got[0].class_name == "unknown");
+    BOOST_TEST(got[0].confidence == 0.1);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace vision

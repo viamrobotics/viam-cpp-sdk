@@ -32,12 +32,34 @@ VisionClient::VisionClient(std::string name, const ViamChannel& channel)
 
 std::vector<Vision::detection> VisionClient::get_detections_from_camera(
     const std::string& camera_name, const ProtoStruct& extra) {
-    throw std::runtime_error("not implemented");
+    return make_client_helper(this, *stub_, &service_type::StubInterface::GetDetectionsFromCamera)
+        .with(extra, [&](auto& req) { req.set_camera_name(camera_name); })
+        .invoke([](auto& response) {
+            std::vector<Vision::detection> out;
+            out.reserve(response.detections_size());
+            for (const auto& d : response.detections()) {
+                out.push_back(impl::vision::from_proto(d));
+            }
+            return out;
+        });
 }
 
 std::vector<Vision::detection> VisionClient::get_detections(const Vision::raw_image& image,
                                                             const ProtoStruct& extra) {
-    throw std::runtime_error("not implemented");
+    return make_client_helper(this, *stub_, &service_type::StubInterface::GetDetections)
+        .with(extra,
+              [&](auto& req) {
+                  req.set_image(std::string(image.bytes.begin(), image.bytes.end()));
+                  req.set_mime_type(image.mime_type);
+              })
+        .invoke([](auto& response) {
+            std::vector<Vision::detection> out;
+            out.reserve(response.detections_size());
+            for (const auto& d : response.detections()) {
+                out.push_back(impl::vision::from_proto(d));
+            }
+            return out;
+        });
 }
 
 std::vector<Vision::classification> VisionClient::get_classifications_from_camera(

@@ -25,17 +25,34 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
 
 ::grpc::Status VisionServer::GetDetectionsFromCamera(
-    ::grpc::ServerContext*,
-    const ::viam::service::vision::v1::GetDetectionsFromCameraRequest*,
-    ::viam::service::vision::v1::GetDetectionsFromCameraResponse*) noexcept {
-    return {::grpc::UNIMPLEMENTED, "not yet"};
+    ::grpc::ServerContext* context,
+    const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request,
+    ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) noexcept {
+    return make_service_helper<Vision>(
+        "VisionServer::GetDetectionsFromCamera", this, context, request)(
+        [&](auto& helper, auto& vs) {
+            const auto results =
+                vs->get_detections_from_camera(request->camera_name(), helper.getExtra());
+            for (const auto& d : results) {
+                *response->add_detections() = impl::vision::to_proto(d);
+            }
+        });
 }
 
 ::grpc::Status VisionServer::GetDetections(
-    ::grpc::ServerContext*,
-    const ::viam::service::vision::v1::GetDetectionsRequest*,
-    ::viam::service::vision::v1::GetDetectionsResponse*) noexcept {
-    return {::grpc::UNIMPLEMENTED, "not yet"};
+    ::grpc::ServerContext* context,
+    const ::viam::service::vision::v1::GetDetectionsRequest* request,
+    ::viam::service::vision::v1::GetDetectionsResponse* response) noexcept {
+    return make_service_helper<Vision>(
+        "VisionServer::GetDetections", this, context, request)([&](auto& helper, auto& vs) {
+        Vision::raw_image image;
+        image.bytes.assign(request->image().begin(), request->image().end());
+        image.mime_type = request->mime_type();
+        const auto results = vs->get_detections(image, helper.getExtra());
+        for (const auto& d : results) {
+            *response->add_detections() = impl::vision::to_proto(d);
+        }
+    });
 }
 
 ::grpc::Status VisionServer::GetClassificationsFromCamera(
