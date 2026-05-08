@@ -18,6 +18,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/registry/registry.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 #include <viam/sdk/rpc/server.hpp>
@@ -411,6 +412,34 @@ BOOST_AUTO_TEST_CASE(capture_all_full_payload) {
     BOOST_TEST(got.detections[0] == d);
     BOOST_TEST(got.classifications.size() == 1u);
     BOOST_TEST(got.classifications[0].class_name == "thing");
+}
+
+BOOST_AUTO_TEST_CASE(server_exception_maps_to_grpc_error) {
+    vision_fixture f;
+    f.mock->canned_properties = {true, true, true};
+    f.mock->throw_on_next_call = true;
+
+    // The mock throws sdk::Exception on the next call.  The server's
+    // make_service_helper catches std::exception and converts it to a
+    // non-OK grpc::Status; the client's make_client_helper then throws
+    // GRPCException.
+    BOOST_CHECK_THROW(f.client->get_properties(), sdk::GRPCException);
+
+    // Confirm the flag was reset (so a follow-up call would succeed).
+    BOOST_TEST(f.mock->throw_on_next_call == false);
+}
+
+BOOST_AUTO_TEST_CASE(server_exception_recovery) {
+    vision_fixture f;
+    f.mock->canned_properties = {true, false, true};
+    f.mock->throw_on_next_call = true;
+
+    // First call throws.
+    BOOST_CHECK_THROW(f.client->get_properties(), sdk::GRPCException);
+
+    // Second call should succeed now that the mock flag was reset.
+    auto got = f.client->get_properties();
+    BOOST_TEST(got == f.mock->canned_properties);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
