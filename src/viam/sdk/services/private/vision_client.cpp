@@ -103,7 +103,22 @@ std::vector<Vision::classification> VisionClient::get_classifications(
 
 std::vector<Vision::point_cloud_object> VisionClient::get_object_point_clouds(
     const std::string& camera_name, const std::string& mime_type, const ProtoStruct& extra) {
-    throw std::runtime_error("not implemented");
+    return make_client_helper(this, *stub_, &service_type::StubInterface::GetObjectPointClouds)
+        .with(extra,
+              [&](auto& req) {
+                  req.set_camera_name(camera_name);
+                  req.set_mime_type(mime_type);
+              })
+        .invoke([&mime_type](auto& response) {
+            std::vector<Vision::point_cloud_object> out;
+            out.reserve(response.objects_size());
+            for (const auto& proto_obj : response.objects()) {
+                auto pco = impl::vision::from_proto(proto_obj);
+                pco.point_cloud.mime_type = mime_type;  // populate from request
+                out.push_back(std::move(pco));
+            }
+            return out;
+        });
 }
 
 Vision::properties VisionClient::get_properties(const ProtoStruct& extra) {

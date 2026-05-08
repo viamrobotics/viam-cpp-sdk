@@ -318,6 +318,23 @@ BOOST_AUTO_TEST_CASE(get_detections_no_bbox_round_trip_over_wire) {
     BOOST_TEST(got[0].confidence == 0.1);
 }
 
+BOOST_AUTO_TEST_CASE(get_object_point_clouds_round_trip_no_geometries) {
+    vision_fixture f;
+    sdk::Vision::point_cloud_object o;
+    o.point_cloud.mime_type = "application/pcd";  // not on the wire — propagated from request
+    o.point_cloud.pc = {0xDE, 0xAD, 0xBE, 0xEF};
+    f.mock->canned_objects = {o};
+
+    auto got = f.client->get_object_point_clouds("rear_cam", "application/pcd");
+
+    BOOST_TEST_REQUIRE(got.size() == 1u);
+    BOOST_TEST(got[0].point_cloud.pc == o.point_cloud.pc);
+    BOOST_TEST(got[0].point_cloud.mime_type == "application/pcd");  // verify mime propagated
+    BOOST_TEST(got[0].geometries.empty());
+    BOOST_TEST(f.mock->last_camera_name == "rear_cam");
+    BOOST_TEST(f.mock->last_mime_type == "application/pcd");
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace vision

@@ -87,10 +87,18 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status VisionServer::GetObjectPointClouds(
-    ::grpc::ServerContext*,
-    const ::viam::service::vision::v1::GetObjectPointCloudsRequest*,
-    ::viam::service::vision::v1::GetObjectPointCloudsResponse*) noexcept {
-    return {::grpc::UNIMPLEMENTED, "not yet"};
+    ::grpc::ServerContext* context,
+    const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request,
+    ::viam::service::vision::v1::GetObjectPointCloudsResponse* response) noexcept {
+    return make_service_helper<Vision>(
+        "VisionServer::GetObjectPointClouds", this, context, request)([&](auto& helper, auto& vs) {
+        const auto results = vs->get_object_point_clouds(
+            request->camera_name(), request->mime_type(), helper.getExtra());
+        for (const auto& obj : results) {
+            impl::vision::to_proto(obj, response->add_objects());
+        }
+        response->set_mime_type(request->mime_type());
+    });
 }
 
 ::grpc::Status VisionServer::GetProperties(
