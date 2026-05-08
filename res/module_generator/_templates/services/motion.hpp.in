@@ -6,7 +6,7 @@
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/services/motion.hpp>
 
-namespace {{ .ModuleName }} {
+namespace {{ .ModuleSnake }} {
 
 
 class {{ .ModelPascal }} : public viam::sdk::Motion {
@@ -80,5 +80,5 @@ public:
 
 };
 
-} // namespace {{ .ModuleName }}
+} // namespace {{ .ModuleSnake }}
 

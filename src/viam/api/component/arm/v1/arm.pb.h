@@ -2743,6 +2743,7 @@ class MoveOptions final :
     kMaxAccDegsPerSec2JointsFieldNumber = 4,
     kMaxVelDegsPerSecFieldNumber = 1,
     kMaxAccDegsPerSec2FieldNumber = 2,
+    kMaxTcpSpeedFieldNumber = 5,
   };
   // repeated double max_vel_degs_per_sec_joints = 3 [json_name = "maxVelDegsPerSecJoints"];
   int max_vel_degs_per_sec_joints_size() const;
@@ -2814,6 +2815,19 @@ class MoveOptions final :
   void _internal_set_max_acc_degs_per_sec2(double value);
   public:
 
+  // optional double max_tcp_speed = 5 [json_name = "maxTcpSpeed"];
+  bool has_max_tcp_speed() const;
+  private:
+  bool _internal_has_max_tcp_speed() const;
+  public:
+  void clear_max_tcp_speed();
+  double max_tcp_speed() const;
+  void set_max_tcp_speed(double value);
+  private:
+  double _internal_max_tcp_speed() const;
+  void _internal_set_max_tcp_speed(double value);
+  public:
+
   // @@protoc_insertion_point(class_scope:viam.component.arm.v1.MoveOptions)
  private:
   class _Internal;
@@ -2827,6 +2841,7 @@ class MoveOptions final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > max_acc_degs_per_sec2_joints_;
   double max_vel_degs_per_sec_;
   double max_acc_degs_per_sec2_;
+  double max_tcp_speed_;
   friend struct ::TableStruct_component_2farm_2fv1_2farm_2eproto;
 };
 // ===================================================================
@@ -4654,6 +4669,34 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
 MoveOptions::mutable_max_acc_degs_per_sec2_joints() {
   // @@protoc_insertion_point(field_mutable_list:viam.component.arm.v1.MoveOptions.max_acc_degs_per_sec2_joints)
   return _internal_mutable_max_acc_degs_per_sec2_joints();
+}
+
+// optional double max_tcp_speed = 5 [json_name = "maxTcpSpeed"];
+inline bool MoveOptions::_internal_has_max_tcp_speed() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool MoveOptions::has_max_tcp_speed() const {
+  return _internal_has_max_tcp_speed();
+}
+inline void MoveOptions::clear_max_tcp_speed() {
+  max_tcp_speed_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline double MoveOptions::_internal_max_tcp_speed() const {
+  return max_tcp_speed_;
+}
+inline double MoveOptions::max_tcp_speed() const {
+  // @@protoc_insertion_point(field_get:viam.component.arm.v1.MoveOptions.max_tcp_speed)
+  return _internal_max_tcp_speed();
+}
+inline void MoveOptions::_internal_set_max_tcp_speed(double value) {
+  _has_bits_[0] |= 0x00000004u;
+  max_tcp_speed_ = value;
+}
+inline void MoveOptions::set_max_tcp_speed(double value) {
+  _internal_set_max_tcp_speed(value);
+  // @@protoc_insertion_point(field_set:viam.component.arm.v1.MoveOptions.max_tcp_speed)
 }
 
 #ifdef __GNUC__

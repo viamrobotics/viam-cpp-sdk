@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 
-namespace {{ .ModuleName }} {
+namespace {{ .ModuleSnake }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
@@ -68,5 +68,5 @@ viam::sdk::KinematicsData {{ .ModelPascal }}::get_kinematics(const viam::sdk::Pr
     throw std::logic_error("\"get_kinematics\" not implemented");
 }
 
-} // namespace {{ .ModuleName }}
+} // namespace {{ .ModuleSnake }}
 

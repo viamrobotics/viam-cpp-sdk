@@ -28,6 +28,12 @@ install(
     DESTINATION .
 )
 
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}}/meta.json" _META_JSON)
+string(JSON _FIRST_RUN ERROR_VARIABLE _FR_ERR GET "${_META_JSON}}" "first_run")
+if(NOT _FR_ERR AND _FIRST_RUN AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}}/${_FIRST_RUN}}")
+    install(FILES "${_FIRST_RUN}}" DESTINATION .)
+endif()
+
 install(TARGETS {{ .ModuleName }})
 
 set(CPACK_PACKAGE_NAME "{{ .ModuleName }}")
