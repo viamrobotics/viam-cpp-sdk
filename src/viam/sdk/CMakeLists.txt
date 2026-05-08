@@ -155,6 +155,7 @@ target_sources(viamsdk
     services/mlmodel.cpp
     services/motion.cpp
     services/navigation.cpp
+    services/vision.cpp
     services/private/discovery_client.cpp
     services/private/discovery_server.cpp
     services/private/generic_client.cpp
@@ -235,6 +236,7 @@ target_sources(viamsdk
       ../../viam/sdk/services/mlmodel.hpp
       ../../viam/sdk/services/motion.hpp
       ../../viam/sdk/services/navigation.hpp
+      ../../viam/sdk/services/vision.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
