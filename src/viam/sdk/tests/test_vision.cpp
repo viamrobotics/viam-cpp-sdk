@@ -40,6 +40,12 @@ namespace vision {
 // mock state and the client interface under test.
 struct vision_fixture {
     std::shared_ptr<MockVision> mock;
+
+    // Order: channel_ must outlive client (VisionClient holds a raw channel ptr).
+    std::shared_ptr<sdk::Server> server_;
+    TestServer test_server_;
+    std::unique_ptr<sdk::ViamChannel> channel_;
+
     std::shared_ptr<sdk::Vision> client;
 
     vision_fixture()
@@ -55,16 +61,13 @@ struct vision_fixture {
             sdk::Registry::get()
                 .lookup_resource_client(sdk::API::get<sdk::Vision>())
                 ->create_rpc_client(mock->name(), *channel_));
+
+        BOOST_REQUIRE(client != nullptr);
     }
 
     ~vision_fixture() {
         server_->shutdown();
     }
-
-   private:
-    std::shared_ptr<sdk::Server> server_;
-    TestServer test_server_;
-    std::unique_ptr<sdk::ViamChannel> channel_;
 };
 
 }  // namespace vision
