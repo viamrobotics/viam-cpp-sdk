@@ -137,18 +137,17 @@ class Vision : public Service {
 
     /// @brief Get point cloud objects detected by a named camera.
     /// @param mime_type The desired mime type of the point cloud (does not guarantee output type).
-    inline std::vector<point_cloud_object> get_object_point_clouds(
-        const std::string& camera_name, const std::string& mime_type) {
+    inline std::vector<point_cloud_object> get_object_point_clouds(const std::string& camera_name,
+                                                                   const std::string& mime_type) {
         return get_object_point_clouds(camera_name, mime_type, {});
     }
 
     /// @brief Get point cloud objects detected by a named camera.
     /// @param mime_type The desired mime type of the point cloud (does not guarantee output type).
     /// @param extra Any additional arguments to the method.
-    virtual std::vector<point_cloud_object> get_object_point_clouds(
-        const std::string& camera_name,
-        const std::string& mime_type,
-        const ProtoStruct& extra) = 0;
+    virtual std::vector<point_cloud_object> get_object_point_clouds(const std::string& camera_name,
+                                                                    const std::string& mime_type,
+                                                                    const ProtoStruct& extra) = 0;
 
     /// @brief Get the properties (capabilities) of this vision service.
     inline struct properties get_properties() {

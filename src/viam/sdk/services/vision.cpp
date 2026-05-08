@@ -30,8 +30,8 @@ API API::traits<Vision>::api() {
 Vision::Vision(std::string name) : Service(std::move(name)) {}
 
 bool operator==(const Vision::detection& a, const Vision::detection& b) {
-    return a.x_min == b.x_min && a.y_min == b.y_min && a.x_max == b.x_max &&
-           a.y_max == b.y_max && a.class_name == b.class_name && a.confidence == b.confidence &&
+    return a.x_min == b.x_min && a.y_min == b.y_min && a.x_max == b.x_max && a.y_max == b.y_max &&
+           a.class_name == b.class_name && a.confidence == b.confidence &&
            a.x_min_normalized == b.x_min_normalized && a.y_min_normalized == b.y_min_normalized &&
            a.x_max_normalized == b.x_max_normalized && a.y_max_normalized == b.y_max_normalized;
 }
@@ -41,9 +41,7 @@ bool operator==(const Vision::classification& a, const Vision::classification& b
 }
 
 bool operator==(const Vision::point_cloud_object& a, const Vision::point_cloud_object& b) {
-    if (a.point_cloud.mime_type != b.point_cloud.mime_type) return false;
-    if (a.point_cloud.pc != b.point_cloud.pc) return false;
-    return a.geometries == b.geometries;
+    return a.point_cloud == b.point_cloud && a.geometries == b.geometries;
 }
 
 bool operator==(const Vision::properties& a, const Vision::properties& b) {
