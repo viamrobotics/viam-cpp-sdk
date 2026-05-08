@@ -70,6 +70,7 @@ target_sources(viamsdk
     common/utils.cpp
     common/version_metadata.cpp
     common/world_state.cpp
+    common/private/raw_image.cpp
     common/private/service_helper.cpp
     tracing/private/span_guard.cpp
     tracing/private/tracer.cpp
