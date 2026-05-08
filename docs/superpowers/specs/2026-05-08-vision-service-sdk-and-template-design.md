@@ -152,10 +152,12 @@ Vision::detection                                from_proto(const viam::service:
 viam::service::vision::v1::Classification        to_proto(const Vision::classification&);
 Vision::classification                           from_proto(const viam::service::vision::v1::Classification&);
 
-viam::common::v1::PointCloudObject               to_proto(const Vision::point_cloud_object&);
+void                                             to_proto(const Vision::point_cloud_object&,
+                                                          viam::common::v1::PointCloudObject* out);
 Vision::point_cloud_object                       from_proto(const viam::common::v1::PointCloudObject&);
 
-viam::service::vision::v1::GetPropertiesResponse to_proto(const Vision::properties&);
+void                                             to_proto(const Vision::properties&,
+                                                          viam::service::vision::v1::GetPropertiesResponse* out);
 Vision::properties                               from_proto(const viam::service::vision::v1::GetPropertiesResponse&);
 
 viam::service::vision::v1::CaptureAllFromCameraResponse to_proto(const Vision::capture_all_result&);
