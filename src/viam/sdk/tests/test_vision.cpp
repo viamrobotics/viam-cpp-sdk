@@ -156,3 +156,32 @@ BOOST_AUTO_TEST_CASE(point_cloud_object_round_trip_no_geometries) {
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+namespace viam {
+namespace sdktests {
+namespace vision {
+
+BOOST_AUTO_TEST_SUITE(vision_rpc)
+
+BOOST_AUTO_TEST_CASE(get_properties_round_trip) {
+    vision_fixture f;
+    f.mock->canned_properties = {true, false, true};
+    auto got = f.client->get_properties();
+    BOOST_TEST(got == f.mock->canned_properties);
+    BOOST_TEST(f.mock->last_extra.empty());
+}
+
+BOOST_AUTO_TEST_CASE(get_properties_passes_extra) {
+    vision_fixture f;
+    f.mock->canned_properties = {false, true, false};
+    sdk::ProtoStruct extra;
+    extra["k"] = sdk::ProtoValue("v");
+    auto got = f.client->get_properties(extra);
+    BOOST_TEST(got == f.mock->canned_properties);
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+}  // namespace vision
+}  // namespace sdktests
+}  // namespace viam

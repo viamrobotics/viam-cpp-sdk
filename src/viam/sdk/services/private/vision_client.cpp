@@ -18,6 +18,9 @@
 
 #include <grpcpp/channel.h>
 
+#include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/services/private/vision.hpp>
+
 namespace viam {
 namespace sdk {
 namespace impl {
@@ -53,7 +56,9 @@ std::vector<Vision::point_cloud_object> VisionClient::get_object_point_clouds(
 }
 
 Vision::properties VisionClient::get_properties(const ProtoStruct& extra) {
-    throw std::runtime_error("not implemented");
+    return make_client_helper(this, *stub_, &service_type::StubInterface::GetProperties)
+        .with(extra)
+        .invoke([](auto& response) { return impl::vision::from_proto(response); });
 }
 
 Vision::capture_all_result VisionClient::capture_all_from_camera(

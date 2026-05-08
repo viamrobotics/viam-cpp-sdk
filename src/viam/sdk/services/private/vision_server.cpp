@@ -14,6 +14,9 @@
 
 #include <viam/sdk/services/private/vision_server.hpp>
 
+#include <viam/sdk/common/private/service_helper.hpp>
+#include <viam/sdk/services/private/vision.hpp>
+
 namespace viam {
 namespace sdk {
 namespace impl {
@@ -57,10 +60,14 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
 }
 
 ::grpc::Status VisionServer::GetProperties(
-    ::grpc::ServerContext*,
-    const ::viam::service::vision::v1::GetPropertiesRequest*,
-    ::viam::service::vision::v1::GetPropertiesResponse*) noexcept {
-    return {::grpc::UNIMPLEMENTED, "not yet"};
+    ::grpc::ServerContext* context,
+    const ::viam::service::vision::v1::GetPropertiesRequest* request,
+    ::viam::service::vision::v1::GetPropertiesResponse* response) noexcept {
+    return make_service_helper<Vision>(
+        "VisionServer::GetProperties", this, context, request)([&](auto& helper, auto& vs) {
+        const auto props = vs->get_properties(helper.getExtra());
+        impl::vision::to_proto(props, response);
+    });
 }
 
 ::grpc::Status VisionServer::CaptureAllFromCamera(
