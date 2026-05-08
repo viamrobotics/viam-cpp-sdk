@@ -89,8 +89,8 @@ using point_cloud = Camera::point_cloud;   // mime_type + bytes; reuses Camera c
 using raw_image  = Camera::raw_image;      // for capture_all_from_camera
 
 struct point_cloud_object {
-    point_cloud point_cloud;               // raw bytes (PCD or similar)
-    geometries geometries;                 // existing viam::sdk::geometries
+    point_cloud point_cloud;                       // raw bytes (PCD or similar)
+    std::vector<GeometryConfig> geometries;        // existing viam::sdk::GeometryConfig
 };
 
 struct properties {
@@ -135,7 +135,7 @@ The public API is proto-free. `point_cloud_object::point_cloud` reuses `Camera::
 
 ## Proto ↔ POD conversions
 
-A single TU `src/viam/sdk/services/private/vision.cpp` (paired with `vision.hpp` in the same directory) holds free functions in `namespace viam::sdk::impl`, used by both client and server. This mirrors `services/private/mlmodel.cpp` (260 LoC) which already follows this shape.
+A single TU `src/viam/sdk/services/private/vision.cpp` (paired with `vision.hpp` in the same directory) holds free functions in `namespace viam::sdk::impl::vision`, used by both client and server. This mirrors `services/private/mlmodel.cpp` (260 LoC, which uses the parallel `viam::sdk::impl::mlmodel` nested namespace).
 
 ```cpp
 viam::service::vision::v1::Detection             to_proto(const Vision::detection&);
@@ -156,7 +156,7 @@ Vision::capture_all_result                              from_proto(const viam::s
 
 ### Conversion details
 
-- **`raw_image`:** reuse the existing `Camera::raw_image` proto-conv helpers. If those are currently private to `camera.cpp`, lift them into a shared private header consumed by both camera and vision rather than duplicating ~30 LoC.
+- **`raw_image`:** Camera's existing client/server inline the field-by-field conversion rather than calling shared `to_proto`/`from_proto` helpers — there is no helper to "reuse" today. We will introduce one as part of this work, lifting Camera's inline conversion into a shared private header (e.g. `src/viam/sdk/components/private/camera.hpp` or `src/viam/sdk/common/private/raw_image.hpp`) consumed by both camera and vision. The lift is mechanical (~30 LoC) and is the correct path rather than duplicating.
 - **Optional bbox fields on `detection`:** the proto presence-tracks pixel coords and normalized coords separately (8 optional fields in two groups of 4). `from_proto` uses `has_*` checks per field; `to_proto` only sets fields whose `boost::optional` is engaged. No silent zero-fill.
 - **`extra`:** every request/response that carries a `google.protobuf.Struct extra` round-trips through the existing `ProtoStruct ↔ google::protobuf::Struct` helpers in `viam::sdk::common`, the same way `mlmodel_client.cpp` handles `infer`'s `extra`.
 
@@ -205,7 +205,7 @@ Each override:
 5. Catches `viam::sdk::Exception` and unknown exceptions, mapping to `grpc::Status` (mirror `mlmodel_server.cpp`'s catch ladder verbatim).
 6. Converts the result back to proto and returns `grpc::Status::OK`.
 
-`do_command` and `get_status` use the existing shared helpers (`viam::sdk::common::do_command` and the `Service`-provided `GetStatus` machinery) rather than rolling their own.
+`do_command` and `get_status` use the existing shared helpers (`viam::sdk::common::do_command` and the `Service`-provided `GetStatus` machinery) rather than rolling their own. Note that the exact split between shared helper vs per-service implementation varies across peer services; mirror whichever pattern `mlmodel_server.cpp::GetStatus` uses verbatim — verify at planning time.
 
 ### Threading / lifecycle
 
@@ -269,13 +269,14 @@ Add to the public-header install list:
 
 ### `src/viam/sdk/tests/CMakeLists.txt`
 
-```cmake
-add_executable(test_vision test_vision.cpp mocks/mock_vision.cpp)
-target_link_libraries(test_vision PRIVATE viamsdk Boost::unit_test_framework)
-add_test(NAME test_vision COMMAND test_vision)
-```
+The repo does not register tests via `add_executable` per file. Instead it builds a shared `viamsdk_test` static library (containing all mocks + helpers) and registers each test via the `viamcppsdk_add_boost_test(...)` macro.
 
-(Match the exact form used by the existing `test_mlmodel` entry.)
+Two edits needed (alphabetical with peers):
+
+1. Add `mocks/mock_vision.cpp` to the `viamsdk_test` library's `target_sources(...)` block.
+2. Append `viamcppsdk_add_boost_test(test_vision.cpp)` to the existing list.
+
+No standalone `add_executable` / `add_test` calls — match the convention of `test_mlmodel`, `test_motion`, `test_navigation`, etc.
 
 ### Proto dependency
 
@@ -288,7 +289,7 @@ add_test(NAME test_vision COMMAND test_vision)
 ## Risks & mitigations
 
 - **`cl_gen` produces a broken auto-generated template.** Run `cl_gen` locally in the same Debian-bookworm + clang-15 container the workflow uses, before merging. If broken, hand-write the two `.in` files (~20 LoC each, modeled on `mlmodel.{hpp,cpp}.in`) and accept that the workflow will overwrite them on the next run (it likely won't if the input parses cleanly).
-- **`Camera::raw_image` / `Camera::point_cloud` proto-conv helpers may be private to `camera.cpp`.** If so, lift them into a shared private header consumed by both camera and vision. Worst case: define sibling structs locally and own the conversion (~30 LoC of duplication).
+- **`Camera::raw_image` / `Camera::point_cloud` have no shared proto-conv helpers today** — Camera's client/server inline the conversion. We will lift those into a shared private header consumed by both camera and vision. The lift is mechanical and small (~30 LoC) but does mean touching `camera_client.cpp` / `camera_server.cpp` to call the new helpers; verify camera tests still pass after the lift.
 - **`detection` proto's split-presence bbox fields.** Mitigated by `boost::optional` per field, `has_*` checks on both sides, and an explicit test case.
 - **Server-side exception → grpc::Status mapping must match other services exactly.** Copy the catch ladder from `mlmodel_server.cpp` verbatim rather than rewriting.
 - **Header install path** must match what consumers expect (`#include <viam/sdk/services/vision.hpp>`). Verify by grepping the existing install list and adding alphabetically.
