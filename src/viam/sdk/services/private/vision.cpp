@@ -14,6 +14,7 @@
 
 #include <viam/sdk/services/private/vision.hpp>
 
+#include <viam/sdk/common/private/repeated_ptr_convert.hpp>
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
 
@@ -84,12 +85,7 @@ Vision::classification from_proto(const vpb::Classification& p) {
 void to_proto(const Vision::point_cloud_object& o, ::viam::common::v1::PointCloudObject* out) {
     out->set_point_cloud(std::string(reinterpret_cast<const char*>(o.point_cloud.pc.data()),
                                      o.point_cloud.pc.size()));
-    if (!o.geometries.empty()) {
-        auto* gif = out->mutable_geometries();
-        for (const auto& geom : o.geometries) {
-            *gif->add_geometries() = sdk::to_proto(geom);
-        }
-    }
+    *(out->mutable_geometries()->mutable_geometries()) = impl::to_repeated_field(o.geometries);
 }
 
 Vision::point_cloud_object from_proto(const ::viam::common::v1::PointCloudObject& p) {
@@ -97,11 +93,7 @@ Vision::point_cloud_object from_proto(const ::viam::common::v1::PointCloudObject
     const auto& bytes = p.point_cloud();
     out.point_cloud.pc.assign(reinterpret_cast<const unsigned char*>(bytes.data()),
                               reinterpret_cast<const unsigned char*>(bytes.data()) + bytes.size());
-    if (p.has_geometries()) {
-        for (const auto& geom : p.geometries().geometries()) {
-            out.geometries.push_back(sdk::from_proto(geom));
-        }
-    }
+    out.geometries = impl::from_repeated_field(p.geometries().geometries());
     return out;
 }
 
