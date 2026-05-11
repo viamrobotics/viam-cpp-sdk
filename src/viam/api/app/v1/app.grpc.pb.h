@@ -298,6 +298,13 @@ class AppService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListOAuthAppsResponse>> PrepareAsyncListOAuthApps(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListOAuthAppsResponse>>(PrepareAsyncListOAuthAppsRaw(context, request, cq));
     }
+    virtual ::grpc::Status CreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::viam::app::v1::CreateOAuthAppUserResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateOAuthAppUserResponse>> AsyncCreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateOAuthAppUserResponse>>(AsyncCreateOAuthAppUserRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateOAuthAppUserResponse>> PrepareAsyncCreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateOAuthAppUserResponse>>(PrepareAsyncCreateOAuthAppUserRaw(context, request, cq));
+    }
     // Location
     //
     // Create a location
@@ -1032,6 +1039,8 @@ class AppService final {
       virtual void DeleteOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOAuthAppRequest* request, ::viam::app::v1::DeleteOAuthAppResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void ListOAuthApps(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest* request, ::viam::app::v1::ListOAuthAppsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListOAuthApps(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest* request, ::viam::app::v1::ListOAuthAppsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void CreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest* request, ::viam::app::v1::CreateOAuthAppUserResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest* request, ::viam::app::v1::CreateOAuthAppUserResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // Location
       //
       // Create a location
@@ -1334,6 +1343,8 @@ class AppService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::DeleteOAuthAppResponse>* PrepareAsyncDeleteOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOAuthAppRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListOAuthAppsResponse>* AsyncListOAuthAppsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::ListOAuthAppsResponse>* PrepareAsyncListOAuthAppsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateOAuthAppUserResponse>* AsyncCreateOAuthAppUserRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateOAuthAppUserResponse>* PrepareAsyncCreateOAuthAppUserRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateLocationResponse>* AsyncCreateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::CreateLocationResponse>* PrepareAsyncCreateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::v1::GetLocationResponse>* AsyncGetLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -1739,6 +1750,13 @@ class AppService final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOAuthAppsResponse>> PrepareAsyncListOAuthApps(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOAuthAppsResponse>>(PrepareAsyncListOAuthAppsRaw(context, request, cq));
+    }
+    ::grpc::Status CreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::viam::app::v1::CreateOAuthAppUserResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOAuthAppUserResponse>> AsyncCreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOAuthAppUserResponse>>(AsyncCreateOAuthAppUserRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOAuthAppUserResponse>> PrepareAsyncCreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOAuthAppUserResponse>>(PrepareAsyncCreateOAuthAppUserRaw(context, request, cq));
     }
     ::grpc::Status CreateLocation(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::viam::app::v1::CreateLocationResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateLocationResponse>> AsyncCreateLocation(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::grpc::CompletionQueue* cq) {
@@ -2382,6 +2400,8 @@ class AppService final {
       void DeleteOAuthApp(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOAuthAppRequest* request, ::viam::app::v1::DeleteOAuthAppResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ListOAuthApps(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest* request, ::viam::app::v1::ListOAuthAppsResponse* response, std::function<void(::grpc::Status)>) override;
       void ListOAuthApps(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest* request, ::viam::app::v1::ListOAuthAppsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void CreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest* request, ::viam::app::v1::CreateOAuthAppUserResponse* response, std::function<void(::grpc::Status)>) override;
+      void CreateOAuthAppUser(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest* request, ::viam::app::v1::CreateOAuthAppUserResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void CreateLocation(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest* request, ::viam::app::v1::CreateLocationResponse* response, std::function<void(::grpc::Status)>) override;
       void CreateLocation(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest* request, ::viam::app::v1::CreateLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetLocation(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest* request, ::viam::app::v1::GetLocationResponse* response, std::function<void(::grpc::Status)>) override;
@@ -2621,6 +2641,8 @@ class AppService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::DeleteOAuthAppResponse>* PrepareAsyncDeleteOAuthAppRaw(::grpc::ClientContext* context, const ::viam::app::v1::DeleteOAuthAppRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOAuthAppsResponse>* AsyncListOAuthAppsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::ListOAuthAppsResponse>* PrepareAsyncListOAuthAppsRaw(::grpc::ClientContext* context, const ::viam::app::v1::ListOAuthAppsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOAuthAppUserResponse>* AsyncCreateOAuthAppUserRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateOAuthAppUserResponse>* PrepareAsyncCreateOAuthAppUserRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateLocationResponse>* AsyncCreateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::CreateLocationResponse>* PrepareAsyncCreateLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::CreateLocationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::v1::GetLocationResponse>* AsyncGetLocationRaw(::grpc::ClientContext* context, const ::viam::app::v1::GetLocationRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -2819,6 +2841,7 @@ class AppService final {
     const ::grpc::internal::RpcMethod rpcmethod_UpdateOAuthApp_;
     const ::grpc::internal::RpcMethod rpcmethod_DeleteOAuthApp_;
     const ::grpc::internal::RpcMethod rpcmethod_ListOAuthApps_;
+    const ::grpc::internal::RpcMethod rpcmethod_CreateOAuthAppUser_;
     const ::grpc::internal::RpcMethod rpcmethod_CreateLocation_;
     const ::grpc::internal::RpcMethod rpcmethod_GetLocation_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateLocation_;
@@ -2964,6 +2987,7 @@ class AppService final {
     virtual ::grpc::Status UpdateOAuthApp(::grpc::ServerContext* context, const ::viam::app::v1::UpdateOAuthAppRequest* request, ::viam::app::v1::UpdateOAuthAppResponse* response);
     virtual ::grpc::Status DeleteOAuthApp(::grpc::ServerContext* context, const ::viam::app::v1::DeleteOAuthAppRequest* request, ::viam::app::v1::DeleteOAuthAppResponse* response);
     virtual ::grpc::Status ListOAuthApps(::grpc::ServerContext* context, const ::viam::app::v1::ListOAuthAppsRequest* request, ::viam::app::v1::ListOAuthAppsResponse* response);
+    virtual ::grpc::Status CreateOAuthAppUser(::grpc::ServerContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest* request, ::viam::app::v1::CreateOAuthAppUserResponse* response);
     // Location
     //
     // Create a location
@@ -3796,12 +3820,32 @@ class AppService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_CreateOAuthAppUser : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CreateOAuthAppUser() {
+      ::grpc::Service::MarkMethodAsync(34);
+    }
+    ~WithAsyncMethod_CreateOAuthAppUser() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateOAuthAppUser(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateOAuthAppUserRequest* /*request*/, ::viam::app::v1::CreateOAuthAppUserResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateOAuthAppUser(::grpc::ServerContext* context, ::viam::app::v1::CreateOAuthAppUserRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateOAuthAppUserResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_CreateLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateLocation() {
-      ::grpc::Service::MarkMethodAsync(34);
+      ::grpc::Service::MarkMethodAsync(35);
     }
     ~WithAsyncMethod_CreateLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3812,7 +3856,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateLocation(::grpc::ServerContext* context, ::viam::app::v1::CreateLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3821,7 +3865,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetLocation() {
-      ::grpc::Service::MarkMethodAsync(35);
+      ::grpc::Service::MarkMethodAsync(36);
     }
     ~WithAsyncMethod_GetLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3832,7 +3876,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLocation(::grpc::ServerContext* context, ::viam::app::v1::GetLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3841,7 +3885,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateLocation() {
-      ::grpc::Service::MarkMethodAsync(36);
+      ::grpc::Service::MarkMethodAsync(37);
     }
     ~WithAsyncMethod_UpdateLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3852,7 +3896,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateLocation(::grpc::ServerContext* context, ::viam::app::v1::UpdateLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3861,7 +3905,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteLocation() {
-      ::grpc::Service::MarkMethodAsync(37);
+      ::grpc::Service::MarkMethodAsync(38);
     }
     ~WithAsyncMethod_DeleteLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3872,7 +3916,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteLocation(::grpc::ServerContext* context, ::viam::app::v1::DeleteLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3881,7 +3925,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetLocationMetadata() {
-      ::grpc::Service::MarkMethodAsync(38);
+      ::grpc::Service::MarkMethodAsync(39);
     }
     ~WithAsyncMethod_GetLocationMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3892,7 +3936,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLocationMetadata(::grpc::ServerContext* context, ::viam::app::v1::GetLocationMetadataRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetLocationMetadataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3901,7 +3945,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateLocationMetadata() {
-      ::grpc::Service::MarkMethodAsync(39);
+      ::grpc::Service::MarkMethodAsync(40);
     }
     ~WithAsyncMethod_UpdateLocationMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3912,7 +3956,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateLocationMetadata(::grpc::ServerContext* context, ::viam::app::v1::UpdateLocationMetadataRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateLocationMetadataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3921,7 +3965,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListLocations() {
-      ::grpc::Service::MarkMethodAsync(40);
+      ::grpc::Service::MarkMethodAsync(41);
     }
     ~WithAsyncMethod_ListLocations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3932,7 +3976,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListLocations(::grpc::ServerContext* context, ::viam::app::v1::ListLocationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListLocationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3941,7 +3985,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ShareLocation() {
-      ::grpc::Service::MarkMethodAsync(41);
+      ::grpc::Service::MarkMethodAsync(42);
     }
     ~WithAsyncMethod_ShareLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3952,7 +3996,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestShareLocation(::grpc::ServerContext* context, ::viam::app::v1::ShareLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ShareLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3961,7 +4005,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UnshareLocation() {
-      ::grpc::Service::MarkMethodAsync(42);
+      ::grpc::Service::MarkMethodAsync(43);
     }
     ~WithAsyncMethod_UnshareLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3972,7 +4016,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUnshareLocation(::grpc::ServerContext* context, ::viam::app::v1::UnshareLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UnshareLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3981,7 +4025,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_LocationAuth() {
-      ::grpc::Service::MarkMethodAsync(43);
+      ::grpc::Service::MarkMethodAsync(44);
     }
     ~WithAsyncMethod_LocationAuth() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3992,7 +4036,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestLocationAuth(::grpc::ServerContext* context, ::viam::app::v1::LocationAuthRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::LocationAuthResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4001,7 +4045,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateLocationSecret() {
-      ::grpc::Service::MarkMethodAsync(44);
+      ::grpc::Service::MarkMethodAsync(45);
     }
     ~WithAsyncMethod_CreateLocationSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4012,7 +4056,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateLocationSecret(::grpc::ServerContext* context, ::viam::app::v1::CreateLocationSecretRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateLocationSecretResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4021,7 +4065,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteLocationSecret() {
-      ::grpc::Service::MarkMethodAsync(45);
+      ::grpc::Service::MarkMethodAsync(46);
     }
     ~WithAsyncMethod_DeleteLocationSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4032,7 +4076,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteLocationSecret(::grpc::ServerContext* context, ::viam::app::v1::DeleteLocationSecretRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteLocationSecretResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4041,7 +4085,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRobot() {
-      ::grpc::Service::MarkMethodAsync(46);
+      ::grpc::Service::MarkMethodAsync(47);
     }
     ~WithAsyncMethod_GetRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4052,7 +4096,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobot(::grpc::ServerContext* context, ::viam::app::v1::GetRobotRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRobotResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4061,7 +4105,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRobotMetadata() {
-      ::grpc::Service::MarkMethodAsync(47);
+      ::grpc::Service::MarkMethodAsync(48);
     }
     ~WithAsyncMethod_GetRobotMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4072,7 +4116,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotMetadata(::grpc::ServerContext* context, ::viam::app::v1::GetRobotMetadataRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRobotMetadataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4081,7 +4125,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateRobotMetadata() {
-      ::grpc::Service::MarkMethodAsync(48);
+      ::grpc::Service::MarkMethodAsync(49);
     }
     ~WithAsyncMethod_UpdateRobotMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4092,7 +4136,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRobotMetadata(::grpc::ServerContext* context, ::viam::app::v1::UpdateRobotMetadataRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateRobotMetadataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4101,7 +4145,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRoverRentalRobots() {
-      ::grpc::Service::MarkMethodAsync(49);
+      ::grpc::Service::MarkMethodAsync(50);
     }
     ~WithAsyncMethod_GetRoverRentalRobots() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4112,7 +4156,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRoverRentalRobots(::grpc::ServerContext* context, ::viam::app::v1::GetRoverRentalRobotsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRoverRentalRobotsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4121,7 +4165,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRobotParts() {
-      ::grpc::Service::MarkMethodAsync(50);
+      ::grpc::Service::MarkMethodAsync(51);
     }
     ~WithAsyncMethod_GetRobotParts() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4132,7 +4176,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotParts(::grpc::ServerContext* context, ::viam::app::v1::GetRobotPartsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRobotPartsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4141,7 +4185,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRobotPart() {
-      ::grpc::Service::MarkMethodAsync(51);
+      ::grpc::Service::MarkMethodAsync(52);
     }
     ~WithAsyncMethod_GetRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4152,7 +4196,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPart(::grpc::ServerContext* context, ::viam::app::v1::GetRobotPartRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRobotPartResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4161,7 +4205,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRobotPartByNameAndLocation() {
-      ::grpc::Service::MarkMethodAsync(52);
+      ::grpc::Service::MarkMethodAsync(53);
     }
     ~WithAsyncMethod_GetRobotPartByNameAndLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4172,7 +4216,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPartByNameAndLocation(::grpc::ServerContext* context, ::viam::app::v1::GetRobotPartByNameAndLocationRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRobotPartByNameAndLocationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4181,7 +4225,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRobotPartLogs() {
-      ::grpc::Service::MarkMethodAsync(53);
+      ::grpc::Service::MarkMethodAsync(54);
     }
     ~WithAsyncMethod_GetRobotPartLogs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4192,7 +4236,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPartLogs(::grpc::ServerContext* context, ::viam::app::v1::GetRobotPartLogsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRobotPartLogsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(54, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4201,7 +4245,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TailRobotPartLogs() {
-      ::grpc::Service::MarkMethodAsync(54);
+      ::grpc::Service::MarkMethodAsync(55);
     }
     ~WithAsyncMethod_TailRobotPartLogs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4212,7 +4256,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTailRobotPartLogs(::grpc::ServerContext* context, ::viam::app::v1::TailRobotPartLogsRequest* request, ::grpc::ServerAsyncWriter< ::viam::app::v1::TailRobotPartLogsResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(54, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(55, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4221,7 +4265,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRobotPartHistory() {
-      ::grpc::Service::MarkMethodAsync(55);
+      ::grpc::Service::MarkMethodAsync(56);
     }
     ~WithAsyncMethod_GetRobotPartHistory() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4232,7 +4276,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPartHistory(::grpc::ServerContext* context, ::viam::app::v1::GetRobotPartHistoryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRobotPartHistoryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(55, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(56, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4241,7 +4285,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateRobotPart() {
-      ::grpc::Service::MarkMethodAsync(56);
+      ::grpc::Service::MarkMethodAsync(57);
     }
     ~WithAsyncMethod_UpdateRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4252,7 +4296,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRobotPart(::grpc::ServerContext* context, ::viam::app::v1::UpdateRobotPartRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateRobotPartResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(56, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(57, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4261,7 +4305,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_NewRobotPart() {
-      ::grpc::Service::MarkMethodAsync(57);
+      ::grpc::Service::MarkMethodAsync(58);
     }
     ~WithAsyncMethod_NewRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4272,7 +4316,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestNewRobotPart(::grpc::ServerContext* context, ::viam::app::v1::NewRobotPartRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::NewRobotPartResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(57, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(58, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4281,7 +4325,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteRobotPart() {
-      ::grpc::Service::MarkMethodAsync(58);
+      ::grpc::Service::MarkMethodAsync(59);
     }
     ~WithAsyncMethod_DeleteRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4292,7 +4336,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRobotPart(::grpc::ServerContext* context, ::viam::app::v1::DeleteRobotPartRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteRobotPartResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(58, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(59, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4301,7 +4345,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRobotPartMetadata() {
-      ::grpc::Service::MarkMethodAsync(59);
+      ::grpc::Service::MarkMethodAsync(60);
     }
     ~WithAsyncMethod_GetRobotPartMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4312,7 +4356,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPartMetadata(::grpc::ServerContext* context, ::viam::app::v1::GetRobotPartMetadataRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRobotPartMetadataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(59, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(60, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4321,7 +4365,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateRobotPartMetadata() {
-      ::grpc::Service::MarkMethodAsync(60);
+      ::grpc::Service::MarkMethodAsync(61);
     }
     ~WithAsyncMethod_UpdateRobotPartMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4332,7 +4376,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRobotPartMetadata(::grpc::ServerContext* context, ::viam::app::v1::UpdateRobotPartMetadataRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateRobotPartMetadataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(60, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(61, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4341,7 +4385,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRobotAPIKeys() {
-      ::grpc::Service::MarkMethodAsync(61);
+      ::grpc::Service::MarkMethodAsync(62);
     }
     ~WithAsyncMethod_GetRobotAPIKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4352,7 +4396,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotAPIKeys(::grpc::ServerContext* context, ::viam::app::v1::GetRobotAPIKeysRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRobotAPIKeysResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(61, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(62, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4361,7 +4405,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_MarkPartAsMain() {
-      ::grpc::Service::MarkMethodAsync(62);
+      ::grpc::Service::MarkMethodAsync(63);
     }
     ~WithAsyncMethod_MarkPartAsMain() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4372,7 +4416,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMarkPartAsMain(::grpc::ServerContext* context, ::viam::app::v1::MarkPartAsMainRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::MarkPartAsMainResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(62, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(63, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4381,7 +4425,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_MarkPartForRestart() {
-      ::grpc::Service::MarkMethodAsync(63);
+      ::grpc::Service::MarkMethodAsync(64);
     }
     ~WithAsyncMethod_MarkPartForRestart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4392,7 +4436,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMarkPartForRestart(::grpc::ServerContext* context, ::viam::app::v1::MarkPartForRestartRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::MarkPartForRestartResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(63, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(64, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4401,7 +4445,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateRobotPartSecret() {
-      ::grpc::Service::MarkMethodAsync(64);
+      ::grpc::Service::MarkMethodAsync(65);
     }
     ~WithAsyncMethod_CreateRobotPartSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4412,7 +4456,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateRobotPartSecret(::grpc::ServerContext* context, ::viam::app::v1::CreateRobotPartSecretRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateRobotPartSecretResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(64, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(65, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4421,7 +4465,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteRobotPartSecret() {
-      ::grpc::Service::MarkMethodAsync(65);
+      ::grpc::Service::MarkMethodAsync(66);
     }
     ~WithAsyncMethod_DeleteRobotPartSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4432,7 +4476,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRobotPartSecret(::grpc::ServerContext* context, ::viam::app::v1::DeleteRobotPartSecretRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteRobotPartSecretResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(65, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(66, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4441,7 +4485,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListRobots() {
-      ::grpc::Service::MarkMethodAsync(66);
+      ::grpc::Service::MarkMethodAsync(67);
     }
     ~WithAsyncMethod_ListRobots() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4452,7 +4496,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListRobots(::grpc::ServerContext* context, ::viam::app::v1::ListRobotsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListRobotsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(66, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(67, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4461,7 +4505,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListRobotsForLocations() {
-      ::grpc::Service::MarkMethodAsync(67);
+      ::grpc::Service::MarkMethodAsync(68);
     }
     ~WithAsyncMethod_ListRobotsForLocations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4472,7 +4516,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListRobotsForLocations(::grpc::ServerContext* context, ::viam::app::v1::ListRobotsForLocationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListRobotsForLocationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(67, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(68, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4481,7 +4525,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListRobotsForOrg() {
-      ::grpc::Service::MarkMethodAsync(68);
+      ::grpc::Service::MarkMethodAsync(69);
     }
     ~WithAsyncMethod_ListRobotsForOrg() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4492,7 +4536,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListRobotsForOrg(::grpc::ServerContext* context, ::viam::app::v1::ListRobotsForOrgRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListRobotsForOrgResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(68, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(69, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4501,7 +4545,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_NewRobot() {
-      ::grpc::Service::MarkMethodAsync(69);
+      ::grpc::Service::MarkMethodAsync(70);
     }
     ~WithAsyncMethod_NewRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4512,7 +4556,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestNewRobot(::grpc::ServerContext* context, ::viam::app::v1::NewRobotRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::NewRobotResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(69, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(70, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4521,7 +4565,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateRobot() {
-      ::grpc::Service::MarkMethodAsync(70);
+      ::grpc::Service::MarkMethodAsync(71);
     }
     ~WithAsyncMethod_UpdateRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4532,7 +4576,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRobot(::grpc::ServerContext* context, ::viam::app::v1::UpdateRobotRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateRobotResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(70, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(71, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4541,7 +4585,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteRobot() {
-      ::grpc::Service::MarkMethodAsync(71);
+      ::grpc::Service::MarkMethodAsync(72);
     }
     ~WithAsyncMethod_DeleteRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4552,7 +4596,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRobot(::grpc::ServerContext* context, ::viam::app::v1::DeleteRobotRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteRobotResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(71, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(72, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4561,7 +4605,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListFragments() {
-      ::grpc::Service::MarkMethodAsync(72);
+      ::grpc::Service::MarkMethodAsync(73);
     }
     ~WithAsyncMethod_ListFragments() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4572,7 +4616,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListFragments(::grpc::ServerContext* context, ::viam::app::v1::ListFragmentsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListFragmentsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(72, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(73, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4581,7 +4625,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetFragment() {
-      ::grpc::Service::MarkMethodAsync(73);
+      ::grpc::Service::MarkMethodAsync(74);
     }
     ~WithAsyncMethod_GetFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4592,7 +4636,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFragment(::grpc::ServerContext* context, ::viam::app::v1::GetFragmentRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetFragmentResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(73, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(74, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4601,7 +4645,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateFragment() {
-      ::grpc::Service::MarkMethodAsync(74);
+      ::grpc::Service::MarkMethodAsync(75);
     }
     ~WithAsyncMethod_CreateFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4612,7 +4656,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateFragment(::grpc::ServerContext* context, ::viam::app::v1::CreateFragmentRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateFragmentResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(74, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(75, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4621,7 +4665,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateFragment() {
-      ::grpc::Service::MarkMethodAsync(75);
+      ::grpc::Service::MarkMethodAsync(76);
     }
     ~WithAsyncMethod_UpdateFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4632,7 +4676,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateFragment(::grpc::ServerContext* context, ::viam::app::v1::UpdateFragmentRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateFragmentResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(75, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(76, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4641,7 +4685,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteFragment() {
-      ::grpc::Service::MarkMethodAsync(76);
+      ::grpc::Service::MarkMethodAsync(77);
     }
     ~WithAsyncMethod_DeleteFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4652,7 +4696,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteFragment(::grpc::ServerContext* context, ::viam::app::v1::DeleteFragmentRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteFragmentResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(76, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(77, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4661,7 +4705,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListNestedFragments() {
-      ::grpc::Service::MarkMethodAsync(77);
+      ::grpc::Service::MarkMethodAsync(78);
     }
     ~WithAsyncMethod_ListNestedFragments() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4672,7 +4716,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListNestedFragments(::grpc::ServerContext* context, ::viam::app::v1::ListNestedFragmentsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListNestedFragmentsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(77, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(78, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4681,7 +4725,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListMachineFragments() {
-      ::grpc::Service::MarkMethodAsync(78);
+      ::grpc::Service::MarkMethodAsync(79);
     }
     ~WithAsyncMethod_ListMachineFragments() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4692,7 +4736,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListMachineFragments(::grpc::ServerContext* context, ::viam::app::v1::ListMachineFragmentsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListMachineFragmentsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(78, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(79, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4701,7 +4745,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListMachineSummaries() {
-      ::grpc::Service::MarkMethodAsync(79);
+      ::grpc::Service::MarkMethodAsync(80);
     }
     ~WithAsyncMethod_ListMachineSummaries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4712,7 +4756,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListMachineSummaries(::grpc::ServerContext* context, ::viam::app::v1::ListMachineSummariesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListMachineSummariesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(79, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(80, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4721,7 +4765,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetFragmentHistory() {
-      ::grpc::Service::MarkMethodAsync(80);
+      ::grpc::Service::MarkMethodAsync(81);
     }
     ~WithAsyncMethod_GetFragmentHistory() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4732,7 +4776,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFragmentHistory(::grpc::ServerContext* context, ::viam::app::v1::GetFragmentHistoryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetFragmentHistoryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(80, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(81, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4741,7 +4785,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetFragmentUsage() {
-      ::grpc::Service::MarkMethodAsync(81);
+      ::grpc::Service::MarkMethodAsync(82);
     }
     ~WithAsyncMethod_GetFragmentUsage() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4752,7 +4796,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFragmentUsage(::grpc::ServerContext* context, ::viam::app::v1::GetFragmentUsageRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetFragmentUsageResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(81, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4761,7 +4805,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetFragmentTag() {
-      ::grpc::Service::MarkMethodAsync(82);
+      ::grpc::Service::MarkMethodAsync(83);
     }
     ~WithAsyncMethod_SetFragmentTag() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4772,7 +4816,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetFragmentTag(::grpc::ServerContext* context, ::viam::app::v1::SetFragmentTagRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::SetFragmentTagResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4781,7 +4825,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteFragmentTag() {
-      ::grpc::Service::MarkMethodAsync(83);
+      ::grpc::Service::MarkMethodAsync(84);
     }
     ~WithAsyncMethod_DeleteFragmentTag() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4792,7 +4836,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteFragmentTag(::grpc::ServerContext* context, ::viam::app::v1::DeleteFragmentTagRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteFragmentTagResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4801,7 +4845,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_AddRole() {
-      ::grpc::Service::MarkMethodAsync(84);
+      ::grpc::Service::MarkMethodAsync(85);
     }
     ~WithAsyncMethod_AddRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4812,7 +4856,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddRole(::grpc::ServerContext* context, ::viam::app::v1::AddRoleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::AddRoleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(85, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4821,7 +4865,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RemoveRole() {
-      ::grpc::Service::MarkMethodAsync(85);
+      ::grpc::Service::MarkMethodAsync(86);
     }
     ~WithAsyncMethod_RemoveRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4832,7 +4876,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRemoveRole(::grpc::ServerContext* context, ::viam::app::v1::RemoveRoleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::RemoveRoleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(85, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(86, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4841,7 +4885,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ChangeRole() {
-      ::grpc::Service::MarkMethodAsync(86);
+      ::grpc::Service::MarkMethodAsync(87);
     }
     ~WithAsyncMethod_ChangeRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4852,7 +4896,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestChangeRole(::grpc::ServerContext* context, ::viam::app::v1::ChangeRoleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ChangeRoleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(86, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(87, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4861,7 +4905,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListAuthorizations() {
-      ::grpc::Service::MarkMethodAsync(87);
+      ::grpc::Service::MarkMethodAsync(88);
     }
     ~WithAsyncMethod_ListAuthorizations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4872,7 +4916,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListAuthorizations(::grpc::ServerContext* context, ::viam::app::v1::ListAuthorizationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListAuthorizationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(87, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(88, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4881,7 +4925,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CheckPermissions() {
-      ::grpc::Service::MarkMethodAsync(88);
+      ::grpc::Service::MarkMethodAsync(89);
     }
     ~WithAsyncMethod_CheckPermissions() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4892,7 +4936,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCheckPermissions(::grpc::ServerContext* context, ::viam::app::v1::CheckPermissionsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CheckPermissionsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(88, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(89, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4901,7 +4945,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRegistryItem() {
-      ::grpc::Service::MarkMethodAsync(89);
+      ::grpc::Service::MarkMethodAsync(90);
     }
     ~WithAsyncMethod_GetRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4912,7 +4956,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRegistryItem(::grpc::ServerContext* context, ::viam::app::v1::GetRegistryItemRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetRegistryItemResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(89, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(90, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4921,7 +4965,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateRegistryItem() {
-      ::grpc::Service::MarkMethodAsync(90);
+      ::grpc::Service::MarkMethodAsync(91);
     }
     ~WithAsyncMethod_CreateRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4932,7 +4976,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateRegistryItem(::grpc::ServerContext* context, ::viam::app::v1::CreateRegistryItemRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateRegistryItemResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(90, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4941,7 +4985,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateRegistryItem() {
-      ::grpc::Service::MarkMethodAsync(91);
+      ::grpc::Service::MarkMethodAsync(92);
     }
     ~WithAsyncMethod_UpdateRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4952,7 +4996,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRegistryItem(::grpc::ServerContext* context, ::viam::app::v1::UpdateRegistryItemRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateRegistryItemResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4961,7 +5005,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListRegistryItems() {
-      ::grpc::Service::MarkMethodAsync(92);
+      ::grpc::Service::MarkMethodAsync(93);
     }
     ~WithAsyncMethod_ListRegistryItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4972,7 +5016,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListRegistryItems(::grpc::ServerContext* context, ::viam::app::v1::ListRegistryItemsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListRegistryItemsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4981,7 +5025,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteRegistryItem() {
-      ::grpc::Service::MarkMethodAsync(93);
+      ::grpc::Service::MarkMethodAsync(94);
     }
     ~WithAsyncMethod_DeleteRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4992,7 +5036,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRegistryItem(::grpc::ServerContext* context, ::viam::app::v1::DeleteRegistryItemRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteRegistryItemResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5001,7 +5045,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RenameRegistryItem() {
-      ::grpc::Service::MarkMethodAsync(94);
+      ::grpc::Service::MarkMethodAsync(95);
     }
     ~WithAsyncMethod_RenameRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5012,7 +5056,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRenameRegistryItem(::grpc::ServerContext* context, ::viam::app::v1::RenameRegistryItemRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::RenameRegistryItemResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5021,7 +5065,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TransferRegistryItem() {
-      ::grpc::Service::MarkMethodAsync(95);
+      ::grpc::Service::MarkMethodAsync(96);
     }
     ~WithAsyncMethod_TransferRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5032,7 +5076,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTransferRegistryItem(::grpc::ServerContext* context, ::viam::app::v1::TransferRegistryItemRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::TransferRegistryItemResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(96, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5041,7 +5085,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateModule() {
-      ::grpc::Service::MarkMethodAsync(96);
+      ::grpc::Service::MarkMethodAsync(97);
     }
     ~WithAsyncMethod_CreateModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5052,7 +5096,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateModule(::grpc::ServerContext* context, ::viam::app::v1::CreateModuleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateModuleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(96, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(97, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5061,7 +5105,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateModule() {
-      ::grpc::Service::MarkMethodAsync(97);
+      ::grpc::Service::MarkMethodAsync(98);
     }
     ~WithAsyncMethod_UpdateModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5072,7 +5116,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateModule(::grpc::ServerContext* context, ::viam::app::v1::UpdateModuleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UpdateModuleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(97, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(98, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5081,7 +5125,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UploadModuleFile() {
-      ::grpc::Service::MarkMethodAsync(98);
+      ::grpc::Service::MarkMethodAsync(99);
     }
     ~WithAsyncMethod_UploadModuleFile() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5092,7 +5136,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUploadModuleFile(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::viam::app::v1::UploadModuleFileResponse, ::viam::app::v1::UploadModuleFileRequest>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncClientStreaming(98, context, reader, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncClientStreaming(99, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5101,7 +5145,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetModule() {
-      ::grpc::Service::MarkMethodAsync(99);
+      ::grpc::Service::MarkMethodAsync(100);
     }
     ~WithAsyncMethod_GetModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5112,7 +5156,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModule(::grpc::ServerContext* context, ::viam::app::v1::GetModuleRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetModuleResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(99, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(100, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5121,7 +5165,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListModules() {
-      ::grpc::Service::MarkMethodAsync(100);
+      ::grpc::Service::MarkMethodAsync(101);
     }
     ~WithAsyncMethod_ListModules() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5132,7 +5176,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModules(::grpc::ServerContext* context, ::viam::app::v1::ListModulesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListModulesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(100, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(101, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5141,7 +5185,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateKey() {
-      ::grpc::Service::MarkMethodAsync(101);
+      ::grpc::Service::MarkMethodAsync(102);
     }
     ~WithAsyncMethod_CreateKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5152,7 +5196,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateKey(::grpc::ServerContext* context, ::viam::app::v1::CreateKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(101, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(102, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5161,7 +5205,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodAsync(102);
+      ::grpc::Service::MarkMethodAsync(103);
     }
     ~WithAsyncMethod_DeleteKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5172,7 +5216,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteKey(::grpc::ServerContext* context, ::viam::app::v1::DeleteKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(102, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(103, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5181,7 +5225,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListKeys() {
-      ::grpc::Service::MarkMethodAsync(103);
+      ::grpc::Service::MarkMethodAsync(104);
     }
     ~WithAsyncMethod_ListKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5192,7 +5236,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListKeys(::grpc::ServerContext* context, ::viam::app::v1::ListKeysRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::ListKeysResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(103, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(104, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5201,7 +5245,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RenameKey() {
-      ::grpc::Service::MarkMethodAsync(104);
+      ::grpc::Service::MarkMethodAsync(105);
     }
     ~WithAsyncMethod_RenameKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5212,7 +5256,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRenameKey(::grpc::ServerContext* context, ::viam::app::v1::RenameKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::RenameKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(104, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(105, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5221,7 +5265,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_RotateKey() {
-      ::grpc::Service::MarkMethodAsync(105);
+      ::grpc::Service::MarkMethodAsync(106);
     }
     ~WithAsyncMethod_RotateKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5232,7 +5276,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRotateKey(::grpc::ServerContext* context, ::viam::app::v1::RotateKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::RotateKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(105, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(106, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5241,7 +5285,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateKeyFromExistingKeyAuthorizations() {
-      ::grpc::Service::MarkMethodAsync(106);
+      ::grpc::Service::MarkMethodAsync(107);
     }
     ~WithAsyncMethod_CreateKeyFromExistingKeyAuthorizations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5252,7 +5296,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateKeyFromExistingKeyAuthorizations(::grpc::ServerContext* context, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(106, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(107, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5261,7 +5305,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetAppContent() {
-      ::grpc::Service::MarkMethodAsync(107);
+      ::grpc::Service::MarkMethodAsync(108);
     }
     ~WithAsyncMethod_GetAppContent() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5272,7 +5316,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetAppContent(::grpc::ServerContext* context, ::viam::app::v1::GetAppContentRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetAppContentResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(107, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(108, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5281,7 +5325,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetAppBranding() {
-      ::grpc::Service::MarkMethodAsync(108);
+      ::grpc::Service::MarkMethodAsync(109);
     }
     ~WithAsyncMethod_GetAppBranding() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5292,7 +5336,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetAppBranding(::grpc::ServerContext* context, ::viam::app::v1::GetAppBrandingRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetAppBrandingResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(108, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(109, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5301,7 +5345,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UploadDevicePushToken() {
-      ::grpc::Service::MarkMethodAsync(109);
+      ::grpc::Service::MarkMethodAsync(110);
     }
     ~WithAsyncMethod_UploadDevicePushToken() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5312,7 +5356,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUploadDevicePushToken(::grpc::ServerContext* context, ::viam::app::v1::UploadDevicePushTokenRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::UploadDevicePushTokenResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(109, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(110, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5321,7 +5365,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteDevicePushToken() {
-      ::grpc::Service::MarkMethodAsync(110);
+      ::grpc::Service::MarkMethodAsync(111);
     }
     ~WithAsyncMethod_DeleteDevicePushToken() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5332,7 +5376,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteDevicePushToken(::grpc::ServerContext* context, ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteDevicePushTokenResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(110, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(111, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5341,7 +5385,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetDevicePushTokens() {
-      ::grpc::Service::MarkMethodAsync(111);
+      ::grpc::Service::MarkMethodAsync(112);
     }
     ~WithAsyncMethod_GetDevicePushTokens() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5352,7 +5396,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDevicePushTokens(::grpc::ServerContext* context, ::viam::app::v1::GetDevicePushTokensRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetDevicePushTokensResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(111, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(112, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5361,7 +5405,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_SetFirebaseConfig() {
-      ::grpc::Service::MarkMethodAsync(112);
+      ::grpc::Service::MarkMethodAsync(113);
     }
     ~WithAsyncMethod_SetFirebaseConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5372,7 +5416,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetFirebaseConfig(::grpc::ServerContext* context, ::viam::app::v1::SetFirebaseConfigRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::SetFirebaseConfigResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(112, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(113, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5381,7 +5425,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetFirebaseConfig() {
-      ::grpc::Service::MarkMethodAsync(113);
+      ::grpc::Service::MarkMethodAsync(114);
     }
     ~WithAsyncMethod_GetFirebaseConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5392,7 +5436,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFirebaseConfig(::grpc::ServerContext* context, ::viam::app::v1::GetFirebaseConfigRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::GetFirebaseConfigResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(113, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(114, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -5401,7 +5445,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteFirebaseConfig() {
-      ::grpc::Service::MarkMethodAsync(114);
+      ::grpc::Service::MarkMethodAsync(115);
     }
     ~WithAsyncMethod_DeleteFirebaseConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -5412,10 +5456,10 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteFirebaseConfig(::grpc::ServerContext* context, ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::v1::DeleteFirebaseConfigResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(114, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(115, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetUserIDByEmail<WithAsyncMethod_CreateOrganization<WithAsyncMethod_ListOrganizations<WithAsyncMethod_GetOrganizationsWithAccessToLocation<WithAsyncMethod_ListOrganizationsByUser<WithAsyncMethod_SearchOrganizations<WithAsyncMethod_GetOrganization<WithAsyncMethod_GetOrganizationNamespaceAvailability<WithAsyncMethod_UpdateOrganization<WithAsyncMethod_UpdateOrganizationNamespace<WithAsyncMethod_DeleteOrganization<WithAsyncMethod_GetOrganizationMetadata<WithAsyncMethod_UpdateOrganizationMetadata<WithAsyncMethod_ListOrganizationMembers<WithAsyncMethod_CreateOrganizationInvite<WithAsyncMethod_UpdateOrganizationInviteAuthorizations<WithAsyncMethod_DeleteOrganizationMember<WithAsyncMethod_DeleteOrganizationInvite<WithAsyncMethod_ResendOrganizationInvite<WithAsyncMethod_EnableBillingService<WithAsyncMethod_DisableBillingService<WithAsyncMethod_UpdateBillingService<WithAsyncMethod_GetBillingServiceConfig<WithAsyncMethod_OrganizationSetSupportEmail<WithAsyncMethod_OrganizationGetSupportEmail<WithAsyncMethod_OrganizationSetLogo<WithAsyncMethod_OrganizationGetLogo<WithAsyncMethod_EnableAuthService<WithAsyncMethod_DisableAuthService<WithAsyncMethod_CreateOAuthApp<WithAsyncMethod_ReadOAuthApp<WithAsyncMethod_UpdateOAuthApp<WithAsyncMethod_DeleteOAuthApp<WithAsyncMethod_ListOAuthApps<WithAsyncMethod_CreateLocation<WithAsyncMethod_GetLocation<WithAsyncMethod_UpdateLocation<WithAsyncMethod_DeleteLocation<WithAsyncMethod_GetLocationMetadata<WithAsyncMethod_UpdateLocationMetadata<WithAsyncMethod_ListLocations<WithAsyncMethod_ShareLocation<WithAsyncMethod_UnshareLocation<WithAsyncMethod_LocationAuth<WithAsyncMethod_CreateLocationSecret<WithAsyncMethod_DeleteLocationSecret<WithAsyncMethod_GetRobot<WithAsyncMethod_GetRobotMetadata<WithAsyncMethod_UpdateRobotMetadata<WithAsyncMethod_GetRoverRentalRobots<WithAsyncMethod_GetRobotParts<WithAsyncMethod_GetRobotPart<WithAsyncMethod_GetRobotPartByNameAndLocation<WithAsyncMethod_GetRobotPartLogs<WithAsyncMethod_TailRobotPartLogs<WithAsyncMethod_GetRobotPartHistory<WithAsyncMethod_UpdateRobotPart<WithAsyncMethod_NewRobotPart<WithAsyncMethod_DeleteRobotPart<WithAsyncMethod_GetRobotPartMetadata<WithAsyncMethod_UpdateRobotPartMetadata<WithAsyncMethod_GetRobotAPIKeys<WithAsyncMethod_MarkPartAsMain<WithAsyncMethod_MarkPartForRestart<WithAsyncMethod_CreateRobotPartSecret<WithAsyncMethod_DeleteRobotPartSecret<WithAsyncMethod_ListRobots<WithAsyncMethod_ListRobotsForLocations<WithAsyncMethod_ListRobotsForOrg<WithAsyncMethod_NewRobot<WithAsyncMethod_UpdateRobot<WithAsyncMethod_DeleteRobot<WithAsyncMethod_ListFragments<WithAsyncMethod_GetFragment<WithAsyncMethod_CreateFragment<WithAsyncMethod_UpdateFragment<WithAsyncMethod_DeleteFragment<WithAsyncMethod_ListNestedFragments<WithAsyncMethod_ListMachineFragments<WithAsyncMethod_ListMachineSummaries<WithAsyncMethod_GetFragmentHistory<WithAsyncMethod_GetFragmentUsage<WithAsyncMethod_SetFragmentTag<WithAsyncMethod_DeleteFragmentTag<WithAsyncMethod_AddRole<WithAsyncMethod_RemoveRole<WithAsyncMethod_ChangeRole<WithAsyncMethod_ListAuthorizations<WithAsyncMethod_CheckPermissions<WithAsyncMethod_GetRegistryItem<WithAsyncMethod_CreateRegistryItem<WithAsyncMethod_UpdateRegistryItem<WithAsyncMethod_ListRegistryItems<WithAsyncMethod_DeleteRegistryItem<WithAsyncMethod_RenameRegistryItem<WithAsyncMethod_TransferRegistryItem<WithAsyncMethod_CreateModule<WithAsyncMethod_UpdateModule<WithAsyncMethod_UploadModuleFile<WithAsyncMethod_GetModule<WithAsyncMethod_ListModules<WithAsyncMethod_CreateKey<WithAsyncMethod_DeleteKey<WithAsyncMethod_ListKeys<WithAsyncMethod_RenameKey<WithAsyncMethod_RotateKey<WithAsyncMethod_CreateKeyFromExistingKeyAuthorizations<WithAsyncMethod_GetAppContent<WithAsyncMethod_GetAppBranding<WithAsyncMethod_UploadDevicePushToken<WithAsyncMethod_DeleteDevicePushToken<WithAsyncMethod_GetDevicePushTokens<WithAsyncMethod_SetFirebaseConfig<WithAsyncMethod_GetFirebaseConfig<WithAsyncMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_GetUserIDByEmail<WithAsyncMethod_CreateOrganization<WithAsyncMethod_ListOrganizations<WithAsyncMethod_GetOrganizationsWithAccessToLocation<WithAsyncMethod_ListOrganizationsByUser<WithAsyncMethod_SearchOrganizations<WithAsyncMethod_GetOrganization<WithAsyncMethod_GetOrganizationNamespaceAvailability<WithAsyncMethod_UpdateOrganization<WithAsyncMethod_UpdateOrganizationNamespace<WithAsyncMethod_DeleteOrganization<WithAsyncMethod_GetOrganizationMetadata<WithAsyncMethod_UpdateOrganizationMetadata<WithAsyncMethod_ListOrganizationMembers<WithAsyncMethod_CreateOrganizationInvite<WithAsyncMethod_UpdateOrganizationInviteAuthorizations<WithAsyncMethod_DeleteOrganizationMember<WithAsyncMethod_DeleteOrganizationInvite<WithAsyncMethod_ResendOrganizationInvite<WithAsyncMethod_EnableBillingService<WithAsyncMethod_DisableBillingService<WithAsyncMethod_UpdateBillingService<WithAsyncMethod_GetBillingServiceConfig<WithAsyncMethod_OrganizationSetSupportEmail<WithAsyncMethod_OrganizationGetSupportEmail<WithAsyncMethod_OrganizationSetLogo<WithAsyncMethod_OrganizationGetLogo<WithAsyncMethod_EnableAuthService<WithAsyncMethod_DisableAuthService<WithAsyncMethod_CreateOAuthApp<WithAsyncMethod_ReadOAuthApp<WithAsyncMethod_UpdateOAuthApp<WithAsyncMethod_DeleteOAuthApp<WithAsyncMethod_ListOAuthApps<WithAsyncMethod_CreateOAuthAppUser<WithAsyncMethod_CreateLocation<WithAsyncMethod_GetLocation<WithAsyncMethod_UpdateLocation<WithAsyncMethod_DeleteLocation<WithAsyncMethod_GetLocationMetadata<WithAsyncMethod_UpdateLocationMetadata<WithAsyncMethod_ListLocations<WithAsyncMethod_ShareLocation<WithAsyncMethod_UnshareLocation<WithAsyncMethod_LocationAuth<WithAsyncMethod_CreateLocationSecret<WithAsyncMethod_DeleteLocationSecret<WithAsyncMethod_GetRobot<WithAsyncMethod_GetRobotMetadata<WithAsyncMethod_UpdateRobotMetadata<WithAsyncMethod_GetRoverRentalRobots<WithAsyncMethod_GetRobotParts<WithAsyncMethod_GetRobotPart<WithAsyncMethod_GetRobotPartByNameAndLocation<WithAsyncMethod_GetRobotPartLogs<WithAsyncMethod_TailRobotPartLogs<WithAsyncMethod_GetRobotPartHistory<WithAsyncMethod_UpdateRobotPart<WithAsyncMethod_NewRobotPart<WithAsyncMethod_DeleteRobotPart<WithAsyncMethod_GetRobotPartMetadata<WithAsyncMethod_UpdateRobotPartMetadata<WithAsyncMethod_GetRobotAPIKeys<WithAsyncMethod_MarkPartAsMain<WithAsyncMethod_MarkPartForRestart<WithAsyncMethod_CreateRobotPartSecret<WithAsyncMethod_DeleteRobotPartSecret<WithAsyncMethod_ListRobots<WithAsyncMethod_ListRobotsForLocations<WithAsyncMethod_ListRobotsForOrg<WithAsyncMethod_NewRobot<WithAsyncMethod_UpdateRobot<WithAsyncMethod_DeleteRobot<WithAsyncMethod_ListFragments<WithAsyncMethod_GetFragment<WithAsyncMethod_CreateFragment<WithAsyncMethod_UpdateFragment<WithAsyncMethod_DeleteFragment<WithAsyncMethod_ListNestedFragments<WithAsyncMethod_ListMachineFragments<WithAsyncMethod_ListMachineSummaries<WithAsyncMethod_GetFragmentHistory<WithAsyncMethod_GetFragmentUsage<WithAsyncMethod_SetFragmentTag<WithAsyncMethod_DeleteFragmentTag<WithAsyncMethod_AddRole<WithAsyncMethod_RemoveRole<WithAsyncMethod_ChangeRole<WithAsyncMethod_ListAuthorizations<WithAsyncMethod_CheckPermissions<WithAsyncMethod_GetRegistryItem<WithAsyncMethod_CreateRegistryItem<WithAsyncMethod_UpdateRegistryItem<WithAsyncMethod_ListRegistryItems<WithAsyncMethod_DeleteRegistryItem<WithAsyncMethod_RenameRegistryItem<WithAsyncMethod_TransferRegistryItem<WithAsyncMethod_CreateModule<WithAsyncMethod_UpdateModule<WithAsyncMethod_UploadModuleFile<WithAsyncMethod_GetModule<WithAsyncMethod_ListModules<WithAsyncMethod_CreateKey<WithAsyncMethod_DeleteKey<WithAsyncMethod_ListKeys<WithAsyncMethod_RenameKey<WithAsyncMethod_RotateKey<WithAsyncMethod_CreateKeyFromExistingKeyAuthorizations<WithAsyncMethod_GetAppContent<WithAsyncMethod_GetAppBranding<WithAsyncMethod_UploadDevicePushToken<WithAsyncMethod_DeleteDevicePushToken<WithAsyncMethod_GetDevicePushTokens<WithAsyncMethod_SetFirebaseConfig<WithAsyncMethod_GetFirebaseConfig<WithAsyncMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_GetUserIDByEmail : public BaseClass {
    private:
@@ -6335,18 +6379,45 @@ class AppService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::ListOAuthAppsRequest* /*request*/, ::viam::app::v1::ListOAuthAppsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_CreateOAuthAppUser : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CreateOAuthAppUser() {
+      ::grpc::Service::MarkMethodCallback(34,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateOAuthAppUserRequest, ::viam::app::v1::CreateOAuthAppUserResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateOAuthAppUserRequest* request, ::viam::app::v1::CreateOAuthAppUserResponse* response) { return this->CreateOAuthAppUser(context, request, response); }));}
+    void SetMessageAllocatorFor_CreateOAuthAppUser(
+        ::grpc::MessageAllocator< ::viam::app::v1::CreateOAuthAppUserRequest, ::viam::app::v1::CreateOAuthAppUserResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateOAuthAppUserRequest, ::viam::app::v1::CreateOAuthAppUserResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_CreateOAuthAppUser() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateOAuthAppUser(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateOAuthAppUserRequest* /*request*/, ::viam::app::v1::CreateOAuthAppUserResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CreateOAuthAppUser(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::CreateOAuthAppUserRequest* /*request*/, ::viam::app::v1::CreateOAuthAppUserResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_CreateLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateLocation() {
-      ::grpc::Service::MarkMethodCallback(34,
+      ::grpc::Service::MarkMethodCallback(35,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateLocationRequest, ::viam::app::v1::CreateLocationResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateLocationRequest* request, ::viam::app::v1::CreateLocationResponse* response) { return this->CreateLocation(context, request, response); }));}
     void SetMessageAllocatorFor_CreateLocation(
         ::grpc::MessageAllocator< ::viam::app::v1::CreateLocationRequest, ::viam::app::v1::CreateLocationResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateLocationRequest, ::viam::app::v1::CreateLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6367,13 +6438,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetLocation() {
-      ::grpc::Service::MarkMethodCallback(35,
+      ::grpc::Service::MarkMethodCallback(36,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetLocationRequest, ::viam::app::v1::GetLocationResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetLocationRequest* request, ::viam::app::v1::GetLocationResponse* response) { return this->GetLocation(context, request, response); }));}
     void SetMessageAllocatorFor_GetLocation(
         ::grpc::MessageAllocator< ::viam::app::v1::GetLocationRequest, ::viam::app::v1::GetLocationResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetLocationRequest, ::viam::app::v1::GetLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6394,13 +6465,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateLocation() {
-      ::grpc::Service::MarkMethodCallback(36,
+      ::grpc::Service::MarkMethodCallback(37,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateLocationRequest, ::viam::app::v1::UpdateLocationResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateLocationRequest* request, ::viam::app::v1::UpdateLocationResponse* response) { return this->UpdateLocation(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateLocation(
         ::grpc::MessageAllocator< ::viam::app::v1::UpdateLocationRequest, ::viam::app::v1::UpdateLocationResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(37);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateLocationRequest, ::viam::app::v1::UpdateLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6421,13 +6492,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteLocation() {
-      ::grpc::Service::MarkMethodCallback(37,
+      ::grpc::Service::MarkMethodCallback(38,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteLocationRequest, ::viam::app::v1::DeleteLocationResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteLocationRequest* request, ::viam::app::v1::DeleteLocationResponse* response) { return this->DeleteLocation(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteLocation(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteLocationRequest, ::viam::app::v1::DeleteLocationResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(37);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(38);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteLocationRequest, ::viam::app::v1::DeleteLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6448,13 +6519,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetLocationMetadata() {
-      ::grpc::Service::MarkMethodCallback(38,
+      ::grpc::Service::MarkMethodCallback(39,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetLocationMetadataRequest, ::viam::app::v1::GetLocationMetadataResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetLocationMetadataRequest* request, ::viam::app::v1::GetLocationMetadataResponse* response) { return this->GetLocationMetadata(context, request, response); }));}
     void SetMessageAllocatorFor_GetLocationMetadata(
         ::grpc::MessageAllocator< ::viam::app::v1::GetLocationMetadataRequest, ::viam::app::v1::GetLocationMetadataResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(38);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(39);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetLocationMetadataRequest, ::viam::app::v1::GetLocationMetadataResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6475,13 +6546,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateLocationMetadata() {
-      ::grpc::Service::MarkMethodCallback(39,
+      ::grpc::Service::MarkMethodCallback(40,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateLocationMetadataRequest, ::viam::app::v1::UpdateLocationMetadataResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateLocationMetadataRequest* request, ::viam::app::v1::UpdateLocationMetadataResponse* response) { return this->UpdateLocationMetadata(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateLocationMetadata(
         ::grpc::MessageAllocator< ::viam::app::v1::UpdateLocationMetadataRequest, ::viam::app::v1::UpdateLocationMetadataResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(39);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateLocationMetadataRequest, ::viam::app::v1::UpdateLocationMetadataResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6502,13 +6573,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListLocations() {
-      ::grpc::Service::MarkMethodCallback(40,
+      ::grpc::Service::MarkMethodCallback(41,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListLocationsRequest, ::viam::app::v1::ListLocationsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListLocationsRequest* request, ::viam::app::v1::ListLocationsResponse* response) { return this->ListLocations(context, request, response); }));}
     void SetMessageAllocatorFor_ListLocations(
         ::grpc::MessageAllocator< ::viam::app::v1::ListLocationsRequest, ::viam::app::v1::ListLocationsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(40);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(41);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListLocationsRequest, ::viam::app::v1::ListLocationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6529,13 +6600,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ShareLocation() {
-      ::grpc::Service::MarkMethodCallback(41,
+      ::grpc::Service::MarkMethodCallback(42,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ShareLocationRequest, ::viam::app::v1::ShareLocationResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ShareLocationRequest* request, ::viam::app::v1::ShareLocationResponse* response) { return this->ShareLocation(context, request, response); }));}
     void SetMessageAllocatorFor_ShareLocation(
         ::grpc::MessageAllocator< ::viam::app::v1::ShareLocationRequest, ::viam::app::v1::ShareLocationResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(41);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(42);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ShareLocationRequest, ::viam::app::v1::ShareLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6556,13 +6627,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UnshareLocation() {
-      ::grpc::Service::MarkMethodCallback(42,
+      ::grpc::Service::MarkMethodCallback(43,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UnshareLocationRequest, ::viam::app::v1::UnshareLocationResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UnshareLocationRequest* request, ::viam::app::v1::UnshareLocationResponse* response) { return this->UnshareLocation(context, request, response); }));}
     void SetMessageAllocatorFor_UnshareLocation(
         ::grpc::MessageAllocator< ::viam::app::v1::UnshareLocationRequest, ::viam::app::v1::UnshareLocationResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(42);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(43);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UnshareLocationRequest, ::viam::app::v1::UnshareLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6583,13 +6654,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_LocationAuth() {
-      ::grpc::Service::MarkMethodCallback(43,
+      ::grpc::Service::MarkMethodCallback(44,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::LocationAuthRequest, ::viam::app::v1::LocationAuthResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::LocationAuthRequest* request, ::viam::app::v1::LocationAuthResponse* response) { return this->LocationAuth(context, request, response); }));}
     void SetMessageAllocatorFor_LocationAuth(
         ::grpc::MessageAllocator< ::viam::app::v1::LocationAuthRequest, ::viam::app::v1::LocationAuthResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(43);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(44);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::LocationAuthRequest, ::viam::app::v1::LocationAuthResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6610,13 +6681,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateLocationSecret() {
-      ::grpc::Service::MarkMethodCallback(44,
+      ::grpc::Service::MarkMethodCallback(45,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateLocationSecretRequest, ::viam::app::v1::CreateLocationSecretResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateLocationSecretRequest* request, ::viam::app::v1::CreateLocationSecretResponse* response) { return this->CreateLocationSecret(context, request, response); }));}
     void SetMessageAllocatorFor_CreateLocationSecret(
         ::grpc::MessageAllocator< ::viam::app::v1::CreateLocationSecretRequest, ::viam::app::v1::CreateLocationSecretResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(44);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(45);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateLocationSecretRequest, ::viam::app::v1::CreateLocationSecretResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6637,13 +6708,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteLocationSecret() {
-      ::grpc::Service::MarkMethodCallback(45,
+      ::grpc::Service::MarkMethodCallback(46,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteLocationSecretRequest, ::viam::app::v1::DeleteLocationSecretResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteLocationSecretRequest* request, ::viam::app::v1::DeleteLocationSecretResponse* response) { return this->DeleteLocationSecret(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteLocationSecret(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteLocationSecretRequest, ::viam::app::v1::DeleteLocationSecretResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(45);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(46);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteLocationSecretRequest, ::viam::app::v1::DeleteLocationSecretResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6664,13 +6735,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRobot() {
-      ::grpc::Service::MarkMethodCallback(46,
+      ::grpc::Service::MarkMethodCallback(47,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotRequest, ::viam::app::v1::GetRobotResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRobotRequest* request, ::viam::app::v1::GetRobotResponse* response) { return this->GetRobot(context, request, response); }));}
     void SetMessageAllocatorFor_GetRobot(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRobotRequest, ::viam::app::v1::GetRobotResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(46);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(47);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotRequest, ::viam::app::v1::GetRobotResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6691,13 +6762,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRobotMetadata() {
-      ::grpc::Service::MarkMethodCallback(47,
+      ::grpc::Service::MarkMethodCallback(48,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotMetadataRequest, ::viam::app::v1::GetRobotMetadataResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRobotMetadataRequest* request, ::viam::app::v1::GetRobotMetadataResponse* response) { return this->GetRobotMetadata(context, request, response); }));}
     void SetMessageAllocatorFor_GetRobotMetadata(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRobotMetadataRequest, ::viam::app::v1::GetRobotMetadataResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(47);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(48);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotMetadataRequest, ::viam::app::v1::GetRobotMetadataResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6718,13 +6789,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateRobotMetadata() {
-      ::grpc::Service::MarkMethodCallback(48,
+      ::grpc::Service::MarkMethodCallback(49,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRobotMetadataRequest, ::viam::app::v1::UpdateRobotMetadataResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateRobotMetadataRequest* request, ::viam::app::v1::UpdateRobotMetadataResponse* response) { return this->UpdateRobotMetadata(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateRobotMetadata(
         ::grpc::MessageAllocator< ::viam::app::v1::UpdateRobotMetadataRequest, ::viam::app::v1::UpdateRobotMetadataResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(48);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(49);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRobotMetadataRequest, ::viam::app::v1::UpdateRobotMetadataResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6745,13 +6816,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRoverRentalRobots() {
-      ::grpc::Service::MarkMethodCallback(49,
+      ::grpc::Service::MarkMethodCallback(50,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRoverRentalRobotsRequest, ::viam::app::v1::GetRoverRentalRobotsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRoverRentalRobotsRequest* request, ::viam::app::v1::GetRoverRentalRobotsResponse* response) { return this->GetRoverRentalRobots(context, request, response); }));}
     void SetMessageAllocatorFor_GetRoverRentalRobots(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRoverRentalRobotsRequest, ::viam::app::v1::GetRoverRentalRobotsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(49);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(50);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRoverRentalRobotsRequest, ::viam::app::v1::GetRoverRentalRobotsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6772,13 +6843,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRobotParts() {
-      ::grpc::Service::MarkMethodCallback(50,
+      ::grpc::Service::MarkMethodCallback(51,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartsRequest, ::viam::app::v1::GetRobotPartsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRobotPartsRequest* request, ::viam::app::v1::GetRobotPartsResponse* response) { return this->GetRobotParts(context, request, response); }));}
     void SetMessageAllocatorFor_GetRobotParts(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRobotPartsRequest, ::viam::app::v1::GetRobotPartsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(50);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(51);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartsRequest, ::viam::app::v1::GetRobotPartsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6799,13 +6870,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRobotPart() {
-      ::grpc::Service::MarkMethodCallback(51,
+      ::grpc::Service::MarkMethodCallback(52,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartRequest, ::viam::app::v1::GetRobotPartResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRobotPartRequest* request, ::viam::app::v1::GetRobotPartResponse* response) { return this->GetRobotPart(context, request, response); }));}
     void SetMessageAllocatorFor_GetRobotPart(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRobotPartRequest, ::viam::app::v1::GetRobotPartResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(51);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(52);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartRequest, ::viam::app::v1::GetRobotPartResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6826,13 +6897,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRobotPartByNameAndLocation() {
-      ::grpc::Service::MarkMethodCallback(52,
+      ::grpc::Service::MarkMethodCallback(53,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartByNameAndLocationRequest, ::viam::app::v1::GetRobotPartByNameAndLocationResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRobotPartByNameAndLocationRequest* request, ::viam::app::v1::GetRobotPartByNameAndLocationResponse* response) { return this->GetRobotPartByNameAndLocation(context, request, response); }));}
     void SetMessageAllocatorFor_GetRobotPartByNameAndLocation(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRobotPartByNameAndLocationRequest, ::viam::app::v1::GetRobotPartByNameAndLocationResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(52);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(53);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartByNameAndLocationRequest, ::viam::app::v1::GetRobotPartByNameAndLocationResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6853,13 +6924,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRobotPartLogs() {
-      ::grpc::Service::MarkMethodCallback(53,
+      ::grpc::Service::MarkMethodCallback(54,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartLogsRequest, ::viam::app::v1::GetRobotPartLogsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRobotPartLogsRequest* request, ::viam::app::v1::GetRobotPartLogsResponse* response) { return this->GetRobotPartLogs(context, request, response); }));}
     void SetMessageAllocatorFor_GetRobotPartLogs(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRobotPartLogsRequest, ::viam::app::v1::GetRobotPartLogsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(53);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(54);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartLogsRequest, ::viam::app::v1::GetRobotPartLogsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6880,7 +6951,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_TailRobotPartLogs() {
-      ::grpc::Service::MarkMethodCallback(54,
+      ::grpc::Service::MarkMethodCallback(55,
           new ::grpc::internal::CallbackServerStreamingHandler< ::viam::app::v1::TailRobotPartLogsRequest, ::viam::app::v1::TailRobotPartLogsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::TailRobotPartLogsRequest* request) { return this->TailRobotPartLogs(context, request); }));
@@ -6902,13 +6973,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRobotPartHistory() {
-      ::grpc::Service::MarkMethodCallback(55,
+      ::grpc::Service::MarkMethodCallback(56,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartHistoryRequest, ::viam::app::v1::GetRobotPartHistoryResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRobotPartHistoryRequest* request, ::viam::app::v1::GetRobotPartHistoryResponse* response) { return this->GetRobotPartHistory(context, request, response); }));}
     void SetMessageAllocatorFor_GetRobotPartHistory(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRobotPartHistoryRequest, ::viam::app::v1::GetRobotPartHistoryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(55);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(56);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartHistoryRequest, ::viam::app::v1::GetRobotPartHistoryResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6929,13 +7000,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateRobotPart() {
-      ::grpc::Service::MarkMethodCallback(56,
+      ::grpc::Service::MarkMethodCallback(57,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRobotPartRequest, ::viam::app::v1::UpdateRobotPartResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateRobotPartRequest* request, ::viam::app::v1::UpdateRobotPartResponse* response) { return this->UpdateRobotPart(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateRobotPart(
         ::grpc::MessageAllocator< ::viam::app::v1::UpdateRobotPartRequest, ::viam::app::v1::UpdateRobotPartResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(56);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(57);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRobotPartRequest, ::viam::app::v1::UpdateRobotPartResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6956,13 +7027,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_NewRobotPart() {
-      ::grpc::Service::MarkMethodCallback(57,
+      ::grpc::Service::MarkMethodCallback(58,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::NewRobotPartRequest, ::viam::app::v1::NewRobotPartResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::NewRobotPartRequest* request, ::viam::app::v1::NewRobotPartResponse* response) { return this->NewRobotPart(context, request, response); }));}
     void SetMessageAllocatorFor_NewRobotPart(
         ::grpc::MessageAllocator< ::viam::app::v1::NewRobotPartRequest, ::viam::app::v1::NewRobotPartResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(57);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(58);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::NewRobotPartRequest, ::viam::app::v1::NewRobotPartResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -6983,13 +7054,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteRobotPart() {
-      ::grpc::Service::MarkMethodCallback(58,
+      ::grpc::Service::MarkMethodCallback(59,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteRobotPartRequest, ::viam::app::v1::DeleteRobotPartResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteRobotPartRequest* request, ::viam::app::v1::DeleteRobotPartResponse* response) { return this->DeleteRobotPart(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteRobotPart(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteRobotPartRequest, ::viam::app::v1::DeleteRobotPartResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(58);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(59);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteRobotPartRequest, ::viam::app::v1::DeleteRobotPartResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7010,13 +7081,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRobotPartMetadata() {
-      ::grpc::Service::MarkMethodCallback(59,
+      ::grpc::Service::MarkMethodCallback(60,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartMetadataRequest, ::viam::app::v1::GetRobotPartMetadataResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRobotPartMetadataRequest* request, ::viam::app::v1::GetRobotPartMetadataResponse* response) { return this->GetRobotPartMetadata(context, request, response); }));}
     void SetMessageAllocatorFor_GetRobotPartMetadata(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRobotPartMetadataRequest, ::viam::app::v1::GetRobotPartMetadataResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(59);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(60);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotPartMetadataRequest, ::viam::app::v1::GetRobotPartMetadataResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7037,13 +7108,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateRobotPartMetadata() {
-      ::grpc::Service::MarkMethodCallback(60,
+      ::grpc::Service::MarkMethodCallback(61,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRobotPartMetadataRequest, ::viam::app::v1::UpdateRobotPartMetadataResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateRobotPartMetadataRequest* request, ::viam::app::v1::UpdateRobotPartMetadataResponse* response) { return this->UpdateRobotPartMetadata(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateRobotPartMetadata(
         ::grpc::MessageAllocator< ::viam::app::v1::UpdateRobotPartMetadataRequest, ::viam::app::v1::UpdateRobotPartMetadataResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(60);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(61);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRobotPartMetadataRequest, ::viam::app::v1::UpdateRobotPartMetadataResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7064,13 +7135,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRobotAPIKeys() {
-      ::grpc::Service::MarkMethodCallback(61,
+      ::grpc::Service::MarkMethodCallback(62,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRobotAPIKeysRequest* request, ::viam::app::v1::GetRobotAPIKeysResponse* response) { return this->GetRobotAPIKeys(context, request, response); }));}
     void SetMessageAllocatorFor_GetRobotAPIKeys(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(61);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(62);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7091,13 +7162,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_MarkPartAsMain() {
-      ::grpc::Service::MarkMethodCallback(62,
+      ::grpc::Service::MarkMethodCallback(63,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::MarkPartAsMainRequest, ::viam::app::v1::MarkPartAsMainResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::MarkPartAsMainRequest* request, ::viam::app::v1::MarkPartAsMainResponse* response) { return this->MarkPartAsMain(context, request, response); }));}
     void SetMessageAllocatorFor_MarkPartAsMain(
         ::grpc::MessageAllocator< ::viam::app::v1::MarkPartAsMainRequest, ::viam::app::v1::MarkPartAsMainResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(62);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(63);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::MarkPartAsMainRequest, ::viam::app::v1::MarkPartAsMainResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7118,13 +7189,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_MarkPartForRestart() {
-      ::grpc::Service::MarkMethodCallback(63,
+      ::grpc::Service::MarkMethodCallback(64,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::MarkPartForRestartRequest, ::viam::app::v1::MarkPartForRestartResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::MarkPartForRestartRequest* request, ::viam::app::v1::MarkPartForRestartResponse* response) { return this->MarkPartForRestart(context, request, response); }));}
     void SetMessageAllocatorFor_MarkPartForRestart(
         ::grpc::MessageAllocator< ::viam::app::v1::MarkPartForRestartRequest, ::viam::app::v1::MarkPartForRestartResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(63);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(64);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::MarkPartForRestartRequest, ::viam::app::v1::MarkPartForRestartResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7145,13 +7216,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateRobotPartSecret() {
-      ::grpc::Service::MarkMethodCallback(64,
+      ::grpc::Service::MarkMethodCallback(65,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateRobotPartSecretRequest, ::viam::app::v1::CreateRobotPartSecretResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateRobotPartSecretRequest* request, ::viam::app::v1::CreateRobotPartSecretResponse* response) { return this->CreateRobotPartSecret(context, request, response); }));}
     void SetMessageAllocatorFor_CreateRobotPartSecret(
         ::grpc::MessageAllocator< ::viam::app::v1::CreateRobotPartSecretRequest, ::viam::app::v1::CreateRobotPartSecretResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(64);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(65);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateRobotPartSecretRequest, ::viam::app::v1::CreateRobotPartSecretResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7172,13 +7243,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteRobotPartSecret() {
-      ::grpc::Service::MarkMethodCallback(65,
+      ::grpc::Service::MarkMethodCallback(66,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteRobotPartSecretRequest, ::viam::app::v1::DeleteRobotPartSecretResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteRobotPartSecretRequest* request, ::viam::app::v1::DeleteRobotPartSecretResponse* response) { return this->DeleteRobotPartSecret(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteRobotPartSecret(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteRobotPartSecretRequest, ::viam::app::v1::DeleteRobotPartSecretResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(65);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(66);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteRobotPartSecretRequest, ::viam::app::v1::DeleteRobotPartSecretResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7199,13 +7270,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListRobots() {
-      ::grpc::Service::MarkMethodCallback(66,
+      ::grpc::Service::MarkMethodCallback(67,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListRobotsRequest, ::viam::app::v1::ListRobotsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListRobotsRequest* request, ::viam::app::v1::ListRobotsResponse* response) { return this->ListRobots(context, request, response); }));}
     void SetMessageAllocatorFor_ListRobots(
         ::grpc::MessageAllocator< ::viam::app::v1::ListRobotsRequest, ::viam::app::v1::ListRobotsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(66);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(67);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListRobotsRequest, ::viam::app::v1::ListRobotsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7226,13 +7297,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListRobotsForLocations() {
-      ::grpc::Service::MarkMethodCallback(67,
+      ::grpc::Service::MarkMethodCallback(68,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListRobotsForLocationsRequest, ::viam::app::v1::ListRobotsForLocationsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListRobotsForLocationsRequest* request, ::viam::app::v1::ListRobotsForLocationsResponse* response) { return this->ListRobotsForLocations(context, request, response); }));}
     void SetMessageAllocatorFor_ListRobotsForLocations(
         ::grpc::MessageAllocator< ::viam::app::v1::ListRobotsForLocationsRequest, ::viam::app::v1::ListRobotsForLocationsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(67);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(68);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListRobotsForLocationsRequest, ::viam::app::v1::ListRobotsForLocationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7253,13 +7324,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListRobotsForOrg() {
-      ::grpc::Service::MarkMethodCallback(68,
+      ::grpc::Service::MarkMethodCallback(69,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListRobotsForOrgRequest, ::viam::app::v1::ListRobotsForOrgResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListRobotsForOrgRequest* request, ::viam::app::v1::ListRobotsForOrgResponse* response) { return this->ListRobotsForOrg(context, request, response); }));}
     void SetMessageAllocatorFor_ListRobotsForOrg(
         ::grpc::MessageAllocator< ::viam::app::v1::ListRobotsForOrgRequest, ::viam::app::v1::ListRobotsForOrgResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(68);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(69);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListRobotsForOrgRequest, ::viam::app::v1::ListRobotsForOrgResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7280,13 +7351,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_NewRobot() {
-      ::grpc::Service::MarkMethodCallback(69,
+      ::grpc::Service::MarkMethodCallback(70,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::NewRobotRequest* request, ::viam::app::v1::NewRobotResponse* response) { return this->NewRobot(context, request, response); }));}
     void SetMessageAllocatorFor_NewRobot(
         ::grpc::MessageAllocator< ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(69);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(70);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7307,13 +7378,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateRobot() {
-      ::grpc::Service::MarkMethodCallback(70,
+      ::grpc::Service::MarkMethodCallback(71,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateRobotRequest* request, ::viam::app::v1::UpdateRobotResponse* response) { return this->UpdateRobot(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateRobot(
         ::grpc::MessageAllocator< ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(70);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(71);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7334,13 +7405,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteRobot() {
-      ::grpc::Service::MarkMethodCallback(71,
+      ::grpc::Service::MarkMethodCallback(72,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteRobotRequest* request, ::viam::app::v1::DeleteRobotResponse* response) { return this->DeleteRobot(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteRobot(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(71);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(72);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7361,13 +7432,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListFragments() {
-      ::grpc::Service::MarkMethodCallback(72,
+      ::grpc::Service::MarkMethodCallback(73,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListFragmentsRequest* request, ::viam::app::v1::ListFragmentsResponse* response) { return this->ListFragments(context, request, response); }));}
     void SetMessageAllocatorFor_ListFragments(
         ::grpc::MessageAllocator< ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(72);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(73);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7388,13 +7459,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetFragment() {
-      ::grpc::Service::MarkMethodCallback(73,
+      ::grpc::Service::MarkMethodCallback(74,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetFragmentRequest* request, ::viam::app::v1::GetFragmentResponse* response) { return this->GetFragment(context, request, response); }));}
     void SetMessageAllocatorFor_GetFragment(
         ::grpc::MessageAllocator< ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(73);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(74);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7415,13 +7486,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateFragment() {
-      ::grpc::Service::MarkMethodCallback(74,
+      ::grpc::Service::MarkMethodCallback(75,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateFragmentRequest* request, ::viam::app::v1::CreateFragmentResponse* response) { return this->CreateFragment(context, request, response); }));}
     void SetMessageAllocatorFor_CreateFragment(
         ::grpc::MessageAllocator< ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(74);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(75);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7442,13 +7513,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateFragment() {
-      ::grpc::Service::MarkMethodCallback(75,
+      ::grpc::Service::MarkMethodCallback(76,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateFragmentRequest* request, ::viam::app::v1::UpdateFragmentResponse* response) { return this->UpdateFragment(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateFragment(
         ::grpc::MessageAllocator< ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(75);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(76);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7469,13 +7540,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteFragment() {
-      ::grpc::Service::MarkMethodCallback(76,
+      ::grpc::Service::MarkMethodCallback(77,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteFragmentRequest* request, ::viam::app::v1::DeleteFragmentResponse* response) { return this->DeleteFragment(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteFragment(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(76);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(77);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7496,13 +7567,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListNestedFragments() {
-      ::grpc::Service::MarkMethodCallback(77,
+      ::grpc::Service::MarkMethodCallback(78,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListNestedFragmentsRequest, ::viam::app::v1::ListNestedFragmentsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListNestedFragmentsRequest* request, ::viam::app::v1::ListNestedFragmentsResponse* response) { return this->ListNestedFragments(context, request, response); }));}
     void SetMessageAllocatorFor_ListNestedFragments(
         ::grpc::MessageAllocator< ::viam::app::v1::ListNestedFragmentsRequest, ::viam::app::v1::ListNestedFragmentsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(77);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(78);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListNestedFragmentsRequest, ::viam::app::v1::ListNestedFragmentsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7523,13 +7594,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListMachineFragments() {
-      ::grpc::Service::MarkMethodCallback(78,
+      ::grpc::Service::MarkMethodCallback(79,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListMachineFragmentsRequest, ::viam::app::v1::ListMachineFragmentsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListMachineFragmentsRequest* request, ::viam::app::v1::ListMachineFragmentsResponse* response) { return this->ListMachineFragments(context, request, response); }));}
     void SetMessageAllocatorFor_ListMachineFragments(
         ::grpc::MessageAllocator< ::viam::app::v1::ListMachineFragmentsRequest, ::viam::app::v1::ListMachineFragmentsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(78);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(79);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListMachineFragmentsRequest, ::viam::app::v1::ListMachineFragmentsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7550,13 +7621,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListMachineSummaries() {
-      ::grpc::Service::MarkMethodCallback(79,
+      ::grpc::Service::MarkMethodCallback(80,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListMachineSummariesRequest, ::viam::app::v1::ListMachineSummariesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListMachineSummariesRequest* request, ::viam::app::v1::ListMachineSummariesResponse* response) { return this->ListMachineSummaries(context, request, response); }));}
     void SetMessageAllocatorFor_ListMachineSummaries(
         ::grpc::MessageAllocator< ::viam::app::v1::ListMachineSummariesRequest, ::viam::app::v1::ListMachineSummariesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(79);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(80);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListMachineSummariesRequest, ::viam::app::v1::ListMachineSummariesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7577,13 +7648,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetFragmentHistory() {
-      ::grpc::Service::MarkMethodCallback(80,
+      ::grpc::Service::MarkMethodCallback(81,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFragmentHistoryRequest, ::viam::app::v1::GetFragmentHistoryResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetFragmentHistoryRequest* request, ::viam::app::v1::GetFragmentHistoryResponse* response) { return this->GetFragmentHistory(context, request, response); }));}
     void SetMessageAllocatorFor_GetFragmentHistory(
         ::grpc::MessageAllocator< ::viam::app::v1::GetFragmentHistoryRequest, ::viam::app::v1::GetFragmentHistoryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(80);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(81);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFragmentHistoryRequest, ::viam::app::v1::GetFragmentHistoryResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7604,13 +7675,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetFragmentUsage() {
-      ::grpc::Service::MarkMethodCallback(81,
+      ::grpc::Service::MarkMethodCallback(82,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFragmentUsageRequest, ::viam::app::v1::GetFragmentUsageResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetFragmentUsageRequest* request, ::viam::app::v1::GetFragmentUsageResponse* response) { return this->GetFragmentUsage(context, request, response); }));}
     void SetMessageAllocatorFor_GetFragmentUsage(
         ::grpc::MessageAllocator< ::viam::app::v1::GetFragmentUsageRequest, ::viam::app::v1::GetFragmentUsageResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(81);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(82);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFragmentUsageRequest, ::viam::app::v1::GetFragmentUsageResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7631,13 +7702,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetFragmentTag() {
-      ::grpc::Service::MarkMethodCallback(82,
+      ::grpc::Service::MarkMethodCallback(83,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SetFragmentTagRequest, ::viam::app::v1::SetFragmentTagResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::SetFragmentTagRequest* request, ::viam::app::v1::SetFragmentTagResponse* response) { return this->SetFragmentTag(context, request, response); }));}
     void SetMessageAllocatorFor_SetFragmentTag(
         ::grpc::MessageAllocator< ::viam::app::v1::SetFragmentTagRequest, ::viam::app::v1::SetFragmentTagResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(82);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(83);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SetFragmentTagRequest, ::viam::app::v1::SetFragmentTagResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7658,13 +7729,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteFragmentTag() {
-      ::grpc::Service::MarkMethodCallback(83,
+      ::grpc::Service::MarkMethodCallback(84,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteFragmentTagRequest, ::viam::app::v1::DeleteFragmentTagResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteFragmentTagRequest* request, ::viam::app::v1::DeleteFragmentTagResponse* response) { return this->DeleteFragmentTag(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteFragmentTag(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteFragmentTagRequest, ::viam::app::v1::DeleteFragmentTagResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(83);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(84);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteFragmentTagRequest, ::viam::app::v1::DeleteFragmentTagResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7685,13 +7756,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_AddRole() {
-      ::grpc::Service::MarkMethodCallback(84,
+      ::grpc::Service::MarkMethodCallback(85,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::AddRoleRequest* request, ::viam::app::v1::AddRoleResponse* response) { return this->AddRole(context, request, response); }));}
     void SetMessageAllocatorFor_AddRole(
         ::grpc::MessageAllocator< ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(84);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(85);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7712,13 +7783,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_RemoveRole() {
-      ::grpc::Service::MarkMethodCallback(85,
+      ::grpc::Service::MarkMethodCallback(86,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::RemoveRoleRequest* request, ::viam::app::v1::RemoveRoleResponse* response) { return this->RemoveRole(context, request, response); }));}
     void SetMessageAllocatorFor_RemoveRole(
         ::grpc::MessageAllocator< ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(85);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(86);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7739,13 +7810,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ChangeRole() {
-      ::grpc::Service::MarkMethodCallback(86,
+      ::grpc::Service::MarkMethodCallback(87,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ChangeRoleRequest* request, ::viam::app::v1::ChangeRoleResponse* response) { return this->ChangeRole(context, request, response); }));}
     void SetMessageAllocatorFor_ChangeRole(
         ::grpc::MessageAllocator< ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(86);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(87);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7766,13 +7837,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListAuthorizations() {
-      ::grpc::Service::MarkMethodCallback(87,
+      ::grpc::Service::MarkMethodCallback(88,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListAuthorizationsRequest* request, ::viam::app::v1::ListAuthorizationsResponse* response) { return this->ListAuthorizations(context, request, response); }));}
     void SetMessageAllocatorFor_ListAuthorizations(
         ::grpc::MessageAllocator< ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(87);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(88);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7793,13 +7864,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CheckPermissions() {
-      ::grpc::Service::MarkMethodCallback(88,
+      ::grpc::Service::MarkMethodCallback(89,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CheckPermissionsRequest* request, ::viam::app::v1::CheckPermissionsResponse* response) { return this->CheckPermissions(context, request, response); }));}
     void SetMessageAllocatorFor_CheckPermissions(
         ::grpc::MessageAllocator< ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(88);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(89);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7820,13 +7891,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRegistryItem() {
-      ::grpc::Service::MarkMethodCallback(89,
+      ::grpc::Service::MarkMethodCallback(90,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRegistryItemRequest, ::viam::app::v1::GetRegistryItemResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetRegistryItemRequest* request, ::viam::app::v1::GetRegistryItemResponse* response) { return this->GetRegistryItem(context, request, response); }));}
     void SetMessageAllocatorFor_GetRegistryItem(
         ::grpc::MessageAllocator< ::viam::app::v1::GetRegistryItemRequest, ::viam::app::v1::GetRegistryItemResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(89);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(90);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetRegistryItemRequest, ::viam::app::v1::GetRegistryItemResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7847,13 +7918,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateRegistryItem() {
-      ::grpc::Service::MarkMethodCallback(90,
+      ::grpc::Service::MarkMethodCallback(91,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateRegistryItemRequest, ::viam::app::v1::CreateRegistryItemResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateRegistryItemRequest* request, ::viam::app::v1::CreateRegistryItemResponse* response) { return this->CreateRegistryItem(context, request, response); }));}
     void SetMessageAllocatorFor_CreateRegistryItem(
         ::grpc::MessageAllocator< ::viam::app::v1::CreateRegistryItemRequest, ::viam::app::v1::CreateRegistryItemResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(90);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(91);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateRegistryItemRequest, ::viam::app::v1::CreateRegistryItemResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7874,13 +7945,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateRegistryItem() {
-      ::grpc::Service::MarkMethodCallback(91,
+      ::grpc::Service::MarkMethodCallback(92,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRegistryItemRequest, ::viam::app::v1::UpdateRegistryItemResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateRegistryItemRequest* request, ::viam::app::v1::UpdateRegistryItemResponse* response) { return this->UpdateRegistryItem(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateRegistryItem(
         ::grpc::MessageAllocator< ::viam::app::v1::UpdateRegistryItemRequest, ::viam::app::v1::UpdateRegistryItemResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(91);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(92);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateRegistryItemRequest, ::viam::app::v1::UpdateRegistryItemResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7901,13 +7972,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListRegistryItems() {
-      ::grpc::Service::MarkMethodCallback(92,
+      ::grpc::Service::MarkMethodCallback(93,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListRegistryItemsRequest, ::viam::app::v1::ListRegistryItemsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListRegistryItemsRequest* request, ::viam::app::v1::ListRegistryItemsResponse* response) { return this->ListRegistryItems(context, request, response); }));}
     void SetMessageAllocatorFor_ListRegistryItems(
         ::grpc::MessageAllocator< ::viam::app::v1::ListRegistryItemsRequest, ::viam::app::v1::ListRegistryItemsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(92);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(93);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListRegistryItemsRequest, ::viam::app::v1::ListRegistryItemsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7928,13 +7999,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteRegistryItem() {
-      ::grpc::Service::MarkMethodCallback(93,
+      ::grpc::Service::MarkMethodCallback(94,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteRegistryItemRequest, ::viam::app::v1::DeleteRegistryItemResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteRegistryItemRequest* request, ::viam::app::v1::DeleteRegistryItemResponse* response) { return this->DeleteRegistryItem(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteRegistryItem(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteRegistryItemRequest, ::viam::app::v1::DeleteRegistryItemResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(93);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(94);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteRegistryItemRequest, ::viam::app::v1::DeleteRegistryItemResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7955,13 +8026,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_RenameRegistryItem() {
-      ::grpc::Service::MarkMethodCallback(94,
+      ::grpc::Service::MarkMethodCallback(95,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RenameRegistryItemRequest, ::viam::app::v1::RenameRegistryItemResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::RenameRegistryItemRequest* request, ::viam::app::v1::RenameRegistryItemResponse* response) { return this->RenameRegistryItem(context, request, response); }));}
     void SetMessageAllocatorFor_RenameRegistryItem(
         ::grpc::MessageAllocator< ::viam::app::v1::RenameRegistryItemRequest, ::viam::app::v1::RenameRegistryItemResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(94);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(95);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RenameRegistryItemRequest, ::viam::app::v1::RenameRegistryItemResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -7982,13 +8053,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_TransferRegistryItem() {
-      ::grpc::Service::MarkMethodCallback(95,
+      ::grpc::Service::MarkMethodCallback(96,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::TransferRegistryItemRequest, ::viam::app::v1::TransferRegistryItemResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::TransferRegistryItemRequest* request, ::viam::app::v1::TransferRegistryItemResponse* response) { return this->TransferRegistryItem(context, request, response); }));}
     void SetMessageAllocatorFor_TransferRegistryItem(
         ::grpc::MessageAllocator< ::viam::app::v1::TransferRegistryItemRequest, ::viam::app::v1::TransferRegistryItemResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(95);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(96);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::TransferRegistryItemRequest, ::viam::app::v1::TransferRegistryItemResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8009,13 +8080,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateModule() {
-      ::grpc::Service::MarkMethodCallback(96,
+      ::grpc::Service::MarkMethodCallback(97,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateModuleRequest* request, ::viam::app::v1::CreateModuleResponse* response) { return this->CreateModule(context, request, response); }));}
     void SetMessageAllocatorFor_CreateModule(
         ::grpc::MessageAllocator< ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(96);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(97);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8036,13 +8107,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateModule() {
-      ::grpc::Service::MarkMethodCallback(97,
+      ::grpc::Service::MarkMethodCallback(98,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UpdateModuleRequest* request, ::viam::app::v1::UpdateModuleResponse* response) { return this->UpdateModule(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateModule(
         ::grpc::MessageAllocator< ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(97);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(98);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8063,7 +8134,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UploadModuleFile() {
-      ::grpc::Service::MarkMethodCallback(98,
+      ::grpc::Service::MarkMethodCallback(99,
           new ::grpc::internal::CallbackClientStreamingHandler< ::viam::app::v1::UploadModuleFileRequest, ::viam::app::v1::UploadModuleFileResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, ::viam::app::v1::UploadModuleFileResponse* response) { return this->UploadModuleFile(context, response); }));
@@ -8085,13 +8156,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetModule() {
-      ::grpc::Service::MarkMethodCallback(99,
+      ::grpc::Service::MarkMethodCallback(100,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetModuleRequest* request, ::viam::app::v1::GetModuleResponse* response) { return this->GetModule(context, request, response); }));}
     void SetMessageAllocatorFor_GetModule(
         ::grpc::MessageAllocator< ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(99);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(100);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8112,13 +8183,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListModules() {
-      ::grpc::Service::MarkMethodCallback(100,
+      ::grpc::Service::MarkMethodCallback(101,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListModulesRequest* request, ::viam::app::v1::ListModulesResponse* response) { return this->ListModules(context, request, response); }));}
     void SetMessageAllocatorFor_ListModules(
         ::grpc::MessageAllocator< ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(100);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(101);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8139,13 +8210,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateKey() {
-      ::grpc::Service::MarkMethodCallback(101,
+      ::grpc::Service::MarkMethodCallback(102,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateKeyRequest* request, ::viam::app::v1::CreateKeyResponse* response) { return this->CreateKey(context, request, response); }));}
     void SetMessageAllocatorFor_CreateKey(
         ::grpc::MessageAllocator< ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(101);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(102);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8166,13 +8237,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodCallback(102,
+      ::grpc::Service::MarkMethodCallback(103,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteKeyRequest* request, ::viam::app::v1::DeleteKeyResponse* response) { return this->DeleteKey(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteKey(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(102);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(103);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8193,13 +8264,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListKeys() {
-      ::grpc::Service::MarkMethodCallback(103,
+      ::grpc::Service::MarkMethodCallback(104,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::ListKeysRequest* request, ::viam::app::v1::ListKeysResponse* response) { return this->ListKeys(context, request, response); }));}
     void SetMessageAllocatorFor_ListKeys(
         ::grpc::MessageAllocator< ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(103);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(104);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8220,13 +8291,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_RenameKey() {
-      ::grpc::Service::MarkMethodCallback(104,
+      ::grpc::Service::MarkMethodCallback(105,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::RenameKeyRequest* request, ::viam::app::v1::RenameKeyResponse* response) { return this->RenameKey(context, request, response); }));}
     void SetMessageAllocatorFor_RenameKey(
         ::grpc::MessageAllocator< ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(104);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(105);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8247,13 +8318,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_RotateKey() {
-      ::grpc::Service::MarkMethodCallback(105,
+      ::grpc::Service::MarkMethodCallback(106,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::RotateKeyRequest* request, ::viam::app::v1::RotateKeyResponse* response) { return this->RotateKey(context, request, response); }));}
     void SetMessageAllocatorFor_RotateKey(
         ::grpc::MessageAllocator< ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(105);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(106);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8274,13 +8345,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateKeyFromExistingKeyAuthorizations() {
-      ::grpc::Service::MarkMethodCallback(106,
+      ::grpc::Service::MarkMethodCallback(107,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest* request, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse* response) { return this->CreateKeyFromExistingKeyAuthorizations(context, request, response); }));}
     void SetMessageAllocatorFor_CreateKeyFromExistingKeyAuthorizations(
         ::grpc::MessageAllocator< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(106);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(107);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8301,13 +8372,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetAppContent() {
-      ::grpc::Service::MarkMethodCallback(107,
+      ::grpc::Service::MarkMethodCallback(108,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetAppContentRequest, ::viam::app::v1::GetAppContentResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetAppContentRequest* request, ::viam::app::v1::GetAppContentResponse* response) { return this->GetAppContent(context, request, response); }));}
     void SetMessageAllocatorFor_GetAppContent(
         ::grpc::MessageAllocator< ::viam::app::v1::GetAppContentRequest, ::viam::app::v1::GetAppContentResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(107);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(108);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetAppContentRequest, ::viam::app::v1::GetAppContentResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8328,13 +8399,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetAppBranding() {
-      ::grpc::Service::MarkMethodCallback(108,
+      ::grpc::Service::MarkMethodCallback(109,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetAppBrandingRequest, ::viam::app::v1::GetAppBrandingResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetAppBrandingRequest* request, ::viam::app::v1::GetAppBrandingResponse* response) { return this->GetAppBranding(context, request, response); }));}
     void SetMessageAllocatorFor_GetAppBranding(
         ::grpc::MessageAllocator< ::viam::app::v1::GetAppBrandingRequest, ::viam::app::v1::GetAppBrandingResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(108);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(109);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetAppBrandingRequest, ::viam::app::v1::GetAppBrandingResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8355,13 +8426,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UploadDevicePushToken() {
-      ::grpc::Service::MarkMethodCallback(109,
+      ::grpc::Service::MarkMethodCallback(110,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::UploadDevicePushTokenRequest* request, ::viam::app::v1::UploadDevicePushTokenResponse* response) { return this->UploadDevicePushToken(context, request, response); }));}
     void SetMessageAllocatorFor_UploadDevicePushToken(
         ::grpc::MessageAllocator< ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(109);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(110);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8382,13 +8453,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteDevicePushToken() {
-      ::grpc::Service::MarkMethodCallback(110,
+      ::grpc::Service::MarkMethodCallback(111,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteDevicePushTokenRequest* request, ::viam::app::v1::DeleteDevicePushTokenResponse* response) { return this->DeleteDevicePushToken(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteDevicePushToken(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(110);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(111);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8409,13 +8480,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetDevicePushTokens() {
-      ::grpc::Service::MarkMethodCallback(111,
+      ::grpc::Service::MarkMethodCallback(112,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetDevicePushTokensRequest* request, ::viam::app::v1::GetDevicePushTokensResponse* response) { return this->GetDevicePushTokens(context, request, response); }));}
     void SetMessageAllocatorFor_GetDevicePushTokens(
         ::grpc::MessageAllocator< ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(111);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(112);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8436,13 +8507,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_SetFirebaseConfig() {
-      ::grpc::Service::MarkMethodCallback(112,
+      ::grpc::Service::MarkMethodCallback(113,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::SetFirebaseConfigRequest* request, ::viam::app::v1::SetFirebaseConfigResponse* response) { return this->SetFirebaseConfig(context, request, response); }));}
     void SetMessageAllocatorFor_SetFirebaseConfig(
         ::grpc::MessageAllocator< ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(112);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(113);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8463,13 +8534,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetFirebaseConfig() {
-      ::grpc::Service::MarkMethodCallback(113,
+      ::grpc::Service::MarkMethodCallback(114,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::GetFirebaseConfigRequest* request, ::viam::app::v1::GetFirebaseConfigResponse* response) { return this->GetFirebaseConfig(context, request, response); }));}
     void SetMessageAllocatorFor_GetFirebaseConfig(
         ::grpc::MessageAllocator< ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(113);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(114);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8490,13 +8561,13 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteFirebaseConfig() {
-      ::grpc::Service::MarkMethodCallback(114,
+      ::grpc::Service::MarkMethodCallback(115,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::v1::DeleteFirebaseConfigRequest* request, ::viam::app::v1::DeleteFirebaseConfigResponse* response) { return this->DeleteFirebaseConfig(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteFirebaseConfig(
         ::grpc::MessageAllocator< ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(114);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(115);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -8511,7 +8582,7 @@ class AppService final {
     virtual ::grpc::ServerUnaryReactor* DeleteFirebaseConfig(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::v1::DeleteFirebaseConfigRequest* /*request*/, ::viam::app::v1::DeleteFirebaseConfigResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetUserIDByEmail<WithCallbackMethod_CreateOrganization<WithCallbackMethod_ListOrganizations<WithCallbackMethod_GetOrganizationsWithAccessToLocation<WithCallbackMethod_ListOrganizationsByUser<WithCallbackMethod_SearchOrganizations<WithCallbackMethod_GetOrganization<WithCallbackMethod_GetOrganizationNamespaceAvailability<WithCallbackMethod_UpdateOrganization<WithCallbackMethod_UpdateOrganizationNamespace<WithCallbackMethod_DeleteOrganization<WithCallbackMethod_GetOrganizationMetadata<WithCallbackMethod_UpdateOrganizationMetadata<WithCallbackMethod_ListOrganizationMembers<WithCallbackMethod_CreateOrganizationInvite<WithCallbackMethod_UpdateOrganizationInviteAuthorizations<WithCallbackMethod_DeleteOrganizationMember<WithCallbackMethod_DeleteOrganizationInvite<WithCallbackMethod_ResendOrganizationInvite<WithCallbackMethod_EnableBillingService<WithCallbackMethod_DisableBillingService<WithCallbackMethod_UpdateBillingService<WithCallbackMethod_GetBillingServiceConfig<WithCallbackMethod_OrganizationSetSupportEmail<WithCallbackMethod_OrganizationGetSupportEmail<WithCallbackMethod_OrganizationSetLogo<WithCallbackMethod_OrganizationGetLogo<WithCallbackMethod_EnableAuthService<WithCallbackMethod_DisableAuthService<WithCallbackMethod_CreateOAuthApp<WithCallbackMethod_ReadOAuthApp<WithCallbackMethod_UpdateOAuthApp<WithCallbackMethod_DeleteOAuthApp<WithCallbackMethod_ListOAuthApps<WithCallbackMethod_CreateLocation<WithCallbackMethod_GetLocation<WithCallbackMethod_UpdateLocation<WithCallbackMethod_DeleteLocation<WithCallbackMethod_GetLocationMetadata<WithCallbackMethod_UpdateLocationMetadata<WithCallbackMethod_ListLocations<WithCallbackMethod_ShareLocation<WithCallbackMethod_UnshareLocation<WithCallbackMethod_LocationAuth<WithCallbackMethod_CreateLocationSecret<WithCallbackMethod_DeleteLocationSecret<WithCallbackMethod_GetRobot<WithCallbackMethod_GetRobotMetadata<WithCallbackMethod_UpdateRobotMetadata<WithCallbackMethod_GetRoverRentalRobots<WithCallbackMethod_GetRobotParts<WithCallbackMethod_GetRobotPart<WithCallbackMethod_GetRobotPartByNameAndLocation<WithCallbackMethod_GetRobotPartLogs<WithCallbackMethod_TailRobotPartLogs<WithCallbackMethod_GetRobotPartHistory<WithCallbackMethod_UpdateRobotPart<WithCallbackMethod_NewRobotPart<WithCallbackMethod_DeleteRobotPart<WithCallbackMethod_GetRobotPartMetadata<WithCallbackMethod_UpdateRobotPartMetadata<WithCallbackMethod_GetRobotAPIKeys<WithCallbackMethod_MarkPartAsMain<WithCallbackMethod_MarkPartForRestart<WithCallbackMethod_CreateRobotPartSecret<WithCallbackMethod_DeleteRobotPartSecret<WithCallbackMethod_ListRobots<WithCallbackMethod_ListRobotsForLocations<WithCallbackMethod_ListRobotsForOrg<WithCallbackMethod_NewRobot<WithCallbackMethod_UpdateRobot<WithCallbackMethod_DeleteRobot<WithCallbackMethod_ListFragments<WithCallbackMethod_GetFragment<WithCallbackMethod_CreateFragment<WithCallbackMethod_UpdateFragment<WithCallbackMethod_DeleteFragment<WithCallbackMethod_ListNestedFragments<WithCallbackMethod_ListMachineFragments<WithCallbackMethod_ListMachineSummaries<WithCallbackMethod_GetFragmentHistory<WithCallbackMethod_GetFragmentUsage<WithCallbackMethod_SetFragmentTag<WithCallbackMethod_DeleteFragmentTag<WithCallbackMethod_AddRole<WithCallbackMethod_RemoveRole<WithCallbackMethod_ChangeRole<WithCallbackMethod_ListAuthorizations<WithCallbackMethod_CheckPermissions<WithCallbackMethod_GetRegistryItem<WithCallbackMethod_CreateRegistryItem<WithCallbackMethod_UpdateRegistryItem<WithCallbackMethod_ListRegistryItems<WithCallbackMethod_DeleteRegistryItem<WithCallbackMethod_RenameRegistryItem<WithCallbackMethod_TransferRegistryItem<WithCallbackMethod_CreateModule<WithCallbackMethod_UpdateModule<WithCallbackMethod_UploadModuleFile<WithCallbackMethod_GetModule<WithCallbackMethod_ListModules<WithCallbackMethod_CreateKey<WithCallbackMethod_DeleteKey<WithCallbackMethod_ListKeys<WithCallbackMethod_RenameKey<WithCallbackMethod_RotateKey<WithCallbackMethod_CreateKeyFromExistingKeyAuthorizations<WithCallbackMethod_GetAppContent<WithCallbackMethod_GetAppBranding<WithCallbackMethod_UploadDevicePushToken<WithCallbackMethod_DeleteDevicePushToken<WithCallbackMethod_GetDevicePushTokens<WithCallbackMethod_SetFirebaseConfig<WithCallbackMethod_GetFirebaseConfig<WithCallbackMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_GetUserIDByEmail<WithCallbackMethod_CreateOrganization<WithCallbackMethod_ListOrganizations<WithCallbackMethod_GetOrganizationsWithAccessToLocation<WithCallbackMethod_ListOrganizationsByUser<WithCallbackMethod_SearchOrganizations<WithCallbackMethod_GetOrganization<WithCallbackMethod_GetOrganizationNamespaceAvailability<WithCallbackMethod_UpdateOrganization<WithCallbackMethod_UpdateOrganizationNamespace<WithCallbackMethod_DeleteOrganization<WithCallbackMethod_GetOrganizationMetadata<WithCallbackMethod_UpdateOrganizationMetadata<WithCallbackMethod_ListOrganizationMembers<WithCallbackMethod_CreateOrganizationInvite<WithCallbackMethod_UpdateOrganizationInviteAuthorizations<WithCallbackMethod_DeleteOrganizationMember<WithCallbackMethod_DeleteOrganizationInvite<WithCallbackMethod_ResendOrganizationInvite<WithCallbackMethod_EnableBillingService<WithCallbackMethod_DisableBillingService<WithCallbackMethod_UpdateBillingService<WithCallbackMethod_GetBillingServiceConfig<WithCallbackMethod_OrganizationSetSupportEmail<WithCallbackMethod_OrganizationGetSupportEmail<WithCallbackMethod_OrganizationSetLogo<WithCallbackMethod_OrganizationGetLogo<WithCallbackMethod_EnableAuthService<WithCallbackMethod_DisableAuthService<WithCallbackMethod_CreateOAuthApp<WithCallbackMethod_ReadOAuthApp<WithCallbackMethod_UpdateOAuthApp<WithCallbackMethod_DeleteOAuthApp<WithCallbackMethod_ListOAuthApps<WithCallbackMethod_CreateOAuthAppUser<WithCallbackMethod_CreateLocation<WithCallbackMethod_GetLocation<WithCallbackMethod_UpdateLocation<WithCallbackMethod_DeleteLocation<WithCallbackMethod_GetLocationMetadata<WithCallbackMethod_UpdateLocationMetadata<WithCallbackMethod_ListLocations<WithCallbackMethod_ShareLocation<WithCallbackMethod_UnshareLocation<WithCallbackMethod_LocationAuth<WithCallbackMethod_CreateLocationSecret<WithCallbackMethod_DeleteLocationSecret<WithCallbackMethod_GetRobot<WithCallbackMethod_GetRobotMetadata<WithCallbackMethod_UpdateRobotMetadata<WithCallbackMethod_GetRoverRentalRobots<WithCallbackMethod_GetRobotParts<WithCallbackMethod_GetRobotPart<WithCallbackMethod_GetRobotPartByNameAndLocation<WithCallbackMethod_GetRobotPartLogs<WithCallbackMethod_TailRobotPartLogs<WithCallbackMethod_GetRobotPartHistory<WithCallbackMethod_UpdateRobotPart<WithCallbackMethod_NewRobotPart<WithCallbackMethod_DeleteRobotPart<WithCallbackMethod_GetRobotPartMetadata<WithCallbackMethod_UpdateRobotPartMetadata<WithCallbackMethod_GetRobotAPIKeys<WithCallbackMethod_MarkPartAsMain<WithCallbackMethod_MarkPartForRestart<WithCallbackMethod_CreateRobotPartSecret<WithCallbackMethod_DeleteRobotPartSecret<WithCallbackMethod_ListRobots<WithCallbackMethod_ListRobotsForLocations<WithCallbackMethod_ListRobotsForOrg<WithCallbackMethod_NewRobot<WithCallbackMethod_UpdateRobot<WithCallbackMethod_DeleteRobot<WithCallbackMethod_ListFragments<WithCallbackMethod_GetFragment<WithCallbackMethod_CreateFragment<WithCallbackMethod_UpdateFragment<WithCallbackMethod_DeleteFragment<WithCallbackMethod_ListNestedFragments<WithCallbackMethod_ListMachineFragments<WithCallbackMethod_ListMachineSummaries<WithCallbackMethod_GetFragmentHistory<WithCallbackMethod_GetFragmentUsage<WithCallbackMethod_SetFragmentTag<WithCallbackMethod_DeleteFragmentTag<WithCallbackMethod_AddRole<WithCallbackMethod_RemoveRole<WithCallbackMethod_ChangeRole<WithCallbackMethod_ListAuthorizations<WithCallbackMethod_CheckPermissions<WithCallbackMethod_GetRegistryItem<WithCallbackMethod_CreateRegistryItem<WithCallbackMethod_UpdateRegistryItem<WithCallbackMethod_ListRegistryItems<WithCallbackMethod_DeleteRegistryItem<WithCallbackMethod_RenameRegistryItem<WithCallbackMethod_TransferRegistryItem<WithCallbackMethod_CreateModule<WithCallbackMethod_UpdateModule<WithCallbackMethod_UploadModuleFile<WithCallbackMethod_GetModule<WithCallbackMethod_ListModules<WithCallbackMethod_CreateKey<WithCallbackMethod_DeleteKey<WithCallbackMethod_ListKeys<WithCallbackMethod_RenameKey<WithCallbackMethod_RotateKey<WithCallbackMethod_CreateKeyFromExistingKeyAuthorizations<WithCallbackMethod_GetAppContent<WithCallbackMethod_GetAppBranding<WithCallbackMethod_UploadDevicePushToken<WithCallbackMethod_DeleteDevicePushToken<WithCallbackMethod_GetDevicePushTokens<WithCallbackMethod_SetFirebaseConfig<WithCallbackMethod_GetFirebaseConfig<WithCallbackMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetUserIDByEmail : public BaseClass {
@@ -9092,12 +9163,29 @@ class AppService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_CreateOAuthAppUser : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CreateOAuthAppUser() {
+      ::grpc::Service::MarkMethodGeneric(34);
+    }
+    ~WithGenericMethod_CreateOAuthAppUser() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateOAuthAppUser(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateOAuthAppUserRequest* /*request*/, ::viam::app::v1::CreateOAuthAppUserResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_CreateLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateLocation() {
-      ::grpc::Service::MarkMethodGeneric(34);
+      ::grpc::Service::MarkMethodGeneric(35);
     }
     ~WithGenericMethod_CreateLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9114,7 +9202,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetLocation() {
-      ::grpc::Service::MarkMethodGeneric(35);
+      ::grpc::Service::MarkMethodGeneric(36);
     }
     ~WithGenericMethod_GetLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9131,7 +9219,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateLocation() {
-      ::grpc::Service::MarkMethodGeneric(36);
+      ::grpc::Service::MarkMethodGeneric(37);
     }
     ~WithGenericMethod_UpdateLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9148,7 +9236,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteLocation() {
-      ::grpc::Service::MarkMethodGeneric(37);
+      ::grpc::Service::MarkMethodGeneric(38);
     }
     ~WithGenericMethod_DeleteLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9165,7 +9253,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetLocationMetadata() {
-      ::grpc::Service::MarkMethodGeneric(38);
+      ::grpc::Service::MarkMethodGeneric(39);
     }
     ~WithGenericMethod_GetLocationMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9182,7 +9270,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateLocationMetadata() {
-      ::grpc::Service::MarkMethodGeneric(39);
+      ::grpc::Service::MarkMethodGeneric(40);
     }
     ~WithGenericMethod_UpdateLocationMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9199,7 +9287,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListLocations() {
-      ::grpc::Service::MarkMethodGeneric(40);
+      ::grpc::Service::MarkMethodGeneric(41);
     }
     ~WithGenericMethod_ListLocations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9216,7 +9304,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ShareLocation() {
-      ::grpc::Service::MarkMethodGeneric(41);
+      ::grpc::Service::MarkMethodGeneric(42);
     }
     ~WithGenericMethod_ShareLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9233,7 +9321,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UnshareLocation() {
-      ::grpc::Service::MarkMethodGeneric(42);
+      ::grpc::Service::MarkMethodGeneric(43);
     }
     ~WithGenericMethod_UnshareLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9250,7 +9338,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_LocationAuth() {
-      ::grpc::Service::MarkMethodGeneric(43);
+      ::grpc::Service::MarkMethodGeneric(44);
     }
     ~WithGenericMethod_LocationAuth() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9267,7 +9355,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateLocationSecret() {
-      ::grpc::Service::MarkMethodGeneric(44);
+      ::grpc::Service::MarkMethodGeneric(45);
     }
     ~WithGenericMethod_CreateLocationSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9284,7 +9372,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteLocationSecret() {
-      ::grpc::Service::MarkMethodGeneric(45);
+      ::grpc::Service::MarkMethodGeneric(46);
     }
     ~WithGenericMethod_DeleteLocationSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9301,7 +9389,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRobot() {
-      ::grpc::Service::MarkMethodGeneric(46);
+      ::grpc::Service::MarkMethodGeneric(47);
     }
     ~WithGenericMethod_GetRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9318,7 +9406,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRobotMetadata() {
-      ::grpc::Service::MarkMethodGeneric(47);
+      ::grpc::Service::MarkMethodGeneric(48);
     }
     ~WithGenericMethod_GetRobotMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9335,7 +9423,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateRobotMetadata() {
-      ::grpc::Service::MarkMethodGeneric(48);
+      ::grpc::Service::MarkMethodGeneric(49);
     }
     ~WithGenericMethod_UpdateRobotMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9352,7 +9440,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRoverRentalRobots() {
-      ::grpc::Service::MarkMethodGeneric(49);
+      ::grpc::Service::MarkMethodGeneric(50);
     }
     ~WithGenericMethod_GetRoverRentalRobots() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9369,7 +9457,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRobotParts() {
-      ::grpc::Service::MarkMethodGeneric(50);
+      ::grpc::Service::MarkMethodGeneric(51);
     }
     ~WithGenericMethod_GetRobotParts() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9386,7 +9474,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRobotPart() {
-      ::grpc::Service::MarkMethodGeneric(51);
+      ::grpc::Service::MarkMethodGeneric(52);
     }
     ~WithGenericMethod_GetRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9403,7 +9491,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRobotPartByNameAndLocation() {
-      ::grpc::Service::MarkMethodGeneric(52);
+      ::grpc::Service::MarkMethodGeneric(53);
     }
     ~WithGenericMethod_GetRobotPartByNameAndLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9420,7 +9508,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRobotPartLogs() {
-      ::grpc::Service::MarkMethodGeneric(53);
+      ::grpc::Service::MarkMethodGeneric(54);
     }
     ~WithGenericMethod_GetRobotPartLogs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9437,7 +9525,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TailRobotPartLogs() {
-      ::grpc::Service::MarkMethodGeneric(54);
+      ::grpc::Service::MarkMethodGeneric(55);
     }
     ~WithGenericMethod_TailRobotPartLogs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9454,7 +9542,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRobotPartHistory() {
-      ::grpc::Service::MarkMethodGeneric(55);
+      ::grpc::Service::MarkMethodGeneric(56);
     }
     ~WithGenericMethod_GetRobotPartHistory() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9471,7 +9559,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateRobotPart() {
-      ::grpc::Service::MarkMethodGeneric(56);
+      ::grpc::Service::MarkMethodGeneric(57);
     }
     ~WithGenericMethod_UpdateRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9488,7 +9576,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_NewRobotPart() {
-      ::grpc::Service::MarkMethodGeneric(57);
+      ::grpc::Service::MarkMethodGeneric(58);
     }
     ~WithGenericMethod_NewRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9505,7 +9593,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteRobotPart() {
-      ::grpc::Service::MarkMethodGeneric(58);
+      ::grpc::Service::MarkMethodGeneric(59);
     }
     ~WithGenericMethod_DeleteRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9522,7 +9610,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRobotPartMetadata() {
-      ::grpc::Service::MarkMethodGeneric(59);
+      ::grpc::Service::MarkMethodGeneric(60);
     }
     ~WithGenericMethod_GetRobotPartMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9539,7 +9627,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateRobotPartMetadata() {
-      ::grpc::Service::MarkMethodGeneric(60);
+      ::grpc::Service::MarkMethodGeneric(61);
     }
     ~WithGenericMethod_UpdateRobotPartMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9556,7 +9644,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRobotAPIKeys() {
-      ::grpc::Service::MarkMethodGeneric(61);
+      ::grpc::Service::MarkMethodGeneric(62);
     }
     ~WithGenericMethod_GetRobotAPIKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9573,7 +9661,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_MarkPartAsMain() {
-      ::grpc::Service::MarkMethodGeneric(62);
+      ::grpc::Service::MarkMethodGeneric(63);
     }
     ~WithGenericMethod_MarkPartAsMain() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9590,7 +9678,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_MarkPartForRestart() {
-      ::grpc::Service::MarkMethodGeneric(63);
+      ::grpc::Service::MarkMethodGeneric(64);
     }
     ~WithGenericMethod_MarkPartForRestart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9607,7 +9695,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateRobotPartSecret() {
-      ::grpc::Service::MarkMethodGeneric(64);
+      ::grpc::Service::MarkMethodGeneric(65);
     }
     ~WithGenericMethod_CreateRobotPartSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9624,7 +9712,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteRobotPartSecret() {
-      ::grpc::Service::MarkMethodGeneric(65);
+      ::grpc::Service::MarkMethodGeneric(66);
     }
     ~WithGenericMethod_DeleteRobotPartSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9641,7 +9729,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListRobots() {
-      ::grpc::Service::MarkMethodGeneric(66);
+      ::grpc::Service::MarkMethodGeneric(67);
     }
     ~WithGenericMethod_ListRobots() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9658,7 +9746,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListRobotsForLocations() {
-      ::grpc::Service::MarkMethodGeneric(67);
+      ::grpc::Service::MarkMethodGeneric(68);
     }
     ~WithGenericMethod_ListRobotsForLocations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9675,7 +9763,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListRobotsForOrg() {
-      ::grpc::Service::MarkMethodGeneric(68);
+      ::grpc::Service::MarkMethodGeneric(69);
     }
     ~WithGenericMethod_ListRobotsForOrg() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9692,7 +9780,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_NewRobot() {
-      ::grpc::Service::MarkMethodGeneric(69);
+      ::grpc::Service::MarkMethodGeneric(70);
     }
     ~WithGenericMethod_NewRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9709,7 +9797,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateRobot() {
-      ::grpc::Service::MarkMethodGeneric(70);
+      ::grpc::Service::MarkMethodGeneric(71);
     }
     ~WithGenericMethod_UpdateRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9726,7 +9814,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteRobot() {
-      ::grpc::Service::MarkMethodGeneric(71);
+      ::grpc::Service::MarkMethodGeneric(72);
     }
     ~WithGenericMethod_DeleteRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9743,7 +9831,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListFragments() {
-      ::grpc::Service::MarkMethodGeneric(72);
+      ::grpc::Service::MarkMethodGeneric(73);
     }
     ~WithGenericMethod_ListFragments() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9760,7 +9848,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetFragment() {
-      ::grpc::Service::MarkMethodGeneric(73);
+      ::grpc::Service::MarkMethodGeneric(74);
     }
     ~WithGenericMethod_GetFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9777,7 +9865,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateFragment() {
-      ::grpc::Service::MarkMethodGeneric(74);
+      ::grpc::Service::MarkMethodGeneric(75);
     }
     ~WithGenericMethod_CreateFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9794,7 +9882,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateFragment() {
-      ::grpc::Service::MarkMethodGeneric(75);
+      ::grpc::Service::MarkMethodGeneric(76);
     }
     ~WithGenericMethod_UpdateFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9811,7 +9899,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteFragment() {
-      ::grpc::Service::MarkMethodGeneric(76);
+      ::grpc::Service::MarkMethodGeneric(77);
     }
     ~WithGenericMethod_DeleteFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9828,7 +9916,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListNestedFragments() {
-      ::grpc::Service::MarkMethodGeneric(77);
+      ::grpc::Service::MarkMethodGeneric(78);
     }
     ~WithGenericMethod_ListNestedFragments() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9845,7 +9933,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListMachineFragments() {
-      ::grpc::Service::MarkMethodGeneric(78);
+      ::grpc::Service::MarkMethodGeneric(79);
     }
     ~WithGenericMethod_ListMachineFragments() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9862,7 +9950,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListMachineSummaries() {
-      ::grpc::Service::MarkMethodGeneric(79);
+      ::grpc::Service::MarkMethodGeneric(80);
     }
     ~WithGenericMethod_ListMachineSummaries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9879,7 +9967,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetFragmentHistory() {
-      ::grpc::Service::MarkMethodGeneric(80);
+      ::grpc::Service::MarkMethodGeneric(81);
     }
     ~WithGenericMethod_GetFragmentHistory() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9896,7 +9984,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetFragmentUsage() {
-      ::grpc::Service::MarkMethodGeneric(81);
+      ::grpc::Service::MarkMethodGeneric(82);
     }
     ~WithGenericMethod_GetFragmentUsage() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9913,7 +10001,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetFragmentTag() {
-      ::grpc::Service::MarkMethodGeneric(82);
+      ::grpc::Service::MarkMethodGeneric(83);
     }
     ~WithGenericMethod_SetFragmentTag() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9930,7 +10018,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteFragmentTag() {
-      ::grpc::Service::MarkMethodGeneric(83);
+      ::grpc::Service::MarkMethodGeneric(84);
     }
     ~WithGenericMethod_DeleteFragmentTag() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9947,7 +10035,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_AddRole() {
-      ::grpc::Service::MarkMethodGeneric(84);
+      ::grpc::Service::MarkMethodGeneric(85);
     }
     ~WithGenericMethod_AddRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9964,7 +10052,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RemoveRole() {
-      ::grpc::Service::MarkMethodGeneric(85);
+      ::grpc::Service::MarkMethodGeneric(86);
     }
     ~WithGenericMethod_RemoveRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9981,7 +10069,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ChangeRole() {
-      ::grpc::Service::MarkMethodGeneric(86);
+      ::grpc::Service::MarkMethodGeneric(87);
     }
     ~WithGenericMethod_ChangeRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -9998,7 +10086,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListAuthorizations() {
-      ::grpc::Service::MarkMethodGeneric(87);
+      ::grpc::Service::MarkMethodGeneric(88);
     }
     ~WithGenericMethod_ListAuthorizations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10015,7 +10103,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CheckPermissions() {
-      ::grpc::Service::MarkMethodGeneric(88);
+      ::grpc::Service::MarkMethodGeneric(89);
     }
     ~WithGenericMethod_CheckPermissions() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10032,7 +10120,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRegistryItem() {
-      ::grpc::Service::MarkMethodGeneric(89);
+      ::grpc::Service::MarkMethodGeneric(90);
     }
     ~WithGenericMethod_GetRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10049,7 +10137,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateRegistryItem() {
-      ::grpc::Service::MarkMethodGeneric(90);
+      ::grpc::Service::MarkMethodGeneric(91);
     }
     ~WithGenericMethod_CreateRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10066,7 +10154,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateRegistryItem() {
-      ::grpc::Service::MarkMethodGeneric(91);
+      ::grpc::Service::MarkMethodGeneric(92);
     }
     ~WithGenericMethod_UpdateRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10083,7 +10171,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListRegistryItems() {
-      ::grpc::Service::MarkMethodGeneric(92);
+      ::grpc::Service::MarkMethodGeneric(93);
     }
     ~WithGenericMethod_ListRegistryItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10100,7 +10188,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteRegistryItem() {
-      ::grpc::Service::MarkMethodGeneric(93);
+      ::grpc::Service::MarkMethodGeneric(94);
     }
     ~WithGenericMethod_DeleteRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10117,7 +10205,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RenameRegistryItem() {
-      ::grpc::Service::MarkMethodGeneric(94);
+      ::grpc::Service::MarkMethodGeneric(95);
     }
     ~WithGenericMethod_RenameRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10134,7 +10222,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TransferRegistryItem() {
-      ::grpc::Service::MarkMethodGeneric(95);
+      ::grpc::Service::MarkMethodGeneric(96);
     }
     ~WithGenericMethod_TransferRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10151,7 +10239,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateModule() {
-      ::grpc::Service::MarkMethodGeneric(96);
+      ::grpc::Service::MarkMethodGeneric(97);
     }
     ~WithGenericMethod_CreateModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10168,7 +10256,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateModule() {
-      ::grpc::Service::MarkMethodGeneric(97);
+      ::grpc::Service::MarkMethodGeneric(98);
     }
     ~WithGenericMethod_UpdateModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10185,7 +10273,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UploadModuleFile() {
-      ::grpc::Service::MarkMethodGeneric(98);
+      ::grpc::Service::MarkMethodGeneric(99);
     }
     ~WithGenericMethod_UploadModuleFile() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10202,7 +10290,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetModule() {
-      ::grpc::Service::MarkMethodGeneric(99);
+      ::grpc::Service::MarkMethodGeneric(100);
     }
     ~WithGenericMethod_GetModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10219,7 +10307,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListModules() {
-      ::grpc::Service::MarkMethodGeneric(100);
+      ::grpc::Service::MarkMethodGeneric(101);
     }
     ~WithGenericMethod_ListModules() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10236,7 +10324,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateKey() {
-      ::grpc::Service::MarkMethodGeneric(101);
+      ::grpc::Service::MarkMethodGeneric(102);
     }
     ~WithGenericMethod_CreateKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10253,7 +10341,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodGeneric(102);
+      ::grpc::Service::MarkMethodGeneric(103);
     }
     ~WithGenericMethod_DeleteKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10270,7 +10358,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListKeys() {
-      ::grpc::Service::MarkMethodGeneric(103);
+      ::grpc::Service::MarkMethodGeneric(104);
     }
     ~WithGenericMethod_ListKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10287,7 +10375,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RenameKey() {
-      ::grpc::Service::MarkMethodGeneric(104);
+      ::grpc::Service::MarkMethodGeneric(105);
     }
     ~WithGenericMethod_RenameKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10304,7 +10392,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_RotateKey() {
-      ::grpc::Service::MarkMethodGeneric(105);
+      ::grpc::Service::MarkMethodGeneric(106);
     }
     ~WithGenericMethod_RotateKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10321,7 +10409,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateKeyFromExistingKeyAuthorizations() {
-      ::grpc::Service::MarkMethodGeneric(106);
+      ::grpc::Service::MarkMethodGeneric(107);
     }
     ~WithGenericMethod_CreateKeyFromExistingKeyAuthorizations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10338,7 +10426,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetAppContent() {
-      ::grpc::Service::MarkMethodGeneric(107);
+      ::grpc::Service::MarkMethodGeneric(108);
     }
     ~WithGenericMethod_GetAppContent() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10355,7 +10443,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetAppBranding() {
-      ::grpc::Service::MarkMethodGeneric(108);
+      ::grpc::Service::MarkMethodGeneric(109);
     }
     ~WithGenericMethod_GetAppBranding() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10372,7 +10460,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UploadDevicePushToken() {
-      ::grpc::Service::MarkMethodGeneric(109);
+      ::grpc::Service::MarkMethodGeneric(110);
     }
     ~WithGenericMethod_UploadDevicePushToken() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10389,7 +10477,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteDevicePushToken() {
-      ::grpc::Service::MarkMethodGeneric(110);
+      ::grpc::Service::MarkMethodGeneric(111);
     }
     ~WithGenericMethod_DeleteDevicePushToken() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10406,7 +10494,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetDevicePushTokens() {
-      ::grpc::Service::MarkMethodGeneric(111);
+      ::grpc::Service::MarkMethodGeneric(112);
     }
     ~WithGenericMethod_GetDevicePushTokens() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10423,7 +10511,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_SetFirebaseConfig() {
-      ::grpc::Service::MarkMethodGeneric(112);
+      ::grpc::Service::MarkMethodGeneric(113);
     }
     ~WithGenericMethod_SetFirebaseConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10440,7 +10528,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetFirebaseConfig() {
-      ::grpc::Service::MarkMethodGeneric(113);
+      ::grpc::Service::MarkMethodGeneric(114);
     }
     ~WithGenericMethod_GetFirebaseConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -10457,7 +10545,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteFirebaseConfig() {
-      ::grpc::Service::MarkMethodGeneric(114);
+      ::grpc::Service::MarkMethodGeneric(115);
     }
     ~WithGenericMethod_DeleteFirebaseConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11149,12 +11237,32 @@ class AppService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_CreateOAuthAppUser : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CreateOAuthAppUser() {
+      ::grpc::Service::MarkMethodRaw(34);
+    }
+    ~WithRawMethod_CreateOAuthAppUser() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateOAuthAppUser(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateOAuthAppUserRequest* /*request*/, ::viam::app::v1::CreateOAuthAppUserResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateOAuthAppUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_CreateLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateLocation() {
-      ::grpc::Service::MarkMethodRaw(34);
+      ::grpc::Service::MarkMethodRaw(35);
     }
     ~WithRawMethod_CreateLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11165,7 +11273,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11174,7 +11282,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetLocation() {
-      ::grpc::Service::MarkMethodRaw(35);
+      ::grpc::Service::MarkMethodRaw(36);
     }
     ~WithRawMethod_GetLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11185,7 +11293,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11194,7 +11302,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateLocation() {
-      ::grpc::Service::MarkMethodRaw(36);
+      ::grpc::Service::MarkMethodRaw(37);
     }
     ~WithRawMethod_UpdateLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11205,7 +11313,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11214,7 +11322,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteLocation() {
-      ::grpc::Service::MarkMethodRaw(37);
+      ::grpc::Service::MarkMethodRaw(38);
     }
     ~WithRawMethod_DeleteLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11225,7 +11333,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11234,7 +11342,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetLocationMetadata() {
-      ::grpc::Service::MarkMethodRaw(38);
+      ::grpc::Service::MarkMethodRaw(39);
     }
     ~WithRawMethod_GetLocationMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11245,7 +11353,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetLocationMetadata(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11254,7 +11362,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateLocationMetadata() {
-      ::grpc::Service::MarkMethodRaw(39);
+      ::grpc::Service::MarkMethodRaw(40);
     }
     ~WithRawMethod_UpdateLocationMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11265,7 +11373,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateLocationMetadata(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11274,7 +11382,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListLocations() {
-      ::grpc::Service::MarkMethodRaw(40);
+      ::grpc::Service::MarkMethodRaw(41);
     }
     ~WithRawMethod_ListLocations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11285,7 +11393,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListLocations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(40, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11294,7 +11402,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ShareLocation() {
-      ::grpc::Service::MarkMethodRaw(41);
+      ::grpc::Service::MarkMethodRaw(42);
     }
     ~WithRawMethod_ShareLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11305,7 +11413,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestShareLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(41, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11314,7 +11422,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UnshareLocation() {
-      ::grpc::Service::MarkMethodRaw(42);
+      ::grpc::Service::MarkMethodRaw(43);
     }
     ~WithRawMethod_UnshareLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11325,7 +11433,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUnshareLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(42, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11334,7 +11442,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_LocationAuth() {
-      ::grpc::Service::MarkMethodRaw(43);
+      ::grpc::Service::MarkMethodRaw(44);
     }
     ~WithRawMethod_LocationAuth() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11345,7 +11453,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestLocationAuth(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(43, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11354,7 +11462,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateLocationSecret() {
-      ::grpc::Service::MarkMethodRaw(44);
+      ::grpc::Service::MarkMethodRaw(45);
     }
     ~WithRawMethod_CreateLocationSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11365,7 +11473,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateLocationSecret(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(44, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11374,7 +11482,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteLocationSecret() {
-      ::grpc::Service::MarkMethodRaw(45);
+      ::grpc::Service::MarkMethodRaw(46);
     }
     ~WithRawMethod_DeleteLocationSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11385,7 +11493,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteLocationSecret(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(45, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11394,7 +11502,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRobot() {
-      ::grpc::Service::MarkMethodRaw(46);
+      ::grpc::Service::MarkMethodRaw(47);
     }
     ~WithRawMethod_GetRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11405,7 +11513,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobot(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(46, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11414,7 +11522,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRobotMetadata() {
-      ::grpc::Service::MarkMethodRaw(47);
+      ::grpc::Service::MarkMethodRaw(48);
     }
     ~WithRawMethod_GetRobotMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11425,7 +11533,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotMetadata(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(47, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11434,7 +11542,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateRobotMetadata() {
-      ::grpc::Service::MarkMethodRaw(48);
+      ::grpc::Service::MarkMethodRaw(49);
     }
     ~WithRawMethod_UpdateRobotMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11445,7 +11553,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRobotMetadata(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(48, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11454,7 +11562,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRoverRentalRobots() {
-      ::grpc::Service::MarkMethodRaw(49);
+      ::grpc::Service::MarkMethodRaw(50);
     }
     ~WithRawMethod_GetRoverRentalRobots() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11465,7 +11573,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRoverRentalRobots(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(49, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11474,7 +11582,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRobotParts() {
-      ::grpc::Service::MarkMethodRaw(50);
+      ::grpc::Service::MarkMethodRaw(51);
     }
     ~WithRawMethod_GetRobotParts() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11485,7 +11593,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotParts(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(50, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11494,7 +11602,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRobotPart() {
-      ::grpc::Service::MarkMethodRaw(51);
+      ::grpc::Service::MarkMethodRaw(52);
     }
     ~WithRawMethod_GetRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11505,7 +11613,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPart(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(51, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11514,7 +11622,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRobotPartByNameAndLocation() {
-      ::grpc::Service::MarkMethodRaw(52);
+      ::grpc::Service::MarkMethodRaw(53);
     }
     ~WithRawMethod_GetRobotPartByNameAndLocation() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11525,7 +11633,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPartByNameAndLocation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(52, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11534,7 +11642,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRobotPartLogs() {
-      ::grpc::Service::MarkMethodRaw(53);
+      ::grpc::Service::MarkMethodRaw(54);
     }
     ~WithRawMethod_GetRobotPartLogs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11545,7 +11653,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPartLogs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(53, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(54, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11554,7 +11662,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TailRobotPartLogs() {
-      ::grpc::Service::MarkMethodRaw(54);
+      ::grpc::Service::MarkMethodRaw(55);
     }
     ~WithRawMethod_TailRobotPartLogs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11565,7 +11673,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTailRobotPartLogs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(54, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(55, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11574,7 +11682,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRobotPartHistory() {
-      ::grpc::Service::MarkMethodRaw(55);
+      ::grpc::Service::MarkMethodRaw(56);
     }
     ~WithRawMethod_GetRobotPartHistory() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11585,7 +11693,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPartHistory(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(55, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(56, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11594,7 +11702,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateRobotPart() {
-      ::grpc::Service::MarkMethodRaw(56);
+      ::grpc::Service::MarkMethodRaw(57);
     }
     ~WithRawMethod_UpdateRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11605,7 +11713,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRobotPart(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(56, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(57, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11614,7 +11722,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_NewRobotPart() {
-      ::grpc::Service::MarkMethodRaw(57);
+      ::grpc::Service::MarkMethodRaw(58);
     }
     ~WithRawMethod_NewRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11625,7 +11733,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestNewRobotPart(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(57, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(58, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11634,7 +11742,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteRobotPart() {
-      ::grpc::Service::MarkMethodRaw(58);
+      ::grpc::Service::MarkMethodRaw(59);
     }
     ~WithRawMethod_DeleteRobotPart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11645,7 +11753,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRobotPart(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(58, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(59, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11654,7 +11762,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRobotPartMetadata() {
-      ::grpc::Service::MarkMethodRaw(59);
+      ::grpc::Service::MarkMethodRaw(60);
     }
     ~WithRawMethod_GetRobotPartMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11665,7 +11773,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotPartMetadata(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(59, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(60, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11674,7 +11782,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateRobotPartMetadata() {
-      ::grpc::Service::MarkMethodRaw(60);
+      ::grpc::Service::MarkMethodRaw(61);
     }
     ~WithRawMethod_UpdateRobotPartMetadata() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11685,7 +11793,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRobotPartMetadata(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(60, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(61, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11694,7 +11802,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRobotAPIKeys() {
-      ::grpc::Service::MarkMethodRaw(61);
+      ::grpc::Service::MarkMethodRaw(62);
     }
     ~WithRawMethod_GetRobotAPIKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11705,7 +11813,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRobotAPIKeys(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(61, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(62, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11714,7 +11822,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_MarkPartAsMain() {
-      ::grpc::Service::MarkMethodRaw(62);
+      ::grpc::Service::MarkMethodRaw(63);
     }
     ~WithRawMethod_MarkPartAsMain() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11725,7 +11833,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMarkPartAsMain(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(62, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(63, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11734,7 +11842,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_MarkPartForRestart() {
-      ::grpc::Service::MarkMethodRaw(63);
+      ::grpc::Service::MarkMethodRaw(64);
     }
     ~WithRawMethod_MarkPartForRestart() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11745,7 +11853,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMarkPartForRestart(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(63, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(64, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11754,7 +11862,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateRobotPartSecret() {
-      ::grpc::Service::MarkMethodRaw(64);
+      ::grpc::Service::MarkMethodRaw(65);
     }
     ~WithRawMethod_CreateRobotPartSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11765,7 +11873,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateRobotPartSecret(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(64, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(65, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11774,7 +11882,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteRobotPartSecret() {
-      ::grpc::Service::MarkMethodRaw(65);
+      ::grpc::Service::MarkMethodRaw(66);
     }
     ~WithRawMethod_DeleteRobotPartSecret() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11785,7 +11893,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRobotPartSecret(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(65, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(66, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11794,7 +11902,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListRobots() {
-      ::grpc::Service::MarkMethodRaw(66);
+      ::grpc::Service::MarkMethodRaw(67);
     }
     ~WithRawMethod_ListRobots() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11805,7 +11913,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListRobots(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(66, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(67, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11814,7 +11922,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListRobotsForLocations() {
-      ::grpc::Service::MarkMethodRaw(67);
+      ::grpc::Service::MarkMethodRaw(68);
     }
     ~WithRawMethod_ListRobotsForLocations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11825,7 +11933,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListRobotsForLocations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(67, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(68, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11834,7 +11942,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListRobotsForOrg() {
-      ::grpc::Service::MarkMethodRaw(68);
+      ::grpc::Service::MarkMethodRaw(69);
     }
     ~WithRawMethod_ListRobotsForOrg() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11845,7 +11953,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListRobotsForOrg(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(68, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(69, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11854,7 +11962,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_NewRobot() {
-      ::grpc::Service::MarkMethodRaw(69);
+      ::grpc::Service::MarkMethodRaw(70);
     }
     ~WithRawMethod_NewRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11865,7 +11973,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestNewRobot(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(69, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(70, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11874,7 +11982,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateRobot() {
-      ::grpc::Service::MarkMethodRaw(70);
+      ::grpc::Service::MarkMethodRaw(71);
     }
     ~WithRawMethod_UpdateRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11885,7 +11993,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRobot(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(70, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(71, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11894,7 +12002,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteRobot() {
-      ::grpc::Service::MarkMethodRaw(71);
+      ::grpc::Service::MarkMethodRaw(72);
     }
     ~WithRawMethod_DeleteRobot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11905,7 +12013,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRobot(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(71, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(72, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11914,7 +12022,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListFragments() {
-      ::grpc::Service::MarkMethodRaw(72);
+      ::grpc::Service::MarkMethodRaw(73);
     }
     ~WithRawMethod_ListFragments() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11925,7 +12033,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListFragments(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(72, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(73, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11934,7 +12042,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetFragment() {
-      ::grpc::Service::MarkMethodRaw(73);
+      ::grpc::Service::MarkMethodRaw(74);
     }
     ~WithRawMethod_GetFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11945,7 +12053,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFragment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(73, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(74, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11954,7 +12062,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateFragment() {
-      ::grpc::Service::MarkMethodRaw(74);
+      ::grpc::Service::MarkMethodRaw(75);
     }
     ~WithRawMethod_CreateFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11965,7 +12073,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateFragment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(74, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(75, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11974,7 +12082,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateFragment() {
-      ::grpc::Service::MarkMethodRaw(75);
+      ::grpc::Service::MarkMethodRaw(76);
     }
     ~WithRawMethod_UpdateFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -11985,7 +12093,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateFragment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(75, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(76, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -11994,7 +12102,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteFragment() {
-      ::grpc::Service::MarkMethodRaw(76);
+      ::grpc::Service::MarkMethodRaw(77);
     }
     ~WithRawMethod_DeleteFragment() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12005,7 +12113,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteFragment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(76, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(77, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12014,7 +12122,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListNestedFragments() {
-      ::grpc::Service::MarkMethodRaw(77);
+      ::grpc::Service::MarkMethodRaw(78);
     }
     ~WithRawMethod_ListNestedFragments() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12025,7 +12133,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListNestedFragments(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(77, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(78, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12034,7 +12142,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListMachineFragments() {
-      ::grpc::Service::MarkMethodRaw(78);
+      ::grpc::Service::MarkMethodRaw(79);
     }
     ~WithRawMethod_ListMachineFragments() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12045,7 +12153,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListMachineFragments(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(78, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(79, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12054,7 +12162,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListMachineSummaries() {
-      ::grpc::Service::MarkMethodRaw(79);
+      ::grpc::Service::MarkMethodRaw(80);
     }
     ~WithRawMethod_ListMachineSummaries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12065,7 +12173,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListMachineSummaries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(79, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(80, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12074,7 +12182,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetFragmentHistory() {
-      ::grpc::Service::MarkMethodRaw(80);
+      ::grpc::Service::MarkMethodRaw(81);
     }
     ~WithRawMethod_GetFragmentHistory() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12085,7 +12193,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFragmentHistory(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(80, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(81, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12094,7 +12202,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetFragmentUsage() {
-      ::grpc::Service::MarkMethodRaw(81);
+      ::grpc::Service::MarkMethodRaw(82);
     }
     ~WithRawMethod_GetFragmentUsage() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12105,7 +12213,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFragmentUsage(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(81, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12114,7 +12222,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetFragmentTag() {
-      ::grpc::Service::MarkMethodRaw(82);
+      ::grpc::Service::MarkMethodRaw(83);
     }
     ~WithRawMethod_SetFragmentTag() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12125,7 +12233,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetFragmentTag(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(82, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12134,7 +12242,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteFragmentTag() {
-      ::grpc::Service::MarkMethodRaw(83);
+      ::grpc::Service::MarkMethodRaw(84);
     }
     ~WithRawMethod_DeleteFragmentTag() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12145,7 +12253,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteFragmentTag(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(83, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12154,7 +12262,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_AddRole() {
-      ::grpc::Service::MarkMethodRaw(84);
+      ::grpc::Service::MarkMethodRaw(85);
     }
     ~WithRawMethod_AddRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12165,7 +12273,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAddRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(84, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(85, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12174,7 +12282,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RemoveRole() {
-      ::grpc::Service::MarkMethodRaw(85);
+      ::grpc::Service::MarkMethodRaw(86);
     }
     ~WithRawMethod_RemoveRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12185,7 +12293,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRemoveRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(85, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(86, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12194,7 +12302,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ChangeRole() {
-      ::grpc::Service::MarkMethodRaw(86);
+      ::grpc::Service::MarkMethodRaw(87);
     }
     ~WithRawMethod_ChangeRole() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12205,7 +12313,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestChangeRole(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(86, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(87, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12214,7 +12322,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListAuthorizations() {
-      ::grpc::Service::MarkMethodRaw(87);
+      ::grpc::Service::MarkMethodRaw(88);
     }
     ~WithRawMethod_ListAuthorizations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12225,7 +12333,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListAuthorizations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(87, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(88, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12234,7 +12342,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CheckPermissions() {
-      ::grpc::Service::MarkMethodRaw(88);
+      ::grpc::Service::MarkMethodRaw(89);
     }
     ~WithRawMethod_CheckPermissions() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12245,7 +12353,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCheckPermissions(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(88, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(89, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12254,7 +12362,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRegistryItem() {
-      ::grpc::Service::MarkMethodRaw(89);
+      ::grpc::Service::MarkMethodRaw(90);
     }
     ~WithRawMethod_GetRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12265,7 +12373,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRegistryItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(89, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(90, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12274,7 +12382,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateRegistryItem() {
-      ::grpc::Service::MarkMethodRaw(90);
+      ::grpc::Service::MarkMethodRaw(91);
     }
     ~WithRawMethod_CreateRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12285,7 +12393,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateRegistryItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(90, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12294,7 +12402,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateRegistryItem() {
-      ::grpc::Service::MarkMethodRaw(91);
+      ::grpc::Service::MarkMethodRaw(92);
     }
     ~WithRawMethod_UpdateRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12305,7 +12413,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateRegistryItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(91, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12314,7 +12422,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListRegistryItems() {
-      ::grpc::Service::MarkMethodRaw(92);
+      ::grpc::Service::MarkMethodRaw(93);
     }
     ~WithRawMethod_ListRegistryItems() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12325,7 +12433,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListRegistryItems(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(92, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12334,7 +12442,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteRegistryItem() {
-      ::grpc::Service::MarkMethodRaw(93);
+      ::grpc::Service::MarkMethodRaw(94);
     }
     ~WithRawMethod_DeleteRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12345,7 +12453,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteRegistryItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(93, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12354,7 +12462,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RenameRegistryItem() {
-      ::grpc::Service::MarkMethodRaw(94);
+      ::grpc::Service::MarkMethodRaw(95);
     }
     ~WithRawMethod_RenameRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12365,7 +12473,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRenameRegistryItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(94, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12374,7 +12482,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TransferRegistryItem() {
-      ::grpc::Service::MarkMethodRaw(95);
+      ::grpc::Service::MarkMethodRaw(96);
     }
     ~WithRawMethod_TransferRegistryItem() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12385,7 +12493,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTransferRegistryItem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(95, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(96, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12394,7 +12502,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateModule() {
-      ::grpc::Service::MarkMethodRaw(96);
+      ::grpc::Service::MarkMethodRaw(97);
     }
     ~WithRawMethod_CreateModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12405,7 +12513,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateModule(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(96, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(97, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12414,7 +12522,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateModule() {
-      ::grpc::Service::MarkMethodRaw(97);
+      ::grpc::Service::MarkMethodRaw(98);
     }
     ~WithRawMethod_UpdateModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12425,7 +12533,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateModule(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(97, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(98, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12434,7 +12542,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UploadModuleFile() {
-      ::grpc::Service::MarkMethodRaw(98);
+      ::grpc::Service::MarkMethodRaw(99);
     }
     ~WithRawMethod_UploadModuleFile() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12445,7 +12553,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUploadModuleFile(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncClientStreaming(98, context, reader, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncClientStreaming(99, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12454,7 +12562,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetModule() {
-      ::grpc::Service::MarkMethodRaw(99);
+      ::grpc::Service::MarkMethodRaw(100);
     }
     ~WithRawMethod_GetModule() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12465,7 +12573,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetModule(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(99, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(100, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12474,7 +12582,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListModules() {
-      ::grpc::Service::MarkMethodRaw(100);
+      ::grpc::Service::MarkMethodRaw(101);
     }
     ~WithRawMethod_ListModules() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12485,7 +12593,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListModules(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(100, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(101, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12494,7 +12602,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateKey() {
-      ::grpc::Service::MarkMethodRaw(101);
+      ::grpc::Service::MarkMethodRaw(102);
     }
     ~WithRawMethod_CreateKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12505,7 +12613,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateKey(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(101, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(102, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12514,7 +12622,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodRaw(102);
+      ::grpc::Service::MarkMethodRaw(103);
     }
     ~WithRawMethod_DeleteKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12525,7 +12633,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteKey(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(102, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(103, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12534,7 +12642,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListKeys() {
-      ::grpc::Service::MarkMethodRaw(103);
+      ::grpc::Service::MarkMethodRaw(104);
     }
     ~WithRawMethod_ListKeys() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12545,7 +12653,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListKeys(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(103, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(104, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12554,7 +12662,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RenameKey() {
-      ::grpc::Service::MarkMethodRaw(104);
+      ::grpc::Service::MarkMethodRaw(105);
     }
     ~WithRawMethod_RenameKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12565,7 +12673,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRenameKey(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(104, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(105, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12574,7 +12682,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_RotateKey() {
-      ::grpc::Service::MarkMethodRaw(105);
+      ::grpc::Service::MarkMethodRaw(106);
     }
     ~WithRawMethod_RotateKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12585,7 +12693,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRotateKey(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(105, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(106, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12594,7 +12702,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateKeyFromExistingKeyAuthorizations() {
-      ::grpc::Service::MarkMethodRaw(106);
+      ::grpc::Service::MarkMethodRaw(107);
     }
     ~WithRawMethod_CreateKeyFromExistingKeyAuthorizations() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12605,7 +12713,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateKeyFromExistingKeyAuthorizations(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(106, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(107, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12614,7 +12722,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetAppContent() {
-      ::grpc::Service::MarkMethodRaw(107);
+      ::grpc::Service::MarkMethodRaw(108);
     }
     ~WithRawMethod_GetAppContent() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12625,7 +12733,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetAppContent(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(107, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(108, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12634,7 +12742,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetAppBranding() {
-      ::grpc::Service::MarkMethodRaw(108);
+      ::grpc::Service::MarkMethodRaw(109);
     }
     ~WithRawMethod_GetAppBranding() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12645,7 +12753,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetAppBranding(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(108, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(109, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12654,7 +12762,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UploadDevicePushToken() {
-      ::grpc::Service::MarkMethodRaw(109);
+      ::grpc::Service::MarkMethodRaw(110);
     }
     ~WithRawMethod_UploadDevicePushToken() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12665,7 +12773,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUploadDevicePushToken(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(109, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(110, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12674,7 +12782,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteDevicePushToken() {
-      ::grpc::Service::MarkMethodRaw(110);
+      ::grpc::Service::MarkMethodRaw(111);
     }
     ~WithRawMethod_DeleteDevicePushToken() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12685,7 +12793,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteDevicePushToken(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(110, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(111, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12694,7 +12802,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetDevicePushTokens() {
-      ::grpc::Service::MarkMethodRaw(111);
+      ::grpc::Service::MarkMethodRaw(112);
     }
     ~WithRawMethod_GetDevicePushTokens() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12705,7 +12813,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetDevicePushTokens(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(111, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(112, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12714,7 +12822,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_SetFirebaseConfig() {
-      ::grpc::Service::MarkMethodRaw(112);
+      ::grpc::Service::MarkMethodRaw(113);
     }
     ~WithRawMethod_SetFirebaseConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12725,7 +12833,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSetFirebaseConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(112, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(113, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12734,7 +12842,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetFirebaseConfig() {
-      ::grpc::Service::MarkMethodRaw(113);
+      ::grpc::Service::MarkMethodRaw(114);
     }
     ~WithRawMethod_GetFirebaseConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12745,7 +12853,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetFirebaseConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(113, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(114, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -12754,7 +12862,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteFirebaseConfig() {
-      ::grpc::Service::MarkMethodRaw(114);
+      ::grpc::Service::MarkMethodRaw(115);
     }
     ~WithRawMethod_DeleteFirebaseConfig() override {
       BaseClassMustBeDerivedFromService(this);
@@ -12765,7 +12873,7 @@ class AppService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteFirebaseConfig(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(114, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(115, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -13517,12 +13625,34 @@ class AppService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_CreateOAuthAppUser : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CreateOAuthAppUser() {
+      ::grpc::Service::MarkMethodRawCallback(34,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateOAuthAppUser(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_CreateOAuthAppUser() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateOAuthAppUser(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateOAuthAppUserRequest* /*request*/, ::viam::app::v1::CreateOAuthAppUserResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CreateOAuthAppUser(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_CreateLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateLocation() {
-      ::grpc::Service::MarkMethodRawCallback(34,
+      ::grpc::Service::MarkMethodRawCallback(35,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateLocation(context, request, response); }));
@@ -13544,7 +13674,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetLocation() {
-      ::grpc::Service::MarkMethodRawCallback(35,
+      ::grpc::Service::MarkMethodRawCallback(36,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLocation(context, request, response); }));
@@ -13566,7 +13696,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateLocation() {
-      ::grpc::Service::MarkMethodRawCallback(36,
+      ::grpc::Service::MarkMethodRawCallback(37,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateLocation(context, request, response); }));
@@ -13588,7 +13718,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteLocation() {
-      ::grpc::Service::MarkMethodRawCallback(37,
+      ::grpc::Service::MarkMethodRawCallback(38,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteLocation(context, request, response); }));
@@ -13610,7 +13740,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetLocationMetadata() {
-      ::grpc::Service::MarkMethodRawCallback(38,
+      ::grpc::Service::MarkMethodRawCallback(39,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetLocationMetadata(context, request, response); }));
@@ -13632,7 +13762,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateLocationMetadata() {
-      ::grpc::Service::MarkMethodRawCallback(39,
+      ::grpc::Service::MarkMethodRawCallback(40,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateLocationMetadata(context, request, response); }));
@@ -13654,7 +13784,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListLocations() {
-      ::grpc::Service::MarkMethodRawCallback(40,
+      ::grpc::Service::MarkMethodRawCallback(41,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListLocations(context, request, response); }));
@@ -13676,7 +13806,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ShareLocation() {
-      ::grpc::Service::MarkMethodRawCallback(41,
+      ::grpc::Service::MarkMethodRawCallback(42,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ShareLocation(context, request, response); }));
@@ -13698,7 +13828,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UnshareLocation() {
-      ::grpc::Service::MarkMethodRawCallback(42,
+      ::grpc::Service::MarkMethodRawCallback(43,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UnshareLocation(context, request, response); }));
@@ -13720,7 +13850,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_LocationAuth() {
-      ::grpc::Service::MarkMethodRawCallback(43,
+      ::grpc::Service::MarkMethodRawCallback(44,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->LocationAuth(context, request, response); }));
@@ -13742,7 +13872,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateLocationSecret() {
-      ::grpc::Service::MarkMethodRawCallback(44,
+      ::grpc::Service::MarkMethodRawCallback(45,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateLocationSecret(context, request, response); }));
@@ -13764,7 +13894,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteLocationSecret() {
-      ::grpc::Service::MarkMethodRawCallback(45,
+      ::grpc::Service::MarkMethodRawCallback(46,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteLocationSecret(context, request, response); }));
@@ -13786,7 +13916,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRobot() {
-      ::grpc::Service::MarkMethodRawCallback(46,
+      ::grpc::Service::MarkMethodRawCallback(47,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRobot(context, request, response); }));
@@ -13808,7 +13938,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRobotMetadata() {
-      ::grpc::Service::MarkMethodRawCallback(47,
+      ::grpc::Service::MarkMethodRawCallback(48,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRobotMetadata(context, request, response); }));
@@ -13830,7 +13960,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateRobotMetadata() {
-      ::grpc::Service::MarkMethodRawCallback(48,
+      ::grpc::Service::MarkMethodRawCallback(49,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateRobotMetadata(context, request, response); }));
@@ -13852,7 +13982,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRoverRentalRobots() {
-      ::grpc::Service::MarkMethodRawCallback(49,
+      ::grpc::Service::MarkMethodRawCallback(50,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRoverRentalRobots(context, request, response); }));
@@ -13874,7 +14004,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRobotParts() {
-      ::grpc::Service::MarkMethodRawCallback(50,
+      ::grpc::Service::MarkMethodRawCallback(51,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRobotParts(context, request, response); }));
@@ -13896,7 +14026,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRobotPart() {
-      ::grpc::Service::MarkMethodRawCallback(51,
+      ::grpc::Service::MarkMethodRawCallback(52,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRobotPart(context, request, response); }));
@@ -13918,7 +14048,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRobotPartByNameAndLocation() {
-      ::grpc::Service::MarkMethodRawCallback(52,
+      ::grpc::Service::MarkMethodRawCallback(53,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRobotPartByNameAndLocation(context, request, response); }));
@@ -13940,7 +14070,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRobotPartLogs() {
-      ::grpc::Service::MarkMethodRawCallback(53,
+      ::grpc::Service::MarkMethodRawCallback(54,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRobotPartLogs(context, request, response); }));
@@ -13962,7 +14092,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_TailRobotPartLogs() {
-      ::grpc::Service::MarkMethodRawCallback(54,
+      ::grpc::Service::MarkMethodRawCallback(55,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->TailRobotPartLogs(context, request); }));
@@ -13984,7 +14114,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRobotPartHistory() {
-      ::grpc::Service::MarkMethodRawCallback(55,
+      ::grpc::Service::MarkMethodRawCallback(56,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRobotPartHistory(context, request, response); }));
@@ -14006,7 +14136,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateRobotPart() {
-      ::grpc::Service::MarkMethodRawCallback(56,
+      ::grpc::Service::MarkMethodRawCallback(57,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateRobotPart(context, request, response); }));
@@ -14028,7 +14158,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_NewRobotPart() {
-      ::grpc::Service::MarkMethodRawCallback(57,
+      ::grpc::Service::MarkMethodRawCallback(58,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->NewRobotPart(context, request, response); }));
@@ -14050,7 +14180,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteRobotPart() {
-      ::grpc::Service::MarkMethodRawCallback(58,
+      ::grpc::Service::MarkMethodRawCallback(59,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteRobotPart(context, request, response); }));
@@ -14072,7 +14202,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRobotPartMetadata() {
-      ::grpc::Service::MarkMethodRawCallback(59,
+      ::grpc::Service::MarkMethodRawCallback(60,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRobotPartMetadata(context, request, response); }));
@@ -14094,7 +14224,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateRobotPartMetadata() {
-      ::grpc::Service::MarkMethodRawCallback(60,
+      ::grpc::Service::MarkMethodRawCallback(61,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateRobotPartMetadata(context, request, response); }));
@@ -14116,7 +14246,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRobotAPIKeys() {
-      ::grpc::Service::MarkMethodRawCallback(61,
+      ::grpc::Service::MarkMethodRawCallback(62,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRobotAPIKeys(context, request, response); }));
@@ -14138,7 +14268,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_MarkPartAsMain() {
-      ::grpc::Service::MarkMethodRawCallback(62,
+      ::grpc::Service::MarkMethodRawCallback(63,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MarkPartAsMain(context, request, response); }));
@@ -14160,7 +14290,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_MarkPartForRestart() {
-      ::grpc::Service::MarkMethodRawCallback(63,
+      ::grpc::Service::MarkMethodRawCallback(64,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MarkPartForRestart(context, request, response); }));
@@ -14182,7 +14312,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateRobotPartSecret() {
-      ::grpc::Service::MarkMethodRawCallback(64,
+      ::grpc::Service::MarkMethodRawCallback(65,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateRobotPartSecret(context, request, response); }));
@@ -14204,7 +14334,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteRobotPartSecret() {
-      ::grpc::Service::MarkMethodRawCallback(65,
+      ::grpc::Service::MarkMethodRawCallback(66,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteRobotPartSecret(context, request, response); }));
@@ -14226,7 +14356,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListRobots() {
-      ::grpc::Service::MarkMethodRawCallback(66,
+      ::grpc::Service::MarkMethodRawCallback(67,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListRobots(context, request, response); }));
@@ -14248,7 +14378,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListRobotsForLocations() {
-      ::grpc::Service::MarkMethodRawCallback(67,
+      ::grpc::Service::MarkMethodRawCallback(68,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListRobotsForLocations(context, request, response); }));
@@ -14270,7 +14400,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListRobotsForOrg() {
-      ::grpc::Service::MarkMethodRawCallback(68,
+      ::grpc::Service::MarkMethodRawCallback(69,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListRobotsForOrg(context, request, response); }));
@@ -14292,7 +14422,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_NewRobot() {
-      ::grpc::Service::MarkMethodRawCallback(69,
+      ::grpc::Service::MarkMethodRawCallback(70,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->NewRobot(context, request, response); }));
@@ -14314,7 +14444,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateRobot() {
-      ::grpc::Service::MarkMethodRawCallback(70,
+      ::grpc::Service::MarkMethodRawCallback(71,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateRobot(context, request, response); }));
@@ -14336,7 +14466,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteRobot() {
-      ::grpc::Service::MarkMethodRawCallback(71,
+      ::grpc::Service::MarkMethodRawCallback(72,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteRobot(context, request, response); }));
@@ -14358,7 +14488,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListFragments() {
-      ::grpc::Service::MarkMethodRawCallback(72,
+      ::grpc::Service::MarkMethodRawCallback(73,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListFragments(context, request, response); }));
@@ -14380,7 +14510,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetFragment() {
-      ::grpc::Service::MarkMethodRawCallback(73,
+      ::grpc::Service::MarkMethodRawCallback(74,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetFragment(context, request, response); }));
@@ -14402,7 +14532,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateFragment() {
-      ::grpc::Service::MarkMethodRawCallback(74,
+      ::grpc::Service::MarkMethodRawCallback(75,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateFragment(context, request, response); }));
@@ -14424,7 +14554,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateFragment() {
-      ::grpc::Service::MarkMethodRawCallback(75,
+      ::grpc::Service::MarkMethodRawCallback(76,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateFragment(context, request, response); }));
@@ -14446,7 +14576,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteFragment() {
-      ::grpc::Service::MarkMethodRawCallback(76,
+      ::grpc::Service::MarkMethodRawCallback(77,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteFragment(context, request, response); }));
@@ -14468,7 +14598,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListNestedFragments() {
-      ::grpc::Service::MarkMethodRawCallback(77,
+      ::grpc::Service::MarkMethodRawCallback(78,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListNestedFragments(context, request, response); }));
@@ -14490,7 +14620,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListMachineFragments() {
-      ::grpc::Service::MarkMethodRawCallback(78,
+      ::grpc::Service::MarkMethodRawCallback(79,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListMachineFragments(context, request, response); }));
@@ -14512,7 +14642,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListMachineSummaries() {
-      ::grpc::Service::MarkMethodRawCallback(79,
+      ::grpc::Service::MarkMethodRawCallback(80,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListMachineSummaries(context, request, response); }));
@@ -14534,7 +14664,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetFragmentHistory() {
-      ::grpc::Service::MarkMethodRawCallback(80,
+      ::grpc::Service::MarkMethodRawCallback(81,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetFragmentHistory(context, request, response); }));
@@ -14556,7 +14686,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetFragmentUsage() {
-      ::grpc::Service::MarkMethodRawCallback(81,
+      ::grpc::Service::MarkMethodRawCallback(82,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetFragmentUsage(context, request, response); }));
@@ -14578,7 +14708,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetFragmentTag() {
-      ::grpc::Service::MarkMethodRawCallback(82,
+      ::grpc::Service::MarkMethodRawCallback(83,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetFragmentTag(context, request, response); }));
@@ -14600,7 +14730,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteFragmentTag() {
-      ::grpc::Service::MarkMethodRawCallback(83,
+      ::grpc::Service::MarkMethodRawCallback(84,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteFragmentTag(context, request, response); }));
@@ -14622,7 +14752,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_AddRole() {
-      ::grpc::Service::MarkMethodRawCallback(84,
+      ::grpc::Service::MarkMethodRawCallback(85,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddRole(context, request, response); }));
@@ -14644,7 +14774,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_RemoveRole() {
-      ::grpc::Service::MarkMethodRawCallback(85,
+      ::grpc::Service::MarkMethodRawCallback(86,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveRole(context, request, response); }));
@@ -14666,7 +14796,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ChangeRole() {
-      ::grpc::Service::MarkMethodRawCallback(86,
+      ::grpc::Service::MarkMethodRawCallback(87,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ChangeRole(context, request, response); }));
@@ -14688,7 +14818,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListAuthorizations() {
-      ::grpc::Service::MarkMethodRawCallback(87,
+      ::grpc::Service::MarkMethodRawCallback(88,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListAuthorizations(context, request, response); }));
@@ -14710,7 +14840,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CheckPermissions() {
-      ::grpc::Service::MarkMethodRawCallback(88,
+      ::grpc::Service::MarkMethodRawCallback(89,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CheckPermissions(context, request, response); }));
@@ -14732,7 +14862,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRegistryItem() {
-      ::grpc::Service::MarkMethodRawCallback(89,
+      ::grpc::Service::MarkMethodRawCallback(90,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRegistryItem(context, request, response); }));
@@ -14754,7 +14884,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateRegistryItem() {
-      ::grpc::Service::MarkMethodRawCallback(90,
+      ::grpc::Service::MarkMethodRawCallback(91,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateRegistryItem(context, request, response); }));
@@ -14776,7 +14906,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateRegistryItem() {
-      ::grpc::Service::MarkMethodRawCallback(91,
+      ::grpc::Service::MarkMethodRawCallback(92,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateRegistryItem(context, request, response); }));
@@ -14798,7 +14928,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListRegistryItems() {
-      ::grpc::Service::MarkMethodRawCallback(92,
+      ::grpc::Service::MarkMethodRawCallback(93,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListRegistryItems(context, request, response); }));
@@ -14820,7 +14950,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteRegistryItem() {
-      ::grpc::Service::MarkMethodRawCallback(93,
+      ::grpc::Service::MarkMethodRawCallback(94,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteRegistryItem(context, request, response); }));
@@ -14842,7 +14972,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_RenameRegistryItem() {
-      ::grpc::Service::MarkMethodRawCallback(94,
+      ::grpc::Service::MarkMethodRawCallback(95,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RenameRegistryItem(context, request, response); }));
@@ -14864,7 +14994,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_TransferRegistryItem() {
-      ::grpc::Service::MarkMethodRawCallback(95,
+      ::grpc::Service::MarkMethodRawCallback(96,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TransferRegistryItem(context, request, response); }));
@@ -14886,7 +15016,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateModule() {
-      ::grpc::Service::MarkMethodRawCallback(96,
+      ::grpc::Service::MarkMethodRawCallback(97,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateModule(context, request, response); }));
@@ -14908,7 +15038,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateModule() {
-      ::grpc::Service::MarkMethodRawCallback(97,
+      ::grpc::Service::MarkMethodRawCallback(98,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateModule(context, request, response); }));
@@ -14930,7 +15060,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UploadModuleFile() {
-      ::grpc::Service::MarkMethodRawCallback(98,
+      ::grpc::Service::MarkMethodRawCallback(99,
           new ::grpc::internal::CallbackClientStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, ::grpc::ByteBuffer* response) { return this->UploadModuleFile(context, response); }));
@@ -14952,7 +15082,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetModule() {
-      ::grpc::Service::MarkMethodRawCallback(99,
+      ::grpc::Service::MarkMethodRawCallback(100,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetModule(context, request, response); }));
@@ -14974,7 +15104,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListModules() {
-      ::grpc::Service::MarkMethodRawCallback(100,
+      ::grpc::Service::MarkMethodRawCallback(101,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListModules(context, request, response); }));
@@ -14996,7 +15126,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateKey() {
-      ::grpc::Service::MarkMethodRawCallback(101,
+      ::grpc::Service::MarkMethodRawCallback(102,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateKey(context, request, response); }));
@@ -15018,7 +15148,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodRawCallback(102,
+      ::grpc::Service::MarkMethodRawCallback(103,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteKey(context, request, response); }));
@@ -15040,7 +15170,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListKeys() {
-      ::grpc::Service::MarkMethodRawCallback(103,
+      ::grpc::Service::MarkMethodRawCallback(104,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListKeys(context, request, response); }));
@@ -15062,7 +15192,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_RenameKey() {
-      ::grpc::Service::MarkMethodRawCallback(104,
+      ::grpc::Service::MarkMethodRawCallback(105,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RenameKey(context, request, response); }));
@@ -15084,7 +15214,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_RotateKey() {
-      ::grpc::Service::MarkMethodRawCallback(105,
+      ::grpc::Service::MarkMethodRawCallback(106,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RotateKey(context, request, response); }));
@@ -15106,7 +15236,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateKeyFromExistingKeyAuthorizations() {
-      ::grpc::Service::MarkMethodRawCallback(106,
+      ::grpc::Service::MarkMethodRawCallback(107,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateKeyFromExistingKeyAuthorizations(context, request, response); }));
@@ -15128,7 +15258,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetAppContent() {
-      ::grpc::Service::MarkMethodRawCallback(107,
+      ::grpc::Service::MarkMethodRawCallback(108,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAppContent(context, request, response); }));
@@ -15150,7 +15280,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetAppBranding() {
-      ::grpc::Service::MarkMethodRawCallback(108,
+      ::grpc::Service::MarkMethodRawCallback(109,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetAppBranding(context, request, response); }));
@@ -15172,7 +15302,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UploadDevicePushToken() {
-      ::grpc::Service::MarkMethodRawCallback(109,
+      ::grpc::Service::MarkMethodRawCallback(110,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UploadDevicePushToken(context, request, response); }));
@@ -15194,7 +15324,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteDevicePushToken() {
-      ::grpc::Service::MarkMethodRawCallback(110,
+      ::grpc::Service::MarkMethodRawCallback(111,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteDevicePushToken(context, request, response); }));
@@ -15216,7 +15346,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetDevicePushTokens() {
-      ::grpc::Service::MarkMethodRawCallback(111,
+      ::grpc::Service::MarkMethodRawCallback(112,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetDevicePushTokens(context, request, response); }));
@@ -15238,7 +15368,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_SetFirebaseConfig() {
-      ::grpc::Service::MarkMethodRawCallback(112,
+      ::grpc::Service::MarkMethodRawCallback(113,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetFirebaseConfig(context, request, response); }));
@@ -15260,7 +15390,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetFirebaseConfig() {
-      ::grpc::Service::MarkMethodRawCallback(113,
+      ::grpc::Service::MarkMethodRawCallback(114,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetFirebaseConfig(context, request, response); }));
@@ -15282,7 +15412,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteFirebaseConfig() {
-      ::grpc::Service::MarkMethodRawCallback(114,
+      ::grpc::Service::MarkMethodRawCallback(115,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteFirebaseConfig(context, request, response); }));
@@ -16217,12 +16347,39 @@ class AppService final {
     virtual ::grpc::Status StreamedListOAuthApps(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::ListOAuthAppsRequest,::viam::app::v1::ListOAuthAppsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_CreateOAuthAppUser : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CreateOAuthAppUser() {
+      ::grpc::Service::MarkMethodStreamed(34,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::v1::CreateOAuthAppUserRequest, ::viam::app::v1::CreateOAuthAppUserResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::v1::CreateOAuthAppUserRequest, ::viam::app::v1::CreateOAuthAppUserResponse>* streamer) {
+                       return this->StreamedCreateOAuthAppUser(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CreateOAuthAppUser() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CreateOAuthAppUser(::grpc::ServerContext* /*context*/, const ::viam::app::v1::CreateOAuthAppUserRequest* /*request*/, ::viam::app::v1::CreateOAuthAppUserResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCreateOAuthAppUser(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::CreateOAuthAppUserRequest,::viam::app::v1::CreateOAuthAppUserResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_CreateLocation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateLocation() {
-      ::grpc::Service::MarkMethodStreamed(34,
+      ::grpc::Service::MarkMethodStreamed(35,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CreateLocationRequest, ::viam::app::v1::CreateLocationResponse>(
             [this](::grpc::ServerContext* context,
@@ -16249,7 +16406,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetLocation() {
-      ::grpc::Service::MarkMethodStreamed(35,
+      ::grpc::Service::MarkMethodStreamed(36,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetLocationRequest, ::viam::app::v1::GetLocationResponse>(
             [this](::grpc::ServerContext* context,
@@ -16276,7 +16433,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateLocation() {
-      ::grpc::Service::MarkMethodStreamed(36,
+      ::grpc::Service::MarkMethodStreamed(37,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateLocationRequest, ::viam::app::v1::UpdateLocationResponse>(
             [this](::grpc::ServerContext* context,
@@ -16303,7 +16460,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteLocation() {
-      ::grpc::Service::MarkMethodStreamed(37,
+      ::grpc::Service::MarkMethodStreamed(38,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteLocationRequest, ::viam::app::v1::DeleteLocationResponse>(
             [this](::grpc::ServerContext* context,
@@ -16330,7 +16487,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetLocationMetadata() {
-      ::grpc::Service::MarkMethodStreamed(38,
+      ::grpc::Service::MarkMethodStreamed(39,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetLocationMetadataRequest, ::viam::app::v1::GetLocationMetadataResponse>(
             [this](::grpc::ServerContext* context,
@@ -16357,7 +16514,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateLocationMetadata() {
-      ::grpc::Service::MarkMethodStreamed(39,
+      ::grpc::Service::MarkMethodStreamed(40,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateLocationMetadataRequest, ::viam::app::v1::UpdateLocationMetadataResponse>(
             [this](::grpc::ServerContext* context,
@@ -16384,7 +16541,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListLocations() {
-      ::grpc::Service::MarkMethodStreamed(40,
+      ::grpc::Service::MarkMethodStreamed(41,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListLocationsRequest, ::viam::app::v1::ListLocationsResponse>(
             [this](::grpc::ServerContext* context,
@@ -16411,7 +16568,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ShareLocation() {
-      ::grpc::Service::MarkMethodStreamed(41,
+      ::grpc::Service::MarkMethodStreamed(42,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ShareLocationRequest, ::viam::app::v1::ShareLocationResponse>(
             [this](::grpc::ServerContext* context,
@@ -16438,7 +16595,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UnshareLocation() {
-      ::grpc::Service::MarkMethodStreamed(42,
+      ::grpc::Service::MarkMethodStreamed(43,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UnshareLocationRequest, ::viam::app::v1::UnshareLocationResponse>(
             [this](::grpc::ServerContext* context,
@@ -16465,7 +16622,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_LocationAuth() {
-      ::grpc::Service::MarkMethodStreamed(43,
+      ::grpc::Service::MarkMethodStreamed(44,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::LocationAuthRequest, ::viam::app::v1::LocationAuthResponse>(
             [this](::grpc::ServerContext* context,
@@ -16492,7 +16649,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateLocationSecret() {
-      ::grpc::Service::MarkMethodStreamed(44,
+      ::grpc::Service::MarkMethodStreamed(45,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CreateLocationSecretRequest, ::viam::app::v1::CreateLocationSecretResponse>(
             [this](::grpc::ServerContext* context,
@@ -16519,7 +16676,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteLocationSecret() {
-      ::grpc::Service::MarkMethodStreamed(45,
+      ::grpc::Service::MarkMethodStreamed(46,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteLocationSecretRequest, ::viam::app::v1::DeleteLocationSecretResponse>(
             [this](::grpc::ServerContext* context,
@@ -16546,7 +16703,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRobot() {
-      ::grpc::Service::MarkMethodStreamed(46,
+      ::grpc::Service::MarkMethodStreamed(47,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRobotRequest, ::viam::app::v1::GetRobotResponse>(
             [this](::grpc::ServerContext* context,
@@ -16573,7 +16730,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRobotMetadata() {
-      ::grpc::Service::MarkMethodStreamed(47,
+      ::grpc::Service::MarkMethodStreamed(48,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRobotMetadataRequest, ::viam::app::v1::GetRobotMetadataResponse>(
             [this](::grpc::ServerContext* context,
@@ -16600,7 +16757,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateRobotMetadata() {
-      ::grpc::Service::MarkMethodStreamed(48,
+      ::grpc::Service::MarkMethodStreamed(49,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateRobotMetadataRequest, ::viam::app::v1::UpdateRobotMetadataResponse>(
             [this](::grpc::ServerContext* context,
@@ -16627,7 +16784,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRoverRentalRobots() {
-      ::grpc::Service::MarkMethodStreamed(49,
+      ::grpc::Service::MarkMethodStreamed(50,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRoverRentalRobotsRequest, ::viam::app::v1::GetRoverRentalRobotsResponse>(
             [this](::grpc::ServerContext* context,
@@ -16654,7 +16811,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRobotParts() {
-      ::grpc::Service::MarkMethodStreamed(50,
+      ::grpc::Service::MarkMethodStreamed(51,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRobotPartsRequest, ::viam::app::v1::GetRobotPartsResponse>(
             [this](::grpc::ServerContext* context,
@@ -16681,7 +16838,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRobotPart() {
-      ::grpc::Service::MarkMethodStreamed(51,
+      ::grpc::Service::MarkMethodStreamed(52,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRobotPartRequest, ::viam::app::v1::GetRobotPartResponse>(
             [this](::grpc::ServerContext* context,
@@ -16708,7 +16865,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRobotPartByNameAndLocation() {
-      ::grpc::Service::MarkMethodStreamed(52,
+      ::grpc::Service::MarkMethodStreamed(53,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRobotPartByNameAndLocationRequest, ::viam::app::v1::GetRobotPartByNameAndLocationResponse>(
             [this](::grpc::ServerContext* context,
@@ -16735,7 +16892,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRobotPartLogs() {
-      ::grpc::Service::MarkMethodStreamed(53,
+      ::grpc::Service::MarkMethodStreamed(54,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRobotPartLogsRequest, ::viam::app::v1::GetRobotPartLogsResponse>(
             [this](::grpc::ServerContext* context,
@@ -16762,7 +16919,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRobotPartHistory() {
-      ::grpc::Service::MarkMethodStreamed(55,
+      ::grpc::Service::MarkMethodStreamed(56,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRobotPartHistoryRequest, ::viam::app::v1::GetRobotPartHistoryResponse>(
             [this](::grpc::ServerContext* context,
@@ -16789,7 +16946,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateRobotPart() {
-      ::grpc::Service::MarkMethodStreamed(56,
+      ::grpc::Service::MarkMethodStreamed(57,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateRobotPartRequest, ::viam::app::v1::UpdateRobotPartResponse>(
             [this](::grpc::ServerContext* context,
@@ -16816,7 +16973,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_NewRobotPart() {
-      ::grpc::Service::MarkMethodStreamed(57,
+      ::grpc::Service::MarkMethodStreamed(58,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::NewRobotPartRequest, ::viam::app::v1::NewRobotPartResponse>(
             [this](::grpc::ServerContext* context,
@@ -16843,7 +17000,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteRobotPart() {
-      ::grpc::Service::MarkMethodStreamed(58,
+      ::grpc::Service::MarkMethodStreamed(59,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteRobotPartRequest, ::viam::app::v1::DeleteRobotPartResponse>(
             [this](::grpc::ServerContext* context,
@@ -16870,7 +17027,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRobotPartMetadata() {
-      ::grpc::Service::MarkMethodStreamed(59,
+      ::grpc::Service::MarkMethodStreamed(60,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRobotPartMetadataRequest, ::viam::app::v1::GetRobotPartMetadataResponse>(
             [this](::grpc::ServerContext* context,
@@ -16897,7 +17054,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateRobotPartMetadata() {
-      ::grpc::Service::MarkMethodStreamed(60,
+      ::grpc::Service::MarkMethodStreamed(61,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateRobotPartMetadataRequest, ::viam::app::v1::UpdateRobotPartMetadataResponse>(
             [this](::grpc::ServerContext* context,
@@ -16924,7 +17081,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRobotAPIKeys() {
-      ::grpc::Service::MarkMethodStreamed(61,
+      ::grpc::Service::MarkMethodStreamed(62,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRobotAPIKeysRequest, ::viam::app::v1::GetRobotAPIKeysResponse>(
             [this](::grpc::ServerContext* context,
@@ -16951,7 +17108,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_MarkPartAsMain() {
-      ::grpc::Service::MarkMethodStreamed(62,
+      ::grpc::Service::MarkMethodStreamed(63,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::MarkPartAsMainRequest, ::viam::app::v1::MarkPartAsMainResponse>(
             [this](::grpc::ServerContext* context,
@@ -16978,7 +17135,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_MarkPartForRestart() {
-      ::grpc::Service::MarkMethodStreamed(63,
+      ::grpc::Service::MarkMethodStreamed(64,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::MarkPartForRestartRequest, ::viam::app::v1::MarkPartForRestartResponse>(
             [this](::grpc::ServerContext* context,
@@ -17005,7 +17162,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateRobotPartSecret() {
-      ::grpc::Service::MarkMethodStreamed(64,
+      ::grpc::Service::MarkMethodStreamed(65,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CreateRobotPartSecretRequest, ::viam::app::v1::CreateRobotPartSecretResponse>(
             [this](::grpc::ServerContext* context,
@@ -17032,7 +17189,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteRobotPartSecret() {
-      ::grpc::Service::MarkMethodStreamed(65,
+      ::grpc::Service::MarkMethodStreamed(66,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteRobotPartSecretRequest, ::viam::app::v1::DeleteRobotPartSecretResponse>(
             [this](::grpc::ServerContext* context,
@@ -17059,7 +17216,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListRobots() {
-      ::grpc::Service::MarkMethodStreamed(66,
+      ::grpc::Service::MarkMethodStreamed(67,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListRobotsRequest, ::viam::app::v1::ListRobotsResponse>(
             [this](::grpc::ServerContext* context,
@@ -17086,7 +17243,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListRobotsForLocations() {
-      ::grpc::Service::MarkMethodStreamed(67,
+      ::grpc::Service::MarkMethodStreamed(68,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListRobotsForLocationsRequest, ::viam::app::v1::ListRobotsForLocationsResponse>(
             [this](::grpc::ServerContext* context,
@@ -17113,7 +17270,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListRobotsForOrg() {
-      ::grpc::Service::MarkMethodStreamed(68,
+      ::grpc::Service::MarkMethodStreamed(69,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListRobotsForOrgRequest, ::viam::app::v1::ListRobotsForOrgResponse>(
             [this](::grpc::ServerContext* context,
@@ -17140,7 +17297,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_NewRobot() {
-      ::grpc::Service::MarkMethodStreamed(69,
+      ::grpc::Service::MarkMethodStreamed(70,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::NewRobotRequest, ::viam::app::v1::NewRobotResponse>(
             [this](::grpc::ServerContext* context,
@@ -17167,7 +17324,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateRobot() {
-      ::grpc::Service::MarkMethodStreamed(70,
+      ::grpc::Service::MarkMethodStreamed(71,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateRobotRequest, ::viam::app::v1::UpdateRobotResponse>(
             [this](::grpc::ServerContext* context,
@@ -17194,7 +17351,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteRobot() {
-      ::grpc::Service::MarkMethodStreamed(71,
+      ::grpc::Service::MarkMethodStreamed(72,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteRobotRequest, ::viam::app::v1::DeleteRobotResponse>(
             [this](::grpc::ServerContext* context,
@@ -17221,7 +17378,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListFragments() {
-      ::grpc::Service::MarkMethodStreamed(72,
+      ::grpc::Service::MarkMethodStreamed(73,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListFragmentsRequest, ::viam::app::v1::ListFragmentsResponse>(
             [this](::grpc::ServerContext* context,
@@ -17248,7 +17405,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetFragment() {
-      ::grpc::Service::MarkMethodStreamed(73,
+      ::grpc::Service::MarkMethodStreamed(74,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetFragmentRequest, ::viam::app::v1::GetFragmentResponse>(
             [this](::grpc::ServerContext* context,
@@ -17275,7 +17432,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateFragment() {
-      ::grpc::Service::MarkMethodStreamed(74,
+      ::grpc::Service::MarkMethodStreamed(75,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CreateFragmentRequest, ::viam::app::v1::CreateFragmentResponse>(
             [this](::grpc::ServerContext* context,
@@ -17302,7 +17459,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateFragment() {
-      ::grpc::Service::MarkMethodStreamed(75,
+      ::grpc::Service::MarkMethodStreamed(76,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateFragmentRequest, ::viam::app::v1::UpdateFragmentResponse>(
             [this](::grpc::ServerContext* context,
@@ -17329,7 +17486,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteFragment() {
-      ::grpc::Service::MarkMethodStreamed(76,
+      ::grpc::Service::MarkMethodStreamed(77,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteFragmentRequest, ::viam::app::v1::DeleteFragmentResponse>(
             [this](::grpc::ServerContext* context,
@@ -17356,7 +17513,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListNestedFragments() {
-      ::grpc::Service::MarkMethodStreamed(77,
+      ::grpc::Service::MarkMethodStreamed(78,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListNestedFragmentsRequest, ::viam::app::v1::ListNestedFragmentsResponse>(
             [this](::grpc::ServerContext* context,
@@ -17383,7 +17540,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListMachineFragments() {
-      ::grpc::Service::MarkMethodStreamed(78,
+      ::grpc::Service::MarkMethodStreamed(79,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListMachineFragmentsRequest, ::viam::app::v1::ListMachineFragmentsResponse>(
             [this](::grpc::ServerContext* context,
@@ -17410,7 +17567,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListMachineSummaries() {
-      ::grpc::Service::MarkMethodStreamed(79,
+      ::grpc::Service::MarkMethodStreamed(80,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListMachineSummariesRequest, ::viam::app::v1::ListMachineSummariesResponse>(
             [this](::grpc::ServerContext* context,
@@ -17437,7 +17594,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetFragmentHistory() {
-      ::grpc::Service::MarkMethodStreamed(80,
+      ::grpc::Service::MarkMethodStreamed(81,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetFragmentHistoryRequest, ::viam::app::v1::GetFragmentHistoryResponse>(
             [this](::grpc::ServerContext* context,
@@ -17464,7 +17621,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetFragmentUsage() {
-      ::grpc::Service::MarkMethodStreamed(81,
+      ::grpc::Service::MarkMethodStreamed(82,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetFragmentUsageRequest, ::viam::app::v1::GetFragmentUsageResponse>(
             [this](::grpc::ServerContext* context,
@@ -17491,7 +17648,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetFragmentTag() {
-      ::grpc::Service::MarkMethodStreamed(82,
+      ::grpc::Service::MarkMethodStreamed(83,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::SetFragmentTagRequest, ::viam::app::v1::SetFragmentTagResponse>(
             [this](::grpc::ServerContext* context,
@@ -17518,7 +17675,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteFragmentTag() {
-      ::grpc::Service::MarkMethodStreamed(83,
+      ::grpc::Service::MarkMethodStreamed(84,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteFragmentTagRequest, ::viam::app::v1::DeleteFragmentTagResponse>(
             [this](::grpc::ServerContext* context,
@@ -17545,7 +17702,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_AddRole() {
-      ::grpc::Service::MarkMethodStreamed(84,
+      ::grpc::Service::MarkMethodStreamed(85,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::AddRoleRequest, ::viam::app::v1::AddRoleResponse>(
             [this](::grpc::ServerContext* context,
@@ -17572,7 +17729,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_RemoveRole() {
-      ::grpc::Service::MarkMethodStreamed(85,
+      ::grpc::Service::MarkMethodStreamed(86,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::RemoveRoleRequest, ::viam::app::v1::RemoveRoleResponse>(
             [this](::grpc::ServerContext* context,
@@ -17599,7 +17756,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ChangeRole() {
-      ::grpc::Service::MarkMethodStreamed(86,
+      ::grpc::Service::MarkMethodStreamed(87,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ChangeRoleRequest, ::viam::app::v1::ChangeRoleResponse>(
             [this](::grpc::ServerContext* context,
@@ -17626,7 +17783,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListAuthorizations() {
-      ::grpc::Service::MarkMethodStreamed(87,
+      ::grpc::Service::MarkMethodStreamed(88,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListAuthorizationsRequest, ::viam::app::v1::ListAuthorizationsResponse>(
             [this](::grpc::ServerContext* context,
@@ -17653,7 +17810,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CheckPermissions() {
-      ::grpc::Service::MarkMethodStreamed(88,
+      ::grpc::Service::MarkMethodStreamed(89,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CheckPermissionsRequest, ::viam::app::v1::CheckPermissionsResponse>(
             [this](::grpc::ServerContext* context,
@@ -17680,7 +17837,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRegistryItem() {
-      ::grpc::Service::MarkMethodStreamed(89,
+      ::grpc::Service::MarkMethodStreamed(90,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetRegistryItemRequest, ::viam::app::v1::GetRegistryItemResponse>(
             [this](::grpc::ServerContext* context,
@@ -17707,7 +17864,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateRegistryItem() {
-      ::grpc::Service::MarkMethodStreamed(90,
+      ::grpc::Service::MarkMethodStreamed(91,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CreateRegistryItemRequest, ::viam::app::v1::CreateRegistryItemResponse>(
             [this](::grpc::ServerContext* context,
@@ -17734,7 +17891,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateRegistryItem() {
-      ::grpc::Service::MarkMethodStreamed(91,
+      ::grpc::Service::MarkMethodStreamed(92,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateRegistryItemRequest, ::viam::app::v1::UpdateRegistryItemResponse>(
             [this](::grpc::ServerContext* context,
@@ -17761,7 +17918,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListRegistryItems() {
-      ::grpc::Service::MarkMethodStreamed(92,
+      ::grpc::Service::MarkMethodStreamed(93,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListRegistryItemsRequest, ::viam::app::v1::ListRegistryItemsResponse>(
             [this](::grpc::ServerContext* context,
@@ -17788,7 +17945,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteRegistryItem() {
-      ::grpc::Service::MarkMethodStreamed(93,
+      ::grpc::Service::MarkMethodStreamed(94,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteRegistryItemRequest, ::viam::app::v1::DeleteRegistryItemResponse>(
             [this](::grpc::ServerContext* context,
@@ -17815,7 +17972,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_RenameRegistryItem() {
-      ::grpc::Service::MarkMethodStreamed(94,
+      ::grpc::Service::MarkMethodStreamed(95,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::RenameRegistryItemRequest, ::viam::app::v1::RenameRegistryItemResponse>(
             [this](::grpc::ServerContext* context,
@@ -17842,7 +17999,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TransferRegistryItem() {
-      ::grpc::Service::MarkMethodStreamed(95,
+      ::grpc::Service::MarkMethodStreamed(96,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::TransferRegistryItemRequest, ::viam::app::v1::TransferRegistryItemResponse>(
             [this](::grpc::ServerContext* context,
@@ -17869,7 +18026,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateModule() {
-      ::grpc::Service::MarkMethodStreamed(96,
+      ::grpc::Service::MarkMethodStreamed(97,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CreateModuleRequest, ::viam::app::v1::CreateModuleResponse>(
             [this](::grpc::ServerContext* context,
@@ -17896,7 +18053,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateModule() {
-      ::grpc::Service::MarkMethodStreamed(97,
+      ::grpc::Service::MarkMethodStreamed(98,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UpdateModuleRequest, ::viam::app::v1::UpdateModuleResponse>(
             [this](::grpc::ServerContext* context,
@@ -17923,7 +18080,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetModule() {
-      ::grpc::Service::MarkMethodStreamed(99,
+      ::grpc::Service::MarkMethodStreamed(100,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetModuleRequest, ::viam::app::v1::GetModuleResponse>(
             [this](::grpc::ServerContext* context,
@@ -17950,7 +18107,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListModules() {
-      ::grpc::Service::MarkMethodStreamed(100,
+      ::grpc::Service::MarkMethodStreamed(101,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListModulesRequest, ::viam::app::v1::ListModulesResponse>(
             [this](::grpc::ServerContext* context,
@@ -17977,7 +18134,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateKey() {
-      ::grpc::Service::MarkMethodStreamed(101,
+      ::grpc::Service::MarkMethodStreamed(102,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CreateKeyRequest, ::viam::app::v1::CreateKeyResponse>(
             [this](::grpc::ServerContext* context,
@@ -18004,7 +18161,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodStreamed(102,
+      ::grpc::Service::MarkMethodStreamed(103,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteKeyRequest, ::viam::app::v1::DeleteKeyResponse>(
             [this](::grpc::ServerContext* context,
@@ -18031,7 +18188,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListKeys() {
-      ::grpc::Service::MarkMethodStreamed(103,
+      ::grpc::Service::MarkMethodStreamed(104,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::ListKeysRequest, ::viam::app::v1::ListKeysResponse>(
             [this](::grpc::ServerContext* context,
@@ -18058,7 +18215,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_RenameKey() {
-      ::grpc::Service::MarkMethodStreamed(104,
+      ::grpc::Service::MarkMethodStreamed(105,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::RenameKeyRequest, ::viam::app::v1::RenameKeyResponse>(
             [this](::grpc::ServerContext* context,
@@ -18085,7 +18242,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_RotateKey() {
-      ::grpc::Service::MarkMethodStreamed(105,
+      ::grpc::Service::MarkMethodStreamed(106,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::RotateKeyRequest, ::viam::app::v1::RotateKeyResponse>(
             [this](::grpc::ServerContext* context,
@@ -18112,7 +18269,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateKeyFromExistingKeyAuthorizations() {
-      ::grpc::Service::MarkMethodStreamed(106,
+      ::grpc::Service::MarkMethodStreamed(107,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsRequest, ::viam::app::v1::CreateKeyFromExistingKeyAuthorizationsResponse>(
             [this](::grpc::ServerContext* context,
@@ -18139,7 +18296,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetAppContent() {
-      ::grpc::Service::MarkMethodStreamed(107,
+      ::grpc::Service::MarkMethodStreamed(108,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetAppContentRequest, ::viam::app::v1::GetAppContentResponse>(
             [this](::grpc::ServerContext* context,
@@ -18166,7 +18323,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetAppBranding() {
-      ::grpc::Service::MarkMethodStreamed(108,
+      ::grpc::Service::MarkMethodStreamed(109,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetAppBrandingRequest, ::viam::app::v1::GetAppBrandingResponse>(
             [this](::grpc::ServerContext* context,
@@ -18193,7 +18350,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UploadDevicePushToken() {
-      ::grpc::Service::MarkMethodStreamed(109,
+      ::grpc::Service::MarkMethodStreamed(110,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::UploadDevicePushTokenRequest, ::viam::app::v1::UploadDevicePushTokenResponse>(
             [this](::grpc::ServerContext* context,
@@ -18220,7 +18377,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteDevicePushToken() {
-      ::grpc::Service::MarkMethodStreamed(110,
+      ::grpc::Service::MarkMethodStreamed(111,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteDevicePushTokenRequest, ::viam::app::v1::DeleteDevicePushTokenResponse>(
             [this](::grpc::ServerContext* context,
@@ -18247,7 +18404,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetDevicePushTokens() {
-      ::grpc::Service::MarkMethodStreamed(111,
+      ::grpc::Service::MarkMethodStreamed(112,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetDevicePushTokensRequest, ::viam::app::v1::GetDevicePushTokensResponse>(
             [this](::grpc::ServerContext* context,
@@ -18274,7 +18431,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_SetFirebaseConfig() {
-      ::grpc::Service::MarkMethodStreamed(112,
+      ::grpc::Service::MarkMethodStreamed(113,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::SetFirebaseConfigRequest, ::viam::app::v1::SetFirebaseConfigResponse>(
             [this](::grpc::ServerContext* context,
@@ -18301,7 +18458,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetFirebaseConfig() {
-      ::grpc::Service::MarkMethodStreamed(113,
+      ::grpc::Service::MarkMethodStreamed(114,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::GetFirebaseConfigRequest, ::viam::app::v1::GetFirebaseConfigResponse>(
             [this](::grpc::ServerContext* context,
@@ -18328,7 +18485,7 @@ class AppService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteFirebaseConfig() {
-      ::grpc::Service::MarkMethodStreamed(114,
+      ::grpc::Service::MarkMethodStreamed(115,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::v1::DeleteFirebaseConfigRequest, ::viam::app::v1::DeleteFirebaseConfigResponse>(
             [this](::grpc::ServerContext* context,
@@ -18349,14 +18506,14 @@ class AppService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDeleteFirebaseConfig(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::v1::DeleteFirebaseConfigRequest,::viam::app::v1::DeleteFirebaseConfigResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetUserIDByEmail<WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganizationsWithAccessToLocation<WithStreamedUnaryMethod_ListOrganizationsByUser<WithStreamedUnaryMethod_SearchOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_GetOrganizationNamespaceAvailability<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_UpdateOrganizationNamespace<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_GetOrganizationMetadata<WithStreamedUnaryMethod_UpdateOrganizationMetadata<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_UpdateOrganizationInviteAuthorizations<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_EnableBillingService<WithStreamedUnaryMethod_DisableBillingService<WithStreamedUnaryMethod_UpdateBillingService<WithStreamedUnaryMethod_GetBillingServiceConfig<WithStreamedUnaryMethod_OrganizationSetSupportEmail<WithStreamedUnaryMethod_OrganizationGetSupportEmail<WithStreamedUnaryMethod_OrganizationSetLogo<WithStreamedUnaryMethod_OrganizationGetLogo<WithStreamedUnaryMethod_EnableAuthService<WithStreamedUnaryMethod_DisableAuthService<WithStreamedUnaryMethod_CreateOAuthApp<WithStreamedUnaryMethod_ReadOAuthApp<WithStreamedUnaryMethod_UpdateOAuthApp<WithStreamedUnaryMethod_DeleteOAuthApp<WithStreamedUnaryMethod_ListOAuthApps<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_GetLocationMetadata<WithStreamedUnaryMethod_UpdateLocationMetadata<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRobotMetadata<WithStreamedUnaryMethod_UpdateRobotMetadata<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartByNameAndLocation<WithStreamedUnaryMethod_GetRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_GetRobotPartMetadata<WithStreamedUnaryMethod_UpdateRobotPartMetadata<WithStreamedUnaryMethod_GetRobotAPIKeys<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_ListRobotsForLocations<WithStreamedUnaryMethod_ListRobotsForOrg<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_ListNestedFragments<WithStreamedUnaryMethod_ListMachineFragments<WithStreamedUnaryMethod_ListMachineSummaries<WithStreamedUnaryMethod_GetFragmentHistory<WithStreamedUnaryMethod_GetFragmentUsage<WithStreamedUnaryMethod_SetFragmentTag<WithStreamedUnaryMethod_DeleteFragmentTag<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ChangeRole<WithStreamedUnaryMethod_ListAuthorizations<WithStreamedUnaryMethod_CheckPermissions<WithStreamedUnaryMethod_GetRegistryItem<WithStreamedUnaryMethod_CreateRegistryItem<WithStreamedUnaryMethod_UpdateRegistryItem<WithStreamedUnaryMethod_ListRegistryItems<WithStreamedUnaryMethod_DeleteRegistryItem<WithStreamedUnaryMethod_RenameRegistryItem<WithStreamedUnaryMethod_TransferRegistryItem<WithStreamedUnaryMethod_CreateModule<WithStreamedUnaryMethod_UpdateModule<WithStreamedUnaryMethod_GetModule<WithStreamedUnaryMethod_ListModules<WithStreamedUnaryMethod_CreateKey<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_RenameKey<WithStreamedUnaryMethod_RotateKey<WithStreamedUnaryMethod_CreateKeyFromExistingKeyAuthorizations<WithStreamedUnaryMethod_GetAppContent<WithStreamedUnaryMethod_GetAppBranding<WithStreamedUnaryMethod_UploadDevicePushToken<WithStreamedUnaryMethod_DeleteDevicePushToken<WithStreamedUnaryMethod_GetDevicePushTokens<WithStreamedUnaryMethod_SetFirebaseConfig<WithStreamedUnaryMethod_GetFirebaseConfig<WithStreamedUnaryMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_GetUserIDByEmail<WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganizationsWithAccessToLocation<WithStreamedUnaryMethod_ListOrganizationsByUser<WithStreamedUnaryMethod_SearchOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_GetOrganizationNamespaceAvailability<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_UpdateOrganizationNamespace<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_GetOrganizationMetadata<WithStreamedUnaryMethod_UpdateOrganizationMetadata<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_UpdateOrganizationInviteAuthorizations<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_EnableBillingService<WithStreamedUnaryMethod_DisableBillingService<WithStreamedUnaryMethod_UpdateBillingService<WithStreamedUnaryMethod_GetBillingServiceConfig<WithStreamedUnaryMethod_OrganizationSetSupportEmail<WithStreamedUnaryMethod_OrganizationGetSupportEmail<WithStreamedUnaryMethod_OrganizationSetLogo<WithStreamedUnaryMethod_OrganizationGetLogo<WithStreamedUnaryMethod_EnableAuthService<WithStreamedUnaryMethod_DisableAuthService<WithStreamedUnaryMethod_CreateOAuthApp<WithStreamedUnaryMethod_ReadOAuthApp<WithStreamedUnaryMethod_UpdateOAuthApp<WithStreamedUnaryMethod_DeleteOAuthApp<WithStreamedUnaryMethod_ListOAuthApps<WithStreamedUnaryMethod_CreateOAuthAppUser<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_GetLocationMetadata<WithStreamedUnaryMethod_UpdateLocationMetadata<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRobotMetadata<WithStreamedUnaryMethod_UpdateRobotMetadata<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartByNameAndLocation<WithStreamedUnaryMethod_GetRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_GetRobotPartMetadata<WithStreamedUnaryMethod_UpdateRobotPartMetadata<WithStreamedUnaryMethod_GetRobotAPIKeys<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_ListRobotsForLocations<WithStreamedUnaryMethod_ListRobotsForOrg<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_ListNestedFragments<WithStreamedUnaryMethod_ListMachineFragments<WithStreamedUnaryMethod_ListMachineSummaries<WithStreamedUnaryMethod_GetFragmentHistory<WithStreamedUnaryMethod_GetFragmentUsage<WithStreamedUnaryMethod_SetFragmentTag<WithStreamedUnaryMethod_DeleteFragmentTag<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ChangeRole<WithStreamedUnaryMethod_ListAuthorizations<WithStreamedUnaryMethod_CheckPermissions<WithStreamedUnaryMethod_GetRegistryItem<WithStreamedUnaryMethod_CreateRegistryItem<WithStreamedUnaryMethod_UpdateRegistryItem<WithStreamedUnaryMethod_ListRegistryItems<WithStreamedUnaryMethod_DeleteRegistryItem<WithStreamedUnaryMethod_RenameRegistryItem<WithStreamedUnaryMethod_TransferRegistryItem<WithStreamedUnaryMethod_CreateModule<WithStreamedUnaryMethod_UpdateModule<WithStreamedUnaryMethod_GetModule<WithStreamedUnaryMethod_ListModules<WithStreamedUnaryMethod_CreateKey<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_RenameKey<WithStreamedUnaryMethod_RotateKey<WithStreamedUnaryMethod_CreateKeyFromExistingKeyAuthorizations<WithStreamedUnaryMethod_GetAppContent<WithStreamedUnaryMethod_GetAppBranding<WithStreamedUnaryMethod_UploadDevicePushToken<WithStreamedUnaryMethod_DeleteDevicePushToken<WithStreamedUnaryMethod_GetDevicePushTokens<WithStreamedUnaryMethod_SetFirebaseConfig<WithStreamedUnaryMethod_GetFirebaseConfig<WithStreamedUnaryMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_TailRobotPartLogs : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithSplitStreamingMethod_TailRobotPartLogs() {
-      ::grpc::Service::MarkMethodStreamed(54,
+      ::grpc::Service::MarkMethodStreamed(55,
         new ::grpc::internal::SplitServerStreamingHandler<
           ::viam::app::v1::TailRobotPartLogsRequest, ::viam::app::v1::TailRobotPartLogsResponse>(
             [this](::grpc::ServerContext* context,
@@ -18378,7 +18535,7 @@ class AppService final {
     virtual ::grpc::Status StreamedTailRobotPartLogs(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::v1::TailRobotPartLogsRequest,::viam::app::v1::TailRobotPartLogsResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_TailRobotPartLogs<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetUserIDByEmail<WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganizationsWithAccessToLocation<WithStreamedUnaryMethod_ListOrganizationsByUser<WithStreamedUnaryMethod_SearchOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_GetOrganizationNamespaceAvailability<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_UpdateOrganizationNamespace<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_GetOrganizationMetadata<WithStreamedUnaryMethod_UpdateOrganizationMetadata<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_UpdateOrganizationInviteAuthorizations<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_EnableBillingService<WithStreamedUnaryMethod_DisableBillingService<WithStreamedUnaryMethod_UpdateBillingService<WithStreamedUnaryMethod_GetBillingServiceConfig<WithStreamedUnaryMethod_OrganizationSetSupportEmail<WithStreamedUnaryMethod_OrganizationGetSupportEmail<WithStreamedUnaryMethod_OrganizationSetLogo<WithStreamedUnaryMethod_OrganizationGetLogo<WithStreamedUnaryMethod_EnableAuthService<WithStreamedUnaryMethod_DisableAuthService<WithStreamedUnaryMethod_CreateOAuthApp<WithStreamedUnaryMethod_ReadOAuthApp<WithStreamedUnaryMethod_UpdateOAuthApp<WithStreamedUnaryMethod_DeleteOAuthApp<WithStreamedUnaryMethod_ListOAuthApps<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_GetLocationMetadata<WithStreamedUnaryMethod_UpdateLocationMetadata<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRobotMetadata<WithStreamedUnaryMethod_UpdateRobotMetadata<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartByNameAndLocation<WithStreamedUnaryMethod_GetRobotPartLogs<WithSplitStreamingMethod_TailRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_GetRobotPartMetadata<WithStreamedUnaryMethod_UpdateRobotPartMetadata<WithStreamedUnaryMethod_GetRobotAPIKeys<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_ListRobotsForLocations<WithStreamedUnaryMethod_ListRobotsForOrg<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_ListNestedFragments<WithStreamedUnaryMethod_ListMachineFragments<WithStreamedUnaryMethod_ListMachineSummaries<WithStreamedUnaryMethod_GetFragmentHistory<WithStreamedUnaryMethod_GetFragmentUsage<WithStreamedUnaryMethod_SetFragmentTag<WithStreamedUnaryMethod_DeleteFragmentTag<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ChangeRole<WithStreamedUnaryMethod_ListAuthorizations<WithStreamedUnaryMethod_CheckPermissions<WithStreamedUnaryMethod_GetRegistryItem<WithStreamedUnaryMethod_CreateRegistryItem<WithStreamedUnaryMethod_UpdateRegistryItem<WithStreamedUnaryMethod_ListRegistryItems<WithStreamedUnaryMethod_DeleteRegistryItem<WithStreamedUnaryMethod_RenameRegistryItem<WithStreamedUnaryMethod_TransferRegistryItem<WithStreamedUnaryMethod_CreateModule<WithStreamedUnaryMethod_UpdateModule<WithStreamedUnaryMethod_GetModule<WithStreamedUnaryMethod_ListModules<WithStreamedUnaryMethod_CreateKey<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_RenameKey<WithStreamedUnaryMethod_RotateKey<WithStreamedUnaryMethod_CreateKeyFromExistingKeyAuthorizations<WithStreamedUnaryMethod_GetAppContent<WithStreamedUnaryMethod_GetAppBranding<WithStreamedUnaryMethod_UploadDevicePushToken<WithStreamedUnaryMethod_DeleteDevicePushToken<WithStreamedUnaryMethod_GetDevicePushTokens<WithStreamedUnaryMethod_SetFirebaseConfig<WithStreamedUnaryMethod_GetFirebaseConfig<WithStreamedUnaryMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetUserIDByEmail<WithStreamedUnaryMethod_CreateOrganization<WithStreamedUnaryMethod_ListOrganizations<WithStreamedUnaryMethod_GetOrganizationsWithAccessToLocation<WithStreamedUnaryMethod_ListOrganizationsByUser<WithStreamedUnaryMethod_SearchOrganizations<WithStreamedUnaryMethod_GetOrganization<WithStreamedUnaryMethod_GetOrganizationNamespaceAvailability<WithStreamedUnaryMethod_UpdateOrganization<WithStreamedUnaryMethod_UpdateOrganizationNamespace<WithStreamedUnaryMethod_DeleteOrganization<WithStreamedUnaryMethod_GetOrganizationMetadata<WithStreamedUnaryMethod_UpdateOrganizationMetadata<WithStreamedUnaryMethod_ListOrganizationMembers<WithStreamedUnaryMethod_CreateOrganizationInvite<WithStreamedUnaryMethod_UpdateOrganizationInviteAuthorizations<WithStreamedUnaryMethod_DeleteOrganizationMember<WithStreamedUnaryMethod_DeleteOrganizationInvite<WithStreamedUnaryMethod_ResendOrganizationInvite<WithStreamedUnaryMethod_EnableBillingService<WithStreamedUnaryMethod_DisableBillingService<WithStreamedUnaryMethod_UpdateBillingService<WithStreamedUnaryMethod_GetBillingServiceConfig<WithStreamedUnaryMethod_OrganizationSetSupportEmail<WithStreamedUnaryMethod_OrganizationGetSupportEmail<WithStreamedUnaryMethod_OrganizationSetLogo<WithStreamedUnaryMethod_OrganizationGetLogo<WithStreamedUnaryMethod_EnableAuthService<WithStreamedUnaryMethod_DisableAuthService<WithStreamedUnaryMethod_CreateOAuthApp<WithStreamedUnaryMethod_ReadOAuthApp<WithStreamedUnaryMethod_UpdateOAuthApp<WithStreamedUnaryMethod_DeleteOAuthApp<WithStreamedUnaryMethod_ListOAuthApps<WithStreamedUnaryMethod_CreateOAuthAppUser<WithStreamedUnaryMethod_CreateLocation<WithStreamedUnaryMethod_GetLocation<WithStreamedUnaryMethod_UpdateLocation<WithStreamedUnaryMethod_DeleteLocation<WithStreamedUnaryMethod_GetLocationMetadata<WithStreamedUnaryMethod_UpdateLocationMetadata<WithStreamedUnaryMethod_ListLocations<WithStreamedUnaryMethod_ShareLocation<WithStreamedUnaryMethod_UnshareLocation<WithStreamedUnaryMethod_LocationAuth<WithStreamedUnaryMethod_CreateLocationSecret<WithStreamedUnaryMethod_DeleteLocationSecret<WithStreamedUnaryMethod_GetRobot<WithStreamedUnaryMethod_GetRobotMetadata<WithStreamedUnaryMethod_UpdateRobotMetadata<WithStreamedUnaryMethod_GetRoverRentalRobots<WithStreamedUnaryMethod_GetRobotParts<WithStreamedUnaryMethod_GetRobotPart<WithStreamedUnaryMethod_GetRobotPartByNameAndLocation<WithStreamedUnaryMethod_GetRobotPartLogs<WithSplitStreamingMethod_TailRobotPartLogs<WithStreamedUnaryMethod_GetRobotPartHistory<WithStreamedUnaryMethod_UpdateRobotPart<WithStreamedUnaryMethod_NewRobotPart<WithStreamedUnaryMethod_DeleteRobotPart<WithStreamedUnaryMethod_GetRobotPartMetadata<WithStreamedUnaryMethod_UpdateRobotPartMetadata<WithStreamedUnaryMethod_GetRobotAPIKeys<WithStreamedUnaryMethod_MarkPartAsMain<WithStreamedUnaryMethod_MarkPartForRestart<WithStreamedUnaryMethod_CreateRobotPartSecret<WithStreamedUnaryMethod_DeleteRobotPartSecret<WithStreamedUnaryMethod_ListRobots<WithStreamedUnaryMethod_ListRobotsForLocations<WithStreamedUnaryMethod_ListRobotsForOrg<WithStreamedUnaryMethod_NewRobot<WithStreamedUnaryMethod_UpdateRobot<WithStreamedUnaryMethod_DeleteRobot<WithStreamedUnaryMethod_ListFragments<WithStreamedUnaryMethod_GetFragment<WithStreamedUnaryMethod_CreateFragment<WithStreamedUnaryMethod_UpdateFragment<WithStreamedUnaryMethod_DeleteFragment<WithStreamedUnaryMethod_ListNestedFragments<WithStreamedUnaryMethod_ListMachineFragments<WithStreamedUnaryMethod_ListMachineSummaries<WithStreamedUnaryMethod_GetFragmentHistory<WithStreamedUnaryMethod_GetFragmentUsage<WithStreamedUnaryMethod_SetFragmentTag<WithStreamedUnaryMethod_DeleteFragmentTag<WithStreamedUnaryMethod_AddRole<WithStreamedUnaryMethod_RemoveRole<WithStreamedUnaryMethod_ChangeRole<WithStreamedUnaryMethod_ListAuthorizations<WithStreamedUnaryMethod_CheckPermissions<WithStreamedUnaryMethod_GetRegistryItem<WithStreamedUnaryMethod_CreateRegistryItem<WithStreamedUnaryMethod_UpdateRegistryItem<WithStreamedUnaryMethod_ListRegistryItems<WithStreamedUnaryMethod_DeleteRegistryItem<WithStreamedUnaryMethod_RenameRegistryItem<WithStreamedUnaryMethod_TransferRegistryItem<WithStreamedUnaryMethod_CreateModule<WithStreamedUnaryMethod_UpdateModule<WithStreamedUnaryMethod_GetModule<WithStreamedUnaryMethod_ListModules<WithStreamedUnaryMethod_CreateKey<WithStreamedUnaryMethod_DeleteKey<WithStreamedUnaryMethod_ListKeys<WithStreamedUnaryMethod_RenameKey<WithStreamedUnaryMethod_RotateKey<WithStreamedUnaryMethod_CreateKeyFromExistingKeyAuthorizations<WithStreamedUnaryMethod_GetAppContent<WithStreamedUnaryMethod_GetAppBranding<WithStreamedUnaryMethod_UploadDevicePushToken<WithStreamedUnaryMethod_DeleteDevicePushToken<WithStreamedUnaryMethod_GetDevicePushTokens<WithStreamedUnaryMethod_SetFirebaseConfig<WithStreamedUnaryMethod_GetFirebaseConfig<WithStreamedUnaryMethod_DeleteFirebaseConfig<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 // Users
 

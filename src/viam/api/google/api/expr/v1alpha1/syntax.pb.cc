@@ -547,10 +547,10 @@ const char descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2ep
   "2\036.google.api.expr.v1alpha1.ExprR\005value:"
   "\0028\001\"p\n\016SourcePosition\022\032\n\010location\030\001 \001(\tR"
   "\010location\022\026\n\006offset\030\002 \001(\005R\006offset\022\022\n\004lin"
-  "e\030\003 \001(\005R\004line\022\026\n\006column\030\004 \001(\005R\006columnBn\n"
+  "e\030\003 \001(\005R\004line\022\026\n\006column\030\004 \001(\005R\006columnBk\n"
   "\034com.google.api.expr.v1alpha1B\013SyntaxPro"
   "toP\001Z<google.golang.org/genproto/googlea"
-  "pis/api/expr/v1alpha1;expr\370\001\001b\006proto3"
+  "pis/api/expr/v1alpha1;exprb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -559,7 +559,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fexpr
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto = {
-    false, false, 3637, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
+    false, false, 3634, descriptor_table_protodef_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto,
     "google/api/expr/v1alpha1/syntax.proto",
     &descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_once, descriptor_table_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto_deps, 3, 16,
     schemas, file_default_instances, TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fsyntax_2eproto::offsets,

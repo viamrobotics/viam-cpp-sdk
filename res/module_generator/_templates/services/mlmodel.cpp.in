@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 
-namespace {{ .ModuleName }} {
+namespace {{ .ModuleSnake }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
@@ -16,5 +16,5 @@ std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceC
     throw std::runtime_error("\"validate\" not implemented");
 }
 
-} // namespace {{ .ModuleName }}
+} // namespace {{ .ModuleSnake }}
 

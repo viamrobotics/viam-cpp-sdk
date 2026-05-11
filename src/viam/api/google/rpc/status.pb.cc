@@ -66,16 +66,16 @@ const char descriptor_table_protodef_google_2frpc_2fstatus_2eproto[] PROTOBUF_SE
   "oogle/protobuf/any.proto\"f\n\006Status\022\022\n\004co"
   "de\030\001 \001(\005R\004code\022\030\n\007message\030\002 \001(\tR\007message"
   "\022.\n\007details\030\003 \003(\0132\024.google.protobuf.AnyR"
-  "\007detailsBa\n\016com.google.rpcB\013StatusProtoP"
+  "\007detailsB^\n\016com.google.rpcB\013StatusProtoP"
   "\001Z7google.golang.org/genproto/googleapis"
-  "/rpc/status;status\370\001\001\242\002\003RPCb\006proto3"
+  "/rpc/status;status\242\002\003RPCb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2frpc_2fstatus_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_google_2frpc_2fstatus_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2frpc_2fstatus_2eproto = {
-    false, false, 275, descriptor_table_protodef_google_2frpc_2fstatus_2eproto,
+    false, false, 272, descriptor_table_protodef_google_2frpc_2fstatus_2eproto,
     "google/rpc/status.proto",
     &descriptor_table_google_2frpc_2fstatus_2eproto_once, descriptor_table_google_2frpc_2fstatus_2eproto_deps, 1, 1,
     schemas, file_default_instances, TableStruct_google_2frpc_2fstatus_2eproto::offsets,

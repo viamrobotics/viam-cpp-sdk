@@ -27,9 +27,11 @@ PROTOBUF_CONSTEXPR InvoiceSummary::InvoiceSummary(
     ::_pbi::ConstantInitialized)
   : id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , status_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , last_payment_failure_reason_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , invoice_date_(nullptr)
   , due_date_(nullptr)
   , paid_date_(nullptr)
+  , last_payment_failure_at_(nullptr)
   , invoice_amount_(0){}
 struct InvoiceSummaryDefaultTypeInternal {
   PROTOBUF_CONSTEXPR InvoiceSummaryDefaultTypeInternal()
@@ -439,6 +441,8 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::InvoiceSummary, status_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::InvoiceSummary, due_date_),
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::InvoiceSummary, paid_date_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::InvoiceSummary, last_payment_failure_reason_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::v1::InvoiceSummary, last_payment_failure_at_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::v1::PaymentMethodCard, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -699,34 +703,34 @@ const uint32_t TableStruct_app_2fv1_2fbilling_2eproto::offsets[] PROTOBUF_SECTIO
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::v1::InvoiceSummary)},
-  { 12, -1, -1, sizeof(::viam::app::v1::PaymentMethodCard)},
-  { 20, -1, -1, sizeof(::viam::app::v1::VerificationInfo)},
-  { 28, 39, -1, sizeof(::viam::app::v1::PaymentMethodUSBankAccount)},
-  { 44, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageRequest)},
-  { 51, -1, -1, sizeof(::viam::app::v1::UsageCost)},
-  { 59, -1, -1, sizeof(::viam::app::v1::ResourceUsageCostsBySource)},
-  { 68, -1, -1, sizeof(::viam::app::v1::ResourceUsageCosts)},
-  { 78, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageResponse)},
-  { 99, -1, -1, sizeof(::viam::app::v1::GetOrgBillingInformationRequest)},
-  { 106, 117, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
-  { 122, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
-  { 129, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
-  { 137, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
-  { 145, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
-  { 152, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailRequest)},
-  { 160, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailResponse)},
-  { 166, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersRequest)},
-  { 172, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersResponse)},
-  { 179, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierRequest)},
-  { 187, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierResponse)},
-  { 193, -1, -1, sizeof(::viam::app::v1::GetLocationBillingOrganizationRequest)},
-  { 200, -1, -1, sizeof(::viam::app::v1::GetLocationBillingOrganizationResponse)},
-  { 207, -1, -1, sizeof(::viam::app::v1::UpdateLocationBillingOrganizationRequest)},
-  { 215, -1, -1, sizeof(::viam::app::v1::UpdateLocationBillingOrganizationResponse)},
-  { 221, 233, -1, sizeof(::viam::app::v1::ChargeOrganizationRequest)},
-  { 239, -1, -1, sizeof(::viam::app::v1::ChargeOrganizationResponse)},
-  { 246, 257, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest)},
-  { 262, -1, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse)},
+  { 14, -1, -1, sizeof(::viam::app::v1::PaymentMethodCard)},
+  { 22, -1, -1, sizeof(::viam::app::v1::VerificationInfo)},
+  { 30, 41, -1, sizeof(::viam::app::v1::PaymentMethodUSBankAccount)},
+  { 46, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageRequest)},
+  { 53, -1, -1, sizeof(::viam::app::v1::UsageCost)},
+  { 61, -1, -1, sizeof(::viam::app::v1::ResourceUsageCostsBySource)},
+  { 70, -1, -1, sizeof(::viam::app::v1::ResourceUsageCosts)},
+  { 80, -1, -1, sizeof(::viam::app::v1::GetCurrentMonthUsageResponse)},
+  { 101, -1, -1, sizeof(::viam::app::v1::GetOrgBillingInformationRequest)},
+  { 108, 119, -1, sizeof(::viam::app::v1::GetOrgBillingInformationResponse)},
+  { 124, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryRequest)},
+  { 131, -1, -1, sizeof(::viam::app::v1::GetInvoicesSummaryResponse)},
+  { 139, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfRequest)},
+  { 147, -1, -1, sizeof(::viam::app::v1::GetInvoicePdfResponse)},
+  { 154, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailRequest)},
+  { 162, -1, -1, sizeof(::viam::app::v1::SendPaymentRequiredEmailResponse)},
+  { 168, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersRequest)},
+  { 174, -1, -1, sizeof(::viam::app::v1::GetAvailableBillingTiersResponse)},
+  { 181, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierRequest)},
+  { 189, -1, -1, sizeof(::viam::app::v1::UpdateOrganizationBillingTierResponse)},
+  { 195, -1, -1, sizeof(::viam::app::v1::GetLocationBillingOrganizationRequest)},
+  { 202, -1, -1, sizeof(::viam::app::v1::GetLocationBillingOrganizationResponse)},
+  { 209, -1, -1, sizeof(::viam::app::v1::UpdateLocationBillingOrganizationRequest)},
+  { 217, -1, -1, sizeof(::viam::app::v1::UpdateLocationBillingOrganizationResponse)},
+  { 223, 235, -1, sizeof(::viam::app::v1::ChargeOrganizationRequest)},
+  { 241, -1, -1, sizeof(::viam::app::v1::ChargeOrganizationResponse)},
+  { 248, 259, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyRequest)},
+  { 264, -1, -1, sizeof(::viam::app::v1::CreateInvoiceAndChargeImmediatelyResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -763,197 +767,201 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_app_2fv1_2fbilling_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\024app/v1/billing.proto\022\013viam.app.v1\032\037goo"
-  "gle/protobuf/timestamp.proto\"\216\002\n\016Invoice"
+  "gle/protobuf/timestamp.proto\"\240\003\n\016Invoice"
   "Summary\022\016\n\002id\030\001 \001(\tR\002id\022=\n\014invoice_date\030"
   "\002 \001(\0132\032.google.protobuf.TimestampR\013invoi"
   "ceDate\022%\n\016invoice_amount\030\003 \001(\001R\rinvoiceA"
   "mount\022\026\n\006status\030\004 \001(\tR\006status\0225\n\010due_dat"
   "e\030\005 \001(\0132\032.google.protobuf.TimestampR\007due"
   "Date\0227\n\tpaid_date\030\006 \001(\0132\032.google.protobu"
-  "f.TimestampR\010paidDate\"S\n\021PaymentMethodCa"
-  "rd\022\024\n\005brand\030\001 \001(\tR\005brand\022(\n\020last_four_di"
-  "gits\030\002 \001(\tR\016lastFourDigits\"v\n\020Verificati"
-  "onInfo\022!\n\014arrival_date\030\001 \001(\003R\013arrivalDat"
-  "e\022\?\n\034hosted_verification_page_url\030\002 \001(\tR"
-  "\031hostedVerificationPageUrl\"\260\002\n\032PaymentMe"
-  "thodUSBankAccount\022\033\n\tbank_name\030\001 \001(\tR\010ba"
-  "nkName\022D\n\037last_four_digits_account_numbe"
-  "r\030\002 \001(\tR\033lastFourDigitsAccountNumber\022%\n\016"
-  "routing_number\030\003 \001(\tR\rroutingNumber\022!\n\014a"
-  "ccount_type\030\004 \001(\tR\013accountType\022O\n\021verifi"
-  "cation_info\030\005 \001(\0132\035.viam.app.v1.Verifica"
-  "tionInfoH\000R\020verificationInfo\210\001\001B\024\n\022_veri"
-  "fication_info\"4\n\033GetCurrentMonthUsageReq"
-  "uest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"`\n\tUsageCost"
-  "\022\?\n\rresource_type\030\001 \001(\0162\032.viam.app.v1.Us"
-  "ageCostTypeR\014resourceType\022\022\n\004cost\030\002 \001(\001R"
-  "\004cost\"\306\001\n\032ResourceUsageCostsBySource\0228\n\013"
-  "source_type\030\001 \001(\0162\027.viam.app.v1.SourceTy"
-  "peR\nsourceType\022Q\n\024resource_usage_costs\030\002"
-  " \001(\0132\037.viam.app.v1.ResourceUsageCostsR\022r"
-  "esourceUsageCosts\022\033\n\ttier_name\030\003 \001(\tR\010ti"
-  "erName\"\317\001\n\022ResourceUsageCosts\0227\n\013usage_c"
-  "osts\030\001 \003(\0132\026.viam.app.v1.UsageCostR\nusag"
-  "eCosts\022\032\n\010discount\030\002 \001(\001R\010discount\022.\n\023to"
-  "tal_with_discount\030\003 \001(\001R\021totalWithDiscou"
-  "nt\0224\n\026total_without_discount\030\004 \001(\001R\024tota"
-  "lWithoutDiscount\"\315\007\n\034GetCurrentMonthUsag"
-  "eResponse\0229\n\nstart_date\030\001 \001(\0132\032.google.p"
-  "rotobuf.TimestampR\tstartDate\0225\n\010end_date"
-  "\030\002 \001(\0132\032.google.protobuf.TimestampR\007endD"
-  "ate\022k\n\036resource_usage_costs_by_source\030\016 "
-  "\003(\0132\'.viam.app.v1.ResourceUsageCostsBySo"
-  "urceR\032resourceUsageCostsBySource\022\032\n\010subt"
-  "otal\030\017 \001(\001R\010subtotal\022;\n\030cloud_storage_us"
-  "age_cost\030\003 \001(\001B\002\030\001R\025cloudStorageUsageCos"
-  "t\0227\n\026data_upload_usage_cost\030\004 \001(\001B\002\030\001R\023d"
-  "ataUploadUsageCost\0225\n\025data_egres_usage_c"
-  "ost\030\005 \001(\001B\002\030\001R\022dataEgresUsageCost\022=\n\031rem"
-  "ote_control_usage_cost\030\006 \001(\001B\002\030\001R\026remote"
-  "ControlUsageCost\022A\n\033standard_compute_usa"
-  "ge_cost\030\007 \001(\001B\002\030\001R\030standardComputeUsageC"
-  "ost\022+\n\017discount_amount\030\010 \001(\001B\002\030\001R\016discou"
-  "ntAmount\022=\n\031total_usage_with_discount\030\t "
-  "\001(\001B\002\030\001R\026totalUsageWithDiscount\022C\n\034total"
-  "_usage_without_discount\030\n \001(\001B\002\030\001R\031total"
-  "UsageWithoutDiscount\0227\n\026per_machine_usag"
-  "e_cost\030\013 \001(\001B\002\030\001R\023perMachineUsageCost\022Q\n"
-  "$binary_data_cloud_storage_usage_cost\030\014 "
-  "\001(\001B\002\030\001R\037binaryDataCloudStorageUsageCost"
-  "\022F\n\036other_cloud_storage_usage_cost\030\r \001(\001"
-  "B\002\030\001R\032otherCloudStorageUsageCost\"8\n\037GetO"
-  "rgBillingInformationRequest\022\025\n\006org_id\030\001 "
-  "\001(\tR\005orgId\"\372\002\n GetOrgBillingInformationR"
-  "esponse\0222\n\004type\030\001 \001(\0162\036.viam.app.v1.Paym"
-  "entMethodTypeR\004type\022#\n\rbilling_email\030\002 \001"
-  "(\tR\014billingEmail\022;\n\006method\030\003 \001(\0132\036.viam."
-  "app.v1.PaymentMethodCardH\000R\006method\210\001\001\022&\n"
-  "\014billing_tier\030\004 \001(\tH\001R\013billingTier\210\001\001\022a\n"
-  "\026method_us_bank_account\030\005 \001(\0132\'.viam.app"
-  ".v1.PaymentMethodUSBankAccountH\002R\023method"
-  "UsBankAccount\210\001\001B\t\n\007_methodB\017\n\r_billing_"
-  "tierB\031\n\027_method_us_bank_account\"2\n\031GetIn"
-  "voicesSummaryRequest\022\025\n\006org_id\030\001 \001(\tR\005or"
-  "gId\"\206\001\n\032GetInvoicesSummaryResponse\022/\n\023ou"
-  "tstanding_balance\030\001 \001(\001R\022outstandingBala"
-  "nce\0227\n\010invoices\030\002 \003(\0132\033.viam.app.v1.Invo"
-  "iceSummaryR\010invoices\"=\n\024GetInvoicePdfReq"
-  "uest\022\016\n\002id\030\001 \001(\tR\002id\022\025\n\006org_id\030\002 \001(\tR\005or"
-  "gId\"-\n\025GetInvoicePdfResponse\022\024\n\005chunk\030\001 "
-  "\001(\014R\005chunk\"z\n\037SendPaymentRequiredEmailRe"
-  "quest\022&\n\017customer_org_id\030\001 \001(\tR\rcustomer"
-  "OrgId\022/\n\024billing_owner_org_id\030\002 \001(\tR\021bil"
-  "lingOwnerOrgId\"\"\n SendPaymentRequiredEma"
-  "ilResponse\"!\n\037GetAvailableBillingTiersRe"
-  "quest\"8\n GetAvailableBillingTiersRespons"
-  "e\022\024\n\005tiers\030\001 \003(\tR\005tiers\"r\n$UpdateOrganiz"
-  "ationBillingTierRequest\022\'\n\017organization_"
-  "id\030\001 \001(\tR\016organizationId\022!\n\014billing_tier"
-  "\030\002 \001(\tR\013billingTier\"\'\n%UpdateOrganizatio"
-  "nBillingTierResponse\"H\n%GetLocationBilli"
-  "ngOrganizationRequest\022\037\n\013location_id\030\001 \001"
-  "(\tR\nlocationId\"`\n&GetLocationBillingOrga"
-  "nizationResponse\0226\n\027billing_organization"
-  "_id\030\001 \001(\tR\025billingOrganizationId\"\203\001\n(Upd"
-  "ateLocationBillingOrganizationRequest\022\037\n"
-  "\013location_id\030\001 \001(\tR\nlocationId\0226\n\027billin"
-  "g_organization_id\030\002 \001(\tR\025billingOrganiza"
-  "tionId\"+\n)UpdateLocationBillingOrganizat"
-  "ionResponse\"\263\002\n\031ChargeOrganizationReques"
-  "t\022\'\n\020org_id_to_charge\030\001 \001(\tR\rorgIdToChar"
-  "ge\022%\n\013description\030\002 \001(\tH\000R\013description\210\001"
-  "\001\022\032\n\010subtotal\030\003 \001(\001R\010subtotal\022\020\n\003tax\030\004 \001"
-  "(\001R\003tax\0222\n\023org_id_for_branding\030\005 \001(\tH\001R\020"
-  "orgIdForBranding\210\001\001\022<\n\032disable_confirmat"
-  "ion_email\030\006 \001(\010R\030disableConfirmationEmai"
-  "lB\016\n\014_descriptionB\026\n\024_org_id_for_brandin"
-  "g\";\n\032ChargeOrganizationResponse\022\035\n\ninvoi"
-  "ce_id\030\001 \001(\tR\tinvoiceId\"\223\002\n(CreateInvoice"
-  "AndChargeImmediatelyRequest\022\'\n\020org_id_to"
-  "_charge\030\001 \001(\tR\rorgIdToCharge\022\026\n\006amount\030\002"
-  " \001(\001R\006amount\022%\n\013description\030\003 \001(\tH\000R\013des"
-  "cription\210\001\001\0222\n\023org_id_for_branding\030\004 \001(\t"
-  "H\001R\020orgIdForBranding\210\001\001\022#\n\rdisable_email"
-  "\030\005 \001(\010R\014disableEmailB\016\n\014_descriptionB\026\n\024"
-  "_org_id_for_branding\"J\n)CreateInvoiceAnd"
-  "ChargeImmediatelyResponse\022\035\n\ninvoice_id\030"
-  "\001 \001(\tR\tinvoiceId*}\n\021PaymentMethodType\022#\n"
-  "\037PAYMENT_METHOD_TYPE_UNSPECIFIED\020\000\022\034\n\030PA"
-  "YMENT_METHOD_TYPE_CARD\020\001\022%\n!PAYMENT_METH"
-  "OD_TYPE_USBANKACCOUNT\020\002*\204\t\n\rUsageCostTyp"
-  "e\022\037\n\033USAGE_COST_TYPE_UNSPECIFIED\020\000\022#\n\033US"
-  "AGE_COST_TYPE_DATA_UPLOAD\020\001\032\002\010\001\022#\n\033USAGE"
-  "_COST_TYPE_DATA_EGRESS\020\002\032\002\010\001\022\"\n\036USAGE_CO"
-  "ST_TYPE_REMOTE_CONTROL\020\003\022$\n USAGE_COST_T"
-  "YPE_STANDARD_COMPUTE\020\004\022%\n\035USAGE_COST_TYP"
-  "E_CLOUD_STORAGE\020\005\032\002\010\001\022-\n)USAGE_COST_TYPE"
-  "_BINARY_DATA_CLOUD_STORAGE\020\006\022+\n#USAGE_CO"
-  "ST_TYPE_OTHER_CLOUD_STORAGE\020\007\032\002\010\001\022\037\n\033USA"
-  "GE_COST_TYPE_PER_MACHINE\020\010\022(\n$USAGE_COST"
-  "_TYPE_TRIGGER_NOTIFICATION\020\t\022.\n*USAGE_CO"
-  "ST_TYPE_TABULAR_DATA_CLOUD_STORAGE\020\n\0220\n,"
-  "USAGE_COST_TYPE_CONFIG_HISTORY_CLOUD_STO"
-  "RAGE\020\013\022&\n\"USAGE_COST_TYPE_LOGS_CLOUD_STO"
-  "RAGE\020\014\022/\n+USAGE_COST_TYPE_TRAINING_LOGS_"
-  "CLOUD_STORAGE\020\r\022*\n&USAGE_COST_TYPE_PACKA"
-  "GES_CLOUD_STORAGE\020\016\022&\n\"USAGE_COST_TYPE_B"
-  "INARY_DATA_UPLOAD\020\017\022\'\n#USAGE_COST_TYPE_T"
-  "ABULAR_DATA_UPLOAD\020\020\022\037\n\033USAGE_COST_TYPE_"
-  "LOGS_UPLOAD\020\021\022&\n\"USAGE_COST_TYPE_BINARY_"
-  "DATA_EGRESS\020\022\022\'\n#USAGE_COST_TYPE_TABULAR"
-  "_DATA_EGRESS\020\023\022\037\n\033USAGE_COST_TYPE_LOGS_E"
-  "GRESS\020\024\022(\n$USAGE_COST_TYPE_TRAINING_LOGS"
-  "_EGRESS\020\025\0227\n3USAGE_COST_TYPE_TABULAR_DAT"
-  "A_DATABASE_CLOUD_STORAGE\020\026\0221\n-USAGE_COST"
-  "_TYPE_TABULAR_DATA_DATABASE_COMPUTE\020\027\0223\n"
-  "/USAGE_COST_TYPE_BINARY_DATA_CROSS_REGIO"
-  "N_EGRESS\020\030\022/\n+USAGE_COST_TYPE_PIPELINE_S"
-  "INK_CLOUD_STORAGE\020\031\022)\n%USAGE_COST_TYPE_P"
-  "IPELINE_SINK_COMPUTE\020\032*X\n\nSourceType\022\033\n\027"
-  "SOURCE_TYPE_UNSPECIFIED\020\000\022\023\n\017SOURCE_TYPE"
-  "_ORG\020\001\022\030\n\024SOURCE_TYPE_FRAGMENT\020\0022\317\n\n\016Bil"
-  "lingService\022k\n\024GetCurrentMonthUsage\022(.vi"
-  "am.app.v1.GetCurrentMonthUsageRequest\032)."
-  "viam.app.v1.GetCurrentMonthUsageResponse"
-  "\022w\n\030GetOrgBillingInformation\022,.viam.app."
-  "v1.GetOrgBillingInformationRequest\032-.via"
-  "m.app.v1.GetOrgBillingInformationRespons"
-  "e\022e\n\022GetInvoicesSummary\022&.viam.app.v1.Ge"
-  "tInvoicesSummaryRequest\032\'.viam.app.v1.Ge"
-  "tInvoicesSummaryResponse\022X\n\rGetInvoicePd"
-  "f\022!.viam.app.v1.GetInvoicePdfRequest\032\".v"
-  "iam.app.v1.GetInvoicePdfResponse0\001\022w\n\030Se"
-  "ndPaymentRequiredEmail\022,.viam.app.v1.Sen"
-  "dPaymentRequiredEmailRequest\032-.viam.app."
-  "v1.SendPaymentRequiredEmailResponse\022w\n\030G"
-  "etAvailableBillingTiers\022,.viam.app.v1.Ge"
-  "tAvailableBillingTiersRequest\032-.viam.app"
-  ".v1.GetAvailableBillingTiersResponse\022\206\001\n"
-  "\035UpdateOrganizationBillingTier\0221.viam.ap"
-  "p.v1.UpdateOrganizationBillingTierReques"
-  "t\0322.viam.app.v1.UpdateOrganizationBillin"
-  "gTierResponse\022\211\001\n\036GetLocationBillingOrga"
-  "nization\0222.viam.app.v1.GetLocationBillin"
-  "gOrganizationRequest\0323.viam.app.v1.GetLo"
-  "cationBillingOrganizationResponse\022\222\001\n!Up"
-  "dateLocationBillingOrganization\0225.viam.a"
-  "pp.v1.UpdateLocationBillingOrganizationR"
-  "equest\0326.viam.app.v1.UpdateLocationBilli"
-  "ngOrganizationResponse\022e\n\022ChargeOrganiza"
-  "tion\022&.viam.app.v1.ChargeOrganizationReq"
-  "uest\032\'.viam.app.v1.ChargeOrganizationRes"
-  "ponse\022\222\001\n!CreateInvoiceAndChargeImmediat"
-  "ely\0225.viam.app.v1.CreateInvoiceAndCharge"
-  "ImmediatelyRequest\0326.viam.app.v1.CreateI"
-  "nvoiceAndChargeImmediatelyResponseB\030Z\026go"
-  ".viam.com/api/app/v1b\006proto3"
+  "f.TimestampR\010paidDate\022=\n\033last_payment_fa"
+  "ilure_reason\030\007 \001(\tR\030lastPaymentFailureRe"
+  "ason\022Q\n\027last_payment_failure_at\030\010 \001(\0132\032."
+  "google.protobuf.TimestampR\024lastPaymentFa"
+  "ilureAt\"S\n\021PaymentMethodCard\022\024\n\005brand\030\001 "
+  "\001(\tR\005brand\022(\n\020last_four_digits\030\002 \001(\tR\016la"
+  "stFourDigits\"v\n\020VerificationInfo\022!\n\014arri"
+  "val_date\030\001 \001(\003R\013arrivalDate\022\?\n\034hosted_ve"
+  "rification_page_url\030\002 \001(\tR\031hostedVerific"
+  "ationPageUrl\"\260\002\n\032PaymentMethodUSBankAcco"
+  "unt\022\033\n\tbank_name\030\001 \001(\tR\010bankName\022D\n\037last"
+  "_four_digits_account_number\030\002 \001(\tR\033lastF"
+  "ourDigitsAccountNumber\022%\n\016routing_number"
+  "\030\003 \001(\tR\rroutingNumber\022!\n\014account_type\030\004 "
+  "\001(\tR\013accountType\022O\n\021verification_info\030\005 "
+  "\001(\0132\035.viam.app.v1.VerificationInfoH\000R\020ve"
+  "rificationInfo\210\001\001B\024\n\022_verification_info\""
+  "4\n\033GetCurrentMonthUsageRequest\022\025\n\006org_id"
+  "\030\001 \001(\tR\005orgId\"`\n\tUsageCost\022\?\n\rresource_t"
+  "ype\030\001 \001(\0162\032.viam.app.v1.UsageCostTypeR\014r"
+  "esourceType\022\022\n\004cost\030\002 \001(\001R\004cost\"\306\001\n\032Reso"
+  "urceUsageCostsBySource\0228\n\013source_type\030\001 "
+  "\001(\0162\027.viam.app.v1.SourceTypeR\nsourceType"
+  "\022Q\n\024resource_usage_costs\030\002 \001(\0132\037.viam.ap"
+  "p.v1.ResourceUsageCostsR\022resourceUsageCo"
+  "sts\022\033\n\ttier_name\030\003 \001(\tR\010tierName\"\317\001\n\022Res"
+  "ourceUsageCosts\0227\n\013usage_costs\030\001 \003(\0132\026.v"
+  "iam.app.v1.UsageCostR\nusageCosts\022\032\n\010disc"
+  "ount\030\002 \001(\001R\010discount\022.\n\023total_with_disco"
+  "unt\030\003 \001(\001R\021totalWithDiscount\0224\n\026total_wi"
+  "thout_discount\030\004 \001(\001R\024totalWithoutDiscou"
+  "nt\"\315\007\n\034GetCurrentMonthUsageResponse\0229\n\ns"
+  "tart_date\030\001 \001(\0132\032.google.protobuf.Timest"
+  "ampR\tstartDate\0225\n\010end_date\030\002 \001(\0132\032.googl"
+  "e.protobuf.TimestampR\007endDate\022k\n\036resourc"
+  "e_usage_costs_by_source\030\016 \003(\0132\'.viam.app"
+  ".v1.ResourceUsageCostsBySourceR\032resource"
+  "UsageCostsBySource\022\032\n\010subtotal\030\017 \001(\001R\010su"
+  "btotal\022;\n\030cloud_storage_usage_cost\030\003 \001(\001"
+  "B\002\030\001R\025cloudStorageUsageCost\0227\n\026data_uplo"
+  "ad_usage_cost\030\004 \001(\001B\002\030\001R\023dataUploadUsage"
+  "Cost\0225\n\025data_egres_usage_cost\030\005 \001(\001B\002\030\001R"
+  "\022dataEgresUsageCost\022=\n\031remote_control_us"
+  "age_cost\030\006 \001(\001B\002\030\001R\026remoteControlUsageCo"
+  "st\022A\n\033standard_compute_usage_cost\030\007 \001(\001B"
+  "\002\030\001R\030standardComputeUsageCost\022+\n\017discoun"
+  "t_amount\030\010 \001(\001B\002\030\001R\016discountAmount\022=\n\031to"
+  "tal_usage_with_discount\030\t \001(\001B\002\030\001R\026total"
+  "UsageWithDiscount\022C\n\034total_usage_without"
+  "_discount\030\n \001(\001B\002\030\001R\031totalUsageWithoutDi"
+  "scount\0227\n\026per_machine_usage_cost\030\013 \001(\001B\002"
+  "\030\001R\023perMachineUsageCost\022Q\n$binary_data_c"
+  "loud_storage_usage_cost\030\014 \001(\001B\002\030\001R\037binar"
+  "yDataCloudStorageUsageCost\022F\n\036other_clou"
+  "d_storage_usage_cost\030\r \001(\001B\002\030\001R\032otherClo"
+  "udStorageUsageCost\"8\n\037GetOrgBillingInfor"
+  "mationRequest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"\372\002\n"
+  " GetOrgBillingInformationResponse\0222\n\004typ"
+  "e\030\001 \001(\0162\036.viam.app.v1.PaymentMethodTypeR"
+  "\004type\022#\n\rbilling_email\030\002 \001(\tR\014billingEma"
+  "il\022;\n\006method\030\003 \001(\0132\036.viam.app.v1.Payment"
+  "MethodCardH\000R\006method\210\001\001\022&\n\014billing_tier\030"
+  "\004 \001(\tH\001R\013billingTier\210\001\001\022a\n\026method_us_ban"
+  "k_account\030\005 \001(\0132\'.viam.app.v1.PaymentMet"
+  "hodUSBankAccountH\002R\023methodUsBankAccount\210"
+  "\001\001B\t\n\007_methodB\017\n\r_billing_tierB\031\n\027_metho"
+  "d_us_bank_account\"2\n\031GetInvoicesSummaryR"
+  "equest\022\025\n\006org_id\030\001 \001(\tR\005orgId\"\206\001\n\032GetInv"
+  "oicesSummaryResponse\022/\n\023outstanding_bala"
+  "nce\030\001 \001(\001R\022outstandingBalance\0227\n\010invoice"
+  "s\030\002 \003(\0132\033.viam.app.v1.InvoiceSummaryR\010in"
+  "voices\"=\n\024GetInvoicePdfRequest\022\016\n\002id\030\001 \001"
+  "(\tR\002id\022\025\n\006org_id\030\002 \001(\tR\005orgId\"-\n\025GetInvo"
+  "icePdfResponse\022\024\n\005chunk\030\001 \001(\014R\005chunk\"z\n\037"
+  "SendPaymentRequiredEmailRequest\022&\n\017custo"
+  "mer_org_id\030\001 \001(\tR\rcustomerOrgId\022/\n\024billi"
+  "ng_owner_org_id\030\002 \001(\tR\021billingOwnerOrgId"
+  "\"\"\n SendPaymentRequiredEmailResponse\"!\n\037"
+  "GetAvailableBillingTiersRequest\"8\n GetAv"
+  "ailableBillingTiersResponse\022\024\n\005tiers\030\001 \003"
+  "(\tR\005tiers\"r\n$UpdateOrganizationBillingTi"
+  "erRequest\022\'\n\017organization_id\030\001 \001(\tR\016orga"
+  "nizationId\022!\n\014billing_tier\030\002 \001(\tR\013billin"
+  "gTier\"\'\n%UpdateOrganizationBillingTierRe"
+  "sponse\"H\n%GetLocationBillingOrganization"
+  "Request\022\037\n\013location_id\030\001 \001(\tR\nlocationId"
+  "\"`\n&GetLocationBillingOrganizationRespon"
+  "se\0226\n\027billing_organization_id\030\001 \001(\tR\025bil"
+  "lingOrganizationId\"\203\001\n(UpdateLocationBil"
+  "lingOrganizationRequest\022\037\n\013location_id\030\001"
+  " \001(\tR\nlocationId\0226\n\027billing_organization"
+  "_id\030\002 \001(\tR\025billingOrganizationId\"+\n)Upda"
+  "teLocationBillingOrganizationResponse\"\263\002"
+  "\n\031ChargeOrganizationRequest\022\'\n\020org_id_to"
+  "_charge\030\001 \001(\tR\rorgIdToCharge\022%\n\013descript"
+  "ion\030\002 \001(\tH\000R\013description\210\001\001\022\032\n\010subtotal\030"
+  "\003 \001(\001R\010subtotal\022\020\n\003tax\030\004 \001(\001R\003tax\0222\n\023org"
+  "_id_for_branding\030\005 \001(\tH\001R\020orgIdForBrandi"
+  "ng\210\001\001\022<\n\032disable_confirmation_email\030\006 \001("
+  "\010R\030disableConfirmationEmailB\016\n\014_descript"
+  "ionB\026\n\024_org_id_for_branding\";\n\032ChargeOrg"
+  "anizationResponse\022\035\n\ninvoice_id\030\001 \001(\tR\ti"
+  "nvoiceId\"\223\002\n(CreateInvoiceAndChargeImmed"
+  "iatelyRequest\022\'\n\020org_id_to_charge\030\001 \001(\tR"
+  "\rorgIdToCharge\022\026\n\006amount\030\002 \001(\001R\006amount\022%"
+  "\n\013description\030\003 \001(\tH\000R\013description\210\001\001\0222\n"
+  "\023org_id_for_branding\030\004 \001(\tH\001R\020orgIdForBr"
+  "anding\210\001\001\022#\n\rdisable_email\030\005 \001(\010R\014disabl"
+  "eEmailB\016\n\014_descriptionB\026\n\024_org_id_for_br"
+  "anding\"J\n)CreateInvoiceAndChargeImmediat"
+  "elyResponse\022\035\n\ninvoice_id\030\001 \001(\tR\tinvoice"
+  "Id*}\n\021PaymentMethodType\022#\n\037PAYMENT_METHO"
+  "D_TYPE_UNSPECIFIED\020\000\022\034\n\030PAYMENT_METHOD_T"
+  "YPE_CARD\020\001\022%\n!PAYMENT_METHOD_TYPE_USBANK"
+  "ACCOUNT\020\002*\204\t\n\rUsageCostType\022\037\n\033USAGE_COS"
+  "T_TYPE_UNSPECIFIED\020\000\022#\n\033USAGE_COST_TYPE_"
+  "DATA_UPLOAD\020\001\032\002\010\001\022#\n\033USAGE_COST_TYPE_DAT"
+  "A_EGRESS\020\002\032\002\010\001\022\"\n\036USAGE_COST_TYPE_REMOTE"
+  "_CONTROL\020\003\022$\n USAGE_COST_TYPE_STANDARD_C"
+  "OMPUTE\020\004\022%\n\035USAGE_COST_TYPE_CLOUD_STORAG"
+  "E\020\005\032\002\010\001\022-\n)USAGE_COST_TYPE_BINARY_DATA_C"
+  "LOUD_STORAGE\020\006\022+\n#USAGE_COST_TYPE_OTHER_"
+  "CLOUD_STORAGE\020\007\032\002\010\001\022\037\n\033USAGE_COST_TYPE_P"
+  "ER_MACHINE\020\010\022(\n$USAGE_COST_TYPE_TRIGGER_"
+  "NOTIFICATION\020\t\022.\n*USAGE_COST_TYPE_TABULA"
+  "R_DATA_CLOUD_STORAGE\020\n\0220\n,USAGE_COST_TYP"
+  "E_CONFIG_HISTORY_CLOUD_STORAGE\020\013\022&\n\"USAG"
+  "E_COST_TYPE_LOGS_CLOUD_STORAGE\020\014\022/\n+USAG"
+  "E_COST_TYPE_TRAINING_LOGS_CLOUD_STORAGE\020"
+  "\r\022*\n&USAGE_COST_TYPE_PACKAGES_CLOUD_STOR"
+  "AGE\020\016\022&\n\"USAGE_COST_TYPE_BINARY_DATA_UPL"
+  "OAD\020\017\022\'\n#USAGE_COST_TYPE_TABULAR_DATA_UP"
+  "LOAD\020\020\022\037\n\033USAGE_COST_TYPE_LOGS_UPLOAD\020\021\022"
+  "&\n\"USAGE_COST_TYPE_BINARY_DATA_EGRESS\020\022\022"
+  "\'\n#USAGE_COST_TYPE_TABULAR_DATA_EGRESS\020\023"
+  "\022\037\n\033USAGE_COST_TYPE_LOGS_EGRESS\020\024\022(\n$USA"
+  "GE_COST_TYPE_TRAINING_LOGS_EGRESS\020\025\0227\n3U"
+  "SAGE_COST_TYPE_TABULAR_DATA_DATABASE_CLO"
+  "UD_STORAGE\020\026\0221\n-USAGE_COST_TYPE_TABULAR_"
+  "DATA_DATABASE_COMPUTE\020\027\0223\n/USAGE_COST_TY"
+  "PE_BINARY_DATA_CROSS_REGION_EGRESS\020\030\022/\n+"
+  "USAGE_COST_TYPE_PIPELINE_SINK_CLOUD_STOR"
+  "AGE\020\031\022)\n%USAGE_COST_TYPE_PIPELINE_SINK_C"
+  "OMPUTE\020\032*X\n\nSourceType\022\033\n\027SOURCE_TYPE_UN"
+  "SPECIFIED\020\000\022\023\n\017SOURCE_TYPE_ORG\020\001\022\030\n\024SOUR"
+  "CE_TYPE_FRAGMENT\020\0022\317\n\n\016BillingService\022k\n"
+  "\024GetCurrentMonthUsage\022(.viam.app.v1.GetC"
+  "urrentMonthUsageRequest\032).viam.app.v1.Ge"
+  "tCurrentMonthUsageResponse\022w\n\030GetOrgBill"
+  "ingInformation\022,.viam.app.v1.GetOrgBilli"
+  "ngInformationRequest\032-.viam.app.v1.GetOr"
+  "gBillingInformationResponse\022e\n\022GetInvoic"
+  "esSummary\022&.viam.app.v1.GetInvoicesSumma"
+  "ryRequest\032\'.viam.app.v1.GetInvoicesSumma"
+  "ryResponse\022X\n\rGetInvoicePdf\022!.viam.app.v"
+  "1.GetInvoicePdfRequest\032\".viam.app.v1.Get"
+  "InvoicePdfResponse0\001\022w\n\030SendPaymentRequi"
+  "redEmail\022,.viam.app.v1.SendPaymentRequir"
+  "edEmailRequest\032-.viam.app.v1.SendPayment"
+  "RequiredEmailResponse\022w\n\030GetAvailableBil"
+  "lingTiers\022,.viam.app.v1.GetAvailableBill"
+  "ingTiersRequest\032-.viam.app.v1.GetAvailab"
+  "leBillingTiersResponse\022\206\001\n\035UpdateOrganiz"
+  "ationBillingTier\0221.viam.app.v1.UpdateOrg"
+  "anizationBillingTierRequest\0322.viam.app.v"
+  "1.UpdateOrganizationBillingTierResponse\022"
+  "\211\001\n\036GetLocationBillingOrganization\0222.via"
+  "m.app.v1.GetLocationBillingOrganizationR"
+  "equest\0323.viam.app.v1.GetLocationBillingO"
+  "rganizationResponse\022\222\001\n!UpdateLocationBi"
+  "llingOrganization\0225.viam.app.v1.UpdateLo"
+  "cationBillingOrganizationRequest\0326.viam."
+  "app.v1.UpdateLocationBillingOrganization"
+  "Response\022e\n\022ChargeOrganization\022&.viam.ap"
+  "p.v1.ChargeOrganizationRequest\032\'.viam.ap"
+  "p.v1.ChargeOrganizationResponse\022\222\001\n!Crea"
+  "teInvoiceAndChargeImmediately\0225.viam.app"
+  ".v1.CreateInvoiceAndChargeImmediatelyReq"
+  "uest\0326.viam.app.v1.CreateInvoiceAndCharg"
+  "eImmediatelyResponseB\030Z\026go.viam.com/api/"
+  "app/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fv1_2fbilling_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_app_2fv1_2fbilling_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fv1_2fbilling_2eproto = {
-    false, false, 7388, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
+    false, false, 7534, descriptor_table_protodef_app_2fv1_2fbilling_2eproto,
     "app/v1/billing.proto",
     &descriptor_table_app_2fv1_2fbilling_2eproto_once, descriptor_table_app_2fv1_2fbilling_2eproto_deps, 1, 29,
     schemas, file_default_instances, TableStruct_app_2fv1_2fbilling_2eproto::offsets,
@@ -1046,6 +1054,7 @@ class InvoiceSummary::_Internal {
   static const ::PROTOBUF_NAMESPACE_ID::Timestamp& invoice_date(const InvoiceSummary* msg);
   static const ::PROTOBUF_NAMESPACE_ID::Timestamp& due_date(const InvoiceSummary* msg);
   static const ::PROTOBUF_NAMESPACE_ID::Timestamp& paid_date(const InvoiceSummary* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_payment_failure_at(const InvoiceSummary* msg);
 };
 
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
@@ -1059,6 +1068,10 @@ InvoiceSummary::_Internal::due_date(const InvoiceSummary* msg) {
 const ::PROTOBUF_NAMESPACE_ID::Timestamp&
 InvoiceSummary::_Internal::paid_date(const InvoiceSummary* msg) {
   return *msg->paid_date_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+InvoiceSummary::_Internal::last_payment_failure_at(const InvoiceSummary* msg) {
+  return *msg->last_payment_failure_at_;
 }
 void InvoiceSummary::clear_invoice_date() {
   if (GetArenaForAllocation() == nullptr && invoice_date_ != nullptr) {
@@ -1077,6 +1090,12 @@ void InvoiceSummary::clear_paid_date() {
     delete paid_date_;
   }
   paid_date_ = nullptr;
+}
+void InvoiceSummary::clear_last_payment_failure_at() {
+  if (GetArenaForAllocation() == nullptr && last_payment_failure_at_ != nullptr) {
+    delete last_payment_failure_at_;
+  }
+  last_payment_failure_at_ = nullptr;
 }
 InvoiceSummary::InvoiceSummary(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -1103,6 +1122,14 @@ InvoiceSummary::InvoiceSummary(const InvoiceSummary& from)
     status_.Set(from._internal_status(), 
       GetArenaForAllocation());
   }
+  last_payment_failure_reason_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    last_payment_failure_reason_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_last_payment_failure_reason().empty()) {
+    last_payment_failure_reason_.Set(from._internal_last_payment_failure_reason(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_invoice_date()) {
     invoice_date_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.invoice_date_);
   } else {
@@ -1118,6 +1145,11 @@ InvoiceSummary::InvoiceSummary(const InvoiceSummary& from)
   } else {
     paid_date_ = nullptr;
   }
+  if (from._internal_has_last_payment_failure_at()) {
+    last_payment_failure_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.last_payment_failure_at_);
+  } else {
+    last_payment_failure_at_ = nullptr;
+  }
   invoice_amount_ = from.invoice_amount_;
   // @@protoc_insertion_point(copy_constructor:viam.app.v1.InvoiceSummary)
 }
@@ -1130,6 +1162,10 @@ id_.InitDefault();
 status_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   status_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+last_payment_failure_reason_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  last_payment_failure_reason_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&invoice_date_) - reinterpret_cast<char*>(this)),
@@ -1150,9 +1186,11 @@ inline void InvoiceSummary::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   id_.Destroy();
   status_.Destroy();
+  last_payment_failure_reason_.Destroy();
   if (this != internal_default_instance()) delete invoice_date_;
   if (this != internal_default_instance()) delete due_date_;
   if (this != internal_default_instance()) delete paid_date_;
+  if (this != internal_default_instance()) delete last_payment_failure_at_;
 }
 
 void InvoiceSummary::SetCachedSize(int size) const {
@@ -1167,6 +1205,7 @@ void InvoiceSummary::Clear() {
 
   id_.ClearToEmpty();
   status_.ClearToEmpty();
+  last_payment_failure_reason_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && invoice_date_ != nullptr) {
     delete invoice_date_;
   }
@@ -1179,6 +1218,10 @@ void InvoiceSummary::Clear() {
     delete paid_date_;
   }
   paid_date_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && last_payment_failure_at_ != nullptr) {
+    delete last_payment_failure_at_;
+  }
+  last_payment_failure_at_ = nullptr;
   invoice_amount_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -1237,6 +1280,24 @@ const char* InvoiceSummary::_InternalParse(const char* ptr, ::_pbi::ParseContext
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_paid_date(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string last_payment_failure_reason = 7 [json_name = "lastPaymentFailureReason"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_last_payment_failure_reason();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.v1.InvoiceSummary.last_payment_failure_reason"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp last_payment_failure_at = 8 [json_name = "lastPaymentFailureAt"];
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_last_payment_failure_at(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1321,6 +1382,23 @@ uint8_t* InvoiceSummary::_InternalSerialize(
         _Internal::paid_date(this).GetCachedSize(), target, stream);
   }
 
+  // string last_payment_failure_reason = 7 [json_name = "lastPaymentFailureReason"];
+  if (!this->_internal_last_payment_failure_reason().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_last_payment_failure_reason().data(), static_cast<int>(this->_internal_last_payment_failure_reason().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.v1.InvoiceSummary.last_payment_failure_reason");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_last_payment_failure_reason(), target);
+  }
+
+  // .google.protobuf.Timestamp last_payment_failure_at = 8 [json_name = "lastPaymentFailureAt"];
+  if (this->_internal_has_last_payment_failure_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::last_payment_failure_at(this),
+        _Internal::last_payment_failure_at(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1351,6 +1429,13 @@ size_t InvoiceSummary::ByteSizeLong() const {
         this->_internal_status());
   }
 
+  // string last_payment_failure_reason = 7 [json_name = "lastPaymentFailureReason"];
+  if (!this->_internal_last_payment_failure_reason().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_last_payment_failure_reason());
+  }
+
   // .google.protobuf.Timestamp invoice_date = 2 [json_name = "invoiceDate"];
   if (this->_internal_has_invoice_date()) {
     total_size += 1 +
@@ -1370,6 +1455,13 @@ size_t InvoiceSummary::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *paid_date_);
+  }
+
+  // .google.protobuf.Timestamp last_payment_failure_at = 8 [json_name = "lastPaymentFailureAt"];
+  if (this->_internal_has_last_payment_failure_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *last_payment_failure_at_);
   }
 
   // double invoice_amount = 3 [json_name = "invoiceAmount"];
@@ -1409,6 +1501,9 @@ void InvoiceSummary::MergeFrom(const InvoiceSummary& from) {
   if (!from._internal_status().empty()) {
     _internal_set_status(from._internal_status());
   }
+  if (!from._internal_last_payment_failure_reason().empty()) {
+    _internal_set_last_payment_failure_reason(from._internal_last_payment_failure_reason());
+  }
   if (from._internal_has_invoice_date()) {
     _internal_mutable_invoice_date()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_invoice_date());
   }
@@ -1417,6 +1512,9 @@ void InvoiceSummary::MergeFrom(const InvoiceSummary& from) {
   }
   if (from._internal_has_paid_date()) {
     _internal_mutable_paid_date()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_paid_date());
+  }
+  if (from._internal_has_last_payment_failure_at()) {
+    _internal_mutable_last_payment_failure_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_last_payment_failure_at());
   }
   static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
   double tmp_invoice_amount = from._internal_invoice_amount();
@@ -1451,6 +1549,10 @@ void InvoiceSummary::InternalSwap(InvoiceSummary* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &status_, lhs_arena,
       &other->status_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &last_payment_failure_reason_, lhs_arena,
+      &other->last_payment_failure_reason_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(InvoiceSummary, invoice_amount_)

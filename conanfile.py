@@ -33,6 +33,9 @@ class ViamCppSdkRecipe(ConanFile):
         self.version = re.search("set\(CMAKE_PROJECT_VERSION (.+)\)", content).group(1).strip()
 
     def configure(self):
+        # Workaround an unfortunately long-standing boost/conan issue which breaks C++20 builds
+        self.options["boost"].without_cobalt = True
+
         if self.options.shared:
             # See https://github.com/conan-io/conan-center-index/issues/25107
             self.options["grpc"].secure = True
@@ -122,6 +125,7 @@ class ViamCppSdkRecipe(ConanFile):
 
         if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components["viamsdk"].system_libs.extend(["dl", "rt"])
+            self.cpp_info.components["viam_rust_utils"].system_libs.append("rt")
         elif self.settings.os == "Windows":
             self.cpp_info.components["viamsdk"].system_libs.extend(["ncrypt", "secur32", "ntdll", "userenv"])
 
