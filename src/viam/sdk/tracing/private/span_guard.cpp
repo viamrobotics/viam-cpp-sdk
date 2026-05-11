@@ -148,8 +148,8 @@ ServerSpanGuard::ServerSpanGuard(const GrpcServerContext*, const char*) noexcept
 
 ServerSpanGuard::~ServerSpanGuard() noexcept = default;
 
-::grpc::Status ServerSpanGuard::commit(
-    ::grpc::Status status) noexcept {  // NOLINT(readability-convert-member-functions-to-static)
+::grpc::Status ServerSpanGuard::commit(  // NOLINT(readability-convert-member-functions-to-static)
+    ::grpc::Status status) noexcept {
     return status;
 }
 
