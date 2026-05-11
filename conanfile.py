@@ -1,4 +1,5 @@
 from conan import ConanFile
+from conan.errors import ConanInvalidConfiguration
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
 from conan.tools.build import valid_max_cppstd
 from conan.tools.files import load
@@ -38,6 +39,9 @@ class ViamCppSdkRecipe(ConanFile):
         # Workaround an unfortunately long-standing boost/conan issue which breaks C++20 builds
         self.options["boost"].without_cobalt = True
 
+        if self.options.opentelemetry_tracing:
+            self.options["opentelemetry-cpp"].with_otlp_grpc = True
+
         if self.options.shared:
             # See https://github.com/conan-io/conan-center-index/issues/25107
             self.options["grpc"].secure = True
@@ -47,6 +51,13 @@ class ViamCppSdkRecipe(ConanFile):
             # errors while compiling, or static initialization errors at runtime for modules.
             for lib in ["grpc", "protobuf", "abseil"]:
                 self.options[lib].shared = True
+
+    def validate(self):
+        if self.options.opentelemetry_tracing:
+            if not self.dependencies["opentelemetry-cpp"].options.with_otlp_grpc:
+                raise ConanInvalidConfiguration("opentelemetry_tracing option requires opentelemetry-cpp/*:with_otlp_grpc")
+
+
 
     def _xtensor_requires(self):
         if valid_max_cppstd(self, 14, False):
@@ -166,7 +177,7 @@ class ViamCppSdkRecipe(ConanFile):
 
         if self.options.opentelemetry_tracing:
             self.cpp_info.components["viamsdk"].requires.extend([
-                "opentelemetry-cpp::opentelemetry_sdk",
+                "opentelemetry-cpp::opentelemetry_trace",
                 "opentelemetry-cpp::opentelemetry_exporter_otlp_grpc",
             ])
 

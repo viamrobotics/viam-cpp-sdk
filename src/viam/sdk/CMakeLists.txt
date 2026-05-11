@@ -313,8 +313,8 @@ target_link_libraries(viamsdk
 if (VIAMCPPSDK_OPENTELEMETRY_TRACING)
   target_compile_definitions(viamsdk PRIVATE VIAMCPPSDK_OPENTELEMETRY_TRACING)
   target_link_libraries(viamsdk
-    PRIVATE opentelemetry-cpp::sdk
-    PRIVATE opentelemetry-cpp::otlp_grpc_exporter
+    PRIVATE opentelemetry-cpp::trace
+    PRIVATE opentelemetry-cpp::exporter_otlp_grpc
   )
 endif()
 
