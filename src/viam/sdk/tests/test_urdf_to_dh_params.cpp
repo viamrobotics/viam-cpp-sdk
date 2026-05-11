@@ -205,17 +205,17 @@ BOOST_AUTO_TEST_CASE(test_build_dh_frames_ur5e) {
     // 7 frames: base + 6 per joint.
     BOOST_REQUIRE_EQUAL(frames.zs.size(), 7u);
     BOOST_REQUIRE_EQUAL(frames.xs.size(), 7u);
-    BOOST_REQUIRE_EQUAL(frames.pts.size(), 7u);
+    BOOST_REQUIRE_EQUAL(frames.origins.size(), 7u);
 
     // Frame 0: world.
     BOOST_CHECK_SMALL(frames.zs[0].z() - 1.0, 1e-9);
     BOOST_CHECK_SMALL(frames.xs[0].x() - 1.0, 1e-9);
-    BOOST_CHECK_SMALL(frames.pts[0].x(), 1e-9);
+    BOOST_CHECK_SMALL(frames.origins[0].x(), 1e-9);
 
     // Frame 1: Z along -Y, X along world X, origin at z=0.1625.
     BOOST_CHECK_SMALL(frames.zs[1].y() - (-1.0), 1e-9);
     BOOST_CHECK_SMALL(frames.xs[1].x() - 1.0, 1e-9);
-    BOOST_CHECK_SMALL(frames.pts[1].z() - 0.1625, 1e-9);
+    BOOST_CHECK_SMALL(frames.origins[1].z() - 0.1625, 1e-9);
 }
 
 BOOST_AUTO_TEST_CASE(test_urdf_to_dh_params_ur5e) {

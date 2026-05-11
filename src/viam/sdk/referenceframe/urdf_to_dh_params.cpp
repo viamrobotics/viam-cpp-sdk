@@ -265,13 +265,12 @@ JointAxesAtRest joint_axes_at_rest(const std::vector<Joint>& joints) {
     Eigen::Isometry3d cumulative = Eigen::Isometry3d::Identity();
 
     for (const auto& j : joints) {
-        // With reference to dh_params.pdf: Step 1 substeps (a) and (b) are done in one Isometry3d multiply:
+        // with reference to dh_params.pdf: Step 1 substeps (a) and (b) are done in one Isometry3d multiply:
         // translation: p_cum_new = p_cum + R_cum * t_i
         // rotation: R_cum_new = R_cum * R_i
         cumulative = cumulative * pose_in_meters(j.origin);
 
         if (j.type == "fixed") {
-            // Accumulated only; no joint frame.
         } else if (j.type == "revolute" || j.type == "continuous") {
             try {
                 // normalize as we cannot assume unit length
@@ -300,6 +299,10 @@ JointAxesAtRest joint_axes_at_rest(const std::vector<Joint>& joints) {
     return out;
 }
 
+// Build all n+1 DH frames from the (axes, origins) list produced by
+// joint_axes_at_rest. Frame 0 comes from a base-frame projection (dh_params.pdf step 2),
+// frames 1 through n from successive common normals (dh_params.pdf step 3), and frame n is
+// finally pinned to the URDF tool pose
 DHFrames build_dh_frames(const std::vector<Eigen::Vector3d>& axes,
                          const std::vector<Eigen::Vector3d>& origins,
                          const Eigen::Isometry3d& end_pose) {
@@ -309,53 +312,59 @@ DHFrames build_dh_frames(const std::vector<Eigen::Vector3d>& axes,
     const Eigen::Vector3d end_x = end_pose.linear() * Eigen::Vector3d(1, 0, 0);
     const Eigen::Vector3d end_p = end_pose.translation();
 
+    // Append the synthetic end entry so the loop body handles frame n uniformly.
     std::vector<Eigen::Vector3d> all_z(axes.begin(), axes.end());
     all_z.push_back(end_z);
     std::vector<Eigen::Vector3d> all_p(origins.begin(), origins.end());
     all_p.push_back(end_p);
 
+    // n revolute joints means n+1 DH frames
     DHFrames out;
     out.zs.resize(n + 1);
     out.xs.resize(n + 1);
-    out.pts.resize(n + 1);
+    out.origins.resize(n + 1);
 
-    // Frame 0: Z = joint-1 axis; origin = point on axis closest to world origin.
+    // dh_params.pdf step 2: Choose Frame 0.
     out.zs[0] = axes[0];
     const Eigen::Vector3d& p0 = origins[0];
-    const double t = -p0.dot(axes[0]);
-    out.pts[0] = p0 + axes[0] * t;
+    const double t = -p0.dot(axes[0]);  // signed distance along axis from p0 toward (0,0,0)
+    out.origins[0] = p0 + axes[0] * t;
     out.xs[0] = pick_base_x(axes[0]);
 
-    // Frames 1..N via common normal with previous Z.
+    // dh_params.pdf step 3: build frame i from the common normal of axis i and axis i+1.
     for (std::size_t i = 1; i <= n; ++i) {
         const Eigen::Vector3d& z_prev = out.zs[i - 1];
         const Eigen::Vector3d& z_curr = all_z[i];
-        const Eigen::Vector3d& p_prev = out.pts[i - 1];
+        const Eigen::Vector3d& p_prev = out.origins[i - 1];
         const Eigen::Vector3d& p_curr = all_p[i];
 
+        // steps 3a/3b/3c: classify, find feet f_i and f_{i+1}, derive x_i
         const auto cn = common_normal(z_prev, p_prev, z_curr, p_curr);
 
         if (cn.x_dir.isZero(k_axis_parallel_epsilon)) {
-            // Coincident axes: keep previous X direction.
+            // coincident axes (step 3c parallel degenerate)
+            // common normal is undefined, so inherit x from the previous frame
             out.xs[i] = out.xs[i - 1];
-            out.pts[i] = p_curr;
+            out.origins[i] = p_curr;
             out.zs[i] = z_curr;
             continue;
         }
 
+        // sign disambiguation: keep x_i dot x_{i-1} >= 0 so theta_i stays near zero
         Eigen::Vector3d x_dir = cn.x_dir;
         if (x_dir.dot(out.xs[i - 1]) < 0) {
             x_dir = -x_dir;
         }
+        // step 3d: assemble frame i.
+        // x_i as above
+        // o_i = f_i (= cn.foot1)
+        // z_i = a_{i+1}
         out.xs[i] = x_dir;
-        out.pts[i] = cn.foot1;
+        out.origins[i] = cn.foot1;
         out.zs[i] = z_curr;
     }
 
-    // Final frame N overwrites the loop's canonical placement so that frame N
-    // coincides with the URDF's end-effector frame. Consistency is validated
-    // separately in validate_end_effector_dh.
-    out.pts[n] = end_p;
+    out.origins[n] = end_p;
     out.zs[n] = end_z;
     out.xs[n] = end_x;
 
@@ -383,7 +392,7 @@ std::vector<DHParam> urdf_to_dh_params(const KinematicsDataURDF& urdf) {
 
     auto frames = build_dh_frames(axes_origins.axes, axes_origins.origins, axes_origins.end_pose);
 
-    validate_end_effector_dh(frames.zs[n - 1], frames.xs[n], frames.pts[n - 1], frames.pts[n]);
+    validate_end_effector_dh(frames.zs[n - 1], frames.xs[n], frames.origins[n - 1], frames.origins[n]);
 
     // Revolute joint names in chain order (matches joint_axes_at_rest filter).
     std::vector<std::string> revolute_names;
@@ -399,10 +408,10 @@ std::vector<DHParam> urdf_to_dh_params(const KinematicsDataURDF& urdf) {
         double d, theta, a, alpha;
         extract_dh_row(frames.zs[i],
                        frames.xs[i],
-                       frames.pts[i],
+                       frames.origins[i],
                        frames.zs[i + 1],
                        frames.xs[i + 1],
-                       frames.pts[i + 1],
+                       frames.origins[i + 1],
                        d,
                        theta,
                        a,

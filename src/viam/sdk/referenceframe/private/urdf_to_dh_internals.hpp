@@ -41,7 +41,7 @@ struct JointAxesAtRest {
 struct DHFrames {
     std::vector<Eigen::Vector3d> zs;
     std::vector<Eigen::Vector3d> xs;
-    std::vector<Eigen::Vector3d> pts;
+    std::vector<Eigen::Vector3d> origins;
 };
 
 /// @brief Result of common_normal: direction, feet on each line, and
