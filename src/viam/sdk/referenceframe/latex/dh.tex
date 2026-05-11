@@ -1,0 +1,538 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{bm}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{booktabs}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    urlcolor=blue!60!black,
+}
+
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\unit}[1]{\hat{\bm{#1}}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\atantwo}{\operatorname{atan2}}
+
+\newmdenv[
+  linecolor=blue!50!black,
+  linewidth=0.5pt,
+  backgroundcolor=blue!3,
+  roundcorner=4pt,
+  skipabove=8pt,
+  skipbelow=8pt,
+]{keybox}
+
+\newmdenv[
+  linecolor=orange!70!black,
+  linewidth=0.5pt,
+  backgroundcolor=orange!5,
+  roundcorner=4pt,
+  skipabove=8pt,
+  skipbelow=8pt,
+]{warnbox}
+
+\title{Computing Classical DH Parameters from a URDF}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Overview}
+
+This document describes how to compute the classical (Spong) Denavit--Hartenberg
+parameters $(a_i, \alpha_i, d_i, \theta_i)$ for each joint $i$ of a serial
+manipulator, starting from a URDF file.
+
+Each joint's DH row describes the homogeneous transform from frame $i{-}1$ to
+frame $i$:
+\[
+  T_i^{i-1} = R_z(\theta_i)\,T_z(d_i)\,T_x(a_i)\,R_x(\alpha_i).
+\]
+
+The four parameters are:
+\begin{itemize}
+  \item $a_i$: link length --- distance between consecutive joint axes along the
+    common normal.
+  \item $\alpha_i$: link twist --- signed angle between consecutive joint
+    axes, measured about $\unit{x}_i$.
+  \item $d_i$: joint offset --- signed distance along $\unit{z}_{i-1}$ from the
+    previous frame origin to frame $i$'s origin.
+  \item $\theta_i$: joint angle offset --- signed rotation about
+    $\unit{z}_{i-1}$ that aligns $\unit{x}_{i-1}$ with $\unit{x}_i$. For
+    revolute joints, the runtime angle is $\theta_i + q_i$.
+\end{itemize}
+
+\begin{warnbox}
+\textbf{Notation convention.} To avoid a common source of confusion, we use
+two distinct symbols throughout this document:
+\begin{itemize}
+  \item $\unit{a}_i$ denotes the direction of joint $i$'s axis as extracted
+        from the URDF (in the base frame).
+  \item $\unit{z}_i$ denotes the $z$-axis of DH frame $i$.
+\end{itemize}
+In classical DH, frame $i$ has its $z$-axis along \emph{joint $i{+}1$'s} axis,
+so $\unit{z}_i = \unit{a}_{i+1}$. To compute joint $i$'s DH row, we need the
+geometry between axes $i$ and $i{+}1$ --- this is the single most common
+source of derivation errors.
+\end{warnbox}
+
+\section{Step 1: Extract Axis Data from the URDF}
+
+To compute the DH row for joint $i$, we need four values, all expressed in
+the base frame: $\vect{p}_i$, $\unit{a}_i$, $\vect{p}_{i+1}$, $\unit{a}_{i+1}$.
+
+As we walk the kinematic chain, we maintain two running quantities:
+\begin{itemize}
+  \item $R_{\mathrm{cum}}$ --- cumulative rotation from base to the current
+        link's frame.
+  \item $\vect{p}_{\mathrm{cum}}$ --- cumulative position of the current
+        link's origin, in the base frame.
+\end{itemize}
+Initial values (at the base): $R_{\mathrm{cum}} = I$,
+$\vect{p}_{\mathrm{cum}} = (0, 0, 0)$.
+
+Suppose the URDF gives us, for each joint $i$:
+\begin{itemize}
+  \item \texttt{rpy} $= (r_i, \beta_i, \gamma_i)$ --- roll, pitch, yaw angles
+        (URDF uses fixed-axis / extrinsic convention:
+        $R = R_z(\gamma)\,R_y(\beta)\,R_x(r)$).
+  \item \texttt{xyz} $= \vect{t}_i$ --- translation of the joint's origin in
+        the parent link's frame.
+  \item \texttt{axis} $= \unit{a}_i^{\mathrm{local}}$ --- unit direction of
+        the joint's rotation axis, expressed in the child link's frame.
+\end{itemize}
+
+\paragraph{Computing $\vect{p}_1$ and $\unit{a}_1$.} Process joint 1 in
+three substeps, in order:
+
+\textbf{(a)} Update the position: rotate the joint's translation by the
+\emph{current} $R_{\mathrm{cum}}$ (i.e., the parent's rotation), then add:
+\[
+  \vect{p}_1 = \vect{p}_{\mathrm{cum}} + R_{\mathrm{cum}} \cdot \vect{t}_1
+             = (0, 0, 0) + I \cdot \vect{t}_1 = \vect{t}_1.
+\]
+
+\textbf{(b)} Update the cumulative rotation:
+\[
+  R_{\mathrm{cum}} \leftarrow R_{\mathrm{cum}} \cdot R(r_1, \beta_1, \gamma_1)
+                            = I \cdot R(r_1, \beta_1, \gamma_1)
+                            = R(r_1, \beta_1, \gamma_1).
+\]
+
+\textbf{(c)} Compute the joint axis direction, using the \emph{updated}
+$R_{\mathrm{cum}}$:
+\[
+  \unit{a}_1 = R_{\mathrm{cum}} \cdot \unit{a}_1^{\mathrm{local}}.
+\]
+
+\paragraph{Computing $\vect{p}_2$ and $\unit{a}_2$.} After processing joint 1,
+the running state is:
+\[
+  R_{\mathrm{cum}} = R(r_1, \beta_1, \gamma_1), \qquad
+  \vect{p}_{\mathrm{cum}} = \vect{t}_1.
+\]
+Apply the same three substeps to joint 2.
+
+\textbf{(a)} Update the position: rotate joint 2's translation by the
+\emph{current} $R_{\mathrm{cum}}$ (i.e., joint 1's rotation, since joint 1's
+child link is the parent of joint 2), then add:
+\[
+  \vect{p}_2 = \vect{p}_{\mathrm{cum}} + R_{\mathrm{cum}} \cdot \vect{t}_2
+             = \vect{t}_1 + R(r_1, \beta_1, \gamma_1) \cdot \vect{t}_2.
+\]
+Unlike joint 1, this rotation is not guaranteed to be the identity, so the
+components of $\vect{t}_2$ may mix into $\vect{p}_2$.
+
+\textbf{(b)} Update the cumulative rotation:
+\[
+  R_{\mathrm{cum}} \leftarrow R_{\mathrm{cum}} \cdot R(r_2, \beta_2, \gamma_2)
+                            = R(r_1, \beta_1, \gamma_1) \cdot R(r_2, \beta_2, \gamma_2).
+\]
+
+\textbf{(c)} Compute the joint axis direction, using the \emph{updated}
+$R_{\mathrm{cum}}$:
+\[
+  \unit{a}_2 = R_{\mathrm{cum}} \cdot \unit{a}_2^{\mathrm{local}}.
+\]
+
+\paragraph{Iterating.} Continue this three-substep process for each subsequent
+joint along the kinematic chain. The output of Step 1 is a list of
+$(\vect{p}_i, \unit{a}_i)$ pairs, one per joint, all in the base frame.
+
+\begin{keybox}
+\textbf{The key rule.} At each joint, the translation $\vect{t}_i$ is rotated
+by the \emph{parent's} cumulative rotation (because $\vect{t}_i$ is expressed
+in the parent's frame), while the axis $\unit{a}_i^{\mathrm{local}}$ is
+rotated by the \emph{child's} cumulative rotation (because the axis is
+expressed in the child's frame, which includes the joint's own rpy).
+\end{keybox}
+
+\section{Step 2: Choose Frame 0}
+
+Before computing any DH row, we establish frame 0 --- the base frame of the
+DH chain. Frame 0 has two constraints and one free choice:
+\begin{itemize}
+  \item $\unit{z}_0 = \unit{a}_1$ (required --- frame 0's $z$-axis must lie
+        along joint 1's axis).
+  \item $\vect{o}_0$ must lie on joint 1's axis. Standard choice:
+        $\vect{o}_0 = (0, 0, 0)$ if the URDF's base is already at the origin.
+  \item $\unit{x}_0$ is free, as long as it is perpendicular to $\unit{z}_0$.
+        Standard choice: project world $+x$ onto the plane perpendicular to
+        $\unit{z}_0$, then normalize. If $\unit{z}_0 = (0, 0, 1)$, this gives
+        $\unit{x}_0 = (1, 0, 0)$.
+\end{itemize}
+Complete the right-handed triad with $\unit{y}_0 = \unit{z}_0 \times \unit{x}_0$.
+
+\section{Step 3: Build Frame $i$ from the Common Normal}
+
+Frame $i$ is constructed from the common normal between axis $i$ and axis
+$i{+}1$. We describe the process for joint 1 below; the procedure is
+identical for each subsequent joint with indices shifted.
+
+\paragraph{Step 3a: Classify the axis pair.} Compute
+\[
+  \vect{c} = \unit{a}_1 \times \unit{a}_2,
+  \qquad \vect{d}_{\mathrm{pp}} = \vect{p}_2 - \vect{p}_1.
+\]
+\begin{itemize}
+  \item If $\norm{\vect{c}} > \epsilon$: axes are skew or intersecting
+        (Case~A / Case~B).
+  \item If $\norm{\vect{c}} \le \epsilon$: axes are parallel (Case~C).
+\end{itemize}
+Use $\epsilon \approx 10^{-6}$ in practice.
+
+\paragraph{Step 3b: Find the feet of the common normal.}
+
+\textbf{Cases A and B (non-parallel).} We require the connecting vector
+$\vect{f}_2 - \vect{f}_1$ to be perpendicular to both axes. Writing
+$\vect{f}_1 = \vect{p}_1 + s\,\unit{a}_1$ and
+$\vect{f}_2 = \vect{p}_2 + t\,\unit{a}_2$, the two perpendicularity conditions
+\[
+  (\vect{f}_2 - \vect{f}_1) \cdot \unit{a}_1 = 0, \qquad
+  (\vect{f}_2 - \vect{f}_1) \cdot \unit{a}_2 = 0
+\]
+give the $2 \times 2$ system:
+\[
+  \begin{bmatrix} 1 & -\unit{a}_1 \cdot \unit{a}_2 \\
+                  \unit{a}_1 \cdot \unit{a}_2 & -1 \end{bmatrix}
+  \begin{bmatrix} s \\ t \end{bmatrix}
+  = \begin{bmatrix} \vect{d}_{\mathrm{pp}} \cdot \unit{a}_1 \\
+                    \vect{d}_{\mathrm{pp}} \cdot \unit{a}_2 \end{bmatrix}.
+\]
+Solve for $s, t$, then
+\[
+  \vect{f}_1 = \vect{p}_1 + s\,\unit{a}_1, \qquad
+  \vect{f}_2 = \vect{p}_2 + t\,\unit{a}_2.
+\]
+
+\textbf{Case C (parallel).} The common normal is non-unique. By convention,
+project $\vect{p}_2$ onto axis 1:
+\[
+  \vect{f}_1 = \vect{p}_1 + (\vect{d}_{\mathrm{pp}} \cdot \unit{a}_1)\,\unit{a}_1,
+  \qquad \vect{f}_2 = \vect{p}_2.
+\]
+
+\paragraph{Step 3c: Determine $\unit{x}_1$.}
+
+\textbf{Case A (skew, $\norm{\vect{f}_2 - \vect{f}_1} > \epsilon$):}
+\[
+  \unit{x}_1 = \frac{\vect{f}_2 - \vect{f}_1}{\norm{\vect{f}_2 - \vect{f}_1}}.
+\]
+
+\textbf{Case B (intersecting, feet coincide):}
+\[
+  \unit{x}_1 = \frac{\unit{a}_1 \times \unit{a}_2}{\norm{\unit{a}_1 \times \unit{a}_2}}.
+\]
+There is still a sign ambiguity; choose the sign so
+$\unit{x}_1 \cdot \unit{x}_0 \ge 0$ (this tends to keep $\theta_1$ near zero).
+
+\textbf{Case C (parallel):}
+\[
+  \unit{x}_1 = \frac{\vect{p}_2 - \vect{f}_1}{\norm{\vect{p}_2 - \vect{f}_1}}.
+\]
+If $\vect{p}_2 = \vect{f}_1$ (the axes are coincident, not merely parallel),
+this formula is degenerate. Fall back to $\unit{x}_0$ projected into the
+plane perpendicular to $\unit{a}_2$, then normalized.
+
+\paragraph{Step 3d: Assemble frame 1.}
+\[
+  \vect{o}_1 = \vect{f}_1, \qquad
+  \unit{z}_1 = \unit{a}_2, \qquad
+  \unit{x}_1 = \text{as computed above}, \qquad
+  \unit{y}_1 = \unit{z}_1 \times \unit{x}_1.
+\]
+From this point forward, $\unit{z}_1$ refers to the DH frame axis (which
+equals $\unit{a}_2$), not the joint 1 axis.
+
+\section{Step 4: Compute the DH Parameters for Joint 1}
+
+With frame 0 (Step 2) and frame 1 (Step 3) both fully defined, apply the
+four formulas:
+\begin{align}
+  a_1      &= (\vect{f}_2 - \vect{f}_1) \cdot \unit{x}_1 \\[4pt]
+  \alpha_1 &= \atantwo\!\Bigl(\bigl(\unit{z}_0 \times \unit{z}_1\bigr) \cdot \unit{x}_1,\;\;
+                               \unit{z}_0 \cdot \unit{z}_1\Bigr) \\[4pt]
+  d_1      &= (\vect{o}_1 - \vect{o}_0) \cdot \unit{z}_0 \\[4pt]
+  \theta_1 &= \atantwo\!\Bigl(\bigl(\unit{x}_0 \times \unit{x}_1\bigr) \cdot \unit{z}_0,\;\;
+                               \unit{x}_0 \cdot \unit{x}_1\Bigr)
+\end{align}
+For a revolute joint, $\theta_1$ is a constant offset; the runtime joint
+angle is $\theta_1 + q_1$, where $q_1$ is the commanded joint variable. For
+a prismatic joint, $d_1$ is the constant offset and the runtime distance is
+$d_1 + q_1$.
+
+\subsection*{Validation}
+
+Before trusting the result, check:
+\begin{itemize}
+  \item $a_1 \ge 0$ in Cases A and B (by construction, if $\unit{x}_1$ was
+        chosen as the foot-to-foot direction).
+  \item Compose $T_1^0 \, T_2^1 \cdots T_n^{n-1}$ at the zero configuration
+        and confirm the resulting end-effector pose matches the URDF forward
+        kinematics. Any mismatch signals a sign error somewhere in the chain.
+\end{itemize}
+
+\section{Step 5: Iterate to the Next Joint}
+
+To compute joint 2's DH row, repeat Steps 3 and 4:
+\begin{itemize}
+  \item Use frame 1 (just built) in place of frame 0.
+  \item Build frame 2 from the common normal between axis 2 ($\unit{a}_2$)
+        and axis 3 ($\unit{a}_3$).
+  \item Apply the four DH formulas with the indices shifted by one.
+\end{itemize}
+Continue until all $n$ joints have been processed.
+
+\begin{warnbox}
+\textbf{The last joint.} For joint $n$, there is no axis $n{+}1$. The
+$z$-axis of frame $n$ is still constrained to lie along joint $n$'s axis
+($\unit{z}_n = \unit{a}_n$), but the origin placement along that axis and
+the direction of $\unit{x}_n$ are free. Standard practice is to place
+$\vect{o}_n$ at the tool center point and choose $\unit{x}_n$ to match the
+tool frame's $x$-axis, both supplied by the URDF's \texttt{tool0} fixed
+joint.
+\end{warnbox}
+
+\section{Worked Example: Joint 1 of the Motoman GP12}
+
+This example illustrates \textbf{Case A (skew axes)}.
+
+The URDF declares:
+\begin{verbatim}
+<joint name="joint_1_s" type="revolute">
+  <origin rpy="0 0 0" xyz="0 0 0.450"/>
+  <axis xyz="0 0 1"/>
+</joint>
+<joint name="joint_2_l" type="revolute">
+  <origin rpy="0 0 0" xyz="0.155 0 0"/>
+  <axis xyz="0 1 0"/>
+</joint>
+\end{verbatim}
+
+\paragraph{Step 1 (axis data).} All \texttt{rpy} values are zero, so
+$R_{\mathrm{cum}} = I$ throughout and axis directions pass through unchanged.
+Cumulative positions simplify to the sum of \texttt{xyz} translations:
+\begin{align*}
+  \vect{p}_1 &= (0, 0, 0.450), & \unit{a}_1 &= (0, 0, 1) \\
+  \vect{p}_2 &= (0.155, 0, 0.450), & \unit{a}_2 &= (0, 1, 0)
+\end{align*}
+
+\paragraph{Step 2 (frame 0).}
+\[
+  \vect{o}_0 = (0, 0, 0), \quad
+  \unit{z}_0 = (0, 0, 1), \quad
+  \unit{x}_0 = (1, 0, 0), \quad
+  \unit{y}_0 = (0, 1, 0).
+\]
+
+\paragraph{Step 3a (classification).}
+$\vect{c} = \unit{a}_1 \times \unit{a}_2 = (0,0,1) \times (0,1,0) = (-1, 0, 0)$,
+with $\norm{\vect{c}} = 1 > \epsilon$. Case A (skew).
+
+\paragraph{Step 3b (feet of the common normal).}
+$\vect{d}_{\mathrm{pp}} = (0.155, 0, 0)$, $\unit{a}_1 \cdot \unit{a}_2 = 0$,
+so the system becomes:
+\[
+  \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
+  \begin{bmatrix} s \\ t \end{bmatrix}
+  = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+  \quad\Longrightarrow\quad s = 0,\; t = 0.
+\]
+\[
+  \vect{f}_1 = (0, 0, 0.450), \qquad \vect{f}_2 = (0.155, 0, 0.450).
+\]
+
+\paragraph{Step 3c ($\unit{x}_1$).}
+$\unit{x}_1 = (0.155, 0, 0) / 0.155 = (1, 0, 0)$.
+
+\paragraph{Step 3d (assemble frame 1).}
+\[
+  \vect{o}_1 = (0, 0, 0.450), \quad
+  \unit{z}_1 = \unit{a}_2 = (0, 1, 0), \quad
+  \unit{x}_1 = (1, 0, 0), \quad
+  \unit{y}_1 = (0, 0, -1).
+\]
+
+\paragraph{Step 4 (DH parameters).}
+\begin{align*}
+  a_1 &= (\vect{f}_2 - \vect{f}_1) \cdot \unit{x}_1
+       = (0.155, 0, 0) \cdot (1, 0, 0) = 0.155 \\[4pt]
+  \alpha_1 &= \atantwo\bigl((\unit{z}_0 \times \unit{z}_1) \cdot \unit{x}_1,\;
+                              \unit{z}_0 \cdot \unit{z}_1\bigr) \\
+           &= \atantwo\bigl((-1, 0, 0) \cdot (1, 0, 0),\; 0\bigr)
+            = \atantwo(-1,\, 0) = -\tfrac{\pi}{2} \\[4pt]
+  d_1 &= (\vect{o}_1 - \vect{o}_0) \cdot \unit{z}_0
+       = (0, 0, 0.450) \cdot (0, 0, 1) = 0.450 \\[4pt]
+  \theta_1 &= \atantwo\bigl((\unit{x}_0 \times \unit{x}_1) \cdot \unit{z}_0,\;
+                              \unit{x}_0 \cdot \unit{x}_1\bigr)
+            = \atantwo(0,\, 1) = 0
+\end{align*}
+
+\begin{keybox}
+\textbf{Result for joint 1:}
+\[
+  a_1 = 0.155\,\text{m}, \quad
+  \alpha_1 = -\tfrac{\pi}{2}, \quad
+  d_1 = 0.450\,\text{m}, \quad
+  \theta_1 = 0.
+\]
+\end{keybox}
+
+\section{Worked Example: Joint 2 of the Motoman GP12}
+
+This example illustrates \textbf{Case C (parallel axes)} and reuses frame 1
+as computed in the previous example.
+
+The URDF declares:
+\begin{verbatim}
+<joint name="joint_2_l" type="revolute">
+  <origin rpy="0 0 0" xyz="0.155 0 0"/>
+  <axis xyz="0 1 0"/>
+</joint>
+<joint name="joint_3_u" type="revolute">
+  <origin rpy="0 0 0" xyz="0 0 0.614"/>
+  <axis xyz="0 -1 0"/>
+</joint>
+\end{verbatim}
+
+\paragraph{Step 1 (axis data).} Continuing the cumulative sum:
+\begin{align*}
+  \vect{p}_2 &= (0.155, 0, 0.450), & \unit{a}_2 &= (0, 1, 0) \\
+  \vect{p}_3 &= (0.155, 0, 1.064), & \unit{a}_3 &= (0, -1, 0)
+\end{align*}
+
+Note that $\unit{a}_3 = -\unit{a}_2$. The URDF deliberately assigns opposite
+signs to the shoulder and elbow axis directions --- physically this doesn't
+change anything (an axis line is symmetric under sign flip), but it does
+affect the DH table. A positive $\unit{a}_3$ would produce $\alpha_2 = 0$
+instead of $\alpha_2 = \pi$; the final forward kinematics would still match.
+
+\paragraph{Frame 1 (from the previous example).}
+\[
+  \vect{o}_1 = (0, 0, 0.450), \quad
+  \unit{z}_1 = (0, 1, 0), \quad
+  \unit{x}_1 = (1, 0, 0), \quad
+  \unit{y}_1 = (0, 0, -1).
+\]
+
+\paragraph{Step 3a (classification).}
+\[
+  \vect{c} = \unit{a}_2 \times \unit{a}_3 = (0,1,0) \times (0,-1,0) = (0,0,0),
+  \qquad \norm{\vect{c}} = 0.
+\]
+Case C (parallel). The axes are antiparallel but that is still ``parallel''
+for classification: lines in 3D have no inherent direction, so the common
+normal is non-unique regardless of the sign of $\unit{a}_3$.
+
+\paragraph{Step 3b (feet of the common normal, parallel convention).} Set
+$\vect{f}_3 = \vect{p}_3$ and project $\vect{p}_3$ onto axis 2:
+\[
+  \vect{d}_{\mathrm{pp}} = \vect{p}_3 - \vect{p}_2 = (0, 0, 0.614),
+  \qquad \vect{d}_{\mathrm{pp}} \cdot \unit{a}_2 = 0.
+\]
+\[
+  \vect{f}_2 = \vect{p}_2 + 0 \cdot \unit{a}_2 = (0.155, 0, 0.450),
+  \qquad \vect{f}_3 = (0.155, 0, 1.064).
+\]
+
+\paragraph{Step 3c ($\unit{x}_2$, parallel convention).}
+\[
+  \unit{x}_2 = \frac{\vect{p}_3 - \vect{f}_2}{\norm{\vect{p}_3 - \vect{f}_2}}
+             = \frac{(0, 0, 0.614)}{0.614} = (0, 0, 1).
+\]
+
+\paragraph{Step 3d (assemble frame 2).}
+\[
+  \vect{o}_2 = (0.155, 0, 0.450), \quad
+  \unit{z}_2 = \unit{a}_3 = (0, -1, 0), \quad
+  \unit{x}_2 = (0, 0, 1), \quad
+  \unit{y}_2 = \unit{z}_2 \times \unit{x}_2 = (-1, 0, 0).
+\]
+
+\paragraph{Step 4 (DH parameters).}
+\begin{align*}
+  a_2 &= (\vect{f}_3 - \vect{f}_2) \cdot \unit{x}_2
+       = (0, 0, 0.614) \cdot (0, 0, 1) = 0.614 \\[4pt]
+  \alpha_2 &= \atantwo\bigl((\unit{z}_1 \times \unit{z}_2) \cdot \unit{x}_2,\;
+                              \unit{z}_1 \cdot \unit{z}_2\bigr) \\
+           &= \atantwo\bigl(\,\vect{0} \cdot (0,0,1),\; -1\,\bigr)
+            = \atantwo(0,\, -1) = \pi \\[4pt]
+  d_2 &= (\vect{o}_2 - \vect{o}_1) \cdot \unit{z}_1
+       = (0.155, 0, 0) \cdot (0, 1, 0) = 0 \\[4pt]
+  \theta_2 &= \atantwo\bigl((\unit{x}_1 \times \unit{x}_2) \cdot \unit{z}_1,\;
+                              \unit{x}_1 \cdot \unit{x}_2\bigr) \\
+           &= \atantwo\bigl((0, -1, 0) \cdot (0, 1, 0),\; 0\bigr)
+            = \atantwo(-1,\, 0) = -\tfrac{\pi}{2}
+\end{align*}
+
+\begin{keybox}
+\textbf{Result for joint 2:}
+\[
+  a_2 = 0.614\,\text{m}, \quad
+  \alpha_2 = \pi, \quad
+  d_2 = 0, \quad
+  \theta_2 = -\tfrac{\pi}{2}.
+\]
+\end{keybox}
+
+\paragraph{Interpretation of $\theta_2 = -\pi/2$.} The URDF's zero
+configuration places joint 2 ``straight up'' (link 2 oriented along world
+$+z$), but the DH frame convention puts $\unit{x}_2$ along the common
+normal --- which also points along world $+z$. The $-\pi/2$ offset rotates
+$\unit{x}_1$ (world $+x$) to $\unit{x}_2$ (world $+z$) about $\unit{z}_1$
+(world $+y$). At runtime, the commanded angle $q_2$ is added to this
+offset: $\theta_2^{\mathrm{runtime}} = -\pi/2 + q_2$.
+
+This offset is \emph{not} a bug --- it is an artifact of the URDF and DH
+conventions disagreeing about what the zero pose looks like. Published DH
+tables for the GP12 typically bake this offset into the joint angle
+definition, so the ``canonical'' and ``URDF'' zero poses differ by exactly
+this quarter turn.
+
+\section{Sign-Convention Pitfalls}
+
+The most common errors in DH derivations come from sign ambiguities. Three
+rules prevent most of them:
+
+\begin{enumerate}
+  \item \textbf{The four DH parameters are not independent scalars --- they
+    are the components of a rigid transform.} Flipping the sign of
+    $\unit{x}_i$ flips both $a_i$ and $\alpha_i$, and shifts $\theta_i$ by
+    $\pi$. You cannot flip one in isolation.
+  \item \textbf{Commit to a convention for $\unit{x}_i$ before computing.}
+    The ``common normal points from axis $i$ to axis $i{+}1$'' convention
+    (used above) gives $a_i \ge 0$ and tends to produce clean tables.
+  \item \textbf{Validate by composing the transforms.} At the zero
+    configuration, the product $T_1^0 \cdots T_n^{n-1}$ must match the
+    end-effector pose computed directly from the URDF. If it doesn't, there
+    is a sign error, and it is almost always in $\alpha_i$ or $\theta_i$.
+\end{enumerate}
+
+\end{document}

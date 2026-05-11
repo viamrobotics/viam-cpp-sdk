@@ -255,19 +255,30 @@ void validate_end_effector_dh(const Eigen::Vector3d& z_prev,
     }
 }
 
+// Walk the joint list in chain order and maintain a base to currentl link transform.
+// For all revolute or continuous joints record two values in the base frame:
+// (1) the joint origin p_i and (2) the joint axis direction a_i
 JointAxesAtRest joint_axes_at_rest(const std::vector<Joint>& joints) {
     JointAxesAtRest out;
+    // initialize the running transformation
+    // stores rotation in .linear() and translation in .translation()
     Eigen::Isometry3d cumulative = Eigen::Isometry3d::Identity();
 
     for (const auto& j : joints) {
+        // With reference to dh_params.pdf: Step 1 substeps (a) and (b) are done in one Isometry3d multiply:
+        // translation: p_cum_new = p_cum + R_cum * t_i
+        // rotation: R_cum_new = R_cum * R_i
         cumulative = cumulative * pose_in_meters(j.origin);
 
         if (j.type == "fixed") {
             // Accumulated only; no joint frame.
         } else if (j.type == "revolute" || j.type == "continuous") {
             try {
+                // normalize as we cannot assume unit length
                 const Eigen::Vector3d local_axis = axis_unit(j.axis);
+                // substep (c): axis is expressed in the child's frame, so use the updated R_cum
                 const Eigen::Vector3d world_axis = cumulative.linear() * local_axis;
+                // record (p_i, a_i) in the base frame
                 out.axes.push_back(world_axis);
                 out.origins.push_back(cumulative.translation());
             } catch (const Exception& e) {
@@ -284,6 +295,7 @@ JointAxesAtRest joint_axes_at_rest(const std::vector<Joint>& joints) {
     if (out.axes.empty()) {
         throw Exception(ErrorCondition::k_general, "URDFToDHParams: no revolute joints in chain");
     }
+    // full base-to-leaf transform, this includes any trailing fixed joints like tool0
     out.end_pose = cumulative;
     return out;
 }
