@@ -168,49 +168,61 @@ Eigen::Vector3d axis_unit(const boost::optional<Eigen::Vector3d>& axis) {
     return *axis / norm;
 }
 
+// dh_params.pdf steps 3a, 3b, 3c for a single (axis i, axis i+1) pair
+// Inputs:  z0 = a_i,  p0 = p_i,  z1 = a_{i+1},  p1 = p_{i+1}
 CommonNormalResult common_normal(const Eigen::Vector3d& z0,
                                  const Eigen::Vector3d& p0,
                                  const Eigen::Vector3d& z1,
                                  const Eigen::Vector3d& p1) {
     CommonNormalResult r{};
+    // step 3a: c = a_i x a_{i+1}. Drives the classify branch below.
     const Eigen::Vector3d cross = z0.cross(z1);
 
     if (cross.norm() < k_axis_parallel_epsilon) {
+        // ||c|| equiv to 0  -->  case C
         r.parallel = true;
-        // Perpendicular from line0 to line1: project (p1-p0) onto plane perp. to z0.
+        // step 3b case C:  d = d_pp = p_{i+1} - p_i
+        // perp = component of d_pp perpendicular to a_i  (= p_{i+1} - f_i).
         const Eigen::Vector3d d = p1 - p0;
         const Eigen::Vector3d perp = d - z0 * d.dot(z0);
         const double perp_norm = perp.norm();
         if (perp_norm < k_axis_parallel_epsilon) {
-            // Coincident lines.
+            // degenerate case C: axes coincident, not merely parallel, x_i is undefined
+            // chose to signal via zero x_dir so the caller
+            // can inherit x from the previous frame.
             r.x_dir = Eigen::Vector3d::Zero();
             r.foot0 = p0;
             r.foot1 = p0;
             return r;
         }
+        // step 3c case C: x_i = (p_{i+1} - f_i) / ||p_{i+1} - f_i|| = perp / ||perp||
         r.x_dir = perp / perp_norm;
-        r.foot0 = p0;
+        r.foot0 = p0;  // f_i = p_i (d_pp dot a_i component lies on the axis itself)
         r.foot1 = r.foot0 + r.x_dir * perp_norm;
         return r;
     }
 
-    // Non-parallel lines: skew-line closest-point formula.
-    const Eigen::Vector3d d = p1 - p0;
-    const double a = z0.dot(z0);  // = 1 (unit)
-    const double b = z0.dot(z1);
-    const double c = z1.dot(z1);       // = 1
-    const double det = a * c - b * b;  // = |cross|^2 > 0
-    const double t0 = (d.dot(z0) * c - d.dot(z1) * b) / det;
-    const double t1 = (d.dot(z0) * b - d.dot(z1) * a) / det;
+    // ||c|| > eps  -->  cases A (skew) and B (intersecting)
+    // step 3b
+    const Eigen::Vector3d d = p1 - p0;                        // d_pp
+    const double a = z0.dot(z0);                              // = 1 (unit)
+    const double b = z0.dot(z1);                              // a_i dot a_{i+1}
+    const double c = z1.dot(z1);                              // = 1
+    const double det = a * c - b * b;                         // = |cross|^2 > 0
+    const double t0 = (d.dot(z0) * c - d.dot(z1) * b) / det;  // = s
+    const double t1 = (d.dot(z0) * b - d.dot(z1) * a) / det;  // = t
 
+    // step 3b feet:  f_i = p_i + s*a_i,   f_{i+1} = p_{i+1} + t*a_{i+1}
     r.foot0 = p0 + z0 * t0;
     r.foot1 = p1 + z1 * t1;
     const Eigen::Vector3d diff = r.foot1 - r.foot0;
     const double diff_norm = diff.norm();
     if (diff_norm < k_axis_parallel_epsilon) {
-        // Lines intersect; use cross as the common-normal direction.
+        // case B (intersecting): feet coincide, so foot-to-foot is undefined
+        // step 3c Case B: x_i = (a_i x a_{i+1}) / ||a_i x a_{i+1}||
         r.x_dir = cross / cross.norm();
     } else {
+        // case A (skew): step 3c case A: x_i = (f_{i+1} - f_i) / ||f_{i+1} - f_i||
         r.x_dir = diff / diff_norm;
     }
     r.parallel = false;
@@ -312,7 +324,6 @@ DHFrames build_dh_frames(const std::vector<Eigen::Vector3d>& axes,
     const Eigen::Vector3d end_x = end_pose.linear() * Eigen::Vector3d(1, 0, 0);
     const Eigen::Vector3d end_p = end_pose.translation();
 
-    // Append the synthetic end entry so the loop body handles frame n uniformly.
     std::vector<Eigen::Vector3d> all_z(axes.begin(), axes.end());
     all_z.push_back(end_z);
     std::vector<Eigen::Vector3d> all_p(origins.begin(), origins.end());
@@ -371,10 +382,15 @@ DHFrames build_dh_frames(const std::vector<Eigen::Vector3d>& axes,
     return out;
 }
 
+// dh_params.pdf step 2 helper: pick x_0 given z_0, x_0 perpendicular to z_0
+// Standard choice is world +x projected onto the plane perp to z, normalized
+// Falls back to world +y if z is (anti)parallel to world +x (projection ~0)
 Eigen::Vector3d pick_base_x(const Eigen::Vector3d& z) {
     const Eigen::Vector3d world_x(1, 0, 0);
+    // remove the component of world_x along z, leaving the perpendicular part
     Eigen::Vector3d proj = world_x - z * z.dot(world_x);
     if (proj.norm() < k_axis_parallel_epsilon) {
+        // z parallel to world +x  -->  projection ~ 0. retry with world +y
         const Eigen::Vector3d world_y(0, 1, 0);
         proj = world_y - z * z.dot(world_y);
     }
