@@ -229,6 +229,14 @@ CommonNormalResult common_normal(const Eigen::Vector3d& z0,
     return r;
 }
 
+// dh_params.pdf step 4: compute one DH row (d, theta, a, alpha) from two
+// consecutive DH frames (i-1, i). All inputs in the base frame.
+// Inputs:  z_prev = z_{i-1},  x_prev = x_{i-1},  p_prev = o_{i-1}
+//          z_curr = z_i,      x_curr = x_i,      p_curr = o_i
+//
+// dh.tex writes Eq. (a) as (f_{i+1} - f_i).x_i. That equals (o_i - o_{i-1}).x_i
+// used below: the offsets between f's and o's lie along z_{i-1}, which vanishes
+// under the x_i projection (x_i is perpendicular to z_{i-1} by construction).
 void extract_dh_row(const Eigen::Vector3d& z_prev,
                     const Eigen::Vector3d& x_prev,
                     const Eigen::Vector3d& p_prev,
@@ -239,17 +247,38 @@ void extract_dh_row(const Eigen::Vector3d& z_prev,
                     double& theta,
                     double& a,
                     double& alpha) {
-    const Eigen::Vector3d delta = p_curr - p_prev;
+    const Eigen::Vector3d delta = p_curr - p_prev;  // o_i - o_{i-1}
+    // d_i = (o_i - o_{i-1}) dot z_{i-1}
     d = delta.dot(z_prev);
+    // a_i = (o_i - o_{i-1}) dot x_i
     a = delta.dot(x_curr);
+    // theta_i = atan2((x_{i-1} x x_i) dot z_{i-1},  x_{i-1} dot x_i)
     theta = std::atan2(x_prev.cross(x_curr).dot(z_prev), x_prev.dot(x_curr));
+    // alpha_i = atan2((z_{i-1} x z_i) dot x_i, z_{i-1} dot z_i)
     alpha = std::atan2(z_prev.cross(z_curr).dot(x_curr), z_prev.dot(z_curr));
 }
 
+// Fail-fast guard for the last DH row.
+// Frames 0 through n-1 are built by the common-normal procedure, so they satisfy
+// the DH constraints by construction. Frame n is overwritten with the URDF
+// tool pose, which the URDF author chose freely so nothing forces it to be DH-compatible.
+//
+// A DH row T = Rz(theta)*Tz(d)*Tx(a)*Rx(alpha) has only 4 scalars but a rigid
+// transform has 6 DoF. The 2 "missing" DoF correspond to two geometric
+// constraints that must hold at the frame boundary, both checked here:
+//
+//   (1) x_n perpendicular to z_{n-1}  -- otherwise no (d,theta,a,alpha) row
+//       can represent the orientation step from frame n-1 to frame n.
+//   (2) (p_n - o_{n-1}) lies in the (z_{n-1}, x_n) plane -- the row can only
+//       translate along z_{n-1} and x_n, so a y-component is unrepresentable.
+//
+// Without this, a bad URDF produces a DH table that compiles, looks plausible
+// but silently disagrees with FK.
 void validate_end_effector_dh(const Eigen::Vector3d& z_prev,
                               const Eigen::Vector3d& x_end,
                               const Eigen::Vector3d& origin_prev,
                               const Eigen::Vector3d& p_end) {
+    // check (1): x_n . z_{n-1} == 0
     const double perp_dot = x_end.dot(z_prev);
     if (std::abs(perp_dot) > k_dh_compat_epsilon) {
         throw Exception(ErrorCondition::k_general,
@@ -257,6 +286,8 @@ void validate_end_effector_dh(const Eigen::Vector3d& z_prev,
                         "(residual dot = " +
                             std::to_string(perp_dot) + ")");
     }
+    // check (2): displacement to tool origin has no y_{n-1} component.
+    // y = z_{n-1} x x_n is the plane normal; delta . y must be ~0.
     const Eigen::Vector3d delta = p_end - origin_prev;
     const Eigen::Vector3d y_dir = z_prev.cross(x_end);
     const double plane_residual = delta.dot(y_dir);
@@ -277,7 +308,7 @@ JointAxesAtRest joint_axes_at_rest(const std::vector<Joint>& joints) {
     Eigen::Isometry3d cumulative = Eigen::Isometry3d::Identity();
 
     for (const auto& j : joints) {
-        // with reference to dh_params.pdf: Step 1 substeps (a) and (b) are done in one Isometry3d multiply:
+        // with reference to dh_params.pdf: Step 1a and 1b are done in one Isometry3d multiply:
         // translation: p_cum_new = p_cum + R_cum * t_i
         // rotation: R_cum_new = R_cum * R_i
         cumulative = cumulative * pose_in_meters(j.origin);
@@ -287,7 +318,7 @@ JointAxesAtRest joint_axes_at_rest(const std::vector<Joint>& joints) {
             try {
                 // normalize as we cannot assume unit length
                 const Eigen::Vector3d local_axis = axis_unit(j.axis);
-                // substep (c): axis is expressed in the child's frame, so use the updated R_cum
+                // step 1c: axis is expressed in the child's frame, so use the updated R_cum
                 const Eigen::Vector3d world_axis = cumulative.linear() * local_axis;
                 // record (p_i, a_i) in the base frame
                 out.axes.push_back(world_axis);
