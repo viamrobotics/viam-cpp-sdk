@@ -437,7 +437,8 @@ std::vector<DHParam> urdf_to_dh_params(const KinematicsDataURDF& urdf) {
 
     auto frames = build_dh_frames(axes_origins.axes, axes_origins.origins, axes_origins.end_pose);
 
-    validate_end_effector_dh(frames.zs[n - 1], frames.xs[n], frames.origins[n - 1], frames.origins[n]);
+    validate_end_effector_dh(
+        frames.zs[n - 1], frames.xs[n], frames.origins[n - 1], frames.origins[n]);
 
     // Revolute joint names in chain order (matches joint_axes_at_rest filter).
     std::vector<std::string> revolute_names;
