@@ -11,10 +11,8 @@
 #include <Eigen/Geometry>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
-#include <boost/variant/get.hpp>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/components/arm.hpp>
 #include <viam/sdk/referenceframe/private/urdf_to_dh_internals.hpp>
 
 namespace viam {
@@ -466,16 +464,6 @@ std::vector<DHParam> urdf_to_dh_params(const KinematicsDataURDF& urdf) {
         result[i] = DHParam{revolute_names[i], d, theta, a, alpha};
     }
     return result;
-}
-
-std::vector<DHParam> urdf_to_dh_params(Arm& arm) {
-    KinematicsData kin = arm.get_kinematics();
-    const KinematicsDataURDF* urdf = boost::get<KinematicsDataURDF>(&kin);
-    if (urdf == nullptr) {
-        throw Exception(ErrorCondition::k_not_supported,
-                        "urdf_to_dh_params(Arm&): kinematics format is not URDF");
-    }
-    return urdf_to_dh_params(*urdf);
 }
 
 }  // namespace sdk

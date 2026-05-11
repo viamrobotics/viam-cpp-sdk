@@ -10,10 +10,8 @@
 
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
-#include <viam/sdk/components/arm.hpp>
 #include <viam/sdk/referenceframe/private/urdf_to_dh_internals.hpp>
 #include <viam/sdk/referenceframe/urdf_to_dh_params.hpp>
-#include <viam/sdk/tests/mocks/mock_arm.hpp>
 
 using namespace viam::sdk::urdf_to_dh_internals;
 
@@ -397,41 +395,6 @@ BOOST_AUTO_TEST_CASE(test_urdf_to_dh_params_gp12_fk_round_trip) {
     auto params = urdf_to_dh_params(load_urdf("gp12.urdf"));
     BOOST_CHECK_EQUAL(params.size(), 6u);
     check_fk_roundtrip("gp12.urdf");
-}
-
-namespace {
-
-// Subclass of MockArm that returns a caller-supplied KinematicsData.
-class ArmWithKinematics : public viam::sdktests::arm::MockArm {
-   public:
-    ArmWithKinematics(std::string name, viam::sdk::KinematicsData k)
-        : MockArm(std::move(name)), kinematics_(std::move(k)) {}
-
-    viam::sdk::KinematicsData get_kinematics(const viam::sdk::ProtoStruct&) override {
-        return kinematics_;
-    }
-
-   private:
-    viam::sdk::KinematicsData kinematics_;
-};
-
-}  // namespace
-
-BOOST_AUTO_TEST_CASE(test_urdf_to_dh_params_arm_overload_urdf) {
-    auto urdf = load_urdf("ur5e-real.urdf");
-    ArmWithKinematics arm("test-arm", urdf);
-    auto params = urdf_to_dh_params(arm);
-    BOOST_CHECK_EQUAL(params.size(), 6u);
-    BOOST_CHECK_EQUAL(params[0].name, "shoulder_pan_joint");
-}
-
-BOOST_AUTO_TEST_CASE(test_urdf_to_dh_params_arm_overload_rejects_non_urdf) {
-    viam::sdk::KinematicsDataSVA sva{};  // wrong format
-    ArmWithKinematics arm("test-arm", sva);
-    auto match = [](const Exception& e) {
-        return std::string(e.what()).find("kinematics format is not URDF") != std::string::npos;
-    };
-    BOOST_CHECK_EXCEPTION(urdf_to_dh_params(arm), Exception, match);
 }
 
 BOOST_AUTO_TEST_CASE(test_urdf_to_dh_params_non_dh_compatible_end) {

@@ -11,8 +11,6 @@
 namespace viam {
 namespace sdk {
 
-class Arm;
-
 /// @brief One Denavit-Hartenberg row for a single revolute joint.
 ///
 /// Units: meters for `d` and `a`, radians for `theta` and `alpha`.
@@ -37,13 +35,6 @@ struct DHParam {
 ///         perpendicular to the last joint axis, or origin out of the DH
 ///         plane), or fails to parse as XML.
 std::vector<DHParam> urdf_to_dh_params(const KinematicsDataURDF& urdf);
-
-/// @brief Convenience overload: fetches `arm.get_kinematics()`, requires
-///        URDF format, and forwards to the byte-based overload.
-///
-/// @throws viam::sdk::Exception if the arm's kinematics are not in URDF
-///         format, or for any reason the byte-based overload would throw.
-std::vector<DHParam> urdf_to_dh_params(Arm& arm);
 
 }  // namespace sdk
 }  // namespace viam
