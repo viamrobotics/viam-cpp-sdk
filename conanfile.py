@@ -41,6 +41,7 @@ class ViamCppSdkRecipe(ConanFile):
 
         if self.options.opentelemetry_tracing:
             self.options["opentelemetry-cpp"].with_otlp_grpc = True
+            self.options["opentelemetry-cpp"].with_otlp_http = False
 
         if self.options.shared:
             # See https://github.com/conan-io/conan-center-index/issues/25107
@@ -147,6 +148,11 @@ class ViamCppSdkRecipe(ConanFile):
             self.cpp_info.components["viamsdk"].system_libs.extend(["ncrypt", "secur32", "ntdll", "userenv"])
 
         self.cpp_info.components["viamapi"].includedirs.append("include/viam/api")
+
+        if self.options.opentelemetry_tracing:
+            self.cpp_info.components["viamapi"].requires.append(
+                "opentelemetry-cpp::proto"
+            )
 
         if self.options.shared:
             self.cpp_info.components["viamapi"].libs = ["viamapi"]
