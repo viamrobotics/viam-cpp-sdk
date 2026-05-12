@@ -29,7 +29,6 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel.hpp>
