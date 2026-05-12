@@ -118,7 +118,7 @@ class ViamCppSdkRecipe(ConanFile):
         for component in ["viamsdk", "viamapi"]:
            self.cpp_info.components[component].set_property("cmake_target_name", "viam-cpp-sdk::{}".format(component))
            self.cpp_info.components[component].set_property("pkg_config_name", "viam-cpp-sdk-lib{}".format(component))
-           self.cpp_info.components[component].requires = ["grpc::grpc++"]
+           self.cpp_info.components[component].requires = ["grpc::grpc++", "protobuf::libprotobuf"]
            if self.settings.os in ["Linux", "FreeBSD"]:
             self.cpp_info.components[component].system_libs = ["pthread"]
 
@@ -152,7 +152,6 @@ class ViamCppSdkRecipe(ConanFile):
             "boost::headers",
             "boost::log",
             "grpc::grpc++_reflection",
-            "protobuf::libprotobuf",
             "xtensor::xtensor",
             "viamapi",
         ])
