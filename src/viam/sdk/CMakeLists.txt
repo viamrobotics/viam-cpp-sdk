@@ -139,7 +139,6 @@ target_sources(viamsdk
     module/private/data_consumer_query.cpp
     referenceframe/frame.cpp
     registry/registry.cpp
-    resource/reconfigurable.cpp
     resource/resource.cpp
     resource/resource_api.cpp
     resource/resource_manager.cpp
@@ -220,7 +219,6 @@ target_sources(viamsdk
       ../../viam/sdk/module/signal_manager.hpp
       ../../viam/sdk/referenceframe/frame.hpp
       ../../viam/sdk/registry/registry.hpp
-      ../../viam/sdk/resource/reconfigurable.hpp
       ../../viam/sdk/resource/resource.hpp
       ../../viam/sdk/resource/resource_api.hpp
       ../../viam/sdk/resource/resource_manager.hpp
