@@ -31,3 +31,13 @@ jobs:
               git diff
               exit 1
           fi
+      - name: verify private/api includes only in cpp or private headers
+        run: |
+          BAD_API=$(grep -lR --include='*.hpp' --exclude-dir='private' --exclude-dir='api' '#include <viam/api' src/viam) || true
+          BAD_PRIVATE=$(grep -lR --include='*.hpp' --exclude-dir='private' --exclude-dir='api' '#include <viam/sdk/.*/private' src/viam) || true
+          if [ -n "$BAD_API" ] || [ -n "$BAD_PRIVATE" ]; then
+              echo 'public headers must not include <viam/api/...> or <viam/sdk/.../private/...>:' 1>&2
+              [ -n "$BAD_API" ] && echo "$BAD_API" 1>&2
+              [ -n "$BAD_PRIVATE" ] && echo "$BAD_PRIVATE" 1>&2
+              exit 1
+          fi
