@@ -385,8 +385,8 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/service/motion/v1/motion.pb.cc
     ${PROTO_GEN_DIR}/service/navigation/v1/navigation.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/navigation/v1/navigation.pb.cc
-    ${PROTO_GEN_DIR}/service/navigation/v1/navigation.grpc.pb.cc
-    ${PROTO_GEN_DIR}/service/navigation/v1/navigation.pb.cc
+    ${PROTO_GEN_DIR}/service/slam/v1/slam.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/slam/v1/slam.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.grpc.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.pb.cc
   PUBLIC FILE_SET viamapi_includes TYPE HEADERS
