@@ -151,7 +151,7 @@ class ViamCppSdkRecipe(ConanFile):
 
         if self.options.opentelemetry_tracing:
             self.cpp_info.components["viamapi"].requires.append(
-                "opentelemetry-cpp::proto"
+                "opentelemetry-cpp::opentelemetry_proto"
             )
 
         if self.options.shared:
