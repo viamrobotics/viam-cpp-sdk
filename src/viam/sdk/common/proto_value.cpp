@@ -234,6 +234,44 @@ void to_value(const ProtoStruct& m, Value* v) {
     *(v->mutable_struct_value()) = to_proto(m);
 }
 
+void to_value(const google::protobuf::FieldMask& fm, google::protobuf::Value* v) {
+    ProtoStruct s;
+    ProtoList paths_list;
+    for (const auto& path : fm.paths()) {
+        paths_list.push_back(path);
+    }
+    s.insert({"paths", paths_list});
+    to_value(s, v);
+}
+
+void to_value(const DataClient::SequenceResourceFilter& srf, google::protobuf::Value* v) {
+    ProtoStruct s;
+    s.insert({"resource_name", srf.resource_name});
+    s.insert({"method_name", srf.method_name});
+    to_value(s, v);
+}
+
+void to_value(const DataClient::Sequence& seq, google::protobuf::Value* v) {
+    ProtoStruct s;
+    s.insert({"id", seq.id});
+    s.insert({"part_id", seq.part_id});
+    ProtoList tags_list;
+    for (const auto& tag : seq.sequence_tags) {
+        tags_list.push_back(tag);
+    }
+    s.insert({"sequence_tags", tags_list});
+    s.insert({"created_at", to_proto(seq.created_at)});
+    s.insert({"updated_at", to_proto(seq.updated_at)});
+    s.insert({"start_time", to_proto(seq.start_time)});
+    s.insert({"end_time", to_proto(seq.end_time)});
+    ProtoList resources_list;
+    for (const auto& r : seq.resources) {
+        resources_list.push_back(r);
+    }
+    s.insert({"resources", resources_list});
+    to_value(s, v);
+}
+
 }  // namespace proto_value_details
 
 namespace proto_convert_details {
@@ -291,6 +329,66 @@ ProtoStruct from_proto_impl<google::protobuf::Struct>::operator()(  // NOLINT(mi
     }
 
     return result;
+}
+
+void to_proto_impl<DataClient::SequenceResourceFilter>::operator()(
+    const DataClient::SequenceResourceFilter& srf, viam::app::data::v1::SequenceResourceFilter* p) const {
+    p->set_resource_name(srf.resource_name);
+    p->set_method_name(srf.method_name);
+}
+
+DataClient::SequenceResourceFilter from_proto_impl<viam::app::data::v1::SequenceResourceFilter>::operator()(
+    const viam::app::data::v1::SequenceResourceFilter* p) const {
+    DataClient::SequenceResourceFilter srf;
+    srf.resource_name = p->resource_name();
+    srf.method_name = p->method_name();
+    return srf;
+}
+
+void to_proto_impl<DataClient::Sequence>::operator()(
+    const DataClient::Sequence& s, viam::app::data::v1::Sequence* p) const {
+    p->set_id(s.id);
+    p->set_part_id(s.part_id);
+    for (const auto& tag : s.sequence_tags) {
+        *p->mutable_sequence_tags()->Add() = tag;
+    }
+    *p->mutable_created_at() = to_proto(s.created_at);
+    *p->mutable_updated_at() = to_proto(s.updated_at);
+    *p->mutable_start_time() = to_proto(s.start_time);
+    *p->mutable_end_time() = to_proto(s.end_time);
+    for (const auto& r : s.resources) {
+        *p->mutable_resources()->Add() = to_proto(r);
+    }
+}
+
+DataClient::Sequence from_proto_impl<viam::app::data::v1::Sequence>::operator()(
+    const viam::app::data::v1::Sequence* p) const {
+    DataClient::Sequence s;
+    s.id = p->id();
+    s.part_id = p->part_id();
+    s.sequence_tags = from_repeated_field(p->sequence_tags());
+    s.created_at = from_proto(p->created_at());
+    s.updated_at = from_proto(p->updated_at());
+    s.start_time = from_proto(p->start_time());
+    s.end_time = from_proto(p->end_time());
+    s.resources = from_repeated_field(p->resources());
+    return s;
+}
+
+void to_proto_impl<google::protobuf::FieldMask>::operator()(
+    const google::protobuf::FieldMask& fm, google::protobuf::FieldMask* p) const {
+    for (const auto& path : fm.paths()) {
+        *p->mutable_paths()->Add() = path;
+    }
+}
+
+google::protobuf::FieldMask from_proto_impl<google::protobuf::FieldMask>::operator()(
+    const google::protobuf::FieldMask* p) const {
+    google::protobuf::FieldMask fm;
+    for (const auto& path : p->paths()) {
+        *fm.mutable_paths()->Add() = path;
+    }
+    return fm;
 }
 
 }  // namespace proto_convert_details

@@ -7,6 +7,7 @@
 #include <utility>
 #include <vector>
 
+#include <google/protobuf/field_mask.pb.h>
 #include <viam/sdk/common/proto_convert.hpp>
 
 namespace google {
@@ -23,6 +24,10 @@ class Struct;
 
 namespace viam {
 namespace sdk {
+
+// Forward declarations for new SDK types
+class SequenceResourceFilter;
+class Sequence;
 
 namespace proto_value_details {
 
@@ -323,6 +328,39 @@ struct from_proto_impl<google::protobuf::Struct> {
     ProtoStruct operator()(const google::protobuf::Struct*) const;
 };
 
+// Specializations for SequenceResourceFilter
+template <>
+struct to_proto_impl<SequenceResourceFilter> {
+    void operator()(const SequenceResourceFilter&, viam::app::data::v1::SequenceResourceFilter*) const;
+};
+
+template <>
+struct from_proto_impl<viam::app::data::v1::SequenceResourceFilter> {
+    SequenceResourceFilter operator()(const viam::app::data::v1::SequenceResourceFilter*) const;
+};
+
+// Specializations for Sequence
+template <>
+struct to_proto_impl<Sequence> {
+    void operator()(const Sequence&, viam::app::data::v1::Sequence*) const;
+};
+
+template <>
+struct from_proto_impl<viam::app::data::v1::Sequence> {
+    Sequence operator()(const viam::app::data::v1::Sequence*) const;
+};
+
+// Specializations for google::protobuf::FieldMask
+template <>
+struct to_proto_impl<google::protobuf::FieldMask> {
+    void operator()(const google::protobuf::FieldMask&, google::protobuf::FieldMask*) const;
+};
+
+template <>
+struct from_proto_impl<google::protobuf::FieldMask> {
+    google::protobuf::FieldMask operator()(const google::protobuf::FieldMask*) const;
+};
+
 }  // namespace proto_convert_details
 
 namespace proto_value_details {
@@ -333,6 +371,13 @@ void to_value(double d, google::protobuf::Value* v);
 void to_value(std::string s, google::protobuf::Value* v);
 void to_value(const ProtoList& vec, google::protobuf::Value* v);
 void to_value(const ProtoStruct& m, google::protobuf::Value* v);
+
+// Declaration for google::protobuf::FieldMask
+void to_value(const google::protobuf::FieldMask& m, google::protobuf::Value* v);
+
+// Declarations for SequenceResourceFilter and Sequence
+void to_value(const SequenceResourceFilter& srf, google::protobuf::Value* v);
+void to_value(const Sequence& s, google::protobuf::Value* v);
 
 template <typename T>
 struct kind {};
@@ -367,6 +412,23 @@ struct kind<ProtoList> {
 
 template <>
 struct kind<ProtoStruct> {
+    using type = KindConstant<ProtoValue::Kind::k_struct>;
+};
+
+// Specialization for google::protobuf::FieldMask
+template <>
+struct kind<google::protobuf::FieldMask> {
+    using type = KindConstant<ProtoValue::Kind::k_struct>; // FieldMask is a message, treated as struct
+};
+
+// Specializations for SequenceResourceFilter and Sequence
+template <>
+struct kind<SequenceResourceFilter> {
+    using type = KindConstant<ProtoValue::Kind::k_struct>;
+};
+
+template <>
+struct kind<Sequence> {
     using type = KindConstant<ProtoValue::Kind::k_struct>;
 };
 

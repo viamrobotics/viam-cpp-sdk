@@ -5,6 +5,7 @@
 #include <unordered_map>
 
 #include <google/protobuf/struct.pb.h>
+#include <google/protobuf/field_mask.pb.h>
 
 #include <boost/mp11/algorithm.hpp>
 #include <boost/mp11/integer_sequence.hpp>
@@ -330,6 +331,76 @@ BOOST_AUTO_TEST_CASE(test_manual_map_conversion) {
         BOOST_REQUIRE(elem_ptr);
         BOOST_CHECK(*elem_ptr == map_pair.second);
     });
+}
+
+BOOST_AUTO_TEST_CASE(test_sequence_resource_filter_conversion) {
+    DataClient::SequenceResourceFilter srf;
+    srf.resource_name = "test_resource";
+    srf.method_name = "test_method";
+
+    ProtoValue pv_srf(srf);
+    BOOST_CHECK(pv_srf.is_a<DataClient::SequenceResourceFilter>());
+    BOOST_CHECK(pv_srf.get_unchecked<DataClient::SequenceResourceFilter>() == srf);
+
+    auto proto_srf = to_proto(srf);
+    BOOST_CHECK(proto_srf.resource_name() == srf.resource_name);
+    BOOST_CHECK(proto_srf.method_name() == srf.method_name);
+
+    auto sdk_srf = from_proto(proto_srf);
+    BOOST_CHECK(sdk_srf == srf);
+}
+
+BOOST_AUTO_TEST_CASE(test_sequence_conversion) {
+    DataClient::Sequence seq;
+    seq.id = "seq_id_1";
+    seq.part_id = "part_id_1";
+    seq.sequence_tags = {"tag1", "tag2"};
+    seq.created_at = std::chrono::system_clock::now();
+    seq.updated_at = seq.created_at;
+    seq.start_time = seq.created_at;
+    seq.end_time = seq.created_at + std::chrono::seconds(10);
+
+    DataClient::SequenceResourceFilter srf1;
+    srf1.resource_name = "res1";
+    srf1.method_name = "meth1";
+    seq.resources.push_back(srf1);
+
+    ProtoValue pv_seq(seq);
+    BOOST_CHECK(pv_seq.is_a<DataClient::Sequence>());
+    BOOST_CHECK(pv_seq.get_unchecked<DataClient::Sequence>() == seq);
+
+    auto proto_seq = to_proto(seq);
+    BOOST_CHECK(proto_seq.id() == seq.id);
+    BOOST_CHECK(proto_seq.part_id() == seq.part_id);
+    BOOST_CHECK(from_repeated_field(proto_seq.sequence_tags()) == seq.sequence_tags);
+    BOOST_CHECK(from_proto(proto_seq.created_at()) == seq.created_at);
+    BOOST_CHECK(from_proto(proto_seq.updated_at()) == seq.updated_at);
+    BOOST_CHECK(from_proto(proto_seq.start_time()) == seq.start_time);
+    BOOST_CHECK(from_proto(proto_seq.end_time()) == seq.end_time);
+    BOOST_CHECK(from_repeated_field(proto_seq.resources()) == seq.resources);
+
+    auto sdk_seq = from_proto(proto_seq);
+    BOOST_CHECK(sdk_seq == seq);
+}
+
+BOOST_AUTO_TEST_CASE(test_field_mask_conversion) {
+    google::protobuf::FieldMask fm;
+    fm.add_paths("path1");
+    fm.add_paths("path2");
+
+    ProtoValue pv_fm(fm);
+    BOOST_CHECK(pv_fm.is_a<google::protobuf::FieldMask>());
+    BOOST_CHECK(from_proto(pv_fm.get_unchecked<google::protobuf::FieldMask>()) == fm);
+
+    auto proto_fm = to_proto(fm);
+    BOOST_CHECK(proto_fm.paths_size() == 2);
+    BOOST_CHECK(proto_fm.paths(0) == "path1");
+    BOOST_CHECK(proto_fm.paths(1) == "path2");
+
+    auto sdk_fm = from_proto(proto_fm);
+    BOOST_CHECK(sdk_fm.paths_size() == 2);
+    BOOST_CHECK(sdk_fm.paths(0) == "path1");
+    BOOST_CHECK(sdk_fm.paths(1) == "path2");
 }
 
 BOOST_AUTO_TEST_SUITE_END()
