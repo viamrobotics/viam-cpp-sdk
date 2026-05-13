@@ -245,6 +245,15 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
         parent_->connect_logging();
     }
 
+    // The parent's resource cache is populated once at parent_ construction
+    // (refresh_every_interval=0 disables periodic refresh). Resources
+    // registered with viam-server after that point — including built-in
+    // components configured alongside a module that depends on them —
+    // won't appear unless we refresh on demand. This function is called from
+    // AddResource/ReconfigureResource (per-resource-construction frequency,
+    // not data-plane), so the cost of an extra ResourceNames round-trip is
+    // negligible and worth the predictable semantics.
+    parent_->refresh();
     return parent_->resource_by_name(name);
 }
 
