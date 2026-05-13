@@ -92,9 +92,9 @@ class ViamCppSdkRecipe(ConanFile):
         if self.options.opentelemetry_tracing:
             # Oldest maintained conan package and first version with proper CMake support
             if self.settings.os == "Windows":
-                # v1.22+ builds opentelemetry_proto as a DLL on Windows without
+                # v1.25+ builds opentelemetry_proto as a DLL on Windows without
                 # exporting its protobuf-generated globals, breaking consumer link.
-                self.requires('opentelemetry-cpp/[>=1.21.0 <1.22.0]')
+                self.requires('opentelemetry-cpp/[>=1.21.0 <1.25.0]')
             else:
                 self.requires('opentelemetry-cpp/[>=1.21.0]')
 
