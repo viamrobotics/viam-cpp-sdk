@@ -73,6 +73,7 @@ target_sources(viamsdk
     common/private/service_helper.cpp
     tracing/private/span_guard.cpp
     tracing/private/tracer.cpp
+    tracing/span.cpp
     components/arm.cpp
     components/audio_in.cpp
     components/audio_out.cpp
@@ -235,6 +236,7 @@ target_sources(viamsdk
       ../../viam/sdk/services/motion.hpp
       ../../viam/sdk/services/navigation.hpp
       ../../viam/sdk/services/service.hpp
+      ../../viam/sdk/tracing/span.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
       ../../viam/sdk/spatialmath/orientation.hpp
       ../../viam/sdk/spatialmath/orientation_types.hpp
