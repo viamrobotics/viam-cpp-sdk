@@ -64,7 +64,7 @@ jobs:
 
           conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
 
-          conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" \
+          conan create . --build=missing -s:a compiler.cppstd=17 \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
           conan upload "viam-cpp-sdk/*" -r viamconan -c
@@ -167,7 +167,7 @@ jobs:
 
         conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
 
-        conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" \
+        conan create . --build=missing -s:a compiler.cppstd=17 \
         --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
         conan upload "viam-cpp-sdk/*" -r viamconan -c
@@ -238,7 +238,7 @@ jobs:
         Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
         refreshenv
 
-        conan create . --build=missing -o "&:shared=False" -s:a compiler.cppstd=17
+        conan create . --build=missing -s:a compiler.cppstd=17
         conan upload "viam-cpp-sdk/*" -r viamconan -c
       env:
         CONAN_USER_HOME: c:/cache
