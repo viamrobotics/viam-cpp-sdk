@@ -51,11 +51,11 @@ class ViamCppSdkRecipe(ConanFile):
             # See https://github.com/conan-io/conan-center-index/issues/25107
             self.options["grpc"].secure = True
 
-        # From some experiments it seems that the shared-ness of these packages
-        # should match that of the SDK recipe. Failure to do so can cause linker
-        # errors while compiling, or static initialization errors at runtime for modules.
-        for lib in ["grpc", "protobuf", "abseil"]:
-            self.options[lib].shared = self.options.shared
+            # From some experiments it seems that the shared-ness of these packages
+            # should match that of the SDK recipe. Failure to do so can cause linker
+            # errors while compiling, or static initialization errors at runtime for modules.
+            for lib in ["grpc", "protobuf", "abseil"]:
+                self.options[lib].shared = True
 
     def validate(self):
         if self.options.opentelemetry_tracing:
@@ -91,7 +91,12 @@ class ViamCppSdkRecipe(ConanFile):
 
         if self.options.opentelemetry_tracing:
             # Oldest maintained conan package and first version with proper CMake support
-            self.requires('opentelemetry-cpp/[>=1.21.0]')
+            if self.settings.os == "Windows":
+                # v1.22+ builds opentelemetry_proto as a DLL on Windows without
+                # exporting its protobuf-generated globals, breaking consumer link.
+                self.requires('opentelemetry-cpp/[>=1.21.0 <1.22.0]')
+            else:
+                self.requires('opentelemetry-cpp/[>=1.21.0]')
 
     def build_requirements(self):
         if self.options.offline_proto_generation:
