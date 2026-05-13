@@ -46,10 +46,6 @@ class ViamCppSdkRecipe(ConanFile):
             self.options["opentelemetry-cpp"].with_otlp_http = False
             self.options["opentelemetry-cpp"].with_zipkin = False
             self.options["opentelemetry-cpp"].with_elasticsearch = False
-            # Match opentelemetry-cpp's shared-ness to the SDK to avoid DLL
-            # export mismatches for the protobuf-generated symbols in
-            # opentelemetry_proto on Windows.
-            self.options["opentelemetry-cpp"].shared = self.options.shared
 
         if self.options.shared:
             # See https://github.com/conan-io/conan-center-index/issues/25107
