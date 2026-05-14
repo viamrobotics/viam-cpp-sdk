@@ -1,6 +1,10 @@
 #pragma once
 
+#ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
 #include <memory>
+
+#include <opentelemetry/sdk/trace/tracer_provider.h>
+#endif
 
 namespace viam {
 namespace sdk {
@@ -30,9 +34,10 @@ class Tracer {
     void initialize_provider(RobotClient* client) noexcept;
     void shutdown_provider() noexcept;
 
+#ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
    private:
-    struct Impl;
-    std::unique_ptr<Impl> impl_;
+    std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> sdk_provider_;
+#endif
 };
 
 }  // namespace impl
