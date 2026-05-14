@@ -31,3 +31,23 @@ jobs:
               git diff
               exit 1
           fi
+      - name: verify no public headers include private sdk headers or viam api headers
+        run: |
+          BAD_API=$(grep -lR --include='*.hpp' --exclude-dir='private' --exclude-dir='api' '#include <viam/api' src/viam) || true
+          BAD_PRIVATE=$(grep -lR --include='*.hpp' --exclude-dir='private' --exclude-dir='api' '#include <viam/sdk/.*/private' src/viam) || true
+          if [ -n "$BAD_API" ] || [ -n "$BAD_PRIVATE" ]; then
+              echo 'public headers must not include <viam/api/...> or <viam/sdk/.../private/...>:' 1>&2
+              [ -n "$BAD_API" ] && echo "$BAD_API" 1>&2
+              [ -n "$BAD_PRIVATE" ] && echo "$BAD_PRIVATE" 1>&2
+              exit 1
+          fi
+      - name: verify no public sdk headers include google or grpc headers
+        run: |
+          BAD_GOOGLE=$(grep -lR --include='*.hpp' --exclude-dir='private' --exclude-dir='api' --exclude-dir='tests' '#include <google' src/viam/sdk) || true
+          BAD_GRPC=$(grep -lR --include='*.hpp' --exclude-dir='private' --exclude-dir='api' --exclude-dir='tests' '#include <grpc' src/viam/sdk) || true
+          if [ -n "$BAD_GOOGLE" ] || [ -n "$BAD_GRPC" ]; then
+              echo 'public sdk headers must not include <google/...> or <grpc...>:' 1>&2
+              [ -n "$BAD_GOOGLE" ] && echo "$BAD_GOOGLE" 1>&2
+              [ -n "$BAD_GRPC" ] && echo "$BAD_GRPC" 1>&2
+              exit 1
+          fi
