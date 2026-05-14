@@ -90,7 +90,7 @@ class ParentSendTracesExporter final : public otel_sdk_trace::SpanExporter {
     std::atomic<bool> is_shutdown_{false};
 };
 
-void initialize_trace_propagator() noexcept {
+void Tracer::initialize_propagator() noexcept {
     otel_prop::GlobalTextMapPropagator::SetGlobalPropagator(
         opentelemetry::nostd::shared_ptr<otel_prop::TextMapPropagator>(
             new opentelemetry::trace::propagation::HttpTraceContext()));
@@ -154,7 +154,7 @@ class RobotClient;
 
 namespace impl {
 
-void initialize_trace_propagator() noexcept {}
+void Tracer::initialize_propagator() noexcept {}
 
 Tracer::Tracer() = default;
 Tracer::~Tracer() = default;

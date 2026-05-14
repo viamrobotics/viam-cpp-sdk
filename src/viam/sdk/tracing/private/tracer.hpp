@@ -13,9 +13,6 @@ class RobotClient;
 
 namespace impl {
 
-/// @brief Install the W3C Trace Context propagator. Called once during @c Instance construction.
-void initialize_trace_propagator() noexcept;
-
 /// @brief Holds the SDK-side OpenTelemetry tracer provider. Spans go nowhere until
 /// @c initialize_provider installs an exporter that ships them to the parent.
 class Tracer {
@@ -28,6 +25,10 @@ class Tracer {
 
     /// @brief Returns the @c Tracer owned by the current @c Instance.
     static Tracer& get();
+
+    /// @brief Install the W3C Trace Context propagator. Called once during @c Instance
+    /// construction.
+    static void initialize_propagator() noexcept;
 
     /// @brief Install an exporter sourced from @p client. The caller must keep @p client alive
     /// until @c shutdown_provider returns.
