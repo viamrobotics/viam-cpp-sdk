@@ -117,14 +117,17 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::ReadAnalogReaderRequest* request,
     ::viam::component::board::v1::ReadAnalogReaderResponse* response) {
+    ServerSpanGuard span_guard{context, "BoardServer::ReadAnalogReader"};
+
     if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Board::ReadAnalogReader] without a request");
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                                                "Called [Board::ReadAnalogReader] without a request"));
     };
 
     const std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
     if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
+        return span_guard.commit(
+            grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name()));
     }
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
@@ -141,21 +144,24 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     response->set_max_range(result.max_range);
     response->set_step_size(result.step_size);
 
-    return ::grpc::Status();
+    return span_guard.commit(::grpc::Status());
 }
 
 ::grpc::Status BoardServer::WriteAnalog(
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::WriteAnalogRequest* request,
     ::viam::component::board::v1::WriteAnalogResponse*) {
+    ServerSpanGuard span_guard{context, "BoardServer::WriteAnalog"};
+
     if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Board::WriteAnalog] without a request");
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                                                "Called [Board::WriteAnalog] without a request"));
     };
 
     const std::shared_ptr<Resource> rb = resource_manager()->resource(request->name());
     if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name());
+        return span_guard.commit(
+            grpc::Status(grpc::UNKNOWN, "resource not found: " + request->name()));
     }
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
@@ -168,21 +174,25 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     const GrpcContextObserver::Enable enable{*context};
     board->write_analog(request->pin(), request->value(), extra);
 
-    return ::grpc::Status();
+    return span_guard.commit(::grpc::Status());
 }
 
 ::grpc::Status BoardServer::GetDigitalInterruptValue(
     ::grpc::ServerContext* context,
     const ::viam::component::board::v1::GetDigitalInterruptValueRequest* request,
     ::viam::component::board::v1::GetDigitalInterruptValueResponse* response) {
+    ServerSpanGuard span_guard{context, "BoardServer::GetDigitalInterruptValue"};
+
     if (!request) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "Called [Board::GetDigitalInterruptValue] without a request");
+        return span_guard.commit(
+            ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                           "Called [Board::GetDigitalInterruptValue] without a request"));
     };
 
     const std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
     if (!rb) {
-        return grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name());
+        return span_guard.commit(
+            grpc::Status(grpc::UNKNOWN, "resource not found: " + request->board_name()));
     }
 
     const std::shared_ptr<Board> board = std::dynamic_pointer_cast<Board>(rb);
@@ -197,7 +207,7 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
         board->read_digital_interrupt(request->digital_interrupt_name(), extra);
     response->set_value(result);
 
-    return ::grpc::Status();
+    return span_guard.commit(::grpc::Status());
 }
 
 ::grpc::Status BoardServer::StreamTicks(
