@@ -23,7 +23,7 @@ class ViamCppSdkRecipe(ConanFile):
 
     default_options = {
         "offline_proto_generation": True,
-        "shared": True
+        "shared": False
     }
 
     exports_sources = "CMakeLists.txt", "LICENSE", "src/*", "buf.lock"
