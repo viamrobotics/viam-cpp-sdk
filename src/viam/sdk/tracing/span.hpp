@@ -60,6 +60,9 @@ class Span {
     std::unique_ptr<Impl> impl_;
 };
 
+template <>
+void Span::set_attribute<std::string>(const char*, std::string) noexcept;
+
 // -- Explicit instantiation declarations for the supported attribute value types -- //
 extern template void Span::set_attribute<bool>(const char*, bool) noexcept;
 extern template void Span::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
