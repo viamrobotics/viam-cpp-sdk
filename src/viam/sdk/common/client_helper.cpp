@@ -5,6 +5,7 @@
 #include <grpcpp/client_context.h>
 #include <grpcpp/support/status.h>
 
+#include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/private/version_metadata.hpp>
 #include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/tracing/private/span_guard.hpp>
@@ -25,6 +26,15 @@ bool isStatusCancelled(int status) noexcept {
 }
 
 void set_name(...) {}  // NOLINT(cert-dcl50-cpp)
+
+boost::optional<std::string> debug_map_value(const ProtoStruct& extra) {
+    auto key = extra.find(impl::debug_map_key);
+    if (key != extra.end()) {
+        return key->second.get_unchecked<std::string>();
+    }
+
+    return {};
+}
 
 }  // namespace client_helper_details
 
