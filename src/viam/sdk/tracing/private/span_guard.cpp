@@ -5,7 +5,7 @@
 
 #ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
 
-#include <memory>
+#include <utility>
 
 #include <opentelemetry/context/propagation/global_propagator.h>
 #include <opentelemetry/context/runtime_context.h>
@@ -72,17 +72,8 @@ class GrpcClientCarrier : public otel_prop::TextMapCarrier {
 
 }  // namespace
 
-// Constructing Impl makes the span active on the current thread
-struct ServerSpanGuard::Impl {
-    opentelemetry::nostd::shared_ptr<otel_trace::Span> span;
-    otel_trace::Scope scope;
-    bool committed = false;
-
-    explicit Impl(opentelemetry::nostd::shared_ptr<otel_trace::Span> s) noexcept
-        : span(std::move(s)), scope(span) {}
-};
-
-ServerSpanGuard::ServerSpanGuard(const GrpcServerContext* ctx, const char* method) noexcept {
+opentelemetry::nostd::shared_ptr<otel_trace::Span> ServerSpanGuard::start_span_(
+    const GrpcServerContext* ctx, const char* method) noexcept {
     auto tracer = otel_trace::Provider::GetTracerProvider()->GetTracer(k_instrumentation_scope);
 
     otel_trace::StartSpanOptions opts;
@@ -98,30 +89,27 @@ ServerSpanGuard::ServerSpanGuard(const GrpcServerContext* ctx, const char* metho
 
     auto span = tracer->StartSpan(method, opts);
     span->SetAttribute("rpc.system", "grpc");
-
-    impl_ = std::make_unique<Impl>(std::move(span));
+    return span;
 }
 
+// Constructing `scope_` makes the span active on the current thread.
+ServerSpanGuard::ServerSpanGuard(const GrpcServerContext* ctx, const char* method) noexcept
+    : span_(start_span_(ctx, method)), scope_(span_) {}
+
 ServerSpanGuard::~ServerSpanGuard() noexcept {
-    if (!impl_) {
-        return;
+    if (!committed_) {
+        span_->SetStatus(otel_trace::StatusCode::kError, "handler threw an exception");
     }
-    if (!impl_->committed) {
-        impl_->span->SetStatus(otel_trace::StatusCode::kError, "handler threw an exception");
-    }
-    impl_->span->End();
+    span_->End();
 }
 
 ::grpc::Status ServerSpanGuard::commit(::grpc::Status status) noexcept {
-    if (!impl_) {
-        return status;
-    }
-    impl_->committed = true;
+    committed_ = true;
     if (status.error_code() == ::grpc::StatusCode::OK) {
-        impl_->span->SetStatus(otel_trace::StatusCode::kOk);
+        span_->SetStatus(otel_trace::StatusCode::kOk);
     } else {
-        impl_->span->SetStatus(otel_trace::StatusCode::kError);
-        impl_->span->SetAttribute("rpc.grpc.status_code", static_cast<int>(status.error_code()));
+        span_->SetStatus(otel_trace::StatusCode::kError);
+        span_->SetAttribute("rpc.grpc.status_code", static_cast<int>(status.error_code()));
     }
     return status;
 }
@@ -141,8 +129,6 @@ void inject_trace_context(GrpcClientContext* ctx) noexcept {
 namespace viam {
 namespace sdk {
 namespace impl {
-
-struct ServerSpanGuard::Impl {};
 
 ServerSpanGuard::ServerSpanGuard(const GrpcServerContext*, const char*) noexcept {}
 

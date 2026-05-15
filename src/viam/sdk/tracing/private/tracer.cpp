@@ -90,17 +90,13 @@ class ParentSendTracesExporter final : public otel_sdk_trace::SpanExporter {
     std::atomic<bool> is_shutdown_{false};
 };
 
-void initialize_trace_propagator() noexcept {
+void Tracer::initialize_propagator() noexcept {
     otel_prop::GlobalTextMapPropagator::SetGlobalPropagator(
         opentelemetry::nostd::shared_ptr<otel_prop::TextMapPropagator>(
             new opentelemetry::trace::propagation::HttpTraceContext()));
 }
 
-struct Tracer::Impl {
-    std::shared_ptr<otel_sdk_trace::TracerProvider> sdk_provider;
-};
-
-Tracer::Tracer() : impl_(std::make_unique<Impl>()) {}
+Tracer::Tracer() = default;
 Tracer::~Tracer() {
     shutdown_provider();
 }
@@ -126,23 +122,23 @@ void Tracer::initialize_provider(RobotClient* client) noexcept {
         {"service.name", std::string{k_instrumentation_scope}},
     });
 
-    impl_->sdk_provider = std::shared_ptr<otel_sdk_trace::TracerProvider>(
+    sdk_provider_ = std::shared_ptr<otel_sdk_trace::TracerProvider>(
         otel_sdk_trace::TracerProviderFactory::Create(std::move(processor), resource));
 
-    std::shared_ptr<otel_trace::TracerProvider> base_provider = impl_->sdk_provider;
+    std::shared_ptr<otel_trace::TracerProvider> base_provider = sdk_provider_;
     otel_trace::Provider::SetTracerProvider(
         opentelemetry::nostd::shared_ptr<otel_trace::TracerProvider>(std::move(base_provider)));
 }
 
 void Tracer::shutdown_provider() noexcept {
-    if (!impl_->sdk_provider) {
+    if (!sdk_provider_) {
         return;
     }
-    impl_->sdk_provider->Shutdown();
+    sdk_provider_->Shutdown();
     otel_trace::Provider::SetTracerProvider(
         opentelemetry::nostd::shared_ptr<otel_trace::TracerProvider>(
             new otel_trace::NoopTracerProvider()));
-    impl_->sdk_provider.reset();
+    sdk_provider_.reset();
 }
 
 }  // namespace impl
@@ -158,9 +154,7 @@ class RobotClient;
 
 namespace impl {
 
-void initialize_trace_propagator() noexcept {}
-
-struct Tracer::Impl {};
+void Tracer::initialize_propagator() noexcept {}
 
 Tracer::Tracer() = default;
 Tracer::~Tracer() = default;

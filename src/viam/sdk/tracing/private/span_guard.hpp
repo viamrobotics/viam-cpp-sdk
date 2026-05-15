@@ -1,10 +1,13 @@
 #pragma once
 
-#include <memory>
-
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/grpc_fwd.hpp>
+
+#ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
+#include <opentelemetry/trace/scope.h>
+#include <opentelemetry/trace/span.h>
+#endif
 
 namespace viam {
 namespace sdk {
@@ -30,9 +33,16 @@ class ServerSpanGuard {
     ServerSpanGuard(const ServerSpanGuard&) = delete;
     ServerSpanGuard& operator=(const ServerSpanGuard&) = delete;
 
+#ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
    private:
-    struct Impl;
-    std::unique_ptr<Impl> impl_;
+    // Builds the span and makes it active; runs before `scope_` in the constructor init list.
+    static opentelemetry::nostd::shared_ptr<opentelemetry::trace::Span> start_span_(
+        const GrpcServerContext* ctx, const char* method) noexcept;
+
+    opentelemetry::nostd::shared_ptr<opentelemetry::trace::Span> span_;
+    opentelemetry::trace::Scope scope_;
+    bool committed_ = false;
+#endif
 };
 
 /// @brief Inject the currently-active OpenTelemetry trace context as W3C @c traceparent /
