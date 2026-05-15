@@ -111,8 +111,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
 
         auto resource_server = parent.server_->lookup_resource_server(cfg.api());
         if (!resource_server) {
-            return span_guard.commit(grpc::Status(
-                grpc::UNKNOWN, "no rpc service for config: " + cfg.api().to_string()));
+            return span_guard.commit(
+                grpc::Status(grpc::UNKNOWN, "no rpc service for config: " + cfg.api().to_string()));
         }
         auto manager = resource_server->resource_manager();
 
@@ -122,10 +122,10 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         {
             const std::shared_ptr<Resource> res = manager->resource(cfg.resource_name().name());
             if (!res) {
-                return span_guard.commit(
-                    grpc::Status(grpc::UNKNOWN,
-                                 "unable to stop resource " + cfg.resource_name().name() +
-                                     " as it doesn't exist."));
+                return span_guard.commit(grpc::Status(grpc::UNKNOWN,
+                                                      "unable to stop resource " +
+                                                          cfg.resource_name().name() +
+                                                          " as it doesn't exist."));
             }
 
             if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
@@ -163,10 +163,10 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         const std::shared_ptr<const ModelRegistration> reg =
             Registry::get().lookup_model(cfg.api(), cfg.model());
         if (!reg) {
-            return span_guard.commit(
-                grpc::Status(grpc::UNKNOWN,
-                             "unable to validate resource " + cfg.resource_name().name() +
-                                 " as it hasn't been registered."));
+            return span_guard.commit(grpc::Status(grpc::UNKNOWN,
+                                                  "unable to validate resource " +
+                                                      cfg.resource_name().name() +
+                                                      " as it hasn't been registered."));
         }
         try {
             const std::vector<std::string> implicit_deps = reg->validate(cfg);
@@ -175,8 +175,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             }
         } catch (const std::exception& err) {
             return span_guard.commit(grpc::Status(
-                grpc::UNKNOWN,
-                "validation failure in resource " + cfg.name() + ": " + err.what()));
+                grpc::UNKNOWN, "validation failure in resource " + cfg.name() + ": " + err.what()));
         }
         return span_guard.commit(grpc::Status());
     }

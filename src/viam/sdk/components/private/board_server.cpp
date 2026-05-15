@@ -120,8 +120,9 @@ BoardServer::BoardServer(std::shared_ptr<ResourceManager> manager)
     ServerSpanGuard span_guard{context, "BoardServer::ReadAnalogReader"};
 
     if (!request) {
-        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                                                "Called [Board::ReadAnalogReader] without a request"));
+        return span_guard.commit(
+            ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                           "Called [Board::ReadAnalogReader] without a request"));
     };
 
     const std::shared_ptr<Resource> rb = resource_manager()->resource(request->board_name());
