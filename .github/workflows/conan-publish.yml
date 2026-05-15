@@ -183,7 +183,7 @@ jobs:
         arch={{detect_api.detect_arch()}}
         build_type=Release
         compiler=clang
-        compiler.cppstd=20
+        compiler.cppstd=17
         compiler.libcxx=libc++
         compiler.version=19
         os=Linux
@@ -196,8 +196,6 @@ jobs:
         tools.build:exelinkflags+=["-static-libstdc++"]
         tools.build:sharedlinkflags+=["-static-libstdc++"]
 
-        [options]
-        boost/*:without_cobalt=True
         EOF
 
     - name: Pre-install b2 (bullseye)
@@ -205,7 +203,7 @@ jobs:
       run: |
         . ./conan_venv/bin/activate
         conan install -r conancenter --update \
-        --tool-requires=b2/5.4.2 --build=b2/5.4.2 -s:a compiler.cppstd=20 --lockfile etc/conan/conan.lock
+        --tool-requires=b2/5.4.2 --build=b2/5.4.2 --lockfile etc/conan/conan.lock
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
