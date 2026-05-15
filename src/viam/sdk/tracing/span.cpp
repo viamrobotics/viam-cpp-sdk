@@ -23,9 +23,7 @@ namespace {
 constexpr const char* k_instrumentation_scope = "viam-cpp-sdk.module";
 
 bool has_active_span() noexcept {
-    return otel_trace::GetSpan(otel_ctx::RuntimeContext::GetCurrent())
-        ->GetContext()
-        .IsValid();
+    return otel_trace::GetSpan(otel_ctx::RuntimeContext::GetCurrent())->GetContext().IsValid();
 }
 
 opentelemetry::nostd::shared_ptr<otel_trace::Span> start_or_noop(const char* name) noexcept {
