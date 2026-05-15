@@ -132,6 +132,15 @@ option(VIAMCPPSDK_SANITIZED_BUILD "Build with address and UB sanitizers (less pe
 #
 option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 
+
+# - `VIAMCPPSDK_OPENTELEMETRY_TRACING`
+#
+# When enabled, links against opentelemetry-cpp and compiles in
+# W3C Trace Context propagation for all gRPC client and server calls.
+# This is off by default and effectively conan-only, because apt packages are not generally available.
+#
+option(VIAMCPPSDK_OPENTELEMETRY_TRACING "Compile OpenTelemetry tracing into all gRPC calls" OFF)
+
 # The following options are only defined if this project is not being included as a subproject
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   option(VIAMCPPSDK_BUILD_EXAMPLES "Build the example executables" ON)
@@ -483,6 +492,10 @@ endif()
 
 if(VIAMCPPSDK_GRPCXX_VERSION VERSION_LESS 1.43.0)
   set(VIAMCPPSDK_GRPCXX_NO_DIRECT_DIAL 1)
+endif()
+
+if (VIAMCPPSDK_OPENTELEMETRY_TRACING)
+  find_package(opentelemetry-cpp CONFIG REQUIRED)
 endif()
 
 include(FetchContent)

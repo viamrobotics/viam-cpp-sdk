@@ -71,6 +71,8 @@ target_sources(viamsdk
     common/version_metadata.cpp
     common/world_state.cpp
     common/private/service_helper.cpp
+    tracing/private/span_guard.cpp
+    tracing/private/tracer.cpp
     components/arm.cpp
     components/audio_in.cpp
     components/audio_out.cpp
@@ -305,6 +307,14 @@ target_link_libraries(viamsdk
   PRIVATE ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
   PRIVATE Threads::Threads
 )
+
+if (VIAMCPPSDK_OPENTELEMETRY_TRACING)
+  target_compile_definitions(viamsdk PRIVATE VIAMCPPSDK_OPENTELEMETRY_TRACING)
+  target_link_libraries(viamsdk
+    PRIVATE opentelemetry-cpp::trace
+    PRIVATE opentelemetry-cpp::exporter_otlp_grpc
+  )
+endif()
 
 # if the `viam_rust_utils` target exists then we should use it. If not then
 # we're probably on a non-x86_64 windows build or some other platform without

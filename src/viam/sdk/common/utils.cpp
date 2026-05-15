@@ -179,15 +179,29 @@ boost::optional<std::string> get_env(const char* var) {
 }
 
 bool is_env_var_true(const char* var) {
+    static constexpr const std::array<const char*, 5> truth_vals{
+        {"true", "yes", "1", "TRUE", "YES"}};
+
     if (const auto& val = get_env(var)) {
-        for (const char* truth : {"true", "yes", "1", "TRUE", "YES"}) {
-            if (*val == truth) {
-                return true;
-            }
-        }
+        return std::any_of(truth_vals.begin(), truth_vals.end(), [&val](const char* truth) {
+            return *val == truth;
+        });
     }
 
     return false;
+}
+
+bool is_env_var_false(const char* var) {
+    static constexpr const std::array<const char*, 5> false_vals{
+        {"false", "no", "0", "FALSE", "NO"}};
+
+    if (const auto& val = get_env(var)) {
+        return std::any_of(false_vals.begin(), false_vals.end(), [&val](const char* untruth) {
+            return *val == untruth;
+        });
+    } else {
+        return true;
+    }
 }
 
 }  // namespace sdk
