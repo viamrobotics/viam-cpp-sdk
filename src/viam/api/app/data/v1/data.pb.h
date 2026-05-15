@@ -36,6 +36,7 @@
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/any.pb.h>
+#include <google/protobuf/field_mask.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include <google/protobuf/timestamp.pb.h>
 // @@protoc_insertion_point(includes)
@@ -149,6 +150,12 @@ extern CreateSavedQueryRequestDefaultTypeInternal _CreateSavedQueryRequest_defau
 class CreateSavedQueryResponse;
 struct CreateSavedQueryResponseDefaultTypeInternal;
 extern CreateSavedQueryResponseDefaultTypeInternal _CreateSavedQueryResponse_default_instance_;
+class CreateSequenceRequest;
+struct CreateSequenceRequestDefaultTypeInternal;
+extern CreateSequenceRequestDefaultTypeInternal _CreateSequenceRequest_default_instance_;
+class CreateSequenceResponse;
+struct CreateSequenceResponseDefaultTypeInternal;
+extern CreateSequenceResponseDefaultTypeInternal _CreateSequenceResponse_default_instance_;
 class DataRequest;
 struct DataRequestDefaultTypeInternal;
 extern DataRequestDefaultTypeInternal _DataRequest_default_instance_;
@@ -176,6 +183,12 @@ extern DeleteSavedQueryRequestDefaultTypeInternal _DeleteSavedQueryRequest_defau
 class DeleteSavedQueryResponse;
 struct DeleteSavedQueryResponseDefaultTypeInternal;
 extern DeleteSavedQueryResponseDefaultTypeInternal _DeleteSavedQueryResponse_default_instance_;
+class DeleteSequenceRequest;
+struct DeleteSequenceRequestDefaultTypeInternal;
+extern DeleteSequenceRequestDefaultTypeInternal _DeleteSequenceRequest_default_instance_;
+class DeleteSequenceResponse;
+struct DeleteSequenceResponseDefaultTypeInternal;
+extern DeleteSequenceResponseDefaultTypeInternal _DeleteSequenceResponse_default_instance_;
 class DeleteTabularDataRequest;
 struct DeleteTabularDataRequestDefaultTypeInternal;
 extern DeleteTabularDataRequestDefaultTypeInternal _DeleteTabularDataRequest_default_instance_;
@@ -212,6 +225,12 @@ extern GetSavedQueryRequestDefaultTypeInternal _GetSavedQueryRequest_default_ins
 class GetSavedQueryResponse;
 struct GetSavedQueryResponseDefaultTypeInternal;
 extern GetSavedQueryResponseDefaultTypeInternal _GetSavedQueryResponse_default_instance_;
+class GetSequenceRequest;
+struct GetSequenceRequestDefaultTypeInternal;
+extern GetSequenceRequestDefaultTypeInternal _GetSequenceRequest_default_instance_;
+class GetSequenceResponse;
+struct GetSequenceResponseDefaultTypeInternal;
+extern GetSequenceResponseDefaultTypeInternal _GetSequenceResponse_default_instance_;
 class Index;
 struct IndexDefaultTypeInternal;
 extern IndexDefaultTypeInternal _Index_default_instance_;
@@ -227,6 +246,12 @@ extern ListSavedQueriesRequestDefaultTypeInternal _ListSavedQueriesRequest_defau
 class ListSavedQueriesResponse;
 struct ListSavedQueriesResponseDefaultTypeInternal;
 extern ListSavedQueriesResponseDefaultTypeInternal _ListSavedQueriesResponse_default_instance_;
+class ListSequencesRequest;
+struct ListSequencesRequestDefaultTypeInternal;
+extern ListSequencesRequestDefaultTypeInternal _ListSequencesRequest_default_instance_;
+class ListSequencesResponse;
+struct ListSequencesResponseDefaultTypeInternal;
+extern ListSequencesResponseDefaultTypeInternal _ListSequencesResponse_default_instance_;
 class Query;
 struct QueryDefaultTypeInternal;
 extern QueryDefaultTypeInternal _Query_default_instance_;
@@ -254,6 +279,12 @@ extern RemoveTagsFromBinaryDataByIDsRequestDefaultTypeInternal _RemoveTagsFromBi
 class RemoveTagsFromBinaryDataByIDsResponse;
 struct RemoveTagsFromBinaryDataByIDsResponseDefaultTypeInternal;
 extern RemoveTagsFromBinaryDataByIDsResponseDefaultTypeInternal _RemoveTagsFromBinaryDataByIDsResponse_default_instance_;
+class Sequence;
+struct SequenceDefaultTypeInternal;
+extern SequenceDefaultTypeInternal _Sequence_default_instance_;
+class SequenceResourceFilter;
+struct SequenceResourceFilterDefaultTypeInternal;
+extern SequenceResourceFilterDefaultTypeInternal _SequenceResourceFilter_default_instance_;
 class TabularData;
 struct TabularDataDefaultTypeInternal;
 extern TabularDataDefaultTypeInternal _TabularData_default_instance_;
@@ -299,6 +330,12 @@ extern UpdateSavedQueryRequestDefaultTypeInternal _UpdateSavedQueryRequest_defau
 class UpdateSavedQueryResponse;
 struct UpdateSavedQueryResponseDefaultTypeInternal;
 extern UpdateSavedQueryResponseDefaultTypeInternal _UpdateSavedQueryResponse_default_instance_;
+class UpdateSequenceRequest;
+struct UpdateSequenceRequestDefaultTypeInternal;
+extern UpdateSequenceRequestDefaultTypeInternal _UpdateSequenceRequest_default_instance_;
+class UpdateSequenceResponse;
+struct UpdateSequenceResponseDefaultTypeInternal;
+extern UpdateSequenceResponseDefaultTypeInternal _UpdateSequenceResponse_default_instance_;
 }  // namespace v1
 }  // namespace data
 }  // namespace app
@@ -335,6 +372,8 @@ template<> ::viam::app::data::v1::CreateIndexRequest* Arena::CreateMaybeMessage<
 template<> ::viam::app::data::v1::CreateIndexResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::CreateIndexResponse>(Arena*);
 template<> ::viam::app::data::v1::CreateSavedQueryRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::CreateSavedQueryRequest>(Arena*);
 template<> ::viam::app::data::v1::CreateSavedQueryResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::CreateSavedQueryResponse>(Arena*);
+template<> ::viam::app::data::v1::CreateSequenceRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::CreateSequenceRequest>(Arena*);
+template<> ::viam::app::data::v1::CreateSequenceResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::CreateSequenceResponse>(Arena*);
 template<> ::viam::app::data::v1::DataRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::DataRequest>(Arena*);
 template<> ::viam::app::data::v1::DeleteBinaryDataByFilterRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteBinaryDataByFilterRequest>(Arena*);
 template<> ::viam::app::data::v1::DeleteBinaryDataByFilterResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteBinaryDataByFilterResponse>(Arena*);
@@ -344,6 +383,8 @@ template<> ::viam::app::data::v1::DeleteIndexRequest* Arena::CreateMaybeMessage<
 template<> ::viam::app::data::v1::DeleteIndexResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteIndexResponse>(Arena*);
 template<> ::viam::app::data::v1::DeleteSavedQueryRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteSavedQueryRequest>(Arena*);
 template<> ::viam::app::data::v1::DeleteSavedQueryResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteSavedQueryResponse>(Arena*);
+template<> ::viam::app::data::v1::DeleteSequenceRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteSequenceRequest>(Arena*);
+template<> ::viam::app::data::v1::DeleteSequenceResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteSequenceResponse>(Arena*);
 template<> ::viam::app::data::v1::DeleteTabularDataRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteTabularDataRequest>(Arena*);
 template<> ::viam::app::data::v1::DeleteTabularDataResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteTabularDataResponse>(Arena*);
 template<> ::viam::app::data::v1::DeleteTabularFilter* Arena::CreateMaybeMessage<::viam::app::data::v1::DeleteTabularFilter>(Arena*);
@@ -356,11 +397,15 @@ template<> ::viam::app::data::v1::GetLatestTabularDataRequest* Arena::CreateMayb
 template<> ::viam::app::data::v1::GetLatestTabularDataResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::GetLatestTabularDataResponse>(Arena*);
 template<> ::viam::app::data::v1::GetSavedQueryRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::GetSavedQueryRequest>(Arena*);
 template<> ::viam::app::data::v1::GetSavedQueryResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::GetSavedQueryResponse>(Arena*);
+template<> ::viam::app::data::v1::GetSequenceRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::GetSequenceRequest>(Arena*);
+template<> ::viam::app::data::v1::GetSequenceResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::GetSequenceResponse>(Arena*);
 template<> ::viam::app::data::v1::Index* Arena::CreateMaybeMessage<::viam::app::data::v1::Index>(Arena*);
 template<> ::viam::app::data::v1::ListIndexesRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::ListIndexesRequest>(Arena*);
 template<> ::viam::app::data::v1::ListIndexesResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::ListIndexesResponse>(Arena*);
 template<> ::viam::app::data::v1::ListSavedQueriesRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::ListSavedQueriesRequest>(Arena*);
 template<> ::viam::app::data::v1::ListSavedQueriesResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::ListSavedQueriesResponse>(Arena*);
+template<> ::viam::app::data::v1::ListSequencesRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::ListSequencesRequest>(Arena*);
+template<> ::viam::app::data::v1::ListSequencesResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::ListSequencesResponse>(Arena*);
 template<> ::viam::app::data::v1::Query* Arena::CreateMaybeMessage<::viam::app::data::v1::Query>(Arena*);
 template<> ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest>(Arena*);
 template<> ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>(Arena*);
@@ -370,6 +415,8 @@ template<> ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* Arena
 template<> ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>(Arena*);
 template<> ::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsRequest>(Arena*);
 template<> ::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsResponse>(Arena*);
+template<> ::viam::app::data::v1::Sequence* Arena::CreateMaybeMessage<::viam::app::data::v1::Sequence>(Arena*);
+template<> ::viam::app::data::v1::SequenceResourceFilter* Arena::CreateMaybeMessage<::viam::app::data::v1::SequenceResourceFilter>(Arena*);
 template<> ::viam::app::data::v1::TabularData* Arena::CreateMaybeMessage<::viam::app::data::v1::TabularData>(Arena*);
 template<> ::viam::app::data::v1::TabularDataByFilterRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::TabularDataByFilterRequest>(Arena*);
 template<> ::viam::app::data::v1::TabularDataByFilterResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::TabularDataByFilterResponse>(Arena*);
@@ -385,6 +432,8 @@ template<> ::viam::app::data::v1::UpdateBoundingBoxRequest* Arena::CreateMaybeMe
 template<> ::viam::app::data::v1::UpdateBoundingBoxResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::UpdateBoundingBoxResponse>(Arena*);
 template<> ::viam::app::data::v1::UpdateSavedQueryRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::UpdateSavedQueryRequest>(Arena*);
 template<> ::viam::app::data::v1::UpdateSavedQueryResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::UpdateSavedQueryResponse>(Arena*);
+template<> ::viam::app::data::v1::UpdateSequenceRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::UpdateSequenceRequest>(Arena*);
+template<> ::viam::app::data::v1::UpdateSequenceResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::UpdateSequenceResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace app {
@@ -14978,6 +15027,2119 @@ class CreateBinaryDataSignedURLResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
 };
+// -------------------------------------------------------------------
+
+class SequenceResourceFilter final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.SequenceResourceFilter) */ {
+ public:
+  inline SequenceResourceFilter() : SequenceResourceFilter(nullptr) {}
+  ~SequenceResourceFilter() override;
+  explicit PROTOBUF_CONSTEXPR SequenceResourceFilter(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SequenceResourceFilter(const SequenceResourceFilter& from);
+  SequenceResourceFilter(SequenceResourceFilter&& from) noexcept
+    : SequenceResourceFilter() {
+    *this = ::std::move(from);
+  }
+
+  inline SequenceResourceFilter& operator=(const SequenceResourceFilter& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SequenceResourceFilter& operator=(SequenceResourceFilter&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SequenceResourceFilter& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SequenceResourceFilter* internal_default_instance() {
+    return reinterpret_cast<const SequenceResourceFilter*>(
+               &_SequenceResourceFilter_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    81;
+
+  friend void swap(SequenceResourceFilter& a, SequenceResourceFilter& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SequenceResourceFilter* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SequenceResourceFilter* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SequenceResourceFilter* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SequenceResourceFilter>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SequenceResourceFilter& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SequenceResourceFilter& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SequenceResourceFilter* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.SequenceResourceFilter";
+  }
+  protected:
+  explicit SequenceResourceFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResourceNameFieldNumber = 2,
+    kMethodNameFieldNumber = 3,
+  };
+  // string resource_name = 2 [json_name = "resourceName"];
+  void clear_resource_name();
+  const std::string& resource_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_resource_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_resource_name();
+  PROTOBUF_NODISCARD std::string* release_resource_name();
+  void set_allocated_resource_name(std::string* resource_name);
+  private:
+  const std::string& _internal_resource_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resource_name(const std::string& value);
+  std::string* _internal_mutable_resource_name();
+  public:
+
+  // string method_name = 3 [json_name = "methodName"];
+  void clear_method_name();
+  const std::string& method_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_method_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_method_name();
+  PROTOBUF_NODISCARD std::string* release_method_name();
+  void set_allocated_method_name(std::string* method_name);
+  private:
+  const std::string& _internal_method_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_method_name(const std::string& value);
+  std::string* _internal_mutable_method_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.SequenceResourceFilter)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr method_name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Sequence final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.Sequence) */ {
+ public:
+  inline Sequence() : Sequence(nullptr) {}
+  ~Sequence() override;
+  explicit PROTOBUF_CONSTEXPR Sequence(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Sequence(const Sequence& from);
+  Sequence(Sequence&& from) noexcept
+    : Sequence() {
+    *this = ::std::move(from);
+  }
+
+  inline Sequence& operator=(const Sequence& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Sequence& operator=(Sequence&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Sequence& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Sequence* internal_default_instance() {
+    return reinterpret_cast<const Sequence*>(
+               &_Sequence_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    82;
+
+  friend void swap(Sequence& a, Sequence& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Sequence* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Sequence* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Sequence* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Sequence>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Sequence& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Sequence& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Sequence* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.Sequence";
+  }
+  protected:
+  explicit Sequence(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSequenceTagsFieldNumber = 3,
+    kResourcesFieldNumber = 8,
+    kIdFieldNumber = 1,
+    kPartIdFieldNumber = 9,
+    kCreatedAtFieldNumber = 4,
+    kUpdatedAtFieldNumber = 5,
+    kStartTimeFieldNumber = 6,
+    kEndTimeFieldNumber = 7,
+  };
+  // repeated string sequence_tags = 3 [json_name = "sequenceTags"];
+  int sequence_tags_size() const;
+  private:
+  int _internal_sequence_tags_size() const;
+  public:
+  void clear_sequence_tags();
+  const std::string& sequence_tags(int index) const;
+  std::string* mutable_sequence_tags(int index);
+  void set_sequence_tags(int index, const std::string& value);
+  void set_sequence_tags(int index, std::string&& value);
+  void set_sequence_tags(int index, const char* value);
+  void set_sequence_tags(int index, const char* value, size_t size);
+  std::string* add_sequence_tags();
+  void add_sequence_tags(const std::string& value);
+  void add_sequence_tags(std::string&& value);
+  void add_sequence_tags(const char* value);
+  void add_sequence_tags(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& sequence_tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_sequence_tags();
+  private:
+  const std::string& _internal_sequence_tags(int index) const;
+  std::string* _internal_add_sequence_tags();
+  public:
+
+  // repeated .viam.app.data.v1.SequenceResourceFilter resources = 8 [json_name = "resources"];
+  int resources_size() const;
+  private:
+  int _internal_resources_size() const;
+  public:
+  void clear_resources();
+  ::viam::app::data::v1::SequenceResourceFilter* mutable_resources(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >*
+      mutable_resources();
+  private:
+  const ::viam::app::data::v1::SequenceResourceFilter& _internal_resources(int index) const;
+  ::viam::app::data::v1::SequenceResourceFilter* _internal_add_resources();
+  public:
+  const ::viam::app::data::v1::SequenceResourceFilter& resources(int index) const;
+  ::viam::app::data::v1::SequenceResourceFilter* add_resources();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >&
+      resources() const;
+
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // string part_id = 9 [json_name = "partId"];
+  void clear_part_id();
+  const std::string& part_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_part_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_part_id();
+  PROTOBUF_NODISCARD std::string* release_part_id();
+  void set_allocated_part_id(std::string* part_id);
+  private:
+  const std::string& _internal_part_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_part_id(const std::string& value);
+  std::string* _internal_mutable_part_id();
+  public:
+
+  // .google.protobuf.Timestamp created_at = 4 [json_name = "createdAt"];
+  bool has_created_at() const;
+  private:
+  bool _internal_has_created_at() const;
+  public:
+  void clear_created_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_created_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_created_at();
+  void set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_created_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_created_at();
+  public:
+  void unsafe_arena_set_allocated_created_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_at();
+
+  // .google.protobuf.Timestamp updated_at = 5 [json_name = "updatedAt"];
+  bool has_updated_at() const;
+  private:
+  bool _internal_has_updated_at() const;
+  public:
+  void clear_updated_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_updated_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_updated_at();
+  void set_allocated_updated_at(::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_updated_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_updated_at();
+  public:
+  void unsafe_arena_set_allocated_updated_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
+
+  // .google.protobuf.Timestamp start_time = 6 [json_name = "startTime"];
+  bool has_start_time() const;
+  private:
+  bool _internal_has_start_time() const;
+  public:
+  void clear_start_time();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& start_time() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_start_time();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_start_time();
+  void set_allocated_start_time(::PROTOBUF_NAMESPACE_ID::Timestamp* start_time);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_start_time() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_start_time();
+  public:
+  void unsafe_arena_set_allocated_start_time(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* start_time);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_start_time();
+
+  // .google.protobuf.Timestamp end_time = 7 [json_name = "endTime"];
+  bool has_end_time() const;
+  private:
+  bool _internal_has_end_time() const;
+  public:
+  void clear_end_time();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& end_time() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_end_time();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_end_time();
+  void set_allocated_end_time(::PROTOBUF_NAMESPACE_ID::Timestamp* end_time);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_end_time() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_end_time();
+  public:
+  void unsafe_arena_set_allocated_end_time(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* end_time);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_end_time();
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.Sequence)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> sequence_tags_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter > resources_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr part_id_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* start_time_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* end_time_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateSequenceRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.CreateSequenceRequest) */ {
+ public:
+  inline CreateSequenceRequest() : CreateSequenceRequest(nullptr) {}
+  ~CreateSequenceRequest() override;
+  explicit PROTOBUF_CONSTEXPR CreateSequenceRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateSequenceRequest(const CreateSequenceRequest& from);
+  CreateSequenceRequest(CreateSequenceRequest&& from) noexcept
+    : CreateSequenceRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateSequenceRequest& operator=(const CreateSequenceRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateSequenceRequest& operator=(CreateSequenceRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateSequenceRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateSequenceRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateSequenceRequest*>(
+               &_CreateSequenceRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    83;
+
+  friend void swap(CreateSequenceRequest& a, CreateSequenceRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateSequenceRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateSequenceRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateSequenceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateSequenceRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateSequenceRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateSequenceRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateSequenceRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.CreateSequenceRequest";
+  }
+  protected:
+  explicit CreateSequenceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResourcesFieldNumber = 2,
+    kSequenceTagsFieldNumber = 3,
+    kPartIdFieldNumber = 6,
+    kStartTimeFieldNumber = 4,
+    kEndTimeFieldNumber = 5,
+  };
+  // repeated .viam.app.data.v1.SequenceResourceFilter resources = 2 [json_name = "resources"];
+  int resources_size() const;
+  private:
+  int _internal_resources_size() const;
+  public:
+  void clear_resources();
+  ::viam::app::data::v1::SequenceResourceFilter* mutable_resources(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >*
+      mutable_resources();
+  private:
+  const ::viam::app::data::v1::SequenceResourceFilter& _internal_resources(int index) const;
+  ::viam::app::data::v1::SequenceResourceFilter* _internal_add_resources();
+  public:
+  const ::viam::app::data::v1::SequenceResourceFilter& resources(int index) const;
+  ::viam::app::data::v1::SequenceResourceFilter* add_resources();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >&
+      resources() const;
+
+  // repeated string sequence_tags = 3 [json_name = "sequenceTags"];
+  int sequence_tags_size() const;
+  private:
+  int _internal_sequence_tags_size() const;
+  public:
+  void clear_sequence_tags();
+  const std::string& sequence_tags(int index) const;
+  std::string* mutable_sequence_tags(int index);
+  void set_sequence_tags(int index, const std::string& value);
+  void set_sequence_tags(int index, std::string&& value);
+  void set_sequence_tags(int index, const char* value);
+  void set_sequence_tags(int index, const char* value, size_t size);
+  std::string* add_sequence_tags();
+  void add_sequence_tags(const std::string& value);
+  void add_sequence_tags(std::string&& value);
+  void add_sequence_tags(const char* value);
+  void add_sequence_tags(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& sequence_tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_sequence_tags();
+  private:
+  const std::string& _internal_sequence_tags(int index) const;
+  std::string* _internal_add_sequence_tags();
+  public:
+
+  // string part_id = 6 [json_name = "partId"];
+  void clear_part_id();
+  const std::string& part_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_part_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_part_id();
+  PROTOBUF_NODISCARD std::string* release_part_id();
+  void set_allocated_part_id(std::string* part_id);
+  private:
+  const std::string& _internal_part_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_part_id(const std::string& value);
+  std::string* _internal_mutable_part_id();
+  public:
+
+  // .google.protobuf.Timestamp start_time = 4 [json_name = "startTime"];
+  bool has_start_time() const;
+  private:
+  bool _internal_has_start_time() const;
+  public:
+  void clear_start_time();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& start_time() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_start_time();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_start_time();
+  void set_allocated_start_time(::PROTOBUF_NAMESPACE_ID::Timestamp* start_time);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_start_time() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_start_time();
+  public:
+  void unsafe_arena_set_allocated_start_time(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* start_time);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_start_time();
+
+  // .google.protobuf.Timestamp end_time = 5 [json_name = "endTime"];
+  bool has_end_time() const;
+  private:
+  bool _internal_has_end_time() const;
+  public:
+  void clear_end_time();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& end_time() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_end_time();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_end_time();
+  void set_allocated_end_time(::PROTOBUF_NAMESPACE_ID::Timestamp* end_time);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_end_time() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_end_time();
+  public:
+  void unsafe_arena_set_allocated_end_time(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* end_time);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_end_time();
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.CreateSequenceRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter > resources_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> sequence_tags_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr part_id_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* start_time_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* end_time_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateSequenceResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.CreateSequenceResponse) */ {
+ public:
+  inline CreateSequenceResponse() : CreateSequenceResponse(nullptr) {}
+  ~CreateSequenceResponse() override;
+  explicit PROTOBUF_CONSTEXPR CreateSequenceResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateSequenceResponse(const CreateSequenceResponse& from);
+  CreateSequenceResponse(CreateSequenceResponse&& from) noexcept
+    : CreateSequenceResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateSequenceResponse& operator=(const CreateSequenceResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateSequenceResponse& operator=(CreateSequenceResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateSequenceResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateSequenceResponse* internal_default_instance() {
+    return reinterpret_cast<const CreateSequenceResponse*>(
+               &_CreateSequenceResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    84;
+
+  friend void swap(CreateSequenceResponse& a, CreateSequenceResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateSequenceResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateSequenceResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateSequenceResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateSequenceResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CreateSequenceResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CreateSequenceResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateSequenceResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.CreateSequenceResponse";
+  }
+  protected:
+  explicit CreateSequenceResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.CreateSequenceResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetSequenceRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.GetSequenceRequest) */ {
+ public:
+  inline GetSequenceRequest() : GetSequenceRequest(nullptr) {}
+  ~GetSequenceRequest() override;
+  explicit PROTOBUF_CONSTEXPR GetSequenceRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetSequenceRequest(const GetSequenceRequest& from);
+  GetSequenceRequest(GetSequenceRequest&& from) noexcept
+    : GetSequenceRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetSequenceRequest& operator=(const GetSequenceRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetSequenceRequest& operator=(GetSequenceRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetSequenceRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetSequenceRequest* internal_default_instance() {
+    return reinterpret_cast<const GetSequenceRequest*>(
+               &_GetSequenceRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    85;
+
+  friend void swap(GetSequenceRequest& a, GetSequenceRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetSequenceRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetSequenceRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetSequenceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetSequenceRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetSequenceRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetSequenceRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetSequenceRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.GetSequenceRequest";
+  }
+  protected:
+  explicit GetSequenceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.GetSequenceRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetSequenceResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.GetSequenceResponse) */ {
+ public:
+  inline GetSequenceResponse() : GetSequenceResponse(nullptr) {}
+  ~GetSequenceResponse() override;
+  explicit PROTOBUF_CONSTEXPR GetSequenceResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetSequenceResponse(const GetSequenceResponse& from);
+  GetSequenceResponse(GetSequenceResponse&& from) noexcept
+    : GetSequenceResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetSequenceResponse& operator=(const GetSequenceResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetSequenceResponse& operator=(GetSequenceResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetSequenceResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetSequenceResponse* internal_default_instance() {
+    return reinterpret_cast<const GetSequenceResponse*>(
+               &_GetSequenceResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    86;
+
+  friend void swap(GetSequenceResponse& a, GetSequenceResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetSequenceResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetSequenceResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetSequenceResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetSequenceResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetSequenceResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetSequenceResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetSequenceResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.GetSequenceResponse";
+  }
+  protected:
+  explicit GetSequenceResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSequenceFieldNumber = 1,
+  };
+  // .viam.app.data.v1.Sequence sequence = 1 [json_name = "sequence"];
+  bool has_sequence() const;
+  private:
+  bool _internal_has_sequence() const;
+  public:
+  void clear_sequence();
+  const ::viam::app::data::v1::Sequence& sequence() const;
+  PROTOBUF_NODISCARD ::viam::app::data::v1::Sequence* release_sequence();
+  ::viam::app::data::v1::Sequence* mutable_sequence();
+  void set_allocated_sequence(::viam::app::data::v1::Sequence* sequence);
+  private:
+  const ::viam::app::data::v1::Sequence& _internal_sequence() const;
+  ::viam::app::data::v1::Sequence* _internal_mutable_sequence();
+  public:
+  void unsafe_arena_set_allocated_sequence(
+      ::viam::app::data::v1::Sequence* sequence);
+  ::viam::app::data::v1::Sequence* unsafe_arena_release_sequence();
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.GetSequenceResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::viam::app::data::v1::Sequence* sequence_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateSequenceRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.UpdateSequenceRequest) */ {
+ public:
+  inline UpdateSequenceRequest() : UpdateSequenceRequest(nullptr) {}
+  ~UpdateSequenceRequest() override;
+  explicit PROTOBUF_CONSTEXPR UpdateSequenceRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateSequenceRequest(const UpdateSequenceRequest& from);
+  UpdateSequenceRequest(UpdateSequenceRequest&& from) noexcept
+    : UpdateSequenceRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateSequenceRequest& operator=(const UpdateSequenceRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateSequenceRequest& operator=(UpdateSequenceRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateSequenceRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateSequenceRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateSequenceRequest*>(
+               &_UpdateSequenceRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    87;
+
+  friend void swap(UpdateSequenceRequest& a, UpdateSequenceRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateSequenceRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateSequenceRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateSequenceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateSequenceRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UpdateSequenceRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UpdateSequenceRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateSequenceRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.UpdateSequenceRequest";
+  }
+  protected:
+  explicit UpdateSequenceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResourcesFieldNumber = 2,
+    kSequenceTagsFieldNumber = 3,
+    kIdFieldNumber = 1,
+    kStartTimeFieldNumber = 4,
+    kEndTimeFieldNumber = 5,
+    kFieldMaskFieldNumber = 6,
+  };
+  // repeated .viam.app.data.v1.SequenceResourceFilter resources = 2 [json_name = "resources"];
+  int resources_size() const;
+  private:
+  int _internal_resources_size() const;
+  public:
+  void clear_resources();
+  ::viam::app::data::v1::SequenceResourceFilter* mutable_resources(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >*
+      mutable_resources();
+  private:
+  const ::viam::app::data::v1::SequenceResourceFilter& _internal_resources(int index) const;
+  ::viam::app::data::v1::SequenceResourceFilter* _internal_add_resources();
+  public:
+  const ::viam::app::data::v1::SequenceResourceFilter& resources(int index) const;
+  ::viam::app::data::v1::SequenceResourceFilter* add_resources();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >&
+      resources() const;
+
+  // repeated string sequence_tags = 3 [json_name = "sequenceTags"];
+  int sequence_tags_size() const;
+  private:
+  int _internal_sequence_tags_size() const;
+  public:
+  void clear_sequence_tags();
+  const std::string& sequence_tags(int index) const;
+  std::string* mutable_sequence_tags(int index);
+  void set_sequence_tags(int index, const std::string& value);
+  void set_sequence_tags(int index, std::string&& value);
+  void set_sequence_tags(int index, const char* value);
+  void set_sequence_tags(int index, const char* value, size_t size);
+  std::string* add_sequence_tags();
+  void add_sequence_tags(const std::string& value);
+  void add_sequence_tags(std::string&& value);
+  void add_sequence_tags(const char* value);
+  void add_sequence_tags(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& sequence_tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_sequence_tags();
+  private:
+  const std::string& _internal_sequence_tags(int index) const;
+  std::string* _internal_add_sequence_tags();
+  public:
+
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // .google.protobuf.Timestamp start_time = 4 [json_name = "startTime"];
+  bool has_start_time() const;
+  private:
+  bool _internal_has_start_time() const;
+  public:
+  void clear_start_time();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& start_time() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_start_time();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_start_time();
+  void set_allocated_start_time(::PROTOBUF_NAMESPACE_ID::Timestamp* start_time);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_start_time() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_start_time();
+  public:
+  void unsafe_arena_set_allocated_start_time(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* start_time);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_start_time();
+
+  // .google.protobuf.Timestamp end_time = 5 [json_name = "endTime"];
+  bool has_end_time() const;
+  private:
+  bool _internal_has_end_time() const;
+  public:
+  void clear_end_time();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& end_time() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_end_time();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_end_time();
+  void set_allocated_end_time(::PROTOBUF_NAMESPACE_ID::Timestamp* end_time);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_end_time() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_end_time();
+  public:
+  void unsafe_arena_set_allocated_end_time(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* end_time);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_end_time();
+
+  // .google.protobuf.FieldMask field_mask = 6 [json_name = "fieldMask"];
+  bool has_field_mask() const;
+  private:
+  bool _internal_has_field_mask() const;
+  public:
+  void clear_field_mask();
+  const ::PROTOBUF_NAMESPACE_ID::FieldMask& field_mask() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::FieldMask* release_field_mask();
+  ::PROTOBUF_NAMESPACE_ID::FieldMask* mutable_field_mask();
+  void set_allocated_field_mask(::PROTOBUF_NAMESPACE_ID::FieldMask* field_mask);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::FieldMask& _internal_field_mask() const;
+  ::PROTOBUF_NAMESPACE_ID::FieldMask* _internal_mutable_field_mask();
+  public:
+  void unsafe_arena_set_allocated_field_mask(
+      ::PROTOBUF_NAMESPACE_ID::FieldMask* field_mask);
+  ::PROTOBUF_NAMESPACE_ID::FieldMask* unsafe_arena_release_field_mask();
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.UpdateSequenceRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter > resources_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> sequence_tags_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* start_time_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* end_time_;
+  ::PROTOBUF_NAMESPACE_ID::FieldMask* field_mask_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateSequenceResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.data.v1.UpdateSequenceResponse) */ {
+ public:
+  inline UpdateSequenceResponse() : UpdateSequenceResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR UpdateSequenceResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateSequenceResponse(const UpdateSequenceResponse& from);
+  UpdateSequenceResponse(UpdateSequenceResponse&& from) noexcept
+    : UpdateSequenceResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateSequenceResponse& operator=(const UpdateSequenceResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateSequenceResponse& operator=(UpdateSequenceResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateSequenceResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateSequenceResponse* internal_default_instance() {
+    return reinterpret_cast<const UpdateSequenceResponse*>(
+               &_UpdateSequenceResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    88;
+
+  friend void swap(UpdateSequenceResponse& a, UpdateSequenceResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateSequenceResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateSequenceResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateSequenceResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateSequenceResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const UpdateSequenceResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const UpdateSequenceResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.UpdateSequenceResponse";
+  }
+  protected:
+  explicit UpdateSequenceResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.UpdateSequenceResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteSequenceRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.DeleteSequenceRequest) */ {
+ public:
+  inline DeleteSequenceRequest() : DeleteSequenceRequest(nullptr) {}
+  ~DeleteSequenceRequest() override;
+  explicit PROTOBUF_CONSTEXPR DeleteSequenceRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteSequenceRequest(const DeleteSequenceRequest& from);
+  DeleteSequenceRequest(DeleteSequenceRequest&& from) noexcept
+    : DeleteSequenceRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteSequenceRequest& operator=(const DeleteSequenceRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteSequenceRequest& operator=(DeleteSequenceRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteSequenceRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteSequenceRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteSequenceRequest*>(
+               &_DeleteSequenceRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    89;
+
+  friend void swap(DeleteSequenceRequest& a, DeleteSequenceRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteSequenceRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteSequenceRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteSequenceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteSequenceRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeleteSequenceRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeleteSequenceRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteSequenceRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.DeleteSequenceRequest";
+  }
+  protected:
+  explicit DeleteSequenceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // string id = 1 [json_name = "id"];
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.DeleteSequenceRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteSequenceResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.data.v1.DeleteSequenceResponse) */ {
+ public:
+  inline DeleteSequenceResponse() : DeleteSequenceResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR DeleteSequenceResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeleteSequenceResponse(const DeleteSequenceResponse& from);
+  DeleteSequenceResponse(DeleteSequenceResponse&& from) noexcept
+    : DeleteSequenceResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteSequenceResponse& operator=(const DeleteSequenceResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteSequenceResponse& operator=(DeleteSequenceResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeleteSequenceResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeleteSequenceResponse* internal_default_instance() {
+    return reinterpret_cast<const DeleteSequenceResponse*>(
+               &_DeleteSequenceResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    90;
+
+  friend void swap(DeleteSequenceResponse& a, DeleteSequenceResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteSequenceResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeleteSequenceResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeleteSequenceResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteSequenceResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const DeleteSequenceResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const DeleteSequenceResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.DeleteSequenceResponse";
+  }
+  protected:
+  explicit DeleteSequenceResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.DeleteSequenceResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListSequencesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.ListSequencesRequest) */ {
+ public:
+  inline ListSequencesRequest() : ListSequencesRequest(nullptr) {}
+  ~ListSequencesRequest() override;
+  explicit PROTOBUF_CONSTEXPR ListSequencesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListSequencesRequest(const ListSequencesRequest& from);
+  ListSequencesRequest(ListSequencesRequest&& from) noexcept
+    : ListSequencesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListSequencesRequest& operator=(const ListSequencesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListSequencesRequest& operator=(ListSequencesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListSequencesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListSequencesRequest* internal_default_instance() {
+    return reinterpret_cast<const ListSequencesRequest*>(
+               &_ListSequencesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    91;
+
+  friend void swap(ListSequencesRequest& a, ListSequencesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListSequencesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListSequencesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListSequencesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListSequencesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListSequencesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListSequencesRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListSequencesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.ListSequencesRequest";
+  }
+  protected:
+  explicit ListSequencesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOrganizationIdFieldNumber = 1,
+    kPageTokenFieldNumber = 2,
+    kPageSizeFieldNumber = 3,
+  };
+  // string organization_id = 1 [json_name = "organizationId"];
+  void clear_organization_id();
+  const std::string& organization_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_organization_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_organization_id();
+  PROTOBUF_NODISCARD std::string* release_organization_id();
+  void set_allocated_organization_id(std::string* organization_id);
+  private:
+  const std::string& _internal_organization_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organization_id(const std::string& value);
+  std::string* _internal_mutable_organization_id();
+  public:
+
+  // string page_token = 2 [json_name = "pageToken"];
+  void clear_page_token();
+  const std::string& page_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_page_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_page_token();
+  PROTOBUF_NODISCARD std::string* release_page_token();
+  void set_allocated_page_token(std::string* page_token);
+  private:
+  const std::string& _internal_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_page_token(const std::string& value);
+  std::string* _internal_mutable_page_token();
+  public:
+
+  // uint32 page_size = 3 [json_name = "pageSize"];
+  void clear_page_size();
+  uint32_t page_size() const;
+  void set_page_size(uint32_t value);
+  private:
+  uint32_t _internal_page_size() const;
+  void _internal_set_page_size(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.ListSequencesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr page_token_;
+  uint32_t page_size_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListSequencesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.ListSequencesResponse) */ {
+ public:
+  inline ListSequencesResponse() : ListSequencesResponse(nullptr) {}
+  ~ListSequencesResponse() override;
+  explicit PROTOBUF_CONSTEXPR ListSequencesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListSequencesResponse(const ListSequencesResponse& from);
+  ListSequencesResponse(ListSequencesResponse&& from) noexcept
+    : ListSequencesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListSequencesResponse& operator=(const ListSequencesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListSequencesResponse& operator=(ListSequencesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListSequencesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListSequencesResponse* internal_default_instance() {
+    return reinterpret_cast<const ListSequencesResponse*>(
+               &_ListSequencesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    92;
+
+  friend void swap(ListSequencesResponse& a, ListSequencesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListSequencesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListSequencesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ListSequencesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ListSequencesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ListSequencesResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ListSequencesResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListSequencesResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.ListSequencesResponse";
+  }
+  protected:
+  explicit ListSequencesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSequencesFieldNumber = 1,
+    kNextPageTokenFieldNumber = 2,
+  };
+  // repeated .viam.app.data.v1.Sequence sequences = 1 [json_name = "sequences"];
+  int sequences_size() const;
+  private:
+  int _internal_sequences_size() const;
+  public:
+  void clear_sequences();
+  ::viam::app::data::v1::Sequence* mutable_sequences(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence >*
+      mutable_sequences();
+  private:
+  const ::viam::app::data::v1::Sequence& _internal_sequences(int index) const;
+  ::viam::app::data::v1::Sequence* _internal_add_sequences();
+  public:
+  const ::viam::app::data::v1::Sequence& sequences(int index) const;
+  ::viam::app::data::v1::Sequence* add_sequences();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence >&
+      sequences() const;
+
+  // string next_page_token = 2 [json_name = "nextPageToken"];
+  void clear_next_page_token();
+  const std::string& next_page_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_next_page_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_next_page_token();
+  PROTOBUF_NODISCARD std::string* release_next_page_token();
+  void set_allocated_next_page_token(std::string* next_page_token);
+  private:
+  const std::string& _internal_next_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_next_page_token(const std::string& value);
+  std::string* _internal_mutable_next_page_token();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.ListSequencesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence > sequences_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr next_page_token_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
 // ===================================================================
 
 
@@ -27628,9 +29790,1941 @@ inline void CreateBinaryDataSignedURLResponse::set_allocated_expires_at(::PROTOB
   // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.CreateBinaryDataSignedURLResponse.expires_at)
 }
 
+// -------------------------------------------------------------------
+
+// SequenceResourceFilter
+
+// string resource_name = 2 [json_name = "resourceName"];
+inline void SequenceResourceFilter::clear_resource_name() {
+  resource_name_.ClearToEmpty();
+}
+inline const std::string& SequenceResourceFilter::resource_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.SequenceResourceFilter.resource_name)
+  return _internal_resource_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SequenceResourceFilter::set_resource_name(ArgT0&& arg0, ArgT... args) {
+ 
+ resource_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.SequenceResourceFilter.resource_name)
+}
+inline std::string* SequenceResourceFilter::mutable_resource_name() {
+  std::string* _s = _internal_mutable_resource_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.SequenceResourceFilter.resource_name)
+  return _s;
+}
+inline const std::string& SequenceResourceFilter::_internal_resource_name() const {
+  return resource_name_.Get();
+}
+inline void SequenceResourceFilter::_internal_set_resource_name(const std::string& value) {
+  
+  resource_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SequenceResourceFilter::_internal_mutable_resource_name() {
+  
+  return resource_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SequenceResourceFilter::release_resource_name() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.SequenceResourceFilter.resource_name)
+  return resource_name_.Release();
+}
+inline void SequenceResourceFilter::set_allocated_resource_name(std::string* resource_name) {
+  if (resource_name != nullptr) {
+    
+  } else {
+    
+  }
+  resource_name_.SetAllocated(resource_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (resource_name_.IsDefault()) {
+    resource_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.SequenceResourceFilter.resource_name)
+}
+
+// string method_name = 3 [json_name = "methodName"];
+inline void SequenceResourceFilter::clear_method_name() {
+  method_name_.ClearToEmpty();
+}
+inline const std::string& SequenceResourceFilter::method_name() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.SequenceResourceFilter.method_name)
+  return _internal_method_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SequenceResourceFilter::set_method_name(ArgT0&& arg0, ArgT... args) {
+ 
+ method_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.SequenceResourceFilter.method_name)
+}
+inline std::string* SequenceResourceFilter::mutable_method_name() {
+  std::string* _s = _internal_mutable_method_name();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.SequenceResourceFilter.method_name)
+  return _s;
+}
+inline const std::string& SequenceResourceFilter::_internal_method_name() const {
+  return method_name_.Get();
+}
+inline void SequenceResourceFilter::_internal_set_method_name(const std::string& value) {
+  
+  method_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SequenceResourceFilter::_internal_mutable_method_name() {
+  
+  return method_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SequenceResourceFilter::release_method_name() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.SequenceResourceFilter.method_name)
+  return method_name_.Release();
+}
+inline void SequenceResourceFilter::set_allocated_method_name(std::string* method_name) {
+  if (method_name != nullptr) {
+    
+  } else {
+    
+  }
+  method_name_.SetAllocated(method_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (method_name_.IsDefault()) {
+    method_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.SequenceResourceFilter.method_name)
+}
+
+// -------------------------------------------------------------------
+
+// Sequence
+
+// string id = 1 [json_name = "id"];
+inline void Sequence::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& Sequence::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.Sequence.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Sequence::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.Sequence.id)
+}
+inline std::string* Sequence::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.Sequence.id)
+  return _s;
+}
+inline const std::string& Sequence::_internal_id() const {
+  return id_.Get();
+}
+inline void Sequence::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Sequence::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Sequence::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.Sequence.id)
+  return id_.Release();
+}
+inline void Sequence::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.Sequence.id)
+}
+
+// string part_id = 9 [json_name = "partId"];
+inline void Sequence::clear_part_id() {
+  part_id_.ClearToEmpty();
+}
+inline const std::string& Sequence::part_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.Sequence.part_id)
+  return _internal_part_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Sequence::set_part_id(ArgT0&& arg0, ArgT... args) {
+ 
+ part_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.Sequence.part_id)
+}
+inline std::string* Sequence::mutable_part_id() {
+  std::string* _s = _internal_mutable_part_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.Sequence.part_id)
+  return _s;
+}
+inline const std::string& Sequence::_internal_part_id() const {
+  return part_id_.Get();
+}
+inline void Sequence::_internal_set_part_id(const std::string& value) {
+  
+  part_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Sequence::_internal_mutable_part_id() {
+  
+  return part_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Sequence::release_part_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.Sequence.part_id)
+  return part_id_.Release();
+}
+inline void Sequence::set_allocated_part_id(std::string* part_id) {
+  if (part_id != nullptr) {
+    
+  } else {
+    
+  }
+  part_id_.SetAllocated(part_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (part_id_.IsDefault()) {
+    part_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.Sequence.part_id)
+}
+
+// repeated string sequence_tags = 3 [json_name = "sequenceTags"];
+inline int Sequence::_internal_sequence_tags_size() const {
+  return sequence_tags_.size();
+}
+inline int Sequence::sequence_tags_size() const {
+  return _internal_sequence_tags_size();
+}
+inline void Sequence::clear_sequence_tags() {
+  sequence_tags_.Clear();
+}
+inline std::string* Sequence::add_sequence_tags() {
+  std::string* _s = _internal_add_sequence_tags();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.data.v1.Sequence.sequence_tags)
+  return _s;
+}
+inline const std::string& Sequence::_internal_sequence_tags(int index) const {
+  return sequence_tags_.Get(index);
+}
+inline const std::string& Sequence::sequence_tags(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.Sequence.sequence_tags)
+  return _internal_sequence_tags(index);
+}
+inline std::string* Sequence::mutable_sequence_tags(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.Sequence.sequence_tags)
+  return sequence_tags_.Mutable(index);
+}
+inline void Sequence::set_sequence_tags(int index, const std::string& value) {
+  sequence_tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.Sequence.sequence_tags)
+}
+inline void Sequence::set_sequence_tags(int index, std::string&& value) {
+  sequence_tags_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.Sequence.sequence_tags)
+}
+inline void Sequence::set_sequence_tags(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.data.v1.Sequence.sequence_tags)
+}
+inline void Sequence::set_sequence_tags(int index, const char* value, size_t size) {
+  sequence_tags_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.data.v1.Sequence.sequence_tags)
+}
+inline std::string* Sequence::_internal_add_sequence_tags() {
+  return sequence_tags_.Add();
+}
+inline void Sequence::add_sequence_tags(const std::string& value) {
+  sequence_tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.Sequence.sequence_tags)
+}
+inline void Sequence::add_sequence_tags(std::string&& value) {
+  sequence_tags_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.Sequence.sequence_tags)
+}
+inline void Sequence::add_sequence_tags(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.data.v1.Sequence.sequence_tags)
+}
+inline void Sequence::add_sequence_tags(const char* value, size_t size) {
+  sequence_tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.data.v1.Sequence.sequence_tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+Sequence::sequence_tags() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.Sequence.sequence_tags)
+  return sequence_tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+Sequence::mutable_sequence_tags() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.Sequence.sequence_tags)
+  return &sequence_tags_;
+}
+
+// .google.protobuf.Timestamp created_at = 4 [json_name = "createdAt"];
+inline bool Sequence::_internal_has_created_at() const {
+  return this != internal_default_instance() && created_at_ != nullptr;
+}
+inline bool Sequence::has_created_at() const {
+  return _internal_has_created_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Sequence::_internal_created_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = created_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Sequence::created_at() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.Sequence.created_at)
+  return _internal_created_at();
+}
+inline void Sequence::unsafe_arena_set_allocated_created_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at_);
+  }
+  created_at_ = created_at;
+  if (created_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.Sequence.created_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::release_created_at() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_at_;
+  created_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::unsafe_arena_release_created_at() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.Sequence.created_at)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_at_;
+  created_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::_internal_mutable_created_at() {
+  
+  if (created_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    created_at_ = p;
+  }
+  return created_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::mutable_created_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_created_at();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.Sequence.created_at)
+  return _msg;
+}
+inline void Sequence::set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at_);
+  }
+  if (created_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at));
+    if (message_arena != submessage_arena) {
+      created_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, created_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  created_at_ = created_at;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.Sequence.created_at)
+}
+
+// .google.protobuf.Timestamp updated_at = 5 [json_name = "updatedAt"];
+inline bool Sequence::_internal_has_updated_at() const {
+  return this != internal_default_instance() && updated_at_ != nullptr;
+}
+inline bool Sequence::has_updated_at() const {
+  return _internal_has_updated_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Sequence::_internal_updated_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Sequence::updated_at() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.Sequence.updated_at)
+  return _internal_updated_at();
+}
+inline void Sequence::unsafe_arena_set_allocated_updated_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  updated_at_ = updated_at;
+  if (updated_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.Sequence.updated_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::release_updated_at() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::unsafe_arena_release_updated_at() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.Sequence.updated_at)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::_internal_mutable_updated_at() {
+  
+  if (updated_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    updated_at_ = p;
+  }
+  return updated_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::mutable_updated_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_updated_at();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.Sequence.updated_at)
+  return _msg;
+}
+inline void Sequence::set_allocated_updated_at(::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  if (updated_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at));
+    if (message_arena != submessage_arena) {
+      updated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, updated_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  updated_at_ = updated_at;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.Sequence.updated_at)
+}
+
+// .google.protobuf.Timestamp start_time = 6 [json_name = "startTime"];
+inline bool Sequence::_internal_has_start_time() const {
+  return this != internal_default_instance() && start_time_ != nullptr;
+}
+inline bool Sequence::has_start_time() const {
+  return _internal_has_start_time();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Sequence::_internal_start_time() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = start_time_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Sequence::start_time() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.Sequence.start_time)
+  return _internal_start_time();
+}
+inline void Sequence::unsafe_arena_set_allocated_start_time(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* start_time) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time_);
+  }
+  start_time_ = start_time;
+  if (start_time) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.Sequence.start_time)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::release_start_time() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_time_;
+  start_time_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::unsafe_arena_release_start_time() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.Sequence.start_time)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_time_;
+  start_time_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::_internal_mutable_start_time() {
+  
+  if (start_time_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    start_time_ = p;
+  }
+  return start_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::mutable_start_time() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_start_time();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.Sequence.start_time)
+  return _msg;
+}
+inline void Sequence::set_allocated_start_time(::PROTOBUF_NAMESPACE_ID::Timestamp* start_time) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time_);
+  }
+  if (start_time) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time));
+    if (message_arena != submessage_arena) {
+      start_time = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, start_time, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  start_time_ = start_time;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.Sequence.start_time)
+}
+
+// .google.protobuf.Timestamp end_time = 7 [json_name = "endTime"];
+inline bool Sequence::_internal_has_end_time() const {
+  return this != internal_default_instance() && end_time_ != nullptr;
+}
+inline bool Sequence::has_end_time() const {
+  return _internal_has_end_time();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Sequence::_internal_end_time() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = end_time_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& Sequence::end_time() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.Sequence.end_time)
+  return _internal_end_time();
+}
+inline void Sequence::unsafe_arena_set_allocated_end_time(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* end_time) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_time_);
+  }
+  end_time_ = end_time;
+  if (end_time) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.Sequence.end_time)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::release_end_time() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_time_;
+  end_time_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::unsafe_arena_release_end_time() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.Sequence.end_time)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_time_;
+  end_time_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::_internal_mutable_end_time() {
+  
+  if (end_time_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    end_time_ = p;
+  }
+  return end_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* Sequence::mutable_end_time() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_end_time();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.Sequence.end_time)
+  return _msg;
+}
+inline void Sequence::set_allocated_end_time(::PROTOBUF_NAMESPACE_ID::Timestamp* end_time) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_time_);
+  }
+  if (end_time) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_time));
+    if (message_arena != submessage_arena) {
+      end_time = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, end_time, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  end_time_ = end_time;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.Sequence.end_time)
+}
+
+// repeated .viam.app.data.v1.SequenceResourceFilter resources = 8 [json_name = "resources"];
+inline int Sequence::_internal_resources_size() const {
+  return resources_.size();
+}
+inline int Sequence::resources_size() const {
+  return _internal_resources_size();
+}
+inline void Sequence::clear_resources() {
+  resources_.Clear();
+}
+inline ::viam::app::data::v1::SequenceResourceFilter* Sequence::mutable_resources(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.Sequence.resources)
+  return resources_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >*
+Sequence::mutable_resources() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.Sequence.resources)
+  return &resources_;
+}
+inline const ::viam::app::data::v1::SequenceResourceFilter& Sequence::_internal_resources(int index) const {
+  return resources_.Get(index);
+}
+inline const ::viam::app::data::v1::SequenceResourceFilter& Sequence::resources(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.Sequence.resources)
+  return _internal_resources(index);
+}
+inline ::viam::app::data::v1::SequenceResourceFilter* Sequence::_internal_add_resources() {
+  return resources_.Add();
+}
+inline ::viam::app::data::v1::SequenceResourceFilter* Sequence::add_resources() {
+  ::viam::app::data::v1::SequenceResourceFilter* _add = _internal_add_resources();
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.Sequence.resources)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >&
+Sequence::resources() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.Sequence.resources)
+  return resources_;
+}
+
+// -------------------------------------------------------------------
+
+// CreateSequenceRequest
+
+// string part_id = 6 [json_name = "partId"];
+inline void CreateSequenceRequest::clear_part_id() {
+  part_id_.ClearToEmpty();
+}
+inline const std::string& CreateSequenceRequest::part_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.CreateSequenceRequest.part_id)
+  return _internal_part_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateSequenceRequest::set_part_id(ArgT0&& arg0, ArgT... args) {
+ 
+ part_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.CreateSequenceRequest.part_id)
+}
+inline std::string* CreateSequenceRequest::mutable_part_id() {
+  std::string* _s = _internal_mutable_part_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.CreateSequenceRequest.part_id)
+  return _s;
+}
+inline const std::string& CreateSequenceRequest::_internal_part_id() const {
+  return part_id_.Get();
+}
+inline void CreateSequenceRequest::_internal_set_part_id(const std::string& value) {
+  
+  part_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateSequenceRequest::_internal_mutable_part_id() {
+  
+  return part_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateSequenceRequest::release_part_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.CreateSequenceRequest.part_id)
+  return part_id_.Release();
+}
+inline void CreateSequenceRequest::set_allocated_part_id(std::string* part_id) {
+  if (part_id != nullptr) {
+    
+  } else {
+    
+  }
+  part_id_.SetAllocated(part_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (part_id_.IsDefault()) {
+    part_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.CreateSequenceRequest.part_id)
+}
+
+// repeated .viam.app.data.v1.SequenceResourceFilter resources = 2 [json_name = "resources"];
+inline int CreateSequenceRequest::_internal_resources_size() const {
+  return resources_.size();
+}
+inline int CreateSequenceRequest::resources_size() const {
+  return _internal_resources_size();
+}
+inline void CreateSequenceRequest::clear_resources() {
+  resources_.Clear();
+}
+inline ::viam::app::data::v1::SequenceResourceFilter* CreateSequenceRequest::mutable_resources(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.CreateSequenceRequest.resources)
+  return resources_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >*
+CreateSequenceRequest::mutable_resources() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.CreateSequenceRequest.resources)
+  return &resources_;
+}
+inline const ::viam::app::data::v1::SequenceResourceFilter& CreateSequenceRequest::_internal_resources(int index) const {
+  return resources_.Get(index);
+}
+inline const ::viam::app::data::v1::SequenceResourceFilter& CreateSequenceRequest::resources(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.CreateSequenceRequest.resources)
+  return _internal_resources(index);
+}
+inline ::viam::app::data::v1::SequenceResourceFilter* CreateSequenceRequest::_internal_add_resources() {
+  return resources_.Add();
+}
+inline ::viam::app::data::v1::SequenceResourceFilter* CreateSequenceRequest::add_resources() {
+  ::viam::app::data::v1::SequenceResourceFilter* _add = _internal_add_resources();
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.CreateSequenceRequest.resources)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >&
+CreateSequenceRequest::resources() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.CreateSequenceRequest.resources)
+  return resources_;
+}
+
+// repeated string sequence_tags = 3 [json_name = "sequenceTags"];
+inline int CreateSequenceRequest::_internal_sequence_tags_size() const {
+  return sequence_tags_.size();
+}
+inline int CreateSequenceRequest::sequence_tags_size() const {
+  return _internal_sequence_tags_size();
+}
+inline void CreateSequenceRequest::clear_sequence_tags() {
+  sequence_tags_.Clear();
+}
+inline std::string* CreateSequenceRequest::add_sequence_tags() {
+  std::string* _s = _internal_add_sequence_tags();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+  return _s;
+}
+inline const std::string& CreateSequenceRequest::_internal_sequence_tags(int index) const {
+  return sequence_tags_.Get(index);
+}
+inline const std::string& CreateSequenceRequest::sequence_tags(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+  return _internal_sequence_tags(index);
+}
+inline std::string* CreateSequenceRequest::mutable_sequence_tags(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+  return sequence_tags_.Mutable(index);
+}
+inline void CreateSequenceRequest::set_sequence_tags(int index, const std::string& value) {
+  sequence_tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+}
+inline void CreateSequenceRequest::set_sequence_tags(int index, std::string&& value) {
+  sequence_tags_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+}
+inline void CreateSequenceRequest::set_sequence_tags(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+}
+inline void CreateSequenceRequest::set_sequence_tags(int index, const char* value, size_t size) {
+  sequence_tags_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+}
+inline std::string* CreateSequenceRequest::_internal_add_sequence_tags() {
+  return sequence_tags_.Add();
+}
+inline void CreateSequenceRequest::add_sequence_tags(const std::string& value) {
+  sequence_tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+}
+inline void CreateSequenceRequest::add_sequence_tags(std::string&& value) {
+  sequence_tags_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+}
+inline void CreateSequenceRequest::add_sequence_tags(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+}
+inline void CreateSequenceRequest::add_sequence_tags(const char* value, size_t size) {
+  sequence_tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+CreateSequenceRequest::sequence_tags() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+  return sequence_tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+CreateSequenceRequest::mutable_sequence_tags() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.CreateSequenceRequest.sequence_tags)
+  return &sequence_tags_;
+}
+
+// .google.protobuf.Timestamp start_time = 4 [json_name = "startTime"];
+inline bool CreateSequenceRequest::_internal_has_start_time() const {
+  return this != internal_default_instance() && start_time_ != nullptr;
+}
+inline bool CreateSequenceRequest::has_start_time() const {
+  return _internal_has_start_time();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& CreateSequenceRequest::_internal_start_time() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = start_time_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& CreateSequenceRequest::start_time() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.CreateSequenceRequest.start_time)
+  return _internal_start_time();
+}
+inline void CreateSequenceRequest::unsafe_arena_set_allocated_start_time(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* start_time) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time_);
+  }
+  start_time_ = start_time;
+  if (start_time) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.CreateSequenceRequest.start_time)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CreateSequenceRequest::release_start_time() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_time_;
+  start_time_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CreateSequenceRequest::unsafe_arena_release_start_time() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.CreateSequenceRequest.start_time)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_time_;
+  start_time_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CreateSequenceRequest::_internal_mutable_start_time() {
+  
+  if (start_time_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    start_time_ = p;
+  }
+  return start_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CreateSequenceRequest::mutable_start_time() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_start_time();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.CreateSequenceRequest.start_time)
+  return _msg;
+}
+inline void CreateSequenceRequest::set_allocated_start_time(::PROTOBUF_NAMESPACE_ID::Timestamp* start_time) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time_);
+  }
+  if (start_time) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time));
+    if (message_arena != submessage_arena) {
+      start_time = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, start_time, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  start_time_ = start_time;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.CreateSequenceRequest.start_time)
+}
+
+// .google.protobuf.Timestamp end_time = 5 [json_name = "endTime"];
+inline bool CreateSequenceRequest::_internal_has_end_time() const {
+  return this != internal_default_instance() && end_time_ != nullptr;
+}
+inline bool CreateSequenceRequest::has_end_time() const {
+  return _internal_has_end_time();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& CreateSequenceRequest::_internal_end_time() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = end_time_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& CreateSequenceRequest::end_time() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.CreateSequenceRequest.end_time)
+  return _internal_end_time();
+}
+inline void CreateSequenceRequest::unsafe_arena_set_allocated_end_time(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* end_time) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_time_);
+  }
+  end_time_ = end_time;
+  if (end_time) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.CreateSequenceRequest.end_time)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CreateSequenceRequest::release_end_time() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_time_;
+  end_time_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CreateSequenceRequest::unsafe_arena_release_end_time() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.CreateSequenceRequest.end_time)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_time_;
+  end_time_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CreateSequenceRequest::_internal_mutable_end_time() {
+  
+  if (end_time_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    end_time_ = p;
+  }
+  return end_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CreateSequenceRequest::mutable_end_time() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_end_time();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.CreateSequenceRequest.end_time)
+  return _msg;
+}
+inline void CreateSequenceRequest::set_allocated_end_time(::PROTOBUF_NAMESPACE_ID::Timestamp* end_time) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_time_);
+  }
+  if (end_time) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_time));
+    if (message_arena != submessage_arena) {
+      end_time = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, end_time, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  end_time_ = end_time;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.CreateSequenceRequest.end_time)
+}
+
+// -------------------------------------------------------------------
+
+// CreateSequenceResponse
+
+// string id = 1 [json_name = "id"];
+inline void CreateSequenceResponse::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& CreateSequenceResponse::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.CreateSequenceResponse.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateSequenceResponse::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.CreateSequenceResponse.id)
+}
+inline std::string* CreateSequenceResponse::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.CreateSequenceResponse.id)
+  return _s;
+}
+inline const std::string& CreateSequenceResponse::_internal_id() const {
+  return id_.Get();
+}
+inline void CreateSequenceResponse::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CreateSequenceResponse::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CreateSequenceResponse::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.CreateSequenceResponse.id)
+  return id_.Release();
+}
+inline void CreateSequenceResponse::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.CreateSequenceResponse.id)
+}
+
+// -------------------------------------------------------------------
+
+// GetSequenceRequest
+
+// string id = 1 [json_name = "id"];
+inline void GetSequenceRequest::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& GetSequenceRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.GetSequenceRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetSequenceRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.GetSequenceRequest.id)
+}
+inline std::string* GetSequenceRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.GetSequenceRequest.id)
+  return _s;
+}
+inline const std::string& GetSequenceRequest::_internal_id() const {
+  return id_.Get();
+}
+inline void GetSequenceRequest::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetSequenceRequest::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetSequenceRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.GetSequenceRequest.id)
+  return id_.Release();
+}
+inline void GetSequenceRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.GetSequenceRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// GetSequenceResponse
+
+// .viam.app.data.v1.Sequence sequence = 1 [json_name = "sequence"];
+inline bool GetSequenceResponse::_internal_has_sequence() const {
+  return this != internal_default_instance() && sequence_ != nullptr;
+}
+inline bool GetSequenceResponse::has_sequence() const {
+  return _internal_has_sequence();
+}
+inline void GetSequenceResponse::clear_sequence() {
+  if (GetArenaForAllocation() == nullptr && sequence_ != nullptr) {
+    delete sequence_;
+  }
+  sequence_ = nullptr;
+}
+inline const ::viam::app::data::v1::Sequence& GetSequenceResponse::_internal_sequence() const {
+  const ::viam::app::data::v1::Sequence* p = sequence_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::data::v1::Sequence&>(
+      ::viam::app::data::v1::_Sequence_default_instance_);
+}
+inline const ::viam::app::data::v1::Sequence& GetSequenceResponse::sequence() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.GetSequenceResponse.sequence)
+  return _internal_sequence();
+}
+inline void GetSequenceResponse::unsafe_arena_set_allocated_sequence(
+    ::viam::app::data::v1::Sequence* sequence) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(sequence_);
+  }
+  sequence_ = sequence;
+  if (sequence) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.GetSequenceResponse.sequence)
+}
+inline ::viam::app::data::v1::Sequence* GetSequenceResponse::release_sequence() {
+  
+  ::viam::app::data::v1::Sequence* temp = sequence_;
+  sequence_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::data::v1::Sequence* GetSequenceResponse::unsafe_arena_release_sequence() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.GetSequenceResponse.sequence)
+  
+  ::viam::app::data::v1::Sequence* temp = sequence_;
+  sequence_ = nullptr;
+  return temp;
+}
+inline ::viam::app::data::v1::Sequence* GetSequenceResponse::_internal_mutable_sequence() {
+  
+  if (sequence_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::data::v1::Sequence>(GetArenaForAllocation());
+    sequence_ = p;
+  }
+  return sequence_;
+}
+inline ::viam::app::data::v1::Sequence* GetSequenceResponse::mutable_sequence() {
+  ::viam::app::data::v1::Sequence* _msg = _internal_mutable_sequence();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.GetSequenceResponse.sequence)
+  return _msg;
+}
+inline void GetSequenceResponse::set_allocated_sequence(::viam::app::data::v1::Sequence* sequence) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete sequence_;
+  }
+  if (sequence) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(sequence);
+    if (message_arena != submessage_arena) {
+      sequence = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, sequence, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  sequence_ = sequence;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.GetSequenceResponse.sequence)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateSequenceRequest
+
+// string id = 1 [json_name = "id"];
+inline void UpdateSequenceRequest::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& UpdateSequenceRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.UpdateSequenceRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateSequenceRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.UpdateSequenceRequest.id)
+}
+inline std::string* UpdateSequenceRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.UpdateSequenceRequest.id)
+  return _s;
+}
+inline const std::string& UpdateSequenceRequest::_internal_id() const {
+  return id_.Get();
+}
+inline void UpdateSequenceRequest::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UpdateSequenceRequest::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UpdateSequenceRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.UpdateSequenceRequest.id)
+  return id_.Release();
+}
+inline void UpdateSequenceRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.UpdateSequenceRequest.id)
+}
+
+// repeated .viam.app.data.v1.SequenceResourceFilter resources = 2 [json_name = "resources"];
+inline int UpdateSequenceRequest::_internal_resources_size() const {
+  return resources_.size();
+}
+inline int UpdateSequenceRequest::resources_size() const {
+  return _internal_resources_size();
+}
+inline void UpdateSequenceRequest::clear_resources() {
+  resources_.Clear();
+}
+inline ::viam::app::data::v1::SequenceResourceFilter* UpdateSequenceRequest::mutable_resources(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.UpdateSequenceRequest.resources)
+  return resources_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >*
+UpdateSequenceRequest::mutable_resources() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.UpdateSequenceRequest.resources)
+  return &resources_;
+}
+inline const ::viam::app::data::v1::SequenceResourceFilter& UpdateSequenceRequest::_internal_resources(int index) const {
+  return resources_.Get(index);
+}
+inline const ::viam::app::data::v1::SequenceResourceFilter& UpdateSequenceRequest::resources(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.UpdateSequenceRequest.resources)
+  return _internal_resources(index);
+}
+inline ::viam::app::data::v1::SequenceResourceFilter* UpdateSequenceRequest::_internal_add_resources() {
+  return resources_.Add();
+}
+inline ::viam::app::data::v1::SequenceResourceFilter* UpdateSequenceRequest::add_resources() {
+  ::viam::app::data::v1::SequenceResourceFilter* _add = _internal_add_resources();
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.UpdateSequenceRequest.resources)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >&
+UpdateSequenceRequest::resources() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.UpdateSequenceRequest.resources)
+  return resources_;
+}
+
+// repeated string sequence_tags = 3 [json_name = "sequenceTags"];
+inline int UpdateSequenceRequest::_internal_sequence_tags_size() const {
+  return sequence_tags_.size();
+}
+inline int UpdateSequenceRequest::sequence_tags_size() const {
+  return _internal_sequence_tags_size();
+}
+inline void UpdateSequenceRequest::clear_sequence_tags() {
+  sequence_tags_.Clear();
+}
+inline std::string* UpdateSequenceRequest::add_sequence_tags() {
+  std::string* _s = _internal_add_sequence_tags();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+  return _s;
+}
+inline const std::string& UpdateSequenceRequest::_internal_sequence_tags(int index) const {
+  return sequence_tags_.Get(index);
+}
+inline const std::string& UpdateSequenceRequest::sequence_tags(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+  return _internal_sequence_tags(index);
+}
+inline std::string* UpdateSequenceRequest::mutable_sequence_tags(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+  return sequence_tags_.Mutable(index);
+}
+inline void UpdateSequenceRequest::set_sequence_tags(int index, const std::string& value) {
+  sequence_tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+}
+inline void UpdateSequenceRequest::set_sequence_tags(int index, std::string&& value) {
+  sequence_tags_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+}
+inline void UpdateSequenceRequest::set_sequence_tags(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+}
+inline void UpdateSequenceRequest::set_sequence_tags(int index, const char* value, size_t size) {
+  sequence_tags_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+}
+inline std::string* UpdateSequenceRequest::_internal_add_sequence_tags() {
+  return sequence_tags_.Add();
+}
+inline void UpdateSequenceRequest::add_sequence_tags(const std::string& value) {
+  sequence_tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+}
+inline void UpdateSequenceRequest::add_sequence_tags(std::string&& value) {
+  sequence_tags_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+}
+inline void UpdateSequenceRequest::add_sequence_tags(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+}
+inline void UpdateSequenceRequest::add_sequence_tags(const char* value, size_t size) {
+  sequence_tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+UpdateSequenceRequest::sequence_tags() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+  return sequence_tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+UpdateSequenceRequest::mutable_sequence_tags() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.UpdateSequenceRequest.sequence_tags)
+  return &sequence_tags_;
+}
+
+// .google.protobuf.Timestamp start_time = 4 [json_name = "startTime"];
+inline bool UpdateSequenceRequest::_internal_has_start_time() const {
+  return this != internal_default_instance() && start_time_ != nullptr;
+}
+inline bool UpdateSequenceRequest::has_start_time() const {
+  return _internal_has_start_time();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& UpdateSequenceRequest::_internal_start_time() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = start_time_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& UpdateSequenceRequest::start_time() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.UpdateSequenceRequest.start_time)
+  return _internal_start_time();
+}
+inline void UpdateSequenceRequest::unsafe_arena_set_allocated_start_time(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* start_time) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time_);
+  }
+  start_time_ = start_time;
+  if (start_time) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.UpdateSequenceRequest.start_time)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateSequenceRequest::release_start_time() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_time_;
+  start_time_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateSequenceRequest::unsafe_arena_release_start_time() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.UpdateSequenceRequest.start_time)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_time_;
+  start_time_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateSequenceRequest::_internal_mutable_start_time() {
+  
+  if (start_time_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    start_time_ = p;
+  }
+  return start_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateSequenceRequest::mutable_start_time() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_start_time();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.UpdateSequenceRequest.start_time)
+  return _msg;
+}
+inline void UpdateSequenceRequest::set_allocated_start_time(::PROTOBUF_NAMESPACE_ID::Timestamp* start_time) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time_);
+  }
+  if (start_time) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time));
+    if (message_arena != submessage_arena) {
+      start_time = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, start_time, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  start_time_ = start_time;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.UpdateSequenceRequest.start_time)
+}
+
+// .google.protobuf.Timestamp end_time = 5 [json_name = "endTime"];
+inline bool UpdateSequenceRequest::_internal_has_end_time() const {
+  return this != internal_default_instance() && end_time_ != nullptr;
+}
+inline bool UpdateSequenceRequest::has_end_time() const {
+  return _internal_has_end_time();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& UpdateSequenceRequest::_internal_end_time() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = end_time_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& UpdateSequenceRequest::end_time() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.UpdateSequenceRequest.end_time)
+  return _internal_end_time();
+}
+inline void UpdateSequenceRequest::unsafe_arena_set_allocated_end_time(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* end_time) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_time_);
+  }
+  end_time_ = end_time;
+  if (end_time) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.UpdateSequenceRequest.end_time)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateSequenceRequest::release_end_time() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_time_;
+  end_time_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateSequenceRequest::unsafe_arena_release_end_time() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.UpdateSequenceRequest.end_time)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = end_time_;
+  end_time_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateSequenceRequest::_internal_mutable_end_time() {
+  
+  if (end_time_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    end_time_ = p;
+  }
+  return end_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* UpdateSequenceRequest::mutable_end_time() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_end_time();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.UpdateSequenceRequest.end_time)
+  return _msg;
+}
+inline void UpdateSequenceRequest::set_allocated_end_time(::PROTOBUF_NAMESPACE_ID::Timestamp* end_time) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_time_);
+  }
+  if (end_time) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(end_time));
+    if (message_arena != submessage_arena) {
+      end_time = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, end_time, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  end_time_ = end_time;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.UpdateSequenceRequest.end_time)
+}
+
+// .google.protobuf.FieldMask field_mask = 6 [json_name = "fieldMask"];
+inline bool UpdateSequenceRequest::_internal_has_field_mask() const {
+  return this != internal_default_instance() && field_mask_ != nullptr;
+}
+inline bool UpdateSequenceRequest::has_field_mask() const {
+  return _internal_has_field_mask();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::FieldMask& UpdateSequenceRequest::_internal_field_mask() const {
+  const ::PROTOBUF_NAMESPACE_ID::FieldMask* p = field_mask_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::FieldMask&>(
+      ::PROTOBUF_NAMESPACE_ID::_FieldMask_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::FieldMask& UpdateSequenceRequest::field_mask() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.UpdateSequenceRequest.field_mask)
+  return _internal_field_mask();
+}
+inline void UpdateSequenceRequest::unsafe_arena_set_allocated_field_mask(
+    ::PROTOBUF_NAMESPACE_ID::FieldMask* field_mask) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(field_mask_);
+  }
+  field_mask_ = field_mask;
+  if (field_mask) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.data.v1.UpdateSequenceRequest.field_mask)
+}
+inline ::PROTOBUF_NAMESPACE_ID::FieldMask* UpdateSequenceRequest::release_field_mask() {
+  
+  ::PROTOBUF_NAMESPACE_ID::FieldMask* temp = field_mask_;
+  field_mask_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::FieldMask* UpdateSequenceRequest::unsafe_arena_release_field_mask() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.UpdateSequenceRequest.field_mask)
+  
+  ::PROTOBUF_NAMESPACE_ID::FieldMask* temp = field_mask_;
+  field_mask_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::FieldMask* UpdateSequenceRequest::_internal_mutable_field_mask() {
+  
+  if (field_mask_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::FieldMask>(GetArenaForAllocation());
+    field_mask_ = p;
+  }
+  return field_mask_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::FieldMask* UpdateSequenceRequest::mutable_field_mask() {
+  ::PROTOBUF_NAMESPACE_ID::FieldMask* _msg = _internal_mutable_field_mask();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.UpdateSequenceRequest.field_mask)
+  return _msg;
+}
+inline void UpdateSequenceRequest::set_allocated_field_mask(::PROTOBUF_NAMESPACE_ID::FieldMask* field_mask) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(field_mask_);
+  }
+  if (field_mask) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(field_mask));
+    if (message_arena != submessage_arena) {
+      field_mask = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, field_mask, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  field_mask_ = field_mask;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.UpdateSequenceRequest.field_mask)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateSequenceResponse
+
+// -------------------------------------------------------------------
+
+// DeleteSequenceRequest
+
+// string id = 1 [json_name = "id"];
+inline void DeleteSequenceRequest::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& DeleteSequenceRequest::id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.DeleteSequenceRequest.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeleteSequenceRequest::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.DeleteSequenceRequest.id)
+}
+inline std::string* DeleteSequenceRequest::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.DeleteSequenceRequest.id)
+  return _s;
+}
+inline const std::string& DeleteSequenceRequest::_internal_id() const {
+  return id_.Get();
+}
+inline void DeleteSequenceRequest::_internal_set_id(const std::string& value) {
+  
+  id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeleteSequenceRequest::_internal_mutable_id() {
+  
+  return id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeleteSequenceRequest::release_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.DeleteSequenceRequest.id)
+  return id_.Release();
+}
+inline void DeleteSequenceRequest::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (id_.IsDefault()) {
+    id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.DeleteSequenceRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteSequenceResponse
+
+// -------------------------------------------------------------------
+
+// ListSequencesRequest
+
+// string organization_id = 1 [json_name = "organizationId"];
+inline void ListSequencesRequest::clear_organization_id() {
+  organization_id_.ClearToEmpty();
+}
+inline const std::string& ListSequencesRequest::organization_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.ListSequencesRequest.organization_id)
+  return _internal_organization_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListSequencesRequest::set_organization_id(ArgT0&& arg0, ArgT... args) {
+ 
+ organization_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.ListSequencesRequest.organization_id)
+}
+inline std::string* ListSequencesRequest::mutable_organization_id() {
+  std::string* _s = _internal_mutable_organization_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.ListSequencesRequest.organization_id)
+  return _s;
+}
+inline const std::string& ListSequencesRequest::_internal_organization_id() const {
+  return organization_id_.Get();
+}
+inline void ListSequencesRequest::_internal_set_organization_id(const std::string& value) {
+  
+  organization_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListSequencesRequest::_internal_mutable_organization_id() {
+  
+  return organization_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListSequencesRequest::release_organization_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.ListSequencesRequest.organization_id)
+  return organization_id_.Release();
+}
+inline void ListSequencesRequest::set_allocated_organization_id(std::string* organization_id) {
+  if (organization_id != nullptr) {
+    
+  } else {
+    
+  }
+  organization_id_.SetAllocated(organization_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (organization_id_.IsDefault()) {
+    organization_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.ListSequencesRequest.organization_id)
+}
+
+// string page_token = 2 [json_name = "pageToken"];
+inline void ListSequencesRequest::clear_page_token() {
+  page_token_.ClearToEmpty();
+}
+inline const std::string& ListSequencesRequest::page_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.ListSequencesRequest.page_token)
+  return _internal_page_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListSequencesRequest::set_page_token(ArgT0&& arg0, ArgT... args) {
+ 
+ page_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.ListSequencesRequest.page_token)
+}
+inline std::string* ListSequencesRequest::mutable_page_token() {
+  std::string* _s = _internal_mutable_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.ListSequencesRequest.page_token)
+  return _s;
+}
+inline const std::string& ListSequencesRequest::_internal_page_token() const {
+  return page_token_.Get();
+}
+inline void ListSequencesRequest::_internal_set_page_token(const std::string& value) {
+  
+  page_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListSequencesRequest::_internal_mutable_page_token() {
+  
+  return page_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListSequencesRequest::release_page_token() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.ListSequencesRequest.page_token)
+  return page_token_.Release();
+}
+inline void ListSequencesRequest::set_allocated_page_token(std::string* page_token) {
+  if (page_token != nullptr) {
+    
+  } else {
+    
+  }
+  page_token_.SetAllocated(page_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (page_token_.IsDefault()) {
+    page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.ListSequencesRequest.page_token)
+}
+
+// uint32 page_size = 3 [json_name = "pageSize"];
+inline void ListSequencesRequest::clear_page_size() {
+  page_size_ = 0u;
+}
+inline uint32_t ListSequencesRequest::_internal_page_size() const {
+  return page_size_;
+}
+inline uint32_t ListSequencesRequest::page_size() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.ListSequencesRequest.page_size)
+  return _internal_page_size();
+}
+inline void ListSequencesRequest::_internal_set_page_size(uint32_t value) {
+  
+  page_size_ = value;
+}
+inline void ListSequencesRequest::set_page_size(uint32_t value) {
+  _internal_set_page_size(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.ListSequencesRequest.page_size)
+}
+
+// -------------------------------------------------------------------
+
+// ListSequencesResponse
+
+// repeated .viam.app.data.v1.Sequence sequences = 1 [json_name = "sequences"];
+inline int ListSequencesResponse::_internal_sequences_size() const {
+  return sequences_.size();
+}
+inline int ListSequencesResponse::sequences_size() const {
+  return _internal_sequences_size();
+}
+inline void ListSequencesResponse::clear_sequences() {
+  sequences_.Clear();
+}
+inline ::viam::app::data::v1::Sequence* ListSequencesResponse::mutable_sequences(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.ListSequencesResponse.sequences)
+  return sequences_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence >*
+ListSequencesResponse::mutable_sequences() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.ListSequencesResponse.sequences)
+  return &sequences_;
+}
+inline const ::viam::app::data::v1::Sequence& ListSequencesResponse::_internal_sequences(int index) const {
+  return sequences_.Get(index);
+}
+inline const ::viam::app::data::v1::Sequence& ListSequencesResponse::sequences(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.ListSequencesResponse.sequences)
+  return _internal_sequences(index);
+}
+inline ::viam::app::data::v1::Sequence* ListSequencesResponse::_internal_add_sequences() {
+  return sequences_.Add();
+}
+inline ::viam::app::data::v1::Sequence* ListSequencesResponse::add_sequences() {
+  ::viam::app::data::v1::Sequence* _add = _internal_add_sequences();
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.ListSequencesResponse.sequences)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence >&
+ListSequencesResponse::sequences() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.ListSequencesResponse.sequences)
+  return sequences_;
+}
+
+// string next_page_token = 2 [json_name = "nextPageToken"];
+inline void ListSequencesResponse::clear_next_page_token() {
+  next_page_token_.ClearToEmpty();
+}
+inline const std::string& ListSequencesResponse::next_page_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.ListSequencesResponse.next_page_token)
+  return _internal_next_page_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ListSequencesResponse::set_next_page_token(ArgT0&& arg0, ArgT... args) {
+ 
+ next_page_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.ListSequencesResponse.next_page_token)
+}
+inline std::string* ListSequencesResponse::mutable_next_page_token() {
+  std::string* _s = _internal_mutable_next_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.ListSequencesResponse.next_page_token)
+  return _s;
+}
+inline const std::string& ListSequencesResponse::_internal_next_page_token() const {
+  return next_page_token_.Get();
+}
+inline void ListSequencesResponse::_internal_set_next_page_token(const std::string& value) {
+  
+  next_page_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ListSequencesResponse::_internal_mutable_next_page_token() {
+  
+  return next_page_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ListSequencesResponse::release_next_page_token() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.ListSequencesResponse.next_page_token)
+  return next_page_token_.Release();
+}
+inline void ListSequencesResponse::set_allocated_next_page_token(std::string* next_page_token) {
+  if (next_page_token != nullptr) {
+    
+  } else {
+    
+  }
+  next_page_token_.SetAllocated(next_page_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (next_page_token_.IsDefault()) {
+    next_page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.ListSequencesResponse.next_page_token)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

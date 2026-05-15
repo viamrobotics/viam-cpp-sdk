@@ -1,8 +1,9 @@
 #pragma once
 
+#include <boost/optional.hpp>
+
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/grpc_fwd.hpp>
-#include <viam/sdk/common/private/utils.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/rpc/dial.hpp>
 
@@ -28,6 +29,8 @@ void set_name(RequestType* req, const ClientType* client) {
 // No-op version of set_name above. This overload is only selected if the request type does not have
 // a mutable_name field.
 void set_name(...);
+
+boost::optional<std::string> debug_map_value(const ProtoStruct& extra);
 
 }  // namespace client_helper_details
 
@@ -95,10 +98,8 @@ class ClientHelper {
 
     template <typename RequestSetupCallable>
     ClientHelper& with(const ProtoStruct& extra, RequestSetupCallable&& rsc) {
-        auto key = extra.find(impl::debug_map_key);
-        if (key != extra.end()) {
-            ProtoValue value = key->second;
-            debug_key_ = *value.get<std::string>();
+        if (auto val = client_helper_details::debug_map_value(extra)) {
+            debug_key_ = std::move(*val);
         }
 
         proto_convert_details::to_proto_impl<ProtoStruct>{}(extra, request_.mutable_extra());

@@ -5,6 +5,10 @@
 namespace viam {
 namespace sdk {
 
+namespace impl {
+class Tracer;
+}  // namespace impl
+
 /// @brief Instance management for Viam C++ SDK applications.
 /// This is a single instance class which is responsible for global setup and teardown related to
 /// the SDK. An Instance must be constructed before doing anything else in a program, and it must
@@ -29,6 +33,7 @@ class Instance {
    private:
     friend class Registry;
     friend class LogManager;
+    friend class impl::Tracer;
 
     struct Impl;
     std::unique_ptr<Impl> impl_;

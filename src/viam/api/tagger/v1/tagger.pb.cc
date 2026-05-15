@@ -35,16 +35,15 @@ const char descriptor_table_protodef_tagger_2fv1_2ftagger_2eproto[] PROTOBUF_SEC
   "gle/protobuf/descriptor.proto:3\n\004tags\022\035."
   "google.protobuf.FieldOptions\030\303\3403 \001(\tR\004ta"
   "gs:>\n\noneof_tags\022\035.google.protobuf.Oneof"
-  "Options\030\303\3403 \001(\tR\toneofTagsB4Z2github.com"
-  "/srikrsna/protoc-gen-gotag/tagger;tagger"
-  "b\006proto3"
+  "Options\030\303\3403 \001(\tR\toneofTagsB\"Z go.viam.co"
+  "m/api/tagger/v1;taggerb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_tagger_2fv1_2ftagger_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_tagger_2fv1_2ftagger_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tagger_2fv1_2ftagger_2eproto = {
-    false, false, 248, descriptor_table_protodef_tagger_2fv1_2ftagger_2eproto,
+    false, false, 230, descriptor_table_protodef_tagger_2fv1_2ftagger_2eproto,
     "tagger/v1/tagger.proto",
     &descriptor_table_tagger_2fv1_2ftagger_2eproto_once, descriptor_table_tagger_2fv1_2ftagger_2eproto_deps, 1, 0,
     schemas, file_default_instances, TableStruct_tagger_2fv1_2ftagger_2eproto::offsets,

@@ -5,6 +5,7 @@
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/private/instance.hpp>
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/tracing/private/tracer.hpp>
 
 namespace viam {
 namespace sdk {
@@ -28,6 +29,7 @@ Instance::Instance() {
     impl_ = std::make_unique<Instance::Impl>();
     impl_->registry.initialize();
     impl_->log_mgr.init_logging();
+    impl::Tracer::initialize_propagator();
 }
 
 Instance::~Instance() {
