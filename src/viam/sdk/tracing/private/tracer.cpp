@@ -97,7 +97,7 @@ void Tracer::initialize_propagator() noexcept {
 }
 
 Tracer::Tracer() = default;
-Tracer::~Tracer() {
+Tracer::~Tracer() noexcept {
     shutdown_provider();
 }
 
@@ -157,7 +157,7 @@ namespace impl {
 void Tracer::initialize_propagator() noexcept {}
 
 Tracer::Tracer() = default;
-Tracer::~Tracer() = default;
+Tracer::~Tracer() noexcept = default;
 
 Tracer& Tracer::get() {
     return Instance::current(Instance::Creation::open_existing).impl_->tracer;

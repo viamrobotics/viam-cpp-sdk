@@ -18,7 +18,7 @@ namespace impl {
 class Tracer {
    public:
     Tracer();
-    ~Tracer();
+    ~Tracer() noexcept;  // NOLINT(performance-trivially-destructible)
 
     Tracer(const Tracer&) = delete;
     Tracer& operator=(const Tracer&) = delete;

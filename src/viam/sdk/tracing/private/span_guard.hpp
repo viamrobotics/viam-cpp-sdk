@@ -25,7 +25,7 @@ namespace impl {
 class ServerSpanGuard {
    public:
     explicit ServerSpanGuard(const GrpcServerContext* ctx, const char* method) noexcept;
-    ~ServerSpanGuard() noexcept;
+    ~ServerSpanGuard() noexcept;  // NOLINT(performance-trivially-destructible)
 
     /// @brief Record the final gRPC status before destruction and return it unchanged.
     ::grpc::Status commit(::grpc::Status status) noexcept;
