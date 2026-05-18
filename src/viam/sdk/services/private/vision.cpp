@@ -27,22 +27,30 @@ namespace vpb = ::viam::service::vision::v1;
 
 vpb::Detection to_proto(const Vision::detection& d) {
     vpb::Detection out;
-    if (d.x_min)
+    if (d.x_min) {
         out.set_x_min(*d.x_min);
-    if (d.y_min)
+    }
+    if (d.y_min) {
         out.set_y_min(*d.y_min);
-    if (d.x_max)
+    }
+    if (d.x_max) {
         out.set_x_max(*d.x_max);
-    if (d.y_max)
+    }
+    if (d.y_max) {
         out.set_y_max(*d.y_max);
-    if (d.x_min_normalized)
+    }
+    if (d.x_min_normalized) {
         out.set_x_min_normalized(*d.x_min_normalized);
-    if (d.y_min_normalized)
+    }
+    if (d.y_min_normalized) {
         out.set_y_min_normalized(*d.y_min_normalized);
-    if (d.x_max_normalized)
+    }
+    if (d.x_max_normalized) {
         out.set_x_max_normalized(*d.x_max_normalized);
-    if (d.y_max_normalized)
+    }
+    if (d.y_max_normalized) {
         out.set_y_max_normalized(*d.y_max_normalized);
+    }
     out.set_class_name(d.class_name);
     out.set_confidence(d.confidence);
     return out;
@@ -50,22 +58,30 @@ vpb::Detection to_proto(const Vision::detection& d) {
 
 Vision::detection from_proto(const vpb::Detection& p) {
     Vision::detection out;
-    if (p.has_x_min())
+    if (p.has_x_min()) {
         out.x_min = p.x_min();
-    if (p.has_y_min())
+    }
+    if (p.has_y_min()) {
         out.y_min = p.y_min();
-    if (p.has_x_max())
+    }
+    if (p.has_x_max()) {
         out.x_max = p.x_max();
-    if (p.has_y_max())
+    }
+    if (p.has_y_max()) {
         out.y_max = p.y_max();
-    if (p.has_x_min_normalized())
+    }
+    if (p.has_x_min_normalized()) {
         out.x_min_normalized = p.x_min_normalized();
-    if (p.has_y_min_normalized())
+    }
+    if (p.has_y_min_normalized()) {
         out.y_min_normalized = p.y_min_normalized();
-    if (p.has_x_max_normalized())
+    }
+    if (p.has_x_max_normalized()) {
         out.x_max_normalized = p.x_max_normalized();
-    if (p.has_y_max_normalized())
+    }
+    if (p.has_y_max_normalized()) {
         out.y_max_normalized = p.y_max_normalized();
+    }
     out.class_name = p.class_name();
     out.confidence = p.confidence();
     return out;
