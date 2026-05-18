@@ -170,7 +170,7 @@ jobs:
       run: |
         . ./conan_venv/bin/activate
         conan install -r conancenter --update \
-        --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s compiler.cppstd=17 -s:a compiler.cppstd=17
+        --tool-requires=b2/5.4.2 --build=b2/5.4.2 -s compiler.cppstd=17 -s:a compiler.cppstd=17
 
     - name: Set lockfile update arguments
       if: inputs.lockfile_release_update
