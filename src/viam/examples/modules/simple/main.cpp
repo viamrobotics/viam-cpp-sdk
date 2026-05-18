@@ -74,8 +74,8 @@ ProtoStruct MySensor::do_command(const ProtoStruct& command) {
 ProtoStruct MySensor::get_readings(const ProtoStruct&) {
     // Example of simple instrumentation with opentelemetry.
     // These are no-ops if tracing is not compiled in.
-    Span s("readings");
-    s.add_event("computing signal");
+    TracingSpan tspan("readings");
+    tspan.add_event("computing signal");
 
     return {{"signal", multiplier_}};
 }

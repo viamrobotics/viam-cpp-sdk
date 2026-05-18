@@ -21,24 +21,24 @@ namespace sdk {
 ///
 /// @code
 /// std::vector<GeoPoint> MyMovementSensor::get_position(const ProtoStruct& extra) {
-///     viam::sdk::Span span{"my_module.read_gps"};
+///     viam::sdk::TracingSpan span{"my_module.read_gps"};
 ///     span.set_attribute("sensor.model", model_);
 ///     return points;
 /// }
 /// @endcode
 ///
 /// @ingroup Tracing
-class Span {
+class TracingSpan {
    public:
     /// @brief Open a child span named @p name under the currently-active span.
-    explicit Span(const char* name) noexcept;
+    explicit TracingSpan(const char* name) noexcept;
 
-    ~Span() noexcept;
+    ~TracingSpan() noexcept;
 
-    Span(const Span&) = delete;
-    Span& operator=(const Span&) = delete;
-    Span(Span&&) = delete;
-    Span& operator=(Span&&) = delete;
+    TracingSpan(const TracingSpan&) = delete;
+    TracingSpan& operator=(const TracingSpan&) = delete;
+    TracingSpan(TracingSpan&&) = delete;
+    TracingSpan& operator=(TracingSpan&&) = delete;
 
     /// @brief Attach an attribute to the span. Supported value types: @c bool, @c
     /// std::int64_t, @c double, @c const @c char*, @c std::string. Other types fail to
@@ -61,14 +61,14 @@ class Span {
 };
 
 template <>
-void Span::set_attribute<std::string>(const char*, std::string) noexcept;
+void TracingSpan::set_attribute<std::string>(const char*, std::string) noexcept;
 
 // -- Explicit instantiation declarations for the supported attribute value types -- //
-extern template void Span::set_attribute<bool>(const char*, bool) noexcept;
-extern template void Span::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
-extern template void Span::set_attribute<double>(const char*, double) noexcept;
-extern template void Span::set_attribute<const char*>(const char*, const char*) noexcept;
-extern template void Span::set_attribute<std::string>(const char*, std::string) noexcept;
+extern template void TracingSpan::set_attribute<bool>(const char*, bool) noexcept;
+extern template void TracingSpan::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
+extern template void TracingSpan::set_attribute<double>(const char*, double) noexcept;
+extern template void TracingSpan::set_attribute<const char*>(const char*, const char*) noexcept;
+extern template void TracingSpan::set_attribute<std::string>(const char*, std::string) noexcept;
 
 }  // namespace sdk
 }  // namespace viam

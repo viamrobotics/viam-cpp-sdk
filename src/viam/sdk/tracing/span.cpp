@@ -38,7 +38,7 @@ opentelemetry::nostd::shared_ptr<otel_trace::Span> start_or_noop(const char* nam
 
 }  // namespace
 
-struct Span::Impl {
+struct TracingSpan::Impl {
     opentelemetry::nostd::shared_ptr<otel_trace::Span> span;
     otel_trace::Scope scope;
 
@@ -46,40 +46,40 @@ struct Span::Impl {
         : span(std::move(s)), scope(span) {}
 };
 
-Span::Span(const char* name) noexcept : impl_(std::make_unique<Impl>(start_or_noop(name))) {}
+TracingSpan::TracingSpan(const char* name) noexcept : impl_(std::make_unique<Impl>(start_or_noop(name))) {}
 
-Span::~Span() noexcept {
+TracingSpan::~TracingSpan() noexcept {
     impl_->span->End();
 }
 
 template <typename T>
-void Span::set_attribute(const char* key, T value) noexcept {
+void TracingSpan::set_attribute(const char* key, T value) noexcept {
     impl_->span->SetAttribute(key, value);
 }
 
 // std::string requires an explicit conversion to nostd::string_view because OTel's
 // AttributeValue does not accept std::string directly.
 template <>
-void Span::set_attribute<std::string>(const char* key, std::string value) noexcept {
+void TracingSpan::set_attribute<std::string>(const char* key, std::string value) noexcept {
     impl_->span->SetAttribute(key, opentelemetry::nostd::string_view{value.data(), value.size()});
 }
 
 // -- Explicit instantiations -- //
-template void Span::set_attribute<bool>(const char*, bool) noexcept;
-template void Span::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
-template void Span::set_attribute<double>(const char*, double) noexcept;
-template void Span::set_attribute<const char*>(const char*, const char*) noexcept;
-template void Span::set_attribute<std::string>(const char*, std::string) noexcept;
+template void TracingSpan::set_attribute<bool>(const char*, bool) noexcept;
+template void TracingSpan::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
+template void TracingSpan::set_attribute<double>(const char*, double) noexcept;
+template void TracingSpan::set_attribute<const char*>(const char*, const char*) noexcept;
+template void TracingSpan::set_attribute<std::string>(const char*, std::string) noexcept;
 
-void Span::add_event(const char* name) noexcept {
+void TracingSpan::add_event(const char* name) noexcept {
     impl_->span->AddEvent(name);
 }
 
-void Span::set_status_ok() noexcept {
+void TracingSpan::set_status_ok() noexcept {
     impl_->span->SetStatus(otel_trace::StatusCode::kOk);
 }
 
-void Span::set_status_error(const char* description) noexcept {
+void TracingSpan::set_status_error(const char* description) noexcept {
     impl_->span->SetStatus(otel_trace::StatusCode::kError, description);
 }
 
@@ -91,23 +91,23 @@ void Span::set_status_error(const char* description) noexcept {
 namespace viam {
 namespace sdk {
 
-struct Span::Impl {};
+struct TracingSpan::Impl {};
 
-Span::Span(const char*) noexcept {}
-Span::~Span() noexcept = default;
+TracingSpan::TracingSpan(const char*) noexcept {}
+TracingSpan::~TracingSpan() noexcept = default;
 
 template <typename T>
-void Span::set_attribute(const char*, T) noexcept {}
+void TracingSpan::set_attribute(const char*, T) noexcept {}
 
-template void Span::set_attribute<bool>(const char*, bool) noexcept;
-template void Span::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
-template void Span::set_attribute<double>(const char*, double) noexcept;
-template void Span::set_attribute<const char*>(const char*, const char*) noexcept;
-template void Span::set_attribute<std::string>(const char*, std::string) noexcept;
+template void TracingSpan::set_attribute<bool>(const char*, bool) noexcept;
+template void TracingSpan::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
+template void TracingSpan::set_attribute<double>(const char*, double) noexcept;
+template void TracingSpan::set_attribute<const char*>(const char*, const char*) noexcept;
+template void TracingSpan::set_attribute<std::string>(const char*, std::string) noexcept;
 
-void Span::add_event(const char*) noexcept {}
-void Span::set_status_ok() noexcept {}
-void Span::set_status_error(const char*) noexcept {}
+void TracingSpan::add_event(const char*) noexcept {}
+void TracingSpan::set_status_ok() noexcept {}
+void TracingSpan::set_status_error(const char*) noexcept {}
 
 }  // namespace sdk
 }  // namespace viam
