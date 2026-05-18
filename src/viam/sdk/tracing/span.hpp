@@ -35,8 +35,6 @@ class TracingSpan {
 
     ~TracingSpan() noexcept;
 
-    TracingSpan(const TracingSpan&) = delete;
-    TracingSpan& operator=(const TracingSpan&) = delete;
     TracingSpan(TracingSpan&&) = delete;
     TracingSpan& operator=(TracingSpan&&) = delete;
 
