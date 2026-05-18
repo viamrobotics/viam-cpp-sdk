@@ -20,7 +20,7 @@ namespace sdk {
 
 namespace {
 
-constexpr const char* k_instrumentation_scope = "viam-cpp-sdk.module";
+constexpr const char k_instrumentation_scope[] = "viam-cpp-sdk.module";
 
 bool has_active_span() noexcept {
     return otel_trace::GetSpan(otel_ctx::RuntimeContext::GetCurrent())->GetContext().IsValid();
@@ -46,7 +46,8 @@ struct TracingSpan::Impl {
         : span(std::move(s)), scope(span) {}
 };
 
-TracingSpan::TracingSpan(const char* name) noexcept : impl_(std::make_unique<Impl>(start_or_noop(name))) {}
+TracingSpan::TracingSpan(const char* name) noexcept
+    : impl_(std::make_unique<Impl>(start_or_noop(name))) {}
 
 TracingSpan::~TracingSpan() noexcept {
     impl_->span->End();
