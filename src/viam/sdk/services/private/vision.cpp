@@ -83,16 +83,16 @@ Vision::classification from_proto(const vpb::Classification& p) {
 }
 
 void to_proto(const Vision::point_cloud_object& o, ::viam::common::v1::PointCloudObject* out) {
-    out->set_point_cloud(std::string(reinterpret_cast<const char*>(o.point_cloud.pc.data()),
-                                     o.point_cloud.pc.size()));
+    out->set_point_cloud(
+        std::string(reinterpret_cast<const char*>(o.cloud.pc.data()), o.cloud.pc.size()));
     *(out->mutable_geometries()->mutable_geometries()) = impl::to_repeated_field(o.geometries);
 }
 
 Vision::point_cloud_object from_proto(const ::viam::common::v1::PointCloudObject& p) {
     Vision::point_cloud_object out;
     const auto& bytes = p.point_cloud();
-    out.point_cloud.pc.assign(reinterpret_cast<const unsigned char*>(bytes.data()),
-                              reinterpret_cast<const unsigned char*>(bytes.data()) + bytes.size());
+    out.cloud.pc.assign(reinterpret_cast<const unsigned char*>(bytes.data()),
+                        reinterpret_cast<const unsigned char*>(bytes.data()) + bytes.size());
     out.geometries = impl::from_repeated_field(p.geometries().geometries());
     return out;
 }

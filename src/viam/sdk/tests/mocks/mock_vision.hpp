@@ -25,7 +25,7 @@ class MockVision : public sdk::Vision {
     std::string last_camera_name;
     int last_count = 0;
     std::string last_mime_type;
-    sdk::Vision::raw_image last_image;
+    sdk::Vision::image last_image;
     sdk::Vision::capture_options last_capture_options;
     sdk::ProtoStruct last_extra;
     sdk::ProtoStruct last_command;
@@ -35,12 +35,12 @@ class MockVision : public sdk::Vision {
 
     std::vector<sdk::Vision::detection> get_detections_from_camera(
         const std::string& camera_name, const sdk::ProtoStruct& extra) override;
-    std::vector<sdk::Vision::detection> get_detections(const sdk::Vision::raw_image& image,
+    std::vector<sdk::Vision::detection> get_detections(const sdk::Vision::image& img,
                                                        const sdk::ProtoStruct& extra) override;
     std::vector<sdk::Vision::classification> get_classifications_from_camera(
         const std::string& camera_name, int count, const sdk::ProtoStruct& extra) override;
     std::vector<sdk::Vision::classification> get_classifications(
-        const sdk::Vision::raw_image& image, int count, const sdk::ProtoStruct& extra) override;
+        const sdk::Vision::image& img, int count, const sdk::ProtoStruct& extra) override;
     std::vector<sdk::Vision::point_cloud_object> get_object_point_clouds(
         const std::string& camera_name,
         const std::string& mime_type,

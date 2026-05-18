@@ -36,11 +36,11 @@ class VisionClient : public Vision {
 
     std::vector<Vision::detection> get_detections_from_camera(const std::string& camera_name,
                                                               const ProtoStruct& extra) override;
-    std::vector<Vision::detection> get_detections(const Vision::raw_image& image,
+    std::vector<Vision::detection> get_detections(const Vision::image& img,
                                                   const ProtoStruct& extra) override;
     std::vector<Vision::classification> get_classifications_from_camera(
         const std::string& camera_name, int count, const ProtoStruct& extra) override;
-    std::vector<Vision::classification> get_classifications(const Vision::raw_image& image,
+    std::vector<Vision::classification> get_classifications(const Vision::image& img,
                                                             int count,
                                                             const ProtoStruct& extra) override;
     std::vector<Vision::point_cloud_object> get_object_point_clouds(

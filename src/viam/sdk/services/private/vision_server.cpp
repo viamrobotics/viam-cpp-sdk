@@ -46,10 +46,10 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
     ::viam::service::vision::v1::GetDetectionsResponse* response) noexcept {
     return make_service_helper<Vision>(
         "VisionServer::GetDetections", this, context, request)([&](auto& helper, auto& vs) {
-        Vision::raw_image image;
-        image.bytes.assign(request->image().begin(), request->image().end());
-        image.mime_type = request->mime_type();
-        const auto results = vs->get_detections(image, helper.getExtra());
+        Vision::image img;
+        img.bytes.assign(request->image().begin(), request->image().end());
+        img.mime_type = request->mime_type();
+        const auto results = vs->get_detections(img, helper.getExtra());
         for (const auto& d : results) {
             *response->add_detections() = impl::vision::to_proto(d);
         }
@@ -77,10 +77,10 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
     ::viam::service::vision::v1::GetClassificationsResponse* response) noexcept {
     return make_service_helper<Vision>(
         "VisionServer::GetClassifications", this, context, request)([&](auto& helper, auto& vs) {
-        Vision::raw_image image;
-        image.bytes.assign(request->image().begin(), request->image().end());
-        image.mime_type = request->mime_type();
-        const auto results = vs->get_classifications(image, request->n(), helper.getExtra());
+        Vision::image img;
+        img.bytes.assign(request->image().begin(), request->image().end());
+        img.mime_type = request->mime_type();
+        const auto results = vs->get_classifications(img, request->n(), helper.getExtra());
         for (const auto& c : results) {
             *response->add_classifications() = impl::vision::to_proto(c);
         }
@@ -98,7 +98,12 @@ VisionServer::VisionServer(std::shared_ptr<ResourceManager> manager)
         for (const auto& obj : results) {
             impl::vision::to_proto(obj, response->add_objects());
         }
-        response->set_mime_type(request->mime_type());
+        // The wire format carries a single mime_type for all objects; take it
+        // from the first result (the server may legitimately convert formats
+        // and return something different from request->mime_type()).
+        if (!results.empty()) {
+            response->set_mime_type(results.front().cloud.mime_type);
+        }
     });
 }
 

@@ -21,13 +21,13 @@ std::vector<Vision::detection> MockVision::get_detections_from_camera(
     return canned_detections;
 }
 
-std::vector<Vision::detection> MockVision::get_detections(const raw_image& image,
+std::vector<Vision::detection> MockVision::get_detections(const Vision::image& img,
                                                           const ProtoStruct& extra) {
     if (throw_on_next_call) {
         throw_on_next_call = false;
         throw sdk::Exception("mock failure");
     }
-    last_image = image;
+    last_image = img;
     last_extra = extra;
     return canned_detections;
 }
@@ -44,14 +44,14 @@ std::vector<Vision::classification> MockVision::get_classifications_from_camera(
     return canned_classifications;
 }
 
-std::vector<Vision::classification> MockVision::get_classifications(const raw_image& image,
+std::vector<Vision::classification> MockVision::get_classifications(const Vision::image& img,
                                                                     int count,
                                                                     const ProtoStruct& extra) {
     if (throw_on_next_call) {
         throw_on_next_call = false;
         throw sdk::Exception("mock failure");
     }
-    last_image = image;
+    last_image = img;
     last_count = count;
     last_extra = extra;
     return canned_classifications;

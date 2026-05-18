@@ -29,25 +29,27 @@ API API::traits<Vision>::api() {
 
 Vision::Vision(std::string name) : Service(std::move(name)) {}
 
-bool operator==(const Vision::detection& a, const Vision::detection& b) {
-    return a.x_min == b.x_min && a.y_min == b.y_min && a.x_max == b.x_max && a.y_max == b.y_max &&
-           a.class_name == b.class_name && a.confidence == b.confidence &&
-           a.x_min_normalized == b.x_min_normalized && a.y_min_normalized == b.y_min_normalized &&
-           a.x_max_normalized == b.x_max_normalized && a.y_max_normalized == b.y_max_normalized;
+bool operator==(const Vision::detection& lhs, const Vision::detection& rhs) {
+    return lhs.x_min == rhs.x_min && lhs.y_min == rhs.y_min && lhs.x_max == rhs.x_max &&
+           lhs.y_max == rhs.y_max && lhs.class_name == rhs.class_name &&
+           lhs.confidence == rhs.confidence && lhs.x_min_normalized == rhs.x_min_normalized &&
+           lhs.y_min_normalized == rhs.y_min_normalized &&
+           lhs.x_max_normalized == rhs.x_max_normalized &&
+           lhs.y_max_normalized == rhs.y_max_normalized;
 }
 
-bool operator==(const Vision::classification& a, const Vision::classification& b) {
-    return a.class_name == b.class_name && a.confidence == b.confidence;
+bool operator==(const Vision::classification& lhs, const Vision::classification& rhs) {
+    return lhs.class_name == rhs.class_name && lhs.confidence == rhs.confidence;
 }
 
-bool operator==(const Vision::point_cloud_object& a, const Vision::point_cloud_object& b) {
-    return a.point_cloud == b.point_cloud && a.geometries == b.geometries;
+bool operator==(const Vision::point_cloud_object& lhs, const Vision::point_cloud_object& rhs) {
+    return lhs.cloud == rhs.cloud && lhs.geometries == rhs.geometries;
 }
 
-bool operator==(const Vision::properties& a, const Vision::properties& b) {
-    return a.classifications_supported == b.classifications_supported &&
-           a.detections_supported == b.detections_supported &&
-           a.object_point_clouds_supported == b.object_point_clouds_supported;
+bool operator==(const Vision::properties& lhs, const Vision::properties& rhs) {
+    return lhs.classifications_supported == rhs.classifications_supported &&
+           lhs.detections_supported == rhs.detections_supported &&
+           lhs.object_point_clouds_supported == rhs.object_point_clouds_supported;
 }
 
 }  // namespace sdk

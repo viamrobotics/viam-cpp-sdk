@@ -45,13 +45,13 @@ std::vector<Vision::detection> VisionClient::get_detections_from_camera(
         });
 }
 
-std::vector<Vision::detection> VisionClient::get_detections(const Vision::raw_image& image,
+std::vector<Vision::detection> VisionClient::get_detections(const Vision::image& img,
                                                             const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &service_type::StubInterface::GetDetections)
         .with(extra,
               [&](auto& req) {
-                  req.set_image(std::string(image.bytes.begin(), image.bytes.end()));
-                  req.set_mime_type(image.mime_type);
+                  req.set_image(std::string(img.bytes.begin(), img.bytes.end()));
+                  req.set_mime_type(img.mime_type);
               })
         .invoke([](auto& response) {
             std::vector<Vision::detection> out;
@@ -82,13 +82,14 @@ std::vector<Vision::classification> VisionClient::get_classifications_from_camer
         });
 }
 
-std::vector<Vision::classification> VisionClient::get_classifications(
-    const Vision::raw_image& image, int count, const ProtoStruct& extra) {
+std::vector<Vision::classification> VisionClient::get_classifications(const Vision::image& img,
+                                                                      int count,
+                                                                      const ProtoStruct& extra) {
     return make_client_helper(this, *stub_, &service_type::StubInterface::GetClassifications)
         .with(extra,
               [&](auto& req) {
-                  req.set_image(std::string(image.bytes.begin(), image.bytes.end()));
-                  req.set_mime_type(image.mime_type);
+                  req.set_image(std::string(img.bytes.begin(), img.bytes.end()));
+                  req.set_mime_type(img.mime_type);
                   req.set_n(count);
               })
         .invoke([](auto& response) {
@@ -109,12 +110,15 @@ std::vector<Vision::point_cloud_object> VisionClient::get_object_point_clouds(
                   req.set_camera_name(camera_name);
                   req.set_mime_type(mime_type);
               })
-        .invoke([&mime_type](auto& response) {
+        .invoke([](auto& response) {
             std::vector<Vision::point_cloud_object> out;
             out.reserve(response.objects_size());
+            // The wire format carries one mime_type for all objects; copy it
+            // onto each returned object.  May differ from the requested mime —
+            // see GetObjectPointCloudsResponse.mime_type in vision.proto.
             for (const auto& proto_obj : response.objects()) {
                 auto pco = impl::vision::from_proto(proto_obj);
-                pco.point_cloud.mime_type = mime_type;  // populate from request
+                pco.cloud.mime_type = response.mime_type();
                 out.push_back(std::move(pco));
             }
             return out;

@@ -144,17 +144,15 @@ BOOST_AUTO_TEST_CASE(properties_round_trip) {
 
 BOOST_AUTO_TEST_CASE(point_cloud_object_round_trip_no_geometries) {
     Vision::point_cloud_object o;
-    o.point_cloud.mime_type = "application/pcd";
-    o.point_cloud.pc = {0xDE, 0xAD, 0xBE, 0xEF};
+    o.cloud.mime_type = "application/pcd";
+    o.cloud.pc = {0xDE, 0xAD, 0xBE, 0xEF};
     // geometries empty
     ::viam::common::v1::PointCloudObject proto;
     vimpl::to_proto(o, &proto);
     auto back = vimpl::from_proto(proto);
     // mime_type round-trip is the caller's responsibility; assert only bytes + geometries.
-    BOOST_CHECK_EQUAL_COLLECTIONS(back.point_cloud.pc.begin(),
-                                  back.point_cloud.pc.end(),
-                                  o.point_cloud.pc.begin(),
-                                  o.point_cloud.pc.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(
+        back.cloud.pc.begin(), back.cloud.pc.end(), o.cloud.pc.begin(), o.cloud.pc.end());
     BOOST_TEST(back.geometries.empty());
 }
 
@@ -239,7 +237,7 @@ BOOST_AUTO_TEST_CASE(get_classifications_from_camera_round_trip) {
 BOOST_AUTO_TEST_CASE(get_classifications_round_trip) {
     vision_fixture f;
     f.mock->canned_classifications = {{"box", 0.7}};
-    sdk::Vision::raw_image img;
+    sdk::Vision::image img;
     img.mime_type = "image/jpeg";
     img.bytes = {1, 2, 3, 4};
 
@@ -289,7 +287,7 @@ BOOST_AUTO_TEST_CASE(get_detections_round_trip) {
     d.confidence = 0.5;
     f.mock->canned_detections = {d};
 
-    sdk::Vision::raw_image img;
+    sdk::Vision::image img;
     img.mime_type = "image/png";
     img.bytes = {9, 8, 7, 6, 5};
 
@@ -324,18 +322,36 @@ BOOST_AUTO_TEST_CASE(get_detections_no_bbox_round_trip_over_wire) {
 BOOST_AUTO_TEST_CASE(get_object_point_clouds_round_trip_no_geometries) {
     vision_fixture f;
     sdk::Vision::point_cloud_object o;
-    o.point_cloud.mime_type = "application/pcd";  // not on the wire — propagated from request
-    o.point_cloud.pc = {0xDE, 0xAD, 0xBE, 0xEF};
+    o.cloud.mime_type = "application/pcd";
+    o.cloud.pc = {0xDE, 0xAD, 0xBE, 0xEF};
     f.mock->canned_objects = {o};
 
     auto got = f.client->get_object_point_clouds("rear_cam", "application/pcd");
 
     BOOST_TEST_REQUIRE(got.size() == 1u);
-    BOOST_TEST(got[0].point_cloud.pc == o.point_cloud.pc);
-    BOOST_TEST(got[0].point_cloud.mime_type == "application/pcd");  // verify mime propagated
+    BOOST_TEST(got[0].cloud.pc == o.cloud.pc);
+    BOOST_TEST(got[0].cloud.mime_type == "application/pcd");
     BOOST_TEST(got[0].geometries.empty());
     BOOST_TEST(f.mock->last_camera_name == "rear_cam");
     BOOST_TEST(f.mock->last_mime_type == "application/pcd");
+}
+
+BOOST_AUTO_TEST_CASE(get_object_point_clouds_uses_server_mime_type) {
+    // The Vision proto allows the server to return a different mime_type than
+    // the one requested ("A specific MIME type can be requested but may not
+    // necessarily be the same one returned").  Verify the client propagates the
+    // server-returned mime, not the request mime.
+    vision_fixture f;
+    sdk::Vision::point_cloud_object o;
+    o.cloud.mime_type = "application/pcd";  // server-returned mime
+    o.cloud.pc = {0x01, 0x02, 0x03};
+    f.mock->canned_objects = {o};
+
+    // Request a different mime than the mock will return.
+    auto got = f.client->get_object_point_clouds("cam", "pointcloud/octet-stream");
+
+    BOOST_TEST_REQUIRE(got.size() == 1u);
+    BOOST_TEST(got[0].cloud.mime_type == "application/pcd");
 }
 
 BOOST_AUTO_TEST_CASE(capture_all_only_image) {
