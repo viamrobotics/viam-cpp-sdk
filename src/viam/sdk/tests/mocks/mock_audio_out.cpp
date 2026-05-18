@@ -12,12 +12,62 @@ namespace audioout {
 
 using namespace viam::sdk;
 
+// MockAudioOutStreamWriter
+MockAudioOutStreamWriter::MockAudioOutStreamWriter(std::weak_ptr<MockAudioOut> parent)
+    : parent_(std::move(parent)) {}
+
+void MockAudioOutStreamWriter::write(std::vector<uint8_t> const& audio_data) {
+    if (auto parent = parent_.lock()) {
+        parent->streamed_audio_chunks_.push_back(audio_data);
+    }
+}
+
+void MockAudioOutStreamWriter::close() {}
+
+// MockAudioOutStreamReader
+MockAudioOutStreamReader::MockAudioOutStreamReader(std::weak_ptr<MockAudioOut> parent)
+    : parent_(std::move(parent)), current_chunk_index_(0) {}
+
+boost::optional<std::vector<uint8_t>> MockAudioOutStreamReader::read() {
+    if (auto parent = parent_.lock()) {
+        if (current_chunk_index_ < parent->streamed_audio_chunks_.size()) {
+            return boost::make_optional(parent->streamed_audio_chunks_[current_chunk_index_++]);
+        }
+    }
+    return boost::none;
+}
+
+// MockAudioOut
 void MockAudioOut::play(std::vector<uint8_t> const& audio_data,
                         boost::optional<audio_info> info,
                         const ProtoStruct& extra) {
     last_played_audio_ = audio_data;
     last_played_audio_info_ = info;
 }
+
+std::unique_ptr<AudioOutStreamWriter> MockAudioOut::play_stream(
+    audio_info info, const sdk::ProtoStruct& extra) {
+    streamed_audio_chunks_.clear();
+    streamed_audio_info_ = info;
+    streamed_extra_ = extra;
+    return std::make_unique<MockAudioOutStreamWriter>(shared_from_this());
+}
+
+void MockAudioOut::play_stream(std::unique_ptr<AudioOutStreamReader> reader,
+                               audio_info info,
+                               const sdk::ProtoStruct& extra) {
+    streamed_audio_chunks_.clear();
+    streamed_audio_info_ = info;
+    streamed_extra_ = extra;
+    while (true) {
+        auto chunk = reader->read();
+        if (!chunk) {
+            break;
+        }
+        streamed_audio_chunks_.push_back(*chunk);
+    }
+}
+
 
 audio_properties MockAudioOut::get_properties(const ProtoStruct& extra) {
     return properties_;

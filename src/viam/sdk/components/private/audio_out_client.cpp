@@ -82,6 +82,48 @@ std::vector<GeometryConfig> AudioOutClient::get_geometries(const ProtoStruct& ex
         .invoke([](auto& response) { return from_proto(response); });
 };
 
+AudioOutClientStreamWriter::AudioOutClientStreamWriter(
+    std::unique_ptr<::grpc::ClientWriter< ::viam::component::audioout::v1::PlayStreamRequest>> writer,
+    audio_info info,
+    const ProtoStruct& extra,
+    const std::string& name)
+    : writer_(std::move(writer)) {
+    ::viam::component::audioout::v1::PlayStreamInit init_message;
+    init_message.set_name(name);
+    ::viam::common::v1::AudioInfo* proto_info = init_message.mutable_audio_info();
+    proto_info->set_codec(info.codec);
+    proto_info->set_sample_rate_hz(info.sample_rate_hz);
+    proto_info->set_num_channels(info.num_channels);
+    *init_message.mutable_extra() = to_proto(extra);
+
+    ::viam::component::audioout::v1::PlayStreamRequest init_request;
+    *init_request.mutable_init() = init_message;
+    writer_->Write(init_request);
+}
+
+void AudioOutClientStreamWriter::write(std::vector<uint8_t> const& audio_data) {
+    ::viam::component::audioout::v1::PlayStreamChunk chunk_message;
+    std::string audio_data_str(audio_data.begin(), audio_data.end());
+    chunk_message.set_audio_data(std::move(audio_data_str));
+
+    ::viam::component::audioout::v1::PlayStreamRequest chunk_request;
+    *chunk_request.mutable_audio_chunk() = chunk_message;
+    writer_->Write(chunk_request);
+}
+
+void AudioOutClientStreamWriter::close() {
+    writer_->WritesDone();
+    writer_->Finish(&response_);
+}
+
+std::unique_ptr<AudioOutStream> AudioOutClient::play_stream(audio_info info,
+                                                           const ProtoStruct& extra) {
+    ::grpc::ClientContext context;
+    ::viam::component::audioout::v1::PlayStreamResponse response;
+    auto writer = stub_->PlayStream(&context, &response);
+    return std::make_unique<AudioOutClientStreamWriter>(std::move(writer), info, extra, name());
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

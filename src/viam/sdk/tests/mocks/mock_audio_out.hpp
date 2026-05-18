@@ -12,6 +12,10 @@ namespace audioout {
 using viam::sdk::AudioOut;
 using namespace viam::sdk;
 
+// Forward declarations
+class MockAudioOutStreamWriter;
+class MockAudioOutStreamReader;
+
 class MockAudioOut : public AudioOut {
    public:
     void play(std::vector<uint8_t> const& audio_data,
@@ -21,6 +25,10 @@ class MockAudioOut : public AudioOut {
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
     sdk::ProtoStruct get_status() override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
+
+    // New overrides for stream play
+    std::unique_ptr<AudioOutStreamWriter> play_stream(audio_info info, const sdk::ProtoStruct& extra) override;
+    void play_stream(std::unique_ptr<AudioOutStreamReader> reader, audio_info info, const sdk::ProtoStruct& extra) override;
 
     static std::shared_ptr<MockAudioOut> get_mock_audio_out();
 
@@ -35,6 +43,31 @@ class MockAudioOut : public AudioOut {
     std::vector<GeometryConfig> geometries_;
     std::vector<uint8_t> last_played_audio_;
     boost::optional<audio_info> last_played_audio_info_;
+
+    // New public members for testing and verification
+    std::vector<std::vector<uint8_t>> streamed_audio_chunks_;
+    boost::optional<audio_info> streamed_audio_info_;
+    sdk::ProtoStruct streamed_extra_;
+};
+
+class MockAudioOutStreamWriter : public AudioOutStreamWriter {
+   public:
+    MockAudioOutStreamWriter(std::shared_ptr<MockAudioOut> parent);
+    void write(std::vector<uint8_t> const& audio_data) override;
+    void close() override;
+
+   private:
+    std::shared_ptr<MockAudioOut> parent_;
+};
+
+class MockAudioOutStreamReader : public AudioOutStreamReader {
+   public:
+    MockAudioOutStreamReader(std::shared_ptr<MockAudioOut> parent);
+    boost::optional<std::vector<uint8_t>> read() override;
+
+   private:
+    std::shared_ptr<MockAudioOut> parent_;
+    size_t current_chunk_index_;
 };
 
 audio_properties fake_properties();

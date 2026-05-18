@@ -59,6 +59,35 @@ BOOST_AUTO_TEST_CASE(test_play_no_audio_info) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_play_stream) {
+    std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
+    client_to_mock_pipeline<AudioOut>(mock, [mock](AudioOut& client) {
+        audio_info info;
+        info.codec = audio_codecs::PCM_16;
+        info.sample_rate_hz = 44100;
+        info.num_channels = 1;
+        ProtoStruct extra = {{"key1", ProtoValue("value1")}};
+
+        std::unique_ptr<AudioOutStreamWriter> writer = client.play_stream(info, extra);
+
+        std::vector<uint8_t> chunk1 = {1, 2, 3, 4};
+        std::vector<uint8_t> chunk2 = {5, 6, 7, 8};
+        std::vector<uint8_t> chunk3 = {9, 10, 11, 12};
+
+        writer->write(chunk1);
+        writer->write(chunk2);
+        writer->write(chunk3);
+        writer->close();
+
+        BOOST_CHECK(mock->streamed_audio_info_ == info);
+        BOOST_CHECK(mock->streamed_extra_ == extra);
+        BOOST_CHECK_EQUAL(mock->streamed_audio_chunks_.size(), 3);
+        BOOST_CHECK(mock->streamed_audio_chunks_[0] == chunk1);
+        BOOST_CHECK(mock->streamed_audio_chunks_[1] == chunk2);
+        BOOST_CHECK(mock->streamed_audio_chunks_[2] == chunk3);
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_get_properties) {
     std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
     client_to_mock_pipeline<AudioOut>(mock, [](AudioOut& client) {

@@ -9,6 +9,21 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+// AudioOutServerStreamReader
+AudioOutServerStreamReader::AudioOutServerStreamReader(
+    ::grpc::ServerReader< ::viam::component::audioout::v1::PlayStreamRequest>* reader)
+    : reader_(reader) {}
+
+boost::optional<std::vector<uint8_t>> AudioOutServerStreamReader::read() {
+    ::viam::component::audioout::v1::PlayStreamRequest request;
+    if (reader_->Read(&request)) {
+        if (request.payload_case() == ::viam::component::audioout::v1::PlayStreamRequest::kAudioChunk) {
+            return boost::make_optional(string_to_bytes(request.audio_chunk().audio_data()));
+        }
+    }
+    return boost::none;
+}
+
 AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     : ResourceServer(std::move(manager)) {}
 
@@ -30,6 +45,36 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
         }
         audio_out->play(audio_data, info, helper.getExtra());
     });
+}
+
+::grpc::Status AudioOutServer::PlayStream(
+    ::grpc::ServerContext* context,
+    ::grpc::ServerReader< ::viam::component::audioout::v1::PlayStreamRequest>* reader) {
+    return make_service_helper<AudioOut>(
+        "AudioOutServer::PlayStream", this, context, reader)(
+        [&](auto& helper, auto& audio_out) {
+            ::viam::component::audioout::v1::PlayStreamRequest request;
+            if (!reader->Read(&request)) {
+                throw std::runtime_error("failed to read first PlayStreamRequest");
+            }
+
+            if (request.payload_case() !=
+                ::viam::component::audioout::v1::PlayStreamRequest::kInit) {
+                throw std::invalid_argument(
+                    "first message must be PlayStreamInit");
+            }
+
+            const auto& init = request.init();
+            const auto& audio_info_proto = init.audio_info();
+            const auto info = audio_info{audio_info_proto.codec(),
+                                         audio_info_proto.sample_rate_hz(),
+                                         audio_info_proto.num_channels()};
+
+            std::unique_ptr<AudioOutStreamReader> reader_wrapper =
+                std::make_unique<AudioOutServerStreamReader>(reader);
+
+            audio_out->play_stream(std::move(reader_wrapper), info, helper.getExtra());
+        });
 }
 
 ::grpc::Status AudioOutServer::DoCommand(::grpc::ServerContext* context,

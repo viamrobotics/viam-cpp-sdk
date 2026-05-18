@@ -12,6 +12,17 @@ namespace viam {
 namespace sdk {
 namespace impl {
 
+class AudioOutClientStreamWriter : public AudioOutStreamWriter {
+   public:
+    AudioOutClientStreamWriter(std::unique_ptr<::grpc::ClientWriter< ::viam::component::audioout::v1::PlayStreamRequest>> writer, audio_info info, const ProtoStruct& extra, const std::string& name);
+    void write(std::vector<uint8_t> const& audio_data) override;
+    void close() override;
+
+   private:
+    std::unique_ptr<::grpc::ClientWriter< ::viam::component::audioout::v1::PlayStreamRequest>> writer_;
+    ::viam::component::audioout::v1::PlayStreamResponse response_;
+};
+
 /// @class AudioOutClient
 /// @brief gRPC client implementation of an `AudioOut` component.
 /// @ingroup AudioOut
@@ -36,9 +47,12 @@ class AudioOutClient : public AudioOut {
 
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
+    std::unique_ptr<AudioOutStreamWriter> play_stream(audio_info info, const ProtoStruct& extra) override;
+
     using AudioOut::get_geometries;
     using AudioOut::get_properties;
     using AudioOut::play;
+    using AudioOut::play_stream;
 
    private:
     using StubType = viam::component::audioout::v1::AudioOutService::StubInterface;
