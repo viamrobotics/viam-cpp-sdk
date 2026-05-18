@@ -48,6 +48,8 @@ class TracingSpan {
     void add_event(const char* name) noexcept;
 
     /// @brief Mark the span as having completed successfully.
+    /// @remark Note it is not necessary to call this method to indicate successful completion. See
+    /// https://opentelemetry.io/docs/concepts/signals/traces/#span-status
     void set_status_ok() noexcept;
 
     /// @brief Mark the span as having failed. @p description is optional context.
