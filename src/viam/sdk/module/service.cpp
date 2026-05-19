@@ -44,6 +44,8 @@
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/server.hpp>
+#include <viam/sdk/tracing/private/span_guard.hpp>
+#include <viam/sdk/tracing/private/tracer.hpp>
 
 namespace viam {
 namespace sdk {
@@ -68,6 +70,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
     ::grpc::Status AddResource(::grpc::ServerContext* ctx,
                                const ::viam::module::v1::AddResourceRequest* request,
                                ::viam::module::v1::AddResourceResponse*) override {
+        impl::ServerSpanGuard span_guard{ctx, "AddResource"};
+
         const viam::app::v1::ComponentConfig& proto = request->config();
         const ResourceConfig cfg = from_proto(proto);
         const std::lock_guard<std::mutex> lock(parent.lock_);
@@ -81,23 +85,25 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                 res = reg->construct_resource(deps, cfg);
                 res->set_log_level(cfg.get_log_level());
             } catch (const std::exception& exc) {
-                return grpc::Status(::grpc::INTERNAL, exc.what());
+                return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));
             }
         }
 
         try {
             parent.server_->add_resource(res, ctx->deadline());
         } catch (const std::exception& exc) {
-            return grpc::Status(::grpc::INTERNAL, exc.what());
+            return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));
         }
 
-        return grpc::Status();
+        return span_guard.commit(grpc::Status());
     }
 
     ::grpc::Status ReconfigureResource(
-        ::grpc::ServerContext*,
+        ::grpc::ServerContext* ctx,
         const ::viam::module::v1::ReconfigureResourceRequest* request,
         ::viam::module::v1::ReconfigureResourceResponse*) override {
+        impl::ServerSpanGuard span_guard{ctx, "ReconfigureResource"};
+
         const viam::app::v1::ComponentConfig& proto = request->config();
         ResourceConfig cfg = from_proto(proto);
 
@@ -105,8 +111,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
 
         auto resource_server = parent.server_->lookup_resource_server(cfg.api());
         if (!resource_server) {
-            return grpc::Status(grpc::UNKNOWN,
-                                "no rpc service for config: " + cfg.api().to_string());
+            return span_guard.commit(
+                grpc::Status(grpc::UNKNOWN, "no rpc service for config: " + cfg.api().to_string()));
         }
         auto manager = resource_server->resource_manager();
 
@@ -116,9 +122,10 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         {
             const std::shared_ptr<Resource> res = manager->resource(cfg.resource_name().name());
             if (!res) {
-                return grpc::Status(grpc::UNKNOWN,
-                                    "unable to stop resource " + cfg.resource_name().name() +
-                                        " as it doesn't exist.");
+                return span_guard.commit(grpc::Status(grpc::UNKNOWN,
+                                                      "unable to stop resource " +
+                                                          cfg.resource_name().name() +
+                                                          " as it doesn't exist."));
             }
 
             if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
@@ -130,8 +137,8 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
             Registry::get().lookup_model(cfg.api(), cfg.model());
 
         if (!reg) {
-            return grpc::Status(::grpc::INTERNAL,
-                                "Unable to rebuild resource: model registration not found");
+            return span_guard.commit(grpc::Status(
+                ::grpc::INTERNAL, "Unable to rebuild resource: model registration not found"));
         }
 
         try {
@@ -139,24 +146,27 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                 return reg->construct_resource(deps, cfg);
             });
         } catch (const std::exception& exc) {
-            return grpc::Status(::grpc::INTERNAL, exc.what());
+            return span_guard.commit(grpc::Status(::grpc::INTERNAL, exc.what()));
         }
 
-        return grpc::Status();
+        return span_guard.commit(grpc::Status());
     }
 
-    ::grpc::Status ValidateConfig(::grpc::ServerContext*,
+    ::grpc::Status ValidateConfig(::grpc::ServerContext* ctx,
                                   const ::viam::module::v1::ValidateConfigRequest* request,
                                   ::viam::module::v1::ValidateConfigResponse* response) override {
+        impl::ServerSpanGuard span_guard{ctx, "ValidateConfig"};
+
         const viam::app::v1::ComponentConfig& proto = request->config();
         ResourceConfig cfg = from_proto(proto);
 
         const std::shared_ptr<const ModelRegistration> reg =
             Registry::get().lookup_model(cfg.api(), cfg.model());
         if (!reg) {
-            return grpc::Status(grpc::UNKNOWN,
-                                "unable to validate resource " + cfg.resource_name().name() +
-                                    " as it hasn't been registered.");
+            return span_guard.commit(grpc::Status(grpc::UNKNOWN,
+                                                  "unable to validate resource " +
+                                                      cfg.resource_name().name() +
+                                                      " as it hasn't been registered."));
         }
         try {
             const std::vector<std::string> implicit_deps = reg->validate(cfg);
@@ -164,26 +174,29 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                 response->add_dependencies(dep);
             }
         } catch (const std::exception& err) {
-            return grpc::Status(grpc::UNKNOWN,
-                                "validation failure in resource " + cfg.name() + ": " + err.what());
+            return span_guard.commit(grpc::Status(
+                grpc::UNKNOWN, "validation failure in resource " + cfg.name() + ": " + err.what()));
         }
-        return grpc::Status();
+        return span_guard.commit(grpc::Status());
     }
 
-    ::grpc::Status RemoveResource(::grpc::ServerContext*,
+    ::grpc::Status RemoveResource(::grpc::ServerContext* ctx,
                                   const ::viam::module::v1::RemoveResourceRequest* request,
                                   ::viam::module::v1::RemoveResourceResponse*) override {
+        impl::ServerSpanGuard span_guard{ctx, "RemoveResource"};
+
         auto name = Name::from_string(request->name());
         auto resource_server = parent.server_->lookup_resource_server(name.api());
         if (!resource_server) {
-            return grpc::Status(grpc::UNKNOWN, "no grpc service for " + name.api().to_string());
+            return span_guard.commit(
+                grpc::Status(grpc::UNKNOWN, "no grpc service for " + name.api().to_string()));
         }
         const std::shared_ptr<ResourceManager> manager = resource_server->resource_manager();
         const std::shared_ptr<Resource> res = manager->resource(name.name());
         if (!res) {
-            return grpc::Status(
+            return span_guard.commit(grpc::Status(
                 grpc::UNKNOWN,
-                "unable to remove resource " + name.to_string() + " as it doesn't exist.");
+                "unable to remove resource " + name.to_string() + " as it doesn't exist."));
         }
 
         if (auto stoppable = std::dynamic_pointer_cast<Stoppable>(res)) {
@@ -191,7 +204,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         }
 
         manager->remove(name);
-        return grpc::Status();
+        return span_guard.commit(grpc::Status());
     }
 
     ::grpc::Status Ready(::grpc::ServerContext*,
@@ -210,6 +223,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
                     .set_reconnect_every_interval(std::chrono::seconds{1});
                 parent.parent_ = RobotClient::at_local_socket(parent.parent_addr_, opts);
                 parent.parent_->connect_logging();
+                parent.parent_->connect_tracing();
             }
         }
 
@@ -243,6 +257,15 @@ std::shared_ptr<Resource> ModuleService::get_parent_resource_(const Name& name) 
         parent_->connect_logging();
     }
 
+    // The parent's resource cache is populated once at parent_ construction
+    // (refresh_every_interval=0 disables periodic refresh). Resources
+    // registered with viam-server after that point — including built-in
+    // components configured alongside a module that depends on them —
+    // won't appear unless we refresh on demand. This function is called from
+    // AddResource/ReconfigureResource (per-resource-construction frequency,
+    // not data-plane), so the cost of an extra ResourceNames round-trip is
+    // negligible and worth the predictable semantics.
+    parent_->refresh();
     return parent_->resource_by_name(name);
 }
 
@@ -279,6 +302,8 @@ ModuleService::~ModuleService() {
     // TODO(RSDK-5509): Run registered cleanup functions here.
     VIAM_SDK_LOG(info) << "Shutting down gracefully.";
     server_->shutdown();
+
+    impl::Tracer::get().shutdown_provider();
 
     if (parent_) {
         try {

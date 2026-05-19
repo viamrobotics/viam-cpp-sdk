@@ -64,7 +64,7 @@ jobs:
 
           conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
 
-          conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" \
+          conan create . --build=missing -s:a compiler.cppstd=17 \
           --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
           conan upload "viam-cpp-sdk/*" -r viamconan -c
@@ -82,6 +82,7 @@ jobs:
           conan upload "boost/*" -r viamconan -c
           conan upload "grpc/*" -r viamconan -c
           conan upload "protobuf/*" -r viamconan -c
+          conan upload "opentelemetry-cpp/*" -r viamconan -c
 
 
   build_linux:
@@ -167,7 +168,7 @@ jobs:
 
         conan lock add --requires=viam-cpp-sdk/${{ inputs.ref }}
 
-        conan create . --build=missing -s:a compiler.cppstd=17 -o:a "&:shared=False" \
+        conan create . --build=missing -s:a compiler.cppstd=17 \
         --lockfile etc/conan/conan.lock $LOCKFILE_UPDATE_ARGS
 
         conan upload "viam-cpp-sdk/*" -r viamconan -c
@@ -197,6 +198,7 @@ jobs:
         conan upload "abseil/*" -r viamconan -c
         conan upload "grpc/*" -r viamconan -c
         conan upload "protobuf/*" -r viamconan -c
+        conan upload "opentelemetry-cpp/*" -r viamconan -c
         conan upload "c-ares/*" -r viamconan -c
         conan upload "libbacktrace/*" -r viamconan -c
         conan upload "re2/*" -r viamconan -c
@@ -238,7 +240,7 @@ jobs:
         Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
         refreshenv
 
-        conan create . --build=missing -o "&:shared=False" -s:a compiler.cppstd=17
+        conan create . --build=missing -s:a compiler.cppstd=17
         conan upload "viam-cpp-sdk/*" -r viamconan -c
       env:
         CONAN_USER_HOME: c:/cache
@@ -255,6 +257,7 @@ jobs:
         conan upload "boost/*" -r viamconan -c
         conan upload "grpc/*" -r viamconan -c
         conan upload "protobuf/*" -r viamconan -c
+        conan upload "opentelemetry-cpp/*" -r viamconan -c
       env:
         CONAN_USER_HOME: c:/cache
         CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths

@@ -25,6 +25,7 @@ namespace v1 {
 
 class FrameSystemConfig;
 class Operation;
+class SendTracesRequest;
 
 }  // namespace v1
 }  // namespace robot
@@ -33,7 +34,8 @@ namespace sdk {
 
 namespace impl {
 struct LogBackend;
-}
+class ParentSendTracesExporter;
+}  // namespace impl
 
 /// @defgroup Robot Classes related to a Robot representation.
 
@@ -186,11 +188,15 @@ class RobotClient {
    private:
     friend class ModuleService;
     friend struct impl::LogBackend;
+    friend class impl::ParentSendTracesExporter;
 
     void log(const std::string& name,
              const std::string& level,
              const std::string& message,
              time_pt time);
+
+    // Ships a batch of OTLP traces to the parent. Returns true on success.
+    bool send_traces(const robot::v1::SendTracesRequest* req);
 
     // Makes this RobotClient manage logging by sending logs over grpc to viam-server.
     // This is private and only ever called by ModuleService; in other words it is only called when
@@ -198,6 +204,10 @@ class RobotClient {
     // Disables console logging so as to avoid log message duplication; console logging is
     // re-enabled on destruction.
     void connect_logging();
+
+    // Installs the SDK tracer provider so spans flow back to the parent over this connection.
+    // Only called by ModuleService when running as a module.
+    void connect_tracing();
 
     void refresh_every();
     void check_connection();

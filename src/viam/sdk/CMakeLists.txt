@@ -71,6 +71,8 @@ target_sources(viamsdk
     common/version_metadata.cpp
     common/world_state.cpp
     common/private/service_helper.cpp
+    tracing/private/span_guard.cpp
+    tracing/private/tracer.cpp
     components/arm.cpp
     components/audio_in.cpp
     components/audio_out.cpp
@@ -137,7 +139,6 @@ target_sources(viamsdk
     module/private/data_consumer_query.cpp
     referenceframe/frame.cpp
     registry/registry.cpp
-    resource/reconfigurable.cpp
     resource/resource.cpp
     resource/resource_api.cpp
     resource/resource_manager.cpp
@@ -218,7 +219,6 @@ target_sources(viamsdk
       ../../viam/sdk/module/signal_manager.hpp
       ../../viam/sdk/referenceframe/frame.hpp
       ../../viam/sdk/registry/registry.hpp
-      ../../viam/sdk/resource/reconfigurable.hpp
       ../../viam/sdk/resource/resource.hpp
       ../../viam/sdk/resource/resource_api.hpp
       ../../viam/sdk/resource/resource_manager.hpp
@@ -307,6 +307,14 @@ target_link_libraries(viamsdk
   PRIVATE ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
   PRIVATE Threads::Threads
 )
+
+if (VIAMCPPSDK_OPENTELEMETRY_TRACING)
+  target_compile_definitions(viamsdk PRIVATE VIAMCPPSDK_OPENTELEMETRY_TRACING)
+  target_link_libraries(viamsdk
+    PRIVATE opentelemetry-cpp::trace
+    PRIVATE opentelemetry-cpp::exporter_otlp_grpc
+  )
+endif()
 
 # if the `viam_rust_utils` target exists then we should use it. If not then
 # we're probably on a non-x86_64 windows build or some other platform without

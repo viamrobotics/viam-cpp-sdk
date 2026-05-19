@@ -9,6 +9,7 @@
 
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/rpc/private/grpc_context_observer.hpp>
+#include <viam/sdk/tracing/private/span_guard.hpp>
 
 namespace viam {
 namespace sdk {
@@ -29,6 +30,10 @@ class ServiceHelperBase {
 
    protected:
     explicit ServiceHelperBase(const char* method) noexcept : method_{method} {}
+
+    const char* method_name() const noexcept {
+        return method_;
+    }
 
    private:
     const char* method_;
@@ -56,7 +61,8 @@ class ServiceHelper : public ServiceHelperBase {
             return failNoResource(request_->name());
         }
         const GrpcContextObserver::Enable enable{*context_};
-        return invoke_(std::forward<Callable>(callable), std::move(resource));
+        impl::ServerSpanGuard span_guard{context_, method_name()};
+        return span_guard.commit(invoke_(std::forward<Callable>(callable), std::move(resource)));
     } catch (const std::exception& xcp) {
         return failStdException(xcp);
     } catch (...) {
