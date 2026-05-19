@@ -26,6 +26,7 @@ namespace v1 {
 
 static const char* AudioOutService_method_names[] = {
   "/viam.component.audioout.v1.AudioOutService/Play",
+  "/viam.component.audioout.v1.AudioOutService/PlayStream",
   "/viam.component.audioout.v1.AudioOutService/GetProperties",
   "/viam.component.audioout.v1.AudioOutService/DoCommand",
   "/viam.component.audioout.v1.AudioOutService/GetStatus",
@@ -40,10 +41,11 @@ std::unique_ptr< AudioOutService::Stub> AudioOutService::NewStub(const std::shar
 
 AudioOutService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Play_(AudioOutService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetProperties_(AudioOutService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DoCommand_(AudioOutService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetStatus_(AudioOutService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetGeometries_(AudioOutService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PlayStream_(AudioOutService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
+  , rpcmethod_GetProperties_(AudioOutService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DoCommand_(AudioOutService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetStatus_(AudioOutService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetGeometries_(AudioOutService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AudioOutService::Stub::Play(::grpc::ClientContext* context, const ::viam::component::audioout::v1::PlayRequest& request, ::viam::component::audioout::v1::PlayResponse* response) {
@@ -67,6 +69,22 @@ void AudioOutService::Stub::async::Play(::grpc::ClientContext* context, const ::
     this->PrepareAsyncPlayRaw(context, request, cq);
   result->StartCall();
   return result;
+}
+
+::grpc::ClientWriter< ::viam::component::audioout::v1::PlayStreamRequest>* AudioOutService::Stub::PlayStreamRaw(::grpc::ClientContext* context, ::viam::component::audioout::v1::PlayStreamResponse* response) {
+  return ::grpc::internal::ClientWriterFactory< ::viam::component::audioout::v1::PlayStreamRequest>::Create(channel_.get(), rpcmethod_PlayStream_, context, response);
+}
+
+void AudioOutService::Stub::async::PlayStream(::grpc::ClientContext* context, ::viam::component::audioout::v1::PlayStreamResponse* response, ::grpc::ClientWriteReactor< ::viam::component::audioout::v1::PlayStreamRequest>* reactor) {
+  ::grpc::internal::ClientCallbackWriterFactory< ::viam::component::audioout::v1::PlayStreamRequest>::Create(stub_->channel_.get(), stub_->rpcmethod_PlayStream_, context, response, reactor);
+}
+
+::grpc::ClientAsyncWriter< ::viam::component::audioout::v1::PlayStreamRequest>* AudioOutService::Stub::AsyncPlayStreamRaw(::grpc::ClientContext* context, ::viam::component::audioout::v1::PlayStreamResponse* response, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncWriterFactory< ::viam::component::audioout::v1::PlayStreamRequest>::Create(channel_.get(), cq, rpcmethod_PlayStream_, context, response, true, tag);
+}
+
+::grpc::ClientAsyncWriter< ::viam::component::audioout::v1::PlayStreamRequest>* AudioOutService::Stub::PrepareAsyncPlayStreamRaw(::grpc::ClientContext* context, ::viam::component::audioout::v1::PlayStreamResponse* response, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncWriterFactory< ::viam::component::audioout::v1::PlayStreamRequest>::Create(channel_.get(), cq, rpcmethod_PlayStream_, context, response, false, nullptr);
 }
 
 ::grpc::Status AudioOutService::Stub::GetProperties(::grpc::ClientContext* context, const ::viam::common::v1::GetPropertiesRequest& request, ::viam::common::v1::GetPropertiesResponse* response) {
@@ -174,6 +192,16 @@ AudioOutService::Service::Service() {
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AudioOutService_method_names[1],
+      ::grpc::internal::RpcMethod::CLIENT_STREAMING,
+      new ::grpc::internal::ClientStreamingHandler< AudioOutService::Service, ::viam::component::audioout::v1::PlayStreamRequest, ::viam::component::audioout::v1::PlayStreamResponse>(
+          [](AudioOutService::Service* service,
+             ::grpc::ServerContext* ctx,
+             ::grpc::ServerReader<::viam::component::audioout::v1::PlayStreamRequest>* reader,
+             ::viam::component::audioout::v1::PlayStreamResponse* resp) {
+               return service->PlayStream(ctx, reader, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AudioOutService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AudioOutService::Service, ::viam::common::v1::GetPropertiesRequest, ::viam::common::v1::GetPropertiesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AudioOutService::Service* service,
@@ -183,7 +211,7 @@ AudioOutService::Service::Service() {
                return service->GetProperties(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AudioOutService_method_names[2],
+      AudioOutService_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AudioOutService::Service, ::viam::common::v1::DoCommandRequest, ::viam::common::v1::DoCommandResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AudioOutService::Service* service,
@@ -193,7 +221,7 @@ AudioOutService::Service::Service() {
                return service->DoCommand(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AudioOutService_method_names[3],
+      AudioOutService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AudioOutService::Service, ::viam::common::v1::GetStatusRequest, ::viam::common::v1::GetStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AudioOutService::Service* service,
@@ -203,7 +231,7 @@ AudioOutService::Service::Service() {
                return service->GetStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      AudioOutService_method_names[4],
+      AudioOutService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< AudioOutService::Service, ::viam::common::v1::GetGeometriesRequest, ::viam::common::v1::GetGeometriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](AudioOutService::Service* service,
@@ -220,6 +248,13 @@ AudioOutService::Service::~Service() {
 ::grpc::Status AudioOutService::Service::Play(::grpc::ServerContext* context, const ::viam::component::audioout::v1::PlayRequest* request, ::viam::component::audioout::v1::PlayResponse* response) {
   (void) context;
   (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AudioOutService::Service::PlayStream(::grpc::ServerContext* context, ::grpc::ServerReader< ::viam::component::audioout::v1::PlayStreamRequest>* reader, ::viam::component::audioout::v1::PlayStreamResponse* response) {
+  (void) context;
+  (void) reader;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }

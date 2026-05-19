@@ -29,6 +29,11 @@ class AudioOutServer : public ResourceServer,
                         const ::viam::component::audioout::v1::PlayRequest* request,
                         ::viam::component::audioout::v1::PlayResponse* response) noexcept override;
 
+    ::grpc::Status PlayStream(
+        ::grpc::ServerContext* context,
+        ::grpc::ServerReader<::viam::component::audioout::v1::PlayStreamRequest>* reader,
+        ::viam::component::audioout::v1::PlayStreamResponse* response) noexcept override;
+
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) noexcept override;
