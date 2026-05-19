@@ -1,5 +1,7 @@
 #pragma once
 
+#include <exception>
+
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/grpc_fwd.hpp>
@@ -30,6 +32,12 @@ class ServerSpanGuard {
     /// @brief Record the final gRPC status before destruction and return it unchanged.
     ::grpc::Status commit(::grpc::Status status) noexcept;
 
+    /// @brief Record @p xcp as an "exception" event and set span status to Error. Caller rethrows.
+    void record_exception(const std::exception& xcp) noexcept;
+
+    /// @brief Record an unknown (non-std::exception) failure. Caller rethrows.
+    void record_unknown_exception() noexcept;
+
     ServerSpanGuard(const ServerSpanGuard&) = delete;
     ServerSpanGuard& operator=(const ServerSpanGuard&) = delete;
 
@@ -52,6 +60,15 @@ class ServerSpanGuard {
 /// thread (e.g., one created by @c ServerSpanGuard) to downstream gRPC calls. It is a no-op
 /// when no span is active or when OpenTelemetry tracing is not compiled in.
 void inject_trace_context(GrpcClientContext* ctx) noexcept;
+
+#ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
+/// @brief Record @p xcp as an "exception" event on @p span and set status to Error.
+void record_exception(opentelemetry::trace::Span* span, const std::exception& xcp) noexcept;
+
+/// @brief Record an unknown (non-std::exception) failure as an "exception" event on @p span
+/// and set status to Error.
+void record_unknown_exception(opentelemetry::trace::Span* span) noexcept;
+#endif
 
 }  // namespace impl
 }  // namespace sdk

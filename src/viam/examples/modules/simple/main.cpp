@@ -10,6 +10,7 @@
 #include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
+#include <viam/sdk/tracing/span.hpp>
 
 using namespace viam::sdk;
 
@@ -71,6 +72,13 @@ ProtoStruct MySensor::do_command(const ProtoStruct& command) {
 }
 
 ProtoStruct MySensor::get_readings(const ProtoStruct&) {
+    // Example of simple instrumentation with opentelemetry.
+    // These are no-ops if tracing is not compiled in.
+    // Otherwise, this span is a child span of the automatically created span for
+    // Sensor::GetReadings
+    TracingSpan tspan("readings implementation");
+    tspan.add_event("computing signal");
+
     return {{"signal", multiplier_}};
 }
 

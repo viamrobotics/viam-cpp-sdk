@@ -7,8 +7,10 @@
 
 #include <utility>
 
+#include <opentelemetry/common/attribute_value.h>
 #include <opentelemetry/context/propagation/global_propagator.h>
 #include <opentelemetry/context/runtime_context.h>
+#include <opentelemetry/nostd/string_view.h>
 #include <opentelemetry/trace/context.h>
 #include <opentelemetry/trace/propagation/http_trace_context.h>
 #include <opentelemetry/trace/provider.h>
@@ -114,6 +116,32 @@ ServerSpanGuard::~ServerSpanGuard() noexcept {
     return status;
 }
 
+void record_exception(otel_trace::Span* span, const std::exception& xcp) noexcept {
+    const opentelemetry::nostd::string_view what{xcp.what()};
+    span->SetAttribute("error.type", "std::exception");
+    span->AddEvent("exception",
+                   {{"exception.type", opentelemetry::common::AttributeValue{"std::exception"}},
+                    {"exception.message", opentelemetry::common::AttributeValue{what}}});
+    span->SetStatus(otel_trace::StatusCode::kError, what);
+}
+
+void record_unknown_exception(otel_trace::Span* span) noexcept {
+    span->SetAttribute("error.type", "unknown");
+    span->AddEvent("exception",
+                   {{"exception.type", opentelemetry::common::AttributeValue{"unknown"}}});
+    span->SetStatus(otel_trace::StatusCode::kError, "unknown exception");
+}
+
+void ServerSpanGuard::record_exception(const std::exception& xcp) noexcept {
+    committed_ = true;
+    impl::record_exception(span_.get(), xcp);
+}
+
+void ServerSpanGuard::record_unknown_exception() noexcept {
+    committed_ = true;
+    impl::record_unknown_exception(span_.get());
+}
+
 void inject_trace_context(GrpcClientContext* ctx) noexcept {
     GrpcClientCarrier carrier{ctx};
     otel_prop::GlobalTextMapPropagator::GetGlobalPropagator()->Inject(
@@ -138,6 +166,13 @@ ServerSpanGuard::~ServerSpanGuard() noexcept = default;
     ::grpc::Status status) noexcept {
     return status;
 }
+
+void ServerSpanGuard::record_exception(  // NOLINT(readability-convert-member-functions-to-static)
+    const std::exception&) noexcept {}
+
+void ServerSpanGuard::
+    record_unknown_exception()  // NOLINT(readability-convert-member-functions-to-static)
+    noexcept {}
 
 void inject_trace_context(GrpcClientContext*) noexcept {}
 
