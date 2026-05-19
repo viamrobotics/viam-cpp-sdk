@@ -4,6 +4,7 @@
 #include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
+#include <viam/sdk/tracing/private/span_guard.hpp>
 
 namespace viam {
 namespace sdk {
@@ -36,14 +37,16 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext* context,
     ::grpc::ServerReader<::viam::component::audioout::v1::PlayStreamRequest>* reader,
     ::viam::component::audioout::v1::PlayStreamResponse*) noexcept {
+    ServerSpanGuard span_guard{context, "AudioOutServer::PlayStream"};
+
     ::viam::component::audioout::v1::PlayStreamRequest first;
     if (!reader->Read(&first)) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "PlayStream: stream closed before init message");
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                                                "PlayStream: stream closed before init message"));
     }
     if (!first.has_init()) {
-        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                              "PlayStream: first message must be PlayStreamInit");
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                                                "PlayStream: first message must be PlayStreamInit"));
     }
 
     const auto& init = first.init();
@@ -59,11 +62,11 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     try {
         audio_out = resource_manager()->resource<AudioOut>(init.name());
     } catch (const std::exception& e) {
-        return ::grpc::Status(::grpc::StatusCode::NOT_FOUND, e.what());
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::NOT_FOUND, e.what()));
     }
     if (!audio_out) {
-        return ::grpc::Status(::grpc::StatusCode::NOT_FOUND,
-                              "PlayStream: resource not found: " + init.name());
+        return span_guard.commit(::grpc::Status(
+            ::grpc::StatusCode::NOT_FOUND, "PlayStream: resource not found: " + init.name()));
     }
 
     // chunk_source pulls the next chunk off the gRPC stream. Returns boost::none on EOF or
@@ -86,9 +89,9 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
     try {
         audio_out->play_stream(std::move(info), std::move(chunk_source), extra);
     } catch (const std::exception& e) {
-        return ::grpc::Status(::grpc::StatusCode::INTERNAL, e.what());
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INTERNAL, e.what()));
     }
-    return ::grpc::Status::OK;
+    return span_guard.commit(::grpc::Status::OK);
 }
 
 ::grpc::Status AudioOutServer::DoCommand(::grpc::ServerContext* context,
