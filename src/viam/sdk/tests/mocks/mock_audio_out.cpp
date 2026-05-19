@@ -19,6 +19,16 @@ void MockAudioOut::play(std::vector<uint8_t> const& audio_data,
     last_played_audio_info_ = info;
 }
 
+void MockAudioOut::play_stream(audio_info info,
+                               std::function<boost::optional<std::vector<uint8_t>>()> chunk_source,
+                               const ProtoStruct& extra) {
+    last_streamed_info_ = std::move(info);
+    streamed_chunks_.clear();
+    while (auto chunk = chunk_source()) {
+        streamed_chunks_.push_back(std::move(*chunk));
+    }
+}
+
 audio_properties MockAudioOut::get_properties(const ProtoStruct& extra) {
     return properties_;
 }
