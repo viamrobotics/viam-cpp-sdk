@@ -96,6 +96,14 @@ Public Member Functions</h2></td></tr>
 ::grpc::Status&#160;</td><td class="memItemRight" valign="bottom"><b>commit</b> (::grpc::Status status) noexcept</td></tr>
 <tr class="memdesc:a8b2fd9a63e6bbcf4a1aeb4656a427920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Record the final gRPC status before destruction and return it unchanged. <br /></td></tr>
 <tr class="separator:a8b2fd9a63e6bbcf4a1aeb4656a427920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74d5222d8eb77b1aca22345ef78da3b" id="r_aa74d5222d8eb77b1aca22345ef78da3b"><td class="memItemLeft" align="right" valign="top"><a id="aa74d5222d8eb77b1aca22345ef78da3b" name="aa74d5222d8eb77b1aca22345ef78da3b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>record_exception</b> (const std::exception &amp;xcp) noexcept</td></tr>
+<tr class="memdesc:aa74d5222d8eb77b1aca22345ef78da3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Record <code>xcp</code> as an "exception" event and set span status to Error. Caller rethrows. <br /></td></tr>
+<tr class="separator:aa74d5222d8eb77b1aca22345ef78da3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44a31c43a48d04544a1fd71e105a0d2c" id="r_a44a31c43a48d04544a1fd71e105a0d2c"><td class="memItemLeft" align="right" valign="top"><a id="a44a31c43a48d04544a1fd71e105a0d2c" name="a44a31c43a48d04544a1fd71e105a0d2c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>record_unknown_exception</b> () noexcept</td></tr>
+<tr class="memdesc:a44a31c43a48d04544a1fd71e105a0d2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Record an unknown (non-stdexception) failure. Caller rethrows. <br /></td></tr>
+<tr class="separator:a44a31c43a48d04544a1fd71e105a0d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe3c340da41fa16e77d627e5b47fbcab" id="r_abe3c340da41fa16e77d627e5b47fbcab"><td class="memItemLeft" align="right" valign="top"><a id="abe3c340da41fa16e77d627e5b47fbcab" name="abe3c340da41fa16e77d627e5b47fbcab"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ServerSpanGuard</b> (const <a class="el" href="classviam_1_1sdk_1_1impl_1_1ServerSpanGuard.html">ServerSpanGuard</a> &amp;)=delete</td></tr>
 <tr class="separator:abe3c340da41fa16e77d627e5b47fbcab"><td class="memSeparator" colspan="2">&#160;</td></tr>
