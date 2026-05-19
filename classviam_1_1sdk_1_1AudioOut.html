@@ -116,6 +116,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a033b0795812435e563392dad1cbfd4ef" id="r_a033b0795812435e563392dad1cbfd4ef"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a033b0795812435e563392dad1cbfd4ef">play</a> (std::vector&lt; uint8_t &gt; const &amp;audio_data, boost::optional&lt; <a class="el" href="structviam_1_1sdk_1_1audio__info.html">audio_info</a> &gt; info, const ProtoStruct &amp;extra)=0</td></tr>
 <tr class="memdesc:a033b0795812435e563392dad1cbfd4ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Play audio through the audioout component.  <br /></td></tr>
 <tr class="separator:a033b0795812435e563392dad1cbfd4ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4ea97724661c7032ce88be1df8b52fd" id="r_ac4ea97724661c7032ce88be1df8b52fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4ea97724661c7032ce88be1df8b52fd">play_stream</a> (<a class="el" href="structviam_1_1sdk_1_1audio__info.html">audio_info</a> info, std::function&lt; boost::optional&lt; std::vector&lt; uint8_t &gt; &gt;()&gt; chunk_source)</td></tr>
+<tr class="memdesc:ac4ea97724661c7032ce88be1df8b52fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream audio chunks to the audioout component for playback.  <br /></td></tr>
+<tr class="separator:ac4ea97724661c7032ce88be1df8b52fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5399dde69add9ccc41a2bc63c27e899" id="r_ad5399dde69add9ccc41a2bc63c27e899"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5399dde69add9ccc41a2bc63c27e899">play_stream</a> (<a class="el" href="structviam_1_1sdk_1_1audio__info.html">audio_info</a> info, std::function&lt; boost::optional&lt; std::vector&lt; uint8_t &gt; &gt;()&gt; chunk_source, const ProtoStruct &amp;extra)=0</td></tr>
+<tr class="memdesc:ad5399dde69add9ccc41a2bc63c27e899"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream audio chunks to the audioout component for playback.  <br /></td></tr>
+<tr class="separator:ad5399dde69add9ccc41a2bc63c27e899"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae272de882dab4a142d0b2689a24ba5d0" id="r_ae272de882dab4a142d0b2689a24ba5d0"><td class="memItemLeft" align="right" valign="top"><a id="ae272de882dab4a142d0b2689a24ba5d0" name="ae272de882dab4a142d0b2689a24ba5d0"></a>
 <a class="el" href="structviam_1_1sdk_1_1audio__properties.html">audio_properties</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_properties</b> ()</td></tr>
 <tr class="memdesc:ae272de882dab4a142d0b2689a24ba5d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns properties of the audio out device (supported codecs, sample rate, number of channels) <br /></td></tr>
@@ -452,6 +458,90 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1AudioOutClient.html#af9a8d7e67fab54ff10e356c332864671">viam::sdk::impl::AudioOutClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1AudioOutClient.html#a033b0795812435e563392dad1cbfd4ef">viam::sdk::impl::AudioOutClient</a>.</p>
+
+</div>
+</div>
+<a id="ac4ea97724661c7032ce88be1df8b52fd" name="ac4ea97724661c7032ce88be1df8b52fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4ea97724661c7032ce88be1df8b52fd">&#9670;&#160;</a></span>play_stream() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void viam::sdk::AudioOut::play_stream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structviam_1_1sdk_1_1audio__info.html">audio_info</a></td>          <td class="paramname"><span class="paramname"><em>info</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; boost::optional&lt; std::vector&lt; uint8_t &gt; &gt;()&gt;</td>          <td class="paramname"><span class="paramname"><em>chunk_source</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stream audio chunks to the audioout component for playback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">info</td><td>Info describing the audio chunks (codec, sample rate, channels). </td></tr>
+    <tr><td class="paramname">chunk_source</td><td>Callback invoked to retrieve each next chunk. Return a chunk to continue streaming; return <code>boost::none</code> to signal end-of-stream. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad5399dde69add9ccc41a2bc63c27e899" name="ad5399dde69add9ccc41a2bc63c27e899"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5399dde69add9ccc41a2bc63c27e899">&#9670;&#160;</a></span>play_stream() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void viam::sdk::AudioOut::play_stream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structviam_1_1sdk_1_1audio__info.html">audio_info</a></td>          <td class="paramname"><span class="paramname"><em>info</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; boost::optional&lt; std::vector&lt; uint8_t &gt; &gt;()&gt;</td>          <td class="paramname"><span class="paramname"><em>chunk_source</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ProtoStruct &amp;</td>          <td class="paramname"><span class="paramname"><em>extra</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stream audio chunks to the audioout component for playback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">info</td><td>Info describing the audio chunks (codec, sample rate, channels). </td></tr>
+    <tr><td class="paramname">chunk_source</td><td>Callback invoked to retrieve each next chunk. Return a chunk to continue streaming; return <code>boost::none</code> to signal end-of-stream. </td></tr>
+    <tr><td class="paramname">extra</td><td>Any additional arguments to the method </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classviam_1_1sdk_1_1impl_1_1AudioOutClient.html#a5774a3697f53b863a825df8c80a7440b">viam::sdk::impl::AudioOutClient</a>, and <a class="el" href="classviam_1_1sdk_1_1impl_1_1AudioOutClient.html#ad5399dde69add9ccc41a2bc63c27e899">viam::sdk::impl::AudioOutClient</a>.</p>
 
 </div>
 </div>
