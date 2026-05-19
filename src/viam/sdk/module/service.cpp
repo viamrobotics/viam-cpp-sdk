@@ -215,7 +215,7 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         *response->mutable_handlermap() = hm;
 
         if (!is_env_var_true("VIAM_NO_MODULE_PARENT")) {
-            auto new_parent_addr = parent.grpc_conn_protocol_ + request->parent_address();
+            auto new_parent_addr = parent.grpc_conn_protocol_ + request->raw_parent_address();
             if (parent.parent_addr_ != new_parent_addr) {
                 parent.parent_addr_ = std::move(new_parent_addr);
                 Options opts{0, boost::none};

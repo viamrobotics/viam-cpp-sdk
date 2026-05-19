@@ -12,6 +12,7 @@
 #include <viam/api/component/audioout/v1/audioout.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/audio_out.hpp>
@@ -27,6 +28,46 @@ AudioOutClient::AudioOutClient(std::string name, const ViamChannel& channel)
       stub_(viam::component::audioout::v1::AudioOutService::NewStub(
           std::static_pointer_cast<::grpc::ChannelInterface>(channel.channel()))),
       channel_(&channel) {}
+
+void AudioOutClient::play_stream(
+    audio_info info,
+    std::function<boost::optional<std::vector<uint8_t>>()> chunk_source,
+    const ProtoStruct& extra) {
+    ::grpc::ClientContext ctx;
+    ::viam::component::audioout::v1::PlayStreamResponse response;
+    auto writer = stub_->PlayStream(&ctx, &response);
+
+    // First message: init (name + audio_info + extra).
+    ::viam::component::audioout::v1::PlayStreamRequest init;
+    auto* init_payload = init.mutable_init();
+    init_payload->set_name(this->name());
+    auto* pb_info = init_payload->mutable_audio_info();
+    pb_info->set_codec(info.codec);
+    pb_info->set_sample_rate_hz(info.sample_rate_hz);
+    pb_info->set_num_channels(info.num_channels);
+    *init_payload->mutable_extra() = to_proto(extra);
+    if (!writer->Write(init)) {
+        const auto status = writer->Finish();
+        throw GRPCException(&status);
+    }
+
+    // Pull chunks from the source and forward each as a PlayStreamChunk message.
+    while (auto chunk = chunk_source()) {
+        ::viam::component::audioout::v1::PlayStreamRequest msg;
+        auto* chunk_msg = msg.mutable_audio_chunk();
+        chunk_msg->set_audio_data(std::string(chunk->begin(), chunk->end()));
+        if (!writer->Write(msg)) {
+            // Stream broken on server side; surface the error from Finish().
+            break;
+        }
+    }
+
+    writer->WritesDone();
+    const auto status = writer->Finish();
+    if (!status.ok()) {
+        throw GRPCException(&status);
+    }
+}
 
 void AudioOutClient::play(std::vector<uint8_t> const& audio_data,
                           boost::optional<audio_info> info,

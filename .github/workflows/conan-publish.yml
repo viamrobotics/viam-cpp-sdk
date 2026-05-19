@@ -82,6 +82,7 @@ jobs:
           conan upload "boost/*" -r viamconan -c
           conan upload "grpc/*" -r viamconan -c
           conan upload "protobuf/*" -r viamconan -c
+          conan upload "opentelemetry-cpp/*" -r viamconan -c
 
 
   build_linux:
@@ -212,6 +213,7 @@ jobs:
         conan upload "abseil/*" -r viamconan -c
         conan upload "grpc/*" -r viamconan -c
         conan upload "protobuf/*" -r viamconan -c
+        conan upload "opentelemetry-cpp/*" -r viamconan -c
         conan upload "c-ares/*" -r viamconan -c
         conan upload "libbacktrace/*" -r viamconan -c
         conan upload "re2/*" -r viamconan -c
@@ -270,6 +272,7 @@ jobs:
         conan upload "boost/*" -r viamconan -c
         conan upload "grpc/*" -r viamconan -c
         conan upload "protobuf/*" -r viamconan -c
+        conan upload "opentelemetry-cpp/*" -r viamconan -c
       env:
         CONAN_USER_HOME: c:/cache
         CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
