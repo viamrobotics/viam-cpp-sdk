@@ -60,6 +60,8 @@
 #include <viam/sdk/services/private/motion_server.hpp>
 #include <viam/sdk/services/private/navigation_client.hpp>
 #include <viam/sdk/services/private/navigation_server.hpp>
+#include <viam/sdk/services/private/vision_client.hpp>
+#include <viam/sdk/services/private/vision_server.hpp>
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
@@ -229,6 +231,7 @@ void Registry::register_resources() {
     register_resource<impl::MLModelServiceClient, impl::MLModelServiceServer>();
     register_resource<impl::MotionClient, impl::MotionServer>();
     register_resource<impl::NavigationClient, impl::NavigationServer>();
+    register_resource<impl::VisionClient, impl::VisionServer>();
 }
 
 void Registry::initialize() {

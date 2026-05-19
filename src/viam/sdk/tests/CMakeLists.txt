@@ -40,6 +40,7 @@ target_sources(viamsdk_test
     mocks/mock_sensor.cpp
     mocks/mock_servo.cpp
     mocks/mock_switch.cpp
+    mocks/mock_vision.cpp
     mocks/mock_robot.cpp
     test_utils.cpp
 )
@@ -84,4 +85,5 @@ viamcppsdk_add_boost_test(test_resource.cpp)
 viamcppsdk_add_boost_test(test_sensor.cpp)
 viamcppsdk_add_boost_test(test_servo.cpp)
 viamcppsdk_add_boost_test(test_switch.cpp)
+viamcppsdk_add_boost_test(test_vision.cpp)
 viamcppsdk_add_boost_test(test_robot.cpp)
