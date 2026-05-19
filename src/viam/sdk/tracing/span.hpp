@@ -55,6 +55,9 @@ class TracingSpan {
     /// @brief Mark the span as having failed. @p description is optional context.
     void set_status_error(const char* description = "") noexcept;
 
+    /// @brief Mark the end of the span.
+    void end() noexcept;
+
    private:
     struct Impl;
     std::unique_ptr<Impl> impl_;

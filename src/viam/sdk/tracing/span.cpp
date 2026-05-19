@@ -50,7 +50,7 @@ TracingSpan::TracingSpan(const char* name) noexcept
     : impl_(std::make_unique<Impl>(start_or_noop(name))) {}
 
 TracingSpan::~TracingSpan() noexcept {
-    impl_->span->End();
+    end();
 }
 
 template <typename T>
@@ -84,6 +84,10 @@ void TracingSpan::set_status_error(const char* description) noexcept {
     impl_->span->SetStatus(otel_trace::StatusCode::kError, description);
 }
 
+void TracingSpan::end() noexcept {
+    impl_->span->End();
+}
+
 }  // namespace sdk
 }  // namespace viam
 
@@ -109,6 +113,7 @@ template void TracingSpan::set_attribute<std::string>(const char*, std::string) 
 void TracingSpan::add_event(const char*) noexcept {}
 void TracingSpan::set_status_ok() noexcept {}
 void TracingSpan::set_status_error(const char*) noexcept {}
+void TracingSpan::end() noexcept {}
 
 }  // namespace sdk
 }  // namespace viam
