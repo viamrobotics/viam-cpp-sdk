@@ -62,7 +62,19 @@ class ServiceHelper : public ServiceHelperBase {
         }
         const GrpcContextObserver::Enable enable{*context_};
         impl::ServerSpanGuard span_guard{context_, method_name()};
-        return span_guard.commit(invoke_(std::forward<Callable>(callable), std::move(resource)));
+
+        // This is kind of hideous but automates the process of recording exception
+        // info in the active span in case of failure.
+        try {
+            return span_guard.commit(
+                invoke_(std::forward<Callable>(callable), std::move(resource)));
+        } catch (const std::exception& xcp) {
+            span_guard.record_exception(xcp);
+            throw;
+        } catch (...) {
+            span_guard.record_unknown_exception();
+            throw;
+        }
     } catch (const std::exception& xcp) {
         return failStdException(xcp);
     } catch (...) {
