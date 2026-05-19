@@ -116,22 +116,30 @@ ServerSpanGuard::~ServerSpanGuard() noexcept {
     return status;
 }
 
+void record_exception(otel_trace::Span* span, const std::exception& xcp) noexcept {
+    const opentelemetry::nostd::string_view what{xcp.what()};
+    span->SetAttribute("error.type", "std::exception");
+    span->AddEvent("exception",
+                   {{"exception.type", opentelemetry::common::AttributeValue{"std::exception"}},
+                    {"exception.message", opentelemetry::common::AttributeValue{what}}});
+    span->SetStatus(otel_trace::StatusCode::kError, what);
+}
+
+void record_unknown_exception(otel_trace::Span* span) noexcept {
+    span->SetAttribute("error.type", "unknown");
+    span->AddEvent("exception",
+                   {{"exception.type", opentelemetry::common::AttributeValue{"unknown"}}});
+    span->SetStatus(otel_trace::StatusCode::kError, "unknown exception");
+}
+
 void ServerSpanGuard::record_exception(const std::exception& xcp) noexcept {
     committed_ = true;
-    const opentelemetry::nostd::string_view what{xcp.what()};
-    span_->SetAttribute("error.type", "std::exception");
-    span_->AddEvent("exception",
-                    {{"exception.type", opentelemetry::common::AttributeValue{"std::exception"}},
-                     {"exception.message", opentelemetry::common::AttributeValue{what}}});
-    span_->SetStatus(otel_trace::StatusCode::kError, what);
+    impl::record_exception(span_.get(), xcp);
 }
 
 void ServerSpanGuard::record_unknown_exception() noexcept {
     committed_ = true;
-    span_->SetAttribute("error.type", "unknown");
-    span_->AddEvent("exception",
-                    {{"exception.type", opentelemetry::common::AttributeValue{"unknown"}}});
-    span_->SetStatus(otel_trace::StatusCode::kError, "unknown exception");
+    impl::record_unknown_exception(span_.get());
 }
 
 void inject_trace_context(GrpcClientContext* ctx) noexcept {

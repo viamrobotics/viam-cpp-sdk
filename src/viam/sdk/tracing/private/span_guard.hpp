@@ -61,6 +61,15 @@ class ServerSpanGuard {
 /// when no span is active or when OpenTelemetry tracing is not compiled in.
 void inject_trace_context(GrpcClientContext* ctx) noexcept;
 
+#ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
+/// @brief Record @p xcp as an "exception" event on @p span and set status to Error.
+void record_exception(opentelemetry::trace::Span* span, const std::exception& xcp) noexcept;
+
+/// @brief Record an unknown (non-std::exception) failure as an "exception" event on @p span
+/// and set status to Error.
+void record_unknown_exception(opentelemetry::trace::Span* span) noexcept;
+#endif
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

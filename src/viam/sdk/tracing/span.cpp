@@ -2,6 +2,8 @@
 
 #ifdef VIAMCPPSDK_OPENTELEMETRY_TRACING
 
+#include <viam/sdk/tracing/private/span_guard.hpp>
+
 #include <opentelemetry/context/runtime_context.h>
 #include <opentelemetry/nostd/string_view.h>
 #include <opentelemetry/trace/context.h>
@@ -84,6 +86,14 @@ void TracingSpan::set_status_error(const char* description) noexcept {
     impl_->span->SetStatus(otel_trace::StatusCode::kError, description);
 }
 
+void TracingSpan::record_exception(const std::exception& xcp) noexcept {
+    impl::record_exception(impl_->span.get(), xcp);
+}
+
+void TracingSpan::record_unknown_exception() noexcept {
+    impl::record_unknown_exception(impl_->span.get());
+}
+
 void TracingSpan::end() noexcept {
     impl_->span->End();
 }
@@ -113,6 +123,8 @@ template void TracingSpan::set_attribute<std::string>(const char*, std::string) 
 void TracingSpan::add_event(const char*) noexcept {}
 void TracingSpan::set_status_ok() noexcept {}
 void TracingSpan::set_status_error(const char*) noexcept {}
+void TracingSpan::record_exception(const std::exception&) noexcept {}
+void TracingSpan::record_unknown_exception() noexcept {}
 void TracingSpan::end() noexcept {}
 
 }  // namespace sdk

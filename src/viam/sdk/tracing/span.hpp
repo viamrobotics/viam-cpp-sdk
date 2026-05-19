@@ -4,6 +4,7 @@
 #pragma once
 
 #include <cstdint>
+#include <exception>
 #include <memory>
 #include <string>
 
@@ -54,6 +55,17 @@ class TracingSpan {
 
     /// @brief Mark the span as having failed. @p description is optional context.
     void set_status_error(const char* description = "") noexcept;
+
+    /// @brief Record @p xcp as an "exception" event and set span status to Error.
+    /// @remark In the event of an exception the parent span will automatically set its status to
+    /// error. Use this helper if you wish to record failure info within child spans.
+    void record_exception(const std::exception& xcp) noexcept;
+
+    /// @brief Record an unknown (non-std::exception) failure as an "exception" event and set
+    /// span status to Error.
+    /// @remark In the event of an exception the parent span will automatically set its status to
+    /// error. Use this helper if you wish to record failure info within child spans.
+    void record_unknown_exception() noexcept;
 
     /// @brief Mark the end of the span.
     void end() noexcept;
