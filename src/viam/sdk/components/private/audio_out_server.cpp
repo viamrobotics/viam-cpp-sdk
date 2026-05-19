@@ -45,8 +45,9 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
                                                 "PlayStream: stream closed before init message"));
     }
     if (!first.has_init()) {
-        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
-                                                "PlayStream: first message must be PlayStreamInit"));
+        return span_guard.commit(
+            ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                           "PlayStream: first message must be PlayStreamInit"));
     }
 
     const auto& init = first.init();
@@ -65,8 +66,8 @@ AudioOutServer::AudioOutServer(std::shared_ptr<ResourceManager> manager)
         return span_guard.commit(::grpc::Status(::grpc::StatusCode::NOT_FOUND, e.what()));
     }
     if (!audio_out) {
-        return span_guard.commit(::grpc::Status(
-            ::grpc::StatusCode::NOT_FOUND, "PlayStream: resource not found: " + init.name()));
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::NOT_FOUND,
+                                                "PlayStream: resource not found: " + init.name()));
     }
 
     // chunk_source pulls the next chunk off the gRPC stream. Returns boost::none on EOF or
