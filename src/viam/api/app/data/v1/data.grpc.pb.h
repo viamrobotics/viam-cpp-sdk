@@ -227,6 +227,22 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>> PrepareAsyncRemoveBinaryDataFromDatasetByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>>(PrepareAsyncRemoveBinaryDataFromDatasetByIDsRaw(context, request, cq));
     }
+    // AddSequencesToDataset adds the sequences with the given IDs to the dataset.
+    virtual ::grpc::Status AddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddSequencesToDatasetResponse>> AsyncAddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddSequencesToDatasetResponse>>(AsyncAddSequencesToDatasetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddSequencesToDatasetResponse>> PrepareAsyncAddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddSequencesToDatasetResponse>>(PrepareAsyncAddSequencesToDatasetRaw(context, request, cq));
+    }
+    // RemoveSequencesFromDataset removes the sequences with the given IDs from the dataset.
+    virtual ::grpc::Status RemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>> AsyncRemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>>(AsyncRemoveSequencesFromDatasetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>> PrepareAsyncRemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>>(PrepareAsyncRemoveSequencesFromDatasetRaw(context, request, cq));
+    }
     // CreateIndex starts a custom index build
     virtual ::grpc::Status CreateIndex(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest& request, ::viam::app::data::v1::CreateIndexResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateIndexResponse>> AsyncCreateIndex(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest& request, ::grpc::CompletionQueue* cq) {
@@ -339,6 +355,14 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>> PrepareAsyncListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>>(PrepareAsyncListSequencesRaw(context, request, cq));
     }
+    // SequencesByDatasetID lists sequences that belong to the given dataset.
+    virtual ::grpc::Status SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>> AsyncSequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>>(AsyncSequencesByDatasetIDRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>> PrepareAsyncSequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>>(PrepareAsyncSequencesByDatasetIDRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -412,6 +436,12 @@ class DataService final {
       // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
       virtual void RemoveBinaryDataFromDatasetByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest* request, ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void RemoveBinaryDataFromDatasetByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest* request, ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // AddSequencesToDataset adds the sequences with the given IDs to the dataset.
+      virtual void AddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // RemoveSequencesFromDataset removes the sequences with the given IDs from the dataset.
+      virtual void RemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // CreateIndex starts a custom index build
       virtual void CreateIndex(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest* request, ::viam::app::data::v1::CreateIndexResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void CreateIndex(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest* request, ::viam::app::data::v1::CreateIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
@@ -454,6 +484,9 @@ class DataService final {
       // ListSequences lists sequences for a given organization.
       virtual void ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // SequencesByDatasetID lists sequences that belong to the given dataset.
+      virtual void SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -506,6 +539,10 @@ class DataService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse>* PrepareAsyncAddBinaryDataToDatasetByIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddBinaryDataToDatasetByIDsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>* AsyncRemoveBinaryDataFromDatasetByIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>* PrepareAsyncRemoveBinaryDataFromDatasetByIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddSequencesToDatasetResponse>* AsyncAddSequencesToDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::AddSequencesToDatasetResponse>* PrepareAsyncAddSequencesToDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* AsyncRemoveSequencesFromDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* PrepareAsyncRemoveSequencesFromDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateIndexResponse>* AsyncCreateIndexRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateIndexResponse>* PrepareAsyncCreateIndexRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListIndexesResponse>* AsyncListIndexesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListIndexesRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -534,6 +571,8 @@ class DataService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::DeleteSequenceResponse>* PrepareAsyncDeleteSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>* AsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>* PrepareAsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>* AsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::SequencesByDatasetIDResponse>* PrepareAsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -701,6 +740,20 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>> PrepareAsyncRemoveBinaryDataFromDatasetByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>>(PrepareAsyncRemoveBinaryDataFromDatasetByIDsRaw(context, request, cq));
     }
+    ::grpc::Status AddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddSequencesToDatasetResponse>> AsyncAddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddSequencesToDatasetResponse>>(AsyncAddSequencesToDatasetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddSequencesToDatasetResponse>> PrepareAsyncAddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddSequencesToDatasetResponse>>(PrepareAsyncAddSequencesToDatasetRaw(context, request, cq));
+    }
+    ::grpc::Status RemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>> AsyncRemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>>(AsyncRemoveSequencesFromDatasetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>> PrepareAsyncRemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>>(PrepareAsyncRemoveSequencesFromDatasetRaw(context, request, cq));
+    }
     ::grpc::Status CreateIndex(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest& request, ::viam::app::data::v1::CreateIndexResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateIndexResponse>> AsyncCreateIndex(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateIndexResponse>>(AsyncCreateIndexRaw(context, request, cq));
@@ -799,6 +852,13 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>> PrepareAsyncListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>>(PrepareAsyncListSequencesRaw(context, request, cq));
     }
+    ::grpc::Status SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>> AsyncSequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>>(AsyncSequencesByDatasetIDRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>> PrepareAsyncSequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>>(PrepareAsyncSequencesByDatasetIDRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -847,6 +907,10 @@ class DataService final {
       void AddBinaryDataToDatasetByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::AddBinaryDataToDatasetByIDsRequest* request, ::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void RemoveBinaryDataFromDatasetByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest* request, ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse* response, std::function<void(::grpc::Status)>) override;
       void RemoveBinaryDataFromDatasetByIDs(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest* request, ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void AddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response, std::function<void(::grpc::Status)>) override;
+      void AddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response, std::function<void(::grpc::Status)>) override;
+      void RemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void CreateIndex(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest* request, ::viam::app::data::v1::CreateIndexResponse* response, std::function<void(::grpc::Status)>) override;
       void CreateIndex(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest* request, ::viam::app::data::v1::CreateIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ListIndexes(::grpc::ClientContext* context, const ::viam::app::data::v1::ListIndexesRequest* request, ::viam::app::data::v1::ListIndexesResponse* response, std::function<void(::grpc::Status)>) override;
@@ -875,6 +939,8 @@ class DataService final {
       void DeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest* request, ::viam::app::data::v1::DeleteSequenceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response, std::function<void(::grpc::Status)>) override;
       void ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, std::function<void(::grpc::Status)>) override;
+      void SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -933,6 +999,10 @@ class DataService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse>* PrepareAsyncAddBinaryDataToDatasetByIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddBinaryDataToDatasetByIDsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>* AsyncRemoveBinaryDataFromDatasetByIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>* PrepareAsyncRemoveBinaryDataFromDatasetByIDsRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddSequencesToDatasetResponse>* AsyncAddSequencesToDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddSequencesToDatasetResponse>* PrepareAsyncAddSequencesToDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* AsyncRemoveSequencesFromDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* PrepareAsyncRemoveSequencesFromDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateIndexResponse>* AsyncCreateIndexRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateIndexResponse>* PrepareAsyncCreateIndexRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListIndexesResponse>* AsyncListIndexesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListIndexesRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -961,6 +1031,8 @@ class DataService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteSequenceResponse>* PrepareAsyncDeleteSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>* AsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>* PrepareAsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>* AsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>* PrepareAsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataByFilter_;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataBySQL_;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataByMQL_;
@@ -984,6 +1056,8 @@ class DataService final {
     const ::grpc::internal::RpcMethod rpcmethod_ConfigureDatabaseUser_;
     const ::grpc::internal::RpcMethod rpcmethod_AddBinaryDataToDatasetByIDs_;
     const ::grpc::internal::RpcMethod rpcmethod_RemoveBinaryDataFromDatasetByIDs_;
+    const ::grpc::internal::RpcMethod rpcmethod_AddSequencesToDataset_;
+    const ::grpc::internal::RpcMethod rpcmethod_RemoveSequencesFromDataset_;
     const ::grpc::internal::RpcMethod rpcmethod_CreateIndex_;
     const ::grpc::internal::RpcMethod rpcmethod_ListIndexes_;
     const ::grpc::internal::RpcMethod rpcmethod_DeleteIndex_;
@@ -998,6 +1072,7 @@ class DataService final {
     const ::grpc::internal::RpcMethod rpcmethod_UpdateSequence_;
     const ::grpc::internal::RpcMethod rpcmethod_DeleteSequence_;
     const ::grpc::internal::RpcMethod rpcmethod_ListSequences_;
+    const ::grpc::internal::RpcMethod rpcmethod_SequencesByDatasetID_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -1053,6 +1128,10 @@ class DataService final {
     virtual ::grpc::Status AddBinaryDataToDatasetByIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::AddBinaryDataToDatasetByIDsRequest* request, ::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse* response);
     // RemoveBinaryDataFromDatasetByIDs removes the binary data with the given binary IDs from the dataset.
     virtual ::grpc::Status RemoveBinaryDataFromDatasetByIDs(::grpc::ServerContext* context, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest* request, ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse* response);
+    // AddSequencesToDataset adds the sequences with the given IDs to the dataset.
+    virtual ::grpc::Status AddSequencesToDataset(::grpc::ServerContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response);
+    // RemoveSequencesFromDataset removes the sequences with the given IDs from the dataset.
+    virtual ::grpc::Status RemoveSequencesFromDataset(::grpc::ServerContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response);
     // CreateIndex starts a custom index build
     virtual ::grpc::Status CreateIndex(::grpc::ServerContext* context, const ::viam::app::data::v1::CreateIndexRequest* request, ::viam::app::data::v1::CreateIndexResponse* response);
     // ListIndexes returns all the indexes for a given collection
@@ -1081,6 +1160,8 @@ class DataService final {
     virtual ::grpc::Status DeleteSequence(::grpc::ServerContext* context, const ::viam::app::data::v1::DeleteSequenceRequest* request, ::viam::app::data::v1::DeleteSequenceResponse* response);
     // ListSequences lists sequences for a given organization.
     virtual ::grpc::Status ListSequences(::grpc::ServerContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response);
+    // SequencesByDatasetID lists sequences that belong to the given dataset.
+    virtual ::grpc::Status SequencesByDatasetID(::grpc::ServerContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_TabularDataByFilter : public BaseClass {
@@ -1543,12 +1624,52 @@ class DataService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_AddSequencesToDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AddSequencesToDataset() {
+      ::grpc::Service::MarkMethodAsync(23);
+    }
+    ~WithAsyncMethod_AddSequencesToDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddSequencesToDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::AddSequencesToDatasetRequest* /*request*/, ::viam::app::data::v1::AddSequencesToDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddSequencesToDataset(::grpc::ServerContext* context, ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::AddSequencesToDatasetResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_RemoveSequencesFromDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_RemoveSequencesFromDataset() {
+      ::grpc::Service::MarkMethodAsync(24);
+    }
+    ~WithAsyncMethod_RemoveSequencesFromDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveSequencesFromDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* /*request*/, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRemoveSequencesFromDataset(::grpc::ServerContext* context, ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_CreateIndex : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateIndex() {
-      ::grpc::Service::MarkMethodAsync(23);
+      ::grpc::Service::MarkMethodAsync(25);
     }
     ~WithAsyncMethod_CreateIndex() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1559,7 +1680,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateIndex(::grpc::ServerContext* context, ::viam::app::data::v1::CreateIndexRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::CreateIndexResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1568,7 +1689,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListIndexes() {
-      ::grpc::Service::MarkMethodAsync(24);
+      ::grpc::Service::MarkMethodAsync(26);
     }
     ~WithAsyncMethod_ListIndexes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1579,7 +1700,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListIndexes(::grpc::ServerContext* context, ::viam::app::data::v1::ListIndexesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::ListIndexesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1588,7 +1709,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteIndex() {
-      ::grpc::Service::MarkMethodAsync(25);
+      ::grpc::Service::MarkMethodAsync(27);
     }
     ~WithAsyncMethod_DeleteIndex() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1599,7 +1720,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteIndex(::grpc::ServerContext* context, ::viam::app::data::v1::DeleteIndexRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::DeleteIndexResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1608,7 +1729,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateSavedQuery() {
-      ::grpc::Service::MarkMethodAsync(26);
+      ::grpc::Service::MarkMethodAsync(28);
     }
     ~WithAsyncMethod_CreateSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1619,7 +1740,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateSavedQuery(::grpc::ServerContext* context, ::viam::app::data::v1::CreateSavedQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::CreateSavedQueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1628,7 +1749,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateSavedQuery() {
-      ::grpc::Service::MarkMethodAsync(27);
+      ::grpc::Service::MarkMethodAsync(29);
     }
     ~WithAsyncMethod_UpdateSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1639,7 +1760,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateSavedQuery(::grpc::ServerContext* context, ::viam::app::data::v1::UpdateSavedQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::UpdateSavedQueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1648,7 +1769,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetSavedQuery() {
-      ::grpc::Service::MarkMethodAsync(28);
+      ::grpc::Service::MarkMethodAsync(30);
     }
     ~WithAsyncMethod_GetSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1659,7 +1780,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSavedQuery(::grpc::ServerContext* context, ::viam::app::data::v1::GetSavedQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::GetSavedQueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1668,7 +1789,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteSavedQuery() {
-      ::grpc::Service::MarkMethodAsync(29);
+      ::grpc::Service::MarkMethodAsync(31);
     }
     ~WithAsyncMethod_DeleteSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1679,7 +1800,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteSavedQuery(::grpc::ServerContext* context, ::viam::app::data::v1::DeleteSavedQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::DeleteSavedQueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1688,7 +1809,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListSavedQueries() {
-      ::grpc::Service::MarkMethodAsync(30);
+      ::grpc::Service::MarkMethodAsync(32);
     }
     ~WithAsyncMethod_ListSavedQueries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1699,7 +1820,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListSavedQueries(::grpc::ServerContext* context, ::viam::app::data::v1::ListSavedQueriesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::ListSavedQueriesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1708,7 +1829,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateBinaryDataSignedURL() {
-      ::grpc::Service::MarkMethodAsync(31);
+      ::grpc::Service::MarkMethodAsync(33);
     }
     ~WithAsyncMethod_CreateBinaryDataSignedURL() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1719,7 +1840,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateBinaryDataSignedURL(::grpc::ServerContext* context, ::viam::app::data::v1::CreateBinaryDataSignedURLRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1728,7 +1849,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_CreateSequence() {
-      ::grpc::Service::MarkMethodAsync(32);
+      ::grpc::Service::MarkMethodAsync(34);
     }
     ~WithAsyncMethod_CreateSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1739,7 +1860,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateSequence(::grpc::ServerContext* context, ::viam::app::data::v1::CreateSequenceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::CreateSequenceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1748,7 +1869,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetSequence() {
-      ::grpc::Service::MarkMethodAsync(33);
+      ::grpc::Service::MarkMethodAsync(35);
     }
     ~WithAsyncMethod_GetSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1759,7 +1880,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSequence(::grpc::ServerContext* context, ::viam::app::data::v1::GetSequenceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::GetSequenceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1768,7 +1889,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_UpdateSequence() {
-      ::grpc::Service::MarkMethodAsync(34);
+      ::grpc::Service::MarkMethodAsync(36);
     }
     ~WithAsyncMethod_UpdateSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1779,7 +1900,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateSequence(::grpc::ServerContext* context, ::viam::app::data::v1::UpdateSequenceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::UpdateSequenceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1788,7 +1909,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_DeleteSequence() {
-      ::grpc::Service::MarkMethodAsync(35);
+      ::grpc::Service::MarkMethodAsync(37);
     }
     ~WithAsyncMethod_DeleteSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1799,7 +1920,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteSequence(::grpc::ServerContext* context, ::viam::app::data::v1::DeleteSequenceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::DeleteSequenceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1808,7 +1929,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ListSequences() {
-      ::grpc::Service::MarkMethodAsync(36);
+      ::grpc::Service::MarkMethodAsync(38);
     }
     ~WithAsyncMethod_ListSequences() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1819,10 +1940,30 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListSequences(::grpc::ServerContext* context, ::viam::app::data::v1::ListSequencesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::ListSequencesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_TabularDataBySQL<WithAsyncMethod_TabularDataByMQL<WithAsyncMethod_ExportTabularData<WithAsyncMethod_GetLatestTabularData<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularData<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<WithAsyncMethod_TagsByFilter<WithAsyncMethod_AddBoundingBoxToImageByID<WithAsyncMethod_RemoveBoundingBoxFromImageByID<WithAsyncMethod_BoundingBoxLabelsByFilter<WithAsyncMethod_UpdateBoundingBox<WithAsyncMethod_GetDatabaseConnection<WithAsyncMethod_ConfigureDatabaseUser<WithAsyncMethod_AddBinaryDataToDatasetByIDs<WithAsyncMethod_RemoveBinaryDataFromDatasetByIDs<WithAsyncMethod_CreateIndex<WithAsyncMethod_ListIndexes<WithAsyncMethod_DeleteIndex<WithAsyncMethod_CreateSavedQuery<WithAsyncMethod_UpdateSavedQuery<WithAsyncMethod_GetSavedQuery<WithAsyncMethod_DeleteSavedQuery<WithAsyncMethod_ListSavedQueries<WithAsyncMethod_CreateBinaryDataSignedURL<WithAsyncMethod_CreateSequence<WithAsyncMethod_GetSequence<WithAsyncMethod_UpdateSequence<WithAsyncMethod_DeleteSequence<WithAsyncMethod_ListSequences<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SequencesByDatasetID : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SequencesByDatasetID() {
+      ::grpc::Service::MarkMethodAsync(39);
+    }
+    ~WithAsyncMethod_SequencesByDatasetID() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SequencesByDatasetID(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SequencesByDatasetIDRequest* /*request*/, ::viam::app::data::v1::SequencesByDatasetIDResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSequencesByDatasetID(::grpc::ServerContext* context, ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::SequencesByDatasetIDResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_TabularDataBySQL<WithAsyncMethod_TabularDataByMQL<WithAsyncMethod_ExportTabularData<WithAsyncMethod_GetLatestTabularData<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularData<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<WithAsyncMethod_TagsByFilter<WithAsyncMethod_AddBoundingBoxToImageByID<WithAsyncMethod_RemoveBoundingBoxFromImageByID<WithAsyncMethod_BoundingBoxLabelsByFilter<WithAsyncMethod_UpdateBoundingBox<WithAsyncMethod_GetDatabaseConnection<WithAsyncMethod_ConfigureDatabaseUser<WithAsyncMethod_AddBinaryDataToDatasetByIDs<WithAsyncMethod_RemoveBinaryDataFromDatasetByIDs<WithAsyncMethod_AddSequencesToDataset<WithAsyncMethod_RemoveSequencesFromDataset<WithAsyncMethod_CreateIndex<WithAsyncMethod_ListIndexes<WithAsyncMethod_DeleteIndex<WithAsyncMethod_CreateSavedQuery<WithAsyncMethod_UpdateSavedQuery<WithAsyncMethod_GetSavedQuery<WithAsyncMethod_DeleteSavedQuery<WithAsyncMethod_ListSavedQueries<WithAsyncMethod_CreateBinaryDataSignedURL<WithAsyncMethod_CreateSequence<WithAsyncMethod_GetSequence<WithAsyncMethod_UpdateSequence<WithAsyncMethod_DeleteSequence<WithAsyncMethod_ListSequences<WithAsyncMethod_SequencesByDatasetID<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_TabularDataByFilter : public BaseClass {
    private:
@@ -2440,18 +2581,72 @@ class DataService final {
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest* /*request*/, ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_AddSequencesToDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_AddSequencesToDataset() {
+      ::grpc::Service::MarkMethodCallback(23,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::AddSequencesToDatasetRequest, ::viam::app::data::v1::AddSequencesToDatasetResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response) { return this->AddSequencesToDataset(context, request, response); }));}
+    void SetMessageAllocatorFor_AddSequencesToDataset(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::AddSequencesToDatasetRequest, ::viam::app::data::v1::AddSequencesToDatasetResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(23);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::AddSequencesToDatasetRequest, ::viam::app::data::v1::AddSequencesToDatasetResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_AddSequencesToDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddSequencesToDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::AddSequencesToDatasetRequest* /*request*/, ::viam::app::data::v1::AddSequencesToDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddSequencesToDataset(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::AddSequencesToDatasetRequest* /*request*/, ::viam::app::data::v1::AddSequencesToDatasetResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_RemoveSequencesFromDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_RemoveSequencesFromDataset() {
+      ::grpc::Service::MarkMethodCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::RemoveSequencesFromDatasetRequest, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response) { return this->RemoveSequencesFromDataset(context, request, response); }));}
+    void SetMessageAllocatorFor_RemoveSequencesFromDataset(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::RemoveSequencesFromDatasetRequest, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(24);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::RemoveSequencesFromDatasetRequest, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_RemoveSequencesFromDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveSequencesFromDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* /*request*/, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RemoveSequencesFromDataset(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* /*request*/, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_CreateIndex : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateIndex() {
-      ::grpc::Service::MarkMethodCallback(23,
+      ::grpc::Service::MarkMethodCallback(25,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateIndexRequest, ::viam::app::data::v1::CreateIndexResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::CreateIndexRequest* request, ::viam::app::data::v1::CreateIndexResponse* response) { return this->CreateIndex(context, request, response); }));}
     void SetMessageAllocatorFor_CreateIndex(
         ::grpc::MessageAllocator< ::viam::app::data::v1::CreateIndexRequest, ::viam::app::data::v1::CreateIndexResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(23);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(25);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateIndexRequest, ::viam::app::data::v1::CreateIndexResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2472,13 +2667,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListIndexes() {
-      ::grpc::Service::MarkMethodCallback(24,
+      ::grpc::Service::MarkMethodCallback(26,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::ListIndexesRequest, ::viam::app::data::v1::ListIndexesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::ListIndexesRequest* request, ::viam::app::data::v1::ListIndexesResponse* response) { return this->ListIndexes(context, request, response); }));}
     void SetMessageAllocatorFor_ListIndexes(
         ::grpc::MessageAllocator< ::viam::app::data::v1::ListIndexesRequest, ::viam::app::data::v1::ListIndexesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(24);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(26);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::ListIndexesRequest, ::viam::app::data::v1::ListIndexesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2499,13 +2694,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteIndex() {
-      ::grpc::Service::MarkMethodCallback(25,
+      ::grpc::Service::MarkMethodCallback(27,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::DeleteIndexRequest, ::viam::app::data::v1::DeleteIndexResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::DeleteIndexRequest* request, ::viam::app::data::v1::DeleteIndexResponse* response) { return this->DeleteIndex(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteIndex(
         ::grpc::MessageAllocator< ::viam::app::data::v1::DeleteIndexRequest, ::viam::app::data::v1::DeleteIndexResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(25);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(27);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::DeleteIndexRequest, ::viam::app::data::v1::DeleteIndexResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2526,13 +2721,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateSavedQuery() {
-      ::grpc::Service::MarkMethodCallback(26,
+      ::grpc::Service::MarkMethodCallback(28,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateSavedQueryRequest, ::viam::app::data::v1::CreateSavedQueryResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::CreateSavedQueryRequest* request, ::viam::app::data::v1::CreateSavedQueryResponse* response) { return this->CreateSavedQuery(context, request, response); }));}
     void SetMessageAllocatorFor_CreateSavedQuery(
         ::grpc::MessageAllocator< ::viam::app::data::v1::CreateSavedQueryRequest, ::viam::app::data::v1::CreateSavedQueryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(26);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(28);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateSavedQueryRequest, ::viam::app::data::v1::CreateSavedQueryResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2553,13 +2748,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateSavedQuery() {
-      ::grpc::Service::MarkMethodCallback(27,
+      ::grpc::Service::MarkMethodCallback(29,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::UpdateSavedQueryRequest, ::viam::app::data::v1::UpdateSavedQueryResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::UpdateSavedQueryRequest* request, ::viam::app::data::v1::UpdateSavedQueryResponse* response) { return this->UpdateSavedQuery(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateSavedQuery(
         ::grpc::MessageAllocator< ::viam::app::data::v1::UpdateSavedQueryRequest, ::viam::app::data::v1::UpdateSavedQueryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(27);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(29);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::UpdateSavedQueryRequest, ::viam::app::data::v1::UpdateSavedQueryResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2580,13 +2775,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetSavedQuery() {
-      ::grpc::Service::MarkMethodCallback(28,
+      ::grpc::Service::MarkMethodCallback(30,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetSavedQueryRequest, ::viam::app::data::v1::GetSavedQueryResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::GetSavedQueryRequest* request, ::viam::app::data::v1::GetSavedQueryResponse* response) { return this->GetSavedQuery(context, request, response); }));}
     void SetMessageAllocatorFor_GetSavedQuery(
         ::grpc::MessageAllocator< ::viam::app::data::v1::GetSavedQueryRequest, ::viam::app::data::v1::GetSavedQueryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(28);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(30);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetSavedQueryRequest, ::viam::app::data::v1::GetSavedQueryResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2607,13 +2802,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteSavedQuery() {
-      ::grpc::Service::MarkMethodCallback(29,
+      ::grpc::Service::MarkMethodCallback(31,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::DeleteSavedQueryRequest, ::viam::app::data::v1::DeleteSavedQueryResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::DeleteSavedQueryRequest* request, ::viam::app::data::v1::DeleteSavedQueryResponse* response) { return this->DeleteSavedQuery(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteSavedQuery(
         ::grpc::MessageAllocator< ::viam::app::data::v1::DeleteSavedQueryRequest, ::viam::app::data::v1::DeleteSavedQueryResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(29);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(31);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::DeleteSavedQueryRequest, ::viam::app::data::v1::DeleteSavedQueryResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2634,13 +2829,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListSavedQueries() {
-      ::grpc::Service::MarkMethodCallback(30,
+      ::grpc::Service::MarkMethodCallback(32,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::ListSavedQueriesRequest, ::viam::app::data::v1::ListSavedQueriesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::ListSavedQueriesRequest* request, ::viam::app::data::v1::ListSavedQueriesResponse* response) { return this->ListSavedQueries(context, request, response); }));}
     void SetMessageAllocatorFor_ListSavedQueries(
         ::grpc::MessageAllocator< ::viam::app::data::v1::ListSavedQueriesRequest, ::viam::app::data::v1::ListSavedQueriesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(30);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(32);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::ListSavedQueriesRequest, ::viam::app::data::v1::ListSavedQueriesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2661,13 +2856,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateBinaryDataSignedURL() {
-      ::grpc::Service::MarkMethodCallback(31,
+      ::grpc::Service::MarkMethodCallback(33,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateBinaryDataSignedURLRequest, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest* request, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse* response) { return this->CreateBinaryDataSignedURL(context, request, response); }));}
     void SetMessageAllocatorFor_CreateBinaryDataSignedURL(
         ::grpc::MessageAllocator< ::viam::app::data::v1::CreateBinaryDataSignedURLRequest, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(31);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(33);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateBinaryDataSignedURLRequest, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2688,13 +2883,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_CreateSequence() {
-      ::grpc::Service::MarkMethodCallback(32,
+      ::grpc::Service::MarkMethodCallback(34,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::CreateSequenceRequest* request, ::viam::app::data::v1::CreateSequenceResponse* response) { return this->CreateSequence(context, request, response); }));}
     void SetMessageAllocatorFor_CreateSequence(
         ::grpc::MessageAllocator< ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(32);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2715,13 +2910,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetSequence() {
-      ::grpc::Service::MarkMethodCallback(33,
+      ::grpc::Service::MarkMethodCallback(35,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::GetSequenceRequest* request, ::viam::app::data::v1::GetSequenceResponse* response) { return this->GetSequence(context, request, response); }));}
     void SetMessageAllocatorFor_GetSequence(
         ::grpc::MessageAllocator< ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(33);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2742,13 +2937,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_UpdateSequence() {
-      ::grpc::Service::MarkMethodCallback(34,
+      ::grpc::Service::MarkMethodCallback(36,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::UpdateSequenceRequest* request, ::viam::app::data::v1::UpdateSequenceResponse* response) { return this->UpdateSequence(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateSequence(
         ::grpc::MessageAllocator< ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2769,13 +2964,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_DeleteSequence() {
-      ::grpc::Service::MarkMethodCallback(35,
+      ::grpc::Service::MarkMethodCallback(37,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::DeleteSequenceRequest* request, ::viam::app::data::v1::DeleteSequenceResponse* response) { return this->DeleteSequence(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteSequence(
         ::grpc::MessageAllocator< ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(37);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2796,13 +2991,13 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ListSequences() {
-      ::grpc::Service::MarkMethodCallback(36,
+      ::grpc::Service::MarkMethodCallback(38,
           new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response) { return this->ListSequences(context, request, response); }));}
     void SetMessageAllocatorFor_ListSequences(
         ::grpc::MessageAllocator< ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(38);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -2817,7 +3012,34 @@ class DataService final {
     virtual ::grpc::ServerUnaryReactor* ListSequences(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::ListSequencesRequest* /*request*/, ::viam::app::data::v1::ListSequencesResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_TabularDataBySQL<WithCallbackMethod_TabularDataByMQL<WithCallbackMethod_ExportTabularData<WithCallbackMethod_GetLatestTabularData<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularData<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<WithCallbackMethod_TagsByFilter<WithCallbackMethod_AddBoundingBoxToImageByID<WithCallbackMethod_RemoveBoundingBoxFromImageByID<WithCallbackMethod_BoundingBoxLabelsByFilter<WithCallbackMethod_UpdateBoundingBox<WithCallbackMethod_GetDatabaseConnection<WithCallbackMethod_ConfigureDatabaseUser<WithCallbackMethod_AddBinaryDataToDatasetByIDs<WithCallbackMethod_RemoveBinaryDataFromDatasetByIDs<WithCallbackMethod_CreateIndex<WithCallbackMethod_ListIndexes<WithCallbackMethod_DeleteIndex<WithCallbackMethod_CreateSavedQuery<WithCallbackMethod_UpdateSavedQuery<WithCallbackMethod_GetSavedQuery<WithCallbackMethod_DeleteSavedQuery<WithCallbackMethod_ListSavedQueries<WithCallbackMethod_CreateBinaryDataSignedURL<WithCallbackMethod_CreateSequence<WithCallbackMethod_GetSequence<WithCallbackMethod_UpdateSequence<WithCallbackMethod_DeleteSequence<WithCallbackMethod_ListSequences<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SequencesByDatasetID : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SequencesByDatasetID() {
+      ::grpc::Service::MarkMethodCallback(39,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::SequencesByDatasetIDRequest, ::viam::app::data::v1::SequencesByDatasetIDResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response) { return this->SequencesByDatasetID(context, request, response); }));}
+    void SetMessageAllocatorFor_SequencesByDatasetID(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::SequencesByDatasetIDRequest, ::viam::app::data::v1::SequencesByDatasetIDResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(39);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::SequencesByDatasetIDRequest, ::viam::app::data::v1::SequencesByDatasetIDResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SequencesByDatasetID() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SequencesByDatasetID(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SequencesByDatasetIDRequest* /*request*/, ::viam::app::data::v1::SequencesByDatasetIDResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SequencesByDatasetID(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::SequencesByDatasetIDRequest* /*request*/, ::viam::app::data::v1::SequencesByDatasetIDResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_TabularDataBySQL<WithCallbackMethod_TabularDataByMQL<WithCallbackMethod_ExportTabularData<WithCallbackMethod_GetLatestTabularData<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularData<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<WithCallbackMethod_TagsByFilter<WithCallbackMethod_AddBoundingBoxToImageByID<WithCallbackMethod_RemoveBoundingBoxFromImageByID<WithCallbackMethod_BoundingBoxLabelsByFilter<WithCallbackMethod_UpdateBoundingBox<WithCallbackMethod_GetDatabaseConnection<WithCallbackMethod_ConfigureDatabaseUser<WithCallbackMethod_AddBinaryDataToDatasetByIDs<WithCallbackMethod_RemoveBinaryDataFromDatasetByIDs<WithCallbackMethod_AddSequencesToDataset<WithCallbackMethod_RemoveSequencesFromDataset<WithCallbackMethod_CreateIndex<WithCallbackMethod_ListIndexes<WithCallbackMethod_DeleteIndex<WithCallbackMethod_CreateSavedQuery<WithCallbackMethod_UpdateSavedQuery<WithCallbackMethod_GetSavedQuery<WithCallbackMethod_DeleteSavedQuery<WithCallbackMethod_ListSavedQueries<WithCallbackMethod_CreateBinaryDataSignedURL<WithCallbackMethod_CreateSequence<WithCallbackMethod_GetSequence<WithCallbackMethod_UpdateSequence<WithCallbackMethod_DeleteSequence<WithCallbackMethod_ListSequences<WithCallbackMethod_SequencesByDatasetID<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TabularDataByFilter : public BaseClass {
@@ -3211,12 +3433,46 @@ class DataService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_AddSequencesToDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AddSequencesToDataset() {
+      ::grpc::Service::MarkMethodGeneric(23);
+    }
+    ~WithGenericMethod_AddSequencesToDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddSequencesToDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::AddSequencesToDatasetRequest* /*request*/, ::viam::app::data::v1::AddSequencesToDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_RemoveSequencesFromDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_RemoveSequencesFromDataset() {
+      ::grpc::Service::MarkMethodGeneric(24);
+    }
+    ~WithGenericMethod_RemoveSequencesFromDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveSequencesFromDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* /*request*/, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_CreateIndex : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateIndex() {
-      ::grpc::Service::MarkMethodGeneric(23);
+      ::grpc::Service::MarkMethodGeneric(25);
     }
     ~WithGenericMethod_CreateIndex() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3233,7 +3489,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListIndexes() {
-      ::grpc::Service::MarkMethodGeneric(24);
+      ::grpc::Service::MarkMethodGeneric(26);
     }
     ~WithGenericMethod_ListIndexes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3250,7 +3506,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteIndex() {
-      ::grpc::Service::MarkMethodGeneric(25);
+      ::grpc::Service::MarkMethodGeneric(27);
     }
     ~WithGenericMethod_DeleteIndex() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3267,7 +3523,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateSavedQuery() {
-      ::grpc::Service::MarkMethodGeneric(26);
+      ::grpc::Service::MarkMethodGeneric(28);
     }
     ~WithGenericMethod_CreateSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3284,7 +3540,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateSavedQuery() {
-      ::grpc::Service::MarkMethodGeneric(27);
+      ::grpc::Service::MarkMethodGeneric(29);
     }
     ~WithGenericMethod_UpdateSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3301,7 +3557,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetSavedQuery() {
-      ::grpc::Service::MarkMethodGeneric(28);
+      ::grpc::Service::MarkMethodGeneric(30);
     }
     ~WithGenericMethod_GetSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3318,7 +3574,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteSavedQuery() {
-      ::grpc::Service::MarkMethodGeneric(29);
+      ::grpc::Service::MarkMethodGeneric(31);
     }
     ~WithGenericMethod_DeleteSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3335,7 +3591,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListSavedQueries() {
-      ::grpc::Service::MarkMethodGeneric(30);
+      ::grpc::Service::MarkMethodGeneric(32);
     }
     ~WithGenericMethod_ListSavedQueries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3352,7 +3608,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateBinaryDataSignedURL() {
-      ::grpc::Service::MarkMethodGeneric(31);
+      ::grpc::Service::MarkMethodGeneric(33);
     }
     ~WithGenericMethod_CreateBinaryDataSignedURL() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3369,7 +3625,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_CreateSequence() {
-      ::grpc::Service::MarkMethodGeneric(32);
+      ::grpc::Service::MarkMethodGeneric(34);
     }
     ~WithGenericMethod_CreateSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3386,7 +3642,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetSequence() {
-      ::grpc::Service::MarkMethodGeneric(33);
+      ::grpc::Service::MarkMethodGeneric(35);
     }
     ~WithGenericMethod_GetSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3403,7 +3659,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_UpdateSequence() {
-      ::grpc::Service::MarkMethodGeneric(34);
+      ::grpc::Service::MarkMethodGeneric(36);
     }
     ~WithGenericMethod_UpdateSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3420,7 +3676,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_DeleteSequence() {
-      ::grpc::Service::MarkMethodGeneric(35);
+      ::grpc::Service::MarkMethodGeneric(37);
     }
     ~WithGenericMethod_DeleteSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3437,13 +3693,30 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ListSequences() {
-      ::grpc::Service::MarkMethodGeneric(36);
+      ::grpc::Service::MarkMethodGeneric(38);
     }
     ~WithGenericMethod_ListSequences() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status ListSequences(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::ListSequencesRequest* /*request*/, ::viam::app::data::v1::ListSequencesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SequencesByDatasetID : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SequencesByDatasetID() {
+      ::grpc::Service::MarkMethodGeneric(39);
+    }
+    ~WithGenericMethod_SequencesByDatasetID() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SequencesByDatasetID(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SequencesByDatasetIDRequest* /*request*/, ::viam::app::data::v1::SequencesByDatasetIDResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -3909,12 +4182,52 @@ class DataService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_AddSequencesToDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AddSequencesToDataset() {
+      ::grpc::Service::MarkMethodRaw(23);
+    }
+    ~WithRawMethod_AddSequencesToDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddSequencesToDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::AddSequencesToDatasetRequest* /*request*/, ::viam::app::data::v1::AddSequencesToDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddSequencesToDataset(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_RemoveSequencesFromDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_RemoveSequencesFromDataset() {
+      ::grpc::Service::MarkMethodRaw(24);
+    }
+    ~WithRawMethod_RemoveSequencesFromDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveSequencesFromDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* /*request*/, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRemoveSequencesFromDataset(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_CreateIndex : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateIndex() {
-      ::grpc::Service::MarkMethodRaw(23);
+      ::grpc::Service::MarkMethodRaw(25);
     }
     ~WithRawMethod_CreateIndex() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3925,7 +4238,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateIndex(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3934,7 +4247,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListIndexes() {
-      ::grpc::Service::MarkMethodRaw(24);
+      ::grpc::Service::MarkMethodRaw(26);
     }
     ~WithRawMethod_ListIndexes() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3945,7 +4258,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListIndexes(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3954,7 +4267,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteIndex() {
-      ::grpc::Service::MarkMethodRaw(25);
+      ::grpc::Service::MarkMethodRaw(27);
     }
     ~WithRawMethod_DeleteIndex() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3965,7 +4278,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteIndex(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(25, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3974,7 +4287,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateSavedQuery() {
-      ::grpc::Service::MarkMethodRaw(26);
+      ::grpc::Service::MarkMethodRaw(28);
     }
     ~WithRawMethod_CreateSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -3985,7 +4298,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateSavedQuery(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3994,7 +4307,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateSavedQuery() {
-      ::grpc::Service::MarkMethodRaw(27);
+      ::grpc::Service::MarkMethodRaw(29);
     }
     ~WithRawMethod_UpdateSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4005,7 +4318,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateSavedQuery(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4014,7 +4327,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetSavedQuery() {
-      ::grpc::Service::MarkMethodRaw(28);
+      ::grpc::Service::MarkMethodRaw(30);
     }
     ~WithRawMethod_GetSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4025,7 +4338,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSavedQuery(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4034,7 +4347,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteSavedQuery() {
-      ::grpc::Service::MarkMethodRaw(29);
+      ::grpc::Service::MarkMethodRaw(31);
     }
     ~WithRawMethod_DeleteSavedQuery() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4045,7 +4358,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteSavedQuery(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4054,7 +4367,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListSavedQueries() {
-      ::grpc::Service::MarkMethodRaw(30);
+      ::grpc::Service::MarkMethodRaw(32);
     }
     ~WithRawMethod_ListSavedQueries() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4065,7 +4378,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListSavedQueries(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4074,7 +4387,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateBinaryDataSignedURL() {
-      ::grpc::Service::MarkMethodRaw(31);
+      ::grpc::Service::MarkMethodRaw(33);
     }
     ~WithRawMethod_CreateBinaryDataSignedURL() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4085,7 +4398,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateBinaryDataSignedURL(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4094,7 +4407,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_CreateSequence() {
-      ::grpc::Service::MarkMethodRaw(32);
+      ::grpc::Service::MarkMethodRaw(34);
     }
     ~WithRawMethod_CreateSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4105,7 +4418,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCreateSequence(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4114,7 +4427,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetSequence() {
-      ::grpc::Service::MarkMethodRaw(33);
+      ::grpc::Service::MarkMethodRaw(35);
     }
     ~WithRawMethod_GetSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4125,7 +4438,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetSequence(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4134,7 +4447,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_UpdateSequence() {
-      ::grpc::Service::MarkMethodRaw(34);
+      ::grpc::Service::MarkMethodRaw(36);
     }
     ~WithRawMethod_UpdateSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4145,7 +4458,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUpdateSequence(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4154,7 +4467,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_DeleteSequence() {
-      ::grpc::Service::MarkMethodRaw(35);
+      ::grpc::Service::MarkMethodRaw(37);
     }
     ~WithRawMethod_DeleteSequence() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4165,7 +4478,7 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestDeleteSequence(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(37, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4174,7 +4487,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ListSequences() {
-      ::grpc::Service::MarkMethodRaw(36);
+      ::grpc::Service::MarkMethodRaw(38);
     }
     ~WithRawMethod_ListSequences() override {
       BaseClassMustBeDerivedFromService(this);
@@ -4185,7 +4498,27 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestListSequences(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(38, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SequencesByDatasetID : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SequencesByDatasetID() {
+      ::grpc::Service::MarkMethodRaw(39);
+    }
+    ~WithRawMethod_SequencesByDatasetID() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SequencesByDatasetID(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SequencesByDatasetIDRequest* /*request*/, ::viam::app::data::v1::SequencesByDatasetIDResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSequencesByDatasetID(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(39, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4695,12 +5028,56 @@ class DataService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_AddSequencesToDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_AddSequencesToDataset() {
+      ::grpc::Service::MarkMethodRawCallback(23,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddSequencesToDataset(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_AddSequencesToDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddSequencesToDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::AddSequencesToDatasetRequest* /*request*/, ::viam::app::data::v1::AddSequencesToDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* AddSequencesToDataset(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_RemoveSequencesFromDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_RemoveSequencesFromDataset() {
+      ::grpc::Service::MarkMethodRawCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveSequencesFromDataset(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_RemoveSequencesFromDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveSequencesFromDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* /*request*/, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RemoveSequencesFromDataset(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_CreateIndex : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateIndex() {
-      ::grpc::Service::MarkMethodRawCallback(23,
+      ::grpc::Service::MarkMethodRawCallback(25,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateIndex(context, request, response); }));
@@ -4722,7 +5099,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListIndexes() {
-      ::grpc::Service::MarkMethodRawCallback(24,
+      ::grpc::Service::MarkMethodRawCallback(26,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListIndexes(context, request, response); }));
@@ -4744,7 +5121,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteIndex() {
-      ::grpc::Service::MarkMethodRawCallback(25,
+      ::grpc::Service::MarkMethodRawCallback(27,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteIndex(context, request, response); }));
@@ -4766,7 +5143,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateSavedQuery() {
-      ::grpc::Service::MarkMethodRawCallback(26,
+      ::grpc::Service::MarkMethodRawCallback(28,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateSavedQuery(context, request, response); }));
@@ -4788,7 +5165,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateSavedQuery() {
-      ::grpc::Service::MarkMethodRawCallback(27,
+      ::grpc::Service::MarkMethodRawCallback(29,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateSavedQuery(context, request, response); }));
@@ -4810,7 +5187,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetSavedQuery() {
-      ::grpc::Service::MarkMethodRawCallback(28,
+      ::grpc::Service::MarkMethodRawCallback(30,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSavedQuery(context, request, response); }));
@@ -4832,7 +5209,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteSavedQuery() {
-      ::grpc::Service::MarkMethodRawCallback(29,
+      ::grpc::Service::MarkMethodRawCallback(31,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteSavedQuery(context, request, response); }));
@@ -4854,7 +5231,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListSavedQueries() {
-      ::grpc::Service::MarkMethodRawCallback(30,
+      ::grpc::Service::MarkMethodRawCallback(32,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListSavedQueries(context, request, response); }));
@@ -4876,7 +5253,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateBinaryDataSignedURL() {
-      ::grpc::Service::MarkMethodRawCallback(31,
+      ::grpc::Service::MarkMethodRawCallback(33,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateBinaryDataSignedURL(context, request, response); }));
@@ -4898,7 +5275,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_CreateSequence() {
-      ::grpc::Service::MarkMethodRawCallback(32,
+      ::grpc::Service::MarkMethodRawCallback(34,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateSequence(context, request, response); }));
@@ -4920,7 +5297,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetSequence() {
-      ::grpc::Service::MarkMethodRawCallback(33,
+      ::grpc::Service::MarkMethodRawCallback(35,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSequence(context, request, response); }));
@@ -4942,7 +5319,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_UpdateSequence() {
-      ::grpc::Service::MarkMethodRawCallback(34,
+      ::grpc::Service::MarkMethodRawCallback(36,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateSequence(context, request, response); }));
@@ -4964,7 +5341,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_DeleteSequence() {
-      ::grpc::Service::MarkMethodRawCallback(35,
+      ::grpc::Service::MarkMethodRawCallback(37,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteSequence(context, request, response); }));
@@ -4986,7 +5363,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ListSequences() {
-      ::grpc::Service::MarkMethodRawCallback(36,
+      ::grpc::Service::MarkMethodRawCallback(38,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListSequences(context, request, response); }));
@@ -5000,6 +5377,28 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* ListSequences(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SequencesByDatasetID : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SequencesByDatasetID() {
+      ::grpc::Service::MarkMethodRawCallback(39,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SequencesByDatasetID(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SequencesByDatasetID() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SequencesByDatasetID(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SequencesByDatasetIDRequest* /*request*/, ::viam::app::data::v1::SequencesByDatasetIDResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SequencesByDatasetID(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -5597,12 +5996,66 @@ class DataService final {
     virtual ::grpc::Status StreamedRemoveBinaryDataFromDatasetByIDs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest,::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_AddSequencesToDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_AddSequencesToDataset() {
+      ::grpc::Service::MarkMethodStreamed(23,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::AddSequencesToDatasetRequest, ::viam::app::data::v1::AddSequencesToDatasetResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::AddSequencesToDatasetRequest, ::viam::app::data::v1::AddSequencesToDatasetResponse>* streamer) {
+                       return this->StreamedAddSequencesToDataset(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_AddSequencesToDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status AddSequencesToDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::AddSequencesToDatasetRequest* /*request*/, ::viam::app::data::v1::AddSequencesToDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAddSequencesToDataset(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::AddSequencesToDatasetRequest,::viam::app::data::v1::AddSequencesToDatasetResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_RemoveSequencesFromDataset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_RemoveSequencesFromDataset() {
+      ::grpc::Service::MarkMethodStreamed(24,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::RemoveSequencesFromDatasetRequest, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::RemoveSequencesFromDatasetRequest, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* streamer) {
+                       return this->StreamedRemoveSequencesFromDataset(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_RemoveSequencesFromDataset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status RemoveSequencesFromDataset(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* /*request*/, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRemoveSequencesFromDataset(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::RemoveSequencesFromDatasetRequest,::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_CreateIndex : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateIndex() {
-      ::grpc::Service::MarkMethodStreamed(23,
+      ::grpc::Service::MarkMethodStreamed(25,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::CreateIndexRequest, ::viam::app::data::v1::CreateIndexResponse>(
             [this](::grpc::ServerContext* context,
@@ -5629,7 +6082,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListIndexes() {
-      ::grpc::Service::MarkMethodStreamed(24,
+      ::grpc::Service::MarkMethodStreamed(26,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::ListIndexesRequest, ::viam::app::data::v1::ListIndexesResponse>(
             [this](::grpc::ServerContext* context,
@@ -5656,7 +6109,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteIndex() {
-      ::grpc::Service::MarkMethodStreamed(25,
+      ::grpc::Service::MarkMethodStreamed(27,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::DeleteIndexRequest, ::viam::app::data::v1::DeleteIndexResponse>(
             [this](::grpc::ServerContext* context,
@@ -5683,7 +6136,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateSavedQuery() {
-      ::grpc::Service::MarkMethodStreamed(26,
+      ::grpc::Service::MarkMethodStreamed(28,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::CreateSavedQueryRequest, ::viam::app::data::v1::CreateSavedQueryResponse>(
             [this](::grpc::ServerContext* context,
@@ -5710,7 +6163,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateSavedQuery() {
-      ::grpc::Service::MarkMethodStreamed(27,
+      ::grpc::Service::MarkMethodStreamed(29,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::UpdateSavedQueryRequest, ::viam::app::data::v1::UpdateSavedQueryResponse>(
             [this](::grpc::ServerContext* context,
@@ -5737,7 +6190,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetSavedQuery() {
-      ::grpc::Service::MarkMethodStreamed(28,
+      ::grpc::Service::MarkMethodStreamed(30,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::GetSavedQueryRequest, ::viam::app::data::v1::GetSavedQueryResponse>(
             [this](::grpc::ServerContext* context,
@@ -5764,7 +6217,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteSavedQuery() {
-      ::grpc::Service::MarkMethodStreamed(29,
+      ::grpc::Service::MarkMethodStreamed(31,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::DeleteSavedQueryRequest, ::viam::app::data::v1::DeleteSavedQueryResponse>(
             [this](::grpc::ServerContext* context,
@@ -5791,7 +6244,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListSavedQueries() {
-      ::grpc::Service::MarkMethodStreamed(30,
+      ::grpc::Service::MarkMethodStreamed(32,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::ListSavedQueriesRequest, ::viam::app::data::v1::ListSavedQueriesResponse>(
             [this](::grpc::ServerContext* context,
@@ -5818,7 +6271,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateBinaryDataSignedURL() {
-      ::grpc::Service::MarkMethodStreamed(31,
+      ::grpc::Service::MarkMethodStreamed(33,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::CreateBinaryDataSignedURLRequest, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>(
             [this](::grpc::ServerContext* context,
@@ -5845,7 +6298,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_CreateSequence() {
-      ::grpc::Service::MarkMethodStreamed(32,
+      ::grpc::Service::MarkMethodStreamed(34,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse>(
             [this](::grpc::ServerContext* context,
@@ -5872,7 +6325,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetSequence() {
-      ::grpc::Service::MarkMethodStreamed(33,
+      ::grpc::Service::MarkMethodStreamed(35,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse>(
             [this](::grpc::ServerContext* context,
@@ -5899,7 +6352,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_UpdateSequence() {
-      ::grpc::Service::MarkMethodStreamed(34,
+      ::grpc::Service::MarkMethodStreamed(36,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse>(
             [this](::grpc::ServerContext* context,
@@ -5926,7 +6379,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_DeleteSequence() {
-      ::grpc::Service::MarkMethodStreamed(35,
+      ::grpc::Service::MarkMethodStreamed(37,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse>(
             [this](::grpc::ServerContext* context,
@@ -5953,7 +6406,7 @@ class DataService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ListSequences() {
-      ::grpc::Service::MarkMethodStreamed(36,
+      ::grpc::Service::MarkMethodStreamed(38,
         new ::grpc::internal::StreamedUnaryHandler<
           ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse>(
             [this](::grpc::ServerContext* context,
@@ -5974,7 +6427,34 @@ class DataService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedListSequences(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::ListSequencesRequest,::viam::app::data::v1::ListSequencesResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SequencesByDatasetID : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SequencesByDatasetID() {
+      ::grpc::Service::MarkMethodStreamed(39,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::SequencesByDatasetIDRequest, ::viam::app::data::v1::SequencesByDatasetIDResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::SequencesByDatasetIDRequest, ::viam::app::data::v1::SequencesByDatasetIDResponse>* streamer) {
+                       return this->StreamedSequencesByDatasetID(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SequencesByDatasetID() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SequencesByDatasetID(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::SequencesByDatasetIDRequest* /*request*/, ::viam::app::data::v1::SequencesByDatasetIDResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSequencesByDatasetID(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::SequencesByDatasetIDRequest,::viam::app::data::v1::SequencesByDatasetIDResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_AddSequencesToDataset<WithStreamedUnaryMethod_RemoveSequencesFromDataset<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<WithStreamedUnaryMethod_SequencesByDatasetID<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_ExportTabularData : public BaseClass {
    private:
@@ -6003,7 +6483,7 @@ class DataService final {
     virtual ::grpc::Status StreamedExportTabularData(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::data::v1::ExportTabularDataRequest,::viam::app::data::v1::ExportTabularDataResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_ExportTabularData<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithSplitStreamingMethod_ExportTabularData<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithSplitStreamingMethod_ExportTabularData<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_AddSequencesToDataset<WithStreamedUnaryMethod_RemoveSequencesFromDataset<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<WithStreamedUnaryMethod_SequencesByDatasetID<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1
