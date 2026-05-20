@@ -39,6 +39,44 @@ struct PlayRequestDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayRequestDefaultTypeInternal _PlayRequest_default_instance_;
+PROTOBUF_CONSTEXPR PlayStreamRequest::PlayStreamRequest(
+    ::_pbi::ConstantInitialized)
+  : _oneof_case_{}{}
+struct PlayStreamRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayStreamRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayStreamRequestDefaultTypeInternal() {}
+  union {
+    PlayStreamRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayStreamRequestDefaultTypeInternal _PlayStreamRequest_default_instance_;
+PROTOBUF_CONSTEXPR PlayStreamChunk::PlayStreamChunk(
+    ::_pbi::ConstantInitialized)
+  : audio_data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct PlayStreamChunkDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayStreamChunkDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayStreamChunkDefaultTypeInternal() {}
+  union {
+    PlayStreamChunk _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayStreamChunkDefaultTypeInternal _PlayStreamChunk_default_instance_;
+PROTOBUF_CONSTEXPR PlayStreamInit::PlayStreamInit(
+    ::_pbi::ConstantInitialized)
+  : name_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , audio_info_(nullptr)
+  , extra_(nullptr){}
+struct PlayStreamInitDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayStreamInitDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayStreamInitDefaultTypeInternal() {}
+  union {
+    PlayStreamInit _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayStreamInitDefaultTypeInternal _PlayStreamInit_default_instance_;
 PROTOBUF_CONSTEXPR PlayResponse::PlayResponse(
     ::_pbi::ConstantInitialized){}
 struct PlayResponseDefaultTypeInternal {
@@ -50,11 +88,22 @@ struct PlayResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayResponseDefaultTypeInternal _PlayResponse_default_instance_;
+PROTOBUF_CONSTEXPR PlayStreamResponse::PlayStreamResponse(
+    ::_pbi::ConstantInitialized){}
+struct PlayStreamResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayStreamResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayStreamResponseDefaultTypeInternal() {}
+  union {
+    PlayStreamResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayStreamResponseDefaultTypeInternal _PlayStreamResponse_default_instance_;
 }  // namespace v1
 }  // namespace audioout
 }  // namespace component
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_component_2faudioout_2fv1_2faudioout_2eproto[2];
+static ::_pb::Metadata file_level_metadata_component_2faudioout_2fv1_2faudioout_2eproto[6];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_component_2faudioout_2fv1_2faudioout_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_component_2faudioout_2fv1_2faudioout_2eproto = nullptr;
 
@@ -70,7 +119,38 @@ const uint32_t TableStruct_component_2faudioout_2fv1_2faudioout_2eproto::offsets
   PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, audio_info_),
   PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayRequest, extra_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamRequest, _oneof_case_[0]),
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamRequest, payload_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamChunk, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamChunk, audio_data_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamInit, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamInit, name_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamInit, audio_info_),
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamInit, extra_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::component::audioout::v1::PlayStreamResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
@@ -78,12 +158,20 @@ const uint32_t TableStruct_component_2faudioout_2fv1_2faudioout_2eproto::offsets
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::component::audioout::v1::PlayRequest)},
-  { 10, -1, -1, sizeof(::viam::component::audioout::v1::PlayResponse)},
+  { 10, -1, -1, sizeof(::viam::component::audioout::v1::PlayStreamRequest)},
+  { 19, -1, -1, sizeof(::viam::component::audioout::v1::PlayStreamChunk)},
+  { 26, -1, -1, sizeof(::viam::component::audioout::v1::PlayStreamInit)},
+  { 35, -1, -1, sizeof(::viam::component::audioout::v1::PlayResponse)},
+  { 41, -1, -1, sizeof(::viam::component::audioout::v1::PlayStreamResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::viam::component::audioout::v1::_PlayRequest_default_instance_._instance,
+  &::viam::component::audioout::v1::_PlayStreamRequest_default_instance_._instance,
+  &::viam::component::audioout::v1::_PlayStreamChunk_default_instance_._instance,
+  &::viam::component::audioout::v1::_PlayStreamInit_default_instance_._instance,
   &::viam::component::audioout::v1::_PlayResponse_default_instance_._instance,
+  &::viam::component::audioout::v1::_PlayStreamResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_component_2faudioout_2fv1_2faudioout_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -95,11 +183,25 @@ const char descriptor_table_protodef_component_2faudioout_2fv1_2faudioout_2eprot
   "\030\002 \001(\014R\taudioData\0228\n\naudio_info\030\003 \001(\0132\031."
   "viam.common.v1.AudioInfoR\taudioInfo\022-\n\005e"
   "xtra\030c \001(\0132\027.google.protobuf.StructR\005ext"
-  "ra\"\016\n\014PlayResponse2\356\005\n\017AudioOutService\022\216"
-  "\001\n\004Play\022\'.viam.component.audioout.v1.Pla"
-  "yRequest\032(.viam.component.audioout.v1.Pl"
-  "ayResponse\"3\202\323\344\223\002-\"+/viam/api/v1/compone"
-  "nt/audioout/{name}/play\022\227\001\n\rGetPropertie"
+  "ra\"\260\001\n\021PlayStreamRequest\022@\n\004init\030\001 \001(\0132*"
+  ".viam.component.audioout.v1.PlayStreamIn"
+  "itH\000R\004init\022N\n\013audio_chunk\030\002 \001(\0132+.viam.c"
+  "omponent.audioout.v1.PlayStreamChunkH\000R\n"
+  "audioChunkB\t\n\007payload\"0\n\017PlayStreamChunk"
+  "\022\035\n\naudio_data\030\001 \001(\014R\taudioData\"\215\001\n\016Play"
+  "StreamInit\022\022\n\004name\030\001 \001(\tR\004name\0228\n\naudio_"
+  "info\030\002 \001(\0132\031.viam.common.v1.AudioInfoR\ta"
+  "udioInfo\022-\n\005extra\030c \001(\0132\027.google.protobu"
+  "f.StructR\005extra\"\016\n\014PlayResponse\"\024\n\022PlayS"
+  "treamResponse2\223\007\n\017AudioOutService\022\216\001\n\004Pl"
+  "ay\022\'.viam.component.audioout.v1.PlayRequ"
+  "est\032(.viam.component.audioout.v1.PlayRes"
+  "ponse\"3\202\323\344\223\002-\"+/viam/api/v1/component/au"
+  "dioout/{name}/play\022\242\001\n\nPlayStream\022-.viam"
+  ".component.audioout.v1.PlayStreamRequest"
+  "\032..viam.component.audioout.v1.PlayStream"
+  "Response\"3\202\323\344\223\002-\"+/viam/api/v1/component"
+  "/audioout/play_stream(\001\022\227\001\n\rGetPropertie"
   "s\022$.viam.common.v1.GetPropertiesRequest\032"
   "%.viam.common.v1.GetPropertiesResponse\"9"
   "\202\323\344\223\0023\0221/viam/api/v1/component/audioout/"
@@ -125,9 +227,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2faudioou
 };
 static ::_pbi::once_flag descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto = {
-    false, false, 1172, descriptor_table_protodef_component_2faudioout_2fv1_2faudioout_2eproto,
+    false, false, 1732, descriptor_table_protodef_component_2faudioout_2fv1_2faudioout_2eproto,
     "component/audioout/v1/audioout.proto",
-    &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once, descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_deps, 3, 2,
+    &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once, descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_deps, 3, 6,
     schemas, file_default_instances, TableStruct_component_2faudioout_2fv1_2faudioout_2eproto::offsets,
     file_level_metadata_component_2faudioout_2fv1_2faudioout_2eproto, file_level_enum_descriptors_component_2faudioout_2fv1_2faudioout_2eproto,
     file_level_service_descriptors_component_2faudioout_2fv1_2faudioout_2eproto,
@@ -485,6 +587,784 @@ void PlayRequest::InternalSwap(PlayRequest* other) {
 
 // ===================================================================
 
+class PlayStreamRequest::_Internal {
+ public:
+  static const ::viam::component::audioout::v1::PlayStreamInit& init(const PlayStreamRequest* msg);
+  static const ::viam::component::audioout::v1::PlayStreamChunk& audio_chunk(const PlayStreamRequest* msg);
+};
+
+const ::viam::component::audioout::v1::PlayStreamInit&
+PlayStreamRequest::_Internal::init(const PlayStreamRequest* msg) {
+  return *msg->payload_.init_;
+}
+const ::viam::component::audioout::v1::PlayStreamChunk&
+PlayStreamRequest::_Internal::audio_chunk(const PlayStreamRequest* msg) {
+  return *msg->payload_.audio_chunk_;
+}
+void PlayStreamRequest::set_allocated_init(::viam::component::audioout::v1::PlayStreamInit* init) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (init) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(init);
+    if (message_arena != submessage_arena) {
+      init = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, init, submessage_arena);
+    }
+    set_has_init();
+    payload_.init_ = init;
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.component.audioout.v1.PlayStreamRequest.init)
+}
+void PlayStreamRequest::set_allocated_audio_chunk(::viam::component::audioout::v1::PlayStreamChunk* audio_chunk) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_payload();
+  if (audio_chunk) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(audio_chunk);
+    if (message_arena != submessage_arena) {
+      audio_chunk = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, audio_chunk, submessage_arena);
+    }
+    set_has_audio_chunk();
+    payload_.audio_chunk_ = audio_chunk;
+  }
+  // @@protoc_insertion_point(field_set_allocated:viam.component.audioout.v1.PlayStreamRequest.audio_chunk)
+}
+PlayStreamRequest::PlayStreamRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.audioout.v1.PlayStreamRequest)
+}
+PlayStreamRequest::PlayStreamRequest(const PlayStreamRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  clear_has_payload();
+  switch (from.payload_case()) {
+    case kInit: {
+      _internal_mutable_init()->::viam::component::audioout::v1::PlayStreamInit::MergeFrom(from._internal_init());
+      break;
+    }
+    case kAudioChunk: {
+      _internal_mutable_audio_chunk()->::viam::component::audioout::v1::PlayStreamChunk::MergeFrom(from._internal_audio_chunk());
+      break;
+    }
+    case PAYLOAD_NOT_SET: {
+      break;
+    }
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.audioout.v1.PlayStreamRequest)
+}
+
+inline void PlayStreamRequest::SharedCtor() {
+clear_has_payload();
+}
+
+PlayStreamRequest::~PlayStreamRequest() {
+  // @@protoc_insertion_point(destructor:viam.component.audioout.v1.PlayStreamRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void PlayStreamRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (has_payload()) {
+    clear_payload();
+  }
+}
+
+void PlayStreamRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void PlayStreamRequest::clear_payload() {
+// @@protoc_insertion_point(one_of_clear_start:viam.component.audioout.v1.PlayStreamRequest)
+  switch (payload_case()) {
+    case kInit: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.init_;
+      }
+      break;
+    }
+    case kAudioChunk: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete payload_.audio_chunk_;
+      }
+      break;
+    }
+    case PAYLOAD_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[0] = PAYLOAD_NOT_SET;
+}
+
+
+void PlayStreamRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.audioout.v1.PlayStreamRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  clear_payload();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* PlayStreamRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .viam.component.audioout.v1.PlayStreamInit init = 1 [json_name = "init"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_init(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.component.audioout.v1.PlayStreamChunk audio_chunk = 2 [json_name = "audioChunk"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_audio_chunk(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* PlayStreamRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.audioout.v1.PlayStreamRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .viam.component.audioout.v1.PlayStreamInit init = 1 [json_name = "init"];
+  if (_internal_has_init()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::init(this),
+        _Internal::init(this).GetCachedSize(), target, stream);
+  }
+
+  // .viam.component.audioout.v1.PlayStreamChunk audio_chunk = 2 [json_name = "audioChunk"];
+  if (_internal_has_audio_chunk()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::audio_chunk(this),
+        _Internal::audio_chunk(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.audioout.v1.PlayStreamRequest)
+  return target;
+}
+
+size_t PlayStreamRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.audioout.v1.PlayStreamRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  switch (payload_case()) {
+    // .viam.component.audioout.v1.PlayStreamInit init = 1 [json_name = "init"];
+    case kInit: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.init_);
+      break;
+    }
+    // .viam.component.audioout.v1.PlayStreamChunk audio_chunk = 2 [json_name = "audioChunk"];
+    case kAudioChunk: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *payload_.audio_chunk_);
+      break;
+    }
+    case PAYLOAD_NOT_SET: {
+      break;
+    }
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PlayStreamRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    PlayStreamRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PlayStreamRequest::GetClassData() const { return &_class_data_; }
+
+void PlayStreamRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<PlayStreamRequest *>(to)->MergeFrom(
+      static_cast<const PlayStreamRequest &>(from));
+}
+
+
+void PlayStreamRequest::MergeFrom(const PlayStreamRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioout.v1.PlayStreamRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  switch (from.payload_case()) {
+    case kInit: {
+      _internal_mutable_init()->::viam::component::audioout::v1::PlayStreamInit::MergeFrom(from._internal_init());
+      break;
+    }
+    case kAudioChunk: {
+      _internal_mutable_audio_chunk()->::viam::component::audioout::v1::PlayStreamChunk::MergeFrom(from._internal_audio_chunk());
+      break;
+    }
+    case PAYLOAD_NOT_SET: {
+      break;
+    }
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PlayStreamRequest::CopyFrom(const PlayStreamRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.audioout.v1.PlayStreamRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PlayStreamRequest::IsInitialized() const {
+  return true;
+}
+
+void PlayStreamRequest::InternalSwap(PlayStreamRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(payload_, other->payload_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PlayStreamRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_getter, &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once,
+      file_level_metadata_component_2faudioout_2fv1_2faudioout_2eproto[1]);
+}
+
+// ===================================================================
+
+class PlayStreamChunk::_Internal {
+ public:
+};
+
+PlayStreamChunk::PlayStreamChunk(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.audioout.v1.PlayStreamChunk)
+}
+PlayStreamChunk::PlayStreamChunk(const PlayStreamChunk& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  audio_data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    audio_data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_audio_data().empty()) {
+    audio_data_.Set(from._internal_audio_data(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.audioout.v1.PlayStreamChunk)
+}
+
+inline void PlayStreamChunk::SharedCtor() {
+audio_data_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  audio_data_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+PlayStreamChunk::~PlayStreamChunk() {
+  // @@protoc_insertion_point(destructor:viam.component.audioout.v1.PlayStreamChunk)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void PlayStreamChunk::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  audio_data_.Destroy();
+}
+
+void PlayStreamChunk::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void PlayStreamChunk::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.audioout.v1.PlayStreamChunk)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  audio_data_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* PlayStreamChunk::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bytes audio_data = 1 [json_name = "audioData"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_audio_data();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* PlayStreamChunk::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.audioout.v1.PlayStreamChunk)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes audio_data = 1 [json_name = "audioData"];
+  if (!this->_internal_audio_data().empty()) {
+    target = stream->WriteBytesMaybeAliased(
+        1, this->_internal_audio_data(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.audioout.v1.PlayStreamChunk)
+  return target;
+}
+
+size_t PlayStreamChunk::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.audioout.v1.PlayStreamChunk)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes audio_data = 1 [json_name = "audioData"];
+  if (!this->_internal_audio_data().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_audio_data());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PlayStreamChunk::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    PlayStreamChunk::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PlayStreamChunk::GetClassData() const { return &_class_data_; }
+
+void PlayStreamChunk::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<PlayStreamChunk *>(to)->MergeFrom(
+      static_cast<const PlayStreamChunk &>(from));
+}
+
+
+void PlayStreamChunk::MergeFrom(const PlayStreamChunk& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioout.v1.PlayStreamChunk)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_audio_data().empty()) {
+    _internal_set_audio_data(from._internal_audio_data());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PlayStreamChunk::CopyFrom(const PlayStreamChunk& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.audioout.v1.PlayStreamChunk)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PlayStreamChunk::IsInitialized() const {
+  return true;
+}
+
+void PlayStreamChunk::InternalSwap(PlayStreamChunk* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &audio_data_, lhs_arena,
+      &other->audio_data_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PlayStreamChunk::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_getter, &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once,
+      file_level_metadata_component_2faudioout_2fv1_2faudioout_2eproto[2]);
+}
+
+// ===================================================================
+
+class PlayStreamInit::_Internal {
+ public:
+  static const ::viam::common::v1::AudioInfo& audio_info(const PlayStreamInit* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Struct& extra(const PlayStreamInit* msg);
+};
+
+const ::viam::common::v1::AudioInfo&
+PlayStreamInit::_Internal::audio_info(const PlayStreamInit* msg) {
+  return *msg->audio_info_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Struct&
+PlayStreamInit::_Internal::extra(const PlayStreamInit* msg) {
+  return *msg->extra_;
+}
+void PlayStreamInit::clear_audio_info() {
+  if (GetArenaForAllocation() == nullptr && audio_info_ != nullptr) {
+    delete audio_info_;
+  }
+  audio_info_ = nullptr;
+}
+void PlayStreamInit::clear_extra() {
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+}
+PlayStreamInit::PlayStreamInit(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.component.audioout.v1.PlayStreamInit)
+}
+PlayStreamInit::PlayStreamInit(const PlayStreamInit& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    name_.Set(from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_audio_info()) {
+    audio_info_ = new ::viam::common::v1::AudioInfo(*from.audio_info_);
+  } else {
+    audio_info_ = nullptr;
+  }
+  if (from._internal_has_extra()) {
+    extra_ = new ::PROTOBUF_NAMESPACE_ID::Struct(*from.extra_);
+  } else {
+    extra_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.component.audioout.v1.PlayStreamInit)
+}
+
+inline void PlayStreamInit::SharedCtor() {
+name_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  name_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&audio_info_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&extra_) -
+    reinterpret_cast<char*>(&audio_info_)) + sizeof(extra_));
+}
+
+PlayStreamInit::~PlayStreamInit() {
+  // @@protoc_insertion_point(destructor:viam.component.audioout.v1.PlayStreamInit)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void PlayStreamInit::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.Destroy();
+  if (this != internal_default_instance()) delete audio_info_;
+  if (this != internal_default_instance()) delete extra_;
+}
+
+void PlayStreamInit::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void PlayStreamInit::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.component.audioout.v1.PlayStreamInit)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && audio_info_ != nullptr) {
+    delete audio_info_;
+  }
+  audio_info_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && extra_ != nullptr) {
+    delete extra_;
+  }
+  extra_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* PlayStreamInit::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1 [json_name = "name"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.component.audioout.v1.PlayStreamInit.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .viam.common.v1.AudioInfo audio_info = 2 [json_name = "audioInfo"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_audio_info(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_extra(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* PlayStreamInit::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.component.audioout.v1.PlayStreamInit)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.component.audioout.v1.PlayStreamInit.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // .viam.common.v1.AudioInfo audio_info = 2 [json_name = "audioInfo"];
+  if (this->_internal_has_audio_info()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::audio_info(this),
+        _Internal::audio_info(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(99, _Internal::extra(this),
+        _Internal::extra(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.component.audioout.v1.PlayStreamInit)
+  return target;
+}
+
+size_t PlayStreamInit::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.component.audioout.v1.PlayStreamInit)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1 [json_name = "name"];
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // .viam.common.v1.AudioInfo audio_info = 2 [json_name = "audioInfo"];
+  if (this->_internal_has_audio_info()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *audio_info_);
+  }
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  if (this->_internal_has_extra()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *extra_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PlayStreamInit::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    PlayStreamInit::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PlayStreamInit::GetClassData() const { return &_class_data_; }
+
+void PlayStreamInit::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<PlayStreamInit *>(to)->MergeFrom(
+      static_cast<const PlayStreamInit &>(from));
+}
+
+
+void PlayStreamInit::MergeFrom(const PlayStreamInit& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.component.audioout.v1.PlayStreamInit)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_audio_info()) {
+    _internal_mutable_audio_info()->::viam::common::v1::AudioInfo::MergeFrom(from._internal_audio_info());
+  }
+  if (from._internal_has_extra()) {
+    _internal_mutable_extra()->::PROTOBUF_NAMESPACE_ID::Struct::MergeFrom(from._internal_extra());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PlayStreamInit::CopyFrom(const PlayStreamInit& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.component.audioout.v1.PlayStreamInit)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PlayStreamInit::IsInitialized() const {
+  return true;
+}
+
+void PlayStreamInit::InternalSwap(PlayStreamInit* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &name_, lhs_arena,
+      &other->name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PlayStreamInit, extra_)
+      + sizeof(PlayStreamInit::extra_)
+      - PROTOBUF_FIELD_OFFSET(PlayStreamInit, audio_info_)>(
+          reinterpret_cast<char*>(&audio_info_),
+          reinterpret_cast<char*>(&other->audio_info_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PlayStreamInit::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_getter, &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once,
+      file_level_metadata_component_2faudioout_2fv1_2faudioout_2eproto[3]);
+}
+
+// ===================================================================
+
 class PlayResponse::_Internal {
  public:
 };
@@ -519,7 +1399,46 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PlayResponse::GetClassData() c
 ::PROTOBUF_NAMESPACE_ID::Metadata PlayResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_getter, &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once,
-      file_level_metadata_component_2faudioout_2fv1_2faudioout_2eproto[1]);
+      file_level_metadata_component_2faudioout_2fv1_2faudioout_2eproto[4]);
+}
+
+// ===================================================================
+
+class PlayStreamResponse::_Internal {
+ public:
+};
+
+PlayStreamResponse::PlayStreamResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.component.audioout.v1.PlayStreamResponse)
+}
+PlayStreamResponse::PlayStreamResponse(const PlayStreamResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.component.audioout.v1.PlayStreamResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PlayStreamResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PlayStreamResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata PlayStreamResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_getter, &descriptor_table_component_2faudioout_2fv1_2faudioout_2eproto_once,
+      file_level_metadata_component_2faudioout_2fv1_2faudioout_2eproto[5]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -532,9 +1451,25 @@ template<> PROTOBUF_NOINLINE ::viam::component::audioout::v1::PlayRequest*
 Arena::CreateMaybeMessage< ::viam::component::audioout::v1::PlayRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::audioout::v1::PlayRequest >(arena);
 }
+template<> PROTOBUF_NOINLINE ::viam::component::audioout::v1::PlayStreamRequest*
+Arena::CreateMaybeMessage< ::viam::component::audioout::v1::PlayStreamRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::audioout::v1::PlayStreamRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::audioout::v1::PlayStreamChunk*
+Arena::CreateMaybeMessage< ::viam::component::audioout::v1::PlayStreamChunk >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::audioout::v1::PlayStreamChunk >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::audioout::v1::PlayStreamInit*
+Arena::CreateMaybeMessage< ::viam::component::audioout::v1::PlayStreamInit >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::audioout::v1::PlayStreamInit >(arena);
+}
 template<> PROTOBUF_NOINLINE ::viam::component::audioout::v1::PlayResponse*
 Arena::CreateMaybeMessage< ::viam::component::audioout::v1::PlayResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::component::audioout::v1::PlayResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::component::audioout::v1::PlayStreamResponse*
+Arena::CreateMaybeMessage< ::viam::component::audioout::v1::PlayStreamResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::component::audioout::v1::PlayStreamResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

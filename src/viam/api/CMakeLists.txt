@@ -257,6 +257,10 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/service/navigation/v1/navigation.grpc.pb.h
     ${PROTO_GEN_DIR}/service/navigation/v1/navigation.pb.cc
     ${PROTO_GEN_DIR}/service/navigation/v1/navigation.pb.h
+    ${PROTO_GEN_DIR}/service/slam/v1/slam.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/slam/v1/slam.grpc.pb.h
+    ${PROTO_GEN_DIR}/service/slam/v1/slam.pb.cc
+    ${PROTO_GEN_DIR}/service/slam/v1/slam.pb.h
     ${PROTO_GEN_DIR}/tagger/v1/tagger.grpc.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.grpc.pb.h
     ${PROTO_GEN_DIR}/tagger/v1/tagger.pb.cc
@@ -361,12 +365,6 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
-    ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.grpc.pb.cc
-    ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.pb.cc
-    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.grpc.pb.cc
-    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.pb.cc
-    ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.grpc.pb.cc
-    ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.cc
@@ -381,6 +379,8 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/service/motion/v1/motion.pb.cc
     ${PROTO_GEN_DIR}/service/navigation/v1/navigation.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/navigation/v1/navigation.pb.cc
+    ${PROTO_GEN_DIR}/service/slam/v1/slam.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/slam/v1/slam.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.grpc.pb.cc
     ${PROTO_GEN_DIR}/tagger/v1/tagger.pb.cc
   PUBLIC FILE_SET viamapi_includes TYPE HEADERS
@@ -452,6 +452,8 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/service/motion/v1/motion.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/navigation/v1/navigation.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/navigation/v1/navigation.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/slam/v1/slam.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/slam/v1/slam.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/tagger/v1/tagger.pb.h
 )
 
@@ -498,6 +500,26 @@ target_link_libraries(viamapi
   PUBLIC ${VIAMCPPSDK_PROTOBUF_LIBRARIES}
   PRIVATE Threads::Threads
 )
+
+# `robot.proto` imports `opentelemetry/proto/trace/v1/trace.proto`, so the
+# OTel proto descriptors are part of viamapi's ABI. When tracing is enabled,
+# get them from the system `opentelemetry-cpp::proto` library to avoid
+# double-registering them alongside `opentelemetry-cpp::otlp_grpc_exporter`
+# (which links the same library transitively into viamsdk). When tracing is
+# disabled, compile our locally-generated copies into viamapi instead.
+if (VIAMCPPSDK_OPENTELEMETRY_TRACING)
+  target_link_libraries(viamapi PUBLIC opentelemetry-cpp::proto)
+else()
+  target_sources(viamapi
+    PRIVATE
+      ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.grpc.pb.cc
+      ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.pb.cc
+      ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.grpc.pb.cc
+      ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.pb.cc
+      ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.grpc.pb.cc
+      ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.pb.cc
+  )
+endif()
 
 install(
   TARGETS viamapi

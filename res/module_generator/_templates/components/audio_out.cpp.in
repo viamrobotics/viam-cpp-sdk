@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 
-namespace {{ .ModuleName }} {
+namespace {{ .ModuleSnake }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
@@ -22,6 +22,14 @@ void {{ .ModelPascal }}::play(
         const viam::sdk::ProtoStruct & extra)
 {
     throw std::logic_error("\"play\" not implemented");
+}
+
+void {{ .ModelPascal }}::play_stream(
+        viam::sdk::AudioOut::audio_info info,
+        std::function<boost::optional<std::vector<uint8_t>> ()> chunk_source,
+        const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"play_stream\" not implemented");
 }
 
 viam::sdk::audio_properties {{ .ModelPascal }}::get_properties(const viam::sdk::ProtoStruct & extra)
@@ -44,5 +52,5 @@ std::vector<viam::sdk::GeometryConfig> {{ .ModelPascal }}::get_geometries(const 
     throw std::logic_error("\"get_geometries\" not implemented");
 }
 
-} // namespace {{ .ModuleName }}
+} // namespace {{ .ModuleSnake }}
 

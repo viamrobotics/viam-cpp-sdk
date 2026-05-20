@@ -130,7 +130,7 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan install . --build=missing -o "&:shared=False"
+          conan install . --build=missing -o "&:opentelemetry_tracing=False"
           cmake . --preset conan-default -DVIAMCPPSDK_BUILD_EXAMPLES=ON
           cmake --build --preset=conan-release --target ALL_BUILD install -j 8
         env:

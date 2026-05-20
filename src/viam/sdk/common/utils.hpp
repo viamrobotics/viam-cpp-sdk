@@ -125,5 +125,9 @@ boost::optional<std::string> get_env(const char* var);
 /// "true", "yes", "1", "TRUE", or "YES"
 bool is_env_var_true(const char* var);
 
+/// @brief Returns whether the environment variable named @param var is unset, or set and equal to
+/// "false", "no", "0", "FALSE", or "NO"
+bool is_env_var_false(const char* var);
+
 }  // namespace sdk
 }  // namespace viam
