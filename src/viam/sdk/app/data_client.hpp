@@ -9,6 +9,7 @@
 #include <boost/optional.hpp>
 
 #include <viam/sdk/app/viam_client.hpp>
+#include <viam/sdk/app/data_client_types.hpp>
 
 namespace viam {
 namespace sdk {
@@ -27,6 +28,15 @@ class DataClient {
 
         /// @brief Used to specify a saved query to run.
         boost::optional<std::string> query_prefix;
+    };
+
+    // NEW: Options for SequencesByDatasetID
+    /// @brief Options which are passed to a sequences_by_dataset_id request.
+    struct sequences_by_dataset_id_options {
+        /// @brief The number of sequences to return per page.
+        uint32_t page_size = 0;
+        /// @brief The token for the next page of results.
+        boost::optional<std::string> page_token;
     };
 
     using BSONBytes = std::vector<uint8_t>;
@@ -54,6 +64,33 @@ class DataClient {
     /// @brief Convenience overload with default options.
     std::vector<BSONBytes> tabular_data_by_mql(const std::string& org_id,
                                                const std::vector<BSONBytes>& mql_binary);
+
+    // NEW: AddSequencesToDataset
+    /// @brief Adds the sequences with the given IDs to the dataset.
+    /// @param dataset_id The ID of the dataset to add sequences to.
+    /// @param sequence_ids The IDs of the sequences to add.
+    void add_sequences_to_dataset(const std::string& dataset_id,
+                                  const std::vector<std::string>& sequence_ids);
+
+    // NEW: RemoveSequencesFromDataset
+    /// @brief Removes the sequences with the given IDs from the dataset.
+    /// @param dataset_id The ID of the dataset to remove sequences from.
+    /// @param sequence_ids The IDs of the sequences to remove.
+    void remove_sequences_from_dataset(const std::string& dataset_id,
+                                       const std::vector<std::string>& sequence_ids);
+
+    // NEW: SequencesByDatasetID
+    /// @brief Lists sequences that belong to the given dataset.
+    /// @param dataset_id The ID of the dataset to list sequences for.
+    /// @param opts Options for pagination.
+    /// @return A pair containing a vector of sequences and the next page token.
+    std::pair<std::vector<Sequence>, boost::optional<std::string>> sequences_by_dataset_id(
+        const std::string& dataset_id, const sequences_by_dataset_id_options& opts);
+
+    // NEW: Convenience overload for SequencesByDatasetID with default options.
+    /// @brief Convenience overload for SequencesByDatasetID with default options.
+    std::pair<std::vector<Sequence>, boost::optional<std::string>> sequences_by_dataset_id(
+        const std::string& dataset_id);
 
    private:
     DataClient(const ViamChannel& channel);
