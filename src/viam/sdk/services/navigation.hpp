@@ -124,6 +124,10 @@ class Navigation : public Service {
     /// @return Freeform result of the command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the navigation service.
+    /// @return A `ProtoStruct` containing the status of the navigation service.
+    virtual ProtoStruct get_status() = 0;
+
     // overloads without `extra` param:
 
     inline Mode get_mode() {

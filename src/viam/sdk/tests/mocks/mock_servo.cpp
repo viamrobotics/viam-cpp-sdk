@@ -34,6 +34,10 @@ bool MockServo::is_moving() {
     return is_moving_;
 }
 
+ProtoStruct MockServo::get_status() {
+    return fake_status();
+}
+
 ProtoStruct MockServo::do_command(const ProtoStruct&) {
     return map_;
 }

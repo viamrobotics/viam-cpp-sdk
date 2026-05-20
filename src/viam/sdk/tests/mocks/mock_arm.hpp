@@ -27,6 +27,7 @@ class MockArm : public sdk::Arm {
 
     void stop(const sdk::ProtoStruct&) override;
     bool is_moving() override;
+    sdk::ProtoStruct get_status() override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
     sdk::KinematicsData get_kinematics(const sdk::ProtoStruct&) override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct&) override;

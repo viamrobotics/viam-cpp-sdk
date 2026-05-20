@@ -148,7 +148,7 @@ const char descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager
   "type\030\005 \001(\0162\036.viam.app.datasync.v1.MimeTy"
   "peR\010mimeType\022-\n\005extra\030c \001(\0132\027.google.pro"
   "tobuf.StructR\005extra\"$\n\"UploadBinaryDataT"
-  "oDatasetsResponse2\253\004\n\022DataManagerService"
+  "oDatasetsResponse2\272\005\n\022DataManagerService"
   "\022\225\001\n\004Sync\022(.viam.service.datamanager.v1."
   "SyncRequest\032).viam.service.datamanager.v"
   "1.SyncResponse\"8\202\323\344\223\0022\"0/viam/api/v1/ser"
@@ -156,15 +156,19 @@ const char descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager
   "ommand\022 .viam.common.v1.DoCommandRequest"
   "\032!.viam.common.v1.DoCommandResponse\":\202\323\344"
   "\223\0024\"2/viam/api/v1/service/datamanager/{n"
-  "ame}/do_command\022\355\001\n\032UploadBinaryDataToDa"
-  "tasets\022>.viam.service.datamanager.v1.Upl"
-  "oadBinaryDataToDatasetsRequest\032\?.viam.se"
-  "rvice.datamanager.v1.UploadBinaryDataToD"
-  "atasetsResponse\"N\202\323\344\223\002H\"F/viam/api/v1/se"
-  "rvice/datamanager/{name}/upload_binary_d"
-  "ata_to_datasetsBI\n\037com.viam.service.data"
-  "manager.v1Z&go.viam.com/api/service/data"
-  "manager/v1b\006proto3"
+  "ame}/do_command\022\214\001\n\tGetStatus\022 .viam.com"
+  "mon.v1.GetStatusRequest\032!.viam.common.v1"
+  ".GetStatusResponse\":\202\323\344\223\0024\0222/viam/api/v1"
+  "/service/datamanager/{name}/get_status\022\355"
+  "\001\n\032UploadBinaryDataToDatasets\022>.viam.ser"
+  "vice.datamanager.v1.UploadBinaryDataToDa"
+  "tasetsRequest\032\?.viam.service.datamanager"
+  ".v1.UploadBinaryDataToDatasetsResponse\"N"
+  "\202\323\344\223\002H\"F/viam/api/v1/service/datamanager"
+  "/{name}/upload_binary_data_to_datasetsBI"
+  "\n\037com.viam.service.datamanager.v1Z&go.vi"
+  "am.com/api/service/datamanager/v1b\006proto"
+  "3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps[4] = {
   &::descriptor_table_app_2fdatasync_2fv1_2fdata_5fsync_2eproto,
@@ -174,7 +178,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdatamanag
 };
 static ::_pbi::once_flag descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto = {
-    false, false, 1218, descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
+    false, false, 1361, descriptor_table_protodef_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto,
     "service/datamanager/v1/data_manager.proto",
     &descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_once, descriptor_table_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto_deps, 4, 4,
     schemas, file_default_instances, TableStruct_service_2fdatamanager_2fv1_2fdata_5fmanager_2eproto::offsets,

@@ -104,6 +104,13 @@ jobs:
             -DVIAMCPPSDK_BUILD_EXAMPLES=OFF \
             -DCMAKE_CXX_COMPILER=clang++-15
 
+      - name: Check for changed simple files
+        working-directory: sdk
+        run: |
+          cl_gen -d res/module_generator/_templates -cmake
+          cl_gen -d res/module_generator/_templates -conan
+          cl_gen -d res/module_generator/_templates -main
+
       # On push events we only operate on cpp files for which the service or component hpp file had a diff
       - name: Operate on changed files
         if: github.event_name == 'push'
@@ -116,12 +123,8 @@ jobs:
           echo "Changed files:"
           echo "$changed_files"
 
-          for changed in $changed_files; do
-            cl_gen -p ./build $changed -o \
-              $(echo $changed | \
-              cut -d '/' -f 4-5 | \
-              sed 's@$@.in@' | \
-              sed 's@^@res/module_generator/_templates/@')
+          for changed in $(echo $changed_files); do
+            cl_gen -p ./build -d res/module_generator/_templates $changed
           done
 
       # On a workflow_dispatch we just try to regenerate all the templates and see if there is a diff
@@ -137,12 +140,8 @@ jobs:
           echo "All files to regenerate:"
           echo "$all_files"
 
-          for file in $all_files; do
-            cl_gen -p ./build $file -o \
-              $(echo $file | \
-              cut -d '/' -f 4-5 | \
-              sed 's@$@.in@' | \
-              sed 's@^@res/module_generator/_templates/@')
+          for file in $(echo $all_files); do
+            cl_gen -p ./build -d res/module_generator/_templates $file
           done
 
       - name: Create PR
@@ -151,8 +150,7 @@ jobs:
           path: sdk
           branch: workflow/update-templates
           add-paths: |
-            res/module_generator/_templates/components/*
-            res/module_generator/_templates/services/*
+            res/module_generator/_templates/
           title: Automated update to module generator templates
           commit-message: '[WORKFLOW] Updating module generator templates'
           body: 'This is an auto-generated PR from a ${{ github.event_name }} event to update module generator templates.'

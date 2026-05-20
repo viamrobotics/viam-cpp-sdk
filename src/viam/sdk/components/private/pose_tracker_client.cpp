@@ -40,6 +40,12 @@ std::vector<GeometryConfig> PoseTrackerClient::get_geometries(const ProtoStruct&
         .invoke([](auto& response) { return from_proto(response); });
 }
 
+ProtoStruct PoseTrackerClient::get_status() {
+    return make_client_helper(this, *stub_, &StubType::GetStatus).invoke([](auto& response) {
+        return from_proto(response.result());
+    });
+}
+
 ProtoStruct PoseTrackerClient::do_command(const ProtoStruct& command) {
     return make_client_helper(this, *stub_, &StubType::DoCommand)
         .with([&](auto& request) { *request.mutable_command() = to_proto(command); })

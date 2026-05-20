@@ -103,6 +103,7 @@ PROTOBUF_CONSTEXPR AttributeContext_Request::AttributeContext_Request(
   , query_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , protocol_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , reason_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , origin_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , time_(nullptr)
   , auth_(nullptr)
   , size_(int64_t{0}){}
@@ -284,6 +285,7 @@ const uint32_t TableStruct_google_2frpc_2fcontext_2fattribute_5fcontext_2eproto:
   PROTOBUF_FIELD_OFFSET(::google::rpc::context::AttributeContext_Request, protocol_),
   PROTOBUF_FIELD_OFFSET(::google::rpc::context::AttributeContext_Request, reason_),
   PROTOBUF_FIELD_OFFSET(::google::rpc::context::AttributeContext_Request, auth_),
+  PROTOBUF_FIELD_OFFSET(::google::rpc::context::AttributeContext_Request, origin_),
   PROTOBUF_FIELD_OFFSET(::google::rpc::context::AttributeContext_Response_HeadersEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::google::rpc::context::AttributeContext_Response_HeadersEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -365,12 +367,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 31, -1, -1, sizeof(::google::rpc::context::AttributeContext_Auth)},
   { 42, 50, -1, sizeof(::google::rpc::context::AttributeContext_Request_HeadersEntry_DoNotUse)},
   { 52, -1, -1, sizeof(::google::rpc::context::AttributeContext_Request)},
-  { 70, 78, -1, sizeof(::google::rpc::context::AttributeContext_Response_HeadersEntry_DoNotUse)},
-  { 80, -1, -1, sizeof(::google::rpc::context::AttributeContext_Response)},
-  { 91, 99, -1, sizeof(::google::rpc::context::AttributeContext_Resource_LabelsEntry_DoNotUse)},
-  { 101, 109, -1, sizeof(::google::rpc::context::AttributeContext_Resource_AnnotationsEntry_DoNotUse)},
-  { 111, -1, -1, sizeof(::google::rpc::context::AttributeContext_Resource)},
-  { 129, -1, -1, sizeof(::google::rpc::context::AttributeContext)},
+  { 71, 79, -1, sizeof(::google::rpc::context::AttributeContext_Response_HeadersEntry_DoNotUse)},
+  { 81, -1, -1, sizeof(::google::rpc::context::AttributeContext_Response)},
+  { 92, 100, -1, sizeof(::google::rpc::context::AttributeContext_Resource_LabelsEntry_DoNotUse)},
+  { 102, 110, -1, sizeof(::google::rpc::context::AttributeContext_Resource_AnnotationsEntry_DoNotUse)},
+  { 112, -1, -1, sizeof(::google::rpc::context::AttributeContext_Resource)},
+  { 130, -1, -1, sizeof(::google::rpc::context::AttributeContext)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -393,7 +395,7 @@ const char descriptor_table_protodef_google_2frpc_2fcontext_2fattribute_5fcontex
   "roto\022\022google.rpc.context\032\031google/protobu"
   "f/any.proto\032\036google/protobuf/duration.pr"
   "oto\032\034google/protobuf/struct.proto\032\037googl"
-  "e/protobuf/timestamp.proto\"\201\024\n\020Attribute"
+  "e/protobuf/timestamp.proto\"\231\024\n\020Attribute"
   "Context\022A\n\006origin\030\007 \001(\0132).google.rpc.con"
   "text.AttributeContext.PeerR\006origin\022A\n\006so"
   "urce\030\001 \001(\0132).google.rpc.context.Attribut"
@@ -421,7 +423,7 @@ const char descriptor_table_protodef_google_2frpc_2fcontext_2fattribute_5fcontex
   "audiences\030\002 \003(\tR\taudiences\022\034\n\tpresenter\030"
   "\003 \001(\tR\tpresenter\022/\n\006claims\030\004 \001(\0132\027.googl"
   "e.protobuf.StructR\006claims\022#\n\raccess_leve"
-  "ls\030\005 \003(\tR\014accessLevels\032\317\003\n\007Request\022\016\n\002id"
+  "ls\030\005 \003(\tR\014accessLevels\032\347\003\n\007Request\022\016\n\002id"
   "\030\001 \001(\tR\002id\022\026\n\006method\030\002 \001(\tR\006method\022S\n\007he"
   "aders\030\003 \003(\01329.google.rpc.context.Attribu"
   "teContext.Request.HeadersEntryR\007headers\022"
@@ -431,37 +433,38 @@ const char descriptor_table_protodef_google_2frpc_2fcontext_2fattribute_5fcontex
   "mestampR\004time\022\022\n\004size\030\n \001(\003R\004size\022\032\n\010pro"
   "tocol\030\013 \001(\tR\010protocol\022\026\n\006reason\030\014 \001(\tR\006r"
   "eason\022=\n\004auth\030\r \001(\0132).google.rpc.context"
-  ".AttributeContext.AuthR\004auth\032:\n\014HeadersE"
-  "ntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005v"
-  "alue:\0028\001\032\270\002\n\010Response\022\022\n\004code\030\001 \001(\003R\004cod"
-  "e\022\022\n\004size\030\002 \001(\003R\004size\022T\n\007headers\030\003 \003(\0132:"
-  ".google.rpc.context.AttributeContext.Res"
-  "ponse.HeadersEntryR\007headers\022.\n\004time\030\004 \001("
-  "\0132\032.google.protobuf.TimestampR\004time\022B\n\017b"
-  "ackend_latency\030\005 \001(\0132\031.google.protobuf.D"
-  "urationR\016backendLatency\032:\n\014HeadersEntry\022"
-  "\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:"
-  "\0028\001\032\230\005\n\010Resource\022\030\n\007service\030\001 \001(\tR\007servi"
-  "ce\022\022\n\004name\030\002 \001(\tR\004name\022\022\n\004type\030\003 \001(\tR\004ty"
-  "pe\022Q\n\006labels\030\004 \003(\01329.google.rpc.context."
-  "AttributeContext.Resource.LabelsEntryR\006l"
-  "abels\022\020\n\003uid\030\005 \001(\tR\003uid\022`\n\013annotations\030\006"
-  " \003(\0132>.google.rpc.context.AttributeConte"
-  "xt.Resource.AnnotationsEntryR\013annotation"
-  "s\022!\n\014display_name\030\007 \001(\tR\013displayName\022;\n\013"
-  "create_time\030\010 \001(\0132\032.google.protobuf.Time"
-  "stampR\ncreateTime\022;\n\013update_time\030\t \001(\0132\032"
-  ".google.protobuf.TimestampR\nupdateTime\022;"
-  "\n\013delete_time\030\n \001(\0132\032.google.protobuf.Ti"
-  "mestampR\ndeleteTime\022\022\n\004etag\030\013 \001(\tR\004etag\022"
-  "\032\n\010location\030\014 \001(\tR\010location\0329\n\013LabelsEnt"
-  "ry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005val"
-  "ue:\0028\001\032>\n\020AnnotationsEntry\022\020\n\003key\030\001 \001(\tR"
-  "\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001B\213\001\n\026com.g"
-  "oogle.rpc.contextB\025AttributeContextProto"
-  "P\001ZUgoogle.golang.org/genproto/googleapi"
-  "s/rpc/context/attribute_context;attribut"
-  "e_context\370\001\001b\006proto3"
+  ".AttributeContext.AuthR\004auth\022\026\n\006origin\030\016"
+  " \001(\tR\006origin\032:\n\014HeadersEntry\022\020\n\003key\030\001 \001("
+  "\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032\270\002\n\010Res"
+  "ponse\022\022\n\004code\030\001 \001(\003R\004code\022\022\n\004size\030\002 \001(\003R"
+  "\004size\022T\n\007headers\030\003 \003(\0132:.google.rpc.cont"
+  "ext.AttributeContext.Response.HeadersEnt"
+  "ryR\007headers\022.\n\004time\030\004 \001(\0132\032.google.proto"
+  "buf.TimestampR\004time\022B\n\017backend_latency\030\005"
+  " \001(\0132\031.google.protobuf.DurationR\016backend"
+  "Latency\032:\n\014HeadersEntry\022\020\n\003key\030\001 \001(\tR\003ke"
+  "y\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032\230\005\n\010Resource"
+  "\022\030\n\007service\030\001 \001(\tR\007service\022\022\n\004name\030\002 \001(\t"
+  "R\004name\022\022\n\004type\030\003 \001(\tR\004type\022Q\n\006labels\030\004 \003"
+  "(\01329.google.rpc.context.AttributeContext"
+  ".Resource.LabelsEntryR\006labels\022\020\n\003uid\030\005 \001"
+  "(\tR\003uid\022`\n\013annotations\030\006 \003(\0132>.google.rp"
+  "c.context.AttributeContext.Resource.Anno"
+  "tationsEntryR\013annotations\022!\n\014display_nam"
+  "e\030\007 \001(\tR\013displayName\022;\n\013create_time\030\010 \001("
+  "\0132\032.google.protobuf.TimestampR\ncreateTim"
+  "e\022;\n\013update_time\030\t \001(\0132\032.google.protobuf"
+  ".TimestampR\nupdateTime\022;\n\013delete_time\030\n "
+  "\001(\0132\032.google.protobuf.TimestampR\ndeleteT"
+  "ime\022\022\n\004etag\030\013 \001(\tR\004etag\022\032\n\010location\030\014 \001("
+  "\tR\010location\0329\n\013LabelsEntry\022\020\n\003key\030\001 \001(\tR"
+  "\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032>\n\020Annota"
+  "tionsEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 "
+  "\001(\tR\005value:\0028\001B\210\001\n\026com.google.rpc.contex"
+  "tB\025AttributeContextProtoP\001ZUgoogle.golan"
+  "g.org/genproto/googleapis/rpc/context/at"
+  "tribute_context;attribute_contextb\006proto"
+  "3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2frpc_2fcontext_2fattribute_5fcontext_2eproto_deps[4] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -471,7 +474,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2frpc_2fcont
 };
 static ::_pbi::once_flag descriptor_table_google_2frpc_2fcontext_2fattribute_5fcontext_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2frpc_2fcontext_2fattribute_5fcontext_2eproto = {
-    false, false, 2900, descriptor_table_protodef_google_2frpc_2fcontext_2fattribute_5fcontext_2eproto,
+    false, false, 2921, descriptor_table_protodef_google_2frpc_2fcontext_2fattribute_5fcontext_2eproto,
     "google/rpc/context/attribute_context.proto",
     &descriptor_table_google_2frpc_2fcontext_2fattribute_5fcontext_2eproto_once, descriptor_table_google_2frpc_2fcontext_2fattribute_5fcontext_2eproto_deps, 4, 12,
     schemas, file_default_instances, TableStruct_google_2frpc_2fcontext_2fattribute_5fcontext_2eproto::offsets,
@@ -1705,6 +1708,14 @@ AttributeContext_Request::AttributeContext_Request(const AttributeContext_Reques
     reason_.Set(from._internal_reason(), 
       GetArenaForAllocation());
   }
+  origin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    origin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_origin().empty()) {
+    origin_.Set(from._internal_origin(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_time()) {
     time_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from.time_);
   } else {
@@ -1752,6 +1763,10 @@ reason_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   reason_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+origin_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  origin_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&time_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&size_) -
@@ -1779,6 +1794,7 @@ inline void AttributeContext_Request::SharedDtor() {
   query_.Destroy();
   protocol_.Destroy();
   reason_.Destroy();
+  origin_.Destroy();
   if (this != internal_default_instance()) delete time_;
   if (this != internal_default_instance()) delete auth_;
 }
@@ -1806,6 +1822,7 @@ void AttributeContext_Request::Clear() {
   query_.ClearToEmpty();
   protocol_.ClearToEmpty();
   reason_.ClearToEmpty();
+  origin_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && time_ != nullptr) {
     delete time_;
   }
@@ -1938,6 +1955,16 @@ const char* AttributeContext_Request::_InternalParse(const char* ptr, ::_pbi::Pa
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
           ptr = ctx->ParseMessage(_internal_mutable_auth(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string origin = 14 [json_name = "origin"];
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
+          auto str = _internal_mutable_origin();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.rpc.context.AttributeContext.Request.origin"));
         } else
           goto handle_unusual;
         continue;
@@ -2100,6 +2127,16 @@ uint8_t* AttributeContext_Request::_InternalSerialize(
         _Internal::auth(this).GetCachedSize(), target, stream);
   }
 
+  // string origin = 14 [json_name = "origin"];
+  if (!this->_internal_origin().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_origin().data(), static_cast<int>(this->_internal_origin().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.rpc.context.AttributeContext.Request.origin");
+    target = stream->WriteStringMaybeAliased(
+        14, this->_internal_origin(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2181,6 +2218,13 @@ size_t AttributeContext_Request::ByteSizeLong() const {
         this->_internal_reason());
   }
 
+  // string origin = 14 [json_name = "origin"];
+  if (!this->_internal_origin().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_origin());
+  }
+
   // .google.protobuf.Timestamp time = 9 [json_name = "time"];
   if (this->_internal_has_time()) {
     total_size += 1 +
@@ -2247,6 +2291,9 @@ void AttributeContext_Request::MergeFrom(const AttributeContext_Request& from) {
   if (!from._internal_reason().empty()) {
     _internal_set_reason(from._internal_reason());
   }
+  if (!from._internal_origin().empty()) {
+    _internal_set_origin(from._internal_origin());
+  }
   if (from._internal_has_time()) {
     _internal_mutable_time()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_time());
   }
@@ -2307,6 +2354,10 @@ void AttributeContext_Request::InternalSwap(AttributeContext_Request* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &reason_, lhs_arena,
       &other->reason_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &origin_, lhs_arena,
+      &other->origin_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(AttributeContext_Request, size_)

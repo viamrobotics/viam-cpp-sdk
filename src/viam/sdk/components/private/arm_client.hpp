@@ -33,6 +33,7 @@ class ArmClient : public Arm {
                                       const Arm::MoveOptions& options,
                                       const ProtoStruct& extra) override;
     bool is_moving() override;
+    ProtoStruct get_status() override;
     void stop(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
     ::viam::sdk::KinematicsData get_kinematics(const ProtoStruct& extra) override;

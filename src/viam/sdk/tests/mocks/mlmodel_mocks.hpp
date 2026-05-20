@@ -35,6 +35,7 @@ class MockMLModelService : public sdk::MLModelService {
 
     MockMLModelService& set_metadata(struct metadata metadata);
     struct metadata metadata(const sdk::ProtoStruct& extra) override;
+    sdk::ProtoStruct get_status() override;
 
    private:
     infer_handler infer_handler_;

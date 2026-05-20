@@ -204,7 +204,7 @@ const char descriptor_table_protodef_component_2fencoder_2fv1_2fencoder_2eproto[
   "ees_supported\030\002 \001(\010R\025angleDegreesSupport"
   "ed*m\n\014PositionType\022\035\n\031POSITION_TYPE_UNSP"
   "ECIFIED\020\000\022\035\n\031POSITION_TYPE_TICKS_COUNT\020\001"
-  "\022\037\n\033POSITION_TYPE_ANGLE_DEGREES\020\0022\307\006\n\016En"
+  "\022\037\n\033POSITION_TYPE_ANGLE_DEGREES\020\0022\324\007\n\016En"
   "coderService\022\250\001\n\013GetPosition\022-.viam.comp"
   "onent.encoder.v1.GetPositionRequest\032..vi"
   "am.component.encoder.v1.GetPositionRespo"
@@ -222,12 +222,16 @@ const char descriptor_table_protodef_component_2fencoder_2fv1_2fencoder_2eproto[
   "am.common.v1.DoCommandRequest\032!.viam.com"
   "mon.v1.DoCommandResponse\"8\202\323\344\223\0022\"0/viam/"
   "api/v1/component/encoder/{name}/do_comma"
-  "nd\022\226\001\n\rGetGeometries\022$.viam.common.v1.Ge"
-  "tGeometriesRequest\032%.viam.common.v1.GetG"
-  "eometriesResponse\"8\202\323\344\223\0022\0220/viam/api/v1/"
-  "component/encoder/{name}/geometriesBE\n\035c"
-  "om.viam.component.encoder.v1Z$go.viam.co"
-  "m/api/component/encoder/v1b\006proto3"
+  "nd\022\212\001\n\tGetStatus\022 .viam.common.v1.GetSta"
+  "tusRequest\032!.viam.common.v1.GetStatusRes"
+  "ponse\"8\202\323\344\223\0022\0220/viam/api/v1/component/en"
+  "coder/{name}/get_status\022\226\001\n\rGetGeometrie"
+  "s\022$.viam.common.v1.GetGeometriesRequest\032"
+  "%.viam.common.v1.GetGeometriesResponse\"8"
+  "\202\323\344\223\0022\0220/viam/api/v1/component/encoder/{"
+  "name}/geometriesBE\n\035com.viam.component.e"
+  "ncoder.v1Z$go.viam.com/api/component/enc"
+  "oder/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2fencoder_2fv1_2fencoder_2eproto_deps[3] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -236,7 +240,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2fencoder
 };
 static ::_pbi::once_flag descriptor_table_component_2fencoder_2fv1_2fencoder_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2fencoder_2fv1_2fencoder_2eproto = {
-    false, false, 1834, descriptor_table_protodef_component_2fencoder_2fv1_2fencoder_2eproto,
+    false, false, 1975, descriptor_table_protodef_component_2fencoder_2fv1_2fencoder_2eproto,
     "component/encoder/v1/encoder.proto",
     &descriptor_table_component_2fencoder_2fv1_2fencoder_2eproto_once, descriptor_table_component_2fencoder_2fv1_2fencoder_2eproto_deps, 3, 6,
     schemas, file_default_instances, TableStruct_component_2fencoder_2fv1_2fencoder_2eproto::offsets,

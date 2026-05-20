@@ -25,6 +25,10 @@ class GenericService : public Service {
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the generic service.
+    /// @return A `ProtoStruct` containing the status of the generic service.
+    virtual ProtoStruct get_status() = 0;
+
     /// @brief Creates a `GenericService` `API`.
     API api() const override;
 

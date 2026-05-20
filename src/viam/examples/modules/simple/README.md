@@ -11,11 +11,9 @@ For more information, see the [documentation](https://docs.viam.com/registry/). 
 For a list of example modules in different Viam SDKs, take a look [here](https://github.com/viamrobotics/upload-module/#example-repos).
 
 ## Project structure
-The `main.cpp` file contains the definition of a new sensor component and code to register it. It also has the optional validator function and implements reconfigure. The validator function is defined upon resource registration, and the reconfigure method is implemented on the resource class.
+The `main.cpp` file contains the definition of a new sensor component and code to register it. It also has the optional validator function. The validator function is defined upon resource registration, and configuration is handled in the constructor.
 
 The validator function can throw errors that are triggered due to errors in the configuration. It also returns a vector of strings representing the implicit dependencies of the resource. Note that this sensor has no implicit dependencies; see the [complex module example](https://github.com/viamrobotics/viam-cpp-sdk/tree/main/src/viam/examples/modules/complex) for examples of modular resources with implicit dependencies.
-
-The reconfiguration method reconfigures the resource based on the new configuration passed in.
 
 When simple_module is run, the main function creates and starts the module. Read further to learn how to connect this module to your machine.
 
@@ -46,4 +44,4 @@ An example configuration for our sensor could look like this:
 }
 ```
 
-Note in particular that our sensor has a `multiplier` attribute whose presence is checked in the `validate` and `reconfigure` methods, defaulting to 1.0 if not present.
+Note in particular that our sensor has a `multiplier` attribute whose presence is checked in the `validate` method and handled in the constructor, defaulting to 1.0 if not present.

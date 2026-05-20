@@ -16,6 +16,7 @@ class MockSwitch : public sdk::Switch {
     uint32_t get_position(const sdk::ProtoStruct&) override;
     sdk::Switch::position_info get_number_of_positions(const sdk::ProtoStruct&) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
 
     uint32_t current_position;
     sdk::Switch::position_info position_info;

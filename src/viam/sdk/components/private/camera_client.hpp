@@ -31,6 +31,8 @@ class CameraClient : public Camera {
 
     ProtoStruct do_command(const ProtoStruct& command) override;
 
+    ProtoStruct get_status() override;
+
     image_collection get_images(std::vector<std::string> filter_source_names,
                                 const ProtoStruct& extra) override;
 

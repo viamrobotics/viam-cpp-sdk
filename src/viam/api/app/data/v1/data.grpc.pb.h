@@ -299,6 +299,46 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>> PrepareAsyncCreateBinaryDataSignedURL(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>>(PrepareAsyncCreateBinaryDataSignedURLRaw(context, request, cq));
     }
+    // CreateSequence creates a new sequence.
+    virtual ::grpc::Status CreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::viam::app::data::v1::CreateSequenceResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateSequenceResponse>> AsyncCreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateSequenceResponse>>(AsyncCreateSequenceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateSequenceResponse>> PrepareAsyncCreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateSequenceResponse>>(PrepareAsyncCreateSequenceRaw(context, request, cq));
+    }
+    // GetSequence retrieves a sequence by ID.
+    virtual ::grpc::Status GetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::viam::app::data::v1::GetSequenceResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceResponse>> AsyncGetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceResponse>>(AsyncGetSequenceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceResponse>> PrepareAsyncGetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceResponse>>(PrepareAsyncGetSequenceRaw(context, request, cq));
+    }
+    // UpdateSequence updates the mutable fields of a sequence.
+    virtual ::grpc::Status UpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::viam::app::data::v1::UpdateSequenceResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::UpdateSequenceResponse>> AsyncUpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::UpdateSequenceResponse>>(AsyncUpdateSequenceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::UpdateSequenceResponse>> PrepareAsyncUpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::UpdateSequenceResponse>>(PrepareAsyncUpdateSequenceRaw(context, request, cq));
+    }
+    // DeleteSequence deletes a sequence by ID.
+    virtual ::grpc::Status DeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::viam::app::data::v1::DeleteSequenceResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::DeleteSequenceResponse>> AsyncDeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::DeleteSequenceResponse>>(AsyncDeleteSequenceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::DeleteSequenceResponse>> PrepareAsyncDeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::DeleteSequenceResponse>>(PrepareAsyncDeleteSequenceRaw(context, request, cq));
+    }
+    // ListSequences lists sequences for a given organization.
+    virtual ::grpc::Status ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::viam::app::data::v1::ListSequencesResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>> AsyncListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>>(AsyncListSequencesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>> PrepareAsyncListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>>(PrepareAsyncListSequencesRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -399,6 +439,21 @@ class DataService final {
       // CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
       virtual void CreateBinaryDataSignedURL(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest* request, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void CreateBinaryDataSignedURL(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest* request, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // CreateSequence creates a new sequence.
+      virtual void CreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest* request, ::viam::app::data::v1::CreateSequenceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest* request, ::viam::app::data::v1::CreateSequenceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // GetSequence retrieves a sequence by ID.
+      virtual void GetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest* request, ::viam::app::data::v1::GetSequenceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest* request, ::viam::app::data::v1::GetSequenceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // UpdateSequence updates the mutable fields of a sequence.
+      virtual void UpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest* request, ::viam::app::data::v1::UpdateSequenceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest* request, ::viam::app::data::v1::UpdateSequenceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // DeleteSequence deletes a sequence by ID.
+      virtual void DeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest* request, ::viam::app::data::v1::DeleteSequenceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest* request, ::viam::app::data::v1::DeleteSequenceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // ListSequences lists sequences for a given organization.
+      virtual void ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -469,6 +524,16 @@ class DataService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSavedQueriesResponse>* PrepareAsyncListSavedQueriesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSavedQueriesRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>* AsyncCreateBinaryDataSignedURLRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>* PrepareAsyncCreateBinaryDataSignedURLRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateSequenceResponse>* AsyncCreateSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::CreateSequenceResponse>* PrepareAsyncCreateSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceResponse>* AsyncGetSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::GetSequenceResponse>* PrepareAsyncGetSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::UpdateSequenceResponse>* AsyncUpdateSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::UpdateSequenceResponse>* PrepareAsyncUpdateSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::DeleteSequenceResponse>* AsyncDeleteSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::DeleteSequenceResponse>* PrepareAsyncDeleteSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>* AsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::viam::app::data::v1::ListSequencesResponse>* PrepareAsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -699,6 +764,41 @@ class DataService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>> PrepareAsyncCreateBinaryDataSignedURL(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>>(PrepareAsyncCreateBinaryDataSignedURLRaw(context, request, cq));
     }
+    ::grpc::Status CreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::viam::app::data::v1::CreateSequenceResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateSequenceResponse>> AsyncCreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateSequenceResponse>>(AsyncCreateSequenceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateSequenceResponse>> PrepareAsyncCreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateSequenceResponse>>(PrepareAsyncCreateSequenceRaw(context, request, cq));
+    }
+    ::grpc::Status GetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::viam::app::data::v1::GetSequenceResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceResponse>> AsyncGetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceResponse>>(AsyncGetSequenceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceResponse>> PrepareAsyncGetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceResponse>>(PrepareAsyncGetSequenceRaw(context, request, cq));
+    }
+    ::grpc::Status UpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::viam::app::data::v1::UpdateSequenceResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::UpdateSequenceResponse>> AsyncUpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::UpdateSequenceResponse>>(AsyncUpdateSequenceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::UpdateSequenceResponse>> PrepareAsyncUpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::UpdateSequenceResponse>>(PrepareAsyncUpdateSequenceRaw(context, request, cq));
+    }
+    ::grpc::Status DeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::viam::app::data::v1::DeleteSequenceResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteSequenceResponse>> AsyncDeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteSequenceResponse>>(AsyncDeleteSequenceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteSequenceResponse>> PrepareAsyncDeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteSequenceResponse>>(PrepareAsyncDeleteSequenceRaw(context, request, cq));
+    }
+    ::grpc::Status ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::viam::app::data::v1::ListSequencesResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>> AsyncListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>>(AsyncListSequencesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>> PrepareAsyncListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>>(PrepareAsyncListSequencesRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -765,6 +865,16 @@ class DataService final {
       void ListSavedQueries(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSavedQueriesRequest* request, ::viam::app::data::v1::ListSavedQueriesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void CreateBinaryDataSignedURL(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest* request, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse* response, std::function<void(::grpc::Status)>) override;
       void CreateBinaryDataSignedURL(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest* request, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void CreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest* request, ::viam::app::data::v1::CreateSequenceResponse* response, std::function<void(::grpc::Status)>) override;
+      void CreateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest* request, ::viam::app::data::v1::CreateSequenceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest* request, ::viam::app::data::v1::GetSequenceResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest* request, ::viam::app::data::v1::GetSequenceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest* request, ::viam::app::data::v1::UpdateSequenceResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest* request, ::viam::app::data::v1::UpdateSequenceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest* request, ::viam::app::data::v1::DeleteSequenceResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeleteSequence(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest* request, ::viam::app::data::v1::DeleteSequenceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response, std::function<void(::grpc::Status)>) override;
+      void ListSequences(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -841,6 +951,16 @@ class DataService final {
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSavedQueriesResponse>* PrepareAsyncListSavedQueriesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSavedQueriesRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>* AsyncCreateBinaryDataSignedURLRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateBinaryDataSignedURLResponse>* PrepareAsyncCreateBinaryDataSignedURLRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateSequenceResponse>* AsyncCreateSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::CreateSequenceResponse>* PrepareAsyncCreateSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateSequenceRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceResponse>* AsyncGetSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceResponse>* PrepareAsyncGetSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::UpdateSequenceResponse>* AsyncUpdateSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::UpdateSequenceResponse>* PrepareAsyncUpdateSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::UpdateSequenceRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteSequenceResponse>* AsyncDeleteSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::DeleteSequenceResponse>* PrepareAsyncDeleteSequenceRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::DeleteSequenceRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>* AsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::ListSequencesResponse>* PrepareAsyncListSequencesRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::ListSequencesRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataByFilter_;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataBySQL_;
     const ::grpc::internal::RpcMethod rpcmethod_TabularDataByMQL_;
@@ -873,6 +993,11 @@ class DataService final {
     const ::grpc::internal::RpcMethod rpcmethod_DeleteSavedQuery_;
     const ::grpc::internal::RpcMethod rpcmethod_ListSavedQueries_;
     const ::grpc::internal::RpcMethod rpcmethod_CreateBinaryDataSignedURL_;
+    const ::grpc::internal::RpcMethod rpcmethod_CreateSequence_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetSequence_;
+    const ::grpc::internal::RpcMethod rpcmethod_UpdateSequence_;
+    const ::grpc::internal::RpcMethod rpcmethod_DeleteSequence_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListSequences_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -946,6 +1071,16 @@ class DataService final {
     virtual ::grpc::Status ListSavedQueries(::grpc::ServerContext* context, const ::viam::app::data::v1::ListSavedQueriesRequest* request, ::viam::app::data::v1::ListSavedQueriesResponse* response);
     // CreateBinaryDataSignedURL creates a temporary public URL for a binary data file.
     virtual ::grpc::Status CreateBinaryDataSignedURL(::grpc::ServerContext* context, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest* request, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse* response);
+    // CreateSequence creates a new sequence.
+    virtual ::grpc::Status CreateSequence(::grpc::ServerContext* context, const ::viam::app::data::v1::CreateSequenceRequest* request, ::viam::app::data::v1::CreateSequenceResponse* response);
+    // GetSequence retrieves a sequence by ID.
+    virtual ::grpc::Status GetSequence(::grpc::ServerContext* context, const ::viam::app::data::v1::GetSequenceRequest* request, ::viam::app::data::v1::GetSequenceResponse* response);
+    // UpdateSequence updates the mutable fields of a sequence.
+    virtual ::grpc::Status UpdateSequence(::grpc::ServerContext* context, const ::viam::app::data::v1::UpdateSequenceRequest* request, ::viam::app::data::v1::UpdateSequenceResponse* response);
+    // DeleteSequence deletes a sequence by ID.
+    virtual ::grpc::Status DeleteSequence(::grpc::ServerContext* context, const ::viam::app::data::v1::DeleteSequenceRequest* request, ::viam::app::data::v1::DeleteSequenceResponse* response);
+    // ListSequences lists sequences for a given organization.
+    virtual ::grpc::Status ListSequences(::grpc::ServerContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_TabularDataByFilter : public BaseClass {
@@ -1587,7 +1722,107 @@ class DataService final {
       ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_TabularDataBySQL<WithAsyncMethod_TabularDataByMQL<WithAsyncMethod_ExportTabularData<WithAsyncMethod_GetLatestTabularData<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularData<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<WithAsyncMethod_TagsByFilter<WithAsyncMethod_AddBoundingBoxToImageByID<WithAsyncMethod_RemoveBoundingBoxFromImageByID<WithAsyncMethod_BoundingBoxLabelsByFilter<WithAsyncMethod_UpdateBoundingBox<WithAsyncMethod_GetDatabaseConnection<WithAsyncMethod_ConfigureDatabaseUser<WithAsyncMethod_AddBinaryDataToDatasetByIDs<WithAsyncMethod_RemoveBinaryDataFromDatasetByIDs<WithAsyncMethod_CreateIndex<WithAsyncMethod_ListIndexes<WithAsyncMethod_DeleteIndex<WithAsyncMethod_CreateSavedQuery<WithAsyncMethod_UpdateSavedQuery<WithAsyncMethod_GetSavedQuery<WithAsyncMethod_DeleteSavedQuery<WithAsyncMethod_ListSavedQueries<WithAsyncMethod_CreateBinaryDataSignedURL<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_CreateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CreateSequence() {
+      ::grpc::Service::MarkMethodAsync(32);
+    }
+    ~WithAsyncMethod_CreateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::CreateSequenceRequest* /*request*/, ::viam::app::data::v1::CreateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateSequence(::grpc::ServerContext* context, ::viam::app::data::v1::CreateSequenceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::CreateSequenceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetSequence() {
+      ::grpc::Service::MarkMethodAsync(33);
+    }
+    ~WithAsyncMethod_GetSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceRequest* /*request*/, ::viam::app::data::v1::GetSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSequence(::grpc::ServerContext* context, ::viam::app::data::v1::GetSequenceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::GetSequenceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_UpdateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_UpdateSequence() {
+      ::grpc::Service::MarkMethodAsync(34);
+    }
+    ~WithAsyncMethod_UpdateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::UpdateSequenceRequest* /*request*/, ::viam::app::data::v1::UpdateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateSequence(::grpc::ServerContext* context, ::viam::app::data::v1::UpdateSequenceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::UpdateSequenceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DeleteSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DeleteSequence() {
+      ::grpc::Service::MarkMethodAsync(35);
+    }
+    ~WithAsyncMethod_DeleteSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::DeleteSequenceRequest* /*request*/, ::viam::app::data::v1::DeleteSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteSequence(::grpc::ServerContext* context, ::viam::app::data::v1::DeleteSequenceRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::DeleteSequenceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListSequences : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListSequences() {
+      ::grpc::Service::MarkMethodAsync(36);
+    }
+    ~WithAsyncMethod_ListSequences() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSequences(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::ListSequencesRequest* /*request*/, ::viam::app::data::v1::ListSequencesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListSequences(::grpc::ServerContext* context, ::viam::app::data::v1::ListSequencesRequest* request, ::grpc::ServerAsyncResponseWriter< ::viam::app::data::v1::ListSequencesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_TabularDataByFilter<WithAsyncMethod_TabularDataBySQL<WithAsyncMethod_TabularDataByMQL<WithAsyncMethod_ExportTabularData<WithAsyncMethod_GetLatestTabularData<WithAsyncMethod_BinaryDataByFilter<WithAsyncMethod_BinaryDataByIDs<WithAsyncMethod_DeleteTabularData<WithAsyncMethod_DeleteBinaryDataByFilter<WithAsyncMethod_DeleteBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByIDs<WithAsyncMethod_AddTagsToBinaryDataByFilter<WithAsyncMethod_RemoveTagsFromBinaryDataByIDs<WithAsyncMethod_RemoveTagsFromBinaryDataByFilter<WithAsyncMethod_TagsByFilter<WithAsyncMethod_AddBoundingBoxToImageByID<WithAsyncMethod_RemoveBoundingBoxFromImageByID<WithAsyncMethod_BoundingBoxLabelsByFilter<WithAsyncMethod_UpdateBoundingBox<WithAsyncMethod_GetDatabaseConnection<WithAsyncMethod_ConfigureDatabaseUser<WithAsyncMethod_AddBinaryDataToDatasetByIDs<WithAsyncMethod_RemoveBinaryDataFromDatasetByIDs<WithAsyncMethod_CreateIndex<WithAsyncMethod_ListIndexes<WithAsyncMethod_DeleteIndex<WithAsyncMethod_CreateSavedQuery<WithAsyncMethod_UpdateSavedQuery<WithAsyncMethod_GetSavedQuery<WithAsyncMethod_DeleteSavedQuery<WithAsyncMethod_ListSavedQueries<WithAsyncMethod_CreateBinaryDataSignedURL<WithAsyncMethod_CreateSequence<WithAsyncMethod_GetSequence<WithAsyncMethod_UpdateSequence<WithAsyncMethod_DeleteSequence<WithAsyncMethod_ListSequences<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_TabularDataByFilter : public BaseClass {
    private:
@@ -2447,7 +2682,142 @@ class DataService final {
     virtual ::grpc::ServerUnaryReactor* CreateBinaryDataSignedURL(
       ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest* /*request*/, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_TabularDataBySQL<WithCallbackMethod_TabularDataByMQL<WithCallbackMethod_ExportTabularData<WithCallbackMethod_GetLatestTabularData<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularData<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<WithCallbackMethod_TagsByFilter<WithCallbackMethod_AddBoundingBoxToImageByID<WithCallbackMethod_RemoveBoundingBoxFromImageByID<WithCallbackMethod_BoundingBoxLabelsByFilter<WithCallbackMethod_UpdateBoundingBox<WithCallbackMethod_GetDatabaseConnection<WithCallbackMethod_ConfigureDatabaseUser<WithCallbackMethod_AddBinaryDataToDatasetByIDs<WithCallbackMethod_RemoveBinaryDataFromDatasetByIDs<WithCallbackMethod_CreateIndex<WithCallbackMethod_ListIndexes<WithCallbackMethod_DeleteIndex<WithCallbackMethod_CreateSavedQuery<WithCallbackMethod_UpdateSavedQuery<WithCallbackMethod_GetSavedQuery<WithCallbackMethod_DeleteSavedQuery<WithCallbackMethod_ListSavedQueries<WithCallbackMethod_CreateBinaryDataSignedURL<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_CreateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CreateSequence() {
+      ::grpc::Service::MarkMethodCallback(32,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::CreateSequenceRequest* request, ::viam::app::data::v1::CreateSequenceResponse* response) { return this->CreateSequence(context, request, response); }));}
+    void SetMessageAllocatorFor_CreateSequence(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(32);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_CreateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::CreateSequenceRequest* /*request*/, ::viam::app::data::v1::CreateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CreateSequence(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::CreateSequenceRequest* /*request*/, ::viam::app::data::v1::CreateSequenceResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_GetSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetSequence() {
+      ::grpc::Service::MarkMethodCallback(33,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::GetSequenceRequest* request, ::viam::app::data::v1::GetSequenceResponse* response) { return this->GetSequence(context, request, response); }));}
+    void SetMessageAllocatorFor_GetSequence(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(33);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceRequest* /*request*/, ::viam::app::data::v1::GetSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetSequence(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceRequest* /*request*/, ::viam::app::data::v1::GetSequenceResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_UpdateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_UpdateSequence() {
+      ::grpc::Service::MarkMethodCallback(34,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::UpdateSequenceRequest* request, ::viam::app::data::v1::UpdateSequenceResponse* response) { return this->UpdateSequence(context, request, response); }));}
+    void SetMessageAllocatorFor_UpdateSequence(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(34);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_UpdateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::UpdateSequenceRequest* /*request*/, ::viam::app::data::v1::UpdateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateSequence(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::UpdateSequenceRequest* /*request*/, ::viam::app::data::v1::UpdateSequenceResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DeleteSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DeleteSequence() {
+      ::grpc::Service::MarkMethodCallback(35,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::DeleteSequenceRequest* request, ::viam::app::data::v1::DeleteSequenceResponse* response) { return this->DeleteSequence(context, request, response); }));}
+    void SetMessageAllocatorFor_DeleteSequence(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(35);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DeleteSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::DeleteSequenceRequest* /*request*/, ::viam::app::data::v1::DeleteSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteSequence(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::DeleteSequenceRequest* /*request*/, ::viam::app::data::v1::DeleteSequenceResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ListSequences : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ListSequences() {
+      ::grpc::Service::MarkMethodCallback(36,
+          new ::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response) { return this->ListSequences(context, request, response); }));}
+    void SetMessageAllocatorFor_ListSequences(
+        ::grpc::MessageAllocator< ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(36);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ListSequences() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSequences(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::ListSequencesRequest* /*request*/, ::viam::app::data::v1::ListSequencesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListSequences(
+      ::grpc::CallbackServerContext* /*context*/, const ::viam::app::data::v1::ListSequencesRequest* /*request*/, ::viam::app::data::v1::ListSequencesResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_TabularDataByFilter<WithCallbackMethod_TabularDataBySQL<WithCallbackMethod_TabularDataByMQL<WithCallbackMethod_ExportTabularData<WithCallbackMethod_GetLatestTabularData<WithCallbackMethod_BinaryDataByFilter<WithCallbackMethod_BinaryDataByIDs<WithCallbackMethod_DeleteTabularData<WithCallbackMethod_DeleteBinaryDataByFilter<WithCallbackMethod_DeleteBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByIDs<WithCallbackMethod_AddTagsToBinaryDataByFilter<WithCallbackMethod_RemoveTagsFromBinaryDataByIDs<WithCallbackMethod_RemoveTagsFromBinaryDataByFilter<WithCallbackMethod_TagsByFilter<WithCallbackMethod_AddBoundingBoxToImageByID<WithCallbackMethod_RemoveBoundingBoxFromImageByID<WithCallbackMethod_BoundingBoxLabelsByFilter<WithCallbackMethod_UpdateBoundingBox<WithCallbackMethod_GetDatabaseConnection<WithCallbackMethod_ConfigureDatabaseUser<WithCallbackMethod_AddBinaryDataToDatasetByIDs<WithCallbackMethod_RemoveBinaryDataFromDatasetByIDs<WithCallbackMethod_CreateIndex<WithCallbackMethod_ListIndexes<WithCallbackMethod_DeleteIndex<WithCallbackMethod_CreateSavedQuery<WithCallbackMethod_UpdateSavedQuery<WithCallbackMethod_GetSavedQuery<WithCallbackMethod_DeleteSavedQuery<WithCallbackMethod_ListSavedQueries<WithCallbackMethod_CreateBinaryDataSignedURL<WithCallbackMethod_CreateSequence<WithCallbackMethod_GetSequence<WithCallbackMethod_UpdateSequence<WithCallbackMethod_DeleteSequence<WithCallbackMethod_ListSequences<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TabularDataByFilter : public BaseClass {
@@ -2989,6 +3359,91 @@ class DataService final {
     }
     // disable synchronous version of this method
     ::grpc::Status CreateBinaryDataSignedURL(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::CreateBinaryDataSignedURLRequest* /*request*/, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CreateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CreateSequence() {
+      ::grpc::Service::MarkMethodGeneric(32);
+    }
+    ~WithGenericMethod_CreateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::CreateSequenceRequest* /*request*/, ::viam::app::data::v1::CreateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetSequence() {
+      ::grpc::Service::MarkMethodGeneric(33);
+    }
+    ~WithGenericMethod_GetSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceRequest* /*request*/, ::viam::app::data::v1::GetSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_UpdateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_UpdateSequence() {
+      ::grpc::Service::MarkMethodGeneric(34);
+    }
+    ~WithGenericMethod_UpdateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::UpdateSequenceRequest* /*request*/, ::viam::app::data::v1::UpdateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DeleteSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DeleteSequence() {
+      ::grpc::Service::MarkMethodGeneric(35);
+    }
+    ~WithGenericMethod_DeleteSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::DeleteSequenceRequest* /*request*/, ::viam::app::data::v1::DeleteSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListSequences : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListSequences() {
+      ::grpc::Service::MarkMethodGeneric(36);
+    }
+    ~WithGenericMethod_ListSequences() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSequences(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::ListSequencesRequest* /*request*/, ::viam::app::data::v1::ListSequencesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -3631,6 +4086,106 @@ class DataService final {
     }
     void RequestCreateBinaryDataSignedURL(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(31, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_CreateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CreateSequence() {
+      ::grpc::Service::MarkMethodRaw(32);
+    }
+    ~WithRawMethod_CreateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::CreateSequenceRequest* /*request*/, ::viam::app::data::v1::CreateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateSequence(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(32, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetSequence() {
+      ::grpc::Service::MarkMethodRaw(33);
+    }
+    ~WithRawMethod_GetSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceRequest* /*request*/, ::viam::app::data::v1::GetSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSequence(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(33, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_UpdateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_UpdateSequence() {
+      ::grpc::Service::MarkMethodRaw(34);
+    }
+    ~WithRawMethod_UpdateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::UpdateSequenceRequest* /*request*/, ::viam::app::data::v1::UpdateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdateSequence(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(34, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DeleteSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DeleteSequence() {
+      ::grpc::Service::MarkMethodRaw(35);
+    }
+    ~WithRawMethod_DeleteSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::DeleteSequenceRequest* /*request*/, ::viam::app::data::v1::DeleteSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteSequence(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(35, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListSequences : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListSequences() {
+      ::grpc::Service::MarkMethodRaw(36);
+    }
+    ~WithRawMethod_ListSequences() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSequences(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::ListSequencesRequest* /*request*/, ::viam::app::data::v1::ListSequencesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListSequences(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(36, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -4335,6 +4890,116 @@ class DataService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* CreateBinaryDataSignedURL(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_CreateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CreateSequence() {
+      ::grpc::Service::MarkMethodRawCallback(32,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateSequence(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_CreateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::CreateSequenceRequest* /*request*/, ::viam::app::data::v1::CreateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CreateSequence(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetSequence() {
+      ::grpc::Service::MarkMethodRawCallback(33,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSequence(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceRequest* /*request*/, ::viam::app::data::v1::GetSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetSequence(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_UpdateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_UpdateSequence() {
+      ::grpc::Service::MarkMethodRawCallback(34,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateSequence(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_UpdateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status UpdateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::UpdateSequenceRequest* /*request*/, ::viam::app::data::v1::UpdateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* UpdateSequence(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DeleteSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DeleteSequence() {
+      ::grpc::Service::MarkMethodRawCallback(35,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteSequence(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DeleteSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::DeleteSequenceRequest* /*request*/, ::viam::app::data::v1::DeleteSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DeleteSequence(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ListSequences : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ListSequences() {
+      ::grpc::Service::MarkMethodRawCallback(36,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListSequences(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ListSequences() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListSequences(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::ListSequencesRequest* /*request*/, ::viam::app::data::v1::ListSequencesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListSequences(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -5174,7 +5839,142 @@ class DataService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedCreateBinaryDataSignedURL(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::CreateBinaryDataSignedURLRequest,::viam::app::data::v1::CreateBinaryDataSignedURLResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CreateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CreateSequence() {
+      ::grpc::Service::MarkMethodStreamed(32,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse>* streamer) {
+                       return this->StreamedCreateSequence(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CreateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CreateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::CreateSequenceRequest* /*request*/, ::viam::app::data::v1::CreateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCreateSequence(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::CreateSequenceRequest,::viam::app::data::v1::CreateSequenceResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetSequence() {
+      ::grpc::Service::MarkMethodStreamed(33,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse>* streamer) {
+                       return this->StreamedGetSequence(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::GetSequenceRequest* /*request*/, ::viam::app::data::v1::GetSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetSequence(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::GetSequenceRequest,::viam::app::data::v1::GetSequenceResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_UpdateSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_UpdateSequence() {
+      ::grpc::Service::MarkMethodStreamed(34,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse>* streamer) {
+                       return this->StreamedUpdateSequence(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_UpdateSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status UpdateSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::UpdateSequenceRequest* /*request*/, ::viam::app::data::v1::UpdateSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdateSequence(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::UpdateSequenceRequest,::viam::app::data::v1::UpdateSequenceResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DeleteSequence : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DeleteSequence() {
+      ::grpc::Service::MarkMethodStreamed(35,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse>* streamer) {
+                       return this->StreamedDeleteSequence(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DeleteSequence() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DeleteSequence(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::DeleteSequenceRequest* /*request*/, ::viam::app::data::v1::DeleteSequenceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDeleteSequence(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::DeleteSequenceRequest,::viam::app::data::v1::DeleteSequenceResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListSequences : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListSequences() {
+      ::grpc::Service::MarkMethodStreamed(36,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse>* streamer) {
+                       return this->StreamedListSequences(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ListSequences() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListSequences(::grpc::ServerContext* /*context*/, const ::viam::app::data::v1::ListSequencesRequest* /*request*/, ::viam::app::data::v1::ListSequencesResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListSequences(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::viam::app::data::v1::ListSequencesRequest,::viam::app::data::v1::ListSequencesResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_ExportTabularData : public BaseClass {
    private:
@@ -5203,7 +6003,7 @@ class DataService final {
     virtual ::grpc::Status StreamedExportTabularData(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::viam::app::data::v1::ExportTabularDataRequest,::viam::app::data::v1::ExportTabularDataResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_ExportTabularData<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithSplitStreamingMethod_ExportTabularData<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_TabularDataByFilter<WithStreamedUnaryMethod_TabularDataBySQL<WithStreamedUnaryMethod_TabularDataByMQL<WithSplitStreamingMethod_ExportTabularData<WithStreamedUnaryMethod_GetLatestTabularData<WithStreamedUnaryMethod_BinaryDataByFilter<WithStreamedUnaryMethod_BinaryDataByIDs<WithStreamedUnaryMethod_DeleteTabularData<WithStreamedUnaryMethod_DeleteBinaryDataByFilter<WithStreamedUnaryMethod_DeleteBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByIDs<WithStreamedUnaryMethod_AddTagsToBinaryDataByFilter<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByIDs<WithStreamedUnaryMethod_RemoveTagsFromBinaryDataByFilter<WithStreamedUnaryMethod_TagsByFilter<WithStreamedUnaryMethod_AddBoundingBoxToImageByID<WithStreamedUnaryMethod_RemoveBoundingBoxFromImageByID<WithStreamedUnaryMethod_BoundingBoxLabelsByFilter<WithStreamedUnaryMethod_UpdateBoundingBox<WithStreamedUnaryMethod_GetDatabaseConnection<WithStreamedUnaryMethod_ConfigureDatabaseUser<WithStreamedUnaryMethod_AddBinaryDataToDatasetByIDs<WithStreamedUnaryMethod_RemoveBinaryDataFromDatasetByIDs<WithStreamedUnaryMethod_CreateIndex<WithStreamedUnaryMethod_ListIndexes<WithStreamedUnaryMethod_DeleteIndex<WithStreamedUnaryMethod_CreateSavedQuery<WithStreamedUnaryMethod_UpdateSavedQuery<WithStreamedUnaryMethod_GetSavedQuery<WithStreamedUnaryMethod_DeleteSavedQuery<WithStreamedUnaryMethod_ListSavedQueries<WithStreamedUnaryMethod_CreateBinaryDataSignedURL<WithStreamedUnaryMethod_CreateSequence<WithStreamedUnaryMethod_GetSequence<WithStreamedUnaryMethod_UpdateSequence<WithStreamedUnaryMethod_DeleteSequence<WithStreamedUnaryMethod_ListSequences<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

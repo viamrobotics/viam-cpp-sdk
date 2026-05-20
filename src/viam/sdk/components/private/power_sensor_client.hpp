@@ -31,6 +31,7 @@ class PowerSensorClient : public PowerSensor {
     double get_power(const ProtoStruct& extra) override;
     ProtoStruct get_readings(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
 
     using PowerSensor::get_current;
     using PowerSensor::get_power;

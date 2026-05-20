@@ -22,6 +22,7 @@ class MockBoard : public viam::sdk::Board {
                            uint64_t frequency_hz,
                            const sdk::ProtoStruct& extra) override;
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
+    viam::sdk::ProtoStruct get_status() override;
     Board::analog_response read_analog(const std::string& analog_reader_name,
                                        const sdk::ProtoStruct& extra) override;
     void write_analog(const std::string& pin, int value, const sdk::ProtoStruct& extra) override;

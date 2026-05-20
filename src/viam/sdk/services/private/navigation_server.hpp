@@ -5,6 +5,7 @@
 
 #include <memory>
 
+#include <viam/api/common/v1/common.grpc.pb.h>
 #include <viam/api/service/navigation/v1/navigation.grpc.pb.h>
 
 #include <viam/sdk/resource/resource_manager.hpp>
@@ -59,6 +60,9 @@ class NavigationServer : public ResourceServer,
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) noexcept override;
+    ::grpc::Status GetStatus(::grpc::ServerContext* context,
+                             const ::viam::common::v1::GetStatusRequest* request,
+                             ::viam::common::v1::GetStatusResponse* response) noexcept override;
 };
 
 }  // namespace impl

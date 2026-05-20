@@ -351,7 +351,7 @@ const char descriptor_table_protodef_service_2fshell_2fv1_2fshell_2eproto[] PROT
   "\000\022&\n\"COPY_FILES_SOURCE_TYPE_SINGLE_FILE\020"
   "\001\022+\n\'COPY_FILES_SOURCE_TYPE_SINGLE_DIREC"
   "TORY\020\002\022)\n%COPY_FILES_SOURCE_TYPE_MULTIPL"
-  "E_FILES\020\0032\364\003\n\014ShellService\022V\n\005Shell\022#.vi"
+  "E_FILES\020\0032\375\004\n\014ShellService\022V\n\005Shell\022#.vi"
   "am.service.shell.v1.ShellRequest\032$.viam."
   "service.shell.v1.ShellResponse(\0010\001\022}\n\022Co"
   "pyFilesToMachine\0220.viam.service.shell.v1"
@@ -363,9 +363,12 @@ const char descriptor_table_protodef_service_2fshell_2fv1_2fshell_2eproto[] PROT
   "ineResponse(\0010\001\022\206\001\n\tDoCommand\022 .viam.com"
   "mon.v1.DoCommandRequest\032!.viam.common.v1"
   ".DoCommandResponse\"4\202\323\344\223\002.\",/viam/api/v1"
-  "/service/shell/{name}/do_commandB=\n\031com."
-  "viam.service.shell.v1Z go.viam.com/api/s"
-  "ervice/shell/v1b\006proto3"
+  "/service/shell/{name}/do_command\022\206\001\n\tGet"
+  "Status\022 .viam.common.v1.GetStatusRequest"
+  "\032!.viam.common.v1.GetStatusResponse\"4\202\323\344"
+  "\223\002.\022,/viam/api/v1/service/shell/{name}/g"
+  "et_statusB=\n\031com.viam.service.shell.v1Z "
+  "go.viam.com/api/service/shell/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fshell_2fv1_2fshell_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -375,7 +378,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fshell_2fv
 };
 static ::_pbi::once_flag descriptor_table_service_2fshell_2fv1_2fshell_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fshell_2fv1_2fshell_2eproto = {
-    false, false, 2543, descriptor_table_protodef_service_2fshell_2fv1_2fshell_2eproto,
+    false, false, 2680, descriptor_table_protodef_service_2fshell_2fv1_2fshell_2eproto,
     "service/shell/v1/shell.proto",
     &descriptor_table_service_2fshell_2fv1_2fshell_2eproto_once, descriptor_table_service_2fshell_2fv1_2fshell_2eproto_deps, 4, 10,
     schemas, file_default_instances, TableStruct_service_2fshell_2fv1_2fshell_2eproto::offsets,

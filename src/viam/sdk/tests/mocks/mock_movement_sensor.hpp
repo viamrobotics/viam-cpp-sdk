@@ -18,6 +18,7 @@ class MockMovementSensor : public sdk::MovementSensor {
     std::unordered_map<std::string, float> get_accuracy(const sdk::ProtoStruct& extra) override;
     sdk::Vector3 get_linear_acceleration(const sdk::ProtoStruct& extra) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
     static std::shared_ptr<MockMovementSensor> get_mock_movementsensor();
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 

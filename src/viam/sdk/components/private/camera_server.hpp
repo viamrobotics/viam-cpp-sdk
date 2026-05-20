@@ -27,17 +27,13 @@ class CameraServer : public ResourceServer,
     ::grpc::Status DoCommand(::grpc::ServerContext* context,
                              const ::viam::common::v1::DoCommandRequest* request,
                              ::viam::common::v1::DoCommandResponse* response) noexcept override;
-    ::grpc::Status GetImage(
-        ::grpc::ServerContext* context,
-        const ::viam::component::camera::v1::GetImageRequest* request,
-        ::viam::component::camera::v1::GetImageResponse* response) noexcept override;
+    ::grpc::Status GetStatus(::grpc::ServerContext* context,
+                             const ::viam::common::v1::GetStatusRequest* request,
+                             ::viam::common::v1::GetStatusResponse* response) noexcept override;
     ::grpc::Status GetImages(
         ::grpc::ServerContext* context,
         const ::viam::component::camera::v1::GetImagesRequest* request,
         ::viam::component::camera::v1::GetImagesResponse* response) noexcept override;
-    ::grpc::Status RenderFrame(::grpc::ServerContext* context,
-                               const ::viam::component::camera::v1::RenderFrameRequest* request,
-                               ::google::api::HttpBody* response) noexcept override;
     ::grpc::Status GetPointCloud(
         ::grpc::ServerContext* context,
         const ::viam::component::camera::v1::GetPointCloudRequest* request,

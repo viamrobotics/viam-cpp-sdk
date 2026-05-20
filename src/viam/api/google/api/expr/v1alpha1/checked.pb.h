@@ -2169,6 +2169,7 @@ class Decl_FunctionDecl final :
 
   enum : int {
     kOverloadsFieldNumber = 1,
+    kDocFieldNumber = 2,
   };
   // repeated .google.api.expr.v1alpha1.Decl.FunctionDecl.Overload overloads = 1 [json_name = "overloads"];
   int overloads_size() const;
@@ -2188,6 +2189,20 @@ class Decl_FunctionDecl final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1alpha1::Decl_FunctionDecl_Overload >&
       overloads() const;
 
+  // string doc = 2 [json_name = "doc"];
+  void clear_doc();
+  const std::string& doc() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_doc(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_doc();
+  PROTOBUF_NODISCARD std::string* release_doc();
+  void set_allocated_doc(std::string* doc);
+  private:
+  const std::string& _internal_doc() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_doc(const std::string& value);
+  std::string* _internal_mutable_doc();
+  public:
+
   // @@protoc_insertion_point(class_scope:google.api.expr.v1alpha1.Decl.FunctionDecl)
  private:
   class _Internal;
@@ -2196,6 +2211,7 @@ class Decl_FunctionDecl final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1alpha1::Decl_FunctionDecl_Overload > overloads_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr doc_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_google_2fapi_2fexpr_2fv1alpha1_2fchecked_2eproto;
 };
@@ -4823,6 +4839,56 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::google::api::expr::v1a
 Decl_FunctionDecl::overloads() const {
   // @@protoc_insertion_point(field_list:google.api.expr.v1alpha1.Decl.FunctionDecl.overloads)
   return overloads_;
+}
+
+// string doc = 2 [json_name = "doc"];
+inline void Decl_FunctionDecl::clear_doc() {
+  doc_.ClearToEmpty();
+}
+inline const std::string& Decl_FunctionDecl::doc() const {
+  // @@protoc_insertion_point(field_get:google.api.expr.v1alpha1.Decl.FunctionDecl.doc)
+  return _internal_doc();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Decl_FunctionDecl::set_doc(ArgT0&& arg0, ArgT... args) {
+ 
+ doc_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:google.api.expr.v1alpha1.Decl.FunctionDecl.doc)
+}
+inline std::string* Decl_FunctionDecl::mutable_doc() {
+  std::string* _s = _internal_mutable_doc();
+  // @@protoc_insertion_point(field_mutable:google.api.expr.v1alpha1.Decl.FunctionDecl.doc)
+  return _s;
+}
+inline const std::string& Decl_FunctionDecl::_internal_doc() const {
+  return doc_.Get();
+}
+inline void Decl_FunctionDecl::_internal_set_doc(const std::string& value) {
+  
+  doc_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Decl_FunctionDecl::_internal_mutable_doc() {
+  
+  return doc_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Decl_FunctionDecl::release_doc() {
+  // @@protoc_insertion_point(field_release:google.api.expr.v1alpha1.Decl.FunctionDecl.doc)
+  return doc_.Release();
+}
+inline void Decl_FunctionDecl::set_allocated_doc(std::string* doc) {
+  if (doc != nullptr) {
+    
+  } else {
+    
+  }
+  doc_.SetAllocated(doc, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (doc_.IsDefault()) {
+    doc_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:google.api.expr.v1alpha1.Decl.FunctionDecl.doc)
 }
 
 // -------------------------------------------------------------------

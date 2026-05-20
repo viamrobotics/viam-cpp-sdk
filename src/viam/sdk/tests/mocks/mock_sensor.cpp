@@ -15,6 +15,9 @@ ProtoStruct MockSensor::get_readings(const ProtoStruct&) {
 ProtoStruct MockSensor::do_command(const ProtoStruct& command) {
     return command;
 };
+ProtoStruct MockSensor::get_status() {
+    return fake_status();
+};
 std::vector<sdk::GeometryConfig> MockSensor::get_geometries(const ProtoStruct&) {
     return fake_geometries();
 };

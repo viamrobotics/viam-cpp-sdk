@@ -35,6 +35,16 @@ SensorServer::SensorServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status SensorServer::GetStatus(::grpc::ServerContext* context,
+                                       const ::viam::common::v1::GetStatusRequest* request,
+                                       ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<Sensor>(
+        "SensorServer::GetStatus", this, context, request)([&](auto&, auto& sensor) {
+        const ProtoStruct result = sensor->get_status();
+        *response->mutable_result() = to_proto(result);
+    });
+}
+
 ::grpc::Status SensorServer::GetGeometries(::grpc::ServerContext* context,
                                            const GetGeometriesRequest* request,
                                            GetGeometriesResponse* response) noexcept {

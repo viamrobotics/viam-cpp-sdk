@@ -14,6 +14,9 @@ using namespace viam::sdk;
 ProtoStruct MockCamera::do_command(const ProtoStruct&) {
     return map_;
 }
+sdk::ProtoStruct MockCamera::get_status() {
+    return fake_status();
+}
 Camera::image_collection MockCamera::get_images(std::vector<std::string> filter_source_names,
                                                 const ProtoStruct& extra) {
     last_filter_source_names_ = std::move(filter_source_names);

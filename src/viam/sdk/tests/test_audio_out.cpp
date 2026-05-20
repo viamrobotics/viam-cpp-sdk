@@ -44,6 +44,53 @@ BOOST_AUTO_TEST_CASE(test_play) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_play_stream) {
+    std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
+    client_to_mock_pipeline<AudioOut>(mock, [mock](AudioOut& client) {
+        audio_info info;
+        info.codec = audio_codecs::PCM_16;
+        info.sample_rate_hz = 44100;
+        info.num_channels = 2;
+
+        std::vector<std::vector<std::uint8_t>> chunks = {
+            {1, 2, 3, 4},
+            {5, 6, 7, 8},
+            {9, 10, 11, 12},
+        };
+
+        std::size_t idx = 0;
+        client.play_stream(info, [&]() -> boost::optional<std::vector<std::uint8_t>> {
+            if (idx >= chunks.size()) {
+                return boost::none;
+            }
+            return chunks[idx++];
+        });
+
+        BOOST_CHECK(mock->last_streamed_info_ == info);
+        BOOST_CHECK_EQUAL(mock->streamed_chunks_.size(), chunks.size());
+        for (std::size_t i = 0; i < chunks.size(); ++i) {
+            BOOST_CHECK(mock->streamed_chunks_[i] == chunks[i]);
+        }
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_play_stream_no_chunks) {
+    std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
+    client_to_mock_pipeline<AudioOut>(mock, [mock](AudioOut& client) {
+        audio_info info;
+        info.codec = audio_codecs::PCM_16;
+        info.sample_rate_hz = 48000;
+        info.num_channels = 1;
+
+        // chunk_source returns boost::none immediately — empty stream.
+        client.play_stream(
+            info, []() -> boost::optional<std::vector<std::uint8_t>> { return boost::none; });
+
+        BOOST_CHECK(mock->last_streamed_info_ == info);
+        BOOST_CHECK(mock->streamed_chunks_.empty());
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_play_no_audio_info) {
     std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
     client_to_mock_pipeline<AudioOut>(mock, [mock](AudioOut& client) {
@@ -90,6 +137,15 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
         std::vector<GeometryConfig> result_geometries = client.get_geometries({});
 
         BOOST_CHECK(result_geometries == expected_geometries);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    std::shared_ptr<MockAudioOut> mock = MockAudioOut::get_mock_audio_out();
+    client_to_mock_pipeline<AudioOut>(mock, [](AudioOut& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
     });
 }
 

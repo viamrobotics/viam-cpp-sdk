@@ -29,7 +29,6 @@
 #include <viam/sdk/config/resource.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/rpc/server.hpp>
 #include <viam/sdk/services/mlmodel.hpp>
@@ -57,9 +56,7 @@ constexpr char service_name[] = "example_mlmodelservice_tflite";
 //      with the model.
 //
 // Any additional configuration fields are ignored.
-class MLModelServiceTFLite : public vsdk::MLModelService,
-                             public vsdk::Stoppable,
-                             public vsdk::Reconfigurable {
+class MLModelServiceTFLite : public vsdk::MLModelService, public vsdk::Stoppable {
     class write_to_tflite_tensor_visitor_;
 
    public:

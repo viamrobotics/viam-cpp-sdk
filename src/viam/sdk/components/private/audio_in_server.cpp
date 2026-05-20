@@ -16,7 +16,7 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
     ::grpc::ServerContext* context,
     const ::viam::component::audioin::v1::GetAudioRequest* request,
     ::grpc::ServerWriter<::viam::component::audioin::v1::GetAudioResponse>* writer) noexcept {
-    make_service_helper<AudioIn>(
+    return make_service_helper<AudioIn>(
         "AudioInServer::GetAudio", this, context, request)([&](auto& helper, auto& audio_in) {
         const std::string request_id = boost::uuids::to_string(boost::uuids::random_generator()());
         auto writeChunk = [writer, context, request_id](AudioIn::audio_chunk&& chunk) {
@@ -54,8 +54,6 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
                             request->previous_timestamp_nanoseconds(),
                             helper.getExtra());
     });
-
-    return ::grpc::Status();
 }
 
 ::grpc::Status AudioInServer::DoCommand(::grpc::ServerContext* context,
@@ -81,6 +79,16 @@ AudioInServer::AudioInServer(std::shared_ptr<ResourceManager> manager)
 
         response->set_sample_rate_hz(result.sample_rate_hz);
         response->set_num_channels(result.num_channels);
+    });
+}
+
+::grpc::Status AudioInServer::GetStatus(::grpc::ServerContext* context,
+                                        const ::viam::common::v1::GetStatusRequest* request,
+                                        ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<AudioIn>(
+        "AudioInServer::GetStatus", this, context, request)([&](auto&, auto& audio_in) {
+        const ProtoStruct result = audio_in->get_status();
+        *response->mutable_result() = to_proto(result);
     });
 }
 

@@ -75,6 +75,7 @@ class MockMotion : public sdk::Motion {
     void stop_plan(const std::string& name, const sdk::ProtoStruct& extra) override;
 
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
     static std::shared_ptr<MockMotion> get_mock_motion();
     static plan_status fake_plan_status();
     static plan_with_status fake_plan_with_status();

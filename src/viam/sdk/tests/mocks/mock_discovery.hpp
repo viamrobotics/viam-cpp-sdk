@@ -12,6 +12,7 @@ class MockDiscovery : public sdk::Discovery {
 
     std::vector<sdk::ResourceConfig> discover_resources(const sdk::ProtoStruct&) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
 };
 
 }  // namespace discovery

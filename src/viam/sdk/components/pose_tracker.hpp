@@ -50,6 +50,10 @@ class PoseTracker : public Component {
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the pose tracker.
+    /// @return A `ProtoStruct` containing the status of the pose tracker.
+    virtual ProtoStruct get_status() = 0;
+
     /// @brief Returns `GeometryConfig`s associated with the calling pose tracker
     inline std::vector<GeometryConfig> get_geometries() {
         return get_geometries({});

@@ -27,6 +27,7 @@ class SensorClient : public Sensor {
     }
     ProtoStruct get_readings(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     using Sensor::get_geometries;

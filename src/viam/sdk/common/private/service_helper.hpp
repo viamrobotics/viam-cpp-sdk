@@ -2,12 +2,14 @@
 
 #include <type_traits>
 
+#include <boost/config.hpp>
 #include <grpcpp/support/status.h>
 
 #include <viam/sdk/common/grpc_fwd.hpp>
 
 #include <viam/sdk/resource/resource_server_base.hpp>
 #include <viam/sdk/rpc/private/grpc_context_observer.hpp>
+#include <viam/sdk/tracing/private/span_guard.hpp>
 
 namespace viam {
 namespace sdk {
@@ -29,6 +31,10 @@ class ServiceHelperBase {
    protected:
     explicit ServiceHelperBase(const char* method) noexcept : method_{method} {}
 
+    const char* method_name() const noexcept {
+        return method_;
+    }
+
    private:
     const char* method_;
 };
@@ -43,7 +49,7 @@ class ServiceHelper : public ServiceHelperBase {
         : ServiceHelperBase{method}, rs_{rs}, context_{context}, request_{request} {};
 
     template <typename Callable>
-    ::grpc::Status operator()(Callable&& callable) const noexcept try {
+    BOOST_ATTRIBUTE_NODISCARD ::grpc::Status operator()(Callable&& callable) const noexcept try {
         if (!context_) {
             return failNoContext();
         }
@@ -55,7 +61,20 @@ class ServiceHelper : public ServiceHelperBase {
             return failNoResource(request_->name());
         }
         const GrpcContextObserver::Enable enable{*context_};
-        return invoke_(std::forward<Callable>(callable), std::move(resource));
+        impl::ServerSpanGuard span_guard{context_, method_name()};
+
+        // This is kind of hideous but automates the process of recording exception
+        // info in the active span in case of failure.
+        try {
+            return span_guard.commit(
+                invoke_(std::forward<Callable>(callable), std::move(resource)));
+        } catch (const std::exception& xcp) {
+            span_guard.record_exception(xcp);
+            throw;
+        } catch (...) {
+            span_guard.record_unknown_exception();
+            throw;
+        }
     } catch (const std::exception& xcp) {
         return failStdException(xcp);
     } catch (...) {
@@ -104,10 +123,10 @@ class ServiceHelper : public ServiceHelperBase {
 };
 
 template <typename ServiceType, typename RequestType>
-auto make_service_helper(const char* method,
-                         ResourceServer* rs,
-                         GrpcServerContext* context,
-                         RequestType* request) {
+BOOST_ATTRIBUTE_NODISCARD auto make_service_helper(const char* method,
+                                                   ResourceServer* rs,
+                                                   GrpcServerContext* context,
+                                                   RequestType* request) {
     return ServiceHelper<ServiceType, RequestType>{method, rs, context, request};
 }
 

@@ -156,6 +156,10 @@ class Camera : public Component {
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the camera.
+    /// @return A `ProtoStruct` containing the status of the camera.
+    virtual ProtoStruct get_status() = 0;
+
     /// @brief Get the next images from the camera as a vector of raw images with names and
     /// metadata.
     /// @return a vector of raw_images and associated response metadata.

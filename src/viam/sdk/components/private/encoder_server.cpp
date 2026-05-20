@@ -74,6 +74,16 @@ EncoderServer::EncoderServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
+::grpc::Status EncoderServer::GetStatus(::grpc::ServerContext* context,
+                                        const ::viam::common::v1::GetStatusRequest* request,
+                                        ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<Encoder>(
+        "EncoderServer::GetStatus", this, context, request)([&](auto&, auto& encoder) {
+        const ProtoStruct result = encoder->get_status();
+        *response->mutable_result() = to_proto(result);
+    });
+}
+
 }  // namespace impl
 }  // namespace sdk
 }  // namespace viam

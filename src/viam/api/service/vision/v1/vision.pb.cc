@@ -550,7 +550,7 @@ const char descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto[] PR
   "ed\030\001 \001(\010R\030classificationsSupported\0221\n\024de"
   "tections_supported\030\002 \001(\010R\023detectionsSupp"
   "orted\022A\n\035object_point_clouds_supported\030\003"
-  " \001(\010R\032objectPointCloudsSupported2\315\013\n\rVis"
+  " \001(\010R\032objectPointCloudsSupported2\327\014\n\rVis"
   "ionService\022\310\001\n\027GetDetectionsFromCamera\0226"
   ".viam.service.vision.v1.GetDetectionsFro"
   "mCameraRequest\0327.viam.service.vision.v1."
@@ -588,8 +588,12 @@ const char descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto[] PR
   "iam.common.v1.DoCommandRequest\032!.viam.co"
   "mmon.v1.DoCommandResponse\"5\202\323\344\223\002/\"-/viam"
   "/api/v1/service/vision/{name}/do_command"
-  "B\?\n\032com.viam.service.vision.v1Z!go.viam."
-  "com/api/service/vision/v1b\006proto3"
+  "\022\207\001\n\tGetStatus\022 .viam.common.v1.GetStatu"
+  "sRequest\032!.viam.common.v1.GetStatusRespo"
+  "nse\"5\202\323\344\223\002/\022-/viam/api/v1/service/vision"
+  "/{name}/get_statusB\?\n\032com.viam.service.v"
+  "ision.v1Z!go.viam.com/api/service/vision"
+  "/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -599,7 +603,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fvision_2fv1_2fvision_2eproto = {
-    false, false, 4673, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
+    false, false, 4811, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
     "service/vision/v1/vision.proto",
     &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once, descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps, 4, 16,
     schemas, file_default_instances, TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets,

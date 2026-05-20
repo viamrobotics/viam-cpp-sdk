@@ -1,0 +1,27 @@
+#pragma once
+
+
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/button.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/module/service.hpp>
+
+namespace {{ .ModuleSnake }} {
+
+
+class {{ .ModelPascal }} : public viam::sdk::Button {
+public:
+    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
+
+    static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    void push(const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
+
+    viam::sdk::ProtoStruct get_status() override;
+
+};
+
+} // namespace {{ .ModuleSnake }}
+

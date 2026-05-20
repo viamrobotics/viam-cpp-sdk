@@ -37,6 +37,9 @@ ProtoStruct MockMovementSensor::do_command(const ProtoStruct& command) {
     this->peek_do_command_command = command;
     return command;
 };
+ProtoStruct MockMovementSensor::get_status() {
+    return fake_status();
+};
 std::vector<sdk::GeometryConfig> MockMovementSensor::get_geometries(const ProtoStruct&) {
     return fake_geometries();
 };

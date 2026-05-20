@@ -11,6 +11,7 @@ class MockSensor : public sdk::Sensor {
    public:
     sdk::ProtoStruct get_readings(const sdk::ProtoStruct& extra) override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
     static std::shared_ptr<MockSensor> get_mock_sensor();
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 

@@ -15,6 +15,7 @@ class MockServo : public Servo {
     Servo::position get_position(const sdk::ProtoStruct& extra) override;
     void stop(const viam::sdk::ProtoStruct& extra) override;
     bool is_moving() override;
+    viam::sdk::ProtoStruct get_status() override;
     viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct& command) override;
     static std::shared_ptr<MockServo> get_mock_servo();
     virtual std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;

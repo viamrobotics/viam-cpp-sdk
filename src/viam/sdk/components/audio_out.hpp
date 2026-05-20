@@ -3,7 +3,9 @@
 /// @brief Defines an `AudioOut` component.
 #pragma once
 
+#include <functional>
 #include <string>
+#include <vector>
 
 #include <boost/optional/optional.hpp>
 
@@ -44,6 +46,24 @@ class AudioOut : public Component {
                       boost::optional<audio_info> info,
                       const ProtoStruct& extra) = 0;
 
+    /// @brief Stream audio chunks to the audioout component for playback.
+    /// @param info Info describing the audio chunks (codec, sample rate, channels).
+    /// @param chunk_source Callback invoked to retrieve each next chunk. Return a chunk to
+    /// continue streaming; return `boost::none` to signal end-of-stream.
+    inline void play_stream(audio_info info,
+                            std::function<boost::optional<std::vector<uint8_t>>()> chunk_source) {
+        return play_stream(std::move(info), std::move(chunk_source), {});
+    }
+
+    /// @brief Stream audio chunks to the audioout component for playback.
+    /// @param info Info describing the audio chunks (codec, sample rate, channels).
+    /// @param chunk_source Callback invoked to retrieve each next chunk. Return a chunk to
+    /// continue streaming; return `boost::none` to signal end-of-stream.
+    /// @param extra Any additional arguments to the method
+    virtual void play_stream(audio_info info,
+                             std::function<boost::optional<std::vector<uint8_t>>()> chunk_source,
+                             const ProtoStruct& extra) = 0;
+
     /// @brief Returns properties of the audio out device (supported codecs, sample rate, number of
     /// channels)
     inline audio_properties get_properties() {
@@ -59,6 +79,10 @@ class AudioOut : public Component {
     /// @param command the command to execute.
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
+
+    /// @brief Get the status of the audio_out.
+    /// @return A `ProtoStruct` containing the status of the audio_out.
+    virtual ProtoStruct get_status() = 0;
 
     // @brief Returns `GeometryConfig`s associated with the calling audioout.
     /// @return The requested `GeometryConfig`s associated with the component.

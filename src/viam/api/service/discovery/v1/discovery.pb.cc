@@ -93,7 +93,7 @@ const char descriptor_table_protodef_service_2fdiscovery_2fv1_2fdiscovery_2eprot
   "\004name\030\001 \001(\tR\004name\022-\n\005extra\030c \001(\0132\027.googl"
   "e.protobuf.StructR\005extra\"[\n\031DiscoverReso"
   "urcesResponse\022>\n\013discoveries\030\001 \003(\0132\034.via"
-  "m.app.v1.ComponentConfigR\013discoveries2\317\002"
+  "m.app.v1.ComponentConfigR\013discoveries2\334\003"
   "\n\020DiscoveryService\022\255\001\n\021DiscoverResources"
   "\0223.viam.service.discovery.v1.DiscoverRes"
   "ourcesRequest\0324.viam.service.discovery.v"
@@ -102,9 +102,12 @@ const char descriptor_table_protodef_service_2fdiscovery_2fv1_2fdiscovery_2eprot
   "oCommand\022 .viam.common.v1.DoCommandReque"
   "st\032!.viam.common.v1.DoCommandResponse\"8\202"
   "\323\344\223\0022\"0/viam/api/v1/service/discovery/{n"
-  "ame}/do_commandBD\n\035com.viam.service.disc"
-  "overy.v1Z#go.viam.com/api/service/discov"
-  "ey/v1b\006proto3"
+  "ame}/do_command\022\212\001\n\tGetStatus\022 .viam.com"
+  "mon.v1.GetStatusRequest\032!.viam.common.v1"
+  ".GetStatusResponse\"8\202\323\344\223\0022\0220/viam/api/v1"
+  "/service/discovery/{name}/get_statusBD\n\035"
+  "com.viam.service.discovery.v1Z#go.viam.c"
+  "om/api/service/discovey/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdiscovery_2fv1_2fdiscovery_2eproto_deps[4] = {
   &::descriptor_table_app_2fv1_2frobot_2eproto,
@@ -114,7 +117,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fdiscovery
 };
 static ::_pbi::once_flag descriptor_table_service_2fdiscovery_2fv1_2fdiscovery_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fdiscovery_2fv1_2fdiscovery_2eproto = {
-    false, false, 773, descriptor_table_protodef_service_2fdiscovery_2fv1_2fdiscovery_2eproto,
+    false, false, 914, descriptor_table_protodef_service_2fdiscovery_2fv1_2fdiscovery_2eproto,
     "service/discovery/v1/discovery.proto",
     &descriptor_table_service_2fdiscovery_2fv1_2fdiscovery_2eproto_once, descriptor_table_service_2fdiscovery_2fv1_2fdiscovery_2eproto_deps, 4, 2,
     schemas, file_default_instances, TableStruct_service_2fdiscovery_2fv1_2fdiscovery_2eproto::offsets,

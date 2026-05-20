@@ -170,6 +170,10 @@ class MLModelService : public Service {
     /// @param `extra`: Any additional arguments to the method.
     virtual struct metadata metadata(const ProtoStruct& extra) = 0;
 
+    /// @brief Get the status of the mlmodel service.
+    /// @return A `ProtoStruct` containing the status of the mlmodel service.
+    virtual ProtoStruct get_status() = 0;
+
    protected:
     explicit MLModelService(std::string name);
 };

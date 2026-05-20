@@ -461,6 +461,10 @@ class Motion : public Service {
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the motion service.
+    /// @return A `ProtoStruct` containing the status of the motion service.
+    virtual ProtoStruct get_status() = 0;
+
    protected:
     explicit Motion(std::string name);
 };

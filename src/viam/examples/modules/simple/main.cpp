@@ -10,23 +10,30 @@
 #include <viam/sdk/log/logging.hpp>
 #include <viam/sdk/module/service.hpp>
 #include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/reconfigurable.hpp>
+#include <viam/sdk/tracing/span.hpp>
 
 using namespace viam::sdk;
 
 // Implements a trivial sensor component, constructed with a ResourceConfig that specifies a
 // "multiplier" value which is then returned as the only sensor reading.
-class MySensor : public Sensor, public Reconfigurable {
+class MySensor : public Sensor {
    public:
     MySensor(const ResourceConfig& cfg) : Sensor(cfg.name()) {
-        this->reconfigure({}, cfg);
+        auto itr = cfg.attributes().find("multiplier");
+        if (itr != cfg.attributes().end()) {
+            const double* multiplier = itr->second.get<double>();
+            if (multiplier) {
+                multiplier_ = *multiplier;
+            }
+        }
     }
 
     static std::vector<std::string> validate(const ResourceConfig&);
 
-    void reconfigure(const Dependencies&, const ResourceConfig&) override;
-
     ProtoStruct do_command(const ProtoStruct&) override;
+    ProtoStruct get_status() override {
+        return {};
+    }
 
     std::vector<GeometryConfig> get_geometries(const ProtoStruct&) override {
         throw Exception("method not supported");
@@ -54,16 +61,6 @@ std::vector<std::string> MySensor::validate(const ResourceConfig& cfg) {
     return {};
 }
 
-void MySensor::reconfigure(const Dependencies&, const ResourceConfig& cfg) {
-    auto itr = cfg.attributes().find("multiplier");
-    if (itr != cfg.attributes().end()) {
-        const double* multiplier = itr->second.get<double>();
-        if (multiplier) {
-            multiplier_ = *multiplier;
-        }
-    }
-}
-
 ProtoStruct MySensor::do_command(const ProtoStruct& command) {
     for (const auto& entry : command) {
         // The VIAM_RESOURCE_LOG macro will associate log messages to the current resource and
@@ -75,6 +72,13 @@ ProtoStruct MySensor::do_command(const ProtoStruct& command) {
 }
 
 ProtoStruct MySensor::get_readings(const ProtoStruct&) {
+    // Example of simple instrumentation with opentelemetry.
+    // These are no-ops if tracing is not compiled in.
+    // Otherwise, this span is a child span of the automatically created span for
+    // Sensor::GetReadings
+    TracingSpan tspan("readings implementation");
+    tspan.add_event("computing signal");
+
     return {{"signal", multiplier_}};
 }
 

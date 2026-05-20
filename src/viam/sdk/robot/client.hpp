@@ -25,6 +25,7 @@ namespace v1 {
 
 class FrameSystemConfig;
 class Operation;
+class SendTracesRequest;
 
 }  // namespace v1
 }  // namespace robot
@@ -33,7 +34,8 @@ namespace sdk {
 
 namespace impl {
 struct LogBackend;
-}
+class ParentSendTracesExporter;
+}  // namespace impl
 
 /// @defgroup Robot Classes related to a Robot representation.
 
@@ -164,12 +166,29 @@ class RobotClient {
     /// @param id The ID of the operation to cancel.
     void cancel_operation(std::string id);
 
+    /// @brief Get the pose of a component in the world reference frame.
+    /// @param component_name The name of the component whose pose is being requested.
+    /// @return The pose of the component in the world frame.
+    pose_in_frame get_pose(const std::string& component_name);
+
+    /// @brief Get the pose of a component in the desired reference frame.
+    /// @param component_name The name of the component whose pose is being requested.
+    /// @param destination_frame The reference frame in which the pose should be provided.
+    /// @param additional_transforms Additional reference frames needed to compute the pose.
+    /// @param extra Any extra parameters to pass to the method.
+    /// @return The pose of the component in the destination frame.
+    pose_in_frame get_pose(const std::string& component_name,
+                           const std::string& destination_frame,
+                           const std::vector<WorldState::transform>& additional_transforms,
+                           const ProtoStruct& extra);
+
     /// @brief gets the current status of the machine
     status get_machine_status() const;
 
    private:
     friend class ModuleService;
     friend struct impl::LogBackend;
+    friend class impl::ParentSendTracesExporter;
 
     void log(const std::string& name,
              const std::string& level,
@@ -178,12 +197,19 @@ class RobotClient {
              const std::string& file,
              unsigned int line);
 
+    // Ships a batch of OTLP traces to the parent. Returns true on success.
+    bool send_traces(const robot::v1::SendTracesRequest* req);
+
     // Makes this RobotClient manage logging by sending logs over grpc to viam-server.
     // This is private and only ever called by ModuleService; in other words it is only called when
     // viam-server is running a Viam C++ SDK application as a module.
     // Disables console logging so as to avoid log message duplication; console logging is
     // re-enabled on destruction.
     void connect_logging();
+
+    // Installs the SDK tracer provider so spans flow back to the parent over this connection.
+    // Only called by ModuleService when running as a module.
+    void connect_tracing();
 
     void refresh_every();
     void check_connection();

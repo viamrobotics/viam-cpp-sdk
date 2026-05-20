@@ -30,9 +30,8 @@ std::string find_arg1(ResourceConfig cfg) {
     return *arg1_string;
 }
 
-void MyGizmo::reconfigure(const Dependencies& deps, const ResourceConfig& cfg) {
-    arg1_ = find_arg1(cfg);
-}
+MyGizmo::MyGizmo(const Dependencies& deps, const ResourceConfig& cfg)
+    : Gizmo(cfg.name()), arg1_(find_arg1(cfg)) {}
 
 std::vector<std::string> MyGizmo::validate(ResourceConfig cfg) {
     // Custom validation can be done by specifying a validate function at the

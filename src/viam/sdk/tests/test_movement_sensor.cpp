@@ -143,6 +143,15 @@ BOOST_AUTO_TEST_CASE(test_get_geometries) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    std::shared_ptr<MockMovementSensor> mock = MockMovementSensor::get_mock_movementsensor();
+    client_to_mock_pipeline<MovementSensor>(mock, [](MovementSensor& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }  // namespace sdktests

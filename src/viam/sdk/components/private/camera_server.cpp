@@ -60,13 +60,6 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     });
 }
 
-::grpc::Status CameraServer::GetImage(::grpc::ServerContext*,
-                                      const ::viam::component::camera::v1::GetImageRequest*,
-                                      ::viam::component::camera::v1::GetImageResponse*) noexcept {
-    return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED,
-                          "GetImage is deprecated. Use GetImages instead.");
-}
-
 ::grpc::Status CameraServer::GetImages(
     ::grpc::ServerContext* context,
     const ::viam::component::camera::v1::GetImagesRequest* request,
@@ -86,13 +79,6 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         }
         *response->mutable_response_metadata() = to_proto(image_coll.metadata);
     });
-}
-
-::grpc::Status CameraServer::RenderFrame(::grpc::ServerContext*,
-                                         const ::viam::component::camera::v1::RenderFrameRequest*,
-                                         ::google::api::HttpBody*) noexcept {
-    return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED,
-                          "RenderFrame is deprecated. Use GetImages instead.");
 }
 
 ::grpc::Status CameraServer::GetPointCloud(
@@ -134,6 +120,16 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         *response->mutable_extrinsic_parameters() = to_proto(properties.extrinsic_parameters);
         response->set_supports_pcd(properties.supports_pcd);
         response->set_frame_rate(properties.frame_rate);
+    });
+}
+
+::grpc::Status CameraServer::GetStatus(::grpc::ServerContext* context,
+                                       const ::viam::common::v1::GetStatusRequest* request,
+                                       ::viam::common::v1::GetStatusResponse* response) noexcept {
+    return make_service_helper<Camera>(
+        "CameraServer::GetStatus", this, context, request)([&](auto&, auto& camera) {
+        const ProtoStruct result = camera->get_status();
+        *response->mutable_result() = to_proto(result);
     });
 }
 

@@ -188,6 +188,15 @@ BOOST_AUTO_TEST_CASE(mock_metadata_grpc_roundtrip) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(test_get_status) {
+    auto mock = std::make_shared<MockMLModelService>();
+    client_to_mock_pipeline<MLModelService>(mock, [](MLModelService& client) {
+        const ProtoStruct status = client.get_status();
+        const ProtoStruct expected = fake_status();
+        BOOST_CHECK(status.at("is_moving") == expected.at("is_moving"));
+    });
+}
+
 BOOST_AUTO_TEST_CASE(mock_infer_grpc_roundtrip) {
     auto mock = std::make_shared<MockMLModelService>();
 

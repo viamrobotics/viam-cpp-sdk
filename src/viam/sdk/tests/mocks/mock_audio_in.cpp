@@ -51,6 +51,10 @@ ProtoStruct MockAudioIn::do_command(const ProtoStruct& command) {
     return map_;
 }
 
+sdk::ProtoStruct MockAudioIn::get_status() {
+    return fake_status();
+}
+
 std::shared_ptr<MockAudioIn> MockAudioIn::get_mock_audio_in() {
     auto audio_in = std::make_shared<MockAudioIn>("mock_audio_in");
 

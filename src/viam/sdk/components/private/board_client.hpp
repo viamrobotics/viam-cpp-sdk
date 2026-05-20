@@ -27,6 +27,7 @@ class BoardClient : public Board {
         return *channel_;
     }
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
     void set_gpio(const std::string& pin, bool high, const ProtoStruct& extra) override;
     bool get_gpio(const std::string& pin, const ProtoStruct& extra) override;
     double get_pwm_duty_cycle(const std::string& pin, const ProtoStruct& extra) override;

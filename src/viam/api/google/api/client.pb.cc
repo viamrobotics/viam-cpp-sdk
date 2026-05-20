@@ -122,7 +122,8 @@ struct CppSettingsDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CppSettingsDefaultTypeInternal _CppSettings_default_instance_;
 PROTOBUF_CONSTEXPR PhpSettings::PhpSettings(
     ::_pbi::ConstantInitialized)
-  : common_(nullptr){}
+  : library_package_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , common_(nullptr){}
 struct PhpSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PhpSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -265,7 +266,8 @@ PROTOBUF_CONSTEXPR MethodSettings::MethodSettings(
     ::_pbi::ConstantInitialized)
   : auto_populated_fields_()
   , selector_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , long_running_(nullptr){}
+  , long_running_(nullptr)
+  , batching_(nullptr){}
 struct MethodSettingsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MethodSettingsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -288,10 +290,57 @@ struct SelectiveGapicGenerationDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SelectiveGapicGenerationDefaultTypeInternal _SelectiveGapicGeneration_default_instance_;
+PROTOBUF_CONSTEXPR BatchingConfigProto::BatchingConfigProto(
+    ::_pbi::ConstantInitialized)
+  : thresholds_(nullptr)
+  , batch_descriptor_(nullptr){}
+struct BatchingConfigProtoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR BatchingConfigProtoDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~BatchingConfigProtoDefaultTypeInternal() {}
+  union {
+    BatchingConfigProto _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BatchingConfigProtoDefaultTypeInternal _BatchingConfigProto_default_instance_;
+PROTOBUF_CONSTEXPR BatchingSettingsProto::BatchingSettingsProto(
+    ::_pbi::ConstantInitialized)
+  : delay_threshold_(nullptr)
+  , request_byte_threshold_(int64_t{0})
+  , element_count_threshold_(0)
+  , element_count_limit_(0)
+  , request_byte_limit_(0)
+  , flow_control_element_limit_(0)
+  , flow_control_byte_limit_(0)
+  , flow_control_limit_exceeded_behavior_(0)
+{}
+struct BatchingSettingsProtoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR BatchingSettingsProtoDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~BatchingSettingsProtoDefaultTypeInternal() {}
+  union {
+    BatchingSettingsProto _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BatchingSettingsProtoDefaultTypeInternal _BatchingSettingsProto_default_instance_;
+PROTOBUF_CONSTEXPR BatchingDescriptorProto::BatchingDescriptorProto(
+    ::_pbi::ConstantInitialized)
+  : discriminator_fields_()
+  , batched_field_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , subresponse_field_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct BatchingDescriptorProtoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR BatchingDescriptorProtoDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~BatchingDescriptorProtoDefaultTypeInternal() {}
+  union {
+    BatchingDescriptorProto _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BatchingDescriptorProtoDefaultTypeInternal _BatchingDescriptorProto_default_instance_;
 }  // namespace api
 }  // namespace google
-static ::_pb::Metadata file_level_metadata_google_2fapi_2fclient_2eproto[19];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_google_2fapi_2fclient_2eproto[2];
+static ::_pb::Metadata file_level_metadata_google_2fapi_2fclient_2eproto[22];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_google_2fapi_2fclient_2eproto[3];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_google_2fapi_2fclient_2eproto = nullptr;
 
 const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -371,6 +420,7 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::api::PhpSettings, common_),
+  PROTOBUF_FIELD_OFFSET(::google::api::PhpSettings, library_package_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::PythonSettings_ExperimentalFeatures, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -471,6 +521,7 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, selector_),
   PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, long_running_),
   PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, auto_populated_fields_),
+  PROTOBUF_FIELD_OFFSET(::google::api::MethodSettings, batching_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -479,6 +530,37 @@ const uint32_t TableStruct_google_2fapi_2fclient_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, methods_),
   PROTOBUF_FIELD_OFFSET(::google::api::SelectiveGapicGeneration, generate_omitted_as_internal_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingConfigProto, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingConfigProto, thresholds_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingConfigProto, batch_descriptor_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingSettingsProto, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingSettingsProto, element_count_threshold_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingSettingsProto, request_byte_threshold_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingSettingsProto, delay_threshold_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingSettingsProto, element_count_limit_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingSettingsProto, request_byte_limit_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingSettingsProto, flow_control_element_limit_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingSettingsProto, flow_control_byte_limit_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingSettingsProto, flow_control_limit_exceeded_behavior_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingDescriptorProto, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingDescriptorProto, batched_field_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingDescriptorProto, discriminator_fields_),
+  PROTOBUF_FIELD_OFFSET(::google::api::BatchingDescriptorProto, subresponse_field_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::google::api::CommonLanguageSettings)},
@@ -488,18 +570,21 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 53, -1, -1, sizeof(::google::api::JavaSettings)},
   { 62, -1, -1, sizeof(::google::api::CppSettings)},
   { 69, -1, -1, sizeof(::google::api::PhpSettings)},
-  { 76, -1, -1, sizeof(::google::api::PythonSettings_ExperimentalFeatures)},
-  { 85, -1, -1, sizeof(::google::api::PythonSettings)},
-  { 93, -1, -1, sizeof(::google::api::NodeSettings)},
-  { 100, 108, -1, sizeof(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse)},
-  { 110, 118, -1, sizeof(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse)},
-  { 120, -1, -1, sizeof(::google::api::DotnetSettings)},
-  { 132, -1, -1, sizeof(::google::api::RubySettings)},
-  { 139, 147, -1, sizeof(::google::api::GoSettings_RenamedServicesEntry_DoNotUse)},
-  { 149, -1, -1, sizeof(::google::api::GoSettings)},
-  { 157, -1, -1, sizeof(::google::api::MethodSettings_LongRunning)},
-  { 167, -1, -1, sizeof(::google::api::MethodSettings)},
-  { 176, -1, -1, sizeof(::google::api::SelectiveGapicGeneration)},
+  { 77, -1, -1, sizeof(::google::api::PythonSettings_ExperimentalFeatures)},
+  { 86, -1, -1, sizeof(::google::api::PythonSettings)},
+  { 94, -1, -1, sizeof(::google::api::NodeSettings)},
+  { 101, 109, -1, sizeof(::google::api::DotnetSettings_RenamedServicesEntry_DoNotUse)},
+  { 111, 119, -1, sizeof(::google::api::DotnetSettings_RenamedResourcesEntry_DoNotUse)},
+  { 121, -1, -1, sizeof(::google::api::DotnetSettings)},
+  { 133, -1, -1, sizeof(::google::api::RubySettings)},
+  { 140, 148, -1, sizeof(::google::api::GoSettings_RenamedServicesEntry_DoNotUse)},
+  { 150, -1, -1, sizeof(::google::api::GoSettings)},
+  { 158, -1, -1, sizeof(::google::api::MethodSettings_LongRunning)},
+  { 168, -1, -1, sizeof(::google::api::MethodSettings)},
+  { 178, -1, -1, sizeof(::google::api::SelectiveGapicGeneration)},
+  { 186, -1, -1, sizeof(::google::api::BatchingConfigProto)},
+  { 194, -1, -1, sizeof(::google::api::BatchingSettingsProto)},
+  { 208, -1, -1, sizeof(::google::api::BatchingDescriptorProto)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -522,6 +607,9 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::google::api::_MethodSettings_LongRunning_default_instance_._instance,
   &::google::api::_MethodSettings_default_instance_._instance,
   &::google::api::_SelectiveGapicGeneration_default_instance_._instance,
+  &::google::api::_BatchingConfigProto_default_instance_._instance,
+  &::google::api::_BatchingSettingsProto_default_instance_._instance,
+  &::google::api::_BatchingDescriptorProto_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -575,74 +663,101 @@ const char descriptor_table_protodef_google_2fapi_2fclient_2eproto[] PROTOBUF_SE
   "tingsR\006common\032D\n\026ServiceClassNamesEntry\022"
   "\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:"
   "\0028\001\"I\n\013CppSettings\022:\n\006common\030\001 \001(\0132\".goo"
-  "gle.api.CommonLanguageSettingsR\006common\"I"
+  "gle.api.CommonLanguageSettingsR\006common\"r"
   "\n\013PhpSettings\022:\n\006common\030\001 \001(\0132\".google.a"
-  "pi.CommonLanguageSettingsR\006common\"\207\003\n\016Py"
-  "thonSettings\022:\n\006common\030\001 \001(\0132\".google.ap"
-  "i.CommonLanguageSettingsR\006common\022d\n\025expe"
-  "rimental_features\030\002 \001(\0132/.google.api.Pyt"
-  "honSettings.ExperimentalFeaturesR\024experi"
-  "mentalFeatures\032\322\001\n\024ExperimentalFeatures\022"
-  "1\n\025rest_async_io_enabled\030\001 \001(\010R\022restAsyn"
-  "cIoEnabled\022E\n\037protobuf_pythonic_types_en"
-  "abled\030\002 \001(\010R\034protobufPythonicTypesEnable"
-  "d\022@\n\034unversioned_package_disabled\030\003 \001(\010R"
-  "\032unversionedPackageDisabled\"J\n\014NodeSetti"
+  "pi.CommonLanguageSettingsR\006common\022\'\n\017lib"
+  "rary_package\030\002 \001(\tR\016libraryPackage\"\207\003\n\016P"
+  "ythonSettings\022:\n\006common\030\001 \001(\0132\".google.a"
+  "pi.CommonLanguageSettingsR\006common\022d\n\025exp"
+  "erimental_features\030\002 \001(\0132/.google.api.Py"
+  "thonSettings.ExperimentalFeaturesR\024exper"
+  "imentalFeatures\032\322\001\n\024ExperimentalFeatures"
+  "\0221\n\025rest_async_io_enabled\030\001 \001(\010R\022restAsy"
+  "ncIoEnabled\022E\n\037protobuf_pythonic_types_e"
+  "nabled\030\002 \001(\010R\034protobufPythonicTypesEnabl"
+  "ed\022@\n\034unversioned_package_disabled\030\003 \001(\010"
+  "R\032unversionedPackageDisabled\"J\n\014NodeSett"
+  "ings\022:\n\006common\030\001 \001(\0132\".google.api.Common"
+  "LanguageSettingsR\006common\"\256\004\n\016DotnetSetti"
   "ngs\022:\n\006common\030\001 \001(\0132\".google.api.CommonL"
-  "anguageSettingsR\006common\"\256\004\n\016DotnetSettin"
-  "gs\022:\n\006common\030\001 \001(\0132\".google.api.CommonLa"
-  "nguageSettingsR\006common\022Z\n\020renamed_servic"
-  "es\030\002 \003(\0132/.google.api.DotnetSettings.Ren"
-  "amedServicesEntryR\017renamedServices\022]\n\021re"
-  "named_resources\030\003 \003(\01320.google.api.Dotne"
-  "tSettings.RenamedResourcesEntryR\020renamed"
-  "Resources\022+\n\021ignored_resources\030\004 \003(\tR\020ig"
-  "noredResources\0228\n\030forced_namespace_alias"
-  "es\030\005 \003(\tR\026forcedNamespaceAliases\0225\n\026hand"
-  "written_signatures\030\006 \003(\tR\025handwrittenSig"
-  "natures\032B\n\024RenamedServicesEntry\022\020\n\003key\030\001"
-  " \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032C\n\025R"
-  "enamedResourcesEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024"
-  "\n\005value\030\002 \001(\tR\005value:\0028\001\"J\n\014RubySettings"
-  "\022:\n\006common\030\001 \001(\0132\".google.api.CommonLang"
-  "uageSettingsR\006common\"\344\001\n\nGoSettings\022:\n\006c"
-  "ommon\030\001 \001(\0132\".google.api.CommonLanguageS"
-  "ettingsR\006common\022V\n\020renamed_services\030\002 \003("
-  "\0132+.google.api.GoSettings.RenamedService"
-  "sEntryR\017renamedServices\032B\n\024RenamedServic"
-  "esEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\t"
-  "R\005value:\0028\001\"\302\003\n\016MethodSettings\022\032\n\010select"
-  "or\030\001 \001(\tR\010selector\022I\n\014long_running\030\002 \001(\013"
-  "2&.google.api.MethodSettings.LongRunning"
-  "R\013longRunning\0222\n\025auto_populated_fields\030\003"
-  " \003(\tR\023autoPopulatedFields\032\224\002\n\013LongRunnin"
-  "g\022G\n\022initial_poll_delay\030\001 \001(\0132\031.google.p"
-  "rotobuf.DurationR\020initialPollDelay\0222\n\025po"
-  "ll_delay_multiplier\030\002 \001(\002R\023pollDelayMult"
-  "iplier\022\?\n\016max_poll_delay\030\003 \001(\0132\031.google."
-  "protobuf.DurationR\014maxPollDelay\022G\n\022total"
-  "_poll_timeout\030\004 \001(\0132\031.google.protobuf.Du"
-  "rationR\020totalPollTimeout\"u\n\030SelectiveGap"
-  "icGeneration\022\030\n\007methods\030\001 \003(\tR\007methods\022\?"
-  "\n\034generate_omitted_as_internal\030\002 \001(\010R\031ge"
-  "nerateOmittedAsInternal*\243\001\n\031ClientLibrar"
-  "yOrganization\022+\n\'CLIENT_LIBRARY_ORGANIZA"
-  "TION_UNSPECIFIED\020\000\022\t\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n"
-  "\n\006PHOTOS\020\003\022\017\n\013STREET_VIEW\020\004\022\014\n\010SHOPPING\020"
-  "\005\022\007\n\003GEO\020\006\022\021\n\rGENERATIVE_AI\020\007*g\n\030ClientL"
-  "ibraryDestination\022*\n&CLIENT_LIBRARY_DEST"
-  "INATION_UNSPECIFIED\020\000\022\n\n\006GITHUB\020\n\022\023\n\017PAC"
-  "KAGE_MANAGER\020\024:J\n\020method_signature\022\036.goo"
-  "gle.protobuf.MethodOptions\030\233\010 \003(\tR\017metho"
-  "dSignature:C\n\014default_host\022\037.google.prot"
-  "obuf.ServiceOptions\030\231\010 \001(\tR\013defaultHost:"
-  "C\n\014oauth_scopes\022\037.google.protobuf.Servic"
-  "eOptions\030\232\010 \001(\tR\013oauthScopes:D\n\013api_vers"
-  "ion\022\037.google.protobuf.ServiceOptions\030\301\272\253"
-  "\372\001 \001(\tR\napiVersionBi\n\016com.google.apiB\013Cl"
-  "ientProtoP\001ZAgoogle.golang.org/genproto/"
-  "googleapis/api/annotations;annotations\242\002"
-  "\004GAPIb\006proto3"
+  "anguageSettingsR\006common\022Z\n\020renamed_servi"
+  "ces\030\002 \003(\0132/.google.api.DotnetSettings.Re"
+  "namedServicesEntryR\017renamedServices\022]\n\021r"
+  "enamed_resources\030\003 \003(\01320.google.api.Dotn"
+  "etSettings.RenamedResourcesEntryR\020rename"
+  "dResources\022+\n\021ignored_resources\030\004 \003(\tR\020i"
+  "gnoredResources\0228\n\030forced_namespace_alia"
+  "ses\030\005 \003(\tR\026forcedNamespaceAliases\0225\n\026han"
+  "dwritten_signatures\030\006 \003(\tR\025handwrittenSi"
+  "gnatures\032B\n\024RenamedServicesEntry\022\020\n\003key\030"
+  "\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\032C\n\025"
+  "RenamedResourcesEntry\022\020\n\003key\030\001 \001(\tR\003key\022"
+  "\024\n\005value\030\002 \001(\tR\005value:\0028\001\"J\n\014RubySetting"
+  "s\022:\n\006common\030\001 \001(\0132\".google.api.CommonLan"
+  "guageSettingsR\006common\"\344\001\n\nGoSettings\022:\n\006"
+  "common\030\001 \001(\0132\".google.api.CommonLanguage"
+  "SettingsR\006common\022V\n\020renamed_services\030\002 \003"
+  "(\0132+.google.api.GoSettings.RenamedServic"
+  "esEntryR\017renamedServices\032B\n\024RenamedServi"
+  "cesEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001("
+  "\tR\005value:\0028\001\"\377\003\n\016MethodSettings\022\032\n\010selec"
+  "tor\030\001 \001(\tR\010selector\022I\n\014long_running\030\002 \001("
+  "\0132&.google.api.MethodSettings.LongRunnin"
+  "gR\013longRunning\0222\n\025auto_populated_fields\030"
+  "\003 \003(\tR\023autoPopulatedFields\022;\n\010batching\030\004"
+  " \001(\0132\037.google.api.BatchingConfigProtoR\010b"
+  "atching\032\224\002\n\013LongRunning\022G\n\022initial_poll_"
+  "delay\030\001 \001(\0132\031.google.protobuf.DurationR\020"
+  "initialPollDelay\0222\n\025poll_delay_multiplie"
+  "r\030\002 \001(\002R\023pollDelayMultiplier\022\?\n\016max_poll"
+  "_delay\030\003 \001(\0132\031.google.protobuf.DurationR"
+  "\014maxPollDelay\022G\n\022total_poll_timeout\030\004 \001("
+  "\0132\031.google.protobuf.DurationR\020totalPollT"
+  "imeout\"u\n\030SelectiveGapicGeneration\022\030\n\007me"
+  "thods\030\001 \003(\tR\007methods\022\?\n\034generate_omitted"
+  "_as_internal\030\002 \001(\010R\031generateOmittedAsInt"
+  "ernal\"\250\001\n\023BatchingConfigProto\022A\n\nthresho"
+  "lds\030\001 \001(\0132!.google.api.BatchingSettingsP"
+  "rotoR\nthresholds\022N\n\020batch_descriptor\030\002 \001"
+  "(\0132#.google.api.BatchingDescriptorProtoR"
+  "\017batchDescriptor\"\237\004\n\025BatchingSettingsPro"
+  "to\0226\n\027element_count_threshold\030\001 \001(\005R\025ele"
+  "mentCountThreshold\0224\n\026request_byte_thres"
+  "hold\030\002 \001(\003R\024requestByteThreshold\022B\n\017dela"
+  "y_threshold\030\003 \001(\0132\031.google.protobuf.Dura"
+  "tionR\016delayThreshold\022.\n\023element_count_li"
+  "mit\030\004 \001(\005R\021elementCountLimit\022,\n\022request_"
+  "byte_limit\030\005 \001(\005R\020requestByteLimit\022;\n\032fl"
+  "ow_control_element_limit\030\006 \001(\005R\027flowCont"
+  "rolElementLimit\0225\n\027flow_control_byte_lim"
+  "it\030\007 \001(\005R\024flowControlByteLimit\022\201\001\n$flow_"
+  "control_limit_exceeded_behavior\030\010 \001(\01621."
+  "google.api.FlowControlLimitExceededBehav"
+  "iorProtoR flowControlLimitExceededBehavi"
+  "or\"\236\001\n\027BatchingDescriptorProto\022#\n\rbatche"
+  "d_field\030\001 \001(\tR\014batchedField\0221\n\024discrimin"
+  "ator_fields\030\002 \003(\tR\023discriminatorFields\022+"
+  "\n\021subresponse_field\030\003 \001(\tR\020subresponseFi"
+  "eld*\243\001\n\031ClientLibraryOrganization\022+\n\'CLI"
+  "ENT_LIBRARY_ORGANIZATION_UNSPECIFIED\020\000\022\t"
+  "\n\005CLOUD\020\001\022\007\n\003ADS\020\002\022\n\n\006PHOTOS\020\003\022\017\n\013STREET"
+  "_VIEW\020\004\022\014\n\010SHOPPING\020\005\022\007\n\003GEO\020\006\022\021\n\rGENERA"
+  "TIVE_AI\020\007*g\n\030ClientLibraryDestination\022*\n"
+  "&CLIENT_LIBRARY_DESTINATION_UNSPECIFIED\020"
+  "\000\022\n\n\006GITHUB\020\n\022\023\n\017PACKAGE_MANAGER\020\024*g\n%Fl"
+  "owControlLimitExceededBehaviorProto\022\022\n\016U"
+  "NSET_BEHAVIOR\020\000\022\023\n\017THROW_EXCEPTION\020\001\022\t\n\005"
+  "BLOCK\020\002\022\n\n\006IGNORE\020\003:J\n\020method_signature\022"
+  "\036.google.protobuf.MethodOptions\030\233\010 \003(\tR\017"
+  "methodSignature:C\n\014default_host\022\037.google"
+  ".protobuf.ServiceOptions\030\231\010 \001(\tR\013default"
+  "Host:C\n\014oauth_scopes\022\037.google.protobuf.S"
+  "erviceOptions\030\232\010 \001(\tR\013oauthScopes:D\n\013api"
+  "_version\022\037.google.protobuf.ServiceOption"
+  "s\030\301\272\253\372\001 \001(\tR\napiVersionBi\n\016com.google.ap"
+  "iB\013ClientProtoP\001ZAgoogle.golang.org/genp"
+  "roto/googleapis/api/annotations;annotati"
+  "ons\242\002\004GAPIb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclient_2eproto_deps[3] = {
   &::descriptor_table_google_2fapi_2flaunch_5fstage_2eproto,
@@ -651,9 +766,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_google_2fapi_2fclie
 };
 static ::_pbi::once_flag descriptor_table_google_2fapi_2fclient_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2fapi_2fclient_2eproto = {
-    false, false, 4693, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
+    false, false, 5778, descriptor_table_protodef_google_2fapi_2fclient_2eproto,
     "google/api/client.proto",
-    &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 19,
+    &descriptor_table_google_2fapi_2fclient_2eproto_once, descriptor_table_google_2fapi_2fclient_2eproto_deps, 3, 22,
     schemas, file_default_instances, TableStruct_google_2fapi_2fclient_2eproto::offsets,
     file_level_metadata_google_2fapi_2fclient_2eproto, file_level_enum_descriptors_google_2fapi_2fclient_2eproto,
     file_level_service_descriptors_google_2fapi_2fclient_2eproto,
@@ -695,6 +810,22 @@ bool ClientLibraryDestination_IsValid(int value) {
     case 0:
     case 10:
     case 20:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* FlowControlLimitExceededBehaviorProto_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_google_2fapi_2fclient_2eproto);
+  return file_level_enum_descriptors_google_2fapi_2fclient_2eproto[2];
+}
+bool FlowControlLimitExceededBehaviorProto_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
       return true;
     default:
       return false;
@@ -2700,6 +2831,14 @@ PhpSettings::PhpSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 PhpSettings::PhpSettings(const PhpSettings& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  library_package_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    library_package_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_library_package().empty()) {
+    library_package_.Set(from._internal_library_package(), 
+      GetArenaForAllocation());
+  }
   if (from._internal_has_common()) {
     common_ = new ::google::api::CommonLanguageSettings(*from.common_);
   } else {
@@ -2709,6 +2848,10 @@ PhpSettings::PhpSettings(const PhpSettings& from)
 }
 
 inline void PhpSettings::SharedCtor() {
+library_package_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  library_package_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 common_ = nullptr;
 }
 
@@ -2723,6 +2866,7 @@ PhpSettings::~PhpSettings() {
 
 inline void PhpSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  library_package_.Destroy();
   if (this != internal_default_instance()) delete common_;
 }
 
@@ -2736,6 +2880,7 @@ void PhpSettings::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  library_package_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && common_ != nullptr) {
     delete common_;
   }
@@ -2754,6 +2899,16 @@ const char* PhpSettings::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_common(), ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string library_package = 2 [json_name = "libraryPackage"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_library_package();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.api.PhpSettings.library_package"));
         } else
           goto handle_unusual;
         continue;
@@ -2793,6 +2948,16 @@ uint8_t* PhpSettings::_InternalSerialize(
         _Internal::common(this).GetCachedSize(), target, stream);
   }
 
+  // string library_package = 2 [json_name = "libraryPackage"];
+  if (!this->_internal_library_package().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_library_package().data(), static_cast<int>(this->_internal_library_package().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.PhpSettings.library_package");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_library_package(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2808,6 +2973,13 @@ size_t PhpSettings::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // string library_package = 2 [json_name = "libraryPackage"];
+  if (!this->_internal_library_package().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_library_package());
+  }
 
   // .google.api.CommonLanguageSettings common = 1 [json_name = "common"];
   if (this->_internal_has_common()) {
@@ -2838,6 +3010,9 @@ void PhpSettings::MergeFrom(const PhpSettings& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_library_package().empty()) {
+    _internal_set_library_package(from._internal_library_package());
+  }
   if (from._internal_has_common()) {
     _internal_mutable_common()->::google::api::CommonLanguageSettings::MergeFrom(from._internal_common());
   }
@@ -2857,7 +3032,13 @@ bool PhpSettings::IsInitialized() const {
 
 void PhpSettings::InternalSwap(PhpSettings* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &library_package_, lhs_arena,
+      &other->library_package_, rhs_arena
+  );
   swap(common_, other->common_);
 }
 
@@ -4758,11 +4939,16 @@ void MethodSettings_LongRunning::InternalSwap(MethodSettings_LongRunning* other)
 class MethodSettings::_Internal {
  public:
   static const ::google::api::MethodSettings_LongRunning& long_running(const MethodSettings* msg);
+  static const ::google::api::BatchingConfigProto& batching(const MethodSettings* msg);
 };
 
 const ::google::api::MethodSettings_LongRunning&
 MethodSettings::_Internal::long_running(const MethodSettings* msg) {
   return *msg->long_running_;
+}
+const ::google::api::BatchingConfigProto&
+MethodSettings::_Internal::batching(const MethodSettings* msg) {
+  return *msg->batching_;
 }
 MethodSettings::MethodSettings(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -4788,6 +4974,11 @@ MethodSettings::MethodSettings(const MethodSettings& from)
   } else {
     long_running_ = nullptr;
   }
+  if (from._internal_has_batching()) {
+    batching_ = new ::google::api::BatchingConfigProto(*from.batching_);
+  } else {
+    batching_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:google.api.MethodSettings)
 }
 
@@ -4796,7 +4987,10 @@ selector_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   selector_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-long_running_ = nullptr;
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&long_running_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&batching_) -
+    reinterpret_cast<char*>(&long_running_)) + sizeof(batching_));
 }
 
 MethodSettings::~MethodSettings() {
@@ -4812,6 +5006,7 @@ inline void MethodSettings::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   selector_.Destroy();
   if (this != internal_default_instance()) delete long_running_;
+  if (this != internal_default_instance()) delete batching_;
 }
 
 void MethodSettings::SetCachedSize(int size) const {
@@ -4830,6 +5025,10 @@ void MethodSettings::Clear() {
     delete long_running_;
   }
   long_running_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && batching_ != nullptr) {
+    delete batching_;
+  }
+  batching_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4869,6 +5068,14 @@ const char* MethodSettings::_InternalParse(const char* ptr, ::_pbi::ParseContext
             CHK_(::_pbi::VerifyUTF8(str, "google.api.MethodSettings.auto_populated_fields"));
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.api.BatchingConfigProto batching = 4 [json_name = "batching"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_batching(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -4928,6 +5135,13 @@ uint8_t* MethodSettings::_InternalSerialize(
     target = stream->WriteString(3, s, target);
   }
 
+  // .google.api.BatchingConfigProto batching = 4 [json_name = "batching"];
+  if (this->_internal_has_batching()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(4, _Internal::batching(this),
+        _Internal::batching(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4966,6 +5180,13 @@ size_t MethodSettings::ByteSizeLong() const {
         *long_running_);
   }
 
+  // .google.api.BatchingConfigProto batching = 4 [json_name = "batching"];
+  if (this->_internal_has_batching()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *batching_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -4995,6 +5216,9 @@ void MethodSettings::MergeFrom(const MethodSettings& from) {
   if (from._internal_has_long_running()) {
     _internal_mutable_long_running()->::google::api::MethodSettings_LongRunning::MergeFrom(from._internal_long_running());
   }
+  if (from._internal_has_batching()) {
+    _internal_mutable_batching()->::google::api::BatchingConfigProto::MergeFrom(from._internal_batching());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -5019,7 +5243,12 @@ void MethodSettings::InternalSwap(MethodSettings* other) {
       &selector_, lhs_arena,
       &other->selector_, rhs_arena
   );
-  swap(long_running_, other->long_running_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MethodSettings, batching_)
+      + sizeof(MethodSettings::batching_)
+      - PROTOBUF_FIELD_OFFSET(MethodSettings, long_running_)>(
+          reinterpret_cast<char*>(&long_running_),
+          reinterpret_cast<char*>(&other->long_running_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MethodSettings::GetMetadata() const {
@@ -5236,6 +5465,886 @@ void SelectiveGapicGeneration::InternalSwap(SelectiveGapicGeneration* other) {
       &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
       file_level_metadata_google_2fapi_2fclient_2eproto[18]);
 }
+
+// ===================================================================
+
+class BatchingConfigProto::_Internal {
+ public:
+  static const ::google::api::BatchingSettingsProto& thresholds(const BatchingConfigProto* msg);
+  static const ::google::api::BatchingDescriptorProto& batch_descriptor(const BatchingConfigProto* msg);
+};
+
+const ::google::api::BatchingSettingsProto&
+BatchingConfigProto::_Internal::thresholds(const BatchingConfigProto* msg) {
+  return *msg->thresholds_;
+}
+const ::google::api::BatchingDescriptorProto&
+BatchingConfigProto::_Internal::batch_descriptor(const BatchingConfigProto* msg) {
+  return *msg->batch_descriptor_;
+}
+BatchingConfigProto::BatchingConfigProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:google.api.BatchingConfigProto)
+}
+BatchingConfigProto::BatchingConfigProto(const BatchingConfigProto& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_thresholds()) {
+    thresholds_ = new ::google::api::BatchingSettingsProto(*from.thresholds_);
+  } else {
+    thresholds_ = nullptr;
+  }
+  if (from._internal_has_batch_descriptor()) {
+    batch_descriptor_ = new ::google::api::BatchingDescriptorProto(*from.batch_descriptor_);
+  } else {
+    batch_descriptor_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:google.api.BatchingConfigProto)
+}
+
+inline void BatchingConfigProto::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&thresholds_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&batch_descriptor_) -
+    reinterpret_cast<char*>(&thresholds_)) + sizeof(batch_descriptor_));
+}
+
+BatchingConfigProto::~BatchingConfigProto() {
+  // @@protoc_insertion_point(destructor:google.api.BatchingConfigProto)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void BatchingConfigProto::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete thresholds_;
+  if (this != internal_default_instance()) delete batch_descriptor_;
+}
+
+void BatchingConfigProto::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void BatchingConfigProto::Clear() {
+// @@protoc_insertion_point(message_clear_start:google.api.BatchingConfigProto)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && thresholds_ != nullptr) {
+    delete thresholds_;
+  }
+  thresholds_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && batch_descriptor_ != nullptr) {
+    delete batch_descriptor_;
+  }
+  batch_descriptor_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* BatchingConfigProto::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .google.api.BatchingSettingsProto thresholds = 1 [json_name = "thresholds"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_thresholds(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.api.BatchingDescriptorProto batch_descriptor = 2 [json_name = "batchDescriptor"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_batch_descriptor(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* BatchingConfigProto::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:google.api.BatchingConfigProto)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .google.api.BatchingSettingsProto thresholds = 1 [json_name = "thresholds"];
+  if (this->_internal_has_thresholds()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::thresholds(this),
+        _Internal::thresholds(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.api.BatchingDescriptorProto batch_descriptor = 2 [json_name = "batchDescriptor"];
+  if (this->_internal_has_batch_descriptor()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::batch_descriptor(this),
+        _Internal::batch_descriptor(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:google.api.BatchingConfigProto)
+  return target;
+}
+
+size_t BatchingConfigProto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:google.api.BatchingConfigProto)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .google.api.BatchingSettingsProto thresholds = 1 [json_name = "thresholds"];
+  if (this->_internal_has_thresholds()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *thresholds_);
+  }
+
+  // .google.api.BatchingDescriptorProto batch_descriptor = 2 [json_name = "batchDescriptor"];
+  if (this->_internal_has_batch_descriptor()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *batch_descriptor_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BatchingConfigProto::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    BatchingConfigProto::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BatchingConfigProto::GetClassData() const { return &_class_data_; }
+
+void BatchingConfigProto::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<BatchingConfigProto *>(to)->MergeFrom(
+      static_cast<const BatchingConfigProto &>(from));
+}
+
+
+void BatchingConfigProto::MergeFrom(const BatchingConfigProto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.BatchingConfigProto)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_thresholds()) {
+    _internal_mutable_thresholds()->::google::api::BatchingSettingsProto::MergeFrom(from._internal_thresholds());
+  }
+  if (from._internal_has_batch_descriptor()) {
+    _internal_mutable_batch_descriptor()->::google::api::BatchingDescriptorProto::MergeFrom(from._internal_batch_descriptor());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BatchingConfigProto::CopyFrom(const BatchingConfigProto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:google.api.BatchingConfigProto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool BatchingConfigProto::IsInitialized() const {
+  return true;
+}
+
+void BatchingConfigProto::InternalSwap(BatchingConfigProto* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(BatchingConfigProto, batch_descriptor_)
+      + sizeof(BatchingConfigProto::batch_descriptor_)
+      - PROTOBUF_FIELD_OFFSET(BatchingConfigProto, thresholds_)>(
+          reinterpret_cast<char*>(&thresholds_),
+          reinterpret_cast<char*>(&other->thresholds_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata BatchingConfigProto::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
+      file_level_metadata_google_2fapi_2fclient_2eproto[19]);
+}
+
+// ===================================================================
+
+class BatchingSettingsProto::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Duration& delay_threshold(const BatchingSettingsProto* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Duration&
+BatchingSettingsProto::_Internal::delay_threshold(const BatchingSettingsProto* msg) {
+  return *msg->delay_threshold_;
+}
+void BatchingSettingsProto::clear_delay_threshold() {
+  if (GetArenaForAllocation() == nullptr && delay_threshold_ != nullptr) {
+    delete delay_threshold_;
+  }
+  delay_threshold_ = nullptr;
+}
+BatchingSettingsProto::BatchingSettingsProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:google.api.BatchingSettingsProto)
+}
+BatchingSettingsProto::BatchingSettingsProto(const BatchingSettingsProto& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_delay_threshold()) {
+    delay_threshold_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from.delay_threshold_);
+  } else {
+    delay_threshold_ = nullptr;
+  }
+  ::memcpy(&request_byte_threshold_, &from.request_byte_threshold_,
+    static_cast<size_t>(reinterpret_cast<char*>(&flow_control_limit_exceeded_behavior_) -
+    reinterpret_cast<char*>(&request_byte_threshold_)) + sizeof(flow_control_limit_exceeded_behavior_));
+  // @@protoc_insertion_point(copy_constructor:google.api.BatchingSettingsProto)
+}
+
+inline void BatchingSettingsProto::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&delay_threshold_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&flow_control_limit_exceeded_behavior_) -
+    reinterpret_cast<char*>(&delay_threshold_)) + sizeof(flow_control_limit_exceeded_behavior_));
+}
+
+BatchingSettingsProto::~BatchingSettingsProto() {
+  // @@protoc_insertion_point(destructor:google.api.BatchingSettingsProto)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void BatchingSettingsProto::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete delay_threshold_;
+}
+
+void BatchingSettingsProto::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void BatchingSettingsProto::Clear() {
+// @@protoc_insertion_point(message_clear_start:google.api.BatchingSettingsProto)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && delay_threshold_ != nullptr) {
+    delete delay_threshold_;
+  }
+  delay_threshold_ = nullptr;
+  ::memset(&request_byte_threshold_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&flow_control_limit_exceeded_behavior_) -
+      reinterpret_cast<char*>(&request_byte_threshold_)) + sizeof(flow_control_limit_exceeded_behavior_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* BatchingSettingsProto::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 element_count_threshold = 1 [json_name = "elementCountThreshold"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          element_count_threshold_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int64 request_byte_threshold = 2 [json_name = "requestByteThreshold"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          request_byte_threshold_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Duration delay_threshold = 3 [json_name = "delayThreshold"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_delay_threshold(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 element_count_limit = 4 [json_name = "elementCountLimit"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          element_count_limit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 request_byte_limit = 5 [json_name = "requestByteLimit"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          request_byte_limit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 flow_control_element_limit = 6 [json_name = "flowControlElementLimit"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          flow_control_element_limit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 flow_control_byte_limit = 7 [json_name = "flowControlByteLimit"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          flow_control_byte_limit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.api.FlowControlLimitExceededBehaviorProto flow_control_limit_exceeded_behavior = 8 [json_name = "flowControlLimitExceededBehavior"];
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_flow_control_limit_exceeded_behavior(static_cast<::google::api::FlowControlLimitExceededBehaviorProto>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* BatchingSettingsProto::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:google.api.BatchingSettingsProto)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 element_count_threshold = 1 [json_name = "elementCountThreshold"];
+  if (this->_internal_element_count_threshold() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_element_count_threshold(), target);
+  }
+
+  // int64 request_byte_threshold = 2 [json_name = "requestByteThreshold"];
+  if (this->_internal_request_byte_threshold() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_request_byte_threshold(), target);
+  }
+
+  // .google.protobuf.Duration delay_threshold = 3 [json_name = "delayThreshold"];
+  if (this->_internal_has_delay_threshold()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::delay_threshold(this),
+        _Internal::delay_threshold(this).GetCachedSize(), target, stream);
+  }
+
+  // int32 element_count_limit = 4 [json_name = "elementCountLimit"];
+  if (this->_internal_element_count_limit() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_element_count_limit(), target);
+  }
+
+  // int32 request_byte_limit = 5 [json_name = "requestByteLimit"];
+  if (this->_internal_request_byte_limit() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_request_byte_limit(), target);
+  }
+
+  // int32 flow_control_element_limit = 6 [json_name = "flowControlElementLimit"];
+  if (this->_internal_flow_control_element_limit() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_flow_control_element_limit(), target);
+  }
+
+  // int32 flow_control_byte_limit = 7 [json_name = "flowControlByteLimit"];
+  if (this->_internal_flow_control_byte_limit() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(7, this->_internal_flow_control_byte_limit(), target);
+  }
+
+  // .google.api.FlowControlLimitExceededBehaviorProto flow_control_limit_exceeded_behavior = 8 [json_name = "flowControlLimitExceededBehavior"];
+  if (this->_internal_flow_control_limit_exceeded_behavior() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      8, this->_internal_flow_control_limit_exceeded_behavior(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:google.api.BatchingSettingsProto)
+  return target;
+}
+
+size_t BatchingSettingsProto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:google.api.BatchingSettingsProto)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .google.protobuf.Duration delay_threshold = 3 [json_name = "delayThreshold"];
+  if (this->_internal_has_delay_threshold()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *delay_threshold_);
+  }
+
+  // int64 request_byte_threshold = 2 [json_name = "requestByteThreshold"];
+  if (this->_internal_request_byte_threshold() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_request_byte_threshold());
+  }
+
+  // int32 element_count_threshold = 1 [json_name = "elementCountThreshold"];
+  if (this->_internal_element_count_threshold() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_element_count_threshold());
+  }
+
+  // int32 element_count_limit = 4 [json_name = "elementCountLimit"];
+  if (this->_internal_element_count_limit() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_element_count_limit());
+  }
+
+  // int32 request_byte_limit = 5 [json_name = "requestByteLimit"];
+  if (this->_internal_request_byte_limit() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_request_byte_limit());
+  }
+
+  // int32 flow_control_element_limit = 6 [json_name = "flowControlElementLimit"];
+  if (this->_internal_flow_control_element_limit() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_flow_control_element_limit());
+  }
+
+  // int32 flow_control_byte_limit = 7 [json_name = "flowControlByteLimit"];
+  if (this->_internal_flow_control_byte_limit() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_flow_control_byte_limit());
+  }
+
+  // .google.api.FlowControlLimitExceededBehaviorProto flow_control_limit_exceeded_behavior = 8 [json_name = "flowControlLimitExceededBehavior"];
+  if (this->_internal_flow_control_limit_exceeded_behavior() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_flow_control_limit_exceeded_behavior());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BatchingSettingsProto::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    BatchingSettingsProto::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BatchingSettingsProto::GetClassData() const { return &_class_data_; }
+
+void BatchingSettingsProto::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<BatchingSettingsProto *>(to)->MergeFrom(
+      static_cast<const BatchingSettingsProto &>(from));
+}
+
+
+void BatchingSettingsProto::MergeFrom(const BatchingSettingsProto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.BatchingSettingsProto)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_delay_threshold()) {
+    _internal_mutable_delay_threshold()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_delay_threshold());
+  }
+  if (from._internal_request_byte_threshold() != 0) {
+    _internal_set_request_byte_threshold(from._internal_request_byte_threshold());
+  }
+  if (from._internal_element_count_threshold() != 0) {
+    _internal_set_element_count_threshold(from._internal_element_count_threshold());
+  }
+  if (from._internal_element_count_limit() != 0) {
+    _internal_set_element_count_limit(from._internal_element_count_limit());
+  }
+  if (from._internal_request_byte_limit() != 0) {
+    _internal_set_request_byte_limit(from._internal_request_byte_limit());
+  }
+  if (from._internal_flow_control_element_limit() != 0) {
+    _internal_set_flow_control_element_limit(from._internal_flow_control_element_limit());
+  }
+  if (from._internal_flow_control_byte_limit() != 0) {
+    _internal_set_flow_control_byte_limit(from._internal_flow_control_byte_limit());
+  }
+  if (from._internal_flow_control_limit_exceeded_behavior() != 0) {
+    _internal_set_flow_control_limit_exceeded_behavior(from._internal_flow_control_limit_exceeded_behavior());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BatchingSettingsProto::CopyFrom(const BatchingSettingsProto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:google.api.BatchingSettingsProto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool BatchingSettingsProto::IsInitialized() const {
+  return true;
+}
+
+void BatchingSettingsProto::InternalSwap(BatchingSettingsProto* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(BatchingSettingsProto, flow_control_limit_exceeded_behavior_)
+      + sizeof(BatchingSettingsProto::flow_control_limit_exceeded_behavior_)
+      - PROTOBUF_FIELD_OFFSET(BatchingSettingsProto, delay_threshold_)>(
+          reinterpret_cast<char*>(&delay_threshold_),
+          reinterpret_cast<char*>(&other->delay_threshold_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata BatchingSettingsProto::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
+      file_level_metadata_google_2fapi_2fclient_2eproto[20]);
+}
+
+// ===================================================================
+
+class BatchingDescriptorProto::_Internal {
+ public:
+};
+
+BatchingDescriptorProto::BatchingDescriptorProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  discriminator_fields_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:google.api.BatchingDescriptorProto)
+}
+BatchingDescriptorProto::BatchingDescriptorProto(const BatchingDescriptorProto& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      discriminator_fields_(from.discriminator_fields_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  batched_field_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    batched_field_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_batched_field().empty()) {
+    batched_field_.Set(from._internal_batched_field(), 
+      GetArenaForAllocation());
+  }
+  subresponse_field_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    subresponse_field_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_subresponse_field().empty()) {
+    subresponse_field_.Set(from._internal_subresponse_field(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:google.api.BatchingDescriptorProto)
+}
+
+inline void BatchingDescriptorProto::SharedCtor() {
+batched_field_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  batched_field_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+subresponse_field_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  subresponse_field_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+BatchingDescriptorProto::~BatchingDescriptorProto() {
+  // @@protoc_insertion_point(destructor:google.api.BatchingDescriptorProto)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void BatchingDescriptorProto::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  batched_field_.Destroy();
+  subresponse_field_.Destroy();
+}
+
+void BatchingDescriptorProto::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void BatchingDescriptorProto::Clear() {
+// @@protoc_insertion_point(message_clear_start:google.api.BatchingDescriptorProto)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  discriminator_fields_.Clear();
+  batched_field_.ClearToEmpty();
+  subresponse_field_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* BatchingDescriptorProto::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string batched_field = 1 [json_name = "batchedField"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_batched_field();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.api.BatchingDescriptorProto.batched_field"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string discriminator_fields = 2 [json_name = "discriminatorFields"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_discriminator_fields();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "google.api.BatchingDescriptorProto.discriminator_fields"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string subresponse_field = 3 [json_name = "subresponseField"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_subresponse_field();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "google.api.BatchingDescriptorProto.subresponse_field"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* BatchingDescriptorProto::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:google.api.BatchingDescriptorProto)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string batched_field = 1 [json_name = "batchedField"];
+  if (!this->_internal_batched_field().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_batched_field().data(), static_cast<int>(this->_internal_batched_field().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.BatchingDescriptorProto.batched_field");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_batched_field(), target);
+  }
+
+  // repeated string discriminator_fields = 2 [json_name = "discriminatorFields"];
+  for (int i = 0, n = this->_internal_discriminator_fields_size(); i < n; i++) {
+    const auto& s = this->_internal_discriminator_fields(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.BatchingDescriptorProto.discriminator_fields");
+    target = stream->WriteString(2, s, target);
+  }
+
+  // string subresponse_field = 3 [json_name = "subresponseField"];
+  if (!this->_internal_subresponse_field().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_subresponse_field().data(), static_cast<int>(this->_internal_subresponse_field().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "google.api.BatchingDescriptorProto.subresponse_field");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_subresponse_field(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:google.api.BatchingDescriptorProto)
+  return target;
+}
+
+size_t BatchingDescriptorProto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:google.api.BatchingDescriptorProto)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string discriminator_fields = 2 [json_name = "discriminatorFields"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(discriminator_fields_.size());
+  for (int i = 0, n = discriminator_fields_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      discriminator_fields_.Get(i));
+  }
+
+  // string batched_field = 1 [json_name = "batchedField"];
+  if (!this->_internal_batched_field().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_batched_field());
+  }
+
+  // string subresponse_field = 3 [json_name = "subresponseField"];
+  if (!this->_internal_subresponse_field().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_subresponse_field());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData BatchingDescriptorProto::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    BatchingDescriptorProto::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*BatchingDescriptorProto::GetClassData() const { return &_class_data_; }
+
+void BatchingDescriptorProto::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<BatchingDescriptorProto *>(to)->MergeFrom(
+      static_cast<const BatchingDescriptorProto &>(from));
+}
+
+
+void BatchingDescriptorProto::MergeFrom(const BatchingDescriptorProto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:google.api.BatchingDescriptorProto)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  discriminator_fields_.MergeFrom(from.discriminator_fields_);
+  if (!from._internal_batched_field().empty()) {
+    _internal_set_batched_field(from._internal_batched_field());
+  }
+  if (!from._internal_subresponse_field().empty()) {
+    _internal_set_subresponse_field(from._internal_subresponse_field());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BatchingDescriptorProto::CopyFrom(const BatchingDescriptorProto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:google.api.BatchingDescriptorProto)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool BatchingDescriptorProto::IsInitialized() const {
+  return true;
+}
+
+void BatchingDescriptorProto::InternalSwap(BatchingDescriptorProto* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  discriminator_fields_.InternalSwap(&other->discriminator_fields_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &batched_field_, lhs_arena,
+      &other->batched_field_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &subresponse_field_, lhs_arena,
+      &other->subresponse_field_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata BatchingDescriptorProto::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_google_2fapi_2fclient_2eproto_getter, &descriptor_table_google_2fapi_2fclient_2eproto_once,
+      file_level_metadata_google_2fapi_2fclient_2eproto[21]);
+}
 const std::string method_signature_default("");
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 ::PROTOBUF_NAMESPACE_ID::internal::ExtensionIdentifier< ::PROTOBUF_NAMESPACE_ID::MethodOptions,
     ::PROTOBUF_NAMESPACE_ID::internal::RepeatedStringTypeTraits, 9, false>
@@ -5332,6 +6441,18 @@ Arena::CreateMaybeMessage< ::google::api::MethodSettings >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::google::api::SelectiveGapicGeneration*
 Arena::CreateMaybeMessage< ::google::api::SelectiveGapicGeneration >(Arena* arena) {
   return Arena::CreateMessageInternal< ::google::api::SelectiveGapicGeneration >(arena);
+}
+template<> PROTOBUF_NOINLINE ::google::api::BatchingConfigProto*
+Arena::CreateMaybeMessage< ::google::api::BatchingConfigProto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::google::api::BatchingConfigProto >(arena);
+}
+template<> PROTOBUF_NOINLINE ::google::api::BatchingSettingsProto*
+Arena::CreateMaybeMessage< ::google::api::BatchingSettingsProto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::google::api::BatchingSettingsProto >(arena);
+}
+template<> PROTOBUF_NOINLINE ::google::api::BatchingDescriptorProto*
+Arena::CreateMaybeMessage< ::google::api::BatchingDescriptorProto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::google::api::BatchingDescriptorProto >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

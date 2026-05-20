@@ -1,0 +1,39 @@
+#pragma once
+
+
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/audio_out.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/module/service.hpp>
+
+namespace {{ .ModuleSnake }} {
+
+
+class {{ .ModelPascal }} : public viam::sdk::AudioOut {
+public:
+    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
+
+    static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    void play(
+        const std::vector<uint8_t> & audio_data,
+        boost::optional<viam::sdk::AudioOut::audio_info> info,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    void play_stream(
+        viam::sdk::AudioOut::audio_info info,
+        std::function<boost::optional<std::vector<uint8_t>> ()> chunk_source,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::audio_properties get_properties(const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
+
+    viam::sdk::ProtoStruct get_status() override;
+
+    std::vector<viam::sdk::GeometryConfig> get_geometries(const viam::sdk::ProtoStruct & extra) override;
+
+};
+
+} // namespace {{ .ModuleSnake }}
+

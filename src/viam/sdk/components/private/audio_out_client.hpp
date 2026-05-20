@@ -29,15 +29,21 @@ class AudioOutClient : public AudioOut {
               boost::optional<audio_info> info,
               const ProtoStruct& extra) override;
 
+    void play_stream(audio_info info,
+                     std::function<boost::optional<std::vector<uint8_t>>()> chunk_source,
+                     const ProtoStruct& extra) override;
+
     audio_properties get_properties(const ProtoStruct& extra) override;
 
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
 
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
 
     using AudioOut::get_geometries;
     using AudioOut::get_properties;
     using AudioOut::play;
+    using AudioOut::play_stream;
 
    private:
     using StubType = viam::component::audioout::v1::AudioOutService::StubInterface;

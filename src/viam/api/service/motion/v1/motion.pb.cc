@@ -999,7 +999,7 @@ const char descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto[] PR
   "\026PLAN_STATE_UNSPECIFIED\020\000\022\032\n\026PLAN_STATE_"
   "IN_PROGRESS\020\001\022\026\n\022PLAN_STATE_STOPPED\020\002\022\030\n"
   "\024PLAN_STATE_SUCCEEDED\020\003\022\025\n\021PLAN_STATE_FA"
-  "ILED\020\0042\314\t\n\rMotionService\022\202\001\n\004Move\022#.viam"
+  "ILED\020\0042\326\n\n\rMotionService\022\202\001\n\004Move\022#.viam"
   ".service.motion.v1.MoveRequest\032$.viam.se"
   "rvice.motion.v1.MoveResponse\"/\202\323\344\223\002)\"\'/v"
   "iam/api/v1/service/motion/{name}/move\022\230\001"
@@ -1029,9 +1029,13 @@ const char descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto[] PR
   "ion/{name}/get_plan\022\207\001\n\tDoCommand\022 .viam"
   ".common.v1.DoCommandRequest\032!.viam.commo"
   "n.v1.DoCommandResponse\"5\202\323\344\223\002/\"-/viam/ap"
-  "i/v1/service/motion/{name}/do_commandB\?\n"
-  "\032com.viam.service.motion.v1Z!go.viam.com"
-  "/api/service/motion/v1b\006proto3"
+  "i/v1/service/motion/{name}/do_command\022\207\001"
+  "\n\tGetStatus\022 .viam.common.v1.GetStatusRe"
+  "quest\032!.viam.common.v1.GetStatusResponse"
+  "\"5\202\323\344\223\002/\022-/viam/api/v1/service/motion/{n"
+  "ame}/get_statusB\?\n\032com.viam.service.moti"
+  "on.v1Z!go.viam.com/api/service/motion/v1"
+  "b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -1041,7 +1045,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fmotion_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto = {
-    false, false, 8070, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
+    false, false, 8208, descriptor_table_protodef_service_2fmotion_2fv1_2fmotion_2eproto,
     "service/motion/v1/motion.proto",
     &descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_once, descriptor_table_service_2fmotion_2fv1_2fmotion_2eproto_deps, 4, 29,
     schemas, file_default_instances, TableStruct_service_2fmotion_2fv1_2fmotion_2eproto::offsets,

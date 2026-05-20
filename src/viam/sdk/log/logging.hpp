@@ -161,7 +161,7 @@ BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_file, "file", boost::string_view);
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_line, "line", unsigned int);
 BOOST_LOG_ATTRIBUTE_KEYWORD_TYPE(attr_time,
                                  "TimeStamp",
-                                 boost::log::attributes::local_clock::value_type);
+                                 boost::log::attributes::utc_clock::value_type);
 
 }  // namespace sdk
 }  // namespace viam

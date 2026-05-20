@@ -26,6 +26,7 @@ class GenericServiceClient : public GenericService {
     }
 
     ProtoStruct do_command(const ProtoStruct& command) override;
+    ProtoStruct get_status() override;
 
    protected:
     // This constructor leaves the `channel_` as a nullptr. This is useful for testing

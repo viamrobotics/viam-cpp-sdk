@@ -30,6 +30,8 @@ class EncoderClient : public Encoder {
     std::vector<GeometryConfig> get_geometries(const ProtoStruct& extra) override;
     ProtoStruct do_command(const ProtoStruct& command) override;
 
+    ProtoStruct get_status() override;
+
     // the `extra` param is frequently unnecessary but needs to be supported. Ideally, we'd
     // like to live in a world where implementers of derived classes don't need to go out of
     // their way to support two versions of a method (an `extra` version and a non-`extra`

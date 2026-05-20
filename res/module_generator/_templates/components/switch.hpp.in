@@ -1,0 +1,33 @@
+#pragma once
+
+
+#include <viam/sdk/common/proto_value.hpp>
+#include <viam/sdk/components/switch.hpp>
+#include <viam/sdk/config/resource.hpp>
+#include <viam/sdk/module/service.hpp>
+
+namespace {{ .ModuleSnake }} {
+
+
+class {{ .ModelPascal }} : public viam::sdk::Switch {
+public:
+    {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
+
+    static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    void set_position(
+        uint32_t position,
+        const viam::sdk::ProtoStruct & extra) override;
+
+    uint32_t get_position(const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::Switch::position_info get_number_of_positions(const viam::sdk::ProtoStruct & extra) override;
+
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
+
+    viam::sdk::ProtoStruct get_status() override;
+
+};
+
+} // namespace {{ .ModuleSnake }}
+

@@ -237,6 +237,10 @@ class Board : public Component {
     /// @return The result of the executed command.
     virtual ProtoStruct do_command(const ProtoStruct& command) = 0;
 
+    /// @brief Get the status of the board.
+    /// @return A `ProtoStruct` containing the status of the board.
+    virtual ProtoStruct get_status() = 0;
+
     /// @brief Returns `GeometryConfig`s associated with the calling board.
     /// @return The requested `GeometryConfig`s associated with the component.
     inline std::vector<GeometryConfig> get_geometries() {

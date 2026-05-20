@@ -21,6 +21,7 @@ class MockGripper : public sdk::Gripper {
     void stop(const sdk::ProtoStruct& extra) override;
     bool is_moving() override;
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
+    sdk::ProtoStruct get_status() override;
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
     bool peek_open_called{false};

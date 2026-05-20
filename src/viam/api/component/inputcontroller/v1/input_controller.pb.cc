@@ -324,8 +324,8 @@ const char descriptor_table_protodef_component_2finputcontroller_2fv1_2finput_5f
   "reamEventsResponse\022>\n\005event\030\001 \001(\0132(.viam"
   ".component.inputcontroller.v1.EventR\005eve"
   "nt\"J\n\006Status\022@\n\006events\030\001 \003(\0132(.viam.comp"
-  "onent.inputcontroller.v1.EventR\006events2\247"
-  "\010\n\026InputControllerService\022\270\001\n\013GetControl"
+  "onent.inputcontroller.v1.EventR\006events2\262"
+  "\t\n\026InputControllerService\022\270\001\n\013GetControl"
   "s\0225.viam.component.inputcontroller.v1.Ge"
   "tControlsRequest\0326.viam.component.inputc"
   "ontroller.v1.GetControlsResponse\":\202\323\344\223\0024"
@@ -347,13 +347,17 @@ const char descriptor_table_protodef_component_2finputcontroller_2fv1_2finput_5f
   "troller}/event\022\210\001\n\tDoCommand\022 .viam.comm"
   "on.v1.DoCommandRequest\032!.viam.common.v1."
   "DoCommandResponse\"6\202\323\344\223\0020\"./viam/api/v1/"
-  "component/input/{name}/do_command\022\224\001\n\rGe"
-  "tGeometries\022$.viam.common.v1.GetGeometri"
-  "esRequest\032%.viam.common.v1.GetGeometries"
-  "Response\"6\202\323\344\223\0020\022./viam/api/v1/component"
-  "/input/{name}/geometriesBU\n%com.viam.com"
-  "ponent.inputcontroller.v1Z,go.viam.com/a"
-  "pi/component/inputcontroller/v1b\006proto3"
+  "component/input/{name}/do_command\022\210\001\n\tGe"
+  "tStatus\022 .viam.common.v1.GetStatusReques"
+  "t\032!.viam.common.v1.GetStatusResponse\"6\202\323"
+  "\344\223\0020\022./viam/api/v1/component/input/{name"
+  "}/get_status\022\224\001\n\rGetGeometries\022$.viam.co"
+  "mmon.v1.GetGeometriesRequest\032%.viam.comm"
+  "on.v1.GetGeometriesResponse\"6\202\323\344\223\0020\022./vi"
+  "am/api/v1/component/input/{name}/geometr"
+  "iesBU\n%com.viam.component.inputcontrolle"
+  "r.v1Z,go.viam.com/api/component/inputcon"
+  "troller/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_component_2finputcontroller_2fv1_2finput_5fcontroller_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -363,7 +367,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_component_2finputco
 };
 static ::_pbi::once_flag descriptor_table_component_2finputcontroller_2fv1_2finput_5fcontroller_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_component_2finputcontroller_2fv1_2finput_5fcontroller_2eproto = {
-    false, false, 2479, descriptor_table_protodef_component_2finputcontroller_2fv1_2finput_5fcontroller_2eproto,
+    false, false, 2618, descriptor_table_protodef_component_2finputcontroller_2fv1_2finput_5fcontroller_2eproto,
     "component/inputcontroller/v1/input_controller.proto",
     &descriptor_table_component_2finputcontroller_2fv1_2finput_5fcontroller_2eproto_once, descriptor_table_component_2finputcontroller_2fv1_2finput_5fcontroller_2eproto_deps, 4, 11,
     schemas, file_default_instances, TableStruct_component_2finputcontroller_2fv1_2finput_5fcontroller_2eproto::offsets,

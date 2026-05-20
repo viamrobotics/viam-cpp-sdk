@@ -13,6 +13,10 @@ using namespace viam::sdk;
 ProtoStruct MockGenericComponent::do_command(const ProtoStruct&) {
     return map_;
 }
+
+ProtoStruct MockGenericComponent::get_status() {
+    return fake_status();
+}
 std::vector<GeometryConfig> MockGenericComponent::get_geometries(const ProtoStruct&) {
     return geometries_;
 }
@@ -26,6 +30,10 @@ std::shared_ptr<MockGenericComponent> MockGenericComponent::get_mock_generic() {
 
 ProtoStruct MockGenericService::do_command(const ProtoStruct&) {
     return map_;
+}
+
+ProtoStruct MockGenericService::get_status() {
+    return fake_status();
 }
 std::shared_ptr<MockGenericService> MockGenericService::get_mock_generic() {
     auto generic = std::make_shared<MockGenericService>("mock_generic");

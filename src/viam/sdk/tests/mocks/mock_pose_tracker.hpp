@@ -23,6 +23,8 @@ class MockPoseTracker : public sdk::PoseTracker {
 
     sdk::ProtoStruct do_command(const sdk::ProtoStruct& command) override;
 
+    sdk::ProtoStruct get_status() override;
+
     std::vector<sdk::GeometryConfig> get_geometries(const sdk::ProtoStruct& extra) override;
 
     sdk::ProtoStruct peek_do_command_command;
