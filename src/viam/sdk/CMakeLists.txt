@@ -136,6 +136,7 @@ target_sources(viamsdk
     module/service.cpp
     module/private/data_consumer_query.cpp
     referenceframe/frame.cpp
+    referenceframe/urdf_model_table.cpp
     registry/registry.cpp
     resource/reconfigurable.cpp
     resource/resource.cpp
@@ -217,6 +218,7 @@ target_sources(viamsdk
       ../../viam/sdk/module/service.hpp
       ../../viam/sdk/module/signal_manager.hpp
       ../../viam/sdk/referenceframe/frame.hpp
+      ../../viam/sdk/referenceframe/urdf_model_table.hpp
       ../../viam/sdk/registry/registry.hpp
       ../../viam/sdk/resource/reconfigurable.hpp
       ../../viam/sdk/resource/resource.hpp
@@ -301,6 +303,7 @@ target_link_libraries(viamsdk
   PUBLIC Boost::log
   PUBLIC Boost::log_setup
   PUBLIC xtensor
+  PUBLIC Eigen3::Eigen
   PRIVATE ${VIAMCPPSDK_GRPCXX_REFLECTION_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_GRPCXX_LIBRARIES}
   PRIVATE ${VIAMCPPSDK_GRPC_LIBRARIES}
