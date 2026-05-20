@@ -193,7 +193,9 @@ class RobotClient {
     void log(const std::string& name,
              const std::string& level,
              const std::string& message,
-             time_pt time);
+             time_pt time,
+             const std::string& file,
+             unsigned int line);
 
     // Ships a batch of OTLP traces to the parent. Returns true on success.
     bool send_traces(const robot::v1::SendTracesRequest* req);
