@@ -48,6 +48,8 @@ static const char* DataService_method_names[] = {
   "/viam.app.data.v1.DataService/ConfigureDatabaseUser",
   "/viam.app.data.v1.DataService/AddBinaryDataToDatasetByIDs",
   "/viam.app.data.v1.DataService/RemoveBinaryDataFromDatasetByIDs",
+  "/viam.app.data.v1.DataService/AddSequencesToDataset",
+  "/viam.app.data.v1.DataService/RemoveSequencesFromDataset",
   "/viam.app.data.v1.DataService/CreateIndex",
   "/viam.app.data.v1.DataService/ListIndexes",
   "/viam.app.data.v1.DataService/DeleteIndex",
@@ -62,6 +64,7 @@ static const char* DataService_method_names[] = {
   "/viam.app.data.v1.DataService/UpdateSequence",
   "/viam.app.data.v1.DataService/DeleteSequence",
   "/viam.app.data.v1.DataService/ListSequences",
+  "/viam.app.data.v1.DataService/SequencesByDatasetID",
 };
 
 std::unique_ptr< DataService::Stub> DataService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -94,20 +97,23 @@ DataService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   , rpcmethod_ConfigureDatabaseUser_(DataService_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_AddBinaryDataToDatasetByIDs_(DataService_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RemoveBinaryDataFromDatasetByIDs_(DataService_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateIndex_(DataService_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListIndexes_(DataService_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteIndex_(DataService_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateSavedQuery_(DataService_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateSavedQuery_(DataService_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSavedQuery_(DataService_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteSavedQuery_(DataService_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListSavedQueries_(DataService_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateBinaryDataSignedURL_(DataService_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CreateSequence_(DataService_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetSequence_(DataService_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateSequence_(DataService_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_DeleteSequence_(DataService_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListSequences_(DataService_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AddSequencesToDataset_(DataService_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RemoveSequencesFromDataset_(DataService_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateIndex_(DataService_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListIndexes_(DataService_method_names[26], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteIndex_(DataService_method_names[27], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateSavedQuery_(DataService_method_names[28], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateSavedQuery_(DataService_method_names[29], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSavedQuery_(DataService_method_names[30], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteSavedQuery_(DataService_method_names[31], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListSavedQueries_(DataService_method_names[32], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateBinaryDataSignedURL_(DataService_method_names[33], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateSequence_(DataService_method_names[34], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSequence_(DataService_method_names[35], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateSequence_(DataService_method_names[36], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DeleteSequence_(DataService_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListSequences_(DataService_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SequencesByDatasetID_(DataService_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status DataService::Stub::TabularDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TabularDataByFilterRequest& request, ::viam::app::data::v1::TabularDataByFilterResponse* response) {
@@ -632,6 +638,52 @@ void DataService::Stub::async::RemoveBinaryDataFromDatasetByIDs(::grpc::ClientCo
   return result;
 }
 
+::grpc::Status DataService::Stub::AddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::AddSequencesToDatasetRequest, ::viam::app::data::v1::AddSequencesToDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AddSequencesToDataset_, context, request, response);
+}
+
+void DataService::Stub::async::AddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::AddSequencesToDatasetRequest, ::viam::app::data::v1::AddSequencesToDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddSequencesToDataset_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::AddSequencesToDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AddSequencesToDataset_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddSequencesToDatasetResponse>* DataService::Stub::PrepareAsyncAddSequencesToDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::AddSequencesToDatasetResponse, ::viam::app::data::v1::AddSequencesToDatasetRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AddSequencesToDataset_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::AddSequencesToDatasetResponse>* DataService::Stub::AsyncAddSequencesToDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAddSequencesToDatasetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status DataService::Stub::RemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::RemoveSequencesFromDatasetRequest, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RemoveSequencesFromDataset_, context, request, response);
+}
+
+void DataService::Stub::async::RemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::RemoveSequencesFromDatasetRequest, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveSequencesFromDataset_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::RemoveSequencesFromDataset(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RemoveSequencesFromDataset_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* DataService::Stub::PrepareAsyncRemoveSequencesFromDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse, ::viam::app::data::v1::RemoveSequencesFromDatasetRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RemoveSequencesFromDataset_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse>* DataService::Stub::AsyncRemoveSequencesFromDatasetRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncRemoveSequencesFromDatasetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status DataService::Stub::CreateIndex(::grpc::ClientContext* context, const ::viam::app::data::v1::CreateIndexRequest& request, ::viam::app::data::v1::CreateIndexResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::CreateIndexRequest, ::viam::app::data::v1::CreateIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateIndex_, context, request, response);
 }
@@ -954,6 +1006,29 @@ void DataService::Stub::async::ListSequences(::grpc::ClientContext* context, con
   return result;
 }
 
+::grpc::Status DataService::Stub::SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::SequencesByDatasetIDRequest, ::viam::app::data::v1::SequencesByDatasetIDResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SequencesByDatasetID_, context, request, response);
+}
+
+void DataService::Stub::async::SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::SequencesByDatasetIDRequest, ::viam::app::data::v1::SequencesByDatasetIDResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SequencesByDatasetID_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::SequencesByDatasetID(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SequencesByDatasetID_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>* DataService::Stub::PrepareAsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::SequencesByDatasetIDResponse, ::viam::app::data::v1::SequencesByDatasetIDRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SequencesByDatasetID_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::SequencesByDatasetIDResponse>* DataService::Stub::AsyncSequencesByDatasetIDRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSequencesByDatasetIDRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 DataService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DataService_method_names[0],
@@ -1188,6 +1263,26 @@ DataService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DataService_method_names[23],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::AddSequencesToDatasetRequest, ::viam::app::data::v1::AddSequencesToDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::AddSequencesToDatasetRequest* req,
+             ::viam::app::data::v1::AddSequencesToDatasetResponse* resp) {
+               return service->AddSequencesToDataset(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[24],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::RemoveSequencesFromDatasetRequest, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* req,
+             ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* resp) {
+               return service->RemoveSequencesFromDataset(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[25],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::CreateIndexRequest, ::viam::app::data::v1::CreateIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -1196,7 +1291,7 @@ DataService::Service::Service() {
                return service->CreateIndex(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[24],
+      DataService_method_names[26],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::ListIndexesRequest, ::viam::app::data::v1::ListIndexesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1206,7 +1301,7 @@ DataService::Service::Service() {
                return service->ListIndexes(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[25],
+      DataService_method_names[27],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::DeleteIndexRequest, ::viam::app::data::v1::DeleteIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1216,7 +1311,7 @@ DataService::Service::Service() {
                return service->DeleteIndex(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[26],
+      DataService_method_names[28],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::CreateSavedQueryRequest, ::viam::app::data::v1::CreateSavedQueryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1226,7 +1321,7 @@ DataService::Service::Service() {
                return service->CreateSavedQuery(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[27],
+      DataService_method_names[29],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::UpdateSavedQueryRequest, ::viam::app::data::v1::UpdateSavedQueryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1236,7 +1331,7 @@ DataService::Service::Service() {
                return service->UpdateSavedQuery(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[28],
+      DataService_method_names[30],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::GetSavedQueryRequest, ::viam::app::data::v1::GetSavedQueryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1246,7 +1341,7 @@ DataService::Service::Service() {
                return service->GetSavedQuery(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[29],
+      DataService_method_names[31],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::DeleteSavedQueryRequest, ::viam::app::data::v1::DeleteSavedQueryResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1256,7 +1351,7 @@ DataService::Service::Service() {
                return service->DeleteSavedQuery(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[30],
+      DataService_method_names[32],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::ListSavedQueriesRequest, ::viam::app::data::v1::ListSavedQueriesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1266,7 +1361,7 @@ DataService::Service::Service() {
                return service->ListSavedQueries(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[31],
+      DataService_method_names[33],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::CreateBinaryDataSignedURLRequest, ::viam::app::data::v1::CreateBinaryDataSignedURLResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1276,7 +1371,7 @@ DataService::Service::Service() {
                return service->CreateBinaryDataSignedURL(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[32],
+      DataService_method_names[34],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::CreateSequenceRequest, ::viam::app::data::v1::CreateSequenceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1286,7 +1381,7 @@ DataService::Service::Service() {
                return service->CreateSequence(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[33],
+      DataService_method_names[35],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::GetSequenceRequest, ::viam::app::data::v1::GetSequenceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1296,7 +1391,7 @@ DataService::Service::Service() {
                return service->GetSequence(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[34],
+      DataService_method_names[36],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::UpdateSequenceRequest, ::viam::app::data::v1::UpdateSequenceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1306,7 +1401,7 @@ DataService::Service::Service() {
                return service->UpdateSequence(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[35],
+      DataService_method_names[37],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::DeleteSequenceRequest, ::viam::app::data::v1::DeleteSequenceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1316,7 +1411,7 @@ DataService::Service::Service() {
                return service->DeleteSequence(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      DataService_method_names[36],
+      DataService_method_names[38],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::ListSequencesRequest, ::viam::app::data::v1::ListSequencesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DataService::Service* service,
@@ -1324,6 +1419,16 @@ DataService::Service::Service() {
              const ::viam::app::data::v1::ListSequencesRequest* req,
              ::viam::app::data::v1::ListSequencesResponse* resp) {
                return service->ListSequences(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[39],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::SequencesByDatasetIDRequest, ::viam::app::data::v1::SequencesByDatasetIDResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::SequencesByDatasetIDRequest* req,
+             ::viam::app::data::v1::SequencesByDatasetIDResponse* resp) {
+               return service->SequencesByDatasetID(ctx, req, resp);
              }, this)));
 }
 
@@ -1491,6 +1596,20 @@ DataService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status DataService::Service::AddSequencesToDataset(::grpc::ServerContext* context, const ::viam::app::data::v1::AddSequencesToDatasetRequest* request, ::viam::app::data::v1::AddSequencesToDatasetResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::RemoveSequencesFromDataset(::grpc::ServerContext* context, const ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* request, ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 ::grpc::Status DataService::Service::CreateIndex(::grpc::ServerContext* context, const ::viam::app::data::v1::CreateIndexRequest* request, ::viam::app::data::v1::CreateIndexResponse* response) {
   (void) context;
   (void) request;
@@ -1583,6 +1702,13 @@ DataService::Service::~Service() {
 }
 
 ::grpc::Status DataService::Service::ListSequences(::grpc::ServerContext* context, const ::viam::app::data::v1::ListSequencesRequest* request, ::viam::app::data::v1::ListSequencesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::SequencesByDatasetID(::grpc::ServerContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response) {
   (void) context;
   (void) request;
   (void) response;
