@@ -69,6 +69,12 @@ extern AddBoundingBoxToImageByIDRequestDefaultTypeInternal _AddBoundingBoxToImag
 class AddBoundingBoxToImageByIDResponse;
 struct AddBoundingBoxToImageByIDResponseDefaultTypeInternal;
 extern AddBoundingBoxToImageByIDResponseDefaultTypeInternal _AddBoundingBoxToImageByIDResponse_default_instance_;
+class AddSequencesToDatasetRequest;
+struct AddSequencesToDatasetRequestDefaultTypeInternal;
+extern AddSequencesToDatasetRequestDefaultTypeInternal _AddSequencesToDatasetRequest_default_instance_;
+class AddSequencesToDatasetResponse;
+struct AddSequencesToDatasetResponseDefaultTypeInternal;
+extern AddSequencesToDatasetResponseDefaultTypeInternal _AddSequencesToDatasetResponse_default_instance_;
 class AddTagsToBinaryDataByFilterRequest;
 struct AddTagsToBinaryDataByFilterRequestDefaultTypeInternal;
 extern AddTagsToBinaryDataByFilterRequestDefaultTypeInternal _AddTagsToBinaryDataByFilterRequest_default_instance_;
@@ -267,6 +273,12 @@ extern RemoveBoundingBoxFromImageByIDRequestDefaultTypeInternal _RemoveBoundingB
 class RemoveBoundingBoxFromImageByIDResponse;
 struct RemoveBoundingBoxFromImageByIDResponseDefaultTypeInternal;
 extern RemoveBoundingBoxFromImageByIDResponseDefaultTypeInternal _RemoveBoundingBoxFromImageByIDResponse_default_instance_;
+class RemoveSequencesFromDatasetRequest;
+struct RemoveSequencesFromDatasetRequestDefaultTypeInternal;
+extern RemoveSequencesFromDatasetRequestDefaultTypeInternal _RemoveSequencesFromDatasetRequest_default_instance_;
+class RemoveSequencesFromDatasetResponse;
+struct RemoveSequencesFromDatasetResponseDefaultTypeInternal;
+extern RemoveSequencesFromDatasetResponseDefaultTypeInternal _RemoveSequencesFromDatasetResponse_default_instance_;
 class RemoveTagsFromBinaryDataByFilterRequest;
 struct RemoveTagsFromBinaryDataByFilterRequestDefaultTypeInternal;
 extern RemoveTagsFromBinaryDataByFilterRequestDefaultTypeInternal _RemoveTagsFromBinaryDataByFilterRequest_default_instance_;
@@ -285,6 +297,12 @@ extern SequenceDefaultTypeInternal _Sequence_default_instance_;
 class SequenceResourceFilter;
 struct SequenceResourceFilterDefaultTypeInternal;
 extern SequenceResourceFilterDefaultTypeInternal _SequenceResourceFilter_default_instance_;
+class SequencesByDatasetIDRequest;
+struct SequencesByDatasetIDRequestDefaultTypeInternal;
+extern SequencesByDatasetIDRequestDefaultTypeInternal _SequencesByDatasetIDRequest_default_instance_;
+class SequencesByDatasetIDResponse;
+struct SequencesByDatasetIDResponseDefaultTypeInternal;
+extern SequencesByDatasetIDResponseDefaultTypeInternal _SequencesByDatasetIDResponse_default_instance_;
 class TabularData;
 struct TabularDataDefaultTypeInternal;
 extern TabularDataDefaultTypeInternal _TabularData_default_instance_;
@@ -345,6 +363,8 @@ template<> ::viam::app::data::v1::AddBinaryDataToDatasetByIDsRequest* Arena::Cre
 template<> ::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse>(Arena*);
 template<> ::viam::app::data::v1::AddBoundingBoxToImageByIDRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::AddBoundingBoxToImageByIDRequest>(Arena*);
 template<> ::viam::app::data::v1::AddBoundingBoxToImageByIDResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::AddBoundingBoxToImageByIDResponse>(Arena*);
+template<> ::viam::app::data::v1::AddSequencesToDatasetRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::AddSequencesToDatasetRequest>(Arena*);
+template<> ::viam::app::data::v1::AddSequencesToDatasetResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::AddSequencesToDatasetResponse>(Arena*);
 template<> ::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::AddTagsToBinaryDataByFilterRequest>(Arena*);
 template<> ::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::AddTagsToBinaryDataByFilterResponse>(Arena*);
 template<> ::viam::app::data::v1::AddTagsToBinaryDataByIDsRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::AddTagsToBinaryDataByIDsRequest>(Arena*);
@@ -411,12 +431,16 @@ template<> ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest* Arena
 template<> ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse>(Arena*);
 template<> ::viam::app::data::v1::RemoveBoundingBoxFromImageByIDRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveBoundingBoxFromImageByIDRequest>(Arena*);
 template<> ::viam::app::data::v1::RemoveBoundingBoxFromImageByIDResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveBoundingBoxFromImageByIDResponse>(Arena*);
+template<> ::viam::app::data::v1::RemoveSequencesFromDatasetRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveSequencesFromDatasetRequest>(Arena*);
+template<> ::viam::app::data::v1::RemoveSequencesFromDatasetResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveSequencesFromDatasetResponse>(Arena*);
 template<> ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterRequest>(Arena*);
 template<> ::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveTagsFromBinaryDataByFilterResponse>(Arena*);
 template<> ::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsRequest>(Arena*);
 template<> ::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::RemoveTagsFromBinaryDataByIDsResponse>(Arena*);
 template<> ::viam::app::data::v1::Sequence* Arena::CreateMaybeMessage<::viam::app::data::v1::Sequence>(Arena*);
 template<> ::viam::app::data::v1::SequenceResourceFilter* Arena::CreateMaybeMessage<::viam::app::data::v1::SequenceResourceFilter>(Arena*);
+template<> ::viam::app::data::v1::SequencesByDatasetIDRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::SequencesByDatasetIDRequest>(Arena*);
+template<> ::viam::app::data::v1::SequencesByDatasetIDResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::SequencesByDatasetIDResponse>(Arena*);
 template<> ::viam::app::data::v1::TabularData* Arena::CreateMaybeMessage<::viam::app::data::v1::TabularData>(Arena*);
 template<> ::viam::app::data::v1::TabularDataByFilterRequest* Arena::CreateMaybeMessage<::viam::app::data::v1::TabularDataByFilterRequest>(Arena*);
 template<> ::viam::app::data::v1::TabularDataByFilterResponse* Arena::CreateMaybeMessage<::viam::app::data::v1::TabularDataByFilterResponse>(Arena*);
@@ -11749,6 +11773,586 @@ class RemoveBinaryDataFromDatasetByIDsResponse final :
 };
 // -------------------------------------------------------------------
 
+class AddSequencesToDatasetRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.AddSequencesToDatasetRequest) */ {
+ public:
+  inline AddSequencesToDatasetRequest() : AddSequencesToDatasetRequest(nullptr) {}
+  ~AddSequencesToDatasetRequest() override;
+  explicit PROTOBUF_CONSTEXPR AddSequencesToDatasetRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AddSequencesToDatasetRequest(const AddSequencesToDatasetRequest& from);
+  AddSequencesToDatasetRequest(AddSequencesToDatasetRequest&& from) noexcept
+    : AddSequencesToDatasetRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AddSequencesToDatasetRequest& operator=(const AddSequencesToDatasetRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AddSequencesToDatasetRequest& operator=(AddSequencesToDatasetRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AddSequencesToDatasetRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AddSequencesToDatasetRequest* internal_default_instance() {
+    return reinterpret_cast<const AddSequencesToDatasetRequest*>(
+               &_AddSequencesToDatasetRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    61;
+
+  friend void swap(AddSequencesToDatasetRequest& a, AddSequencesToDatasetRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AddSequencesToDatasetRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AddSequencesToDatasetRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AddSequencesToDatasetRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AddSequencesToDatasetRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AddSequencesToDatasetRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AddSequencesToDatasetRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AddSequencesToDatasetRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.AddSequencesToDatasetRequest";
+  }
+  protected:
+  explicit AddSequencesToDatasetRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSequenceIdsFieldNumber = 2,
+    kDatasetIdFieldNumber = 1,
+  };
+  // repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+  int sequence_ids_size() const;
+  private:
+  int _internal_sequence_ids_size() const;
+  public:
+  void clear_sequence_ids();
+  const std::string& sequence_ids(int index) const;
+  std::string* mutable_sequence_ids(int index);
+  void set_sequence_ids(int index, const std::string& value);
+  void set_sequence_ids(int index, std::string&& value);
+  void set_sequence_ids(int index, const char* value);
+  void set_sequence_ids(int index, const char* value, size_t size);
+  std::string* add_sequence_ids();
+  void add_sequence_ids(const std::string& value);
+  void add_sequence_ids(std::string&& value);
+  void add_sequence_ids(const char* value);
+  void add_sequence_ids(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& sequence_ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_sequence_ids();
+  private:
+  const std::string& _internal_sequence_ids(int index) const;
+  std::string* _internal_add_sequence_ids();
+  public:
+
+  // string dataset_id = 1 [json_name = "datasetId"];
+  void clear_dataset_id();
+  const std::string& dataset_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_dataset_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_dataset_id();
+  PROTOBUF_NODISCARD std::string* release_dataset_id();
+  void set_allocated_dataset_id(std::string* dataset_id);
+  private:
+  const std::string& _internal_dataset_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dataset_id(const std::string& value);
+  std::string* _internal_mutable_dataset_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.AddSequencesToDatasetRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> sequence_ids_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dataset_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AddSequencesToDatasetResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.data.v1.AddSequencesToDatasetResponse) */ {
+ public:
+  inline AddSequencesToDatasetResponse() : AddSequencesToDatasetResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR AddSequencesToDatasetResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AddSequencesToDatasetResponse(const AddSequencesToDatasetResponse& from);
+  AddSequencesToDatasetResponse(AddSequencesToDatasetResponse&& from) noexcept
+    : AddSequencesToDatasetResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline AddSequencesToDatasetResponse& operator=(const AddSequencesToDatasetResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AddSequencesToDatasetResponse& operator=(AddSequencesToDatasetResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AddSequencesToDatasetResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AddSequencesToDatasetResponse* internal_default_instance() {
+    return reinterpret_cast<const AddSequencesToDatasetResponse*>(
+               &_AddSequencesToDatasetResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    62;
+
+  friend void swap(AddSequencesToDatasetResponse& a, AddSequencesToDatasetResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AddSequencesToDatasetResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AddSequencesToDatasetResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AddSequencesToDatasetResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AddSequencesToDatasetResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const AddSequencesToDatasetResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const AddSequencesToDatasetResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.AddSequencesToDatasetResponse";
+  }
+  protected:
+  explicit AddSequencesToDatasetResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.AddSequencesToDatasetResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RemoveSequencesFromDatasetRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.RemoveSequencesFromDatasetRequest) */ {
+ public:
+  inline RemoveSequencesFromDatasetRequest() : RemoveSequencesFromDatasetRequest(nullptr) {}
+  ~RemoveSequencesFromDatasetRequest() override;
+  explicit PROTOBUF_CONSTEXPR RemoveSequencesFromDatasetRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RemoveSequencesFromDatasetRequest(const RemoveSequencesFromDatasetRequest& from);
+  RemoveSequencesFromDatasetRequest(RemoveSequencesFromDatasetRequest&& from) noexcept
+    : RemoveSequencesFromDatasetRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline RemoveSequencesFromDatasetRequest& operator=(const RemoveSequencesFromDatasetRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RemoveSequencesFromDatasetRequest& operator=(RemoveSequencesFromDatasetRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RemoveSequencesFromDatasetRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RemoveSequencesFromDatasetRequest* internal_default_instance() {
+    return reinterpret_cast<const RemoveSequencesFromDatasetRequest*>(
+               &_RemoveSequencesFromDatasetRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    63;
+
+  friend void swap(RemoveSequencesFromDatasetRequest& a, RemoveSequencesFromDatasetRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RemoveSequencesFromDatasetRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RemoveSequencesFromDatasetRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RemoveSequencesFromDatasetRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RemoveSequencesFromDatasetRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RemoveSequencesFromDatasetRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RemoveSequencesFromDatasetRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RemoveSequencesFromDatasetRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.RemoveSequencesFromDatasetRequest";
+  }
+  protected:
+  explicit RemoveSequencesFromDatasetRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSequenceIdsFieldNumber = 2,
+    kDatasetIdFieldNumber = 1,
+  };
+  // repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+  int sequence_ids_size() const;
+  private:
+  int _internal_sequence_ids_size() const;
+  public:
+  void clear_sequence_ids();
+  const std::string& sequence_ids(int index) const;
+  std::string* mutable_sequence_ids(int index);
+  void set_sequence_ids(int index, const std::string& value);
+  void set_sequence_ids(int index, std::string&& value);
+  void set_sequence_ids(int index, const char* value);
+  void set_sequence_ids(int index, const char* value, size_t size);
+  std::string* add_sequence_ids();
+  void add_sequence_ids(const std::string& value);
+  void add_sequence_ids(std::string&& value);
+  void add_sequence_ids(const char* value);
+  void add_sequence_ids(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& sequence_ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_sequence_ids();
+  private:
+  const std::string& _internal_sequence_ids(int index) const;
+  std::string* _internal_add_sequence_ids();
+  public:
+
+  // string dataset_id = 1 [json_name = "datasetId"];
+  void clear_dataset_id();
+  const std::string& dataset_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_dataset_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_dataset_id();
+  PROTOBUF_NODISCARD std::string* release_dataset_id();
+  void set_allocated_dataset_id(std::string* dataset_id);
+  private:
+  const std::string& _internal_dataset_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dataset_id(const std::string& value);
+  std::string* _internal_mutable_dataset_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> sequence_ids_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dataset_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RemoveSequencesFromDatasetResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.data.v1.RemoveSequencesFromDatasetResponse) */ {
+ public:
+  inline RemoveSequencesFromDatasetResponse() : RemoveSequencesFromDatasetResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR RemoveSequencesFromDatasetResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RemoveSequencesFromDatasetResponse(const RemoveSequencesFromDatasetResponse& from);
+  RemoveSequencesFromDatasetResponse(RemoveSequencesFromDatasetResponse&& from) noexcept
+    : RemoveSequencesFromDatasetResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline RemoveSequencesFromDatasetResponse& operator=(const RemoveSequencesFromDatasetResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RemoveSequencesFromDatasetResponse& operator=(RemoveSequencesFromDatasetResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RemoveSequencesFromDatasetResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RemoveSequencesFromDatasetResponse* internal_default_instance() {
+    return reinterpret_cast<const RemoveSequencesFromDatasetResponse*>(
+               &_RemoveSequencesFromDatasetResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    64;
+
+  friend void swap(RemoveSequencesFromDatasetResponse& a, RemoveSequencesFromDatasetResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RemoveSequencesFromDatasetResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RemoveSequencesFromDatasetResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RemoveSequencesFromDatasetResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RemoveSequencesFromDatasetResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const RemoveSequencesFromDatasetResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const RemoveSequencesFromDatasetResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.RemoveSequencesFromDatasetResponse";
+  }
+  protected:
+  explicit RemoveSequencesFromDatasetResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.RemoveSequencesFromDatasetResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
 class CreateIndexRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.CreateIndexRequest) */ {
  public:
@@ -11797,7 +12401,7 @@ class CreateIndexRequest final :
                &_CreateIndexRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    65;
 
   friend void swap(CreateIndexRequest& a, CreateIndexRequest& b) {
     a.Swap(&b);
@@ -12002,7 +12606,7 @@ class CreateIndexResponse final :
                &_CreateIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    66;
 
   friend void swap(CreateIndexResponse& a, CreateIndexResponse& b) {
     a.Swap(&b);
@@ -12119,7 +12723,7 @@ class DeleteIndexRequest final :
                &_DeleteIndexRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    67;
 
   friend void swap(DeleteIndexRequest& a, DeleteIndexRequest& b) {
     a.Swap(&b);
@@ -12314,7 +12918,7 @@ class DeleteIndexResponse final :
                &_DeleteIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    68;
 
   friend void swap(DeleteIndexResponse& a, DeleteIndexResponse& b) {
     a.Swap(&b);
@@ -12431,7 +13035,7 @@ class ListIndexesRequest final :
                &_ListIndexesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    69;
 
   friend void swap(ListIndexesRequest& a, ListIndexesRequest& b) {
     a.Swap(&b);
@@ -12611,7 +13215,7 @@ class ListIndexesResponse final :
                &_ListIndexesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    70;
 
   friend void swap(ListIndexesResponse& a, ListIndexesResponse& b) {
     a.Swap(&b);
@@ -12763,7 +13367,7 @@ class Index final :
                &_Index_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    71;
 
   friend void swap(Index& a, Index& b) {
     a.Swap(&b);
@@ -12980,7 +13584,7 @@ class CreateSavedQueryRequest final :
                &_CreateSavedQueryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    72;
 
   friend void swap(CreateSavedQueryRequest& a, CreateSavedQueryRequest& b) {
     a.Swap(&b);
@@ -13170,7 +13774,7 @@ class CreateSavedQueryResponse final :
                &_CreateSavedQueryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    73;
 
   friend void swap(CreateSavedQueryResponse& a, CreateSavedQueryResponse& b) {
     a.Swap(&b);
@@ -13318,7 +13922,7 @@ class Query final :
                &_Query_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    74;
 
   friend void swap(Query& a, Query& b) {
     a.Swap(&b);
@@ -13564,7 +14168,7 @@ class DeleteSavedQueryRequest final :
                &_DeleteSavedQueryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    75;
 
   friend void swap(DeleteSavedQueryRequest& a, DeleteSavedQueryRequest& b) {
     a.Swap(&b);
@@ -13711,7 +14315,7 @@ class DeleteSavedQueryResponse final :
                &_DeleteSavedQueryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    76;
 
   friend void swap(DeleteSavedQueryResponse& a, DeleteSavedQueryResponse& b) {
     a.Swap(&b);
@@ -13828,7 +14432,7 @@ class GetSavedQueryRequest final :
                &_GetSavedQueryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    77;
 
   friend void swap(GetSavedQueryRequest& a, GetSavedQueryRequest& b) {
     a.Swap(&b);
@@ -13976,7 +14580,7 @@ class GetSavedQueryResponse final :
                &_GetSavedQueryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    78;
 
   friend void swap(GetSavedQueryResponse& a, GetSavedQueryResponse& b) {
     a.Swap(&b);
@@ -14128,7 +14732,7 @@ class UpdateSavedQueryRequest final :
                &_UpdateSavedQueryRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    79;
 
   friend void swap(UpdateSavedQueryRequest& a, UpdateSavedQueryRequest& b) {
     a.Swap(&b);
@@ -14317,7 +14921,7 @@ class UpdateSavedQueryResponse final :
                &_UpdateSavedQueryResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    80;
 
   friend void swap(UpdateSavedQueryResponse& a, UpdateSavedQueryResponse& b) {
     a.Swap(&b);
@@ -14434,7 +15038,7 @@ class ListSavedQueriesRequest final :
                &_ListSavedQueriesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    77;
+    81;
 
   friend void swap(ListSavedQueriesRequest& a, ListSavedQueriesRequest& b) {
     a.Swap(&b);
@@ -14593,7 +15197,7 @@ class ListSavedQueriesResponse final :
                &_ListSavedQueriesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    78;
+    82;
 
   friend void swap(ListSavedQueriesResponse& a, ListSavedQueriesResponse& b) {
     a.Swap(&b);
@@ -14745,7 +15349,7 @@ class CreateBinaryDataSignedURLRequest final :
                &_CreateBinaryDataSignedURLRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    79;
+    83;
 
   friend void swap(CreateBinaryDataSignedURLRequest& a, CreateBinaryDataSignedURLRequest& b) {
     a.Swap(&b);
@@ -14909,7 +15513,7 @@ class CreateBinaryDataSignedURLResponse final :
                &_CreateBinaryDataSignedURLResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    80;
+    84;
 
   friend void swap(CreateBinaryDataSignedURLResponse& a, CreateBinaryDataSignedURLResponse& b) {
     a.Swap(&b);
@@ -15077,7 +15681,7 @@ class SequenceResourceFilter final :
                &_SequenceResourceFilter_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    81;
+    85;
 
   friend void swap(SequenceResourceFilter& a, SequenceResourceFilter& b) {
     a.Swap(&b);
@@ -15241,7 +15845,7 @@ class Sequence final :
                &_Sequence_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    82;
+    86;
 
   friend void swap(Sequence& a, Sequence& b) {
     a.Swap(&b);
@@ -15314,6 +15918,7 @@ class Sequence final :
   enum : int {
     kSequenceTagsFieldNumber = 3,
     kResourcesFieldNumber = 8,
+    kDatasetIdsFieldNumber = 10,
     kIdFieldNumber = 1,
     kPartIdFieldNumber = 9,
     kCreatedAtFieldNumber = 4,
@@ -15362,6 +15967,30 @@ class Sequence final :
   ::viam::app::data::v1::SequenceResourceFilter* add_resources();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter >&
       resources() const;
+
+  // repeated string dataset_ids = 10 [json_name = "datasetIds"];
+  int dataset_ids_size() const;
+  private:
+  int _internal_dataset_ids_size() const;
+  public:
+  void clear_dataset_ids();
+  const std::string& dataset_ids(int index) const;
+  std::string* mutable_dataset_ids(int index);
+  void set_dataset_ids(int index, const std::string& value);
+  void set_dataset_ids(int index, std::string&& value);
+  void set_dataset_ids(int index, const char* value);
+  void set_dataset_ids(int index, const char* value, size_t size);
+  std::string* add_dataset_ids();
+  void add_dataset_ids(const std::string& value);
+  void add_dataset_ids(std::string&& value);
+  void add_dataset_ids(const char* value);
+  void add_dataset_ids(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& dataset_ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_dataset_ids();
+  private:
+  const std::string& _internal_dataset_ids(int index) const;
+  std::string* _internal_add_dataset_ids();
+  public:
 
   // string id = 1 [json_name = "id"];
   void clear_id();
@@ -15472,6 +16101,7 @@ class Sequence final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> sequence_tags_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::SequenceResourceFilter > resources_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> dataset_ids_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr part_id_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
@@ -15531,7 +16161,7 @@ class CreateSequenceRequest final :
                &_CreateSequenceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    83;
+    87;
 
   friend void swap(CreateSequenceRequest& a, CreateSequenceRequest& b) {
     a.Swap(&b);
@@ -15765,7 +16395,7 @@ class CreateSequenceResponse final :
                &_CreateSequenceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    84;
+    88;
 
   friend void swap(CreateSequenceResponse& a, CreateSequenceResponse& b) {
     a.Swap(&b);
@@ -15913,7 +16543,7 @@ class GetSequenceRequest final :
                &_GetSequenceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    85;
+    89;
 
   friend void swap(GetSequenceRequest& a, GetSequenceRequest& b) {
     a.Swap(&b);
@@ -16061,7 +16691,7 @@ class GetSequenceResponse final :
                &_GetSequenceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    86;
+    90;
 
   friend void swap(GetSequenceResponse& a, GetSequenceResponse& b) {
     a.Swap(&b);
@@ -16213,7 +16843,7 @@ class UpdateSequenceRequest final :
                &_UpdateSequenceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    87;
+    91;
 
   friend void swap(UpdateSequenceRequest& a, UpdateSequenceRequest& b) {
     a.Swap(&b);
@@ -16466,7 +17096,7 @@ class UpdateSequenceResponse final :
                &_UpdateSequenceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    88;
+    92;
 
   friend void swap(UpdateSequenceResponse& a, UpdateSequenceResponse& b) {
     a.Swap(&b);
@@ -16583,7 +17213,7 @@ class DeleteSequenceRequest final :
                &_DeleteSequenceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    89;
+    93;
 
   friend void swap(DeleteSequenceRequest& a, DeleteSequenceRequest& b) {
     a.Swap(&b);
@@ -16730,7 +17360,7 @@ class DeleteSequenceResponse final :
                &_DeleteSequenceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    90;
+    94;
 
   friend void swap(DeleteSequenceResponse& a, DeleteSequenceResponse& b) {
     a.Swap(&b);
@@ -16847,7 +17477,7 @@ class ListSequencesRequest final :
                &_ListSequencesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    91;
+    95;
 
   friend void swap(ListSequencesRequest& a, ListSequencesRequest& b) {
     a.Swap(&b);
@@ -17022,7 +17652,7 @@ class ListSequencesResponse final :
                &_ListSequencesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    92;
+    96;
 
   friend void swap(ListSequencesResponse& a, ListSequencesResponse& b) {
     a.Swap(&b);
@@ -17129,6 +17759,349 @@ class ListSequencesResponse final :
   public:
 
   // @@protoc_insertion_point(class_scope:viam.app.data.v1.ListSequencesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence > sequences_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr next_page_token_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SequencesByDatasetIDRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.SequencesByDatasetIDRequest) */ {
+ public:
+  inline SequencesByDatasetIDRequest() : SequencesByDatasetIDRequest(nullptr) {}
+  ~SequencesByDatasetIDRequest() override;
+  explicit PROTOBUF_CONSTEXPR SequencesByDatasetIDRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SequencesByDatasetIDRequest(const SequencesByDatasetIDRequest& from);
+  SequencesByDatasetIDRequest(SequencesByDatasetIDRequest&& from) noexcept
+    : SequencesByDatasetIDRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SequencesByDatasetIDRequest& operator=(const SequencesByDatasetIDRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SequencesByDatasetIDRequest& operator=(SequencesByDatasetIDRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SequencesByDatasetIDRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SequencesByDatasetIDRequest* internal_default_instance() {
+    return reinterpret_cast<const SequencesByDatasetIDRequest*>(
+               &_SequencesByDatasetIDRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    97;
+
+  friend void swap(SequencesByDatasetIDRequest& a, SequencesByDatasetIDRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SequencesByDatasetIDRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SequencesByDatasetIDRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SequencesByDatasetIDRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SequencesByDatasetIDRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SequencesByDatasetIDRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SequencesByDatasetIDRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SequencesByDatasetIDRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.SequencesByDatasetIDRequest";
+  }
+  protected:
+  explicit SequencesByDatasetIDRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDatasetIdFieldNumber = 1,
+    kPageTokenFieldNumber = 2,
+    kPageSizeFieldNumber = 3,
+  };
+  // string dataset_id = 1 [json_name = "datasetId"];
+  void clear_dataset_id();
+  const std::string& dataset_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_dataset_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_dataset_id();
+  PROTOBUF_NODISCARD std::string* release_dataset_id();
+  void set_allocated_dataset_id(std::string* dataset_id);
+  private:
+  const std::string& _internal_dataset_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dataset_id(const std::string& value);
+  std::string* _internal_mutable_dataset_id();
+  public:
+
+  // string page_token = 2 [json_name = "pageToken"];
+  void clear_page_token();
+  const std::string& page_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_page_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_page_token();
+  PROTOBUF_NODISCARD std::string* release_page_token();
+  void set_allocated_page_token(std::string* page_token);
+  private:
+  const std::string& _internal_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_page_token(const std::string& value);
+  std::string* _internal_mutable_page_token();
+  public:
+
+  // uint32 page_size = 3 [json_name = "pageSize"];
+  void clear_page_size();
+  uint32_t page_size() const;
+  void set_page_size(uint32_t value);
+  private:
+  uint32_t _internal_page_size() const;
+  void _internal_set_page_size(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.SequencesByDatasetIDRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dataset_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr page_token_;
+  uint32_t page_size_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fdata_2fv1_2fdata_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SequencesByDatasetIDResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.data.v1.SequencesByDatasetIDResponse) */ {
+ public:
+  inline SequencesByDatasetIDResponse() : SequencesByDatasetIDResponse(nullptr) {}
+  ~SequencesByDatasetIDResponse() override;
+  explicit PROTOBUF_CONSTEXPR SequencesByDatasetIDResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SequencesByDatasetIDResponse(const SequencesByDatasetIDResponse& from);
+  SequencesByDatasetIDResponse(SequencesByDatasetIDResponse&& from) noexcept
+    : SequencesByDatasetIDResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SequencesByDatasetIDResponse& operator=(const SequencesByDatasetIDResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SequencesByDatasetIDResponse& operator=(SequencesByDatasetIDResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SequencesByDatasetIDResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SequencesByDatasetIDResponse* internal_default_instance() {
+    return reinterpret_cast<const SequencesByDatasetIDResponse*>(
+               &_SequencesByDatasetIDResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    98;
+
+  friend void swap(SequencesByDatasetIDResponse& a, SequencesByDatasetIDResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SequencesByDatasetIDResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SequencesByDatasetIDResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SequencesByDatasetIDResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SequencesByDatasetIDResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SequencesByDatasetIDResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SequencesByDatasetIDResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SequencesByDatasetIDResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.data.v1.SequencesByDatasetIDResponse";
+  }
+  protected:
+  explicit SequencesByDatasetIDResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSequencesFieldNumber = 1,
+    kNextPageTokenFieldNumber = 2,
+  };
+  // repeated .viam.app.data.v1.Sequence sequences = 1 [json_name = "sequences"];
+  int sequences_size() const;
+  private:
+  int _internal_sequences_size() const;
+  public:
+  void clear_sequences();
+  ::viam::app::data::v1::Sequence* mutable_sequences(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence >*
+      mutable_sequences();
+  private:
+  const ::viam::app::data::v1::Sequence& _internal_sequences(int index) const;
+  ::viam::app::data::v1::Sequence* _internal_add_sequences();
+  public:
+  const ::viam::app::data::v1::Sequence& sequences(int index) const;
+  ::viam::app::data::v1::Sequence* add_sequences();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence >&
+      sequences() const;
+
+  // string next_page_token = 2 [json_name = "nextPageToken"];
+  void clear_next_page_token();
+  const std::string& next_page_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_next_page_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_next_page_token();
+  PROTOBUF_NODISCARD std::string* release_next_page_token();
+  void set_allocated_next_page_token(std::string* next_page_token);
+  private:
+  const std::string& _internal_next_page_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_next_page_token(const std::string& value);
+  std::string* _internal_mutable_next_page_token();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.data.v1.SequencesByDatasetIDResponse)
  private:
   class _Internal;
 
@@ -27592,6 +28565,272 @@ inline void RemoveBinaryDataFromDatasetByIDsRequest::set_allocated_dataset_id(st
 
 // -------------------------------------------------------------------
 
+// AddSequencesToDatasetRequest
+
+// string dataset_id = 1 [json_name = "datasetId"];
+inline void AddSequencesToDatasetRequest::clear_dataset_id() {
+  dataset_id_.ClearToEmpty();
+}
+inline const std::string& AddSequencesToDatasetRequest::dataset_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.AddSequencesToDatasetRequest.dataset_id)
+  return _internal_dataset_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AddSequencesToDatasetRequest::set_dataset_id(ArgT0&& arg0, ArgT... args) {
+ 
+ dataset_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.AddSequencesToDatasetRequest.dataset_id)
+}
+inline std::string* AddSequencesToDatasetRequest::mutable_dataset_id() {
+  std::string* _s = _internal_mutable_dataset_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.AddSequencesToDatasetRequest.dataset_id)
+  return _s;
+}
+inline const std::string& AddSequencesToDatasetRequest::_internal_dataset_id() const {
+  return dataset_id_.Get();
+}
+inline void AddSequencesToDatasetRequest::_internal_set_dataset_id(const std::string& value) {
+  
+  dataset_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AddSequencesToDatasetRequest::_internal_mutable_dataset_id() {
+  
+  return dataset_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AddSequencesToDatasetRequest::release_dataset_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.AddSequencesToDatasetRequest.dataset_id)
+  return dataset_id_.Release();
+}
+inline void AddSequencesToDatasetRequest::set_allocated_dataset_id(std::string* dataset_id) {
+  if (dataset_id != nullptr) {
+    
+  } else {
+    
+  }
+  dataset_id_.SetAllocated(dataset_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (dataset_id_.IsDefault()) {
+    dataset_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.AddSequencesToDatasetRequest.dataset_id)
+}
+
+// repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+inline int AddSequencesToDatasetRequest::_internal_sequence_ids_size() const {
+  return sequence_ids_.size();
+}
+inline int AddSequencesToDatasetRequest::sequence_ids_size() const {
+  return _internal_sequence_ids_size();
+}
+inline void AddSequencesToDatasetRequest::clear_sequence_ids() {
+  sequence_ids_.Clear();
+}
+inline std::string* AddSequencesToDatasetRequest::add_sequence_ids() {
+  std::string* _s = _internal_add_sequence_ids();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+  return _s;
+}
+inline const std::string& AddSequencesToDatasetRequest::_internal_sequence_ids(int index) const {
+  return sequence_ids_.Get(index);
+}
+inline const std::string& AddSequencesToDatasetRequest::sequence_ids(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+  return _internal_sequence_ids(index);
+}
+inline std::string* AddSequencesToDatasetRequest::mutable_sequence_ids(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+  return sequence_ids_.Mutable(index);
+}
+inline void AddSequencesToDatasetRequest::set_sequence_ids(int index, const std::string& value) {
+  sequence_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+}
+inline void AddSequencesToDatasetRequest::set_sequence_ids(int index, std::string&& value) {
+  sequence_ids_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+}
+inline void AddSequencesToDatasetRequest::set_sequence_ids(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+}
+inline void AddSequencesToDatasetRequest::set_sequence_ids(int index, const char* value, size_t size) {
+  sequence_ids_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+}
+inline std::string* AddSequencesToDatasetRequest::_internal_add_sequence_ids() {
+  return sequence_ids_.Add();
+}
+inline void AddSequencesToDatasetRequest::add_sequence_ids(const std::string& value) {
+  sequence_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+}
+inline void AddSequencesToDatasetRequest::add_sequence_ids(std::string&& value) {
+  sequence_ids_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+}
+inline void AddSequencesToDatasetRequest::add_sequence_ids(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+}
+inline void AddSequencesToDatasetRequest::add_sequence_ids(const char* value, size_t size) {
+  sequence_ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+AddSequencesToDatasetRequest::sequence_ids() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+  return sequence_ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+AddSequencesToDatasetRequest::mutable_sequence_ids() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids)
+  return &sequence_ids_;
+}
+
+// -------------------------------------------------------------------
+
+// AddSequencesToDatasetResponse
+
+// -------------------------------------------------------------------
+
+// RemoveSequencesFromDatasetRequest
+
+// string dataset_id = 1 [json_name = "datasetId"];
+inline void RemoveSequencesFromDatasetRequest::clear_dataset_id() {
+  dataset_id_.ClearToEmpty();
+}
+inline const std::string& RemoveSequencesFromDatasetRequest::dataset_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.RemoveSequencesFromDatasetRequest.dataset_id)
+  return _internal_dataset_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RemoveSequencesFromDatasetRequest::set_dataset_id(ArgT0&& arg0, ArgT... args) {
+ 
+ dataset_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.RemoveSequencesFromDatasetRequest.dataset_id)
+}
+inline std::string* RemoveSequencesFromDatasetRequest::mutable_dataset_id() {
+  std::string* _s = _internal_mutable_dataset_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.RemoveSequencesFromDatasetRequest.dataset_id)
+  return _s;
+}
+inline const std::string& RemoveSequencesFromDatasetRequest::_internal_dataset_id() const {
+  return dataset_id_.Get();
+}
+inline void RemoveSequencesFromDatasetRequest::_internal_set_dataset_id(const std::string& value) {
+  
+  dataset_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RemoveSequencesFromDatasetRequest::_internal_mutable_dataset_id() {
+  
+  return dataset_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RemoveSequencesFromDatasetRequest::release_dataset_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.RemoveSequencesFromDatasetRequest.dataset_id)
+  return dataset_id_.Release();
+}
+inline void RemoveSequencesFromDatasetRequest::set_allocated_dataset_id(std::string* dataset_id) {
+  if (dataset_id != nullptr) {
+    
+  } else {
+    
+  }
+  dataset_id_.SetAllocated(dataset_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (dataset_id_.IsDefault()) {
+    dataset_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.RemoveSequencesFromDatasetRequest.dataset_id)
+}
+
+// repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+inline int RemoveSequencesFromDatasetRequest::_internal_sequence_ids_size() const {
+  return sequence_ids_.size();
+}
+inline int RemoveSequencesFromDatasetRequest::sequence_ids_size() const {
+  return _internal_sequence_ids_size();
+}
+inline void RemoveSequencesFromDatasetRequest::clear_sequence_ids() {
+  sequence_ids_.Clear();
+}
+inline std::string* RemoveSequencesFromDatasetRequest::add_sequence_ids() {
+  std::string* _s = _internal_add_sequence_ids();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+  return _s;
+}
+inline const std::string& RemoveSequencesFromDatasetRequest::_internal_sequence_ids(int index) const {
+  return sequence_ids_.Get(index);
+}
+inline const std::string& RemoveSequencesFromDatasetRequest::sequence_ids(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+  return _internal_sequence_ids(index);
+}
+inline std::string* RemoveSequencesFromDatasetRequest::mutable_sequence_ids(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+  return sequence_ids_.Mutable(index);
+}
+inline void RemoveSequencesFromDatasetRequest::set_sequence_ids(int index, const std::string& value) {
+  sequence_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+}
+inline void RemoveSequencesFromDatasetRequest::set_sequence_ids(int index, std::string&& value) {
+  sequence_ids_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+}
+inline void RemoveSequencesFromDatasetRequest::set_sequence_ids(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+}
+inline void RemoveSequencesFromDatasetRequest::set_sequence_ids(int index, const char* value, size_t size) {
+  sequence_ids_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+}
+inline std::string* RemoveSequencesFromDatasetRequest::_internal_add_sequence_ids() {
+  return sequence_ids_.Add();
+}
+inline void RemoveSequencesFromDatasetRequest::add_sequence_ids(const std::string& value) {
+  sequence_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+}
+inline void RemoveSequencesFromDatasetRequest::add_sequence_ids(std::string&& value) {
+  sequence_ids_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+}
+inline void RemoveSequencesFromDatasetRequest::add_sequence_ids(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  sequence_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+}
+inline void RemoveSequencesFromDatasetRequest::add_sequence_ids(const char* value, size_t size) {
+  sequence_ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+RemoveSequencesFromDatasetRequest::sequence_ids() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+  return sequence_ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+RemoveSequencesFromDatasetRequest::mutable_sequence_ids() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids)
+  return &sequence_ids_;
+}
+
+// -------------------------------------------------------------------
+
+// RemoveSequencesFromDatasetResponse
+
+// -------------------------------------------------------------------
+
 // CreateIndexRequest
 
 // string organization_id = 1 [json_name = "organizationId"];
@@ -30453,6 +31692,81 @@ Sequence::resources() const {
   return resources_;
 }
 
+// repeated string dataset_ids = 10 [json_name = "datasetIds"];
+inline int Sequence::_internal_dataset_ids_size() const {
+  return dataset_ids_.size();
+}
+inline int Sequence::dataset_ids_size() const {
+  return _internal_dataset_ids_size();
+}
+inline void Sequence::clear_dataset_ids() {
+  dataset_ids_.Clear();
+}
+inline std::string* Sequence::add_dataset_ids() {
+  std::string* _s = _internal_add_dataset_ids();
+  // @@protoc_insertion_point(field_add_mutable:viam.app.data.v1.Sequence.dataset_ids)
+  return _s;
+}
+inline const std::string& Sequence::_internal_dataset_ids(int index) const {
+  return dataset_ids_.Get(index);
+}
+inline const std::string& Sequence::dataset_ids(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.Sequence.dataset_ids)
+  return _internal_dataset_ids(index);
+}
+inline std::string* Sequence::mutable_dataset_ids(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.Sequence.dataset_ids)
+  return dataset_ids_.Mutable(index);
+}
+inline void Sequence::set_dataset_ids(int index, const std::string& value) {
+  dataset_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.Sequence.dataset_ids)
+}
+inline void Sequence::set_dataset_ids(int index, std::string&& value) {
+  dataset_ids_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.Sequence.dataset_ids)
+}
+inline void Sequence::set_dataset_ids(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  dataset_ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.app.data.v1.Sequence.dataset_ids)
+}
+inline void Sequence::set_dataset_ids(int index, const char* value, size_t size) {
+  dataset_ids_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.app.data.v1.Sequence.dataset_ids)
+}
+inline std::string* Sequence::_internal_add_dataset_ids() {
+  return dataset_ids_.Add();
+}
+inline void Sequence::add_dataset_ids(const std::string& value) {
+  dataset_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.Sequence.dataset_ids)
+}
+inline void Sequence::add_dataset_ids(std::string&& value) {
+  dataset_ids_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.Sequence.dataset_ids)
+}
+inline void Sequence::add_dataset_ids(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  dataset_ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.app.data.v1.Sequence.dataset_ids)
+}
+inline void Sequence::add_dataset_ids(const char* value, size_t size) {
+  dataset_ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.app.data.v1.Sequence.dataset_ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+Sequence::dataset_ids() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.Sequence.dataset_ids)
+  return dataset_ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+Sequence::mutable_dataset_ids() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.Sequence.dataset_ids)
+  return &dataset_ids_;
+}
+
 // -------------------------------------------------------------------
 
 // CreateSequenceRequest
@@ -31698,9 +33012,239 @@ inline void ListSequencesResponse::set_allocated_next_page_token(std::string* ne
   // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.ListSequencesResponse.next_page_token)
 }
 
+// -------------------------------------------------------------------
+
+// SequencesByDatasetIDRequest
+
+// string dataset_id = 1 [json_name = "datasetId"];
+inline void SequencesByDatasetIDRequest::clear_dataset_id() {
+  dataset_id_.ClearToEmpty();
+}
+inline const std::string& SequencesByDatasetIDRequest::dataset_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.SequencesByDatasetIDRequest.dataset_id)
+  return _internal_dataset_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SequencesByDatasetIDRequest::set_dataset_id(ArgT0&& arg0, ArgT... args) {
+ 
+ dataset_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.SequencesByDatasetIDRequest.dataset_id)
+}
+inline std::string* SequencesByDatasetIDRequest::mutable_dataset_id() {
+  std::string* _s = _internal_mutable_dataset_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.SequencesByDatasetIDRequest.dataset_id)
+  return _s;
+}
+inline const std::string& SequencesByDatasetIDRequest::_internal_dataset_id() const {
+  return dataset_id_.Get();
+}
+inline void SequencesByDatasetIDRequest::_internal_set_dataset_id(const std::string& value) {
+  
+  dataset_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SequencesByDatasetIDRequest::_internal_mutable_dataset_id() {
+  
+  return dataset_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SequencesByDatasetIDRequest::release_dataset_id() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.SequencesByDatasetIDRequest.dataset_id)
+  return dataset_id_.Release();
+}
+inline void SequencesByDatasetIDRequest::set_allocated_dataset_id(std::string* dataset_id) {
+  if (dataset_id != nullptr) {
+    
+  } else {
+    
+  }
+  dataset_id_.SetAllocated(dataset_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (dataset_id_.IsDefault()) {
+    dataset_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.SequencesByDatasetIDRequest.dataset_id)
+}
+
+// string page_token = 2 [json_name = "pageToken"];
+inline void SequencesByDatasetIDRequest::clear_page_token() {
+  page_token_.ClearToEmpty();
+}
+inline const std::string& SequencesByDatasetIDRequest::page_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.SequencesByDatasetIDRequest.page_token)
+  return _internal_page_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SequencesByDatasetIDRequest::set_page_token(ArgT0&& arg0, ArgT... args) {
+ 
+ page_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.SequencesByDatasetIDRequest.page_token)
+}
+inline std::string* SequencesByDatasetIDRequest::mutable_page_token() {
+  std::string* _s = _internal_mutable_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.SequencesByDatasetIDRequest.page_token)
+  return _s;
+}
+inline const std::string& SequencesByDatasetIDRequest::_internal_page_token() const {
+  return page_token_.Get();
+}
+inline void SequencesByDatasetIDRequest::_internal_set_page_token(const std::string& value) {
+  
+  page_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SequencesByDatasetIDRequest::_internal_mutable_page_token() {
+  
+  return page_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SequencesByDatasetIDRequest::release_page_token() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.SequencesByDatasetIDRequest.page_token)
+  return page_token_.Release();
+}
+inline void SequencesByDatasetIDRequest::set_allocated_page_token(std::string* page_token) {
+  if (page_token != nullptr) {
+    
+  } else {
+    
+  }
+  page_token_.SetAllocated(page_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (page_token_.IsDefault()) {
+    page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.SequencesByDatasetIDRequest.page_token)
+}
+
+// uint32 page_size = 3 [json_name = "pageSize"];
+inline void SequencesByDatasetIDRequest::clear_page_size() {
+  page_size_ = 0u;
+}
+inline uint32_t SequencesByDatasetIDRequest::_internal_page_size() const {
+  return page_size_;
+}
+inline uint32_t SequencesByDatasetIDRequest::page_size() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.SequencesByDatasetIDRequest.page_size)
+  return _internal_page_size();
+}
+inline void SequencesByDatasetIDRequest::_internal_set_page_size(uint32_t value) {
+  
+  page_size_ = value;
+}
+inline void SequencesByDatasetIDRequest::set_page_size(uint32_t value) {
+  _internal_set_page_size(value);
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.SequencesByDatasetIDRequest.page_size)
+}
+
+// -------------------------------------------------------------------
+
+// SequencesByDatasetIDResponse
+
+// repeated .viam.app.data.v1.Sequence sequences = 1 [json_name = "sequences"];
+inline int SequencesByDatasetIDResponse::_internal_sequences_size() const {
+  return sequences_.size();
+}
+inline int SequencesByDatasetIDResponse::sequences_size() const {
+  return _internal_sequences_size();
+}
+inline void SequencesByDatasetIDResponse::clear_sequences() {
+  sequences_.Clear();
+}
+inline ::viam::app::data::v1::Sequence* SequencesByDatasetIDResponse::mutable_sequences(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.SequencesByDatasetIDResponse.sequences)
+  return sequences_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence >*
+SequencesByDatasetIDResponse::mutable_sequences() {
+  // @@protoc_insertion_point(field_mutable_list:viam.app.data.v1.SequencesByDatasetIDResponse.sequences)
+  return &sequences_;
+}
+inline const ::viam::app::data::v1::Sequence& SequencesByDatasetIDResponse::_internal_sequences(int index) const {
+  return sequences_.Get(index);
+}
+inline const ::viam::app::data::v1::Sequence& SequencesByDatasetIDResponse::sequences(int index) const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.SequencesByDatasetIDResponse.sequences)
+  return _internal_sequences(index);
+}
+inline ::viam::app::data::v1::Sequence* SequencesByDatasetIDResponse::_internal_add_sequences() {
+  return sequences_.Add();
+}
+inline ::viam::app::data::v1::Sequence* SequencesByDatasetIDResponse::add_sequences() {
+  ::viam::app::data::v1::Sequence* _add = _internal_add_sequences();
+  // @@protoc_insertion_point(field_add:viam.app.data.v1.SequencesByDatasetIDResponse.sequences)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::app::data::v1::Sequence >&
+SequencesByDatasetIDResponse::sequences() const {
+  // @@protoc_insertion_point(field_list:viam.app.data.v1.SequencesByDatasetIDResponse.sequences)
+  return sequences_;
+}
+
+// string next_page_token = 2 [json_name = "nextPageToken"];
+inline void SequencesByDatasetIDResponse::clear_next_page_token() {
+  next_page_token_.ClearToEmpty();
+}
+inline const std::string& SequencesByDatasetIDResponse::next_page_token() const {
+  // @@protoc_insertion_point(field_get:viam.app.data.v1.SequencesByDatasetIDResponse.next_page_token)
+  return _internal_next_page_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void SequencesByDatasetIDResponse::set_next_page_token(ArgT0&& arg0, ArgT... args) {
+ 
+ next_page_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.data.v1.SequencesByDatasetIDResponse.next_page_token)
+}
+inline std::string* SequencesByDatasetIDResponse::mutable_next_page_token() {
+  std::string* _s = _internal_mutable_next_page_token();
+  // @@protoc_insertion_point(field_mutable:viam.app.data.v1.SequencesByDatasetIDResponse.next_page_token)
+  return _s;
+}
+inline const std::string& SequencesByDatasetIDResponse::_internal_next_page_token() const {
+  return next_page_token_.Get();
+}
+inline void SequencesByDatasetIDResponse::_internal_set_next_page_token(const std::string& value) {
+  
+  next_page_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* SequencesByDatasetIDResponse::_internal_mutable_next_page_token() {
+  
+  return next_page_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* SequencesByDatasetIDResponse::release_next_page_token() {
+  // @@protoc_insertion_point(field_release:viam.app.data.v1.SequencesByDatasetIDResponse.next_page_token)
+  return next_page_token_.Release();
+}
+inline void SequencesByDatasetIDResponse::set_allocated_next_page_token(std::string* next_page_token) {
+  if (next_page_token != nullptr) {
+    
+  } else {
+    
+  }
+  next_page_token_.SetAllocated(next_page_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (next_page_token_.IsDefault()) {
+    next_page_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.data.v1.SequencesByDatasetIDResponse.next_page_token)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
