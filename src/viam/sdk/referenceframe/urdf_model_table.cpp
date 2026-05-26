@@ -49,8 +49,7 @@ double magnitude(const Vector3& v) {
 std::vector<ParsedJoint> parse_urdf(const KinematicsDataURDF& urdf) {
     namespace pt = boost::property_tree;
     pt::ptree tree;
-    const std::string text(reinterpret_cast<const char*>(urdf.bytes.data()),
-                           urdf.bytes.size());
+    const std::string text(reinterpret_cast<const char*>(urdf.bytes.data()), urdf.bytes.size());
     std::istringstream iss(text);
     try {
         pt::read_xml(iss, tree);
