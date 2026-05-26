@@ -20,15 +20,12 @@ time_pt ptime_convert(const boost::posix_time::ptime& from) {
 }
 
 void LogBackend::consume(const boost::log::record_view& rec) const {
-    std::ostringstream os;
-
-    os << "[" << *rec[attr_file_type{}] << ":" << rec[attr_line_type{}] << "] "
-       << *rec[boost::log::expressions::smessage];
-
     parent->log(*rec[attr_channel_type{}],
                 to_string(*rec[attr_sev_type{}]),
-                os.str(),
-                ptime_convert(*rec[attr_time_type{}]));
+                std::string(*rec[boost::log::expressions::smessage]),
+                ptime_convert(*rec[attr_time_type{}]),
+                std::string(*rec[attr_file_type{}]),
+                *rec[attr_line_type{}]);
 }
 
 boost::shared_ptr<SinkType> LogBackend::create(RobotClient* p) {

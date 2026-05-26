@@ -889,6 +889,54 @@ struct RemoveBinaryDataFromDatasetByIDsResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveBinaryDataFromDatasetByIDsResponseDefaultTypeInternal _RemoveBinaryDataFromDatasetByIDsResponse_default_instance_;
+PROTOBUF_CONSTEXPR AddSequencesToDatasetRequest::AddSequencesToDatasetRequest(
+    ::_pbi::ConstantInitialized)
+  : sequence_ids_()
+  , dataset_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct AddSequencesToDatasetRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AddSequencesToDatasetRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AddSequencesToDatasetRequestDefaultTypeInternal() {}
+  union {
+    AddSequencesToDatasetRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AddSequencesToDatasetRequestDefaultTypeInternal _AddSequencesToDatasetRequest_default_instance_;
+PROTOBUF_CONSTEXPR AddSequencesToDatasetResponse::AddSequencesToDatasetResponse(
+    ::_pbi::ConstantInitialized){}
+struct AddSequencesToDatasetResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AddSequencesToDatasetResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AddSequencesToDatasetResponseDefaultTypeInternal() {}
+  union {
+    AddSequencesToDatasetResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AddSequencesToDatasetResponseDefaultTypeInternal _AddSequencesToDatasetResponse_default_instance_;
+PROTOBUF_CONSTEXPR RemoveSequencesFromDatasetRequest::RemoveSequencesFromDatasetRequest(
+    ::_pbi::ConstantInitialized)
+  : sequence_ids_()
+  , dataset_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct RemoveSequencesFromDatasetRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RemoveSequencesFromDatasetRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RemoveSequencesFromDatasetRequestDefaultTypeInternal() {}
+  union {
+    RemoveSequencesFromDatasetRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveSequencesFromDatasetRequestDefaultTypeInternal _RemoveSequencesFromDatasetRequest_default_instance_;
+PROTOBUF_CONSTEXPR RemoveSequencesFromDatasetResponse::RemoveSequencesFromDatasetResponse(
+    ::_pbi::ConstantInitialized){}
+struct RemoveSequencesFromDatasetResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RemoveSequencesFromDatasetResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RemoveSequencesFromDatasetResponseDefaultTypeInternal() {}
+  union {
+    RemoveSequencesFromDatasetResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveSequencesFromDatasetResponseDefaultTypeInternal _RemoveSequencesFromDatasetResponse_default_instance_;
 PROTOBUF_CONSTEXPR CreateIndexRequest::CreateIndexRequest(
     ::_pbi::ConstantInitialized)
   : index_spec_()
@@ -1171,6 +1219,7 @@ PROTOBUF_CONSTEXPR Sequence::Sequence(
     ::_pbi::ConstantInitialized)
   : sequence_tags_()
   , resources_()
+  , dataset_ids_()
   , id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , part_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , created_at_(nullptr)
@@ -1316,11 +1365,38 @@ struct ListSequencesResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListSequencesResponseDefaultTypeInternal _ListSequencesResponse_default_instance_;
+PROTOBUF_CONSTEXPR SequencesByDatasetIDRequest::SequencesByDatasetIDRequest(
+    ::_pbi::ConstantInitialized)
+  : dataset_id_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , page_token_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , page_size_(0u){}
+struct SequencesByDatasetIDRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SequencesByDatasetIDRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SequencesByDatasetIDRequestDefaultTypeInternal() {}
+  union {
+    SequencesByDatasetIDRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SequencesByDatasetIDRequestDefaultTypeInternal _SequencesByDatasetIDRequest_default_instance_;
+PROTOBUF_CONSTEXPR SequencesByDatasetIDResponse::SequencesByDatasetIDResponse(
+    ::_pbi::ConstantInitialized)
+  : sequences_()
+  , next_page_token_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct SequencesByDatasetIDResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SequencesByDatasetIDResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SequencesByDatasetIDResponseDefaultTypeInternal() {}
+  union {
+    SequencesByDatasetIDResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SequencesByDatasetIDResponseDefaultTypeInternal _SequencesByDatasetIDResponse_default_instance_;
 }  // namespace v1
 }  // namespace data
 }  // namespace app
 }  // namespace viam
-static ::_pb::Metadata file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[93];
+static ::_pb::Metadata file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[99];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto[5];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_app_2fdata_2fv1_2fdata_2eproto = nullptr;
 
@@ -1934,6 +2010,34 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::AddSequencesToDatasetRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::AddSequencesToDatasetRequest, dataset_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::AddSequencesToDatasetRequest, sequence_ids_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::AddSequencesToDatasetResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::RemoveSequencesFromDatasetRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::RemoveSequencesFromDatasetRequest, dataset_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::RemoveSequencesFromDatasetRequest, sequence_ids_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::RemoveSequencesFromDatasetResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::CreateIndexRequest, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::CreateIndexRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -2134,6 +2238,7 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::Sequence, start_time_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::Sequence, end_time_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::Sequence, resources_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::Sequence, dataset_ids_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::CreateSequenceRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -2214,6 +2319,23 @@ const uint32_t TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::ListSequencesResponse, sequences_),
   PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::ListSequencesResponse, next_page_token_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SequencesByDatasetIDRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SequencesByDatasetIDRequest, dataset_id_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SequencesByDatasetIDRequest, page_token_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SequencesByDatasetIDRequest, page_size_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SequencesByDatasetIDResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SequencesByDatasetIDResponse, sequences_),
+  PROTOBUF_FIELD_OFFSET(::viam::app::data::v1::SequencesByDatasetIDResponse, next_page_token_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::app::data::v1::DataRequest)},
@@ -2277,38 +2399,44 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 588, -1, -1, sizeof(::viam::app::data::v1::AddBinaryDataToDatasetByIDsResponse)},
   { 594, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsRequest)},
   { 603, -1, -1, sizeof(::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse)},
-  { 609, 619, -1, sizeof(::viam::app::data::v1::CreateIndexRequest)},
-  { 623, -1, -1, sizeof(::viam::app::data::v1::CreateIndexResponse)},
-  { 629, 639, -1, sizeof(::viam::app::data::v1::DeleteIndexRequest)},
-  { 643, -1, -1, sizeof(::viam::app::data::v1::DeleteIndexResponse)},
-  { 649, 658, -1, sizeof(::viam::app::data::v1::ListIndexesRequest)},
-  { 661, -1, -1, sizeof(::viam::app::data::v1::ListIndexesResponse)},
-  { 668, 679, -1, sizeof(::viam::app::data::v1::Index)},
-  { 684, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryRequest)},
-  { 693, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryResponse)},
-  { 700, -1, -1, sizeof(::viam::app::data::v1::Query)},
-  { 712, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryRequest)},
-  { 719, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryResponse)},
-  { 725, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryRequest)},
-  { 732, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryResponse)},
-  { 739, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryRequest)},
-  { 748, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryResponse)},
-  { 754, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesRequest)},
-  { 762, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesResponse)},
-  { 769, 777, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLRequest)},
-  { 779, -1, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLResponse)},
-  { 787, -1, -1, sizeof(::viam::app::data::v1::SequenceResourceFilter)},
-  { 795, -1, -1, sizeof(::viam::app::data::v1::Sequence)},
-  { 809, -1, -1, sizeof(::viam::app::data::v1::CreateSequenceRequest)},
-  { 820, -1, -1, sizeof(::viam::app::data::v1::CreateSequenceResponse)},
-  { 827, -1, -1, sizeof(::viam::app::data::v1::GetSequenceRequest)},
-  { 834, -1, -1, sizeof(::viam::app::data::v1::GetSequenceResponse)},
-  { 841, -1, -1, sizeof(::viam::app::data::v1::UpdateSequenceRequest)},
-  { 853, -1, -1, sizeof(::viam::app::data::v1::UpdateSequenceResponse)},
-  { 859, -1, -1, sizeof(::viam::app::data::v1::DeleteSequenceRequest)},
-  { 866, -1, -1, sizeof(::viam::app::data::v1::DeleteSequenceResponse)},
-  { 872, -1, -1, sizeof(::viam::app::data::v1::ListSequencesRequest)},
-  { 881, -1, -1, sizeof(::viam::app::data::v1::ListSequencesResponse)},
+  { 609, -1, -1, sizeof(::viam::app::data::v1::AddSequencesToDatasetRequest)},
+  { 617, -1, -1, sizeof(::viam::app::data::v1::AddSequencesToDatasetResponse)},
+  { 623, -1, -1, sizeof(::viam::app::data::v1::RemoveSequencesFromDatasetRequest)},
+  { 631, -1, -1, sizeof(::viam::app::data::v1::RemoveSequencesFromDatasetResponse)},
+  { 637, 647, -1, sizeof(::viam::app::data::v1::CreateIndexRequest)},
+  { 651, -1, -1, sizeof(::viam::app::data::v1::CreateIndexResponse)},
+  { 657, 667, -1, sizeof(::viam::app::data::v1::DeleteIndexRequest)},
+  { 671, -1, -1, sizeof(::viam::app::data::v1::DeleteIndexResponse)},
+  { 677, 686, -1, sizeof(::viam::app::data::v1::ListIndexesRequest)},
+  { 689, -1, -1, sizeof(::viam::app::data::v1::ListIndexesResponse)},
+  { 696, 707, -1, sizeof(::viam::app::data::v1::Index)},
+  { 712, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryRequest)},
+  { 721, -1, -1, sizeof(::viam::app::data::v1::CreateSavedQueryResponse)},
+  { 728, -1, -1, sizeof(::viam::app::data::v1::Query)},
+  { 740, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryRequest)},
+  { 747, -1, -1, sizeof(::viam::app::data::v1::DeleteSavedQueryResponse)},
+  { 753, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryRequest)},
+  { 760, -1, -1, sizeof(::viam::app::data::v1::GetSavedQueryResponse)},
+  { 767, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryRequest)},
+  { 776, -1, -1, sizeof(::viam::app::data::v1::UpdateSavedQueryResponse)},
+  { 782, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesRequest)},
+  { 790, -1, -1, sizeof(::viam::app::data::v1::ListSavedQueriesResponse)},
+  { 797, 805, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLRequest)},
+  { 807, -1, -1, sizeof(::viam::app::data::v1::CreateBinaryDataSignedURLResponse)},
+  { 815, -1, -1, sizeof(::viam::app::data::v1::SequenceResourceFilter)},
+  { 823, -1, -1, sizeof(::viam::app::data::v1::Sequence)},
+  { 838, -1, -1, sizeof(::viam::app::data::v1::CreateSequenceRequest)},
+  { 849, -1, -1, sizeof(::viam::app::data::v1::CreateSequenceResponse)},
+  { 856, -1, -1, sizeof(::viam::app::data::v1::GetSequenceRequest)},
+  { 863, -1, -1, sizeof(::viam::app::data::v1::GetSequenceResponse)},
+  { 870, -1, -1, sizeof(::viam::app::data::v1::UpdateSequenceRequest)},
+  { 882, -1, -1, sizeof(::viam::app::data::v1::UpdateSequenceResponse)},
+  { 888, -1, -1, sizeof(::viam::app::data::v1::DeleteSequenceRequest)},
+  { 895, -1, -1, sizeof(::viam::app::data::v1::DeleteSequenceResponse)},
+  { 901, -1, -1, sizeof(::viam::app::data::v1::ListSequencesRequest)},
+  { 910, -1, -1, sizeof(::viam::app::data::v1::ListSequencesResponse)},
+  { 918, -1, -1, sizeof(::viam::app::data::v1::SequencesByDatasetIDRequest)},
+  { 927, -1, -1, sizeof(::viam::app::data::v1::SequencesByDatasetIDResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2373,6 +2501,10 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::data::v1::_AddBinaryDataToDatasetByIDsResponse_default_instance_._instance,
   &::viam::app::data::v1::_RemoveBinaryDataFromDatasetByIDsRequest_default_instance_._instance,
   &::viam::app::data::v1::_RemoveBinaryDataFromDatasetByIDsResponse_default_instance_._instance,
+  &::viam::app::data::v1::_AddSequencesToDatasetRequest_default_instance_._instance,
+  &::viam::app::data::v1::_AddSequencesToDatasetResponse_default_instance_._instance,
+  &::viam::app::data::v1::_RemoveSequencesFromDatasetRequest_default_instance_._instance,
+  &::viam::app::data::v1::_RemoveSequencesFromDatasetResponse_default_instance_._instance,
   &::viam::app::data::v1::_CreateIndexRequest_default_instance_._instance,
   &::viam::app::data::v1::_CreateIndexResponse_default_instance_._instance,
   &::viam::app::data::v1::_DeleteIndexRequest_default_instance_._instance,
@@ -2405,6 +2537,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::viam::app::data::v1::_DeleteSequenceResponse_default_instance_._instance,
   &::viam::app::data::v1::_ListSequencesRequest_default_instance_._instance,
   &::viam::app::data::v1::_ListSequencesResponse_default_instance_._instance,
+  &::viam::app::data::v1::_SequencesByDatasetIDRequest_default_instance_._instance,
+  &::viam::app::data::v1::_SequencesByDatasetIDResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -2669,230 +2803,253 @@ const char descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto[] PROTOBUF_S
   "\030\001R\tbinaryIds\022&\n\017binary_data_ids\030\003 \003(\tR\r"
   "binaryDataIds\022\035\n\ndataset_id\030\002 \001(\tR\tdatas"
   "etId\"*\n(RemoveBinaryDataFromDatasetByIDs"
-  "Response\"\350\001\n\022CreateIndexRequest\022\'\n\017organ"
-  "ization_id\030\001 \001(\tR\016organizationId\022N\n\017coll"
-  "ection_type\030\002 \001(\0162%.viam.app.data.v1.Ind"
-  "exableCollectionR\016collectionType\022(\n\rpipe"
-  "line_name\030\003 \001(\tH\000R\014pipelineName\210\001\001\022\035\n\nin"
-  "dex_spec\030\004 \003(\014R\tindexSpecB\020\n\016_pipeline_n"
-  "ame\"\025\n\023CreateIndexResponse\"\350\001\n\022DeleteInd"
-  "exRequest\022\'\n\017organization_id\030\001 \001(\tR\016orga"
-  "nizationId\022N\n\017collection_type\030\002 \001(\0162%.vi"
-  "am.app.data.v1.IndexableCollectionR\016coll"
-  "ectionType\022(\n\rpipeline_name\030\003 \001(\tH\000R\014pip"
-  "elineName\210\001\001\022\035\n\nindex_name\030\004 \001(\tR\tindexN"
-  "ameB\020\n\016_pipeline_name\"\025\n\023DeleteIndexResp"
-  "onse\"\311\001\n\022ListIndexesRequest\022\'\n\017organizat"
-  "ion_id\030\001 \001(\tR\016organizationId\022N\n\017collecti"
-  "on_type\030\002 \001(\0162%.viam.app.data.v1.Indexab"
-  "leCollectionR\016collectionType\022(\n\rpipeline"
-  "_name\030\003 \001(\tH\000R\014pipelineName\210\001\001B\020\n\016_pipel"
-  "ine_name\"H\n\023ListIndexesResponse\0221\n\007index"
-  "es\030\001 \003(\0132\027.viam.app.data.v1.IndexR\007index"
-  "es\"\220\002\n\005Index\022N\n\017collection_type\030\001 \001(\0162%."
-  "viam.app.data.v1.IndexableCollectionR\016co"
-  "llectionType\022(\n\rpipeline_name\030\002 \001(\tH\000R\014p"
-  "ipelineName\210\001\001\022\035\n\nindex_name\030\003 \001(\tR\tinde"
-  "xName\022\035\n\nindex_spec\030\004 \003(\014R\tindexSpec\022=\n\n"
-  "created_by\030\005 \001(\0162\036.viam.app.data.v1.Inde"
-  "xCreatorR\tcreatedByB\020\n\016_pipeline_name\"u\n"
-  "\027CreateSavedQueryRequest\022\'\n\017organization"
-  "_id\030\001 \001(\tR\016organizationId\022\022\n\004name\030\002 \001(\tR"
-  "\004name\022\035\n\nmql_binary\030\003 \003(\014R\tmqlBinary\"*\n\030"
-  "CreateSavedQueryResponse\022\016\n\002id\030\001 \001(\tR\002id"
-  "\"\351\001\n\005Query\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017organizati"
-  "on_id\030\002 \001(\tR\016organizationId\022\022\n\004name\030\003 \001("
-  "\tR\004name\022\035\n\nmql_binary\030\004 \003(\014R\tmqlBinary\0229"
-  "\n\ncreated_on\030\005 \001(\0132\032.google.protobuf.Tim"
-  "estampR\tcreatedOn\0229\n\nupdated_at\030\006 \001(\0132\032."
-  "google.protobuf.TimestampR\tupdatedAt\")\n\027"
-  "DeleteSavedQueryRequest\022\016\n\002id\030\001 \001(\tR\002id\""
-  "\032\n\030DeleteSavedQueryResponse\"&\n\024GetSavedQ"
-  "ueryRequest\022\016\n\002id\030\001 \001(\tR\002id\"Q\n\025GetSavedQ"
-  "ueryResponse\0228\n\013saved_query\030\001 \001(\0132\027.viam"
-  ".app.data.v1.QueryR\nsavedQuery\"\\\n\027Update"
-  "SavedQueryRequest\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004nam"
-  "e\030\002 \001(\tR\004name\022\035\n\nmql_binary\030\003 \003(\014R\tmqlBi"
-  "nary\"\032\n\030UpdateSavedQueryResponse\"X\n\027List"
-  "SavedQueriesRequest\022\'\n\017organization_id\030\001"
-  " \001(\tR\016organizationId\022\024\n\005limit\030\002 \001(\003R\005lim"
-  "it\"M\n\030ListSavedQueriesResponse\0221\n\007querie"
-  "s\030\001 \003(\0132\027.viam.app.data.v1.QueryR\007querie"
-  "s\"\223\001\n CreateBinaryDataSignedURLRequest\022$"
-  "\n\016binary_data_id\030\001 \001(\tR\014binaryDataId\0222\n\022"
-  "expiration_minutes\030\002 \001(\rH\000R\021expirationMi"
-  "nutes\210\001\001B\025\n\023_expiration_minutes\"}\n!Creat"
-  "eBinaryDataSignedURLResponse\022\035\n\nsigned_u"
-  "rl\030\001 \001(\tR\tsignedUrl\0229\n\nexpires_at\030\002 \001(\0132"
-  "\032.google.protobuf.TimestampR\texpiresAt\"m"
-  "\n\026SequenceResourceFilter\022#\n\rresource_nam"
-  "e\030\002 \001(\tR\014resourceName\022\037\n\013method_name\030\003 \001"
-  "(\tR\nmethodNameJ\004\010\001\020\002R\007part_id\"\237\003\n\010Sequen"
-  "ce\022\016\n\002id\030\001 \001(\tR\002id\022\027\n\007part_id\030\t \001(\tR\006par"
-  "tId\022#\n\rsequence_tags\030\003 \003(\tR\014sequenceTags"
-  "\0229\n\ncreated_at\030\004 \001(\0132\032.google.protobuf.T"
-  "imestampR\tcreatedAt\0229\n\nupdated_at\030\005 \001(\0132"
-  "\032.google.protobuf.TimestampR\tupdatedAt\0229"
-  "\n\nstart_time\030\006 \001(\0132\032.google.protobuf.Tim"
-  "estampR\tstartTime\0225\n\010end_time\030\007 \001(\0132\032.go"
-  "ogle.protobuf.TimestampR\007endTime\022F\n\treso"
-  "urces\030\010 \003(\0132(.viam.app.data.v1.SequenceR"
-  "esourceFilterR\tresourcesJ\004\010\002\020\003R\017organiza"
-  "tion_id\"\246\002\n\025CreateSequenceRequest\022\027\n\007par"
-  "t_id\030\006 \001(\tR\006partId\022F\n\tresources\030\002 \003(\0132(."
-  "viam.app.data.v1.SequenceResourceFilterR"
-  "\tresources\022#\n\rsequence_tags\030\003 \003(\tR\014seque"
-  "nceTags\0229\n\nstart_time\030\004 \001(\0132\032.google.pro"
-  "tobuf.TimestampR\tstartTime\0225\n\010end_time\030\005"
-  " \001(\0132\032.google.protobuf.TimestampR\007endTim"
-  "eJ\004\010\001\020\002R\017organization_id\"(\n\026CreateSequen"
-  "ceResponse\022\016\n\002id\030\001 \001(\tR\002id\"$\n\022GetSequenc"
-  "eRequest\022\016\n\002id\030\001 \001(\tR\002id\"M\n\023GetSequenceR"
-  "esponse\0226\n\010sequence\030\001 \001(\0132\032.viam.app.dat"
-  "a.v1.SequenceR\010sequence\"\301\002\n\025UpdateSequen"
-  "ceRequest\022\016\n\002id\030\001 \001(\tR\002id\022F\n\tresources\030\002"
-  " \003(\0132(.viam.app.data.v1.SequenceResource"
-  "FilterR\tresources\022#\n\rsequence_tags\030\003 \003(\t"
-  "R\014sequenceTags\0229\n\nstart_time\030\004 \001(\0132\032.goo"
-  "gle.protobuf.TimestampR\tstartTime\0225\n\010end"
-  "_time\030\005 \001(\0132\032.google.protobuf.TimestampR"
-  "\007endTime\0229\n\nfield_mask\030\006 \001(\0132\032.google.pr"
-  "otobuf.FieldMaskR\tfieldMask\"\030\n\026UpdateSeq"
-  "uenceResponse\"\'\n\025DeleteSequenceRequest\022\016"
-  "\n\002id\030\001 \001(\tR\002id\"\030\n\026DeleteSequenceResponse"
-  "\"{\n\024ListSequencesRequest\022\'\n\017organization"
-  "_id\030\001 \001(\tR\016organizationId\022\035\n\npage_token\030"
-  "\002 \001(\tR\tpageToken\022\033\n\tpage_size\030\003 \001(\rR\010pag"
-  "eSize\"y\n\025ListSequencesResponse\0228\n\tsequen"
-  "ces\030\001 \003(\0132\032.viam.app.data.v1.SequenceR\ts"
-  "equences\022&\n\017next_page_token\030\002 \001(\tR\rnextP"
-  "ageToken*I\n\005Order\022\025\n\021ORDER_UNSPECIFIED\020\000"
-  "\022\024\n\020ORDER_DESCENDING\020\001\022\023\n\017ORDER_ASCENDIN"
-  "G\020\002*\220\001\n\016TagsFilterType\022 \n\034TAGS_FILTER_TY"
-  "PE_UNSPECIFIED\020\000\022 \n\034TAGS_FILTER_TYPE_MAT"
-  "CH_BY_OR\020\001\022\033\n\027TAGS_FILTER_TYPE_TAGGED\020\002\022"
-  "\035\n\031TAGS_FILTER_TYPE_UNTAGGED\020\003*\276\001\n\025Tabul"
-  "arDataSourceType\022(\n$TABULAR_DATA_SOURCE_"
-  "TYPE_UNSPECIFIED\020\000\022%\n!TABULAR_DATA_SOURC"
-  "E_TYPE_STANDARD\020\001\022(\n$TABULAR_DATA_SOURCE"
-  "_TYPE_HOT_STORAGE\020\002\022*\n&TABULAR_DATA_SOUR"
-  "CE_TYPE_PIPELINE_SINK\020\003*\207\001\n\023IndexableCol"
-  "lection\022$\n INDEXABLE_COLLECTION_UNSPECIF"
-  "IED\020\000\022\"\n\036INDEXABLE_COLLECTION_HOT_STORE\020"
-  "\001\022&\n\"INDEXABLE_COLLECTION_PIPELINE_SINK\020"
-  "\002*a\n\014IndexCreator\022\035\n\031INDEX_CREATOR_UNSPE"
-  "CIFIED\020\000\022\026\n\022INDEX_CREATOR_VIAM\020\001\022\032\n\026INDE"
-  "X_CREATOR_CUSTOMER\020\0022\200\"\n\013DataService\022w\n\023"
-  "TabularDataByFilter\022,.viam.app.data.v1.T"
-  "abularDataByFilterRequest\032-.viam.app.dat"
-  "a.v1.TabularDataByFilterResponse\"\003\210\002\001\022i\n"
-  "\020TabularDataBySQL\022).viam.app.data.v1.Tab"
-  "ularDataBySQLRequest\032*.viam.app.data.v1."
-  "TabularDataBySQLResponse\022i\n\020TabularDataB"
-  "yMQL\022).viam.app.data.v1.TabularDataByMQL"
-  "Request\032*.viam.app.data.v1.TabularDataBy"
-  "MQLResponse\022n\n\021ExportTabularData\022*.viam."
-  "app.data.v1.ExportTabularDataRequest\032+.v"
-  "iam.app.data.v1.ExportTabularDataRespons"
-  "e0\001\022u\n\024GetLatestTabularData\022-.viam.app.d"
-  "ata.v1.GetLatestTabularDataRequest\032..via"
-  "m.app.data.v1.GetLatestTabularDataRespon"
-  "se\022o\n\022BinaryDataByFilter\022+.viam.app.data"
-  ".v1.BinaryDataByFilterRequest\032,.viam.app"
-  ".data.v1.BinaryDataByFilterResponse\022f\n\017B"
-  "inaryDataByIDs\022(.viam.app.data.v1.Binary"
-  "DataByIDsRequest\032).viam.app.data.v1.Bina"
-  "ryDataByIDsResponse\022l\n\021DeleteTabularData"
-  "\022*.viam.app.data.v1.DeleteTabularDataReq"
-  "uest\032+.viam.app.data.v1.DeleteTabularDat"
-  "aResponse\022\201\001\n\030DeleteBinaryDataByFilter\0221"
-  ".viam.app.data.v1.DeleteBinaryDataByFilt"
-  "erRequest\0322.viam.app.data.v1.DeleteBinar"
-  "yDataByFilterResponse\022x\n\025DeleteBinaryDat"
-  "aByIDs\022..viam.app.data.v1.DeleteBinaryDa"
-  "taByIDsRequest\032/.viam.app.data.v1.Delete"
-  "BinaryDataByIDsResponse\022\201\001\n\030AddTagsToBin"
-  "aryDataByIDs\0221.viam.app.data.v1.AddTagsT"
-  "oBinaryDataByIDsRequest\0322.viam.app.data."
-  "v1.AddTagsToBinaryDataByIDsResponse\022\217\001\n\033"
-  "AddTagsToBinaryDataByFilter\0224.viam.app.d"
-  "ata.v1.AddTagsToBinaryDataByFilterReques"
-  "t\0325.viam.app.data.v1.AddTagsToBinaryData"
-  "ByFilterResponse\"\003\210\002\001\022\220\001\n\035RemoveTagsFrom"
-  "BinaryDataByIDs\0226.viam.app.data.v1.Remov"
-  "eTagsFromBinaryDataByIDsRequest\0327.viam.a"
-  "pp.data.v1.RemoveTagsFromBinaryDataByIDs"
-  "Response\022\236\001\n RemoveTagsFromBinaryDataByF"
-  "ilter\0229.viam.app.data.v1.RemoveTagsFromB"
-  "inaryDataByFilterRequest\032:.viam.app.data"
-  ".v1.RemoveTagsFromBinaryDataByFilterResp"
-  "onse\"\003\210\002\001\022b\n\014TagsByFilter\022%.viam.app.dat"
-  "a.v1.TagsByFilterRequest\032&.viam.app.data"
-  ".v1.TagsByFilterResponse\"\003\210\002\001\022\204\001\n\031AddBou"
-  "ndingBoxToImageByID\0222.viam.app.data.v1.A"
-  "ddBoundingBoxToImageByIDRequest\0323.viam.a"
-  "pp.data.v1.AddBoundingBoxToImageByIDResp"
-  "onse\022\223\001\n\036RemoveBoundingBoxFromImageByID\022"
-  "7.viam.app.data.v1.RemoveBoundingBoxFrom"
-  "ImageByIDRequest\0328.viam.app.data.v1.Remo"
-  "veBoundingBoxFromImageByIDResponse\022\211\001\n\031B"
-  "oundingBoxLabelsByFilter\0222.viam.app.data"
-  ".v1.BoundingBoxLabelsByFilterRequest\0323.v"
-  "iam.app.data.v1.BoundingBoxLabelsByFilte"
-  "rResponse\"\003\210\002\001\022l\n\021UpdateBoundingBox\022*.vi"
-  "am.app.data.v1.UpdateBoundingBoxRequest\032"
-  "+.viam.app.data.v1.UpdateBoundingBoxResp"
-  "onse\022x\n\025GetDatabaseConnection\022..viam.app"
-  ".data.v1.GetDatabaseConnectionRequest\032/."
-  "viam.app.data.v1.GetDatabaseConnectionRe"
-  "sponse\022x\n\025ConfigureDatabaseUser\022..viam.a"
-  "pp.data.v1.ConfigureDatabaseUserRequest\032"
-  "/.viam.app.data.v1.ConfigureDatabaseUser"
-  "Response\022\212\001\n\033AddBinaryDataToDatasetByIDs"
-  "\0224.viam.app.data.v1.AddBinaryDataToDatas"
-  "etByIDsRequest\0325.viam.app.data.v1.AddBin"
-  "aryDataToDatasetByIDsResponse\022\231\001\n Remove"
-  "BinaryDataFromDatasetByIDs\0229.viam.app.da"
-  "ta.v1.RemoveBinaryDataFromDatasetByIDsRe"
-  "quest\032:.viam.app.data.v1.RemoveBinaryDat"
-  "aFromDatasetByIDsResponse\022Z\n\013CreateIndex"
-  "\022$.viam.app.data.v1.CreateIndexRequest\032%"
-  ".viam.app.data.v1.CreateIndexResponse\022Z\n"
-  "\013ListIndexes\022$.viam.app.data.v1.ListInde"
-  "xesRequest\032%.viam.app.data.v1.ListIndexe"
-  "sResponse\022Z\n\013DeleteIndex\022$.viam.app.data"
-  ".v1.DeleteIndexRequest\032%.viam.app.data.v"
-  "1.DeleteIndexResponse\022i\n\020CreateSavedQuer"
-  "y\022).viam.app.data.v1.CreateSavedQueryReq"
-  "uest\032*.viam.app.data.v1.CreateSavedQuery"
-  "Response\022i\n\020UpdateSavedQuery\022).viam.app."
-  "data.v1.UpdateSavedQueryRequest\032*.viam.a"
-  "pp.data.v1.UpdateSavedQueryResponse\022`\n\rG"
-  "etSavedQuery\022&.viam.app.data.v1.GetSaved"
-  "QueryRequest\032\'.viam.app.data.v1.GetSaved"
-  "QueryResponse\022i\n\020DeleteSavedQuery\022).viam"
-  ".app.data.v1.DeleteSavedQueryRequest\032*.v"
-  "iam.app.data.v1.DeleteSavedQueryResponse"
-  "\022i\n\020ListSavedQueries\022).viam.app.data.v1."
-  "ListSavedQueriesRequest\032*.viam.app.data."
-  "v1.ListSavedQueriesResponse\022\204\001\n\031CreateBi"
-  "naryDataSignedURL\0222.viam.app.data.v1.Cre"
-  "ateBinaryDataSignedURLRequest\0323.viam.app"
-  ".data.v1.CreateBinaryDataSignedURLRespon"
-  "se\022c\n\016CreateSequence\022\'.viam.app.data.v1."
-  "CreateSequenceRequest\032(.viam.app.data.v1"
-  ".CreateSequenceResponse\022Z\n\013GetSequence\022$"
-  ".viam.app.data.v1.GetSequenceRequest\032%.v"
-  "iam.app.data.v1.GetSequenceResponse\022c\n\016U"
-  "pdateSequence\022\'.viam.app.data.v1.UpdateS"
-  "equenceRequest\032(.viam.app.data.v1.Update"
-  "SequenceResponse\022c\n\016DeleteSequence\022\'.via"
-  "m.app.data.v1.DeleteSequenceRequest\032(.vi"
-  "am.app.data.v1.DeleteSequenceResponse\022`\n"
-  "\rListSequences\022&.viam.app.data.v1.ListSe"
-  "quencesRequest\032\'.viam.app.data.v1.ListSe"
-  "quencesResponseB\035Z\033go.viam.com/api/app/d"
-  "ata/v1b\006proto3"
+  "Response\"`\n\034AddSequencesToDatasetRequest"
+  "\022\035\n\ndataset_id\030\001 \001(\tR\tdatasetId\022!\n\014seque"
+  "nce_ids\030\002 \003(\tR\013sequenceIds\"\037\n\035AddSequenc"
+  "esToDatasetResponse\"e\n!RemoveSequencesFr"
+  "omDatasetRequest\022\035\n\ndataset_id\030\001 \001(\tR\tda"
+  "tasetId\022!\n\014sequence_ids\030\002 \003(\tR\013sequenceI"
+  "ds\"$\n\"RemoveSequencesFromDatasetResponse"
+  "\"\350\001\n\022CreateIndexRequest\022\'\n\017organization_"
+  "id\030\001 \001(\tR\016organizationId\022N\n\017collection_t"
+  "ype\030\002 \001(\0162%.viam.app.data.v1.IndexableCo"
+  "llectionR\016collectionType\022(\n\rpipeline_nam"
+  "e\030\003 \001(\tH\000R\014pipelineName\210\001\001\022\035\n\nindex_spec"
+  "\030\004 \003(\014R\tindexSpecB\020\n\016_pipeline_name\"\025\n\023C"
+  "reateIndexResponse\"\350\001\n\022DeleteIndexReques"
+  "t\022\'\n\017organization_id\030\001 \001(\tR\016organization"
+  "Id\022N\n\017collection_type\030\002 \001(\0162%.viam.app.d"
+  "ata.v1.IndexableCollectionR\016collectionTy"
+  "pe\022(\n\rpipeline_name\030\003 \001(\tH\000R\014pipelineNam"
+  "e\210\001\001\022\035\n\nindex_name\030\004 \001(\tR\tindexNameB\020\n\016_"
+  "pipeline_name\"\025\n\023DeleteIndexResponse\"\311\001\n"
+  "\022ListIndexesRequest\022\'\n\017organization_id\030\001"
+  " \001(\tR\016organizationId\022N\n\017collection_type\030"
+  "\002 \001(\0162%.viam.app.data.v1.IndexableCollec"
+  "tionR\016collectionType\022(\n\rpipeline_name\030\003 "
+  "\001(\tH\000R\014pipelineName\210\001\001B\020\n\016_pipeline_name"
+  "\"H\n\023ListIndexesResponse\0221\n\007indexes\030\001 \003(\013"
+  "2\027.viam.app.data.v1.IndexR\007indexes\"\220\002\n\005I"
+  "ndex\022N\n\017collection_type\030\001 \001(\0162%.viam.app"
+  ".data.v1.IndexableCollectionR\016collection"
+  "Type\022(\n\rpipeline_name\030\002 \001(\tH\000R\014pipelineN"
+  "ame\210\001\001\022\035\n\nindex_name\030\003 \001(\tR\tindexName\022\035\n"
+  "\nindex_spec\030\004 \003(\014R\tindexSpec\022=\n\ncreated_"
+  "by\030\005 \001(\0162\036.viam.app.data.v1.IndexCreator"
+  "R\tcreatedByB\020\n\016_pipeline_name\"u\n\027CreateS"
+  "avedQueryRequest\022\'\n\017organization_id\030\001 \001("
+  "\tR\016organizationId\022\022\n\004name\030\002 \001(\tR\004name\022\035\n"
+  "\nmql_binary\030\003 \003(\014R\tmqlBinary\"*\n\030CreateSa"
+  "vedQueryResponse\022\016\n\002id\030\001 \001(\tR\002id\"\351\001\n\005Que"
+  "ry\022\016\n\002id\030\001 \001(\tR\002id\022\'\n\017organization_id\030\002 "
+  "\001(\tR\016organizationId\022\022\n\004name\030\003 \001(\tR\004name\022"
+  "\035\n\nmql_binary\030\004 \003(\014R\tmqlBinary\0229\n\ncreate"
+  "d_on\030\005 \001(\0132\032.google.protobuf.TimestampR\t"
+  "createdOn\0229\n\nupdated_at\030\006 \001(\0132\032.google.p"
+  "rotobuf.TimestampR\tupdatedAt\")\n\027DeleteSa"
+  "vedQueryRequest\022\016\n\002id\030\001 \001(\tR\002id\"\032\n\030Delet"
+  "eSavedQueryResponse\"&\n\024GetSavedQueryRequ"
+  "est\022\016\n\002id\030\001 \001(\tR\002id\"Q\n\025GetSavedQueryResp"
+  "onse\0228\n\013saved_query\030\001 \001(\0132\027.viam.app.dat"
+  "a.v1.QueryR\nsavedQuery\"\\\n\027UpdateSavedQue"
+  "ryRequest\022\016\n\002id\030\001 \001(\tR\002id\022\022\n\004name\030\002 \001(\tR"
+  "\004name\022\035\n\nmql_binary\030\003 \003(\014R\tmqlBinary\"\032\n\030"
+  "UpdateSavedQueryResponse\"X\n\027ListSavedQue"
+  "riesRequest\022\'\n\017organization_id\030\001 \001(\tR\016or"
+  "ganizationId\022\024\n\005limit\030\002 \001(\003R\005limit\"M\n\030Li"
+  "stSavedQueriesResponse\0221\n\007queries\030\001 \003(\0132"
+  "\027.viam.app.data.v1.QueryR\007queries\"\223\001\n Cr"
+  "eateBinaryDataSignedURLRequest\022$\n\016binary"
+  "_data_id\030\001 \001(\tR\014binaryDataId\0222\n\022expirati"
+  "on_minutes\030\002 \001(\rH\000R\021expirationMinutes\210\001\001"
+  "B\025\n\023_expiration_minutes\"}\n!CreateBinaryD"
+  "ataSignedURLResponse\022\035\n\nsigned_url\030\001 \001(\t"
+  "R\tsignedUrl\0229\n\nexpires_at\030\002 \001(\0132\032.google"
+  ".protobuf.TimestampR\texpiresAt\"m\n\026Sequen"
+  "ceResourceFilter\022#\n\rresource_name\030\002 \001(\tR"
+  "\014resourceName\022\037\n\013method_name\030\003 \001(\tR\nmeth"
+  "odNameJ\004\010\001\020\002R\007part_id\"\300\003\n\010Sequence\022\016\n\002id"
+  "\030\001 \001(\tR\002id\022\027\n\007part_id\030\t \001(\tR\006partId\022#\n\rs"
+  "equence_tags\030\003 \003(\tR\014sequenceTags\0229\n\ncrea"
+  "ted_at\030\004 \001(\0132\032.google.protobuf.Timestamp"
+  "R\tcreatedAt\0229\n\nupdated_at\030\005 \001(\0132\032.google"
+  ".protobuf.TimestampR\tupdatedAt\0229\n\nstart_"
+  "time\030\006 \001(\0132\032.google.protobuf.TimestampR\t"
+  "startTime\0225\n\010end_time\030\007 \001(\0132\032.google.pro"
+  "tobuf.TimestampR\007endTime\022F\n\tresources\030\010 "
+  "\003(\0132(.viam.app.data.v1.SequenceResourceF"
+  "ilterR\tresources\022\037\n\013dataset_ids\030\n \003(\tR\nd"
+  "atasetIdsJ\004\010\002\020\003R\017organization_id\"\246\002\n\025Cre"
+  "ateSequenceRequest\022\027\n\007part_id\030\006 \001(\tR\006par"
+  "tId\022F\n\tresources\030\002 \003(\0132(.viam.app.data.v"
+  "1.SequenceResourceFilterR\tresources\022#\n\rs"
+  "equence_tags\030\003 \003(\tR\014sequenceTags\0229\n\nstar"
+  "t_time\030\004 \001(\0132\032.google.protobuf.Timestamp"
+  "R\tstartTime\0225\n\010end_time\030\005 \001(\0132\032.google.p"
+  "rotobuf.TimestampR\007endTimeJ\004\010\001\020\002R\017organi"
+  "zation_id\"(\n\026CreateSequenceResponse\022\016\n\002i"
+  "d\030\001 \001(\tR\002id\"$\n\022GetSequenceRequest\022\016\n\002id\030"
+  "\001 \001(\tR\002id\"M\n\023GetSequenceResponse\0226\n\010sequ"
+  "ence\030\001 \001(\0132\032.viam.app.data.v1.SequenceR\010"
+  "sequence\"\301\002\n\025UpdateSequenceRequest\022\016\n\002id"
+  "\030\001 \001(\tR\002id\022F\n\tresources\030\002 \003(\0132(.viam.app"
+  ".data.v1.SequenceResourceFilterR\tresourc"
+  "es\022#\n\rsequence_tags\030\003 \003(\tR\014sequenceTags\022"
+  "9\n\nstart_time\030\004 \001(\0132\032.google.protobuf.Ti"
+  "mestampR\tstartTime\0225\n\010end_time\030\005 \001(\0132\032.g"
+  "oogle.protobuf.TimestampR\007endTime\0229\n\nfie"
+  "ld_mask\030\006 \001(\0132\032.google.protobuf.FieldMas"
+  "kR\tfieldMask\"\030\n\026UpdateSequenceResponse\"\'"
+  "\n\025DeleteSequenceRequest\022\016\n\002id\030\001 \001(\tR\002id\""
+  "\030\n\026DeleteSequenceResponse\"{\n\024ListSequenc"
+  "esRequest\022\'\n\017organization_id\030\001 \001(\tR\016orga"
+  "nizationId\022\035\n\npage_token\030\002 \001(\tR\tpageToke"
+  "n\022\033\n\tpage_size\030\003 \001(\rR\010pageSize\"y\n\025ListSe"
+  "quencesResponse\0228\n\tsequences\030\001 \003(\0132\032.via"
+  "m.app.data.v1.SequenceR\tsequences\022&\n\017nex"
+  "t_page_token\030\002 \001(\tR\rnextPageToken\"x\n\033Seq"
+  "uencesByDatasetIDRequest\022\035\n\ndataset_id\030\001"
+  " \001(\tR\tdatasetId\022\035\n\npage_token\030\002 \001(\tR\tpag"
+  "eToken\022\033\n\tpage_size\030\003 \001(\rR\010pageSize\"\200\001\n\034"
+  "SequencesByDatasetIDResponse\0228\n\tsequence"
+  "s\030\001 \003(\0132\032.viam.app.data.v1.SequenceR\tseq"
+  "uences\022&\n\017next_page_token\030\002 \001(\tR\rnextPag"
+  "eToken*I\n\005Order\022\025\n\021ORDER_UNSPECIFIED\020\000\022\024"
+  "\n\020ORDER_DESCENDING\020\001\022\023\n\017ORDER_ASCENDING\020"
+  "\002*\220\001\n\016TagsFilterType\022 \n\034TAGS_FILTER_TYPE"
+  "_UNSPECIFIED\020\000\022 \n\034TAGS_FILTER_TYPE_MATCH"
+  "_BY_OR\020\001\022\033\n\027TAGS_FILTER_TYPE_TAGGED\020\002\022\035\n"
+  "\031TAGS_FILTER_TYPE_UNTAGGED\020\003*\276\001\n\025Tabular"
+  "DataSourceType\022(\n$TABULAR_DATA_SOURCE_TY"
+  "PE_UNSPECIFIED\020\000\022%\n!TABULAR_DATA_SOURCE_"
+  "TYPE_STANDARD\020\001\022(\n$TABULAR_DATA_SOURCE_T"
+  "YPE_HOT_STORAGE\020\002\022*\n&TABULAR_DATA_SOURCE"
+  "_TYPE_PIPELINE_SINK\020\003*\207\001\n\023IndexableColle"
+  "ction\022$\n INDEXABLE_COLLECTION_UNSPECIFIE"
+  "D\020\000\022\"\n\036INDEXABLE_COLLECTION_HOT_STORE\020\001\022"
+  "&\n\"INDEXABLE_COLLECTION_PIPELINE_SINK\020\002*"
+  "a\n\014IndexCreator\022\035\n\031INDEX_CREATOR_UNSPECI"
+  "FIED\020\000\022\026\n\022INDEX_CREATOR_VIAM\020\001\022\032\n\026INDEX_"
+  "CREATOR_CUSTOMER\020\0022\373$\n\013DataService\022w\n\023Ta"
+  "bularDataByFilter\022,.viam.app.data.v1.Tab"
+  "ularDataByFilterRequest\032-.viam.app.data."
+  "v1.TabularDataByFilterResponse\"\003\210\002\001\022i\n\020T"
+  "abularDataBySQL\022).viam.app.data.v1.Tabul"
+  "arDataBySQLRequest\032*.viam.app.data.v1.Ta"
+  "bularDataBySQLResponse\022i\n\020TabularDataByM"
+  "QL\022).viam.app.data.v1.TabularDataByMQLRe"
+  "quest\032*.viam.app.data.v1.TabularDataByMQ"
+  "LResponse\022n\n\021ExportTabularData\022*.viam.ap"
+  "p.data.v1.ExportTabularDataRequest\032+.via"
+  "m.app.data.v1.ExportTabularDataResponse0"
+  "\001\022u\n\024GetLatestTabularData\022-.viam.app.dat"
+  "a.v1.GetLatestTabularDataRequest\032..viam."
+  "app.data.v1.GetLatestTabularDataResponse"
+  "\022o\n\022BinaryDataByFilter\022+.viam.app.data.v"
+  "1.BinaryDataByFilterRequest\032,.viam.app.d"
+  "ata.v1.BinaryDataByFilterResponse\022f\n\017Bin"
+  "aryDataByIDs\022(.viam.app.data.v1.BinaryDa"
+  "taByIDsRequest\032).viam.app.data.v1.Binary"
+  "DataByIDsResponse\022l\n\021DeleteTabularData\022*"
+  ".viam.app.data.v1.DeleteTabularDataReque"
+  "st\032+.viam.app.data.v1.DeleteTabularDataR"
+  "esponse\022\201\001\n\030DeleteBinaryDataByFilter\0221.v"
+  "iam.app.data.v1.DeleteBinaryDataByFilter"
+  "Request\0322.viam.app.data.v1.DeleteBinaryD"
+  "ataByFilterResponse\022x\n\025DeleteBinaryDataB"
+  "yIDs\022..viam.app.data.v1.DeleteBinaryData"
+  "ByIDsRequest\032/.viam.app.data.v1.DeleteBi"
+  "naryDataByIDsResponse\022\201\001\n\030AddTagsToBinar"
+  "yDataByIDs\0221.viam.app.data.v1.AddTagsToB"
+  "inaryDataByIDsRequest\0322.viam.app.data.v1"
+  ".AddTagsToBinaryDataByIDsResponse\022\217\001\n\033Ad"
+  "dTagsToBinaryDataByFilter\0224.viam.app.dat"
+  "a.v1.AddTagsToBinaryDataByFilterRequest\032"
+  "5.viam.app.data.v1.AddTagsToBinaryDataBy"
+  "FilterResponse\"\003\210\002\001\022\220\001\n\035RemoveTagsFromBi"
+  "naryDataByIDs\0226.viam.app.data.v1.RemoveT"
+  "agsFromBinaryDataByIDsRequest\0327.viam.app"
+  ".data.v1.RemoveTagsFromBinaryDataByIDsRe"
+  "sponse\022\236\001\n RemoveTagsFromBinaryDataByFil"
+  "ter\0229.viam.app.data.v1.RemoveTagsFromBin"
+  "aryDataByFilterRequest\032:.viam.app.data.v"
+  "1.RemoveTagsFromBinaryDataByFilterRespon"
+  "se\"\003\210\002\001\022b\n\014TagsByFilter\022%.viam.app.data."
+  "v1.TagsByFilterRequest\032&.viam.app.data.v"
+  "1.TagsByFilterResponse\"\003\210\002\001\022\204\001\n\031AddBound"
+  "ingBoxToImageByID\0222.viam.app.data.v1.Add"
+  "BoundingBoxToImageByIDRequest\0323.viam.app"
+  ".data.v1.AddBoundingBoxToImageByIDRespon"
+  "se\022\223\001\n\036RemoveBoundingBoxFromImageByID\0227."
+  "viam.app.data.v1.RemoveBoundingBoxFromIm"
+  "ageByIDRequest\0328.viam.app.data.v1.Remove"
+  "BoundingBoxFromImageByIDResponse\022\211\001\n\031Bou"
+  "ndingBoxLabelsByFilter\0222.viam.app.data.v"
+  "1.BoundingBoxLabelsByFilterRequest\0323.via"
+  "m.app.data.v1.BoundingBoxLabelsByFilterR"
+  "esponse\"\003\210\002\001\022l\n\021UpdateBoundingBox\022*.viam"
+  ".app.data.v1.UpdateBoundingBoxRequest\032+."
+  "viam.app.data.v1.UpdateBoundingBoxRespon"
+  "se\022x\n\025GetDatabaseConnection\022..viam.app.d"
+  "ata.v1.GetDatabaseConnectionRequest\032/.vi"
+  "am.app.data.v1.GetDatabaseConnectionResp"
+  "onse\022x\n\025ConfigureDatabaseUser\022..viam.app"
+  ".data.v1.ConfigureDatabaseUserRequest\032/."
+  "viam.app.data.v1.ConfigureDatabaseUserRe"
+  "sponse\022\212\001\n\033AddBinaryDataToDatasetByIDs\0224"
+  ".viam.app.data.v1.AddBinaryDataToDataset"
+  "ByIDsRequest\0325.viam.app.data.v1.AddBinar"
+  "yDataToDatasetByIDsResponse\022\231\001\n RemoveBi"
+  "naryDataFromDatasetByIDs\0229.viam.app.data"
+  ".v1.RemoveBinaryDataFromDatasetByIDsRequ"
+  "est\032:.viam.app.data.v1.RemoveBinaryDataF"
+  "romDatasetByIDsResponse\022x\n\025AddSequencesT"
+  "oDataset\022..viam.app.data.v1.AddSequences"
+  "ToDatasetRequest\032/.viam.app.data.v1.AddS"
+  "equencesToDatasetResponse\022\207\001\n\032RemoveSequ"
+  "encesFromDataset\0223.viam.app.data.v1.Remo"
+  "veSequencesFromDatasetRequest\0324.viam.app"
+  ".data.v1.RemoveSequencesFromDatasetRespo"
+  "nse\022Z\n\013CreateIndex\022$.viam.app.data.v1.Cr"
+  "eateIndexRequest\032%.viam.app.data.v1.Crea"
+  "teIndexResponse\022Z\n\013ListIndexes\022$.viam.ap"
+  "p.data.v1.ListIndexesRequest\032%.viam.app."
+  "data.v1.ListIndexesResponse\022Z\n\013DeleteInd"
+  "ex\022$.viam.app.data.v1.DeleteIndexRequest"
+  "\032%.viam.app.data.v1.DeleteIndexResponse\022"
+  "i\n\020CreateSavedQuery\022).viam.app.data.v1.C"
+  "reateSavedQueryRequest\032*.viam.app.data.v"
+  "1.CreateSavedQueryResponse\022i\n\020UpdateSave"
+  "dQuery\022).viam.app.data.v1.UpdateSavedQue"
+  "ryRequest\032*.viam.app.data.v1.UpdateSaved"
+  "QueryResponse\022`\n\rGetSavedQuery\022&.viam.ap"
+  "p.data.v1.GetSavedQueryRequest\032\'.viam.ap"
+  "p.data.v1.GetSavedQueryResponse\022i\n\020Delet"
+  "eSavedQuery\022).viam.app.data.v1.DeleteSav"
+  "edQueryRequest\032*.viam.app.data.v1.Delete"
+  "SavedQueryResponse\022i\n\020ListSavedQueries\022)"
+  ".viam.app.data.v1.ListSavedQueriesReques"
+  "t\032*.viam.app.data.v1.ListSavedQueriesRes"
+  "ponse\022\204\001\n\031CreateBinaryDataSignedURL\0222.vi"
+  "am.app.data.v1.CreateBinaryDataSignedURL"
+  "Request\0323.viam.app.data.v1.CreateBinaryD"
+  "ataSignedURLResponse\022c\n\016CreateSequence\022\'"
+  ".viam.app.data.v1.CreateSequenceRequest\032"
+  "(.viam.app.data.v1.CreateSequenceRespons"
+  "e\022Z\n\013GetSequence\022$.viam.app.data.v1.GetS"
+  "equenceRequest\032%.viam.app.data.v1.GetSeq"
+  "uenceResponse\022c\n\016UpdateSequence\022\'.viam.a"
+  "pp.data.v1.UpdateSequenceRequest\032(.viam."
+  "app.data.v1.UpdateSequenceResponse\022c\n\016De"
+  "leteSequence\022\'.viam.app.data.v1.DeleteSe"
+  "quenceRequest\032(.viam.app.data.v1.DeleteS"
+  "equenceResponse\022`\n\rListSequences\022&.viam."
+  "app.data.v1.ListSequencesRequest\032\'.viam."
+  "app.data.v1.ListSequencesResponse\022u\n\024Seq"
+  "uencesByDatasetID\022-.viam.app.data.v1.Seq"
+  "uencesByDatasetIDRequest\032..viam.app.data"
+  ".v1.SequencesByDatasetIDResponseB\035Z\033go.v"
+  "iam.com/api/app/data/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps[4] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -2902,9 +3059,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_app_2fdata_2fv1_2fd
 };
 static ::_pbi::once_flag descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_app_2fdata_2fv1_2fdata_2eproto = {
-    false, false, 19374, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
+    false, false, 20311, descriptor_table_protodef_app_2fdata_2fv1_2fdata_2eproto,
     "app/data/v1/data.proto",
-    &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 4, 93,
+    &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once, descriptor_table_app_2fdata_2fv1_2fdata_2eproto_deps, 4, 99,
     schemas, file_default_instances, TableStruct_app_2fdata_2fv1_2fdata_2eproto::offsets,
     file_level_metadata_app_2fdata_2fv1_2fdata_2eproto, file_level_enum_descriptors_app_2fdata_2fv1_2fdata_2eproto,
     file_level_service_descriptors_app_2fdata_2fv1_2fdata_2eproto,
@@ -19037,6 +19194,550 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveBinaryDataFromDatasetByI
 
 // ===================================================================
 
+class AddSequencesToDatasetRequest::_Internal {
+ public:
+};
+
+AddSequencesToDatasetRequest::AddSequencesToDatasetRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  sequence_ids_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.AddSequencesToDatasetRequest)
+}
+AddSequencesToDatasetRequest::AddSequencesToDatasetRequest(const AddSequencesToDatasetRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      sequence_ids_(from.sequence_ids_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  dataset_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    dataset_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_dataset_id().empty()) {
+    dataset_id_.Set(from._internal_dataset_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.AddSequencesToDatasetRequest)
+}
+
+inline void AddSequencesToDatasetRequest::SharedCtor() {
+dataset_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  dataset_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AddSequencesToDatasetRequest::~AddSequencesToDatasetRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.AddSequencesToDatasetRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AddSequencesToDatasetRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  dataset_id_.Destroy();
+}
+
+void AddSequencesToDatasetRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AddSequencesToDatasetRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.AddSequencesToDatasetRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  sequence_ids_.Clear();
+  dataset_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AddSequencesToDatasetRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string dataset_id = 1 [json_name = "datasetId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_dataset_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.AddSequencesToDatasetRequest.dataset_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_sequence_ids();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AddSequencesToDatasetRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.AddSequencesToDatasetRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string dataset_id = 1 [json_name = "datasetId"];
+  if (!this->_internal_dataset_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_dataset_id().data(), static_cast<int>(this->_internal_dataset_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.AddSequencesToDatasetRequest.dataset_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_dataset_id(), target);
+  }
+
+  // repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+  for (int i = 0, n = this->_internal_sequence_ids_size(); i < n; i++) {
+    const auto& s = this->_internal_sequence_ids(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.AddSequencesToDatasetRequest.sequence_ids");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.AddSequencesToDatasetRequest)
+  return target;
+}
+
+size_t AddSequencesToDatasetRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.AddSequencesToDatasetRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(sequence_ids_.size());
+  for (int i = 0, n = sequence_ids_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      sequence_ids_.Get(i));
+  }
+
+  // string dataset_id = 1 [json_name = "datasetId"];
+  if (!this->_internal_dataset_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_dataset_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AddSequencesToDatasetRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    AddSequencesToDatasetRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AddSequencesToDatasetRequest::GetClassData() const { return &_class_data_; }
+
+void AddSequencesToDatasetRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<AddSequencesToDatasetRequest *>(to)->MergeFrom(
+      static_cast<const AddSequencesToDatasetRequest &>(from));
+}
+
+
+void AddSequencesToDatasetRequest::MergeFrom(const AddSequencesToDatasetRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.AddSequencesToDatasetRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  sequence_ids_.MergeFrom(from.sequence_ids_);
+  if (!from._internal_dataset_id().empty()) {
+    _internal_set_dataset_id(from._internal_dataset_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AddSequencesToDatasetRequest::CopyFrom(const AddSequencesToDatasetRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.AddSequencesToDatasetRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AddSequencesToDatasetRequest::IsInitialized() const {
+  return true;
+}
+
+void AddSequencesToDatasetRequest::InternalSwap(AddSequencesToDatasetRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  sequence_ids_.InternalSwap(&other->sequence_ids_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &dataset_id_, lhs_arena,
+      &other->dataset_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AddSequencesToDatasetRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[61]);
+}
+
+// ===================================================================
+
+class AddSequencesToDatasetResponse::_Internal {
+ public:
+};
+
+AddSequencesToDatasetResponse::AddSequencesToDatasetResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.AddSequencesToDatasetResponse)
+}
+AddSequencesToDatasetResponse::AddSequencesToDatasetResponse(const AddSequencesToDatasetResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.AddSequencesToDatasetResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AddSequencesToDatasetResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AddSequencesToDatasetResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata AddSequencesToDatasetResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[62]);
+}
+
+// ===================================================================
+
+class RemoveSequencesFromDatasetRequest::_Internal {
+ public:
+};
+
+RemoveSequencesFromDatasetRequest::RemoveSequencesFromDatasetRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  sequence_ids_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+}
+RemoveSequencesFromDatasetRequest::RemoveSequencesFromDatasetRequest(const RemoveSequencesFromDatasetRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      sequence_ids_(from.sequence_ids_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  dataset_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    dataset_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_dataset_id().empty()) {
+    dataset_id_.Set(from._internal_dataset_id(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+}
+
+inline void RemoveSequencesFromDatasetRequest::SharedCtor() {
+dataset_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  dataset_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+RemoveSequencesFromDatasetRequest::~RemoveSequencesFromDatasetRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void RemoveSequencesFromDatasetRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  dataset_id_.Destroy();
+}
+
+void RemoveSequencesFromDatasetRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void RemoveSequencesFromDatasetRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  sequence_ids_.Clear();
+  dataset_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* RemoveSequencesFromDatasetRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string dataset_id = 1 [json_name = "datasetId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_dataset_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.RemoveSequencesFromDatasetRequest.dataset_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_sequence_ids();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* RemoveSequencesFromDatasetRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string dataset_id = 1 [json_name = "datasetId"];
+  if (!this->_internal_dataset_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_dataset_id().data(), static_cast<int>(this->_internal_dataset_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.RemoveSequencesFromDatasetRequest.dataset_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_dataset_id(), target);
+  }
+
+  // repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+  for (int i = 0, n = this->_internal_sequence_ids_size(); i < n; i++) {
+    const auto& s = this->_internal_sequence_ids(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.RemoveSequencesFromDatasetRequest.sequence_ids");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+  return target;
+}
+
+size_t RemoveSequencesFromDatasetRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string sequence_ids = 2 [json_name = "sequenceIds"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(sequence_ids_.size());
+  for (int i = 0, n = sequence_ids_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      sequence_ids_.Get(i));
+  }
+
+  // string dataset_id = 1 [json_name = "datasetId"];
+  if (!this->_internal_dataset_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_dataset_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RemoveSequencesFromDatasetRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    RemoveSequencesFromDatasetRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveSequencesFromDatasetRequest::GetClassData() const { return &_class_data_; }
+
+void RemoveSequencesFromDatasetRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<RemoveSequencesFromDatasetRequest *>(to)->MergeFrom(
+      static_cast<const RemoveSequencesFromDatasetRequest &>(from));
+}
+
+
+void RemoveSequencesFromDatasetRequest::MergeFrom(const RemoveSequencesFromDatasetRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  sequence_ids_.MergeFrom(from.sequence_ids_);
+  if (!from._internal_dataset_id().empty()) {
+    _internal_set_dataset_id(from._internal_dataset_id());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RemoveSequencesFromDatasetRequest::CopyFrom(const RemoveSequencesFromDatasetRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.RemoveSequencesFromDatasetRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RemoveSequencesFromDatasetRequest::IsInitialized() const {
+  return true;
+}
+
+void RemoveSequencesFromDatasetRequest::InternalSwap(RemoveSequencesFromDatasetRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  sequence_ids_.InternalSwap(&other->sequence_ids_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &dataset_id_, lhs_arena,
+      &other->dataset_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata RemoveSequencesFromDatasetRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[63]);
+}
+
+// ===================================================================
+
+class RemoveSequencesFromDatasetResponse::_Internal {
+ public:
+};
+
+RemoveSequencesFromDatasetResponse::RemoveSequencesFromDatasetResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.RemoveSequencesFromDatasetResponse)
+}
+RemoveSequencesFromDatasetResponse::RemoveSequencesFromDatasetResponse(const RemoveSequencesFromDatasetResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.RemoveSequencesFromDatasetResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RemoveSequencesFromDatasetResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveSequencesFromDatasetResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata RemoveSequencesFromDatasetResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[64]);
+}
+
+// ===================================================================
+
 class CreateIndexRequest::_Internal {
  public:
   using HasBits = decltype(std::declval<CreateIndexRequest>()._has_bits_);
@@ -19350,7 +20051,7 @@ void CreateIndexRequest::InternalSwap(CreateIndexRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateIndexRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[61]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[65]);
 }
 
 // ===================================================================
@@ -19389,7 +20090,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CreateIndexResponse::GetClassD
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateIndexResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[62]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[66]);
 }
 
 // ===================================================================
@@ -19722,7 +20423,7 @@ void DeleteIndexRequest::InternalSwap(DeleteIndexRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteIndexRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[63]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[67]);
 }
 
 // ===================================================================
@@ -19761,7 +20462,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteIndexResponse::GetClassD
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteIndexResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[64]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[68]);
 }
 
 // ===================================================================
@@ -20046,7 +20747,7 @@ void ListIndexesRequest::InternalSwap(ListIndexesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListIndexesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[65]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[69]);
 }
 
 // ===================================================================
@@ -20224,7 +20925,7 @@ void ListIndexesResponse::InternalSwap(ListIndexesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListIndexesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[66]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[70]);
 }
 
 // ===================================================================
@@ -20579,7 +21280,7 @@ void Index::InternalSwap(Index* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Index::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[67]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[71]);
 }
 
 // ===================================================================
@@ -20855,7 +21556,7 @@ void CreateSavedQueryRequest::InternalSwap(CreateSavedQueryRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateSavedQueryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[68]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[72]);
 }
 
 // ===================================================================
@@ -21050,7 +21751,7 @@ void CreateSavedQueryResponse::InternalSwap(CreateSavedQueryResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateSavedQueryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[69]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[73]);
 }
 
 // ===================================================================
@@ -21476,7 +22177,7 @@ void Query::InternalSwap(Query* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Query::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[70]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[74]);
 }
 
 // ===================================================================
@@ -21671,7 +22372,7 @@ void DeleteSavedQueryRequest::InternalSwap(DeleteSavedQueryRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteSavedQueryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[71]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[75]);
 }
 
 // ===================================================================
@@ -21710,7 +22411,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteSavedQueryResponse::GetC
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteSavedQueryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[72]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[76]);
 }
 
 // ===================================================================
@@ -21905,7 +22606,7 @@ void GetSavedQueryRequest::InternalSwap(GetSavedQueryRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetSavedQueryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[73]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[77]);
 }
 
 // ===================================================================
@@ -22092,7 +22793,7 @@ void GetSavedQueryResponse::InternalSwap(GetSavedQueryResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetSavedQueryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[74]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[78]);
 }
 
 // ===================================================================
@@ -22368,7 +23069,7 @@ void UpdateSavedQueryRequest::InternalSwap(UpdateSavedQueryRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateSavedQueryRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[75]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[79]);
 }
 
 // ===================================================================
@@ -22407,7 +23108,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UpdateSavedQueryResponse::GetC
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateSavedQueryResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[76]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[80]);
 }
 
 // ===================================================================
@@ -22628,7 +23329,7 @@ void ListSavedQueriesRequest::InternalSwap(ListSavedQueriesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListSavedQueriesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[77]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[81]);
 }
 
 // ===================================================================
@@ -22806,7 +23507,7 @@ void ListSavedQueriesResponse::InternalSwap(ListSavedQueriesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListSavedQueriesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[78]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[82]);
 }
 
 // ===================================================================
@@ -23038,7 +23739,7 @@ void CreateBinaryDataSignedURLRequest::InternalSwap(CreateBinaryDataSignedURLReq
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateBinaryDataSignedURLRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[79]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[83]);
 }
 
 // ===================================================================
@@ -23281,7 +23982,7 @@ void CreateBinaryDataSignedURLResponse::InternalSwap(CreateBinaryDataSignedURLRe
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateBinaryDataSignedURLResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[80]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[84]);
 }
 
 // ===================================================================
@@ -23524,7 +24225,7 @@ void SequenceResourceFilter::InternalSwap(SequenceResourceFilter* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata SequenceResourceFilter::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[81]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[85]);
 }
 
 // ===================================================================
@@ -23581,14 +24282,16 @@ Sequence::Sequence(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
   sequence_tags_(arena),
-  resources_(arena) {
+  resources_(arena),
+  dataset_ids_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.Sequence)
 }
 Sequence::Sequence(const Sequence& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       sequence_tags_(from.sequence_tags_),
-      resources_(from.resources_) {
+      resources_(from.resources_),
+      dataset_ids_(from.dataset_ids_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   id_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -23675,6 +24378,7 @@ void Sequence::Clear() {
 
   sequence_tags_.Clear();
   resources_.Clear();
+  dataset_ids_.Clear();
   id_.ClearToEmpty();
   part_id_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && created_at_ != nullptr) {
@@ -23782,6 +24486,21 @@ const char* Sequence::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
         } else
           goto handle_unusual;
         continue;
+      // repeated string dataset_ids = 10 [json_name = "datasetIds"];
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_dataset_ids();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.Sequence.dataset_ids"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<82>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -23877,6 +24596,16 @@ uint8_t* Sequence::_InternalSerialize(
         9, this->_internal_part_id(), target);
   }
 
+  // repeated string dataset_ids = 10 [json_name = "datasetIds"];
+  for (int i = 0, n = this->_internal_dataset_ids_size(); i < n; i++) {
+    const auto& s = this->_internal_dataset_ids(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.Sequence.dataset_ids");
+    target = stream->WriteString(10, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -23906,6 +24635,14 @@ size_t Sequence::ByteSizeLong() const {
   for (const auto& msg : this->resources_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated string dataset_ids = 10 [json_name = "datasetIds"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(dataset_ids_.size());
+  for (int i = 0, n = dataset_ids_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      dataset_ids_.Get(i));
   }
 
   // string id = 1 [json_name = "id"];
@@ -23974,6 +24711,7 @@ void Sequence::MergeFrom(const Sequence& from) {
 
   sequence_tags_.MergeFrom(from.sequence_tags_);
   resources_.MergeFrom(from.resources_);
+  dataset_ids_.MergeFrom(from.dataset_ids_);
   if (!from._internal_id().empty()) {
     _internal_set_id(from._internal_id());
   }
@@ -24013,6 +24751,7 @@ void Sequence::InternalSwap(Sequence* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   sequence_tags_.InternalSwap(&other->sequence_tags_);
   resources_.InternalSwap(&other->resources_);
+  dataset_ids_.InternalSwap(&other->dataset_ids_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &id_, lhs_arena,
       &other->id_, rhs_arena
@@ -24032,7 +24771,7 @@ void Sequence::InternalSwap(Sequence* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Sequence::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[82]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[86]);
 }
 
 // ===================================================================
@@ -24400,7 +25139,7 @@ void CreateSequenceRequest::InternalSwap(CreateSequenceRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateSequenceRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[83]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[87]);
 }
 
 // ===================================================================
@@ -24595,7 +25334,7 @@ void CreateSequenceResponse::InternalSwap(CreateSequenceResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CreateSequenceResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[84]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[88]);
 }
 
 // ===================================================================
@@ -24790,7 +25529,7 @@ void GetSequenceRequest::InternalSwap(GetSequenceRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetSequenceRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[85]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[89]);
 }
 
 // ===================================================================
@@ -24977,7 +25716,7 @@ void GetSequenceResponse::InternalSwap(GetSequenceResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetSequenceResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[86]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[90]);
 }
 
 // ===================================================================
@@ -25391,7 +26130,7 @@ void UpdateSequenceRequest::InternalSwap(UpdateSequenceRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateSequenceRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[87]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[91]);
 }
 
 // ===================================================================
@@ -25430,7 +26169,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UpdateSequenceResponse::GetCla
 ::PROTOBUF_NAMESPACE_ID::Metadata UpdateSequenceResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[88]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[92]);
 }
 
 // ===================================================================
@@ -25625,7 +26364,7 @@ void DeleteSequenceRequest::InternalSwap(DeleteSequenceRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteSequenceRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[89]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[93]);
 }
 
 // ===================================================================
@@ -25664,7 +26403,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DeleteSequenceResponse::GetCla
 ::PROTOBUF_NAMESPACE_ID::Metadata DeleteSequenceResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[90]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[94]);
 }
 
 // ===================================================================
@@ -25933,7 +26672,7 @@ void ListSequencesRequest::InternalSwap(ListSequencesRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListSequencesRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[91]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[95]);
 }
 
 // ===================================================================
@@ -26161,7 +26900,504 @@ void ListSequencesResponse::InternalSwap(ListSequencesResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ListSequencesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
-      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[92]);
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[96]);
+}
+
+// ===================================================================
+
+class SequencesByDatasetIDRequest::_Internal {
+ public:
+};
+
+SequencesByDatasetIDRequest::SequencesByDatasetIDRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.SequencesByDatasetIDRequest)
+}
+SequencesByDatasetIDRequest::SequencesByDatasetIDRequest(const SequencesByDatasetIDRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  dataset_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    dataset_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_dataset_id().empty()) {
+    dataset_id_.Set(from._internal_dataset_id(), 
+      GetArenaForAllocation());
+  }
+  page_token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    page_token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_page_token().empty()) {
+    page_token_.Set(from._internal_page_token(), 
+      GetArenaForAllocation());
+  }
+  page_size_ = from.page_size_;
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.SequencesByDatasetIDRequest)
+}
+
+inline void SequencesByDatasetIDRequest::SharedCtor() {
+dataset_id_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  dataset_id_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+page_token_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  page_token_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+page_size_ = 0u;
+}
+
+SequencesByDatasetIDRequest::~SequencesByDatasetIDRequest() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.SequencesByDatasetIDRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SequencesByDatasetIDRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  dataset_id_.Destroy();
+  page_token_.Destroy();
+}
+
+void SequencesByDatasetIDRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SequencesByDatasetIDRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.SequencesByDatasetIDRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  dataset_id_.ClearToEmpty();
+  page_token_.ClearToEmpty();
+  page_size_ = 0u;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SequencesByDatasetIDRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string dataset_id = 1 [json_name = "datasetId"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_dataset_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.SequencesByDatasetIDRequest.dataset_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string page_token = 2 [json_name = "pageToken"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_page_token();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.SequencesByDatasetIDRequest.page_token"));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 page_size = 3 [json_name = "pageSize"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          page_size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SequencesByDatasetIDRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.SequencesByDatasetIDRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string dataset_id = 1 [json_name = "datasetId"];
+  if (!this->_internal_dataset_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_dataset_id().data(), static_cast<int>(this->_internal_dataset_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.SequencesByDatasetIDRequest.dataset_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_dataset_id(), target);
+  }
+
+  // string page_token = 2 [json_name = "pageToken"];
+  if (!this->_internal_page_token().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_page_token().data(), static_cast<int>(this->_internal_page_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.SequencesByDatasetIDRequest.page_token");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_page_token(), target);
+  }
+
+  // uint32 page_size = 3 [json_name = "pageSize"];
+  if (this->_internal_page_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_page_size(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.SequencesByDatasetIDRequest)
+  return target;
+}
+
+size_t SequencesByDatasetIDRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.SequencesByDatasetIDRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string dataset_id = 1 [json_name = "datasetId"];
+  if (!this->_internal_dataset_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_dataset_id());
+  }
+
+  // string page_token = 2 [json_name = "pageToken"];
+  if (!this->_internal_page_token().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_page_token());
+  }
+
+  // uint32 page_size = 3 [json_name = "pageSize"];
+  if (this->_internal_page_size() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_page_size());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SequencesByDatasetIDRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SequencesByDatasetIDRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SequencesByDatasetIDRequest::GetClassData() const { return &_class_data_; }
+
+void SequencesByDatasetIDRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SequencesByDatasetIDRequest *>(to)->MergeFrom(
+      static_cast<const SequencesByDatasetIDRequest &>(from));
+}
+
+
+void SequencesByDatasetIDRequest::MergeFrom(const SequencesByDatasetIDRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.SequencesByDatasetIDRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_dataset_id().empty()) {
+    _internal_set_dataset_id(from._internal_dataset_id());
+  }
+  if (!from._internal_page_token().empty()) {
+    _internal_set_page_token(from._internal_page_token());
+  }
+  if (from._internal_page_size() != 0) {
+    _internal_set_page_size(from._internal_page_size());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SequencesByDatasetIDRequest::CopyFrom(const SequencesByDatasetIDRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.SequencesByDatasetIDRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SequencesByDatasetIDRequest::IsInitialized() const {
+  return true;
+}
+
+void SequencesByDatasetIDRequest::InternalSwap(SequencesByDatasetIDRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &dataset_id_, lhs_arena,
+      &other->dataset_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &page_token_, lhs_arena,
+      &other->page_token_, rhs_arena
+  );
+  swap(page_size_, other->page_size_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SequencesByDatasetIDRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[97]);
+}
+
+// ===================================================================
+
+class SequencesByDatasetIDResponse::_Internal {
+ public:
+};
+
+SequencesByDatasetIDResponse::SequencesByDatasetIDResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  sequences_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:viam.app.data.v1.SequencesByDatasetIDResponse)
+}
+SequencesByDatasetIDResponse::SequencesByDatasetIDResponse(const SequencesByDatasetIDResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      sequences_(from.sequences_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  next_page_token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    next_page_token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_next_page_token().empty()) {
+    next_page_token_.Set(from._internal_next_page_token(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:viam.app.data.v1.SequencesByDatasetIDResponse)
+}
+
+inline void SequencesByDatasetIDResponse::SharedCtor() {
+next_page_token_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  next_page_token_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SequencesByDatasetIDResponse::~SequencesByDatasetIDResponse() {
+  // @@protoc_insertion_point(destructor:viam.app.data.v1.SequencesByDatasetIDResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SequencesByDatasetIDResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  next_page_token_.Destroy();
+}
+
+void SequencesByDatasetIDResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SequencesByDatasetIDResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:viam.app.data.v1.SequencesByDatasetIDResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  sequences_.Clear();
+  next_page_token_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SequencesByDatasetIDResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .viam.app.data.v1.Sequence sequences = 1 [json_name = "sequences"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_sequences(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // string next_page_token = 2 [json_name = "nextPageToken"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_next_page_token();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.app.data.v1.SequencesByDatasetIDResponse.next_page_token"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SequencesByDatasetIDResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:viam.app.data.v1.SequencesByDatasetIDResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .viam.app.data.v1.Sequence sequences = 1 [json_name = "sequences"];
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_sequences_size()); i < n; i++) {
+    const auto& repfield = this->_internal_sequences(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // string next_page_token = 2 [json_name = "nextPageToken"];
+  if (!this->_internal_next_page_token().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_next_page_token().data(), static_cast<int>(this->_internal_next_page_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.app.data.v1.SequencesByDatasetIDResponse.next_page_token");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_next_page_token(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:viam.app.data.v1.SequencesByDatasetIDResponse)
+  return target;
+}
+
+size_t SequencesByDatasetIDResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:viam.app.data.v1.SequencesByDatasetIDResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .viam.app.data.v1.Sequence sequences = 1 [json_name = "sequences"];
+  total_size += 1UL * this->_internal_sequences_size();
+  for (const auto& msg : this->sequences_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string next_page_token = 2 [json_name = "nextPageToken"];
+  if (!this->_internal_next_page_token().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_next_page_token());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SequencesByDatasetIDResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    SequencesByDatasetIDResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SequencesByDatasetIDResponse::GetClassData() const { return &_class_data_; }
+
+void SequencesByDatasetIDResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<SequencesByDatasetIDResponse *>(to)->MergeFrom(
+      static_cast<const SequencesByDatasetIDResponse &>(from));
+}
+
+
+void SequencesByDatasetIDResponse::MergeFrom(const SequencesByDatasetIDResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:viam.app.data.v1.SequencesByDatasetIDResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  sequences_.MergeFrom(from.sequences_);
+  if (!from._internal_next_page_token().empty()) {
+    _internal_set_next_page_token(from._internal_next_page_token());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SequencesByDatasetIDResponse::CopyFrom(const SequencesByDatasetIDResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:viam.app.data.v1.SequencesByDatasetIDResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SequencesByDatasetIDResponse::IsInitialized() const {
+  return true;
+}
+
+void SequencesByDatasetIDResponse::InternalSwap(SequencesByDatasetIDResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  sequences_.InternalSwap(&other->sequences_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &next_page_token_, lhs_arena,
+      &other->next_page_token_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SequencesByDatasetIDResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_getter, &descriptor_table_app_2fdata_2fv1_2fdata_2eproto_once,
+      file_level_metadata_app_2fdata_2fv1_2fdata_2eproto[98]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -26414,6 +27650,22 @@ template<> PROTOBUF_NOINLINE ::viam::app::data::v1::RemoveBinaryDataFromDatasetB
 Arena::CreateMaybeMessage< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::data::v1::RemoveBinaryDataFromDatasetByIDsResponse >(arena);
 }
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::AddSequencesToDatasetRequest*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::AddSequencesToDatasetRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::AddSequencesToDatasetRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::AddSequencesToDatasetResponse*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::AddSequencesToDatasetResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::AddSequencesToDatasetResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::RemoveSequencesFromDatasetRequest*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::RemoveSequencesFromDatasetRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::RemoveSequencesFromDatasetRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::RemoveSequencesFromDatasetResponse*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::RemoveSequencesFromDatasetResponse >(arena);
+}
 template<> PROTOBUF_NOINLINE ::viam::app::data::v1::CreateIndexRequest*
 Arena::CreateMaybeMessage< ::viam::app::data::v1::CreateIndexRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::data::v1::CreateIndexRequest >(arena);
@@ -26541,6 +27793,14 @@ Arena::CreateMaybeMessage< ::viam::app::data::v1::ListSequencesRequest >(Arena* 
 template<> PROTOBUF_NOINLINE ::viam::app::data::v1::ListSequencesResponse*
 Arena::CreateMaybeMessage< ::viam::app::data::v1::ListSequencesResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::viam::app::data::v1::ListSequencesResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::SequencesByDatasetIDRequest*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::SequencesByDatasetIDRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::SequencesByDatasetIDRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::viam::app::data::v1::SequencesByDatasetIDResponse*
+Arena::CreateMaybeMessage< ::viam::app::data::v1::SequencesByDatasetIDResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::viam::app::data::v1::SequencesByDatasetIDResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

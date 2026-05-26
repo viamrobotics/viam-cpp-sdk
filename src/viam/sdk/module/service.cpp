@@ -215,7 +215,15 @@ struct ModuleService::ServiceImpl : viam::module::v1::ModuleService::Service {
         *response->mutable_handlermap() = hm;
 
         if (!is_env_var_true("VIAM_NO_MODULE_PARENT")) {
-            auto new_parent_addr = parent.grpc_conn_protocol_ + request->raw_parent_address();
+            // Prefer raw_parent_address (added in api PR #837, used by rdk >= v0.123.0).
+            // Fall back to the deprecated parent_address for backward compatibility with
+            // older viam-server versions that don't set the new field.
+            const auto& raw_addr = request->raw_parent_address();
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            const auto& addr = !raw_addr.empty() ? raw_addr : request->parent_address();
+#pragma GCC diagnostic pop
+            auto new_parent_addr = parent.grpc_conn_protocol_ + addr;
             if (parent.parent_addr_ != new_parent_addr) {
                 parent.parent_addr_ = std::move(new_parent_addr);
                 Options opts{0, boost::none};
