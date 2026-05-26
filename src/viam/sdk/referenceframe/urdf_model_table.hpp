@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 
-#include <Eigen/Core>
 #if defined(__has_include) && (__has_include(<xtensor/containers/xarray.hpp>))
 #include <xtensor/containers/xarray.hpp>
 #else
@@ -14,6 +13,7 @@
 #endif
 
 #include <viam/sdk/common/kinematics.hpp>
+#include <viam/sdk/common/linear_algebra.hpp>
 
 namespace viam {
 namespace sdk {
@@ -24,10 +24,10 @@ enum class JointType { revolute, continuous, prismatic, fixed };
 /// @brief One row of the model table: the per-joint URDF fields.
 /// @note `xyz`/`rpy`/`axis` are taken directly from the URDF.
 struct JointRow {
-    std::string name;  
-    Eigen::Vector3d xyz{0, 0, 0};  
-    Eigen::Vector3d rpy{0, 0, 0}; 
-    Eigen::Vector3d axis{0, 0, 0};
+    std::string name;
+    Vector3 xyz{};
+    Vector3 rpy{};
+    Vector3 axis{};
     JointType type = JointType::fixed;
 };
 

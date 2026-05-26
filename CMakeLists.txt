@@ -514,16 +514,7 @@ FetchContent_Declare(
   FIND_PACKAGE_ARGS ${VIAMCPPSDK_XTENSOR_VERSION_MINIMUM} CONFIG
 )
 
-# No version arg on FIND_PACKAGE_ARGS: Eigen's SameMajorVersion check
-# rejects newer majors (4+/5+) from conan-center; we use only stable 3+ API.
-FetchContent_Declare(
-  Eigen3
-  GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
-  GIT_TAG        3147391d946bb4b6c68edd901f2add6ac1f31f8c # 3.4.0
-  FIND_PACKAGE_ARGS CONFIG
-)
-
-FetchContent_MakeAvailable(xtl xtensor Eigen3)
+FetchContent_MakeAvailable(xtl xtensor)
 
 # Pull in our subdirectories
 add_subdirectory(src/viam)

@@ -1,5 +1,6 @@
 #include <viam/sdk/referenceframe/urdf_model_table.hpp>
 
+#include <cmath>
 #include <map>
 #include <set>
 #include <sstream>
@@ -27,14 +28,18 @@ namespace urdf_model_table_internals {
 
 namespace {
 
-Eigen::Vector3d parse_triple(const std::string& s) {
+Vector3 parse_triple(const std::string& s) {
     std::istringstream iss(s);
     double x = 0, y = 0, z = 0;
     if (!(iss >> x >> y >> z)) {
         throw Exception(ErrorCondition::k_general,
                         "URDFToModelTable: failed to parse space-delimited triple: '" + s + "'");
     }
-    return Eigen::Vector3d(x, y, z);
+    return Vector3{x, y, z};
+}
+
+double magnitude(const Vector3& v) {
+    return std::sqrt(v.x() * v.x() + v.y() * v.y() + v.z() * v.z());
 }
 
 }  // namespace
@@ -164,16 +169,16 @@ JointRow to_row(const ParsedJoint& parsed) {
     }
 
     if (row.type == JointType::fixed) {
-        row.axis = Eigen::Vector3d(0, 0, 0);
+        row.axis = Vector3{0, 0, 0};
     } else if (parsed.axis_opt) {
-        if (parsed.axis_opt->norm() < 1e-12) {
+        if (magnitude(*parsed.axis_opt) < 1e-12) {
             throw Exception(
                 ErrorCondition::k_general,
                 "URDFToModelTable: joint '" + parsed.name + "' has zero-magnitude axis");
         }
         row.axis = *parsed.axis_opt;
     } else {
-        row.axis = Eigen::Vector3d(1, 0, 0);  // URDF default
+        row.axis = Vector3{1, 0, 0};  // URDF default
     }
     return row;
 }
@@ -238,9 +243,9 @@ ModelTable tensor_to_model_table(const xt::xarray<double>& tensor) {
                                 " (expected integer in [0, 3])");
         }
         JointRow row;
-        row.xyz = Eigen::Vector3d(tensor(i, 0), tensor(i, 1), tensor(i, 2));
-        row.rpy = Eigen::Vector3d(tensor(i, 3), tensor(i, 4), tensor(i, 5));
-        row.axis = Eigen::Vector3d(tensor(i, 6), tensor(i, 7), tensor(i, 8));
+        row.xyz = Vector3{tensor(i, 0), tensor(i, 1), tensor(i, 2)};
+        row.rpy = Vector3{tensor(i, 3), tensor(i, 4), tensor(i, 5)};
+        row.axis = Vector3{tensor(i, 6), tensor(i, 7), tensor(i, 8)};
         row.type = static_cast<JointType>(type_i);
         table.push_back(std::move(row));
     }

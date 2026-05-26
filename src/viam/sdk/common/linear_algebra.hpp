@@ -38,6 +38,13 @@ struct Vector3 {
     std::array<scalar_type, 3> data;
 };
 
+inline bool operator==(const Vector3& a, const Vector3& b) {
+    return a.data == b.data;
+}
+inline bool operator!=(const Vector3& a, const Vector3& b) {
+    return !(a == b);
+}
+
 namespace proto_convert_details {
 
 template <>

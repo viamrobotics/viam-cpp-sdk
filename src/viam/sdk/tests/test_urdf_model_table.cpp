@@ -53,8 +53,8 @@ BOOST_AUTO_TEST_CASE(parse_urdf_missing_origin) {
 </robot>)";
     auto parsed = parse_urdf(urdf_from_string(xml));
     BOOST_REQUIRE_EQUAL(parsed.size(), 1u);
-    BOOST_CHECK(parsed[0].xyz.isZero());
-    BOOST_CHECK(parsed[0].rpy.isZero());
+    BOOST_CHECK(parsed[0].xyz == Vector3{});
+    BOOST_CHECK(parsed[0].rpy == Vector3{});
 }
 
 BOOST_AUTO_TEST_CASE(parse_urdf_missing_axis) {
@@ -163,16 +163,16 @@ BOOST_AUTO_TEST_CASE(to_row_each_type) {
     };
     for (const auto& c : cases) {
         ParsedJoint p = mk("j", "a", "b", c.first);
-        p.axis_opt = Eigen::Vector3d(0, 0, 1);
+        p.axis_opt = Vector3{0, 0, 1};
         BOOST_CHECK(to_row(p).type == c.second);
     }
 }
 
 BOOST_AUTO_TEST_CASE(to_row_fixed_zeroes_axis) {
     ParsedJoint p = mk("j", "a", "b", "fixed");
-    p.axis_opt = Eigen::Vector3d(1, 2, 3);
+    p.axis_opt = Vector3{1, 2, 3};
     auto row = to_row(p);
-    BOOST_CHECK(row.axis.isZero());
+    BOOST_CHECK(row.axis == Vector3{});
 }
 
 BOOST_AUTO_TEST_CASE(to_row_default_axis_for_nonfixed) {
@@ -193,7 +193,7 @@ BOOST_AUTO_TEST_CASE(to_row_unsupported_type_throws) {
 
 BOOST_AUTO_TEST_CASE(to_row_zero_axis_throws) {
     ParsedJoint p = mk("j", "a", "b", "revolute");
-    p.axis_opt = Eigen::Vector3d(0, 0, 0);
+    p.axis_opt = Vector3{0, 0, 0};
     auto match = [](const Exception& e) {
         return std::string(e.what()).find("zero-magnitude axis") != std::string::npos;
     };
@@ -223,7 +223,7 @@ BOOST_AUTO_TEST_CASE(urdf_to_model_table_end_to_end_inline) {
 
     BOOST_CHECK_EQUAL(table[1].name, "fix");
     BOOST_CHECK(table[1].type == JointType::fixed);
-    BOOST_CHECK(table[1].axis.isZero());
+    BOOST_CHECK(table[1].axis == Vector3{});
 }
 
 BOOST_AUTO_TEST_CASE(tensor_shape_and_dtype) {
@@ -252,7 +252,7 @@ BOOST_AUTO_TEST_CASE(tensor_geometry_columns) {
 }
 
 BOOST_AUTO_TEST_CASE(tensor_type_column) {
-    const Eigen::Vector3d z{0, 0, 0};  // explicit zero; Eigen{} default-ctor is uninitialized
+    const Vector3 z{};
     std::vector<JointRow> table{
         JointRow{"a", z, z, {0, 0, 1}, JointType::revolute},
         JointRow{"b", z, z, {0, 0, 1}, JointType::continuous},
@@ -362,7 +362,7 @@ BOOST_AUTO_TEST_CASE(model_table_gp12_has_fixed_tool0) {
     for (const auto& row : table) {
         if (row.type == JointType::fixed) {
             has_fixed_tool = true;
-            BOOST_CHECK(row.axis.isZero());
+            BOOST_CHECK(row.axis == Vector3{});
         }
     }
     BOOST_CHECK(has_fixed_tool);
@@ -417,7 +417,7 @@ BOOST_AUTO_TEST_CASE(model_table_gp12_full_chain) {
     // Fixed tool joint: nonzero rpy, zero axis (substituted by to_row).
     BOOST_CHECK_CLOSE(table[6].xyz.x(), 0.100, 1e-9);
     BOOST_CHECK_CLOSE(table[6].rpy.y(), -1.570796, 1e-3);
-    BOOST_CHECK(table[6].axis.isZero());
+    BOOST_CHECK(table[6].axis == Vector3{});
 
     // Tensor cross-check: same 7 rows, 10 columns, type column at index 9.
     auto t = model_table_to_tensor(table);
@@ -441,7 +441,7 @@ BOOST_AUTO_TEST_CASE(parse_urdf_gp12_full_file) {
     BOOST_CHECK_SMALL(parsed[0].xyz.x(), 1e-9);
     BOOST_CHECK_SMALL(parsed[0].xyz.y(), 1e-9);
     BOOST_CHECK_CLOSE(parsed[0].xyz.z(), 0.450, 1e-9);
-    BOOST_CHECK(parsed[0].rpy.isZero());
+    BOOST_CHECK(parsed[0].rpy == Vector3{});
     BOOST_REQUIRE(parsed[0].axis_opt.has_value());
     BOOST_CHECK_SMALL(parsed[0].axis_opt->x(), 1e-9);
     BOOST_CHECK_SMALL(parsed[0].axis_opt->y(), 1e-9);
@@ -482,7 +482,7 @@ BOOST_AUTO_TEST_CASE(parse_urdf_gp12_full_file) {
     BOOST_CHECK_EQUAL(parsed[4].type_str, "revolute");
     BOOST_CHECK_EQUAL(parsed[4].parent_link, "link_4_r");
     BOOST_CHECK_EQUAL(parsed[4].child_link, "link_5_b");
-    BOOST_CHECK(parsed[4].xyz.isZero());
+    BOOST_CHECK(parsed[4].xyz == Vector3{});
     BOOST_REQUIRE(parsed[4].axis_opt.has_value());
     BOOST_CHECK_CLOSE(parsed[4].axis_opt->y(), -1.0, 1e-9);
 
@@ -491,7 +491,7 @@ BOOST_AUTO_TEST_CASE(parse_urdf_gp12_full_file) {
     BOOST_CHECK_EQUAL(parsed[5].type_str, "revolute");
     BOOST_CHECK_EQUAL(parsed[5].parent_link, "link_5_b");
     BOOST_CHECK_EQUAL(parsed[5].child_link, "link_6_t");
-    BOOST_CHECK(parsed[5].xyz.isZero());
+    BOOST_CHECK(parsed[5].xyz == Vector3{});
     BOOST_REQUIRE(parsed[5].axis_opt.has_value());
     BOOST_CHECK_CLOSE(parsed[5].axis_opt->x(), -1.0, 1e-9);
 

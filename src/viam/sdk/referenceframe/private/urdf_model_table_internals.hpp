@@ -6,10 +6,10 @@
 #include <string>
 #include <vector>
 
-#include <Eigen/Core>
 #include <boost/optional.hpp>
 
 #include <viam/sdk/common/kinematics.hpp>
+#include <viam/sdk/common/linear_algebra.hpp>
 #include <viam/sdk/referenceframe/urdf_model_table.hpp>
 
 namespace viam {
@@ -22,9 +22,9 @@ struct ParsedJoint {
     std::string type_str;  ///< raw URDF type attribute
     std::string parent_link;
     std::string child_link;
-    Eigen::Vector3d xyz{0, 0, 0};
-    Eigen::Vector3d rpy{0, 0, 0};
-    boost::optional<Eigen::Vector3d> axis_opt;
+    Vector3 xyz{};
+    Vector3 rpy{};
+    boost::optional<Vector3> axis_opt;
 };
 
 /// @brief Parse all <joint> elements from a URDF, no topology checks.
