@@ -30,7 +30,9 @@ namespace {
 
 Vector3 parse_triple(const std::string& s) {
     std::istringstream iss(s);
-    double x = 0, y = 0, z = 0;
+    double x = 0;
+    double y = 0;
+    double z = 0;
     if (!(iss >> x >> y >> z)) {
         throw Exception(ErrorCondition::k_general,
                         "URDFToModelTable: failed to parse space-delimited triple: '" + s + "'");
@@ -47,7 +49,8 @@ double magnitude(const Vector3& v) {
 std::vector<ParsedJoint> parse_urdf(const KinematicsDataURDF& urdf) {
     namespace pt = boost::property_tree;
     pt::ptree tree;
-    std::string text(reinterpret_cast<const char*>(urdf.bytes.data()), urdf.bytes.size());
+    const std::string text(reinterpret_cast<const char*>(urdf.bytes.data()),
+                           urdf.bytes.size());
     std::istringstream iss(text);
     try {
         pt::read_xml(iss, tree);
@@ -65,8 +68,9 @@ std::vector<ParsedJoint> parse_urdf(const KinematicsDataURDF& urdf) {
 
     std::vector<ParsedJoint> joints;
     for (const auto& child : robot) {
-        if (child.first != "joint")
+        if (child.first != "joint") {
             continue;
+        }
         const pt::ptree& jnode = child.second;
 
         ParsedJoint j;
@@ -97,7 +101,8 @@ std::vector<ParsedJoint> parse_urdf(const KinematicsDataURDF& urdf) {
 
 std::vector<ParsedJoint> walk_urdf_chain(const std::vector<ParsedJoint>& joints) {
     std::map<std::string, std::vector<const ParsedJoint*>> by_parent;
-    std::set<std::string> all_parents, all_children;
+    std::set<std::string> all_parents;
+    std::set<std::string> all_children;
     for (const auto& j : joints) {
         by_parent[j.parent_link].push_back(&j);
         all_parents.insert(j.parent_link);
@@ -106,13 +111,15 @@ std::vector<ParsedJoint> walk_urdf_chain(const std::vector<ParsedJoint>& joints)
 
     std::vector<std::string> roots;
     for (const auto& p : all_parents) {
-        if (all_children.find(p) == all_children.end())
+        if (all_children.find(p) == all_children.end()) {
             roots.push_back(p);
+        }
     }
     if (roots.size() != 1) {
         std::string list;
-        for (const auto& r : roots)
+        for (const auto& r : roots) {
             list += "'" + r + "' ";
+        }
         throw Exception(ErrorCondition::k_general,
                         "URDFToModelTable: expected exactly one root link, found " +
                             std::to_string(roots.size()) + ": " + list);
@@ -128,8 +135,9 @@ std::vector<ParsedJoint> walk_urdf_chain(const std::vector<ParsedJoint>& joints)
                             "URDFToModelTable: cycle in URDF chain at link '" + current + "'");
         }
         auto it = by_parent.find(current);
-        if (it == by_parent.end() || it->second.empty())
+        if (it == by_parent.end() || it->second.empty()) {
             break;
+        }
         if (it->second.size() > 1) {
             throw Exception(ErrorCondition::k_general,
                             "URDFToModelTable: branching topology at link '" + current + "' (" +
@@ -153,15 +161,15 @@ JointRow to_row(const ParsedJoint& parsed) {
     row.xyz = parsed.xyz;
     row.rpy = parsed.rpy;
 
-    if (parsed.type_str == "revolute")
+    if (parsed.type_str == "revolute") {
         row.type = JointType::revolute;
-    else if (parsed.type_str == "continuous")
+    } else if (parsed.type_str == "continuous") {
         row.type = JointType::continuous;
-    else if (parsed.type_str == "prismatic")
+    } else if (parsed.type_str == "prismatic") {
         row.type = JointType::prismatic;
-    else if (parsed.type_str == "fixed")
+    } else if (parsed.type_str == "fixed") {
         row.type = JointType::fixed;
-    else {
+    } else {
         throw Exception(ErrorCondition::k_not_supported,
                         "URDFToModelTable: joint '" + parsed.name + "' has unsupported type '" +
                             parsed.type_str +
