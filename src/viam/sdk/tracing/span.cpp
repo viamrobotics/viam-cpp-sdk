@@ -72,7 +72,6 @@ template void TracingSpan::set_attribute<bool>(const char*, bool) noexcept;
 template void TracingSpan::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
 template void TracingSpan::set_attribute<double>(const char*, double) noexcept;
 template void TracingSpan::set_attribute<const char*>(const char*, const char*) noexcept;
-template void TracingSpan::set_attribute<std::string>(const char*, std::string) noexcept;
 
 void TracingSpan::add_event(const char* name) noexcept {
     impl_->span->AddEvent(name);
@@ -114,11 +113,13 @@ TracingSpan::~TracingSpan() noexcept = default;
 template <typename T>
 void TracingSpan::set_attribute(const char*, T) noexcept {}
 
+template <>
+void TracingSpan::set_attribute<std::string>(const char*, std::string) noexcept {}
+
 template void TracingSpan::set_attribute<bool>(const char*, bool) noexcept;
 template void TracingSpan::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
 template void TracingSpan::set_attribute<double>(const char*, double) noexcept;
 template void TracingSpan::set_attribute<const char*>(const char*, const char*) noexcept;
-template void TracingSpan::set_attribute<std::string>(const char*, std::string) noexcept;
 
 void TracingSpan::add_event(const char*) noexcept {}
 void TracingSpan::set_status_ok() noexcept {}
