@@ -114,8 +114,9 @@ template <typename T>
 void TracingSpan::set_attribute(const char*, T) noexcept {}
 
 template <>
-void TracingSpan::set_attribute<std::string>(const char*, std::string) noexcept {
-}  // NOLINT(performance-unnecessary-value-param)
+void TracingSpan::set_attribute<std::string>(
+    const char*, std::string) noexcept  // NOLINT(performance-unnecessary-value-param)
+{}
 
 template void TracingSpan::set_attribute<bool>(const char*, bool) noexcept;
 template void TracingSpan::set_attribute<std::int64_t>(const char*, std::int64_t) noexcept;
