@@ -1,4 +1,4 @@
-#define BOOST_TEST_MODULE test module test_urdf_model_table
+#define BOOST_TEST_MODULE test module test_kinematics_model_table
 
 #include <fstream>
 #include <sstream>
@@ -7,8 +7,8 @@
 #include <boost/test/included/unit_test.hpp>
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/referenceframe/private/urdf_model_table_internals.hpp>
-#include <viam/sdk/referenceframe/urdf_model_table.hpp>
+#include <viam/sdk/referenceframe/kinematics_model_table.hpp>
+#include <viam/sdk/referenceframe/private/kinematics_model_table_internals.hpp>
 
 using namespace viam::sdk;
 using namespace viam::sdk::urdf_model_table_internals;
@@ -200,7 +200,7 @@ BOOST_AUTO_TEST_CASE(to_row_zero_axis_throws) {
     BOOST_CHECK_EXCEPTION(to_row(p), Exception, match);
 }
 
-BOOST_AUTO_TEST_CASE(urdf_to_model_table_end_to_end_inline) {
+BOOST_AUTO_TEST_CASE(kinematics_to_model_table_end_to_end_inline) {
     const std::string xml = R"(<?xml version="1.0"?>
 <robot name="r">
   <link name="base"/><link name="l1"/><link name="tool"/>
@@ -213,7 +213,7 @@ BOOST_AUTO_TEST_CASE(urdf_to_model_table_end_to_end_inline) {
     <origin xyz="0.1 0 0"/>
   </joint>
 </robot>)";
-    auto table = urdf_to_model_table(urdf_from_string(xml));
+    auto table = kinematics_to_model_table(urdf_from_string(xml));
     BOOST_REQUIRE_EQUAL(table.size(), 2u);
 
     BOOST_CHECK_EQUAL(table[0].name, "j1");
@@ -357,7 +357,7 @@ KinematicsDataURDF load_urdf(const std::string& filename) {
 }  // namespace
 
 BOOST_AUTO_TEST_CASE(model_table_gp12_has_fixed_tool0) {
-    auto table = urdf_to_model_table(load_urdf("gp12.urdf"));
+    auto table = kinematics_to_model_table(load_urdf("gp12.urdf"));
     bool has_fixed_tool = false;
     for (const auto& row : table) {
         if (row.type == JointType::fixed) {
@@ -369,7 +369,7 @@ BOOST_AUTO_TEST_CASE(model_table_gp12_has_fixed_tool0) {
 }
 
 BOOST_AUTO_TEST_CASE(tensor_round_trip_gp12) {
-    auto table = urdf_to_model_table(load_urdf("gp12.urdf"));
+    auto table = kinematics_to_model_table(load_urdf("gp12.urdf"));
     auto t = model_table_to_tensor(table);
     BOOST_CHECK_EQUAL(t.shape()[0], table.size());
     BOOST_CHECK_EQUAL(t.shape()[1], 10u);
@@ -381,7 +381,7 @@ BOOST_AUTO_TEST_CASE(tensor_round_trip_gp12) {
 }
 
 BOOST_AUTO_TEST_CASE(model_table_gp12_full_chain) {
-    auto table = urdf_to_model_table(load_urdf("gp12.urdf"));
+    auto table = kinematics_to_model_table(load_urdf("gp12.urdf"));
 
     // 6 revolute joints + 1 fixed tool joint.
     BOOST_REQUIRE_EQUAL(table.size(), 7u);
@@ -510,7 +510,7 @@ BOOST_AUTO_TEST_CASE(parse_urdf_gp12_full_file) {
 }
 
 BOOST_AUTO_TEST_CASE(tensor_to_model_table_gp12_round_trip) {
-    auto table = urdf_to_model_table(load_urdf("gp12.urdf"));
+    auto table = kinematics_to_model_table(load_urdf("gp12.urdf"));
     auto t = model_table_to_tensor(table);
     auto rebuilt = tensor_to_model_table(t);
     BOOST_REQUIRE_EQUAL(rebuilt.size(), table.size());

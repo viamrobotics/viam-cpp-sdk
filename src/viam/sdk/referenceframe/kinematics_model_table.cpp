@@ -1,4 +1,4 @@
-#include <viam/sdk/referenceframe/urdf_model_table.hpp>
+#include <viam/sdk/referenceframe/kinematics_model_table.hpp>
 
 #include <cmath>
 #include <map>
@@ -20,7 +20,7 @@
 #endif
 
 #include <viam/sdk/common/exception.hpp>
-#include <viam/sdk/referenceframe/private/urdf_model_table_internals.hpp>
+#include <viam/sdk/referenceframe/private/kinematics_model_table_internals.hpp>
 
 namespace viam {
 namespace sdk {
@@ -192,7 +192,7 @@ JointRow to_row(const ParsedJoint& parsed) {
 
 }  // namespace urdf_model_table_internals
 
-ModelTable urdf_to_model_table(const KinematicsDataURDF& urdf) {
+ModelTable kinematics_to_model_table(const KinematicsDataURDF& urdf) {
     using namespace urdf_model_table_internals;
     auto chain = walk_urdf_chain(parse_urdf(urdf));
     ModelTable table;

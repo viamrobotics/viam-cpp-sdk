@@ -1,6 +1,6 @@
-/// @file referenceframe/private/urdf_model_table_internals.hpp
-/// @brief Internal helpers for urdf_to_model_table. Exposed only to
-///        the testsuite; not a stable public API.
+/// @file referenceframe/private/kinematics_model_table_internals.hpp
+/// @brief Internal helpers for kinematics_to_model_table (URDF path).
+///        Exposed only to the testsuite; not a stable public API.
 #pragma once
 
 #include <string>
@@ -10,7 +10,7 @@
 
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/linear_algebra.hpp>
-#include <viam/sdk/referenceframe/urdf_model_table.hpp>
+#include <viam/sdk/referenceframe/kinematics_model_table.hpp>
 
 namespace viam {
 namespace sdk {

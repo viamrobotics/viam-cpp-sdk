@@ -1,4 +1,4 @@
-/// @file referenceframe/urdf_model_table.hpp
+/// @file referenceframe/kinematics_model_table.hpp
 /// @brief Convert a serial URDF chain to a typed per-joint model table
 ///        and from the table to a double (n, 10) tensor.
 #pragma once
@@ -33,10 +33,12 @@ struct JointRow {
 
 using ModelTable = std::vector<JointRow>;
 
-/// @brief Parse a URDF and return the per-joint model table in chain order.
+/// @brief Parse a kinematics description and return the per-joint model
+/// table in chain order. Currently only URDF input is supported; SVA
+/// support is planned.
 /// @throws viam::sdk::Exception on parse error, branching / multi-root /
 ///         disconnected topology, unsupported joint types, or zero axis.
-ModelTable urdf_to_model_table(const KinematicsDataURDF& urdf);
+ModelTable kinematics_to_model_table(const KinematicsDataURDF& urdf);
 
 /// @brief Convert a model table to a double tensor of shape (n, 10).
 /// Columns: 0..2 xyz, 3..5 rpy, 6..8 axis, 9 joint type as
