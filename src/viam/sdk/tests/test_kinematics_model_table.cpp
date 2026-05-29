@@ -195,7 +195,7 @@ BOOST_AUTO_TEST_CASE(to_row_zero_axis_throws) {
     ParsedJoint p = mk("j", "a", "b", "revolute");
     p.axis_opt = Vector3{0, 0, 0};
     auto match = [](const Exception& e) {
-        return std::string(e.what()).find("zero-magnitude axis") != std::string::npos;
+        return std::string(e.what()).find("zero axis") != std::string::npos;
     };
     BOOST_CHECK_EXCEPTION(to_row(p), Exception, match);
 }

@@ -1,6 +1,5 @@
 #include <viam/sdk/referenceframe/kinematics_model_table.hpp>
 
-#include <cmath>
 #include <map>
 #include <set>
 #include <sstream>
@@ -38,10 +37,6 @@ Vector3 parse_triple(const std::string& s) {
                         "URDFToModelTable: failed to parse space-delimited triple: '" + s + "'");
     }
     return Vector3{x, y, z};
-}
-
-double magnitude(const Vector3& v) {
-    return std::sqrt(v.x() * v.x() + v.y() * v.y() + v.z() * v.z());
 }
 
 }  // namespace
@@ -178,10 +173,9 @@ JointRow to_row(const ParsedJoint& parsed) {
     if (row.type == JointType::k_fixed) {
         row.axis = Vector3{0, 0, 0};
     } else if (parsed.axis_opt) {
-        if (magnitude(*parsed.axis_opt) < 1e-12) {
-            throw Exception(
-                ErrorCondition::k_general,
-                "URDFToModelTable: joint '" + parsed.name + "' has zero-magnitude axis");
+        if (*parsed.axis_opt == Vector3{}) {
+            throw Exception(ErrorCondition::k_general,
+                            "URDFToModelTable: joint '" + parsed.name + "' has zero axis");
         }
         row.axis = *parsed.axis_opt;
     } else {
