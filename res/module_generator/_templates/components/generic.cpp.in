@@ -7,13 +7,28 @@ namespace {{ .ModuleSnake }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Generic(cfg.name()) {
+    : GenericComponent(cfg.name()) {
     throw std::runtime_error("constructor not implemented");
 }
 
 
 std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceConfig& cfg) {
     throw std::runtime_error("\"validate\" not implemented");
+}
+
+viam::sdk::ProtoStruct {{ .ModelPascal }}::do_command(const viam::sdk::ProtoStruct & command)
+{
+    throw std::logic_error("\"do_command\" not implemented");
+}
+
+viam::sdk::ProtoStruct {{ .ModelPascal }}::get_status()
+{
+    throw std::logic_error("\"get_status\" not implemented");
+}
+
+std::vector<viam::sdk::GeometryConfig> {{ .ModelPascal }}::get_geometries(const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"get_geometries\" not implemented");
 }
 
 } // namespace {{ .ModuleSnake }}
