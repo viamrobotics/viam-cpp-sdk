@@ -19,7 +19,14 @@ namespace viam {
 namespace sdk {
 
 /// @brief URDF joint type, restricted to arm-relevant joints.
-enum class JointType { revolute, continuous, prismatic, fixed };
+/// @note Underlying values are stable and form the wire encoding for
+/// column 9 of the tensor produced by `model_table_to_tensor`.
+enum class JointType {
+    k_revolute = 0,
+    k_continuous = 1,
+    k_prismatic = 2,
+    k_fixed = 3,
+};
 
 /// @brief One row of the model table: the per-joint URDF fields.
 /// @note `xyz`/`rpy`/`axis` are taken directly from the URDF.
@@ -28,7 +35,7 @@ struct JointRow {
     Vector3 xyz{};
     Vector3 rpy{};
     Vector3 axis{};
-    JointType type = JointType::fixed;
+    JointType type = JointType::k_fixed;
 };
 
 using ModelTable = std::vector<JointRow>;
@@ -41,8 +48,8 @@ using ModelTable = std::vector<JointRow>;
 ModelTable kinematics_to_model_table(const KinematicsDataURDF& urdf);
 
 /// @brief Convert a model table to a double tensor of shape (n, 10).
-/// Columns: 0..2 xyz, 3..5 rpy, 6..8 axis, 9 joint type as
-/// underlying enum value (0=revolute, 1=continuous, 2=prismatic, 3=fixed).
+/// Columns: 0..2 xyz, 3..5 rpy, 6..8 axis, 9 joint type as the underlying
+/// value of `JointType` (see enum declaration for the encoding).
 /// @throws viam::sdk::Exception on empty input.
 xt::xarray<double> model_table_to_tensor(const ModelTable& table);
 
@@ -50,8 +57,8 @@ xt::xarray<double> model_table_to_tensor(const ModelTable& table);
 /// tensor into a model table. Reconstructed rows have empty `name`
 /// (names are not carried in the tensor).
 /// @throws viam::sdk::Exception on non-2D input, wrong column count,
-/// empty input, or invalid joint-type encoding (col 9 must be an
-/// integer in [0, 3]).
+/// empty input, or invalid joint-type encoding (col 9 must be an integer
+/// matching one of the `JointType` values).
 ModelTable tensor_to_model_table(const xt::xarray<double>& tensor);
 
 }  // namespace sdk

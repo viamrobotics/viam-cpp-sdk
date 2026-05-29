@@ -24,7 +24,7 @@
 
 namespace viam {
 namespace sdk {
-namespace urdf_model_table_internals {
+namespace impl {
 
 namespace {
 
@@ -161,13 +161,13 @@ JointRow to_row(const ParsedJoint& parsed) {
     row.rpy = parsed.rpy;
 
     if (parsed.type_str == "revolute") {
-        row.type = JointType::revolute;
+        row.type = JointType::k_revolute;
     } else if (parsed.type_str == "continuous") {
-        row.type = JointType::continuous;
+        row.type = JointType::k_continuous;
     } else if (parsed.type_str == "prismatic") {
-        row.type = JointType::prismatic;
+        row.type = JointType::k_prismatic;
     } else if (parsed.type_str == "fixed") {
-        row.type = JointType::fixed;
+        row.type = JointType::k_fixed;
     } else {
         throw Exception(ErrorCondition::k_not_supported,
                         "URDFToModelTable: joint '" + parsed.name + "' has unsupported type '" +
@@ -175,7 +175,7 @@ JointRow to_row(const ParsedJoint& parsed) {
                             "' (supported: revolute, continuous, prismatic, fixed)");
     }
 
-    if (row.type == JointType::fixed) {
+    if (row.type == JointType::k_fixed) {
         row.axis = Vector3{0, 0, 0};
     } else if (parsed.axis_opt) {
         if (magnitude(*parsed.axis_opt) < 1e-12) {
@@ -190,10 +190,10 @@ JointRow to_row(const ParsedJoint& parsed) {
     return row;
 }
 
-}  // namespace urdf_model_table_internals
+}  // namespace impl
 
 ModelTable kinematics_to_model_table(const KinematicsDataURDF& urdf) {
-    using namespace urdf_model_table_internals;
+    using namespace impl;
     auto chain = walk_urdf_chain(parse_urdf(urdf));
     ModelTable table;
     table.reserve(chain.size());
@@ -243,17 +243,31 @@ ModelTable tensor_to_model_table(const xt::xarray<double>& tensor) {
     for (std::size_t i = 0; i < tensor.shape()[0]; ++i) {
         const double type_v = tensor(i, 9);
         const int type_i = static_cast<int>(type_v);
-        if (static_cast<double>(type_i) != type_v || type_i < 0 || type_i > 3) {
+        if (static_cast<double>(type_i) != type_v) {
             throw Exception(ErrorCondition::k_general,
                             "tensor_to_model_table: row " + std::to_string(i) +
-                                " has invalid joint type value " + std::to_string(type_v) +
-                                " (expected integer in [0, 3])");
+                                " joint type value " + std::to_string(type_v) +
+                                " is not an integer");
+        }
+        JointType joint_type;
+        switch (static_cast<JointType>(type_i)) {
+            case JointType::k_revolute:
+            case JointType::k_continuous:
+            case JointType::k_prismatic:
+            case JointType::k_fixed:
+                joint_type = static_cast<JointType>(type_i);
+                break;
+            default:
+                throw Exception(ErrorCondition::k_general,
+                                "tensor_to_model_table: row " + std::to_string(i) +
+                                    " joint type value " + std::to_string(type_i) +
+                                    " does not match any JointType");
         }
         JointRow row;
         row.xyz = Vector3{tensor(i, 0), tensor(i, 1), tensor(i, 2)};
         row.rpy = Vector3{tensor(i, 3), tensor(i, 4), tensor(i, 5)};
         row.axis = Vector3{tensor(i, 6), tensor(i, 7), tensor(i, 8)};
-        row.type = static_cast<JointType>(type_i);
+        row.type = joint_type;
         table.push_back(std::move(row));
     }
     return table;

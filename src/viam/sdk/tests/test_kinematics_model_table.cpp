@@ -11,7 +11,7 @@
 #include <viam/sdk/referenceframe/private/kinematics_model_table_internals.hpp>
 
 using namespace viam::sdk;
-using namespace viam::sdk::urdf_model_table_internals;
+using namespace viam::sdk::impl;
 
 namespace {
 KinematicsDataURDF urdf_from_string(const std::string& xml) {
@@ -156,10 +156,10 @@ BOOST_AUTO_TEST_CASE(walk_urdf_chain_cycle_throws) {
 
 BOOST_AUTO_TEST_CASE(to_row_each_type) {
     const std::vector<std::pair<std::string, JointType>> cases{
-        {"revolute", JointType::revolute},
-        {"continuous", JointType::continuous},
-        {"prismatic", JointType::prismatic},
-        {"fixed", JointType::fixed},
+        {"revolute", JointType::k_revolute},
+        {"continuous", JointType::k_continuous},
+        {"prismatic", JointType::k_prismatic},
+        {"fixed", JointType::k_fixed},
     };
     for (const auto& c : cases) {
         ParsedJoint p = mk("j", "a", "b", c.first);
@@ -217,19 +217,19 @@ BOOST_AUTO_TEST_CASE(kinematics_to_model_table_end_to_end_inline) {
     BOOST_REQUIRE_EQUAL(table.size(), 2u);
 
     BOOST_CHECK_EQUAL(table[0].name, "j1");
-    BOOST_CHECK(table[0].type == JointType::revolute);
+    BOOST_CHECK(table[0].type == JointType::k_revolute);
     BOOST_CHECK_CLOSE(table[0].xyz.z(), 0.5, 1e-9);
     BOOST_CHECK_CLOSE(table[0].axis.z(), 1.0, 1e-9);
 
     BOOST_CHECK_EQUAL(table[1].name, "fix");
-    BOOST_CHECK(table[1].type == JointType::fixed);
+    BOOST_CHECK(table[1].type == JointType::k_fixed);
     BOOST_CHECK(table[1].axis == Vector3{});
 }
 
 BOOST_AUTO_TEST_CASE(tensor_shape_and_dtype) {
     std::vector<JointRow> table{
-        JointRow{"a", {1, 2, 3}, {0.1, 0.2, 0.3}, {0, 0, 1}, JointType::revolute},
-        JointRow{"b", {4, 5, 6}, {0, 0, 0}, {0, 0, 0}, JointType::fixed},
+        JointRow{"a", {1, 2, 3}, {0.1, 0.2, 0.3}, {0, 0, 1}, JointType::k_revolute},
+        JointRow{"b", {4, 5, 6}, {0, 0, 0}, {0, 0, 0}, JointType::k_fixed},
     };
     auto t = model_table_to_tensor(table);
     BOOST_CHECK_EQUAL(t.dimension(), 2u);
@@ -240,7 +240,7 @@ BOOST_AUTO_TEST_CASE(tensor_shape_and_dtype) {
 
 BOOST_AUTO_TEST_CASE(tensor_geometry_columns) {
     std::vector<JointRow> table{
-        JointRow{"a", {1.5, 2.5, 3.5}, {0.1, 0.2, 0.3}, {0.4, 0.5, 0.6}, JointType::revolute},
+        JointRow{"a", {1.5, 2.5, 3.5}, {0.1, 0.2, 0.3}, {0.4, 0.5, 0.6}, JointType::k_revolute},
     };
     auto t = model_table_to_tensor(table);
     BOOST_CHECK_CLOSE(t(0, 0), 1.5, 1e-9);
@@ -254,10 +254,10 @@ BOOST_AUTO_TEST_CASE(tensor_geometry_columns) {
 BOOST_AUTO_TEST_CASE(tensor_type_column) {
     const Vector3 z{};
     std::vector<JointRow> table{
-        JointRow{"a", z, z, {0, 0, 1}, JointType::revolute},
-        JointRow{"b", z, z, {0, 0, 1}, JointType::continuous},
-        JointRow{"c", z, z, {1, 0, 0}, JointType::prismatic},
-        JointRow{"d", z, z, {0, 0, 0}, JointType::fixed},
+        JointRow{"a", z, z, {0, 0, 1}, JointType::k_revolute},
+        JointRow{"b", z, z, {0, 0, 1}, JointType::k_continuous},
+        JointRow{"c", z, z, {1, 0, 0}, JointType::k_prismatic},
+        JointRow{"d", z, z, {0, 0, 0}, JointType::k_fixed},
     };
     auto t = model_table_to_tensor(table);
     BOOST_CHECK_EQUAL(t(0, 9), 0.0);  // revolute
@@ -268,7 +268,7 @@ BOOST_AUTO_TEST_CASE(tensor_type_column) {
 
 BOOST_AUTO_TEST_CASE(tensor_fixed_joint_axis_zero) {
     std::vector<JointRow> table{
-        JointRow{"f", {0.1, 0.2, 0.3}, {0, 0, 0}, {0, 0, 0}, JointType::fixed},
+        JointRow{"f", {0.1, 0.2, 0.3}, {0, 0, 0}, {0, 0, 0}, JointType::k_fixed},
     };
     auto t = model_table_to_tensor(table);
     BOOST_CHECK_EQUAL(t(0, 6), 0.0);
@@ -286,9 +286,9 @@ BOOST_AUTO_TEST_CASE(model_table_to_tensor_empty_throws) {
 
 BOOST_AUTO_TEST_CASE(tensor_to_model_table_round_trip) {
     std::vector<JointRow> table{
-        JointRow{"a", {1.5, 2.5, 3.5}, {0.1, 0.2, 0.3}, {0.4, 0.5, 0.6}, JointType::revolute},
-        JointRow{"b", {4, 5, 6}, {0, 0, 0}, {1, 0, 0}, JointType::prismatic},
-        JointRow{"c", {7, 8, 9}, {0, 0, 0}, {0, 0, 0}, JointType::fixed},
+        JointRow{"a", {1.5, 2.5, 3.5}, {0.1, 0.2, 0.3}, {0.4, 0.5, 0.6}, JointType::k_revolute},
+        JointRow{"b", {4, 5, 6}, {0, 0, 0}, {1, 0, 0}, JointType::k_prismatic},
+        JointRow{"c", {7, 8, 9}, {0, 0, 0}, {0, 0, 0}, JointType::k_fixed},
     };
     auto t = model_table_to_tensor(table);
     auto rebuilt = tensor_to_model_table(t);
@@ -331,16 +331,16 @@ BOOST_AUTO_TEST_CASE(tensor_to_model_table_fractional_type_throws) {
     xt::xarray<double> t = xt::zeros<double>({std::size_t{1}, std::size_t{10}});
     t(0, 9) = 0.5;  // non-integer joint type
     auto match = [](const Exception& e) {
-        return std::string(e.what()).find("invalid joint type value") != std::string::npos;
+        return std::string(e.what()).find("is not an integer") != std::string::npos;
     };
     BOOST_CHECK_EXCEPTION(tensor_to_model_table(t), Exception, match);
 }
 
 BOOST_AUTO_TEST_CASE(tensor_to_model_table_out_of_range_type_throws) {
     xt::xarray<double> t = xt::zeros<double>({std::size_t{1}, std::size_t{10}});
-    t(0, 9) = 7.0;  // outside [0, 3]
+    t(0, 9) = 7.0;  // does not match any JointType value
     auto match = [](const Exception& e) {
-        return std::string(e.what()).find("invalid joint type value") != std::string::npos;
+        return std::string(e.what()).find("does not match any JointType") != std::string::npos;
     };
     BOOST_CHECK_EXCEPTION(tensor_to_model_table(t), Exception, match);
 }
@@ -360,7 +360,7 @@ BOOST_AUTO_TEST_CASE(model_table_gp12_has_fixed_tool0) {
     auto table = kinematics_to_model_table(load_urdf("gp12.urdf"));
     bool has_fixed_tool = false;
     for (const auto& row : table) {
-        if (row.type == JointType::fixed) {
+        if (row.type == JointType::k_fixed) {
             has_fixed_tool = true;
             BOOST_CHECK(row.axis == Vector3{});
         }
@@ -397,9 +397,9 @@ BOOST_AUTO_TEST_CASE(model_table_gp12_full_chain) {
 
     // Types: 6 revolute then 1 fixed.
     for (std::size_t i = 0; i < 6; ++i) {
-        BOOST_CHECK(table[i].type == JointType::revolute);
+        BOOST_CHECK(table[i].type == JointType::k_revolute);
     }
-    BOOST_CHECK(table[6].type == JointType::fixed);
+    BOOST_CHECK(table[6].type == JointType::k_fixed);
 
     // Joint 1: shoulder, vertical axis at z=0.450.
     BOOST_CHECK_SMALL(table[0].xyz.x(), 1e-9);

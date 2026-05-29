@@ -14,7 +14,7 @@
 
 namespace viam {
 namespace sdk {
-namespace urdf_model_table_internals {
+namespace impl {
 
 /// @brief Per-joint parse result, pre-validation.
 struct ParsedJoint {
@@ -38,6 +38,6 @@ std::vector<ParsedJoint> walk_urdf_chain(const std::vector<ParsedJoint>& joints)
 /// @throws viam::sdk::Exception on unsupported type or zero non-fixed axis.
 JointRow to_row(const ParsedJoint& parsed);
 
-}  // namespace urdf_model_table_internals
+}  // namespace impl
 }  // namespace sdk
 }  // namespace viam

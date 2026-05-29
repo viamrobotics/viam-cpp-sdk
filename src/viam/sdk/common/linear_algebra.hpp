@@ -41,6 +41,7 @@ struct Vector3 {
 inline bool operator==(const Vector3& a, const Vector3& b) {
     return a.data == b.data;
 }
+
 inline bool operator!=(const Vector3& a, const Vector3& b) {
     return !(a == b);
 }
