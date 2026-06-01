@@ -13,6 +13,9 @@
 using namespace viam::sdk;
 using namespace viam::sdk::impl;
 
+using JointRow = ModelTable::JointRow;
+using JointType = ModelTable::JointType;
+
 namespace {
 KinematicsDataURDF urdf_from_string(const std::string& xml) {
     std::vector<unsigned char> bytes(xml.begin(), xml.end());
@@ -200,7 +203,7 @@ BOOST_AUTO_TEST_CASE(to_row_zero_axis_throws) {
     BOOST_CHECK_EXCEPTION(to_row(p), Exception, match);
 }
 
-BOOST_AUTO_TEST_CASE(kinematics_to_model_table_end_to_end_inline) {
+BOOST_AUTO_TEST_CASE(from_urdf_end_to_end_inline) {
     const std::string xml = R"(<?xml version="1.0"?>
 <robot name="r">
   <link name="base"/><link name="l1"/><link name="tool"/>
@@ -213,7 +216,8 @@ BOOST_AUTO_TEST_CASE(kinematics_to_model_table_end_to_end_inline) {
     <origin xyz="0.1 0 0"/>
   </joint>
 </robot>)";
-    auto table = kinematics_to_model_table(urdf_from_string(xml));
+    auto model = ModelTable::from(urdf_from_string(xml));
+    const auto& table = model.rows();
     BOOST_REQUIRE_EQUAL(table.size(), 2u);
 
     BOOST_CHECK_EQUAL(table[0].name, "j1");
@@ -231,7 +235,7 @@ BOOST_AUTO_TEST_CASE(tensor_shape_and_dtype) {
         JointRow{"a", {1, 2, 3}, {0.1, 0.2, 0.3}, {0, 0, 1}, JointType::k_revolute},
         JointRow{"b", {4, 5, 6}, {0, 0, 0}, {0, 0, 0}, JointType::k_fixed},
     };
-    auto t = model_table_to_tensor(table);
+    auto t = ModelTable{table}.to_tensor();
     BOOST_CHECK_EQUAL(t.dimension(), 2u);
     BOOST_CHECK_EQUAL(t.shape()[0], 2u);
     BOOST_CHECK_EQUAL(t.shape()[1], 10u);
@@ -242,7 +246,7 @@ BOOST_AUTO_TEST_CASE(tensor_geometry_columns) {
     std::vector<JointRow> table{
         JointRow{"a", {1.5, 2.5, 3.5}, {0.1, 0.2, 0.3}, {0.4, 0.5, 0.6}, JointType::k_revolute},
     };
-    auto t = model_table_to_tensor(table);
+    auto t = ModelTable{table}.to_tensor();
     BOOST_CHECK_CLOSE(t(0, 0), 1.5, 1e-9);
     BOOST_CHECK_CLOSE(t(0, 1), 2.5, 1e-9);
     BOOST_CHECK_CLOSE(t(0, 2), 3.5, 1e-9);
@@ -259,7 +263,7 @@ BOOST_AUTO_TEST_CASE(tensor_type_column) {
         JointRow{"c", z, z, {1, 0, 0}, JointType::k_prismatic},
         JointRow{"d", z, z, {0, 0, 0}, JointType::k_fixed},
     };
-    auto t = model_table_to_tensor(table);
+    auto t = ModelTable{table}.to_tensor();
     BOOST_CHECK_EQUAL(t(0, 9), 0.0);  // revolute
     BOOST_CHECK_EQUAL(t(1, 9), 1.0);  // continuous
     BOOST_CHECK_EQUAL(t(2, 9), 2.0);  // prismatic
@@ -270,28 +274,29 @@ BOOST_AUTO_TEST_CASE(tensor_fixed_joint_axis_zero) {
     std::vector<JointRow> table{
         JointRow{"f", {0.1, 0.2, 0.3}, {0, 0, 0}, {0, 0, 0}, JointType::k_fixed},
     };
-    auto t = model_table_to_tensor(table);
+    auto t = ModelTable{table}.to_tensor();
     BOOST_CHECK_EQUAL(t(0, 6), 0.0);
     BOOST_CHECK_EQUAL(t(0, 7), 0.0);
     BOOST_CHECK_EQUAL(t(0, 8), 0.0);
     BOOST_CHECK_EQUAL(t(0, 9), 3.0);  // fixed encoded as 3
 }
 
-BOOST_AUTO_TEST_CASE(model_table_to_tensor_empty_throws) {
+BOOST_AUTO_TEST_CASE(to_tensor_empty_throws) {
     auto match = [](const Exception& e) {
         return std::string(e.what()).find("empty model table") != std::string::npos;
     };
-    BOOST_CHECK_EXCEPTION(model_table_to_tensor({}), Exception, match);
+    BOOST_CHECK_EXCEPTION(ModelTable{std::vector<JointRow>{}}.to_tensor(), Exception, match);
 }
 
-BOOST_AUTO_TEST_CASE(tensor_to_model_table_round_trip) {
+BOOST_AUTO_TEST_CASE(from_tensor_round_trip) {
     std::vector<JointRow> table{
         JointRow{"a", {1.5, 2.5, 3.5}, {0.1, 0.2, 0.3}, {0.4, 0.5, 0.6}, JointType::k_revolute},
         JointRow{"b", {4, 5, 6}, {0, 0, 0}, {1, 0, 0}, JointType::k_prismatic},
         JointRow{"c", {7, 8, 9}, {0, 0, 0}, {0, 0, 0}, JointType::k_fixed},
     };
-    auto t = model_table_to_tensor(table);
-    auto rebuilt = tensor_to_model_table(t);
+    auto t = ModelTable{table}.to_tensor();
+    auto rebuilt_model = ModelTable::from(t);
+    const auto& rebuilt = rebuilt_model.rows();
 
     BOOST_REQUIRE_EQUAL(rebuilt.size(), table.size());
     for (std::size_t i = 0; i < table.size(); ++i) {
@@ -303,46 +308,58 @@ BOOST_AUTO_TEST_CASE(tensor_to_model_table_round_trip) {
     }
 }
 
-BOOST_AUTO_TEST_CASE(tensor_to_model_table_wrong_dim_throws) {
+BOOST_AUTO_TEST_CASE(from_tensor_wrong_dim_throws) {
     xt::xarray<double> t1d = xt::zeros<double>({std::size_t{10}});
     auto match = [](const Exception& e) {
         return std::string(e.what()).find("expected 2D tensor") != std::string::npos;
     };
-    BOOST_CHECK_EXCEPTION(tensor_to_model_table(t1d), Exception, match);
+    BOOST_CHECK_EXCEPTION(ModelTable::from(t1d), Exception, match);
 }
 
-BOOST_AUTO_TEST_CASE(tensor_to_model_table_wrong_cols_throws) {
+BOOST_AUTO_TEST_CASE(from_tensor_wrong_cols_throws) {
     xt::xarray<double> bad = xt::zeros<double>({std::size_t{3}, std::size_t{5}});
     auto match = [](const Exception& e) {
         return std::string(e.what()).find("expected shape (n, 10)") != std::string::npos;
     };
-    BOOST_CHECK_EXCEPTION(tensor_to_model_table(bad), Exception, match);
+    BOOST_CHECK_EXCEPTION(ModelTable::from(bad), Exception, match);
 }
 
-BOOST_AUTO_TEST_CASE(tensor_to_model_table_empty_throws) {
+BOOST_AUTO_TEST_CASE(from_tensor_empty_throws) {
     xt::xarray<double> empty = xt::zeros<double>({std::size_t{0}, std::size_t{10}});
     auto match = [](const Exception& e) {
         return std::string(e.what()).find("empty tensor") != std::string::npos;
     };
-    BOOST_CHECK_EXCEPTION(tensor_to_model_table(empty), Exception, match);
+    BOOST_CHECK_EXCEPTION(ModelTable::from(empty), Exception, match);
 }
 
-BOOST_AUTO_TEST_CASE(tensor_to_model_table_fractional_type_throws) {
+BOOST_AUTO_TEST_CASE(from_tensor_fractional_type_throws) {
     xt::xarray<double> t = xt::zeros<double>({std::size_t{1}, std::size_t{10}});
     t(0, 9) = 0.5;  // non-integer joint type
     auto match = [](const Exception& e) {
         return std::string(e.what()).find("is not an integer") != std::string::npos;
     };
-    BOOST_CHECK_EXCEPTION(tensor_to_model_table(t), Exception, match);
+    BOOST_CHECK_EXCEPTION(ModelTable::from(t), Exception, match);
 }
 
-BOOST_AUTO_TEST_CASE(tensor_to_model_table_out_of_range_type_throws) {
+BOOST_AUTO_TEST_CASE(from_tensor_out_of_range_type_throws) {
     xt::xarray<double> t = xt::zeros<double>({std::size_t{1}, std::size_t{10}});
     t(0, 9) = 7.0;  // does not match any JointType value
     auto match = [](const Exception& e) {
         return std::string(e.what()).find("does not match any JointType") != std::string::npos;
     };
-    BOOST_CHECK_EXCEPTION(tensor_to_model_table(t), Exception, match);
+    BOOST_CHECK_EXCEPTION(ModelTable::from(t), Exception, match);
+}
+
+BOOST_AUTO_TEST_CASE(from_tensor_large_out_of_range_type_throws) {
+    // Large-positive and negative joint type codes must be rejected, not just small ones.
+    auto match = [](const Exception& e) {
+        return std::string(e.what()).find("does not match any JointType") != std::string::npos;
+    };
+    for (const double bad : {259.0, -253.0}) {
+        xt::xarray<double> t = xt::zeros<double>({std::size_t{1}, std::size_t{10}});
+        t(0, 9) = bad;
+        BOOST_CHECK_EXCEPTION(ModelTable::from(t), Exception, match);
+    }
 }
 
 namespace {
@@ -357,7 +374,8 @@ KinematicsDataURDF load_urdf(const std::string& filename) {
 }  // namespace
 
 BOOST_AUTO_TEST_CASE(model_table_gp12_has_fixed_tool0) {
-    auto table = kinematics_to_model_table(load_urdf("gp12.urdf"));
+    auto model = ModelTable::from(load_urdf("gp12.urdf"));
+    const auto& table = model.rows();
     bool has_fixed_tool = false;
     for (const auto& row : table) {
         if (row.type == JointType::k_fixed) {
@@ -369,8 +387,9 @@ BOOST_AUTO_TEST_CASE(model_table_gp12_has_fixed_tool0) {
 }
 
 BOOST_AUTO_TEST_CASE(tensor_round_trip_gp12) {
-    auto table = kinematics_to_model_table(load_urdf("gp12.urdf"));
-    auto t = model_table_to_tensor(table);
+    auto model = ModelTable::from(load_urdf("gp12.urdf"));
+    const auto& table = model.rows();
+    auto t = model.to_tensor();
     BOOST_CHECK_EQUAL(t.shape()[0], table.size());
     BOOST_CHECK_EQUAL(t.shape()[1], 10u);
     for (std::size_t i = 0; i < table.size(); ++i) {
@@ -381,7 +400,8 @@ BOOST_AUTO_TEST_CASE(tensor_round_trip_gp12) {
 }
 
 BOOST_AUTO_TEST_CASE(model_table_gp12_full_chain) {
-    auto table = kinematics_to_model_table(load_urdf("gp12.urdf"));
+    auto model = ModelTable::from(load_urdf("gp12.urdf"));
+    const auto& table = model.rows();
 
     // 6 revolute joints + 1 fixed tool joint.
     BOOST_REQUIRE_EQUAL(table.size(), 7u);
@@ -420,7 +440,7 @@ BOOST_AUTO_TEST_CASE(model_table_gp12_full_chain) {
     BOOST_CHECK(table[6].axis == Vector3{});
 
     // Tensor cross-check: same 7 rows, 10 columns, type column at index 9.
-    auto t = model_table_to_tensor(table);
+    auto t = model.to_tensor();
     BOOST_REQUIRE_EQUAL(t.shape()[0], 7u);
     BOOST_REQUIRE_EQUAL(t.shape()[1], 10u);
     BOOST_CHECK_EQUAL(t(6, 9), 3.0);          // tool0 is fixed (enum value 3)
@@ -509,10 +529,12 @@ BOOST_AUTO_TEST_CASE(parse_urdf_gp12_full_file) {
     BOOST_CHECK(!parsed[6].axis_opt.has_value());  // fixed joint has no <axis> in URDF
 }
 
-BOOST_AUTO_TEST_CASE(tensor_to_model_table_gp12_round_trip) {
-    auto table = kinematics_to_model_table(load_urdf("gp12.urdf"));
-    auto t = model_table_to_tensor(table);
-    auto rebuilt = tensor_to_model_table(t);
+BOOST_AUTO_TEST_CASE(from_tensor_gp12_round_trip) {
+    auto model = ModelTable::from(load_urdf("gp12.urdf"));
+    const auto& table = model.rows();
+    auto t = model.to_tensor();
+    auto rebuilt_model = ModelTable::from(t);
+    const auto& rebuilt = rebuilt_model.rows();
     BOOST_REQUIRE_EQUAL(rebuilt.size(), table.size());
     for (std::size_t i = 0; i < table.size(); ++i) {
         BOOST_CHECK(rebuilt[i].xyz == table[i].xyz);

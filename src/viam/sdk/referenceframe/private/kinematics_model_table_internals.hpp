@@ -1,5 +1,4 @@
-/// @file referenceframe/private/kinematics_model_table_internals.hpp
-/// @brief Internal helpers for kinematics_to_model_table (URDF path).
+/// @brief Internal helpers for ModelTable::from(const KinematicsDataURDF&) (URDF path).
 ///        Exposed only to the testsuite; not a stable public API.
 #pragma once
 
@@ -34,9 +33,9 @@ std::vector<ParsedJoint> parse_urdf(const KinematicsDataURDF& urdf);
 /// @throws viam::sdk::Exception on multi-root, branching, or disconnect.
 std::vector<ParsedJoint> walk_urdf_chain(const std::vector<ParsedJoint>& joints);
 
-/// @brief Convert one validated ParsedJoint to a JointRow.
+/// @brief Convert one validated ParsedJoint to a ModelTable::JointRow.
 /// @throws viam::sdk::Exception on unsupported type or zero non-fixed axis.
-JointRow to_row(const ParsedJoint& parsed);
+ModelTable::JointRow to_row(const ParsedJoint& parsed);
 
 }  // namespace impl
 }  // namespace sdk

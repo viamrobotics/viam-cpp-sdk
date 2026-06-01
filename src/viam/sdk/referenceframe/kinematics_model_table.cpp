@@ -1,8 +1,9 @@
 #include <viam/sdk/referenceframe/kinematics_model_table.hpp>
 
-#include <map>
 #include <set>
 #include <sstream>
+#include <unordered_map>
+#include <unordered_set>
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
@@ -40,6 +41,11 @@ Vector3 parse_triple(const std::string& s) {
 }
 
 }  // namespace
+
+// The row/type are nested in ModelTable; alias them for brevity in the
+// URDF-pipeline helpers below.
+using JointRow = ModelTable::JointRow;
+using JointType = ModelTable::JointType;
 
 std::vector<ParsedJoint> parse_urdf(const KinematicsDataURDF& urdf) {
     namespace pt = boost::property_tree;
@@ -94,9 +100,9 @@ std::vector<ParsedJoint> parse_urdf(const KinematicsDataURDF& urdf) {
 }
 
 std::vector<ParsedJoint> walk_urdf_chain(const std::vector<ParsedJoint>& joints) {
-    std::map<std::string, std::vector<const ParsedJoint*>> by_parent;
+    std::unordered_map<std::string, std::vector<const ParsedJoint*>> by_parent;
     std::set<std::string> all_parents;
-    std::set<std::string> all_children;
+    std::unordered_set<std::string> all_children;
     for (const auto& j : joints) {
         by_parent[j.parent_link].push_back(&j);
         all_parents.insert(j.parent_link);
@@ -121,7 +127,7 @@ std::vector<ParsedJoint> walk_urdf_chain(const std::vector<ParsedJoint>& joints)
 
     std::vector<ParsedJoint> ordered;
     ordered.reserve(joints.size());
-    std::set<std::string> visited;
+    std::unordered_set<std::string> visited;
     std::string current = roots[0];
     while (true) {
         if (!visited.insert(current).second) {
@@ -186,24 +192,26 @@ JointRow to_row(const ParsedJoint& parsed) {
 
 }  // namespace impl
 
-ModelTable kinematics_to_model_table(const KinematicsDataURDF& urdf) {
+ModelTable::ModelTable(std::vector<ModelTable::JointRow> rows) : rows_(std::move(rows)) {}
+
+ModelTable ModelTable::from(const KinematicsDataURDF& urdf) {
     using namespace impl;
     auto chain = walk_urdf_chain(parse_urdf(urdf));
-    ModelTable table;
-    table.reserve(chain.size());
+    std::vector<JointRow> rows;
+    rows.reserve(chain.size());
     for (const auto& j : chain) {
-        table.push_back(to_row(j));
+        rows.push_back(to_row(j));
     }
-    return table;
+    return ModelTable(std::move(rows));
 }
 
-xt::xarray<double> model_table_to_tensor(const ModelTable& table) {
-    if (table.empty()) {
-        throw Exception(ErrorCondition::k_general, "model_table_to_tensor: empty model table");
+xt::xarray<double> ModelTable::to_tensor() const {
+    if (rows_.empty()) {
+        throw Exception(ErrorCondition::k_general, "ModelTable::to_tensor: empty model table");
     }
-    xt::xarray<double> out = xt::zeros<double>({table.size(), std::size_t{10}});
-    for (std::size_t i = 0; i < table.size(); ++i) {
-        const auto& r = table[i];
+    xt::xarray<double> out = xt::zeros<double>({rows_.size(), std::size_t{10}});
+    for (std::size_t i = 0; i < rows_.size(); ++i) {
+        const auto& r = rows_[i];
         out(i, 0) = r.xyz.x();
         out(i, 1) = r.xyz.y();
         out(i, 2) = r.xyz.z();
@@ -218,28 +226,28 @@ xt::xarray<double> model_table_to_tensor(const ModelTable& table) {
     return out;
 }
 
-ModelTable tensor_to_model_table(const xt::xarray<double>& tensor) {
+ModelTable ModelTable::from(const xt::xarray<double>& tensor) {
     if (tensor.dimension() != 2) {
         throw Exception(ErrorCondition::k_general,
-                        "tensor_to_model_table: expected 2D tensor, got " +
+                        "ModelTable::from(tensor): expected 2D tensor, got " +
                             std::to_string(tensor.dimension()) + "D");
     }
     if (tensor.shape()[1] != 10) {
         throw Exception(ErrorCondition::k_general,
-                        "tensor_to_model_table: expected shape (n, 10), got (n, " +
+                        "ModelTable::from(tensor): expected shape (n, 10), got (n, " +
                             std::to_string(tensor.shape()[1]) + ")");
     }
     if (tensor.shape()[0] == 0) {
-        throw Exception(ErrorCondition::k_general, "tensor_to_model_table: empty tensor");
+        throw Exception(ErrorCondition::k_general, "ModelTable::from(tensor): empty tensor");
     }
-    ModelTable table;
-    table.reserve(tensor.shape()[0]);
+    std::vector<JointRow> rows;
+    rows.reserve(tensor.shape()[0]);
     for (std::size_t i = 0; i < tensor.shape()[0]; ++i) {
         const double type_v = tensor(i, 9);
         const int type_i = static_cast<int>(type_v);
         if (static_cast<double>(type_i) != type_v) {
             throw Exception(ErrorCondition::k_general,
-                            "tensor_to_model_table: row " + std::to_string(i) +
+                            "ModelTable::from(tensor): row " + std::to_string(i) +
                                 " joint type value " + std::to_string(type_v) +
                                 " is not an integer");
         }
@@ -253,7 +261,7 @@ ModelTable tensor_to_model_table(const xt::xarray<double>& tensor) {
                 break;
             default:
                 throw Exception(ErrorCondition::k_general,
-                                "tensor_to_model_table: row " + std::to_string(i) +
+                                "ModelTable::from(tensor): row " + std::to_string(i) +
                                     " joint type value " + std::to_string(type_i) +
                                     " does not match any JointType");
         }
@@ -262,9 +270,13 @@ ModelTable tensor_to_model_table(const xt::xarray<double>& tensor) {
         row.rpy = Vector3{tensor(i, 3), tensor(i, 4), tensor(i, 5)};
         row.axis = Vector3{tensor(i, 6), tensor(i, 7), tensor(i, 8)};
         row.type = joint_type;
-        table.push_back(std::move(row));
+        rows.push_back(std::move(row));
     }
-    return table;
+    return ModelTable(std::move(rows));
+}
+
+const std::vector<ModelTable::JointRow>& ModelTable::rows() const {
+    return rows_;
 }
 
 }  // namespace sdk
