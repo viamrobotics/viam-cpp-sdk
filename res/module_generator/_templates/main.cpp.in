@@ -20,16 +20,16 @@ int main(int argc, char** argv) try {
     // Write general log statements using the VIAM_SDK_LOG macro.
     VIAM_SDK_LOG(info) << "Starting up {{ .ModuleName }} module";
 
-    viam::sdk::Model model("{{ .OrgID }}", "{{ .ModuleName }}", "{{ .ModelSnake }}");
+    viam::sdk::Model model("{{ .Namespace }}", "{{ .ModuleName }}", "{{ .ModelName }}");
 
 
     auto mr = std::make_shared<viam::sdk::ModelRegistration>(
         viam::sdk::API::get<viam::sdk::{{ .ResourceSubtypePascal }}>(),
         model,
         [](viam::sdk::Dependencies deps, viam::sdk::ResourceConfig cfg) {
-            return std::make_unique<{{ .ModuleName }}::{{ .ModelPascal }}>(deps, cfg);
+            return std::make_unique<{{ .ModuleSnake }}::{{ .ModelPascal }}>(deps, cfg);
         },
-        &{{ .ModuleName }}::{{ .ModelPascal }}::validate);
+        &{{ .ModuleSnake }}::{{ .ModelPascal }}::validate);
 
 
 
