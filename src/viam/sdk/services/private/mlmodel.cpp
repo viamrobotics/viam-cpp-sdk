@@ -87,10 +87,10 @@ class copy_sdk_tensor_to_api_tensor_visitor : public boost::static_visitor<void>
         target_->mutable_uint16_tensor()->mutable_data()->Clear();
 
 #if defined(GOOGLE_PROTOBUF_VERSION) && GOOGLE_PROTOBUF_VERSION >= 7035000
-        target_->mutable_int16_tensor()->mutable_data()->resize(num32s, 0);
+        target_->mutable_uint16_tensor()->mutable_data()->resize(num32s, 0);
 #else
 
-        target_->mutable_int16_tensor()->mutable_data()->Resize(num32s, 0);
+        target_->mutable_uint16_tensor()->mutable_data()->Resize(num32s, 0);
 #endif
 
         std::memcpy(target_->mutable_uint16_tensor()->mutable_data()->mutable_data(),
