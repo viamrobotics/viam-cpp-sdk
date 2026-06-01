@@ -7,7 +7,7 @@ namespace {{ .ModuleSnake }} {
 
 
 {{ .ModelPascal }}::{{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg)
-    : Generic(cfg.name()) {
+    : GenericComponent(cfg.name()) {
     // TODO: initialize your resource here.
     // `deps` provides access to other resources this component depends on.
     // `cfg` contains the resource configuration from the robot config.
@@ -19,6 +19,21 @@ namespace {{ .ModuleSnake }} {
 // Throw an exception if cfg contains invalid configuration.
 std::vector<std::string> {{ .ModelPascal }}::validate(const viam::sdk::ResourceConfig& cfg) {
     return {};
+}
+
+viam::sdk::ProtoStruct {{ .ModelPascal }}::do_command(const viam::sdk::ProtoStruct & command)
+{
+    throw std::logic_error("\"do_command\" not implemented");
+}
+
+viam::sdk::ProtoStruct {{ .ModelPascal }}::get_status()
+{
+    throw std::logic_error("\"get_status\" not implemented");
+}
+
+std::vector<viam::sdk::GeometryConfig> {{ .ModelPascal }}::get_geometries(const viam::sdk::ProtoStruct & extra)
+{
+    throw std::logic_error("\"get_geometries\" not implemented");
 }
 
 } // namespace {{ .ModuleSnake }}
