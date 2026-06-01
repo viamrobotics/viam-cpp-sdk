@@ -1,5 +1,3 @@
-/// @brief Internal helpers for ModelTable::from(const KinematicsDataURDF&) (URDF path).
-///        Exposed only to the testsuite; not a stable public API.
 #pragma once
 
 #include <string>
