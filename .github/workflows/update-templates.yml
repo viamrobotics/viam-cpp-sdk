@@ -12,6 +12,11 @@ on:
       branch:
         required: true
         type: string
+      rdk_branch:
+        description: 'Branch of viamrobotics/rdk to check out for the generator'
+        required: false
+        type: string
+        default: main
 
 jobs:
   update_templates:
@@ -67,6 +72,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: viamrobotics/rdk
+          ref: ${{ inputs.rdk_branch || 'main' }}
           path: rdk
 
       - name: Build and install generator

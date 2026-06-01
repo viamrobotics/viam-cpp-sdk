@@ -9,11 +9,17 @@
 namespace {{ .ModuleSnake }} {
 
 
-class {{ .ModelPascal }} : public viam::sdk::Generic {
+class {{ .ModelPascal }} : public viam::sdk::GenericComponent {
 public:
     {{ .ModelPascal }}(const viam::sdk::Dependencies& deps, const viam::sdk::ResourceConfig& cfg);
 
     static std::vector<std::string> validate(const viam::sdk::ResourceConfig& cfg);
+
+    viam::sdk::ProtoStruct do_command(const viam::sdk::ProtoStruct & command) override;
+
+    viam::sdk::ProtoStruct get_status() override;
+
+    std::vector<viam::sdk::GeometryConfig> get_geometries(const viam::sdk::ProtoStruct & extra) override;
 
 };
 
