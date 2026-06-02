@@ -15,7 +15,7 @@ namespace impl {
 
 // @brief Per-joint parse result, pre-validation.
 struct ParsedJoint {
-    std::string name;
+    std::string name;   
     std::string type_str;  ///< raw URDF type attribute
     std::string parent_link;
     std::string child_link;
