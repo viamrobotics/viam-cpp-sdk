@@ -106,7 +106,7 @@
     <limit effort="33.30" lower="-7.9412" upper="7.9412" velocity="12.2143"/>
   </joint>
 
-  <joint name="joint_6_t-tool0" type="fixed">
+  <joint name="joint_6_t-tool0" tdflkjsdlfype="fixed">
     <origin rpy="3.1415926 -1.570796 0" xyz="0.100 0 0"/>
     <parent link="link_6_t"/>
     <child link="tool0"/>

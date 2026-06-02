@@ -216,12 +216,15 @@ xt::xarray<double> ModelTable::to_tensor() const {
         out(i, 0) = r.xyz.x();
         out(i, 1) = r.xyz.y();
         out(i, 2) = r.xyz.z();
+
         out(i, 3) = r.rpy.x();
         out(i, 4) = r.rpy.y();
         out(i, 5) = r.rpy.z();
+
         out(i, 6) = r.axis.x();
         out(i, 7) = r.axis.y();
         out(i, 8) = r.axis.z();
+
         out(i, 9) = static_cast<double>(static_cast<int>(r.type));
     }
     return out;
