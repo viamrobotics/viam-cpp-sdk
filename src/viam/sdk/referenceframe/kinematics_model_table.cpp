@@ -20,6 +20,7 @@
 #endif
 
 #include <viam/sdk/common/exception.hpp>
+#include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/referenceframe/private/kinematics_model_table_internals.hpp>
 
 namespace viam {
@@ -50,7 +51,7 @@ using JointType = ModelTable::JointType;
 std::vector<ParsedJoint> parse_urdf(const KinematicsDataURDF& urdf) {
     namespace pt = boost::property_tree;
     pt::ptree tree;
-    const std::string text(reinterpret_cast<const char*>(urdf.bytes.data()), urdf.bytes.size());
+    const std::string text = bytes_to_string(urdf.bytes);
     std::istringstream iss(text);
     try {
         pt::read_xml(iss, tree);
