@@ -142,6 +142,22 @@ BOOST_AUTO_TEST_CASE(thru_joint_positions_vel_scalar_acc_vector) {
     });
 }
 
+BOOST_AUTO_TEST_CASE(thru_joint_positions_max_tcp_speed) {
+    std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        std::vector<std::vector<double>> positions{{1.0, 2.0}, {3.0}};
+        Arm::MoveOptions opts;
+        opts.max_vel_degs_per_sec = Arm::MoveLimit(1.0);
+        opts.max_acc_degs_per_sec2 = Arm::MoveLimit(2.0);
+        opts.max_tcp_speed = 42.0;
+        client.move_through_joint_positions(positions, opts, {});
+        BOOST_CHECK_EQUAL(mock->move_thru_positions, positions);
+
+        BOOST_REQUIRE(mock->move_opts.max_tcp_speed);
+        BOOST_CHECK_EQUAL(*mock->move_opts.max_tcp_speed, 42.0);
+    });
+}
+
 BOOST_AUTO_TEST_CASE(test_stop) {
     std::shared_ptr<MockArm> mock = MockArm::get_mock_arm();
     client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
