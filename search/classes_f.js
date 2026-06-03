@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['quaternion_0',['quaternion',['../structviam_1_1sdk_1_1quaternion.html',1,'viam::sdk']]],
-  ['query_5foptions_1',['query_options',['../structviam_1_1sdk_1_1DataConsumer_1_1query__options.html',1,'viam::sdk::DataConsumer']]]
+  ['parsedjoint_0',['ParsedJoint',['../structviam_1_1sdk_1_1impl_1_1ParsedJoint.html',1,'viam::sdk::impl']]],
+  ['path_1',['Path',['../structviam_1_1sdk_1_1Navigation_1_1Path.html',1,'viam::sdk::Navigation']]],
+  ['plan_2',['plan',['../structviam_1_1sdk_1_1Motion_1_1plan.html',1,'viam::sdk::Motion']]],
+  ['plan_5fstatus_3',['plan_status',['../structviam_1_1sdk_1_1Motion_1_1plan__status.html',1,'viam::sdk::Motion']]],
+  ['plan_5fstatus_5fwith_5fid_4',['plan_status_with_id',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html',1,'viam::sdk::Motion']]],
+  ['plan_5fwith_5fstatus_5',['plan_with_status',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html',1,'viam::sdk::Motion']]],
+  ['point_5fcloud_6',['point_cloud',['../structviam_1_1sdk_1_1Camera_1_1point__cloud.html',1,'viam::sdk::Camera']]],
+  ['pose_7',['pose',['../structviam_1_1sdk_1_1pose.html',1,'viam::sdk']]],
+  ['pose_5fin_5fframe_8',['pose_in_frame',['../structviam_1_1sdk_1_1pose__in__frame.html',1,'viam::sdk']]],
+  ['pose_5forientation_9',['pose_orientation',['../structviam_1_1sdk_1_1pose__orientation.html',1,'viam::sdk']]],
+  ['posetracker_10',['PoseTracker',['../classviam_1_1sdk_1_1PoseTracker.html',1,'viam::sdk']]],
+  ['posetrackerclient_11',['PoseTrackerClient',['../classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html',1,'viam::sdk::impl']]],
+  ['posetrackerserver_12',['PoseTrackerServer',['../classviam_1_1sdk_1_1impl_1_1PoseTrackerServer.html',1,'viam::sdk::impl']]],
+  ['position_13',['position',['../structposition.html',1,'position'],['../structviam_1_1sdk_1_1Encoder_1_1position.html',1,'viam::sdk::Encoder::position'],['../structviam_1_1sdk_1_1MovementSensor_1_1position.html',1,'viam::sdk::MovementSensor::position']]],
+  ['position_5finfo_14',['position_info',['../structviam_1_1sdk_1_1Switch_1_1position__info.html',1,'viam::sdk::Switch']]],
+  ['power_5fstatus_15',['power_status',['../structviam_1_1sdk_1_1Motor_1_1power__status.html',1,'viam::sdk::Motor']]],
+  ['powersensor_16',['PowerSensor',['../classviam_1_1sdk_1_1PowerSensor.html',1,'viam::sdk']]],
+  ['powersensorclient_17',['PowerSensorClient',['../classviam_1_1sdk_1_1impl_1_1PowerSensorClient.html',1,'viam::sdk::impl']]],
+  ['powersensorserver_18',['PowerSensorServer',['../classviam_1_1sdk_1_1impl_1_1PowerSensorServer.html',1,'viam::sdk::impl']]],
+  ['properties_19',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1MovementSensor_1_1properties.html',1,'viam::sdk::MovementSensor::properties']]],
+  ['properties_20',['Properties',['../structviam_1_1sdk_1_1Navigation_1_1Properties.html',1,'viam::sdk::Navigation']]],
+  ['protovalue_21',['ProtoValue',['../classviam_1_1sdk_1_1ProtoValue.html',1,'viam::sdk']]]
 ];

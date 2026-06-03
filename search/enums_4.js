@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['plan_5fstate_0',['plan_state',['../classviam_1_1sdk_1_1Motion.html#a675019f922d19893e0891a17f8a31605',1,'viam::sdk::Motion']]],
-  ['power_5fmode_1',['power_mode',['../classviam_1_1sdk_1_1Board.html#a166386cf97ecb2e45778d96f5611ce88',1,'viam::sdk::Board']]]
+  ['maptype_0',['MapType',['../classviam_1_1sdk_1_1Navigation.html#a42d8307600d3084e20e4ceae293f63c4',1,'viam::sdk::Navigation']]],
+  ['mode_1',['Mode',['../classviam_1_1sdk_1_1Navigation.html#aeaaf3255a0634aee77c22f9d9b834027',1,'viam::sdk::Navigation']]]
 ];

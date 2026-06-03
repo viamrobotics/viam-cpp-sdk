@@ -1,24 +1,11 @@
 var searchData=
 [
-  ['path_0',['Path',['../structviam_1_1sdk_1_1Navigation_1_1Path.html',1,'viam::sdk::Navigation']]],
-  ['plan_1',['plan',['../structviam_1_1sdk_1_1Motion_1_1plan.html',1,'viam::sdk::Motion']]],
-  ['plan_5fstatus_2',['plan_status',['../structviam_1_1sdk_1_1Motion_1_1plan__status.html',1,'viam::sdk::Motion']]],
-  ['plan_5fstatus_5fwith_5fid_3',['plan_status_with_id',['../structviam_1_1sdk_1_1Motion_1_1plan__status__with__id.html',1,'viam::sdk::Motion']]],
-  ['plan_5fwith_5fstatus_4',['plan_with_status',['../structviam_1_1sdk_1_1Motion_1_1plan__with__status.html',1,'viam::sdk::Motion']]],
-  ['point_5fcloud_5',['point_cloud',['../structviam_1_1sdk_1_1Camera_1_1point__cloud.html',1,'viam::sdk::Camera']]],
-  ['pose_6',['pose',['../structviam_1_1sdk_1_1pose.html',1,'viam::sdk']]],
-  ['pose_5fin_5fframe_7',['pose_in_frame',['../structviam_1_1sdk_1_1pose__in__frame.html',1,'viam::sdk']]],
-  ['pose_5forientation_8',['pose_orientation',['../structviam_1_1sdk_1_1pose__orientation.html',1,'viam::sdk']]],
-  ['posetracker_9',['PoseTracker',['../classviam_1_1sdk_1_1PoseTracker.html',1,'viam::sdk']]],
-  ['posetrackerclient_10',['PoseTrackerClient',['../classviam_1_1sdk_1_1impl_1_1PoseTrackerClient.html',1,'viam::sdk::impl']]],
-  ['posetrackerserver_11',['PoseTrackerServer',['../classviam_1_1sdk_1_1impl_1_1PoseTrackerServer.html',1,'viam::sdk::impl']]],
-  ['position_12',['position',['../structposition.html',1,'position'],['../structviam_1_1sdk_1_1Encoder_1_1position.html',1,'viam::sdk::Encoder::position'],['../structviam_1_1sdk_1_1MovementSensor_1_1position.html',1,'viam::sdk::MovementSensor::position']]],
-  ['position_5finfo_13',['position_info',['../structviam_1_1sdk_1_1Switch_1_1position__info.html',1,'viam::sdk::Switch']]],
-  ['power_5fstatus_14',['power_status',['../structviam_1_1sdk_1_1Motor_1_1power__status.html',1,'viam::sdk::Motor']]],
-  ['powersensor_15',['PowerSensor',['../classviam_1_1sdk_1_1PowerSensor.html',1,'viam::sdk']]],
-  ['powersensorclient_16',['PowerSensorClient',['../classviam_1_1sdk_1_1impl_1_1PowerSensorClient.html',1,'viam::sdk::impl']]],
-  ['powersensorserver_17',['PowerSensorServer',['../classviam_1_1sdk_1_1impl_1_1PowerSensorServer.html',1,'viam::sdk::impl']]],
-  ['properties_18',['properties',['../structviam_1_1sdk_1_1Base_1_1properties.html',1,'viam::sdk::Base::properties'],['../structviam_1_1sdk_1_1Camera_1_1properties.html',1,'viam::sdk::Camera::properties'],['../structviam_1_1sdk_1_1Encoder_1_1properties.html',1,'viam::sdk::Encoder::properties'],['../structviam_1_1sdk_1_1Motor_1_1properties.html',1,'viam::sdk::Motor::properties'],['../structviam_1_1sdk_1_1MovementSensor_1_1properties.html',1,'viam::sdk::MovementSensor::properties']]],
-  ['properties_19',['Properties',['../structviam_1_1sdk_1_1Navigation_1_1Properties.html',1,'viam::sdk::Navigation']]],
-  ['protovalue_20',['ProtoValue',['../classviam_1_1sdk_1_1ProtoValue.html',1,'viam::sdk']]]
+  ['obstacle_5fdetector_0',['obstacle_detector',['../structviam_1_1sdk_1_1obstacle__detector.html',1,'viam::sdk']]],
+  ['obstacle_5fdetector_5fname_1',['obstacle_detector_name',['../structobstacle__detector__name.html',1,'']]],
+  ['operation_2',['operation',['../structviam_1_1sdk_1_1RobotClient_1_1operation.html',1,'viam::sdk::RobotClient']]],
+  ['options_3',['Options',['../classviam_1_1sdk_1_1Options.html',1,'viam::sdk::Options'],['../classviam_1_1sdk_1_1ViamChannel_1_1Options.html',1,'viam::sdk::ViamChannel::Options']]],
+  ['orientation_4',['orientation',['../structviam_1_1sdk_1_1MovementSensor_1_1orientation.html',1,'viam::sdk::MovementSensor']]],
+  ['orientation_5fconstraint_5',['orientation_constraint',['../structviam_1_1sdk_1_1Motion_1_1orientation__constraint.html',1,'viam::sdk::Motion']]],
+  ['orientation_5fvector_6',['orientation_vector',['../structviam_1_1sdk_1_1orientation__vector.html',1,'viam::sdk']]],
+  ['orientation_5fvector_5fdegrees_7',['orientation_vector_degrees',['../structviam_1_1sdk_1_1orientation__vector__degrees.html',1,'viam::sdk']]]
 ];

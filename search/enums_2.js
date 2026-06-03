@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['log_5flevel_0',['log_level',['../group__Log.html#ga2e95fe370303fb61a95fee5f99288ca7',1,'viam::sdk']]]
+  ['kind_0',['Kind',['../classviam_1_1sdk_1_1ProtoValue.html#afd726b56a5dc129a31a17a978db81122',1,'viam::sdk::ProtoValue']]]
 ];
