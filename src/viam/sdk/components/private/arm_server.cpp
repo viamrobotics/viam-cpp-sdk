@@ -84,6 +84,10 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
                 opts.max_acc_degs_per_sec2 = request->options().max_acc_degs_per_sec2();
             }
 
+            if (request->options().has_max_tcp_speed()) {
+                opts.max_tcp_speed = request->options().max_tcp_speed();
+            }
+
             arm->move_through_joint_positions(positions, opts, helper.getExtra());
         });
 }
