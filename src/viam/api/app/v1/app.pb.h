@@ -271,6 +271,21 @@ extern DeleteRobotRequestDefaultTypeInternal _DeleteRobotRequest_default_instanc
 class DeleteRobotResponse;
 struct DeleteRobotResponseDefaultTypeInternal;
 extern DeleteRobotResponseDefaultTypeInternal _DeleteRobotResponse_default_instance_;
+class DeprecateRegistryItemRequest;
+struct DeprecateRegistryItemRequestDefaultTypeInternal;
+extern DeprecateRegistryItemRequestDefaultTypeInternal _DeprecateRegistryItemRequest_default_instance_;
+class DeprecateRegistryItemResponse;
+struct DeprecateRegistryItemResponseDefaultTypeInternal;
+extern DeprecateRegistryItemResponseDefaultTypeInternal _DeprecateRegistryItemResponse_default_instance_;
+class DeprecateRegistryItemVersionRequest;
+struct DeprecateRegistryItemVersionRequestDefaultTypeInternal;
+extern DeprecateRegistryItemVersionRequestDefaultTypeInternal _DeprecateRegistryItemVersionRequest_default_instance_;
+class DeprecateRegistryItemVersionResponse;
+struct DeprecateRegistryItemVersionResponseDefaultTypeInternal;
+extern DeprecateRegistryItemVersionResponseDefaultTypeInternal _DeprecateRegistryItemVersionResponse_default_instance_;
+class DeprecatedStatus;
+struct DeprecatedStatusDefaultTypeInternal;
+extern DeprecatedStatusDefaultTypeInternal _DeprecatedStatus_default_instance_;
 class DisableAuthServiceRequest;
 struct DisableAuthServiceRequestDefaultTypeInternal;
 extern DisableAuthServiceRequestDefaultTypeInternal _DisableAuthServiceRequest_default_instance_;
@@ -808,6 +823,18 @@ extern TransferRegistryItemRequestDefaultTypeInternal _TransferRegistryItemReque
 class TransferRegistryItemResponse;
 struct TransferRegistryItemResponseDefaultTypeInternal;
 extern TransferRegistryItemResponseDefaultTypeInternal _TransferRegistryItemResponse_default_instance_;
+class UndeprecateRegistryItemRequest;
+struct UndeprecateRegistryItemRequestDefaultTypeInternal;
+extern UndeprecateRegistryItemRequestDefaultTypeInternal _UndeprecateRegistryItemRequest_default_instance_;
+class UndeprecateRegistryItemResponse;
+struct UndeprecateRegistryItemResponseDefaultTypeInternal;
+extern UndeprecateRegistryItemResponseDefaultTypeInternal _UndeprecateRegistryItemResponse_default_instance_;
+class UndeprecateRegistryItemVersionRequest;
+struct UndeprecateRegistryItemVersionRequestDefaultTypeInternal;
+extern UndeprecateRegistryItemVersionRequestDefaultTypeInternal _UndeprecateRegistryItemVersionRequest_default_instance_;
+class UndeprecateRegistryItemVersionResponse;
+struct UndeprecateRegistryItemVersionResponseDefaultTypeInternal;
+extern UndeprecateRegistryItemVersionResponseDefaultTypeInternal _UndeprecateRegistryItemVersionResponse_default_instance_;
 class UnshareLocationRequest;
 struct UnshareLocationRequestDefaultTypeInternal;
 extern UnshareLocationRequestDefaultTypeInternal _UnshareLocationRequest_default_instance_;
@@ -1012,6 +1039,11 @@ template<> ::viam::app::v1::DeleteRobotPartSecretRequest* Arena::CreateMaybeMess
 template<> ::viam::app::v1::DeleteRobotPartSecretResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteRobotPartSecretResponse>(Arena*);
 template<> ::viam::app::v1::DeleteRobotRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeleteRobotRequest>(Arena*);
 template<> ::viam::app::v1::DeleteRobotResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeleteRobotResponse>(Arena*);
+template<> ::viam::app::v1::DeprecateRegistryItemRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeprecateRegistryItemRequest>(Arena*);
+template<> ::viam::app::v1::DeprecateRegistryItemResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeprecateRegistryItemResponse>(Arena*);
+template<> ::viam::app::v1::DeprecateRegistryItemVersionRequest* Arena::CreateMaybeMessage<::viam::app::v1::DeprecateRegistryItemVersionRequest>(Arena*);
+template<> ::viam::app::v1::DeprecateRegistryItemVersionResponse* Arena::CreateMaybeMessage<::viam::app::v1::DeprecateRegistryItemVersionResponse>(Arena*);
+template<> ::viam::app::v1::DeprecatedStatus* Arena::CreateMaybeMessage<::viam::app::v1::DeprecatedStatus>(Arena*);
 template<> ::viam::app::v1::DisableAuthServiceRequest* Arena::CreateMaybeMessage<::viam::app::v1::DisableAuthServiceRequest>(Arena*);
 template<> ::viam::app::v1::DisableAuthServiceResponse* Arena::CreateMaybeMessage<::viam::app::v1::DisableAuthServiceResponse>(Arena*);
 template<> ::viam::app::v1::DisableBillingServiceRequest* Arena::CreateMaybeMessage<::viam::app::v1::DisableBillingServiceRequest>(Arena*);
@@ -1191,6 +1223,10 @@ template<> ::viam::app::v1::TextOverrides* Arena::CreateMaybeMessage<::viam::app
 template<> ::viam::app::v1::TextOverrides_FieldsEntry_DoNotUse* Arena::CreateMaybeMessage<::viam::app::v1::TextOverrides_FieldsEntry_DoNotUse>(Arena*);
 template<> ::viam::app::v1::TransferRegistryItemRequest* Arena::CreateMaybeMessage<::viam::app::v1::TransferRegistryItemRequest>(Arena*);
 template<> ::viam::app::v1::TransferRegistryItemResponse* Arena::CreateMaybeMessage<::viam::app::v1::TransferRegistryItemResponse>(Arena*);
+template<> ::viam::app::v1::UndeprecateRegistryItemRequest* Arena::CreateMaybeMessage<::viam::app::v1::UndeprecateRegistryItemRequest>(Arena*);
+template<> ::viam::app::v1::UndeprecateRegistryItemResponse* Arena::CreateMaybeMessage<::viam::app::v1::UndeprecateRegistryItemResponse>(Arena*);
+template<> ::viam::app::v1::UndeprecateRegistryItemVersionRequest* Arena::CreateMaybeMessage<::viam::app::v1::UndeprecateRegistryItemVersionRequest>(Arena*);
+template<> ::viam::app::v1::UndeprecateRegistryItemVersionResponse* Arena::CreateMaybeMessage<::viam::app::v1::UndeprecateRegistryItemVersionResponse>(Arena*);
 template<> ::viam::app::v1::UnshareLocationRequest* Arena::CreateMaybeMessage<::viam::app::v1::UnshareLocationRequest>(Arena*);
 template<> ::viam::app::v1::UnshareLocationResponse* Arena::CreateMaybeMessage<::viam::app::v1::UnshareLocationResponse>(Arena*);
 template<> ::viam::app::v1::UpdateBillingServiceRequest* Arena::CreateMaybeMessage<::viam::app::v1::UpdateBillingServiceRequest>(Arena*);
@@ -21668,22 +21704,23 @@ class FragmentImport final :
     kFragmentIdFieldNumber = 1,
     kVersionFieldNumber = 2,
     kPrefixFieldNumber = 3,
+    kFragmentVariablesFieldNumber = 5,
   };
-  // map<string, string> variables = 4 [json_name = "variables"];
-  int variables_size() const;
+  // map<string, string> variables = 4 [json_name = "variables", deprecated = true];
+  PROTOBUF_DEPRECATED int variables_size() const;
   private:
   int _internal_variables_size() const;
   public:
-  void clear_variables();
+  PROTOBUF_DEPRECATED void clear_variables();
   private:
   const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
       _internal_variables() const;
   ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
       _internal_mutable_variables();
   public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
       variables() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
       mutable_variables();
 
   // string fragment_id = 1 [json_name = "fragmentId"];
@@ -21732,6 +21769,24 @@ class FragmentImport final :
   std::string* _internal_mutable_prefix();
   public:
 
+  // optional .google.protobuf.Struct fragment_variables = 5 [json_name = "fragmentVariables"];
+  bool has_fragment_variables() const;
+  private:
+  bool _internal_has_fragment_variables() const;
+  public:
+  void clear_fragment_variables();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& fragment_variables() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_fragment_variables();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_fragment_variables();
+  void set_allocated_fragment_variables(::PROTOBUF_NAMESPACE_ID::Struct* fragment_variables);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_fragment_variables() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_fragment_variables();
+  public:
+  void unsafe_arena_set_allocated_fragment_variables(
+      ::PROTOBUF_NAMESPACE_ID::Struct* fragment_variables);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_fragment_variables();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.FragmentImport)
  private:
   class _Internal;
@@ -21749,6 +21804,7 @@ class FragmentImport final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr fragment_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr prefix_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* fragment_variables_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -33072,6 +33128,7 @@ class ModuleVersion final :
     kEntrypointFieldNumber = 4,
     kFirstRunFieldNumber = 5,
     kMarkdownDescriptionFieldNumber = 6,
+    kDeprecatedStatusFieldNumber = 8,
   };
   // repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
   int files_size() const;
@@ -33191,6 +33248,24 @@ class ModuleVersion final :
   std::string* _internal_mutable_markdown_description();
   public:
 
+  // optional .viam.app.v1.DeprecatedStatus deprecated_status = 8 [json_name = "deprecatedStatus"];
+  bool has_deprecated_status() const;
+  private:
+  bool _internal_has_deprecated_status() const;
+  public:
+  void clear_deprecated_status();
+  const ::viam::app::v1::DeprecatedStatus& deprecated_status() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::DeprecatedStatus* release_deprecated_status();
+  ::viam::app::v1::DeprecatedStatus* mutable_deprecated_status();
+  void set_allocated_deprecated_status(::viam::app::v1::DeprecatedStatus* deprecated_status);
+  private:
+  const ::viam::app::v1::DeprecatedStatus& _internal_deprecated_status() const;
+  ::viam::app::v1::DeprecatedStatus* _internal_mutable_deprecated_status();
+  public:
+  void unsafe_arena_set_allocated_deprecated_status(
+      ::viam::app::v1::DeprecatedStatus* deprecated_status);
+  ::viam::app::v1::DeprecatedStatus* unsafe_arena_release_deprecated_status();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.ModuleVersion)
  private:
   class _Internal;
@@ -33207,6 +33282,7 @@ class ModuleVersion final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_description_;
+  ::viam::app::v1::DeprecatedStatus* deprecated_status_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -34211,6 +34287,174 @@ class MLTrainingMetadata final :
 };
 // -------------------------------------------------------------------
 
+class DeprecatedStatus final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeprecatedStatus) */ {
+ public:
+  inline DeprecatedStatus() : DeprecatedStatus(nullptr) {}
+  ~DeprecatedStatus() override;
+  explicit PROTOBUF_CONSTEXPR DeprecatedStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeprecatedStatus(const DeprecatedStatus& from);
+  DeprecatedStatus(DeprecatedStatus&& from) noexcept
+    : DeprecatedStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline DeprecatedStatus& operator=(const DeprecatedStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeprecatedStatus& operator=(DeprecatedStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeprecatedStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeprecatedStatus* internal_default_instance() {
+    return reinterpret_cast<const DeprecatedStatus*>(
+               &_DeprecatedStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    195;
+
+  friend void swap(DeprecatedStatus& a, DeprecatedStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeprecatedStatus* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeprecatedStatus* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeprecatedStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeprecatedStatus>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeprecatedStatus& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeprecatedStatus& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeprecatedStatus* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeprecatedStatus";
+  }
+  protected:
+  explicit DeprecatedStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessageFieldNumber = 2,
+    kDeprecatedAtFieldNumber = 1,
+  };
+  // string message = 2 [json_name = "message"];
+  void clear_message();
+  const std::string& message() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_message(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* message);
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(const std::string& value);
+  std::string* _internal_mutable_message();
+  public:
+
+  // .google.protobuf.Timestamp deprecated_at = 1 [json_name = "deprecatedAt"];
+  bool has_deprecated_at() const;
+  private:
+  bool _internal_has_deprecated_at() const;
+  public:
+  void clear_deprecated_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& deprecated_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_deprecated_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_deprecated_at();
+  void set_allocated_deprecated_at(::PROTOBUF_NAMESPACE_ID::Timestamp* deprecated_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_deprecated_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_deprecated_at();
+  public:
+  void unsafe_arena_set_allocated_deprecated_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* deprecated_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_deprecated_at();
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeprecatedStatus)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* deprecated_at_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RegistryItem final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.RegistryItem) */ {
  public:
@@ -34266,7 +34510,7 @@ class RegistryItem final :
                &_RegistryItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    195;
+    196;
 
   friend void swap(RegistryItem& a, RegistryItem& b) {
     a.Swap(&b);
@@ -34345,6 +34589,7 @@ class RegistryItem final :
     kDescriptionFieldNumber = 8,
     kCreatedAtFieldNumber = 15,
     kUpdatedAtFieldNumber = 16,
+    kDeprecatedStatusFieldNumber = 17,
     kTypeFieldNumber = 5,
     kVisibilityFieldNumber = 6,
     kTotalRobotUsageFieldNumber = 9,
@@ -34475,6 +34720,24 @@ class RegistryItem final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
 
+  // optional .viam.app.v1.DeprecatedStatus deprecated_status = 17 [json_name = "deprecatedStatus"];
+  bool has_deprecated_status() const;
+  private:
+  bool _internal_has_deprecated_status() const;
+  public:
+  void clear_deprecated_status();
+  const ::viam::app::v1::DeprecatedStatus& deprecated_status() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::DeprecatedStatus* release_deprecated_status();
+  ::viam::app::v1::DeprecatedStatus* mutable_deprecated_status();
+  void set_allocated_deprecated_status(::viam::app::v1::DeprecatedStatus* deprecated_status);
+  private:
+  const ::viam::app::v1::DeprecatedStatus& _internal_deprecated_status() const;
+  ::viam::app::v1::DeprecatedStatus* _internal_mutable_deprecated_status();
+  public:
+  void unsafe_arena_set_allocated_deprecated_status(
+      ::viam::app::v1::DeprecatedStatus* deprecated_status);
+  ::viam::app::v1::DeprecatedStatus* unsafe_arena_release_deprecated_status();
+
   // .viam.app.packages.v1.PackageType type = 5 [json_name = "type"];
   void clear_type();
   ::viam::app::packages::v1::PackageType type() const;
@@ -34598,6 +34861,8 @@ class RegistryItem final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr item_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr organization_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
@@ -34606,6 +34871,7 @@ class RegistryItem final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
+  ::viam::app::v1::DeprecatedStatus* deprecated_status_;
   int type_;
   int visibility_;
   int64_t total_robot_usage_;
@@ -34619,7 +34885,6 @@ class RegistryItem final :
     ::viam::app::v1::MLModelMetadata* ml_model_metadata_;
     ::viam::app::v1::MLTrainingMetadata* ml_training_metadata_;
   } metadata_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
 
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
@@ -34674,7 +34939,7 @@ class GetRegistryItemRequest final :
                &_GetRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    196;
+    197;
 
   friend void swap(GetRegistryItemRequest& a, GetRegistryItemRequest& b) {
     a.Swap(&b);
@@ -34838,7 +35103,7 @@ class GetRegistryItemResponse final :
                &_GetRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    197;
+    198;
 
   friend void swap(GetRegistryItemResponse& a, GetRegistryItemResponse& b) {
     a.Swap(&b);
@@ -34990,7 +35255,7 @@ class CreateRegistryItemRequest final :
                &_CreateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    198;
+    199;
 
   friend void swap(CreateRegistryItemRequest& a, CreateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -35164,7 +35429,7 @@ class CreateRegistryItemResponse final :
                &_CreateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    199;
+    200;
 
   friend void swap(CreateRegistryItemResponse& a, CreateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -35288,7 +35553,7 @@ class UpdateRegistryItemRequest final :
                &_UpdateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    200;
+    201;
 
   friend void swap(UpdateRegistryItemRequest& a, UpdateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -35588,7 +35853,7 @@ class UpdateRegistryItemResponse final :
                &_UpdateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    201;
+    202;
 
   friend void swap(UpdateRegistryItemResponse& a, UpdateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -35705,7 +35970,7 @@ class ListRegistryItemsRequest final :
                &_ListRegistryItemsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    202;
+    203;
 
   friend void swap(ListRegistryItemsRequest& a, ListRegistryItemsRequest& b) {
     a.Swap(&b);
@@ -36065,7 +36330,7 @@ class ListRegistryItemsResponse final :
                &_ListRegistryItemsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    203;
+    204;
 
   friend void swap(ListRegistryItemsResponse& a, ListRegistryItemsResponse& b) {
     a.Swap(&b);
@@ -36217,7 +36482,7 @@ class DeleteRegistryItemRequest final :
                &_DeleteRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    204;
+    205;
 
   friend void swap(DeleteRegistryItemRequest& a, DeleteRegistryItemRequest& b) {
     a.Swap(&b);
@@ -36364,7 +36629,7 @@ class DeleteRegistryItemResponse final :
                &_DeleteRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    205;
+    206;
 
   friend void swap(DeleteRegistryItemResponse& a, DeleteRegistryItemResponse& b) {
     a.Swap(&b);
@@ -36481,7 +36746,7 @@ class RenameRegistryItemRequest final :
                &_RenameRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    206;
+    207;
 
   friend void swap(RenameRegistryItemRequest& a, RenameRegistryItemRequest& b) {
     a.Swap(&b);
@@ -36645,7 +36910,7 @@ class RenameRegistryItemResponse final :
                &_RenameRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    207;
+    208;
 
   friend void swap(RenameRegistryItemResponse& a, RenameRegistryItemResponse& b) {
     a.Swap(&b);
@@ -36797,7 +37062,7 @@ class TransferRegistryItemRequest final :
                &_TransferRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    208;
+    209;
 
   friend void swap(TransferRegistryItemRequest& a, TransferRegistryItemRequest& b) {
     a.Swap(&b);
@@ -36960,7 +37225,7 @@ class TransferRegistryItemResponse final :
                &_TransferRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    209;
+    210;
 
   friend void swap(TransferRegistryItemResponse& a, TransferRegistryItemResponse& b) {
     a.Swap(&b);
@@ -37029,6 +37294,550 @@ class TransferRegistryItemResponse final :
 };
 // -------------------------------------------------------------------
 
+class DeprecateRegistryItemRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeprecateRegistryItemRequest) */ {
+ public:
+  inline DeprecateRegistryItemRequest() : DeprecateRegistryItemRequest(nullptr) {}
+  ~DeprecateRegistryItemRequest() override;
+  explicit PROTOBUF_CONSTEXPR DeprecateRegistryItemRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeprecateRegistryItemRequest(const DeprecateRegistryItemRequest& from);
+  DeprecateRegistryItemRequest(DeprecateRegistryItemRequest&& from) noexcept
+    : DeprecateRegistryItemRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeprecateRegistryItemRequest& operator=(const DeprecateRegistryItemRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeprecateRegistryItemRequest& operator=(DeprecateRegistryItemRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeprecateRegistryItemRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeprecateRegistryItemRequest* internal_default_instance() {
+    return reinterpret_cast<const DeprecateRegistryItemRequest*>(
+               &_DeprecateRegistryItemRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    211;
+
+  friend void swap(DeprecateRegistryItemRequest& a, DeprecateRegistryItemRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeprecateRegistryItemRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeprecateRegistryItemRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeprecateRegistryItemRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeprecateRegistryItemRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeprecateRegistryItemRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeprecateRegistryItemRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeprecateRegistryItemRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeprecateRegistryItemRequest";
+  }
+  protected:
+  explicit DeprecateRegistryItemRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemIdFieldNumber = 1,
+    kMessageFieldNumber = 2,
+  };
+  // string item_id = 1 [json_name = "itemId"];
+  void clear_item_id();
+  const std::string& item_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_item_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_item_id();
+  PROTOBUF_NODISCARD std::string* release_item_id();
+  void set_allocated_item_id(std::string* item_id);
+  private:
+  const std::string& _internal_item_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_item_id(const std::string& value);
+  std::string* _internal_mutable_item_id();
+  public:
+
+  // string message = 2 [json_name = "message"];
+  void clear_message();
+  const std::string& message() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_message(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* message);
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(const std::string& value);
+  std::string* _internal_mutable_message();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeprecateRegistryItemRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr item_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeprecateRegistryItemResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.DeprecateRegistryItemResponse) */ {
+ public:
+  inline DeprecateRegistryItemResponse() : DeprecateRegistryItemResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR DeprecateRegistryItemResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeprecateRegistryItemResponse(const DeprecateRegistryItemResponse& from);
+  DeprecateRegistryItemResponse(DeprecateRegistryItemResponse&& from) noexcept
+    : DeprecateRegistryItemResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeprecateRegistryItemResponse& operator=(const DeprecateRegistryItemResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeprecateRegistryItemResponse& operator=(DeprecateRegistryItemResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeprecateRegistryItemResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeprecateRegistryItemResponse* internal_default_instance() {
+    return reinterpret_cast<const DeprecateRegistryItemResponse*>(
+               &_DeprecateRegistryItemResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    212;
+
+  friend void swap(DeprecateRegistryItemResponse& a, DeprecateRegistryItemResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeprecateRegistryItemResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeprecateRegistryItemResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeprecateRegistryItemResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeprecateRegistryItemResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const DeprecateRegistryItemResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const DeprecateRegistryItemResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeprecateRegistryItemResponse";
+  }
+  protected:
+  explicit DeprecateRegistryItemResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeprecateRegistryItemResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UndeprecateRegistryItemRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UndeprecateRegistryItemRequest) */ {
+ public:
+  inline UndeprecateRegistryItemRequest() : UndeprecateRegistryItemRequest(nullptr) {}
+  ~UndeprecateRegistryItemRequest() override;
+  explicit PROTOBUF_CONSTEXPR UndeprecateRegistryItemRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UndeprecateRegistryItemRequest(const UndeprecateRegistryItemRequest& from);
+  UndeprecateRegistryItemRequest(UndeprecateRegistryItemRequest&& from) noexcept
+    : UndeprecateRegistryItemRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UndeprecateRegistryItemRequest& operator=(const UndeprecateRegistryItemRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UndeprecateRegistryItemRequest& operator=(UndeprecateRegistryItemRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UndeprecateRegistryItemRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UndeprecateRegistryItemRequest* internal_default_instance() {
+    return reinterpret_cast<const UndeprecateRegistryItemRequest*>(
+               &_UndeprecateRegistryItemRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    213;
+
+  friend void swap(UndeprecateRegistryItemRequest& a, UndeprecateRegistryItemRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UndeprecateRegistryItemRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UndeprecateRegistryItemRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UndeprecateRegistryItemRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UndeprecateRegistryItemRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UndeprecateRegistryItemRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UndeprecateRegistryItemRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UndeprecateRegistryItemRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UndeprecateRegistryItemRequest";
+  }
+  protected:
+  explicit UndeprecateRegistryItemRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemIdFieldNumber = 1,
+  };
+  // string item_id = 1 [json_name = "itemId"];
+  void clear_item_id();
+  const std::string& item_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_item_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_item_id();
+  PROTOBUF_NODISCARD std::string* release_item_id();
+  void set_allocated_item_id(std::string* item_id);
+  private:
+  const std::string& _internal_item_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_item_id(const std::string& value);
+  std::string* _internal_mutable_item_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UndeprecateRegistryItemRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr item_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UndeprecateRegistryItemResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.UndeprecateRegistryItemResponse) */ {
+ public:
+  inline UndeprecateRegistryItemResponse() : UndeprecateRegistryItemResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR UndeprecateRegistryItemResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UndeprecateRegistryItemResponse(const UndeprecateRegistryItemResponse& from);
+  UndeprecateRegistryItemResponse(UndeprecateRegistryItemResponse&& from) noexcept
+    : UndeprecateRegistryItemResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UndeprecateRegistryItemResponse& operator=(const UndeprecateRegistryItemResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UndeprecateRegistryItemResponse& operator=(UndeprecateRegistryItemResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UndeprecateRegistryItemResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UndeprecateRegistryItemResponse* internal_default_instance() {
+    return reinterpret_cast<const UndeprecateRegistryItemResponse*>(
+               &_UndeprecateRegistryItemResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    214;
+
+  friend void swap(UndeprecateRegistryItemResponse& a, UndeprecateRegistryItemResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UndeprecateRegistryItemResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UndeprecateRegistryItemResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UndeprecateRegistryItemResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UndeprecateRegistryItemResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const UndeprecateRegistryItemResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const UndeprecateRegistryItemResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UndeprecateRegistryItemResponse";
+  }
+  protected:
+  explicit UndeprecateRegistryItemResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UndeprecateRegistryItemResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class CreateModuleRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.CreateModuleRequest) */ {
  public:
@@ -37077,7 +37886,7 @@ class CreateModuleRequest final :
                &_CreateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    210;
+    215;
 
   friend void swap(CreateModuleRequest& a, CreateModuleRequest& b) {
     a.Swap(&b);
@@ -37241,7 +38050,7 @@ class CreateModuleResponse final :
                &_CreateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    211;
+    216;
 
   friend void swap(CreateModuleResponse& a, CreateModuleResponse& b) {
     a.Swap(&b);
@@ -37405,7 +38214,7 @@ class UpdateModuleRequest final :
                &_UpdateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    212;
+    217;
 
   friend void swap(UpdateModuleRequest& a, UpdateModuleRequest& b) {
     a.Swap(&b);
@@ -37693,7 +38502,7 @@ class AllowedOrgIDs final :
                &_AllowedOrgIDs_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    213;
+    218;
 
   friend void swap(AllowedOrgIDs& a, AllowedOrgIDs& b) {
     a.Swap(&b);
@@ -37851,7 +38660,7 @@ class App final :
                &_App_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    214;
+    219;
 
   friend void swap(App& a, App& b) {
     a.Swap(&b);
@@ -38118,7 +38927,7 @@ class UpdateModuleResponse final :
                &_UpdateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    215;
+    220;
 
   friend void swap(UpdateModuleResponse& a, UpdateModuleResponse& b) {
     a.Swap(&b);
@@ -38266,7 +39075,7 @@ class UpdateModuleMetadata final :
                &_UpdateModuleMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    216;
+    221;
 
   friend void swap(UpdateModuleMetadata& a, UpdateModuleMetadata& b) {
     a.Swap(&b);
@@ -38485,7 +39294,7 @@ class UpdateMLModelMetadata final :
                &_UpdateMLModelMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    217;
+    222;
 
   friend void swap(UpdateMLModelMetadata& a, UpdateMLModelMetadata& b) {
     a.Swap(&b);
@@ -38639,7 +39448,7 @@ class UpdateMLTrainingMetadata final :
                &_UpdateMLTrainingMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    218;
+    223;
 
   friend void swap(UpdateMLTrainingMetadata& a, UpdateMLTrainingMetadata& b) {
     a.Swap(&b);
@@ -38804,7 +39613,7 @@ class Model final :
                &_Model_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    219;
+    224;
 
   friend void swap(Model& a, Model& b) {
     a.Swap(&b);
@@ -39035,7 +39844,7 @@ class ModuleFileInfo final :
                &_ModuleFileInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    220;
+    225;
 
   friend void swap(ModuleFileInfo& a, ModuleFileInfo& b) {
     a.Swap(&b);
@@ -39247,7 +40056,7 @@ class UploadModuleFileRequest final :
                &_UploadModuleFileRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    221;
+    226;
 
   friend void swap(UploadModuleFileRequest& a, UploadModuleFileRequest& b) {
     a.Swap(&b);
@@ -39432,7 +40241,7 @@ class UploadModuleFileResponse final :
                &_UploadModuleFileResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    222;
+    227;
 
   friend void swap(UploadModuleFileResponse& a, UploadModuleFileResponse& b) {
     a.Swap(&b);
@@ -39580,7 +40389,7 @@ class GetModuleRequest final :
                &_GetModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    223;
+    228;
 
   friend void swap(GetModuleRequest& a, GetModuleRequest& b) {
     a.Swap(&b);
@@ -39744,7 +40553,7 @@ class GetModuleResponse final :
                &_GetModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    224;
+    229;
 
   friend void swap(GetModuleResponse& a, GetModuleResponse& b) {
     a.Swap(&b);
@@ -39896,7 +40705,7 @@ class Module final :
                &_Module_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    225;
+    230;
 
   friend void swap(Module& a, Module& b) {
     a.Swap(&b);
@@ -39979,6 +40788,7 @@ class Module final :
     kPublicNamespaceFieldNumber = 12,
     kFirstRunFieldNumber = 13,
     kMarkdownDescriptionFieldNumber = 14,
+    kDeprecatedStatusFieldNumber = 16,
     kTotalRobotUsageFieldNumber = 8,
     kTotalOrganizationUsageFieldNumber = 9,
     kVisibilityFieldNumber = 3,
@@ -40171,6 +40981,24 @@ class Module final :
   std::string* _internal_mutable_markdown_description();
   public:
 
+  // optional .viam.app.v1.DeprecatedStatus deprecated_status = 16 [json_name = "deprecatedStatus"];
+  bool has_deprecated_status() const;
+  private:
+  bool _internal_has_deprecated_status() const;
+  public:
+  void clear_deprecated_status();
+  const ::viam::app::v1::DeprecatedStatus& deprecated_status() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::DeprecatedStatus* release_deprecated_status();
+  ::viam::app::v1::DeprecatedStatus* mutable_deprecated_status();
+  void set_allocated_deprecated_status(::viam::app::v1::DeprecatedStatus* deprecated_status);
+  private:
+  const ::viam::app::v1::DeprecatedStatus& _internal_deprecated_status() const;
+  ::viam::app::v1::DeprecatedStatus* _internal_mutable_deprecated_status();
+  public:
+  void unsafe_arena_set_allocated_deprecated_status(
+      ::viam::app::v1::DeprecatedStatus* deprecated_status);
+  ::viam::app::v1::DeprecatedStatus* unsafe_arena_release_deprecated_status();
+
   // int64 total_robot_usage = 8 [json_name = "totalRobotUsage"];
   void clear_total_robot_usage();
   int64_t total_robot_usage() const;
@@ -40219,6 +41047,7 @@ class Module final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr public_namespace_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_description_;
+  ::viam::app::v1::DeprecatedStatus* deprecated_status_;
   int64_t total_robot_usage_;
   int64_t total_organization_usage_;
   int visibility_;
@@ -40274,7 +41103,7 @@ class VersionHistory final :
                &_VersionHistory_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    226;
+    231;
 
   friend void swap(VersionHistory& a, VersionHistory& b) {
     a.Swap(&b);
@@ -40352,6 +41181,7 @@ class VersionHistory final :
     kEntrypointFieldNumber = 4,
     kFirstRunFieldNumber = 5,
     kMarkdownDescriptionFieldNumber = 6,
+    kDeprecatedStatusFieldNumber = 8,
   };
   // repeated .viam.app.v1.Uploads files = 2 [json_name = "files"];
   int files_size() const;
@@ -40471,6 +41301,24 @@ class VersionHistory final :
   std::string* _internal_mutable_markdown_description();
   public:
 
+  // optional .viam.app.v1.DeprecatedStatus deprecated_status = 8 [json_name = "deprecatedStatus"];
+  bool has_deprecated_status() const;
+  private:
+  bool _internal_has_deprecated_status() const;
+  public:
+  void clear_deprecated_status();
+  const ::viam::app::v1::DeprecatedStatus& deprecated_status() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::DeprecatedStatus* release_deprecated_status();
+  ::viam::app::v1::DeprecatedStatus* mutable_deprecated_status();
+  void set_allocated_deprecated_status(::viam::app::v1::DeprecatedStatus* deprecated_status);
+  private:
+  const ::viam::app::v1::DeprecatedStatus& _internal_deprecated_status() const;
+  ::viam::app::v1::DeprecatedStatus* _internal_mutable_deprecated_status();
+  public:
+  void unsafe_arena_set_allocated_deprecated_status(
+      ::viam::app::v1::DeprecatedStatus* deprecated_status);
+  ::viam::app::v1::DeprecatedStatus* unsafe_arena_release_deprecated_status();
+
   // @@protoc_insertion_point(class_scope:viam.app.v1.VersionHistory)
  private:
   class _Internal;
@@ -40487,6 +41335,7 @@ class VersionHistory final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr entrypoint_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr first_run_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_description_;
+  ::viam::app::v1::DeprecatedStatus* deprecated_status_;
   friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
 };
 // -------------------------------------------------------------------
@@ -40539,7 +41388,7 @@ class Uploads final :
                &_Uploads_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    227;
+    232;
 
   friend void swap(Uploads& a, Uploads& b) {
     a.Swap(&b);
@@ -40707,7 +41556,7 @@ class ListModulesRequest final :
                &_ListModulesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    228;
+    233;
 
   friend void swap(ListModulesRequest& a, ListModulesRequest& b) {
     a.Swap(&b);
@@ -40875,7 +41724,7 @@ class ListModulesResponse final :
                &_ListModulesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    229;
+    234;
 
   friend void swap(ListModulesResponse& a, ListModulesResponse& b) {
     a.Swap(&b);
@@ -40979,6 +41828,582 @@ class ListModulesResponse final :
 };
 // -------------------------------------------------------------------
 
+class DeprecateRegistryItemVersionRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.DeprecateRegistryItemVersionRequest) */ {
+ public:
+  inline DeprecateRegistryItemVersionRequest() : DeprecateRegistryItemVersionRequest(nullptr) {}
+  ~DeprecateRegistryItemVersionRequest() override;
+  explicit PROTOBUF_CONSTEXPR DeprecateRegistryItemVersionRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeprecateRegistryItemVersionRequest(const DeprecateRegistryItemVersionRequest& from);
+  DeprecateRegistryItemVersionRequest(DeprecateRegistryItemVersionRequest&& from) noexcept
+    : DeprecateRegistryItemVersionRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeprecateRegistryItemVersionRequest& operator=(const DeprecateRegistryItemVersionRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeprecateRegistryItemVersionRequest& operator=(DeprecateRegistryItemVersionRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeprecateRegistryItemVersionRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeprecateRegistryItemVersionRequest* internal_default_instance() {
+    return reinterpret_cast<const DeprecateRegistryItemVersionRequest*>(
+               &_DeprecateRegistryItemVersionRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    235;
+
+  friend void swap(DeprecateRegistryItemVersionRequest& a, DeprecateRegistryItemVersionRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeprecateRegistryItemVersionRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeprecateRegistryItemVersionRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeprecateRegistryItemVersionRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeprecateRegistryItemVersionRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DeprecateRegistryItemVersionRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DeprecateRegistryItemVersionRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeprecateRegistryItemVersionRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeprecateRegistryItemVersionRequest";
+  }
+  protected:
+  explicit DeprecateRegistryItemVersionRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemIdFieldNumber = 1,
+    kVersionFieldNumber = 2,
+    kMessageFieldNumber = 3,
+  };
+  // string item_id = 1 [json_name = "itemId"];
+  void clear_item_id();
+  const std::string& item_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_item_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_item_id();
+  PROTOBUF_NODISCARD std::string* release_item_id();
+  void set_allocated_item_id(std::string* item_id);
+  private:
+  const std::string& _internal_item_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_item_id(const std::string& value);
+  std::string* _internal_mutable_item_id();
+  public:
+
+  // string version = 2 [json_name = "version"];
+  void clear_version();
+  const std::string& version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* version);
+  private:
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(const std::string& value);
+  std::string* _internal_mutable_version();
+  public:
+
+  // string message = 3 [json_name = "message"];
+  void clear_message();
+  const std::string& message() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_message(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* message);
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(const std::string& value);
+  std::string* _internal_mutable_message();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeprecateRegistryItemVersionRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr item_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeprecateRegistryItemVersionResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.DeprecateRegistryItemVersionResponse) */ {
+ public:
+  inline DeprecateRegistryItemVersionResponse() : DeprecateRegistryItemVersionResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR DeprecateRegistryItemVersionResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DeprecateRegistryItemVersionResponse(const DeprecateRegistryItemVersionResponse& from);
+  DeprecateRegistryItemVersionResponse(DeprecateRegistryItemVersionResponse&& from) noexcept
+    : DeprecateRegistryItemVersionResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeprecateRegistryItemVersionResponse& operator=(const DeprecateRegistryItemVersionResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeprecateRegistryItemVersionResponse& operator=(DeprecateRegistryItemVersionResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DeprecateRegistryItemVersionResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DeprecateRegistryItemVersionResponse* internal_default_instance() {
+    return reinterpret_cast<const DeprecateRegistryItemVersionResponse*>(
+               &_DeprecateRegistryItemVersionResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    236;
+
+  friend void swap(DeprecateRegistryItemVersionResponse& a, DeprecateRegistryItemVersionResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeprecateRegistryItemVersionResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeprecateRegistryItemVersionResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DeprecateRegistryItemVersionResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeprecateRegistryItemVersionResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const DeprecateRegistryItemVersionResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const DeprecateRegistryItemVersionResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.DeprecateRegistryItemVersionResponse";
+  }
+  protected:
+  explicit DeprecateRegistryItemVersionResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.DeprecateRegistryItemVersionResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UndeprecateRegistryItemVersionRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.UndeprecateRegistryItemVersionRequest) */ {
+ public:
+  inline UndeprecateRegistryItemVersionRequest() : UndeprecateRegistryItemVersionRequest(nullptr) {}
+  ~UndeprecateRegistryItemVersionRequest() override;
+  explicit PROTOBUF_CONSTEXPR UndeprecateRegistryItemVersionRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UndeprecateRegistryItemVersionRequest(const UndeprecateRegistryItemVersionRequest& from);
+  UndeprecateRegistryItemVersionRequest(UndeprecateRegistryItemVersionRequest&& from) noexcept
+    : UndeprecateRegistryItemVersionRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UndeprecateRegistryItemVersionRequest& operator=(const UndeprecateRegistryItemVersionRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UndeprecateRegistryItemVersionRequest& operator=(UndeprecateRegistryItemVersionRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UndeprecateRegistryItemVersionRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UndeprecateRegistryItemVersionRequest* internal_default_instance() {
+    return reinterpret_cast<const UndeprecateRegistryItemVersionRequest*>(
+               &_UndeprecateRegistryItemVersionRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    237;
+
+  friend void swap(UndeprecateRegistryItemVersionRequest& a, UndeprecateRegistryItemVersionRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UndeprecateRegistryItemVersionRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UndeprecateRegistryItemVersionRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UndeprecateRegistryItemVersionRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UndeprecateRegistryItemVersionRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UndeprecateRegistryItemVersionRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UndeprecateRegistryItemVersionRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UndeprecateRegistryItemVersionRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UndeprecateRegistryItemVersionRequest";
+  }
+  protected:
+  explicit UndeprecateRegistryItemVersionRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemIdFieldNumber = 1,
+    kVersionFieldNumber = 2,
+  };
+  // string item_id = 1 [json_name = "itemId"];
+  void clear_item_id();
+  const std::string& item_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_item_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_item_id();
+  PROTOBUF_NODISCARD std::string* release_item_id();
+  void set_allocated_item_id(std::string* item_id);
+  private:
+  const std::string& _internal_item_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_item_id(const std::string& value);
+  std::string* _internal_mutable_item_id();
+  public:
+
+  // string version = 2 [json_name = "version"];
+  void clear_version();
+  const std::string& version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* version);
+  private:
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(const std::string& value);
+  std::string* _internal_mutable_version();
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UndeprecateRegistryItemVersionRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr item_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr version_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UndeprecateRegistryItemVersionResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:viam.app.v1.UndeprecateRegistryItemVersionResponse) */ {
+ public:
+  inline UndeprecateRegistryItemVersionResponse() : UndeprecateRegistryItemVersionResponse(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR UndeprecateRegistryItemVersionResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UndeprecateRegistryItemVersionResponse(const UndeprecateRegistryItemVersionResponse& from);
+  UndeprecateRegistryItemVersionResponse(UndeprecateRegistryItemVersionResponse&& from) noexcept
+    : UndeprecateRegistryItemVersionResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UndeprecateRegistryItemVersionResponse& operator=(const UndeprecateRegistryItemVersionResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UndeprecateRegistryItemVersionResponse& operator=(UndeprecateRegistryItemVersionResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UndeprecateRegistryItemVersionResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UndeprecateRegistryItemVersionResponse* internal_default_instance() {
+    return reinterpret_cast<const UndeprecateRegistryItemVersionResponse*>(
+               &_UndeprecateRegistryItemVersionResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    238;
+
+  friend void swap(UndeprecateRegistryItemVersionResponse& a, UndeprecateRegistryItemVersionResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UndeprecateRegistryItemVersionResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UndeprecateRegistryItemVersionResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UndeprecateRegistryItemVersionResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UndeprecateRegistryItemVersionResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const UndeprecateRegistryItemVersionResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const UndeprecateRegistryItemVersionResponse& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.UndeprecateRegistryItemVersionResponse";
+  }
+  protected:
+  explicit UndeprecateRegistryItemVersionResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.UndeprecateRegistryItemVersionResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetUserIDByEmailRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.GetUserIDByEmailRequest) */ {
  public:
@@ -41027,7 +42452,7 @@ class GetUserIDByEmailRequest final :
                &_GetUserIDByEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    230;
+    239;
 
   friend void swap(GetUserIDByEmailRequest& a, GetUserIDByEmailRequest& b) {
     a.Swap(&b);
@@ -41175,7 +42600,7 @@ class GetUserIDByEmailResponse final :
                &_GetUserIDByEmailResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    231;
+    240;
 
   friend void swap(GetUserIDByEmailResponse& a, GetUserIDByEmailResponse& b) {
     a.Swap(&b);
@@ -41323,7 +42748,7 @@ class ListOrganizationsByUserRequest final :
                &_ListOrganizationsByUserRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    232;
+    241;
 
   friend void swap(ListOrganizationsByUserRequest& a, ListOrganizationsByUserRequest& b) {
     a.Swap(&b);
@@ -41471,7 +42896,7 @@ class OrgDetails final :
                &_OrgDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    233;
+    242;
 
   friend void swap(OrgDetails& a, OrgDetails& b) {
     a.Swap(&b);
@@ -41696,7 +43121,7 @@ class ListOrganizationsByUserResponse final :
                &_ListOrganizationsByUserResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    234;
+    243;
 
   friend void swap(ListOrganizationsByUserResponse& a, ListOrganizationsByUserResponse& b) {
     a.Swap(&b);
@@ -41848,7 +43273,7 @@ class SearchOrganizationsRequest final :
                &_SearchOrganizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    235;
+    244;
 
   friend void swap(SearchOrganizationsRequest& a, SearchOrganizationsRequest& b) {
     a.Swap(&b);
@@ -42061,7 +43486,7 @@ class SearchOrganizationsResponse final :
                &_SearchOrganizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    236;
+    245;
 
   friend void swap(SearchOrganizationsResponse& a, SearchOrganizationsResponse& b) {
     a.Swap(&b);
@@ -42213,7 +43638,7 @@ class CreateKeyRequest final :
                &_CreateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    237;
+    246;
 
   friend void swap(CreateKeyRequest& a, CreateKeyRequest& b) {
     a.Swap(&b);
@@ -42381,7 +43806,7 @@ class CreateKeyResponse final :
                &_CreateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    238;
+    247;
 
   friend void swap(CreateKeyResponse& a, CreateKeyResponse& b) {
     a.Swap(&b);
@@ -42545,7 +43970,7 @@ class DeleteKeyRequest final :
                &_DeleteKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    239;
+    248;
 
   friend void swap(DeleteKeyRequest& a, DeleteKeyRequest& b) {
     a.Swap(&b);
@@ -42692,7 +44117,7 @@ class DeleteKeyResponse final :
                &_DeleteKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    240;
+    249;
 
   friend void swap(DeleteKeyResponse& a, DeleteKeyResponse& b) {
     a.Swap(&b);
@@ -42809,7 +44234,7 @@ class RenameKeyRequest final :
                &_RenameKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    241;
+    250;
 
   friend void swap(RenameKeyRequest& a, RenameKeyRequest& b) {
     a.Swap(&b);
@@ -42973,7 +44398,7 @@ class RenameKeyResponse final :
                &_RenameKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    242;
+    251;
 
   friend void swap(RenameKeyResponse& a, RenameKeyResponse& b) {
     a.Swap(&b);
@@ -43137,7 +44562,7 @@ class AuthorizationDetails final :
                &_AuthorizationDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    243;
+    252;
 
   friend void swap(AuthorizationDetails& a, AuthorizationDetails& b) {
     a.Swap(&b);
@@ -43349,7 +44774,7 @@ class APIKeyWithAuthorizations final :
                &_APIKeyWithAuthorizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    244;
+    253;
 
   friend void swap(APIKeyWithAuthorizations& a, APIKeyWithAuthorizations& b) {
     a.Swap(&b);
@@ -43521,7 +44946,7 @@ class ListKeysRequest final :
                &_ListKeysRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    245;
+    254;
 
   friend void swap(ListKeysRequest& a, ListKeysRequest& b) {
     a.Swap(&b);
@@ -43669,7 +45094,7 @@ class ListKeysResponse final :
                &_ListKeysResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    246;
+    255;
 
   friend void swap(ListKeysResponse& a, ListKeysResponse& b) {
     a.Swap(&b);
@@ -43821,7 +45246,7 @@ class RotateKeyRequest final :
                &_RotateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    247;
+    256;
 
   friend void swap(RotateKeyRequest& a, RotateKeyRequest& b) {
     a.Swap(&b);
@@ -43969,7 +45394,7 @@ class RotateKeyResponse final :
                &_RotateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    248;
+    257;
 
   friend void swap(RotateKeyResponse& a, RotateKeyResponse& b) {
     a.Swap(&b);
@@ -44133,7 +45558,7 @@ class CreateKeyFromExistingKeyAuthorizationsRequest final :
                &_CreateKeyFromExistingKeyAuthorizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    249;
+    258;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsRequest& a, CreateKeyFromExistingKeyAuthorizationsRequest& b) {
     a.Swap(&b);
@@ -44281,7 +45706,7 @@ class CreateKeyFromExistingKeyAuthorizationsResponse final :
                &_CreateKeyFromExistingKeyAuthorizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    250;
+    259;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsResponse& a, CreateKeyFromExistingKeyAuthorizationsResponse& b) {
     a.Swap(&b);
@@ -44445,7 +45870,7 @@ class GetAppContentRequest final :
                &_GetAppContentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    251;
+    260;
 
   friend void swap(GetAppContentRequest& a, GetAppContentRequest& b) {
     a.Swap(&b);
@@ -44609,7 +46034,7 @@ class GetAppContentResponse final :
                &_GetAppContentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    252;
+    261;
 
   friend void swap(GetAppContentResponse& a, GetAppContentResponse& b) {
     a.Swap(&b);
@@ -44795,7 +46220,7 @@ class OrganizationSetLogoRequest final :
                &_OrganizationSetLogoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    253;
+    262;
 
   friend void swap(OrganizationSetLogoRequest& a, OrganizationSetLogoRequest& b) {
     a.Swap(&b);
@@ -44958,7 +46383,7 @@ class OrganizationSetLogoResponse final :
                &_OrganizationSetLogoResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    254;
+    263;
 
   friend void swap(OrganizationSetLogoResponse& a, OrganizationSetLogoResponse& b) {
     a.Swap(&b);
@@ -45075,7 +46500,7 @@ class OrganizationGetLogoRequest final :
                &_OrganizationGetLogoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    255;
+    264;
 
   friend void swap(OrganizationGetLogoRequest& a, OrganizationGetLogoRequest& b) {
     a.Swap(&b);
@@ -45223,7 +46648,7 @@ class OrganizationGetLogoResponse final :
                &_OrganizationGetLogoResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    256;
+    265;
 
   friend void swap(OrganizationGetLogoResponse& a, OrganizationGetLogoResponse& b) {
     a.Swap(&b);
@@ -45371,7 +46796,7 @@ class EnableAuthServiceRequest final :
                &_EnableAuthServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    257;
+    266;
 
   friend void swap(EnableAuthServiceRequest& a, EnableAuthServiceRequest& b) {
     a.Swap(&b);
@@ -45518,7 +46943,7 @@ class EnableAuthServiceResponse final :
                &_EnableAuthServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    258;
+    267;
 
   friend void swap(EnableAuthServiceResponse& a, EnableAuthServiceResponse& b) {
     a.Swap(&b);
@@ -45635,7 +47060,7 @@ class DisableAuthServiceRequest final :
                &_DisableAuthServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    259;
+    268;
 
   friend void swap(DisableAuthServiceRequest& a, DisableAuthServiceRequest& b) {
     a.Swap(&b);
@@ -45782,7 +47207,7 @@ class DisableAuthServiceResponse final :
                &_DisableAuthServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    260;
+    269;
 
   friend void swap(DisableAuthServiceResponse& a, DisableAuthServiceResponse& b) {
     a.Swap(&b);
@@ -45899,7 +47324,7 @@ class CreateOAuthAppRequest final :
                &_CreateOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    261;
+    270;
 
   friend void swap(CreateOAuthAppRequest& a, CreateOAuthAppRequest& b) {
     a.Swap(&b);
@@ -46083,7 +47508,7 @@ class CreateOAuthAppResponse final :
                &_CreateOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    262;
+    271;
 
   friend void swap(CreateOAuthAppResponse& a, CreateOAuthAppResponse& b) {
     a.Swap(&b);
@@ -46247,7 +47672,7 @@ class ReadOAuthAppRequest final :
                &_ReadOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    263;
+    272;
 
   friend void swap(ReadOAuthAppRequest& a, ReadOAuthAppRequest& b) {
     a.Swap(&b);
@@ -46411,7 +47836,7 @@ class ReadOAuthAppResponse final :
                &_ReadOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    264;
+    273;
 
   friend void swap(ReadOAuthAppResponse& a, ReadOAuthAppResponse& b) {
     a.Swap(&b);
@@ -46595,7 +48020,7 @@ class UpdateOAuthAppRequest final :
                &_UpdateOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    265;
+    274;
 
   friend void swap(UpdateOAuthAppRequest& a, UpdateOAuthAppRequest& b) {
     a.Swap(&b);
@@ -46794,7 +48219,7 @@ class UpdateOAuthAppResponse final :
                &_UpdateOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    266;
+    275;
 
   friend void swap(UpdateOAuthAppResponse& a, UpdateOAuthAppResponse& b) {
     a.Swap(&b);
@@ -46911,7 +48336,7 @@ class DeleteOAuthAppRequest final :
                &_DeleteOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    267;
+    276;
 
   friend void swap(DeleteOAuthAppRequest& a, DeleteOAuthAppRequest& b) {
     a.Swap(&b);
@@ -47074,7 +48499,7 @@ class DeleteOAuthAppResponse final :
                &_DeleteOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    268;
+    277;
 
   friend void swap(DeleteOAuthAppResponse& a, DeleteOAuthAppResponse& b) {
     a.Swap(&b);
@@ -47191,7 +48616,7 @@ class ListOAuthAppsRequest final :
                &_ListOAuthAppsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    269;
+    278;
 
   friend void swap(ListOAuthAppsRequest& a, ListOAuthAppsRequest& b) {
     a.Swap(&b);
@@ -47339,7 +48764,7 @@ class ListOAuthAppsResponse final :
                &_ListOAuthAppsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    270;
+    279;
 
   friend void swap(ListOAuthAppsResponse& a, ListOAuthAppsResponse& b) {
     a.Swap(&b);
@@ -47497,7 +48922,7 @@ class CreateOAuthAppUserRequest final :
                &_CreateOAuthAppUserRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    271;
+    280;
 
   friend void swap(CreateOAuthAppUserRequest& a, CreateOAuthAppUserRequest& b) {
     a.Swap(&b);
@@ -47725,7 +49150,7 @@ class CreateOAuthAppUserResponse final :
                &_CreateOAuthAppUserResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    272;
+    281;
 
   friend void swap(CreateOAuthAppUserResponse& a, CreateOAuthAppUserResponse& b) {
     a.Swap(&b);
@@ -47921,7 +49346,7 @@ class OAuthConfig final :
                &_OAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    273;
+    282;
 
   friend void swap(OAuthConfig& a, OAuthConfig& b) {
     a.Swap(&b);
@@ -48190,7 +49615,7 @@ class GetAppBrandingRequest final :
                &_GetAppBrandingRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    274;
+    283;
 
   friend void swap(GetAppBrandingRequest& a, GetAppBrandingRequest& b) {
     a.Swap(&b);
@@ -48382,7 +49807,7 @@ class TextOverrides final :
                &_TextOverrides_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    276;
+    285;
 
   friend void swap(TextOverrides& a, TextOverrides& b) {
     a.Swap(&b);
@@ -48566,7 +49991,7 @@ class GetAppBrandingResponse final :
                &_GetAppBrandingResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    278;
+    287;
 
   friend void swap(GetAppBrandingResponse& a, GetAppBrandingResponse& b) {
     a.Swap(&b);
@@ -48797,7 +50222,7 @@ class AppCustomizations final :
                &_AppCustomizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    279;
+    288;
 
   friend void swap(AppCustomizations& a, AppCustomizations& b) {
     a.Swap(&b);
@@ -48949,7 +50374,7 @@ class MachinePickerCustomizations final :
                &_MachinePickerCustomizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    280;
+    289;
 
   friend void swap(MachinePickerCustomizations& a, MachinePickerCustomizations& b) {
     a.Swap(&b);
@@ -49122,7 +50547,7 @@ class UploadDevicePushTokenRequest final :
                &_UploadDevicePushTokenRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    281;
+    290;
 
   friend void swap(UploadDevicePushTokenRequest& a, UploadDevicePushTokenRequest& b) {
     a.Swap(&b);
@@ -49301,7 +50726,7 @@ class UploadDevicePushTokenResponse final :
                &_UploadDevicePushTokenResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    282;
+    291;
 
   friend void swap(UploadDevicePushTokenResponse& a, UploadDevicePushTokenResponse& b) {
     a.Swap(&b);
@@ -49418,7 +50843,7 @@ class DeleteDevicePushTokenRequest final :
                &_DeleteDevicePushTokenRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    283;
+    292;
 
   friend void swap(DeleteDevicePushTokenRequest& a, DeleteDevicePushTokenRequest& b) {
     a.Swap(&b);
@@ -49581,7 +51006,7 @@ class DeleteDevicePushTokenResponse final :
                &_DeleteDevicePushTokenResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    284;
+    293;
 
   friend void swap(DeleteDevicePushTokenResponse& a, DeleteDevicePushTokenResponse& b) {
     a.Swap(&b);
@@ -49698,7 +51123,7 @@ class GetDevicePushTokensRequest final :
                &_GetDevicePushTokensRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    285;
+    294;
 
   friend void swap(GetDevicePushTokensRequest& a, GetDevicePushTokensRequest& b) {
     a.Swap(&b);
@@ -49846,7 +51271,7 @@ class GetDevicePushTokensResponse final :
                &_GetDevicePushTokensResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    286;
+    295;
 
   friend void swap(GetDevicePushTokensResponse& a, GetDevicePushTokensResponse& b) {
     a.Swap(&b);
@@ -50004,7 +51429,7 @@ class SetFirebaseConfigRequest final :
                &_SetFirebaseConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    287;
+    296;
 
   friend void swap(SetFirebaseConfigRequest& a, SetFirebaseConfigRequest& b) {
     a.Swap(&b);
@@ -50183,7 +51608,7 @@ class SetFirebaseConfigResponse final :
                &_SetFirebaseConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    288;
+    297;
 
   friend void swap(SetFirebaseConfigResponse& a, SetFirebaseConfigResponse& b) {
     a.Swap(&b);
@@ -50300,7 +51725,7 @@ class GetFirebaseConfigRequest final :
                &_GetFirebaseConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    289;
+    298;
 
   friend void swap(GetFirebaseConfigRequest& a, GetFirebaseConfigRequest& b) {
     a.Swap(&b);
@@ -50448,7 +51873,7 @@ class GetFirebaseConfigResponse final :
                &_GetFirebaseConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    290;
+    299;
 
   friend void swap(GetFirebaseConfigResponse& a, GetFirebaseConfigResponse& b) {
     a.Swap(&b);
@@ -50596,7 +52021,7 @@ class DeleteFirebaseConfigRequest final :
                &_DeleteFirebaseConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    291;
+    300;
 
   friend void swap(DeleteFirebaseConfigRequest& a, DeleteFirebaseConfigRequest& b) {
     a.Swap(&b);
@@ -50759,7 +52184,7 @@ class DeleteFirebaseConfigResponse final :
                &_DeleteFirebaseConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    292;
+    301;
 
   friend void swap(DeleteFirebaseConfigResponse& a, DeleteFirebaseConfigResponse& b) {
     a.Swap(&b);
@@ -66015,7 +67440,7 @@ inline void FragmentImport::set_allocated_prefix(std::string* prefix) {
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FragmentImport.prefix)
 }
 
-// map<string, string> variables = 4 [json_name = "variables"];
+// map<string, string> variables = 4 [json_name = "variables", deprecated = true];
 inline int FragmentImport::_internal_variables_size() const {
   return variables_.size();
 }
@@ -66042,6 +67467,93 @@ inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
 FragmentImport::mutable_variables() {
   // @@protoc_insertion_point(field_mutable_map:viam.app.v1.FragmentImport.variables)
   return _internal_mutable_variables();
+}
+
+// optional .google.protobuf.Struct fragment_variables = 5 [json_name = "fragmentVariables"];
+inline bool FragmentImport::_internal_has_fragment_variables() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || fragment_variables_ != nullptr);
+  return value;
+}
+inline bool FragmentImport::has_fragment_variables() const {
+  return _internal_has_fragment_variables();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& FragmentImport::_internal_fragment_variables() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = fragment_variables_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& FragmentImport::fragment_variables() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.FragmentImport.fragment_variables)
+  return _internal_fragment_variables();
+}
+inline void FragmentImport::unsafe_arena_set_allocated_fragment_variables(
+    ::PROTOBUF_NAMESPACE_ID::Struct* fragment_variables) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(fragment_variables_);
+  }
+  fragment_variables_ = fragment_variables;
+  if (fragment_variables) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.FragmentImport.fragment_variables)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* FragmentImport::release_fragment_variables() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = fragment_variables_;
+  fragment_variables_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* FragmentImport::unsafe_arena_release_fragment_variables() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.FragmentImport.fragment_variables)
+  _has_bits_[0] &= ~0x00000002u;
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = fragment_variables_;
+  fragment_variables_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* FragmentImport::_internal_mutable_fragment_variables() {
+  _has_bits_[0] |= 0x00000002u;
+  if (fragment_variables_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    fragment_variables_ = p;
+  }
+  return fragment_variables_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* FragmentImport::mutable_fragment_variables() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_fragment_variables();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.FragmentImport.fragment_variables)
+  return _msg;
+}
+inline void FragmentImport::set_allocated_fragment_variables(::PROTOBUF_NAMESPACE_ID::Struct* fragment_variables) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(fragment_variables_);
+  }
+  if (fragment_variables) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(fragment_variables));
+    if (message_arena != submessage_arena) {
+      fragment_variables = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, fragment_variables, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  fragment_variables_ = fragment_variables;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.FragmentImport.fragment_variables)
 }
 
 // -------------------------------------------------------------------
@@ -73825,6 +75337,96 @@ ModuleVersion::apps() const {
   return apps_;
 }
 
+// optional .viam.app.v1.DeprecatedStatus deprecated_status = 8 [json_name = "deprecatedStatus"];
+inline bool ModuleVersion::_internal_has_deprecated_status() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || deprecated_status_ != nullptr);
+  return value;
+}
+inline bool ModuleVersion::has_deprecated_status() const {
+  return _internal_has_deprecated_status();
+}
+inline void ModuleVersion::clear_deprecated_status() {
+  if (deprecated_status_ != nullptr) deprecated_status_->Clear();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const ::viam::app::v1::DeprecatedStatus& ModuleVersion::_internal_deprecated_status() const {
+  const ::viam::app::v1::DeprecatedStatus* p = deprecated_status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::DeprecatedStatus&>(
+      ::viam::app::v1::_DeprecatedStatus_default_instance_);
+}
+inline const ::viam::app::v1::DeprecatedStatus& ModuleVersion::deprecated_status() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.ModuleVersion.deprecated_status)
+  return _internal_deprecated_status();
+}
+inline void ModuleVersion::unsafe_arena_set_allocated_deprecated_status(
+    ::viam::app::v1::DeprecatedStatus* deprecated_status) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deprecated_status_);
+  }
+  deprecated_status_ = deprecated_status;
+  if (deprecated_status) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.ModuleVersion.deprecated_status)
+}
+inline ::viam::app::v1::DeprecatedStatus* ModuleVersion::release_deprecated_status() {
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
+  deprecated_status_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::DeprecatedStatus* ModuleVersion::unsafe_arena_release_deprecated_status() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.ModuleVersion.deprecated_status)
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
+  deprecated_status_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::DeprecatedStatus* ModuleVersion::_internal_mutable_deprecated_status() {
+  _has_bits_[0] |= 0x00000004u;
+  if (deprecated_status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::DeprecatedStatus>(GetArenaForAllocation());
+    deprecated_status_ = p;
+  }
+  return deprecated_status_;
+}
+inline ::viam::app::v1::DeprecatedStatus* ModuleVersion::mutable_deprecated_status() {
+  ::viam::app::v1::DeprecatedStatus* _msg = _internal_mutable_deprecated_status();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.ModuleVersion.deprecated_status)
+  return _msg;
+}
+inline void ModuleVersion::set_allocated_deprecated_status(::viam::app::v1::DeprecatedStatus* deprecated_status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete deprecated_status_;
+  }
+  if (deprecated_status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(deprecated_status);
+    if (message_arena != submessage_arena) {
+      deprecated_status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, deprecated_status, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  deprecated_status_ = deprecated_status;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.ModuleVersion.deprecated_status)
+}
+
 // -------------------------------------------------------------------
 
 // ModuleMetadata
@@ -74734,6 +76336,145 @@ inline void MLTrainingMetadata::set_draft(bool value) {
 
 // -------------------------------------------------------------------
 
+// DeprecatedStatus
+
+// .google.protobuf.Timestamp deprecated_at = 1 [json_name = "deprecatedAt"];
+inline bool DeprecatedStatus::_internal_has_deprecated_at() const {
+  return this != internal_default_instance() && deprecated_at_ != nullptr;
+}
+inline bool DeprecatedStatus::has_deprecated_at() const {
+  return _internal_has_deprecated_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& DeprecatedStatus::_internal_deprecated_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = deprecated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& DeprecatedStatus::deprecated_at() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeprecatedStatus.deprecated_at)
+  return _internal_deprecated_at();
+}
+inline void DeprecatedStatus::unsafe_arena_set_allocated_deprecated_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* deprecated_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deprecated_at_);
+  }
+  deprecated_at_ = deprecated_at;
+  if (deprecated_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.DeprecatedStatus.deprecated_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* DeprecatedStatus::release_deprecated_at() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = deprecated_at_;
+  deprecated_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* DeprecatedStatus::unsafe_arena_release_deprecated_at() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeprecatedStatus.deprecated_at)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = deprecated_at_;
+  deprecated_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* DeprecatedStatus::_internal_mutable_deprecated_at() {
+  
+  if (deprecated_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    deprecated_at_ = p;
+  }
+  return deprecated_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* DeprecatedStatus::mutable_deprecated_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_deprecated_at();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeprecatedStatus.deprecated_at)
+  return _msg;
+}
+inline void DeprecatedStatus::set_allocated_deprecated_at(::PROTOBUF_NAMESPACE_ID::Timestamp* deprecated_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(deprecated_at_);
+  }
+  if (deprecated_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deprecated_at));
+    if (message_arena != submessage_arena) {
+      deprecated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, deprecated_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  deprecated_at_ = deprecated_at;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeprecatedStatus.deprecated_at)
+}
+
+// string message = 2 [json_name = "message"];
+inline void DeprecatedStatus::clear_message() {
+  message_.ClearToEmpty();
+}
+inline const std::string& DeprecatedStatus::message() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeprecatedStatus.message)
+  return _internal_message();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeprecatedStatus::set_message(ArgT0&& arg0, ArgT... args) {
+ 
+ message_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeprecatedStatus.message)
+}
+inline std::string* DeprecatedStatus::mutable_message() {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeprecatedStatus.message)
+  return _s;
+}
+inline const std::string& DeprecatedStatus::_internal_message() const {
+  return message_.Get();
+}
+inline void DeprecatedStatus::_internal_set_message(const std::string& value) {
+  
+  message_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeprecatedStatus::_internal_mutable_message() {
+  
+  return message_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeprecatedStatus::release_message() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeprecatedStatus.message)
+  return message_.Release();
+}
+inline void DeprecatedStatus::set_allocated_message(std::string* message) {
+  if (message != nullptr) {
+    
+  } else {
+    
+  }
+  message_.SetAllocated(message, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (message_.IsDefault()) {
+    message_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeprecatedStatus.message)
+}
+
+// -------------------------------------------------------------------
+
 // RegistryItem
 
 // string item_id = 1 [json_name = "itemId"];
@@ -75546,6 +77287,96 @@ inline void RegistryItem::set_allocated_updated_at(::PROTOBUF_NAMESPACE_ID::Time
   }
   updated_at_ = updated_at;
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegistryItem.updated_at)
+}
+
+// optional .viam.app.v1.DeprecatedStatus deprecated_status = 17 [json_name = "deprecatedStatus"];
+inline bool RegistryItem::_internal_has_deprecated_status() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || deprecated_status_ != nullptr);
+  return value;
+}
+inline bool RegistryItem::has_deprecated_status() const {
+  return _internal_has_deprecated_status();
+}
+inline void RegistryItem::clear_deprecated_status() {
+  if (deprecated_status_ != nullptr) deprecated_status_->Clear();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::viam::app::v1::DeprecatedStatus& RegistryItem::_internal_deprecated_status() const {
+  const ::viam::app::v1::DeprecatedStatus* p = deprecated_status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::DeprecatedStatus&>(
+      ::viam::app::v1::_DeprecatedStatus_default_instance_);
+}
+inline const ::viam::app::v1::DeprecatedStatus& RegistryItem::deprecated_status() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItem.deprecated_status)
+  return _internal_deprecated_status();
+}
+inline void RegistryItem::unsafe_arena_set_allocated_deprecated_status(
+    ::viam::app::v1::DeprecatedStatus* deprecated_status) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deprecated_status_);
+  }
+  deprecated_status_ = deprecated_status;
+  if (deprecated_status) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RegistryItem.deprecated_status)
+}
+inline ::viam::app::v1::DeprecatedStatus* RegistryItem::release_deprecated_status() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
+  deprecated_status_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::DeprecatedStatus* RegistryItem::unsafe_arena_release_deprecated_status() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegistryItem.deprecated_status)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
+  deprecated_status_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::DeprecatedStatus* RegistryItem::_internal_mutable_deprecated_status() {
+  _has_bits_[0] |= 0x00000001u;
+  if (deprecated_status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::DeprecatedStatus>(GetArenaForAllocation());
+    deprecated_status_ = p;
+  }
+  return deprecated_status_;
+}
+inline ::viam::app::v1::DeprecatedStatus* RegistryItem::mutable_deprecated_status() {
+  ::viam::app::v1::DeprecatedStatus* _msg = _internal_mutable_deprecated_status();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegistryItem.deprecated_status)
+  return _msg;
+}
+inline void RegistryItem::set_allocated_deprecated_status(::viam::app::v1::DeprecatedStatus* deprecated_status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete deprecated_status_;
+  }
+  if (deprecated_status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(deprecated_status);
+    if (message_arena != submessage_arena) {
+      deprecated_status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, deprecated_status, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  deprecated_status_ = deprecated_status;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegistryItem.deprecated_status)
 }
 
 inline bool RegistryItem::has_metadata() const {
@@ -77384,6 +79215,172 @@ inline void TransferRegistryItemRequest::set_allocated_new_public_namespace(std:
 // -------------------------------------------------------------------
 
 // TransferRegistryItemResponse
+
+// -------------------------------------------------------------------
+
+// DeprecateRegistryItemRequest
+
+// string item_id = 1 [json_name = "itemId"];
+inline void DeprecateRegistryItemRequest::clear_item_id() {
+  item_id_.ClearToEmpty();
+}
+inline const std::string& DeprecateRegistryItemRequest::item_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeprecateRegistryItemRequest.item_id)
+  return _internal_item_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeprecateRegistryItemRequest::set_item_id(ArgT0&& arg0, ArgT... args) {
+ 
+ item_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeprecateRegistryItemRequest.item_id)
+}
+inline std::string* DeprecateRegistryItemRequest::mutable_item_id() {
+  std::string* _s = _internal_mutable_item_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeprecateRegistryItemRequest.item_id)
+  return _s;
+}
+inline const std::string& DeprecateRegistryItemRequest::_internal_item_id() const {
+  return item_id_.Get();
+}
+inline void DeprecateRegistryItemRequest::_internal_set_item_id(const std::string& value) {
+  
+  item_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemRequest::_internal_mutable_item_id() {
+  
+  return item_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemRequest::release_item_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeprecateRegistryItemRequest.item_id)
+  return item_id_.Release();
+}
+inline void DeprecateRegistryItemRequest::set_allocated_item_id(std::string* item_id) {
+  if (item_id != nullptr) {
+    
+  } else {
+    
+  }
+  item_id_.SetAllocated(item_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (item_id_.IsDefault()) {
+    item_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeprecateRegistryItemRequest.item_id)
+}
+
+// string message = 2 [json_name = "message"];
+inline void DeprecateRegistryItemRequest::clear_message() {
+  message_.ClearToEmpty();
+}
+inline const std::string& DeprecateRegistryItemRequest::message() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeprecateRegistryItemRequest.message)
+  return _internal_message();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeprecateRegistryItemRequest::set_message(ArgT0&& arg0, ArgT... args) {
+ 
+ message_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeprecateRegistryItemRequest.message)
+}
+inline std::string* DeprecateRegistryItemRequest::mutable_message() {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeprecateRegistryItemRequest.message)
+  return _s;
+}
+inline const std::string& DeprecateRegistryItemRequest::_internal_message() const {
+  return message_.Get();
+}
+inline void DeprecateRegistryItemRequest::_internal_set_message(const std::string& value) {
+  
+  message_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemRequest::_internal_mutable_message() {
+  
+  return message_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemRequest::release_message() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeprecateRegistryItemRequest.message)
+  return message_.Release();
+}
+inline void DeprecateRegistryItemRequest::set_allocated_message(std::string* message) {
+  if (message != nullptr) {
+    
+  } else {
+    
+  }
+  message_.SetAllocated(message, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (message_.IsDefault()) {
+    message_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeprecateRegistryItemRequest.message)
+}
+
+// -------------------------------------------------------------------
+
+// DeprecateRegistryItemResponse
+
+// -------------------------------------------------------------------
+
+// UndeprecateRegistryItemRequest
+
+// string item_id = 1 [json_name = "itemId"];
+inline void UndeprecateRegistryItemRequest::clear_item_id() {
+  item_id_.ClearToEmpty();
+}
+inline const std::string& UndeprecateRegistryItemRequest::item_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UndeprecateRegistryItemRequest.item_id)
+  return _internal_item_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UndeprecateRegistryItemRequest::set_item_id(ArgT0&& arg0, ArgT... args) {
+ 
+ item_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UndeprecateRegistryItemRequest.item_id)
+}
+inline std::string* UndeprecateRegistryItemRequest::mutable_item_id() {
+  std::string* _s = _internal_mutable_item_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UndeprecateRegistryItemRequest.item_id)
+  return _s;
+}
+inline const std::string& UndeprecateRegistryItemRequest::_internal_item_id() const {
+  return item_id_.Get();
+}
+inline void UndeprecateRegistryItemRequest::_internal_set_item_id(const std::string& value) {
+  
+  item_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UndeprecateRegistryItemRequest::_internal_mutable_item_id() {
+  
+  return item_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UndeprecateRegistryItemRequest::release_item_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UndeprecateRegistryItemRequest.item_id)
+  return item_id_.Release();
+}
+inline void UndeprecateRegistryItemRequest::set_allocated_item_id(std::string* item_id) {
+  if (item_id != nullptr) {
+    
+  } else {
+    
+  }
+  item_id_.SetAllocated(item_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (item_id_.IsDefault()) {
+    item_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UndeprecateRegistryItemRequest.item_id)
+}
+
+// -------------------------------------------------------------------
+
+// UndeprecateRegistryItemResponse
 
 // -------------------------------------------------------------------
 
@@ -80549,6 +82546,96 @@ Module::apps() const {
   return apps_;
 }
 
+// optional .viam.app.v1.DeprecatedStatus deprecated_status = 16 [json_name = "deprecatedStatus"];
+inline bool Module::_internal_has_deprecated_status() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || deprecated_status_ != nullptr);
+  return value;
+}
+inline bool Module::has_deprecated_status() const {
+  return _internal_has_deprecated_status();
+}
+inline void Module::clear_deprecated_status() {
+  if (deprecated_status_ != nullptr) deprecated_status_->Clear();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const ::viam::app::v1::DeprecatedStatus& Module::_internal_deprecated_status() const {
+  const ::viam::app::v1::DeprecatedStatus* p = deprecated_status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::DeprecatedStatus&>(
+      ::viam::app::v1::_DeprecatedStatus_default_instance_);
+}
+inline const ::viam::app::v1::DeprecatedStatus& Module::deprecated_status() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.Module.deprecated_status)
+  return _internal_deprecated_status();
+}
+inline void Module::unsafe_arena_set_allocated_deprecated_status(
+    ::viam::app::v1::DeprecatedStatus* deprecated_status) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deprecated_status_);
+  }
+  deprecated_status_ = deprecated_status;
+  if (deprecated_status) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.Module.deprecated_status)
+}
+inline ::viam::app::v1::DeprecatedStatus* Module::release_deprecated_status() {
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
+  deprecated_status_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::DeprecatedStatus* Module::unsafe_arena_release_deprecated_status() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.Module.deprecated_status)
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
+  deprecated_status_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::DeprecatedStatus* Module::_internal_mutable_deprecated_status() {
+  _has_bits_[0] |= 0x00000004u;
+  if (deprecated_status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::DeprecatedStatus>(GetArenaForAllocation());
+    deprecated_status_ = p;
+  }
+  return deprecated_status_;
+}
+inline ::viam::app::v1::DeprecatedStatus* Module::mutable_deprecated_status() {
+  ::viam::app::v1::DeprecatedStatus* _msg = _internal_mutable_deprecated_status();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.Module.deprecated_status)
+  return _msg;
+}
+inline void Module::set_allocated_deprecated_status(::viam::app::v1::DeprecatedStatus* deprecated_status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete deprecated_status_;
+  }
+  if (deprecated_status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(deprecated_status);
+    if (message_arena != submessage_arena) {
+      deprecated_status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, deprecated_status, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  deprecated_status_ = deprecated_status;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.Module.deprecated_status)
+}
+
 // -------------------------------------------------------------------
 
 // VersionHistory
@@ -80909,6 +82996,96 @@ VersionHistory::apps() const {
   return apps_;
 }
 
+// optional .viam.app.v1.DeprecatedStatus deprecated_status = 8 [json_name = "deprecatedStatus"];
+inline bool VersionHistory::_internal_has_deprecated_status() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || deprecated_status_ != nullptr);
+  return value;
+}
+inline bool VersionHistory::has_deprecated_status() const {
+  return _internal_has_deprecated_status();
+}
+inline void VersionHistory::clear_deprecated_status() {
+  if (deprecated_status_ != nullptr) deprecated_status_->Clear();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const ::viam::app::v1::DeprecatedStatus& VersionHistory::_internal_deprecated_status() const {
+  const ::viam::app::v1::DeprecatedStatus* p = deprecated_status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::DeprecatedStatus&>(
+      ::viam::app::v1::_DeprecatedStatus_default_instance_);
+}
+inline const ::viam::app::v1::DeprecatedStatus& VersionHistory::deprecated_status() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.VersionHistory.deprecated_status)
+  return _internal_deprecated_status();
+}
+inline void VersionHistory::unsafe_arena_set_allocated_deprecated_status(
+    ::viam::app::v1::DeprecatedStatus* deprecated_status) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deprecated_status_);
+  }
+  deprecated_status_ = deprecated_status;
+  if (deprecated_status) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.VersionHistory.deprecated_status)
+}
+inline ::viam::app::v1::DeprecatedStatus* VersionHistory::release_deprecated_status() {
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
+  deprecated_status_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::DeprecatedStatus* VersionHistory::unsafe_arena_release_deprecated_status() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.VersionHistory.deprecated_status)
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::DeprecatedStatus* temp = deprecated_status_;
+  deprecated_status_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::DeprecatedStatus* VersionHistory::_internal_mutable_deprecated_status() {
+  _has_bits_[0] |= 0x00000004u;
+  if (deprecated_status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::DeprecatedStatus>(GetArenaForAllocation());
+    deprecated_status_ = p;
+  }
+  return deprecated_status_;
+}
+inline ::viam::app::v1::DeprecatedStatus* VersionHistory::mutable_deprecated_status() {
+  ::viam::app::v1::DeprecatedStatus* _msg = _internal_mutable_deprecated_status();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.VersionHistory.deprecated_status)
+  return _msg;
+}
+inline void VersionHistory::set_allocated_deprecated_status(::viam::app::v1::DeprecatedStatus* deprecated_status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete deprecated_status_;
+  }
+  if (deprecated_status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(deprecated_status);
+    if (message_arena != submessage_arena) {
+      deprecated_status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, deprecated_status, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  deprecated_status_ = deprecated_status;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.VersionHistory.deprecated_status)
+}
+
 // -------------------------------------------------------------------
 
 // Uploads
@@ -81191,6 +83368,272 @@ ListModulesResponse::modules() const {
   // @@protoc_insertion_point(field_list:viam.app.v1.ListModulesResponse.modules)
   return modules_;
 }
+
+// -------------------------------------------------------------------
+
+// DeprecateRegistryItemVersionRequest
+
+// string item_id = 1 [json_name = "itemId"];
+inline void DeprecateRegistryItemVersionRequest::clear_item_id() {
+  item_id_.ClearToEmpty();
+}
+inline const std::string& DeprecateRegistryItemVersionRequest::item_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeprecateRegistryItemVersionRequest.item_id)
+  return _internal_item_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeprecateRegistryItemVersionRequest::set_item_id(ArgT0&& arg0, ArgT... args) {
+ 
+ item_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeprecateRegistryItemVersionRequest.item_id)
+}
+inline std::string* DeprecateRegistryItemVersionRequest::mutable_item_id() {
+  std::string* _s = _internal_mutable_item_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeprecateRegistryItemVersionRequest.item_id)
+  return _s;
+}
+inline const std::string& DeprecateRegistryItemVersionRequest::_internal_item_id() const {
+  return item_id_.Get();
+}
+inline void DeprecateRegistryItemVersionRequest::_internal_set_item_id(const std::string& value) {
+  
+  item_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemVersionRequest::_internal_mutable_item_id() {
+  
+  return item_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemVersionRequest::release_item_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeprecateRegistryItemVersionRequest.item_id)
+  return item_id_.Release();
+}
+inline void DeprecateRegistryItemVersionRequest::set_allocated_item_id(std::string* item_id) {
+  if (item_id != nullptr) {
+    
+  } else {
+    
+  }
+  item_id_.SetAllocated(item_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (item_id_.IsDefault()) {
+    item_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeprecateRegistryItemVersionRequest.item_id)
+}
+
+// string version = 2 [json_name = "version"];
+inline void DeprecateRegistryItemVersionRequest::clear_version() {
+  version_.ClearToEmpty();
+}
+inline const std::string& DeprecateRegistryItemVersionRequest::version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeprecateRegistryItemVersionRequest.version)
+  return _internal_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeprecateRegistryItemVersionRequest::set_version(ArgT0&& arg0, ArgT... args) {
+ 
+ version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeprecateRegistryItemVersionRequest.version)
+}
+inline std::string* DeprecateRegistryItemVersionRequest::mutable_version() {
+  std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeprecateRegistryItemVersionRequest.version)
+  return _s;
+}
+inline const std::string& DeprecateRegistryItemVersionRequest::_internal_version() const {
+  return version_.Get();
+}
+inline void DeprecateRegistryItemVersionRequest::_internal_set_version(const std::string& value) {
+  
+  version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemVersionRequest::_internal_mutable_version() {
+  
+  return version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemVersionRequest::release_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeprecateRegistryItemVersionRequest.version)
+  return version_.Release();
+}
+inline void DeprecateRegistryItemVersionRequest::set_allocated_version(std::string* version) {
+  if (version != nullptr) {
+    
+  } else {
+    
+  }
+  version_.SetAllocated(version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (version_.IsDefault()) {
+    version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeprecateRegistryItemVersionRequest.version)
+}
+
+// string message = 3 [json_name = "message"];
+inline void DeprecateRegistryItemVersionRequest::clear_message() {
+  message_.ClearToEmpty();
+}
+inline const std::string& DeprecateRegistryItemVersionRequest::message() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.DeprecateRegistryItemVersionRequest.message)
+  return _internal_message();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DeprecateRegistryItemVersionRequest::set_message(ArgT0&& arg0, ArgT... args) {
+ 
+ message_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.DeprecateRegistryItemVersionRequest.message)
+}
+inline std::string* DeprecateRegistryItemVersionRequest::mutable_message() {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.DeprecateRegistryItemVersionRequest.message)
+  return _s;
+}
+inline const std::string& DeprecateRegistryItemVersionRequest::_internal_message() const {
+  return message_.Get();
+}
+inline void DeprecateRegistryItemVersionRequest::_internal_set_message(const std::string& value) {
+  
+  message_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemVersionRequest::_internal_mutable_message() {
+  
+  return message_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DeprecateRegistryItemVersionRequest::release_message() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.DeprecateRegistryItemVersionRequest.message)
+  return message_.Release();
+}
+inline void DeprecateRegistryItemVersionRequest::set_allocated_message(std::string* message) {
+  if (message != nullptr) {
+    
+  } else {
+    
+  }
+  message_.SetAllocated(message, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (message_.IsDefault()) {
+    message_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.DeprecateRegistryItemVersionRequest.message)
+}
+
+// -------------------------------------------------------------------
+
+// DeprecateRegistryItemVersionResponse
+
+// -------------------------------------------------------------------
+
+// UndeprecateRegistryItemVersionRequest
+
+// string item_id = 1 [json_name = "itemId"];
+inline void UndeprecateRegistryItemVersionRequest::clear_item_id() {
+  item_id_.ClearToEmpty();
+}
+inline const std::string& UndeprecateRegistryItemVersionRequest::item_id() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UndeprecateRegistryItemVersionRequest.item_id)
+  return _internal_item_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UndeprecateRegistryItemVersionRequest::set_item_id(ArgT0&& arg0, ArgT... args) {
+ 
+ item_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UndeprecateRegistryItemVersionRequest.item_id)
+}
+inline std::string* UndeprecateRegistryItemVersionRequest::mutable_item_id() {
+  std::string* _s = _internal_mutable_item_id();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UndeprecateRegistryItemVersionRequest.item_id)
+  return _s;
+}
+inline const std::string& UndeprecateRegistryItemVersionRequest::_internal_item_id() const {
+  return item_id_.Get();
+}
+inline void UndeprecateRegistryItemVersionRequest::_internal_set_item_id(const std::string& value) {
+  
+  item_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UndeprecateRegistryItemVersionRequest::_internal_mutable_item_id() {
+  
+  return item_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UndeprecateRegistryItemVersionRequest::release_item_id() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UndeprecateRegistryItemVersionRequest.item_id)
+  return item_id_.Release();
+}
+inline void UndeprecateRegistryItemVersionRequest::set_allocated_item_id(std::string* item_id) {
+  if (item_id != nullptr) {
+    
+  } else {
+    
+  }
+  item_id_.SetAllocated(item_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (item_id_.IsDefault()) {
+    item_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UndeprecateRegistryItemVersionRequest.item_id)
+}
+
+// string version = 2 [json_name = "version"];
+inline void UndeprecateRegistryItemVersionRequest::clear_version() {
+  version_.ClearToEmpty();
+}
+inline const std::string& UndeprecateRegistryItemVersionRequest::version() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UndeprecateRegistryItemVersionRequest.version)
+  return _internal_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UndeprecateRegistryItemVersionRequest::set_version(ArgT0&& arg0, ArgT... args) {
+ 
+ version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.app.v1.UndeprecateRegistryItemVersionRequest.version)
+}
+inline std::string* UndeprecateRegistryItemVersionRequest::mutable_version() {
+  std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UndeprecateRegistryItemVersionRequest.version)
+  return _s;
+}
+inline const std::string& UndeprecateRegistryItemVersionRequest::_internal_version() const {
+  return version_.Get();
+}
+inline void UndeprecateRegistryItemVersionRequest::_internal_set_version(const std::string& value) {
+  
+  version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UndeprecateRegistryItemVersionRequest::_internal_mutable_version() {
+  
+  return version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UndeprecateRegistryItemVersionRequest::release_version() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UndeprecateRegistryItemVersionRequest.version)
+  return version_.Release();
+}
+inline void UndeprecateRegistryItemVersionRequest::set_allocated_version(std::string* version) {
+  if (version != nullptr) {
+    
+  } else {
+    
+  }
+  version_.SetAllocated(version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (version_.IsDefault()) {
+    version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UndeprecateRegistryItemVersionRequest.version)
+}
+
+// -------------------------------------------------------------------
+
+// UndeprecateRegistryItemVersionResponse
 
 // -------------------------------------------------------------------
 
@@ -87224,6 +89667,24 @@ inline void DeleteFirebaseConfigRequest::set_allocated_app_id(std::string* app_i
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
