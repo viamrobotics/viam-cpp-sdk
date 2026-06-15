@@ -32,14 +32,18 @@ register_alternatives() {
         "/usr/bin/clang-format-${LLVM_VERSION}" 100
 }
 
+# Gate on the installable candidate, not `apt-cache show`: on some distros
+# clang-${LLVM_VERSION} is a known-but-uninstallable name ("referred to by
+# another package") that `show` reports yet apt cannot install.
 apt-get update
-if apt-cache show "clang-${LLVM_VERSION}" > /dev/null 2>&1; then
+clang_candidate="$(apt-cache policy "clang-${LLVM_VERSION}" 2>/dev/null | awk '/Candidate:/ {print $2}')"
+rm -rf /var/lib/apt/lists/*
+
+if [[ -n "${clang_candidate}" && "${clang_candidate}" != "(none)" ]]; then
     # Distro ships it directly.
-    rm -rf /var/lib/apt/lists/*
     apt_install "${LLVM_PKGS[@]}"
     register_alternatives
 else
-    rm -rf /var/lib/apt/lists/*
     # apt.llvm.org suite name: llvm-toolchain-<codename>-<version>, except
     # Debian sid which drops the codename segment (llvm-toolchain-<version>).
     if [[ "${DISTRO_CODENAME}" == "sid" ]]; then

@@ -55,11 +55,13 @@ target "system" {
   // it from this strategy without touching any other matrix.
   matrix = {
     cell = [
-      { distro = "debian", version = "bookworm" },
       { distro = "debian", version = "bullseye" },
+      { distro = "debian", version = "bookworm" },
+      { distro = "debian", version = "trixie" },
       { distro = "debian", version = "sid" },
       { distro = "ubuntu", version = "focal" },
       { distro = "ubuntu", version = "jammy" },
+      { distro = "ubuntu", version = "noble" },
     ]
   }
 

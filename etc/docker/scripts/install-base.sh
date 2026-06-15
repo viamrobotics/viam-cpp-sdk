@@ -28,6 +28,5 @@ apt_install \
     less \
     ninja-build \
     pkg-config \
-    software-properties-common \
     sudo \
     wget

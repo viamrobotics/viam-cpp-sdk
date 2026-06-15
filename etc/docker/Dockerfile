@@ -20,8 +20,11 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # Versions and toggles ride in on build args; distro identity comes from /etc/os-release.
 ARG LLVM_VERSION=19
 ARG CMAKE_MIN_VERSION=3.25
+# DEBUG=1 turns on `set -x` tracing in every install script.
+ARG DEBUG=
 ENV LLVM_VERSION=${LLVM_VERSION} \
-    CMAKE_MIN_VERSION=${CMAKE_MIN_VERSION}
+    CMAKE_MIN_VERSION=${CMAKE_MIN_VERSION} \
+    DEBUG=${DEBUG}
 
 COPY scripts/ /opt/scripts/
 RUN chmod -R +x /opt/scripts
