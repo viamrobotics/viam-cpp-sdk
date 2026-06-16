@@ -18,14 +18,11 @@ apt_install \
     build-essential \
     ca-certificates \
     curl \
-    doxygen \
     g++ \
     gcc \
-    gdb \
     git \
     gnupg \
     gpg \
-    less \
     ninja-build \
     pkg-config \
     sudo \
