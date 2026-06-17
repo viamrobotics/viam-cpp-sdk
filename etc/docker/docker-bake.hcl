@@ -62,6 +62,7 @@ target "system" {
       { distro = "ubuntu", version = "focal" },
       { distro = "ubuntu", version = "jammy" },
       { distro = "ubuntu", version = "noble" },
+      { distro = "ubuntu", version = "resolute" },
     ]
   }
 
