@@ -14,15 +14,12 @@ set -euo pipefail
 # Minimum apt grpc we accept before falling back to a source build.
 GRPC_MIN_VERSION="${GRPC_MIN_VERSION:-1.51}"
 
-# Candidate version apt would install, e.g. "1.51.1-3". Empty if no candidate.
+# Version apt would install, e.g. "1.51.1". Empty if no installable candidate.
 apt-get update
-candidate="$(apt-cache policy libgrpc++-dev 2>/dev/null | awk '/Candidate:/ {print $2}')"
+candidate_ver="$(apt_candidate libgrpc++-dev)"
 rm -rf /var/lib/apt/lists/*
 
-# Strip the Debian revision suffix for a clean dotted compare.
-candidate_ver="${candidate%%-*}"
-
-if [[ -n "${candidate_ver}" && "${candidate_ver}" != "(none)" ]] \
+if [[ -n "${candidate_ver}" ]] \
         && version_ge "${candidate_ver}" "${GRPC_MIN_VERSION}"; then
     # apt grpc is good enough: take the stack from packages.
     apt_install \

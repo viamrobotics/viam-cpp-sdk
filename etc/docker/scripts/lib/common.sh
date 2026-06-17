@@ -44,6 +44,28 @@ apt_install_from() {
     rm -rf /var/lib/apt/lists/*
 }
 
+# apt_candidate <pkg>  Print the version apt would install for <pkg>, with the
+# Debian revision suffix stripped (e.g. "3.25.1" from "3.25.1-1"). Prints
+# nothing when there is no installable candidate ("(none)" or unknown package).
+#
+# `apt-cache policy` is the only query that reports the candidate apt actually
+# picks by pin priority, and reports "(none)" for a name that is known but
+# uninstallable ("referred to by another package") -- which `apt-cache show`
+# wrongly reports as present. `apt list -a` / `apt show` use the unstable apt
+# CLI and list every version, not the chosen one.
+#
+# Assumes an apt cache is present (apt-get update already run).
+apt_candidate() {
+    local line ver
+    while IFS= read -r line; do
+        [[ "${line}" == *Candidate:* ]] || continue
+        ver="${line##*Candidate: }"
+        [[ "${ver}" == "(none)" ]] && return 0
+        printf '%s' "${ver%%-*}"
+        return 0
+    done < <(apt-cache policy "$1" 2>/dev/null)
+}
+
 # add_apt_repo <name> <key-url> <repo-line>
 # Fetches the key to /usr/share/keyrings/<name>.gpg and writes a signed-by source.
 # No apt-key add.

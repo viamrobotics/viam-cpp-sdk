@@ -12,15 +12,12 @@ set -euo pipefail
 
 : "${CMAKE_MIN_VERSION:?CMAKE_MIN_VERSION must be set}"
 
-# Candidate version apt would install, e.g. "3.25.1-1". Empty if no candidate.
+# Version apt would install, e.g. "3.25.1". Empty if no installable candidate.
 apt-get update
-candidate="$(apt-cache policy cmake 2>/dev/null | awk '/Candidate:/ {print $2}')"
+candidate_ver="$(apt_candidate cmake)"
 rm -rf /var/lib/apt/lists/*
 
-# Strip the Debian revision suffix for a clean dotted compare.
-candidate_ver="${candidate%%-*}"
-
-if [[ -n "${candidate_ver}" && "${candidate_ver}" != "(none)" ]] \
+if [[ -n "${candidate_ver}" ]] \
         && version_ge "${candidate_ver}" "${CMAKE_MIN_VERSION}"; then
     apt_install cmake
     exit 0
