@@ -10,9 +10,6 @@ set -euo pipefail
 # shellcheck disable=SC1091
 . "$(dirname "$0")/lib/common.sh"
 
-# Minimum apt grpc we accept before falling back to a source build.
-GRPC_MIN_VERSION="${GRPC_MIN_VERSION:-1.51}"
-
 # Libraries needed regardless of how grpc arrives.
 COMMON_DEV_PKGS=(
     libboost-all-dev
@@ -22,21 +19,7 @@ COMMON_DEV_PKGS=(
     zlib1g-dev
 )
 
-apt-get update
-grpc_candidate="$(apt-cache policy libgrpc++-dev 2>/dev/null | awk '/Candidate:/ {print $2}')"
-rm -rf /var/lib/apt/lists/*
-grpc_candidate_ver="${grpc_candidate%%-*}"
+apt_install "${COMMON_DEV_PKGS[@]}"
 
-if [[ -n "${grpc_candidate_ver}" && "${grpc_candidate_ver}" != "(none)" ]] \
-        && version_ge "${grpc_candidate_ver}" "${GRPC_MIN_VERSION}"; then
-    # apt grpc is good enough: take the whole stack from packages.
-    apt_install \
-        "${COMMON_DEV_PKGS[@]}" \
-        libgrpc++-dev \
-        libprotobuf-dev \
-        protobuf-compiler-grpc
-else
-    # apt grpc missing/too old: system deps from apt, grpc from source.
-    apt_install "${COMMON_DEV_PKGS[@]}"
-    "$(dirname "$0")/install-grpc-from-source.sh"
-fi
+# grpc + protobuf: apt when recent enough, else built from source.
+"$(dirname "$0")/install-grpc.sh"

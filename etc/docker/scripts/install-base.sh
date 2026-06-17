@@ -17,7 +17,6 @@ rm -rf /var/lib/apt/lists/*
 apt_install \
     build-essential \
     ca-certificates \
-    curl \
     g++ \
     gcc \
     git \
