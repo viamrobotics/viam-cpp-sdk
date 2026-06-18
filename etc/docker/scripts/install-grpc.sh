@@ -56,4 +56,3 @@ ninja -C build install
 
 cd "${SRC_DIR}"
 rm -rf grpc
-ldconfig
