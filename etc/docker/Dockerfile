@@ -8,8 +8,8 @@
 # Strategy is selected by bake `target = "system"`, not a build arg.
 # Distro-conditional logic lives in scripts/, not in RUN steps here.
 
-ARG DISTRO=debian
-ARG VERSION=bookworm
+ARG DISTRO
+ARG VERSION
 
 FROM ${DISTRO}:${VERSION} AS base
 
