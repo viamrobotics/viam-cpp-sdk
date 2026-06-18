@@ -3125,10 +3125,29 @@ class GetPropertiesResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kDefaultCameraFieldNumber = 4,
     kClassificationsSupportedFieldNumber = 1,
     kDetectionsSupportedFieldNumber = 2,
     kObjectPointCloudsSupportedFieldNumber = 3,
   };
+  // optional string default_camera = 4 [json_name = "defaultCamera"];
+  bool has_default_camera() const;
+  private:
+  bool _internal_has_default_camera() const;
+  public:
+  void clear_default_camera();
+  const std::string& default_camera() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_default_camera(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_default_camera();
+  PROTOBUF_NODISCARD std::string* release_default_camera();
+  void set_allocated_default_camera(std::string* default_camera);
+  private:
+  const std::string& _internal_default_camera() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_default_camera(const std::string& value);
+  std::string* _internal_mutable_default_camera();
+  public:
+
   // bool classifications_supported = 1 [json_name = "classificationsSupported"];
   void clear_classifications_supported();
   bool classifications_supported() const;
@@ -3163,10 +3182,12 @@ class GetPropertiesResponse final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr default_camera_;
   bool classifications_supported_;
   bool detections_supported_;
   bool object_point_clouds_supported_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2fvision_2fv1_2fvision_2eproto;
 };
 // ===================================================================
@@ -5791,6 +5812,74 @@ inline void GetPropertiesResponse::_internal_set_object_point_clouds_supported(b
 inline void GetPropertiesResponse::set_object_point_clouds_supported(bool value) {
   _internal_set_object_point_clouds_supported(value);
   // @@protoc_insertion_point(field_set:viam.service.vision.v1.GetPropertiesResponse.object_point_clouds_supported)
+}
+
+// optional string default_camera = 4 [json_name = "defaultCamera"];
+inline bool GetPropertiesResponse::_internal_has_default_camera() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool GetPropertiesResponse::has_default_camera() const {
+  return _internal_has_default_camera();
+}
+inline void GetPropertiesResponse::clear_default_camera() {
+  default_camera_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& GetPropertiesResponse::default_camera() const {
+  // @@protoc_insertion_point(field_get:viam.service.vision.v1.GetPropertiesResponse.default_camera)
+  return _internal_default_camera();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetPropertiesResponse::set_default_camera(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ default_camera_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.service.vision.v1.GetPropertiesResponse.default_camera)
+}
+inline std::string* GetPropertiesResponse::mutable_default_camera() {
+  std::string* _s = _internal_mutable_default_camera();
+  // @@protoc_insertion_point(field_mutable:viam.service.vision.v1.GetPropertiesResponse.default_camera)
+  return _s;
+}
+inline const std::string& GetPropertiesResponse::_internal_default_camera() const {
+  return default_camera_.Get();
+}
+inline void GetPropertiesResponse::_internal_set_default_camera(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  default_camera_.Set(value, GetArenaForAllocation());
+}
+inline std::string* GetPropertiesResponse::_internal_mutable_default_camera() {
+  _has_bits_[0] |= 0x00000001u;
+  return default_camera_.Mutable(GetArenaForAllocation());
+}
+inline std::string* GetPropertiesResponse::release_default_camera() {
+  // @@protoc_insertion_point(field_release:viam.service.vision.v1.GetPropertiesResponse.default_camera)
+  if (!_internal_has_default_camera()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  auto* p = default_camera_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (default_camera_.IsDefault()) {
+    default_camera_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void GetPropertiesResponse::set_allocated_default_camera(std::string* default_camera) {
+  if (default_camera != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  default_camera_.SetAllocated(default_camera, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (default_camera_.IsDefault()) {
+    default_camera_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.service.vision.v1.GetPropertiesResponse.default_camera)
 }
 
 #ifdef __GNUC__
