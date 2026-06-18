@@ -139,6 +139,7 @@ target_sources(viamsdk
     module/service.cpp
     module/private/data_consumer_query.cpp
     referenceframe/frame.cpp
+    referenceframe/kinematics_model_table.cpp
     registry/registry.cpp
     resource/resource.cpp
     resource/resource_api.cpp
@@ -219,6 +220,7 @@ target_sources(viamsdk
       ../../viam/sdk/module/service.hpp
       ../../viam/sdk/module/signal_manager.hpp
       ../../viam/sdk/referenceframe/frame.hpp
+      ../../viam/sdk/referenceframe/kinematics_model_table.hpp
       ../../viam/sdk/registry/registry.hpp
       ../../viam/sdk/resource/resource.hpp
       ../../viam/sdk/resource/resource_api.hpp

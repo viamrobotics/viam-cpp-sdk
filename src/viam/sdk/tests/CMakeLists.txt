@@ -85,3 +85,9 @@ viamcppsdk_add_boost_test(test_sensor.cpp)
 viamcppsdk_add_boost_test(test_servo.cpp)
 viamcppsdk_add_boost_test(test_switch.cpp)
 viamcppsdk_add_boost_test(test_robot.cpp)
+viamcppsdk_add_boost_test(test_kinematics_model_table.cpp)
+
+target_compile_definitions(test_kinematics_model_table
+  PRIVATE
+    VIAMCPPSDK_TEST_TESTFILES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/testfiles"
+)

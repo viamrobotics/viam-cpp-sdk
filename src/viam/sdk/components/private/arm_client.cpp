@@ -91,6 +91,10 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
                                            *options.max_acc_degs_per_sec2);
                   }
 
+                  if (options.max_tcp_speed) {
+                      request.mutable_options()->set_max_tcp_speed(*options.max_tcp_speed);
+                  }
+
                   for (const auto& pos : positions) {
                       viam::component::arm::v1::JointPositions jpos;
                       jpos.mutable_values()->Add(pos.begin(), pos.end());

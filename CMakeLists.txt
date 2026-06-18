@@ -37,7 +37,7 @@ else()
   cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 endif()
 
-set(CMAKE_PROJECT_VERSION 0.37.0)
+set(CMAKE_PROJECT_VERSION 0.38.0)
 
 # Identify the project.
 project(viam-cpp-sdk
@@ -46,6 +46,16 @@ project(viam-cpp-sdk
   HOMEPAGE_URL https://github.com/viamrobotics/viam-cpp-sdk
   LANGUAGES CXX
 )
+
+# Detect if we're building as a standalone module
+# vs being included via FetchContent by a downstream consumer
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+  set(VIAMCPPSDK_STANDALONE_BUILD ON)
+  message(STATUS "viam-cpp-sdk: Standalone build mode")
+else()
+  set(VIAMCPPSDK_STANDALONE_BUILD OFF)
+  message(STATUS "viam-cpp-sdk: FetchContent mode (included by parent project)")
+endif()
 
 
 # Configure cmake-level options:
@@ -113,7 +123,7 @@ option(VIAMCPPSDK_USE_LOCAL_PROTOS "Generate protos against sibling `api` direct
 # This causes the SDK's internal code to compile with `-Wall` and
 # `-Werror` flags.
 #
-option(VIAMCPPSDK_USE_WALL_WERROR "Build with -Wall and -Werror flags" ON)
+option(VIAMCPPSDK_USE_WALL_WERROR "Build with -Wall and -Werror flags" ${VIAMCPPSDK_STANDALONE_BUILD})
 
 
 # - `VIAMCPPSDK_SANITIZED_BUILD`
@@ -141,11 +151,15 @@ option(VIAMCPPSDK_CLANG_TIDY "Run the clang-tidy linter" OFF)
 #
 option(VIAMCPPSDK_OPENTELEMETRY_TRACING "Compile OpenTelemetry tracing into all gRPC calls" OFF)
 
-# The following options are only defined if this project is not being included as a subproject
-if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-  option(VIAMCPPSDK_BUILD_EXAMPLES "Build the example executables" ON)
-  option(VIAMCPPSDK_BUILD_TESTS "Build the example executables" ON)
-endif()
+# - `VIAMCPPSDK_BUILD_EXAMPLES `
+#
+# Defaults to ON for standalone builds, OFF for FetchContent consumers.
+option(VIAMCPPSDK_BUILD_EXAMPLES "Build the example executables" ${VIAMCPPSDK_STANDALONE_BUILD})
+
+# - `VIAMCPPSDK_BUILD_TESTS `
+#
+# Defaults to ON for standalone builds, OFF for FetchContent consumers.
+option(VIAMCPPSDK_BUILD_TESTS "Build the example executables" ${VIAMCPPSDK_STANDALONE_BUILD})
 
 
 # Enforce known toolchains and toolchain minima unless asked not to.
