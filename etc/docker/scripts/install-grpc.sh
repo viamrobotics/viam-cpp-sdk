@@ -52,7 +52,7 @@ cmake -S . -B build -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr/local \
     -DCMAKE_INSTALL_RPATH=/usr/local/lib
-ninja -C build install
+cmake --build build --target install
 
 cd "${SRC_DIR}"
 rm -rf grpc
