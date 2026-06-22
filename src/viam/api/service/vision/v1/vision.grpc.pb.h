@@ -39,7 +39,8 @@ class VisionService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
+    // GetDetectionsFromCamera will return a list of detections in the next image
+    // given a camera and a detector
     virtual ::grpc::Status GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>> AsyncGetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>>(AsyncGetDetectionsFromCameraRaw(context, request, cq));
@@ -47,7 +48,8 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>> PrepareAsyncGetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsFromCameraResponse>>(PrepareAsyncGetDetectionsFromCameraRaw(context, request, cq));
     }
-    // GetDetections will return a list of detections in the next image given the image bytes and a detector
+    // GetDetections will return a list of detections in the next image given the
+    // image bytes and a detector
     virtual ::grpc::Status GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::viam::service::vision::v1::GetDetectionsResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsResponse>> AsyncGetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsResponse>>(AsyncGetDetectionsRaw(context, request, cq));
@@ -55,7 +57,8 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsResponse>> PrepareAsyncGetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetDetectionsResponse>>(PrepareAsyncGetDetectionsRaw(context, request, cq));
     }
-    // GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
+    // GetClassificationsFromCamera will return a list of classifications in the
+    // next image given a camera and a classifier
     virtual ::grpc::Status GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>> AsyncGetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>>(AsyncGetClassificationsFromCameraRaw(context, request, cq));
@@ -63,7 +66,8 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>> PrepareAsyncGetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsFromCameraResponse>>(PrepareAsyncGetClassificationsFromCameraRaw(context, request, cq));
     }
-    // GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
+    // GetClassifications will return a list of classifications in the next image
+    // given the image bytes and a classifier
     virtual ::grpc::Status GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::viam::service::vision::v1::GetClassificationsResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsResponse>> AsyncGetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsResponse>>(AsyncGetClassificationsRaw(context, request, cq));
@@ -71,9 +75,10 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsResponse>> PrepareAsyncGetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetClassificationsResponse>>(PrepareAsyncGetClassificationsRaw(context, request, cq));
     }
-    // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
-    // as well as the 3-vector center of each of the found objects.
-    // A specific MIME type can be requested but may not necessarily be the same one returned.
+    // GetObjectPointClouds returns all the found objects in a pointcloud from a
+    // camera of the underlying robot, as well as the 3-vector center of each of
+    // the found objects. A specific MIME type can be requested but may not
+    // necessarily be the same one returned.
     virtual ::grpc::Status GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>> AsyncGetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>>(AsyncGetObjectPointCloudsRaw(context, request, cq));
@@ -81,7 +86,8 @@ class VisionService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>> PrepareAsyncGetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetObjectPointCloudsResponse>>(PrepareAsyncGetObjectPointCloudsRaw(context, request, cq));
     }
-    // GetProperties will return the properties as booleans given the name of the vision service
+    // GetProperties will return the properties as booleans given the name of the
+    // vision service
     virtual ::grpc::Status GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::viam::service::vision::v1::GetPropertiesResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetPropertiesResponse>> AsyncGetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::viam::service::vision::v1::GetPropertiesResponse>>(AsyncGetPropertiesRaw(context, request, cq));
@@ -115,24 +121,30 @@ class VisionService final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
+      // GetDetectionsFromCamera will return a list of detections in the next image
+      // given a camera and a detector
       virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetDetectionsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetDetections will return a list of detections in the next image given the image bytes and a detector
+      // GetDetections will return a list of detections in the next image given the
+      // image bytes and a detector
       virtual void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetDetections(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
+      // GetClassificationsFromCamera will return a list of classifications in the
+      // next image given a camera and a classifier
       virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetClassificationsFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
+      // GetClassifications will return a list of classifications in the next image
+      // given the image bytes and a classifier
       virtual void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetClassifications(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
-      // as well as the 3-vector center of each of the found objects.
-      // A specific MIME type can be requested but may not necessarily be the same one returned.
+      // GetObjectPointClouds returns all the found objects in a pointcloud from a
+      // camera of the underlying robot, as well as the 3-vector center of each of
+      // the found objects. A specific MIME type can be requested but may not
+      // necessarily be the same one returned.
       virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetObjectPointClouds(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // GetProperties will return the properties as booleans given the name of the vision service
+      // GetProperties will return the properties as booleans given the name of the
+      // vision service
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetProperties(::grpc::ClientContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void CaptureAllFromCamera(::grpc::ClientContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response, std::function<void(::grpc::Status)>) = 0;
@@ -299,19 +311,25 @@ class VisionService final {
    public:
     Service();
     virtual ~Service();
-    // GetDetectionsFromCamera will return a list of detections in the next image given a camera and a detector
+    // GetDetectionsFromCamera will return a list of detections in the next image
+    // given a camera and a detector
     virtual ::grpc::Status GetDetectionsFromCamera(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetDetectionsFromCameraRequest* request, ::viam::service::vision::v1::GetDetectionsFromCameraResponse* response);
-    // GetDetections will return a list of detections in the next image given the image bytes and a detector
+    // GetDetections will return a list of detections in the next image given the
+    // image bytes and a detector
     virtual ::grpc::Status GetDetections(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetDetectionsRequest* request, ::viam::service::vision::v1::GetDetectionsResponse* response);
-    // GetClassificationsFromCamera will return a list of classifications in the next image given a camera and a classifier
+    // GetClassificationsFromCamera will return a list of classifications in the
+    // next image given a camera and a classifier
     virtual ::grpc::Status GetClassificationsFromCamera(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetClassificationsFromCameraRequest* request, ::viam::service::vision::v1::GetClassificationsFromCameraResponse* response);
-    // GetClassifications will return a list of classifications in the next image given the image bytes and a classifier
+    // GetClassifications will return a list of classifications in the next image
+    // given the image bytes and a classifier
     virtual ::grpc::Status GetClassifications(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetClassificationsRequest* request, ::viam::service::vision::v1::GetClassificationsResponse* response);
-    // GetObjectPointClouds returns all the found objects in a pointcloud from a camera of the underlying robot,
-    // as well as the 3-vector center of each of the found objects.
-    // A specific MIME type can be requested but may not necessarily be the same one returned.
+    // GetObjectPointClouds returns all the found objects in a pointcloud from a
+    // camera of the underlying robot, as well as the 3-vector center of each of
+    // the found objects. A specific MIME type can be requested but may not
+    // necessarily be the same one returned.
     virtual ::grpc::Status GetObjectPointClouds(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetObjectPointCloudsRequest* request, ::viam::service::vision::v1::GetObjectPointCloudsResponse* response);
-    // GetProperties will return the properties as booleans given the name of the vision service
+    // GetProperties will return the properties as booleans given the name of the
+    // vision service
     virtual ::grpc::Status GetProperties(::grpc::ServerContext* context, const ::viam::service::vision::v1::GetPropertiesRequest* request, ::viam::service::vision::v1::GetPropertiesResponse* response);
     virtual ::grpc::Status CaptureAllFromCamera(::grpc::ServerContext* context, const ::viam::service::vision::v1::CaptureAllFromCameraRequest* request, ::viam::service::vision::v1::CaptureAllFromCameraResponse* response);
     // DoCommand sends/receives arbitrary commands
