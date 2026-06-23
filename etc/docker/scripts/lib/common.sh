@@ -19,14 +19,10 @@ CMAKE_MIN_VERSION=3.25
 export CMAKE_MIN_VERSION
 
 # GRPC_APT_VERSION_MIN: minimum apt libgrpc++-dev install-grpc.sh accepts before
-# falling back to a source build.
-GRPC_APT_VERSION_MIN=1.51
+# falling back to a source build. Doubles as the grpc tag (sans leading "v") built
+# from source when no valid GRPC_SOURCE_VERSION_OVERRIDE is supplied.
+GRPC_APT_VERSION_MIN=1.51.1
 export GRPC_APT_VERSION_MIN
-
-# GRPC_SOURCE_VERSION_DEFAULT: grpc tag (sans leading "v") built from source when
-# apt is too old and no valid GRPC_SOURCE_VERSION_OVERRIDE is supplied.
-GRPC_SOURCE_VERSION_DEFAULT=1.62.1
-export GRPC_SOURCE_VERSION_DEFAULT
 
 # ---- distro identity (from /etc/os-release, never from build args) ----
 

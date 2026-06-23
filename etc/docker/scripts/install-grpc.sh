@@ -13,8 +13,8 @@ set -euo pipefail
 . "$(dirname "$0")/lib/common.sh"
 
 # Resolve the source-build version. A valid override forces a source build at that
-# version; otherwise we may take apt, falling back to the pinned default. An
-# override at or below the apt floor is a usage error -- fail loudly.
+# version; otherwise we may take apt, falling back to a source build at the floor.
+# An override at or below the apt floor is a usage error -- fail loudly.
 override="${GRPC_SOURCE_VERSION_OVERRIDE:-}"
 if [[ -n "${override}" ]]; then
     if [[ "${override}" == "${GRPC_APT_VERSION_MIN}" ]] \
@@ -26,7 +26,7 @@ if [[ -n "${override}" ]]; then
     grpc_source_version="${override}"
     force_source=1
 else
-    grpc_source_version="${GRPC_SOURCE_VERSION_DEFAULT}"
+    grpc_source_version="${GRPC_APT_VERSION_MIN}"
     force_source=
 fi
 
