@@ -41,3 +41,5 @@ ARG GRPC_SOURCE_VERSION_OVERRIDE=
 ENV GRPC_SOURCE_VERSION_OVERRIDE=${GRPC_SOURCE_VERSION_OVERRIDE}
 
 RUN /opt/scripts/install-system-deps.sh
+
+RUN rm -rf /opt/scripts
