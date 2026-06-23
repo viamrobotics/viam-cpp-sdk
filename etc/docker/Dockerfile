@@ -8,8 +8,16 @@
 # Strategy is selected by bake `target = "system"`, not a build arg.
 # Distro-conditional logic lives in scripts/, not in RUN steps here.
 
+# Required parameters
 ARG DISTRO
 ARG VERSION
+
+# Build options
+# DEBUG=1 turns on `set -x` tracing in every install script.
+ARG DEBUG=
+
+# Default versions/minima
+ARG CMAKE_MIN_VERSION=3.25
 
 FROM ${DISTRO}:${VERSION} AS base
 
@@ -17,13 +25,7 @@ FROM ${DISTRO}:${VERSION} AS base
 ENV DEBIAN_FRONTEND=noninteractive \
     HOME=/root
 
-# Versions and toggles ride in on build args; distro identity comes from /etc/os-release.
-ARG LLVM_VERSION=19
-ARG CMAKE_MIN_VERSION=3.25
-# DEBUG=1 turns on `set -x` tracing in every install script.
-ARG DEBUG=
-ENV LLVM_VERSION=${LLVM_VERSION} \
-    CMAKE_MIN_VERSION=${CMAKE_MIN_VERSION} \
+ENV CMAKE_MIN_VERSION=${CMAKE_MIN_VERSION} \
     DEBUG=${DEBUG}
 
 COPY scripts/ /opt/scripts/

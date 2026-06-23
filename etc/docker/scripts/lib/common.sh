@@ -6,6 +6,13 @@
 set -euo pipefail
 [[ "${DEBUG:-}" ]] && set -x
 
+# ---- pinned toolchain versions (not configurable at docker build time) ----
+
+# LLVM_VERSION: the clang/clang-tidy/clang-format major version installed by
+# install-llvm.sh and invoked via the versioned binary names (clang-${LLVM_VERSION}).
+LLVM_VERSION=19
+export LLVM_VERSION
+
 # ---- distro identity (from /etc/os-release, never from build args) ----
 
 # shellcheck disable=SC1091

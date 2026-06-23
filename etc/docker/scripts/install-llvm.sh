@@ -10,27 +10,12 @@ set -euo pipefail
 # shellcheck disable=SC1091
 . "$(dirname "$0")/lib/common.sh"
 
-: "${LLVM_VERSION:?LLVM_VERSION must be set}"
-
-# All three packages are version-suffixed; bare names are wired up via
-# update-alternatives below.
+# LLVM_VERSION is pinned in lib/common.sh.
 LLVM_PKGS=(
     "clang-${LLVM_VERSION}"
     "clang-tidy-${LLVM_VERSION}"
     "clang-format-${LLVM_VERSION}"
 )
-
-# Point the unversioned tool names at this LLVM_VERSION so callers that invoke
-# `clang` / `clang-tidy` / `clang-format` get the pinned toolchain.
-register_alternatives() {
-    update-alternatives --install /usr/bin/clang clang \
-        "/usr/bin/clang-${LLVM_VERSION}" 100 \
-        --slave /usr/bin/clang++ clang++ "/usr/bin/clang++-${LLVM_VERSION}"
-    update-alternatives --install /usr/bin/clang-tidy clang-tidy \
-        "/usr/bin/clang-tidy-${LLVM_VERSION}" 100
-    update-alternatives --install /usr/bin/clang-format clang-format \
-        "/usr/bin/clang-format-${LLVM_VERSION}" 100
-}
 
 apt-get update
 clang_candidate="$(apt_candidate "clang-${LLVM_VERSION}")"
@@ -39,7 +24,6 @@ rm -rf /var/lib/apt/lists/*
 if [[ -n "${clang_candidate}" ]]; then
     # Distro ships it directly.
     apt_install "${LLVM_PKGS[@]}"
-    register_alternatives
 else
     # apt.llvm.org suite name: llvm-toolchain-<codename>-<version>, except
     # Debian sid which drops the codename segment (llvm-toolchain-<version>).
@@ -54,5 +38,4 @@ else
         "https://apt.llvm.org/llvm-snapshot.gpg.key" \
         "http://apt.llvm.org/${repo_path}/ ${suite} main"
     apt_install_from "${suite}" "${LLVM_PKGS[@]}"
-    register_alternatives
 fi

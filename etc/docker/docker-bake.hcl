@@ -12,10 +12,6 @@ variable "REGISTRY" {
   default = "ghcr.io/viamrobotics"
 }
 
-variable "LLVM_VERSION" {
-  default = "19"
-}
-
 variable "GRPC_VERSION" {
   default = "v1.62.1"
 }
@@ -38,7 +34,6 @@ target "base" {
   target     = "base"
 
   args = {
-    LLVM_VERSION = "${LLVM_VERSION}"
     GRPC_VERSION = "${GRPC_VERSION}"
   }
 
