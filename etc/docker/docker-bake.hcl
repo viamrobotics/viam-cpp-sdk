@@ -12,10 +12,6 @@ variable "REGISTRY" {
   default = "ghcr.io/viamrobotics"
 }
 
-variable "GRPC_VERSION" {
-  default = "v1.62.1"
-}
-
 // Native arch throughout. No QEMU emulation.
 variable "ARCH" {
   default = "amd64"
@@ -32,10 +28,6 @@ target "base" {
   dockerfile = "Dockerfile"
   context    = "."
   target     = "base"
-
-  args = {
-    GRPC_VERSION = "${GRPC_VERSION}"
-  }
 
   // amd64 / arm64 built on native runners; one manifest list per cell.
   platforms = ["linux/${ARCH}"]

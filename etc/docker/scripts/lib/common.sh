@@ -9,9 +9,24 @@ set -euo pipefail
 # ---- pinned toolchain versions (not configurable at docker build time) ----
 
 # LLVM_VERSION: the clang/clang-tidy/clang-format major version installed by
-# install-llvm.sh and invoked via the versioned binary names (clang-${LLVM_VERSION}).
+# install-llvm.sh.
 LLVM_VERSION=19
 export LLVM_VERSION
+
+# CMAKE_MIN_VERSION: minimum cmake install-cmake.sh accepts before pulling a
+# newer one from Kitware (Ubuntu) or Debian backports.
+CMAKE_MIN_VERSION=3.25
+export CMAKE_MIN_VERSION
+
+# GRPC_APT_VERSION_MIN: minimum apt libgrpc++-dev install-grpc.sh accepts before
+# falling back to a source build.
+GRPC_APT_VERSION_MIN=1.51
+export GRPC_APT_VERSION_MIN
+
+# GRPC_SOURCE_VERSION_DEFAULT: grpc tag (sans leading "v") built from source when
+# apt is too old and no valid GRPC_SOURCE_VERSION_OVERRIDE is supplied.
+GRPC_SOURCE_VERSION_DEFAULT=1.62.1
+export GRPC_SOURCE_VERSION_DEFAULT
 
 # ---- distro identity (from /etc/os-release, never from build args) ----
 

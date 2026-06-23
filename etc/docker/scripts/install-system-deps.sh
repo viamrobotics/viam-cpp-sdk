@@ -2,7 +2,7 @@
 #
 # System -dev packages: boost, grpc, protobuf, ssl, c-ares, re2, zlib.
 # On distros where the apt grpc is missing or too old, the grpc stack is built
-# from source at ${GRPC_VERSION} instead (against the system zlib/c-ares/re2/ssl).
+# from source instead (against the system zlib/c-ares/re2/ssl). See install-grpc.sh.
 
 set -euo pipefail
 [[ "${DEBUG:-}" ]] && set -x

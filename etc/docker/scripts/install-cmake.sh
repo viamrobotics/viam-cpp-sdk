@@ -10,8 +10,7 @@ set -euo pipefail
 # shellcheck disable=SC1091
 . "$(dirname "$0")/lib/common.sh"
 
-: "${CMAKE_MIN_VERSION:?CMAKE_MIN_VERSION must be set}"
-
+# CMAKE_MIN_VERSION is pinned in lib/common.sh.
 # Version apt would install, e.g. "3.25.1". Empty if no installable candidate.
 apt-get update
 candidate_ver="$(apt_candidate cmake)"

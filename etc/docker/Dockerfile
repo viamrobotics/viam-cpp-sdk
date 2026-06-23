@@ -16,17 +16,13 @@ ARG VERSION
 # DEBUG=1 turns on `set -x` tracing in every install script.
 ARG DEBUG=
 
-# Default versions/minima
-ARG CMAKE_MIN_VERSION=3.25
-
 FROM ${DISTRO}:${VERSION} AS base
 
 # DEBIAN_FRONTEND set here once, not per-call in scripts.
 ENV DEBIAN_FRONTEND=noninteractive \
     HOME=/root
 
-ENV CMAKE_MIN_VERSION=${CMAKE_MIN_VERSION} \
-    DEBUG=${DEBUG}
+ENV DEBUG=${DEBUG}
 
 COPY scripts/ /opt/scripts/
 RUN chmod -R +x /opt/scripts
@@ -38,7 +34,10 @@ RUN /opt/scripts/install-cmake.sh
 
 FROM base AS system
 
-ARG GRPC_VERSION=v1.62.1
-ENV GRPC_VERSION=${GRPC_VERSION}
+# Optional override for the grpc version built from source (numeric, e.g. 1.65.0).
+# When set, forces a source build at that version on every distro, even where the
+# apt grpc would otherwise be accepted. Empty -> default behavior.
+ARG GRPC_SOURCE_VERSION_OVERRIDE=
+ENV GRPC_SOURCE_VERSION_OVERRIDE=${GRPC_SOURCE_VERSION_OVERRIDE}
 
 RUN /opt/scripts/install-system-deps.sh
