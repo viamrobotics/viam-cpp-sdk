@@ -247,7 +247,8 @@ struct CaptureAllFromCameraResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CaptureAllFromCameraResponseDefaultTypeInternal _CaptureAllFromCameraResponse_default_instance_;
 PROTOBUF_CONSTEXPR GetPropertiesResponse::GetPropertiesResponse(
     ::_pbi::ConstantInitialized)
-  : classifications_supported_(false)
+  : default_camera_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , classifications_supported_(false)
   , detections_supported_(false)
   , object_point_clouds_supported_(false){}
 struct GetPropertiesResponseDefaultTypeInternal {
@@ -424,7 +425,7 @@ const uint32_t TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, classifications_),
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, objects_),
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::CaptureAllFromCameraResponse, extra_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -433,6 +434,11 @@ const uint32_t TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets[] PRO
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, classifications_supported_),
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, detections_supported_),
   PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, object_point_clouds_supported_),
+  PROTOBUF_FIELD_OFFSET(::viam::service::vision::v1::GetPropertiesResponse, default_camera_),
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::viam::service::vision::v1::GetDetectionsRequest)},
@@ -450,7 +456,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 124, -1, -1, sizeof(::viam::service::vision::v1::GetPropertiesRequest)},
   { 132, -1, -1, sizeof(::viam::service::vision::v1::CaptureAllFromCameraRequest)},
   { 145, -1, -1, sizeof(::viam::service::vision::v1::CaptureAllFromCameraResponse)},
-  { 156, -1, -1, sizeof(::viam::service::vision::v1::GetPropertiesResponse)},
+  { 156, 166, -1, sizeof(::viam::service::vision::v1::GetPropertiesResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -545,55 +551,56 @@ const char descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto[] PR
   "ision.v1.ClassificationR\017classifications"
   "\022:\n\007objects\030\004 \003(\0132 .viam.common.v1.Point"
   "CloudObjectR\007objects\022-\n\005extra\030c \001(\0132\027.go"
-  "ogle.protobuf.StructR\005extra\"\312\001\n\025GetPrope"
+  "ogle.protobuf.StructR\005extra\"\211\002\n\025GetPrope"
   "rtiesResponse\022;\n\031classifications_support"
   "ed\030\001 \001(\010R\030classificationsSupported\0221\n\024de"
   "tections_supported\030\002 \001(\010R\023detectionsSupp"
   "orted\022A\n\035object_point_clouds_supported\030\003"
-  " \001(\010R\032objectPointCloudsSupported2\327\014\n\rVis"
-  "ionService\022\310\001\n\027GetDetectionsFromCamera\0226"
-  ".viam.service.vision.v1.GetDetectionsFro"
-  "mCameraRequest\0327.viam.service.vision.v1."
-  "GetDetectionsFromCameraResponse\"<\202\323\344\223\0026\""
-  "4/viam/api/v1/service/vision/{name}/came"
-  "ra_detections\022\243\001\n\rGetDetections\022,.viam.s"
-  "ervice.vision.v1.GetDetectionsRequest\032-."
-  "viam.service.vision.v1.GetDetectionsResp"
-  "onse\"5\202\323\344\223\002/\"-/viam/api/v1/service/visio"
-  "n/{name}/detections\022\334\001\n\034GetClassificatio"
-  "nsFromCamera\022;.viam.service.vision.v1.Ge"
-  "tClassificationsFromCameraRequest\032<.viam"
-  ".service.vision.v1.GetClassificationsFro"
-  "mCameraResponse\"A\202\323\344\223\002;\"9/viam/api/v1/se"
-  "rvice/vision/{name}/camera_classificatio"
-  "ns\022\267\001\n\022GetClassifications\0221.viam.service"
-  ".vision.v1.GetClassificationsRequest\0322.v"
-  "iam.service.vision.v1.GetClassifications"
-  "Response\":\202\323\344\223\0024\"2/viam/api/v1/service/v"
-  "ision/{name}/classifications\022\301\001\n\024GetObje"
-  "ctPointClouds\0223.viam.service.vision.v1.G"
-  "etObjectPointCloudsRequest\0324.viam.servic"
-  "e.vision.v1.GetObjectPointCloudsResponse"
-  "\">\202\323\344\223\0028\"6/viam/api/v1/service/vision/{n"
-  "ame}/object_point_clouds\022\247\001\n\rGetProperti"
-  "es\022,.viam.service.vision.v1.GetPropertie"
-  "sRequest\032-.viam.service.vision.v1.GetPro"
-  "pertiesResponse\"9\202\323\344\223\0023\"1/viam/api/v1/se"
-  "rvice/vision/{name}/get_properties\022\271\001\n\024C"
-  "aptureAllFromCamera\0223.viam.service.visio"
-  "n.v1.CaptureAllFromCameraRequest\0324.viam."
-  "service.vision.v1.CaptureAllFromCameraRe"
-  "sponse\"6\202\323\344\223\0020\"./viam/api/v1/service/vis"
-  "ion/{name}/capture_all\022\207\001\n\tDoCommand\022 .v"
-  "iam.common.v1.DoCommandRequest\032!.viam.co"
-  "mmon.v1.DoCommandResponse\"5\202\323\344\223\002/\"-/viam"
-  "/api/v1/service/vision/{name}/do_command"
-  "\022\207\001\n\tGetStatus\022 .viam.common.v1.GetStatu"
-  "sRequest\032!.viam.common.v1.GetStatusRespo"
-  "nse\"5\202\323\344\223\002/\022-/viam/api/v1/service/vision"
-  "/{name}/get_statusB\?\n\032com.viam.service.v"
-  "ision.v1Z!go.viam.com/api/service/vision"
-  "/v1b\006proto3"
+  " \001(\010R\032objectPointCloudsSupported\022*\n\016defa"
+  "ult_camera\030\004 \001(\tH\000R\rdefaultCamera\210\001\001B\021\n\017"
+  "_default_camera2\327\014\n\rVisionService\022\310\001\n\027Ge"
+  "tDetectionsFromCamera\0226.viam.service.vis"
+  "ion.v1.GetDetectionsFromCameraRequest\0327."
+  "viam.service.vision.v1.GetDetectionsFrom"
+  "CameraResponse\"<\202\323\344\223\0026\"4/viam/api/v1/ser"
+  "vice/vision/{name}/camera_detections\022\243\001\n"
+  "\rGetDetections\022,.viam.service.vision.v1."
+  "GetDetectionsRequest\032-.viam.service.visi"
+  "on.v1.GetDetectionsResponse\"5\202\323\344\223\002/\"-/vi"
+  "am/api/v1/service/vision/{name}/detectio"
+  "ns\022\334\001\n\034GetClassificationsFromCamera\022;.vi"
+  "am.service.vision.v1.GetClassificationsF"
+  "romCameraRequest\032<.viam.service.vision.v"
+  "1.GetClassificationsFromCameraResponse\"A"
+  "\202\323\344\223\002;\"9/viam/api/v1/service/vision/{nam"
+  "e}/camera_classifications\022\267\001\n\022GetClassif"
+  "ications\0221.viam.service.vision.v1.GetCla"
+  "ssificationsRequest\0322.viam.service.visio"
+  "n.v1.GetClassificationsResponse\":\202\323\344\223\0024\""
+  "2/viam/api/v1/service/vision/{name}/clas"
+  "sifications\022\301\001\n\024GetObjectPointClouds\0223.v"
+  "iam.service.vision.v1.GetObjectPointClou"
+  "dsRequest\0324.viam.service.vision.v1.GetOb"
+  "jectPointCloudsResponse\">\202\323\344\223\0028\"6/viam/a"
+  "pi/v1/service/vision/{name}/object_point"
+  "_clouds\022\247\001\n\rGetProperties\022,.viam.service"
+  ".vision.v1.GetPropertiesRequest\032-.viam.s"
+  "ervice.vision.v1.GetPropertiesResponse\"9"
+  "\202\323\344\223\0023\"1/viam/api/v1/service/vision/{nam"
+  "e}/get_properties\022\271\001\n\024CaptureAllFromCame"
+  "ra\0223.viam.service.vision.v1.CaptureAllFr"
+  "omCameraRequest\0324.viam.service.vision.v1"
+  ".CaptureAllFromCameraResponse\"6\202\323\344\223\0020\"./"
+  "viam/api/v1/service/vision/{name}/captur"
+  "e_all\022\207\001\n\tDoCommand\022 .viam.common.v1.DoC"
+  "ommandRequest\032!.viam.common.v1.DoCommand"
+  "Response\"5\202\323\344\223\002/\"-/viam/api/v1/service/v"
+  "ision/{name}/do_command\022\207\001\n\tGetStatus\022 ."
+  "viam.common.v1.GetStatusRequest\032!.viam.c"
+  "ommon.v1.GetStatusResponse\"5\202\323\344\223\002/\022-/via"
+  "m/api/v1/service/vision/{name}/get_statu"
+  "sB\?\n\032com.viam.service.vision.v1Z!go.viam"
+  ".com/api/service/vision/v1b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps[4] = {
   &::descriptor_table_common_2fv1_2fcommon_2eproto,
@@ -603,7 +610,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_service_2fvision_2f
 };
 static ::_pbi::once_flag descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2fvision_2fv1_2fvision_2eproto = {
-    false, false, 4811, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
+    false, false, 4874, descriptor_table_protodef_service_2fvision_2fv1_2fvision_2eproto,
     "service/vision/v1/vision.proto",
     &descriptor_table_service_2fvision_2fv1_2fvision_2eproto_once, descriptor_table_service_2fvision_2fv1_2fvision_2eproto_deps, 4, 16,
     schemas, file_default_instances, TableStruct_service_2fvision_2fv1_2fvision_2eproto::offsets,
@@ -5025,6 +5032,10 @@ void CaptureAllFromCameraResponse::InternalSwap(CaptureAllFromCameraResponse* ot
 
 class GetPropertiesResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<GetPropertiesResponse>()._has_bits_);
+  static void set_has_default_camera(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
 GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -5034,8 +5045,17 @@ GetPropertiesResponse::GetPropertiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* are
   // @@protoc_insertion_point(arena_constructor:viam.service.vision.v1.GetPropertiesResponse)
 }
 GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  default_camera_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    default_camera_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_default_camera()) {
+    default_camera_.Set(from._internal_default_camera(), 
+      GetArenaForAllocation());
+  }
   ::memcpy(&classifications_supported_, &from.classifications_supported_,
     static_cast<size_t>(reinterpret_cast<char*>(&object_point_clouds_supported_) -
     reinterpret_cast<char*>(&classifications_supported_)) + sizeof(object_point_clouds_supported_));
@@ -5043,6 +5063,10 @@ GetPropertiesResponse::GetPropertiesResponse(const GetPropertiesResponse& from)
 }
 
 inline void GetPropertiesResponse::SharedCtor() {
+default_camera_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  default_camera_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&classifications_supported_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&object_point_clouds_supported_) -
@@ -5060,6 +5084,7 @@ GetPropertiesResponse::~GetPropertiesResponse() {
 
 inline void GetPropertiesResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  default_camera_.Destroy();
 }
 
 void GetPropertiesResponse::SetCachedSize(int size) const {
@@ -5072,14 +5097,20 @@ void GetPropertiesResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    default_camera_.ClearNonDefaultToEmpty();
+  }
   ::memset(&classifications_supported_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&object_point_clouds_supported_) -
       reinterpret_cast<char*>(&classifications_supported_)) + sizeof(object_point_clouds_supported_));
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -5108,6 +5139,16 @@ const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::Parse
         } else
           goto handle_unusual;
         continue;
+      // optional string default_camera = 4 [json_name = "defaultCamera"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_default_camera();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "viam.service.vision.v1.GetPropertiesResponse.default_camera"));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -5124,6 +5165,7 @@ const char* GetPropertiesResponse::_InternalParse(const char* ptr, ::_pbi::Parse
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -5155,6 +5197,16 @@ uint8_t* GetPropertiesResponse::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_object_point_clouds_supported(), target);
   }
 
+  // optional string default_camera = 4 [json_name = "defaultCamera"];
+  if (_internal_has_default_camera()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_default_camera().data(), static_cast<int>(this->_internal_default_camera().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "viam.service.vision.v1.GetPropertiesResponse.default_camera");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_default_camera(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -5170,6 +5222,14 @@ size_t GetPropertiesResponse::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // optional string default_camera = 4 [json_name = "defaultCamera"];
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_default_camera());
+  }
 
   // bool classifications_supported = 1 [json_name = "classificationsSupported"];
   if (this->_internal_classifications_supported() != 0) {
@@ -5208,6 +5268,9 @@ void GetPropertiesResponse::MergeFrom(const GetPropertiesResponse& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from._internal_has_default_camera()) {
+    _internal_set_default_camera(from._internal_default_camera());
+  }
   if (from._internal_classifications_supported() != 0) {
     _internal_set_classifications_supported(from._internal_classifications_supported());
   }
@@ -5233,7 +5296,14 @@ bool GetPropertiesResponse::IsInitialized() const {
 
 void GetPropertiesResponse::InternalSwap(GetPropertiesResponse* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &default_camera_, lhs_arena,
+      &other->default_camera_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(GetPropertiesResponse, object_point_clouds_supported_)
       + sizeof(GetPropertiesResponse::object_point_clouds_supported_)

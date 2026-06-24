@@ -145,6 +145,9 @@ extern LogResponseDefaultTypeInternal _LogResponse_default_instance_;
 class ModuleModel;
 struct ModuleModelDefaultTypeInternal;
 extern ModuleModelDefaultTypeInternal _ModuleModel_default_instance_;
+class ModuleStatus;
+struct ModuleStatusDefaultTypeInternal;
+extern ModuleStatusDefaultTypeInternal _ModuleStatus_default_instance_;
 class Operation;
 struct OperationDefaultTypeInternal;
 extern OperationDefaultTypeInternal _Operation_default_instance_;
@@ -275,6 +278,7 @@ template<> ::viam::robot::v1::ListTunnelsResponse* Arena::CreateMaybeMessage<::v
 template<> ::viam::robot::v1::LogRequest* Arena::CreateMaybeMessage<::viam::robot::v1::LogRequest>(Arena*);
 template<> ::viam::robot::v1::LogResponse* Arena::CreateMaybeMessage<::viam::robot::v1::LogResponse>(Arena*);
 template<> ::viam::robot::v1::ModuleModel* Arena::CreateMaybeMessage<::viam::robot::v1::ModuleModel>(Arena*);
+template<> ::viam::robot::v1::ModuleStatus* Arena::CreateMaybeMessage<::viam::robot::v1::ModuleStatus>(Arena*);
 template<> ::viam::robot::v1::Operation* Arena::CreateMaybeMessage<::viam::robot::v1::Operation>(Arena*);
 template<> ::viam::robot::v1::PeerConnectionInfo* Arena::CreateMaybeMessage<::viam::robot::v1::PeerConnectionInfo>(Arena*);
 template<> ::viam::robot::v1::ResourceNamesRequest* Arena::CreateMaybeMessage<::viam::robot::v1::ResourceNamesRequest>(Arena*);
@@ -366,6 +370,35 @@ inline bool ResourceStatus_State_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ResourceStatus_State* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ResourceStatus_State>(
     ResourceStatus_State_descriptor(), name, value);
+}
+enum ModuleStatus_State : int {
+  ModuleStatus_State_STATE_UNSPECIFIED = 0,
+  ModuleStatus_State_STATE_PENDING = 1,
+  ModuleStatus_State_STATE_STARTING = 2,
+  ModuleStatus_State_STATE_READY = 3,
+  ModuleStatus_State_STATE_UNHEALTHY = 4,
+  ModuleStatus_State_STATE_CLOSING = 5,
+  ModuleStatus_State_ModuleStatus_State_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  ModuleStatus_State_ModuleStatus_State_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool ModuleStatus_State_IsValid(int value);
+constexpr ModuleStatus_State ModuleStatus_State_State_MIN = ModuleStatus_State_STATE_UNSPECIFIED;
+constexpr ModuleStatus_State ModuleStatus_State_State_MAX = ModuleStatus_State_STATE_CLOSING;
+constexpr int ModuleStatus_State_State_ARRAYSIZE = ModuleStatus_State_State_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ModuleStatus_State_descriptor();
+template<typename T>
+inline const std::string& ModuleStatus_State_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ModuleStatus_State>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ModuleStatus_State_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ModuleStatus_State_descriptor(), enum_t_value);
+}
+inline bool ModuleStatus_State_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ModuleStatus_State* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ModuleStatus_State>(
+    ModuleStatus_State_descriptor(), name, value);
 }
 enum PeerConnectionType : int {
   PEER_CONNECTION_TYPE_UNSPECIFIED = 0,
@@ -8578,6 +8611,7 @@ class GetMachineStatusResponse final :
   enum : int {
     kResourcesFieldNumber = 1,
     kJobStatusesFieldNumber = 4,
+    kModulesFieldNumber = 5,
     kConfigFieldNumber = 2,
     kStateFieldNumber = 3,
   };
@@ -8617,6 +8651,24 @@ class GetMachineStatusResponse final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::JobStatus >&
       job_statuses() const;
 
+  // repeated .viam.robot.v1.ModuleStatus modules = 5 [json_name = "modules"];
+  int modules_size() const;
+  private:
+  int _internal_modules_size() const;
+  public:
+  void clear_modules();
+  ::viam::robot::v1::ModuleStatus* mutable_modules(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ModuleStatus >*
+      mutable_modules();
+  private:
+  const ::viam::robot::v1::ModuleStatus& _internal_modules(int index) const;
+  ::viam::robot::v1::ModuleStatus* _internal_add_modules();
+  public:
+  const ::viam::robot::v1::ModuleStatus& modules(int index) const;
+  ::viam::robot::v1::ModuleStatus* add_modules();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ModuleStatus >&
+      modules() const;
+
   // .viam.robot.v1.ConfigStatus config = 2 [json_name = "config"];
   bool has_config() const;
   private:
@@ -8653,6 +8705,7 @@ class GetMachineStatusResponse final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ResourceStatus > resources_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::JobStatus > job_statuses_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ModuleStatus > modules_;
   ::viam::robot::v1::ConfigStatus* config_;
   int state_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -9122,6 +9175,250 @@ class ResourceStatus final :
 };
 // -------------------------------------------------------------------
 
+class ModuleStatus final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.ModuleStatus) */ {
+ public:
+  inline ModuleStatus() : ModuleStatus(nullptr) {}
+  ~ModuleStatus() override;
+  explicit PROTOBUF_CONSTEXPR ModuleStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ModuleStatus(const ModuleStatus& from);
+  ModuleStatus(ModuleStatus&& from) noexcept
+    : ModuleStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline ModuleStatus& operator=(const ModuleStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModuleStatus& operator=(ModuleStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModuleStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ModuleStatus* internal_default_instance() {
+    return reinterpret_cast<const ModuleStatus*>(
+               &_ModuleStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    57;
+
+  friend void swap(ModuleStatus& a, ModuleStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModuleStatus* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModuleStatus* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModuleStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ModuleStatus>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ModuleStatus& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ModuleStatus& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModuleStatus* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.ModuleStatus";
+  }
+  protected:
+  explicit ModuleStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef ModuleStatus_State State;
+  static constexpr State STATE_UNSPECIFIED =
+    ModuleStatus_State_STATE_UNSPECIFIED;
+  static constexpr State STATE_PENDING =
+    ModuleStatus_State_STATE_PENDING;
+  static constexpr State STATE_STARTING =
+    ModuleStatus_State_STATE_STARTING;
+  static constexpr State STATE_READY =
+    ModuleStatus_State_STATE_READY;
+  static constexpr State STATE_UNHEALTHY =
+    ModuleStatus_State_STATE_UNHEALTHY;
+  static constexpr State STATE_CLOSING =
+    ModuleStatus_State_STATE_CLOSING;
+  static inline bool State_IsValid(int value) {
+    return ModuleStatus_State_IsValid(value);
+  }
+  static constexpr State State_MIN =
+    ModuleStatus_State_State_MIN;
+  static constexpr State State_MAX =
+    ModuleStatus_State_State_MAX;
+  static constexpr int State_ARRAYSIZE =
+    ModuleStatus_State_State_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  State_descriptor() {
+    return ModuleStatus_State_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& State_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, State>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function State_Name.");
+    return ModuleStatus_State_Name(enum_t_value);
+  }
+  static inline bool State_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      State* value) {
+    return ModuleStatus_State_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kModuleNameFieldNumber = 1,
+    kErrorFieldNumber = 4,
+    kLastUpdatedFieldNumber = 3,
+    kStateFieldNumber = 2,
+    kConsecutiveFailuresFieldNumber = 5,
+  };
+  // string module_name = 1 [json_name = "moduleName"];
+  void clear_module_name();
+  const std::string& module_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_module_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_module_name();
+  PROTOBUF_NODISCARD std::string* release_module_name();
+  void set_allocated_module_name(std::string* module_name);
+  private:
+  const std::string& _internal_module_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_module_name(const std::string& value);
+  std::string* _internal_mutable_module_name();
+  public:
+
+  // string error = 4 [json_name = "error"];
+  void clear_error();
+  const std::string& error() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_error(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_error();
+  PROTOBUF_NODISCARD std::string* release_error();
+  void set_allocated_error(std::string* error);
+  private:
+  const std::string& _internal_error() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(const std::string& value);
+  std::string* _internal_mutable_error();
+  public:
+
+  // .google.protobuf.Timestamp last_updated = 3 [json_name = "lastUpdated"];
+  bool has_last_updated() const;
+  private:
+  bool _internal_has_last_updated() const;
+  public:
+  void clear_last_updated();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_updated() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_updated();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_updated();
+  void set_allocated_last_updated(::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_updated() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_updated();
+  public:
+  void unsafe_arena_set_allocated_last_updated(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_updated();
+
+  // .viam.robot.v1.ModuleStatus.State state = 2 [json_name = "state"];
+  void clear_state();
+  ::viam::robot::v1::ModuleStatus_State state() const;
+  void set_state(::viam::robot::v1::ModuleStatus_State value);
+  private:
+  ::viam::robot::v1::ModuleStatus_State _internal_state() const;
+  void _internal_set_state(::viam::robot::v1::ModuleStatus_State value);
+  public:
+
+  // uint32 consecutive_failures = 5 [json_name = "consecutiveFailures"];
+  void clear_consecutive_failures();
+  uint32_t consecutive_failures() const;
+  void set_consecutive_failures(uint32_t value);
+  private:
+  uint32_t _internal_consecutive_failures() const;
+  void _internal_set_consecutive_failures(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.ModuleStatus)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr module_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated_;
+  int state_;
+  uint32_t consecutive_failures_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class ConfigStatus final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.ConfigStatus) */ {
  public:
@@ -9170,7 +9467,7 @@ class ConfigStatus final :
                &_ConfigStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    58;
 
   friend void swap(ConfigStatus& a, ConfigStatus& b) {
     a.Swap(&b);
@@ -9337,7 +9634,7 @@ class GetVersionRequest final :
                &_GetVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    59;
 
   friend void swap(GetVersionRequest& a, GetVersionRequest& b) {
     a.Swap(&b);
@@ -9454,7 +9751,7 @@ class GetVersionResponse final :
                &_GetVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    60;
 
   friend void swap(GetVersionResponse& a, GetVersionResponse& b) {
     a.Swap(&b);
@@ -9634,7 +9931,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    61;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -9838,7 +10135,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    62;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -13938,6 +14235,46 @@ GetMachineStatusResponse::job_statuses() const {
   return job_statuses_;
 }
 
+// repeated .viam.robot.v1.ModuleStatus modules = 5 [json_name = "modules"];
+inline int GetMachineStatusResponse::_internal_modules_size() const {
+  return modules_.size();
+}
+inline int GetMachineStatusResponse::modules_size() const {
+  return _internal_modules_size();
+}
+inline void GetMachineStatusResponse::clear_modules() {
+  modules_.Clear();
+}
+inline ::viam::robot::v1::ModuleStatus* GetMachineStatusResponse::mutable_modules(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.GetMachineStatusResponse.modules)
+  return modules_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ModuleStatus >*
+GetMachineStatusResponse::mutable_modules() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.GetMachineStatusResponse.modules)
+  return &modules_;
+}
+inline const ::viam::robot::v1::ModuleStatus& GetMachineStatusResponse::_internal_modules(int index) const {
+  return modules_.Get(index);
+}
+inline const ::viam::robot::v1::ModuleStatus& GetMachineStatusResponse::modules(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.GetMachineStatusResponse.modules)
+  return _internal_modules(index);
+}
+inline ::viam::robot::v1::ModuleStatus* GetMachineStatusResponse::_internal_add_modules() {
+  return modules_.Add();
+}
+inline ::viam::robot::v1::ModuleStatus* GetMachineStatusResponse::add_modules() {
+  ::viam::robot::v1::ModuleStatus* _add = _internal_add_modules();
+  // @@protoc_insertion_point(field_add:viam.robot.v1.GetMachineStatusResponse.modules)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::viam::robot::v1::ModuleStatus >&
+GetMachineStatusResponse::modules() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.GetMachineStatusResponse.modules)
+  return modules_;
+}
+
 // -------------------------------------------------------------------
 
 // JobStatus
@@ -14448,6 +14785,235 @@ inline void ResourceStatus::set_allocated_cloud_metadata(::viam::robot::v1::GetC
   }
   cloud_metadata_ = cloud_metadata;
   // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ResourceStatus.cloud_metadata)
+}
+
+// -------------------------------------------------------------------
+
+// ModuleStatus
+
+// string module_name = 1 [json_name = "moduleName"];
+inline void ModuleStatus::clear_module_name() {
+  module_name_.ClearToEmpty();
+}
+inline const std::string& ModuleStatus::module_name() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ModuleStatus.module_name)
+  return _internal_module_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleStatus::set_module_name(ArgT0&& arg0, ArgT... args) {
+ 
+ module_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.ModuleStatus.module_name)
+}
+inline std::string* ModuleStatus::mutable_module_name() {
+  std::string* _s = _internal_mutable_module_name();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.ModuleStatus.module_name)
+  return _s;
+}
+inline const std::string& ModuleStatus::_internal_module_name() const {
+  return module_name_.Get();
+}
+inline void ModuleStatus::_internal_set_module_name(const std::string& value) {
+  
+  module_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleStatus::_internal_mutable_module_name() {
+  
+  return module_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleStatus::release_module_name() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.ModuleStatus.module_name)
+  return module_name_.Release();
+}
+inline void ModuleStatus::set_allocated_module_name(std::string* module_name) {
+  if (module_name != nullptr) {
+    
+  } else {
+    
+  }
+  module_name_.SetAllocated(module_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (module_name_.IsDefault()) {
+    module_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ModuleStatus.module_name)
+}
+
+// .viam.robot.v1.ModuleStatus.State state = 2 [json_name = "state"];
+inline void ModuleStatus::clear_state() {
+  state_ = 0;
+}
+inline ::viam::robot::v1::ModuleStatus_State ModuleStatus::_internal_state() const {
+  return static_cast< ::viam::robot::v1::ModuleStatus_State >(state_);
+}
+inline ::viam::robot::v1::ModuleStatus_State ModuleStatus::state() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ModuleStatus.state)
+  return _internal_state();
+}
+inline void ModuleStatus::_internal_set_state(::viam::robot::v1::ModuleStatus_State value) {
+  
+  state_ = value;
+}
+inline void ModuleStatus::set_state(::viam::robot::v1::ModuleStatus_State value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.ModuleStatus.state)
+}
+
+// .google.protobuf.Timestamp last_updated = 3 [json_name = "lastUpdated"];
+inline bool ModuleStatus::_internal_has_last_updated() const {
+  return this != internal_default_instance() && last_updated_ != nullptr;
+}
+inline bool ModuleStatus::has_last_updated() const {
+  return _internal_has_last_updated();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& ModuleStatus::_internal_last_updated() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = last_updated_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& ModuleStatus::last_updated() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ModuleStatus.last_updated)
+  return _internal_last_updated();
+}
+inline void ModuleStatus::unsafe_arena_set_allocated_last_updated(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_updated_);
+  }
+  last_updated_ = last_updated;
+  if (last_updated) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.ModuleStatus.last_updated)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* ModuleStatus::release_last_updated() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_updated_;
+  last_updated_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* ModuleStatus::unsafe_arena_release_last_updated() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.ModuleStatus.last_updated)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_updated_;
+  last_updated_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* ModuleStatus::_internal_mutable_last_updated() {
+  
+  if (last_updated_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_updated_ = p;
+  }
+  return last_updated_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* ModuleStatus::mutable_last_updated() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_updated();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.ModuleStatus.last_updated)
+  return _msg;
+}
+inline void ModuleStatus::set_allocated_last_updated(::PROTOBUF_NAMESPACE_ID::Timestamp* last_updated) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_updated_);
+  }
+  if (last_updated) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_updated));
+    if (message_arena != submessage_arena) {
+      last_updated = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_updated, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  last_updated_ = last_updated;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ModuleStatus.last_updated)
+}
+
+// string error = 4 [json_name = "error"];
+inline void ModuleStatus::clear_error() {
+  error_.ClearToEmpty();
+}
+inline const std::string& ModuleStatus::error() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ModuleStatus.error)
+  return _internal_error();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ModuleStatus::set_error(ArgT0&& arg0, ArgT... args) {
+ 
+ error_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.ModuleStatus.error)
+}
+inline std::string* ModuleStatus::mutable_error() {
+  std::string* _s = _internal_mutable_error();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.ModuleStatus.error)
+  return _s;
+}
+inline const std::string& ModuleStatus::_internal_error() const {
+  return error_.Get();
+}
+inline void ModuleStatus::_internal_set_error(const std::string& value) {
+  
+  error_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ModuleStatus::_internal_mutable_error() {
+  
+  return error_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ModuleStatus::release_error() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.ModuleStatus.error)
+  return error_.Release();
+}
+inline void ModuleStatus::set_allocated_error(std::string* error) {
+  if (error != nullptr) {
+    
+  } else {
+    
+  }
+  error_.SetAllocated(error, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (error_.IsDefault()) {
+    error_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.ModuleStatus.error)
+}
+
+// uint32 consecutive_failures = 5 [json_name = "consecutiveFailures"];
+inline void ModuleStatus::clear_consecutive_failures() {
+  consecutive_failures_ = 0u;
+}
+inline uint32_t ModuleStatus::_internal_consecutive_failures() const {
+  return consecutive_failures_;
+}
+inline uint32_t ModuleStatus::consecutive_failures() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.ModuleStatus.consecutive_failures)
+  return _internal_consecutive_failures();
+}
+inline void ModuleStatus::_internal_set_consecutive_failures(uint32_t value) {
+  
+  consecutive_failures_ = value;
+}
+inline void ModuleStatus::set_consecutive_failures(uint32_t value) {
+  _internal_set_consecutive_failures(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.ModuleStatus.consecutive_failures)
 }
 
 // -------------------------------------------------------------------
@@ -15187,6 +15753,8 @@ inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame*
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -15205,6 +15773,11 @@ template <> struct is_proto_enum< ::viam::robot::v1::ResourceStatus_State> : ::s
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::viam::robot::v1::ResourceStatus_State>() {
   return ::viam::robot::v1::ResourceStatus_State_descriptor();
+}
+template <> struct is_proto_enum< ::viam::robot::v1::ModuleStatus_State> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::viam::robot::v1::ModuleStatus_State>() {
+  return ::viam::robot::v1::ModuleStatus_State_descriptor();
 }
 template <> struct is_proto_enum< ::viam::robot::v1::PeerConnectionType> : ::std::true_type {};
 template <>
