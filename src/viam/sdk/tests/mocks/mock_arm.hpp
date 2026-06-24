@@ -24,6 +24,10 @@ class MockArm : public sdk::Arm {
     void move_through_joint_positions(const std::vector<std::vector<double>>& positions,
                                       const Arm::MoveOptions& opts,
                                       const sdk::ProtoStruct&) override;
+    void move_through_joint_positions_streamed(
+        std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_source,
+        std::function<bool(Arm::Response)> response_sink,
+        const sdk::ProtoStruct&) override;
 
     void stop(const sdk::ProtoStruct&) override;
     bool is_moving() override;

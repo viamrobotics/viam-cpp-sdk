@@ -49,6 +49,17 @@ void MockArm::move_through_joint_positions(const std::vector<std::vector<double>
     move_opts = opts;
 }
 
+void MockArm::move_through_joint_positions_streamed(
+    std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_source,
+    std::function<bool(Arm::Response)> response_sink,
+    const sdk::ProtoStruct&) {
+    while (auto batch = batch_source()) {
+        if (!response_sink(Arm::Response{})) {
+            return;
+        }
+    }
+}
+
 void MockArm::stop(const sdk::ProtoStruct&) {
     peek_stop_called = true;
 }

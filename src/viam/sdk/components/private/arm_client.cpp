@@ -1,12 +1,18 @@
 #include <boost/variant/apply_visitor.hpp>
 #include <viam/sdk/components/private/arm_client.hpp>
 
+#include <exception>
+#include <thread>
+#include <utility>
+
 #include <grpcpp/channel.h>
+#include <grpcpp/client_context.h>
 
 #include <viam/api/component/arm/v1/arm.grpc.pb.h>
 #include <viam/api/component/arm/v1/arm.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
 
 namespace viam {
@@ -102,6 +108,85 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
                   }
               })
         .invoke();
+}
+
+void ArmClient::move_through_joint_positions_streamed(
+    std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_source,
+    std::function<bool(Arm::Response)> response_sink,
+    const ProtoStruct& extra) {
+    // Use the SDK's ClientContext wrapper rather than a raw grpc::ClientContext.
+    // The wrapper's channel-aware constructor attaches the authorization Bearer
+    // token (required for authenticated Viam cloud connections), the
+    // viam_client version metadata, the macOS authority workaround
+    // (RSDK-5194), and the OpenTelemetry trace context. ClientHelper does this
+    // automatically for non-bidi RPCs; hand-rolled streaming has to do it here.
+    ClientContext ctx(*channel_);
+    auto stream = stub_->MoveThroughJointPositionsStreamed(ctx);
+
+    // Send Init on the caller's thread before any other thread is involved.
+    ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest init_msg;
+    auto* init_payload = init_msg.mutable_init();
+    init_payload->set_name(this->name());
+    *init_payload->mutable_extra() = to_proto(extra);
+    if (!stream->Write(init_msg)) {
+        const auto status = stream->Finish();
+        throw GRPCException(&status);
+    }
+
+    // One reader thread: read responses, invoke response_sink, exit on close.
+    std::exception_ptr reader_exception;
+    std::thread reader([&] {
+        try {
+            ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse pb;
+            while (stream->Read(&pb)) {
+                if (!response_sink(Arm::Response{})) {
+                    ctx.try_cancel();
+                    return;
+                }
+            }
+        } catch (...) {
+            reader_exception = std::current_exception();
+            ctx.try_cancel();
+        }
+    });
+
+    // Writer loop runs on the caller's thread.
+    std::exception_ptr writer_exception;
+    try {
+        while (auto batch = batch_source()) {
+            // Avoid emitting empty batches on the wire.
+            if (batch->empty()) {
+                continue;
+            }
+            ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest msg;
+            auto* trajectory_batch = msg.mutable_batch();
+            for (const auto& point : *batch) {
+                *trajectory_batch->add_points() = to_proto(point);
+            }
+            if (!stream->Write(msg)) {
+                break;
+            }
+        }
+        stream->WritesDone();
+    } catch (...) {
+        writer_exception = std::current_exception();
+        ctx.try_cancel();
+    }
+
+    reader.join();
+
+    // Prefer the impl-side exception over Finish()'s gRPC status.
+    if (writer_exception) {
+        std::rethrow_exception(writer_exception);
+    }
+    if (reader_exception) {
+        std::rethrow_exception(reader_exception);
+    }
+
+    const auto status = stream->Finish();
+    if (!status.ok()) {
+        throw GRPCException(&status);
+    }
 }
 
 bool ArmClient::is_moving() {

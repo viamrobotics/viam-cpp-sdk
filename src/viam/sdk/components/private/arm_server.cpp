@@ -1,7 +1,12 @@
 #include <viam/sdk/components/private/arm_server.hpp>
 
+#include <utility>
+#include <vector>
+
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
+#include <viam/sdk/rpc/private/grpc_context_observer.hpp>
+#include <viam/sdk/tracing/private/span_guard.hpp>
 
 namespace viam {
 namespace sdk {
@@ -90,6 +95,112 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
 
             arm->move_through_joint_positions(positions, opts, helper.getExtra());
         });
+}
+
+::grpc::Status ArmServer::MoveThroughJointPositionsStreamed(
+    ::grpc::ServerContext* context,
+    ::grpc::ServerReaderWriter<
+        ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse,
+        ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest>* stream) noexcept {
+    using RequestT = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest;
+    using ResponseT = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse;
+
+    ServerSpanGuard span_guard{context, "ArmServer::MoveThroughJointPositionsStreamed"};
+
+    // 1. Read the Init message. The stream must start with exactly one Init.
+    RequestT first;
+    if (!stream->Read(&first)) {
+        return span_guard.commit(
+            ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                           "MoveThroughJointPositionsStreamed: stream closed before Init message"));
+    }
+    if (first.message_case() != RequestT::kInit) {
+        return span_guard.commit(
+            ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                           "MoveThroughJointPositionsStreamed: first message must be Init"));
+    }
+    const auto& init = first.init();
+
+    // Everything downstream of the Init read may throw (proto conversions,
+    // resource lookup, the impl itself, and the batch_source closure which
+    // throws grpc::Status on protocol violations). We are noexcept, so wrap
+    // it all in a single try and catch every throw type.
+    try {
+        const ProtoStruct extra = from_proto(init.extra());
+
+        // 2. Resource lookup by name.
+        const auto arm = resource_manager()->resource<Arm>(init.name());
+        if (!arm) {
+            return span_guard.commit(
+                ::grpc::Status(::grpc::StatusCode::NOT_FOUND,
+                               "MoveThroughJointPositionsStreamed: arm not found: " + init.name()));
+        }
+
+        // 3. batch_source: pull the next batch off the stream. Empty batches
+        // are tolerated as wire no-ops (the impl never sees them). A second
+        // Init or a missing oneof is a protocol violation surfaced via a
+        // thrown grpc::Status so the client gets a clear INVALID_ARGUMENT.
+        auto batch_source = [stream,
+                             context]() -> boost::optional<std::vector<Arm::TrajectoryPoint>> {
+            while (true) {
+                if (context->IsCancelled()) {
+                    return boost::none;
+                }
+                RequestT msg;
+                if (!stream->Read(&msg)) {
+                    return boost::none;
+                }
+                const auto mc = msg.message_case();
+                if (mc == RequestT::kInit) {
+                    throw ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                                         "MoveThroughJointPositionsStreamed: Init may only "
+                                         "appear as the first message");
+                }
+                if (mc != RequestT::kBatch) {
+                    throw ::grpc::Status(
+                        ::grpc::StatusCode::INVALID_ARGUMENT,
+                        "MoveThroughJointPositionsStreamed: expected TrajectoryBatch");
+                }
+                std::vector<Arm::TrajectoryPoint> batch;
+                batch.reserve(msg.batch().points_size());
+                for (const auto& pb_point : msg.batch().points()) {
+                    batch.push_back(from_proto(pb_point));
+                }
+                if (batch.empty()) {
+                    continue;
+                }
+                return batch;
+            }
+        };
+
+        // 4. response_sink: emit an empty Response (PoC) on the wire. Returns
+        // false on cancellation or wire failure so the impl knows to stop.
+        auto response_sink = [stream, context](Arm::Response) -> bool {
+            if (context->IsCancelled()) {
+                return false;
+            }
+            ResponseT pb;
+            return stream->Write(pb);
+        };
+
+        // 5. Enable the thread-local context observer so the impl can read
+        // incoming gRPC metadata (e.g. viam_client) and check cancellation
+        // state via GrpcContextObserver::current() — same setup
+        // ServiceHelper does for non-streaming methods.
+        const GrpcContextObserver::Enable observer_enable{*context};
+
+        // 6. Call the virtual.
+        arm->move_through_joint_positions_streamed(
+            std::move(batch_source), std::move(response_sink), extra);
+    } catch (const ::grpc::Status& s) {
+        return span_guard.commit(s);
+    } catch (const std::exception& e) {
+        return span_guard.commit(::grpc::Status(::grpc::StatusCode::INTERNAL, e.what()));
+    } catch (...) {
+        return span_guard.commit(::grpc::Status(
+            ::grpc::StatusCode::INTERNAL, "MoveThroughJointPositionsStreamed: unknown exception"));
+    }
+    return span_guard.commit(::grpc::Status::OK);
 }
 
 ::grpc::Status ArmServer::Stop(::grpc::ServerContext* context,

@@ -3,6 +3,8 @@
 /// @brief Defines an `Arm` component
 #pragma once
 
+#include <chrono>
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -12,8 +14,21 @@
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/mesh.hpp>
 #include <viam/sdk/common/pose.hpp>
+#include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
 #include <viam/sdk/spatialmath/geometry.hpp>
+
+namespace viam {
+namespace component {
+namespace arm {
+namespace v1 {
+
+class TrajectoryPoint;
+
+}  // namespace v1
+}  // namespace arm
+}  // namespace component
+}  // namespace viam
 
 namespace viam {
 namespace sdk {
@@ -105,6 +120,88 @@ class Arm : public Component, public Stoppable {
                                               const MoveOptions& options,
                                               const ProtoStruct& extra) = 0;
 
+    /// @brief A single waypoint in a streamed joint-space trajectory.
+    ///
+    /// The first point of a stream must have @ref time equal to zero; subsequent
+    /// points must be strictly increasing in time across the entire stream.
+    struct TrajectoryPoint {
+        /// @brief Target kinematic constraints at a waypoint.
+        ///
+        /// `velocities` is required whenever this struct is present;
+        /// `accelerations` is independently optional. The
+        /// accelerations-require-velocities invariant is enforced by the type
+        /// system, not just documentation.
+        struct KinematicConstraints {
+            std::vector<double> velocities;
+            boost::optional<std::vector<double>> accelerations;
+        };
+
+        // TODO: revisit time representation before this type ships beyond the
+        // PoC. duration<double> is convenient but unusual for this SDK; an
+        // integer chrono type (e.g. nanoseconds) would match SDK convention
+        // and the underlying google.protobuf.Duration precision better.
+        std::chrono::duration<double> time;
+        std::vector<double> positions;
+        boost::optional<KinematicConstraints> constraints;
+    };
+
+    /// @brief Acknowledgment emitted by the implementation per accepted batch
+    /// of trajectory points. Empty for the PoC; will grow status fields.
+    struct Response {};
+
+    /// @brief Execute a stream of trajectory points in order.
+    /// @param batch_source Pull-source for the next batch of waypoints.
+    /// @param response_sink Sink for emitted acknowledgments.
+    inline void move_through_joint_positions_streamed(
+        std::function<boost::optional<std::vector<TrajectoryPoint>>()> batch_source,
+        std::function<bool(Response)> response_sink) {
+        return move_through_joint_positions_streamed(
+            std::move(batch_source), std::move(response_sink), {});
+    }
+
+    /// @brief Execute a stream of trajectory points in order.
+    ///
+    /// `batch_source` returns the next batch of points or `boost::none` on
+    /// client EOF or cancellation. Empty batches and protocol-noise messages
+    /// are filtered out by the dispatcher and never surface here.
+    ///
+    /// `response_sink` emits an acknowledgment. Returns `true` if accepted
+    /// for transmission, `false` if the framework is asking the
+    /// implementation to stop (cancellation, wire failure).
+    ///
+    /// Returning normally indicates the trajectory was executed. Throwing
+    /// converts to a terminal gRPC status surfaced to the client.
+    ///
+    /// THREADING:
+    /// - On the SERVER (i.e., when invoked through ArmServer dispatch),
+    ///   `batch_source` and `response_sink` are both invoked on the gRPC
+    ///   handler thread, and the implementation runs on that thread too. No
+    ///   additional threads. The two callbacks are mutually serialized on
+    ///   that thread: while the implementation is blocked in
+    ///   `batch_source`'s Read it cannot emit a `Response`, and vice versa.
+    ///   Response-emit latency on the wire is therefore bounded by the
+    ///   client's send cadence.
+    ///   TODO: this mutual serialization must be lifted before `Response`
+    ///   grows non-empty fields. A background reader thread on the server
+    ///   is the obvious next step but has not been prototyped; whether the
+    ///   virtual signature can remain stable across that change is
+    ///   undetermined.
+    /// - On the CLIENT (i.e., when invoked through ArmClient on a remote
+    ///   arm), `batch_source` runs on the caller's thread and
+    ///   `response_sink` runs on a separate SDK-managed reader thread. The
+    ///   two callbacks may execute concurrently. Each is called serially
+    ///   with respect to itself (no concurrent calls to the same callback).
+    ///   Implementations sharing mutable state between the two callbacks
+    ///   must provide their own synchronization.
+    ///
+    /// @param batch_source Pull-source for the next batch of waypoints.
+    /// @param response_sink Sink for emitted acknowledgments.
+    /// @param extra Any additional arguments to the method.
+    virtual void move_through_joint_positions_streamed(
+        std::function<boost::optional<std::vector<TrajectoryPoint>>()> batch_source,
+        std::function<bool(Response)> response_sink,
+        const ProtoStruct& extra) = 0;
+
     /// @brief Reports if the arm is in motion.
     virtual bool is_moving() = 0;
 
@@ -158,6 +255,20 @@ template <>
 struct API::traits<Arm> {
     static API api();
 };
+
+namespace proto_convert_details {
+
+template <>
+struct to_proto_impl<Arm::TrajectoryPoint> {
+    void operator()(const Arm::TrajectoryPoint&, viam::component::arm::v1::TrajectoryPoint*) const;
+};
+
+template <>
+struct from_proto_impl<viam::component::arm::v1::TrajectoryPoint> {
+    Arm::TrajectoryPoint operator()(const viam::component::arm::v1::TrajectoryPoint*) const;
+};
+
+}  // namespace proto_convert_details
 
 }  // namespace sdk
 }  // namespace viam
