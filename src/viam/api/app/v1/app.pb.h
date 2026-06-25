@@ -730,6 +730,12 @@ extern ReadOAuthAppResponseDefaultTypeInternal _ReadOAuthAppResponse_default_ins
 class RegistryItem;
 struct RegistryItemDefaultTypeInternal;
 extern RegistryItemDefaultTypeInternal _RegistryItem_default_instance_;
+class RegistryItemBilling;
+struct RegistryItemBillingDefaultTypeInternal;
+extern RegistryItemBillingDefaultTypeInternal _RegistryItemBilling_default_instance_;
+class RegistryItemCostByResource;
+struct RegistryItemCostByResourceDefaultTypeInternal;
+extern RegistryItemCostByResourceDefaultTypeInternal _RegistryItemCostByResource_default_instance_;
 class RemoveRoleRequest;
 struct RemoveRoleRequestDefaultTypeInternal;
 extern RemoveRoleRequestDefaultTypeInternal _RemoveRoleRequest_default_instance_;
@@ -1192,6 +1198,8 @@ template<> ::viam::app::v1::PartSummary* Arena::CreateMaybeMessage<::viam::app::
 template<> ::viam::app::v1::ReadOAuthAppRequest* Arena::CreateMaybeMessage<::viam::app::v1::ReadOAuthAppRequest>(Arena*);
 template<> ::viam::app::v1::ReadOAuthAppResponse* Arena::CreateMaybeMessage<::viam::app::v1::ReadOAuthAppResponse>(Arena*);
 template<> ::viam::app::v1::RegistryItem* Arena::CreateMaybeMessage<::viam::app::v1::RegistryItem>(Arena*);
+template<> ::viam::app::v1::RegistryItemBilling* Arena::CreateMaybeMessage<::viam::app::v1::RegistryItemBilling>(Arena*);
+template<> ::viam::app::v1::RegistryItemCostByResource* Arena::CreateMaybeMessage<::viam::app::v1::RegistryItemCostByResource>(Arena*);
 template<> ::viam::app::v1::RemoveRoleRequest* Arena::CreateMaybeMessage<::viam::app::v1::RemoveRoleRequest>(Arena*);
 template<> ::viam::app::v1::RemoveRoleResponse* Arena::CreateMaybeMessage<::viam::app::v1::RemoveRoleResponse>(Arena*);
 template<> ::viam::app::v1::RenameKeyRequest* Arena::CreateMaybeMessage<::viam::app::v1::RenameKeyRequest>(Arena*);
@@ -34455,6 +34463,340 @@ class DeprecatedStatus final :
 };
 // -------------------------------------------------------------------
 
+class RegistryItemBilling final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.RegistryItemBilling) */ {
+ public:
+  inline RegistryItemBilling() : RegistryItemBilling(nullptr) {}
+  ~RegistryItemBilling() override;
+  explicit PROTOBUF_CONSTEXPR RegistryItemBilling(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RegistryItemBilling(const RegistryItemBilling& from);
+  RegistryItemBilling(RegistryItemBilling&& from) noexcept
+    : RegistryItemBilling() {
+    *this = ::std::move(from);
+  }
+
+  inline RegistryItemBilling& operator=(const RegistryItemBilling& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RegistryItemBilling& operator=(RegistryItemBilling&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RegistryItemBilling& default_instance() {
+    return *internal_default_instance();
+  }
+  enum FrequencyCase {
+    kCostPerMonth = 1,
+    kCostPerYear = 2,
+    FREQUENCY_NOT_SET = 0,
+  };
+
+  static inline const RegistryItemBilling* internal_default_instance() {
+    return reinterpret_cast<const RegistryItemBilling*>(
+               &_RegistryItemBilling_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    196;
+
+  friend void swap(RegistryItemBilling& a, RegistryItemBilling& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RegistryItemBilling* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RegistryItemBilling* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RegistryItemBilling* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RegistryItemBilling>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RegistryItemBilling& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RegistryItemBilling& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RegistryItemBilling* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.RegistryItemBilling";
+  }
+  protected:
+  explicit RegistryItemBilling(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCostPerMonthFieldNumber = 1,
+    kCostPerYearFieldNumber = 2,
+  };
+  // .viam.app.v1.RegistryItemCostByResource cost_per_month = 1 [json_name = "costPerMonth"];
+  bool has_cost_per_month() const;
+  private:
+  bool _internal_has_cost_per_month() const;
+  public:
+  void clear_cost_per_month();
+  const ::viam::app::v1::RegistryItemCostByResource& cost_per_month() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::RegistryItemCostByResource* release_cost_per_month();
+  ::viam::app::v1::RegistryItemCostByResource* mutable_cost_per_month();
+  void set_allocated_cost_per_month(::viam::app::v1::RegistryItemCostByResource* cost_per_month);
+  private:
+  const ::viam::app::v1::RegistryItemCostByResource& _internal_cost_per_month() const;
+  ::viam::app::v1::RegistryItemCostByResource* _internal_mutable_cost_per_month();
+  public:
+  void unsafe_arena_set_allocated_cost_per_month(
+      ::viam::app::v1::RegistryItemCostByResource* cost_per_month);
+  ::viam::app::v1::RegistryItemCostByResource* unsafe_arena_release_cost_per_month();
+
+  // .viam.app.v1.RegistryItemCostByResource cost_per_year = 2 [json_name = "costPerYear"];
+  bool has_cost_per_year() const;
+  private:
+  bool _internal_has_cost_per_year() const;
+  public:
+  void clear_cost_per_year();
+  const ::viam::app::v1::RegistryItemCostByResource& cost_per_year() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::RegistryItemCostByResource* release_cost_per_year();
+  ::viam::app::v1::RegistryItemCostByResource* mutable_cost_per_year();
+  void set_allocated_cost_per_year(::viam::app::v1::RegistryItemCostByResource* cost_per_year);
+  private:
+  const ::viam::app::v1::RegistryItemCostByResource& _internal_cost_per_year() const;
+  ::viam::app::v1::RegistryItemCostByResource* _internal_mutable_cost_per_year();
+  public:
+  void unsafe_arena_set_allocated_cost_per_year(
+      ::viam::app::v1::RegistryItemCostByResource* cost_per_year);
+  ::viam::app::v1::RegistryItemCostByResource* unsafe_arena_release_cost_per_year();
+
+  void clear_frequency();
+  FrequencyCase frequency_case() const;
+  // @@protoc_insertion_point(class_scope:viam.app.v1.RegistryItemBilling)
+ private:
+  class _Internal;
+  void set_has_cost_per_month();
+  void set_has_cost_per_year();
+
+  inline bool has_frequency() const;
+  inline void clear_has_frequency();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  union FrequencyUnion {
+    constexpr FrequencyUnion() : _constinit_{} {}
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+    ::viam::app::v1::RegistryItemCostByResource* cost_per_month_;
+    ::viam::app::v1::RegistryItemCostByResource* cost_per_year_;
+  } frequency_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  uint32_t _oneof_case_[1];
+
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RegistryItemCostByResource final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.RegistryItemCostByResource) */ {
+ public:
+  inline RegistryItemCostByResource() : RegistryItemCostByResource(nullptr) {}
+  ~RegistryItemCostByResource() override;
+  explicit PROTOBUF_CONSTEXPR RegistryItemCostByResource(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RegistryItemCostByResource(const RegistryItemCostByResource& from);
+  RegistryItemCostByResource(RegistryItemCostByResource&& from) noexcept
+    : RegistryItemCostByResource() {
+    *this = ::std::move(from);
+  }
+
+  inline RegistryItemCostByResource& operator=(const RegistryItemCostByResource& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RegistryItemCostByResource& operator=(RegistryItemCostByResource&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RegistryItemCostByResource& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RegistryItemCostByResource* internal_default_instance() {
+    return reinterpret_cast<const RegistryItemCostByResource*>(
+               &_RegistryItemCostByResource_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    197;
+
+  friend void swap(RegistryItemCostByResource& a, RegistryItemCostByResource& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RegistryItemCostByResource* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RegistryItemCostByResource* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RegistryItemCostByResource* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RegistryItemCostByResource>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RegistryItemCostByResource& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RegistryItemCostByResource& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RegistryItemCostByResource* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.app.v1.RegistryItemCostByResource";
+  }
+  protected:
+  explicit RegistryItemCostByResource(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPerMachineFieldNumber = 1,
+  };
+  // double per_machine = 1 [json_name = "perMachine"];
+  void clear_per_machine();
+  double per_machine() const;
+  void set_per_machine(double value);
+  private:
+  double _internal_per_machine() const;
+  void _internal_set_per_machine(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.app.v1.RegistryItemCostByResource)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double per_machine_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_app_2fv1_2fapp_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RegistryItem final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.app.v1.RegistryItem) */ {
  public:
@@ -34510,7 +34852,7 @@ class RegistryItem final :
                &_RegistryItem_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    196;
+    198;
 
   friend void swap(RegistryItem& a, RegistryItem& b) {
     a.Swap(&b);
@@ -34590,6 +34932,7 @@ class RegistryItem final :
     kCreatedAtFieldNumber = 15,
     kUpdatedAtFieldNumber = 16,
     kDeprecatedStatusFieldNumber = 17,
+    kBillingFieldNumber = 19,
     kTypeFieldNumber = 5,
     kVisibilityFieldNumber = 6,
     kTotalRobotUsageFieldNumber = 9,
@@ -34738,6 +35081,24 @@ class RegistryItem final :
       ::viam::app::v1::DeprecatedStatus* deprecated_status);
   ::viam::app::v1::DeprecatedStatus* unsafe_arena_release_deprecated_status();
 
+  // optional .viam.app.v1.RegistryItemBilling billing = 19 [json_name = "billing"];
+  bool has_billing() const;
+  private:
+  bool _internal_has_billing() const;
+  public:
+  void clear_billing();
+  const ::viam::app::v1::RegistryItemBilling& billing() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::RegistryItemBilling* release_billing();
+  ::viam::app::v1::RegistryItemBilling* mutable_billing();
+  void set_allocated_billing(::viam::app::v1::RegistryItemBilling* billing);
+  private:
+  const ::viam::app::v1::RegistryItemBilling& _internal_billing() const;
+  ::viam::app::v1::RegistryItemBilling* _internal_mutable_billing();
+  public:
+  void unsafe_arena_set_allocated_billing(
+      ::viam::app::v1::RegistryItemBilling* billing);
+  ::viam::app::v1::RegistryItemBilling* unsafe_arena_release_billing();
+
   // .viam.app.packages.v1.PackageType type = 5 [json_name = "type"];
   void clear_type();
   ::viam::app::packages::v1::PackageType type() const;
@@ -34872,6 +35233,7 @@ class RegistryItem final :
   ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
   ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
   ::viam::app::v1::DeprecatedStatus* deprecated_status_;
+  ::viam::app::v1::RegistryItemBilling* billing_;
   int type_;
   int visibility_;
   int64_t total_robot_usage_;
@@ -34939,7 +35301,7 @@ class GetRegistryItemRequest final :
                &_GetRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    197;
+    199;
 
   friend void swap(GetRegistryItemRequest& a, GetRegistryItemRequest& b) {
     a.Swap(&b);
@@ -35103,7 +35465,7 @@ class GetRegistryItemResponse final :
                &_GetRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    198;
+    200;
 
   friend void swap(GetRegistryItemResponse& a, GetRegistryItemResponse& b) {
     a.Swap(&b);
@@ -35255,7 +35617,7 @@ class CreateRegistryItemRequest final :
                &_CreateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    199;
+    201;
 
   friend void swap(CreateRegistryItemRequest& a, CreateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -35429,7 +35791,7 @@ class CreateRegistryItemResponse final :
                &_CreateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    200;
+    202;
 
   friend void swap(CreateRegistryItemResponse& a, CreateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -35553,7 +35915,7 @@ class UpdateRegistryItemRequest final :
                &_UpdateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    201;
+    203;
 
   friend void swap(UpdateRegistryItemRequest& a, UpdateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -35628,6 +35990,7 @@ class UpdateRegistryItemRequest final :
     kDescriptionFieldNumber = 3,
     kUrlFieldNumber = 5,
     kMarkdownDescriptionFieldNumber = 9,
+    kBillingFieldNumber = 10,
     kTypeFieldNumber = 2,
     kVisibilityFieldNumber = 4,
     kUpdateModuleMetadataFieldNumber = 6,
@@ -35697,6 +36060,24 @@ class UpdateRegistryItemRequest final :
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_markdown_description(const std::string& value);
   std::string* _internal_mutable_markdown_description();
   public:
+
+  // optional .viam.app.v1.RegistryItemBilling billing = 10 [json_name = "billing"];
+  bool has_billing() const;
+  private:
+  bool _internal_has_billing() const;
+  public:
+  void clear_billing();
+  const ::viam::app::v1::RegistryItemBilling& billing() const;
+  PROTOBUF_NODISCARD ::viam::app::v1::RegistryItemBilling* release_billing();
+  ::viam::app::v1::RegistryItemBilling* mutable_billing();
+  void set_allocated_billing(::viam::app::v1::RegistryItemBilling* billing);
+  private:
+  const ::viam::app::v1::RegistryItemBilling& _internal_billing() const;
+  ::viam::app::v1::RegistryItemBilling* _internal_mutable_billing();
+  public:
+  void unsafe_arena_set_allocated_billing(
+      ::viam::app::v1::RegistryItemBilling* billing);
+  ::viam::app::v1::RegistryItemBilling* unsafe_arena_release_billing();
 
   // .viam.app.packages.v1.PackageType type = 2 [json_name = "type"];
   void clear_type();
@@ -35791,6 +36172,7 @@ class UpdateRegistryItemRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr markdown_description_;
+  ::viam::app::v1::RegistryItemBilling* billing_;
   int type_;
   int visibility_;
   union MetadataUnion {
@@ -35853,7 +36235,7 @@ class UpdateRegistryItemResponse final :
                &_UpdateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    202;
+    204;
 
   friend void swap(UpdateRegistryItemResponse& a, UpdateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -35970,7 +36352,7 @@ class ListRegistryItemsRequest final :
                &_ListRegistryItemsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    203;
+    205;
 
   friend void swap(ListRegistryItemsRequest& a, ListRegistryItemsRequest& b) {
     a.Swap(&b);
@@ -36345,7 +36727,7 @@ class ListRegistryItemsResponse final :
                &_ListRegistryItemsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    204;
+    206;
 
   friend void swap(ListRegistryItemsResponse& a, ListRegistryItemsResponse& b) {
     a.Swap(&b);
@@ -36497,7 +36879,7 @@ class DeleteRegistryItemRequest final :
                &_DeleteRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    205;
+    207;
 
   friend void swap(DeleteRegistryItemRequest& a, DeleteRegistryItemRequest& b) {
     a.Swap(&b);
@@ -36644,7 +37026,7 @@ class DeleteRegistryItemResponse final :
                &_DeleteRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    206;
+    208;
 
   friend void swap(DeleteRegistryItemResponse& a, DeleteRegistryItemResponse& b) {
     a.Swap(&b);
@@ -36761,7 +37143,7 @@ class RenameRegistryItemRequest final :
                &_RenameRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    207;
+    209;
 
   friend void swap(RenameRegistryItemRequest& a, RenameRegistryItemRequest& b) {
     a.Swap(&b);
@@ -36925,7 +37307,7 @@ class RenameRegistryItemResponse final :
                &_RenameRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    208;
+    210;
 
   friend void swap(RenameRegistryItemResponse& a, RenameRegistryItemResponse& b) {
     a.Swap(&b);
@@ -37077,7 +37459,7 @@ class TransferRegistryItemRequest final :
                &_TransferRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    209;
+    211;
 
   friend void swap(TransferRegistryItemRequest& a, TransferRegistryItemRequest& b) {
     a.Swap(&b);
@@ -37240,7 +37622,7 @@ class TransferRegistryItemResponse final :
                &_TransferRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    210;
+    212;
 
   friend void swap(TransferRegistryItemResponse& a, TransferRegistryItemResponse& b) {
     a.Swap(&b);
@@ -37357,7 +37739,7 @@ class DeprecateRegistryItemRequest final :
                &_DeprecateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    211;
+    213;
 
   friend void swap(DeprecateRegistryItemRequest& a, DeprecateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -37520,7 +37902,7 @@ class DeprecateRegistryItemResponse final :
                &_DeprecateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    212;
+    214;
 
   friend void swap(DeprecateRegistryItemResponse& a, DeprecateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -37637,7 +38019,7 @@ class UndeprecateRegistryItemRequest final :
                &_UndeprecateRegistryItemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    213;
+    215;
 
   friend void swap(UndeprecateRegistryItemRequest& a, UndeprecateRegistryItemRequest& b) {
     a.Swap(&b);
@@ -37784,7 +38166,7 @@ class UndeprecateRegistryItemResponse final :
                &_UndeprecateRegistryItemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    214;
+    216;
 
   friend void swap(UndeprecateRegistryItemResponse& a, UndeprecateRegistryItemResponse& b) {
     a.Swap(&b);
@@ -37901,7 +38283,7 @@ class CreateModuleRequest final :
                &_CreateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    215;
+    217;
 
   friend void swap(CreateModuleRequest& a, CreateModuleRequest& b) {
     a.Swap(&b);
@@ -38065,7 +38447,7 @@ class CreateModuleResponse final :
                &_CreateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    216;
+    218;
 
   friend void swap(CreateModuleResponse& a, CreateModuleResponse& b) {
     a.Swap(&b);
@@ -38229,7 +38611,7 @@ class UpdateModuleRequest final :
                &_UpdateModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    217;
+    219;
 
   friend void swap(UpdateModuleRequest& a, UpdateModuleRequest& b) {
     a.Swap(&b);
@@ -38517,7 +38899,7 @@ class AllowedOrgIDs final :
                &_AllowedOrgIDs_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    218;
+    220;
 
   friend void swap(AllowedOrgIDs& a, AllowedOrgIDs& b) {
     a.Swap(&b);
@@ -38675,7 +39057,7 @@ class App final :
                &_App_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    219;
+    221;
 
   friend void swap(App& a, App& b) {
     a.Swap(&b);
@@ -38942,7 +39324,7 @@ class UpdateModuleResponse final :
                &_UpdateModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    220;
+    222;
 
   friend void swap(UpdateModuleResponse& a, UpdateModuleResponse& b) {
     a.Swap(&b);
@@ -39090,7 +39472,7 @@ class UpdateModuleMetadata final :
                &_UpdateModuleMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    221;
+    223;
 
   friend void swap(UpdateModuleMetadata& a, UpdateModuleMetadata& b) {
     a.Swap(&b);
@@ -39309,7 +39691,7 @@ class UpdateMLModelMetadata final :
                &_UpdateMLModelMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    222;
+    224;
 
   friend void swap(UpdateMLModelMetadata& a, UpdateMLModelMetadata& b) {
     a.Swap(&b);
@@ -39463,7 +39845,7 @@ class UpdateMLTrainingMetadata final :
                &_UpdateMLTrainingMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    223;
+    225;
 
   friend void swap(UpdateMLTrainingMetadata& a, UpdateMLTrainingMetadata& b) {
     a.Swap(&b);
@@ -39628,7 +40010,7 @@ class Model final :
                &_Model_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    224;
+    226;
 
   friend void swap(Model& a, Model& b) {
     a.Swap(&b);
@@ -39859,7 +40241,7 @@ class ModuleFileInfo final :
                &_ModuleFileInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    225;
+    227;
 
   friend void swap(ModuleFileInfo& a, ModuleFileInfo& b) {
     a.Swap(&b);
@@ -40071,7 +40453,7 @@ class UploadModuleFileRequest final :
                &_UploadModuleFileRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    226;
+    228;
 
   friend void swap(UploadModuleFileRequest& a, UploadModuleFileRequest& b) {
     a.Swap(&b);
@@ -40256,7 +40638,7 @@ class UploadModuleFileResponse final :
                &_UploadModuleFileResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    227;
+    229;
 
   friend void swap(UploadModuleFileResponse& a, UploadModuleFileResponse& b) {
     a.Swap(&b);
@@ -40404,7 +40786,7 @@ class GetModuleRequest final :
                &_GetModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    228;
+    230;
 
   friend void swap(GetModuleRequest& a, GetModuleRequest& b) {
     a.Swap(&b);
@@ -40568,7 +40950,7 @@ class GetModuleResponse final :
                &_GetModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    229;
+    231;
 
   friend void swap(GetModuleResponse& a, GetModuleResponse& b) {
     a.Swap(&b);
@@ -40720,7 +41102,7 @@ class Module final :
                &_Module_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    230;
+    232;
 
   friend void swap(Module& a, Module& b) {
     a.Swap(&b);
@@ -41118,7 +41500,7 @@ class VersionHistory final :
                &_VersionHistory_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    231;
+    233;
 
   friend void swap(VersionHistory& a, VersionHistory& b) {
     a.Swap(&b);
@@ -41403,7 +41785,7 @@ class Uploads final :
                &_Uploads_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    232;
+    234;
 
   friend void swap(Uploads& a, Uploads& b) {
     a.Swap(&b);
@@ -41571,7 +41953,7 @@ class ListModulesRequest final :
                &_ListModulesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    233;
+    235;
 
   friend void swap(ListModulesRequest& a, ListModulesRequest& b) {
     a.Swap(&b);
@@ -41739,7 +42121,7 @@ class ListModulesResponse final :
                &_ListModulesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    234;
+    236;
 
   friend void swap(ListModulesResponse& a, ListModulesResponse& b) {
     a.Swap(&b);
@@ -41891,7 +42273,7 @@ class DeprecateRegistryItemVersionRequest final :
                &_DeprecateRegistryItemVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    235;
+    237;
 
   friend void swap(DeprecateRegistryItemVersionRequest& a, DeprecateRegistryItemVersionRequest& b) {
     a.Swap(&b);
@@ -42070,7 +42452,7 @@ class DeprecateRegistryItemVersionResponse final :
                &_DeprecateRegistryItemVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    236;
+    238;
 
   friend void swap(DeprecateRegistryItemVersionResponse& a, DeprecateRegistryItemVersionResponse& b) {
     a.Swap(&b);
@@ -42187,7 +42569,7 @@ class UndeprecateRegistryItemVersionRequest final :
                &_UndeprecateRegistryItemVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    237;
+    239;
 
   friend void swap(UndeprecateRegistryItemVersionRequest& a, UndeprecateRegistryItemVersionRequest& b) {
     a.Swap(&b);
@@ -42350,7 +42732,7 @@ class UndeprecateRegistryItemVersionResponse final :
                &_UndeprecateRegistryItemVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    238;
+    240;
 
   friend void swap(UndeprecateRegistryItemVersionResponse& a, UndeprecateRegistryItemVersionResponse& b) {
     a.Swap(&b);
@@ -42467,7 +42849,7 @@ class GetUserIDByEmailRequest final :
                &_GetUserIDByEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    239;
+    241;
 
   friend void swap(GetUserIDByEmailRequest& a, GetUserIDByEmailRequest& b) {
     a.Swap(&b);
@@ -42615,7 +42997,7 @@ class GetUserIDByEmailResponse final :
                &_GetUserIDByEmailResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    240;
+    242;
 
   friend void swap(GetUserIDByEmailResponse& a, GetUserIDByEmailResponse& b) {
     a.Swap(&b);
@@ -42763,7 +43145,7 @@ class ListOrganizationsByUserRequest final :
                &_ListOrganizationsByUserRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    241;
+    243;
 
   friend void swap(ListOrganizationsByUserRequest& a, ListOrganizationsByUserRequest& b) {
     a.Swap(&b);
@@ -42911,7 +43293,7 @@ class OrgDetails final :
                &_OrgDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    242;
+    244;
 
   friend void swap(OrgDetails& a, OrgDetails& b) {
     a.Swap(&b);
@@ -43136,7 +43518,7 @@ class ListOrganizationsByUserResponse final :
                &_ListOrganizationsByUserResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    243;
+    245;
 
   friend void swap(ListOrganizationsByUserResponse& a, ListOrganizationsByUserResponse& b) {
     a.Swap(&b);
@@ -43288,7 +43670,7 @@ class SearchOrganizationsRequest final :
                &_SearchOrganizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    244;
+    246;
 
   friend void swap(SearchOrganizationsRequest& a, SearchOrganizationsRequest& b) {
     a.Swap(&b);
@@ -43501,7 +43883,7 @@ class SearchOrganizationsResponse final :
                &_SearchOrganizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    245;
+    247;
 
   friend void swap(SearchOrganizationsResponse& a, SearchOrganizationsResponse& b) {
     a.Swap(&b);
@@ -43653,7 +44035,7 @@ class CreateKeyRequest final :
                &_CreateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    246;
+    248;
 
   friend void swap(CreateKeyRequest& a, CreateKeyRequest& b) {
     a.Swap(&b);
@@ -43821,7 +44203,7 @@ class CreateKeyResponse final :
                &_CreateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    247;
+    249;
 
   friend void swap(CreateKeyResponse& a, CreateKeyResponse& b) {
     a.Swap(&b);
@@ -43985,7 +44367,7 @@ class DeleteKeyRequest final :
                &_DeleteKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    248;
+    250;
 
   friend void swap(DeleteKeyRequest& a, DeleteKeyRequest& b) {
     a.Swap(&b);
@@ -44132,7 +44514,7 @@ class DeleteKeyResponse final :
                &_DeleteKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    249;
+    251;
 
   friend void swap(DeleteKeyResponse& a, DeleteKeyResponse& b) {
     a.Swap(&b);
@@ -44249,7 +44631,7 @@ class RenameKeyRequest final :
                &_RenameKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    250;
+    252;
 
   friend void swap(RenameKeyRequest& a, RenameKeyRequest& b) {
     a.Swap(&b);
@@ -44413,7 +44795,7 @@ class RenameKeyResponse final :
                &_RenameKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    251;
+    253;
 
   friend void swap(RenameKeyResponse& a, RenameKeyResponse& b) {
     a.Swap(&b);
@@ -44577,7 +44959,7 @@ class AuthorizationDetails final :
                &_AuthorizationDetails_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    252;
+    254;
 
   friend void swap(AuthorizationDetails& a, AuthorizationDetails& b) {
     a.Swap(&b);
@@ -44789,7 +45171,7 @@ class APIKeyWithAuthorizations final :
                &_APIKeyWithAuthorizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    253;
+    255;
 
   friend void swap(APIKeyWithAuthorizations& a, APIKeyWithAuthorizations& b) {
     a.Swap(&b);
@@ -44961,7 +45343,7 @@ class ListKeysRequest final :
                &_ListKeysRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    254;
+    256;
 
   friend void swap(ListKeysRequest& a, ListKeysRequest& b) {
     a.Swap(&b);
@@ -45109,7 +45491,7 @@ class ListKeysResponse final :
                &_ListKeysResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    255;
+    257;
 
   friend void swap(ListKeysResponse& a, ListKeysResponse& b) {
     a.Swap(&b);
@@ -45261,7 +45643,7 @@ class RotateKeyRequest final :
                &_RotateKeyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    256;
+    258;
 
   friend void swap(RotateKeyRequest& a, RotateKeyRequest& b) {
     a.Swap(&b);
@@ -45409,7 +45791,7 @@ class RotateKeyResponse final :
                &_RotateKeyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    257;
+    259;
 
   friend void swap(RotateKeyResponse& a, RotateKeyResponse& b) {
     a.Swap(&b);
@@ -45573,7 +45955,7 @@ class CreateKeyFromExistingKeyAuthorizationsRequest final :
                &_CreateKeyFromExistingKeyAuthorizationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    258;
+    260;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsRequest& a, CreateKeyFromExistingKeyAuthorizationsRequest& b) {
     a.Swap(&b);
@@ -45721,7 +46103,7 @@ class CreateKeyFromExistingKeyAuthorizationsResponse final :
                &_CreateKeyFromExistingKeyAuthorizationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    259;
+    261;
 
   friend void swap(CreateKeyFromExistingKeyAuthorizationsResponse& a, CreateKeyFromExistingKeyAuthorizationsResponse& b) {
     a.Swap(&b);
@@ -45885,7 +46267,7 @@ class GetAppContentRequest final :
                &_GetAppContentRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    260;
+    262;
 
   friend void swap(GetAppContentRequest& a, GetAppContentRequest& b) {
     a.Swap(&b);
@@ -46049,7 +46431,7 @@ class GetAppContentResponse final :
                &_GetAppContentResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    261;
+    263;
 
   friend void swap(GetAppContentResponse& a, GetAppContentResponse& b) {
     a.Swap(&b);
@@ -46235,7 +46617,7 @@ class OrganizationSetLogoRequest final :
                &_OrganizationSetLogoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    262;
+    264;
 
   friend void swap(OrganizationSetLogoRequest& a, OrganizationSetLogoRequest& b) {
     a.Swap(&b);
@@ -46398,7 +46780,7 @@ class OrganizationSetLogoResponse final :
                &_OrganizationSetLogoResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    263;
+    265;
 
   friend void swap(OrganizationSetLogoResponse& a, OrganizationSetLogoResponse& b) {
     a.Swap(&b);
@@ -46515,7 +46897,7 @@ class OrganizationGetLogoRequest final :
                &_OrganizationGetLogoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    264;
+    266;
 
   friend void swap(OrganizationGetLogoRequest& a, OrganizationGetLogoRequest& b) {
     a.Swap(&b);
@@ -46663,7 +47045,7 @@ class OrganizationGetLogoResponse final :
                &_OrganizationGetLogoResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    265;
+    267;
 
   friend void swap(OrganizationGetLogoResponse& a, OrganizationGetLogoResponse& b) {
     a.Swap(&b);
@@ -46811,7 +47193,7 @@ class EnableAuthServiceRequest final :
                &_EnableAuthServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    266;
+    268;
 
   friend void swap(EnableAuthServiceRequest& a, EnableAuthServiceRequest& b) {
     a.Swap(&b);
@@ -46958,7 +47340,7 @@ class EnableAuthServiceResponse final :
                &_EnableAuthServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    267;
+    269;
 
   friend void swap(EnableAuthServiceResponse& a, EnableAuthServiceResponse& b) {
     a.Swap(&b);
@@ -47075,7 +47457,7 @@ class DisableAuthServiceRequest final :
                &_DisableAuthServiceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    268;
+    270;
 
   friend void swap(DisableAuthServiceRequest& a, DisableAuthServiceRequest& b) {
     a.Swap(&b);
@@ -47222,7 +47604,7 @@ class DisableAuthServiceResponse final :
                &_DisableAuthServiceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    269;
+    271;
 
   friend void swap(DisableAuthServiceResponse& a, DisableAuthServiceResponse& b) {
     a.Swap(&b);
@@ -47339,7 +47721,7 @@ class CreateOAuthAppRequest final :
                &_CreateOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    270;
+    272;
 
   friend void swap(CreateOAuthAppRequest& a, CreateOAuthAppRequest& b) {
     a.Swap(&b);
@@ -47523,7 +47905,7 @@ class CreateOAuthAppResponse final :
                &_CreateOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    271;
+    273;
 
   friend void swap(CreateOAuthAppResponse& a, CreateOAuthAppResponse& b) {
     a.Swap(&b);
@@ -47687,7 +48069,7 @@ class ReadOAuthAppRequest final :
                &_ReadOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    272;
+    274;
 
   friend void swap(ReadOAuthAppRequest& a, ReadOAuthAppRequest& b) {
     a.Swap(&b);
@@ -47851,7 +48233,7 @@ class ReadOAuthAppResponse final :
                &_ReadOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    273;
+    275;
 
   friend void swap(ReadOAuthAppResponse& a, ReadOAuthAppResponse& b) {
     a.Swap(&b);
@@ -48035,7 +48417,7 @@ class UpdateOAuthAppRequest final :
                &_UpdateOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    274;
+    276;
 
   friend void swap(UpdateOAuthAppRequest& a, UpdateOAuthAppRequest& b) {
     a.Swap(&b);
@@ -48234,7 +48616,7 @@ class UpdateOAuthAppResponse final :
                &_UpdateOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    275;
+    277;
 
   friend void swap(UpdateOAuthAppResponse& a, UpdateOAuthAppResponse& b) {
     a.Swap(&b);
@@ -48351,7 +48733,7 @@ class DeleteOAuthAppRequest final :
                &_DeleteOAuthAppRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    276;
+    278;
 
   friend void swap(DeleteOAuthAppRequest& a, DeleteOAuthAppRequest& b) {
     a.Swap(&b);
@@ -48514,7 +48896,7 @@ class DeleteOAuthAppResponse final :
                &_DeleteOAuthAppResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    277;
+    279;
 
   friend void swap(DeleteOAuthAppResponse& a, DeleteOAuthAppResponse& b) {
     a.Swap(&b);
@@ -48631,7 +49013,7 @@ class ListOAuthAppsRequest final :
                &_ListOAuthAppsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    278;
+    280;
 
   friend void swap(ListOAuthAppsRequest& a, ListOAuthAppsRequest& b) {
     a.Swap(&b);
@@ -48779,7 +49161,7 @@ class ListOAuthAppsResponse final :
                &_ListOAuthAppsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    279;
+    281;
 
   friend void swap(ListOAuthAppsResponse& a, ListOAuthAppsResponse& b) {
     a.Swap(&b);
@@ -48937,7 +49319,7 @@ class CreateOAuthAppUserRequest final :
                &_CreateOAuthAppUserRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    280;
+    282;
 
   friend void swap(CreateOAuthAppUserRequest& a, CreateOAuthAppUserRequest& b) {
     a.Swap(&b);
@@ -49165,7 +49547,7 @@ class CreateOAuthAppUserResponse final :
                &_CreateOAuthAppUserResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    281;
+    283;
 
   friend void swap(CreateOAuthAppUserResponse& a, CreateOAuthAppUserResponse& b) {
     a.Swap(&b);
@@ -49361,7 +49743,7 @@ class OAuthConfig final :
                &_OAuthConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    282;
+    284;
 
   friend void swap(OAuthConfig& a, OAuthConfig& b) {
     a.Swap(&b);
@@ -49630,7 +50012,7 @@ class GetAppBrandingRequest final :
                &_GetAppBrandingRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    283;
+    285;
 
   friend void swap(GetAppBrandingRequest& a, GetAppBrandingRequest& b) {
     a.Swap(&b);
@@ -49822,7 +50204,7 @@ class TextOverrides final :
                &_TextOverrides_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    285;
+    287;
 
   friend void swap(TextOverrides& a, TextOverrides& b) {
     a.Swap(&b);
@@ -50006,7 +50388,7 @@ class GetAppBrandingResponse final :
                &_GetAppBrandingResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    287;
+    289;
 
   friend void swap(GetAppBrandingResponse& a, GetAppBrandingResponse& b) {
     a.Swap(&b);
@@ -50237,7 +50619,7 @@ class AppCustomizations final :
                &_AppCustomizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    288;
+    290;
 
   friend void swap(AppCustomizations& a, AppCustomizations& b) {
     a.Swap(&b);
@@ -50389,7 +50771,7 @@ class MachinePickerCustomizations final :
                &_MachinePickerCustomizations_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    289;
+    291;
 
   friend void swap(MachinePickerCustomizations& a, MachinePickerCustomizations& b) {
     a.Swap(&b);
@@ -50562,7 +50944,7 @@ class UploadDevicePushTokenRequest final :
                &_UploadDevicePushTokenRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    290;
+    292;
 
   friend void swap(UploadDevicePushTokenRequest& a, UploadDevicePushTokenRequest& b) {
     a.Swap(&b);
@@ -50741,7 +51123,7 @@ class UploadDevicePushTokenResponse final :
                &_UploadDevicePushTokenResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    291;
+    293;
 
   friend void swap(UploadDevicePushTokenResponse& a, UploadDevicePushTokenResponse& b) {
     a.Swap(&b);
@@ -50858,7 +51240,7 @@ class DeleteDevicePushTokenRequest final :
                &_DeleteDevicePushTokenRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    292;
+    294;
 
   friend void swap(DeleteDevicePushTokenRequest& a, DeleteDevicePushTokenRequest& b) {
     a.Swap(&b);
@@ -51021,7 +51403,7 @@ class DeleteDevicePushTokenResponse final :
                &_DeleteDevicePushTokenResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    293;
+    295;
 
   friend void swap(DeleteDevicePushTokenResponse& a, DeleteDevicePushTokenResponse& b) {
     a.Swap(&b);
@@ -51138,7 +51520,7 @@ class GetDevicePushTokensRequest final :
                &_GetDevicePushTokensRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    294;
+    296;
 
   friend void swap(GetDevicePushTokensRequest& a, GetDevicePushTokensRequest& b) {
     a.Swap(&b);
@@ -51286,7 +51668,7 @@ class GetDevicePushTokensResponse final :
                &_GetDevicePushTokensResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    295;
+    297;
 
   friend void swap(GetDevicePushTokensResponse& a, GetDevicePushTokensResponse& b) {
     a.Swap(&b);
@@ -51444,7 +51826,7 @@ class SetFirebaseConfigRequest final :
                &_SetFirebaseConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    296;
+    298;
 
   friend void swap(SetFirebaseConfigRequest& a, SetFirebaseConfigRequest& b) {
     a.Swap(&b);
@@ -51623,7 +52005,7 @@ class SetFirebaseConfigResponse final :
                &_SetFirebaseConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    297;
+    299;
 
   friend void swap(SetFirebaseConfigResponse& a, SetFirebaseConfigResponse& b) {
     a.Swap(&b);
@@ -51740,7 +52122,7 @@ class GetFirebaseConfigRequest final :
                &_GetFirebaseConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    298;
+    300;
 
   friend void swap(GetFirebaseConfigRequest& a, GetFirebaseConfigRequest& b) {
     a.Swap(&b);
@@ -51888,7 +52270,7 @@ class GetFirebaseConfigResponse final :
                &_GetFirebaseConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    299;
+    301;
 
   friend void swap(GetFirebaseConfigResponse& a, GetFirebaseConfigResponse& b) {
     a.Swap(&b);
@@ -52036,7 +52418,7 @@ class DeleteFirebaseConfigRequest final :
                &_DeleteFirebaseConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    300;
+    302;
 
   friend void swap(DeleteFirebaseConfigRequest& a, DeleteFirebaseConfigRequest& b) {
     a.Swap(&b);
@@ -52199,7 +52581,7 @@ class DeleteFirebaseConfigResponse final :
                &_DeleteFirebaseConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    301;
+    303;
 
   friend void swap(DeleteFirebaseConfigResponse& a, DeleteFirebaseConfigResponse& b) {
     a.Swap(&b);
@@ -76490,6 +76872,191 @@ inline void DeprecatedStatus::set_allocated_message(std::string* message) {
 
 // -------------------------------------------------------------------
 
+// RegistryItemBilling
+
+// .viam.app.v1.RegistryItemCostByResource cost_per_month = 1 [json_name = "costPerMonth"];
+inline bool RegistryItemBilling::_internal_has_cost_per_month() const {
+  return frequency_case() == kCostPerMonth;
+}
+inline bool RegistryItemBilling::has_cost_per_month() const {
+  return _internal_has_cost_per_month();
+}
+inline void RegistryItemBilling::set_has_cost_per_month() {
+  _oneof_case_[0] = kCostPerMonth;
+}
+inline void RegistryItemBilling::clear_cost_per_month() {
+  if (_internal_has_cost_per_month()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete frequency_.cost_per_month_;
+    }
+    clear_has_frequency();
+  }
+}
+inline ::viam::app::v1::RegistryItemCostByResource* RegistryItemBilling::release_cost_per_month() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegistryItemBilling.cost_per_month)
+  if (_internal_has_cost_per_month()) {
+    clear_has_frequency();
+    ::viam::app::v1::RegistryItemCostByResource* temp = frequency_.cost_per_month_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    frequency_.cost_per_month_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::app::v1::RegistryItemCostByResource& RegistryItemBilling::_internal_cost_per_month() const {
+  return _internal_has_cost_per_month()
+      ? *frequency_.cost_per_month_
+      : reinterpret_cast< ::viam::app::v1::RegistryItemCostByResource&>(::viam::app::v1::_RegistryItemCostByResource_default_instance_);
+}
+inline const ::viam::app::v1::RegistryItemCostByResource& RegistryItemBilling::cost_per_month() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItemBilling.cost_per_month)
+  return _internal_cost_per_month();
+}
+inline ::viam::app::v1::RegistryItemCostByResource* RegistryItemBilling::unsafe_arena_release_cost_per_month() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.app.v1.RegistryItemBilling.cost_per_month)
+  if (_internal_has_cost_per_month()) {
+    clear_has_frequency();
+    ::viam::app::v1::RegistryItemCostByResource* temp = frequency_.cost_per_month_;
+    frequency_.cost_per_month_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RegistryItemBilling::unsafe_arena_set_allocated_cost_per_month(::viam::app::v1::RegistryItemCostByResource* cost_per_month) {
+  clear_frequency();
+  if (cost_per_month) {
+    set_has_cost_per_month();
+    frequency_.cost_per_month_ = cost_per_month;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RegistryItemBilling.cost_per_month)
+}
+inline ::viam::app::v1::RegistryItemCostByResource* RegistryItemBilling::_internal_mutable_cost_per_month() {
+  if (!_internal_has_cost_per_month()) {
+    clear_frequency();
+    set_has_cost_per_month();
+    frequency_.cost_per_month_ = CreateMaybeMessage< ::viam::app::v1::RegistryItemCostByResource >(GetArenaForAllocation());
+  }
+  return frequency_.cost_per_month_;
+}
+inline ::viam::app::v1::RegistryItemCostByResource* RegistryItemBilling::mutable_cost_per_month() {
+  ::viam::app::v1::RegistryItemCostByResource* _msg = _internal_mutable_cost_per_month();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegistryItemBilling.cost_per_month)
+  return _msg;
+}
+
+// .viam.app.v1.RegistryItemCostByResource cost_per_year = 2 [json_name = "costPerYear"];
+inline bool RegistryItemBilling::_internal_has_cost_per_year() const {
+  return frequency_case() == kCostPerYear;
+}
+inline bool RegistryItemBilling::has_cost_per_year() const {
+  return _internal_has_cost_per_year();
+}
+inline void RegistryItemBilling::set_has_cost_per_year() {
+  _oneof_case_[0] = kCostPerYear;
+}
+inline void RegistryItemBilling::clear_cost_per_year() {
+  if (_internal_has_cost_per_year()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete frequency_.cost_per_year_;
+    }
+    clear_has_frequency();
+  }
+}
+inline ::viam::app::v1::RegistryItemCostByResource* RegistryItemBilling::release_cost_per_year() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegistryItemBilling.cost_per_year)
+  if (_internal_has_cost_per_year()) {
+    clear_has_frequency();
+    ::viam::app::v1::RegistryItemCostByResource* temp = frequency_.cost_per_year_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    frequency_.cost_per_year_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::viam::app::v1::RegistryItemCostByResource& RegistryItemBilling::_internal_cost_per_year() const {
+  return _internal_has_cost_per_year()
+      ? *frequency_.cost_per_year_
+      : reinterpret_cast< ::viam::app::v1::RegistryItemCostByResource&>(::viam::app::v1::_RegistryItemCostByResource_default_instance_);
+}
+inline const ::viam::app::v1::RegistryItemCostByResource& RegistryItemBilling::cost_per_year() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItemBilling.cost_per_year)
+  return _internal_cost_per_year();
+}
+inline ::viam::app::v1::RegistryItemCostByResource* RegistryItemBilling::unsafe_arena_release_cost_per_year() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:viam.app.v1.RegistryItemBilling.cost_per_year)
+  if (_internal_has_cost_per_year()) {
+    clear_has_frequency();
+    ::viam::app::v1::RegistryItemCostByResource* temp = frequency_.cost_per_year_;
+    frequency_.cost_per_year_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void RegistryItemBilling::unsafe_arena_set_allocated_cost_per_year(::viam::app::v1::RegistryItemCostByResource* cost_per_year) {
+  clear_frequency();
+  if (cost_per_year) {
+    set_has_cost_per_year();
+    frequency_.cost_per_year_ = cost_per_year;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RegistryItemBilling.cost_per_year)
+}
+inline ::viam::app::v1::RegistryItemCostByResource* RegistryItemBilling::_internal_mutable_cost_per_year() {
+  if (!_internal_has_cost_per_year()) {
+    clear_frequency();
+    set_has_cost_per_year();
+    frequency_.cost_per_year_ = CreateMaybeMessage< ::viam::app::v1::RegistryItemCostByResource >(GetArenaForAllocation());
+  }
+  return frequency_.cost_per_year_;
+}
+inline ::viam::app::v1::RegistryItemCostByResource* RegistryItemBilling::mutable_cost_per_year() {
+  ::viam::app::v1::RegistryItemCostByResource* _msg = _internal_mutable_cost_per_year();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegistryItemBilling.cost_per_year)
+  return _msg;
+}
+
+inline bool RegistryItemBilling::has_frequency() const {
+  return frequency_case() != FREQUENCY_NOT_SET;
+}
+inline void RegistryItemBilling::clear_has_frequency() {
+  _oneof_case_[0] = FREQUENCY_NOT_SET;
+}
+inline RegistryItemBilling::FrequencyCase RegistryItemBilling::frequency_case() const {
+  return RegistryItemBilling::FrequencyCase(_oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// RegistryItemCostByResource
+
+// double per_machine = 1 [json_name = "perMachine"];
+inline void RegistryItemCostByResource::clear_per_machine() {
+  per_machine_ = 0;
+}
+inline double RegistryItemCostByResource::_internal_per_machine() const {
+  return per_machine_;
+}
+inline double RegistryItemCostByResource::per_machine() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItemCostByResource.per_machine)
+  return _internal_per_machine();
+}
+inline void RegistryItemCostByResource::_internal_set_per_machine(double value) {
+  
+  per_machine_ = value;
+}
+inline void RegistryItemCostByResource::set_per_machine(double value) {
+  _internal_set_per_machine(value);
+  // @@protoc_insertion_point(field_set:viam.app.v1.RegistryItemCostByResource.per_machine)
+}
+
+// -------------------------------------------------------------------
+
 // RegistryItem
 
 // string item_id = 1 [json_name = "itemId"];
@@ -77394,6 +77961,96 @@ inline void RegistryItem::set_allocated_deprecated_status(::viam::app::v1::Depre
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegistryItem.deprecated_status)
 }
 
+// optional .viam.app.v1.RegistryItemBilling billing = 19 [json_name = "billing"];
+inline bool RegistryItem::_internal_has_billing() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || billing_ != nullptr);
+  return value;
+}
+inline bool RegistryItem::has_billing() const {
+  return _internal_has_billing();
+}
+inline void RegistryItem::clear_billing() {
+  if (billing_ != nullptr) billing_->Clear();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const ::viam::app::v1::RegistryItemBilling& RegistryItem::_internal_billing() const {
+  const ::viam::app::v1::RegistryItemBilling* p = billing_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::RegistryItemBilling&>(
+      ::viam::app::v1::_RegistryItemBilling_default_instance_);
+}
+inline const ::viam::app::v1::RegistryItemBilling& RegistryItem::billing() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.RegistryItem.billing)
+  return _internal_billing();
+}
+inline void RegistryItem::unsafe_arena_set_allocated_billing(
+    ::viam::app::v1::RegistryItemBilling* billing) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(billing_);
+  }
+  billing_ = billing;
+  if (billing) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.RegistryItem.billing)
+}
+inline ::viam::app::v1::RegistryItemBilling* RegistryItem::release_billing() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::viam::app::v1::RegistryItemBilling* temp = billing_;
+  billing_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::RegistryItemBilling* RegistryItem::unsafe_arena_release_billing() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.RegistryItem.billing)
+  _has_bits_[0] &= ~0x00000002u;
+  ::viam::app::v1::RegistryItemBilling* temp = billing_;
+  billing_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::RegistryItemBilling* RegistryItem::_internal_mutable_billing() {
+  _has_bits_[0] |= 0x00000002u;
+  if (billing_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::RegistryItemBilling>(GetArenaForAllocation());
+    billing_ = p;
+  }
+  return billing_;
+}
+inline ::viam::app::v1::RegistryItemBilling* RegistryItem::mutable_billing() {
+  ::viam::app::v1::RegistryItemBilling* _msg = _internal_mutable_billing();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.RegistryItem.billing)
+  return _msg;
+}
+inline void RegistryItem::set_allocated_billing(::viam::app::v1::RegistryItemBilling* billing) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete billing_;
+  }
+  if (billing) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(billing);
+    if (message_arena != submessage_arena) {
+      billing = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, billing, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  billing_ = billing;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.RegistryItem.billing)
+}
+
 inline bool RegistryItem::has_metadata() const {
   return metadata_case() != METADATA_NOT_SET;
 }
@@ -78207,6 +78864,96 @@ inline void UpdateRegistryItemRequest::set_allocated_markdown_description(std::s
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRegistryItemRequest.markdown_description)
+}
+
+// optional .viam.app.v1.RegistryItemBilling billing = 10 [json_name = "billing"];
+inline bool UpdateRegistryItemRequest::_internal_has_billing() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || billing_ != nullptr);
+  return value;
+}
+inline bool UpdateRegistryItemRequest::has_billing() const {
+  return _internal_has_billing();
+}
+inline void UpdateRegistryItemRequest::clear_billing() {
+  if (billing_ != nullptr) billing_->Clear();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const ::viam::app::v1::RegistryItemBilling& UpdateRegistryItemRequest::_internal_billing() const {
+  const ::viam::app::v1::RegistryItemBilling* p = billing_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::v1::RegistryItemBilling&>(
+      ::viam::app::v1::_RegistryItemBilling_default_instance_);
+}
+inline const ::viam::app::v1::RegistryItemBilling& UpdateRegistryItemRequest::billing() const {
+  // @@protoc_insertion_point(field_get:viam.app.v1.UpdateRegistryItemRequest.billing)
+  return _internal_billing();
+}
+inline void UpdateRegistryItemRequest::unsafe_arena_set_allocated_billing(
+    ::viam::app::v1::RegistryItemBilling* billing) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(billing_);
+  }
+  billing_ = billing;
+  if (billing) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.app.v1.UpdateRegistryItemRequest.billing)
+}
+inline ::viam::app::v1::RegistryItemBilling* UpdateRegistryItemRequest::release_billing() {
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::RegistryItemBilling* temp = billing_;
+  billing_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::v1::RegistryItemBilling* UpdateRegistryItemRequest::unsafe_arena_release_billing() {
+  // @@protoc_insertion_point(field_release:viam.app.v1.UpdateRegistryItemRequest.billing)
+  _has_bits_[0] &= ~0x00000004u;
+  ::viam::app::v1::RegistryItemBilling* temp = billing_;
+  billing_ = nullptr;
+  return temp;
+}
+inline ::viam::app::v1::RegistryItemBilling* UpdateRegistryItemRequest::_internal_mutable_billing() {
+  _has_bits_[0] |= 0x00000004u;
+  if (billing_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::v1::RegistryItemBilling>(GetArenaForAllocation());
+    billing_ = p;
+  }
+  return billing_;
+}
+inline ::viam::app::v1::RegistryItemBilling* UpdateRegistryItemRequest::mutable_billing() {
+  ::viam::app::v1::RegistryItemBilling* _msg = _internal_mutable_billing();
+  // @@protoc_insertion_point(field_mutable:viam.app.v1.UpdateRegistryItemRequest.billing)
+  return _msg;
+}
+inline void UpdateRegistryItemRequest::set_allocated_billing(::viam::app::v1::RegistryItemBilling* billing) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete billing_;
+  }
+  if (billing) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(billing);
+    if (message_arena != submessage_arena) {
+      billing = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, billing, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  billing_ = billing;
+  // @@protoc_insertion_point(field_set_allocated:viam.app.v1.UpdateRegistryItemRequest.billing)
 }
 
 inline bool UpdateRegistryItemRequest::has_metadata() const {
@@ -89710,6 +90457,10 @@ inline void DeleteFirebaseConfigRequest::set_allocated_app_id(std::string* app_i
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
