@@ -1,21 +1,16 @@
-/// @file robot/client.hpp
-///
-/// @brief gRPC client implementation for a `robot`.
-#pragma once
-
-#include <atomic>
-#include <string>
-#include <thread>
-
-#include <viam/sdk/common/grpc_fwd.hpp>
-#include <viam/sdk/common/pose.hpp>
+#include <viam/api/app/datasync/v1/data_sync.pb.h>
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/proto_convert.hpp>
 #include <viam/sdk/common/utils.hpp>
-#include <viam/sdk/common/world_state.hpp>
-#include <viam/sdk/components/component.hpp>
-#include <viam/sdk/registry/registry.hpp>
-#include <viam/sdk/resource/resource.hpp>
+#include <viam/sdk/robot/client.hpp>
 #include <viam/sdk/rpc/dial.hpp>
+
+#include <boost/optional.hpp>
+#include <google/protobuf/struct.pb.h>
+#include <grpcpp/channel.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/create_channel.h>
+
 #include <viam/sdk/services/service.hpp>
 
 namespace viam {
@@ -26,6 +21,10 @@ namespace v1 {
 class FrameSystemConfig;
 class Operation;
 class SendTracesRequest;
+// Forward declarations for UploadDataFromPathRequest and UploadDataFromPathResponse
+namespace app { namespace datasync { namespace v1 { class UploadMetadata; } } }
+class UploadDataFromPathRequest;
+class UploadDataFromPathResponse;
 
 }  // namespace v1
 }  // namespace robot
@@ -71,6 +70,16 @@ class RobotClient {
         ProtoStruct arguments;
         boost::optional<time_pt> started;
         friend bool operator==(const operation& lhs, const operation& rhs);
+    };
+
+    struct upload_data_from_path_response {
+        uint64_t files_uploaded;
+        uint64_t files_failed;
+        uint64_t bytes_uploaded;
+        uint64_t bytes_total;
+        std::vector<std::string> ids;
+        friend bool operator==(const upload_data_from_path_response& lhs,
+                               const upload_data_from_path_response& rhs);
     };
 
     explicit RobotClient(ViamChannel channel);
@@ -185,6 +194,17 @@ class RobotClient {
     /// @brief gets the current status of the machine
     status get_machine_status() const;
 
+    /// @brief Uploads a file or directory from the robot to the cloud via the configured data
+    /// manager service.
+    /// @param path The path to the file or directory on the robot.
+    /// @param upload_metadata Optional metadata to associate with the uploaded data.
+    /// @param extra Any additional arguments to pass to the method.
+    /// @return The response containing upload statistics and IDs.
+    upload_data_from_path_response upload_data_from_path(
+        const std::string& path,
+        boost::optional<viam::app::datasync::v1::UploadMetadata> upload_metadata = boost::none,
+        const ProtoStruct& extra = {});
+
    private:
     friend class ModuleService;
     friend struct impl::LogBackend;
@@ -243,6 +263,12 @@ struct from_proto_impl<robot::v1::Operation> {
 template <>
 struct from_proto_impl<robot::v1::FrameSystemConfig> {
     RobotClient::frame_system_config operator()(const robot::v1::FrameSystemConfig*) const;
+};
+
+template <>
+struct from_proto_impl<robot::v1::UploadDataFromPathResponse> {
+    RobotClient::upload_data_from_path_response operator()(
+        const robot::v1::UploadDataFromPathResponse*) const;
 };
 
 }  // namespace proto_convert_details

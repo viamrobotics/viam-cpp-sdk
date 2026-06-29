@@ -6,6 +6,7 @@
 
 #include <common/v1/common.pb.h>
 #include <robot/v1/robot.pb.h>
+#include <viam/api/app/datasync/v1/data_sync.pb.h>
 
 #include <viam/sdk/common/proto_value.hpp>
 #include <viam/sdk/resource/stoppable.hpp>
@@ -100,6 +101,27 @@ PoseInFrame mock_proto_transform_response() {
     *response.mutable_reference_frame() = "arm";
     *response.mutable_pose() = default_proto_pose();
     return response;
+}
+
+RobotClient::upload_data_from_path_response mock_upload_data_from_path_response() {
+    RobotClient::upload_data_from_path_response resp;
+    resp.files_uploaded = 10;
+    resp.files_failed = 0;
+    resp.bytes_uploaded = 10240;
+    resp.bytes_total = 10240;
+    resp.ids = {"id1", "id2"};
+    return resp;
+}
+
+viam::robot::v1::UploadDataFromPathResponse mock_proto_upload_data_from_path_response() {
+    viam::robot::v1::UploadDataFromPathResponse resp;
+    resp.set_files_uploaded(10);
+    resp.set_files_failed(0);
+    resp.set_bytes_uploaded(10240);
+    resp.set_bytes_total(10240);
+    resp.add_ids("id1");
+    resp.add_ids("id2");
+    return resp;
 }
 
 std::vector<Name> mock_resource_names_response() {
@@ -355,6 +377,22 @@ std::shared_ptr<Resource> MockRobotService::resource_by_name(const Name& name) {
     for (auto& op : mock_proto_operations_response()) {
         *ops->Add() = op;
     }
+    return ::grpc::Status();
+}
+
+::grpc::Status MockRobotService::UploadDataFromPath(
+    ::grpc::ServerContext* context,
+    const ::viam::robot::v1::UploadDataFromPathRequest* request,
+    ::viam::robot::v1::UploadDataFromPathResponse* response) {
+    if (!request) {
+        return ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT, "Called [UploadDataFromPath] without a request");
+    }
+    auto client_md = context->client_metadata();
+    auto client_info = client_md.find("viam_client");
+    if (client_info == client_md.end()) {
+        return ::grpc::Status(::grpc::StatusCode::FAILED_PRECONDITION, "viam_client info not properly set in metadata");
+    }
+    *response = mock_proto_upload_data_from_path_response();
     return ::grpc::Status();
 }
 

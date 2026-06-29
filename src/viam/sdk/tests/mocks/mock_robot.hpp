@@ -3,6 +3,7 @@
 #include <common/v1/common.pb.h>
 #include <robot/v1/robot.grpc.pb.h>
 #include <robot/v1/robot.pb.h>
+#include <viam/api/app/datasync/v1/data_sync.pb.h>
 
 #include <viam/sdk/common/pose.hpp>
 #include <viam/sdk/resource/resource_server_base.hpp>
@@ -54,6 +55,11 @@ class MockRobotService : public ResourceServer, public viam::robot::v1::RobotSer
                                  const ::viam::robot::v1::GetOperationsRequest* request,
                                  ::viam::robot::v1::GetOperationsResponse* response) override;
 
+    ::grpc::Status UploadDataFromPath(
+        ::grpc::ServerContext* context,
+        const ::viam::robot::v1::UploadDataFromPathRequest* request,
+        ::viam::robot::v1::UploadDataFromPathResponse* response) override;
+
    private:
     std::mutex lock_;
     std::vector<common::v1::ResourceName> generate_metadata_();
@@ -68,7 +74,18 @@ std::vector<RobotClient::frame_system_config> mock_config_response();
 std::vector<viam::robot::v1::FrameSystemConfig> mock_proto_config_response();
 pose_in_frame mock_transform_response();
 common::v1::PoseInFrame mock_proto_transform_response();
+RobotClient::upload_data_from_path_response mock_upload_data_from_path_response();
+viam::robot::v1::UploadDataFromPathResponse mock_proto_upload_data_from_path_response();
 
 }  // namespace robot
 }  // namespace sdktests
 }  // namespace viam
+
+namespace app {
+namespace datasync {
+namespace v1 {
+class UploadMetadata;
+}
+}  // namespace v1
+}  // namespace datasync
+}  // namespace app

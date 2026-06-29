@@ -21,6 +21,7 @@
 
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::frame_system_config)
 BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::operation)
+BOOST_TEST_DONT_PRINT_LOG_VALUE(viam::sdk::RobotClient::upload_data_from_path_response)
 
 namespace viam {
 namespace sdktests {
@@ -222,6 +223,26 @@ BOOST_AUTO_TEST_CASE(test_get_resource) {
             // test not just that we can get the motor, but that the motor service has been
             // appropriately registered such that we can actually use it.
             BOOST_CHECK(!mock_motor->is_moving());
+        });
+}
+
+BOOST_AUTO_TEST_CASE(test_upload_data_from_path) {
+    robot_client_to_mocks_pipeline(
+        [](std::shared_ptr<RobotClient> client, MockRobotService& service) -> void {
+            const std::string path = "/tmp/test_data";
+            viam::app::datasync::v1::UploadMetadata metadata;
+            metadata.set_part_type("test_part");
+            metadata.set_component_type("test_component");
+            metadata.set_component_name("test_name");
+            metadata.set_robot_name("test_robot");
+            metadata.set_robot_id("test_robot_id");
+            metadata.set_organization_id("test_org_id");
+            metadata.set_location_id("test_location_id");
+            ProtoStruct extra;
+            extra["key"] = "value";
+            auto response = client->upload_data_from_path(path, metadata, extra);
+            auto mock_response = mock_upload_data_from_path_response();
+            BOOST_CHECK_EQUAL(response, mock_response);
         });
 }
 

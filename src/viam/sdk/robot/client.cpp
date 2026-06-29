@@ -18,6 +18,7 @@
 #include <viam/api/common/v1/common.pb.h>
 #include <viam/api/robot/v1/robot.grpc.pb.h>
 #include <viam/api/robot/v1/robot.pb.h>
+#include <viam/api/app/datasync/v1/data_sync.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/private/repeated_ptr_convert.hpp>
@@ -76,6 +77,17 @@ RobotClient::operation from_proto_impl<Operation>::operator()(const Operation* p
     return op;
 }
 
+RobotClient::upload_data_from_path_response from_proto_impl<viam::robot::v1::UploadDataFromPathResponse>::operator()(
+    const viam::robot::v1::UploadDataFromPathResponse* proto) const {
+    RobotClient::upload_data_from_path_response resp;
+    resp.files_uploaded = proto->files_uploaded();
+    resp.files_failed = proto->files_failed();
+    resp.bytes_uploaded = proto->bytes_uploaded();
+    resp.bytes_total = proto->bytes_total();
+    resp.ids = sdk::impl::from_repeated_field(proto->ids());
+    return resp;
+}
+
 }  // namespace proto_convert_details
 
 bool operator==(const RobotClient::frame_system_config& lhs,
@@ -87,6 +99,10 @@ bool operator==(const RobotClient::frame_system_config& lhs,
 bool operator==(const RobotClient::operation& lhs, const RobotClient::operation& rhs) {
     return lhs.id == rhs.id && lhs.method == rhs.method && lhs.session_id == rhs.session_id &&
            lhs.arguments == rhs.arguments && lhs.started == rhs.started;
+}
+
+bool operator==(const RobotClient::upload_data_from_path_response& lhs, const RobotClient::upload_data_from_path_response& rhs) {
+    return lhs.files_uploaded == rhs.files_uploaded && lhs.files_failed == rhs.files_failed && lhs.bytes_uploaded == rhs.bytes_uploaded && lhs.bytes_total == rhs.bytes_total && lhs.ids == rhs.ids;
 }
 
 struct RobotClient::impl {
@@ -353,6 +369,20 @@ bool RobotClient::send_traces(const robot::v1::SendTracesRequest* req) {
     robot::v1::SendTracesResponse resp;
     ClientContext ctx;
     return impl_->stub->SendTraces(ctx, *req, &resp).ok();
+}
+
+RobotClient::upload_data_from_path_response RobotClient::upload_data_from_path(
+    const std::string& path,
+    boost::optional<viam::app::datasync::v1::UploadMetadata> upload_metadata,
+    const ProtoStruct& extra) {
+    return impl::client_helper(impl_, &RobotService::Stub::UploadDataFromPath)
+        .with(extra, [&](auto& req) {
+            req.set_path(path);
+            if (upload_metadata) {
+                *req.mutable_upload_metadata() = *upload_metadata;
+            }
+        })
+        .invoke([](const auto& resp) { return from_proto(resp); });
 }
 
 void RobotClient::connect_tracing() {
