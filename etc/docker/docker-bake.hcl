@@ -12,11 +12,6 @@ variable "REGISTRY" {
   default = "ghcr.io/viamrobotics"
 }
 
-// Native arch throughout. No QEMU emulation.
-variable "ARCH" {
-  default = "amd64"
-}
-
 group "default" {
   targets = ["system"]
 }
@@ -28,8 +23,8 @@ target "base" {
   context    = "."
   target     = "base"
 
-  // amd64 / arm64 built on native runners; one manifest list per cell.
-  platforms = ["linux/${ARCH}"]
+  // Full matrix; slice to a native arch with --set '*.platforms=linux/<arch>'.
+  platforms = ["linux/amd64", "linux/arm64"]
 }
 
 target "system" {
@@ -64,7 +59,6 @@ target "system" {
   labels = {
     "viam.cellAxis.distro"   = cell.distro
     "viam.cellAxis.version"  = cell.version
-    "viam.cellAxis.arch"     = "${ARCH}"
     "viam.cellAxis.strategy" = "system"
   }
 }
