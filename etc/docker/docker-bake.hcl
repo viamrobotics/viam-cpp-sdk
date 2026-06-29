@@ -21,9 +21,8 @@ group "default" {
   targets = ["system"]
 }
 
-// Internal stage only; not published. Holds everything common to the strategies
-// stacked on top of it. `system` inherits this and points `target` at its own
-// Dockerfile stage.
+// Holds everything common to the strategies stacked on top of it.
+// `system` inherits this and points `target` at its own Dockerfile stage.
 target "base" {
   dockerfile = "Dockerfile"
   context    = "."
