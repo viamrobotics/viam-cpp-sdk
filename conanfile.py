@@ -66,12 +66,12 @@ class ViamCppSdkRecipe(ConanFile):
 
     def _xtensor_requires(self):
         if valid_max_cppstd(self, 14, False):
-            return 'xtensor/[>=0.25.0 <0.26.0]'
+            return 'xtensor/[>=0.24.3 <0.26.0]'
 
         if valid_max_cppstd(self, 17, False):
-            return 'xtensor/[>=0.25.0 <0.27.0]'
+            return 'xtensor/[>=0.24.3 <0.27.0]'
 
-        return 'xtensor/[>=0.25.0]'
+        return 'xtensor/[>=0.24.3]'
 
     def _grpc_requires(self):
         if valid_max_cppstd(self, 14, False):
@@ -90,9 +90,7 @@ class ViamCppSdkRecipe(ConanFile):
         # maintained conan packages.
         self.requires(self._grpc_requires())
         self.requires('protobuf/[>=3.17.1 <6.30.0]')
-
         self.requires(self._xtensor_requires(), transitive_headers=True)
-        self.requires('xtl/[>=0.7.7]', override=True)
 
         if self.options.opentelemetry_tracing:
             # Oldest maintained conan package and first version with proper CMake support
