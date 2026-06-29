@@ -66,12 +66,12 @@ class ViamCppSdkRecipe(ConanFile):
 
     def _xtensor_requires(self):
         if valid_max_cppstd(self, 14, False):
-            return 'xtensor/[>=0.24.3 <0.26.0]'
+            return 'xtensor/[>=0.25.0 <0.26.0]'
 
         if valid_max_cppstd(self, 17, False):
-            return 'xtensor/[>=0.24.3 <0.27.0]'
+            return 'xtensor/[>=0.25.0 <0.27.0]'
 
-        return 'xtensor/[>=0.24.3]'
+        return 'xtensor/[>=0.25.0]'
 
     def _grpc_requires(self):
         if valid_max_cppstd(self, 14, False):
