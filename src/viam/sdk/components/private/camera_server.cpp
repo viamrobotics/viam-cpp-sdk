@@ -5,6 +5,7 @@
 
 #include <viam/api/app/v1/robot.pb.h>
 
+#include <viam/sdk/common/private/raw_image.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera.hpp>
@@ -55,8 +56,8 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
                                        ::viam::common::v1::DoCommandResponse* response) noexcept {
     return make_service_helper<Camera>(
         "CameraServer::DoCommand", this, context, request)([&](auto&, auto& camera) {
-        const ProtoStruct result = camera->do_command(from_proto(request->command()));
-        *response->mutable_result() = to_proto(result);
+        const ProtoStruct result = camera->do_command(sdk::from_proto(request->command()));
+        *response->mutable_result() = sdk::to_proto(result);
     });
 }
 
@@ -70,14 +71,9 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
             {request->filter_source_names().begin(), request->filter_source_names().end()},
             helper.getExtra());
         for (const auto& img : image_coll.images) {
-            ::viam::component::camera::v1::Image proto_image;
-            const std::string img_string = bytes_to_string(img.bytes);
-            proto_image.set_source_name(img.source_name);
-            proto_image.set_mime_type(img.mime_type);
-            proto_image.set_image(img_string);
-            *response->mutable_images()->Add() = std::move(proto_image);
+            impl::to_proto(img, response->mutable_images()->Add());
         }
-        *response->mutable_response_metadata() = to_proto(image_coll.metadata);
+        *response->mutable_response_metadata() = sdk::to_proto(image_coll.metadata);
     });
 }
 
@@ -102,7 +98,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
         "CameraServer::GetGeometries", this, context, request)([&](auto& helper, auto& camera) {
         const std::vector<GeometryConfig> geometries = camera->get_geometries(helper.getExtra());
         for (const auto& geometry : geometries) {
-            *response->mutable_geometries()->Add() = to_proto(geometry);
+            *response->mutable_geometries()->Add() = sdk::to_proto(geometry);
         }
     });
 }
@@ -129,7 +125,7 @@ CameraServer::CameraServer(std::shared_ptr<ResourceManager> manager)
     return make_service_helper<Camera>(
         "CameraServer::GetStatus", this, context, request)([&](auto&, auto& camera) {
         const ProtoStruct result = camera->get_status();
-        *response->mutable_result() = to_proto(result);
+        *response->mutable_result() = sdk::to_proto(result);
     });
 }
 
