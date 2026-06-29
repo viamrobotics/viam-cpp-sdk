@@ -49,6 +49,7 @@ static const char* RobotService_method_names[] = {
   "/viam.robot.v1.RobotService/TransformPose",
   "/viam.robot.v1.RobotService/TransformPCD",
   "/viam.robot.v1.RobotService/SendTraces",
+  "/viam.robot.v1.RobotService/UploadDataFromPath",
 };
 
 std::unique_ptr< RobotService::Stub> RobotService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -83,6 +84,7 @@ RobotService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chann
   , rpcmethod_TransformPose_(RobotService_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_TransformPCD_(RobotService_method_names[23], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SendTraces_(RobotService_method_names[24], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UploadDataFromPath_(RobotService_method_names[25], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status RobotService::Stub::GetOperations(::grpc::ClientContext* context, const ::viam::robot::v1::GetOperationsRequest& request, ::viam::robot::v1::GetOperationsResponse* response) {
@@ -646,6 +648,29 @@ void RobotService::Stub::async::SendTraces(::grpc::ClientContext* context, const
   return result;
 }
 
+::grpc::Status RobotService::Stub::UploadDataFromPath(::grpc::ClientContext* context, const ::viam::robot::v1::UploadDataFromPathRequest& request, ::viam::robot::v1::UploadDataFromPathResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::robot::v1::UploadDataFromPathRequest, ::viam::robot::v1::UploadDataFromPathResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UploadDataFromPath_, context, request, response);
+}
+
+void RobotService::Stub::async::UploadDataFromPath(::grpc::ClientContext* context, const ::viam::robot::v1::UploadDataFromPathRequest* request, ::viam::robot::v1::UploadDataFromPathResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::robot::v1::UploadDataFromPathRequest, ::viam::robot::v1::UploadDataFromPathResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UploadDataFromPath_, context, request, response, std::move(f));
+}
+
+void RobotService::Stub::async::UploadDataFromPath(::grpc::ClientContext* context, const ::viam::robot::v1::UploadDataFromPathRequest* request, ::viam::robot::v1::UploadDataFromPathResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UploadDataFromPath_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::UploadDataFromPathResponse>* RobotService::Stub::PrepareAsyncUploadDataFromPathRaw(::grpc::ClientContext* context, const ::viam::robot::v1::UploadDataFromPathRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::robot::v1::UploadDataFromPathResponse, ::viam::robot::v1::UploadDataFromPathRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UploadDataFromPath_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::robot::v1::UploadDataFromPathResponse>* RobotService::Stub::AsyncUploadDataFromPathRaw(::grpc::ClientContext* context, const ::viam::robot::v1::UploadDataFromPathRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUploadDataFromPathRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 RobotService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RobotService_method_names[0],
@@ -897,6 +922,16 @@ RobotService::Service::Service() {
              ::viam::robot::v1::SendTracesResponse* resp) {
                return service->SendTraces(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RobotService_method_names[25],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RobotService::Service, ::viam::robot::v1::UploadDataFromPathRequest, ::viam::robot::v1::UploadDataFromPathResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RobotService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::robot::v1::UploadDataFromPathRequest* req,
+             ::viam::robot::v1::UploadDataFromPathResponse* resp) {
+               return service->UploadDataFromPath(ctx, req, resp);
+             }, this)));
 }
 
 RobotService::Service::~Service() {
@@ -1070,6 +1105,13 @@ RobotService::Service::~Service() {
 }
 
 ::grpc::Status RobotService::Service::SendTraces(::grpc::ServerContext* context, const ::viam::robot::v1::SendTracesRequest* request, ::viam::robot::v1::SendTracesResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RobotService::Service::UploadDataFromPath(::grpc::ServerContext* context, const ::viam::robot::v1::UploadDataFromPathRequest* request, ::viam::robot::v1::UploadDataFromPathResponse* response) {
   (void) context;
   (void) request;
   (void) response;
