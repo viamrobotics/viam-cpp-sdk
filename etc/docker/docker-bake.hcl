@@ -58,7 +58,7 @@ target "system" {
   }
 
   tags = [
-    "${REGISTRY}/cpp-sdk-system:${cell.distro}-${cell.version}",
+    "${REGISTRY}/cpp-sdk-system-${cell.distro}:${cell.version}",
   ]
 
   labels = {
