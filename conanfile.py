@@ -73,6 +73,7 @@ class ViamCppSdkRecipe(ConanFile):
 
         return 'xtensor/[>=0.24.3]'
 
+
     def _grpc_requires(self):
         if valid_max_cppstd(self, 14, False):
             return 'grpc/[>=1.48.4 <1.70.0]'
