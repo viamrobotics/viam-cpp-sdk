@@ -90,7 +90,9 @@ class ViamCppSdkRecipe(ConanFile):
         # maintained conan packages.
         self.requires(self._grpc_requires())
         self.requires('protobuf/[>=3.17.1 <6.30.0]')
+
         self.requires(self._xtensor_requires(), transitive_headers=True)
+        self.requires('xtl/[>=0.7.7]', override=True)
 
         if self.options.opentelemetry_tracing:
             # Oldest maintained conan package and first version with proper CMake support
