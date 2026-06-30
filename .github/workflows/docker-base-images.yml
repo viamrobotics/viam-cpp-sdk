@@ -101,7 +101,7 @@ jobs:
           # Push by digest: strip the tag and emit a name-canonical image so the
           # arch builds don't race on a shared tag. Merge job stitches them.
           docker buildx bake -f docker-bake.hcl \
-            --set "${{ matrix.cell.target }}.platforms=linux/${{ matrix.arch }}" \
+            --set "${{ matrix.cell.target }}.platform=linux/${{ matrix.arch }}" \
             --set "${{ matrix.cell.target }}.tags=" \
             --set "${{ matrix.cell.target }}.output=type=image,name=${{ matrix.cell.image }},push-by-digest=true,name-canonical=true,push=${PUSH}" \
             --metadata-file metadata.json \
