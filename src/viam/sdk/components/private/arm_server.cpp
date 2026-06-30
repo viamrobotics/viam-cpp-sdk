@@ -129,11 +129,11 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
         const ProtoStruct extra = from_proto(init.extra());
 
         // 2. Resource lookup by name.
-        const auto arm = resource_manager()->resource<Arm>(init.name());
+        const auto arm = resource_manager()->resource<Arm>(first.name());
         if (!arm) {
-            return span_guard.commit(
-                ::grpc::Status(::grpc::StatusCode::NOT_FOUND,
-                               "MoveThroughJointPositionsStreamed: arm not found: " + init.name()));
+            return span_guard.commit(::grpc::Status(
+                ::grpc::StatusCode::NOT_FOUND,
+                "MoveThroughJointPositionsStreamed: arm not found: " + first.name()));
         }
 
         // 3. batch_source: pull the next batch off the stream. Empty batches

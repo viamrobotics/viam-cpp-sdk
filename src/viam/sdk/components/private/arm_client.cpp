@@ -125,8 +125,8 @@ void ArmClient::move_through_joint_positions_streamed(
 
     // Send Init on the caller's thread before any other thread is involved.
     ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest init_msg;
+    init_msg.set_name(this->name());
     auto* init_payload = init_msg.mutable_init();
-    init_payload->set_name(this->name());
     *init_payload->mutable_extra() = to_proto(extra);
     if (!stream->Write(init_msg)) {
         const auto status = stream->Finish();
