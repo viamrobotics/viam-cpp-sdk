@@ -75,7 +75,7 @@ jobs:
           # more details.
           export BUF_CONFIG_DIR=$(mktemp -d)
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=17
+          conan create . --build=missing -s:a compiler.cppstd=17
 
   build_linux_ubuntu_jammy:
     if: github.repository_owner == 'viamrobotics'
@@ -135,7 +135,7 @@ jobs:
         shell: bash
         run: |
           conan profile detect
-          conan create . --build=missing -s compiler.cppstd=14 -s:a compiler.cppstd=14
+          conan create . --build=missing -s:a compiler.cppstd=17
 
   build_linux_debian:
     if: github.repository_owner == 'viamrobotics'
@@ -215,9 +215,9 @@ jobs:
           conan profile detect
 
           conan install -r conancenter --update \
-          --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s compiler.cppstd=14 -s:a compiler.cppstd=14
+          --tool-requires=b2/5.3.1 --build=b2/5.3.1 -s:a compiler.cppstd=17
 
-          conan create . --build=missing -s compiler.cppstd=14 -s:a compiler.cppstd=14
+          conan create . --build=missing -s:a compiler.cppstd=17
 
   build_windows:
     if: github.repository_owner == 'viamrobotics'
@@ -244,7 +244,7 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan create . --build=missing
+          conan create . --build=missing -s:a compiler.cppstd=17
         env:
           CONAN_USER_HOME: c:/cache
           CONAN_USER_HOME_SHORT: c:/cache/conan_shortpaths
