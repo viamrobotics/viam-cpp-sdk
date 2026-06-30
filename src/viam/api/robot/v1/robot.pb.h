@@ -32,6 +32,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "app/datasync/v1/data_sync.pb.h"
 #include "common/v1/common.pb.h"
 #include "google/api/annotations.pb.h"
 #include <google/protobuf/duration.pb.h>
@@ -244,6 +245,12 @@ extern TunnelRequestDefaultTypeInternal _TunnelRequest_default_instance_;
 class TunnelResponse;
 struct TunnelResponseDefaultTypeInternal;
 extern TunnelResponseDefaultTypeInternal _TunnelResponse_default_instance_;
+class UploadDataFromPathRequest;
+struct UploadDataFromPathRequestDefaultTypeInternal;
+extern UploadDataFromPathRequestDefaultTypeInternal _UploadDataFromPathRequest_default_instance_;
+class UploadDataFromPathResponse;
+struct UploadDataFromPathResponseDefaultTypeInternal;
+extern UploadDataFromPathResponseDefaultTypeInternal _UploadDataFromPathResponse_default_instance_;
 }  // namespace v1
 }  // namespace robot
 }  // namespace viam
@@ -311,6 +318,8 @@ template<> ::viam::robot::v1::TransformPoseResponse* Arena::CreateMaybeMessage<:
 template<> ::viam::robot::v1::Tunnel* Arena::CreateMaybeMessage<::viam::robot::v1::Tunnel>(Arena*);
 template<> ::viam::robot::v1::TunnelRequest* Arena::CreateMaybeMessage<::viam::robot::v1::TunnelRequest>(Arena*);
 template<> ::viam::robot::v1::TunnelResponse* Arena::CreateMaybeMessage<::viam::robot::v1::TunnelResponse>(Arena*);
+template<> ::viam::robot::v1::UploadDataFromPathRequest* Arena::CreateMaybeMessage<::viam::robot::v1::UploadDataFromPathRequest>(Arena*);
+template<> ::viam::robot::v1::UploadDataFromPathResponse* Arena::CreateMaybeMessage<::viam::robot::v1::UploadDataFromPathResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace viam {
 namespace robot {
@@ -696,6 +705,397 @@ class SendTracesResponse final :
 };
 // -------------------------------------------------------------------
 
+class UploadDataFromPathRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.UploadDataFromPathRequest) */ {
+ public:
+  inline UploadDataFromPathRequest() : UploadDataFromPathRequest(nullptr) {}
+  ~UploadDataFromPathRequest() override;
+  explicit PROTOBUF_CONSTEXPR UploadDataFromPathRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadDataFromPathRequest(const UploadDataFromPathRequest& from);
+  UploadDataFromPathRequest(UploadDataFromPathRequest&& from) noexcept
+    : UploadDataFromPathRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadDataFromPathRequest& operator=(const UploadDataFromPathRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadDataFromPathRequest& operator=(UploadDataFromPathRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadDataFromPathRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadDataFromPathRequest* internal_default_instance() {
+    return reinterpret_cast<const UploadDataFromPathRequest*>(
+               &_UploadDataFromPathRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(UploadDataFromPathRequest& a, UploadDataFromPathRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadDataFromPathRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadDataFromPathRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadDataFromPathRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadDataFromPathRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UploadDataFromPathRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UploadDataFromPathRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UploadDataFromPathRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.UploadDataFromPathRequest";
+  }
+  protected:
+  explicit UploadDataFromPathRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPathFieldNumber = 1,
+    kUploadMetadataFieldNumber = 2,
+    kExtraFieldNumber = 99,
+  };
+  // string path = 1 [json_name = "path"];
+  void clear_path();
+  const std::string& path() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_path(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_path();
+  PROTOBUF_NODISCARD std::string* release_path();
+  void set_allocated_path(std::string* path);
+  private:
+  const std::string& _internal_path() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_path(const std::string& value);
+  std::string* _internal_mutable_path();
+  public:
+
+  // optional .viam.app.datasync.v1.UploadMetadata upload_metadata = 2 [json_name = "uploadMetadata"];
+  bool has_upload_metadata() const;
+  private:
+  bool _internal_has_upload_metadata() const;
+  public:
+  void clear_upload_metadata();
+  const ::viam::app::datasync::v1::UploadMetadata& upload_metadata() const;
+  PROTOBUF_NODISCARD ::viam::app::datasync::v1::UploadMetadata* release_upload_metadata();
+  ::viam::app::datasync::v1::UploadMetadata* mutable_upload_metadata();
+  void set_allocated_upload_metadata(::viam::app::datasync::v1::UploadMetadata* upload_metadata);
+  private:
+  const ::viam::app::datasync::v1::UploadMetadata& _internal_upload_metadata() const;
+  ::viam::app::datasync::v1::UploadMetadata* _internal_mutable_upload_metadata();
+  public:
+  void unsafe_arena_set_allocated_upload_metadata(
+      ::viam::app::datasync::v1::UploadMetadata* upload_metadata);
+  ::viam::app::datasync::v1::UploadMetadata* unsafe_arena_release_upload_metadata();
+
+  // .google.protobuf.Struct extra = 99 [json_name = "extra"];
+  bool has_extra() const;
+  private:
+  bool _internal_has_extra() const;
+  public:
+  void clear_extra();
+  const ::PROTOBUF_NAMESPACE_ID::Struct& extra() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Struct* release_extra();
+  ::PROTOBUF_NAMESPACE_ID::Struct* mutable_extra();
+  void set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Struct& _internal_extra() const;
+  ::PROTOBUF_NAMESPACE_ID::Struct* _internal_mutable_extra();
+  public:
+  void unsafe_arena_set_allocated_extra(
+      ::PROTOBUF_NAMESPACE_ID::Struct* extra);
+  ::PROTOBUF_NAMESPACE_ID::Struct* unsafe_arena_release_extra();
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.UploadDataFromPathRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr path_;
+  ::viam::app::datasync::v1::UploadMetadata* upload_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::Struct* extra_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UploadDataFromPathResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.UploadDataFromPathResponse) */ {
+ public:
+  inline UploadDataFromPathResponse() : UploadDataFromPathResponse(nullptr) {}
+  ~UploadDataFromPathResponse() override;
+  explicit PROTOBUF_CONSTEXPR UploadDataFromPathResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UploadDataFromPathResponse(const UploadDataFromPathResponse& from);
+  UploadDataFromPathResponse(UploadDataFromPathResponse&& from) noexcept
+    : UploadDataFromPathResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadDataFromPathResponse& operator=(const UploadDataFromPathResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadDataFromPathResponse& operator=(UploadDataFromPathResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadDataFromPathResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadDataFromPathResponse* internal_default_instance() {
+    return reinterpret_cast<const UploadDataFromPathResponse*>(
+               &_UploadDataFromPathResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(UploadDataFromPathResponse& a, UploadDataFromPathResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadDataFromPathResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadDataFromPathResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadDataFromPathResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadDataFromPathResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UploadDataFromPathResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UploadDataFromPathResponse& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UploadDataFromPathResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "viam.robot.v1.UploadDataFromPathResponse";
+  }
+  protected:
+  explicit UploadDataFromPathResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdsFieldNumber = 5,
+    kFilesUploadedFieldNumber = 1,
+    kFilesFailedFieldNumber = 2,
+    kBytesUploadedFieldNumber = 3,
+    kBytesTotalFieldNumber = 4,
+  };
+  // repeated string ids = 5 [json_name = "ids"];
+  int ids_size() const;
+  private:
+  int _internal_ids_size() const;
+  public:
+  void clear_ids();
+  const std::string& ids(int index) const;
+  std::string* mutable_ids(int index);
+  void set_ids(int index, const std::string& value);
+  void set_ids(int index, std::string&& value);
+  void set_ids(int index, const char* value);
+  void set_ids(int index, const char* value, size_t size);
+  std::string* add_ids();
+  void add_ids(const std::string& value);
+  void add_ids(std::string&& value);
+  void add_ids(const char* value);
+  void add_ids(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_ids();
+  private:
+  const std::string& _internal_ids(int index) const;
+  std::string* _internal_add_ids();
+  public:
+
+  // uint64 files_uploaded = 1 [json_name = "filesUploaded"];
+  void clear_files_uploaded();
+  uint64_t files_uploaded() const;
+  void set_files_uploaded(uint64_t value);
+  private:
+  uint64_t _internal_files_uploaded() const;
+  void _internal_set_files_uploaded(uint64_t value);
+  public:
+
+  // uint64 files_failed = 2 [json_name = "filesFailed"];
+  void clear_files_failed();
+  uint64_t files_failed() const;
+  void set_files_failed(uint64_t value);
+  private:
+  uint64_t _internal_files_failed() const;
+  void _internal_set_files_failed(uint64_t value);
+  public:
+
+  // uint64 bytes_uploaded = 3 [json_name = "bytesUploaded"];
+  void clear_bytes_uploaded();
+  uint64_t bytes_uploaded() const;
+  void set_bytes_uploaded(uint64_t value);
+  private:
+  uint64_t _internal_bytes_uploaded() const;
+  void _internal_set_bytes_uploaded(uint64_t value);
+  public:
+
+  // uint64 bytes_total = 4 [json_name = "bytesTotal"];
+  void clear_bytes_total();
+  uint64_t bytes_total() const;
+  void set_bytes_total(uint64_t value);
+  private:
+  uint64_t _internal_bytes_total() const;
+  void _internal_set_bytes_total(uint64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:viam.robot.v1.UploadDataFromPathResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> ids_;
+  uint64_t files_uploaded_;
+  uint64_t files_failed_;
+  uint64_t bytes_uploaded_;
+  uint64_t bytes_total_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_robot_2fv1_2frobot_2eproto;
+};
+// -------------------------------------------------------------------
+
 class TunnelRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:viam.robot.v1.TunnelRequest) */ {
  public:
@@ -744,7 +1144,7 @@ class TunnelRequest final :
                &_TunnelRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(TunnelRequest& a, TunnelRequest& b) {
     a.Swap(&b);
@@ -903,7 +1303,7 @@ class TunnelResponse final :
                &_TunnelResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(TunnelResponse& a, TunnelResponse& b) {
     a.Swap(&b);
@@ -1050,7 +1450,7 @@ class ListTunnelsRequest final :
                &_ListTunnelsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(ListTunnelsRequest& a, ListTunnelsRequest& b) {
     a.Swap(&b);
@@ -1167,7 +1567,7 @@ class ListTunnelsResponse final :
                &_ListTunnelsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(ListTunnelsResponse& a, ListTunnelsResponse& b) {
     a.Swap(&b);
@@ -1319,7 +1719,7 @@ class Tunnel final :
                &_Tunnel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(Tunnel& a, Tunnel& b) {
     a.Swap(&b);
@@ -1482,7 +1882,7 @@ class FrameSystemConfig final :
                &_FrameSystemConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(FrameSystemConfig& a, FrameSystemConfig& b) {
     a.Swap(&b);
@@ -1654,7 +2054,7 @@ class FrameSystemConfigRequest final :
                &_FrameSystemConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(FrameSystemConfigRequest& a, FrameSystemConfigRequest& b) {
     a.Swap(&b);
@@ -1806,7 +2206,7 @@ class FrameSystemConfigResponse final :
                &_FrameSystemConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(FrameSystemConfigResponse& a, FrameSystemConfigResponse& b) {
     a.Swap(&b);
@@ -1958,7 +2358,7 @@ class TransformPoseRequest final :
                &_TransformPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(TransformPoseRequest& a, TransformPoseRequest& b) {
     a.Swap(&b);
@@ -2146,7 +2546,7 @@ class TransformPoseResponse final :
                &_TransformPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(TransformPoseResponse& a, TransformPoseResponse& b) {
     a.Swap(&b);
@@ -2298,7 +2698,7 @@ class TransformPCDRequest final :
                &_TransformPCDRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(TransformPCDRequest& a, TransformPCDRequest& b) {
     a.Swap(&b);
@@ -2478,7 +2878,7 @@ class TransformPCDResponse final :
                &_TransformPCDResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(TransformPCDResponse& a, TransformPCDResponse& b) {
     a.Swap(&b);
@@ -2625,7 +3025,7 @@ class ResourceNamesRequest final :
                &_ResourceNamesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    16;
 
   friend void swap(ResourceNamesRequest& a, ResourceNamesRequest& b) {
     a.Swap(&b);
@@ -2742,7 +3142,7 @@ class ResourceNamesResponse final :
                &_ResourceNamesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    17;
 
   friend void swap(ResourceNamesResponse& a, ResourceNamesResponse& b) {
     a.Swap(&b);
@@ -2894,7 +3294,7 @@ class ResourceRPCSubtype final :
                &_ResourceRPCSubtype_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    18;
 
   friend void swap(ResourceRPCSubtype& a, ResourceRPCSubtype& b) {
     a.Swap(&b);
@@ -3061,7 +3461,7 @@ class ResourceRPCSubtypesRequest final :
                &_ResourceRPCSubtypesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    19;
 
   friend void swap(ResourceRPCSubtypesRequest& a, ResourceRPCSubtypesRequest& b) {
     a.Swap(&b);
@@ -3178,7 +3578,7 @@ class ResourceRPCSubtypesResponse final :
                &_ResourceRPCSubtypesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    20;
 
   friend void swap(ResourceRPCSubtypesResponse& a, ResourceRPCSubtypesResponse& b) {
     a.Swap(&b);
@@ -3330,7 +3730,7 @@ class Operation final :
                &_Operation_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    21;
 
   friend void swap(Operation& a, Operation& b) {
     a.Swap(&b);
@@ -3554,7 +3954,7 @@ class GetOperationsRequest final :
                &_GetOperationsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    22;
 
   friend void swap(GetOperationsRequest& a, GetOperationsRequest& b) {
     a.Swap(&b);
@@ -3671,7 +4071,7 @@ class GetOperationsResponse final :
                &_GetOperationsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    23;
 
   friend void swap(GetOperationsResponse& a, GetOperationsResponse& b) {
     a.Swap(&b);
@@ -3823,7 +4223,7 @@ class CancelOperationRequest final :
                &_CancelOperationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    24;
 
   friend void swap(CancelOperationRequest& a, CancelOperationRequest& b) {
     a.Swap(&b);
@@ -3970,7 +4370,7 @@ class CancelOperationResponse final :
                &_CancelOperationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    25;
 
   friend void swap(CancelOperationResponse& a, CancelOperationResponse& b) {
     a.Swap(&b);
@@ -4087,7 +4487,7 @@ class BlockForOperationRequest final :
                &_BlockForOperationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    26;
 
   friend void swap(BlockForOperationRequest& a, BlockForOperationRequest& b) {
     a.Swap(&b);
@@ -4234,7 +4634,7 @@ class BlockForOperationResponse final :
                &_BlockForOperationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    27;
 
   friend void swap(BlockForOperationResponse& a, BlockForOperationResponse& b) {
     a.Swap(&b);
@@ -4351,7 +4751,7 @@ class PeerConnectionInfo final :
                &_PeerConnectionInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    28;
 
   friend void swap(PeerConnectionInfo& a, PeerConnectionInfo& b) {
     a.Swap(&b);
@@ -4535,7 +4935,7 @@ class Session final :
                &_Session_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    29;
 
   friend void swap(Session& a, Session& b) {
     a.Swap(&b);
@@ -4703,7 +5103,7 @@ class GetSessionsRequest final :
                &_GetSessionsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    30;
 
   friend void swap(GetSessionsRequest& a, GetSessionsRequest& b) {
     a.Swap(&b);
@@ -4820,7 +5220,7 @@ class GetSessionsResponse final :
                &_GetSessionsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    31;
 
   friend void swap(GetSessionsResponse& a, GetSessionsResponse& b) {
     a.Swap(&b);
@@ -4972,7 +5372,7 @@ class ModuleModel final :
                &_ModuleModel_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    32;
 
   friend void swap(ModuleModel& a, ModuleModel& b) {
     a.Swap(&b);
@@ -5162,7 +5562,7 @@ class GetModelsFromModulesRequest final :
                &_GetModelsFromModulesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    33;
 
   friend void swap(GetModelsFromModulesRequest& a, GetModelsFromModulesRequest& b) {
     a.Swap(&b);
@@ -5279,7 +5679,7 @@ class GetModelsFromModulesResponse final :
                &_GetModelsFromModulesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    34;
 
   friend void swap(GetModelsFromModulesResponse& a, GetModelsFromModulesResponse& b) {
     a.Swap(&b);
@@ -5431,7 +5831,7 @@ class Status final :
                &_Status_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    35;
 
   friend void swap(Status& a, Status& b) {
     a.Swap(&b);
@@ -5623,7 +6023,7 @@ class GetStatusRequest final :
                &_GetStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    36;
 
   friend void swap(GetStatusRequest& a, GetStatusRequest& b) {
     a.Swap(&b);
@@ -5775,7 +6175,7 @@ class GetStatusResponse final :
                &_GetStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    37;
 
   friend void swap(GetStatusResponse& a, GetStatusResponse& b) {
     a.Swap(&b);
@@ -5927,7 +6327,7 @@ class StreamStatusRequest final :
                &_StreamStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    38;
 
   friend void swap(StreamStatusRequest& a, StreamStatusRequest& b) {
     a.Swap(&b);
@@ -6099,7 +6499,7 @@ class StreamStatusResponse final :
                &_StreamStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    39;
 
   friend void swap(StreamStatusResponse& a, StreamStatusResponse& b) {
     a.Swap(&b);
@@ -6251,7 +6651,7 @@ class StopExtraParameters final :
                &_StopExtraParameters_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    40;
 
   friend void swap(StopExtraParameters& a, StopExtraParameters& b) {
     a.Swap(&b);
@@ -6423,7 +6823,7 @@ class StopAllRequest final :
                &_StopAllRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    41;
 
   friend void swap(StopAllRequest& a, StopAllRequest& b) {
     a.Swap(&b);
@@ -6574,7 +6974,7 @@ class StopAllResponse final :
                &_StopAllResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    42;
 
   friend void swap(StopAllResponse& a, StopAllResponse& b) {
     a.Swap(&b);
@@ -6691,7 +7091,7 @@ class StartSessionRequest final :
                &_StartSessionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    43;
 
   friend void swap(StartSessionRequest& a, StartSessionRequest& b) {
     a.Swap(&b);
@@ -6839,7 +7239,7 @@ class StartSessionResponse final :
                &_StartSessionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    44;
 
   friend void swap(StartSessionResponse& a, StartSessionResponse& b) {
     a.Swap(&b);
@@ -7007,7 +7407,7 @@ class SendSessionHeartbeatRequest final :
                &_SendSessionHeartbeatRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    45;
 
   friend void swap(SendSessionHeartbeatRequest& a, SendSessionHeartbeatRequest& b) {
     a.Swap(&b);
@@ -7154,7 +7554,7 @@ class SendSessionHeartbeatResponse final :
                &_SendSessionHeartbeatResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    46;
 
   friend void swap(SendSessionHeartbeatResponse& a, SendSessionHeartbeatResponse& b) {
     a.Swap(&b);
@@ -7271,7 +7671,7 @@ class LogRequest final :
                &_LogRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    47;
 
   friend void swap(LogRequest& a, LogRequest& b) {
     a.Swap(&b);
@@ -7422,7 +7822,7 @@ class LogResponse final :
                &_LogResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    48;
 
   friend void swap(LogResponse& a, LogResponse& b) {
     a.Swap(&b);
@@ -7538,7 +7938,7 @@ class GetCloudMetadataRequest final :
                &_GetCloudMetadataRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    49;
 
   friend void swap(GetCloudMetadataRequest& a, GetCloudMetadataRequest& b) {
     a.Swap(&b);
@@ -7655,7 +8055,7 @@ class GetCloudMetadataResponse final :
                &_GetCloudMetadataResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    50;
 
   friend void swap(GetCloudMetadataResponse& a, GetCloudMetadataResponse& b) {
     a.Swap(&b);
@@ -7857,7 +8257,7 @@ class RestartModuleRequest final :
                &_RestartModuleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    51;
 
   friend void swap(RestartModuleRequest& a, RestartModuleRequest& b) {
     a.Swap(&b);
@@ -8041,7 +8441,7 @@ class RestartModuleResponse final :
                &_RestartModuleResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    52;
 
   friend void swap(RestartModuleResponse& a, RestartModuleResponse& b) {
     a.Swap(&b);
@@ -8157,7 +8557,7 @@ class ShutdownRequest final :
                &_ShutdownRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    53;
 
   friend void swap(ShutdownRequest& a, ShutdownRequest& b) {
     a.Swap(&b);
@@ -8273,7 +8673,7 @@ class ShutdownResponse final :
                &_ShutdownResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    54;
 
   friend void swap(ShutdownResponse& a, ShutdownResponse& b) {
     a.Swap(&b);
@@ -8389,7 +8789,7 @@ class GetMachineStatusRequest final :
                &_GetMachineStatusRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    55;
 
   friend void swap(GetMachineStatusRequest& a, GetMachineStatusRequest& b) {
     a.Swap(&b);
@@ -8506,7 +8906,7 @@ class GetMachineStatusResponse final :
                &_GetMachineStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    56;
 
   friend void swap(GetMachineStatusResponse& a, GetMachineStatusResponse& b) {
     a.Swap(&b);
@@ -8761,7 +9161,7 @@ class JobStatus final :
                &_JobStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    57;
 
   friend void swap(JobStatus& a, JobStatus& b) {
     a.Swap(&b);
@@ -8949,7 +9349,7 @@ class ResourceStatus final :
                &_ResourceStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    58;
 
   friend void swap(ResourceStatus& a, ResourceStatus& b) {
     a.Swap(&b);
@@ -9223,7 +9623,7 @@ class ModuleStatus final :
                &_ModuleStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    59;
 
   friend void swap(ModuleStatus& a, ModuleStatus& b) {
     a.Swap(&b);
@@ -9467,7 +9867,7 @@ class ConfigStatus final :
                &_ConfigStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    60;
 
   friend void swap(ConfigStatus& a, ConfigStatus& b) {
     a.Swap(&b);
@@ -9634,7 +10034,7 @@ class GetVersionRequest final :
                &_GetVersionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    61;
 
   friend void swap(GetVersionRequest& a, GetVersionRequest& b) {
     a.Swap(&b);
@@ -9751,7 +10151,7 @@ class GetVersionResponse final :
                &_GetVersionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    62;
 
   friend void swap(GetVersionResponse& a, GetVersionResponse& b) {
     a.Swap(&b);
@@ -9931,7 +10331,7 @@ class GetPoseRequest final :
                &_GetPoseRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    63;
 
   friend void swap(GetPoseRequest& a, GetPoseRequest& b) {
     a.Swap(&b);
@@ -10135,7 +10535,7 @@ class GetPoseResponse final :
                &_GetPoseResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    64;
 
   friend void swap(GetPoseResponse& a, GetPoseResponse& b) {
     a.Swap(&b);
@@ -10288,6 +10688,391 @@ SendTracesRequest::resource_spans() const {
 // -------------------------------------------------------------------
 
 // SendTracesResponse
+
+// -------------------------------------------------------------------
+
+// UploadDataFromPathRequest
+
+// string path = 1 [json_name = "path"];
+inline void UploadDataFromPathRequest::clear_path() {
+  path_.ClearToEmpty();
+}
+inline const std::string& UploadDataFromPathRequest::path() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.UploadDataFromPathRequest.path)
+  return _internal_path();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UploadDataFromPathRequest::set_path(ArgT0&& arg0, ArgT... args) {
+ 
+ path_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:viam.robot.v1.UploadDataFromPathRequest.path)
+}
+inline std::string* UploadDataFromPathRequest::mutable_path() {
+  std::string* _s = _internal_mutable_path();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.UploadDataFromPathRequest.path)
+  return _s;
+}
+inline const std::string& UploadDataFromPathRequest::_internal_path() const {
+  return path_.Get();
+}
+inline void UploadDataFromPathRequest::_internal_set_path(const std::string& value) {
+  
+  path_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UploadDataFromPathRequest::_internal_mutable_path() {
+  
+  return path_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UploadDataFromPathRequest::release_path() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.UploadDataFromPathRequest.path)
+  return path_.Release();
+}
+inline void UploadDataFromPathRequest::set_allocated_path(std::string* path) {
+  if (path != nullptr) {
+    
+  } else {
+    
+  }
+  path_.SetAllocated(path, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (path_.IsDefault()) {
+    path_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.UploadDataFromPathRequest.path)
+}
+
+// optional .viam.app.datasync.v1.UploadMetadata upload_metadata = 2 [json_name = "uploadMetadata"];
+inline bool UploadDataFromPathRequest::_internal_has_upload_metadata() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || upload_metadata_ != nullptr);
+  return value;
+}
+inline bool UploadDataFromPathRequest::has_upload_metadata() const {
+  return _internal_has_upload_metadata();
+}
+inline const ::viam::app::datasync::v1::UploadMetadata& UploadDataFromPathRequest::_internal_upload_metadata() const {
+  const ::viam::app::datasync::v1::UploadMetadata* p = upload_metadata_;
+  return p != nullptr ? *p : reinterpret_cast<const ::viam::app::datasync::v1::UploadMetadata&>(
+      ::viam::app::datasync::v1::_UploadMetadata_default_instance_);
+}
+inline const ::viam::app::datasync::v1::UploadMetadata& UploadDataFromPathRequest::upload_metadata() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.UploadDataFromPathRequest.upload_metadata)
+  return _internal_upload_metadata();
+}
+inline void UploadDataFromPathRequest::unsafe_arena_set_allocated_upload_metadata(
+    ::viam::app::datasync::v1::UploadMetadata* upload_metadata) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(upload_metadata_);
+  }
+  upload_metadata_ = upload_metadata;
+  if (upload_metadata) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.UploadDataFromPathRequest.upload_metadata)
+}
+inline ::viam::app::datasync::v1::UploadMetadata* UploadDataFromPathRequest::release_upload_metadata() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::datasync::v1::UploadMetadata* temp = upload_metadata_;
+  upload_metadata_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::viam::app::datasync::v1::UploadMetadata* UploadDataFromPathRequest::unsafe_arena_release_upload_metadata() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.UploadDataFromPathRequest.upload_metadata)
+  _has_bits_[0] &= ~0x00000001u;
+  ::viam::app::datasync::v1::UploadMetadata* temp = upload_metadata_;
+  upload_metadata_ = nullptr;
+  return temp;
+}
+inline ::viam::app::datasync::v1::UploadMetadata* UploadDataFromPathRequest::_internal_mutable_upload_metadata() {
+  _has_bits_[0] |= 0x00000001u;
+  if (upload_metadata_ == nullptr) {
+    auto* p = CreateMaybeMessage<::viam::app::datasync::v1::UploadMetadata>(GetArenaForAllocation());
+    upload_metadata_ = p;
+  }
+  return upload_metadata_;
+}
+inline ::viam::app::datasync::v1::UploadMetadata* UploadDataFromPathRequest::mutable_upload_metadata() {
+  ::viam::app::datasync::v1::UploadMetadata* _msg = _internal_mutable_upload_metadata();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.UploadDataFromPathRequest.upload_metadata)
+  return _msg;
+}
+inline void UploadDataFromPathRequest::set_allocated_upload_metadata(::viam::app::datasync::v1::UploadMetadata* upload_metadata) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(upload_metadata_);
+  }
+  if (upload_metadata) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(upload_metadata));
+    if (message_arena != submessage_arena) {
+      upload_metadata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, upload_metadata, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  upload_metadata_ = upload_metadata;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.UploadDataFromPathRequest.upload_metadata)
+}
+
+// .google.protobuf.Struct extra = 99 [json_name = "extra"];
+inline bool UploadDataFromPathRequest::_internal_has_extra() const {
+  return this != internal_default_instance() && extra_ != nullptr;
+}
+inline bool UploadDataFromPathRequest::has_extra() const {
+  return _internal_has_extra();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UploadDataFromPathRequest::_internal_extra() const {
+  const ::PROTOBUF_NAMESPACE_ID::Struct* p = extra_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Struct&>(
+      ::PROTOBUF_NAMESPACE_ID::_Struct_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Struct& UploadDataFromPathRequest::extra() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.UploadDataFromPathRequest.extra)
+  return _internal_extra();
+}
+inline void UploadDataFromPathRequest::unsafe_arena_set_allocated_extra(
+    ::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  extra_ = extra;
+  if (extra) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:viam.robot.v1.UploadDataFromPathRequest.extra)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UploadDataFromPathRequest::release_extra() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UploadDataFromPathRequest::unsafe_arena_release_extra() {
+  // @@protoc_insertion_point(field_release:viam.robot.v1.UploadDataFromPathRequest.extra)
+  
+  ::PROTOBUF_NAMESPACE_ID::Struct* temp = extra_;
+  extra_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UploadDataFromPathRequest::_internal_mutable_extra() {
+  
+  if (extra_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Struct>(GetArenaForAllocation());
+    extra_ = p;
+  }
+  return extra_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Struct* UploadDataFromPathRequest::mutable_extra() {
+  ::PROTOBUF_NAMESPACE_ID::Struct* _msg = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.UploadDataFromPathRequest.extra)
+  return _msg;
+}
+inline void UploadDataFromPathRequest::set_allocated_extra(::PROTOBUF_NAMESPACE_ID::Struct* extra) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra_);
+  }
+  if (extra) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(extra));
+    if (message_arena != submessage_arena) {
+      extra = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, extra, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  extra_ = extra;
+  // @@protoc_insertion_point(field_set_allocated:viam.robot.v1.UploadDataFromPathRequest.extra)
+}
+
+// -------------------------------------------------------------------
+
+// UploadDataFromPathResponse
+
+// uint64 files_uploaded = 1 [json_name = "filesUploaded"];
+inline void UploadDataFromPathResponse::clear_files_uploaded() {
+  files_uploaded_ = uint64_t{0u};
+}
+inline uint64_t UploadDataFromPathResponse::_internal_files_uploaded() const {
+  return files_uploaded_;
+}
+inline uint64_t UploadDataFromPathResponse::files_uploaded() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.UploadDataFromPathResponse.files_uploaded)
+  return _internal_files_uploaded();
+}
+inline void UploadDataFromPathResponse::_internal_set_files_uploaded(uint64_t value) {
+  
+  files_uploaded_ = value;
+}
+inline void UploadDataFromPathResponse::set_files_uploaded(uint64_t value) {
+  _internal_set_files_uploaded(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.UploadDataFromPathResponse.files_uploaded)
+}
+
+// uint64 files_failed = 2 [json_name = "filesFailed"];
+inline void UploadDataFromPathResponse::clear_files_failed() {
+  files_failed_ = uint64_t{0u};
+}
+inline uint64_t UploadDataFromPathResponse::_internal_files_failed() const {
+  return files_failed_;
+}
+inline uint64_t UploadDataFromPathResponse::files_failed() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.UploadDataFromPathResponse.files_failed)
+  return _internal_files_failed();
+}
+inline void UploadDataFromPathResponse::_internal_set_files_failed(uint64_t value) {
+  
+  files_failed_ = value;
+}
+inline void UploadDataFromPathResponse::set_files_failed(uint64_t value) {
+  _internal_set_files_failed(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.UploadDataFromPathResponse.files_failed)
+}
+
+// uint64 bytes_uploaded = 3 [json_name = "bytesUploaded"];
+inline void UploadDataFromPathResponse::clear_bytes_uploaded() {
+  bytes_uploaded_ = uint64_t{0u};
+}
+inline uint64_t UploadDataFromPathResponse::_internal_bytes_uploaded() const {
+  return bytes_uploaded_;
+}
+inline uint64_t UploadDataFromPathResponse::bytes_uploaded() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.UploadDataFromPathResponse.bytes_uploaded)
+  return _internal_bytes_uploaded();
+}
+inline void UploadDataFromPathResponse::_internal_set_bytes_uploaded(uint64_t value) {
+  
+  bytes_uploaded_ = value;
+}
+inline void UploadDataFromPathResponse::set_bytes_uploaded(uint64_t value) {
+  _internal_set_bytes_uploaded(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.UploadDataFromPathResponse.bytes_uploaded)
+}
+
+// uint64 bytes_total = 4 [json_name = "bytesTotal"];
+inline void UploadDataFromPathResponse::clear_bytes_total() {
+  bytes_total_ = uint64_t{0u};
+}
+inline uint64_t UploadDataFromPathResponse::_internal_bytes_total() const {
+  return bytes_total_;
+}
+inline uint64_t UploadDataFromPathResponse::bytes_total() const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.UploadDataFromPathResponse.bytes_total)
+  return _internal_bytes_total();
+}
+inline void UploadDataFromPathResponse::_internal_set_bytes_total(uint64_t value) {
+  
+  bytes_total_ = value;
+}
+inline void UploadDataFromPathResponse::set_bytes_total(uint64_t value) {
+  _internal_set_bytes_total(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.UploadDataFromPathResponse.bytes_total)
+}
+
+// repeated string ids = 5 [json_name = "ids"];
+inline int UploadDataFromPathResponse::_internal_ids_size() const {
+  return ids_.size();
+}
+inline int UploadDataFromPathResponse::ids_size() const {
+  return _internal_ids_size();
+}
+inline void UploadDataFromPathResponse::clear_ids() {
+  ids_.Clear();
+}
+inline std::string* UploadDataFromPathResponse::add_ids() {
+  std::string* _s = _internal_add_ids();
+  // @@protoc_insertion_point(field_add_mutable:viam.robot.v1.UploadDataFromPathResponse.ids)
+  return _s;
+}
+inline const std::string& UploadDataFromPathResponse::_internal_ids(int index) const {
+  return ids_.Get(index);
+}
+inline const std::string& UploadDataFromPathResponse::ids(int index) const {
+  // @@protoc_insertion_point(field_get:viam.robot.v1.UploadDataFromPathResponse.ids)
+  return _internal_ids(index);
+}
+inline std::string* UploadDataFromPathResponse::mutable_ids(int index) {
+  // @@protoc_insertion_point(field_mutable:viam.robot.v1.UploadDataFromPathResponse.ids)
+  return ids_.Mutable(index);
+}
+inline void UploadDataFromPathResponse::set_ids(int index, const std::string& value) {
+  ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:viam.robot.v1.UploadDataFromPathResponse.ids)
+}
+inline void UploadDataFromPathResponse::set_ids(int index, std::string&& value) {
+  ids_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:viam.robot.v1.UploadDataFromPathResponse.ids)
+}
+inline void UploadDataFromPathResponse::set_ids(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  ids_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:viam.robot.v1.UploadDataFromPathResponse.ids)
+}
+inline void UploadDataFromPathResponse::set_ids(int index, const char* value, size_t size) {
+  ids_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:viam.robot.v1.UploadDataFromPathResponse.ids)
+}
+inline std::string* UploadDataFromPathResponse::_internal_add_ids() {
+  return ids_.Add();
+}
+inline void UploadDataFromPathResponse::add_ids(const std::string& value) {
+  ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:viam.robot.v1.UploadDataFromPathResponse.ids)
+}
+inline void UploadDataFromPathResponse::add_ids(std::string&& value) {
+  ids_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:viam.robot.v1.UploadDataFromPathResponse.ids)
+}
+inline void UploadDataFromPathResponse::add_ids(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  ids_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:viam.robot.v1.UploadDataFromPathResponse.ids)
+}
+inline void UploadDataFromPathResponse::add_ids(const char* value, size_t size) {
+  ids_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:viam.robot.v1.UploadDataFromPathResponse.ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+UploadDataFromPathResponse::ids() const {
+  // @@protoc_insertion_point(field_list:viam.robot.v1.UploadDataFromPathResponse.ids)
+  return ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+UploadDataFromPathResponse::mutable_ids() {
+  // @@protoc_insertion_point(field_mutable_list:viam.robot.v1.UploadDataFromPathResponse.ids)
+  return &ids_;
+}
 
 // -------------------------------------------------------------------
 
@@ -15631,6 +16416,10 @@ inline void GetPoseResponse::set_allocated_pose(::viam::common::v1::PoseInFrame*
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
