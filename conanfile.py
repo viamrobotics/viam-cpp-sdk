@@ -86,6 +86,9 @@ class ViamCppSdkRecipe(ConanFile):
         self.requires('protobuf/[>=3.17.1 <6.30.0]')
 
         self.requires(self._xtensor_requires(), transitive_headers=True)
+
+        # override=True lets us specify the minimum for a transitive dep without
+        # creating a direct dep
         self.requires('xtl/[>=0.7.7]', override=True)
 
         if self.options.opentelemetry_tracing:
