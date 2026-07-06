@@ -64,7 +64,7 @@ jobs:
           Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
           refreshenv
           conan profile detect
-          conan install . --output-folder=build-conan --build=missing
+          conan install . --output-folder=build-conan --build=missing -s:a compiler.cppstd=17
           cmake . --preset conan-default
           cmake --build --preset=conan-release --target ALL_BUILD install -j 8
         env:
