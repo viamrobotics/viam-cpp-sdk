@@ -11,6 +11,7 @@
 #include <viam/api/component/camera/v1/camera.grpc.pb.h>
 
 #include <viam/sdk/common/client_helper.hpp>
+#include <viam/sdk/common/private/raw_image.hpp>
 #include <viam/sdk/common/utils.hpp>
 #include <viam/sdk/components/camera.hpp>
 #include <viam/sdk/config/resource.hpp>
@@ -27,13 +28,7 @@ Camera::image_collection from_proto(const viam::component::camera::v1::GetImages
     Camera::image_collection image_collection;
     std::vector<Camera::raw_image> images;
     for (const auto& img : proto.images()) {
-        Camera::raw_image raw_image;
-        std::string img_string = img.image();
-        const std::vector<unsigned char> bytes(img_string.begin(), img_string.end());
-        raw_image.bytes = bytes;
-        raw_image.mime_type = img.mime_type();
-        raw_image.source_name = img.source_name();
-        images.push_back(raw_image);
+        images.push_back(impl::from_proto(img));
     }
     image_collection.images = std::move(images);
     image_collection.metadata = from_proto(proto.response_metadata());

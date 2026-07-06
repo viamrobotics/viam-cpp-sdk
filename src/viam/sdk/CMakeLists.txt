@@ -70,6 +70,7 @@ target_sources(viamsdk
     common/utils.cpp
     common/version_metadata.cpp
     common/world_state.cpp
+    common/private/raw_image.cpp
     common/private/service_helper.cpp
     tracing/private/span_guard.cpp
     tracing/private/tracer.cpp
@@ -156,6 +157,7 @@ target_sources(viamsdk
     services/mlmodel.cpp
     services/motion.cpp
     services/navigation.cpp
+    services/vision.cpp
     services/private/discovery_client.cpp
     services/private/discovery_server.cpp
     services/private/generic_client.cpp
@@ -167,6 +169,9 @@ target_sources(viamsdk
     services/private/motion_server.cpp
     services/private/navigation_client.cpp
     services/private/navigation_server.cpp
+    services/private/vision.cpp
+    services/private/vision_client.cpp
+    services/private/vision_server.cpp
     services/service.cpp
     spatialmath/geometry.cpp
     spatialmath/orientation.cpp
@@ -237,6 +242,7 @@ target_sources(viamsdk
       ../../viam/sdk/services/mlmodel.hpp
       ../../viam/sdk/services/motion.hpp
       ../../viam/sdk/services/navigation.hpp
+      ../../viam/sdk/services/vision.hpp
       ../../viam/sdk/services/service.hpp
       ../../viam/sdk/tracing/span.hpp
       ../../viam/sdk/spatialmath/geometry.hpp
