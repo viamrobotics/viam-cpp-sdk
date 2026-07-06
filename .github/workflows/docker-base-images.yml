@@ -144,11 +144,12 @@ jobs:
         with:
           path: /tmp/digests
           pattern: digest-${{ matrix.cell.target }}-*
+          # Put everything in `path` rather than separate subdirs
           merge-multiple: true
 
       - name: Create multi-arch manifest
         run: |
-          # imagetools create -t <tag> <image>@sha256:<d1> <image>@sha256:<d2>
+          # Stitch each arch's digest into one manifest list under the cell tag.
           docker buildx imagetools create -t "${{ matrix.cell.tag }}" \
             $(for d in /tmp/digests/*; do printf '%s@sha256:%s ' "${{ matrix.cell.image }}" "$(basename "$d")"; done)
 
