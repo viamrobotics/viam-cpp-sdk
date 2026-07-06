@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 #include <viam/sdk/components/arm.hpp>
 
 namespace viam {
@@ -43,6 +45,17 @@ class MockArm : public sdk::Arm {
     bool peek_stop_called;
     sdk::ProtoStruct peek_command;
     std::vector<std::string> viam_client_metadata;
+
+    // Streaming trajectory hooks. move_through_joint_positions_streamed records
+    // each batch it receives into peek_streamed_batches and counts the acks it
+    // emits in peek_streamed_ack_count. If streamed_fault is set, it throws
+    // after draining to exercise terminal-error propagation: runtime_error maps
+    // to a std::exception (INTERNAL at the wire), grpc_status to a thrown
+    // grpc::Status carried through verbatim.
+    enum class StreamFault : std::uint8_t { none, runtime_error, grpc_status };
+    StreamFault streamed_fault = StreamFault::none;
+    std::vector<std::vector<sdk::Arm::TrajectoryPoint>> peek_streamed_batches;
+    int peek_streamed_ack_count = 0;
 };
 
 }  // namespace arm

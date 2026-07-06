@@ -2,6 +2,10 @@
 #include "viam/sdk/rpc/grpc_context_observer.hpp"
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 
+#include <stdexcept>
+
+#include <grpcpp/support/status.h>
+
 #include "mock_arm.hpp"
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -54,9 +58,22 @@ void MockArm::move_through_joint_positions_streamed(
     std::function<bool(Arm::Response)> response_sink,
     const sdk::ProtoStruct&) {
     while (auto batch = batch_source()) {
+        peek_streamed_batches.push_back(*batch);
         if (!response_sink(Arm::Response{})) {
+            // Framework asked us to stop; leave without faulting.
             return;
         }
+        ++peek_streamed_ack_count;
+    }
+
+    switch (streamed_fault) {
+        case StreamFault::none:
+            break;
+        case StreamFault::runtime_error:
+            throw std::runtime_error("mock arm streamed fault");
+        case StreamFault::grpc_status:
+            throw grpc::Status(grpc::StatusCode::FAILED_PRECONDITION,
+                               "mock arm streamed grpc fault");
     }
 }
 

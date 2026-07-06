@@ -7,6 +7,11 @@
 #include <boost/variant/apply_visitor.hpp>
 #include <boost/variant/static_visitor.hpp>
 
+#include <grpcpp/support/status.h>
+
+#include <viam/api/component/arm/v1/arm.pb.h>
+
+#include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/tests/mocks/mock_arm.hpp>
 #include <viam/sdk/tests/test_utils.hpp>
 
@@ -43,6 +48,67 @@ struct CheckVector : boost::static_visitor<> {
         BOOST_CHECK_EQUAL(v, expected);
     }
 };
+
+namespace {
+
+// Builds a trajectory point. Passing velocities engages the constraints;
+// passing accelerations too engages those within.
+Arm::TrajectoryPoint make_point(std::int64_t time_us,
+                                std::vector<double> positions,
+                                boost::optional<std::vector<double>> velocities = boost::none,
+                                boost::optional<std::vector<double>> accelerations = boost::none) {
+    Arm::TrajectoryPoint point;
+    point.time = std::chrono::microseconds(time_us);
+    point.positions = std::move(positions);
+    if (velocities) {
+        Arm::TrajectoryPoint::KinematicConstraints constraints;
+        constraints.velocities = std::move(*velocities);
+        constraints.accelerations = std::move(accelerations);
+        point.constraints = std::move(constraints);
+    }
+    return point;
+}
+
+void check_points_equal(const Arm::TrajectoryPoint& got, const Arm::TrajectoryPoint& want) {
+    BOOST_CHECK(got.time == want.time);
+    BOOST_CHECK_EQUAL_COLLECTIONS(
+        got.positions.begin(), got.positions.end(), want.positions.begin(), want.positions.end());
+    BOOST_REQUIRE_EQUAL(static_cast<bool>(got.constraints), static_cast<bool>(want.constraints));
+    if (!want.constraints) {
+        return;
+    }
+    BOOST_CHECK_EQUAL_COLLECTIONS(got.constraints->velocities.begin(),
+                                  got.constraints->velocities.end(),
+                                  want.constraints->velocities.begin(),
+                                  want.constraints->velocities.end());
+    BOOST_REQUIRE_EQUAL(static_cast<bool>(got.constraints->accelerations),
+                        static_cast<bool>(want.constraints->accelerations));
+    if (want.constraints->accelerations) {
+        BOOST_CHECK_EQUAL_COLLECTIONS(got.constraints->accelerations->begin(),
+                                      got.constraints->accelerations->end(),
+                                      want.constraints->accelerations->begin(),
+                                      want.constraints->accelerations->end());
+    }
+}
+
+// A pull-source over a fixed list of batches, suitable as a batch_source. Each
+// call yields the next batch, then boost::none. The batches are held by shared
+// ownership so callers may inspect them after the stream completes.
+std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_pump(
+    std::shared_ptr<std::vector<std::vector<Arm::TrajectoryPoint>>> batches) {
+    auto index = std::make_shared<std::size_t>(0);
+    return [batches = std::move(batches),
+            index]() -> boost::optional<std::vector<Arm::TrajectoryPoint>> {
+        if (*index >= batches->size()) {
+            return boost::none;
+        }
+        return (*batches)[(*index)++];
+    };
+}
+
+using Batches = std::vector<std::vector<Arm::TrajectoryPoint>>;
+
+}  // namespace
 
 BOOST_AUTO_TEST_SUITE(test_arm)
 
@@ -226,6 +292,127 @@ BOOST_AUTO_TEST_CASE(test_get_3d_models) {
         }
         BOOST_CHECK_EQUAL_COLLECTIONS(
             model_keys.begin(), model_keys.end(), expected_keys.begin(), expected_keys.end());
+    });
+}
+
+BOOST_AUTO_TEST_CASE(streamed_trajectory_point_proto_roundtrip) {
+    // Full point: an odd microsecond count to catch precision loss, plus both
+    // velocities and accelerations.
+    const auto full = make_point(1234567,
+                                 {1.0, 2.0, 3.0},
+                                 std::vector<double>{4.0, 5.0, 6.0},
+                                 std::vector<double>{7.0, 8.0, 9.0});
+    check_points_equal(from_proto(to_proto(full)), full);
+
+    // Constraints with velocities but no accelerations.
+    const auto no_accel = make_point(10, {1.0, 2.0}, std::vector<double>{4.0, 5.0});
+    check_points_equal(from_proto(to_proto(no_accel)), no_accel);
+
+    // No constraints at all.
+    const auto bare = make_point(0, {1.0, 2.0});
+    check_points_equal(from_proto(to_proto(bare)), bare);
+}
+
+BOOST_AUTO_TEST_CASE(streamed_happy_path) {
+    auto mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        auto batches = std::make_shared<Batches>(Batches{
+            {make_point(0, {1.0}), make_point(10, {2.0})},
+            {make_point(20, {3.0}), make_point(30, {4.0})},
+        });
+
+        int client_acks = 0;
+        client.move_through_joint_positions_streamed(batch_pump(batches),
+                                                     [&](Arm::Response) {
+                                                         ++client_acks;
+                                                         return true;
+                                                     },
+                                                     {});
+
+        BOOST_CHECK_EQUAL(client_acks, 2);
+        BOOST_CHECK_EQUAL(mock->peek_streamed_ack_count, 2);
+        BOOST_REQUIRE_EQUAL(mock->peek_streamed_batches.size(), 2U);
+        BOOST_REQUIRE_EQUAL(mock->peek_streamed_batches[0].size(), 2U);
+        BOOST_REQUIRE_EQUAL(mock->peek_streamed_batches[1].size(), 2U);
+        check_points_equal(mock->peek_streamed_batches[0][0], (*batches)[0][0]);
+        check_points_equal(mock->peek_streamed_batches[1][1], (*batches)[1][1]);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(streamed_empty_batches_filtered) {
+    auto mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        // The empty middle batch is dropped on the wire and never reaches the
+        // impl; the surrounding points still form a valid monotonic stream.
+        auto batches = std::make_shared<Batches>(Batches{
+            {make_point(0, {1.0})},
+            {},
+            {make_point(10, {2.0})},
+        });
+
+        int client_acks = 0;
+        client.move_through_joint_positions_streamed(batch_pump(batches),
+                                                     [&](Arm::Response) {
+                                                         ++client_acks;
+                                                         return true;
+                                                     },
+                                                     {});
+
+        BOOST_CHECK_EQUAL(mock->peek_streamed_batches.size(), 2U);
+        BOOST_CHECK_EQUAL(mock->peek_streamed_ack_count, 2);
+        BOOST_CHECK_EQUAL(client_acks, 2);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(streamed_impl_runtime_error_propagates) {
+    auto mock = MockArm::get_mock_arm();
+    mock->streamed_fault = MockArm::StreamFault::runtime_error;
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        auto batches = std::make_shared<Batches>(Batches{{make_point(0, {1.0})}});
+        BOOST_CHECK_THROW(client.move_through_joint_positions_streamed(
+                              batch_pump(batches), [](Arm::Response) { return true; }, {}),
+                          GRPCException);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(streamed_impl_grpc_status_propagates) {
+    auto mock = MockArm::get_mock_arm();
+    mock->streamed_fault = MockArm::StreamFault::grpc_status;
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        auto batches = std::make_shared<Batches>(Batches{{make_point(0, {1.0})}});
+        try {
+            client.move_through_joint_positions_streamed(
+                batch_pump(batches), [](Arm::Response) { return true; }, {});
+            BOOST_FAIL("expected a GRPCException carrying the impl's status");
+        } catch (const GRPCException& e) {
+            BOOST_CHECK(e.status()->error_code() == grpc::StatusCode::FAILED_PRECONDITION);
+        }
+    });
+}
+
+BOOST_AUTO_TEST_CASE(streamed_client_rejects_invalid_trajectories) {
+    auto mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        // Each malformed trajectory must be rejected locally, as a plain
+        // Exception, before any of it reaches the server as a GRPCException.
+        const auto expect_local_reject = [&](Batches bad) {
+            auto batches = std::make_shared<Batches>(std::move(bad));
+            try {
+                client.move_through_joint_positions_streamed(
+                    batch_pump(batches), [](Arm::Response) { return true; }, {});
+                BOOST_FAIL("expected a local validation exception");
+            } catch (const GRPCException&) {
+                BOOST_FAIL("expected a local validation Exception, not a GRPCException");
+            } catch (const Exception& e) {
+                BOOST_CHECK(std::string(e.what()).find("move_through_joint_positions_streamed") !=
+                            std::string::npos);
+            }
+        };
+
+        expect_local_reject({{make_point(5, {1.0})}});
+        expect_local_reject({{make_point(0, {1.0}), make_point(0, {2.0})}});
+        expect_local_reject({{make_point(0, {})}});
+        expect_local_reject({{make_point(0, {1.0}, std::vector<double>{1.0, 2.0})}});
     });
 }
 
