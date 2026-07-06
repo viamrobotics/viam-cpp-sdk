@@ -7,6 +7,8 @@
 #include <boost/variant/apply_visitor.hpp>
 #include <boost/variant/static_visitor.hpp>
 
+#include <stdexcept>
+
 #include <grpcpp/support/status.h>
 
 #include <viam/api/component/arm/v1/arm.grpc.pb.h>
@@ -55,9 +57,9 @@ namespace {
 // Builds a trajectory point. Passing velocities engages the constraints;
 // passing accelerations too engages those within.
 Arm::trajectory_point make_point(std::int64_t time_us,
-                                std::vector<double> positions,
-                                boost::optional<std::vector<double>> velocities = boost::none,
-                                boost::optional<std::vector<double>> accelerations = boost::none) {
+                                 std::vector<double> positions,
+                                 boost::optional<std::vector<double>> velocities = boost::none,
+                                 boost::optional<std::vector<double>> accelerations = boost::none) {
     Arm::trajectory_point point;
     point.time = std::chrono::microseconds(time_us);
     point.positions = std::move(positions);
@@ -357,13 +359,15 @@ BOOST_AUTO_TEST_CASE(streamed_happy_path) {
         });
 
         int client_acks = 0;
-        client.move_through_joint_positions_streamed(batch_pump(batches),
-                                                     [&](Arm::trajectory_update) {
-                                                         ++client_acks;
-                                                         return true;
-                                                     },
-                                                     {});
+        const auto outcome =
+            client.move_through_joint_positions_streamed(batch_pump(batches),
+                                                         [&](Arm::trajectory_update) {
+                                                             ++client_acks;
+                                                             return true;
+                                                         },
+                                                         {});
 
+        BOOST_CHECK(outcome == Arm::stream_outcome::k_completed);
         BOOST_CHECK_EQUAL(client_acks, 2);
         BOOST_CHECK_EQUAL(mock->peek_streamed_ack_count, 2);
         BOOST_REQUIRE_EQUAL(mock->peek_streamed_batches.size(), 2U);
@@ -421,6 +425,41 @@ BOOST_AUTO_TEST_CASE(streamed_impl_grpc_status_propagates) {
             BOOST_FAIL("expected a GRPCException carrying the impl's status");
         } catch (const GRPCException& e) {
             BOOST_CHECK(e.status()->error_code() == grpc::StatusCode::FAILED_PRECONDITION);
+        }
+    });
+}
+
+BOOST_AUTO_TEST_CASE(streamed_update_handler_halt) {
+    auto mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        auto batches = std::make_shared<Batches>(Batches{
+            {make_point(0, {1.0})},
+            {make_point(10, {2.0})},
+        });
+        // Halting on the first update is a deliberate stop, not a fault: the
+        // call returns the halted outcome rather than throwing.
+        const auto outcome = client.move_through_joint_positions_streamed(
+            batch_pump(batches), [](Arm::trajectory_update) { return false; }, {});
+        BOOST_CHECK(outcome == Arm::stream_outcome::k_halted_by_update_handler);
+    });
+}
+
+BOOST_AUTO_TEST_CASE(streamed_update_handler_throw_propagates) {
+    auto mock = MockArm::get_mock_arm();
+    client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
+        auto batches = std::make_shared<Batches>(Batches{{make_point(0, {1.0})}});
+        // A throwing handler propagates its exception as-is, not wrapped as a
+        // GRPCException and not swallowed into an outcome.
+        try {
+            client.move_through_joint_positions_streamed(
+                batch_pump(batches),
+                [](Arm::trajectory_update) -> bool { throw std::runtime_error("handler blew up"); },
+                {});
+            BOOST_FAIL("expected the handler's exception to propagate");
+        } catch (const GRPCException&) {
+            BOOST_FAIL("handler exception should propagate as-is, not as a GRPCException");
+        } catch (const std::runtime_error& e) {
+            BOOST_CHECK_EQUAL(std::string(e.what()), "handler blew up");
         }
     });
 }

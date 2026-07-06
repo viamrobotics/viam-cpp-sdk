@@ -4,6 +4,7 @@
 #pragma once
 
 #include <chrono>
+#include <cstdint>
 #include <functional>
 #include <string>
 #include <vector>
@@ -147,18 +148,30 @@ class Arm : public Component, public Stoppable {
         boost::optional<kinematic_constraints> constraints;
     };
 
-    /// @brief Acknowledgment emitted by the implementation per accepted batch
-    /// of trajectory points. Empty for the PoC; will grow status fields.
+    /// @brief An update emitted by the implementation as a streamed trajectory
+    /// executes.
+    ///
+    /// Updates flow back independently of the input batches: the implementation
+    /// may emit them at any cadence, or not at all, and a future implementation
+    /// may deliver them as a truly asynchronous channel. Currently empty; it
+    /// will grow fields carrying per-execution status.
     struct trajectory_update {};
+
+    /// @brief How a streamed trajectory execution ended.
+    enum class stream_outcome : std::uint8_t {
+        k_completed,                 ///< The trajectory ran to its natural end.
+        k_halted_by_update_handler,  ///< update_handler returned false, stopping the stream early.
+    };
 
     /// @brief Execute a stream of trajectory points in order.
     /// @param batch_source Pull-source for the next batch of waypoints.
-    /// @param response_sink Sink for emitted acknowledgments.
-    inline void move_through_joint_positions_streamed(
+    /// @param update_handler Handler invoked for each update the implementation emits.
+    /// @return How the stream ended.
+    inline stream_outcome move_through_joint_positions_streamed(
         std::function<boost::optional<std::vector<trajectory_point>>()> batch_source,
-        std::function<bool(trajectory_update)> response_sink) {
+        std::function<bool(trajectory_update)> update_handler) {
         return move_through_joint_positions_streamed(
-            std::move(batch_source), std::move(response_sink), {});
+            std::move(batch_source), std::move(update_handler), {});
     }
 
     /// @brief Execute a stream of trajectory points in order.
@@ -167,41 +180,52 @@ class Arm : public Component, public Stoppable {
     /// client EOF or cancellation. Empty batches and protocol-noise messages
     /// are filtered out by the dispatcher and never surface here.
     ///
-    /// `response_sink` emits an acknowledgment. Returns `true` if accepted
-    /// for transmission, `false` if the framework is asking the
-    /// implementation to stop (cancellation, wire failure).
+    /// `update_handler` consumes each `trajectory_update` the implementation
+    /// emits. It returns `true` to continue or `false` to stop the stream
+    /// early. The `false` return is bivalent by side: on the CLIENT it is the
+    /// caller electing to halt (perhaps reacting to what it sees coming back),
+    /// which ends the call with `stream_outcome::k_halted_by_update_handler`;
+    /// on the SERVER it is the framework telling the implementation to stop
+    /// (cancellation, wire failure). If `update_handler` throws, the exception
+    /// is not swallowed -- it propagates out of the call on the client, and
+    /// converts to a terminal gRPC status on the server. It need not be
+    /// `noexcept`.
     ///
-    /// Returning normally indicates the trajectory was executed. Throwing
+    /// Returns `stream_outcome::k_completed` when the trajectory ran to its
+    /// natural end, or `k_halted_by_update_handler` when `update_handler`
+    /// stopped it. Throwing from `batch_source` or from the implementation
     /// converts to a terminal gRPC status surfaced to the client.
     ///
     /// THREADING:
     /// - On the SERVER (i.e., when invoked through ArmServer dispatch),
-    ///   `batch_source` and `response_sink` are both invoked on the gRPC
+    ///   `batch_source` and `update_handler` are both invoked on the gRPC
     ///   handler thread, and the implementation runs on that thread too. No
     ///   additional threads. The two callbacks are mutually serialized on
     ///   that thread: while the implementation is blocked in
-    ///   `batch_source`'s Read it cannot emit a `Response`, and vice versa.
-    ///   Response-emit latency on the wire is therefore bounded by the
+    ///   `batch_source`'s Read it cannot emit a `trajectory_update`, and vice
+    ///   versa. Update-emit latency on the wire is therefore bounded by the
     ///   client's send cadence.
-    ///   TODO: this mutual serialization must be lifted before `Response`
-    ///   grows non-empty fields. A background reader thread on the server
-    ///   is the obvious next step but has not been prototyped; whether the
-    ///   virtual signature can remain stable across that change is
-    ///   undetermined.
+    ///   TODO: this mutual serialization must be lifted before
+    ///   `trajectory_update` grows non-empty fields and updates need to flow
+    ///   at a cadence independent of the inbound batches. A background reader
+    ///   thread on the server is the obvious next step but has not been
+    ///   prototyped; whether the virtual signature can remain stable across
+    ///   that change is undetermined.
     /// - On the CLIENT (i.e., when invoked through ArmClient on a remote
     ///   arm), `batch_source` runs on the caller's thread and
-    ///   `response_sink` runs on a separate SDK-managed reader thread. The
+    ///   `update_handler` runs on a separate SDK-managed reader thread. The
     ///   two callbacks may execute concurrently. Each is called serially
     ///   with respect to itself (no concurrent calls to the same callback).
     ///   Implementations sharing mutable state between the two callbacks
     ///   must provide their own synchronization.
     ///
     /// @param batch_source Pull-source for the next batch of waypoints.
-    /// @param response_sink Sink for emitted acknowledgments.
+    /// @param update_handler Handler invoked for each update the implementation emits.
     /// @param extra Any additional arguments to the method.
-    virtual void move_through_joint_positions_streamed(
+    /// @return How the stream ended.
+    virtual stream_outcome move_through_joint_positions_streamed(
         std::function<boost::optional<std::vector<trajectory_point>>()> batch_source,
-        std::function<bool(trajectory_update)> response_sink,
+        std::function<bool(trajectory_update)> update_handler,
         const ProtoStruct& extra) = 0;
 
     /// @brief Reports if the arm is in motion.

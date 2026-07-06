@@ -53,15 +53,14 @@ void MockArm::move_through_joint_positions(const std::vector<std::vector<double>
     move_opts = opts;
 }
 
-void MockArm::move_through_joint_positions_streamed(
+sdk::Arm::stream_outcome MockArm::move_through_joint_positions_streamed(
     std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_source,
-    std::function<bool(Arm::trajectory_update)> response_sink,
+    std::function<bool(Arm::trajectory_update)> update_handler,
     const sdk::ProtoStruct&) {
     while (auto batch = batch_source()) {
         peek_streamed_batches.push_back(*batch);
-        if (!response_sink(Arm::trajectory_update{})) {
-            // Framework asked us to stop; leave without faulting.
-            return;
+        if (!update_handler(Arm::trajectory_update{})) {
+            return sdk::Arm::stream_outcome::k_halted_by_update_handler;
         }
         ++peek_streamed_ack_count;
     }
@@ -75,6 +74,8 @@ void MockArm::move_through_joint_positions_streamed(
             throw grpc::Status(grpc::StatusCode::FAILED_PRECONDITION,
                                "mock arm streamed grpc fault");
     }
+
+    return sdk::Arm::stream_outcome::k_completed;
 }
 
 void MockArm::stop(const sdk::ProtoStruct&) {

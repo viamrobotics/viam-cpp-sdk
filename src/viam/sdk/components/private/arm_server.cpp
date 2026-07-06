@@ -183,9 +183,9 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
             }
         };
 
-        // 4. response_sink: emit an empty Response (PoC) on the wire. Returns
-        // false on cancellation or wire failure so the impl knows to stop.
-        auto response_sink = [stream, context](Arm::trajectory_update) -> bool {
+        // 4. update_handler: write one update on the wire. Returns false on
+        // cancellation or wire failure so the impl knows to stop.
+        auto update_handler = [stream, context](Arm::trajectory_update) -> bool {
             if (context->IsCancelled()) {
                 return false;
             }
@@ -199,9 +199,11 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
         // ServiceHelper does for non-streaming methods.
         const GrpcContextObserver::Enable observer_enable{*context};
 
-        // 6. Call the virtual.
+        // 6. Call the virtual. Its stream_outcome is meaningful only to a
+        // direct caller of the impl; over the wire the client reconstructs its
+        // own outcome, so the dispatcher intentionally discards it here.
         arm->move_through_joint_positions_streamed(
-            std::move(batch_source), std::move(response_sink), extra);
+            std::move(batch_source), std::move(update_handler), extra);
     } catch (const ::grpc::Status& s) {
         return span_guard.commit(s);
     } catch (const std::exception& e) {

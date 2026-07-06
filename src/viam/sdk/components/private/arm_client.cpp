@@ -111,9 +111,9 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
         .invoke();
 }
 
-void ArmClient::move_through_joint_positions_streamed(
+Arm::stream_outcome ArmClient::move_through_joint_positions_streamed(
     std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_source,
-    std::function<bool(Arm::trajectory_update)> response_sink,
+    std::function<bool(Arm::trajectory_update)> update_handler,
     const ProtoStruct& extra) {
     // Use the SDK's ClientContext wrapper rather than a raw grpc::ClientContext.
     // The wrapper's channel-aware constructor attaches the authorization Bearer
@@ -134,13 +134,18 @@ void ArmClient::move_through_joint_positions_streamed(
         throw GRPCException(&status);
     }
 
-    // One reader thread: read responses, invoke response_sink, exit on close.
+    // One reader thread: read updates, invoke update_handler, exit on close.
+    // If update_handler returns false the caller is electing to halt; record it
+    // so teardown reports k_halted_by_update_handler rather than the CANCELLED
+    // status our own TryCancel will produce.
+    bool update_handler_halted = false;
     std::exception_ptr reader_exception;
     std::thread reader([&] {
         try {
             ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse pb;
             while (stream->Read(&pb)) {
-                if (!response_sink(Arm::trajectory_update{})) {
+                if (!update_handler(Arm::trajectory_update{})) {
+                    update_handler_halted = true;
                     ctx.try_cancel();
                     return;
                 }
@@ -203,9 +208,17 @@ void ArmClient::move_through_joint_positions_streamed(
         std::rethrow_exception(reader_exception);
     }
 
+    // A deliberate caller-driven stop is an outcome, not a fault: report it
+    // rather than throwing the CANCELLED status our own TryCancel produced.
+    if (update_handler_halted) {
+        return Arm::stream_outcome::k_halted_by_update_handler;
+    }
+
     if (!status.ok()) {
         throw GRPCException(&status);
     }
+
+    return Arm::stream_outcome::k_completed;
 }
 
 bool ArmClient::is_moving() {
