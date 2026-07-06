@@ -14,6 +14,7 @@
 #include <viam/sdk/common/client_helper.hpp>
 #include <viam/sdk/common/exception.hpp>
 #include <viam/sdk/common/kinematics.hpp>
+#include <viam/sdk/components/private/arm_trajectory_validation.hpp>
 
 namespace viam {
 namespace sdk {
@@ -153,6 +154,12 @@ void ArmClient::move_through_joint_positions_streamed(
     // Writer loop runs on the caller's thread.
     std::exception_ptr writer_exception;
     try {
+        // Fail fast on a malformed trajectory rather than shipping it. The
+        // server revalidates, since callers need not reach it through this
+        // client, but catching it here spares a wasted round trip. The
+        // validator persists across batches to enforce the stream-wide
+        // monotonic-time contract.
+        TrajectoryStreamValidator validator;
         while (auto batch = batch_source()) {
             // Avoid emitting empty batches on the wire.
             if (batch->empty()) {
@@ -161,6 +168,10 @@ void ArmClient::move_through_joint_positions_streamed(
             ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest msg;
             auto* trajectory_batch = msg.mutable_batch();
             for (const auto& point : *batch) {
+                if (const auto err = validator.check(point)) {
+                    throw Exception(ErrorCondition::k_general,
+                                    "move_through_joint_positions_streamed: " + *err);
+                }
                 *trajectory_batch->add_points() = to_proto(point);
             }
             if (!stream->Write(msg)) {

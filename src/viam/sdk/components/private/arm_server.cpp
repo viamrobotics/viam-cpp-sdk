@@ -5,6 +5,7 @@
 
 #include <viam/sdk/common/kinematics.hpp>
 #include <viam/sdk/common/private/service_helper.hpp>
+#include <viam/sdk/components/private/arm_trajectory_validation.hpp>
 #include <viam/sdk/rpc/private/grpc_context_observer.hpp>
 #include <viam/sdk/tracing/private/span_guard.hpp>
 
@@ -139,9 +140,13 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
         // 3. batch_source: pull the next batch off the stream. Empty batches
         // are tolerated as wire no-ops (the impl never sees them). A second
         // Init or a missing oneof is a protocol violation surfaced via a
-        // thrown grpc::Status so the client gets a clear INVALID_ARGUMENT.
-        auto batch_source = [stream,
-                             context]() -> boost::optional<std::vector<Arm::TrajectoryPoint>> {
+        // thrown grpc::Status so the client gets a clear INVALID_ARGUMENT. Each
+        // point is validated against the trajectory invariants as it arrives;
+        // the validator persists across batches so it can enforce the
+        // stream-wide monotonic-time contract. The server does not trust the
+        // client to have validated, so it checks regardless of who is calling.
+        auto batch_source = [stream, context, validator = TrajectoryStreamValidator{}]() mutable
+            -> boost::optional<std::vector<Arm::TrajectoryPoint>> {
             while (true) {
                 if (context->IsCancelled()) {
                     return boost::none;
@@ -164,7 +169,12 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
                 std::vector<Arm::TrajectoryPoint> batch;
                 batch.reserve(msg.batch().points_size());
                 for (const auto& pb_point : msg.batch().points()) {
-                    batch.push_back(from_proto(pb_point));
+                    auto point = from_proto(pb_point);
+                    if (const auto err = validator.check(point)) {
+                        throw ::grpc::Status(::grpc::StatusCode::INVALID_ARGUMENT,
+                                             "MoveThroughJointPositionsStreamed: " + *err);
+                    }
+                    batch.push_back(std::move(point));
                 }
                 if (batch.empty()) {
                     continue;
