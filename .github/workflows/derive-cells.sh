@@ -28,4 +28,5 @@ if [ -n "${GITHUB_OUTPUT:-}" ]; then
   echo "cells=$cells" >> "$GITHUB_OUTPUT"
 fi
 
+# Debug/log visibility
 echo "$cells" | jq .
