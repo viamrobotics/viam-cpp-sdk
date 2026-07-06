@@ -210,6 +210,9 @@ Arm::stream_outcome ArmClient::move_through_joint_positions_streamed(
 
     // A deliberate caller-driven stop is an outcome, not a fault: report it
     // rather than throwing the CANCELLED status our own TryCancel produced.
+    // This is checked after the exception rethrows above by design: if the
+    // caller both halted and something faulted, the fault is the more urgent
+    // signal and wins.
     if (update_handler_halted) {
         return Arm::stream_outcome::k_halted_by_update_handler;
     }

@@ -47,8 +47,8 @@ class MockArm : public sdk::Arm {
     std::vector<std::string> viam_client_metadata;
 
     // Streaming trajectory hooks. move_through_joint_positions_streamed records
-    // each batch it receives into peek_streamed_batches and counts the acks it
-    // emits in peek_streamed_ack_count. If streamed_fault is set, it throws
+    // each batch it receives into peek_streamed_batches and counts the updates
+    // it emits in peek_streamed_ack_count. If streamed_fault is set, it throws
     // after draining to exercise terminal-error propagation: runtime_error maps
     // to a std::exception (INTERNAL at the wire), grpc_status to a thrown
     // grpc::Status carried through verbatim.

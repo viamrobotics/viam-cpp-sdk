@@ -8,6 +8,7 @@
 #include <boost/variant/static_visitor.hpp>
 
 #include <stdexcept>
+#include <thread>
 
 #include <grpcpp/support/status.h>
 
@@ -126,11 +127,25 @@ RawRequest make_init(const std::string& name) {
 // Drives the bidi RPC with a raw service stub, bypassing ArmClient so we can
 // send sequences a typed client would never emit. Sends each request in order,
 // half-closes, drains responses, and returns the terminal status.
+//
+// Responses are drained on a separate thread while the requests are written.
+// This is not just tidiness: the server may write an update as soon as it
+// accepts a valid batch, and if we wrote every request before reading any
+// response, a server-side Write and our next Write could deadlock -- each side
+// blocked in Write waiting for the other to read. Interleaving reader and
+// writer mirrors what the real ArmClient does and keeps the wire draining.
 grpc::Status drive_raw_stream(const std::shared_ptr<grpc::Channel>& channel,
                               const std::vector<RawRequest>& requests) {
     auto stub = ::viam::component::arm::v1::ArmService::NewStub(channel);
     grpc::ClientContext ctx;
     auto stream = stub->MoveThroughJointPositionsStreamed(&ctx);
+
+    std::thread reader([&] {
+        RawResponse response;
+        while (stream->Read(&response)) {
+        }
+    });
+
     for (const auto& request : requests) {
         // A write may fail once the server has already errored and torn down;
         // that is expected for the malformed-input cases, so ignore it.
@@ -139,9 +154,8 @@ grpc::Status drive_raw_stream(const std::shared_ptr<grpc::Channel>& channel,
         }
     }
     stream->WritesDone();
-    RawResponse response;
-    while (stream->Read(&response)) {
-    }
+
+    reader.join();
     return stream->Finish();
 }
 
@@ -487,6 +501,11 @@ BOOST_AUTO_TEST_CASE(streamed_client_rejects_invalid_trajectories) {
         expect_local_reject({{make_point(0, {1.0}), make_point(0, {2.0})}});
         expect_local_reject({{make_point(0, {})}});
         expect_local_reject({{make_point(0, {1.0}, std::vector<double>{1.0, 2.0})}});
+        // Cross-batch: the second batch rewinds time relative to the first
+        // batch's last point. Exercises the validator's state carried across
+        // batch boundaries, not just within a single batch.
+        expect_local_reject(
+            {{make_point(0, {1.0}), make_point(10, {2.0})}, {make_point(10, {3.0})}});
     });
 }
 
@@ -547,8 +566,22 @@ BOOST_AUTO_TEST_CASE(streamed_server_validates_trajectory) {
         BOOST_CHECK(drive_raw_stream(channel, {make_init(mock->name()), bad_dims}).error_code() ==
                     grpc::StatusCode::INVALID_ARGUMENT);
 
-        // Nothing malformed ever reached the impl.
+        // None of the above malformed single points ever reached the impl.
         BOOST_CHECK(mock->peek_streamed_batches.empty());
+
+        // Cross-batch monotonicity: a valid first batch followed by a second
+        // batch that rewinds time. The server's validator carries state across
+        // batches, so this is rejected even though each batch is internally
+        // fine. The valid first batch does reach the impl before the second is
+        // rejected, so this case comes after the empty check above.
+        RawRequest batch_a;
+        *batch_a.mutable_batch()->add_points() = to_proto(make_point(0, {1.0}));
+        *batch_a.mutable_batch()->add_points() = to_proto(make_point(10, {2.0}));
+        RawRequest batch_b;
+        *batch_b.mutable_batch()->add_points() = to_proto(make_point(10, {3.0}));
+        BOOST_CHECK(
+            drive_raw_stream(channel, {make_init(mock->name()), batch_a, batch_b}).error_code() ==
+            grpc::StatusCode::INVALID_ARGUMENT);
     });
 }
 
