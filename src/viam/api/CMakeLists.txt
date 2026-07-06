@@ -23,6 +23,7 @@ endif()
 
 set(BUF_PROTO_COMPONENTS
   app/data
+  app/datasync
   app/mltraining
   app/packages
   app/v1
@@ -117,6 +118,11 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/app/data/v1/data.grpc.pb.cc
     ${PROTO_GEN_DIR}/app/data/v1/data.grpc.pb.h
     ${PROTO_GEN_DIR}/app/data/v1/data.pb.cc
+    ${PROTO_GEN_DIR}/app/data/v1/data.pb.h
+    ${PROTO_GEN_DIR}/app/datasync/v1/data_sync.grpc.pb.cc
+    ${PROTO_GEN_DIR}/app/datasync/v1/data_sync.grpc.pb.h
+    ${PROTO_GEN_DIR}/app/datasync/v1/data_sync.pb.cc
+    ${PROTO_GEN_DIR}/app/datasync/v1/data_sync.pb.h
     ${PROTO_GEN_DIR}/app/mltraining/v1/ml_training.pb.cc
     ${PROTO_GEN_DIR}/app/mltraining/v1/ml_training.pb.h
     ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
@@ -204,39 +210,43 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.h
     ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.cc
-    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.pb.h
-    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.pb.cc
-    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.grpc.pb.h
-    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.h
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.h
-    ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
-    ${PROTO_GEN_DIR}/google/api/httpbody.pb.h
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.h
+    ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
+    ${PROTO_GEN_DIR}/google/api/httpbody.pb.h
     ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/status.pb.h
+    ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
+    ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.h
+    ${PROTO_GEN_DIR}/module/v1/module.pb.cc
+    ${PROTO_GEN_DIR}/module/v1/module.pb.h
     ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.grpc.pb.cc
     ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.grpc.pb.h
     ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.pb.cc
     ${PROTO_GEN_DIR}/opentelemetry/proto/common/v1/common.pb.h
     ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.grpc.pb.cc
-    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.pb.cc
     ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.grpc.pb.h
+    ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.pb.cc
     ${PROTO_GEN_DIR}/opentelemetry/proto/resource/v1/resource.pb.h
     ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.grpc.pb.cc
     ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.grpc.pb.h
     ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.pb.cc
     ${PROTO_GEN_DIR}/opentelemetry/proto/trace/v1/trace.pb.h
-    ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
-    ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.h
-    ${PROTO_GEN_DIR}/module/v1/module.pb.cc
-    ${PROTO_GEN_DIR}/module/v1/module.pb.h
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.grpc.pb.cc
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.grpc.pb.h
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.pb.cc
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.pb.h
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.h
     ${PROTO_GEN_DIR}/robot/v1/robot.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.pb.h
+    ${PROTO_GEN_DIR}/service/datamanager/v1/data_manager.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/datamanager/v1/data_manager.grpc.pb.h
+    ${PROTO_GEN_DIR}/service/datamanager/v1/data_manager.pb.cc
+    ${PROTO_GEN_DIR}/service/datamanager/v1/data_manager.pb.h
     ${PROTO_GEN_DIR}/service/discovery/v1/discovery.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/discovery/v1/discovery.grpc.pb.h
     ${PROTO_GEN_DIR}/service/discovery/v1/discovery.pb.cc
@@ -313,8 +323,9 @@ add_library(viam-cpp-sdk::viamapi ALIAS viamapi)
 target_sources(viamapi
   PRIVATE
     ${PROTO_GEN_DIR}/app/data/v1/data.grpc.pb.cc
-    ${PROTO_GEN_DIR}/app/data/v1/data.grpc.pb.h
     ${PROTO_GEN_DIR}/app/data/v1/data.pb.cc
+    ${PROTO_GEN_DIR}/app/datasync/v1/data_sync.grpc.pb.cc
+    ${PROTO_GEN_DIR}/app/datasync/v1/data_sync.pb.cc
     ${PROTO_GEN_DIR}/app/mltraining/v1/ml_training.pb.cc
     ${PROTO_GEN_DIR}/app/packages/v1/packages.pb.cc
     ${PROTO_GEN_DIR}/app/v1/app.grpc.pb.cc
@@ -359,16 +370,18 @@ target_sources(viamapi
     ${PROTO_GEN_DIR}/component/servo/v1/servo.pb.cc
     ${PROTO_GEN_DIR}/component/switch/v1/switch.grpc.pb.cc
     ${PROTO_GEN_DIR}/component/switch/v1/switch.pb.cc
-    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.grpc.pb.cc
-    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.pb.cc
     ${PROTO_GEN_DIR}/google/api/annotations.pb.cc
     ${PROTO_GEN_DIR}/google/api/http.pb.cc
     ${PROTO_GEN_DIR}/google/api/httpbody.pb.cc
     ${PROTO_GEN_DIR}/google/rpc/status.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.grpc.pb.cc
     ${PROTO_GEN_DIR}/module/v1/module.pb.cc
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.grpc.pb.cc
+    ${PROTO_GEN_DIR}/proto/rpc/v1/auth.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.grpc.pb.cc
     ${PROTO_GEN_DIR}/robot/v1/robot.pb.cc
+    ${PROTO_GEN_DIR}/service/datamanager/v1/data_manager.grpc.pb.cc
+    ${PROTO_GEN_DIR}/service/datamanager/v1/data_manager.pb.cc
     ${PROTO_GEN_DIR}/service/discovery/v1/discovery.grpc.pb.cc
     ${PROTO_GEN_DIR}/service/discovery/v1/discovery.pb.cc
     ${PROTO_GEN_DIR}/service/generic/v1/generic.grpc.pb.cc
@@ -387,6 +400,10 @@ target_sources(viamapi
     BASE_DIRS
       ${PROTO_GEN_DIR}/../..
     FILES
+      ${PROTO_GEN_DIR}/../../viam/api/app/data/v1/data.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/app/data/v1/data.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/app/datasync/v1/data_sync.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/app/datasync/v1/data_sync.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/mltraining/v1/ml_training.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/packages/v1/packages.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/app/v1/app.grpc.pb.h
@@ -431,17 +448,18 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/component/servo/v1/servo.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/switch/v1/switch.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/component/switch/v1/switch.pb.h
-      ${PROTO_GEN_DIR}/../../viam/api/proto/rpc/v1/auth.grpc.pb.h
-      ${PROTO_GEN_DIR}/../../viam/api/proto/rpc/v1/auth.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/annotations.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/http.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/api/httpbody.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/google/rpc/status.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/module/v1/module.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/module/v1/module.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/proto/rpc/v1/auth.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/proto/rpc/v1/auth.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/robot/v1/robot.pb.h
-      ${PROTO_GEN_DIR}/../../viam/api/tagger/v1/tagger.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/datamanager/v1/data_manager.grpc.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/service/datamanager/v1/data_manager.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/discovery/v1/discovery.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/discovery/v1/discovery.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/generic/v1/generic.grpc.pb.h
@@ -454,6 +472,7 @@ target_sources(viamapi
       ${PROTO_GEN_DIR}/../../viam/api/service/navigation/v1/navigation.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/slam/v1/slam.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/service/slam/v1/slam.pb.h
+      ${PROTO_GEN_DIR}/../../viam/api/tagger/v1/tagger.grpc.pb.h
       ${PROTO_GEN_DIR}/../../viam/api/tagger/v1/tagger.pb.h
 )
 
