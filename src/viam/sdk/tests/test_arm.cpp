@@ -54,15 +54,15 @@ namespace {
 
 // Builds a trajectory point. Passing velocities engages the constraints;
 // passing accelerations too engages those within.
-Arm::TrajectoryPoint make_point(std::int64_t time_us,
+Arm::trajectory_point make_point(std::int64_t time_us,
                                 std::vector<double> positions,
                                 boost::optional<std::vector<double>> velocities = boost::none,
                                 boost::optional<std::vector<double>> accelerations = boost::none) {
-    Arm::TrajectoryPoint point;
+    Arm::trajectory_point point;
     point.time = std::chrono::microseconds(time_us);
     point.positions = std::move(positions);
     if (velocities) {
-        Arm::TrajectoryPoint::KinematicConstraints constraints;
+        Arm::trajectory_point::kinematic_constraints constraints;
         constraints.velocities = std::move(*velocities);
         constraints.accelerations = std::move(accelerations);
         point.constraints = std::move(constraints);
@@ -70,7 +70,7 @@ Arm::TrajectoryPoint make_point(std::int64_t time_us,
     return point;
 }
 
-void check_points_equal(const Arm::TrajectoryPoint& got, const Arm::TrajectoryPoint& want) {
+void check_points_equal(const Arm::trajectory_point& got, const Arm::trajectory_point& want) {
     BOOST_CHECK(got.time == want.time);
     BOOST_CHECK_EQUAL_COLLECTIONS(
         got.positions.begin(), got.positions.end(), want.positions.begin(), want.positions.end());
@@ -95,11 +95,11 @@ void check_points_equal(const Arm::TrajectoryPoint& got, const Arm::TrajectoryPo
 // A pull-source over a fixed list of batches, suitable as a batch_source. Each
 // call yields the next batch, then boost::none. The batches are held by shared
 // ownership so callers may inspect them after the stream completes.
-std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_pump(
-    std::shared_ptr<std::vector<std::vector<Arm::TrajectoryPoint>>> batches) {
+std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_pump(
+    std::shared_ptr<std::vector<std::vector<Arm::trajectory_point>>> batches) {
     auto index = std::make_shared<std::size_t>(0);
     return [batches = std::move(batches),
-            index]() -> boost::optional<std::vector<Arm::TrajectoryPoint>> {
+            index]() -> boost::optional<std::vector<Arm::trajectory_point>> {
         if (*index >= batches->size()) {
             return boost::none;
         }
@@ -107,7 +107,7 @@ std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_pump(
     };
 }
 
-using Batches = std::vector<std::vector<Arm::TrajectoryPoint>>;
+using Batches = std::vector<std::vector<Arm::trajectory_point>>;
 
 using RawRequest = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedRequest;
 using RawResponse = ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse;
@@ -358,7 +358,7 @@ BOOST_AUTO_TEST_CASE(streamed_happy_path) {
 
         int client_acks = 0;
         client.move_through_joint_positions_streamed(batch_pump(batches),
-                                                     [&](Arm::Response) {
+                                                     [&](Arm::trajectory_update) {
                                                          ++client_acks;
                                                          return true;
                                                      },
@@ -387,7 +387,7 @@ BOOST_AUTO_TEST_CASE(streamed_empty_batches_filtered) {
 
         int client_acks = 0;
         client.move_through_joint_positions_streamed(batch_pump(batches),
-                                                     [&](Arm::Response) {
+                                                     [&](Arm::trajectory_update) {
                                                          ++client_acks;
                                                          return true;
                                                      },
@@ -405,7 +405,7 @@ BOOST_AUTO_TEST_CASE(streamed_impl_runtime_error_propagates) {
     client_to_mock_pipeline<Arm>(mock, [&](Arm& client) {
         auto batches = std::make_shared<Batches>(Batches{{make_point(0, {1.0})}});
         BOOST_CHECK_THROW(client.move_through_joint_positions_streamed(
-                              batch_pump(batches), [](Arm::Response) { return true; }, {}),
+                              batch_pump(batches), [](Arm::trajectory_update) { return true; }, {}),
                           GRPCException);
     });
 }
@@ -417,7 +417,7 @@ BOOST_AUTO_TEST_CASE(streamed_impl_grpc_status_propagates) {
         auto batches = std::make_shared<Batches>(Batches{{make_point(0, {1.0})}});
         try {
             client.move_through_joint_positions_streamed(
-                batch_pump(batches), [](Arm::Response) { return true; }, {});
+                batch_pump(batches), [](Arm::trajectory_update) { return true; }, {});
             BOOST_FAIL("expected a GRPCException carrying the impl's status");
         } catch (const GRPCException& e) {
             BOOST_CHECK(e.status()->error_code() == grpc::StatusCode::FAILED_PRECONDITION);
@@ -434,7 +434,7 @@ BOOST_AUTO_TEST_CASE(streamed_client_rejects_invalid_trajectories) {
             auto batches = std::make_shared<Batches>(std::move(bad));
             try {
                 client.move_through_joint_positions_streamed(
-                    batch_pump(batches), [](Arm::Response) { return true; }, {});
+                    batch_pump(batches), [](Arm::trajectory_update) { return true; }, {});
                 BOOST_FAIL("expected a local validation exception");
             } catch (const GRPCException&) {
                 BOOST_FAIL("expected a local validation Exception, not a GRPCException");

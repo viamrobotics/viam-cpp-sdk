@@ -146,7 +146,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
         // stream-wide monotonic-time contract. The server does not trust the
         // client to have validated, so it checks regardless of who is calling.
         auto batch_source = [stream, context, validator = TrajectoryStreamValidator{}]() mutable
-            -> boost::optional<std::vector<Arm::TrajectoryPoint>> {
+            -> boost::optional<std::vector<Arm::trajectory_point>> {
             while (true) {
                 if (context->IsCancelled()) {
                     return boost::none;
@@ -166,7 +166,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
                         ::grpc::StatusCode::INVALID_ARGUMENT,
                         "MoveThroughJointPositionsStreamed: expected TrajectoryBatch");
                 }
-                std::vector<Arm::TrajectoryPoint> batch;
+                std::vector<Arm::trajectory_point> batch;
                 batch.reserve(msg.batch().points_size());
                 for (const auto& pb_point : msg.batch().points()) {
                     auto point = from_proto(pb_point);
@@ -185,7 +185,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
 
         // 4. response_sink: emit an empty Response (PoC) on the wire. Returns
         // false on cancellation or wire failure so the impl knows to stop.
-        auto response_sink = [stream, context](Arm::Response) -> bool {
+        auto response_sink = [stream, context](Arm::trajectory_update) -> bool {
             if (context->IsCancelled()) {
                 return false;
             }

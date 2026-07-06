@@ -22,8 +22,8 @@ Arm::Arm(std::string name) : Component(std::move(name)) {}
 
 namespace proto_convert_details {
 
-void to_proto_impl<Arm::TrajectoryPoint>::operator()(
-    const Arm::TrajectoryPoint& self, viam::component::arm::v1::TrajectoryPoint* proto) const {
+void to_proto_impl<Arm::trajectory_point>::operator()(
+    const Arm::trajectory_point& self, viam::component::arm::v1::TrajectoryPoint* proto) const {
     *proto->mutable_time() = to_proto(self.time);
     *proto->mutable_positions()->mutable_values() = {self.positions.begin(), self.positions.end()};
     if (self.constraints) {
@@ -37,13 +37,13 @@ void to_proto_impl<Arm::TrajectoryPoint>::operator()(
     }
 }
 
-Arm::TrajectoryPoint from_proto_impl<viam::component::arm::v1::TrajectoryPoint>::operator()(
+Arm::trajectory_point from_proto_impl<viam::component::arm::v1::TrajectoryPoint>::operator()(
     const viam::component::arm::v1::TrajectoryPoint* proto) const {
-    Arm::TrajectoryPoint result;
+    Arm::trajectory_point result;
     result.time = from_proto(proto->time());
     result.positions.assign(proto->positions().values().begin(), proto->positions().values().end());
     if (proto->has_constraints()) {
-        Arm::TrajectoryPoint::KinematicConstraints kc;
+        Arm::trajectory_point::kinematic_constraints kc;
         const auto& pb_kc = proto->constraints();
         kc.velocities.assign(pb_kc.velocities().values().begin(),
                              pb_kc.velocities().values().end());

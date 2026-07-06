@@ -33,8 +33,8 @@ class ArmClient : public Arm {
                                       const Arm::MoveOptions& options,
                                       const ProtoStruct& extra) override;
     void move_through_joint_positions_streamed(
-        std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_source,
-        std::function<bool(Arm::Response)> response_sink,
+        std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_source,
+        std::function<bool(Arm::trajectory_update)> response_sink,
         const ProtoStruct& extra) override;
     bool is_moving() override;
     ProtoStruct get_status() override;

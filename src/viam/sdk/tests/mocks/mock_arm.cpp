@@ -54,12 +54,12 @@ void MockArm::move_through_joint_positions(const std::vector<std::vector<double>
 }
 
 void MockArm::move_through_joint_positions_streamed(
-    std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_source,
-    std::function<bool(Arm::Response)> response_sink,
+    std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_source,
+    std::function<bool(Arm::trajectory_update)> response_sink,
     const sdk::ProtoStruct&) {
     while (auto batch = batch_source()) {
         peek_streamed_batches.push_back(*batch);
-        if (!response_sink(Arm::Response{})) {
+        if (!response_sink(Arm::trajectory_update{})) {
             // Framework asked us to stop; leave without faulting.
             return;
         }

@@ -35,7 +35,7 @@ class TrajectoryStreamValidator {
    public:
     // Returns a description of the first invariant the point violates, or
     // boost::none if the point is valid in sequence.
-    boost::optional<std::string> check(const Arm::TrajectoryPoint& point) {
+    boost::optional<std::string> check(const Arm::trajectory_point& point) {
         if (!seen_first_) {
             if (point.time != std::chrono::microseconds::zero()) {
                 return std::string("first trajectory point must have time zero");

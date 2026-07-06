@@ -112,8 +112,8 @@ void ArmClient::move_through_joint_positions(const std::vector<std::vector<doubl
 }
 
 void ArmClient::move_through_joint_positions_streamed(
-    std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_source,
-    std::function<bool(Arm::Response)> response_sink,
+    std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_source,
+    std::function<bool(Arm::trajectory_update)> response_sink,
     const ProtoStruct& extra) {
     // Use the SDK's ClientContext wrapper rather than a raw grpc::ClientContext.
     // The wrapper's channel-aware constructor attaches the authorization Bearer
@@ -140,7 +140,7 @@ void ArmClient::move_through_joint_positions_streamed(
         try {
             ::viam::component::arm::v1::MoveThroughJointPositionsStreamedResponse pb;
             while (stream->Read(&pb)) {
-                if (!response_sink(Arm::Response{})) {
+                if (!response_sink(Arm::trajectory_update{})) {
                     ctx.try_cancel();
                     return;
                 }

@@ -124,14 +124,14 @@ class Arm : public Component, public Stoppable {
     ///
     /// The first point of a stream must have @ref time equal to zero; subsequent
     /// points must be strictly increasing in time across the entire stream.
-    struct TrajectoryPoint {
+    struct trajectory_point {
         /// @brief Target kinematic constraints at a waypoint.
         ///
         /// `velocities` is required whenever this struct is present;
         /// `accelerations` is independently optional. The
         /// accelerations-require-velocities invariant is enforced by the type
         /// system, not just documentation.
-        struct KinematicConstraints {
+        struct kinematic_constraints {
             std::vector<double> velocities;
             boost::optional<std::vector<double>> accelerations;
         };
@@ -144,19 +144,19 @@ class Arm : public Component, public Stoppable {
         /// are not preserved on the wire.
         std::chrono::microseconds time;
         std::vector<double> positions;
-        boost::optional<KinematicConstraints> constraints;
+        boost::optional<kinematic_constraints> constraints;
     };
 
     /// @brief Acknowledgment emitted by the implementation per accepted batch
     /// of trajectory points. Empty for the PoC; will grow status fields.
-    struct Response {};
+    struct trajectory_update {};
 
     /// @brief Execute a stream of trajectory points in order.
     /// @param batch_source Pull-source for the next batch of waypoints.
     /// @param response_sink Sink for emitted acknowledgments.
     inline void move_through_joint_positions_streamed(
-        std::function<boost::optional<std::vector<TrajectoryPoint>>()> batch_source,
-        std::function<bool(Response)> response_sink) {
+        std::function<boost::optional<std::vector<trajectory_point>>()> batch_source,
+        std::function<bool(trajectory_update)> response_sink) {
         return move_through_joint_positions_streamed(
             std::move(batch_source), std::move(response_sink), {});
     }
@@ -200,8 +200,8 @@ class Arm : public Component, public Stoppable {
     /// @param response_sink Sink for emitted acknowledgments.
     /// @param extra Any additional arguments to the method.
     virtual void move_through_joint_positions_streamed(
-        std::function<boost::optional<std::vector<TrajectoryPoint>>()> batch_source,
-        std::function<bool(Response)> response_sink,
+        std::function<boost::optional<std::vector<trajectory_point>>()> batch_source,
+        std::function<bool(trajectory_update)> response_sink,
         const ProtoStruct& extra) = 0;
 
     /// @brief Reports if the arm is in motion.
@@ -261,13 +261,13 @@ struct API::traits<Arm> {
 namespace proto_convert_details {
 
 template <>
-struct to_proto_impl<Arm::TrajectoryPoint> {
-    void operator()(const Arm::TrajectoryPoint&, viam::component::arm::v1::TrajectoryPoint*) const;
+struct to_proto_impl<Arm::trajectory_point> {
+    void operator()(const Arm::trajectory_point&, viam::component::arm::v1::TrajectoryPoint*) const;
 };
 
 template <>
 struct from_proto_impl<viam::component::arm::v1::TrajectoryPoint> {
-    Arm::TrajectoryPoint operator()(const viam::component::arm::v1::TrajectoryPoint*) const;
+    Arm::trajectory_point operator()(const viam::component::arm::v1::TrajectoryPoint*) const;
 };
 
 }  // namespace proto_convert_details

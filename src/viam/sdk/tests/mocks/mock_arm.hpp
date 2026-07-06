@@ -27,8 +27,8 @@ class MockArm : public sdk::Arm {
                                       const Arm::MoveOptions& opts,
                                       const sdk::ProtoStruct&) override;
     void move_through_joint_positions_streamed(
-        std::function<boost::optional<std::vector<Arm::TrajectoryPoint>>()> batch_source,
-        std::function<bool(Arm::Response)> response_sink,
+        std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_source,
+        std::function<bool(Arm::trajectory_update)> response_sink,
         const sdk::ProtoStruct&) override;
 
     void stop(const sdk::ProtoStruct&) override;
@@ -54,7 +54,7 @@ class MockArm : public sdk::Arm {
     // grpc::Status carried through verbatim.
     enum class StreamFault : std::uint8_t { none, runtime_error, grpc_status };
     StreamFault streamed_fault = StreamFault::none;
-    std::vector<std::vector<sdk::Arm::TrajectoryPoint>> peek_streamed_batches;
+    std::vector<std::vector<sdk::Arm::trajectory_point>> peek_streamed_batches;
     int peek_streamed_ack_count = 0;
 };
 
