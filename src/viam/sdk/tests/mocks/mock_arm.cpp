@@ -54,8 +54,8 @@ void MockArm::move_through_joint_positions(const std::vector<std::vector<double>
 }
 
 sdk::Arm::stream_outcome MockArm::move_through_joint_positions_streamed(
-    std::function<boost::optional<std::vector<Arm::trajectory_point>>()> batch_source,
-    std::function<bool(Arm::trajectory_update)> update_handler,
+    const std::function<boost::optional<std::vector<Arm::trajectory_point>>()>& batch_source,
+    const std::function<bool(Arm::trajectory_update)>& update_handler,
     const sdk::ProtoStruct&) {
     while (auto batch = batch_source()) {
         peek_streamed_batches.push_back(*batch);

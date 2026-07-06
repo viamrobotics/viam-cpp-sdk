@@ -202,8 +202,7 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
         // 6. Call the virtual. Its stream_outcome is meaningful only to a
         // direct caller of the impl; over the wire the client reconstructs its
         // own outcome, so the dispatcher intentionally discards it here.
-        arm->move_through_joint_positions_streamed(
-            std::move(batch_source), std::move(update_handler), extra);
+        arm->move_through_joint_positions_streamed(batch_source, update_handler, extra);
     } catch (const ::grpc::Status& s) {
         return span_guard.commit(s);
     } catch (const std::exception& e) {

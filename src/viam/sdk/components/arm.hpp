@@ -168,10 +168,9 @@ class Arm : public Component, public Stoppable {
     /// @param update_handler Handler invoked for each update the implementation emits.
     /// @return How the stream ended.
     inline stream_outcome move_through_joint_positions_streamed(
-        std::function<boost::optional<std::vector<trajectory_point>>()> batch_source,
-        std::function<bool(trajectory_update)> update_handler) {
-        return move_through_joint_positions_streamed(
-            std::move(batch_source), std::move(update_handler), {});
+        const std::function<boost::optional<std::vector<trajectory_point>>()>& batch_source,
+        const std::function<bool(trajectory_update)>& update_handler) {
+        return move_through_joint_positions_streamed(batch_source, update_handler, {});
     }
 
     /// @brief Execute a stream of trajectory points in order.
@@ -190,6 +189,9 @@ class Arm : public Component, public Stoppable {
     /// is not swallowed -- it propagates out of the call on the client, and
     /// converts to a terminal gRPC status on the server. It need not be
     /// `noexcept`.
+    ///
+    /// Both callbacks are borrowed only for the duration of the call: the
+    /// implementation invokes them but must not retain them past its return.
     ///
     /// Returns `stream_outcome::k_completed` when the trajectory ran to its
     /// natural end, or `k_halted_by_update_handler` when `update_handler`
@@ -246,8 +248,8 @@ class Arm : public Component, public Stoppable {
     /// @param extra Any additional arguments to the method.
     /// @return How the stream ended.
     virtual stream_outcome move_through_joint_positions_streamed(
-        std::function<boost::optional<std::vector<trajectory_point>>()> batch_source,
-        std::function<bool(trajectory_update)> update_handler,
+        const std::function<boost::optional<std::vector<trajectory_point>>()>& batch_source,
+        const std::function<bool(trajectory_update)>& update_handler,
         const ProtoStruct& extra) = 0;
 
     /// @brief Reports if the arm is in motion.
