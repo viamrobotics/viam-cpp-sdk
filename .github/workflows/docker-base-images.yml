@@ -101,18 +101,17 @@ jobs:
         run: |
           digest=$(jq -r '.["${{ matrix.cell.target }}"]."containerimage.digest"' metadata.json)
           test -n "$digest" && test "$digest" != null
-          mkdir -p /tmp/digests
-          # Filename = sanitized digest; content unused, name carries the data.
-          echo -n > "/tmp/digests/${digest#sha256:}"
-          echo "$digest"
+          mkdir -p "$RUNNER_TEMP/digests"
+          # Filename = arch (meaningful); digest lives in the file content.
+          echo "$digest" > "$RUNNER_TEMP/digests/${{ matrix.arch }}"
 
       - name: Upload digest
         if: env.PUSH == 'true'
         uses: actions/upload-artifact@v4
         with:
-          # One artifact per cell; arch jobs append their digest into it.
+          # One artifact per (cell, arch); merge job fans them back in by pattern.
           name: digest-${{ matrix.cell.target }}-${{ matrix.arch }}
-          path: /tmp/digests/*
+          path: ${{ runner.temp }}/digests/*
           retention-days: 1
           if-no-files-found: error
 
@@ -142,16 +141,16 @@ jobs:
       - name: Collect digests for ${{ matrix.cell.target }}
         uses: actions/download-artifact@v4
         with:
-          path: /tmp/digests
+          path: ${{ runner.temp }}/digests
           pattern: digest-${{ matrix.cell.target }}-*
-          # Put everything in `path` rather than separate subdirs
+          # Flatten every arch's artifact into `path` rather than separate subdirs.
           merge-multiple: true
 
       - name: Create multi-arch manifest
         run: |
-          # Stitch each arch's digest into one manifest list under the cell tag.
+          # Stitch each arch's digest (one per file) into one manifest list.
           docker buildx imagetools create -t "${{ matrix.cell.tag }}" \
-            $(for d in /tmp/digests/*; do printf '%s@sha256:%s ' "${{ matrix.cell.image }}" "$(basename "$d")"; done)
+            $(for f in "$RUNNER_TEMP"/digests/*; do printf '%s@%s ' "${{ matrix.cell.image }}" "$(cat "$f")"; done)
 
       - name: Inspect
         run: docker buildx imagetools inspect "${{ matrix.cell.tag }}"
