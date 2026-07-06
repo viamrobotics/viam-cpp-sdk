@@ -1,6 +1,5 @@
 #include <viam/sdk/components/arm.hpp>
 
-#include <chrono>
 #include <utility>
 #include <vector>
 
@@ -25,8 +24,7 @@ namespace proto_convert_details {
 
 void to_proto_impl<Arm::TrajectoryPoint>::operator()(
     const Arm::TrajectoryPoint& self, viam::component::arm::v1::TrajectoryPoint* proto) const {
-    *proto->mutable_time() =
-        to_proto(std::chrono::duration_cast<std::chrono::microseconds>(self.time));
+    *proto->mutable_time() = to_proto(self.time);
     *proto->mutable_positions()->mutable_values() = {self.positions.begin(), self.positions.end()};
     if (self.constraints) {
         auto* pb_kc = proto->mutable_constraints();
@@ -42,8 +40,7 @@ void to_proto_impl<Arm::TrajectoryPoint>::operator()(
 Arm::TrajectoryPoint from_proto_impl<viam::component::arm::v1::TrajectoryPoint>::operator()(
     const viam::component::arm::v1::TrajectoryPoint* proto) const {
     Arm::TrajectoryPoint result;
-    const auto us = from_proto(proto->time());
-    result.time = std::chrono::duration_cast<std::chrono::duration<double>>(us);
+    result.time = from_proto(proto->time());
     result.positions.assign(proto->positions().values().begin(), proto->positions().values().end());
     if (proto->has_constraints()) {
         Arm::TrajectoryPoint::KinematicConstraints kc;

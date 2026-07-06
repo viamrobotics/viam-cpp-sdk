@@ -136,11 +136,13 @@ class Arm : public Component, public Stoppable {
             boost::optional<std::vector<double>> accelerations;
         };
 
-        // TODO: revisit time representation before this type ships beyond the
-        // PoC. duration<double> is convenient but unusual for this SDK; an
-        // integer chrono type (e.g. nanoseconds) would match SDK convention
-        // and the underlying google.protobuf.Duration precision better.
-        std::chrono::duration<double> time;
+        /// @brief Offset of this waypoint from the start of the trajectory.
+        ///
+        /// Must be zero at the first point of a stream and strictly increasing
+        /// thereafter. Microsecond resolution matches the SDK's
+        /// `google.protobuf.Duration` conversion; sub-microsecond distinctions
+        /// are not preserved on the wire.
+        std::chrono::microseconds time;
         std::vector<double> positions;
         boost::optional<KinematicConstraints> constraints;
     };
