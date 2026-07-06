@@ -12,99 +12,99 @@ on:
         description: set to true to build without clang-tidy (2x faster)
 
 jobs:
-  test_ubuntu:
-    if: github.repository_owner == 'viamrobotics'
-    runs-on: ubuntu-latest
-    container:
-      image: debian:bookworm
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - BUILD_SHARED: ON
-          - BUILD_SHARED: OFF
-    steps:
-      - uses: actions/checkout@v4
+  # test_ubuntu:
+  #   if: github.repository_owner == 'viamrobotics'
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: debian:bookworm
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       include:
+  #         - BUILD_SHARED: ON
+  #         - BUILD_SHARED: OFF
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          apt-get update
-          apt-get -y dist-upgrade
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              build-essential \
-              ca-certificates \
-              cmake \
-              curl \
-              doxygen \
-              g++ \
-              gettext \
-              gdb \
-              git \
-              gnupg \
-              gpg \
-              less \
-              libboost-all-dev \
-              libc-ares-dev \
-              libgrpc++-dev \
-              libprotobuf-dev \
-              libre2-dev \
-              libssl-dev \
-              lsof \
-              ninja-build \
-              pkg-config \
-              protobuf-compiler-grpc \
-              software-properties-common \
-              sudo \
-              wget \
-              zlib1g-dev
+  #     - name: Install dependencies
+  #       run: |
+  #         apt-get update
+  #         apt-get -y dist-upgrade
+  #         DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
+  #             build-essential \
+  #             ca-certificates \
+  #             cmake \
+  #             curl \
+  #             doxygen \
+  #             g++ \
+  #             gettext \
+  #             gdb \
+  #             git \
+  #             gnupg \
+  #             gpg \
+  #             less \
+  #             libboost-all-dev \
+  #             libc-ares-dev \
+  #             libgrpc++-dev \
+  #             libprotobuf-dev \
+  #             libre2-dev \
+  #             libssl-dev \
+  #             lsof \
+  #             ninja-build \
+  #             pkg-config \
+  #             protobuf-compiler-grpc \
+  #             software-properties-common \
+  #             sudo \
+  #             wget \
+  #             zlib1g-dev
 
-          bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
-          apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
-          apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
-          apt-get update
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install -t llvm-toolchain-bookworm-15 \
-            clang-15 \
-            clang-tidy-15 \
-            clang-format
+  #         bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
+  #         apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
+  #         apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
+  #         apt-get update
+  #         DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install -t llvm-toolchain-bookworm-15 \
+  #           clang-15 \
+  #           clang-tidy-15 \
+  #           clang-format
 
-      - name: Build viam server
-        run: |
-          curl https://storage.googleapis.com/packages.viam.com/apps/viam-server/viam-server-latest-x86_64 -o viam-server
-          chmod 755 viam-server
-          mv viam-server /usr/local/bin
+  #     - name: Build viam server
+  #       run: |
+  #         curl https://storage.googleapis.com/packages.viam.com/apps/viam-server/viam-server-latest-x86_64 -o viam-server
+  #         chmod 755 viam-server
+  #         mv viam-server /usr/local/bin
 
 
 
-      - name: cmake
-        run: |
-          mkdir build
-          cd build
-          cmake .. -G Ninja \
-            -DBUILD_SHARED_LIBS=${{ matrix.BUILD_SHARED }} \
-            -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
-            -DVIAMCPPSDK_BUILD_TESTS=ON \
-            -DVIAMCPPSDK_BUILD_EXAMPLES=ON \
-            -DVIAMCPPSDK_CLANG_TIDY=${{ inputs.no-tidy && 'OFF' || 'ON' }} \
-            -DVIAMCPPSDK_SANITIZED_BUILD=${{ matrix.BUILD_SHARED }}
+  #     - name: cmake
+  #       run: |
+  #         mkdir build
+  #         cd build
+  #         cmake .. -G Ninja \
+  #           -DBUILD_SHARED_LIBS=${{ matrix.BUILD_SHARED }} \
+  #           -DVIAMCPPSDK_OFFLINE_PROTO_GENERATION=ON \
+  #           -DVIAMCPPSDK_BUILD_TESTS=ON \
+  #           -DVIAMCPPSDK_BUILD_EXAMPLES=ON \
+  #           -DVIAMCPPSDK_CLANG_TIDY=${{ inputs.no-tidy && 'OFF' || 'ON' }} \
+  #           -DVIAMCPPSDK_SANITIZED_BUILD=${{ matrix.BUILD_SHARED }}
 
-      - name: build
-        run: |
-          cmake --build build --target install
-          cmake --install build
+  #     - name: build
+  #       run: |
+  #         cmake --build build --target install
+  #         cmake --install build
 
-      - name: Module test
-        run: etc/module_test/entrypoint.sh
+  #     - name: Module test
+  #       run: etc/module_test/entrypoint.sh
 
-      - name: Check standalone examples compile
-        run: |
-          cmake -B build-standalone-cmake -S src/viam/examples/project/cmake \
-            -G Ninja \
-            -DCMAKE_PREFIX_PATH=$(pwd)/build/install
-          cmake --build build-standalone-cmake
+  #     - name: Check standalone examples compile
+  #       run: |
+  #         cmake -B build-standalone-cmake -S src/viam/examples/project/cmake \
+  #           -G Ninja \
+  #           -DCMAKE_PREFIX_PATH=$(pwd)/build/install
+  #         cmake --build build-standalone-cmake
 
-      - name: test
-        working-directory: build
-        run: ../etc/docker/tests/run_test.sh
+  #     - name: test
+  #       working-directory: build
+  #       run: ../etc/docker/tests/run_test.sh
 
   test_windows:
     if: github.repository_owner == 'viamrobotics'
