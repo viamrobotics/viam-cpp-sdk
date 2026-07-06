@@ -47,19 +47,7 @@ jobs:
       - id: gen
         name: Derive cell matrix from bake --print
         working-directory: etc/docker
-        run: |
-          # Each system-* target -> { target, tag, image }. `tag` is the published
-          # multi-arch reference the merge job creates; `image` is that tag with
-          # the version stripped (the per-cell repo digests are pushed under).
-          cells=$(docker buildx bake -f docker-bake.hcl system --print \
-            | jq -c '[
-                .target
-                | to_entries[]
-                | select(.key | startswith("system-"))
-                | { target: .key, tag: (.value.tags[0]), image: (.value.tags[0] | split(":")[0]) }
-              ]')
-          echo "cells=$cells" >> "$GITHUB_OUTPUT"
-          echo "$cells" | jq .
+        run: ../../.github/workflows/derive-cells.sh docker-bake.hcl
 
   # ---------------------------------------------------------------------------
   # One job per (cell, arch). Native runner per arch, build a single named bake
