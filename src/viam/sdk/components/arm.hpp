@@ -206,11 +206,10 @@ class Arm : public Component, public Stoppable {
     ///   versa. Update-emit latency on the wire is therefore bounded by the
     ///   client's send cadence.
     ///   TODO: this mutual serialization must be lifted before
-    ///   `trajectory_update` grows non-empty fields and updates need to flow
-    ///   at a cadence independent of the inbound batches. A background reader
-    ///   thread on the server is the obvious next step but has not been
-    ///   prototyped; whether the virtual signature can remain stable across
-    ///   that change is undetermined.
+    ///   `trajectory_update` grows non-empty fields and updates need to flow at
+    ///   a cadence independent of the inbound batches. See ERROR SURFACING
+    ///   below for the narrow consequence today and why the obvious fix is not
+    ///   trivial.
     /// - On the CLIENT (i.e., when invoked through ArmClient on a remote
     ///   arm), `batch_source` runs on the caller's thread and
     ///   `update_handler` runs on a separate SDK-managed reader thread. The
@@ -218,6 +217,29 @@ class Arm : public Component, public Stoppable {
     ///   with respect to itself (no concurrent calls to the same callback).
     ///   Implementations sharing mutable state between the two callbacks
     ///   must provide their own synchronization.
+    ///
+    /// ERROR SURFACING: the single-threaded server dispatch narrows, but does
+    /// not defeat, the point of a bidi stream. A terminal arm-side fault reaches
+    /// the client at one of two moments. While the client is still sending, the
+    /// fault surfaces on the next `batch_source` Read -- bounded by the client's
+    /// inter-batch cadence, which is small precisely for the tight-cadence
+    /// streams batching exists to serve. Once the client half-closes its send
+    /// side (the common shape for a pre-kinematized trajectory, whose sends
+    /// finish in milliseconds while execution runs for seconds), the handler is
+    /// no longer parked in Read and a fault surfaces promptly. Robust surfacing
+    /// therefore assumes a well-behaved client that closes its send side when
+    /// done; a client that stops sending without half-closing and then idles can
+    /// leave a fault unreported until it does. Non-terminal per-update status is
+    /// the case that genuinely needs concurrent emit, and it stays gated behind
+    /// `trajectory_update` growing fields.
+    ///
+    /// The obvious fix -- a background reader thread feeding a queue -- is not
+    /// trivial: a thread parked in `stream->Read` only unblocks once the RPC
+    /// finishes, which needs the handler to return, so it cannot be joined
+    /// before returning (the deadlock rdk's recv path hit). `TryCancel` unblocks
+    /// the Read but flattens the client-visible status to CANCELLED, losing the
+    /// specific fault code. A proper fix points at the async CompletionQueue
+    /// gRPC API -- a large change, disproportionate for this landing.
     ///
     /// @param batch_source Pull-source for the next batch of waypoints.
     /// @param update_handler Handler invoked for each update the implementation emits.
