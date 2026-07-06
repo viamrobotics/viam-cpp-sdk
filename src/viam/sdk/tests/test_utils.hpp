@@ -63,7 +63,7 @@ class TestServer {
 };
 
 // This function sets up the following architecture:
-// -- ResourceClient
+// -- (test_case closure)
 //        /\
 //
 //        | (grpc InProcessChannel)
@@ -80,31 +80,39 @@ class TestServer {
 // This is as close to a real client->server->resource setup as we can get
 // without starting another process.
 //
-// The passed in test_case function will have access to the created ResourceClient.
-template <typename ResourceType, typename F>
-void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
+// The test_case receives the raw in-process gRPC channel. It may build a typed
+// resource client from it (see client_to_mock_pipeline) or a raw service stub
+// to drive malformed requests a typed client would never emit -- the latter is
+// how server-side validation and protocol enforcement get exercised, since a
+// typed client masks them.
+template <typename F>
+void channel_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
     auto server = std::make_shared<sdk::Server>();
 
-    // normally the high level server service (either robot or module) handles adding managed
+    // Normally the high level server service (either robot or module) handles adding managed
     // resources, but in this case we must do it ourselves.
-    server->add_resource(mock);
+    server->add_resource(std::move(mock));
     server->start();
 
-    // Create a resource-specific client to the mock over an established
-    // in-process gRPC channel.
     auto test_server = TestServer(server);
-    auto channel = sdk::ViamChannel(test_server.grpc_in_process_channel());
-
-    auto resource_client = sdk::Registry::get()
-                               .lookup_resource_client(API::get<ResourceType>())
-                               ->create_rpc_client(mock->name(), channel);
-
-    // Run the passed-in test case on the created stack and give access to the
-    // created resource-specific client.
-    std::forward<F>(test_case)(*std::dynamic_pointer_cast<ResourceType>(resource_client));
+    std::forward<F>(test_case)(test_server.grpc_in_process_channel());
 
     // Shutdown Server afterward.
     server->shutdown();
+}
+
+// Builds a typed resource client over the in-process channel and hands it to
+// the test_case. The common case: exercise a component's client<->server
+// behavior end to end.
+template <typename ResourceType, typename F>
+void client_to_mock_pipeline(std::shared_ptr<Resource> mock, F&& test_case) {
+    channel_to_mock_pipeline(mock, [&](std::shared_ptr<grpc::Channel> grpc_channel) {
+        auto channel = sdk::ViamChannel(std::move(grpc_channel));
+        auto resource_client = sdk::Registry::get()
+                                   .lookup_resource_client(API::get<ResourceType>())
+                                   ->create_rpc_client(mock->name(), channel);
+        std::forward<F>(test_case)(*std::dynamic_pointer_cast<ResourceType>(resource_client));
+    });
 }
 
 }  // namespace sdktests
