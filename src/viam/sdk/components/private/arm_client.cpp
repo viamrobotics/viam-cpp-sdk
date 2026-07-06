@@ -186,7 +186,16 @@ void ArmClient::move_through_joint_positions_streamed(
 
     reader.join();
 
-    // Prefer the impl-side exception over Finish()'s gRPC status.
+    // Reap the call on every exit path, even the ones that TryCancel'd and are
+    // about to rethrow. Finish() completes the cancelled RPC and releases its
+    // resources; skipping it (as the error paths previously did) leaks an
+    // in-flight call per errored stream. It is safe to call now: the reader has
+    // been joined, so no other thread touches the stream.
+    const auto status = stream->Finish();
+
+    // Prefer a callback exception over Finish()'s gRPC status: after a
+    // TryCancel that status is a generic CANCELLED that hides the real cause,
+    // whereas the stashed exception carries it.
     if (writer_exception) {
         std::rethrow_exception(writer_exception);
     }
@@ -194,7 +203,6 @@ void ArmClient::move_through_joint_positions_streamed(
         std::rethrow_exception(reader_exception);
     }
 
-    const auto status = stream->Finish();
     if (!status.ok()) {
         throw GRPCException(&status);
     }
