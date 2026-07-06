@@ -102,8 +102,11 @@ jobs:
           digest=$(jq -r '.["${{ matrix.cell.target }}"]."containerimage.digest"' metadata.json)
           test -n "$digest" && test "$digest" != null
           mkdir -p "$RUNNER_TEMP/digests"
-          # Filename = arch (meaningful); digest lives in the file content.
-          echo "$digest" > "$RUNNER_TEMP/digests/${{ matrix.arch }}"
+          # Empty file named by digest: the merge job reconstructs the manifest
+          # list from these filenames alone, so the content is intentionally unused.
+          # Pattern from Docker's multi-runner docs:
+          # https://docs.docker.com/build/ci/github-actions/multi-platform/#distribute-build-across-multiple-runners
+          touch "$RUNNER_TEMP/digests/${digest#sha256:}"
 
       - name: Upload digest
         if: env.PUSH == 'true'
@@ -148,9 +151,10 @@ jobs:
 
       - name: Create multi-arch manifest
         run: |
-          # Stitch each arch's digest (one per file) into one manifest list.
+          # Each filename is a bare (sha256-stripped) digest; re-prefix and stitch
+          # them into one manifest list under the cell tag.
           docker buildx imagetools create -t "${{ matrix.cell.tag }}" \
-            $(for f in "$RUNNER_TEMP"/digests/*; do printf '%s@%s ' "${{ matrix.cell.image }}" "$(cat "$f")"; done)
+            $(for d in "$RUNNER_TEMP"/digests/*; do printf '%s@sha256:%s ' "${{ matrix.cell.image }}" "$(basename "$d")"; done)
 
       - name: Inspect
         run: docker buildx imagetools inspect "${{ matrix.cell.tag }}"
