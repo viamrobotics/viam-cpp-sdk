@@ -65,6 +65,7 @@ static const char* DataService_method_names[] = {
   "/viam.app.data.v1.DataService/DeleteSequence",
   "/viam.app.data.v1.DataService/ListSequences",
   "/viam.app.data.v1.DataService/SequencesByDatasetID",
+  "/viam.app.data.v1.DataService/GetSequenceBinaryData",
 };
 
 std::unique_ptr< DataService::Stub> DataService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -114,6 +115,7 @@ DataService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   , rpcmethod_DeleteSequence_(DataService_method_names[37], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListSequences_(DataService_method_names[38], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SequencesByDatasetID_(DataService_method_names[39], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSequenceBinaryData_(DataService_method_names[40], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status DataService::Stub::TabularDataByFilter(::grpc::ClientContext* context, const ::viam::app::data::v1::TabularDataByFilterRequest& request, ::viam::app::data::v1::TabularDataByFilterResponse* response) {
@@ -1029,6 +1031,29 @@ void DataService::Stub::async::SequencesByDatasetID(::grpc::ClientContext* conte
   return result;
 }
 
+::grpc::Status DataService::Stub::GetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::viam::app::data::v1::GetSequenceBinaryDataRequest, ::viam::app::data::v1::GetSequenceBinaryDataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetSequenceBinaryData_, context, request, response);
+}
+
+void DataService::Stub::async::GetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::viam::app::data::v1::GetSequenceBinaryDataRequest, ::viam::app::data::v1::GetSequenceBinaryDataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSequenceBinaryData_, context, request, response, std::move(f));
+}
+
+void DataService::Stub::async::GetSequenceBinaryData(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetSequenceBinaryData_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceBinaryDataResponse>* DataService::Stub::PrepareAsyncGetSequenceBinaryDataRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::viam::app::data::v1::GetSequenceBinaryDataResponse, ::viam::app::data::v1::GetSequenceBinaryDataRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetSequenceBinaryData_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::viam::app::data::v1::GetSequenceBinaryDataResponse>* DataService::Stub::AsyncGetSequenceBinaryDataRaw(::grpc::ClientContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetSequenceBinaryDataRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 DataService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DataService_method_names[0],
@@ -1430,6 +1455,16 @@ DataService::Service::Service() {
              ::viam::app::data::v1::SequencesByDatasetIDResponse* resp) {
                return service->SequencesByDatasetID(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DataService_method_names[40],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DataService::Service, ::viam::app::data::v1::GetSequenceBinaryDataRequest, ::viam::app::data::v1::GetSequenceBinaryDataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DataService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::viam::app::data::v1::GetSequenceBinaryDataRequest* req,
+             ::viam::app::data::v1::GetSequenceBinaryDataResponse* resp) {
+               return service->GetSequenceBinaryData(ctx, req, resp);
+             }, this)));
 }
 
 DataService::Service::~Service() {
@@ -1709,6 +1744,13 @@ DataService::Service::~Service() {
 }
 
 ::grpc::Status DataService::Service::SequencesByDatasetID(::grpc::ServerContext* context, const ::viam::app::data::v1::SequencesByDatasetIDRequest* request, ::viam::app::data::v1::SequencesByDatasetIDResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DataService::Service::GetSequenceBinaryData(::grpc::ServerContext* context, const ::viam::app::data::v1::GetSequenceBinaryDataRequest* request, ::viam::app::data::v1::GetSequenceBinaryDataResponse* response) {
   (void) context;
   (void) request;
   (void) response;
