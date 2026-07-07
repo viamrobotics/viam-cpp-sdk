@@ -16,6 +16,11 @@ ARG VERSION
 # DEBUG=1 turns on `set -x` tracing in every install script.
 ARG DEBUG=
 
+# Optional override for the grpc version built from source (numeric, e.g. 1.65.0).
+# When set, forces a source build at that version on every distro, even where the
+# apt grpc would otherwise be accepted. Empty -> default behavior.
+ARG GRPC_SOURCE_VERSION_OVERRIDE=
+
 FROM ${DISTRO}:${VERSION} AS base
 
 # DEBIAN_FRONTEND set here once, not per-call in scripts.
@@ -34,10 +39,8 @@ RUN /opt/scripts/install-cmake.sh
 
 FROM base AS system
 
-# Optional override for the grpc version built from source (numeric, e.g. 1.65.0).
-# When set, forces a source build at that version on every distro, even where the
-# apt grpc would otherwise be accepted. Empty -> default behavior.
-ARG GRPC_SOURCE_VERSION_OVERRIDE=
+# Re-declare global ARG to consume it in this stage; ENV carries it to scripts.
+ARG GRPC_SOURCE_VERSION_OVERRIDE
 ENV GRPC_SOURCE_VERSION_OVERRIDE=${GRPC_SOURCE_VERSION_OVERRIDE}
 
 RUN /opt/scripts/install-system-deps.sh

@@ -1,8 +1,162 @@
+# Build the base/system images declared in etc/docker/docker-bake.hcl.
+#
+# Cells (distro, version) come from the bake matrix; each is built natively on
+# amd64 AND arm64 (no QEMU), pushed by digest, then the two arch digests are
+# merged into one multi-arch manifest list per cell.
+#
+# The cell surface is owned entirely by docker-bake.hcl. Adding a distro/version
+# or arch is a change to that file (and the `arch` list below for a new arch);
+# the job graph here is generic and stays untouched.
+
 name: Docker base images
+
 on:
   workflow_dispatch:
+    inputs:
+      push:
+        description: "push images + create manifest lists (off = build-only dry run)"
+        type: boolean
+        default: false
+  # Rebuild when the image definition changes.
+  push:
+    branches: [main]
+    paths:
+      - etc/docker/**
+      - .github/workflows/docker-base-images.yml
+
+env:
+  REGISTRY: ghcr.io/viamrobotics
+  BAKE_FILE: etc/docker/docker-bake.hcl
+  # workflow_dispatch carries inputs.push; branch pushes always publish.
+  PUSH: ${{ github.event_name != 'workflow_dispatch' || inputs.push }}
+
 jobs:
-  run:
+  # ---------------------------------------------------------------------------
+  # Read the cell surface straight out of the bake file. `bake --print` is the
+  # documented contract; we never hand-maintain the cell list in YAML.
+  # ---------------------------------------------------------------------------
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      cells: ${{ steps.gen.outputs.cells }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - id: gen
+        name: Derive cell matrix from bake --print
+        working-directory: etc/docker
+        run: ../../.github/workflows/derive-cells.sh docker-bake.hcl
+
+  # ---------------------------------------------------------------------------
+  # One job per (cell, arch). Native runner per arch, build a single named bake
+  # target, push by digest only (no tag). Digests are collected by the merge job.
+  # ---------------------------------------------------------------------------
+  build:
+    needs: matrix
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        cell: ${{ fromJson(needs.matrix.outputs.cells) }}
+        arch: [amd64, arm64]
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        if: env.PUSH == 'true'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Untagged image gets pushed by digest below depending on push=${PUSH}
+      # argument to docker buildx bake
+      - name: Build ${{ matrix.cell.target }} (${{ matrix.arch }})
+        working-directory: etc/docker
+        run: |
+          # Slice the bake matrix to this runner's native arch (no QEMU); the
+          # bake file defaults to the full amd64+arm64 matrix.
+          # Push by digest: strip the tag and emit a name-canonical image so the
+          # arch builds don't race on a shared tag. Merge job stitches them.
+          docker buildx bake -f docker-bake.hcl \
+            --set "${{ matrix.cell.target }}.platform=linux/${{ matrix.arch }}" \
+            --set "${{ matrix.cell.target }}.tags=" \
+            --set "${{ matrix.cell.target }}.output=type=image,name=${{ matrix.cell.image }},push-by-digest=true,name-canonical=true,push=${PUSH}" \
+            --metadata-file metadata.json \
+            "${{ matrix.cell.target }}"
+
+      - name: Export digest
+        if: env.PUSH == 'true'
+        working-directory: etc/docker
+        run: |
+          digest=$(jq -r '.["${{ matrix.cell.target }}"]."containerimage.digest"' metadata.json)
+          test -n "$digest" && test "$digest" != null
+          mkdir -p "$RUNNER_TEMP/digests"
+          # Empty file named by digest: the merge job reconstructs the manifest
+          # list from these filenames alone, so the content is intentionally unused.
+          # Pattern from Docker's multi-runner docs:
+          # https://docs.docker.com/build/ci/github-actions/multi-platform/#distribute-build-across-multiple-runners
+          touch "$RUNNER_TEMP/digests/${digest#sha256:}"
+
+      - name: Upload digest
+        if: env.PUSH == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          # One artifact per (cell, arch); merge job fans them back in by pattern.
+          name: digest-${{ matrix.cell.target }}-${{ matrix.arch }}
+          path: ${{ runner.temp }}/digests/*
+          retention-days: 1
+          if-no-files-found: error
+
+  # ---------------------------------------------------------------------------
+  # Per cell, join the arch digests into one manifest list under the cell tag.
+  # ---------------------------------------------------------------------------
+  merge:
+    needs: [matrix, build]
+    if: needs.build.result == 'success' && (github.event_name != 'workflow_dispatch' || inputs.push)
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        cell: ${{ fromJson(needs.matrix.outputs.cells) }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Collect digests for ${{ matrix.cell.target }}
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ runner.temp }}/digests
+          pattern: digest-${{ matrix.cell.target }}-*
+          # Flatten every arch's artifact into `path` rather than separate subdirs.
+          merge-multiple: true
+
+      - name: Create and push the multi-arch manifest
+        run: |
+          # Each filename is a bare (sha256-stripped) digest; re-prefix and stitch
+          # them into one manifest list under the cell tag.
+          docker buildx imagetools create -t "${{ matrix.cell.tag }}" \
+            $(for d in "$RUNNER_TEMP"/digests/*; do printf '%s@sha256:%s ' "${{ matrix.cell.image }}" "$(basename "$d")"; done)
+
+      - name: Inspect
+        run: docker buildx imagetools inspect "${{ matrix.cell.tag }}"
