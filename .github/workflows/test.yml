@@ -16,7 +16,7 @@ jobs:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     container:
-      image: debian:bookworm
+      image: ghcr.io/viamrobotics/cpp-sdk-system-debian:bookworm
     strategy:
       fail-fast: false
       matrix:
@@ -26,46 +26,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Install test-only dependencies
         run: |
           apt-get update
-          apt-get -y dist-upgrade
           DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-              build-essential \
-              ca-certificates \
-              cmake \
               curl \
-              doxygen \
-              g++ \
               gettext \
-              gdb \
-              git \
-              gnupg \
-              gpg \
-              less \
-              libboost-all-dev \
-              libc-ares-dev \
-              libgrpc++-dev \
-              libprotobuf-dev \
-              libre2-dev \
-              libssl-dev \
-              lsof \
-              ninja-build \
-              pkg-config \
-              protobuf-compiler-grpc \
-              software-properties-common \
-              sudo \
-              wget \
-              zlib1g-dev
-
-          bash -c 'wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add -'
-          apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
-          apt-add-repository -y 'deb http://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-15 main'
-          apt-get update
-          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install -t llvm-toolchain-bookworm-15 \
-            clang-15 \
-            clang-tidy-15 \
-            clang-format
+              lsof
 
       - name: Build viam server
         run: |
