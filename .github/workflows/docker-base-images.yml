@@ -81,6 +81,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # Untagged image gets pushed by digest below depending on push=${PUSH}
+      # argument to docker buildx bake
       - name: Build ${{ matrix.cell.target }} (${{ matrix.arch }})
         working-directory: etc/docker
         run: |
@@ -149,7 +151,7 @@ jobs:
           # Flatten every arch's artifact into `path` rather than separate subdirs.
           merge-multiple: true
 
-      - name: Create multi-arch manifest
+      - name: Create and push the multi-arch manifest
         run: |
           # Each filename is a bare (sha256-stripped) digest; re-prefix and stitch
           # them into one manifest list under the cell tag.
