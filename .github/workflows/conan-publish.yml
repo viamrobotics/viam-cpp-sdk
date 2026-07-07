@@ -219,7 +219,7 @@ jobs:
         conan upload "re2/*" -r viamconan -c
 
   build_windows:
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     steps:
     - name: Checkout code
@@ -255,7 +255,7 @@ jobs:
         Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
         refreshenv
 
-        conan create . --build=missing -s:a compiler.cppstd=17
+        conan create . --build=missing -s:a compiler.cppstd=17 --lockfile etc/conan/conan.lock --lockfile-partial
         conan upload "viam-cpp-sdk/*" -r viamconan -c
       env:
         CONAN_USER_HOME: c:/cache
