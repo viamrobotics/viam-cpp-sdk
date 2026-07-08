@@ -34,7 +34,19 @@ elif is_debian; then
     add_apt_repo "debian-backports" \
         "https://ftp-master.debian.org/keys/archive-key-11.asc" \
         "https://archive.debian.org/debian ${DISTRO_CODENAME}-backports main"
-    apt_install_from "${DISTRO_CODENAME}-backports" cmake
+    # Backports cmake hard-depends on a newer libcurl4 than the base suite, so
+    # installing it upgrades libcurl4 to the backports version. That splits the
+    # curl source packages across suites: a later `apt install curl` (or a
+    # libcurl4-*-dev) picks the base-suite build, which pins the old libcurl4 and
+    # fails with "held broken packages". Pin the whole curl family to backports
+    # so those installs resolve against the libcurl4 that's actually installed,
+    # and preinstall curl so the common case needs no apt work at all.
+    cat > /etc/apt/preferences.d/99-curl-backports <<EOF
+Package: curl libcurl3-gnutls libcurl3-nss libcurl4 libcurl4-doc libcurl4-gnutls-dev libcurl4-nss-dev libcurl4-openssl-dev
+Pin: release n=${DISTRO_CODENAME}-backports
+Pin-Priority: 500
+EOF
+    apt_install_from "${DISTRO_CODENAME}-backports" cmake curl
 else
     echo "install-cmake.sh: unsupported distro '${DISTRO_ID}'" >&2
     exit 1
