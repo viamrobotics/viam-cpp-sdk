@@ -9,7 +9,6 @@
 # misc-include-cleaner: TODO(RSDK-5479) this is overly finnicky, add IWYU support and fix.
 # readability-function-cognitive-complexity: No, complexity is subjective and sometimes necessary.
 # readability-else-after-return: No, this causes code complexification
-# clang-diagnostic-enum-constexpr-conversion: Boost MPL headers trip this hard error on clang>=16; not our code.
 Checks: >
   -*,
   bugprone-*,
@@ -29,7 +28,6 @@ Checks: >
   -misc-include-cleaner,
   -readability-function-cognitive-complexity,
   -readability-else-after-return,
-  -clang-diagnostic-enum-constexpr-conversion,
 WarningsAsErrors: '*'
 FormatStyle: none
 CheckOptions:

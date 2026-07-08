@@ -49,7 +49,8 @@ if (VIAMCPPSDK_SANITIZED_BUILD)
 endif()
 if (VIAMCPPSDK_CLANG_TIDY)
   find_program(CLANG_TIDY_EXE NAMES "clang-tidy-19" "clang-tidy-15" "clang-tidy")
-  set(CLANG_TIDY_COMMAND "${CLANG_TIDY_EXE}" "--config-file=../.clang-tidy")
+  # -Wno-enum-constexpr-conversion: Boost MPL headers trip this hard clang error on clang>=16; not our code.
+  set(CLANG_TIDY_COMMAND "${CLANG_TIDY_EXE}" "--config-file=../.clang-tidy" "--extra-arg=-Wno-enum-constexpr-conversion")
   set_target_properties(viamsdk PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 endif()
 
