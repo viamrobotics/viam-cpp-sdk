@@ -24,7 +24,7 @@ target "base" {
   target     = "base"
 
   // Full matrix; slice to a native arch with --set '*.platform=linux/<arch>'.
-  platforms = ["linux/amd64", "linux/arm64"]
+  platforms = ["linux/amd64", "linux/arm64", "linux/armhf"]
 }
 
 target "system" {
