@@ -23,6 +23,7 @@ apt_install \
     clang \
     clang-format \
     clang-tidy \
+    curl \
     g++ \
     gcc \
     git \
