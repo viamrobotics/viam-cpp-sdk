@@ -8,11 +8,6 @@ set -euo pipefail
 
 # ---- pinned toolchain versions (not configurable at docker build time) ----
 
-# LLVM_VERSION: the clang/clang-tidy/clang-format major version installed by
-# install-llvm.sh.
-LLVM_VERSION=19
-export LLVM_VERSION
-
 # CMAKE_MIN_VERSION: minimum cmake install-cmake.sh accepts before pulling a
 # newer one from Kitware (Ubuntu) or Debian backports.
 CMAKE_MIN_VERSION=3.25

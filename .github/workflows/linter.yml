@@ -19,7 +19,6 @@ jobs:
           fetch-depth: 0
       - name: verify no uncommitted changes
         run: |
-          ln -sf "$(command -v clang-format-19)" /usr/local/bin/clang-format
           chown $(whoami) .
           git init
           git add .

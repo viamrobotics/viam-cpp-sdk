@@ -33,7 +33,6 @@ COPY scripts/ /opt/scripts/
 RUN chmod -R +x /opt/scripts
 
 RUN /opt/scripts/install-base.sh
-RUN /opt/scripts/install-llvm.sh
 RUN /opt/scripts/install-cmake.sh
 
 
