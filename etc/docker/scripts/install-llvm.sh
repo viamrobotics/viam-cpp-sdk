@@ -24,7 +24,7 @@ rm -rf /var/lib/apt/lists/*
 if [[ -n "${clang_candidate}" ]]; then
     # Distro ships it directly.
     apt_install "${LLVM_PKGS[@]}"
-else
+elif [[ $(dpkg --print-architecture) != "armhf" ]]; then
     # apt.llvm.org suite name: llvm-toolchain-<codename>-<version>, except
     # Debian sid which drops the codename segment (llvm-toolchain-<version>).
     if [[ "${DISTRO_CODENAME}" == "sid" ]]; then

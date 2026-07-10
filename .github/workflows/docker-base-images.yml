@@ -62,12 +62,15 @@ jobs:
       fail-fast: false
       matrix:
         cell: ${{ fromJson(needs.matrix.outputs.cells) }}
-        arch: [amd64, arm64]
+        arch: [amd64, arm64, armhf]
         include:
           - arch: amd64
             runner: ubuntu-24.04
           - arch: arm64
             runner: ubuntu-24.04-arm
+          - arch: armhf
+            runner: ubuntu-24.04-arm
+
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
