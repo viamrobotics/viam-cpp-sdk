@@ -72,6 +72,9 @@ jobs:
             runner: ubuntu-24.04-arm
 
     runs-on: ${{ matrix.runner }}
+    # Unstable distros (debian sid) are allowed to fail without blocking the
+    # merge/publish of the stable cells. A stable cell's failure still gates.
+    continue-on-error: ${{ endsWith(matrix.cell.target, '-sid') }}
     steps:
       - uses: actions/checkout@v4
 
@@ -137,6 +140,9 @@ jobs:
       matrix:
         cell: ${{ fromJson(needs.matrix.outputs.cells) }}
     runs-on: ubuntu-latest
+    # Match the build job: a missing-digest sid merge fails on its own without
+    # blocking the stable cells' manifest push.
+    continue-on-error: ${{ endsWith(matrix.cell.target, '-sid') }}
     steps:
       - uses: docker/setup-buildx-action@v3
 
