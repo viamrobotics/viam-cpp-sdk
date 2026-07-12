@@ -11,7 +11,7 @@ jobs:
   cpp-linter:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
-    container: ghcr.io/viamrobotics/cpp-base:bullseye-amd64
+    container: ghcr.io/viamrobotics/cpp-sdk-system-debian:bullseye
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

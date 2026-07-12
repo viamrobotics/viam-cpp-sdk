@@ -23,8 +23,8 @@ target "base" {
   context    = "."
   target     = "base"
 
-  // Full matrix; slice to a native arch with --set '*.platforms=linux/<arch>'.
-  platforms = ["linux/amd64", "linux/arm64"]
+  // Full matrix; slice to a native arch with --set '*.platform=linux/<arch>'.
+  platforms = ["linux/amd64", "linux/arm64", "linux/armhf"]
 }
 
 target "system" {

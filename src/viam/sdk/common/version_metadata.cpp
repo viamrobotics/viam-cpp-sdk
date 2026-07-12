@@ -18,6 +18,8 @@ std::string sdk_version() {
     return result;
 }
 
+namespace {
+
 int get_sub_version(int which) {
     static const std::array<int, 3> components = [] {
         std::array<int, 3> result;
@@ -37,6 +39,8 @@ int get_sub_version(int which) {
 
     return components[which];
 }
+
+}  // namespace
 
 int sdk_major_version() {
     return get_sub_version(0);
