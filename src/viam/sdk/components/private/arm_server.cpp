@@ -139,22 +139,23 @@ ArmServer::ArmServer(std::shared_ptr<ResourceManager> manager)
     }
     const auto& init = first.init();
 
-    // Resolve the arm up front: nothing downstream matters if the named resource
-    // is not here. This mirrors ServiceHelper, which resolves the resource
-    // before running the method body and fails NOT_FOUND when the name does not
-    // resolve (it does not separately special-case a missing name).
-    const auto arm = resource_manager()->resource<Arm>(first.name());
-    if (!arm) {
-        return span_guard.commit(
-            ::grpc::Status(::grpc::StatusCode::NOT_FOUND,
-                           "MoveThroughJointPositionsStreamed: arm not found: " + first.name()));
-    }
-
-    // Everything downstream may throw (proto conversions, the impl itself, and
-    // the batch_source closure which throws grpc::Status on protocol
-    // violations). We are noexcept, so wrap it all in a single try and catch
-    // every throw type.
+    // Everything from here on can throw: the resource lookup takes a lock, proto
+    // conversion allocates, the impl runs, and the batch_source closure throws
+    // grpc::Status on a protocol violation. We are noexcept, so it all goes in
+    // one try that catches every throw type.
     try {
+        // Resolve the arm before anything else, since nothing downstream matters
+        // if the named resource is not here. This mirrors ServiceHelper, which
+        // looks the resource up before running the method body and fails
+        // NOT_FOUND when the name does not resolve (it does not separately
+        // special-case a missing name).
+        const auto arm = resource_manager()->resource<Arm>(first.name());
+        if (!arm) {
+            return span_guard.commit(::grpc::Status(
+                ::grpc::StatusCode::NOT_FOUND,
+                "MoveThroughJointPositionsStreamed: arm not found: " + first.name()));
+        }
+
         const ProtoStruct extra = from_proto(init.extra());
 
         // batch_source pulls the next batch off the stream. An empty batch is
