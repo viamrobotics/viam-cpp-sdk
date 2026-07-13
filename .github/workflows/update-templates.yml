@@ -55,7 +55,8 @@ jobs:
           cd build
           cmake .. -G Ninja \
             -DCMAKE_CXX_COMPILER=clang++-15 \
-            -DLLVM_DIR=/usr/lib/llvm-15
+            -DLLVM_DIR=/usr/lib/llvm-15/lib/cmake/llvm \
+            -DClang_DIR=/usr/lib/llvm-15/lib/cmake/clang
           ninja install
           cl_gen -h
 
