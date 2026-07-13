@@ -13,7 +13,7 @@ jobs:
     container:
       image: ghcr.io/viamrobotics/cpp-sdk-system-debian:bookworm
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
 
@@ -59,7 +59,7 @@ jobs:
         run: echo "${{ env.API_PROTO_TAG_VERSION }}" > src/viam/api/api_proto_tag.lock
 
       - name: Add + Commit + Open PR
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: '[WORKFLOW] Updating protos from ${{ env.PROTO_REPO_NAME }}, commit: ${{ env.PROTO_SHA }}'
           branch: 'workflow/update-protos'
