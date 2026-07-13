@@ -17,6 +17,11 @@ jobs:
         with:
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
 
+      - name: Install unzip
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install unzip
+
       - uses: bufbuild/buf-setup-action@v1.50.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
